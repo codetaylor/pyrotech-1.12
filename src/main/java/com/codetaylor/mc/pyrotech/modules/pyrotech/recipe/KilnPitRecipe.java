@@ -1,22 +1,24 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.Registries;
+import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nullable;
-import java.util.Iterator;
 
 public class KilnPitRecipe
     extends IForgeRegistryEntry.Impl<KilnPitRecipe>
-    implements IRecipeTimed {
+    implements IRecipeSingleOutput,
+    IRecipeTimed {
 
   @Nullable
   public static KilnPitRecipe getRecipe(ItemStack input) {
 
-    for (KilnPitRecipe recipe : Registries.KILN_PIT_RECIPE) {
+    for (KilnPitRecipe recipe : ModulePyrotechRegistries.KILN_PIT_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -28,19 +30,7 @@ public class KilnPitRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    boolean recipesRemoved = false;
-    Iterator<KilnPitRecipe> iterator = Registries.KILN_PIT_RECIPE.iterator();
-
-    while (iterator.hasNext()) {
-      KilnPitRecipe recipe = iterator.next();
-
-      if (output.apply(recipe.output)) {
-        iterator.remove();
-        recipesRemoved = true;
-      }
-    }
-
-    return recipesRemoved;
+    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.KILN_PIT_RECIPE, output);
   }
 
   private final Ingredient input;

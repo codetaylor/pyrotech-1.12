@@ -1,7 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
+import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.Registries;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -9,16 +11,16 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nullable;
-import java.util.Iterator;
 
 public class PitBurnRecipe
     extends IForgeRegistryEntry.Impl<PitBurnRecipe>
-    implements IRecipeTimed {
+    implements IRecipeSingleOutput,
+    IRecipeTimed {
 
   @Nullable
   public static PitBurnRecipe getRecipe(IBlockState input) {
 
-    for (PitBurnRecipe recipe : Registries.BURN_RECIPE) {
+    for (PitBurnRecipe recipe : ModulePyrotechRegistries.BURN_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -30,19 +32,7 @@ public class PitBurnRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    boolean recipesRemoved = false;
-    Iterator<PitBurnRecipe> iterator = Registries.BURN_RECIPE.iterator();
-
-    while (iterator.hasNext()) {
-      PitBurnRecipe recipe = iterator.next();
-
-      if (output.apply(recipe.output)) {
-        iterator.remove();
-        recipesRemoved = true;
-      }
-    }
-
-    return recipesRemoved;
+    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.BURN_RECIPE, output);
   }
 
   private final BlockMetaMatcher inputMatcher;

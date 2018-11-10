@@ -84,16 +84,19 @@ public class ModulePyrotech
     new RegistryBuilder<PitBurnRecipe>()
         .setName(new ResourceLocation(MOD_ID, "pit_recipe"))
         .setType(PitBurnRecipe.class)
+        .allowModification()
         .create();
 
     new RegistryBuilder<KilnPitRecipe>()
         .setName(new ResourceLocation(MOD_ID, "kiln_pit_recipe"))
         .setType(KilnPitRecipe.class)
+        .allowModification()
         .create();
 
     new RegistryBuilder<KilnBrickRecipe>()
         .setName(new ResourceLocation(MOD_ID, "kiln_brick_recipe"))
         .setType(KilnBrickRecipe.class)
+        .allowModification()
         .create();
   }
 
@@ -121,9 +124,9 @@ public class ModulePyrotech
     super.onRegisterRecipesEvent(event);
 
     ModuleRecipes.onRegisterRecipes(event.getRegistry());
-    ModuleRecipes.onRegisterPitBurnRecipes(Registries.BURN_RECIPE);
-    ModuleRecipes.onRegisterKilnPitRecipes(Registries.KILN_PIT_RECIPE);
-    ModuleRecipes.onRegisterKilnBrickRecipe(Registries.KILN_BRICK_RECIPE);
+    ModuleRecipes.onRegisterPitBurnRecipes(ModulePyrotechRegistries.BURN_RECIPE);
+    ModuleRecipes.onRegisterKilnPitRecipes(ModulePyrotechRegistries.KILN_PIT_RECIPE);
+    ModuleRecipes.onRegisterKilnBrickRecipe(ModulePyrotechRegistries.KILN_BRICK_RECIPE);
   }
 
   @Override
@@ -154,7 +157,7 @@ public class ModulePyrotech
 
     for (String blockString : ModulePyrotechConfig.GENERAL.REFRACTORY_BRICKS) {
       try {
-        Registries.REFRACTORY_BLOCK_LIST.add(Util.parseBlockStringWithWildcard(blockString, parser));
+        ModulePyrotechRegistries.REFRACTORY_BLOCK_LIST.add(Util.parseBlockStringWithWildcard(blockString, parser));
 
       } catch (MalformedRecipeItemException e) {
         LOGGER.error("", e);
@@ -166,11 +169,11 @@ public class ModulePyrotech
     // ------------------------------------------------------------------------
 
     {
-      Registries.COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST.add(new BlockMetaMatcher(
+      ModulePyrotechRegistries.COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST.add(new BlockMetaMatcher(
           ModuleBlocks.ACTIVE_PILE,
           0
       ));
-      Registries.COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST.add(new BlockMetaMatcher(
+      ModulePyrotechRegistries.COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST.add(new BlockMetaMatcher(
           ModuleBlocks.PIT_ASH_BLOCK,
           0
       ));

@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnPit;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.Registries;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import net.minecraft.block.Block;
@@ -344,7 +344,7 @@ public class TileKilnPit
 
   private boolean isRefractoryBlock(IBlockState blockState) {
 
-    for (Predicate<IBlockState> matcher : Registries.REFRACTORY_BLOCK_LIST) {
+    for (Predicate<IBlockState> matcher : ModulePyrotechRegistries.REFRACTORY_BLOCK_LIST) {
 
       if (matcher.test(blockState)) {
         return true;

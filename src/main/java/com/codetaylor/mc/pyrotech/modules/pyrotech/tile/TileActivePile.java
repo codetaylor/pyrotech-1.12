@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRefractoryDoor;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.Registries;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import net.minecraft.block.Block;
@@ -69,7 +69,7 @@ public class TileActivePile
   @Override
   protected int getTotalBurnTimeTicks() {
 
-    PitBurnRecipe recipe = Registries.BURN_RECIPE.getValue(this.recipeKey);
+    PitBurnRecipe recipe = ModulePyrotechRegistries.BURN_RECIPE.getValue(this.recipeKey);
 
     if (recipe != null) {
       return recipe.getTimeTicks();
@@ -82,7 +82,7 @@ public class TileActivePile
   @Override
   protected int getBurnStages() {
 
-    PitBurnRecipe recipe = Registries.BURN_RECIPE.getValue(this.recipeKey);
+    PitBurnRecipe recipe = ModulePyrotechRegistries.BURN_RECIPE.getValue(this.recipeKey);
 
     if (recipe != null) {
       return recipe.getBurnStages();
@@ -131,7 +131,7 @@ public class TileActivePile
   @Override
   protected void onBurnStageComplete() {
 
-    PitBurnRecipe recipe = Registries.BURN_RECIPE.getValue(this.recipeKey);
+    PitBurnRecipe recipe = ModulePyrotechRegistries.BURN_RECIPE.getValue(this.recipeKey);
 
     if (recipe == null) {
       return;
@@ -243,20 +243,20 @@ public class TileActivePile
   protected boolean isValidStructureBlock(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
 
     blockState = blockState.getActualState(world, pos);
-    PitBurnRecipe recipe = Registries.BURN_RECIPE.getValue(this.recipeKey);
+    PitBurnRecipe recipe = ModulePyrotechRegistries.BURN_RECIPE.getValue(this.recipeKey);
 
     if (recipe == null) {
       return false;
     }
 
-    for (Predicate<IBlockState> matcher : Registries.COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST) {
+    for (Predicate<IBlockState> matcher : ModulePyrotechRegistries.COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST) {
 
       if (matcher.test(blockState)) {
         return true;
       }
     }
 
-    for (Predicate<IBlockState> matcher : Registries.REFRACTORY_BLOCK_LIST) {
+    for (Predicate<IBlockState> matcher : ModulePyrotechRegistries.REFRACTORY_BLOCK_LIST) {
 
       if (matcher.test(blockState)) {
         return true;
