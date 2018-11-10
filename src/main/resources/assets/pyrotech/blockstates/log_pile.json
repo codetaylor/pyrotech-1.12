@@ -1,0 +1,23 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "normal": {
+      "model": "pyrotech:log_pile"
+    },
+    "axis=y": {
+      "model": "pyrotech:log_pile"
+    },
+    "axis=z": {
+      "model": "pyrotech:log_pile",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "pyrotech:log_pile",
+      "x": 90,
+      "y": 90
+    },
+    "axis=none": {
+      "model": "pyrotech:log_pile_bark"
+    }
+  }
+}

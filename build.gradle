@@ -1,0 +1,113 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "http://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+def getVersionName = { String workTree ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', "--git-dir=\"${workTree}/.git\"", "--work-tree=\"${workTree}\"", 'describe', '--tags'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+project.ext.mcversion = "1.12.2"
+project.ext.forgeversion = "14.23.1.2594"
+version = getVersionName("${project.projectDir}")
+group = "com.sudoplay.mc"
+archivesBaseName = "pwcustom"
+project.ext.athenaeum_version = "1.12.2-1.5.3"
+project.ext.dependencies = ',dependencies = "required-after:athenaeum@[' + project.ext.athenaeum_version + ',);after:crafttweaker;after:jei@[4.8.5.139,);after:gamestages;required-after:bookshelf@[2.2.525,);after:*"'
+
+compileJava.doFirst {
+    project.sourceSets.main.java.srcDirs.each { dir ->
+        copy {
+            from dir
+            into "${project.buildDir}/modifiedSrc"
+            include "**/*.java"
+            filter {
+                it.replaceAll('@@VERSION@@', project.version)
+            }
+            filter {
+                it.replaceAll('//@@DEPENDENCIES@@', project.ext.dependencies)
+            }
+            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        }
+        println "   [OK] Preprocessed [${dir}]"
+    }
+}
+compileJava.doFirst {
+    source = "${project.buildDir}/modifiedSrc"
+    classpath = project.sourceSets.main.compileClasspath
+    //destinationDir = file("${project.buildDir}/classes")
+}
+compileJava.doLast {
+    println "   [OK] Compiled [${project.name}]"
+}
+
+sourceCompatibility = targetCompatibility = "1.8"
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+}
+
+minecraft {
+    version = project.ext.mcversion + "-" + project.ext.forgeversion
+    runDir = "run"
+
+    // the mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   snapshot are built nightly.
+    // stable_#            stables are built at the discretion of the MCP team.
+    // Use non-default mappings at your own risk. they may not allways work.
+    // simply re-run your setup task after changing the mappings to update your workspace.
+    mappings = "snapshot_20171003"
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+}
+
+repositories {
+
+    // hwyla
+    maven { url "http://tehnut.info/maven" }
+
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile project(":athenaeum")
+    deobfCompile "mcp.mobius.waila:Hwyla:1.8.25-B40_1.12"
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+/**
+ * This task creates the wrapper files.
+ */
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.1'
+}
+

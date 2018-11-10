@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bow",
+      "data": 0
+    },
+    {
+      "item": "minecraft:stick",
+      "data": 0
+    }
+  ],
+  "result": {
+    "item": "pyrotech:bow_drill",
+    "count": 1,
+    "data": 0
+  }
+}

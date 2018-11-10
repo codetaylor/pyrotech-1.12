@@ -1,0 +1,2 @@
+include ":athenaeum"
+project(":athenaeum").projectDir = file("../athenaeum")

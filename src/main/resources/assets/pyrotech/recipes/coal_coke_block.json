@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "pyrotech:material",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "pyrotech:coal_coke_block",
+    "count": 1,
+    "data": 0
+  }
+}

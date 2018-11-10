@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "up": "minecraft:blocks/log_oak",
+    "down": "pyrotech:blocks/thatch",
+    "north": "pyrotech:blocks/kiln_wood_end",
+    "south": "pyrotech:blocks/kiln_wood_end",
+    "west": "pyrotech:blocks/kiln_wood_side",
+    "east": "pyrotech:blocks/kiln_wood_side",
+    "particle": "pyrotech:blocks/thatch"
+  }
+}

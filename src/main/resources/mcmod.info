@@ -1,0 +1,16 @@
+[
+{
+  "modid": "pyrotech",
+  "name": "Pyrotech",
+  "description": "Fire it up.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["codetaylor"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,0 +1,214 @@
+{
+  "__comment": "https://github.com/SlimeKnights/TinkersConstruct/blob/master/resources/assets/tconstruct/blockstates/seared_glass.json",
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "normal": "pyrotech:blocks/refractory_glass_normal",
+      "u": "pyrotech:blocks/refractory_glass_u",
+      "r": "pyrotech:blocks/refractory_glass_r",
+      "ud": "pyrotech:blocks/refractory_glass_ud",
+      "ul": "pyrotech:blocks/refractory_glass_ul",
+      "ur": "pyrotech:blocks/refractory_glass_ur",
+      "lr": "pyrotech:blocks/refractory_glass_lr",
+      "udr": "pyrotech:blocks/refractory_glass_udr",
+      "udl": "pyrotech:blocks/refractory_glass_udl",
+      "ulr": "pyrotech:blocks/refractory_glass_ulr",
+      "udlr": "pyrotech:blocks/refractory_glass_udlr"
+    }
+  },
+  "variants": {
+    "inventory": {"model": "pyrotech:connected/connected_0"},
+    "connected_down=false,connected_east=false,connected_north=false,connected_south=false,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_0"
+    },
+    "connected_down=false,connected_east=false,connected_north=false,connected_south=false,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_1"
+    },
+    "connected_down=true,connected_east=false,connected_north=false,connected_south=false,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_1", "x": 180
+    },
+    "connected_down=false,connected_east=false,connected_north=true,connected_south=false,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_1", "x": 90
+    },
+    "connected_down=false,connected_east=false,connected_north=false,connected_south=true,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_1", "x": -90
+    },
+    "connected_down=false,connected_east=false,connected_north=false,connected_south=false,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_1", "x": 90, "y": -90
+    },
+    "connected_down=false,connected_east=true,connected_north=false,connected_south=false,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_1", "x": 90, "y": 90
+    },
+    "connected_down=false,connected_east=true,connected_north=false,connected_south=false,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_2_angle"
+    },
+    "connected_down=false,connected_east=false,connected_north=false,connected_south=false,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_2_angle", "y": 180
+    },
+    "connected_down=true,connected_east=true,connected_north=false,connected_south=false,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_2_angle", "x": 180
+    },
+    "connected_down=true,connected_east=false,connected_north=false,connected_south=false,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_2_angle", "x": 180, "y": 180
+    },
+    "connected_down=false,connected_east=false,connected_north=true,connected_south=false,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_2_angle", "y": -90
+    },
+    "connected_down=false,connected_east=false,connected_north=false,connected_south=true,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_2_angle", "y": 90
+    },
+    "connected_down=true,connected_east=false,connected_north=true,connected_south=false,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_2_angle", "x": 180, "y": -90
+    },
+    "connected_down=true,connected_east=false,connected_north=false,connected_south=true,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_2_angle", "x": 180, "y": 90
+    },
+    "connected_down=false,connected_east=true,connected_north=true,connected_south=false,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_2_angle", "x": 90
+    },
+    "connected_down=false,connected_east=true,connected_north=false,connected_south=true,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_2_angle", "x": -90
+    },
+    "connected_down=false,connected_east=false,connected_north=true,connected_south=false,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_2_angle", "x": 90, "y": -90
+    },
+    "connected_down=false,connected_east=false,connected_north=false,connected_south=true,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_2_angle", "x": -90, "y": 90
+    },
+    "connected_down=true,connected_east=false,connected_north=false,connected_south=false,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_2"
+    },
+    "connected_down=false,connected_east=true,connected_north=false,connected_south=false,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_2", "x": -90, "y": 90
+    },
+    "connected_down=false,connected_east=false,connected_north=true,connected_south=true,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_2", "x": -90
+    },
+    "connected_down=true,connected_east=false,connected_north=false,connected_south=false,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_3_T1"
+    },
+    "connected_down=true,connected_east=false,connected_north=false,connected_south=true,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_3_T1", "y": -90
+    },
+    "connected_down=true,connected_east=true,connected_north=false,connected_south=false,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_3_T1", "y": -180
+    },
+    "connected_down=true,connected_east=false,connected_north=true,connected_south=false,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_3_T1", "y": 90
+    },
+    "connected_down=false,connected_east=false,connected_north=true,connected_south=true,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_3_T1", "x": -90
+    },
+    "connected_down=false,connected_east=true,connected_north=true,connected_south=true,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_3_T1", "x": -90, "y": 180
+    },
+    "connected_down=false,connected_east=true,connected_north=false,connected_south=false,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_3_T2"
+    },
+    "connected_down=false,connected_east=true,connected_north=false,connected_south=true,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_3_T2", "x": -90
+    },
+    "connected_down=true,connected_east=true,connected_north=false,connected_south=false,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_3_T2", "x": 180
+    },
+    "connected_down=false,connected_east=true,connected_north=true,connected_south=false,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_3_T2", "x": 90
+    },
+    "connected_down=false,connected_east=false,connected_north=true,connected_south=true,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_3_T2", "y": 90
+    },
+    "connected_down=true,connected_east=false,connected_north=true,connected_south=true,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_3_T2", "x": 180, "y": 90
+    },
+    "connected_down=false,connected_east=true,connected_north=false,connected_south=true,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_3_angle"
+    },
+    "connected_down=false,connected_east=false,connected_north=false,connected_south=true,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_3_angle", "y": 90
+    },
+    "connected_down=false,connected_east=true,connected_north=true,connected_south=false,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_3_angle", "x": 90
+    },
+    "connected_down=true,connected_east=true,connected_north=true,connected_south=false,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_3_angle", "x": 180
+    },
+    "connected_down=true,connected_east=true,connected_north=false,connected_south=true,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_3_angle", "x": 270
+    },
+    "connected_down=true,connected_east=false,connected_north=false,connected_south=true,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_3_angle", "x": 180, "y": -180
+    },
+    "connected_down=true,connected_east=false,connected_north=true,connected_south=false,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_3_angle", "x": -90, "y": -180
+    },
+    "connected_down=false,connected_east=false,connected_north=true,connected_south=false,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_3_angle", "x": 90, "y": -90
+    },
+    "connected_down=true,connected_east=true,connected_north=false,connected_south=false,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_cross"
+    },
+    "connected_down=false,connected_east=true,connected_north=true,connected_south=true,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_cross", "x": 90
+    },
+    "connected_down=true,connected_east=false,connected_north=true,connected_south=true,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_4_cross", "y": 90
+    },
+    "connected_down=true,connected_east=false,connected_north=true,connected_south=false,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_angle"
+    },
+    "connected_down=true,connected_east=false,connected_north=true,connected_south=true,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_angle", "x": 90
+    },
+    "connected_down=false,connected_east=false,connected_north=true,connected_south=true,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_angle", "x": -90
+    },
+    "connected_down=true,connected_east=false,connected_north=false,connected_south=true,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_angle", "y": -90
+    },
+    "connected_down=true,connected_east=true,connected_north=true,connected_south=false,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_4_angle", "y": 90
+    },
+    "connected_down=true,connected_east=true,connected_north=false,connected_south=true,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_4_angle", "y": 180
+    },
+    "connected_down=false,connected_east=true,connected_north=true,connected_south=true,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_4_angle", "x": -90, "y": 180
+    },
+    "connected_down=true,connected_east=true,connected_north=true,connected_south=true,connected_up=false,connected_west=false": {
+      "model": "pyrotech:connected/connected_4_angle", "x": 90, "y": 180
+    },
+    "connected_down=false,connected_east=true,connected_north=false,connected_south=true,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_angle", "x": -90, "y": -90
+    },
+    "connected_down=true,connected_east=true,connected_north=false,connected_south=true,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_angle", "x": -270, "y": -90
+    },
+    "connected_down=false,connected_east=true,connected_north=true,connected_south=false,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_angle", "x": -90, "y": 90
+    },
+    "connected_down=true,connected_east=true,connected_north=true,connected_south=false,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_angle", "x": -270, "y": -270
+    },
+    "connected_down=true,connected_east=true,connected_north=true,connected_south=true,connected_up=false,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_cross"
+    },
+    "connected_down=true,connected_east=true,connected_north=false,connected_south=true,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_cross"
+    },
+    "connected_down=true,connected_east=false,connected_north=true,connected_south=true,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_cross"
+    },
+    "connected_down=true,connected_east=true,connected_north=true,connected_south=true,connected_up=true,connected_west=false": {
+      "model": "pyrotech:connected/connected_4_cross"
+    },
+    "connected_down=true,connected_east=true,connected_north=true,connected_south=false,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_cross"
+    },
+    "connected_down=false,connected_east=true,connected_north=true,connected_south=true,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_cross"
+    },
+    "connected_down=true,connected_east=true,connected_north=true,connected_south=true,connected_up=true,connected_west=true": {
+      "model": "pyrotech:connected/connected_4_cross"
+    }
+  }
+}

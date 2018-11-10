@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B-B",
+    "B-B",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "pyrotech:refractory_brick_block",
+      "data": 0
+    },
+    "-": {
+      "item": "pyrotech:material",
+      "data": 5
+    }
+  },
+  "result": {
+    "item": "pyrotech:kiln_brick",
+    "count": 1,
+    "data": 0
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "AGA",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "item": "pyrotech:material",
+      "data": 5
+    },
+    "G": {
+      "item": "minecraft:glass",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:refractory_glass",
+    "count": 1,
+    "data": 0
+  }
+}

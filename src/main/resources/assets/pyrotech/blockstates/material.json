@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:item/generated"
+  },
+  "variants": {
+    "variant": {
+      "pit_ash": {"textures": {"layer0": "pyrotech:items/pit_ash"}},
+      "coal_coke": {"textures": {"layer0": "pyrotech:items/coal_coke"}},
+      "straw": {"textures": {"layer0": "pyrotech:items/straw"}},
+      "flint_clay_ball": {"textures": {"layer0": "pyrotech:items/flint_clay_ball"}},
+      "refractory_clay_ball": {"textures": {"layer0": "pyrotech:items/refractory_clay_ball"}},
+      "pottery_fragments": {"textures": {"layer0": "pyrotech:items/pottery_fragments"}},
+      "pottery_shard": {"textures": {"layer0": "pyrotech:items/pottery_shard"}},
+      "slaked_lime": {"textures": {"layer0": "pyrotech:items/slaked_lime"}},
+      "refractory_brick": {"textures": {"layer0": "pyrotech:items/refractory_brick"}},
+      "unfired_refractory_brick": {"textures": {"layer0": "pyrotech:items/unfired_refractory_brick"}}
+    }
+  }
+}

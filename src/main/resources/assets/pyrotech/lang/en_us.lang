@@ -1,0 +1,72 @@
+#------------------------------------------------------------------------------
+# Pyrotech Module
+#------------------------------------------------------------------------------
+
+# --- Fluids
+
+fluid.wood_tar=Wood Tar
+tile.fluid.wood_tar.name=Wood Tar
+fluid.coal_tar=Coal Tar
+tile.fluid.coal_tar.name=Coal Tar
+
+# --- Items
+
+item.pyrotech.straw.name=Straw
+item.pyrotech.coal.coke.name=Coal Coke
+item.pyrotech.pit.ash.name=Pit Ash
+item.pyrotech.flint.clay.ball.name=Flint Clay
+item.pyrotech.refractory.clay.ball.name=Refractory Clay
+item.pyrotech.unfired.refractory.brick.name=Unfired Refractory Brick
+item.pyrotech.refractory.brick.name=Refractory Brick
+item.pyrotech.pottery.fragments.name=Pottery Fragments
+item.pyrotech.pottery.shard.name=Pottery Shard
+item.pyrotech.refractory.door.name=Refractory Door
+item.pyrotech.quicklime.name=Quicklime
+item.pyrotech.slaked.lime.name=Slaked Lime
+item.pyrotech.bow.drill.name=Bow Drill
+item.pyrotech.flint.and.tinder.name=Flint and Tinder
+item.pyrotech.tinder.name=Tinder
+
+
+# --- Tiles
+
+tile.pyrotech.thatch.name=Straw Block
+tile.pyrotech.coal_coke_block.name=Coal Coke Block
+tile.pyrotech.log_pile.name=Log Pile
+tile.pyrotech.tar_collector.stone.name=Stone Collector
+tile.pyrotech.tar_collector.brick.name=Refractory Collector
+tile.pyrotech.tar_drain.stone.name=Stone Drain
+tile.pyrotech.tar_drain.brick.name=Refractory Drain
+tile.pyrotech.igniter.stone.name=Stone Igniter
+tile.pyrotech.igniter.brick.name=Refractory Igniter
+tile.pyrotech.refractory_brick_block.name=Refractory Block
+tile.pyrotech.kiln_pit.name=Pit Kiln
+tile.pyrotech.limestone.name=Limestone
+tile.pyrotech.refractory_glass.name=Refractory Glass
+tile.pyrotech.kiln_brick.name=Brick Kiln
+tile.pyrotech.campfire.name=Campfire
+
+# --- Waila plugin
+
+gui.pyrotech.waila.tank.fluid=Liquid: %s
+gui.pyrotech.waila.tank.amount=Amount: %d / %d mb
+
+gui.pyrotech.waila.kiln.pit.ready=Ready
+gui.pyrotech.waila.kiln.pit.active=Firing: %s
+gui.pyrotech.waila.kiln.pit.finished=Finished
+
+gui.pyrotech.waila.kiln.brick.fuel=Fuel: %s
+gui.pyrotech.waila.kiln.brick.heat=Burn Time: %s
+
+gui.pyrotech.waila.campfire.fuel=Fuel: Wood Logs * %s
+gui.pyrotech.waila.campfire.heat=Burn Time: %s
+
+gui.pyrotech.waila.empty=Empty
+gui.pyrotech.waila.result=Result:
+
+# --- JEI plugin
+
+gui.pyrotech.jei.category.kiln.pit=Pit Kiln Firing
+gui.pyrotech.jei.category.kiln.brick=Brick Kiln Firing
+gui.pyrotech.jei.category.burn.pit=Pit Burning
+gui.pyrotech.jei.category.burn.refractory=Refractory Burning

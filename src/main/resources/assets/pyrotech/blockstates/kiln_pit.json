@@ -1,0 +1,22 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "empty": {
+        "model": "pyrotech:kiln_pit_empty"
+      },
+      "thatch": {
+        "model": "pyrotech:kiln_pit_thatch"
+      },
+      "wood": {
+        "model": "pyrotech:kiln_pit_wood"
+      },
+      "active": {
+        "model": "pyrotech:kiln_pit_active"
+      },
+      "complete": {
+        "model": "pyrotech:ash_block"
+      }
+    }
+  }
+}

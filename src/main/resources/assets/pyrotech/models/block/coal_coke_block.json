@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "pyrotech:blocks/coal_coke_block"
+  }
+}

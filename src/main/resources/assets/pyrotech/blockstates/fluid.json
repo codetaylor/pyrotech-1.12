@@ -1,0 +1,22 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "forge:fluid"
+  },
+  "variants": {
+    "wood_tar": [
+      {
+        "custom": {
+          "fluid": "wood_tar"
+        }
+      }
+    ],
+    "coal_tar": [
+      {
+        "custom": {
+          "fluid": "coal_tar"
+        }
+      }
+    ]
+  }
+}

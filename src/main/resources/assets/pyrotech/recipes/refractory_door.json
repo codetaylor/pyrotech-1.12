@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA",
+    "AA",
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "pyrotech:material",
+      "data": 5
+    }
+  },
+  "result": {
+    "item": "pyrotech:refractory_door",
+    "count": 1,
+    "data": 0
+  }
+}

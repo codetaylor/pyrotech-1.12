@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "rRB",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "pyrotech:material",
+      "data": 5
+    },
+    "r": {
+      "item": "minecraft:redstone",
+      "data": 0
+    },
+    "R": {
+      "item": "minecraft:redstone_block",
+      "data": 0
+    },
+    "B": {
+      "item": "minecraft:iron_bars",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:igniter",
+    "count": 1,
+    "data": 1
+  }
+}

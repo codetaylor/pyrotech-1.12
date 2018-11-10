@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "LFL",
+    "CAC"
+  ],
+  "key": {
+    "A": {
+      "item": "pyrotech:material",
+      "data": 0
+    },
+    "F": {
+      "item": "pyrotech:material",
+      "data": 3
+    },
+    "L": {
+      "item": "pyrotech:material",
+      "data": 8
+    },
+    "C": {
+      "item": "minecraft:clay_ball",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:material",
+    "count": 4,
+    "data": 4
+  }
+}

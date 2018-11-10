@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:flint",
+      "data": 0
+    },
+    {
+      "item": "pyrotech:tinder",
+      "data": 0
+    }
+  ],
+  "result": {
+    "item": "pyrotech:flint_and_tinder",
+    "count": 1,
+    "data": 0
+  }
+}

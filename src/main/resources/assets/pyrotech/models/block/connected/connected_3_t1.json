@@ -1,0 +1,16 @@
+{
+  "__comment": [
+    "Model for when three adjacent connected sides are a T shape.",
+    "https://github.com/SlimeKnights/Mantle/blob/master/src/main/resources/assets/mantle/models/block/connected_3_t1.json"
+  ],
+  "parent": "block/cube",
+  "textures": {
+    "particle": "#normal",
+    "down": "#udlr",
+    "up": "#udlr",
+    "north": "#udr",
+    "south": "#udl",
+    "west": "#udlr",
+    "east": "#ud"
+  }
+}

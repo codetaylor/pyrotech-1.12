@@ -1,0 +1,106 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "uvlock": true,
+    "model": "pyrotech:tinder",
+    "textures": {
+      "particle": "pyrotech:blocks/campfire"
+    }
+  },
+  "variants": {
+    "wood": {
+      "0": {},
+      "1": {
+        "submodel": "pyrotech:campfire_log_a"
+      },
+      "2": {
+        "submodel": {
+          "a": {"model": "pyrotech:campfire_log_a"},
+          "b": {"model": "pyrotech:campfire_log_a", "y": 90}
+        }
+      },
+      "3": {
+        "submodel": {
+          "a": {"model": "pyrotech:campfire_log_a"},
+          "b": {"model": "pyrotech:campfire_log_a", "y": 90},
+          "c": {"model": "pyrotech:campfire_log_a", "y": 180}
+        }
+      },
+      "4": {
+        "submodel": {
+          "a": {"model": "pyrotech:campfire_log_a"},
+          "b": {"model": "pyrotech:campfire_log_a", "y": 90},
+          "c": {"model": "pyrotech:campfire_log_a", "y": 180},
+          "d": {"model": "pyrotech:campfire_log_a", "y": 270}
+        }
+      },
+      "5": {
+        "submodel": {
+          "a": {"model": "pyrotech:campfire_log_a"},
+          "b": {"model": "pyrotech:campfire_log_a", "y": 90},
+          "c": {"model": "pyrotech:campfire_log_a", "y": 180},
+          "d": {"model": "pyrotech:campfire_log_a", "y": 270},
+          "e": {"model": "pyrotech:campfire_log_b"}
+        }
+      },
+      "6": {
+        "submodel": {
+          "a": {"model": "pyrotech:campfire_log_a"},
+          "b": {"model": "pyrotech:campfire_log_a", "y": 90},
+          "c": {"model": "pyrotech:campfire_log_a", "y": 180},
+          "d": {"model": "pyrotech:campfire_log_a", "y": 270},
+          "e": {"model": "pyrotech:campfire_log_b"},
+          "f": {"model": "pyrotech:campfire_log_b", "y": 90}
+        }
+      },
+      "7": {
+        "submodel": {
+          "a": {"model": "pyrotech:campfire_log_a"},
+          "b": {"model": "pyrotech:campfire_log_a", "y": 90},
+          "c": {"model": "pyrotech:campfire_log_a", "y": 180},
+          "d": {"model": "pyrotech:campfire_log_a", "y": 270},
+          "e": {"model": "pyrotech:campfire_log_b"},
+          "f": {"model": "pyrotech:campfire_log_b", "y": 90},
+          "g": {"model": "pyrotech:campfire_log_b", "y": 180}
+        }
+      },
+      "8": {
+        "submodel": {
+          "a": {"model": "pyrotech:campfire_log_a"},
+          "b": {"model": "pyrotech:campfire_log_a", "y": 90},
+          "c": {"model": "pyrotech:campfire_log_a", "y": 180},
+          "d": {"model": "pyrotech:campfire_log_a", "y": 270},
+          "e": {"model": "pyrotech:campfire_log_b"},
+          "f": {"model": "pyrotech:campfire_log_b", "y": 90},
+          "g": {"model": "pyrotech:campfire_log_b", "y": 180},
+          "h": {"model": "pyrotech:campfire_log_b", "y": 270}
+        }
+      }
+    },
+    "variant": {
+      "normal": {
+        "textures": {
+          "tinder": "pyrotech:blocks/tinder",
+          "particle": "pyrotech:blocks/tinder"
+        }
+      },
+      "lit": {
+        "submodel": {
+          "f0": {"model": "pyrotech:campfire_fire"}
+        },
+        "textures": {
+          "tinder": "pyrotech:blocks/active_pile",
+          "fire": "blocks/fire_layer_1",
+          "particle": "blocks/fire_layer_1"
+        }
+      },
+      "ash": {
+        "model": "pyrotech:campfire_ash",
+        "textures": {
+          "ash": "pyrotech:blocks/ash_block",
+          "particle": "pyrotech:blocks/ash_block"
+        }
+      }
+    }
+  }
+}

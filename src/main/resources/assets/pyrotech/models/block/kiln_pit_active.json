@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "up": "pyrotech:blocks/kiln_active_top",
+    "down": "pyrotech:blocks/kiln_active_bottom",
+    "north": "pyrotech:blocks/kiln_active_end",
+    "south": "pyrotech:blocks/kiln_active_end",
+    "west": "pyrotech:blocks/kiln_active_side",
+    "east": "pyrotech:blocks/kiln_active_side",
+    "particle": "pyrotech:blocks/thatch"
+  }
+}

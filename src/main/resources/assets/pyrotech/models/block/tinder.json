@@ -1,0 +1,18 @@
+{
+  "parent": "block/block",
+  "elements": [
+    {
+      "from": [5, 0, 5],
+      "to": [11, 5, 11],
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+      "faces": {
+        "north": {"uv": [3, 8, 9, 13], "texture": "#tinder"},
+        "east": {"uv": [16, 8, 10, 3], "texture": "#tinder"},
+        "south": {"uv": [10, 8, 16, 13], "texture": "#tinder"},
+        "west": {"uv": [5, 3, 11, 8], "texture": "#tinder"},
+        "up": {"uv": [2, 3, 8, 9], "texture": "#tinder"},
+        "down": {"uv": [7, 9, 13, 15], "texture": "#tinder"}
+      }
+    }
+  ]
+}
