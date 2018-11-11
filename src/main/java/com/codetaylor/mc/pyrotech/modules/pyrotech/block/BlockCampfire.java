@@ -164,11 +164,11 @@ public class BlockCampfire
       return this.handleInteraction_Food(world, campfire, heldItem);
 
     } else {
-      return this.handleInteraction_Wood(world, pos, campfire, heldItem);
+      return this.handleInteraction_Wood(world, pos, campfire, heldItem, player);
     }
   }
 
-  private boolean handleInteraction_Wood(World world, BlockPos pos, TileCampfire campfire, ItemStack heldItem) {
+  private boolean handleInteraction_Wood(World world, BlockPos pos, TileCampfire campfire, ItemStack heldItem, EntityPlayer player) {
 
     int logWood = OreDictionary.getOreID("logWood");
     int[] oreIDs = OreDictionary.getOreIDs(heldItem);
