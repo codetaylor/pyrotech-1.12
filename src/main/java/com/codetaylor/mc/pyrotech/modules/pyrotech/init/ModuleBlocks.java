@@ -3,10 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRCampfire;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRKilnBrick;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRKilnPit;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -32,6 +29,7 @@ public class ModuleBlocks {
   public static final BlockRefractoryGlass REFRACTORY_GLASS = new BlockRefractoryGlass();
   public static final BlockKilnBrick KILN_BRICK = new BlockKilnBrick();
   public static final BlockCampfire CAMPFIRE = new BlockCampfire();
+  public static final BlockDryingRack DRYING_RACK = new BlockDryingRack();
 
   public static void onRegister(Registry registry) {
 
@@ -51,6 +49,7 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.LIMESTONE, BlockLimestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.REFRACTORY_GLASS, BlockRefractoryGlass.NAME);
     registry.registerBlockWithItem(ModuleBlocks.KILN_BRICK, BlockKilnBrick.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.DRYING_RACK, BlockDryingRack.NAME);
 
     registry.registerTileEntities(
         TileTarCollector.class,
@@ -60,7 +59,8 @@ public class ModuleBlocks {
         TileActivePile.class,
         TileKilnBrick.class,
         TileKilnBrickTop.class,
-        TileCampfire.class
+        TileCampfire.class,
+        TileDryingRack.class
     );
   }
 
@@ -76,7 +76,8 @@ public class ModuleBlocks {
           ModuleBlocks.REFRACTORY_BRICK,
           ModuleBlocks.LIMESTONE,
           ModuleBlocks.REFRACTORY_GLASS,
-          ModuleBlocks.KILN_BRICK
+          ModuleBlocks.KILN_BRICK,
+          ModuleBlocks.DRYING_RACK
       );
 
       ModelLoader.setCustomStateMapper(
@@ -105,22 +106,12 @@ public class ModuleBlocks {
           BlockIgniter.VARIANT
       );
 
-      ClientRegistry.bindTileEntitySpecialRenderer(
-          TileKilnPit.class,
-          new TESRKilnPit()
-      );
-      ClientRegistry.bindTileEntitySpecialRenderer(
-          TileTarCollector.class,
-          new TESRTarCollector()
-      );
-      ClientRegistry.bindTileEntitySpecialRenderer(
-          TileKilnBrick.class,
-          new TESRKilnBrick()
-      );
-      ClientRegistry.bindTileEntitySpecialRenderer(
-          TileCampfire.class,
-          new TESRCampfire()
-      );
+      // TESRs
+      ClientRegistry.bindTileEntitySpecialRenderer(TileKilnPit.class, new TESRKilnPit());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileTarCollector.class, new TESRTarCollector());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileKilnBrick.class, new TESRKilnBrick());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileCampfire.class, new TESRCampfire());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRDryingRack());
 
     });
   }

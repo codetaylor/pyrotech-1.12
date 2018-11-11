@@ -2,12 +2,12 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnBrick;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnBrick;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -410,21 +410,6 @@ public class TileKilnBrick
     }
   }
 
-  @Override
-  public boolean shouldRefresh(
-      World world,
-      BlockPos pos,
-      @Nonnull IBlockState oldState,
-      @Nonnull IBlockState newState
-  ) {
-
-    if (oldState.getBlock() == newState.getBlock()) {
-      return false;
-    }
-
-    return super.shouldRefresh(world, pos, oldState, newState);
-  }
-
   @Nonnull
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
@@ -495,5 +480,20 @@ public class TileKilnBrick
     }
 
     BlockHelper.notifyBlockUpdate(this.world, this.pos);
+  }
+
+  @Override
+  public boolean shouldRefresh(
+      World world,
+      BlockPos pos,
+      @Nonnull IBlockState oldState,
+      @Nonnull IBlockState newState
+  ) {
+
+    if (oldState.getBlock() == newState.getBlock()) {
+      return false;
+    }
+
+    return super.shouldRefresh(world, pos, oldState, newState);
   }
 }

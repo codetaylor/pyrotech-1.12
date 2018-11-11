@@ -3,8 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 import com.codetaylor.mc.athenaeum.inventory.LIFOStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import net.minecraft.block.state.IBlockState;
@@ -309,22 +309,7 @@ public class TileCampfire
 
     this.readFromNBT(packet.getNbtCompound());
     BlockHelper.notifyBlockUpdate(this.world, this.pos);
-    world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
-  }
-
-  @Override
-  public boolean shouldRefresh(
-      World world,
-      BlockPos pos,
-      @Nonnull IBlockState oldState,
-      @Nonnull IBlockState newState
-  ) {
-
-    if (oldState.getBlock() == newState.getBlock()) {
-      return false;
-    }
-
-    return super.shouldRefresh(world, pos, oldState, newState);
+    this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
   }
 
   public boolean isDead() {
@@ -409,5 +394,20 @@ public class TileCampfire
   public int getRemainingBurnTimeTicks() {
 
     return this.burnTimeRemaining;
+  }
+
+  @Override
+  public boolean shouldRefresh(
+      World world,
+      BlockPos pos,
+      @Nonnull IBlockState oldState,
+      @Nonnull IBlockState newState
+  ) {
+
+    if (oldState.getBlock() == newState.getBlock()) {
+      return false;
+    }
+
+    return super.shouldRefresh(world, pos, oldState, newState);
   }
 }

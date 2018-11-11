@@ -45,6 +45,7 @@ tile.pyrotech.limestone.name=Limestone
 tile.pyrotech.refractory_glass.name=Refractory Glass
 tile.pyrotech.kiln_brick.name=Brick Kiln
 tile.pyrotech.campfire.name=Campfire
+tile.pyrotech.drying_rack.name=Drying Rack
 
 # --- Waila plugin
 

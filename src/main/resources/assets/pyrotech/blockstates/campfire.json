@@ -90,8 +90,8 @@
         },
         "textures": {
           "tinder": "pyrotech:blocks/active_pile",
-          "fire": "blocks/fire_layer_1",
-          "particle": "blocks/fire_layer_1"
+          "fire": "minecraft:blocks/fire_layer_1",
+          "particle": "minecraft:blocks/fire_layer_1"
         }
       },
       "ash": {

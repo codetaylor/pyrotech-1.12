@@ -6,16 +6,17 @@ import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.registry.Registry;
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.fluid.CPacketFluidUpdate;
+import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleRecipes;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
-import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
-import com.codetaylor.mc.pyrotech.library.util.Util;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -96,6 +97,12 @@ public class ModulePyrotech
     new RegistryBuilder<KilnBrickRecipe>()
         .setName(new ResourceLocation(MOD_ID, "kiln_brick_recipe"))
         .setType(KilnBrickRecipe.class)
+        .allowModification()
+        .create();
+
+    new RegistryBuilder<DryingRackRecipe>()
+        .setName(new ResourceLocation(MOD_ID, "drying_rack_recipe"))
+        .setType(DryingRackRecipe.class)
         .allowModification()
         .create();
   }
