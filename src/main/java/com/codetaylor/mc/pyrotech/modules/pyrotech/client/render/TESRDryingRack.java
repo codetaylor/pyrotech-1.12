@@ -30,7 +30,6 @@ public class TESRDryingRack
     GlStateManager.pushAttrib();
     GlStateManager.pushMatrix();
     GlStateManager.translate(x, y, z);
-    //GlStateManager.disableRescaleNormal();
 
     if (renderPass == 0) {
 
@@ -44,66 +43,147 @@ public class TESRDryingRack
 
         net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
 
-        GlStateManager.pushMatrix();
-        GlStateManager.scale(1.0, 1.0, 1.0);
-
         for (int i = 0; i < 4; i++) {
+
+          GlStateManager.scale(1.0, 1.0, 1.0);
+
           ItemStack inputItemStack = stackHandler.getStackInSlot(i);
           ItemStack outputItemStack = outputStackHandler.getStackInSlot(i);
 
+          // TODO: offset each render with respect to its in-world position
+
           if (!inputItemStack.isEmpty()) {
-            Minecraft.getMinecraft()
-                .getRenderItem()
-                .renderItem(inputItemStack, ItemCameraTransforms.TransformType.GROUND);
+
+            GlStateManager.pushMatrix();
+
+            GlStateManager.translate(
+                (i & 1) * 0.375 + 0.25 + 0.0625,
+                0.75 + 0.03125,
+                ((i >> 1) & 1) * 0.375 + 0.25 + 0.0625
+            );
+
+            GlStateManager.rotate(90, 1, 0, 0);
+            GlStateManager.scale(0.25, 0.25, 0.25);
+
+            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+            IBakedModel model = renderItem.getItemModelWithOverrides(inputItemStack, null, null);
+            RenderHelper.renderItemModel(inputItemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
+
+            GlStateManager.popMatrix();
 
           } else if (!outputItemStack.isEmpty()) {
-            Minecraft.getMinecraft()
-                .getRenderItem()
-                .renderItem(outputItemStack, ItemCameraTransforms.TransformType.GROUND);
+
+            GlStateManager.pushMatrix();
+
+            GlStateManager.translate(
+                (i & 1) * 0.375 + 0.25 + 0.0625,
+                0.75 + 0.03125,
+                ((i >> 1) & 1) * 0.375 + 0.25 + 0.0625
+            );
+
+            GlStateManager.rotate(90, 1, 0, 0);
+            GlStateManager.scale(0.25, 0.25, 0.25);
+
+            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+            IBakedModel model = renderItem.getItemModelWithOverrides(outputItemStack, null, null);
+            RenderHelper.renderItemModel(outputItemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
+
+            GlStateManager.popMatrix();
           }
         }
       }
-
-      GlStateManager.popMatrix();
 
     } else if (renderPass == 1) {
 
       EntityPlayerSP player = Minecraft.getMinecraft().player;
 
       ItemStack heldItemMainhand = player.getHeldItemMainhand();
-      if (!heldItemMainhand.isEmpty()) {
 
-        RayTraceResult rayTraceResult = player
-            .rayTrace(3, partialTicks);
+      RayTraceResult rayTraceResult = player
+          .rayTrace(3, partialTicks);
 
-        if (rayTraceResult != null
-            && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-            && rayTraceResult.sideHit == EnumFacing.UP
-            && rayTraceResult.getBlockPos().equals(te.getPos())) {
+      if (rayTraceResult != null
+          && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
+          && rayTraceResult.sideHit == EnumFacing.UP
+          && rayTraceResult.getBlockPos().equals(te.getPos())) {
 
-          double hitX = rayTraceResult.hitVec.x - rayTraceResult.getBlockPos().getX();
-          double hitZ = rayTraceResult.hitVec.z - rayTraceResult.getBlockPos().getZ();
+        double hitX = rayTraceResult.hitVec.x - rayTraceResult.getBlockPos().getX();
+        double hitZ = rayTraceResult.hitVec.z - rayTraceResult.getBlockPos().getZ();
 
-          int qX = (hitX < 0.5) ? 0 : 1;
-          int qZ = (hitZ < 0.5) ? 0 : 1;
-          int index = qX + qZ * 2;
+        int qX = (hitX < 0.5) ? 0 : 1;
+        int qZ = (hitZ < 0.5) ? 0 : 1;
+        int index = qX | (qZ << 1);
 
-          GlStateManager.pushMatrix();
+        ItemStackHandler stackHandler = te.getStackHandler();
+        ItemStackHandler outputStackHandler = te.getOutputStackHandler();
+        ItemStack inputItemStack = stackHandler.getStackInSlot(index);
+        ItemStack outputItemStack = outputStackHandler.getStackInSlot(index);
 
-          GlStateManager.translate(
-              qX * 0.375 + 0.25 + 0.0625,
-              0.75 + 0.03125,
-              qZ * 0.375 + 0.25 + 0.0625
-          );
+        if (inputItemStack.isEmpty()
+            && outputItemStack.isEmpty()) {
 
-          GlStateManager.rotate(90, 1, 0, 0);
-          GlStateManager.scale(0.25, 0.25, 0.25);
-          GlStateManager.color(1, 1, 1, 0.2f);
+          if (!heldItemMainhand.isEmpty()) {
 
-          this.renderItem(heldItemMainhand);
+            GlStateManager.pushMatrix();
 
-          GlStateManager.popMatrix();
+            GlStateManager.translate(
+                qX * 0.375 + 0.25 + 0.0625,
+                0.75 + 0.03125,
+                qZ * 0.375 + 0.25 + 0.0625
+            );
+
+            GlStateManager.rotate(90, 1, 0, 0);
+            GlStateManager.scale(0.25, 0.25, 0.25);
+            GlStateManager.color(1, 1, 1, 0.2f);
+
+            this.renderItem(heldItemMainhand);
+
+            GlStateManager.popMatrix();
+          }
+
+        } else if (!inputItemStack.isEmpty()) {
+
+          if (heldItemMainhand.isEmpty()) {
+
+            GlStateManager.pushMatrix();
+
+            GlStateManager.translate(
+                qX * 0.375 + 0.25 + 0.0625,
+                0.75 + 0.03125,
+                qZ * 0.375 + 0.25 + 0.0625
+            );
+
+            GlStateManager.rotate(90, 1, 0, 0);
+            GlStateManager.scale(0.25, 0.25, 0.25);
+            GlStateManager.color(1, 1, 1, 0.2f);
+
+            this.renderItem(inputItemStack);
+
+            GlStateManager.popMatrix();
+          }
+
+        } else if (!outputItemStack.isEmpty()) {
+
+          if (heldItemMainhand.isEmpty()) {
+
+            GlStateManager.pushMatrix();
+
+            GlStateManager.translate(
+                qX * 0.375 + 0.25 + 0.0625,
+                0.75 + 0.03125,
+                qZ * 0.375 + 0.25 + 0.0625
+            );
+
+            GlStateManager.rotate(90, 1, 0, 0);
+            GlStateManager.scale(0.25, 0.25, 0.25);
+            GlStateManager.color(1, 1, 1, 0.2f);
+
+            this.renderItem(outputItemStack);
+
+            GlStateManager.popMatrix();
+          }
         }
+
       }
     }
 
@@ -122,8 +202,6 @@ public class TESRDryingRack
 
       GlStateManager.enableAlpha();
       GlStateManager.alphaFunc(GL11.GL_GREATER, 0.0f);
-
-
 
       GlStateManager.enableRescaleNormal();
 

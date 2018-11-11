@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -70,6 +71,29 @@ public class TileDryingRack
   public ItemStackHandler getOutputStackHandler() {
 
     return this.outputStackHandler;
+  }
+
+  public void removeItems() {
+
+    if (this.world.isRemote) {
+      return;
+    }
+
+    for (int i = 0; i < this.stackHandler.getSlots(); i++) {
+      ItemStack itemStack = this.stackHandler.getStackInSlot(i);
+
+      if (!itemStack.isEmpty()) {
+        StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
+      }
+    }
+
+    for (int i = 0; i < this.outputStackHandler.getSlots(); i++) {
+      ItemStack itemStack = this.outputStackHandler.getStackInSlot(i);
+
+      if (!itemStack.isEmpty()) {
+        StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
+      }
+    }
   }
 
   @Override
@@ -147,4 +171,5 @@ public class TileDryingRack
     this.readFromNBT(packet.getNbtCompound());
     BlockHelper.notifyBlockUpdate(this.world, this.pos);
   }
+
 }
