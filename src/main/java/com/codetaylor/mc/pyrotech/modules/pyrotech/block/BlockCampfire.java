@@ -132,6 +132,12 @@ public class BlockCampfire
   }
 
   @Override
+  public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
+
+    return (this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == EnumType.LIT);
+  }
+
+  @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
     TileEntity tileEntity = world.getTileEntity(pos);
