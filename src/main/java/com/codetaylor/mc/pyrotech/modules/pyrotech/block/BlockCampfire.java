@@ -253,30 +253,27 @@ public class BlockCampfire
 
   private boolean handleInteraction_EmptyHand(World world, BlockPos pos, EntityPlayer player, TileCampfire campfire) {
 
-    //if (player.isSneaking()) {
+    ItemStack itemStack = campfire.getStackHandler().extractItem(0, 64, world.isRemote);
 
-      ItemStack itemStack = campfire.getStackHandler().extractItem(0, 64, world.isRemote);
+    if (!itemStack.isEmpty()) {
 
-      if (!itemStack.isEmpty()) {
-
-        if (!world.isRemote) {
-          StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
-        }
-
-        return true;
+      if (!world.isRemote) {
+        StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
       }
 
-      itemStack = campfire.getOutputStackHandler().extractItem(0, 64, world.isRemote);
+      return true;
+    }
 
-      if (!itemStack.isEmpty()) {
+    itemStack = campfire.getOutputStackHandler().extractItem(0, 64, world.isRemote);
 
-        if (!world.isRemote) {
-          StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
-        }
+    if (!itemStack.isEmpty()) {
 
-        return true;
+      if (!world.isRemote) {
+        StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
       }
-    //}
+
+      return true;
+    }
 
     return false;
   }
