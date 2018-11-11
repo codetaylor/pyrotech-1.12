@@ -176,7 +176,11 @@ public class BlockCampfire
           int firstEmptyIndex = fuelStackHandler.getFirstEmptyIndex();
 
           if (firstEmptyIndex > -1) {
-            heldItem.setCount(heldItem.getCount() - 1);
+
+            if (!player.isCreative()) {
+              heldItem.setCount(heldItem.getCount() - 1);
+            }
+
             fuelStackHandler.insertItem(0, new ItemStack(heldItem.getItem(), 1, heldItem.getMetadata()), false);
             world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
             BlockHelper.notifyBlockUpdate(world, pos);
