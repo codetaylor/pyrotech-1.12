@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -101,22 +101,45 @@ public class BlockDryingRack
           // Insert item
 
           ItemStack itemStack = new ItemStack(heldItemMainhand.getItem(), 1, heldItemMainhand.getMetadata());
-          ItemStack result = stackHandler.insertItem(index, itemStack, world.isRemote);
 
-          if (result.isEmpty()) {
+          DryingRackRecipe recipe = DryingRackRecipe.getRecipe(itemStack);
 
-            if (!world.isRemote) {
-              heldItemMainhand.setCount(heldItemMainhand.getCount() - 1);
+          if (recipe == null) {
+
+            // The item doesn't have a recipe, place it in the output slot.
+
+            ItemStack result = outputStackHandler.insertItem(index, itemStack, world.isRemote);
+
+            if (result.isEmpty()) {
+
+              if (!world.isRemote) {
+                heldItemMainhand.setCount(heldItemMainhand.getCount() - 1);
+              }
+
+              return true;
             }
 
-            return true;
+          } else {
+
+            // The item has a recipe, place it in the input slot.
+
+            ItemStack result = stackHandler.insertItem(index, itemStack, world.isRemote);
+
+            if (result.isEmpty()) {
+
+              if (!world.isRemote) {
+                heldItemMainhand.setCount(heldItemMainhand.getCount() - 1);
+              }
+
+              return true;
+            }
           }
         }
       }
 
     }
 
-    return false;
+    return true;
   }
 
   @Override
@@ -129,6 +152,12 @@ public class BlockDryingRack
     }
 
     super.breakBlock(world, pos, state);
+  }
+
+  @Override
+  public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+
+    return 150;
   }
 
   // ---------------------------------------------------------------------------

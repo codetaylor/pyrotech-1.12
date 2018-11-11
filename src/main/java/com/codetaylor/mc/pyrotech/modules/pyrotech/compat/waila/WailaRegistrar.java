@@ -28,6 +28,9 @@ public class WailaRegistrar {
 
     CampfireDataProvider campfireDataProvider = new CampfireDataProvider();
     registrar.registerBodyProvider(campfireDataProvider, TileCampfire.class);
+
+    DryingRackDataProvider dryingRackDataProvider = new DryingRackDataProvider();
+    registrar.registerBodyProvider(dryingRackDataProvider, TileDryingRack.class);
   }
 
 }

@@ -50,8 +50,6 @@ public class TESRDryingRack
           ItemStack inputItemStack = stackHandler.getStackInSlot(i);
           ItemStack outputItemStack = outputStackHandler.getStackInSlot(i);
 
-          // TODO: offset each render with respect to its in-world position
-
           if (!inputItemStack.isEmpty()) {
 
             GlStateManager.pushMatrix();

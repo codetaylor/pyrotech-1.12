@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila;
 import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -118,7 +119,7 @@ public class CampfireDataProvider
             && tileCampfire.getRemainingBurnTimeTicks() > 0) {
           tooltip.add(Util.translateFormatted(
               "gui." + ModulePyrotech.MOD_ID + ".waila.campfire.heat",
-              StringHelper.ticksToHMS(tileCampfire.getRemainingBurnTimeTicks())
+              StringHelper.ticksToHMS(tileCampfire.getRemainingBurnTimeTicks() + tileCampfire.getFuelRemaining() * ModulePyrotechConfig.CAMPFIRE.BURN_TIME_TICKS_PER_LOG)
           ));
         }
       }
