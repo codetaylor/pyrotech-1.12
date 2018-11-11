@@ -382,7 +382,8 @@ public class BlockCampfire
 
     if (!entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
-        && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
+        && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)
+        && this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == EnumType.LIT) {
       entity.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
     }
 
