@@ -129,14 +129,12 @@ public class BlockCampfire
     if (actualState.getValue(WOOD) > 0) {
       return AABB_FULL;
 
-    } else if (actualState.getValue(VARIANT) == EnumType.NORMAL
-        || actualState.getValue(VARIANT) == EnumType.LIT) {
-      return AABB_TINDER;
-
-    } else if (actualState.getValue(VARIANT) == EnumType.ASH) {
+    } else {
 
       switch (actualState.getValue(ASH)) {
         default:
+        case 0:
+          return (actualState.getValue(VARIANT) == EnumType.ASH) ? AABB_ASH_A : AABB_TINDER;
         case 1:
           return AABB_ASH_A;
         case 2:
@@ -156,7 +154,6 @@ public class BlockCampfire
       }
     }
 
-    return super.getBoundingBox(state, source, pos);
   }
 
   @Override
