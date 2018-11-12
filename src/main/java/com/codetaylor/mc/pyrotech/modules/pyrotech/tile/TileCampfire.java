@@ -199,7 +199,7 @@ public class TileCampfire
 
     if (this.isActive()) {
 
-      if (this.ashLevel == 7) {
+      if (this.ashLevel == 8) {
         this.setActive(false);
       }
 
