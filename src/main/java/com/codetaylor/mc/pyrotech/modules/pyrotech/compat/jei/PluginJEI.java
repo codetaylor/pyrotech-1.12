@@ -1,10 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
@@ -31,7 +32,8 @@ public class PluginJEI
         new JEIRecipeCategoryKilnPit(guiHelper),
         new JEIRecipeCategoryKilnBrick(guiHelper),
         new JEIRecipeCategoryPitBurn(guiHelper),
-        new JEIRecipeCategoryRefractoryBurn(guiHelper)
+        new JEIRecipeCategoryRefractoryBurn(guiHelper),
+        new JEIRecipeCategoryDryingRack(guiHelper)
     );
   }
 
@@ -52,6 +54,14 @@ public class PluginJEI
 
     registry.getJeiHelpers().getIngredientBlacklist()
         .addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModuleBlocks.CAMPFIRE)));
+
+    // --- Drying Rack
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.DRYING_RACK), JEIRecipeCategoryUid.DRYING);
+      registry.handleRecipes(DryingRackRecipe.class, JEIRecipeWrapperDryingRack::new, JEIRecipeCategoryUid.DRYING);
+      List<DryingRackRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.DRYING_RACK_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.DRYING);
+    }
 
     // --- Pit Kiln
     {
