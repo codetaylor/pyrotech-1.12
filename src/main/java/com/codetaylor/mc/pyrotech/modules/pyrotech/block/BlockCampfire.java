@@ -205,6 +205,7 @@ public class BlockCampfire
         campfire.setAshLevel(campfire.getAshLevel() - 1);
         StackHelper.spawnStackOnTop(world, ItemMaterial.EnumType.PIT_ASH.asStack(), pos);
         heldItem.damageItem(1, player);
+        world.playSound(null, pos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
       }
     }
 
