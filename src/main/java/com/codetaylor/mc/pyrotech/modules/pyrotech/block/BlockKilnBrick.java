@@ -247,35 +247,38 @@ public class BlockKilnBrick
     }
 
     TileKilnBrick tileKiln = (TileKilnBrick) tileEntity;
-    ItemStack heldItem = player.getHeldItem(hand);
+    ItemStack heldItem = player.getHeldItemMainhand();
 
-    if (facing == state.getValue(FACING)) {
+    if (facing != state.getValue(FACING)) {
+      return false;
+    }
 
-      if (player.isSneaking()) {
-        // remove recipe items and recipe results
+    if (heldItem.isEmpty()) {
+
+      // remove recipe items and recipe results
+
+      if (!world.isRemote) {
+        tileKiln.removeItems();
+      }
+
+      return true;
+
+    } else {
+
+      int count = heldItem.getCount();
+      ItemStackHandler stackHandler = tileKiln.getStackHandler();
+      ItemStack itemStack = stackHandler.insertItem(0, heldItem, world.isRemote);
+
+      if (itemStack.getCount() != count) {
 
         if (!world.isRemote) {
-          tileKiln.removeItems();
+          player.setHeldItem(hand, itemStack);
         }
         return true;
-
-      } else {
-
-        int count = heldItem.getCount();
-        ItemStackHandler stackHandler = tileKiln.getStackHandler();
-        ItemStack itemStack = stackHandler.insertItem(0, heldItem, world.isRemote);
-
-        if (itemStack.getCount() != count) {
-
-          if (!world.isRemote) {
-            player.setHeldItem(hand, itemStack);
-          }
-          return true;
-        }
       }
     }
 
-    return super.onBlockActivated(world, pos.down(), state, player, hand, facing, hitX, hitY, hitZ);
+    return true;
   }
 
   private boolean onBlockActivatedBottom(
@@ -297,77 +300,77 @@ public class BlockKilnBrick
     }
 
     TileKilnBrick tileKiln = (TileKilnBrick) tileEntity;
-    ItemStack heldItem = player.getHeldItem(hand);
+    ItemStack heldItem = player.getHeldItemMainhand();
 
     if (heldItem.getItem() instanceof ItemIgniterBase) {
       return false;
     }
 
-    //System.out.println(String.format("(%f, %f, %f): %s == %s", hitX, hitY, hitZ, facing, state.getValue(FACING)));
-
-    if (facing == state.getValue(FACING)) {
-
-      if (player.isSneaking()) {
-        // remove fuel
-
-        ItemStackHandler stackHandler = tileKiln.getFuelStackHandler();
-        ItemStack itemStack = stackHandler.extractItem(0, 64, world.isRemote);
-
-        if (!world.isRemote) {
-
-          if (!itemStack.isEmpty()) {
-            StackHelper.spawnStackOnTop(world, itemStack, pos);
-          }
-
-          BlockHelper.notifyBlockUpdate(world, pos);
-        }
-        return true;
-
-      } else {
-        // add fuel
-
-        if (heldItem.getItem() == Items.FLINT_AND_STEEL) {
-
-          if (!world.isRemote) {
-
-            if (player.isCreative()) {
-              heldItem.damageItem(1, player);
-            }
-
-            tileKiln.setActive(true);
-            world.playSound(
-                null,
-                pos,
-                SoundEvents.ITEM_FLINTANDSTEEL_USE,
-                SoundCategory.BLOCKS,
-                1.0F,
-                Util.RANDOM.nextFloat() * 0.4F + 0.8F
-            );
-          }
-          return true;
-        }
-
-        if (StackHelper.isFuel(heldItem)) {
-
-          int count = heldItem.getCount();
-          ItemStackHandler stackHandler = tileKiln.getFuelStackHandler();
-          ItemStack itemStack = stackHandler.insertItem(0, heldItem, world.isRemote);
-
-          if (count != itemStack.getCount()) {
-
-            if (!world.isRemote) {
-              player.setHeldItem(hand, itemStack);
-              BlockHelper.notifyBlockUpdate(world, pos);
-            }
-            return true;
-          }
-        }
-      }
-
+    if (facing != state.getValue(FACING)) {
       return false;
     }
 
-    return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    if (heldItem.isEmpty()) {
+
+      // remove fuel
+
+      ItemStackHandler stackHandler = tileKiln.getFuelStackHandler();
+      ItemStack itemStack = stackHandler.extractItem(0, 64, world.isRemote);
+
+      if (!world.isRemote) {
+
+        if (!itemStack.isEmpty()) {
+          StackHelper.spawnStackOnTop(world, itemStack, pos);
+        }
+
+        BlockHelper.notifyBlockUpdate(world, pos);
+      }
+
+      return true;
+
+    } else {
+
+      if (heldItem.getItem() == Items.FLINT_AND_STEEL) {
+
+        if (!world.isRemote) {
+
+          if (player.isCreative()) {
+            heldItem.damageItem(1, player);
+          }
+
+          tileKiln.setActive(true);
+          world.playSound(
+              null,
+              pos,
+              SoundEvents.ITEM_FLINTANDSTEEL_USE,
+              SoundCategory.BLOCKS,
+              1.0F,
+              Util.RANDOM.nextFloat() * 0.4F + 0.8F
+          );
+        }
+        return true;
+      }
+
+      // add fuel
+
+      if (StackHelper.isFuel(heldItem)) {
+
+        int count = heldItem.getCount();
+        ItemStackHandler stackHandler = tileKiln.getFuelStackHandler();
+        ItemStack itemStack = stackHandler.insertItem(0, heldItem, world.isRemote);
+
+        if (count != itemStack.getCount()) {
+
+          if (!world.isRemote) {
+            player.setHeldItem(hand, itemStack);
+            BlockHelper.notifyBlockUpdate(world, pos);
+          }
+          return true;
+        }
+      }
+    }
+
+    return true;
   }
 
   @Nonnull
