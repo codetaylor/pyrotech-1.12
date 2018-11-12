@@ -29,7 +29,7 @@ public class ModuleRecipes {
         ItemMaterial.EnumType.STRAW.asStack(),
         Ingredient.fromStacks(new ItemStack(Items.WHEAT)),
         12 * 60 * 20
-    ));
+    ).setRegistryName(ModulePyrotech.MOD_ID, "straw"));
 
   }
 
