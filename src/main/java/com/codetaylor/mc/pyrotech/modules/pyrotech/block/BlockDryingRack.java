@@ -26,6 +26,8 @@ public class BlockDryingRack
 
   public static final String NAME = "drying_rack";
 
+  private static final AxisAlignedBB AABB = new AxisAlignedBB(0f / 16f, 0f / 16f, 0f / 16f, 16f / 16f, 12f / 16f, 16f / 16f);
+
   public BlockDryingRack() {
 
     super(Material.WOOD);
@@ -211,7 +213,7 @@ public class BlockDryingRack
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
-    return new AxisAlignedBB(0f / 16f, 0f / 16f, 0f / 16f, 16f / 16f, 12f / 16f, 16f / 16f);
+    return AABB;
   }
 
   // ---------------------------------------------------------------------------
