@@ -160,9 +160,9 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "The chance that the campfire will produce ash when a fuel is consumed.",
         "Range: [0, 1]",
-        "Default: " + 0.5f
+        "Default: " + 0.25f
     })
-    public double ASH_CHANCE = 0.5f;
+    public double ASH_CHANCE = 0.25f;
   }
 
   public static General GENERAL = new General();
