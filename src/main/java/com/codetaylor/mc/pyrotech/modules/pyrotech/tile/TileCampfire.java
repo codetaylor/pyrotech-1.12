@@ -7,7 +7,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import net.minecraft.block.BlockFire;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -37,6 +36,7 @@ public class TileCampfire
   private int cookTime;
   private int cookTimeTotal;
   private int burnTimeRemaining;
+  private int ashLevel;
   private boolean active;
   private boolean dead;
   private boolean doused;
@@ -103,6 +103,18 @@ public class TileCampfire
     this.cookTime = -1;
     this.cookTimeTotal = -1;
     this.rainTimeRemaining = ModulePyrotechConfig.CAMPFIRE.TICKS_BEFORE_EXTINGUISHED;
+  }
+
+  public int getAshLevel() {
+
+    return this.ashLevel;
+  }
+
+  public void setAshLevel(int ashLevel) {
+
+    this.ashLevel = ashLevel;
+    this.markDirty();
+    BlockHelper.notifyBlockUpdate(this.world, this.pos);
   }
 
   public void setCookTime(int cookTime) {
@@ -187,6 +199,10 @@ public class TileCampfire
 
     if (this.isActive()) {
 
+      if (this.ashLevel == 7) {
+        this.setActive(false);
+      }
+
       if (Math.random() < 0.05
           && this.world.getBlockState(this.pos.down()).getBlock().isFlammable(this.world, this.pos.down(), EnumFacing.UP)) {
 
@@ -228,6 +244,10 @@ public class TileCampfire
       this.burnTimeRemaining -= 1;
 
       if (this.burnTimeRemaining <= 0) {
+
+        if (Math.random() < ModulePyrotechConfig.CAMPFIRE.ASH_CHANCE) {
+          this.ashLevel += 1;
+        }
 
         // consume fuel
 
@@ -282,6 +302,7 @@ public class TileCampfire
     compound.setInteger("cookTime", this.cookTime);
     compound.setInteger("cookTimeTotal", this.cookTimeTotal);
     compound.setBoolean("doused", this.doused);
+    compound.setInteger("ashLevel", this.ashLevel);
     return compound;
   }
 
@@ -298,6 +319,7 @@ public class TileCampfire
     this.cookTime = compound.getInteger("cookTime");
     this.cookTimeTotal = compound.getInteger("cookTimeTotal");
     this.doused = compound.getBoolean("doused");
+    this.ashLevel = compound.getInteger("ashLevel");
   }
 
   @Nonnull
@@ -387,6 +409,11 @@ public class TileCampfire
 
     if (!itemStack.isEmpty()) {
       StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
+    }
+
+    if (this.ashLevel > 0) {
+      ItemStack ashStack = ItemMaterial.EnumType.PIT_ASH.asStack(this.ashLevel);
+      StackHelper.spawnStackOnTop(this.world, ashStack, this.pos);
     }
 
     BlockHelper.notifyBlockUpdate(this.world, this.pos);

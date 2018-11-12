@@ -61,6 +61,7 @@ gui.pyrotech.waila.kiln.brick.heat=Burn Time: %s
 
 gui.pyrotech.waila.campfire.fuel=Fuel: Wood Logs * %s
 gui.pyrotech.waila.campfire.heat=Burn Time: %s
+gui.pyrotech.waila.campfire.ash=Ash: %d / %d
 
 gui.pyrotech.waila.drying_rack.speed=Speed: %s
 

@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -46,10 +47,18 @@ public class BlockCampfire
 
   public static final IProperty<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
   public static final PropertyInteger WOOD = PropertyInteger.create("wood", 0, 8);
+  public static final PropertyInteger ASH = PropertyInteger.create("ash", 0, 8);
 
   public static final AxisAlignedBB AABB_FULL = new AxisAlignedBB(0, 0, 0, 1, 6f / 16f, 1);
   public static final AxisAlignedBB AABB_TINDER = new AxisAlignedBB(4f / 16f, 0, 4f / 16f, 12f / 16f, 5f / 16f, 12f / 16f);
-  public static final AxisAlignedBB AABB_ASH = new AxisAlignedBB(3f / 16f, 0, 3f / 16f, 13f / 16f, 1f / 16f, 13f / 16f);
+  public static final AxisAlignedBB AABB_ASH_A = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 1f / 16f, 14f / 16f);
+  public static final AxisAlignedBB AABB_ASH_B = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 2f / 16f, 14f / 16f);
+  public static final AxisAlignedBB AABB_ASH_C = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 3f / 16f, 14f / 16f);
+  public static final AxisAlignedBB AABB_ASH_D = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 4f / 16f, 14f / 16f);
+  public static final AxisAlignedBB AABB_ASH_E = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 8f / 16f, 14f / 16f);
+  public static final AxisAlignedBB AABB_ASH_F = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 6f / 16f, 14f / 16f);
+  public static final AxisAlignedBB AABB_ASH_G = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 7f / 16f, 14f / 16f);
+  public static final AxisAlignedBB AABB_ASH_H = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 8f / 16f, 14f / 16f);
 
   public BlockCampfire() {
 
@@ -125,7 +134,26 @@ public class BlockCampfire
       return AABB_TINDER;
 
     } else if (actualState.getValue(VARIANT) == EnumType.ASH) {
-      return AABB_ASH;
+
+      switch (actualState.getValue(ASH)) {
+        default:
+        case 1:
+          return AABB_ASH_A;
+        case 2:
+          return AABB_ASH_B;
+        case 3:
+          return AABB_ASH_C;
+        case 4:
+          return AABB_ASH_D;
+        case 5:
+          return AABB_ASH_E;
+        case 6:
+          return AABB_ASH_F;
+        case 7:
+          return AABB_ASH_G;
+        case 8:
+          return AABB_ASH_H;
+      }
     }
 
     return super.getBoundingBox(state, source, pos);
@@ -157,15 +185,32 @@ public class BlockCampfire
     if (heldItem.isEmpty()) {
       return this.handleInteraction_EmptyHand(world, pos, player, campfire);
 
+    } else if (heldItem.getItem().getToolClasses(heldItem).contains("shovel")) {
+      return this.handleInteraction_Shovel(world, pos, campfire, heldItem, player);
+
     } else if (heldItem.getItem() == Items.FLINT_AND_STEEL) {
       return this.handleInteraction_FlintAndSteel(world, pos, player, campfire, heldItem);
 
     } else if (heldItem.getItem() instanceof ItemFood) {
-      return this.handleInteraction_Food(world, campfire, heldItem);
+      return this.handleInteraction_Food(world, campfire, heldItem, player);
 
     } else {
       return this.handleInteraction_Wood(world, pos, campfire, heldItem, player);
     }
+  }
+
+  private boolean handleInteraction_Shovel(World world, BlockPos pos, TileCampfire campfire, ItemStack heldItem, EntityPlayer player) {
+
+    if (!world.isRemote) {
+
+      if (campfire.getAshLevel() > 0) {
+        campfire.setAshLevel(campfire.getAshLevel() - 1);
+        StackHelper.spawnStackOnTop(world, ItemMaterial.EnumType.PIT_ASH.asStack(), pos);
+        heldItem.damageItem(1, player);
+      }
+    }
+
+    return true;
   }
 
   private boolean handleInteraction_Wood(World world, BlockPos pos, TileCampfire campfire, ItemStack heldItem, EntityPlayer player) {
@@ -200,7 +245,7 @@ public class BlockCampfire
     return false;
   }
 
-  private boolean handleInteraction_Food(World world, TileCampfire campfire, ItemStack heldItem) {
+  private boolean handleInteraction_Food(World world, TileCampfire campfire, ItemStack heldItem, EntityPlayer player) {
 
     ItemStack recipeResult = FurnaceRecipes.instance().getSmeltingResult(heldItem);
 
@@ -220,7 +265,8 @@ public class BlockCampfire
 
     if (result.isEmpty()) {
 
-      if (!world.isRemote) {
+      if (!world.isRemote
+          && !player.isCreative()) {
         heldItem.setCount(heldItem.getCount() - 1);
       }
 
@@ -288,7 +334,7 @@ public class BlockCampfire
   @Override
   protected BlockStateContainer createBlockState() {
 
-    return new BlockStateContainer(this, WOOD, VARIANT);
+    return new BlockStateContainer(this, WOOD, VARIANT, ASH);
   }
 
   @Nonnull
@@ -315,10 +361,12 @@ public class BlockCampfire
       TileCampfire tileCampfire = (TileCampfire) tileEntity;
       int fuelRemaining = tileCampfire.getFuelRemaining();
       EnumType type = tileCampfire.getState();
+      int ashLevel = tileCampfire.getAshLevel();
 
       return state
           .withProperty(WOOD, fuelRemaining)
-          .withProperty(VARIANT, type);
+          .withProperty(VARIANT, type)
+          .withProperty(ASH, ashLevel);
     }
 
     return super.getActualState(state, world, pos);

@@ -156,6 +156,13 @@ public class ModulePyrotechConfig {
         "Default: " + (10 * 20)
     })
     public int TICKS_BEFORE_EXTINGUISHED = 10 * 20;
+
+    @Config.Comment({
+        "The chance that the campfire will produce ash when a fuel is consumed.",
+        "Range: [0, 1]",
+        "Default: " + 0.5f
+    })
+    public double ASH_CHANCE = 0.5f;
   }
 
   public static General GENERAL = new General();

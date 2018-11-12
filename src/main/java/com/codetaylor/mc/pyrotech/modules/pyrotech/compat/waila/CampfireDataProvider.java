@@ -122,6 +122,14 @@ public class CampfireDataProvider
               StringHelper.ticksToHMS(tileCampfire.getRemainingBurnTimeTicks() + tileCampfire.getFuelRemaining() * ModulePyrotechConfig.CAMPFIRE.BURN_TIME_TICKS_PER_LOG)
           ));
         }
+
+        if (tileCampfire.getAshLevel() > 0) {
+          tooltip.add(Util.translateFormatted(
+              "gui." + ModulePyrotech.MOD_ID + ".waila.campfire.ash",
+              tileCampfire.getAshLevel(),
+              8
+          ));
+        }
       }
 
     }

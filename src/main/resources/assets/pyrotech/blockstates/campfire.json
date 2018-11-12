@@ -8,10 +8,55 @@
     }
   },
   "variants": {
+    "ash": {
+      "0": {},
+      "1": {
+        "submodel": {
+          "ash": {"model": "pyrotech:campfire_ash_a"}
+        }
+      },
+      "2": {
+        "submodel": {
+          "ash": {"model": "pyrotech:campfire_ash_b"}
+        }
+      },
+      "3": {
+        "submodel": {
+          "ash": {"model": "pyrotech:campfire_ash_c"}
+        }
+      },
+      "4": {
+        "submodel": {
+          "ash": {"model": "pyrotech:campfire_ash_d"}
+        }
+      },
+      "5": {
+        "submodel": {
+          "ash": {"model": "pyrotech:campfire_ash_e"}
+        }
+      },
+      "6": {
+        "submodel": {
+          "ash": {"model": "pyrotech:campfire_ash_f"}
+        }
+      },
+      "7": {
+        "submodel": {
+          "ash": {"model": "pyrotech:campfire_ash_g"}
+        }
+      },
+      "8": {
+        "submodel": {
+          "ash": {"model": "pyrotech:campfire_ash_h"}
+        }
+      }
+    },
     "wood": {
       "0": {},
       "1": {
-        "submodel": "pyrotech:campfire_log_a"
+        "submodel": {
+          "a": {"model": "pyrotech:campfire_log_a"}
+        }
       },
       "2": {
         "submodel": {
@@ -95,9 +140,8 @@
         }
       },
       "ash": {
-        "model": "pyrotech:campfire_ash",
+        "model": "pyrotech:campfire_ash_a",
         "textures": {
-          "ash": "pyrotech:blocks/ash_block",
           "particle": "pyrotech:blocks/ash_block"
         }
       }
