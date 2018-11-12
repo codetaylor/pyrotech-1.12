@@ -167,8 +167,7 @@ public class BlockDryingRack
   @Override
   public boolean canPlaceBlockAt(World world, @Nonnull BlockPos pos) {
 
-    return world.isSideSolid(pos.down(), EnumFacing.UP)
-        && super.canPlaceBlockAt(world, pos);
+    return super.canPlaceBlockAt(world, pos);
   }
 
   // ---------------------------------------------------------------------------
