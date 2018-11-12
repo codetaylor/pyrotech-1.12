@@ -163,6 +163,20 @@ public class ModulePyrotechConfig {
         "Default: " + 0.25f
     })
     public double ASH_CHANCE = 0.25f;
+
+    @Config.Comment({
+        "The chance that the player will be damaged with fire when picking",
+        "up a log while the campfire is lit.",
+        "Default: " + 0.5f
+    })
+    public double PLAYER_BURN_CHANCE = 0.5f;
+
+    @Config.Comment({
+        "The amount of damage done to a player when picking up a log while the",
+        "campfire is lit.",
+        "Default: " + 1.0f
+    })
+    public double PLAYER_BURN_DAMAGE = 1.0f;
   }
 
   public static General GENERAL = new General();

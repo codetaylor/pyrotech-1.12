@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import net.minecraft.block.Block;
@@ -296,26 +297,52 @@ public class BlockCampfire
 
   private boolean handleInteraction_EmptyHand(World world, BlockPos pos, EntityPlayer player, TileCampfire campfire) {
 
-    ItemStack itemStack = campfire.getStackHandler().extractItem(0, 64, world.isRemote);
+    if (player.isSneaking()) {
 
-    if (!itemStack.isEmpty()) {
+      ItemStack itemStack = campfire.getFuelStackHandler().extractItem(0, 1, world.isRemote);
 
-      if (!world.isRemote) {
-        StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
+      if (!itemStack.isEmpty()) {
+
+        if (!world.isRemote) {
+
+          if (Math.random() < ModulePyrotechConfig.CAMPFIRE.PLAYER_BURN_CHANCE) {
+
+            if (!player.isImmuneToFire()
+                && !EnchantmentHelper.hasFrostWalkerEnchantment(player)
+                && this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == EnumType.LIT) {
+              player.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.CAMPFIRE.PLAYER_BURN_DAMAGE);
+            }
+          }
+
+          StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
+        }
+
+        return true;
       }
 
-      return true;
-    }
+    } else {
 
-    itemStack = campfire.getOutputStackHandler().extractItem(0, 64, world.isRemote);
+      ItemStack itemStack = campfire.getStackHandler().extractItem(0, 1, world.isRemote);
 
-    if (!itemStack.isEmpty()) {
+      if (!itemStack.isEmpty()) {
 
-      if (!world.isRemote) {
-        StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
+        if (!world.isRemote) {
+          StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
+        }
+
+        return true;
       }
 
-      return true;
+      itemStack = campfire.getOutputStackHandler().extractItem(0, 1, world.isRemote);
+
+      if (!itemStack.isEmpty()) {
+
+        if (!world.isRemote) {
+          StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
+        }
+
+        return true;
+      }
     }
 
     return false;
