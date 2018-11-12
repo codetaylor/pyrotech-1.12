@@ -108,18 +108,19 @@ public class CampfireDataProvider
       {
         int fuelRemaining = tileCampfire.getFuelRemaining();
 
-        if (fuelRemaining > 0) {
-          tooltip.add(Util.translateFormatted(
-              "gui." + ModulePyrotech.MOD_ID + ".waila.campfire.fuel",
-              String.valueOf(fuelRemaining)
-          ));
-        }
-
         if (tileCampfire.isActive()
             && tileCampfire.getRemainingBurnTimeTicks() > 0) {
           tooltip.add(Util.translateFormatted(
               "gui." + ModulePyrotech.MOD_ID + ".waila.campfire.heat",
               StringHelper.ticksToHMS(tileCampfire.getRemainingBurnTimeTicks() + tileCampfire.getFuelRemaining() * ModulePyrotechConfig.CAMPFIRE.BURN_TIME_TICKS_PER_LOG)
+          ));
+        }
+
+        if (fuelRemaining > 0) {
+          tooltip.add(Util.translateFormatted(
+              "gui." + ModulePyrotech.MOD_ID + ".waila.campfire.fuel",
+              fuelRemaining,
+              8
           ));
         }
 
