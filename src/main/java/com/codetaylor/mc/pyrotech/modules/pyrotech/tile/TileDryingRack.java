@@ -14,6 +14,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -168,6 +169,22 @@ public class TileDryingRack
 
         } else {
           this.speed = 1.0f;
+
+          if (BiomeDictionary.getBiomes(BiomeDictionary.Type.HOT).contains(biome)) {
+            this.speed += 0.2f;
+          }
+
+          if (BiomeDictionary.getBiomes(BiomeDictionary.Type.DRY).contains(biome)) {
+            this.speed += 0.2f;
+          }
+
+          if (BiomeDictionary.getBiomes(BiomeDictionary.Type.COLD).contains(biome)) {
+            this.speed -= 0.2f;
+          }
+
+          if (BiomeDictionary.getBiomes(BiomeDictionary.Type.WET).contains(biome)) {
+            this.speed -= 0.2f;
+          }
         }
 
         for (EnumFacing facing : EnumFacing.HORIZONTALS) {
