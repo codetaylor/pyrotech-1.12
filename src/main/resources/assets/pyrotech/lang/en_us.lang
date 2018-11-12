@@ -13,7 +13,7 @@ tile.fluid.coal_tar.name=Coal Tar
 
 item.pyrotech.straw.name=Straw
 item.pyrotech.coal.coke.name=Coal Coke
-item.pyrotech.pit.ash.name=Pit Ash
+item.pyrotech.pit.ash.name=Ash
 item.pyrotech.flint.clay.ball.name=Flint Clay
 item.pyrotech.refractory.clay.ball.name=Refractory Clay
 item.pyrotech.unfired.refractory.brick.name=Unfired Refractory Brick
