@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
@@ -18,6 +19,17 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class ModuleRecipes {
 
   public static void onRegisterRecipes(IForgeRegistry<IRecipe> registry) {
+
+  }
+
+  public static void onRegisterDryingRackRecipes(IForgeRegistry<DryingRackRecipe> registry) {
+
+    // Straw
+    registry.register(new DryingRackRecipe(
+        ItemMaterial.EnumType.STRAW.asStack(),
+        Ingredient.fromStacks(new ItemStack(Items.WHEAT)),
+        12 * 60 * 20
+    ));
 
   }
 
