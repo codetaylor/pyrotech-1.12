@@ -2,6 +2,8 @@
 # Pyrotech Module
 #------------------------------------------------------------------------------
 
+itemGroup.pyrotech=Pyrotech
+
 # --- Fluids
 
 fluid.wood_tar=Wood Tar
