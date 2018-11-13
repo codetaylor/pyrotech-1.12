@@ -2,12 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:flint",
-      "data": 0
+      "item": "pyrotech:flint_shard",
+      "data": 10
     },
     {
       "item": "pyrotech:tinder",
       "data": 0
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "rock"
     }
   ],
   "result": {

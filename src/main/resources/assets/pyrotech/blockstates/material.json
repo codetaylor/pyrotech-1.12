@@ -14,7 +14,8 @@
       "pottery_shard": {"textures": {"layer0": "pyrotech:items/pottery_shard"}},
       "slaked_lime": {"textures": {"layer0": "pyrotech:items/slaked_lime"}},
       "refractory_brick": {"textures": {"layer0": "pyrotech:items/refractory_brick"}},
-      "unfired_refractory_brick": {"textures": {"layer0": "pyrotech:items/unfired_refractory_brick"}}
+      "unfired_refractory_brick": {"textures": {"layer0": "pyrotech:items/unfired_refractory_brick"}},
+      "flint_shard": {"textures": {"layer0": "pyrotech:items/flint_shard"}}
     }
   }
 }

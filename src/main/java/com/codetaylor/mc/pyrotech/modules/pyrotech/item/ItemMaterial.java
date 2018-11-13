@@ -56,7 +56,8 @@ public class ItemMaterial
     POTTERY_FRAGMENTS("pottery_fragments", 6),
     POTTERY_SHARD("pottery_shard", 7),
     SLAKED_LIME("slaked_lime", 8),
-    UNFIRED_REFRACTORY_BRICK("unfired_refractory_brick", 9);
+    UNFIRED_REFRACTORY_BRICK("unfired_refractory_brick", 9),
+    FLINT_SHARD("flint_shard", 10);
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())
