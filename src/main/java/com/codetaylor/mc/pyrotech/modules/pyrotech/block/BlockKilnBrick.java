@@ -145,7 +145,6 @@ public class BlockKilnBrick
   @Override
   public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
 
-    // TODO
     return false;
   }
 
