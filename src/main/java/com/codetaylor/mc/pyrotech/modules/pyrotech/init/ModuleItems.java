@@ -2,7 +2,9 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -18,6 +20,7 @@ public class ModuleItems {
   public static final ItemIgniterBase FLINT_AND_TINDER = new ItemFlintAndTinder();
   public static final ItemDoor REFRACTORY_DOOR = new ItemDoor(ModuleBlocks.REFRACTORY_DOOR);
   public static final ItemTinder TINDER = new ItemTinder();
+  public static final ItemRock ROCK = new ItemRock(ModuleBlocks.ROCK);
 
   public static void onRegister(Registry registry) {
 
@@ -29,6 +32,7 @@ public class ModuleItems {
     registry.registerItem(new ItemBlock(ModuleBlocks.KILN_PIT), ModuleBlocks.KILN_PIT.getRegistryName());
     registry.registerItem(ModuleItems.TINDER, ItemTinder.NAME);
     registry.registerItem(new ItemBlock(ModuleBlocks.CAMPFIRE), BlockCampfire.NAME);
+    registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -42,6 +46,13 @@ public class ModuleItems {
           ModuleItems.FLINT_AND_TINDER,
           ModuleItems.REFRACTORY_DOOR,
           ModuleItems.TINDER
+      );
+
+      // Rock
+      ModelRegistrationHelper.registerVariantBlockItemModelsSeparately(
+          ModulePyrotech.MOD_ID,
+          ModuleBlocks.ROCK,
+          BlockRock.VARIANT
       );
 
       ModelRegistrationHelper.registerBlockItemModel(

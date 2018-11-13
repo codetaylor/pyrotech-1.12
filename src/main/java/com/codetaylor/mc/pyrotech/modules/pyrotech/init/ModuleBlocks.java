@@ -30,6 +30,7 @@ public class ModuleBlocks {
   public static final BlockKilnBrick KILN_BRICK = new BlockKilnBrick();
   public static final BlockCampfire CAMPFIRE = new BlockCampfire();
   public static final BlockDryingRack DRYING_RACK = new BlockDryingRack();
+  public static final BlockRock ROCK = new BlockRock();
 
   public static void onRegister(Registry registry) {
 
@@ -38,6 +39,7 @@ public class ModuleBlocks {
     registry.registerBlock(ModuleBlocks.KILN_PIT, BlockKilnPit.NAME);
     registry.registerBlock(ModuleBlocks.REFRACTORY_DOOR, BlockRefractoryDoor.NAME);
     registry.registerBlock(ModuleBlocks.CAMPFIRE, BlockCampfire.NAME);
+    registry.registerBlock(ModuleBlocks.ROCK, BlockRock.NAME);
 
     registry.registerBlockWithItem(ModuleBlocks.LOG_PILE, BlockLogPile.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COAL_COKE_BLOCK, BlockCoalCokeBlock.NAME);
@@ -104,6 +106,12 @@ public class ModuleBlocks {
       ModelRegistrationHelper.registerVariantBlockItemModels(
           ModuleBlocks.IGNITER.getDefaultState(),
           BlockIgniter.VARIANT
+      );
+
+      // Rock Pieces
+      ModelLoader.setCustomStateMapper(
+          ModuleBlocks.ROCK,
+          (new StateMap.Builder()).withName(BlockRock.VARIANT).build()
       );
 
       // TESRs

@@ -11,6 +11,7 @@ import com.codetaylor.mc.pyrotech.library.fluid.CPacketFluidUpdate;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleEntities;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleRecipes;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
@@ -147,6 +148,7 @@ public class ModulePyrotech
 
     ModuleBlocks.onRegister(registry);
     ModuleItems.onRegister(registry);
+    ModuleEntities.onRegister(registry);
   }
 
   @SideOnly(Side.CLIENT)
@@ -155,6 +157,7 @@ public class ModulePyrotech
 
     ModuleBlocks.onClientRegister(registry);
     ModuleItems.onClientRegister(registry);
+    ModuleEntities.onClientRegister();
   }
 
   @Override
