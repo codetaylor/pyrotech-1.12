@@ -83,6 +83,11 @@ public class ModulePyrotech
         "jei",
         "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.PluginJEI"
     );
+
+    this.registerIntegrationPlugin(
+        "dropt",
+        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.dropt.PluginDropt"
+    );
   }
 
   @SubscribeEvent

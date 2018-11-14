@@ -179,6 +179,25 @@ public class ModulePyrotechConfig {
     public double PLAYER_BURN_DAMAGE = 1.0f;
   }
 
+  public static Compat COMPAT = new Compat();
+
+  public static class Compat {
+
+    @Config.Comment({
+        "This mod uses Dropt to replace certain block drops.",
+        "To disable the block drop replacement rules, set this to false.",
+        "",
+        "The Dropt rule list for this mod uses a priority of zero, so",
+        "if you want to override some of the Dropt rules, set your",
+        "rule list priority to a value greater than zero.",
+        "",
+        "Changing this during runtime requires the '/dropt reload' command.",
+        "Default: " + true
+    })
+    public boolean ENABLE_DROPT_RULES = true;
+
+  }
+
   public static General GENERAL = new General();
 
   public static class General {
