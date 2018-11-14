@@ -35,6 +35,10 @@ public class ModulePyrotechConfig {
     public boolean KEEP_HEAT = false;
   }
 
+  // ---------------------------------------------------------------------------
+  // - Pit Kiln
+  // ---------------------------------------------------------------------------
+
   public static PitKiln PIT_KILN = new PitKiln();
 
   public static class PitKiln {
@@ -47,6 +51,10 @@ public class ModulePyrotechConfig {
     public double REFRACTORY_BLOCK_TIME_BONUS = 0.1;
 
   }
+
+  // ---------------------------------------------------------------------------
+  // - Refractory
+  // ---------------------------------------------------------------------------
 
   public static Refractory REFRACTORY = new Refractory();
 
@@ -78,6 +86,10 @@ public class ModulePyrotechConfig {
       this.put(ModuleFluids.COAL_TAR.getName(), 40);
     }};
   }
+
+  // ---------------------------------------------------------------------------
+  // - Fuel
+  // ---------------------------------------------------------------------------
 
   public static Fuel FUEL = new Fuel();
 
@@ -126,6 +138,10 @@ public class ModulePyrotechConfig {
     public int COAL_COKE_BLOCK_BURN_TIME_TICKS = 32000;
 
   }
+
+  // ---------------------------------------------------------------------------
+  // - Campfire
+  // ---------------------------------------------------------------------------
 
   public static Campfire CAMPFIRE = new Campfire();
 
@@ -179,13 +195,17 @@ public class ModulePyrotechConfig {
     public double PLAYER_BURN_DAMAGE = 1.0f;
   }
 
+  // ---------------------------------------------------------------------------
+  // - Compat
+  // ---------------------------------------------------------------------------
+
   public static Compat COMPAT = new Compat();
 
   public static class Compat {
 
     @Config.Comment({
         "This mod uses Dropt to replace certain block drops.",
-        "To disable the block drop replacement rules, set this to false.",
+        "To disable all of the block drop replacement rules, set this to false.",
         "",
         "The Dropt rule list for this mod uses a priority of zero, so",
         "if you want to override some of the Dropt rules, set your",
@@ -197,6 +217,10 @@ public class ModulePyrotechConfig {
     public boolean ENABLE_DROPT_RULES = true;
 
   }
+
+  // ---------------------------------------------------------------------------
+  // - General
+  // ---------------------------------------------------------------------------
 
   public static General GENERAL = new General();
 
