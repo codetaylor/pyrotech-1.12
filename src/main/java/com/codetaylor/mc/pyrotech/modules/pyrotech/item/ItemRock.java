@@ -22,6 +22,7 @@ public class ItemRock
   public ItemRock(Block block) {
 
     super(block);
+    this.setHasSubtypes(true);
   }
 
   @Nonnull

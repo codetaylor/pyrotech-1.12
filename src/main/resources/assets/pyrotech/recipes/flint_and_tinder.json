@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "pyrotech:flint_shard",
+      "item": "pyrotech:material",
       "data": 10
     },
     {

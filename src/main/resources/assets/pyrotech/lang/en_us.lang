@@ -29,6 +29,22 @@ item.pyrotech.bow.drill.name=Bow Drill
 item.pyrotech.flint.and.tinder.name=Flint and Tinder
 item.pyrotech.tinder.name=Tinder
 item.pyrotech.flint.shard.name=Flint Shard
+item.pyrotech.bone.shard.name=Bone Shard
+
+item.pyrotech.crude.axe.name=Crude Axe
+item.pyrotech.crude.hoe.name=Crude Hoe
+item.pyrotech.crude.pickaxe.name=Crude Pickaxe
+item.pyrotech.crude.shovel.name=Crude Shovel
+
+item.pyrotech.bone.axe.name=Bone Axe
+item.pyrotech.bone.hoe.name=Bone Hoe
+item.pyrotech.bone.pickaxe.name=Bone Pickaxe
+item.pyrotech.bone.shovel.name=Bone Shovel
+
+item.pyrotech.flint.axe.name=Flint Axe
+item.pyrotech.flint.hoe.name=Flint Hoe
+item.pyrotech.flint.pickaxe.name=Flint Pickaxe
+item.pyrotech.flint.shovel.name=Flint Shovel
 
 
 # --- Tiles

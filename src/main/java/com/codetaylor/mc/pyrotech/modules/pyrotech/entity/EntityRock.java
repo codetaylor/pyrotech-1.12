@@ -1,13 +1,20 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.entity;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 
@@ -48,6 +55,19 @@ public class EntityRock
   public int getMeta() {
 
     return this.meta;
+  }
+
+  @SideOnly(Side.CLIENT)
+  public void handleStatusUpdate(byte id) {
+
+    if (id == 3) {
+      IBlockState blockState = ModuleBlocks.ROCK.getDefaultState()
+          .withProperty(BlockRock.VARIANT, BlockRock.EnumType.fromMeta(this.meta));
+
+      for (int i = 0; i < 8; ++i) {
+        this.world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, Block.getStateId(blockState));
+      }
+    }
   }
 
   @Override

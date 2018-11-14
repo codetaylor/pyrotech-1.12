@@ -82,6 +82,7 @@ repositories {
 
 dependencies {
     compile project(":athenaeum")
+    compile project(":dropt")
     deobfCompile "mcp.mobius.waila:Hwyla:1.8.25-B40_1.12"
 }
 

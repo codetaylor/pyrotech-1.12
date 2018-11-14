@@ -1,2 +1,5 @@
 include ":athenaeum"
 project(":athenaeum").projectDir = file("../athenaeum")
+
+include ":dropt"
+project(":dropt").projectDir = file("../dropt")

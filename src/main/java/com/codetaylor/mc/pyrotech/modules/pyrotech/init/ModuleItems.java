@@ -9,8 +9,10 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDoor;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ModuleItems {
 
@@ -21,6 +23,21 @@ public class ModuleItems {
   public static final ItemDoor REFRACTORY_DOOR = new ItemDoor(ModuleBlocks.REFRACTORY_DOOR);
   public static final ItemTinder TINDER = new ItemTinder();
   public static final ItemRock ROCK = new ItemRock(ModuleBlocks.ROCK);
+
+  public static final ItemCrudeAxe CRUDE_AXE = new ItemCrudeAxe();
+  public static final ItemCrudeHoe CRUDE_HOE = new ItemCrudeHoe();
+  public static final ItemCrudePickaxe CRUDE_PICKAXE = new ItemCrudePickaxe();
+  public static final ItemCrudeShovel CRUDE_SHOVEL = new ItemCrudeShovel();
+
+  public static final ItemBoneAxe BONE_AXE = new ItemBoneAxe();
+  public static final ItemBoneHoe BONE_HOE = new ItemBoneHoe();
+  public static final ItemBonePickaxe BONE_PICKAXE = new ItemBonePickaxe();
+  public static final ItemBoneShovel BONE_SHOVEL = new ItemBoneShovel();
+
+  public static final ItemFlintAxe FLINT_AXE = new ItemFlintAxe();
+  public static final ItemFlintHoe FLINT_HOE = new ItemFlintHoe();
+  public static final ItemFlintPickaxe FLINT_PICKAXE = new ItemFlintPickaxe();
+  public static final ItemFlintShovel FLINT_SHOVEL = new ItemFlintShovel();
 
   public static void onRegister(Registry registry) {
 
@@ -33,6 +50,28 @@ public class ModuleItems {
     registry.registerItem(ModuleItems.TINDER, ItemTinder.NAME);
     registry.registerItem(new ItemBlock(ModuleBlocks.CAMPFIRE), BlockCampfire.NAME);
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
+
+    registry.registerItem(ModuleItems.CRUDE_AXE, ItemCrudeAxe.NAME);
+    registry.registerItem(ModuleItems.CRUDE_HOE, ItemCrudeHoe.NAME);
+    registry.registerItem(ModuleItems.CRUDE_PICKAXE, ItemCrudePickaxe.NAME);
+    registry.registerItem(ModuleItems.CRUDE_SHOVEL, ItemCrudeShovel.NAME);
+
+    registry.registerItem(ModuleItems.BONE_AXE, ItemBoneAxe.NAME);
+    registry.registerItem(ModuleItems.BONE_HOE, ItemBoneHoe.NAME);
+    registry.registerItem(ModuleItems.BONE_PICKAXE, ItemBonePickaxe.NAME);
+    registry.registerItem(ModuleItems.BONE_SHOVEL, ItemBoneShovel.NAME);
+
+    registry.registerItem(ModuleItems.FLINT_AXE, ItemFlintAxe.NAME);
+    registry.registerItem(ModuleItems.FLINT_HOE, ItemFlintHoe.NAME);
+    registry.registerItem(ModuleItems.FLINT_PICKAXE, ItemFlintPickaxe.NAME);
+    registry.registerItem(ModuleItems.FLINT_SHOVEL, ItemFlintShovel.NAME);
+
+    registry.registerItemRegistrationStrategy(forgeRegistry -> {
+
+      for (BlockRock.EnumType type : BlockRock.EnumType.values()) {
+        OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, type.getMeta()));
+      }
+    });
   }
 
   @SideOnly(Side.CLIENT)
@@ -45,7 +84,22 @@ public class ModuleItems {
           ModuleItems.BOW_DRILL,
           ModuleItems.FLINT_AND_TINDER,
           ModuleItems.REFRACTORY_DOOR,
-          ModuleItems.TINDER
+          ModuleItems.TINDER,
+
+          ModuleItems.CRUDE_AXE,
+          ModuleItems.CRUDE_HOE,
+          ModuleItems.CRUDE_PICKAXE,
+          ModuleItems.CRUDE_SHOVEL,
+
+          ModuleItems.BONE_AXE,
+          ModuleItems.BONE_HOE,
+          ModuleItems.BONE_PICKAXE,
+          ModuleItems.BONE_SHOVEL,
+
+          ModuleItems.FLINT_AXE,
+          ModuleItems.FLINT_HOE,
+          ModuleItems.FLINT_PICKAXE,
+          ModuleItems.FLINT_SHOVEL
       );
 
       // Rock
