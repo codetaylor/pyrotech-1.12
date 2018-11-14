@@ -1,5 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei;
 
+import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
@@ -10,10 +15,13 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
+import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +60,26 @@ public class PluginJEI
     }
     */
 
-    registry.getJeiHelpers().getIngredientBlacklist()
-        .addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModuleBlocks.CAMPFIRE)));
+    IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
+    blacklist.addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModuleBlocks.CAMPFIRE)));
+
+    RecipeItemParser parser = new RecipeItemParser();
+
+    for (String itemString : ModulePyrotechConfig.CLIENT.JEI_BLACKLIST) {
+
+      try {
+        ParseResult result = parser.parse(itemString);
+        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(result.getDomain(), result.getPath()));
+
+        if (item != null) {
+          blacklist.addIngredientToBlacklist(new ItemStack(item, 1, result.getMeta()));
+        }
+
+      } catch (MalformedRecipeItemException e) {
+        ModulePyrotech.LOGGER.error("", e);
+      }
+
+    }
 
     // --- Drying Rack
     {

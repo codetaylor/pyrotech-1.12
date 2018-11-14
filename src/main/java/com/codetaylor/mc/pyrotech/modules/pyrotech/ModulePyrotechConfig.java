@@ -12,16 +12,54 @@ import java.util.Map;
 @Config(modid = ModulePyrotech.MOD_ID, name = ModulePyrotech.MOD_ID + "/" + ModulePyrotech.MOD_ID + ".module.Charcoal")
 public class ModulePyrotechConfig {
 
+  // ---------------------------------------------------------------------------
+  // - Recipes
+  // ---------------------------------------------------------------------------
+
+  public static Recipes RECIPES = new Recipes();
+
+  public static class Recipes {
+
+    @Config.Comment({
+        "These recipes will be removed by resource name during the recipe",
+        "registration event."
+    })
+    public String[] VANILLA_REMOVE = new String[]{
+        "minecraft:wooden_axe",
+        "minecraft:wooden_hoe",
+        "minecraft:wooden_pickaxe",
+        "minecraft:wooden_shovel"
+    };
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Client
+  // ---------------------------------------------------------------------------
+
   public static Client CLIENT = new Client();
 
   public static class Client {
 
     @Config.Comment({
         "How many smoke particles a burning collector will emit per tick.",
-        "Default: 10"
+        "Default: " + 10
     })
     public int BURNING_COLLECTOR_SMOKE_PARTICLES = 10;
+
+    @Config.Comment({
+        "These items will be removed from JEI."
+    })
+    public String[] JEI_BLACKLIST = new String[]{
+        "minecraft:wooden_axe",
+        "minecraft:wooden_hoe",
+        "minecraft:wooden_pickaxe",
+        "minecraft:wooden_shovel"
+    };
   }
+
+  // ---------------------------------------------------------------------------
+  // - Brick Kiln
+  // ---------------------------------------------------------------------------
 
   public static BrickKiln BRICK_KILN = new BrickKiln();
 

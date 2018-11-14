@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
@@ -12,14 +13,21 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 public class ModuleRecipes {
 
   public static void onRegisterRecipes(IForgeRegistry<IRecipe> registry) {
 
+    IForgeRegistryModifiable modifiableRegistry = (IForgeRegistryModifiable) registry;
+
+    for (String resourceName : ModulePyrotechConfig.RECIPES.VANILLA_REMOVE) {
+      modifiableRegistry.remove(new ResourceLocation(resourceName));
+    }
   }
 
   public static void onRegisterDryingRackRecipes(IForgeRegistry<DryingRackRecipe> registry) {
