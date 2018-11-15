@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.entity.EntityRock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,6 +23,13 @@ public class ItemRock
 
     super(block);
     this.setHasSubtypes(true);
+  }
+
+  @Nonnull
+  @Override
+  public String getUnlocalizedName(ItemStack stack) {
+
+    return "tile." + ModulePyrotech.MOD_ID + "." + BlockRock.EnumType.fromMeta(stack.getMetadata()).getName();
   }
 
   @Nonnull
