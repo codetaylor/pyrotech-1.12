@@ -11,6 +11,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
@@ -38,6 +39,26 @@ public class BlockRock //'n beats
 
     super(Material.GROUND);
     this.setSoundType(SoundType.STONE);
+  }
+
+  @Nonnull
+  @Override
+  public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
+
+    switch (state.getValue(VARIANT)) {
+      case SAND:
+        return SoundType.SAND;
+      case DIRT:
+        return SoundType.GROUND;
+      case STONE:
+      case DIORITE:
+      case GRANITE:
+      case ANDESITE:
+      case SANDSTONE:
+        return SoundType.STONE;
+    }
+
+    return super.getSoundType(state, world, pos, entity);
   }
 
   // ---------------------------------------------------------------------------
@@ -177,7 +198,10 @@ public class BlockRock //'n beats
     STONE(0, NAME + "_stone"),
     GRANITE(1, NAME + "_granite"),
     DIORITE(2, NAME + "_diorite"),
-    ANDESITE(3, NAME + "_andesite");
+    ANDESITE(3, NAME + "_andesite"),
+    DIRT(4, NAME + "_dirt"),
+    SAND(5, NAME + "_sand"),
+    SANDSTONE(6, NAME + "_sandstone");
 
     private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
         .sorted(Comparator.comparing(EnumType::getMeta))
