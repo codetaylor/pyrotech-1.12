@@ -30,6 +30,9 @@ item.pyrotech.flint.and.tinder.name=Flint and Tinder
 item.pyrotech.tinder.name=Tinder
 item.pyrotech.flint.shard.name=Flint Shard
 item.pyrotech.bone.shard.name=Bone Shard
+item.pyrotech.plant.fibers.name=Plant Fibers
+item.pyrotech.plant.fibers.dried.name=Dried Plant Fibers
+item.pyrotech.twine.name=Twine
 
 item.pyrotech.crude.axe.name=Crude Axe
 item.pyrotech.crude.hoe.name=Crude Hoe
@@ -69,6 +72,9 @@ tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock
 tile.pyrotech.rock_diorite.name=Diorite Rock
 tile.pyrotech.rock_granite.name=Granite Rock
+tile.pyrotech.rock_dirt.name=Dirt Clump
+tile.pyrotech.rock_sand.name=Sand Pile
+tile.pyrotech.rock_sandstone.name=Sandstone Rock
 
 # --- Waila plugin
 

@@ -58,7 +58,10 @@ public class ItemMaterial
     SLAKED_LIME("slaked_lime", 8),
     UNFIRED_REFRACTORY_BRICK("unfired_refractory_brick", 9),
     FLINT_SHARD("flint_shard", 10),
-    BONE_SHARD("bone_shard", 11);
+    BONE_SHARD("bone_shard", 11),
+    PLANT_FIBERS("plant_fibers", 12),
+    PLANT_FIBERS_DRIED("plant_fibers_dried", 13),
+    TWINE("twine", 14);
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())

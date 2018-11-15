@@ -39,6 +39,13 @@ public class ModuleRecipes {
         12 * 60 * 20
     ).setRegistryName(ModulePyrotech.MOD_ID, "straw"));
 
+    // Dried Plant Fibers
+    registry.register(new DryingRackRecipe(
+        ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack(),
+        Ingredient.fromStacks(ItemMaterial.EnumType.PLANT_FIBERS.asStack()),
+        6 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "plant_fibers_dried"));
+
   }
 
   public static void onRegisterPitBurnRecipes(IForgeRegistry<PitBurnRecipe> registry) {

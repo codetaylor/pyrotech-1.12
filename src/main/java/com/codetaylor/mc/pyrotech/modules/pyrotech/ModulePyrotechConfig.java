@@ -9,7 +9,7 @@ import net.minecraftforge.common.config.Config;
 import java.util.HashMap;
 import java.util.Map;
 
-@Config(modid = ModulePyrotech.MOD_ID, name = ModulePyrotech.MOD_ID + "/" + ModulePyrotech.MOD_ID + ".module.Charcoal")
+@Config(modid = ModulePyrotech.MOD_ID, name = ModulePyrotech.MOD_ID + "/" + ModulePyrotech.MOD_ID + ".module.Pyrotech")
 public class ModulePyrotechConfig {
 
   // ---------------------------------------------------------------------------
@@ -68,7 +68,7 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "Set to true to deactivate the kiln when a recipe completes.",
         "The kiln will need to be re-lit when it deactivates.",
-        "Default: false"
+        "Default: " + false
     })
     public boolean KEEP_HEAT = false;
   }
@@ -84,9 +84,9 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "Reduce the duration of all recipes by this amount for each adjacent refractory block.",
         "Range: [0, 0.2]",
-        "Default: 0.1"
+        "Default: " + 0.1f
     })
-    public double REFRACTORY_BLOCK_TIME_BONUS = 0.1;
+    public double REFRACTORY_BLOCK_TIME_BONUS = 0.1f;
 
   }
 
@@ -100,19 +100,19 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Maximum chance for a recipe item to fail conversion.",
-        "Default: 0.95"
+        "Default: " + 0.95f
     })
-    public double MAX_FAILURE_CHANCE = 0.95;
+    public double MAX_FAILURE_CHANCE = 0.95f;
 
     @Config.Comment({
         "Minimum chance for a recipe item to fail conversion.",
-        "Default: 0.05"
+        "Default: " + 0.05f
     })
-    public double MIN_FAILURE_CHANCE = 0.05;
+    public double MIN_FAILURE_CHANCE = 0.05f;
 
     @Config.Comment({
         "The maximum fluid capacity of an active pile in mb.",
-        "Default: 500"
+        "Default: " + 500
     })
     public int ACTIVE_PILE_MAX_FLUID_CAPACITY = 500;
 
@@ -237,9 +237,9 @@ public class ModulePyrotechConfig {
   // - Compat
   // ---------------------------------------------------------------------------
 
-  public static Compat COMPAT = new Compat();
+  public static CompatDropt COMPAT_DROPT = new CompatDropt();
 
-  public static class Compat {
+  public static class CompatDropt {
 
     @Config.Comment({
         "This mod uses Dropt to replace certain block drops.",
@@ -252,7 +252,7 @@ public class ModulePyrotechConfig {
         "Changing this during runtime requires the '/dropt reload' command.",
         "Default: " + true
     })
-    public boolean ENABLE_DROPT_RULES = true;
+    public boolean ENABLE = true;
 
   }
 
