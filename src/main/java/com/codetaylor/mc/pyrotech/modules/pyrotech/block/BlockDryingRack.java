@@ -31,7 +31,7 @@ public class BlockDryingRack
   public BlockDryingRack() {
 
     super(Material.WOOD);
-    this.setHardness(1.0f);
+    this.setHardness(0.5f);
     this.setResistance(5.0f);
     this.setSoundType(SoundType.WOOD);
     this.setHarvestLevel("axe", 0);
