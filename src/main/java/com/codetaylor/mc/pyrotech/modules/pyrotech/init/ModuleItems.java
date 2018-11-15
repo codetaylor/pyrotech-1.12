@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDoor;
@@ -76,6 +77,9 @@ public class ModuleItems {
       OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.GRANITE.getMeta()));
       OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.ANDESITE.getMeta()));
       OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.SANDSTONE.getMeta()));
+
+      OreDictionary.registerOre("twine", new ItemStack(MATERIAL, 1, ItemMaterial.EnumType.TWINE.getMeta()));
+      OreDictionary.registerOre("twine", new ItemStack(Items.STRING));
     });
   }
 
