@@ -24,6 +24,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -163,6 +164,14 @@ public class ModulePyrotech
     ModuleBlocks.onClientRegister(registry);
     ModuleItems.onClientRegister(registry);
     ModuleEntities.onClientRegister();
+  }
+
+  @Override
+  public void onClientInitializationEvent(FMLInitializationEvent event) {
+
+    super.onClientInitializationEvent(event);
+
+    ModuleBlocks.onClientInitialization();
   }
 
   @Override

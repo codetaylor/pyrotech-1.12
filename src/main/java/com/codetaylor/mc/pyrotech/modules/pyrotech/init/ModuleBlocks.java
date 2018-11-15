@@ -6,7 +6,11 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
 import net.minecraft.block.BlockDoor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.world.ColorizerGrass;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,6 +35,7 @@ public class ModuleBlocks {
   public static final BlockCampfire CAMPFIRE = new BlockCampfire();
   public static final BlockDryingRack DRYING_RACK = new BlockDryingRack();
   public static final BlockRock ROCK = new BlockRock();
+  public static final BlockRockGrass ROCK_GRASS = new BlockRockGrass();
 
   public static void onRegister(Registry registry) {
 
@@ -40,6 +45,7 @@ public class ModuleBlocks {
     registry.registerBlock(ModuleBlocks.REFRACTORY_DOOR, BlockRefractoryDoor.NAME);
     registry.registerBlock(ModuleBlocks.CAMPFIRE, BlockCampfire.NAME);
     registry.registerBlock(ModuleBlocks.ROCK, BlockRock.NAME);
+    registry.registerBlock(ModuleBlocks.ROCK_GRASS, BlockRockGrass.NAME);
 
     registry.registerBlockWithItem(ModuleBlocks.LOG_PILE, BlockLogPile.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COAL_COKE_BLOCK, BlockCoalCokeBlock.NAME);
@@ -122,6 +128,28 @@ public class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRDryingRack());
 
     });
+  }
+
+  @SideOnly(Side.CLIENT)
+  public static void onClientInitialization() {
+
+    // -------------------------------------------------------------------------
+    // - Block Colors
+    // -------------------------------------------------------------------------
+
+    Minecraft minecraft = Minecraft.getMinecraft();
+    BlockColors blockColors = minecraft.getBlockColors();
+
+    // Grass Block
+    blockColors.registerBlockColorHandler((state, world, pos, tintIndex) -> {
+
+      if (world != null && pos != null) {
+        BiomeColorHelper.getGrassColorAtPos(world, pos);
+      }
+
+      return ColorizerGrass.getGrassColor(0.5D, 1.0D);
+
+    }, ModuleBlocks.ROCK_GRASS);
   }
 
 }

@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -23,6 +24,7 @@ public class ModuleItems {
   public static final ItemDoor REFRACTORY_DOOR = new ItemDoor(ModuleBlocks.REFRACTORY_DOOR);
   public static final ItemTinder TINDER = new ItemTinder();
   public static final ItemRock ROCK = new ItemRock(ModuleBlocks.ROCK);
+  public static final ItemRockGrass ROCK_GRASS = new ItemRockGrass(ModuleBlocks.ROCK_GRASS);
 
   public static final ItemCrudeAxe CRUDE_AXE = new ItemCrudeAxe();
   public static final ItemCrudeHoe CRUDE_HOE = new ItemCrudeHoe();
@@ -50,6 +52,7 @@ public class ModuleItems {
     registry.registerItem(ModuleItems.TINDER, ItemTinder.NAME);
     registry.registerItem(new ItemBlock(ModuleBlocks.CAMPFIRE), BlockCampfire.NAME);
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
+    registry.registerItem(ModuleItems.ROCK_GRASS, BlockRockGrass.NAME);
 
     registry.registerItem(ModuleItems.CRUDE_AXE, ItemCrudeAxe.NAME);
     registry.registerItem(ModuleItems.CRUDE_HOE, ItemCrudeHoe.NAME);
@@ -68,9 +71,11 @@ public class ModuleItems {
 
     registry.registerItemRegistrationStrategy(forgeRegistry -> {
 
-      for (BlockRock.EnumType type : BlockRock.EnumType.values()) {
-        OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, type.getMeta()));
-      }
+      OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.STONE.getMeta()));
+      OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.DIORITE.getMeta()));
+      OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.GRANITE.getMeta()));
+      OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.ANDESITE.getMeta()));
+      OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.SANDSTONE.getMeta()));
     });
   }
 
@@ -85,6 +90,7 @@ public class ModuleItems {
           ModuleItems.FLINT_AND_TINDER,
           ModuleItems.REFRACTORY_DOOR,
           ModuleItems.TINDER,
+          ModuleItems.ROCK_GRASS,
 
           ModuleItems.CRUDE_AXE,
           ModuleItems.CRUDE_HOE,

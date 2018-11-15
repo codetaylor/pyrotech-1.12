@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.entity.EntityRock;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.entity.EntityRockGrass;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -14,13 +15,19 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class ItemRock
+public class ItemRockGrass
     extends ItemBlock {
 
-  public ItemRock(Block block) {
+  public ItemRockGrass(Block block) {
 
     super(block);
-    this.setHasSubtypes(true);
+  }
+
+  @Nonnull
+  @Override
+  public String getUnlocalizedName(ItemStack stack) {
+
+    return "tile." + ModulePyrotech.MOD_ID + ".rock_grass";
   }
 
   @Nonnull
@@ -36,11 +43,12 @@ public class ItemRock
     world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
     if (!world.isRemote) {
-      EntityRock entity = new EntityRock(world, player, itemstack.getMetadata());
+      EntityRockGrass entity = new EntityRockGrass(world, player, itemstack.getMetadata());
       entity.shoot(player, player.rotationPitch, player.rotationYaw, 0.0f, 1.5f, 1.0f);
       world.spawnEntity(entity);
     }
 
     return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
   }
+
 }

@@ -68,6 +68,7 @@ tile.pyrotech.refractory_glass.name=Refractory Glass
 tile.pyrotech.kiln_brick.name=Brick Kiln
 tile.pyrotech.campfire.name=Campfire
 tile.pyrotech.drying_rack.name=Drying Rack
+
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock
 tile.pyrotech.rock_diorite.name=Diorite Rock
@@ -75,6 +76,7 @@ tile.pyrotech.rock_granite.name=Granite Rock
 tile.pyrotech.rock_dirt.name=Dirt Clump
 tile.pyrotech.rock_sand.name=Sand Pile
 tile.pyrotech.rock_sandstone.name=Sandstone Rock
+tile.pyrotech.rock_grass.name=Grass Clump
 
 # --- Waila plugin
 
