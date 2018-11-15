@@ -11,8 +11,8 @@
       "ore": "stickWood"
     },
     "F": {
-      "item": "pyrotech:material",
-      "data": 14
+      "type": "forge:ore_dict",
+      "ore": "twine"
     },
     "L": {
       "item": "minecraft:ladder",

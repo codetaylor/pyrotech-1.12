@@ -10,8 +10,8 @@
       "ore": "rock"
     },
     "T": {
-      "type": "forge:ore_dict",
-      "ore": "twine"
+      "item": "pyrotech:material",
+      "data": 12
     },
     "S": {
       "type": "forge:ore_dict",
