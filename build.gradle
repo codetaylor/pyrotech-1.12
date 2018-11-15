@@ -86,6 +86,10 @@ dependencies {
     deobfCompile "mcp.mobius.waila:Hwyla:1.8.25-B40_1.12"
 }
 
+jar {
+    from sourceSets.api.output
+}
+
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
