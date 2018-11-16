@@ -165,7 +165,7 @@ public abstract class TileDryingRackBase
         boolean canRain = biome.canRain();
 
         if (canRain && this.world.isRainingAt(this.pos.up())) {
-          this.speed = -1.0f;
+          this.speed = this.getRainSpeed();
 
         } else if ((canRain && this.world.isRaining()) || biome.isHighHumidity()) {
           this.speed = 0.0f;
@@ -268,6 +268,11 @@ public abstract class TileDryingRackBase
     if (isDirty) {
       this.markDirty();
     }
+  }
+
+  protected float getRainSpeed() {
+
+    return -1.0f;
   }
 
   protected abstract float getSpeedModified(float speed);

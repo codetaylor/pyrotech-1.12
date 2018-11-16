@@ -21,4 +21,10 @@ public class TileDryingRackCrude
 
     return (float) (speed * ModulePyrotechConfig.CRUDE_DRYING_RACK.SPEED_MODIFIER);
   }
+
+  @Override
+  protected float getRainSpeed() {
+
+    return 0;
+  }
 }
