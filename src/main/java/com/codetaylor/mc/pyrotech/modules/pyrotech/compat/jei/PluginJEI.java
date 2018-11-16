@@ -8,10 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
@@ -42,7 +39,8 @@ public class PluginJEI
         new JEIRecipeCategoryKilnBrick(guiHelper),
         new JEIRecipeCategoryPitBurn(guiHelper),
         new JEIRecipeCategoryRefractoryBurn(guiHelper),
-        new JEIRecipeCategoryDryingRack(guiHelper)
+        new JEIRecipeCategoryDryingRack(guiHelper),
+        new JEIRecipeCategoryDryingRackCrude(guiHelper)
     );
   }
 
@@ -82,6 +80,14 @@ public class PluginJEI
         ModulePyrotech.LOGGER.error("", e);
       }
 
+    }
+
+    // --- Crude Drying Rack
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.DRYING_RACK, 1, BlockDryingRack.EnumType.CRUDE.getMeta()), JEIRecipeCategoryUid.DRYING_CRUDE);
+      registry.handleRecipes(DryingRackCrudeRecipe.class, JEIRecipeWrapperDryingRackCrude::new, JEIRecipeCategoryUid.DRYING_CRUDE);
+      List<DryingRackCrudeRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.DRYING_CRUDE);
     }
 
     // --- Drying Rack

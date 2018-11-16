@@ -9,6 +9,7 @@ public class JEIRecipeCategoryUid {
   public static final String PIT_BURN = ModulePyrotech.MOD_ID + ".pit.burn";
   public static final String REFRACTORY_BURN = ModulePyrotech.MOD_ID + ".refractory.burn";
   public static final String DRYING = ModulePyrotech.MOD_ID + ".drying";
+  public static final String DRYING_CRUDE = ModulePyrotech.MOD_ID + ".drying.crude";
 
   private JEIRecipeCategoryUid() {
     //
