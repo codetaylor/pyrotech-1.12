@@ -1,6 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import net.minecraft.util.math.AxisAlignedBB;
+
+import javax.annotation.Nonnull;
 
 public class TileDryingRackCrude
     extends TileDryingRackBase {
@@ -26,5 +29,12 @@ public class TileDryingRackCrude
   protected float getRainSpeed() {
 
     return 0;
+  }
+
+  @Nonnull
+  @Override
+  public AxisAlignedBB getRenderBoundingBox() {
+
+    return new AxisAlignedBB(this.getPos());
   }
 }
