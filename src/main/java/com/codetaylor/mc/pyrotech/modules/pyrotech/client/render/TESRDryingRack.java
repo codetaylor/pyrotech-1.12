@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
 import com.codetaylor.mc.athenaeum.util.RenderHelper;
+import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
 import net.minecraft.block.state.IBlockState;
@@ -98,7 +99,7 @@ public class TESRDryingRack
       ItemStack heldItemMainhand = player.getHeldItemMainhand();
 
       RayTraceResult rayTraceResult = player
-          .rayTrace(4, partialTicks);
+          .rayTrace(Reference.INTERACTION_BLOCK_REACH, partialTicks);
 
       if (rayTraceResult != null
           && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
