@@ -257,7 +257,23 @@ public class BlockKilnBrick
       // remove recipe items and recipe results
 
       if (!world.isRemote) {
-        tileKiln.removeItems();
+
+        ItemStackHandler stackHandler = tileKiln.getStackHandler();
+        ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getStackInSlot(0).getCount(), false);
+
+        if (!itemStack.isEmpty()) {
+          StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos);
+        }
+
+        stackHandler = tileKiln.getOutputStackHandler();
+
+        for (int i = 0; i < stackHandler.getSlots(); i++) {
+          itemStack = stackHandler.extractItem(i, stackHandler.getStackInSlot(i).getCount(), false);
+
+          if (!itemStack.isEmpty()) {
+            StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos);
+          }
+        }
       }
 
       return true;
@@ -313,13 +329,13 @@ public class BlockKilnBrick
 
       // remove fuel
 
-      ItemStackHandler stackHandler = tileKiln.getFuelStackHandler();
-      ItemStack itemStack = stackHandler.extractItem(0, 64, world.isRemote);
+      ItemStackHandler fuelStackHandler = tileKiln.getFuelStackHandler();
+      ItemStack itemStack = fuelStackHandler.extractItem(0, 64, world.isRemote);
 
       if (!world.isRemote) {
 
         if (!itemStack.isEmpty()) {
-          StackHelper.spawnStackOnTop(world, itemStack, pos);
+          StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos);
         }
 
         BlockHelper.notifyBlockUpdate(world, pos);
@@ -330,6 +346,8 @@ public class BlockKilnBrick
     } else {
 
       if (heldItem.getItem() == Items.FLINT_AND_STEEL) {
+
+        // Handle ignition with flint and steel item.
 
         if (!world.isRemote) {
 
@@ -350,7 +368,7 @@ public class BlockKilnBrick
         return true;
       }
 
-      // add fuel
+      // Insert fuel.
 
       if (StackHelper.isFuel(heldItem)) {
 

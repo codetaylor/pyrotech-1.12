@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackCrudeRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
@@ -101,7 +102,7 @@ public class BlockDryingRack
           if (!result.isEmpty()) {
 
             if (!world.isRemote) {
-              player.addItemStackToInventory(result);
+              StackHelper.addToInventoryOrSpawn(world, player, result, pos);
             }
 
             return true;
@@ -117,7 +118,7 @@ public class BlockDryingRack
           if (!result.isEmpty()) {
 
             if (!world.isRemote) {
-              player.addItemStackToInventory(result);
+              StackHelper.addToInventoryOrSpawn(world, player, result, pos);
             }
 
             return true;

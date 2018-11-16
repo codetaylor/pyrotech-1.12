@@ -300,6 +300,8 @@ public class BlockCampfire
 
     if (player.isSneaking()) {
 
+      // If the player is sneaking, remove logs and damage the player.
+
       ItemStack itemStack = campfire.getFuelStackHandler().extractItem(0, 1, world.isRemote);
 
       if (!itemStack.isEmpty()) {
@@ -315,7 +317,7 @@ public class BlockCampfire
             }
           }
 
-          StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
+          StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos, -0.125);
         }
 
         return true;
@@ -323,12 +325,14 @@ public class BlockCampfire
 
     } else {
 
+      // If the player isn't sneaking, attempt to remove input then output items.
+
       ItemStack itemStack = campfire.getStackHandler().extractItem(0, 1, world.isRemote);
 
       if (!itemStack.isEmpty()) {
 
         if (!world.isRemote) {
-          StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
+          StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos, -0.125);
         }
 
         return true;
@@ -339,7 +343,7 @@ public class BlockCampfire
       if (!itemStack.isEmpty()) {
 
         if (!world.isRemote) {
-          StackHelper.spawnStackOnTop(world, itemStack, pos, -0.125);
+          StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos, -0.125);
         }
 
         return true;
