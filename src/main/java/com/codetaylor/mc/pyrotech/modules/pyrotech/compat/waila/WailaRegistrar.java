@@ -30,7 +30,7 @@ public class WailaRegistrar {
     registrar.registerBodyProvider(campfireDataProvider, TileCampfire.class);
 
     DryingRackDataProvider dryingRackDataProvider = new DryingRackDataProvider();
-    registrar.registerBodyProvider(dryingRackDataProvider, TileDryingRack.class);
+    registrar.registerBodyProvider(dryingRackDataProvider, TileDryingRackBase.class);
   }
 
 }

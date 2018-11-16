@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
@@ -55,9 +55,9 @@ public class DryingRackDataProvider
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileDryingRack) {
+    if (tileEntity instanceof TileDryingRackBase) {
 
-      TileDryingRack tile = (TileDryingRack) tileEntity;
+      TileDryingRackBase tile = (TileDryingRackBase) tileEntity;
 
       tooltip.add(Util.translateFormatted(
           "gui." + ModulePyrotech.MOD_ID + ".waila.drying_rack.speed",
