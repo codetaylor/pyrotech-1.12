@@ -433,13 +433,7 @@ public class BlockKilnBrick
 
       if (tileEntity instanceof TileKilnBrick) {
         TileKilnBrick tileKiln = (TileKilnBrick) tileEntity;
-        ItemStackHandler stackHandler = tileKiln.getStackHandler();
-        StackHelper.spawnStackOnTop(world, stackHandler.getStackInSlot(0), pos);
-        stackHandler = tileKiln.getOutputStackHandler();
-
-        for (int i = 0; i < stackHandler.getSlots(); i++) {
-          StackHelper.spawnStackOnTop(world, stackHandler.getStackInSlot(i), pos);
-        }
+        tileKiln.spawnAllItemsOnTop();
       }
     }
 

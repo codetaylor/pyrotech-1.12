@@ -460,10 +460,10 @@ public class TileKilnBrick
     this.entityItemOutput = null;
   }
 
-  public void removeItems() {
+  public void spawnAllItemsOnTop() {
 
     ItemStackHandler stackHandler = this.getStackHandler();
-    ItemStack itemStack = stackHandler.extractItem(0, 64, false);
+    ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getStackInSlot(0).getCount(), false);
 
     if (!itemStack.isEmpty()) {
       StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
@@ -472,11 +472,18 @@ public class TileKilnBrick
     stackHandler = this.getOutputStackHandler();
 
     for (int i = 0; i < stackHandler.getSlots(); i++) {
-      itemStack = stackHandler.extractItem(i, 64, false);
+      itemStack = stackHandler.extractItem(i, stackHandler.getStackInSlot(i).getCount(), false);
 
       if (!itemStack.isEmpty()) {
         StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
       }
+    }
+
+    stackHandler = this.getFuelStackHandler();
+    itemStack = stackHandler.extractItem(0, stackHandler.getStackInSlot(0).getCount(), false);
+
+    if (!itemStack.isEmpty()) {
+      StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
     }
 
     BlockHelper.notifyBlockUpdate(this.world, this.pos);
