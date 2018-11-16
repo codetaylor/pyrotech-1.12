@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
@@ -60,6 +61,8 @@ public class PluginJEI
     }
     */
 
+    // --- Blacklist Ingredients
+
     IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
     blacklist.addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModuleBlocks.CAMPFIRE)));
 
@@ -83,7 +86,7 @@ public class PluginJEI
 
     // --- Drying Rack
     {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.DRYING_RACK), JEIRecipeCategoryUid.DRYING);
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.DRYING_RACK, 1, BlockDryingRack.EnumType.NORMAL.getMeta()), JEIRecipeCategoryUid.DRYING);
       registry.handleRecipes(DryingRackRecipe.class, JEIRecipeWrapperDryingRack::new, JEIRecipeCategoryUid.DRYING);
       List<DryingRackRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.DRYING_RACK_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.DRYING);
