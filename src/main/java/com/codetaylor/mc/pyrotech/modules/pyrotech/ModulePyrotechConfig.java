@@ -58,6 +58,36 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Crude Drying Rack
+  // ---------------------------------------------------------------------------
+
+  public static CrudeDryingRack CRUDE_DRYING_RACK = new CrudeDryingRack();
+
+  public static class CrudeDryingRack {
+
+    @Config.Comment({
+        "speed = speed * SPEED_MODIFIER",
+        "Default: " + 0.65
+    })
+    public double SPEED_MODIFIER = 0.65;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Drying Rack
+  // ---------------------------------------------------------------------------
+
+  public static DryingRack DRYING_RACK = new DryingRack();
+
+  public static class DryingRack {
+
+    @Config.Comment({
+        "speed = speed * SPEED_MODIFIER",
+        "Default: " + 1.0
+    })
+    public double SPEED_MODIFIER = 1.0;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Brick Kiln
   // ---------------------------------------------------------------------------
 

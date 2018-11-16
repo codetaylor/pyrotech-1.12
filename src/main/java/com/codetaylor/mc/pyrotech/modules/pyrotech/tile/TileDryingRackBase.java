@@ -212,6 +212,8 @@ public abstract class TileDryingRackBase
           this.speed += 0.2f;
         }
 
+        this.speed = this.getSpeedModified(this.speed);
+
         if (this.speed != lastSpeed) {
           isDirty = true;
         }
@@ -267,6 +269,8 @@ public abstract class TileDryingRackBase
       this.markDirty();
     }
   }
+
+  protected abstract float getSpeedModified(float speed);
 
   public float getSpeed() {
 
