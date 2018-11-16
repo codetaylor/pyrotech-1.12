@@ -114,9 +114,9 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "Reduce the duration of all recipes by this amount for each adjacent refractory block.",
         "Range: [0, 0.2]",
-        "Default: " + 0.1f
+        "Default: " + 0.1
     })
-    public double REFRACTORY_BLOCK_TIME_BONUS = 0.1f;
+    public double REFRACTORY_BLOCK_TIME_BONUS = 0.1;
 
   }
 
@@ -130,15 +130,15 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Maximum chance for a recipe item to fail conversion.",
-        "Default: " + 0.95f
+        "Default: " + 0.95
     })
-    public double MAX_FAILURE_CHANCE = 0.95f;
+    public double MAX_FAILURE_CHANCE = 0.95;
 
     @Config.Comment({
         "Minimum chance for a recipe item to fail conversion.",
-        "Default: " + 0.05f
+        "Default: " + 0.05
     })
-    public double MIN_FAILURE_CHANCE = 0.05f;
+    public double MIN_FAILURE_CHANCE = 0.05;
 
     @Config.Comment({
         "The maximum fluid capacity of an active pile in mb.",
@@ -244,23 +244,23 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "The chance that the campfire will produce ash when a fuel is consumed.",
         "Range: [0, 1]",
-        "Default: " + 0.25f
+        "Default: " + 0.25
     })
-    public double ASH_CHANCE = 0.25f;
+    public double ASH_CHANCE = 0.25;
 
     @Config.Comment({
         "The chance that the player will be damaged with fire when picking",
         "up a log while the campfire is lit.",
-        "Default: " + 0.5f
+        "Default: " + 0.5
     })
-    public double PLAYER_BURN_CHANCE = 0.5f;
+    public double PLAYER_BURN_CHANCE = 0.5;
 
     @Config.Comment({
         "The amount of damage done to a player when picking up a log while the",
         "campfire is lit.",
-        "Default: " + 1.0f
+        "Default: " + 1.0
     })
-    public double PLAYER_BURN_DAMAGE = 1.0f;
+    public double PLAYER_BURN_DAMAGE = 1.0;
   }
 
   // ---------------------------------------------------------------------------
