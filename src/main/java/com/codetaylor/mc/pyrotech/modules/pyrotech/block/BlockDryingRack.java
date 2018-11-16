@@ -213,7 +213,7 @@ public class BlockDryingRack
   @Override
   public IBlockState getStateForPlacement(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ, int meta, @Nonnull EntityLivingBase placer, EnumHand hand) {
 
-    EnumFacing horizontalFacing = placer.getHorizontalFacing();
+    EnumFacing horizontalFacing = facing.getOpposite();
     IBlockState blockState = world.getBlockState(pos.offset(facing.getOpposite()));
 
     if (blockState.getBlock() == this
