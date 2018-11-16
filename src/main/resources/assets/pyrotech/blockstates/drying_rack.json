@@ -1,9 +1,26 @@
 {
   "forge_marker": 1,
-  "defaults": {
-    "model": "pyrotech:drying_rack"
-  },
   "variants": {
-    "normal": [{}]
+    "variant": {
+      "crude": {
+        "model": "pyrotech:drying_rack_crude"
+      },
+      "normal": {
+        "model": "pyrotech:drying_rack"
+      }
+    },
+    "facing": {
+      "north": {
+        "y": 180
+      },
+      "east": {
+        "y": 270
+      },
+      "south": {
+      },
+      "west": {
+        "y": 90
+      }
+    }
   }
 }

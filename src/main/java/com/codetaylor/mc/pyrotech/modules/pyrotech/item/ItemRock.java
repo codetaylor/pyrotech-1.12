@@ -52,4 +52,10 @@ public class ItemRock
 
     return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
   }
+
+  @Override
+  public int getMetadata(int damage) {
+
+    return damage;
+  }
 }

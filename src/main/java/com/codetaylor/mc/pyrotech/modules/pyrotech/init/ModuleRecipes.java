@@ -4,10 +4,7 @@ import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -134,6 +131,17 @@ public class ModuleRecipes {
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
     ).setRegistryName(ModulePyrotech.MOD_ID, "quicklime"));
+
+  }
+
+  public static void onRegisterDryingRackCrudeRecipes(IForgeRegistryModifiable<DryingRackCrudeRecipe> registry) {
+
+    // Dried Plant Fibers
+    registry.register(new DryingRackCrudeRecipe(
+        ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack(),
+        Ingredient.fromStacks(ItemMaterial.EnumType.PLANT_FIBERS.asStack()),
+        12 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "plant_fibers_dried"));
 
   }
 }

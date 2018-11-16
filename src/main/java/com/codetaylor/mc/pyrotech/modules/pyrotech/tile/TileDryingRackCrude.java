@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
-public class TileDryingRack
+public class TileDryingRackCrude
     extends TileDryingRackBase {
 
-  public TileDryingRack() {
+  public TileDryingRackCrude() {
 
     super();
   }
@@ -11,6 +11,6 @@ public class TileDryingRack
   @Override
   protected int getSlotCount() {
 
-    return 4;
+    return 1;
   }
 }

@@ -14,10 +14,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleEntities;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleRecipes;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -117,6 +114,12 @@ public class ModulePyrotech
         .setType(DryingRackRecipe.class)
         .allowModification()
         .create();
+
+    new RegistryBuilder<DryingRackCrudeRecipe>()
+        .setName(new ResourceLocation(MOD_ID,"drying_rack_crude_recipe"))
+        .setType(DryingRackCrudeRecipe.class)
+        .allowModification()
+        .create();
   }
 
   @Override
@@ -147,6 +150,7 @@ public class ModulePyrotech
     ModuleRecipes.onRegisterKilnPitRecipes(ModulePyrotechRegistries.KILN_PIT_RECIPE);
     ModuleRecipes.onRegisterKilnBrickRecipe(ModulePyrotechRegistries.KILN_BRICK_RECIPE);
     ModuleRecipes.onRegisterDryingRackRecipes(ModulePyrotechRegistries.DRYING_RACK_RECIPE);
+    ModuleRecipes.onRegisterDryingRackCrudeRecipes(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
   }
 
   @Override

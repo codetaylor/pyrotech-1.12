@@ -1,8 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
 import com.codetaylor.mc.athenaeum.util.RenderHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackCrude;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -19,11 +20,11 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.items.ItemStackHandler;
 import org.lwjgl.opengl.GL11;
 
-public class TESRDryingRack
-    extends TileEntitySpecialRenderer<TileDryingRack> {
+public class TESRDryingRackCrude
+    extends TileEntitySpecialRenderer<TileDryingRackCrude> {
 
   @Override
-  public void render(TileDryingRack te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+  public void render(TileDryingRackCrude te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 
     int renderPass = MinecraftForgeClient.getRenderPass();
 
@@ -43,52 +44,34 @@ public class TESRDryingRack
 
         net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
 
-        for (int i = 0; i < 4; i++) {
+        GlStateManager.scale(1.0, 1.0, 1.0);
 
-          GlStateManager.scale(1.0, 1.0, 1.0);
+        ItemStack inputItemStack = stackHandler.getStackInSlot(0);
+        ItemStack outputItemStack = outputStackHandler.getStackInSlot(0);
 
-          ItemStack inputItemStack = stackHandler.getStackInSlot(i);
-          ItemStack outputItemStack = outputStackHandler.getStackInSlot(i);
+        if (!inputItemStack.isEmpty()) {
 
-          if (!inputItemStack.isEmpty()) {
-
-            GlStateManager.pushMatrix();
-
-            GlStateManager.translate(
-                (i & 1) * 0.375 + 0.25 + 0.0625,
-                0.75 + 0.03125,
-                ((i >> 1) & 1) * 0.375 + 0.25 + 0.0625
-            );
-
-            GlStateManager.rotate(90, 1, 0, 0);
-            GlStateManager.scale(0.25, 0.25, 0.25);
-
+          GlStateManager.pushMatrix();
+          {
+            this.setupItemPosition(te);
             RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
             IBakedModel model = renderItem.getItemModelWithOverrides(inputItemStack, null, null);
             RenderHelper.renderItemModel(inputItemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
+          }
+          GlStateManager.popMatrix();
 
-            GlStateManager.popMatrix();
+        } else if (!outputItemStack.isEmpty()) {
 
-          } else if (!outputItemStack.isEmpty()) {
-
-            GlStateManager.pushMatrix();
-
-            GlStateManager.translate(
-                (i & 1) * 0.375 + 0.25 + 0.0625,
-                0.75 + 0.03125,
-                ((i >> 1) & 1) * 0.375 + 0.25 + 0.0625
-            );
-
-            GlStateManager.rotate(90, 1, 0, 0);
-            GlStateManager.scale(0.25, 0.25, 0.25);
-
+          GlStateManager.pushMatrix();
+          {
+            this.setupItemPosition(te);
             RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
             IBakedModel model = renderItem.getItemModelWithOverrides(outputItemStack, null, null);
             RenderHelper.renderItemModel(outputItemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
-
-            GlStateManager.popMatrix();
           }
+          GlStateManager.popMatrix();
         }
+
       }
 
     } else if (renderPass == 1) {
@@ -102,20 +85,13 @@ public class TESRDryingRack
 
       if (rayTraceResult != null
           && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-          && rayTraceResult.sideHit == EnumFacing.UP
+          //&& rayTraceResult.sideHit == EnumFacing.UP
           && rayTraceResult.getBlockPos().equals(te.getPos())) {
-
-        double hitX = rayTraceResult.hitVec.x - rayTraceResult.getBlockPos().getX();
-        double hitZ = rayTraceResult.hitVec.z - rayTraceResult.getBlockPos().getZ();
-
-        int qX = (hitX < 0.5) ? 0 : 1;
-        int qZ = (hitZ < 0.5) ? 0 : 1;
-        int index = qX | (qZ << 1);
 
         ItemStackHandler stackHandler = te.getStackHandler();
         ItemStackHandler outputStackHandler = te.getOutputStackHandler();
-        ItemStack inputItemStack = stackHandler.getStackInSlot(index);
-        ItemStack outputItemStack = outputStackHandler.getStackInSlot(index);
+        ItemStack inputItemStack = stackHandler.getStackInSlot(0);
+        ItemStack outputItemStack = outputStackHandler.getStackInSlot(0);
 
         if (inputItemStack.isEmpty()
             && outputItemStack.isEmpty()) {
@@ -123,19 +99,11 @@ public class TESRDryingRack
           if (!heldItemMainhand.isEmpty()) {
 
             GlStateManager.pushMatrix();
-
-            GlStateManager.translate(
-                qX * 0.375 + 0.25 + 0.0625,
-                0.75 + 0.03125,
-                qZ * 0.375 + 0.25 + 0.0625
-            );
-
-            GlStateManager.rotate(90, 1, 0, 0);
-            GlStateManager.scale(0.25, 0.25, 0.25);
-            GlStateManager.color(1, 1, 1, 0.2f);
-
-            this.renderItem(heldItemMainhand);
-
+            {
+              this.setupItemPosition(te);
+              GlStateManager.color(1, 1, 1, 0.2f);
+              this.renderItem(heldItemMainhand);
+            }
             GlStateManager.popMatrix();
           }
 
@@ -144,19 +112,11 @@ public class TESRDryingRack
           if (heldItemMainhand.isEmpty()) {
 
             GlStateManager.pushMatrix();
-
-            GlStateManager.translate(
-                qX * 0.375 + 0.25 + 0.0625,
-                0.75 + 0.03125,
-                qZ * 0.375 + 0.25 + 0.0625
-            );
-
-            GlStateManager.rotate(90, 1, 0, 0);
-            GlStateManager.scale(0.25, 0.25, 0.25);
-            GlStateManager.color(1, 1, 1, 0.2f);
-
-            this.renderItem(inputItemStack);
-
+            {
+              this.setupItemPosition(te);
+              GlStateManager.color(1, 1, 1, 0.2f);
+              this.renderItem(inputItemStack);
+            }
             GlStateManager.popMatrix();
           }
 
@@ -165,19 +125,11 @@ public class TESRDryingRack
           if (heldItemMainhand.isEmpty()) {
 
             GlStateManager.pushMatrix();
-
-            GlStateManager.translate(
-                qX * 0.375 + 0.25 + 0.0625,
-                0.75 + 0.03125,
-                qZ * 0.375 + 0.25 + 0.0625
-            );
-
-            GlStateManager.rotate(90, 1, 0, 0);
-            GlStateManager.scale(0.25, 0.25, 0.25);
-            GlStateManager.color(1, 1, 1, 0.2f);
-
-            this.renderItem(outputItemStack);
-
+            {
+              this.setupItemPosition(te);
+              GlStateManager.color(1, 1, 1, 0.2f);
+              this.renderItem(outputItemStack);
+            }
             GlStateManager.popMatrix();
           }
         }
@@ -187,6 +139,34 @@ public class TESRDryingRack
 
     GlStateManager.popAttrib();
     GlStateManager.popMatrix();
+  }
+
+  private void setupItemPosition(TileDryingRackCrude te) {
+
+    World world = te.getWorld();
+    IBlockState blockState = world.getBlockState(te.getPos());
+    EnumFacing facing = blockState.getValue(BlockDryingRack.FACING);
+
+    switch (facing) {
+      case NORTH:
+        GlStateManager.translate(0.5, 0.5, 0.15);
+        //GlStateManager.rotate(90, 1, 0, 0);
+        break;
+      case SOUTH:
+        GlStateManager.translate(0.5, 0.5, 0.85);
+        GlStateManager.rotate(180, 0, 1, 0);
+        break;
+      case EAST:
+        GlStateManager.translate(0.85, 0.5, 0.5);
+        GlStateManager.rotate(270, 0, 1, 0);
+        break;
+      case WEST:
+        GlStateManager.translate(0.15, 0.5, 0.5);
+        GlStateManager.rotate(90, 0, 1, 0);
+        break;
+    }
+
+    GlStateManager.scale(0.75, 0.75, 0.75);
   }
 
   private void renderItem(ItemStack itemStack) {

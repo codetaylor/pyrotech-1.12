@@ -68,7 +68,8 @@ public class ModuleBlocks {
         TileKilnBrick.class,
         TileKilnBrickTop.class,
         TileCampfire.class,
-        TileDryingRack.class
+        TileDryingRack.class,
+        TileDryingRackCrude.class
     );
   }
 
@@ -84,8 +85,7 @@ public class ModuleBlocks {
           ModuleBlocks.REFRACTORY_BRICK,
           ModuleBlocks.LIMESTONE,
           ModuleBlocks.REFRACTORY_GLASS,
-          ModuleBlocks.KILN_BRICK,
-          ModuleBlocks.DRYING_RACK
+          ModuleBlocks.KILN_BRICK
       );
 
       ModelLoader.setCustomStateMapper(
@@ -114,6 +114,12 @@ public class ModuleBlocks {
           BlockIgniter.VARIANT
       );
 
+      // Drying Rack
+      ModelRegistrationHelper.registerVariantBlockItemModels(
+          ModuleBlocks.DRYING_RACK.getDefaultState(),
+          BlockDryingRack.VARIANT
+      );
+
       // Rock Pieces
       ModelLoader.setCustomStateMapper(
           ModuleBlocks.ROCK,
@@ -126,6 +132,7 @@ public class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnBrick.class, new TESRKilnBrick());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCampfire.class, new TESRCampfire());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRDryingRack());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRackCrude.class, new TESRDryingRackCrude());
 
     });
   }
