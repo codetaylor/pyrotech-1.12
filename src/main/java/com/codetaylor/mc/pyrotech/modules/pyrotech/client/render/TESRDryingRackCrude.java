@@ -78,62 +78,64 @@ public class TESRDryingRackCrude
 
       EntityPlayerSP player = Minecraft.getMinecraft().player;
 
-      ItemStack heldItemMainhand = player.getHeldItemMainhand();
+      if (!player.isSneaking()) {
 
-      RayTraceResult rayTraceResult = player
-          .rayTrace(4, partialTicks);
+        ItemStack heldItemMainhand = player.getHeldItemMainhand();
 
-      if (rayTraceResult != null
-          && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-          //&& rayTraceResult.sideHit == EnumFacing.UP
-          && rayTraceResult.getBlockPos().equals(te.getPos())) {
+        RayTraceResult rayTraceResult = player
+            .rayTrace(4, partialTicks);
 
-        ItemStackHandler stackHandler = te.getStackHandler();
-        ItemStackHandler outputStackHandler = te.getOutputStackHandler();
-        ItemStack inputItemStack = stackHandler.getStackInSlot(0);
-        ItemStack outputItemStack = outputStackHandler.getStackInSlot(0);
+        if (rayTraceResult != null
+            && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
+            && rayTraceResult.getBlockPos().equals(te.getPos())) {
 
-        if (inputItemStack.isEmpty()
-            && outputItemStack.isEmpty()) {
+          ItemStackHandler stackHandler = te.getStackHandler();
+          ItemStackHandler outputStackHandler = te.getOutputStackHandler();
+          ItemStack inputItemStack = stackHandler.getStackInSlot(0);
+          ItemStack outputItemStack = outputStackHandler.getStackInSlot(0);
 
-          if (!heldItemMainhand.isEmpty()) {
+          if (inputItemStack.isEmpty()
+              && outputItemStack.isEmpty()) {
 
-            GlStateManager.pushMatrix();
-            {
-              this.setupItemPosition(te);
-              GlStateManager.color(1, 1, 1, 0.2f);
-              this.renderItem(heldItemMainhand);
+            if (!heldItemMainhand.isEmpty()) {
+
+              GlStateManager.pushMatrix();
+              {
+                this.setupItemPosition(te);
+                GlStateManager.color(1, 1, 1, 0.2f);
+                this.renderItem(heldItemMainhand);
+              }
+              GlStateManager.popMatrix();
             }
-            GlStateManager.popMatrix();
+
+          } else if (!inputItemStack.isEmpty()) {
+
+            if (heldItemMainhand.isEmpty()) {
+
+              GlStateManager.pushMatrix();
+              {
+                this.setupItemPosition(te);
+                GlStateManager.color(1, 1, 1, 0.2f);
+                this.renderItem(inputItemStack);
+              }
+              GlStateManager.popMatrix();
+            }
+
+          } else if (!outputItemStack.isEmpty()) {
+
+            if (heldItemMainhand.isEmpty()) {
+
+              GlStateManager.pushMatrix();
+              {
+                this.setupItemPosition(te);
+                GlStateManager.color(1, 1, 1, 0.2f);
+                this.renderItem(outputItemStack);
+              }
+              GlStateManager.popMatrix();
+            }
           }
 
-        } else if (!inputItemStack.isEmpty()) {
-
-          if (heldItemMainhand.isEmpty()) {
-
-            GlStateManager.pushMatrix();
-            {
-              this.setupItemPosition(te);
-              GlStateManager.color(1, 1, 1, 0.2f);
-              this.renderItem(inputItemStack);
-            }
-            GlStateManager.popMatrix();
-          }
-
-        } else if (!outputItemStack.isEmpty()) {
-
-          if (heldItemMainhand.isEmpty()) {
-
-            GlStateManager.pushMatrix();
-            {
-              this.setupItemPosition(te);
-              GlStateManager.color(1, 1, 1, 0.2f);
-              this.renderItem(outputItemStack);
-            }
-            GlStateManager.popMatrix();
-          }
         }
-
       }
     }
 
@@ -150,7 +152,6 @@ public class TESRDryingRackCrude
     switch (facing) {
       case NORTH:
         GlStateManager.translate(0.5, 0.5, 0.15);
-        //GlStateManager.rotate(90, 1, 0, 0);
         break;
       case SOUTH:
         GlStateManager.translate(0.5, 0.5, 0.85);
