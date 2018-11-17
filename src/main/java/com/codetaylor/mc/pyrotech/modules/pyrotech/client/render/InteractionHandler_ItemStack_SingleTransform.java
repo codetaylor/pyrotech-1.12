@@ -5,41 +5,29 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
-import org.lwjgl.util.vector.Quaternion;
 
-public class InteractionHandlerItemStack_SingleTransform
-    extends InteractionHandlerItemStackBase {
+/**
+ * Accepts a single transform in the constructor and returns that transform
+ * from {@link #getTransform(World, BlockPos, IBlockState, ItemStack)}.
+ */
+public class InteractionHandler_ItemStack_SingleTransform
+    extends InteractionHandler_ItemStack_Base {
 
-  private final Transforms transforms;
+  private final Transform transform;
 
-  public InteractionHandlerItemStack_SingleTransform(ItemStackHandler[] stackHandlers, int slot, EnumFacing[] sides, AxisAlignedBB bounds, Transforms transforms) {
+  public InteractionHandler_ItemStack_SingleTransform(ItemStackHandler[] stackHandlers, int slot, EnumFacing[] sides, AxisAlignedBB bounds, Transform transform) {
 
     super(stackHandlers, slot, sides, bounds);
 
-    this.transforms = transforms;
+    this.transform = transform;
   }
 
   @Override
-  public Transforms getTransforms(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack) {
+  public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack) {
 
-    return this.transforms;
-  }
-
-  public static class Transforms {
-
-    public final Vec3d translation;
-    public final Quaternion rotation;
-    public final Vec3d scale;
-
-    public Transforms(Vec3d translation, Quaternion rotation, Vec3d scale) {
-
-      this.translation = translation;
-      this.rotation = rotation;
-      this.scale = scale;
-    }
+    return this.transform;
   }
 
 }
