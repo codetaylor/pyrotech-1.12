@@ -130,9 +130,9 @@ public class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnPit.class, new TESRKilnPit());
       ClientRegistry.bindTileEntitySpecialRenderer(TileTarCollector.class, new TESRTarCollector());
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnBrick.class, new TESRKilnBrick());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileCampfire.class, new TESRCampfire());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRDryingRack());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRackCrude.class, new TESRDryingRackCrude());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileCampfire.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRackCrude.class, new TESRInteractable<>());
 
     });
   }

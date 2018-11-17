@@ -5,6 +5,8 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import net.minecraft.block.state.IBlockState;
@@ -19,16 +21,19 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
+import org.lwjgl.util.vector.Quaternion;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TileCampfire
     extends TileEntity
-    implements ITickable {
+    implements ITickable,
+    ITileInteractable {
 
   private ItemStackHandler stackHandler;
   private ItemStackHandler outputStackHandler;
@@ -46,6 +51,8 @@ public class TileCampfire
   private EntityItem entityItemOutput;
   private int ticksSinceLastClientSync;
   private int rainTimeRemaining;
+
+  private InteractionHandler[] interactionHandlers;
 
   public TileCampfire() {
 
@@ -103,6 +110,23 @@ public class TileCampfire
     this.cookTime = -1;
     this.cookTimeTotal = -1;
     this.rainTimeRemaining = ModulePyrotechConfig.CAMPFIRE.TICKS_BEFORE_EXTINGUISHED;
+
+    this.interactionHandlers = new InteractionHandler[]{
+        new InteractionHandler(
+            new ItemStackHandler[]{
+                this.stackHandler,
+                this.outputStackHandler
+            },
+            0,
+            new EnumFacing[]{EnumFacing.UP},
+            INFINITE_EXTENT_AABB,
+            new InteractionHandler.Transforms(
+                new Vec3d(0.5, 0.2, 0.5),
+                new Quaternion(),
+                new Vec3d(1.0, 1.0, 1.0)
+            )
+        )
+    };
   }
 
   public int getAshLevel() {
@@ -236,7 +260,7 @@ public class TileCampfire
         ItemStack itemStack = this.stackHandler.extractItem(0, 1, false);
 
         if (!itemStack.isEmpty()) {
-          ItemStack result = FurnaceRecipes.instance().getSmeltingResult(itemStack);
+          ItemStack result = FurnaceRecipes.instance().getSmeltingResult(itemStack).copy();
           this.outputStackHandler.insertItem(0, result, false);
         }
       }
@@ -446,5 +470,32 @@ public class TileCampfire
     }
 
     return super.shouldRefresh(world, pos, oldState, newState);
+  }
+
+  @Override
+  public boolean shouldRenderInPass(int pass) {
+
+    return (pass == 0) || (pass == 1);
+  }
+
+  @Override
+  public InteractionHandler[] getInteractionHandlers() {
+
+    return new InteractionHandler[]{
+        new InteractionHandler(
+            new ItemStackHandler[]{
+                this.stackHandler,
+                this.outputStackHandler
+            },
+            0,
+            new EnumFacing[]{EnumFacing.UP},
+            INFINITE_EXTENT_AABB,
+            new InteractionHandler.Transforms(
+                new Vec3d(0.5, 0.5, 0.5),
+                new Quaternion(),
+                new Vec3d(0.75, 0.75, 0.75)
+            )
+        )
+    };
   }
 }
