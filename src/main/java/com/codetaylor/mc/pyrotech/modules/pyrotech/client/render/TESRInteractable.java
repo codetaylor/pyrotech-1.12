@@ -17,7 +17,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
 
-public class TESRInteractable<T extends TileEntity & ITileInteractable>
+@SuppressWarnings("WeakerAccess")
+public class TESRInteractable<T extends TileEntity & ITileInteractionHandler_ItemStack_Provider>
     extends TileEntitySpecialRenderer<T> {
 
   @Override
@@ -33,138 +34,178 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
     GlStateManager.translate(x, y, z);
 
     if (renderPass == 0) {
-      this.renderSolid(te, world, blockState);
+      this.renderSolidPass(te, world, blockState);
 
     } else if (renderPass == 1) {
-      this.renderTransparent(te, partialTicks, world, blockState);
+      this.renderTransparentPass(te, partialTicks, world, blockState);
     }
 
     GlStateManager.popAttrib();
     GlStateManager.popMatrix();
   }
 
-  private void renderTransparent(T te, float partialTicks, World world, IBlockState blockState) {
+  protected void renderSolidPass(T te, World world, IBlockState blockState) {
 
-    EntityPlayerSP player = Minecraft.getMinecraft().player;
-
-    if (!player.isSneaking()) {
-
-      ItemStack heldItemMainHand = player.getHeldItemMainhand();
-
-      // TODO: Can we cache the raytrace result so we're only calling this once per frame?
-
-      RayTraceResult rayTraceResult = player
-          .rayTrace(Reference.INTERACTION_BLOCK_REACH, partialTicks);
-
-      if (rayTraceResult != null
-          && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-          && rayTraceResult.getBlockPos().equals(te.getPos())) {
-
-        InteractionHandler[] interactionHandlers = te.getInteractionHandlers();
-
-        for (int i = 0; i < interactionHandlers.length; i++) {
-
-          InteractionHandler interactionHandler = interactionHandlers[i];
-
-          if (interactionHandler.intersects(rayTraceResult)) {
-
-            // If the handler is empty, render the held item.
-            // Else, render the handler's item if the player's hand is empty.
-
-            if (interactionHandler.isEmpty()
-                && !heldItemMainHand.isEmpty()) {
-
-              InteractionHandler.Transforms transforms = interactionHandler.getTransforms(world, te.getPos(), blockState, heldItemMainHand);
-              this.renderGhostItem(heldItemMainHand, transforms);
-
-            } else if (!interactionHandler.isEmpty()
-                && heldItemMainHand.isEmpty()) {
-
-              ItemStack itemStack = interactionHandler.getStackInSlot();
-              InteractionHandler.Transforms transforms = interactionHandler.getTransforms(world, te.getPos(), blockState, itemStack);
-              this.renderGhostItem(itemStack, transforms);
-            }
-
-            break;
-          }
-        }
-      }
-    }
-  }
-
-  private void renderSolid(T te, World world, IBlockState blockState) {
+    RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
     net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
 
     GlStateManager.scale(1.0, 1.0, 1.0);
 
-    InteractionHandler[] interactionHandlers = te.getInteractionHandlers();
+    InteractionHandler_ItemStack_Base[] interactionHandlers = te.getInteractionHandlers();
 
     for (int i = 0; i < interactionHandlers.length; i++) {
 
-      InteractionHandler interactionHandler = interactionHandlers[i];
+      InteractionHandler_ItemStack_Base interactionHandler = interactionHandlers[i];
 
       // If the handler is not empty, render the handler's item.
 
       if (!interactionHandler.isEmpty()) {
         ItemStack itemStack = interactionHandler.getStackInSlot();
-        InteractionHandler.Transforms transforms = interactionHandler.getTransforms(world, te.getPos(), blockState, itemStack);
-        this.renderSolidItem(itemStack, transforms);
+        Transform transform = interactionHandler.getTransform(world, te.getPos(), blockState, itemStack);
+        this.renderItemModel(renderItem, itemStack, transform);
       }
     }
   }
 
-  private void renderGhostItem(ItemStack itemStack, InteractionHandler.Transforms transforms) {
+  protected void renderTransparentPass(T te, float partialTicks, World world, IBlockState blockState) {
+
+    EntityPlayerSP player = Minecraft.getMinecraft().player;
+
+    if (player.isSneaking()) {
+      return;
+    }
+
+    // TODO: cache raytrace result
+    // Can we cache the raytrace result so we're only calling this once per
+    // frame for all renderers?
+    // Cache in static somewhere?
+
+    RayTraceResult rayTraceResult = player
+        .rayTrace(Reference.INTERACTION_BLOCK_REACH, partialTicks);
+
+    if (rayTraceResult != null
+        && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
+        && rayTraceResult.getBlockPos().equals(te.getPos())) {
+
+      this.renderGhostItem(te, world, blockState, player.getHeldItemMainhand(), rayTraceResult);
+    }
+  }
+
+  protected void setupGLStateForGhostItems() {
+
+    GlStateManager.color(1, 1, 1, 0.2f);
+    GlStateManager.enableBlend();
+    GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
+    GlStateManager.enableAlpha();
+    GlStateManager.alphaFunc(GL11.GL_GREATER, 0.0f);
+    GlStateManager.enableRescaleNormal();
+  }
+
+  protected void cleanupGLStateForGhostItems() {
+
+    GlStateManager.disableAlpha();
+    GlStateManager.disableBlend();
+    GlStateManager.disableRescaleNormal();
+  }
+
+  protected void renderGhostItem(T te, World world, IBlockState blockState, ItemStack heldItemMainHand, RayTraceResult rayTraceResult) {
+
+    InteractionHandler_ItemStack_Base[] interactionHandlers = te.getInteractionHandlers();
+
+    for (int i = 0; i < interactionHandlers.length; i++) {
+
+      InteractionHandler_ItemStack_Base interactionHandler = interactionHandlers[i];
+
+      if (interactionHandler.intersects(rayTraceResult)) {
+
+        // If the handler is empty, render the held item.
+        // Else, render the handler's item if the player's hand is empty.
+
+        if (interactionHandler.isEmpty()
+            && !heldItemMainHand.isEmpty()) {
+
+          // Only render the held item if it is valid for the handler.
+          if (interactionHandler.isItemStackValid(heldItemMainHand)) {
+            Transform transform = interactionHandler.getTransform(world, te.getPos(), blockState, heldItemMainHand);
+
+            // Since only one item will be rendered, it is better to wrap the
+            // GL setup calls as late as possible so we're not setting it up
+            // if the item isn't going to be rendered.
+            this.setupGLStateForGhostItems();
+            this.renderItemModelCustom(heldItemMainHand, transform);
+            this.cleanupGLStateForGhostItems();
+          }
+
+        } else if (!interactionHandler.isEmpty()
+            && heldItemMainHand.isEmpty()) {
+
+          ItemStack itemStack = interactionHandler.getStackInSlot();
+          Transform transform = interactionHandler.getTransform(world, te.getPos(), blockState, itemStack);
+
+          if (!itemStack.isEmpty()) {
+
+            // Since only one item will be rendered, it is better to wrap the
+            // GL setup calls as late as possible so we're not setting it up
+            // if the item isn't going to be rendered.
+            this.setupGLStateForGhostItems();
+            this.renderItemModelCustom(itemStack, transform);
+            this.cleanupGLStateForGhostItems();
+          }
+        }
+
+        break;
+      }
+    }
+  }
+
+  /**
+   * Render the given item with the given transform without applying the
+   * normal GL state.
+   *
+   * @param itemStack the {@link ItemStack} to render
+   * @param transform the transform to apply to the GL state
+   */
+  protected void renderItemModelCustom(ItemStack itemStack, Transform transform) {
 
     GlStateManager.pushMatrix();
     {
-      this.setupItemTransforms(transforms);
-      GlStateManager.color(1, 1, 1, 0.2f);
-      this.renderItem(itemStack);
+      this.setupItemTransforms(transform);
+      RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+      IBakedModel model = renderItem.getItemModelWithOverrides(itemStack, null, null);
+      RenderHelper.renderItemModelCustom(itemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
     }
     GlStateManager.popMatrix();
   }
 
-  private void renderSolidItem(ItemStack itemStack, InteractionHandler.Transforms transforms) {
+  /**
+   * Renders the given item with the given transform using the normal GL state.
+   *
+   * @param renderItem the instance of {@link RenderItem}
+   * @param itemStack  the {@link ItemStack} to render
+   * @param transform  the transform to apply to the GL state
+   */
+  protected void renderItemModel(RenderItem renderItem, ItemStack itemStack, Transform transform) {
 
     GlStateManager.pushMatrix();
     {
-      this.setupItemTransforms(transforms);
-      RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+      this.setupItemTransforms(transform);
       IBakedModel model = renderItem.getItemModelWithOverrides(itemStack, null, null);
       RenderHelper.renderItemModel(itemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
     }
     GlStateManager.popMatrix();
   }
 
-  private void setupItemTransforms(InteractionHandler.Transforms transforms) {
+  /**
+   * Applies the given {@link Transform} to the GL state.
+   *
+   * @param transform the transform to apply to the GL state
+   */
+  protected void setupItemTransforms(Transform transform) {
 
-    GlStateManager.translate(transforms.translation.x, transforms.translation.y, transforms.translation.z);
-    GlStateManager.rotate(transforms.rotation);
-    GlStateManager.scale(transforms.scale.x, transforms.scale.y, transforms.scale.z);
-  }
-
-  private void renderItem(ItemStack itemStack) {
-
-    if (!itemStack.isEmpty()) {
-
-      RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-
-      GlStateManager.enableBlend();
-      GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
-
-      GlStateManager.enableAlpha();
-      GlStateManager.alphaFunc(GL11.GL_GREATER, 0.0f);
-
-      GlStateManager.enableRescaleNormal();
-
-      IBakedModel model = renderItem.getItemModelWithOverrides(itemStack, null, null);
-      RenderHelper.renderItemModelCustom(itemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
-
-      GlStateManager.disableAlpha();
-      GlStateManager.disableBlend();
-      GlStateManager.disableRescaleNormal();
-    }
+    GlStateManager.translate(transform.translation.x, transform.translation.y, transform.translation.z);
+    GlStateManager.rotate(transform.rotation);
+    GlStateManager.scale(transform.scale.x, transform.scale.y, transform.scale.z);
   }
 
 }

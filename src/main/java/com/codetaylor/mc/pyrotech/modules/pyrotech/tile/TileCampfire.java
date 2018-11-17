@@ -5,13 +5,15 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionHandler;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractionHandler_ItemStack_Provider;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionHandler_ItemStack_SingleTransform;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
@@ -33,7 +35,7 @@ import javax.annotation.Nullable;
 public class TileCampfire
     extends TileEntity
     implements ITickable,
-    ITileInteractable {
+    ITileInteractionHandler_ItemStack_Provider {
 
   private ItemStackHandler stackHandler;
   private ItemStackHandler outputStackHandler;
@@ -52,7 +54,7 @@ public class TileCampfire
   private int ticksSinceLastClientSync;
   private int rainTimeRemaining;
 
-  private InteractionHandler[] interactionHandlers;
+  private InteractionHandler_ItemStack_SingleTransform[] interactionHandlers;
 
   public TileCampfire() {
 
@@ -111,20 +113,12 @@ public class TileCampfire
     this.cookTimeTotal = -1;
     this.rainTimeRemaining = ModulePyrotechConfig.CAMPFIRE.TICKS_BEFORE_EXTINGUISHED;
 
-    this.interactionHandlers = new InteractionHandler[]{
-        new InteractionHandler(
+    this.interactionHandlers = new InteractionHandler_ItemStack_SingleTransform[]{
+        new TileCampfire.InteractionHandler(
             new ItemStackHandler[]{
                 this.stackHandler,
                 this.outputStackHandler
-            },
-            0,
-            new EnumFacing[]{EnumFacing.UP},
-            INFINITE_EXTENT_AABB,
-            new InteractionHandler.Transforms(
-                new Vec3d(0.5, 0.2, 0.5),
-                new Quaternion(),
-                new Vec3d(1.0, 1.0, 1.0)
-            )
+            }
         )
     };
   }
@@ -479,23 +473,47 @@ public class TileCampfire
   }
 
   @Override
-  public InteractionHandler[] getInteractionHandlers() {
+  public InteractionHandler_ItemStack_SingleTransform[] getInteractionHandlers() {
 
-    return new InteractionHandler[]{
-        new InteractionHandler(
-            new ItemStackHandler[]{
-                this.stackHandler,
-                this.outputStackHandler
-            },
-            0,
-            new EnumFacing[]{EnumFacing.UP},
-            INFINITE_EXTENT_AABB,
-            new InteractionHandler.Transforms(
-                new Vec3d(0.5, 0.5, 0.5),
-                new Quaternion(),
-                new Vec3d(0.75, 0.75, 0.75)
-            )
-        )
-    };
+    return this.interactionHandlers;
+  }
+
+  public static class InteractionHandler
+      extends InteractionHandler_ItemStack_SingleTransform {
+
+    private ItemStack lastItemChecked;
+    private boolean lastItemValid;
+
+    public InteractionHandler(ItemStackHandler[] stackHandlers) {
+
+      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, INFINITE_EXTENT_AABB, new Transform(
+          new Vec3d(0.5, 0.5, 0.5),
+          new Quaternion(),
+          new Vec3d(0.75, 0.75, 0.75)
+      ));
+    }
+
+    @Override
+    public boolean isItemStackValid(ItemStack itemStack) {
+
+      if (itemStack.isEmpty()) {
+        return false;
+      }
+
+      if (this.lastItemChecked == null
+          || this.lastItemChecked.getItem() != itemStack.getItem()
+          || this.lastItemChecked.getMetadata() != itemStack.getMetadata()) {
+
+        if (!(itemStack.getItem() instanceof ItemFood)) {
+          return false;
+        }
+
+        // Do a recipe check.
+        this.lastItemChecked = itemStack.copy();
+        this.lastItemValid = !FurnaceRecipes.instance().getSmeltingResult(itemStack).isEmpty();
+      }
+
+      return this.lastItemValid;
+    }
   }
 }

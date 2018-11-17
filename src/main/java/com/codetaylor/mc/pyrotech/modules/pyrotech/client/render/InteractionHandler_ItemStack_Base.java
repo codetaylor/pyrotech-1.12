@@ -7,25 +7,21 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
-import org.lwjgl.util.vector.Quaternion;
 
-public class InteractionHandler {
+public abstract class InteractionHandlerItemStackBase {
 
-  private final ItemStackHandler[] stackHandlers;
-  private final int slot;
-  private final int sides;
-  private final AxisAlignedBB bounds;
-  private final Transforms transforms;
+  protected final ItemStackHandler[] stackHandlers;
+  protected final int slot;
+  protected final int sides;
+  protected final AxisAlignedBB bounds;
 
-  public InteractionHandler(ItemStackHandler[] stackHandlers, int slot, EnumFacing[] sides, AxisAlignedBB bounds, Transforms transforms) {
+  public InteractionHandlerItemStackBase(ItemStackHandler[] stackHandlers, int slot, EnumFacing[] sides, AxisAlignedBB bounds) {
 
     this.stackHandlers = stackHandlers;
     this.slot = slot;
     this.bounds = bounds;
-    this.transforms = transforms;
 
     int sidesEncoded = 0;
 
@@ -36,15 +32,7 @@ public class InteractionHandler {
     this.sides = sidesEncoded;
   }
 
-  public Transforms getTransforms(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack) {
-
-    return this.transforms;
-  }
-
-  public ItemStackHandler[] getStackHandlers() {
-
-    return this.stackHandlers;
-  }
+  public abstract InteractionHandler.Transforms getTransforms(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack);
 
   public ItemStack getStackInSlot() {
 
@@ -118,19 +106,4 @@ public class InteractionHandler {
 
     return AABBHelper.contains(this.bounds, hitX, hitY, hitZ);
   }
-
-  public static class Transforms {
-
-    public final Vec3d translation;
-    public final Quaternion rotation;
-    public final Vec3d scale;
-
-    public Transforms(Vec3d translation, Quaternion rotation, Vec3d scale) {
-
-      this.translation = translation;
-      this.rotation = rotation;
-      this.scale = scale;
-    }
-  }
-
 }

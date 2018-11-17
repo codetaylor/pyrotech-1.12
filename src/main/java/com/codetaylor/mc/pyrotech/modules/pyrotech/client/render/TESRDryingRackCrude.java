@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -28,13 +27,6 @@ public class TESRDryingRackCrude
   @Override
   public void render(TileDryingRackCrude te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 
-    World world = te.getWorld();
-    IBlockState blockState = world.getBlockState(te.getPos());
-
-    if (blockState.getBlock() != ModuleBlocks.DRYING_RACK) {
-      return;
-    }
-
     int renderPass = MinecraftForgeClient.getRenderPass();
 
     GlStateManager.pushAttrib();
@@ -43,37 +35,44 @@ public class TESRDryingRackCrude
 
     if (renderPass == 0) {
 
-      ItemStackHandler stackHandler = te.getStackHandler();
-      ItemStackHandler outputStackHandler = te.getOutputStackHandler();
+      World world = te.getWorld();
+      IBlockState blockState = world.getBlockState(te.getPos());
 
-      net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
+      if (blockState.getBlock() == ModuleBlocks.DRYING_RACK) {
 
-      GlStateManager.scale(1.0, 1.0, 1.0);
+        ItemStackHandler stackHandler = te.getStackHandler();
+        ItemStackHandler outputStackHandler = te.getOutputStackHandler();
 
-      ItemStack inputItemStack = stackHandler.getStackInSlot(0);
-      ItemStack outputItemStack = outputStackHandler.getStackInSlot(0);
+        net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
 
-      if (!inputItemStack.isEmpty()) {
+        GlStateManager.scale(1.0, 1.0, 1.0);
 
-        GlStateManager.pushMatrix();
-        {
-          this.setupItemTransform(world, te.getPos(), blockState);
-          RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-          IBakedModel model = renderItem.getItemModelWithOverrides(inputItemStack, null, null);
-          RenderHelper.renderItemModel(inputItemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
+        ItemStack inputItemStack = stackHandler.getStackInSlot(0);
+        ItemStack outputItemStack = outputStackHandler.getStackInSlot(0);
+
+        if (!inputItemStack.isEmpty()) {
+
+          GlStateManager.pushMatrix();
+          {
+            this.setupItemPosition(te);
+            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+            IBakedModel model = renderItem.getItemModelWithOverrides(inputItemStack, null, null);
+            RenderHelper.renderItemModel(inputItemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
+          }
+          GlStateManager.popMatrix();
+
+        } else if (!outputItemStack.isEmpty()) {
+
+          GlStateManager.pushMatrix();
+          {
+            this.setupItemPosition(te);
+            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+            IBakedModel model = renderItem.getItemModelWithOverrides(outputItemStack, null, null);
+            RenderHelper.renderItemModel(outputItemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
+          }
+          GlStateManager.popMatrix();
         }
-        GlStateManager.popMatrix();
 
-      } else if (!outputItemStack.isEmpty()) {
-
-        GlStateManager.pushMatrix();
-        {
-          this.setupItemTransform(world, te.getPos(), blockState);
-          RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-          IBakedModel model = renderItem.getItemModelWithOverrides(outputItemStack, null, null);
-          RenderHelper.renderItemModel(outputItemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
-        }
-        GlStateManager.popMatrix();
       }
 
     } else if (renderPass == 1) {
@@ -82,7 +81,7 @@ public class TESRDryingRackCrude
 
       if (!player.isSneaking()) {
 
-        ItemStack heldItemMainHand = player.getHeldItemMainhand();
+        ItemStack heldItemMainhand = player.getHeldItemMainhand();
 
         RayTraceResult rayTraceResult = player
             .rayTrace(Reference.INTERACTION_BLOCK_REACH, partialTicks);
@@ -99,24 +98,24 @@ public class TESRDryingRackCrude
           if (inputItemStack.isEmpty()
               && outputItemStack.isEmpty()) {
 
-            if (!heldItemMainHand.isEmpty()) {
+            if (!heldItemMainhand.isEmpty()) {
 
               GlStateManager.pushMatrix();
               {
-                this.setupItemTransform(world, te.getPos(), blockState);
+                this.setupItemPosition(te);
                 GlStateManager.color(1, 1, 1, 0.2f);
-                this.renderItem(heldItemMainHand);
+                this.renderItem(heldItemMainhand);
               }
               GlStateManager.popMatrix();
             }
 
           } else if (!inputItemStack.isEmpty()) {
 
-            if (heldItemMainHand.isEmpty()) {
+            if (heldItemMainhand.isEmpty()) {
 
               GlStateManager.pushMatrix();
               {
-                this.setupItemTransform(world, te.getPos(), blockState);
+                this.setupItemPosition(te);
                 GlStateManager.color(1, 1, 1, 0.2f);
                 this.renderItem(inputItemStack);
               }
@@ -125,11 +124,11 @@ public class TESRDryingRackCrude
 
           } else if (!outputItemStack.isEmpty()) {
 
-            if (heldItemMainHand.isEmpty()) {
+            if (heldItemMainhand.isEmpty()) {
 
               GlStateManager.pushMatrix();
               {
-                this.setupItemTransform(world, te.getPos(), blockState);
+                this.setupItemPosition(te);
                 GlStateManager.color(1, 1, 1, 0.2f);
                 this.renderItem(outputItemStack);
               }
@@ -145,8 +144,10 @@ public class TESRDryingRackCrude
     GlStateManager.popMatrix();
   }
 
-  private void setupItemTransform(World world, BlockPos pos, IBlockState blockState) {
+  private void setupItemPosition(TileDryingRackCrude te) {
 
+    World world = te.getWorld();
+    IBlockState blockState = world.getBlockState(te.getPos());
     EnumFacing facing = blockState.getValue(BlockDryingRack.FACING);
 
     switch (facing) {
