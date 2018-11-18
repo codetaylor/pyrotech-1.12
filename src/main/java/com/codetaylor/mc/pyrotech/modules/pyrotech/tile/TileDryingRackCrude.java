@@ -1,41 +1,37 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
+import com.codetaylor.mc.athenaeum.util.QuaternionHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-<<<<<<< HEAD
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockDryingRack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractionHandler_ItemStack_Provider;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionHandler_ItemStack_Base;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionHandlerItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-=======
->>>>>>> parent of 03250e2... Switch drying rack, crude drying rack and campfire to interactable
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
+import net.minecraftforge.items.ItemStackHandler;
+import org.lwjgl.util.vector.Quaternion;
 
 import javax.annotation.Nonnull;
 
 public class TileDryingRackCrude
-<<<<<<< HEAD
     extends TileDryingRackBase
-    implements ITileInteractionHandler_ItemStack_Provider {
+    implements ITileInteractable {
 
-  private InteractionHandler_ItemStack_Base[] interactionHandlers;
+  private InteractionHandlerItemStack[] interactionHandlers;
   private AxisAlignedBB renderBounds;
-=======
-    extends TileDryingRackBase {
->>>>>>> parent of 03250e2... Switch drying rack, crude drying rack and campfire to interactable
 
   public TileDryingRackCrude() {
 
     super();
-<<<<<<< HEAD
 
-    this.interactionHandlers = new InteractionHandler_ItemStack_Base[]{
+    this.interactionHandlers = new InteractionHandlerItemStack[]{
         new TileDryingRackCrude.InteractionHandler(new ItemStackHandler[]{this.stackHandler, this.outputStackHandler}, 0)
     };
-=======
->>>>>>> parent of 03250e2... Switch drying rack, crude drying rack and campfire to interactable
   }
 
   @Override
@@ -66,16 +62,15 @@ public class TileDryingRackCrude
 
     return this.renderBounds;
   }
-<<<<<<< HEAD
 
   @Override
-  public InteractionHandler_ItemStack_Base[] getInteractionHandlers() {
+  public InteractionHandlerItemStack[] getInteractionHandlers() {
 
     return this.interactionHandlers;
   }
 
   public static class InteractionHandler
-      extends InteractionHandler_ItemStack_Base {
+      extends InteractionHandlerItemStack {
 
     private static final Transform TRANSFORM_NORTH = new Transform(
         new Vec3d(0.5, 0.5, 0.15),
@@ -123,6 +118,4 @@ public class TileDryingRackCrude
     }
   }
 
-=======
->>>>>>> parent of 03250e2... Switch drying rack, crude drying rack and campfire to interactable
 }

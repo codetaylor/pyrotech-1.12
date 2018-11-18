@@ -1,10 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.QuaternionHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnBrick;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionHandlerItemStack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
@@ -18,10 +22,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.lwjgl.util.vector.Quaternion;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -29,7 +35,8 @@ import javax.annotation.Nullable;
 public class TileKilnBrick
     extends TileEntity
     implements ITickable,
-    IProgressProvider {
+    IProgressProvider,
+    ITileInteractable {
 
   private static final int DORMANT_COUNTER = 50;
 
@@ -45,6 +52,8 @@ public class TileKilnBrick
   private EntityItem entityItemFuel;
   private EntityItem[] entityItemOutput;
   private int ticksSinceLastClientSync;
+
+  private InteractionHandlerItemStack[] interactionHandlers;
 
   public TileKilnBrick() {
 
@@ -141,6 +150,16 @@ public class TileKilnBrick
         BlockHelper.notifyBlockUpdate(TileKilnBrick.this.world, TileKilnBrick.this.pos);
         return itemStack;
       }
+    };
+
+    this.interactionHandlers = new InteractionHandlerItemStack[]{
+        new InteractionHandlerTop(new ItemStackHandler[]{
+            this.stackHandler,
+            this.outputStackHandler
+        }),
+        new InteractionHandlerBottom(new ItemStackHandler[]{
+            this.fuelStackHandler
+        })
     };
   }
 
@@ -502,5 +521,124 @@ public class TileKilnBrick
     }
 
     return super.shouldRefresh(world, pos, oldState, newState);
+  }
+
+  @Override
+  public boolean shouldRenderInPass(int pass) {
+
+    return (pass == 0) || (pass == 1);
+  }
+
+  @Override
+  public InteractionHandlerItemStack[] getInteractionHandlers() {
+
+    return this.interactionHandlers;
+  }
+
+  @Override
+  public boolean isExtendedInteraction(World world, BlockPos pos, IBlockState blockState) {
+
+    BlockPos blockPos = this.getPos();
+
+    return blockPos.getX() == pos.getX()
+        && blockPos.getY() + 1 == pos.getY()
+        && blockPos.getZ() == pos.getZ();
+  }
+
+  public static class InteractionHandlerTop
+      extends InteractionHandlerItemStack {
+
+    private static final Transform TRANSFORM_NORTH = new Transform(
+        new Vec3d(0.5, 1.2, 0.5),
+        new Quaternion(),
+        new Vec3d(0.5, 0.5, 0.5)
+    );
+    private static final Transform TRANSFORM_SOUTH = new Transform(
+        new Vec3d(0.5, 1.2, 0.5),
+        QuaternionHelper.setFromAxisAngle(new Quaternion(), 0, 1, 0, (float) Math.PI /* 180 */),
+        new Vec3d(0.5, 0.5, 0.5)
+    );
+    private static final Transform TRANSFORM_EAST = new Transform(
+        new Vec3d(0.5, 1.2, 0.5),
+        QuaternionHelper.setFromAxisAngle(new Quaternion(), 0, 1, 0, (float) (Math.PI + Math.PI / 2) /* 270 */),
+        new Vec3d(0.5, 0.5, 0.5)
+    );
+    private static final Transform TRANSFORM_WEST = new Transform(
+        new Vec3d(0.5, 1.2, 0.5),
+        QuaternionHelper.setFromAxisAngle(new Quaternion(), 0, 1, 0, (float) (Math.PI / 2) /* 90 */),
+        new Vec3d(0.5, 0.5, 0.5)
+    );
+
+    public InteractionHandlerTop(ItemStackHandler[] stackHandlers) {
+
+      super(stackHandlers, 0);
+    }
+
+    @Override
+    public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack) {
+
+      EnumFacing facing = blockState.getValue(BlockKilnBrick.FACING);
+
+      switch (facing) {
+        default:
+        case NORTH:
+          return TRANSFORM_NORTH;
+        case SOUTH:
+          return TRANSFORM_SOUTH;
+        case EAST:
+          return TRANSFORM_EAST;
+        case WEST:
+          return TRANSFORM_WEST;
+      }
+    }
+  }
+
+  public static class InteractionHandlerBottom
+      extends InteractionHandlerItemStack {
+
+    private static final Transform TRANSFORM_NORTH = new Transform(
+        new Vec3d(0.5, 0.2, 0.5),
+        new Quaternion(),
+        new Vec3d(0.5, 0.5, 0.5)
+    );
+    private static final Transform TRANSFORM_SOUTH = new Transform(
+        new Vec3d(0.5, 0.2, 0.5),
+        QuaternionHelper.setFromAxisAngle(new Quaternion(), 0, 1, 0, (float) Math.PI /* 180 */),
+        new Vec3d(0.5, 0.5, 0.5)
+    );
+    private static final Transform TRANSFORM_EAST = new Transform(
+        new Vec3d(0.5, 0.2, 0.5),
+        QuaternionHelper.setFromAxisAngle(new Quaternion(), 0, 1, 0, (float) (Math.PI + Math.PI / 2) /* 270 */),
+        new Vec3d(0.5, 0.5, 0.5)
+    );
+    private static final Transform TRANSFORM_WEST = new Transform(
+        new Vec3d(0.5, 0.2, 0.5),
+        QuaternionHelper.setFromAxisAngle(new Quaternion(), 0, 1, 0, (float) (Math.PI / 2) /* 90 */),
+        new Vec3d(0.5, 0.5, 0.5)
+    );
+
+    public InteractionHandlerBottom(ItemStackHandler[] stackHandlers) {
+
+      super(stackHandlers, 0);
+    }
+
+    @Override
+    public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack) {
+
+      EnumFacing facing = blockState.getValue(BlockKilnBrick.FACING);
+
+      switch (facing) {
+        default:
+        case NORTH:
+          return TRANSFORM_NORTH;
+        case SOUTH:
+          return TRANSFORM_SOUTH;
+        case EAST:
+          return TRANSFORM_EAST;
+        case WEST:
+          return TRANSFORM_WEST;
+      }
+    }
+
   }
 }

@@ -18,7 +18,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
 
 @SuppressWarnings("WeakerAccess")
-public class TESRInteractable<T extends TileEntity & ITileInteractionHandler_ItemStack_Provider>
+public class TESRInteractable<T extends TileEntity & ITileInteractable>
     extends TileEntitySpecialRenderer<T> {
 
   @Override
@@ -52,11 +52,11 @@ public class TESRInteractable<T extends TileEntity & ITileInteractionHandler_Ite
 
     GlStateManager.scale(1.0, 1.0, 1.0);
 
-    InteractionHandler_ItemStack_Base[] interactionHandlers = te.getInteractionHandlers();
+    IInteractionHandlerItemStack[] interactionHandlers = te.getItemStackInteractionHandlers();
 
     for (int i = 0; i < interactionHandlers.length; i++) {
 
-      InteractionHandler_ItemStack_Base interactionHandler = interactionHandlers[i];
+      IInteractionHandlerItemStack interactionHandler = interactionHandlers[i];
 
       // If the handler is not empty, render the handler's item.
 
@@ -86,7 +86,11 @@ public class TESRInteractable<T extends TileEntity & ITileInteractionHandler_Ite
 
     if (rayTraceResult != null
         && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-        && rayTraceResult.getBlockPos().equals(te.getPos())) {
+        && (te.getPos().equals(rayTraceResult.getBlockPos()) || te.isExtendedInteraction(world, rayTraceResult.getBlockPos(), world.getBlockState(rayTraceResult.getBlockPos())))) {
+
+      // TODO: handle delegates
+      // For example, the brick kiln needs to be able to render ghost items
+      // when looking at the top.
 
       this.renderGhostItem(te, world, blockState, player.getHeldItemMainhand(), rayTraceResult);
     }
@@ -111,13 +115,13 @@ public class TESRInteractable<T extends TileEntity & ITileInteractionHandler_Ite
 
   protected void renderGhostItem(T te, World world, IBlockState blockState, ItemStack heldItemMainHand, RayTraceResult rayTraceResult) {
 
-    InteractionHandler_ItemStack_Base[] interactionHandlers = te.getInteractionHandlers();
+    IInteractionHandlerItemStack[] interactionHandlers = te.getItemStackInteractionHandlers();
 
     for (int i = 0; i < interactionHandlers.length; i++) {
 
-      InteractionHandler_ItemStack_Base interactionHandler = interactionHandlers[i];
+      IInteractionHandlerItemStack interactionHandler = interactionHandlers[i];
 
-      if (interactionHandler.intersects(rayTraceResult)) {
+      if (interactionHandler.canInteractWith(world, rayTraceResult.sideHit, rayTraceResult.getBlockPos(), rayTraceResult.hitVec, te.getPos(), blockState)) {
 
         // If the handler is empty, render the held item.
         // Else, render the handler's item if the player's hand is empty.

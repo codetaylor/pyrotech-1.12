@@ -1,31 +1,24 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
+import com.codetaylor.mc.athenaeum.util.QuaternionHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-<<<<<<< HEAD
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractionHandler_ItemStack_Provider;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionHandler_ItemStack_SingleTransform;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.items.ItemStackHandler;
 import org.lwjgl.util.vector.Quaternion;
 
 public class TileDryingRack
     extends TileDryingRackBase
-    implements ITileInteractionHandler_ItemStack_Provider {
+    implements ITileInteractable {
 
   private InteractionHandler_ItemStack_SingleTransform[] interactionHandlers;
-=======
-
-public class TileDryingRack
-    extends TileDryingRackBase {
->>>>>>> parent of 03250e2... Switch drying rack, crude drying rack and campfire to interactable
 
   public TileDryingRack() {
 
     super();
-<<<<<<< HEAD
 
     this.interactionHandlers = new InteractionHandler_ItemStack_SingleTransform[4];
 
@@ -41,7 +34,7 @@ public class TileDryingRack
           },
           slot,
           EnumFacing.VALUES,
-          new AxisAlignedBB(qX * 0.5, 0, qZ * 0.5, qX * 0.5 + 0.5, 1, qZ * 0.5 + 0.5),
+          new InteractionBounds(qX * 0.5, qZ * 0.5, qX * 0.5 + 0.5, qZ * 0.5 + 0.5),
           new Transform(
               new Vec3d(
                   qX * 0.375 + 0.25 + 0.0625,
@@ -55,8 +48,6 @@ public class TileDryingRack
 
     }
 
-=======
->>>>>>> parent of 03250e2... Switch drying rack, crude drying rack and campfire to interactable
   }
 
   @Override
@@ -70,13 +61,10 @@ public class TileDryingRack
 
     return (float) (speed * ModulePyrotechConfig.DRYING_RACK.SPEED_MODIFIER);
   }
-<<<<<<< HEAD
 
   @Override
   public InteractionHandler_ItemStack_SingleTransform[] getInteractionHandlers() {
 
     return this.interactionHandlers;
   }
-=======
->>>>>>> parent of 03250e2... Switch drying rack, crude drying rack and campfire to interactable
 }

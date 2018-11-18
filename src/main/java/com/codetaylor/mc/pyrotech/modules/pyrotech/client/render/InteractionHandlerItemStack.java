@@ -1,34 +1,34 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
-import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
-import static net.minecraft.tileentity.TileEntity.INFINITE_EXTENT_AABB;
-
-public abstract class InteractionHandler_ItemStack_Base {
+public class InteractionHandlerItemStack
+    implements IInteractionHandlerItemStack {
 
   protected final ItemStackHandler[] stackHandlers;
   protected final int slot;
   protected final int sides;
-  protected final AxisAlignedBB bounds;
+  protected final InteractionBounds bounds;
+  protected final Transform transform;
 
-  public InteractionHandler_ItemStack_Base(ItemStackHandler[] stackHandlers, int slot) {
-
-    this(stackHandlers, slot, EnumFacing.VALUES, INFINITE_EXTENT_AABB);
-  }
-
-  public InteractionHandler_ItemStack_Base(ItemStackHandler[] stackHandlers, int slot, EnumFacing[] sides, AxisAlignedBB bounds) {
+  public InteractionHandlerItemStack(
+      ItemStackHandler[] stackHandlers,
+      int slot,
+      EnumFacing[] sides,
+      InteractionBounds bounds,
+      Transform transform
+  ) {
 
     this.stackHandlers = stackHandlers;
     this.slot = slot;
     this.bounds = bounds;
+    this.transform = transform;
 
     int sidesEncoded = 0;
 
@@ -39,18 +39,11 @@ public abstract class InteractionHandler_ItemStack_Base {
     this.sides = sidesEncoded;
   }
 
-  /**
-   * Returns the transforms used to render an item in this slot.
-   * <p>
-   * Different transforms can be returned based on item, blockState, etc.
-   *
-   * @param world      the world
-   * @param pos        the pos of the parent
-   * @param blockState the blockState of the parent
-   * @param itemStack  the itemStack to render
-   * @return the transforms used to render an item in this slot
-   */
-  public abstract Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack);
+  @Override
+  public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack) {
+
+    return this.transform;
+  }
 
   /**
    * Returns true if the given {@link ItemStack} is allowed to be inserted.
@@ -68,6 +61,7 @@ public abstract class InteractionHandler_ItemStack_Base {
    * @param itemStack the {@link ItemStack} to insert
    * @return true if the given {@link ItemStack} is allowed to be inserted
    */
+  @Override
   public boolean isItemStackValid(ItemStack itemStack) {
 
     return true;
@@ -79,6 +73,7 @@ public abstract class InteractionHandler_ItemStack_Base {
    *
    * @return the first {@link ItemStack} found
    */
+  @Override
   public ItemStack getStackInSlot() {
 
     for (int i = 0; i < this.stackHandlers.length; i++) {
@@ -100,6 +95,7 @@ public abstract class InteractionHandler_ItemStack_Base {
    * @param simulate set false to actually perform the extraction
    * @return the first non-empty {@link ItemStack} extracted
    */
+  @Override
   public ItemStack extract(int amount, boolean simulate) {
 
     for (int i = 0; i < this.stackHandlers.length; i++) {
@@ -124,6 +120,7 @@ public abstract class InteractionHandler_ItemStack_Base {
    * @param simulate  set false to actually perform the insertion
    * @return any remaining items in an {@link ItemStack}
    */
+  @Override
   public ItemStack insert(ItemStack itemStack, boolean simulate) {
 
     if (!this.isItemStackValid(itemStack)) {
@@ -142,62 +139,62 @@ public abstract class InteractionHandler_ItemStack_Base {
     return itemStack;
   }
 
-  /**
-   * @return true if the entire handler stack is empty
-   */
+  @Override
   public boolean isEmpty() {
 
     return this.getStackInSlot().isEmpty();
   }
 
-  /**
-   * Returns true if the given {@link RayTraceResult} intersects this handler.
-   *
-   * @param rayTraceResult the {@link RayTraceResult} to check
-   * @return true if the given {@link RayTraceResult} intersects this handler
-   */
-  public boolean intersects(RayTraceResult rayTraceResult) {
+  @Override
+  public boolean canInteractWith(World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos pos, IBlockState blockState) {
 
-    if (rayTraceResult == null) {
-      return false;
+    double hitX = hitVec.x - pos.getX();
+    double hitY = hitVec.y - pos.getY();
+    double hitZ = hitVec.z - pos.getZ();
+
+    double x = 0;
+    double y = 0;
+
+    // TODO: test this is right
+    switch (hitSide) {
+      case UP:
+        x = hitX;
+        y = hitZ;
+        break;
+      case DOWN:
+        x = 1.0 - hitX;
+        y = hitZ;
+        break;
+      case NORTH: // toward -Z
+        x = 1.0 - hitX;
+        y = hitY;
+        break;
+      case SOUTH: // toward +Z
+        x = hitX;
+        y = hitY;
+        break;
+      case EAST: // toward +X
+        x = hitZ;
+        y = hitY;
+        break;
+      case WEST: // toward -X
+        x = 1.0 - hitZ;
+        y = hitY;
+        break;
     }
 
-    if (!this.canInteractWithSide(rayTraceResult.sideHit)) {
-      return false;
-    }
-
-    BlockPos blockPos = rayTraceResult.getBlockPos();
-    double hitX = rayTraceResult.hitVec.x - blockPos.getX();
-    double hitY = rayTraceResult.hitVec.y - blockPos.getY();
-    double hitZ = rayTraceResult.hitVec.z - blockPos.getZ();
-
-    return this.canInteractAtPosition(hitX, hitY, hitZ);
+    return this.canInteractWithActualSide(world, this.getActualSideHit(hitSide), x, y, pos, blockState);
   }
 
-  /**
-   * Returns true if this handler allows interaction on the given side.
-   *
-   * @param side the side to test for interaction
-   * @return true if this handler allows interaction on the given side
-   */
-  public boolean canInteractWithSide(EnumFacing side) {
+  protected EnumFacing getActualSideHit(EnumFacing sideHit) {
 
-    return ((this.sides & side.getIndex()) == side.getIndex());
+    return sideHit;
   }
 
-  /**
-   * Returns true if this handler allows interaction at the given position.
-   * <p>
-   * Position is relative to the block position with values in the range [0,1].
-   *
-   * @param hitX
-   * @param hitY
-   * @param hitZ
-   * @return true if this handler allows interaction at the given position
-   */
-  @SuppressWarnings("JavaDoc")
-  public boolean canInteractAtPosition(double hitX, double hitY, double hitZ) {
+  protected boolean canInteractWithActualSide(World world, EnumFacing actualSide, double hitX, double hitY, BlockPos pos, IBlockState blockState) {
 
-    return AABBHelper.contains(this.bounds, hitX, hitY, hitZ);
+    return ((this.sides & actualSide.getIndex()) == actualSide.getIndex())
+        && this.bounds.contains(hitX, hitY);
   }
+
 }

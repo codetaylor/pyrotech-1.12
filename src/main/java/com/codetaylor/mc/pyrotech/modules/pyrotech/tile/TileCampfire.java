@@ -5,8 +5,8 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractionHandler_ItemStack_Provider;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionHandler_ItemStack_SingleTransform;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
 public class TileCampfire
     extends TileEntity
     implements ITickable,
-    ITileInteractionHandler_ItemStack_Provider {
+    ITileInteractable {
 
   private ItemStackHandler stackHandler;
   private ItemStackHandler outputStackHandler;
@@ -486,7 +486,7 @@ public class TileCampfire
 
     public InteractionHandler(ItemStackHandler[] stackHandlers) {
 
-      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, INFINITE_EXTENT_AABB, new Transform(
+      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE, new Transform(
           new Vec3d(0.5, 0.5, 0.5),
           new Quaternion(),
           new Vec3d(0.75, 0.75, 0.75)
