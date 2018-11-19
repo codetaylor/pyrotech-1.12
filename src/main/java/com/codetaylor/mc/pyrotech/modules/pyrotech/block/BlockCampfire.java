@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -170,8 +171,7 @@ public class BlockCampfire
 
     ItemStack heldItem = player.getHeldItemMainhand();
 
-    if (heldItem.getItem() == ModuleItems.BOW_DRILL
-        || heldItem.getItem() == ModuleItems.FLINT_AND_TINDER) {
+    if (heldItem.getItem() instanceof ItemIgniterBase) {
       return false;
     }
 
