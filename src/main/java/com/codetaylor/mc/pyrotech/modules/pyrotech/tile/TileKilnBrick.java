@@ -581,6 +581,27 @@ public class TileKilnBrick
 
       return (KilnBrickRecipe.getRecipe(itemStack) != null);
     }
+
+    @Override
+    protected boolean doExtract(World world, EntityPlayer player, BlockPos tilePos) {
+
+      // Extract all slots in the output stack handler.
+
+      ItemStackHandler outputStackHandler = this.stackHandlers[1];
+
+      int slots = outputStackHandler.getSlots();
+
+      for (int i = 1; i < slots; i++) {
+        ItemStack extractItem = outputStackHandler.extractItem(i, outputStackHandler.getStackInSlot(i).getCount(), world.isRemote);
+
+        if (!extractItem.isEmpty()
+            && !world.isRemote) {
+          StackHelper.addToInventoryOrSpawn(world, player, extractItem, tilePos);
+        }
+      }
+
+      return super.doExtract(world, player, tilePos);
+    }
   }
 
   private class InteractionFuel

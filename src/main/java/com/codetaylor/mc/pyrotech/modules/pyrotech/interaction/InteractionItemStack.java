@@ -187,17 +187,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
       // Remove item with empty hand
 
       if (!this.isEmpty()) {
-
-        ItemStack result = this.extract(this.getStackInSlot().getCount(), world.isRemote);
-
-        if (!result.isEmpty()) {
-
-          if (!world.isRemote) {
-            StackHelper.addToInventoryOrSpawn(world, player, result, tilePos);
-          }
-
-          return true;
-        }
+        return this.doExtract(world, player, tilePos);
       }
 
     } else {
@@ -227,9 +217,36 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   }
 
   /**
+   * Override this to change the extraction behavior.
+   *
+   * @param world
+   * @param player
+   * @param tilePos
+   * @return true to prevent processing subsequent interactions
+   */
+  protected boolean doExtract(World world, EntityPlayer player, BlockPos tilePos) {
+
+    ItemStack result = this.extract(this.getStackInSlot().getCount(), world.isRemote);
+
+    if (!result.isEmpty()) {
+
+      if (!world.isRemote) {
+        StackHelper.addToInventoryOrSpawn(world, player, result, tilePos);
+      }
+
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
    * When a player interacts with a non-empty hand this method is called to
    * determine which stack handler we try to insert into.
    * <p>
+   * This allows things like separating valid recipe items into the input
+   * stack handler and invalid recipe items directly into the output stack
+   * handler.
    * <p>
    * Indices are into the {@link #stackHandlers} array.
    *
