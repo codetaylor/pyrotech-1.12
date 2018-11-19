@@ -25,6 +25,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -65,7 +66,7 @@ public class TileKilnBrick
       @Override
       protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
 
-        return 8;
+        return MathHelper.clamp(ModulePyrotechConfig.BRICK_KILN.INPUT_SLOT_SIZE, 1, 64);
       }
 
       @Override
@@ -127,7 +128,7 @@ public class TileKilnBrick
       @Override
       protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
 
-        return 64;
+        return MathHelper.clamp(ModulePyrotechConfig.BRICK_KILN.FUEL_SLOT_SIZE, 1, 64);
       }
 
       @Override
@@ -222,7 +223,7 @@ public class TileKilnBrick
     if (value && !active) {
 
       if (this.hasFuel()
-          /*&& !this.stackHandler.getStackInSlot(0).isEmpty()*/) {
+        /*&& !this.stackHandler.getStackInSlot(0).isEmpty()*/) {
         blockState = blockState.withProperty(BlockKilnBrick.TYPE, BlockKilnBrick.EnumType.BottomLit);
         this.world.setBlockState(this.pos, blockState, 3);
       }

@@ -101,6 +101,20 @@ public class ModulePyrotechConfig {
         "Default: " + false
     })
     public boolean KEEP_HEAT = false;
+
+    @Config.Comment({
+        "Controls the number of recipe items that can be placed in the kiln.",
+        "Range: [1, 64]",
+        "Default: " + 8
+    })
+    public int INPUT_SLOT_SIZE = 8;
+
+    @Config.Comment({
+        "Controls the number of fuel items that can be placed in the kiln.",
+        "Range: [1, 64]",
+        "Default: " + 16
+    })
+    public int FUEL_SLOT_SIZE = 16;
   }
 
   // ---------------------------------------------------------------------------
