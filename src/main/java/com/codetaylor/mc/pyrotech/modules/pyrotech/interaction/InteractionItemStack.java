@@ -206,23 +206,20 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
         return false;
       }
 
-      if (this.isEmpty()) {
+      // Insert item
 
-        // Insert item
+      int count = heldItemMainHand.getCount();
+      int insertIndex = this.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
+      ItemStack itemStack = new ItemStack(heldItemMainHand.getItem(), count, heldItemMainHand.getMetadata());
+      ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, world.isRemote);
 
-        int insertIndex = this.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
-        ItemStack itemStack = new ItemStack(heldItemMainHand.getItem(), 1, heldItemMainHand.getMetadata());
-        ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, world.isRemote);
+      if (result.getCount() != count) {
 
-        if (result.isEmpty()) {
-
-          if (!world.isRemote) {
-            heldItemMainHand.setCount(heldItemMainHand.getCount() - 1);
-          }
-
-          return true;
+        if (!world.isRemote) {
+          heldItemMainHand.setCount(result.getCount());
         }
 
+        return true;
       }
     }
 

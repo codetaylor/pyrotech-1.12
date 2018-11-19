@@ -6,22 +6,24 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnBrick;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionBounds;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -152,8 +154,14 @@ public class TileKilnBrick
     };
 
     this.interactionHandlers = new IInteraction[]{
-        new Interaction(),
-        new InteractionFuel()
+        new InteractionUseFlintAndSteel(),
+        new Interaction(new ItemStackHandler[]{
+            TileKilnBrick.this.stackHandler,
+            TileKilnBrick.this.outputStackHandler
+        }),
+        new InteractionFuel(new ItemStackHandler[]{
+            TileKilnBrick.this.fuelStackHandler
+        })
     };
   }
 
@@ -214,7 +222,7 @@ public class TileKilnBrick
     if (value && !active) {
 
       if (this.hasFuel()
-          && !this.stackHandler.getStackInSlot(0).isEmpty()) {
+          /*&& !this.stackHandler.getStackInSlot(0).isEmpty()*/) {
         blockState = blockState.withProperty(BlockKilnBrick.TYPE, BlockKilnBrick.EnumType.BottomLit);
         this.world.setBlockState(this.pos, blockState, 3);
       }
@@ -534,6 +542,12 @@ public class TileKilnBrick
   }
 
   @Override
+  public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
+
+    return blockState.getValue(BlockKilnBrick.FACING);
+  }
+
+  @Override
   public boolean isExtendedInteraction(World world, BlockPos pos, IBlockState blockState) {
 
     BlockPos blockPos = this.getPos();
@@ -546,16 +560,13 @@ public class TileKilnBrick
   private class Interaction
       extends InteractionItemStack<TileKilnBrick> {
 
-    /* package */ Interaction() {
+    /* package */ Interaction(ItemStackHandler[] stackHandlers) {
 
       super(
-          new ItemStackHandler[]{
-              TileKilnBrick.this.stackHandler,
-              TileKilnBrick.this.outputStackHandler
-          },
+          stackHandlers,
           0,
-          EnumFacing.VALUES,
-          InteractionBounds.INFINITE,
+          new EnumFacing[]{EnumFacing.NORTH},
+          new InteractionBounds(0, 1, 1, 2),
           new Transform(
               Transform.translate(0.5, 1.2, 0.5),
               Transform.rotate(),
@@ -574,15 +585,13 @@ public class TileKilnBrick
   private class InteractionFuel
       extends InteractionItemStack<TileKilnBrick> {
 
-    /* package */ InteractionFuel() {
+    /* package */ InteractionFuel(ItemStackHandler[] stackHandlers) {
 
       super(
-          new ItemStackHandler[]{
-              TileKilnBrick.this.fuelStackHandler
-          },
+          stackHandlers,
           0,
-          EnumFacing.VALUES,
-          InteractionBounds.INFINITE,
+          new EnumFacing[]{EnumFacing.NORTH},
+          new InteractionBounds(0, 0, 1, 1),
           new Transform(
               Transform.translate(0.5, 0.2, 0.5),
               Transform.rotate(),
@@ -595,6 +604,36 @@ public class TileKilnBrick
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
       return StackHelper.isFuel(itemStack);
+    }
+  }
+
+  private class InteractionUseFlintAndSteel
+      extends InteractionUseItemBase<TileKilnBrick> {
+
+    /* package */ InteractionUseFlintAndSteel() {
+
+      super(new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK_FACE);
+    }
+
+    @Override
+    protected boolean isItemStackValid(ItemStack itemStack) {
+
+      return (itemStack.getItem() == Items.FLINT_AND_STEEL);
+    }
+
+    @Override
+    protected void doInteraction(TileKilnBrick tile, World world, BlockPos hitPos, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      tile.setActive(true);
+
+      world.playSound(
+          null,
+          hitPos,
+          SoundEvents.ITEM_FLINTANDSTEEL_USE,
+          SoundCategory.BLOCKS,
+          1.0F,
+          Util.RANDOM.nextFloat() * 0.4F + 0.8F
+      );
     }
   }
 

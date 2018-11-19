@@ -89,7 +89,7 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
     // TODO: cache raytrace result
     // Can we cache the raytrace result so we're only calling this once per
     // frame for all renderers?
-    // Cache in static somewhere?
+    // Cache in static client event somewhere?
 
     RayTraceResult rayTraceResult = player
         .rayTrace(Reference.INTERACTION_BLOCK_REACH, partialTicks);
@@ -116,7 +116,7 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
 
       if (interaction.canInteractWith(world, rayTraceResult.sideHit, blockPos, rayTraceResult.hitVec, pos, blockState, tileFacing)) {
         interaction.renderAdditivePass(world, rayTraceResult.sideHit, blockPos, rayTraceResult.hitVec, pos, blockState, heldItemMainHand, partialTicks);
-        break;
+        //break;
       }
     }
   }

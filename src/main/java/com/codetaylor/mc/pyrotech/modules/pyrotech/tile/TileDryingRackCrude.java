@@ -8,9 +8,10 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackCrudeRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -32,29 +33,8 @@ public class TileDryingRackCrude
     super();
 
     this.interactionHandlers = new IInteraction[]{
-        new InteractionItemStack<TileDryingRackCrude>(
-            new ItemStackHandler[]{this.stackHandler, this.outputStackHandler},
-            0,
-            EnumFacing.VALUES,
-            InteractionBounds.INFINITE,
-            new Transform(
-                new Vec3d(0.5, 0.5, 0.15),
-                new Quaternion(),
-                new Vec3d(0.75, 0.75, 0.75)
-            ),
-            (tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ) -> {
-
-              Object recipe = null;
-
-              if (state.getValue(BlockDryingRack.VARIANT) == BlockDryingRack.EnumType.CRUDE) {
-                recipe = DryingRackCrudeRecipe.getRecipe(player.getHeldItemMainhand());
-
-              } else if (state.getValue(BlockDryingRack.VARIANT) == BlockDryingRack.EnumType.NORMAL) {
-                recipe = DryingRackRecipe.getRecipe(player.getHeldItemMainhand());
-              }
-
-              return (recipe == null) ? 1 : 0;
-            }
+        new TileDryingRackCrude.Interaction(
+            new ItemStackHandler[]{this.stackHandler, this.outputStackHandler}
         )
     };
   }
@@ -102,6 +82,31 @@ public class TileDryingRackCrude
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
 
     return blockState.getValue(BlockDryingRack.FACING);
+  }
+
+  private class Interaction
+      extends InteractionItemStack<TileDryingRackCrude> {
+
+    public Interaction(ItemStackHandler[] stackHandlers) {
+
+      super(
+          stackHandlers,
+          0,
+          EnumFacing.VALUES,
+          InteractionBounds.INFINITE,
+          new Transform(
+              new Vec3d(0.5, 0.5, 0.15),
+              new Quaternion(),
+              new Vec3d(0.75, 0.75, 0.75)
+          )
+      );
+    }
+
+    @Override
+    protected int getInsertionIndex(TileDryingRackCrude tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      return (DryingRackCrudeRecipe.getRecipe(player.getHeldItemMainhand()) != null) ? 0 : 1;
+    }
   }
 
 }

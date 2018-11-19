@@ -7,7 +7,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackCrudeRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -93,16 +92,7 @@ public class TileDryingRack
     @Override
     protected int getInsertionIndex(TileDryingRack tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      Object recipe = null;
-
-      if (state.getValue(BlockDryingRack.VARIANT) == BlockDryingRack.EnumType.CRUDE) {
-        recipe = DryingRackCrudeRecipe.getRecipe(player.getHeldItemMainhand());
-
-      } else if (state.getValue(BlockDryingRack.VARIANT) == BlockDryingRack.EnumType.NORMAL) {
-        recipe = DryingRackRecipe.getRecipe(player.getHeldItemMainhand());
-      }
-
-      return (recipe == null) ? 1 : 0;
+      return (DryingRackRecipe.getRecipe(player.getHeldItemMainhand()) != null) ? 0 : 1;
     }
   }
 }

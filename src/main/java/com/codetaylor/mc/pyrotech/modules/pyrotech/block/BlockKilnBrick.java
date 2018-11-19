@@ -1,8 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrick;
@@ -16,7 +14,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -27,7 +24,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -246,52 +242,8 @@ public class BlockKilnBrick
     }
 
     TileKilnBrick tileKiln = (TileKilnBrick) tileEntity;
-    ItemStack heldItem = player.getHeldItemMainhand();
 
-    if (facing != state.getValue(FACING)) {
-      return false;
-    }
-
-    if (heldItem.isEmpty()) {
-
-      // remove recipe items and recipe results
-
-      if (!world.isRemote) {
-
-        ItemStackHandler stackHandler = tileKiln.getStackHandler();
-        ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getStackInSlot(0).getCount(), false);
-
-        if (!itemStack.isEmpty()) {
-          StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos);
-        }
-
-        stackHandler = tileKiln.getOutputStackHandler();
-
-        for (int i = 0; i < stackHandler.getSlots(); i++) {
-          itemStack = stackHandler.extractItem(i, stackHandler.getStackInSlot(i).getCount(), false);
-
-          if (!itemStack.isEmpty()) {
-            StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos);
-          }
-        }
-      }
-
-      return true;
-
-    } else {
-
-      int count = heldItem.getCount();
-      ItemStackHandler stackHandler = tileKiln.getStackHandler();
-      ItemStack itemStack = stackHandler.insertItem(0, heldItem, world.isRemote);
-
-      if (itemStack.getCount() != count) {
-
-        if (!world.isRemote) {
-          player.setHeldItem(hand, itemStack);
-        }
-        return true;
-      }
-    }
+    tileKiln.interact(tileKiln, world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
 
     return true;
   }
@@ -321,71 +273,7 @@ public class BlockKilnBrick
       return false;
     }
 
-    if (facing != state.getValue(FACING)) {
-      return false;
-    }
-
-    if (heldItem.isEmpty()) {
-
-      // remove fuel
-
-      ItemStackHandler fuelStackHandler = tileKiln.getFuelStackHandler();
-      ItemStack itemStack = fuelStackHandler.extractItem(0, 64, world.isRemote);
-
-      if (!world.isRemote) {
-
-        if (!itemStack.isEmpty()) {
-          StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos);
-        }
-
-        BlockHelper.notifyBlockUpdate(world, pos);
-      }
-
-      return true;
-
-    } else {
-
-      if (heldItem.getItem() == Items.FLINT_AND_STEEL) {
-
-        // Handle ignition with flint and steel item.
-
-        if (!world.isRemote) {
-
-          if (player.isCreative()) {
-            heldItem.damageItem(1, player);
-          }
-
-          tileKiln.setActive(true);
-          world.playSound(
-              null,
-              pos,
-              SoundEvents.ITEM_FLINTANDSTEEL_USE,
-              SoundCategory.BLOCKS,
-              1.0F,
-              Util.RANDOM.nextFloat() * 0.4F + 0.8F
-          );
-        }
-        return true;
-      }
-
-      // Insert fuel.
-
-      if (StackHelper.isFuel(heldItem)) {
-
-        int count = heldItem.getCount();
-        ItemStackHandler stackHandler = tileKiln.getFuelStackHandler();
-        ItemStack itemStack = stackHandler.insertItem(0, heldItem, world.isRemote);
-
-        if (count != itemStack.getCount()) {
-
-          if (!world.isRemote) {
-            player.setHeldItem(hand, itemStack);
-            BlockHelper.notifyBlockUpdate(world, pos);
-          }
-          return true;
-        }
-      }
-    }
+    tileKiln.interact(tileKiln, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
 
     return true;
   }

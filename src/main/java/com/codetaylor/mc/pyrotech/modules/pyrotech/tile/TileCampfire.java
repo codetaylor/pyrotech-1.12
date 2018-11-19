@@ -122,7 +122,7 @@ public class TileCampfire
             this.outputStackHandler
         }),
         new TileCampfire.InteractionShovel(),
-        new TileCampfire.InteractionFlintAndSteel(),
+        new InteractionUseFlintAndSteel(),
         new TileCampfire.InteractionLog()
     };
   }
@@ -628,42 +628,33 @@ public class TileCampfire
     }
   }
 
-  private class InteractionFlintAndSteel
-      extends InteractionBase<TileCampfire> {
+  private class InteractionUseFlintAndSteel
+      extends InteractionUseItemBase<TileCampfire> {
 
-    /* package */ InteractionFlintAndSteel() {
+    /* package */ InteractionUseFlintAndSteel() {
 
       super(EnumFacing.VALUES, InteractionBounds.INFINITE);
     }
 
     @Override
-    public boolean interact(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean isItemStackValid(ItemStack itemStack) {
 
-      ItemStack heldItem = player.getHeldItemMainhand();
+      return (itemStack.getItem() == Items.FLINT_AND_STEEL);
+    }
 
-      if (heldItem.getItem() == Items.FLINT_AND_STEEL) {
+    @Override
+    protected void doInteraction(TileCampfire tile, World world, BlockPos hitPos, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-        if (!world.isRemote) {
+      tile.setActive(true);
 
-          if (player.isCreative()) {
-            heldItem.damageItem(1, player);
-          }
-
-          tile.setActive(true);
-          world.playSound(
-              null,
-              hitPos,
-              SoundEvents.ITEM_FLINTANDSTEEL_USE,
-              SoundCategory.BLOCKS,
-              1.0F,
-              Util.RANDOM.nextFloat() * 0.4F + 0.8F
-          );
-        }
-
-        return true;
-      }
-
-      return false;
+      world.playSound(
+          null,
+          hitPos,
+          SoundEvents.ITEM_FLINTANDSTEEL_USE,
+          SoundCategory.BLOCKS,
+          1.0F,
+          Util.RANDOM.nextFloat() * 0.4F + 0.8F
+      );
     }
   }
 }

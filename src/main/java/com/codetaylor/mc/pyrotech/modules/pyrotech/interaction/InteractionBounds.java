@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
 public class InteractionBounds {
 
   public static final InteractionBounds INFINITE = new InteractionBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
+  public static final InteractionBounds BLOCK_FACE = new InteractionBounds(0, 0, 1, 1);
 
   private final double minX;
   private final double maxX;
