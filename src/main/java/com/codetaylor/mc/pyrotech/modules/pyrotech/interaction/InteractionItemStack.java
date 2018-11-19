@@ -1,67 +1,53 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
 
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class InteractionHandlerItemStack
-    implements IInteractionHandlerItemStack {
+public class InteractionItemStack<T extends TileEntity & ITileInteractable>
+    extends InteractionBase<T>
+    implements IInteractionItemStack<T> {
 
   protected final ItemStackHandler[] stackHandlers;
   protected final int slot;
-  protected final int sides;
-  protected final InteractionBounds bounds;
   protected final Transform transform;
+  protected final IInsertionIndexProvider<T> insertionIndexProvider;
 
-  public InteractionHandlerItemStack(
+  public InteractionItemStack(
       ItemStackHandler[] stackHandlers,
       int slot,
       EnumFacing[] sides,
       InteractionBounds bounds,
-      Transform transform
+      Transform transform,
+      IInsertionIndexProvider<T> insertionIndexProvider
   ) {
+
+    super(sides, bounds);
 
     this.stackHandlers = stackHandlers;
     this.slot = slot;
-    this.bounds = bounds;
     this.transform = transform;
-
-    int sidesEncoded = 0;
-
-    for (EnumFacing side : sides) {
-      sidesEncoded |= side.getIndex();
-    }
-
-    this.sides = sidesEncoded;
+    this.insertionIndexProvider = insertionIndexProvider;
   }
 
   @Override
-  public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack) {
+  public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack, float partialTicks) {
 
     return this.transform;
   }
 
-  /**
-   * Returns true if the given {@link ItemStack} is allowed to be inserted.
-   * <p>
-   * <p>
-   * This is used as a check before attempting to insert an item, therefore,
-   * this method should only be concerned with the type of item and not
-   * whether the item's quantity will fit into the slot.
-   * <p>
-   * <p>
-   * This method will be called every frame when a player is looking at an
-   * interaction handler and, as such, should be fast. Take care to cache and
-   * optimize accordingly.
-   *
-   * @param itemStack the {@link ItemStack} to insert
-   * @return true if the given {@link ItemStack} is allowed to be inserted
-   */
   @Override
   public boolean isItemStackValid(ItemStack itemStack) {
 
@@ -147,55 +133,76 @@ public class InteractionHandlerItemStack
   }
 
   @Override
-  public boolean canInteractWith(World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos pos, IBlockState blockState) {
+  public boolean interact(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    double hitX = hitVec.x - pos.getX();
-    double hitY = hitVec.y - pos.getY();
-    double hitZ = hitVec.z - pos.getZ();
+    EnumFacing tileFacing = tile.getTileFacing(world, hitPos, state);
+    BlockPos tilePos = tile.getPos();
+    IBlockState tileBlockState = world.getBlockState(tilePos);
 
-    double x = 0;
-    double y = 0;
-
-    // TODO: test this is right
-    switch (hitSide) {
-      case UP:
-        x = hitX;
-        y = hitZ;
-        break;
-      case DOWN:
-        x = 1.0 - hitX;
-        y = hitZ;
-        break;
-      case NORTH: // toward -Z
-        x = 1.0 - hitX;
-        y = hitY;
-        break;
-      case SOUTH: // toward +Z
-        x = hitX;
-        y = hitY;
-        break;
-      case EAST: // toward +X
-        x = hitZ;
-        y = hitY;
-        break;
-      case WEST: // toward -X
-        x = 1.0 - hitZ;
-        y = hitY;
-        break;
+    if (!this.canInteractWith(world, hitSide, hitPos, new Vec3d(hitX + tilePos.getX(), hitY + tilePos.getY(), hitZ + tilePos.getZ()), tilePos, tileBlockState, tileFacing)) {
+      return false;
     }
 
-    return this.canInteractWithActualSide(world, this.getActualSideHit(hitSide), x, y, pos, blockState);
+    ItemStack heldItemMainHand = player.getHeldItemMainhand();
+
+    if (heldItemMainHand.isEmpty()) {
+
+      // Remove item with empty hand
+
+      if (!this.isEmpty()) {
+
+        ItemStack result = this.extract(this.getStackInSlot().getCount(), world.isRemote);
+
+        if (!result.isEmpty()) {
+
+          if (!world.isRemote) {
+            StackHelper.addToInventoryOrSpawn(world, player, result, tilePos);
+          }
+
+          return true;
+        }
+      }
+
+    } else {
+
+      if (!this.isItemStackValid(heldItemMainHand)) {
+        return false;
+      }
+
+      if (this.isEmpty()) {
+
+        // Insert item
+
+        int insertIndex = this.insertionIndexProvider.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
+        ItemStack itemStack = new ItemStack(heldItemMainHand.getItem(), 1, heldItemMainHand.getMetadata());
+        ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, world.isRemote);
+
+        if (result.isEmpty()) {
+
+          if (!world.isRemote) {
+            heldItemMainHand.setCount(heldItemMainHand.getCount() - 1);
+          }
+
+          return true;
+        }
+
+      }
+    }
+
+    return false;
   }
 
-  protected EnumFacing getActualSideHit(EnumFacing sideHit) {
+  @Override
+  @SideOnly(Side.CLIENT)
+  public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
 
-    return sideHit;
+    InteractionRenderers.ITEM_STACK.renderSolidPass(this, world, renderItem, pos, blockState, partialTicks);
   }
 
-  protected boolean canInteractWithActualSide(World world, EnumFacing actualSide, double hitX, double hitY, BlockPos pos, IBlockState blockState) {
+  @Override
+  @SideOnly(Side.CLIENT)
+  public void renderAdditivePass(World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos pos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
-    return ((this.sides & actualSide.getIndex()) == actualSide.getIndex())
-        && this.bounds.contains(hitX, hitY);
+    InteractionRenderers.ITEM_STACK.renderAdditivePass(this, world, hitSide, hitPos, hitVec, pos, blockState, heldItemMainHand, partialTicks);
   }
-
 }

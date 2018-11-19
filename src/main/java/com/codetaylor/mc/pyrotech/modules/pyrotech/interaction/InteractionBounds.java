@@ -1,15 +1,15 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
 
 public class InteractionBounds {
 
-  public static final InteractionBounds INFINITE = new InteractionBounds(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+  public static final InteractionBounds INFINITE = new InteractionBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
 
   private final double minX;
   private final double maxX;
   private final double minY;
   private final double maxY;
 
-  public InteractionBounds(double minX, double maxX, double minY, double maxY) {
+  public InteractionBounds(double minX, double minY, double maxX, double maxY) {
 
     this.minX = minX;
     this.maxX = maxX;
