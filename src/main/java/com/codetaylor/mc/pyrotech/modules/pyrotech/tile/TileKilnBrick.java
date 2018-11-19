@@ -6,7 +6,10 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnBrick;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IInteraction;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionBounds;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
@@ -20,12 +23,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import org.lwjgl.util.vector.Quaternion;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -545,9 +546,6 @@ public class TileKilnBrick
   private class Interaction
       extends InteractionItemStack<TileKilnBrick> {
 
-    private ItemStack lastItemChecked;
-    private boolean lastItemValid;
-
     /* package */ Interaction() {
 
       super(
@@ -559,39 +557,22 @@ public class TileKilnBrick
           EnumFacing.VALUES,
           InteractionBounds.INFINITE,
           new Transform(
-              new Vec3d(0.5, 1.2, 0.5),
-              new Quaternion(),
-              new Vec3d(0.5, 0.5, 0.5)
-          ),
-          IInteractionItemStack.IInsertionIndexProvider.zero()
+              Transform.translate(0.5, 1.2, 0.5),
+              Transform.rotate(),
+              Transform.scale(0.5, 0.5, 0.5)
+          )
       );
     }
 
     @Override
-    public boolean isItemStackValid(ItemStack itemStack) {
+    protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      if (itemStack.isEmpty()) {
-        return false;
-      }
-
-      if (this.lastItemChecked == null
-          || this.lastItemChecked.getItem() != itemStack.getItem()
-          || this.lastItemChecked.getMetadata() != itemStack.getMetadata()) {
-
-        // Do a recipe check.
-        this.lastItemChecked = itemStack.copy();
-        this.lastItemValid = (KilnBrickRecipe.getRecipe(itemStack) != null);
-      }
-
-      return this.lastItemValid;
+      return (KilnBrickRecipe.getRecipe(itemStack) != null);
     }
   }
 
   private class InteractionFuel
       extends InteractionItemStack<TileKilnBrick> {
-
-    private ItemStack lastItemChecked;
-    private boolean lastItemValid;
 
     /* package */ InteractionFuel() {
 
@@ -603,33 +584,18 @@ public class TileKilnBrick
           EnumFacing.VALUES,
           InteractionBounds.INFINITE,
           new Transform(
-              new Vec3d(0.5, 0.2, 0.5),
-              new Quaternion(),
-              new Vec3d(0.5, 0.5, 0.5)
-          ),
-          IInteractionItemStack.IInsertionIndexProvider.zero()
+              Transform.translate(0.5, 0.2, 0.5),
+              Transform.rotate(),
+              Transform.scale(0.5, 0.5, 0.5)
+          )
       );
     }
 
     @Override
-    public boolean isItemStackValid(ItemStack itemStack) {
+    protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      if (itemStack.isEmpty()) {
-        return false;
-      }
-
-      if (this.lastItemChecked == null
-          || this.lastItemChecked.getItem() != itemStack.getItem()
-          || this.lastItemChecked.getMetadata() != itemStack.getMetadata()) {
-
-        // Do a recipe check.
-        this.lastItemChecked = itemStack.copy();
-        this.lastItemValid = StackHelper.isFuel(itemStack);
-      }
-
-      return this.lastItemValid;
+      return StackHelper.isFuel(itemStack);
     }
-
   }
 
 }

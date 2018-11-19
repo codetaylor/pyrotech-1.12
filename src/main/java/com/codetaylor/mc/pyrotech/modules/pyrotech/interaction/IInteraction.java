@@ -34,15 +34,17 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
   boolean canInteractWith(World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos tilePos, IBlockState tileBlockState, EnumFacing tileFacing);
 
   /**
-   * @param world
-   * @param hitPos
-   * @param state
-   * @param player
-   * @param hand
-   * @param hitSide
-   * @param hitX
-   * @param hitY
-   * @param hitZ
+   * Should be called from {@link net.minecraft.block.Block#onBlockActivated(World, BlockPos, IBlockState, EntityPlayer, EnumHand, EnumFacing, float, float, float)}.
+   *
+   * @param world   the world
+   * @param hitPos  the blockPos of the block hit
+   * @param state   the blockState of the block it
+   * @param player  the player
+   * @param hand    the player's hand used
+   * @param hitSide the side of the block hit
+   * @param hitX    the x position of the hit, relative to the hitPos
+   * @param hitY    the y position of the hit, relative to the hitPos
+   * @param hitZ    the z position of the hit, relative to the hitPos
    * @return true to prevent processing subsequent interactions
    */
   boolean interact(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);

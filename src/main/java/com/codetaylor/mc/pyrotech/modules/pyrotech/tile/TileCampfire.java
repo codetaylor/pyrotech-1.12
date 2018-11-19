@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.LIFOStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
@@ -27,12 +28,9 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.oredict.OreDictionary;
-import org.lwjgl.util.vector.Quaternion;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -491,43 +489,26 @@ public class TileCampfire
   private class InteractionFood
       extends InteractionItemStack<TileCampfire> {
 
-    private ItemStack lastItemChecked;
-    private boolean lastItemValid;
-
     /* package */ InteractionFood(ItemStackHandler[] stackHandlers) {
 
-      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE, new Transform(
-          new Vec3d(0.5, 0.5, 0.5),
-          new Quaternion(),
-          new Vec3d(0.75, 0.75, 0.75)
-      ), IInsertionIndexProvider.zero());
+      super(
+          stackHandlers,
+          0,
+          new EnumFacing[]{EnumFacing.UP},
+          InteractionBounds.INFINITE,
+          new Transform(
+              Transform.translate(0.5, 0.5, 0.5),
+              Transform.rotate(),
+              Transform.scale(0.75, 0.75, 0.75)
+          )
+      );
     }
 
     @Override
-    public boolean isItemStackValid(ItemStack itemStack) {
+    protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      if (TileCampfire.this.isDead()) {
-        return false;
-      }
-
-      if (itemStack.isEmpty()) {
-        return false;
-      }
-
-      if (this.lastItemChecked == null
-          || this.lastItemChecked.getItem() != itemStack.getItem()
-          || this.lastItemChecked.getMetadata() != itemStack.getMetadata()) {
-
-        if (!(itemStack.getItem() instanceof ItemFood)) {
-          return false;
-        }
-
-        // Do a recipe check.
-        this.lastItemChecked = itemStack.copy();
-        this.lastItemValid = !FurnaceRecipes.instance().getSmeltingResult(itemStack).isEmpty();
-      }
-
-      return this.lastItemValid;
+      return (itemStack.getItem() instanceof ItemFood)
+          && !FurnaceRecipes.instance().getSmeltingResult(itemStack).isEmpty();
     }
 
     @Override
@@ -541,7 +522,7 @@ public class TileCampfire
     }
   }
 
-  private static class InteractionLog
+  private class InteractionLog
       extends InteractionBase<TileCampfire> {
 
     /* package */ InteractionLog() {
@@ -557,7 +538,7 @@ public class TileCampfire
       if (heldItem.isEmpty()
           && player.isSneaking()) {
 
-        // If the player is sneaking, remove logs and damage the player.
+        // If the player is sneaking with an empty hand, remove logs and damage the player.
 
         ItemStack itemStack = tile.getFuelStackHandler().extractItem(0, 1, world.isRemote);
 
@@ -580,33 +561,35 @@ public class TileCampfire
           return true;
         }
 
-      } else if (!heldItem.isEmpty()) {
+      } else if (!heldItem.isEmpty()
+          && !player.isSneaking()) {
 
-        int logWood = OreDictionary.getOreID("logWood");
-        int[] oreIDs = OreDictionary.getOreIDs(heldItem);
+        // If the player is not sneaking with a full hand, attempt to add wood.
 
-        for (int oreID : oreIDs) {
+        if (OreDictHelper.contains("logWood", heldItem)) {
+          LIFOStackHandler fuelStackHandler = tile.getFuelStackHandler();
 
-          if (oreID == logWood) {
-            LIFOStackHandler fuelStackHandler = tile.getFuelStackHandler();
+          if (!world.isRemote) {
+            int firstEmptyIndex = fuelStackHandler.getFirstEmptyIndex();
 
-            if (!world.isRemote) {
-              int firstEmptyIndex = fuelStackHandler.getFirstEmptyIndex();
+            if (firstEmptyIndex > -1) {
 
-              if (firstEmptyIndex > -1) {
-
-                if (!player.isCreative()) {
-                  heldItem.setCount(heldItem.getCount() - 1);
-                }
-
-                fuelStackHandler.insertItem(0, new ItemStack(heldItem.getItem(), 1, heldItem.getMetadata()), false);
-                world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
-                BlockHelper.notifyBlockUpdate(world, hitPos);
+              if (!player.isCreative()) {
+                heldItem.setCount(heldItem.getCount() - 1);
               }
-            }
 
-            return true;
+              fuelStackHandler.insertItem(0, new ItemStack(heldItem.getItem(), 1, heldItem.getMetadata()), false);
+              world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
+
+              // TODO: remove?
+              // The fuel stack handler is set up to do a block notify when
+              // its contents change. We should test that removing this doesn't
+              // break anything.
+              BlockHelper.notifyBlockUpdate(world, hitPos);
+            }
           }
+
+          return true;
         }
       }
 
@@ -615,10 +598,10 @@ public class TileCampfire
 
   }
 
-  private static class InteractionShovel
+  private class InteractionShovel
       extends InteractionBase<TileCampfire> {
 
-    public InteractionShovel() {
+    /* package */ InteractionShovel() {
 
       super(EnumFacing.VALUES, InteractionBounds.INFINITE);
     }
@@ -645,10 +628,10 @@ public class TileCampfire
     }
   }
 
-  private static class InteractionFlintAndSteel
+  private class InteractionFlintAndSteel
       extends InteractionBase<TileCampfire> {
 
-    public InteractionFlintAndSteel() {
+    /* package */ InteractionFlintAndSteel() {
 
       super(EnumFacing.VALUES, InteractionBounds.INFINITE);
     }

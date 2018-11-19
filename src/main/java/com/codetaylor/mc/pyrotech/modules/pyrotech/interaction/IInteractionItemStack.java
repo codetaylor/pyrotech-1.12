@@ -2,29 +2,13 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public interface IInteractionItemStack<T extends TileEntity & ITileInteractable>
     extends IInteraction<T> {
-
-  interface IInsertionIndexProvider<T extends TileEntity & ITileInteractable> {
-
-    IInsertionIndexProvider ZERO = (tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ) -> 0;
-
-    static <T extends TileEntity & ITileInteractable> IInsertionIndexProvider<T> zero() {
-
-      //noinspection unchecked
-      return ZERO;
-    }
-
-    int getInsertionIndex(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
-  }
 
   /**
    * Returns true if the given {@link ItemStack} is allowed to be inserted.
@@ -43,17 +27,37 @@ public interface IInteractionItemStack<T extends TileEntity & ITileInteractable>
    * @param itemStack the {@link ItemStack} to insert
    * @return true if the given {@link ItemStack} is allowed to be inserted
    */
-  boolean isItemStackValid(ItemStack itemStack);
+  default boolean isItemStackValid(ItemStack itemStack) {
+
+    return true;
+  }
 
   /**
    * @return true if this interaction handler is empty
    */
   boolean isEmpty();
 
+  /**
+   * @return the stack in this interaction
+   */
   ItemStack getStackInSlot();
 
+  /**
+   * Extract the given amount from this interaction.
+   *
+   * @param amount   the amount to extract
+   * @param simulate true to only simulate the extraction
+   * @return a stack with the extracted items
+   */
   ItemStack extract(int amount, boolean simulate);
 
+  /**
+   * Insert the given stack into this interaction.
+   *
+   * @param itemStack the stack to insert
+   * @param simulate  true to only simulate the insertion
+   * @return a stack with the remaining items that weren't inserted, or an empty stack
+   */
   ItemStack insert(ItemStack itemStack, boolean simulate);
 
   /**

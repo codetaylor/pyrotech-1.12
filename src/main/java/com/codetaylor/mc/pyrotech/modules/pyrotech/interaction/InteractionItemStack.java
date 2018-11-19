@@ -23,15 +23,23 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   protected final ItemStackHandler[] stackHandlers;
   protected final int slot;
   protected final Transform transform;
-  protected final IInsertionIndexProvider<T> insertionIndexProvider;
+
+  /**
+   * Used to cache the last item checked for validation.
+   */
+  protected ItemStack lastItemChecked;
+
+  /**
+   * Used to cache if the last item checked was valid.
+   */
+  protected boolean lastItemValid;
 
   public InteractionItemStack(
       ItemStackHandler[] stackHandlers,
       int slot,
       EnumFacing[] sides,
       InteractionBounds bounds,
-      Transform transform,
-      IInsertionIndexProvider<T> insertionIndexProvider
+      Transform transform
   ) {
 
     super(sides, bounds);
@@ -39,19 +47,12 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
     this.stackHandlers = stackHandlers;
     this.slot = slot;
     this.transform = transform;
-    this.insertionIndexProvider = insertionIndexProvider;
   }
 
   @Override
   public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack, float partialTicks) {
 
     return this.transform;
-  }
-
-  @Override
-  public boolean isItemStackValid(ItemStack itemStack) {
-
-    return true;
   }
 
   /**
@@ -126,10 +127,46 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
     return itemStack;
   }
 
+  /**
+   * @return true if all stack handlers are empty
+   */
   @Override
   public boolean isEmpty() {
 
     return this.getStackInSlot().isEmpty();
+  }
+
+  @Override
+  public boolean isItemStackValid(ItemStack itemStack) {
+
+    if (itemStack.isEmpty()) {
+      return false;
+    }
+
+    if (this.lastItemChecked == null
+        || this.lastItemChecked.getItem() != itemStack.getItem()
+        || this.lastItemChecked.getMetadata() != itemStack.getMetadata()) {
+
+      // Run the potentially expensive check.
+      this.lastItemChecked = itemStack.copy();
+      this.lastItemValid = this.doItemStackValidation(itemStack);
+    }
+
+    return this.lastItemValid;
+  }
+
+  /**
+   * Actually do the itemStack validation here.
+   * <p>
+   * This method can contain potentially expensive code like a recipe check.
+   * The return value will be cached for the last item checked.
+   *
+   * @param itemStack the stack to perform validation on
+   * @return true if the item stack is allowed in this interaction
+   */
+  protected boolean doItemStackValidation(ItemStack itemStack) {
+
+    return true;
   }
 
   @Override
@@ -173,7 +210,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
 
         // Insert item
 
-        int insertIndex = this.insertionIndexProvider.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
+        int insertIndex = this.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
         ItemStack itemStack = new ItemStack(heldItemMainHand.getItem(), 1, heldItemMainHand.getMetadata());
         ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, world.isRemote);
 
@@ -190,6 +227,30 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
     }
 
     return false;
+  }
+
+  /**
+   * When a player interacts with a non-empty hand this method is called to
+   * determine which stack handler we try to insert into.
+   * <p>
+   * <p>
+   * Indices are into the {@link #stackHandlers} array.
+   *
+   * @param tile    the TE
+   * @param world   the world
+   * @param hitPos  the block position interacted with
+   * @param state   the blockState at the hitPos
+   * @param player  the player
+   * @param hand    the hand used to interact
+   * @param hitSide the side of the block hit
+   * @param hitX    the x position of the hit, relative to the hitPos
+   * @param hitY    the y position of the hit, relative to the hitPos
+   * @param hitZ    the z position of the hit, relative to the hitPos
+   * @return the stack handler index to insert into
+   */
+  protected int getInsertionIndex(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+    return 0;
   }
 
   @Override
