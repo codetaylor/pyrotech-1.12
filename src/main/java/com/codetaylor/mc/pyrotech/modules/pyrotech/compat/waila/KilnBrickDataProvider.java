@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila;
 
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import com.codetaylor.mc.pyrotech.library.util.Util;
@@ -136,9 +137,10 @@ public class KilnBrickDataProvider
         }
 
         if (tileKiln.getRemainingBurnTimeTicks() > 0) {
+          ItemStack fuelStack = tileKiln.getFuelStackHandler().getStackInSlot(0);
           tooltip.add(Util.translateFormatted(
               "gui." + ModulePyrotech.MOD_ID + ".waila.kiln.brick.heat",
-              StringHelper.ticksToHMS(tileKiln.getRemainingBurnTimeTicks())
+              StringHelper.ticksToHMS(tileKiln.getRemainingBurnTimeTicks() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
           ));
         }
       }
