@@ -2,9 +2,9 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.StringHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrick;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrickTop;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -95,7 +95,10 @@ public class KilnBrickDataProvider
 
         StringBuilder renderString = new StringBuilder();
         renderString.append(WailaUtil.getStackRenderString(input));
-        renderString.append(WailaUtil.getStackRenderString(fuel));
+
+        if (!fuel.isEmpty()) {
+          renderString.append(WailaUtil.getStackRenderString(fuel));
+        }
 
         KilnBrickRecipe recipe = KilnBrickRecipe.getRecipe(input);
 
@@ -129,18 +132,18 @@ public class KilnBrickDataProvider
       }
 
       {
+        if (tileKiln.getRemainingBurnTimeTicks() > 0) {
+          ItemStack fuelStack = tileKiln.getFuelStackHandler().getStackInSlot(0);
+          tooltip.add(Util.translateFormatted(
+              "gui." + ModulePyrotech.MOD_ID + ".waila.burn.time",
+              StringHelper.ticksToHMS(tileKiln.getRemainingBurnTimeTicks() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
+          ));
+        }
+
         if (!fuel.isEmpty()) {
           tooltip.add(Util.translateFormatted(
               "gui." + ModulePyrotech.MOD_ID + ".waila.kiln.brick.fuel",
               fuel.getItem().getItemStackDisplayName(fuel) + " * " + fuel.getCount()
-          ));
-        }
-
-        if (tileKiln.getRemainingBurnTimeTicks() > 0) {
-          ItemStack fuelStack = tileKiln.getFuelStackHandler().getStackInSlot(0);
-          tooltip.add(Util.translateFormatted(
-              "gui." + ModulePyrotech.MOD_ID + ".waila.kiln.brick.heat",
-              StringHelper.ticksToHMS(tileKiln.getRemainingBurnTimeTicks() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
           ));
         }
       }

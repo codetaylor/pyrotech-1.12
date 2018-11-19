@@ -84,21 +84,14 @@ tile.pyrotech.rock_grass.name=Grass Clump
 gui.pyrotech.waila.tank.fluid=Liquid: %s
 gui.pyrotech.waila.tank.amount=Amount: %d of %d mb
 
-gui.pyrotech.waila.kiln.pit.ready=Ready
-gui.pyrotech.waila.kiln.pit.active=Firing: %s
-gui.pyrotech.waila.kiln.pit.finished=Finished
-
 gui.pyrotech.waila.kiln.brick.fuel=Fuel: %s
-gui.pyrotech.waila.kiln.brick.heat=Burn Time: %s
 
 gui.pyrotech.waila.campfire.fuel=Logs: %d of %d
-gui.pyrotech.waila.campfire.heat=Time: %s
 gui.pyrotech.waila.campfire.ash=Ash: %d of %d
 
 gui.pyrotech.waila.drying_rack.speed=Speed: %s
 
-gui.pyrotech.waila.empty=Empty
-gui.pyrotech.waila.result=Result:
+gui.pyrotech.waila.burn.time=Burn Time: %s
 
 # --- JEI plugin
 

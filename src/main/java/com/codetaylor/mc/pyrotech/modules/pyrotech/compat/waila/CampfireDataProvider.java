@@ -111,7 +111,7 @@ public class CampfireDataProvider
         if (tileCampfire.isActive()
             && tileCampfire.getRemainingBurnTimeTicks() > 0) {
           tooltip.add(Util.translateFormatted(
-              "gui." + ModulePyrotech.MOD_ID + ".waila.campfire.heat",
+              "gui." + ModulePyrotech.MOD_ID + ".waila.burn.time",
               StringHelper.ticksToHMS(tileCampfire.getRemainingBurnTimeTicks() + tileCampfire.getFuelRemaining() * ModulePyrotechConfig.CAMPFIRE.BURN_TIME_TICKS_PER_LOG)
           ));
         }

@@ -1,22 +1,31 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.OreDictHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnPit;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.library.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
@@ -25,10 +34,13 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
+import static com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnPit.VARIANT;
+
 public class TileKilnPit
     extends TileBurnableBase
     implements ITickable,
-    IProgressProvider {
+    IProgressProvider,
+    ITileInteractable {
 
   private static final int DEFAULT_TOTAL_BURN_TIME_TICKS = 1000;
 
@@ -39,7 +51,7 @@ public class TileKilnPit
   private boolean active;
 
   // transient
-  private EntityItem entityItem;
+  private IInteraction[] interactions;
   private int ticksSinceLastClientSync;
 
   public TileKilnPit() {
@@ -49,13 +61,27 @@ public class TileKilnPit
       @Override
       protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
 
+        // TODO: Config Option
         return 8;
       }
 
       @Override
       protected void onContentsChanged(int slot) {
 
-        TileKilnPit.this.entityItem = null;
+        ItemStack itemStack = this.getStackInSlot(slot);
+
+        if (!itemStack.isEmpty()) {
+          KilnPitRecipe recipe = KilnPitRecipe.getRecipe(itemStack);
+
+          if (recipe != null) {
+            float modifier = (float) (1.0f - TileKilnPit.this.countAdjacentRefractoryBlocks() * ModulePyrotechConfig.PIT_KILN.REFRACTORY_BLOCK_TIME_BONUS);
+            int modifiedBurnTime = (int) (recipe.getTimeTicks() * modifier);
+            int burnTimeTicks = Math.max(1, modifiedBurnTime);
+            TileKilnPit.this.setTotalBurnTimeTicks(burnTimeTicks);
+          }
+        }
+        BlockHelper.notifyBlockUpdate(TileKilnPit.this.world, TileKilnPit.this.pos);
+        TileKilnPit.this.markDirty();
       }
     };
 
@@ -66,6 +92,7 @@ public class TileKilnPit
       @Override
       protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
 
+        // TODO: Config Option
         return 3;
       }
     };
@@ -74,6 +101,12 @@ public class TileKilnPit
 
     this.setNeedStructureValidation();
     this.reset();
+
+    this.interactions = new IInteraction[]{
+        new InteractionThatch(),
+        new InteractionLog(this.logStackHandler),
+        new Interaction(new ItemStackHandler[]{this.stackHandler, this.outputStackHandler})
+    };
   }
 
   public ItemStackHandler getLogStackHandler() {
@@ -94,23 +127,14 @@ public class TileKilnPit
   public void setActive(boolean active) {
 
     this.active = active;
+    this.markDirty();
   }
 
   public void setTotalBurnTimeTicks(int totalBurnTimeTicks) {
 
     this.totalBurnTimeTicks = totalBurnTimeTicks;
     this.reset();
-  }
-
-  public EntityItem getEntityItem() {
-
-    if (this.entityItem == null) {
-      ItemStack stackInSlot = this.stackHandler.getStackInSlot(0);
-      this.entityItem = new EntityItem(this.world);
-      this.entityItem.setItem(stackInSlot);
-    }
-
-    return this.entityItem;
+    this.markDirty();
   }
 
   @Override
@@ -147,7 +171,7 @@ public class TileKilnPit
     if (this.world.isRainingAt(this.pos)) {
       // set back to wood state and douse fire
       IBlockState blockState = ModuleBlocks.KILN_PIT.getDefaultState()
-          .withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.WOOD);
+          .withProperty(VARIANT, BlockKilnPit.EnumType.WOOD);
       this.world.setBlockState(this.pos, blockState);
 
       BlockPos up = this.pos.up();
@@ -214,11 +238,12 @@ public class TileKilnPit
       ItemStack output = recipe.getOutput();
       output.setCount(input.getCount());
       this.stackHandler.setStackInSlot(0, ItemStack.EMPTY);
+      this.markDirty();
     }
 
     this.setActive(false);
     IBlockState blockState = ModuleBlocks.KILN_PIT.getDefaultState()
-        .withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.COMPLETE);
+        .withProperty(VARIANT, BlockKilnPit.EnumType.COMPLETE);
     this.world.setBlockState(this.pos, blockState);
     this.world.setBlockToAir(this.pos.up());
   }
@@ -233,8 +258,8 @@ public class TileKilnPit
 
     IBlockState selfBlockState = this.world.getBlockState(this.pos);
 
-    if (selfBlockState.getValue(BlockKilnPit.VARIANT) != BlockKilnPit.EnumType.WOOD
-        && selfBlockState.getValue(BlockKilnPit.VARIANT) != BlockKilnPit.EnumType.ACTIVE) {
+    if (selfBlockState.getValue(VARIANT) != BlockKilnPit.EnumType.WOOD
+        && selfBlockState.getValue(VARIANT) != BlockKilnPit.EnumType.ACTIVE) {
       return false;
     }
 
@@ -317,7 +342,7 @@ public class TileKilnPit
 
     this.setActive(false);
     IBlockState blockState = ModuleBlocks.KILN_PIT.getDefaultState()
-        .withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.COMPLETE);
+        .withProperty(VARIANT, BlockKilnPit.EnumType.COMPLETE);
     this.world.setBlockState(this.pos, blockState);
     this.world.setBlockToAir(this.pos.up());
   }
@@ -430,5 +455,154 @@ public class TileKilnPit
   public void onDataPacket(NetworkManager networkManager, SPacketUpdateTileEntity packet) {
 
     this.readFromNBT(packet.getNbtCompound());
+  }
+
+  @Override
+  public boolean shouldRenderInPass(int pass) {
+
+    return (pass == 0) || (pass == 1);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Interaction
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public IInteraction[] getInteractions() {
+
+    return this.interactions;
+  }
+
+  private class InteractionThatch
+      extends InteractionUseItemBase<TileKilnPit> {
+
+    /* package */ InteractionThatch() {
+
+      super(new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE);
+    }
+
+    @Override
+    protected boolean doInteraction(TileKilnPit tile, World world, BlockPos hitPos, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      /*if (tile.getStackHandler().getStackInSlot(0).isEmpty()) {
+        return;
+      }*/
+
+      if (world.getBlockState(hitPos).getValue(VARIANT) != BlockKilnPit.EnumType.EMPTY) {
+        return false;
+      }
+
+      // If the item in the player's hand is thatch, change the state of the
+      // kiln to thatch.
+
+      if (!world.isRemote) {
+        ItemStack heldItem = player.getHeldItemMainhand();
+        heldItem.setCount(heldItem.getCount() - 1);
+        world.setBlockState(hitPos, ModuleBlocks.KILN_PIT.getDefaultState()
+            .withProperty(VARIANT, BlockKilnPit.EnumType.THATCH));
+        world.playSound(null, hitPos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1, 1);
+      }
+
+      return true;
+    }
+
+    @Override
+    protected boolean isItemStackValid(ItemStack itemStack) {
+
+      return (itemStack.getItem() == Item.getItemFromBlock(ModuleBlocks.THATCH));
+    }
+
+    @Override
+    protected int getItemDamage(ItemStack itemStack) {
+
+      return 0;
+    }
+  }
+
+  private class InteractionLog
+      extends InteractionBase<TileKilnPit> {
+
+    private final ItemStackHandler logStackHandler;
+
+    /* package */ InteractionLog(ItemStackHandler logStackHandler) {
+
+      super(new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE);
+      this.logStackHandler = logStackHandler;
+    }
+
+    @Override
+    public boolean interact(TileKilnPit tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      if (world.getBlockState(hitPos).getValue(VARIANT) != BlockKilnPit.EnumType.THATCH) {
+        return false;
+      }
+
+      // If the player is holding enough ore:logWood, place the wood and set the
+      // kiln state to wood.
+
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      if (heldItem.getCount() < 3) {
+        return false;
+      }
+
+      if (OreDictHelper.contains("logWood", heldItem)) {
+
+        if (!world.isRemote) {
+          heldItem.setCount(heldItem.getCount() - 3);
+          this.logStackHandler
+              .insertItem(0, new ItemStack(heldItem.getItem(), 3, heldItem.getMetadata()), false);
+          world.setBlockState(pos, ModuleBlocks.KILN_PIT.getDefaultState()
+              .withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.WOOD));
+          world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
+          BlockHelper.notifyBlockUpdate(world, pos);
+        }
+
+        return true;
+      }
+
+      return false;
+    }
+  }
+
+  private class Interaction
+      extends InteractionItemStack<TileKilnPit> {
+
+    public Interaction(ItemStackHandler[] stackHandlers) {
+
+      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE, new Transform(
+          Transform.translate(0.5, 0.4, 0.5),
+          Transform.rotate(),
+          Transform.scale(0.5, 0.5, 0.5)
+      ));
+    }
+
+    @Override
+    protected boolean doItemStackValidation(ItemStack itemStack) {
+
+      return (KilnPitRecipe.getRecipe(itemStack) != null);
+    }
+
+    @Override
+    protected boolean doExtract(World world, EntityPlayer player, BlockPos tilePos) {
+
+      // Extract all slots in the output stack handler.
+
+      if (!world.isRemote) {
+        ItemStackHandler outputStackHandler = this.stackHandlers[1];
+
+        int slots = outputStackHandler.getSlots();
+
+        for (int i = 1; i < slots; i++) {
+          ItemStack extractItem = outputStackHandler.extractItem(i, outputStackHandler.getStackInSlot(i).getCount(), false);
+
+          if (!extractItem.isEmpty()) {
+            StackHelper.addToInventoryOrSpawn(world, player, extractItem, tilePos);
+          }
+        }
+      }
+
+      return super.doExtract(world, player, tilePos);
+    }
   }
 }

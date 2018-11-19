@@ -2,11 +2,9 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnPit;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -17,11 +15,12 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -29,7 +28,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -227,6 +225,12 @@ public class BlockKilnPit
       float hitZ
   ) {
 
+    ItemStack heldItem = player.getHeldItemMainhand();
+
+    if (heldItem.getItem() instanceof ItemIgniterBase) {
+      return false;
+    }
+
     TileEntity tileEntity = world.getTileEntity(pos);
 
     if (!(tileEntity instanceof TileKilnPit)) {
@@ -234,101 +238,17 @@ public class BlockKilnPit
     }
 
     TileKilnPit tileKiln = (TileKilnPit) tileEntity;
-    ItemStack heldItem = player.getHeldItem(hand);
 
-    switch (state.getValue(VARIANT)) {
+    tileKiln.interact(tileKiln, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
 
-      case EMPTY:
-
-        if (heldItem.getItem() == Item.getItemFromBlock(ModuleBlocks.THATCH)) {
-
-          if (tileKiln.getStackHandler().getStackInSlot(0).isEmpty()) {
-            return false;
-          }
-
-          if (world.isRemote) {
-            return true;
-          }
-
-          // If the item in the player's hand is thatch, change the state of the
-          // kiln to thatch.
-          heldItem.setCount(heldItem.getCount() - 1);
-          world.setBlockState(pos, this.getDefaultState().withProperty(VARIANT, EnumType.THATCH));
-          world.playSound(null, pos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1, 1);
-          return true;
-
-        } else {
-
-          if (world.isRemote) {
-            return true;
-          }
-
-          KilnPitRecipe recipe = KilnPitRecipe.getRecipe(heldItem);
-
-          if (recipe != null) {
-
-            // If the item in the player's hand is valid input for a kiln recipe,
-            // calculate the burn time and place the item into the kiln. The burn
-            // time is reduced for each adjacent refractory block.
-
-            float modifier = (float) (1.0f - tileKiln.countAdjacentRefractoryBlocks() * ModulePyrotechConfig.PIT_KILN.REFRACTORY_BLOCK_TIME_BONUS);
-            int modifiedBurnTime = (int) (recipe.getTimeTicks() * modifier);
-            int burnTimeTicks = Math.max(1, modifiedBurnTime);
-
-            ItemStackHandler stackHandler = tileKiln.getStackHandler();
-            tileKiln.setTotalBurnTimeTicks(burnTimeTicks);
-            player.setHeldItem(hand, stackHandler.insertItem(0, heldItem, false));
-            world.notifyBlockUpdate(pos, state, state, 2);
-            return true;
-          }
-
-          // Pop all the kiln contents into the world.
-          // This will happen when the block is destroyed.
-
-          world.destroyBlock(pos, true);
-          return true;
-        }
-
-      case THATCH:
-
-        // If the player is holding enough ore:logWood, place the wood and set the
-        // kiln state to wood.
-
-        if (heldItem.getCount() < 3) {
-          return false;
-        }
-
-        int logWood = OreDictionary.getOreID("logWood");
-        int[] oreIDs = OreDictionary.getOreIDs(heldItem);
-
-        for (int oreID : oreIDs) {
-
-          if (oreID == logWood) {
-
-            if (world.isRemote) {
-              return true;
-            }
-
-            heldItem.setCount(heldItem.getCount() - 3);
-            tileKiln.getLogStackHandler()
-                .insertItem(0, new ItemStack(heldItem.getItem(), 3, heldItem.getMetadata()), false);
-            world.setBlockState(pos, this.getDefaultState().withProperty(VARIANT, EnumType.WOOD));
-            world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
-            BlockHelper.notifyBlockUpdate(world, pos);
-            return true;
-          }
-        }
-
-      default:
-        return false;
-    }
+    return true;
   }
 
   @Nonnull
   @SideOnly(Side.CLIENT)
   public BlockRenderLayer getBlockLayer() {
 
-    return BlockRenderLayer.CUTOUT_MIPPED;
+    return BlockRenderLayer.SOLID;
   }
 
   @Override

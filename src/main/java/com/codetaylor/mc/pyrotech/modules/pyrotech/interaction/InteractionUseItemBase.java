@@ -34,11 +34,9 @@ public abstract class InteractionUseItemBase<T extends TileEntity & ITileInterac
           && !player.isCreative()) {
         heldItem.damageItem(itemDamage, player);
       }
-
-      this.doInteraction(tile, world, hitPos, player, hand, hitSide, hitX, hitY, hitZ);
     }
 
-    return true;
+    return this.doInteraction(tile, world, hitPos, player, hand, hitSide, hitX, hitY, hitZ);
   }
 
   protected int getItemDamage(ItemStack itemStack) {
@@ -46,7 +44,7 @@ public abstract class InteractionUseItemBase<T extends TileEntity & ITileInterac
     return 1;
   }
 
-  protected abstract void doInteraction(T tile, World world, BlockPos hitPos, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
+  protected abstract boolean doInteraction(T tile, World world, BlockPos hitPos, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
 
   protected abstract boolean isItemStackValid(ItemStack itemStack);
 

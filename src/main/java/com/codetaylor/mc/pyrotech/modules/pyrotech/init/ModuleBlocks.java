@@ -4,7 +4,6 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.TESRInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRKilnPit;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
 import net.minecraft.block.BlockDoor;
@@ -129,8 +128,9 @@ public class ModuleBlocks {
       );
 
       // TESRs
-      ClientRegistry.bindTileEntitySpecialRenderer(TileKilnPit.class, new TESRKilnPit());
       ClientRegistry.bindTileEntitySpecialRenderer(TileTarCollector.class, new TESRTarCollector());
+
+      ClientRegistry.bindTileEntitySpecialRenderer(TileKilnPit.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnBrick.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCampfire.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRInteractable<>());

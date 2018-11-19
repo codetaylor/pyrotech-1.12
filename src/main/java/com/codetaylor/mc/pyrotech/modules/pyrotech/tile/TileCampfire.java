@@ -643,18 +643,22 @@ public class TileCampfire
     }
 
     @Override
-    protected void doInteraction(TileCampfire tile, World world, BlockPos hitPos, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean doInteraction(TileCampfire tile, World world, BlockPos hitPos, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      tile.setActive(true);
+      if (!world.isRemote) {
+        tile.setActive(true);
 
-      world.playSound(
-          null,
-          hitPos,
-          SoundEvents.ITEM_FLINTANDSTEEL_USE,
-          SoundCategory.BLOCKS,
-          1.0F,
-          Util.RANDOM.nextFloat() * 0.4F + 0.8F
-      );
+        world.playSound(
+            null,
+            hitPos,
+            SoundEvents.ITEM_FLINTANDSTEEL_USE,
+            SoundCategory.BLOCKS,
+            1.0F,
+            Util.RANDOM.nextFloat() * 0.4F + 0.8F
+        );
+      }
+
+      return true;
     }
   }
 }
