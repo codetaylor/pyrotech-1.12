@@ -2,9 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackCrudeRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackCrude;
@@ -28,7 +26,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -69,123 +66,14 @@ public class BlockDryingRack
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    if (state.getValue(VARIANT) == EnumType.NORMAL
-        && facing != EnumFacing.UP) {
-      return false;
-    }
-
-    int index = 0;
-
-    if (state.getValue(VARIANT) == EnumType.NORMAL) {
-      int x = (hitX < 0.5) ? 0 : 1;
-      int y = (hitZ < 0.5) ? 0 : 1;
-      index = x | (y << 1);
-    }
-
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileDryingRackBase) {
-
-      TileDryingRackBase dryingRack = (TileDryingRackBase) tileEntity;
-      ItemStackHandler stackHandler = dryingRack.getStackHandler();
-      ItemStackHandler outputStackHandler = dryingRack.getOutputStackHandler();
-      ItemStack heldItemMainhand = player.getHeldItemMainhand();
-
-      if (heldItemMainhand.isEmpty()) {
-
-        // Remove input
-
-        if (!stackHandler.getStackInSlot(index).isEmpty()) {
-
-          ItemStack result = stackHandler.extractItem(index, 64, world.isRemote);
-
-          if (!result.isEmpty()) {
-
-            if (!world.isRemote) {
-              StackHelper.addToInventoryOrSpawn(world, player, result, pos);
-            }
-
-            return true;
-          }
-        }
-
-        // Remove output
-
-        if (!outputStackHandler.getStackInSlot(index).isEmpty()) {
-
-          ItemStack result = outputStackHandler.extractItem(index, 64, world.isRemote);
-
-          if (!result.isEmpty()) {
-
-            if (!world.isRemote) {
-              StackHelper.addToInventoryOrSpawn(world, player, result, pos);
-            }
-
-            return true;
-          }
-        }
-
-      } else {
-
-        if (stackHandler.getStackInSlot(index).isEmpty()
-            && outputStackHandler.getStackInSlot(index).isEmpty()) {
-
-          // Insert item
-
-          ItemStack itemStack = new ItemStack(heldItemMainhand.getItem(), 1, heldItemMainhand.getMetadata());
-
-          boolean hasRecipe = this.hasRecipe(state, itemStack);
-
-          if (hasRecipe) {
-
-            // The item doesn't have a recipe, place it in the output slot.
-
-            ItemStack result = outputStackHandler.insertItem(index, itemStack, world.isRemote);
-
-            if (result.isEmpty()) {
-
-              if (!world.isRemote) {
-                heldItemMainhand.setCount(heldItemMainhand.getCount() - 1);
-              }
-
-              return true;
-            }
-
-          } else {
-
-            // The item has a recipe, place it in the input slot.
-
-            ItemStack result = stackHandler.insertItem(index, itemStack, world.isRemote);
-
-            if (result.isEmpty()) {
-
-              if (!world.isRemote) {
-                heldItemMainhand.setCount(heldItemMainhand.getCount() - 1);
-              }
-
-              return true;
-            }
-          }
-        }
-      }
-
+    if (tileEntity instanceof ITileInteractable) {
+      ITileInteractable interactable = (ITileInteractable) tileEntity;
+      interactable.interact(interactable.asTileInteractable(), world, pos, state, player, hand, facing, hitX, hitY, hitZ);
     }
 
     return true;
-  }
-
-  private boolean hasRecipe(IBlockState state, ItemStack itemStack) {
-
-    Object recipe = null;
-
-    if (state.getValue(VARIANT) == EnumType.CRUDE) {
-      recipe = DryingRackCrudeRecipe.getRecipe(itemStack);
-
-    } else if (state.getValue(VARIANT) == EnumType.NORMAL) {
-      recipe = DryingRackRecipe.getRecipe(itemStack);
-    }
-
-    return (recipe == null);
   }
 
   @Override

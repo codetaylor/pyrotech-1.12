@@ -3,16 +3,21 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 import com.codetaylor.mc.athenaeum.inventory.LIFOStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -20,13 +25,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.oredict.OreDictionary;
 import org.lwjgl.util.vector.Quaternion;
 
 import javax.annotation.Nonnull;
@@ -54,7 +59,7 @@ public class TileCampfire
   private int ticksSinceLastClientSync;
   private int rainTimeRemaining;
 
-  private InteractionHandler_ItemStack_SingleTransform[] interactionHandlers;
+  private IInteraction[] interactions;
 
   public TileCampfire() {
 
@@ -113,13 +118,14 @@ public class TileCampfire
     this.cookTimeTotal = -1;
     this.rainTimeRemaining = ModulePyrotechConfig.CAMPFIRE.TICKS_BEFORE_EXTINGUISHED;
 
-    this.interactionHandlers = new InteractionHandler_ItemStack_SingleTransform[]{
-        new TileCampfire.InteractionHandler(
-            new ItemStackHandler[]{
-                this.stackHandler,
-                this.outputStackHandler
-            }
-        )
+    this.interactions = new IInteraction[]{
+        new TileCampfire.InteractionFood(new ItemStackHandler[]{
+            this.stackHandler,
+            this.outputStackHandler
+        }),
+        new TileCampfire.InteractionShovel(),
+        new TileCampfire.InteractionFlintAndSteel(),
+        new TileCampfire.InteractionLog()
     };
   }
 
@@ -472,29 +478,37 @@ public class TileCampfire
     return (pass == 0) || (pass == 1);
   }
 
-  @Override
-  public InteractionHandler_ItemStack_SingleTransform[] getInteractionHandlers() {
+  // ---------------------------------------------------------------------------
+  // - Interaction
+  // ---------------------------------------------------------------------------
 
-    return this.interactionHandlers;
+  @Override
+  public IInteraction[] getInteractions() {
+
+    return this.interactions;
   }
 
-  public static class InteractionHandler
-      extends InteractionHandler_ItemStack_SingleTransform {
+  private class InteractionFood
+      extends InteractionItemStack<TileCampfire> {
 
     private ItemStack lastItemChecked;
     private boolean lastItemValid;
 
-    public InteractionHandler(ItemStackHandler[] stackHandlers) {
+    /* package */ InteractionFood(ItemStackHandler[] stackHandlers) {
 
       super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE, new Transform(
           new Vec3d(0.5, 0.5, 0.5),
           new Quaternion(),
           new Vec3d(0.75, 0.75, 0.75)
-      ));
+      ), IInsertionIndexProvider.zero());
     }
 
     @Override
     public boolean isItemStackValid(ItemStack itemStack) {
+
+      if (TileCampfire.this.isDead()) {
+        return false;
+      }
 
       if (itemStack.isEmpty()) {
         return false;
@@ -514,6 +528,159 @@ public class TileCampfire
       }
 
       return this.lastItemValid;
+    }
+
+    @Override
+    public boolean interact(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      if (player.isSneaking()) {
+        return false;
+      }
+
+      return super.interact(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
+    }
+  }
+
+  private static class InteractionLog
+      extends InteractionBase<TileCampfire> {
+
+    /* package */ InteractionLog() {
+
+      super(EnumFacing.VALUES, InteractionBounds.INFINITE);
+    }
+
+    @Override
+    public boolean interact(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      if (heldItem.isEmpty()
+          && player.isSneaking()) {
+
+        // If the player is sneaking, remove logs and damage the player.
+
+        ItemStack itemStack = tile.getFuelStackHandler().extractItem(0, 1, world.isRemote);
+
+        if (!itemStack.isEmpty()) {
+
+          if (!world.isRemote) {
+
+            if (Math.random() < ModulePyrotechConfig.CAMPFIRE.PLAYER_BURN_CHANCE) {
+
+              if (!player.isImmuneToFire()
+                  && !EnchantmentHelper.hasFrostWalkerEnchantment(player)
+                  && ModuleBlocks.CAMPFIRE.getActualState(state, world, hitPos).getValue(BlockCampfire.VARIANT) == BlockCampfire.EnumType.LIT) {
+                player.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.CAMPFIRE.PLAYER_BURN_DAMAGE);
+              }
+            }
+
+            StackHelper.addToInventoryOrSpawn(world, player, itemStack, hitPos, -0.125);
+          }
+
+          return true;
+        }
+
+      } else if (!heldItem.isEmpty()) {
+
+        int logWood = OreDictionary.getOreID("logWood");
+        int[] oreIDs = OreDictionary.getOreIDs(heldItem);
+
+        for (int oreID : oreIDs) {
+
+          if (oreID == logWood) {
+            LIFOStackHandler fuelStackHandler = tile.getFuelStackHandler();
+
+            if (!world.isRemote) {
+              int firstEmptyIndex = fuelStackHandler.getFirstEmptyIndex();
+
+              if (firstEmptyIndex > -1) {
+
+                if (!player.isCreative()) {
+                  heldItem.setCount(heldItem.getCount() - 1);
+                }
+
+                fuelStackHandler.insertItem(0, new ItemStack(heldItem.getItem(), 1, heldItem.getMetadata()), false);
+                world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
+                BlockHelper.notifyBlockUpdate(world, hitPos);
+              }
+            }
+
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+
+  }
+
+  private static class InteractionShovel
+      extends InteractionBase<TileCampfire> {
+
+    public InteractionShovel() {
+
+      super(EnumFacing.VALUES, InteractionBounds.INFINITE);
+    }
+
+    @Override
+    public boolean interact(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      if (tile.getAshLevel() > 0
+          && heldItem.getItem().getToolClasses(heldItem).contains("shovel")) {
+
+        if (!world.isRemote) {
+          tile.setAshLevel(tile.getAshLevel() - 1);
+          StackHelper.spawnStackOnTop(world, ItemMaterial.EnumType.PIT_ASH.asStack(), hitPos);
+          heldItem.damageItem(1, player);
+          world.playSound(null, hitPos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
+        }
+
+        return true;
+      }
+
+      return false;
+    }
+  }
+
+  private static class InteractionFlintAndSteel
+      extends InteractionBase<TileCampfire> {
+
+    public InteractionFlintAndSteel() {
+
+      super(EnumFacing.VALUES, InteractionBounds.INFINITE);
+    }
+
+    @Override
+    public boolean interact(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      if (heldItem.getItem() == Items.FLINT_AND_STEEL) {
+
+        if (!world.isRemote) {
+
+          if (player.isCreative()) {
+            heldItem.damageItem(1, player);
+          }
+
+          tile.setActive(true);
+          world.playSound(
+              null,
+              hitPos,
+              SoundEvents.ITEM_FLINTANDSTEEL_USE,
+              SoundCategory.BLOCKS,
+              1.0F,
+              Util.RANDOM.nextFloat() * 0.4F + 0.8F
+          );
+        }
+
+        return true;
+      }
+
+      return false;
     }
   }
 }

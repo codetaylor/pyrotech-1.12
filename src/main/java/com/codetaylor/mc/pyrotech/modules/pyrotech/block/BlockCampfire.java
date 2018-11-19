@@ -1,12 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
-import com.codetaylor.mc.athenaeum.inventory.LIFOStackHandler;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -21,19 +16,14 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -178,179 +168,16 @@ public class BlockCampfire
       return false;
     }
 
-    ItemStack heldItem = player.getHeldItem(EnumHand.MAIN_HAND);
+    ItemStack heldItem = player.getHeldItemMainhand();
 
-    if (heldItem.isEmpty()) {
-      return this.handleInteraction_EmptyHand(world, pos, player, campfire);
-
-    } else if (heldItem.getItem().getToolClasses(heldItem).contains("shovel")) {
-      return this.handleInteraction_Shovel(world, pos, campfire, heldItem, player);
-
-    } else if (heldItem.getItem() == Items.FLINT_AND_STEEL) {
-      return this.handleInteraction_FlintAndSteel(world, pos, player, campfire, heldItem);
-
-    } else if (heldItem.getItem() instanceof ItemFood) {
-      return this.handleInteraction_Food(world, campfire, heldItem, player);
-
-    } else {
-      return this.handleInteraction_Wood(world, pos, campfire, heldItem, player);
-    }
-  }
-
-  private boolean handleInteraction_Shovel(World world, BlockPos pos, TileCampfire campfire, ItemStack heldItem, EntityPlayer player) {
-
-    if (!world.isRemote) {
-
-      if (campfire.getAshLevel() > 0) {
-        campfire.setAshLevel(campfire.getAshLevel() - 1);
-        StackHelper.spawnStackOnTop(world, ItemMaterial.EnumType.PIT_ASH.asStack(), pos);
-        heldItem.damageItem(1, player);
-        world.playSound(null, pos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
-      }
-    }
-
-    return true;
-  }
-
-  private boolean handleInteraction_Wood(World world, BlockPos pos, TileCampfire campfire, ItemStack heldItem, EntityPlayer player) {
-
-    int logWood = OreDictionary.getOreID("logWood");
-    int[] oreIDs = OreDictionary.getOreIDs(heldItem);
-
-    for (int oreID : oreIDs) {
-
-      if (oreID == logWood) {
-        LIFOStackHandler fuelStackHandler = campfire.getFuelStackHandler();
-
-        if (!world.isRemote) {
-          int firstEmptyIndex = fuelStackHandler.getFirstEmptyIndex();
-
-          if (firstEmptyIndex > -1) {
-
-            if (!player.isCreative()) {
-              heldItem.setCount(heldItem.getCount() - 1);
-            }
-
-            fuelStackHandler.insertItem(0, new ItemStack(heldItem.getItem(), 1, heldItem.getMetadata()), false);
-            world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
-            BlockHelper.notifyBlockUpdate(world, pos);
-          }
-        }
-
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  private boolean handleInteraction_Food(World world, TileCampfire campfire, ItemStack heldItem, EntityPlayer player) {
-
-    ItemStack recipeResult = FurnaceRecipes.instance().getSmeltingResult(heldItem);
-
-    if (recipeResult.isEmpty()) {
+    if (heldItem.getItem() == ModuleItems.BOW_DRILL
+        || heldItem.getItem() == ModuleItems.FLINT_AND_TINDER) {
       return false;
     }
 
-    ItemStack output = campfire.getOutputStackHandler().getStackInSlot(0);
+    campfire.interact(campfire, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
 
-    if (!output.isEmpty()) {
-      // Only allow input if the output has been removed.
-      return false;
-    }
-
-    ItemStackHandler inputHandler = campfire.getStackHandler();
-    ItemStack result = inputHandler.insertItem(0, new ItemStack(heldItem.getItem(), 1, heldItem.getMetadata()), world.isRemote);
-
-    if (result.isEmpty()) {
-
-      if (!world.isRemote
-          && !player.isCreative()) {
-        heldItem.setCount(heldItem.getCount() - 1);
-      }
-
-      return true;
-    }
-
-    return false;
-  }
-
-  private boolean handleInteraction_FlintAndSteel(World world, BlockPos pos, EntityPlayer player, TileCampfire campfire, ItemStack heldItem) {
-
-    if (!world.isRemote) {
-
-      if (player.isCreative()) {
-        heldItem.damageItem(1, player);
-      }
-
-      campfire.setActive(true);
-      world.playSound(
-          null,
-          pos,
-          SoundEvents.ITEM_FLINTANDSTEEL_USE,
-          SoundCategory.BLOCKS,
-          1.0F,
-          Util.RANDOM.nextFloat() * 0.4F + 0.8F
-      );
-    }
     return true;
-  }
-
-  private boolean handleInteraction_EmptyHand(World world, BlockPos pos, EntityPlayer player, TileCampfire campfire) {
-
-    if (player.isSneaking()) {
-
-      // If the player is sneaking, remove logs and damage the player.
-
-      ItemStack itemStack = campfire.getFuelStackHandler().extractItem(0, 1, world.isRemote);
-
-      if (!itemStack.isEmpty()) {
-
-        if (!world.isRemote) {
-
-          if (Math.random() < ModulePyrotechConfig.CAMPFIRE.PLAYER_BURN_CHANCE) {
-
-            if (!player.isImmuneToFire()
-                && !EnchantmentHelper.hasFrostWalkerEnchantment(player)
-                && this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == EnumType.LIT) {
-              player.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.CAMPFIRE.PLAYER_BURN_DAMAGE);
-            }
-          }
-
-          StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos, -0.125);
-        }
-
-        return true;
-      }
-
-    } else {
-
-      // If the player isn't sneaking, attempt to remove input then output items.
-
-      ItemStack itemStack = campfire.getStackHandler().extractItem(0, 1, world.isRemote);
-
-      if (!itemStack.isEmpty()) {
-
-        if (!world.isRemote) {
-          StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos, -0.125);
-        }
-
-        return true;
-      }
-
-      itemStack = campfire.getOutputStackHandler().extractItem(0, 1, world.isRemote);
-
-      if (!itemStack.isEmpty()) {
-
-        if (!world.isRemote) {
-          StackHelper.addToInventoryOrSpawn(world, player, itemStack, pos, -0.125);
-        }
-
-        return true;
-      }
-    }
-
-    return false;
   }
 
   @Override
