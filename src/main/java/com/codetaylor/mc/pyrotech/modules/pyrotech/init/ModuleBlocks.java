@@ -3,8 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
@@ -37,6 +37,7 @@ public class ModuleBlocks {
   public static final BlockDryingRack DRYING_RACK = new BlockDryingRack();
   public static final BlockRock ROCK = new BlockRock();
   public static final BlockRockGrass ROCK_GRASS = new BlockRockGrass();
+  public static final BlockChoppingBlock CHOPPING_BLOCK = new BlockChoppingBlock();
 
   public static void onRegister(Registry registry) {
 
@@ -59,6 +60,7 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.REFRACTORY_GLASS, BlockRefractoryGlass.NAME);
     registry.registerBlockWithItem(ModuleBlocks.KILN_BRICK, BlockKilnBrick.NAME);
     registry.registerBlockWithItem(ModuleBlocks.DRYING_RACK, BlockDryingRack.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.CHOPPING_BLOCK, BlockChoppingBlock.NAME);
 
     registry.registerTileEntities(
         TileTarCollector.class,
@@ -70,7 +72,8 @@ public class ModuleBlocks {
         TileKilnBrickTop.class,
         TileCampfire.class,
         TileDryingRack.class,
-        TileDryingRackCrude.class
+        TileDryingRackCrude.class,
+        TileChoppingBlock.class
     );
   }
 
@@ -127,6 +130,13 @@ public class ModuleBlocks {
           (new StateMap.Builder()).withName(BlockRock.VARIANT).build()
       );
 
+      // Chopping Block
+      ModelRegistrationHelper.registerVariantBlockItemModels(
+          ModuleBlocks.CHOPPING_BLOCK.getDefaultState(),
+          BlockChoppingBlock.DAMAGE,
+          value -> value
+      );
+
       // TESRs
       ClientRegistry.bindTileEntitySpecialRenderer(TileTarCollector.class, new TESRTarCollector());
 
@@ -135,6 +145,7 @@ public class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileCampfire.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRackCrude.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileChoppingBlock.class, new TESRInteractable<>());
 
     });
   }

@@ -16,6 +16,7 @@ public class ModulePyrotechRegistries {
   public static final IForgeRegistryModifiable<PitBurnRecipe> BURN_RECIPE;
   public static final IForgeRegistryModifiable<DryingRackRecipe> DRYING_RACK_RECIPE;
   public static final IForgeRegistryModifiable<DryingRackCrudeRecipe> DRYING_RACK_CRUDE_RECIPE;
+  public static final IForgeRegistryModifiable<ChoppingBlockRecipe> CHOPPING_BLOCK_RECIPE;
 
   public static final List<Predicate<IBlockState>> REFRACTORY_BLOCK_LIST;
   public static final List<Predicate<IBlockState>> COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST;
@@ -26,6 +27,7 @@ public class ModulePyrotechRegistries {
     BURN_RECIPE = (IForgeRegistryModifiable<PitBurnRecipe>) GameRegistry.findRegistry(PitBurnRecipe.class);
     DRYING_RACK_RECIPE = (IForgeRegistryModifiable<DryingRackRecipe>) GameRegistry.findRegistry(DryingRackRecipe.class);
     DRYING_RACK_CRUDE_RECIPE = (IForgeRegistryModifiable<DryingRackCrudeRecipe>) GameRegistry.findRegistry(DryingRackCrudeRecipe.class);
+    CHOPPING_BLOCK_RECIPE = (IForgeRegistryModifiable<ChoppingBlockRecipe>) GameRegistry.findRegistry(ChoppingBlockRecipe.class);
 
     REFRACTORY_BLOCK_LIST = new ArrayList<>();
     COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST = new ArrayList<>();

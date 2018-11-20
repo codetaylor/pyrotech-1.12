@@ -637,13 +637,13 @@ public class TileCampfire
     }
 
     @Override
-    protected boolean isItemStackValid(ItemStack itemStack) {
+    protected boolean allowInteraction(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      return (itemStack.getItem() == Items.FLINT_AND_STEEL);
+      return (player.getHeldItem(hand).getItem() == Items.FLINT_AND_STEEL);
     }
 
     @Override
-    protected boolean doInteraction(TileCampfire tile, World world, BlockPos hitPos, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean doInteraction(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (!world.isRemote) {
         tile.setActive(true);

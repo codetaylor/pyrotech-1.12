@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public abstract class InteractionUseItemBase<T extends TileEntity & ITileInteractable>
@@ -20,32 +21,55 @@ public abstract class InteractionUseItemBase<T extends TileEntity & ITileInterac
   @Override
   public boolean interact(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    ItemStack heldItem = player.getHeldItemMainhand();
+    EnumFacing tileFacing = tile.getTileFacing(world, hitPos, state);
+    BlockPos tilePos = tile.getPos();
+    IBlockState tileBlockState = world.getBlockState(tilePos);
 
-    if (!this.isItemStackValid(heldItem)) {
-      return false;
-    }
+    if (this.allowInteractionWithHand(hand)
+        && this.canInteractWith(world, hitSide, hitPos, new Vec3d(hitX + tilePos.getX(), hitY + tilePos.getY(), hitZ + tilePos.getZ()), tilePos, tileBlockState, tileFacing)
+        && this.allowInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {
 
-    if (!world.isRemote) {
+      boolean complete = this.doInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
 
-      int itemDamage = this.getItemDamage(heldItem);
-
-      if (itemDamage > 0
-          && !player.isCreative()) {
-        heldItem.damageItem(itemDamage, player);
+      if (complete) {
+        this.postInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
       }
+
+      return complete;
     }
 
-    return this.doInteraction(tile, world, hitPos, player, hand, hitSide, hitX, hitY, hitZ);
+    return false;
   }
 
+  protected void postInteraction(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+    if (!world.isRemote
+        && !player.isCreative()) {
+      this.applyItemDamage(player.getHeldItem(hand), player);
+    }
+  }
+
+  protected void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
+
+    itemStack.damageItem(this.getItemDamage(itemStack), player);
+  }
+
+  /**
+   * The damage returned will be applied to the item used.
+   * <p>
+   * NOTE: Don't damage the item in this method, it will be damaged by the
+   * calling code.
+   *
+   * @param itemStack the itemStack that will be damaged
+   * @return
+   */
   protected int getItemDamage(ItemStack itemStack) {
 
     return 1;
   }
 
-  protected abstract boolean doInteraction(T tile, World world, BlockPos hitPos, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
+  protected abstract boolean allowInteraction(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
 
-  protected abstract boolean isItemStackValid(ItemStack itemStack);
+  protected abstract boolean doInteraction(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
 
 }

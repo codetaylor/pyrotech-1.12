@@ -1,0 +1,104 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "uvlock": true,
+    "model": "pyrotech:chopping_block_core",
+    "textures": {
+      "core-side": "pyrotech:blocks/chopping_block_core_side",
+      "core-end": "blocks/log_oak_top",
+      "particle": "blocks/log_oak_top"
+    }
+  },
+  "variants": {
+    "sawdust": {
+      "0": {},
+      "1": {
+        "submodel": {
+          "sawdust_0": {"model": "pyrotech:chopping_block_sawdust_side"}
+        }
+      },
+      "2": {
+        "submodel": {
+          "sawdust_0": {"model": "pyrotech:chopping_block_sawdust_side"},
+          "sawdust_90": {"model": "pyrotech:chopping_block_sawdust_side", "y": 90}
+        }
+      },
+      "3": {
+        "submodel": {
+          "sawdust_0": {"model": "pyrotech:chopping_block_sawdust_side"},
+          "sawdust_90": {"model": "pyrotech:chopping_block_sawdust_side", "y": 90},
+          "sawdust_180": {"model": "pyrotech:chopping_block_sawdust_side", "y": 180}
+        }
+      },
+      "4": {
+        "submodel": {
+          "sawdust_0": {"model": "pyrotech:chopping_block_sawdust_side"},
+          "sawdust_90": {"model": "pyrotech:chopping_block_sawdust_side", "y": 90},
+          "sawdust_180": {"model": "pyrotech:chopping_block_sawdust_side", "y": 180},
+          "sawdust_270": {"model": "pyrotech:chopping_block_sawdust_side", "y": 270}
+        }
+      },
+      "5": {
+        "submodel": {
+          "sawdust_0": {"model": "pyrotech:chopping_block_sawdust_side"},
+          "sawdust_90": {"model": "pyrotech:chopping_block_sawdust_side", "y": 90},
+          "sawdust_180": {"model": "pyrotech:chopping_block_sawdust_side", "y": 180},
+          "sawdust_270": {"model": "pyrotech:chopping_block_sawdust_side", "y": 270},
+          "sawdust_top": {"model": "pyrotech:chopping_block_sawdust_top"}
+        }
+      }
+    },
+    "damage": {
+      "0": {
+        "submodel": {
+          "a": {"model": "pyrotech:chopping_block_bark_a"}
+        }
+      },
+      "1": {
+        "textures": {
+          "core-side": "pyrotech:blocks/chopping_block_core_side_damaged_a",
+          "core-end": "pyrotech:blocks/chopping_block_core_top_damaged_a"
+        },
+        "submodel": {
+          "b": {"model": "pyrotech:chopping_block_bark_b"}
+        }
+      },
+      "2": {
+        "textures": {
+          "core-side": "pyrotech:blocks/chopping_block_core_side_damaged_a",
+          "core-end": "pyrotech:blocks/chopping_block_core_top_damaged_a"
+        },
+        "submodel": {
+          "c": {"model": "pyrotech:chopping_block_bark_c"}
+        }
+      },
+      "3": {
+        "textures": {
+          "core-side": "pyrotech:blocks/chopping_block_core_side_damaged_b",
+          "core-end": "pyrotech:blocks/chopping_block_core_top_damaged_b"
+        },
+        "submodel": {
+          "d": {"model": "pyrotech:chopping_block_bark_d"}
+        }
+      },
+      "4": {
+        "textures": {
+          "core-side": "pyrotech:blocks/chopping_block_core_side_damaged_b",
+          "core-end": "pyrotech:blocks/chopping_block_core_top_damaged_b"
+        },
+        "submodel": {
+          "e": {"model": "pyrotech:chopping_block_bark_e"}
+        }
+      },
+      "5": {
+        "textures": {
+          "core-side": "pyrotech:blocks/chopping_block_core_side_damaged_c",
+          "core-end": "pyrotech:blocks/chopping_block_core_top_damaged_c"
+        },
+        "submodel": {
+          "f": {"model": "pyrotech:chopping_block_bark_f"}
+        }
+      }
+    }
+  }
+}

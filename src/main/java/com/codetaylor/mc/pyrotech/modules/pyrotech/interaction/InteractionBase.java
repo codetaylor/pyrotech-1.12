@@ -3,12 +3,11 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SuppressWarnings("WeakerAccess")
 public abstract class InteractionBase<T extends TileEntity & ITileInteractable>
@@ -31,7 +30,6 @@ public abstract class InteractionBase<T extends TileEntity & ITileInteractable>
   }
 
   @Override
-  @SideOnly(Side.CLIENT)
   public boolean canInteractWith(World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos tilePos, IBlockState tileBlockState, EnumFacing tileFacing) {
 
     double hitX = hitVec.x - tilePos.getX();
@@ -145,4 +143,20 @@ public abstract class InteractionBase<T extends TileEntity & ITileInteractable>
     return ((this.sides & actualSide.getIndex()) == actualSide.getIndex())
         && this.bounds.contains(hitX, hitY);
   }
+
+  /**
+   * Returns true if this interaction should trigger with the given hand.
+   * Override this to change the hand that this interaction works with.
+   * <p>
+   * By default it will trigger only on the main hand.
+   *
+   * @param hand the hand to filter this interaction by
+   * @return true if this interaction should trigger with the given hand
+   */
+  @Override
+  public boolean allowInteractionWithHand(EnumHand hand) {
+
+    return (hand == EnumHand.MAIN_HAND);
+  }
+
 }

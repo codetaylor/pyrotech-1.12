@@ -482,11 +482,13 @@ public class TileKilnPit
     }
 
     @Override
-    protected boolean doInteraction(TileKilnPit tile, World world, BlockPos hitPos, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean allowInteraction(TileKilnPit tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      /*if (tile.getStackHandler().getStackInSlot(0).isEmpty()) {
-        return;
-      }*/
+      return (player.getHeldItem(hand).getItem() == Item.getItemFromBlock(ModuleBlocks.THATCH));
+    }
+
+    @Override
+    protected boolean doInteraction(TileKilnPit tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (world.getBlockState(hitPos).getValue(VARIANT) != BlockKilnPit.EnumType.EMPTY) {
         return false;
@@ -504,12 +506,6 @@ public class TileKilnPit
       }
 
       return true;
-    }
-
-    @Override
-    protected boolean isItemStackValid(ItemStack itemStack) {
-
-      return (itemStack.getItem() == Item.getItemFromBlock(ModuleBlocks.THATCH));
     }
 
     @Override

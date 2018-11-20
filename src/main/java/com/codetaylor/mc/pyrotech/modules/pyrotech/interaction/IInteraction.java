@@ -16,6 +16,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public interface IInteraction<T extends TileEntity & ITileInteractable> {
 
   /**
+   * Returns true if this interaction is allowed with the given hand.
+   *
+   * @param hand the hand to test against
+   * @return true if this interaction is allowed with the given hand
+   */
+  boolean allowInteractionWithHand(EnumHand hand);
+
+  /**
    * Returns true if the handler can be interacted with given the criteria.
    * <p>
    * Note that the given tilePos may be different than the hitPos. For example, if

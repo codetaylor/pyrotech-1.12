@@ -172,6 +172,10 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   @Override
   public boolean interact(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
+    if (!this.allowInteractionWithHand(hand)) {
+      return false;
+    }
+
     EnumFacing tileFacing = tile.getTileFacing(world, hitPos, state);
     BlockPos tilePos = tile.getPos();
     IBlockState tileBlockState = world.getBlockState(tilePos);
@@ -180,9 +184,9 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
       return false;
     }
 
-    ItemStack heldItemMainHand = player.getHeldItemMainhand();
+    ItemStack heldItem = player.getHeldItem(hand);
 
-    if (heldItemMainHand.isEmpty()) {
+    if (heldItem.isEmpty()) {
 
       // Remove item with empty hand
 
@@ -192,21 +196,21 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
 
     } else {
 
-      if (!this.isItemStackValid(heldItemMainHand)) {
+      if (!this.isItemStackValid(heldItem)) {
         return false;
       }
 
       // Insert item
 
-      int count = heldItemMainHand.getCount();
+      int count = heldItem.getCount();
       int insertIndex = this.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
-      ItemStack itemStack = new ItemStack(heldItemMainHand.getItem(), count, heldItemMainHand.getMetadata());
+      ItemStack itemStack = new ItemStack(heldItem.getItem(), count, heldItem.getMetadata());
       ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, world.isRemote);
 
       if (result.getCount() != count) {
 
         if (!world.isRemote) {
-          heldItemMainHand.setCount(result.getCount());
+          heldItem.setCount(result.getCount());
         }
 
         return true;

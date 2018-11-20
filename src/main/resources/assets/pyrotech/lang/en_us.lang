@@ -69,6 +69,7 @@ tile.pyrotech.kiln_brick.name=Brick Kiln
 tile.pyrotech.campfire.name=Campfire
 tile.pyrotech.drying_rack.crude.name=Crude Drying Rack
 tile.pyrotech.drying_rack.normal.name=Drying Rack
+tile.pyrotech.chopping_block.name=Chopping Log
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock

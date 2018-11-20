@@ -116,8 +116,14 @@ public class ModulePyrotech
         .create();
 
     new RegistryBuilder<DryingRackCrudeRecipe>()
-        .setName(new ResourceLocation(MOD_ID,"drying_rack_crude_recipe"))
+        .setName(new ResourceLocation(MOD_ID, "drying_rack_crude_recipe"))
         .setType(DryingRackCrudeRecipe.class)
+        .allowModification()
+        .create();
+
+    new RegistryBuilder<ChoppingBlockRecipe>()
+        .setName(new ResourceLocation(MOD_ID, "chopping_block_recipe"))
+        .setType(ChoppingBlockRecipe.class)
         .allowModification()
         .create();
   }
@@ -150,6 +156,7 @@ public class ModulePyrotech
     ModuleRecipes.onRegisterKilnPitRecipes(ModulePyrotechRegistries.KILN_PIT_RECIPE);
     ModuleRecipes.onRegisterKilnBrickRecipe(ModulePyrotechRegistries.KILN_BRICK_RECIPE);
     ModuleRecipes.onRegisterDryingRackRecipes(ModulePyrotechRegistries.DRYING_RACK_RECIPE);
+    ModuleRecipes.onRegisterChoppingBlockRecipes(ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE);
     ModuleRecipes.onRegisterDryingRackCrudeRecipes(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
   }
 
