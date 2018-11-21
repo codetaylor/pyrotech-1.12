@@ -60,7 +60,8 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.REFRACTORY_GLASS, BlockRefractoryGlass.NAME);
     registry.registerBlockWithItem(ModuleBlocks.KILN_BRICK, BlockKilnBrick.NAME);
     registry.registerBlockWithItem(ModuleBlocks.DRYING_RACK, BlockDryingRack.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.CHOPPING_BLOCK, BlockChoppingBlock.NAME);
+
+    registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
 
     registry.registerTileEntities(
         TileTarCollector.class,

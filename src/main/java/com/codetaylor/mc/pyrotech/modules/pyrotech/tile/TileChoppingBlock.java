@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockChoppingBlock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
@@ -121,10 +122,16 @@ public class TileChoppingBlock
     return this.chopsRemaining;
   }
 
+  public ItemStackHandler getStackHandler() {
+
+    return this.stackHandler;
+  }
+
   // ---------------------------------------------------------------------------
   // - Serialization
   // ---------------------------------------------------------------------------
 
+  @Nonnull
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
@@ -192,7 +199,7 @@ public class TileChoppingBlock
   private class Interaction
       extends InteractionItemStack<TileChoppingBlock> {
 
-    public Interaction(ItemStackHandler[] stackHandlers) {
+    /* package */ Interaction(ItemStackHandler[] stackHandlers) {
 
       super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE, new Transform(
           Transform.translate(0.5, 0.625, 0.5),
@@ -218,7 +225,7 @@ public class TileChoppingBlock
   private class InteractionChop
       extends InteractionUseItemBase<TileChoppingBlock> {
 
-    public InteractionChop() {
+    /* package */ InteractionChop() {
 
       super(new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE);
     }
@@ -256,6 +263,7 @@ public class TileChoppingBlock
             System.out.println("Damage: " + tile.getDamage());
 
           } else {
+            StackHelper.spawnStackHandlerContentsOnTop(world, tile.getStackHandler(), tile.getPos());
             world.destroyBlock(tile.getPos(), false);
           }
 
