@@ -33,14 +33,23 @@ public class ChoppingBlockRecipe
 
   private final Ingredient input;
   private final ItemStack output;
+  private final int chops;
+  private final int minHarvestLevel;
+  private final int maxHarvestLevel;
 
   public ChoppingBlockRecipe(
       ItemStack output,
-      Ingredient input
+      Ingredient input,
+      int chops,
+      int minHarvestLevel,
+      int maxHarvestLevel
   ) {
 
     this.input = input;
     this.output = output;
+    this.chops = chops;
+    this.minHarvestLevel = minHarvestLevel;
+    this.maxHarvestLevel = maxHarvestLevel;
   }
 
   public Ingredient getInput() {
@@ -51,6 +60,21 @@ public class ChoppingBlockRecipe
   public ItemStack getOutput() {
 
     return this.output.copy();
+  }
+
+  public int getChops() {
+
+    return this.chops;
+  }
+
+  public int getMinHarvestLevel() {
+
+    return this.minHarvestLevel;
+  }
+
+  public int getMaxHarvestLevel() {
+
+    return this.maxHarvestLevel;
   }
 
   public boolean matches(ItemStack input) {

@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
-import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
@@ -30,9 +29,13 @@ public class ModuleRecipes {
 
   public static void onRegisterChoppingBlockRecipes(IForgeRegistry<ChoppingBlockRecipe> registry) {
 
+    // Oak
     registry.register(new ChoppingBlockRecipe(
         new ItemStack(Blocks.PLANKS, 1, 0),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 0))
+        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 0)),
+        4,
+        0,
+        0
     ).setRegistryName(ModulePyrotech.MOD_ID, "planks_oak"));
   }
 
