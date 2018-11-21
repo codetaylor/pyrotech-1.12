@@ -202,7 +202,7 @@ public class TileChoppingBlock
     /* package */ Interaction(ItemStackHandler[] stackHandlers) {
 
       super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE, new Transform(
-          Transform.translate(0.5, 0.625, 0.5),
+          Transform.translate(0.5, 0.75, 0.5),
           Transform.rotate(),
           Transform.scale(0.75, 0.75, 0.75)
       ));
