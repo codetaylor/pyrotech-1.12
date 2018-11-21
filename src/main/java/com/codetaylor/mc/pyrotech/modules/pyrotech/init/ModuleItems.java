@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
+@SuppressWarnings("WeakerAccess")
 public class ModuleItems {
 
   public static final ItemMaterial MATERIAL = new ItemMaterial();
