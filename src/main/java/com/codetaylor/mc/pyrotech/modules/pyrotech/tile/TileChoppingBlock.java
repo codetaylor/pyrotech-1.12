@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockChoppingBlock;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.*;
@@ -12,16 +13,14 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.ChoppingBlockRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
@@ -46,6 +45,7 @@ public class TileChoppingBlock
     this.stackHandler = new InputStackHandler();
     this.interactions = new IInteraction[]{
         new Interaction(new ItemStackHandler[]{this.stackHandler}),
+        new InteractionShovel(),
         new InteractionChop()
     };
     this.durabilityUntilNextDamage = 10; // TODO: Config Value
@@ -246,7 +246,39 @@ public class TileChoppingBlock
 
       return (ChoppingBlockRecipe.getRecipe(itemStack) != null);
     }
+  }
 
+  private class InteractionShovel
+      extends InteractionUseItemBase<TileChoppingBlock> {
+
+    /* package */ InteractionShovel() {
+
+      super(EnumFacing.VALUES, InteractionBounds.INFINITE);
+    }
+
+    @Override
+    protected boolean allowInteraction(TileChoppingBlock tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack heldItemStack = player.getHeldItem(hand);
+
+      return tile.getSawdust() > 0
+          && heldItemStack.getItem().getToolClasses(heldItemStack).contains("shovel");
+    }
+
+    @Override
+    protected boolean doInteraction(TileChoppingBlock tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      if (!world.isRemote) {
+        tile.setSawdust(tile.getSawdust() - 1);
+        StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta()), hitPos);
+        heldItem.damageItem(1, player);
+        world.playSound(null, hitPos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
+      }
+
+      return true;
+    }
   }
 
   private class InteractionChop
@@ -286,11 +318,11 @@ public class TileChoppingBlock
 
         // Server logic
 
-        if (tile.getDurabilityUntilNextDamage() <= 1) {
+        // Decrement the chopping block's damage and reset the chops
+        // remaining until next damage. If the damage reaches the threshold,
+        // destroy the block and drop its contents.
 
-          // Decrement the chopping block's damage and reset the chops
-          // remaining until next damage. If the damage reaches the threshold,
-          // destroy the block and drop its contents.
+        if (tile.getDurabilityUntilNextDamage() <= 1) {
 
           // TODO: Config Value
           tile.setDurabilityUntilNextDamage(10);
@@ -299,10 +331,40 @@ public class TileChoppingBlock
             tile.setDamage(tile.getDamage() + 1);
 
           } else {
+            if (tile.getSawdust() > 0) {
+              StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.ROCK, tile.getSawdust(), BlockRock.EnumType.WOOD_CHIPS.getMeta()), tile.getPos());
+              tile.sawdust = 0; // Direct access to bypass tile update.
+            }
+
             StackHelper.spawnStackHandlerContentsOnTop(world, tile.getStackHandler(), tile.getPos());
             world.destroyBlock(tile.getPos(), false);
             return true;
           }
+        }
+
+        // Increment the sawdust.
+
+        if (tile.getSawdust() < 5
+            && Math.random() < 0.1) { // TODO: Config
+          tile.setSawdust(tile.getSawdust() + 1);
+        }
+
+        // Spread wood chips.
+
+        if (Math.random() < 0.1) { // TODO: Config
+          BlockHelper.forBlocksInCube(world, tile.getPos(), 1, 1, 1, (w, p, bs) -> {
+
+            if (w.isAirBlock(p)
+                && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
+                && bs.getBlock() != ModuleBlocks.ROCK) {
+
+              w.setBlockState(p, ModuleBlocks.ROCK.getDefaultState()
+                  .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
+              return false;
+            }
+
+            return true;
+          });
         }
 
         // Decrement the durability until next damage and progress or

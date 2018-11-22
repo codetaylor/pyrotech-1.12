@@ -23,9 +23,7 @@ public class ItemMaterial
   }
 
   @Override
-  public void getSubItems(
-      CreativeTabs tab, NonNullList<ItemStack> items
-  ) {
+  public void getSubItems(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> items) {
 
     if (this.isInCreativeTab(tab)) {
 
@@ -47,21 +45,21 @@ public class ItemMaterial
   public enum EnumType
       implements IVariant {
 
-    PIT_ASH("pit_ash", 0),
-    COAL_COKE("coal_coke", 1),
-    STRAW("straw", 2),
-    FLINT_CLAY_BALL("flint_clay_ball", 3),
-    REFRACTORY_CLAY_BALL("refractory_clay_ball", 4),
-    REFRACTORY_BRICK("refractory_brick", 5),
-    POTTERY_FRAGMENTS("pottery_fragments", 6),
-    POTTERY_SHARD("pottery_shard", 7),
-    SLAKED_LIME("slaked_lime", 8),
-    UNFIRED_REFRACTORY_BRICK("unfired_refractory_brick", 9),
-    FLINT_SHARD("flint_shard", 10),
-    BONE_SHARD("bone_shard", 11),
-    PLANT_FIBERS("plant_fibers", 12),
-    PLANT_FIBERS_DRIED("plant_fibers_dried", 13),
-    TWINE("twine", 14);
+    PIT_ASH(0, "pit_ash"),
+    COAL_COKE(1, "coal_coke"),
+    STRAW(2, "straw"),
+    FLINT_CLAY_BALL(3, "flint_clay_ball"),
+    REFRACTORY_CLAY_BALL(4, "refractory_clay_ball"),
+    REFRACTORY_BRICK(5, "refractory_brick"),
+    POTTERY_FRAGMENTS(6, "pottery_fragments"),
+    POTTERY_SHARD(7, "pottery_shard"),
+    SLAKED_LIME(8, "slaked_lime"),
+    UNFIRED_REFRACTORY_BRICK(9, "unfired_refractory_brick"),
+    FLINT_SHARD(10, "flint_shard"),
+    BONE_SHARD(11, "bone_shard"),
+    PLANT_FIBERS(12, "plant_fibers"),
+    PLANT_FIBERS_DRIED(13, "plant_fibers_dried"),
+    TWINE(14, "twine");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())
@@ -71,7 +69,7 @@ public class ItemMaterial
     private final String name;
     private final int meta;
 
-    EnumType(String name, int meta) {
+    EnumType(int meta, String name) {
 
       this.name = name;
       this.meta = meta;

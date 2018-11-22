@@ -76,6 +76,12 @@ public class BlockChoppingBlock
 
       if (tileEntity instanceof TileChoppingBlock) {
         StackHelper.spawnStackHandlerContentsOnTop(world, ((TileChoppingBlock) tileEntity).getStackHandler(), pos);
+        int sawdust = ((TileChoppingBlock) tileEntity).getSawdust();
+
+        if (sawdust > 0) {
+          ((TileChoppingBlock) tileEntity).setSawdust(0);
+          StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.ROCK, sawdust, BlockRock.EnumType.WOOD_CHIPS.getMeta()), pos);
+        }
       }
     }
 
@@ -161,6 +167,20 @@ public class BlockChoppingBlock
   public boolean isSideSolid(IBlockState base_state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, EnumFacing side) {
 
     return (side == EnumFacing.DOWN);
+  }
+
+  @Nonnull
+  @Override
+  public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileChoppingBlock) {
+      int sawdust = ((TileChoppingBlock) tileEntity).getSawdust();
+      return state.withProperty(SAWDUST, sawdust);
+    }
+
+    return super.getActualState(state, world, pos);
   }
 
   // ---------------------------------------------------------------------------
