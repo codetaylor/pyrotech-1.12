@@ -32,10 +32,7 @@ public class ModuleRecipes {
     // Oak
     registry.register(new ChoppingBlockRecipe(
         new ItemStack(Blocks.PLANKS, 1, 0),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 0)),
-        4,
-        0,
-        0
+        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 0))
     ).setRegistryName(ModulePyrotech.MOD_ID, "planks_oak"));
   }
 

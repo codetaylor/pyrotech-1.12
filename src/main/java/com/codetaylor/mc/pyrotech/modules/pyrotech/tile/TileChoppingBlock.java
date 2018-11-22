@@ -1,7 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockChoppingBlock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
@@ -10,6 +12,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.ChoppingBlockRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -18,6 +21,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
@@ -31,12 +35,11 @@ public class TileChoppingBlock
 
   private ItemStackHandler stackHandler;
   private int sawdust;
-  private int chopsRemaining;
-  private IInteraction[] interactions;
+  private int durabilityUntilNextDamage;
+  private float recipeProgress;
 
   // transient
-  private long lastChopTick;
-  private int recipeChopsRemaining;
+  private IInteraction[] interactions;
 
   public TileChoppingBlock() {
 
@@ -45,7 +48,7 @@ public class TileChoppingBlock
         new Interaction(new ItemStackHandler[]{this.stackHandler}),
         new InteractionChop()
     };
-    this.chopsRemaining = 10; // TODO: Config Value
+    this.durabilityUntilNextDamage = 10; // TODO: Config Value
   }
 
   private class InputStackHandler
@@ -67,15 +70,9 @@ public class TileChoppingBlock
 
       TileChoppingBlock _this = TileChoppingBlock.this;
 
-      ItemStack itemStack = this.getStackInSlot(slot);
-
-      if (!itemStack.isEmpty()) {
-        ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(itemStack);
-
-        if (recipe != null) {
-          _this.recipeChopsRemaining = recipe.getChops();
-        }
-      }
+      // We explicitly don't use the setter here to avoid calling markDirty and
+      // notifyBlockUpdate redundantly.
+      _this.recipeProgress = 0;
 
       _this.markDirty();
       BlockHelper.notifyBlockUpdate(_this.world, _this.pos);
@@ -103,6 +100,8 @@ public class TileChoppingBlock
 
   public void setSawdust(int sawdust) {
 
+    // This requires a full update because it is used for actual state.
+
     this.sawdust = Math.max(0, Math.min(5, sawdust));
     this.markDirty();
     BlockHelper.notifyBlockUpdate(this.world, this.pos);
@@ -124,28 +123,34 @@ public class TileChoppingBlock
     return this.world.getBlockState(this.pos).getValue(BlockChoppingBlock.DAMAGE);
   }
 
-  public void setChopsRemaining(int chopsRemaining) {
+  public void setDurabilityUntilNextDamage(int durabilityUntilNextDamage) {
 
-    this.chopsRemaining = chopsRemaining;
+    // TODO: Network
+    // This doesn't require a full update.
+
+    this.durabilityUntilNextDamage = durabilityUntilNextDamage;
     this.markDirty();
     BlockHelper.notifyBlockUpdate(this.world, this.pos);
   }
 
-  public int getChopsRemaining() {
+  public int getDurabilityUntilNextDamage() {
 
-    return this.chopsRemaining;
+    return this.durabilityUntilNextDamage;
   }
 
-  public void setRecipeChopsRemaining(int recipeChopsRemaining) {
+  public void setRecipeProgress(float recipeProgress) {
 
-    this.recipeChopsRemaining = recipeChopsRemaining;
+    // TODO: Network
+    // This doesn't require a full update.
+
+    this.recipeProgress = recipeProgress;
     this.markDirty();
     BlockHelper.notifyBlockUpdate(this.world, this.pos);
   }
 
-  public int getRecipeChopsRemaining() {
+  public float getRecipeProgress() {
 
-    return this.recipeChopsRemaining;
+    return this.recipeProgress;
   }
 
   public ItemStackHandler getStackHandler() {
@@ -164,7 +169,8 @@ public class TileChoppingBlock
     super.writeToNBT(compound);
     compound.setTag("stackHandler", this.stackHandler.serializeNBT());
     compound.setInteger("sawdust", this.sawdust);
-    compound.setInteger("chopsRemaining", this.chopsRemaining);
+    compound.setInteger("durabilityUntilNextDamage", this.durabilityUntilNextDamage);
+    compound.setFloat("recipeProgress", this.recipeProgress);
     return compound;
   }
 
@@ -174,7 +180,8 @@ public class TileChoppingBlock
     super.readFromNBT(compound);
     this.stackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));
     this.sawdust = compound.getInteger("sawdust");
-    this.chopsRemaining = compound.getInteger("chopsRemaining");
+    this.durabilityUntilNextDamage = compound.getInteger("durabilityUntilNextDamage");
+    this.recipeProgress = compound.getFloat("recipeProgress");
   }
 
   // ---------------------------------------------------------------------------
@@ -253,76 +260,87 @@ public class TileChoppingBlock
     @Override
     protected boolean allowInteraction(TileChoppingBlock tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      ItemStack heldItem = player.getHeldItem(hand);
-      return heldItem.getItem().getToolClasses(heldItem).contains("axe");
+      ItemStack heldItemStack = player.getHeldItem(hand);
+      Item heldItem = heldItemStack.getItem();
+
+      ResourceLocation resourceLocation = heldItem.getRegistryName();
+
+      if (resourceLocation == null) {
+        return false;
+      }
+
+      String registryName = resourceLocation.toString();
+
+      if (heldItem.getToolClasses(heldItemStack).contains("axe")) {
+        return !ArrayHelper.contains(ModulePyrotechConfig.CHOPPING_BLOCK.AXE_BLACKLIST, registryName);
+
+      } else {
+        return ArrayHelper.contains(ModulePyrotechConfig.CHOPPING_BLOCK.AXE_WHITELIST, registryName);
+      }
     }
 
     @Override
     protected boolean doInteraction(TileChoppingBlock tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      long worldTime = world.getTotalWorldTime();
-
-      if (worldTime - tile.lastChopTick < 5) {
-        //return false;
-
-      } else {
-        tile.lastChopTick = worldTime;
-      }
-
       if (!world.isRemote) {
 
-        if (tile.getChopsRemaining() <= 1) {
+        // Server logic
+
+        if (tile.getDurabilityUntilNextDamage() <= 1) {
+
+          // Decrement the chopping block's damage and reset the chops
+          // remaining until next damage. If the damage reaches the threshold,
+          // destroy the block and drop its contents.
 
           // TODO: Config Value
-          tile.setChopsRemaining(10);
+          tile.setDurabilityUntilNextDamage(10);
 
           if (tile.getDamage() + 1 < 6) {
             tile.setDamage(tile.getDamage() + 1);
 
-            // TODO: sout
-            System.out.println("Damage: " + tile.getDamage());
-
           } else {
             StackHelper.spawnStackHandlerContentsOnTop(world, tile.getStackHandler(), tile.getPos());
             world.destroyBlock(tile.getPos(), false);
-          }
-
-        } else {
-          tile.setChopsRemaining(tile.getChopsRemaining() - 1);
-
-          // TODO: sout
-          System.out.println("Chops: " + tile.getChopsRemaining());
-
-          if (tile.getRecipeChopsRemaining() > 1) {
-
-            ItemStack itemStack = tile.getStackHandler().getStackInSlot(0);
-            ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(itemStack);
-
-            if (recipe != null) {
-              ItemStack heldItem = player.getHeldItem(hand);
-              int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "axe", player, null);
-
-              if (harvestLevel >= recipe.getMinHarvestLevel()
-                  && harvestLevel <= recipe.getMaxHarvestLevel()) {
-                tile.setRecipeChopsRemaining(tile.getRecipeChopsRemaining() - 1);
-              }
-            }
-
-          } else {
-            ItemStackHandler stackHandler = tile.getStackHandler();
-            ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
-            ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(itemStack);
-
-            if (recipe != null) {
-              StackHelper.spawnStackOnTop(world, recipe.getOutput(), tile.getPos(), 0);
-            }
-
-            tile.markDirty();
-            BlockHelper.notifyBlockUpdate(world, tile.getPos());
+            return true;
           }
         }
 
+        // Decrement the durability until next damage and progress or
+        // complete the recipe.
+
+        tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);
+
+        if (tile.getRecipeProgress() < 1) {
+
+          // Check the recipe's harvest level and advance recipe progress.
+
+          ItemStack heldItem = player.getHeldItem(hand);
+          int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "axe", player, null);
+          int[] chops = ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_REQUIRED_PER_HARVEST_LEVEL;
+
+          if (chops.length > 0) {
+            float increment = 1f / ArrayHelper.getOrLast(chops, harvestLevel);
+            tile.setRecipeProgress(tile.getRecipeProgress() + increment);
+          }
+        }
+
+        if (tile.getRecipeProgress() >= 0.9999) {
+          ItemStackHandler stackHandler = tile.getStackHandler();
+          ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
+          ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(itemStack);
+
+          if (recipe != null) {
+            StackHelper.spawnStackOnTop(world, recipe.getOutput(), tile.getPos(), 0);
+          }
+
+          tile.markDirty();
+          BlockHelper.notifyBlockUpdate(world, tile.getPos());
+        }
+
       } else {
+
+        // Client particles
+
         IBlockState blockState = ModuleBlocks.CHOPPING_BLOCK.getDefaultState();
 
         for (int i = 0; i < 8; ++i) {

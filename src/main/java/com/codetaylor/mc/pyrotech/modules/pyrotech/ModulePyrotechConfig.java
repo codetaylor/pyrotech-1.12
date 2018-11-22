@@ -47,7 +47,8 @@ public class ModulePyrotechConfig {
     public int BURNING_COLLECTOR_SMOKE_PARTICLES = 10;
 
     @Config.Comment({
-        "These items will be removed from JEI."
+        "These items will be removed from JEI.",
+        "String format is a resource location: (domain):(path)"
     })
     public String[] JEI_BLACKLIST = new String[]{
         "minecraft:wooden_axe",
@@ -55,6 +56,50 @@ public class ModulePyrotechConfig {
         "minecraft:wooden_pickaxe",
         "minecraft:wooden_shovel"
     };
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Chopping Block
+  // ---------------------------------------------------------------------------
+
+  public static ChoppingBlock CHOPPING_BLOCK = new ChoppingBlock();
+
+  public static class ChoppingBlock {
+
+    @Config.Comment({
+        "Any item with a tool class of axe is automatically valid.",
+        "Use this to add items that you want to be valid that don't have the",
+        "axe tool class. Items you add are assumed",
+        "",
+        "The whitelist takes priority over the blacklist.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] AXE_WHITELIST = new String[0];
+
+    @Config.Comment({
+        "Any item with a tool class of axe is automatically valid.",
+        "Use this to remove items that you don't want to be valid.",
+        "",
+        "The whitelist takes priority over the blacklist.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] AXE_BLACKLIST = new String[0];
+
+    @Config.Comment({
+        "The number of chops required per harvest level of the axe used.",
+        "The index into the array is the harvest level, the value at that index",
+        "is the required number of chops. The array can be expanded as needed.",
+        "If the harvest level of the tool used exceeds the array length, the",
+        "last element in the array is used.",
+        "",
+        "ie. {wood, stone, iron, diamond}",
+        "Valid values are in the range: [1,+inf)",
+        "Default: {6, 4, 2, 1}"
+    })
+    public int[] CHOPS_REQUIRED_PER_HARVEST_LEVEL = new int[]{6, 4, 2, 1};
+
   }
 
   // ---------------------------------------------------------------------------
