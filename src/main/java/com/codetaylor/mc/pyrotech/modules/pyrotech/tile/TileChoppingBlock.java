@@ -338,28 +338,37 @@ public class TileChoppingBlock
 
         // Spread wood chips.
 
-        BlockHelper.forBlocksInCube(world, tile.getPos(), 1, 1, 1, (w, p, bs) -> {
+        if (Math.random() < ModulePyrotechConfig.CHOPPING_BLOCK.WOOD_CHIPS_CHANCE * 2) {
 
-          if (Math.random() < ModulePyrotechConfig.CHOPPING_BLOCK.WOOD_CHIPS_CHANCE) {
-
-            if (w.getTileEntity(p) == tile
-                && tile.getSawdust() < 5) {
-              tile.setSawdust(tile.getSawdust() + 1);
-              return false;
-            }
-
-            if (w.isAirBlock(p)
-                && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
-                && bs.getBlock() != ModuleBlocks.ROCK) {
-
-              w.setBlockState(p, ModuleBlocks.ROCK.getDefaultState()
-                  .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
-              return false;
-            }
+          if (tile.getSawdust() < 5) {
+            tile.setSawdust(tile.getSawdust() + 1);
           }
 
-          return true;
-        });
+        } else {
+
+          BlockHelper.forBlocksInCube(world, tile.getPos(), 1, 1, 1, (w, p, bs) -> {
+
+            if (Math.random() < ModulePyrotechConfig.CHOPPING_BLOCK.WOOD_CHIPS_CHANCE * 0.5) {
+
+              if (w.getTileEntity(p) == tile
+                  && tile.getSawdust() < 5) {
+                tile.setSawdust(tile.getSawdust() + 1);
+                return false;
+              }
+
+              if (w.isAirBlock(p)
+                  && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
+                  && bs.getBlock() != ModuleBlocks.ROCK) {
+
+                w.setBlockState(p, ModuleBlocks.ROCK.getDefaultState()
+                    .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
+                return false;
+              }
+            }
+
+            return true;
+          });
+        }
 
         // Decrement the durability until next damage and progress or
         // complete the recipe.
