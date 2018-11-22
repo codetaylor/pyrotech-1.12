@@ -48,7 +48,7 @@ public class TileChoppingBlock
         new InteractionShovel(),
         new InteractionChop()
     };
-    this.durabilityUntilNextDamage = 10; // TODO: Config Value
+    this.durabilityUntilNextDamage = ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_PER_DAMAGE;
   }
 
   private class InputStackHandler
@@ -272,7 +272,7 @@ public class TileChoppingBlock
 
       if (!world.isRemote) {
         tile.setSawdust(tile.getSawdust() - 1);
-        StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta()), hitPos);
+        StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta()), hitPos, 0);
         heldItem.damageItem(1, player);
         world.playSound(null, hitPos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
       }
@@ -324,13 +324,13 @@ public class TileChoppingBlock
 
         if (tile.getDurabilityUntilNextDamage() <= 1) {
 
-          // TODO: Config Value
-          tile.setDurabilityUntilNextDamage(10);
+          tile.setDurabilityUntilNextDamage(ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_PER_DAMAGE);
 
           if (tile.getDamage() + 1 < 6) {
             tile.setDamage(tile.getDamage() + 1);
 
           } else {
+
             if (tile.getSawdust() > 0) {
               StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.ROCK, tile.getSawdust(), BlockRock.EnumType.WOOD_CHIPS.getMeta()), tile.getPos());
               tile.sawdust = 0; // Direct access to bypass tile update.
@@ -342,17 +342,17 @@ public class TileChoppingBlock
           }
         }
 
-        // Increment the sawdust.
-
-        if (tile.getSawdust() < 5
-            && Math.random() < 0.1) { // TODO: Config
-          tile.setSawdust(tile.getSawdust() + 1);
-        }
-
         // Spread wood chips.
 
-        if (Math.random() < 0.1) { // TODO: Config
-          BlockHelper.forBlocksInCube(world, tile.getPos(), 1, 1, 1, (w, p, bs) -> {
+        BlockHelper.forBlocksInCube(world, tile.getPos(), 1, 1, 1, (w, p, bs) -> {
+
+          if (Math.random() < ModulePyrotechConfig.CHOPPING_BLOCK.WOOD_CHIPS_CHANCE) {
+
+            if (w.getTileEntity(p) == tile
+                && tile.getSawdust() < 5) {
+              tile.setSawdust(tile.getSawdust() + 1);
+              return false;
+            }
 
             if (w.isAirBlock(p)
                 && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
@@ -362,10 +362,10 @@ public class TileChoppingBlock
                   .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
               return false;
             }
+          }
 
-            return true;
-          });
-        }
+          return true;
+        });
 
         // Decrement the durability until next damage and progress or
         // complete the recipe.

@@ -100,6 +100,21 @@ public class ModulePyrotechConfig {
     })
     public int[] CHOPS_REQUIRED_PER_HARVEST_LEVEL = new int[]{6, 4, 2, 1};
 
+    @Config.Comment({
+        "The chance that a chop will spawn wood chips nearby.",
+        "Range: [0, 1]",
+        "Default: " + 0.05
+    })
+    public double WOOD_CHIPS_CHANCE = 0.05;
+
+    @Config.Comment({
+        "The number of times the block can be chopped on before applying damage",
+        "to the block. The block has a total of six damage stages. This number",
+        "represents the number of chops for just one damage stage.",
+        "Range: [1, +inf)",
+        "Default: " + 16
+    })
+    public int CHOPS_PER_DAMAGE = 16;
   }
 
   // ---------------------------------------------------------------------------
