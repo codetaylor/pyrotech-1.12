@@ -27,6 +27,9 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class TileChoppingBlock
     extends TileEntity
@@ -336,39 +339,39 @@ public class TileChoppingBlock
           }
         }
 
-        // Spread wood chips.
+        { // START: Wood Chips
 
-        if (Math.random() < ModulePyrotechConfig.CHOPPING_BLOCK.WOOD_CHIPS_CHANCE * 2) {
+          // 2x the chance to place chips on the block.
+          if (tile.getSawdust() < 5
+              && Math.random() < ModulePyrotechConfig.CHOPPING_BLOCK.WOOD_CHIPS_CHANCE * 2) {
 
-          if (tile.getSawdust() < 5) {
             tile.setSawdust(tile.getSawdust() + 1);
           }
 
-        } else {
+          List<BlockPos> candidates = new ArrayList<>();
 
-          BlockHelper.forBlocksInCube(world, tile.getPos(), 1, 1, 1, (w, p, bs) -> {
-
-            if (Math.random() < ModulePyrotechConfig.CHOPPING_BLOCK.WOOD_CHIPS_CHANCE * 0.5) {
-
-              if (w.getTileEntity(p) == tile
-                  && tile.getSawdust() < 5) {
-                tile.setSawdust(tile.getSawdust() + 1);
-                return false;
-              }
+          // 1/2 the chance to place chips around the block.
+          if (Math.random() < ModulePyrotechConfig.CHOPPING_BLOCK.WOOD_CHIPS_CHANCE * 0.5) {
+            BlockHelper.forBlocksInCube(world, tile.getPos(), 1, 1, 1, (w, p, bs) -> {
 
               if (w.isAirBlock(p)
                   && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
                   && bs.getBlock() != ModuleBlocks.ROCK) {
 
-                w.setBlockState(p, ModuleBlocks.ROCK.getDefaultState()
-                    .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
-                return false;
+                candidates.add(p);
               }
-            }
 
-            return true;
-          });
-        }
+              return true;
+            });
+          }
+
+          if (candidates.size() > 0) {
+            Collections.shuffle(candidates);
+
+            world.setBlockState(candidates.get(0), ModuleBlocks.ROCK.getDefaultState()
+                .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
+          }
+        } // END: Wood Chips
 
         // Decrement the durability until next damage and progress or
         // complete the recipe.
