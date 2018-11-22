@@ -31,6 +31,9 @@ public class WailaRegistrar {
 
     DryingRackDataProvider dryingRackDataProvider = new DryingRackDataProvider();
     registrar.registerBodyProvider(dryingRackDataProvider, TileDryingRackBase.class);
+
+    ChoppingBlockDataProvider choppingBlockDataProvider = new ChoppingBlockDataProvider();
+    registrar.registerBodyProvider(choppingBlockDataProvider, TileChoppingBlock.class);
   }
 
 }
