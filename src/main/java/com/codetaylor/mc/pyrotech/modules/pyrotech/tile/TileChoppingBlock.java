@@ -330,12 +330,6 @@ public class TileChoppingBlock
             tile.setDamage(tile.getDamage() + 1);
 
           } else {
-
-            if (tile.getSawdust() > 0) {
-              StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.ROCK, tile.getSawdust(), BlockRock.EnumType.WOOD_CHIPS.getMeta()), tile.getPos());
-              tile.sawdust = 0; // Direct access to bypass tile update.
-            }
-
             StackHelper.spawnStackHandlerContentsOnTop(world, tile.getStackHandler(), tile.getPos());
             world.destroyBlock(tile.getPos(), false);
             return true;
