@@ -61,13 +61,6 @@ public class BlockChoppingBlock
   }
 
   @Override
-  public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
-
-    // TODO: remove
-    super.breakBlock(world, pos, state);
-  }
-
-  @Override
   public boolean removedByPlayer(@Nonnull IBlockState state, World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
 
     // Delay the destruction of the TE until after #getDrops is called. We need
