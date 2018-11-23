@@ -238,44 +238,50 @@ public class ModulePyrotechConfig {
   public static class Fuel {
 
     @Config.Comment({
+        "Charcoal flakes burn time in ticks.",
+        "Default: " + (1600 / 8)
+    })
+    public int CHARCOAL_FLAKES_BURN_TIME_TICKS = 1600 / 8;
+
+    @Config.Comment({
         "Tinder burn time in ticks.",
-        "Default: 120"
+        "Default: " + 120
     })
     public int TINDER_BURN_TIME_TICKS = 120;
 
     @Config.Comment({
         "Straw burn time in ticks.",
-        "Default: 50"
+        "Default: " + 50
     })
     public int STRAW_BURN_TIME_TICKS = 50;
 
     @Config.Comment({
         "Thatch burn time in ticks.",
-        "Default: 200"
+        "Default: " + 200
     })
     public int THATCH_BURN_TIME_TICKS = 200;
 
     @Config.Comment({
         "Coal tar burn time in ticks.",
-        "Default: 6400"
+        "Default: " + 6400
     })
     public int COAL_TAR_BURN_TIME_TICKS = 6400;
 
     @Config.Comment({
         "Wood tar burn time in ticks.",
-        "Default: 4800"
+        "Default: " + 4800
     })
     public int WOOD_TAR_BURN_TIME_TICKS = 4800;
 
     @Config.Comment({
         "Coal coke burn time in ticks.",
-        "Default: 3200"
+        "Default: " + 3200
     })
     public int COAL_COKE_BURN_TIME_TICKS = 3200;
 
     @Config.Comment({
         "Coal coke block burn time in ticks.",
-        "Default: 32000"
+        "Default: " + 32000
     })
     public int COAL_COKE_BLOCK_BURN_TIME_TICKS = 32000;
 
