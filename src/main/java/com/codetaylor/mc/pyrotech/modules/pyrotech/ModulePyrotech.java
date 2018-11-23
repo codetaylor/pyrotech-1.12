@@ -14,6 +14,8 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleEntities;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleRecipes;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileDataService;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.network.TileDataService;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
@@ -45,6 +47,7 @@ public class ModulePyrotech
   }
 
   public static IPacketService PACKET_SERVICE;
+  public static ITileDataService TILE_DATA_SERVICE;
 
   public ModulePyrotech() {
 
@@ -54,6 +57,7 @@ public class ModulePyrotech
     this.enableAutoRegistry();
 
     PACKET_SERVICE = this.enableNetwork();
+    TILE_DATA_SERVICE = new TileDataService(PACKET_SERVICE);
 
     MinecraftForge.EVENT_BUS.register(this);
 
