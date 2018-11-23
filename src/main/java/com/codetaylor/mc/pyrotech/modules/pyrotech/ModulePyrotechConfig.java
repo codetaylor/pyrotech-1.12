@@ -98,7 +98,7 @@ public class ModulePyrotechConfig {
         "Valid values are in the range: [1,+inf)",
         "Default: {6, 4, 2, 1}"
     })
-    public int[] CHOPS_REQUIRED_PER_HARVEST_LEVEL = new int[]{6, 4, 2, 1};
+    public int[] CHOPS_REQUIRED_PER_HARVEST_LEVEL = new int[]{6, 4, 2, 2};
 
     @Config.Comment({
         "The chance that a chop will spawn wood chips nearby.",
