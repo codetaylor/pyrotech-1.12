@@ -101,6 +101,19 @@ public class ModulePyrotechConfig {
     public int[] CHOPS_REQUIRED_PER_HARVEST_LEVEL = new int[]{6, 4, 2, 2};
 
     @Config.Comment({
+        "The recipe result quantity given per harvest level of the axe used.",
+        "The index into the array is the harvest level, the value at that index",
+        "is the recipe result quantity. The array can be expanded as needed.",
+        "If the harvest level of the tool used exceeds the array length, the",
+        "last element in the array is used.",
+        "",
+        "ie. {wood, stone, iron, diamond}",
+        "Valid values are in the range: [0,+inf)",
+        "Default: {1, 2, 3, 4}"
+    })
+    public int[] RECIPE_RESULT_QUANTITY_PER_HARVEST_LEVEL = new int[]{1, 2, 3, 4};
+
+    @Config.Comment({
         "The chance that a chop will spawn wood chips nearby.",
         "Range: [0, 1]",
         "Default: " + 0.05

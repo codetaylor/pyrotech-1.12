@@ -378,12 +378,13 @@ public class TileChoppingBlock
 
         tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);
 
+        ItemStack heldItem = player.getHeldItem(hand);
+        int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "axe", player, null);
+
         if (tile.getRecipeProgress() < 1) {
 
           // Check the recipe's harvest level and advance recipe progress.
 
-          ItemStack heldItem = player.getHeldItem(hand);
-          int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "axe", player, null);
           int[] chops = ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_REQUIRED_PER_HARVEST_LEVEL;
 
           if (chops.length > 0) {
@@ -398,7 +399,15 @@ public class TileChoppingBlock
           ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(itemStack);
 
           if (recipe != null) {
-            StackHelper.spawnStackOnTop(world, recipe.getOutput(), tile.getPos(), 0);
+            ItemStack output = recipe.getOutput();
+            int[] quantities = ModulePyrotechConfig.CHOPPING_BLOCK.RECIPE_RESULT_QUANTITY_PER_HARVEST_LEVEL;
+
+            if (quantities.length > 0) {
+              int quantity = ArrayHelper.getOrLast(quantities, harvestLevel);
+              output.setCount(quantity);
+            }
+
+            StackHelper.spawnStackOnTop(world, output, tile.getPos(), 0);
           }
 
           tile.markDirty();
