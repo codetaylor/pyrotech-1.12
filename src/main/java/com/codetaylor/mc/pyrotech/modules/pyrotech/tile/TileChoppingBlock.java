@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockChoppingBlock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
@@ -76,6 +77,20 @@ public class TileChoppingBlock
       // We explicitly don't use the setter here to avoid calling markDirty and
       // notifyBlockUpdate redundantly.
       _this.recipeProgress = 0;
+
+      if (!_this.world.isRemote) {
+
+        _this.world.playSound(
+            null,
+            _this.getPos().getX(),
+            _this.getPos().getY(),
+            _this.getPos().getZ(),
+            SoundEvents.BLOCK_WOOD_PLACE,
+            SoundCategory.BLOCKS,
+            0.75f,
+            (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
+        );
+      }
 
       _this.markDirty();
       BlockHelper.notifyBlockUpdate(_this.world, _this.pos);
@@ -339,6 +354,18 @@ public class TileChoppingBlock
           }
         }
 
+        // Play sound for chop. The place sound sounds better.
+        world.playSound(
+            null,
+            player.posX,
+            player.posY,
+            player.posZ,
+            SoundEvents.BLOCK_WOOD_PLACE,
+            SoundCategory.BLOCKS,
+            0.75f,
+            (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
+        );
+
         { // START: Wood Chips
 
           // 2x the chance to place chips on the block.
@@ -409,6 +436,17 @@ public class TileChoppingBlock
 
             StackHelper.spawnStackOnTop(world, output, tile.getPos(), 0);
           }
+
+          world.playSound(
+              player,
+              player.posX,
+              player.posY,
+              player.posZ,
+              SoundEvents.BLOCK_WOOD_BREAK,
+              SoundCategory.BLOCKS,
+              1,
+              (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
+          );
 
           tile.markDirty();
           BlockHelper.notifyBlockUpdate(world, tile.getPos());
