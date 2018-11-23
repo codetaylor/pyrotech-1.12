@@ -114,6 +114,22 @@ public class ModulePyrotechConfig {
     public int[] RECIPE_RESULT_QUANTITY_PER_HARVEST_LEVEL = new int[]{1, 2, 3, 4};
 
     @Config.Comment({
+        "The item displayed to represent each harvest level in JEI.",
+        "The index into the array is the harvest level, the value at that index",
+        "is the displayed item. The array can be expanded as needed.",
+        "If the harvest level of the tool used exceeds the array length, the",
+        "last element in the array is used.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] JEI_HARVEST_LEVEL_ITEM = new String[]{
+        "pyrotech:crude_axe",
+        "minecraft:stone_axe",
+        "minecraft:iron_axe",
+        "minecraft:diamond_axe"
+    };
+
+    @Config.Comment({
         "The chance that a chop will spawn wood chips nearby.",
         "Range: [0, 1]",
         "Default: " + 0.05

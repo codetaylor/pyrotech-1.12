@@ -40,7 +40,8 @@ public class PluginJEI
         new JEIRecipeCategoryPitBurn(guiHelper),
         new JEIRecipeCategoryRefractoryBurn(guiHelper),
         new JEIRecipeCategoryDryingRack(guiHelper),
-        new JEIRecipeCategoryDryingRackCrude(guiHelper)
+        new JEIRecipeCategoryDryingRackCrude(guiHelper),
+        new JEIRecipeCategoryChoppingBlock(guiHelper)
     );
   }
 
@@ -80,6 +81,14 @@ public class PluginJEI
         ModulePyrotech.LOGGER.error("", e);
       }
 
+    }
+
+    // --- Chopping Block
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CHOPPING_BLOCK), JEIRecipeCategoryUid.CHOPPING);
+      registry.handleRecipes(ChoppingBlockRecipe.class, JEIRecipeWrapperChoppingBlock::new, JEIRecipeCategoryUid.CHOPPING);
+      List<ChoppingBlockRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.CHOPPING);
     }
 
     // --- Crude Drying Rack
