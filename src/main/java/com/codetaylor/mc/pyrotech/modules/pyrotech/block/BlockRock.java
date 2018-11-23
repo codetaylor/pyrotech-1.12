@@ -45,20 +45,18 @@ public class BlockRock //'n beats
   @Override
   public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
 
-    switch (state.getValue(VARIANT)) {
-      case SAND:
-        return SoundType.SAND;
-      case DIRT:
-        return SoundType.GROUND;
-      case STONE:
-      case DIORITE:
-      case GRANITE:
-      case ANDESITE:
-      case SANDSTONE:
-        return SoundType.STONE;
-    }
+    EnumType type = state.getValue(VARIANT);
 
-    return super.getSoundType(state, world, pos, entity);
+    if (type == EnumType.SAND) {
+      return SoundType.SAND;
+
+    } else if (type == EnumType.DIRT
+        || type == EnumType.WOOD_CHIPS) {
+      return SoundType.GROUND;
+
+    } else {
+      return SoundType.STONE;
+    }
   }
 
   // ---------------------------------------------------------------------------
