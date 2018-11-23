@@ -16,9 +16,9 @@ import javax.annotation.Nonnull;
 public abstract class BlockPartialBase
     extends Block {
 
-  public BlockPartialBase(Material materialIn) {
+  public BlockPartialBase(Material material) {
 
-    super(materialIn);
+    super(material);
   }
 
   // ---------------------------------------------------------------------------
@@ -60,5 +60,11 @@ public abstract class BlockPartialBase
   public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
 
     return BlockFaceShape.UNDEFINED;
+  }
+
+  @Override
+  public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+
+    return true;
   }
 }

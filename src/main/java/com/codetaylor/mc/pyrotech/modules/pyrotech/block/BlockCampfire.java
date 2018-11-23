@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import net.minecraft.block.Block;
@@ -10,7 +9,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -33,7 +31,7 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class BlockCampfire
-    extends Block {
+    extends BlockPartialBase {
 
   public static final String NAME = "campfire";
 
@@ -41,16 +39,16 @@ public class BlockCampfire
   public static final PropertyInteger WOOD = PropertyInteger.create("wood", 0, 8);
   public static final PropertyInteger ASH = PropertyInteger.create("ash", 0, 8);
 
-  public static final AxisAlignedBB AABB_FULL = new AxisAlignedBB(0, 0, 0, 1, 6f / 16f, 1);
-  public static final AxisAlignedBB AABB_TINDER = new AxisAlignedBB(4f / 16f, 0, 4f / 16f, 12f / 16f, 5f / 16f, 12f / 16f);
-  public static final AxisAlignedBB AABB_ASH_A = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 1f / 16f, 14f / 16f);
-  public static final AxisAlignedBB AABB_ASH_B = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 2f / 16f, 14f / 16f);
-  public static final AxisAlignedBB AABB_ASH_C = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 3f / 16f, 14f / 16f);
-  public static final AxisAlignedBB AABB_ASH_D = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 4f / 16f, 14f / 16f);
-  public static final AxisAlignedBB AABB_ASH_E = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 5f / 16f, 14f / 16f);
-  public static final AxisAlignedBB AABB_ASH_F = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 6f / 16f, 14f / 16f);
-  public static final AxisAlignedBB AABB_ASH_G = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 7f / 16f, 14f / 16f);
-  public static final AxisAlignedBB AABB_ASH_H = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 8f / 16f, 14f / 16f);
+  private static final AxisAlignedBB AABB_FULL = new AxisAlignedBB(0, 0, 0, 1, 6f / 16f, 1);
+  private static final AxisAlignedBB AABB_TINDER = new AxisAlignedBB(4f / 16f, 0, 4f / 16f, 12f / 16f, 5f / 16f, 12f / 16f);
+  private static final AxisAlignedBB AABB_ASH_A = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 1f / 16f, 14f / 16f);
+  private static final AxisAlignedBB AABB_ASH_B = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 2f / 16f, 14f / 16f);
+  private static final AxisAlignedBB AABB_ASH_C = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 3f / 16f, 14f / 16f);
+  private static final AxisAlignedBB AABB_ASH_D = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 4f / 16f, 14f / 16f);
+  private static final AxisAlignedBB AABB_ASH_E = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 5f / 16f, 14f / 16f);
+  private static final AxisAlignedBB AABB_ASH_F = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 6f / 16f, 14f / 16f);
+  private static final AxisAlignedBB AABB_ASH_G = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 7f / 16f, 14f / 16f);
+  private static final AxisAlignedBB AABB_ASH_H = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 8f / 16f, 14f / 16f);
 
   public BlockCampfire() {
 
@@ -91,19 +89,6 @@ public class BlockCampfire
   public BlockRenderLayer getBlockLayer() {
 
     return BlockRenderLayer.CUTOUT_MIPPED;
-  }
-
-  @Override
-  public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-
-    return true;
-  }
-
-  @Nonnull
-  @Override
-  public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
-
-    return BlockFaceShape.UNDEFINED;
   }
 
   @Override
@@ -186,47 +171,9 @@ public class BlockCampfire
     return 0;
   }
 
-  @Nonnull
-  @Override
-  protected BlockStateContainer createBlockState() {
-
-    return new BlockStateContainer(this, WOOD, VARIANT, ASH);
-  }
-
-  @Nonnull
-  @Override
-  public IBlockState getStateFromMeta(int meta) {
-
-    return this.getDefaultState();
-  }
-
-  @Override
-  public int getMetaFromState(IBlockState state) {
-
-    return 0;
-  }
-
-  @Nonnull
-  @Override
-  public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
-
-    TileEntity tileEntity = world.getTileEntity(pos);
-
-    if (tileEntity instanceof TileCampfire) {
-
-      TileCampfire tileCampfire = (TileCampfire) tileEntity;
-      int fuelRemaining = tileCampfire.getFuelRemaining();
-      EnumType type = tileCampfire.getState();
-      int ashLevel = tileCampfire.getAshLevel();
-
-      return state
-          .withProperty(WOOD, fuelRemaining)
-          .withProperty(VARIANT, type)
-          .withProperty(ASH, ashLevel);
-    }
-
-    return super.getActualState(state, world, pos);
-  }
+  // ---------------------------------------------------------------------------
+  // - Placement
+  // ---------------------------------------------------------------------------
 
   @Override
   public boolean canPlaceBlockAt(World world, @Nonnull BlockPos pos) {
@@ -235,35 +182,9 @@ public class BlockCampfire
         && super.canPlaceBlockAt(world, pos);
   }
 
-  @Override
-  public boolean isSideSolid(IBlockState base_state, @Nonnull IBlockAccess world, BlockPos pos, EnumFacing side) {
-
-    return false;
-  }
-
-  @Override
-  public boolean isFullBlock(IBlockState state) {
-
-    return false;
-  }
-
-  @Override
-  public boolean isFullCube(IBlockState state) {
-
-    return this.isFullBlock(state);
-  }
-
-  @Override
-  public boolean isOpaqueCube(IBlockState state) {
-
-    return this.isFullBlock(state);
-  }
-
-  @Override
-  public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-
-    return this.isFullBlock(state);
-  }
+  // ---------------------------------------------------------------------------
+  // - Tile Entity
+  // ---------------------------------------------------------------------------
 
   @Override
   public boolean hasTileEntity(IBlockState state) {
@@ -338,6 +259,52 @@ public class BlockCampfire
     if (!world.isSideSolid(pos.down(), EnumFacing.UP)) {
       world.destroyBlock(pos, false);
     }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Variants
+  // ---------------------------------------------------------------------------
+
+  @Nonnull
+  @Override
+  protected BlockStateContainer createBlockState() {
+
+    return new BlockStateContainer(this, WOOD, VARIANT, ASH);
+  }
+
+  @Nonnull
+  @Override
+  public IBlockState getStateFromMeta(int meta) {
+
+    return this.getDefaultState();
+  }
+
+  @Override
+  public int getMetaFromState(IBlockState state) {
+
+    return 0;
+  }
+
+  @Nonnull
+  @Override
+  public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileCampfire) {
+
+      TileCampfire tileCampfire = (TileCampfire) tileEntity;
+      int fuelRemaining = tileCampfire.getFuelRemaining();
+      EnumType type = tileCampfire.getState();
+      int ashLevel = tileCampfire.getAshLevel();
+
+      return state
+          .withProperty(WOOD, fuelRemaining)
+          .withProperty(VARIANT, type)
+          .withProperty(ASH, ashLevel);
+    }
+
+    return super.getActualState(state, world, pos);
   }
 
   public enum EnumType
