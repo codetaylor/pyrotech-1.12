@@ -14,7 +14,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -52,8 +51,6 @@ public class TileCampfire
   private boolean doused;
 
   // transient
-  private EntityItem entityItem;
-  private EntityItem entityItemOutput;
   private int ticksSinceLastClientSync;
   private int rainTimeRemaining;
 
@@ -148,28 +145,6 @@ public class TileCampfire
   public int getCookTime(ItemStack stack) {
 
     return (stack.isEmpty()) ? -1 : ModulePyrotechConfig.CAMPFIRE.COOK_TIME_TICKS;
-  }
-
-  public EntityItem getEntityItem() {
-
-    if (this.entityItem == null) {
-      ItemStack stackInSlot = this.stackHandler.getStackInSlot(0);
-      this.entityItem = new EntityItem(this.world);
-      this.entityItem.setItem(stackInSlot);
-    }
-
-    return this.entityItem;
-  }
-
-  public EntityItem getEntityItemOutput() {
-
-    if (this.entityItemOutput == null) {
-      ItemStack stackInSlot = this.outputStackHandler.getStackInSlot(0);
-      this.entityItemOutput = new EntityItem(this.world);
-      this.entityItemOutput.setItem(stackInSlot);
-    }
-
-    return this.entityItemOutput;
   }
 
   public ItemStackHandler getStackHandler() {
