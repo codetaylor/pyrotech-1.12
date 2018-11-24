@@ -59,6 +59,18 @@ public class BlockWoodRack
     return true;
   }
 
+  @Override
+  public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileWoodRack) {
+      ((TileWoodRack) tileEntity).dropContents();
+    }
+
+    super.breakBlock(world, pos, state);
+  }
+
   // ---------------------------------------------------------------------------
   // - Tile Entity
   // ---------------------------------------------------------------------------

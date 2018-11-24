@@ -53,10 +53,9 @@ public class TileWoodRack
     };
   }
 
-  @SideOnly(Side.CLIENT)
-  @Override
-  public void onTileDataUpdate(ITileData data) {
-    //
+  public void dropContents() {
+
+    StackHelper.spawnStackHandlerContentsOnTop(this.world, this.stackHandler, this.pos);
   }
 
   // ---------------------------------------------------------------------------
