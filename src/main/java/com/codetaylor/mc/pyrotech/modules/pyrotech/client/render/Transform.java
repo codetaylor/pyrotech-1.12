@@ -13,10 +13,22 @@ public class Transform {
   );
 
   public static final Quaternion NO_ROTATION = new Quaternion();
+  public static final Vec3d NO_TRANSLATION = new Vec3d(0, 0, 0);
+  public static final Vec3d NO_SCALE = new Vec3d(1, 1, 1);
+
+  public static Vec3d translate() {
+
+    return NO_TRANSLATION;
+  }
 
   public static Vec3d translate(double x, double y, double z) {
 
     return new Vec3d(x, y, z);
+  }
+
+  public static Quaternion rotate() {
+
+    return NO_ROTATION;
   }
 
   public static Quaternion rotate(double x, double y, double z, double angle) {
@@ -24,9 +36,9 @@ public class Transform {
     return QuaternionHelper.setFromAxisAngle(new Quaternion(), (float) x, (float) y, (float) z, (float) Math.toRadians(angle));
   }
 
-  public static Quaternion rotate() {
+  public static Vec3d scale() {
 
-    return NO_ROTATION;
+    return NO_SCALE;
   }
 
   public static Vec3d scale(double x, double y, double z) {
