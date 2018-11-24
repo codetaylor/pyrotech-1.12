@@ -41,7 +41,6 @@ public class TileChoppingBlock
   private int durabilityUntilNextDamage;
   private float recipeProgress;
 
-  // transient
   private IInteraction[] interactions;
 
   public TileChoppingBlock() {
@@ -76,21 +75,8 @@ public class TileChoppingBlock
 
       // We explicitly don't use the setter here to avoid calling markDirty and
       // notifyBlockUpdate redundantly.
+      // This will go away when we upgrade this tile to use the tile data service.
       _this.recipeProgress = 0;
-
-      if (!_this.world.isRemote) {
-
-        _this.world.playSound(
-            null,
-            _this.getPos().getX(),
-            _this.getPos().getY(),
-            _this.getPos().getZ(),
-            SoundEvents.BLOCK_WOOD_PLACE,
-            SoundCategory.BLOCKS,
-            0.75f,
-            (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
-        );
-      }
 
       _this.markDirty();
       BlockHelper.notifyBlockUpdate(_this.world, _this.pos);
@@ -263,6 +249,25 @@ public class TileChoppingBlock
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
       return (ChoppingBlockRecipe.getRecipe(itemStack) != null);
+    }
+
+    @Override
+    protected void onInsert(ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
+
+      super.onInsert(itemStack, world, player, pos);
+
+      if (!world.isRemote) {
+        world.playSound(
+            null,
+            pos.getX(),
+            pos.getY(),
+            pos.getZ(),
+            SoundEvents.BLOCK_WOOD_PLACE,
+            SoundCategory.BLOCKS,
+            0.5f,
+            (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
+        );
+      }
     }
   }
 
