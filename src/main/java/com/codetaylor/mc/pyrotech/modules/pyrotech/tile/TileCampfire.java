@@ -119,7 +119,7 @@ public class TileCampfire
             this.outputStackHandler
         }),
         new TileCampfire.InteractionShovel(),
-        new InteractionUseFlintAndSteel(),
+        new TileCampfire.InteractionUseFlintAndSteel(),
         new TileCampfire.InteractionLog()
     };
   }
