@@ -1,7 +1,6 @@
 {
   "parent": "block/block",
   "textures": {
-    "stone": "blocks/stone_slab_top",
     "planks": "blocks/planks_oak",
     "log": "blocks/log_oak_top",
     "bark": "blocks/log_oak",
@@ -12,12 +11,12 @@
       "from": [0, 0, 0],
       "to": [16, 2, 16],
       "faces": {
-        "north": {"uv": [0, 0, 16, 2], "texture": "stone"},
-        "east": {"uv": [0, 0, 16, 2], "texture": "stone"},
-        "south": {"uv": [0, 0, 16, 2], "texture": "stone"},
-        "west": {"uv": [0, 0, 16, 2], "texture": "stone"},
-        "up": {"uv": [0, 0, 16, 16], "texture": "stone"},
-        "down": {"uv": [0, 0, 16, 16], "texture": "stone"}
+        "north": {"uv": [0, 10, 16, 12], "texture": "#planks"},
+        "east": {"uv": [0, 10, 16, 12], "texture": "#planks"},
+        "south": {"uv": [0, 14, 16, 16], "texture": "#planks"},
+        "west": {"uv": [0, 14, 16, 16], "texture": "#planks"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#planks"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#planks"}
       }
     },
     {
