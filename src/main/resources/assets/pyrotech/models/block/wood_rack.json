@@ -21,7 +21,7 @@
     },
     {
       "from": [16, 0, 14],
-      "to": [19, 16, 16],
+      "to": [19, 15, 16],
       "faces": {
         "north": {"uv": [0, 13, 16, 16], "rotation": 90, "texture": "planks"},
         "east": {"uv": [5, 0, 7, 16], "texture": "bark"},
@@ -33,7 +33,7 @@
     },
     {
       "from": [14, 0, 16],
-      "to": [19, 16, 19],
+      "to": [19, 15, 19],
       "faces": {
         "north": {"uv": [0, 9, 16, 14], "rotation": 90, "texture": "planks"},
         "east": {"uv": [0, 0, 3, 16], "texture": "bark"},
@@ -45,7 +45,7 @@
     },
     {
       "from": [14, 0, -3],
-      "to": [16, 16, 0],
+      "to": [16, 15, 0],
       "faces": {
         "north": {"uv": [5, 0, 7, 16], "texture": "bark"},
         "east": {"uv": [6, 0, 9, 16], "texture": "bark"},
@@ -57,7 +57,7 @@
     },
     {
       "from": [16, 0, -3],
-      "to": [19, 16, 2],
+      "to": [19, 15, 2],
       "faces": {
         "north": {"uv": [0, 0, 3, 16], "texture": "bark"},
         "east": {"uv": [6, 0, 11, 16], "texture": "bark"},
@@ -69,7 +69,7 @@
     },
     {
       "from": [-3, 0, 0],
-      "to": [0, 16, 2],
+      "to": [0, 15, 2],
       "faces": {
         "north": {"uv": [6, 0, 9, 16], "texture": "bark"},
         "east": {"uv": [0, 12, 16, 14], "rotation": 90, "texture": "planks"},
@@ -81,7 +81,7 @@
     },
     {
       "from": [-3, 0, -3],
-      "to": [2, 16, 0],
+      "to": [2, 15, 0],
       "faces": {
         "north": {"uv": [6, 0, 11, 16], "texture": "bark"},
         "east": {"uv": [0, 7, 16, 10], "rotation": 90, "texture": "planks"},
@@ -93,7 +93,7 @@
     },
     {
       "from": [0, 0, 16],
-      "to": [2, 16, 19],
+      "to": [2, 15, 19],
       "faces": {
         "north": {"uv": [0, 12, 16, 14], "rotation": 90, "texture": "planks"},
         "east": {"uv": [0, 13, 16, 16], "rotation": 90, "texture": "planks"},
@@ -105,7 +105,7 @@
     },
     {
       "from": [-3, 0, 14],
-      "to": [0, 16, 19],
+      "to": [0, 15, 19],
       "faces": {
         "north": {"uv": [0, 7, 16, 10], "rotation": 90, "texture": "planks"},
         "east": {"uv": [0, 9, 16, 14], "rotation": 90, "texture": "planks"},
