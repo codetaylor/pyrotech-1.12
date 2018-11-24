@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.network;
 
-import com.codetaylor.mc.athenaeum.network.IPacketService;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -12,17 +11,24 @@ class TileDataTracker {
 
   private final TileDataContainerBase tile;
   private final ITileData[] data;
+  private final PacketBuffer packetBuffer;
 
   /* package */ TileDataTracker(TileDataContainerBase tile, ITileData[] data) {
 
     this.tile = tile;
     this.data = data;
+    this.packetBuffer = new PacketBuffer(Unpooled.buffer());
+  }
+
+  public TileDataContainerBase getTile() {
+
+    return this.tile;
   }
 
   /**
    * Called once per tick on the server.
    */
-  /* package */ void update(IPacketService packetService) {
+  /* package */ PacketBuffer getUpdateBuffer() {
 
     int dirtyCount = 0;
 
@@ -33,23 +39,23 @@ class TileDataTracker {
       }
     }
 
+    this.packetBuffer.clear();
+
     if (dirtyCount > 0) {
-      PacketBuffer packetbuffer = new PacketBuffer(Unpooled.buffer());
-      packetbuffer.writeInt(dirtyCount);
+      this.packetBuffer.writeInt(dirtyCount);
 
       for (int i = 0; i < this.data.length; i++) {
 
         if (this.data[i].isDirty()
             && this.data[i].canUpdate()) {
-          packetbuffer.writeInt(i);
-          this.data[i].write(packetbuffer);
+          this.packetBuffer.writeInt(i);
+          this.data[i].write(this.packetBuffer);
           this.data[i].setDirty(false);
         }
       }
-
-      CPacketTileData packet = new CPacketTileData(this.tile.getPos(), packetbuffer);
-      packetService.sendToAllAround(packet, this.tile);
     }
+
+    return this.packetBuffer;
   }
 
   /**

@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class CPacketTileData
     extends CPacketTileEntityBase<CPacketTileData> {
 
+  private int serviceId;
   private PacketBuffer buffer;
 
   @SuppressWarnings("unused")
@@ -21,9 +22,10 @@ public class CPacketTileData
     // serialization
   }
 
-  public CPacketTileData(BlockPos origin, PacketBuffer buffer) {
+  public CPacketTileData(int serviceId, BlockPos origin, PacketBuffer buffer) {
 
     super(origin);
+    this.serviceId = serviceId;
     this.buffer = buffer;
   }
 
@@ -32,6 +34,7 @@ public class CPacketTileData
 
     super.fromBytes(buf);
 
+    this.serviceId = buf.readInt();
     int size = buf.readInt();
     this.buffer = new PacketBuffer(Unpooled.buffer());
     buf.readBytes(this.buffer, size);
@@ -42,6 +45,7 @@ public class CPacketTileData
 
     super.toBytes(buf);
 
+    buf.writeInt(this.serviceId);
     buf.writeInt(this.buffer.writerIndex());
     buf.writeBytes(this.buffer);
   }
@@ -50,17 +54,25 @@ public class CPacketTileData
   @Override
   protected IMessage onMessage(CPacketTileData message, MessageContext ctx, TileEntity tileEntity) {
 
-    if (tileEntity instanceof ITileDataContainer) {
-      ITileDataContainer tile = (ITileDataContainer) tileEntity;
-      TileDataTracker tileDataTracker = tile.getTileDataManager();
+    if (tileEntity instanceof TileDataContainerBase) {
 
-      try {
-        tileDataTracker.updateClient(message.buffer);
+      ITileDataService dataService = TileDataServiceContainer.find(message.serviceId);
 
-      } catch (Exception e) {
+      if (dataService != null) {
+        TileDataContainerBase tile = (TileDataContainerBase) tileEntity;
+        TileDataTracker tracker = dataService.getTracker(tile);
 
-        // TODO: logger
-        e.printStackTrace();
+        if (tracker != null) {
+
+          try {
+            tracker.updateClient(message.buffer);
+
+          } catch (Exception e) {
+
+            // TODO: logger
+            e.printStackTrace();
+          }
+        }
       }
     }
 

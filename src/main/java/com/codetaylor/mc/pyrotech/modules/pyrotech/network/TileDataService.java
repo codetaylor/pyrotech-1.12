@@ -1,28 +1,47 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.network;
 
 import com.codetaylor.mc.athenaeum.network.IPacketService;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Map;
 
-@Mod.EventBusSubscriber
 public class TileDataService
     implements ITileDataService {
 
-  private final List<TileDataTracker> dataTrackerList;
+  private final int serviceId;
   private final IPacketService packetService;
 
-  public TileDataService(IPacketService packetService) {
+  private final List<TileDataTracker> dataTrackerList;
+  private final Map<TileDataContainerBase, TileDataTracker> dataTrackerMap;
 
+  public TileDataService(int serviceId, IPacketService packetService) {
+
+    this.serviceId = serviceId;
     this.packetService = packetService;
     this.dataTrackerList = new ArrayList<>();
+    this.dataTrackerMap = new IdentityHashMap<>();
   }
 
+  @Override
+  public int getServiceId() {
+
+    return this.serviceId;
+  }
+
+  @Override
+  @Nullable
+  public TileDataTracker getTracker(TileDataContainerBase tile) {
+
+    return dataTrackerMap.get(tile);
+  }
+
+  @Override
   public void register(TileDataContainerBase tile) {
 
     Field[] declaredFields = tile.getClass().getDeclaredFields();
@@ -52,24 +71,38 @@ public class TileDataService
       ITileData[] array = new ITileData[size];
       TileDataTracker tracker = new TileDataTracker(tile, dataList.toArray(array));
       this.dataTrackerList.add(tracker);
+      this.dataTrackerMap.put(tile, tracker);
     }
   }
 
   @Override
   public void update() {
 
-    for (TileDataTracker tracker : this.dataTrackerList) {
+    for (int i = 0; i < this.dataTrackerList.size(); i++) {
 
-      tracker.update(this.packetService);
-    }
-  }
+      // --- Bookkeeping ---
 
-  @SubscribeEvent
-  public static void on(TickEvent.ServerTickEvent event) {
+      TileDataTracker tracker = this.dataTrackerList.get(i);
+      TileDataContainerBase tile = tracker.getTile();
 
-    if (event.phase == TickEvent.Phase.END) {
-      // TODO: remove module dependency
-      ModulePyrotech.TILE_DATA_SERVICE.update();
+      if (tile.isInvalid()) {
+        // Move the last element to this position, remove the last element,
+        // decrement the iteration index.
+        this.dataTrackerList.set(i, this.dataTrackerList.get(this.dataTrackerList.size() - 1));
+        this.dataTrackerList.remove(this.dataTrackerList.size() - 1);
+        i -= 1;
+        continue;
+      }
+
+      // --- Update Packet ---
+
+      PacketBuffer updateBuffer = tracker.getUpdateBuffer();
+
+      if (updateBuffer.writerIndex() > 0) {
+        BlockPos tilePos = tile.getPos();
+        CPacketTileData packet = new CPacketTileData(this.serviceId, tilePos, updateBuffer);
+        this.packetService.sendToAllAround(packet, tile);
+      }
     }
   }
 

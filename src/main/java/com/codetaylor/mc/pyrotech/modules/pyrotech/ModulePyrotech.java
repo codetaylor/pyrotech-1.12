@@ -7,15 +7,11 @@ import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemExcepti
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.library.fluid.CPacketFluidUpdate;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleEntities;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleRecipes;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileDataService;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.network.TileDataService;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.network.TileDataServiceContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
@@ -57,7 +53,7 @@ public class ModulePyrotech
     this.enableAutoRegistry();
 
     PACKET_SERVICE = this.enableNetwork();
-    TILE_DATA_SERVICE = new TileDataService(PACKET_SERVICE);
+    TILE_DATA_SERVICE = TileDataServiceContainer.register(new ResourceLocation(ModPyrotech.MOD_ID, "pyrotech"), PACKET_SERVICE);
 
     MinecraftForge.EVENT_BUS.register(this);
 
@@ -147,7 +143,7 @@ public class ModulePyrotech
   @Override
   public void onNetworkRegister(IPacketRegistry registry) {
 
-    registry.register(CPacketFluidUpdate.class, CPacketFluidUpdate.class, Side.CLIENT);
+    ModulePackets.register(registry);
   }
 
   @Override

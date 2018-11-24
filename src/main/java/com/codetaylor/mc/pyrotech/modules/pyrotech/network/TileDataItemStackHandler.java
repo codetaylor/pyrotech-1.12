@@ -6,31 +6,27 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import java.io.IOException;
 
-public class TileDataItemStackHandler
+public class TileDataItemStackHandler<H extends ItemStackHandler & ITileDataItemStackHandler>
     extends TileDataBase {
 
-  private ItemStackHandler value;
+  private H stackHandler;
 
-  public TileDataItemStackHandler(ItemStackHandler initialValue) {
+  public TileDataItemStackHandler(H stackHandler) {
 
-    this(initialValue, 1);
+    this(stackHandler, 1);
+    stackHandler.addObserver((handler, slot) -> this.setDirty(true));
   }
 
-  public TileDataItemStackHandler(ItemStackHandler initialValue, int updateInterval) {
+  public TileDataItemStackHandler(H stackHandler, int updateInterval) {
 
     super(updateInterval);
-    this.setValue(initialValue);
-  }
-
-  public void setValue(ItemStackHandler value) {
-
-    this.value = value;
+    this.stackHandler = stackHandler;
     this.setDirty(true);
   }
 
-  public ItemStackHandler getValue() {
+  public ItemStackHandler getStackHandler() {
 
-    return this.value;
+    return this.stackHandler;
   }
 
   @Override
@@ -39,14 +35,14 @@ public class TileDataItemStackHandler
     NBTTagCompound tag = buffer.readCompoundTag();
 
     if (tag != null) {
-      this.value.deserializeNBT(tag);
+      this.stackHandler.deserializeNBT(tag);
     }
   }
 
   @Override
   public void write(PacketBuffer buffer) {
 
-    buffer.writeCompoundTag(this.value.serializeNBT());
+    buffer.writeCompoundTag(this.stackHandler.serializeNBT());
   }
 
 }
