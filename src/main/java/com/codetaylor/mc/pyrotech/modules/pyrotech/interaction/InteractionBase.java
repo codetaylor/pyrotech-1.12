@@ -39,7 +39,6 @@ public abstract class InteractionBase<T extends TileEntity & ITileInteractable>
     double x = 0;
     double y = 0;
 
-    // TODO: test this is right
     switch (hitSide) {
       case UP:
         x = hitX;
@@ -67,6 +66,7 @@ public abstract class InteractionBase<T extends TileEntity & ITileInteractable>
 
         break;
       case DOWN:
+        // TODO: Fix Rotation
         x = 1.0 - hitX;
         y = hitZ;
         break;
@@ -141,7 +141,12 @@ public abstract class InteractionBase<T extends TileEntity & ITileInteractable>
   protected boolean canInteractWithActualSide(World world, EnumFacing actualSide, double hitX, double hitY, BlockPos pos, IBlockState blockState) {
 
     return ((this.sides & actualSide.getIndex()) == actualSide.getIndex())
-        && this.bounds.contains(hitX, hitY);
+        && this.getInteractionBounds(world, actualSide, hitX, hitY, pos, blockState).contains(hitX, hitY);
+  }
+
+  protected InteractionBounds getInteractionBounds(World world, EnumFacing actualSide, double hitX, double hitY, BlockPos pos, IBlockState blockState) {
+
+    return this.bounds;
   }
 
   /**
