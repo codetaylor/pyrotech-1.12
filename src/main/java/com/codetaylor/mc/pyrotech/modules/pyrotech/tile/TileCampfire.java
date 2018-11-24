@@ -591,7 +591,7 @@ public class TileCampfire
 
         if (!world.isRemote) {
           tile.setAshLevel(tile.getAshLevel() - 1);
-          StackHelper.spawnStackOnTop(world, ItemMaterial.EnumType.PIT_ASH.asStack(), hitPos);
+          StackHelper.spawnStackOnTop(world, ItemMaterial.EnumType.PIT_ASH.asStack(), hitPos, 0);
           heldItem.damageItem(1, player);
           world.playSound(null, hitPos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
         }
