@@ -41,6 +41,7 @@ public class ChoppingBlockRecipe
 
     this.input = input;
     this.output = output;
+    this.output.setCount(1); // Quantity is handled in the config file.
   }
 
   public Ingredient getInput() {
