@@ -1,5 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.network;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.network.data;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileDataItemStackHandler;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.network.TileDataBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.items.ItemStackHandler;

@@ -10,7 +10,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionItemSt
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileData;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileDataItemStackHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.TileDataContainerBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.network.TileDataItemStackHandler;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.network.data.TileDataItemStackHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

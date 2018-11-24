@@ -1,5 +1,6 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.network;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.network.data;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.network.TileDataBase;
 import net.minecraft.network.PacketBuffer;
 
 public class TileDataBoolean
