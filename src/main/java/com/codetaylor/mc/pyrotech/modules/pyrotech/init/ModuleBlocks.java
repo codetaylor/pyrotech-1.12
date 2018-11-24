@@ -38,6 +38,7 @@ public class ModuleBlocks {
   public static final BlockRock ROCK = new BlockRock();
   public static final BlockRockGrass ROCK_GRASS = new BlockRockGrass();
   public static final BlockChoppingBlock CHOPPING_BLOCK = new BlockChoppingBlock();
+  public static final BlockWoodRack WOOD_RACK = new BlockWoodRack();
 
   public static void onRegister(Registry registry) {
 
@@ -60,6 +61,7 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.REFRACTORY_GLASS, BlockRefractoryGlass.NAME);
     registry.registerBlockWithItem(ModuleBlocks.KILN_BRICK, BlockKilnBrick.NAME);
     registry.registerBlockWithItem(ModuleBlocks.DRYING_RACK, BlockDryingRack.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.WOOD_RACK, BlockWoodRack.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
 
@@ -74,7 +76,8 @@ public class ModuleBlocks {
         TileCampfire.class,
         TileDryingRack.class,
         TileDryingRackCrude.class,
-        TileChoppingBlock.class
+        TileChoppingBlock.class,
+        TileWoodRack.class
     );
   }
 
@@ -90,30 +93,33 @@ public class ModuleBlocks {
           ModuleBlocks.REFRACTORY_BRICK,
           ModuleBlocks.LIMESTONE,
           ModuleBlocks.REFRACTORY_GLASS,
-          ModuleBlocks.KILN_BRICK
+          ModuleBlocks.KILN_BRICK,
+          ModuleBlocks.WOOD_RACK
       );
 
+      // Refractory Door
       ModelLoader.setCustomStateMapper(
           ModuleBlocks.REFRACTORY_DOOR,
           (new StateMap.Builder()).ignore(BlockDoor.POWERED).build()
       );
 
+      // Pit Kiln
       ModelRegistrationHelper.registerBlockItemModel(ModuleBlocks.KILN_PIT.getDefaultState()
           .withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.EMPTY));
 
-      // tar collector
+      // Tar Collector
       ModelRegistrationHelper.registerVariantBlockItemModels(
           ModuleBlocks.TAR_COLLECTOR.getDefaultState(),
           BlockTarCollector.VARIANT
       );
 
-      // tar drain
+      // Tar Drain
       ModelRegistrationHelper.registerVariantBlockItemModels(
           ModuleBlocks.TAR_DRAIN.getDefaultState(),
           BlockTarDrain.VARIANT
       );
 
-      // igniter
+      // Igniter
       ModelRegistrationHelper.registerVariantBlockItemModels(
           ModuleBlocks.IGNITER.getDefaultState(),
           BlockIgniter.VARIANT
@@ -147,6 +153,7 @@ public class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRackCrude.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileChoppingBlock.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileWoodRack.class, new TESRInteractable<>());
 
     });
   }
