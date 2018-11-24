@@ -5,7 +5,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import java.util.List;
@@ -42,34 +41,10 @@ public class TileDataService
   }
 
   @Override
-  public void register(TileDataContainerBase tile) {
+  public void register(TileDataContainerBase tile, ITileData[] data) {
 
-    Field[] declaredFields = tile.getClass().getDeclaredFields();
-    List<ITileData> dataList = new ArrayList<>(declaredFields.length);
-
-    for (int i = 0; i < declaredFields.length; i++) {
-
-      Class<?> type = declaredFields[i].getType();
-
-      if (ITileData.class.isAssignableFrom(type)) {
-        declaredFields[i].setAccessible(true);
-
-        try {
-          dataList.add((ITileData) declaredFields[i].get(tile));
-
-        } catch (Exception e) {
-
-          // TODO: logger
-          e.printStackTrace();
-        }
-      }
-    }
-
-    int size = dataList.size();
-
-    if (size > 0) {
-      ITileData[] array = new ITileData[size];
-      TileDataTracker tracker = new TileDataTracker(tile, dataList.toArray(array));
+    if (data.length > 0) {
+      TileDataTracker tracker = new TileDataTracker(tile, data);
       this.dataTrackerList.add(tracker);
       this.dataTrackerMap.put(tile, tracker);
     }

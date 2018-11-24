@@ -1,7 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.network;
 
-import net.minecraft.world.World;
-
 import javax.annotation.Nullable;
 
 public interface ITileDataService {
@@ -11,7 +9,7 @@ public interface ITileDataService {
   @Nullable
   TileDataTracker getTracker(TileDataContainerBase tile);
 
-  void register(TileDataContainerBase tile);
+  void register(TileDataContainerBase tile, ITileData[] data);
 
-  abstract void update();
+  void update();
 }
