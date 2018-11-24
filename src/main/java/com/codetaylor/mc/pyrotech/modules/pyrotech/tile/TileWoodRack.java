@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IInteraction;
@@ -12,9 +13,14 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionItemSt
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileData;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileDataItemStackHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.data.TileDataItemStackHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -60,6 +66,15 @@ public class TileWoodRack
   public void dropContents() {
 
     StackHelper.spawnStackHandlerContentsOnTop(this.world, this.stackHandler, this.pos);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Accessors
+  // ---------------------------------------------------------------------------
+
+  public StackHandler getStackHandler() {
+
+    return this.stackHandler;
   }
 
   // ---------------------------------------------------------------------------
@@ -140,6 +155,25 @@ public class TileWoodRack
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
       return OreDictHelper.contains("logWood", itemStack);
+    }
+
+    @Override
+    protected void onInsert(ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
+
+      super.onInsert(itemStack, world, player, pos);
+
+      if (!world.isRemote) {
+        world.playSound(
+            null,
+            pos.getX(),
+            pos.getY(),
+            pos.getZ(),
+            SoundEvents.BLOCK_WOOD_PLACE,
+            SoundCategory.BLOCKS,
+            0.75f,
+            (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
+        );
+      }
     }
   }
 
