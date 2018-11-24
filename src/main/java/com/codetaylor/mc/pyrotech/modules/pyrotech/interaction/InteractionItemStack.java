@@ -1,14 +1,17 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -191,7 +194,15 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
       // Remove item with empty hand
 
       if (!this.isEmpty()) {
-        return this.doExtract(world, player, tilePos);
+
+        if (this.doExtract(world, player, tilePos)) {
+          this.onExtract(world, player, tilePos);
+          return true;
+
+        } else {
+          return false;
+        }
+
       }
 
     } else {
@@ -204,7 +215,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
 
       int count = heldItem.getCount();
       int insertIndex = this.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
-      ItemStack itemStack = new ItemStack(heldItem.getItem(), count, heldItem.getMetadata());
+      ItemStack itemStack = heldItem.copy();
       ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, world.isRemote);
 
       if (result.getCount() != count) {
@@ -213,11 +224,54 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
           heldItem.setCount(result.getCount());
         }
 
+        itemStack.setCount(itemStack.getCount() - result.getCount());
+        this.onInsert(itemStack, world, player, hitPos);
         return true;
       }
     }
 
     return false;
+  }
+
+  /**
+   * Called immediately after a successful insert.
+   * <p>
+   * <p>
+   * The stack passed is a copy of the stack that was inserted. Changing this
+   * stack will have no effect.
+   *
+   * @param itemStack copy of the stack inserted
+   * @param world     the world
+   * @param player    the interacting player
+   * @param pos       the block position interacted with
+   */
+  protected void onInsert(ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
+    //
+  }
+
+  /**
+   * Called immediately after a successful extract.
+   *
+   * @param world  the world
+   * @param player the interacting player
+   * @param pos    the block position interacted with
+   */
+  protected void onExtract(World world, EntityPlayer player, BlockPos pos) {
+
+    if (!world.isRemote) {
+      // Plays for everyone. To switch to player local, play on client with
+      // nonnull player parameter.
+      world.playSound(
+          null,
+          pos.getX(),
+          pos.getY(),
+          pos.getZ(),
+          SoundEvents.ENTITY_ITEM_PICKUP,
+          SoundCategory.BLOCKS,
+          0.25f,
+          (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
+      );
+    }
   }
 
   /**
@@ -258,7 +312,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
    * @param world   the world
    * @param hitPos  the block position interacted with
    * @param state   the blockState at the hitPos
-   * @param player  the player
+   * @param player  the interacting player
    * @param hand    the hand used to interact
    * @param hitSide the side of the block hit
    * @param hitX    the x position of the hit, relative to the hitPos
