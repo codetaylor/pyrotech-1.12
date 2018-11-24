@@ -9,12 +9,14 @@ public class WailaRegistrar {
 
   static final String CONFIG_TANK = Util.prefix("tank");
   static final String CONFIG_PROGRESS = Util.prefix("progress");
+  static final String CONFIG_CONTENTS = Util.prefix("contents");
 
   @SuppressWarnings("unused")
   public static void wailaCallback(IWailaRegistrar registrar) {
 
     registrar.addConfig(ModulePyrotech.MOD_ID, CONFIG_TANK, true);
     registrar.addConfig(ModulePyrotech.MOD_ID, CONFIG_PROGRESS, true);
+    registrar.addConfig(ModulePyrotech.MOD_ID, CONFIG_CONTENTS, true);
 
     TankDataProvider tankDataProvider = new TankDataProvider();
     registrar.registerBodyProvider(tankDataProvider, TileTarTankBase.class);
@@ -34,6 +36,9 @@ public class WailaRegistrar {
 
     ChoppingBlockDataProvider choppingBlockDataProvider = new ChoppingBlockDataProvider();
     registrar.registerBodyProvider(choppingBlockDataProvider, TileChoppingBlock.class);
+
+    WoodRackDataProvider woodRackDataProvider = new WoodRackDataProvider();
+    registrar.registerBodyProvider(woodRackDataProvider, TileWoodRack.class);
   }
 
 }
