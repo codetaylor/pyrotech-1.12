@@ -116,7 +116,7 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
 
       if (interaction.canInteractWith(world, rayTraceResult.sideHit, blockPos, rayTraceResult.hitVec, pos, blockState, tileFacing)) {
         interaction.renderAdditivePass(world, rayTraceResult.sideHit, blockPos, rayTraceResult.hitVec, pos, blockState, heldItemMainHand, partialTicks);
-        break;
+        //break;
       }
     }
   }
