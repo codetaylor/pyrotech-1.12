@@ -16,13 +16,13 @@ public class TileDataItemStackHandler<H extends ItemStackHandler & ITileDataItem
   public TileDataItemStackHandler(H stackHandler) {
 
     this(stackHandler, 1);
-    stackHandler.addObserver((handler, slot) -> this.setDirty(true));
   }
 
   public TileDataItemStackHandler(H stackHandler, int updateInterval) {
 
     super(updateInterval);
     this.stackHandler = stackHandler;
+    this.stackHandler.addObserver((handler, slot) -> this.setDirty(true));
     this.setDirty(true);
   }
 
