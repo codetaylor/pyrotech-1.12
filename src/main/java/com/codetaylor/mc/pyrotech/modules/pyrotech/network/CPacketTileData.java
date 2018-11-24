@@ -54,6 +54,8 @@ public class CPacketTileData
   @Override
   protected IMessage onMessage(CPacketTileData message, MessageContext ctx, TileEntity tileEntity) {
 
+    TileDataServiceLogger.LOGGER.debug(String.format("%s: %d bytes", tileEntity.getClass().getSimpleName(), message.buffer.writerIndex()));
+
     if (tileEntity instanceof TileDataContainerBase) {
 
       ITileDataService dataService = TileDataServiceContainer.find(message.serviceId);
@@ -68,9 +70,7 @@ public class CPacketTileData
             tracker.updateClient(message.buffer);
 
           } catch (Exception e) {
-
-            // TODO: logger
-            e.printStackTrace();
+            TileDataServiceLogger.LOGGER.error("", e);
           }
         }
       }
