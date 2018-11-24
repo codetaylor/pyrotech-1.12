@@ -7,9 +7,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class BlockWoodRack
@@ -17,11 +20,24 @@ public class BlockWoodRack
 
   public static final String NAME = "wood_rack";
 
+  private static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 14.0 / 16.0, 1);
+
   public BlockWoodRack() {
 
     super(Material.WOOD);
     this.setHardness(0.75f);
     this.setHarvestLevel("axe", 0);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Collision
+  // ---------------------------------------------------------------------------
+
+  @Nonnull
+  @Override
+  public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+
+    return AABB;
   }
 
   // ---------------------------------------------------------------------------
