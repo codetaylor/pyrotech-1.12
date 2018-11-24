@@ -36,7 +36,7 @@ public class CPacketTileData
 
     this.serviceId = buf.readInt();
     int size = buf.readInt();
-    this.buffer = new PacketBuffer(Unpooled.buffer());
+    this.buffer = new PacketBuffer(Unpooled.buffer(size));
     buf.readBytes(this.buffer, size);
   }
 
