@@ -6,6 +6,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 class TileDataTracker {
 
@@ -13,11 +16,17 @@ class TileDataTracker {
   private final ITileData[] data;
   private final PacketBuffer packetBuffer;
 
+  /**
+   * Temporarily stores data entries to
+   */
+  private final List<ITileData> toUpdate;
+
   /* package */ TileDataTracker(TileDataContainerBase tile, ITileData[] data) {
 
     this.tile = tile;
     this.data = data;
     this.packetBuffer = new PacketBuffer(Unpooled.buffer());
+    this.toUpdate = new ArrayList<>(this.data.length);
   }
 
   public TileDataContainerBase getTile() {
@@ -27,6 +36,9 @@ class TileDataTracker {
 
   /**
    * Called once per tick on the server.
+   * <p>
+   * Returns a packet buffer containing the serialized bytes of only the data
+   * that has updated. If no data has updated, an empty buffer is returned.
    */
   /* package */ PacketBuffer getUpdateBuffer() {
 
@@ -66,24 +78,20 @@ class TileDataTracker {
   @SideOnly(Side.CLIENT)
   /* package */ void updateClient(PacketBuffer buffer) throws IOException {
 
-    // Deserialize the buffer.
-
     int dirtyCount = buffer.readInt();
 
+    // Deserialize buffer and stash updated entries.
     for (int i = 0; i < dirtyCount; i++) {
       int index = buffer.readInt();
       this.data[index].read(buffer);
-      this.data[index].setDirty(true);
+      this.toUpdate.add(this.data[index]);
     }
 
-    // Notify the tile that the data has updated.
-
-    for (int i = 0; i < this.data.length; i++) {
-
-      if (this.data[i].isDirty()) {
-        this.tile.onTileDataUpdate(this.data[i]);
-        this.data[i].setDirty(false);
-      }
+    // Notify the tile that data was updated.
+    // Clear the stash.
+    if (!this.toUpdate.isEmpty()) {
+      this.tile.onTileDataUpdate(Collections.unmodifiableList(this.toUpdate));
+      this.toUpdate.clear();
     }
   }
 
