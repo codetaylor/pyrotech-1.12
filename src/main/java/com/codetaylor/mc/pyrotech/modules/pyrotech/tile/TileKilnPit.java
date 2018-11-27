@@ -26,6 +26,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
@@ -482,6 +483,12 @@ public class TileKilnPit
     }
 
     @Override
+    public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
+
+      return blockState.getBlock().getBoundingBox(blockState, world, pos);
+    }
+
+    @Override
     protected boolean allowInteraction(TileKilnPit tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       return (player.getHeldItem(hand).getItem() == Item.getItemFromBlock(ModuleBlocks.THATCH));
@@ -524,6 +531,12 @@ public class TileKilnPit
 
       super(EnumFacing.VALUES, InteractionBounds.BLOCK);
       this.logStackHandler = logStackHandler;
+    }
+
+    @Override
+    public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
+
+      return blockState.getBlock().getBoundingBox(blockState, world, pos);
     }
 
     @Override
@@ -571,6 +584,12 @@ public class TileKilnPit
           Transform.rotate(),
           Transform.scale(0.5, 0.5, 0.5)
       ));
+    }
+
+    @Override
+    public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
+
+      return blockState.getBlock().getBoundingBox(blockState, world, pos);
     }
 
     @Override

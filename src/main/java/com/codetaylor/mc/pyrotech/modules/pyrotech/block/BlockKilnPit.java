@@ -57,7 +57,6 @@ public class BlockKilnPit
     this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.EMPTY));
   }
 
-
   @Nonnull
   @Override
   public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
@@ -202,17 +201,7 @@ public class BlockKilnPit
   }
 
   @Override
-  public boolean onBlockActivated(
-      World world,
-      BlockPos pos,
-      IBlockState state,
-      EntityPlayer player,
-      EnumHand hand,
-      EnumFacing facing,
-      float hitX,
-      float hitY,
-      float hitZ
-  ) {
+  public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
     ItemStack heldItem = player.getHeldItemMainhand();
 
