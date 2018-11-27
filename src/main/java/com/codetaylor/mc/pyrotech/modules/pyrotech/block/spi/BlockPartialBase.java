@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -66,5 +66,11 @@ public abstract class BlockPartialBase
   public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 
     return true;
+  }
+
+  @Override
+  public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
+
+    return false;
   }
 }
