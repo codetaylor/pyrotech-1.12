@@ -11,12 +11,26 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-public final class InteractionBlockDelegate {
+public final class InteractionRayTracer {
 
+  /**
+   * Traces through the block and assigns a list of intersected interactions
+   * to the given result's hit info.
+   * <p>
+   * Call this from {@link net.minecraft.block.Block#collisionRayTrace(IBlockState, World, BlockPos, Vec3d, Vec3d)}.
+   *
+   * @param result     the original block ray trace result
+   * @param tile       the tile at the block pos being traced
+   * @param blockState the block state at the block pos being traced
+   * @param world      the world
+   * @param pos        the pos of the block being traced
+   * @param start      the start vec of the trace
+   * @param end        the end vec of the trace
+   * @param <T>        the interactable tile type
+   * @return the original ray trace result maybe with added hit info
+   */
   @Nullable
   public static <T extends TileEntity & ITileInteractable> RayTraceResult collisionRayTrace(RayTraceResult result, T tile, IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, Vec3d end) {
 
@@ -24,17 +38,14 @@ public final class InteractionBlockDelegate {
       return null;
     }
 
-    Vec3d blockStart = new Vec3d(start.x, start.y, start.z);
-    Vec3d blockEnd = new Vec3d(end.x, end.y, end.z);
-
-    // Translate trace to origin
-    blockStart = blockStart.subtract(pos.getX(), pos.getY(), pos.getZ());
-    blockEnd = blockEnd.subtract(pos.getX(), pos.getY(), pos.getZ());
+    // Translate
+    Vec3d blockStart = new Vec3d(start.x - pos.getX(), start.y - pos.getY(), start.z - pos.getZ());
+    Vec3d blockEnd = new Vec3d(end.x - pos.getX(), end.y - pos.getY(), end.z - pos.getZ());
 
     // Rotate
     EnumFacing tileFacing = tile.getTileFacing(world, pos, blockState);
-    blockStart = InteractionBlockDelegate.rotate(blockStart, tileFacing);
-    blockEnd = InteractionBlockDelegate.rotate(blockEnd, tileFacing);
+    blockStart = InteractionRayTracer.rotate(blockStart, tileFacing);
+    blockEnd = InteractionRayTracer.rotate(blockEnd, tileFacing);
 
     IInteraction[] interactions = tile.getInteractions();
 
@@ -42,7 +53,9 @@ public final class InteractionBlockDelegate {
       return result;
     }
 
-    List<ResultData> resultDataList = new ArrayList<>();
+    // Gather results
+
+    InteractionRayTraceData.List resultDataList = new InteractionRayTraceData.List();
 
     for (int i = 0; i < interactions.length; i++) {
 
@@ -56,7 +69,7 @@ public final class InteractionBlockDelegate {
           && interactions[i].allowInteractionWithSide(candidateTrace.sideHit)) {
 
         double distanceSq = blockStart.squareDistanceTo(candidateTrace.hitVec);
-        resultDataList.add(new ResultData(distanceSq, candidateTrace, interactions[i]));
+        resultDataList.add(new InteractionRayTraceData(distanceSq, candidateTrace, interactions[i]));
       }
     }
 
@@ -64,17 +77,10 @@ public final class InteractionBlockDelegate {
       return result;
     }
 
-    resultDataList.size();
+    // Sort and assign the results
+
     Collections.sort(resultDataList);
-    RayTraceResult[] results = new RayTraceResult[resultDataList.size()];
-
-    for (int i = 0; i < resultDataList.size(); i++) {
-      ResultData data = resultDataList.get(i);
-      results[i] = data.rayTraceResult;
-      results[i].hitInfo = data.interaction;
-    }
-
-    result.hitInfo = results;
+    result.hitInfo = resultDataList;
     return result;
   }
 
@@ -114,29 +120,8 @@ public final class InteractionBlockDelegate {
     return new Vec3d(rx, vec.y, rz);
   }
 
-  private InteractionBlockDelegate() {
+  private InteractionRayTracer() {
     //
-  }
-
-  private static class ResultData
-      implements Comparable<ResultData> {
-
-    private final double distanceSq;
-    final RayTraceResult rayTraceResult;
-    final IInteraction interaction;
-
-    private ResultData(double distanceSq, RayTraceResult rayTraceResult, IInteraction interaction) {
-
-      this.distanceSq = distanceSq;
-      this.rayTraceResult = rayTraceResult;
-      this.interaction = interaction;
-    }
-
-    @Override
-    public int compareTo(@Nonnull ResultData o) {
-
-      return Double.compare(this.distanceSq, o.distanceSq);
-    }
   }
 
 }

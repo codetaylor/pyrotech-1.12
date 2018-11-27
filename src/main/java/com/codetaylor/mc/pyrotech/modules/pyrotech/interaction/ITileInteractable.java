@@ -48,21 +48,20 @@ public interface ITileInteractable {
     RayTraceResult rayTraceResult = world.rayTraceBlocks(posVec, posVec.add(player.getLookVec().scale(interactionDistance)), false);
 
     if (rayTraceResult != null
-        && rayTraceResult.hitInfo instanceof RayTraceResult[]) {
+        && rayTraceResult.hitInfo instanceof InteractionRayTraceData.List) {
 
-      RayTraceResult[] results = (RayTraceResult[]) rayTraceResult.hitInfo;
+      InteractionRayTraceData.List results = (InteractionRayTraceData.List) rayTraceResult.hitInfo;
 
-      for (int i = 0; i < results.length; i++) {
+      for (int i = 0; i < results.size(); i++) {
 
-        if (results[i].hitInfo instanceof IInteraction) {
-          IInteraction interaction = (IInteraction) results[i].hitInfo;
+        InteractionRayTraceData data = results.get(i);
+        IInteraction interaction = data.getInteraction();
 
-          //noinspection unchecked
-          if (interaction.allowInteractionWithHand(hand)
-              && interaction.allowInteractionWithSide(results[i].sideHit)
-              && interaction.interact(tile, world, pos, state, player, hand, facing, hitX, hitY, hitZ)) {
-            break;
-          }
+        //noinspection unchecked
+        if (interaction.allowInteractionWithHand(hand)
+            && interaction.allowInteractionWithSide(data.getRayTraceResult().sideHit)
+            && interaction.interact(tile, world, pos, state, player, hand, facing, hitX, hitY, hitZ)) {
+          break;
         }
       }
     }

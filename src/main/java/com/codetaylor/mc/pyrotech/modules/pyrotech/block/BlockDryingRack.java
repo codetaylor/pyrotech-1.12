@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionBlockDelegate;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionRayTracer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackCrude;
@@ -105,10 +105,10 @@ public class BlockDryingRack
     RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
 
     if (tileEntity instanceof TileDryingRack) {
-      return InteractionBlockDelegate.collisionRayTrace(result, (TileDryingRack) tileEntity, blockState, world, pos, start, end);
+      return InteractionRayTracer.collisionRayTrace(result, (TileDryingRack) tileEntity, blockState, world, pos, start, end);
 
     } else if (tileEntity instanceof TileDryingRackCrude) {
-      return InteractionBlockDelegate.collisionRayTrace(result, (TileDryingRackCrude) tileEntity, blockState, world, pos, start, end);
+      return InteractionRayTracer.collisionRayTrace(result, (TileDryingRackCrude) tileEntity, blockState, world, pos, start, end);
     }
 
     return result;

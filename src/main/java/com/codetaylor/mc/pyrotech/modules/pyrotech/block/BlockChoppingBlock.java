@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionBlockDelegate;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionRayTracer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileChoppingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -96,7 +96,7 @@ public class BlockChoppingBlock
     RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
 
     if (tileEntity instanceof TileChoppingBlock) {
-      return InteractionBlockDelegate.collisionRayTrace(result, (TileChoppingBlock) tileEntity, blockState, world, pos, start, end);
+      return InteractionRayTracer.collisionRayTrace(result, (TileChoppingBlock) tileEntity, blockState, world, pos, start, end);
     }
 
     return result;

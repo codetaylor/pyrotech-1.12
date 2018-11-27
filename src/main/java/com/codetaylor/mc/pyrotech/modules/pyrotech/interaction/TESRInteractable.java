@@ -87,22 +87,22 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
 
     if (rayTraceResult != null
         && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-        && rayTraceResult.hitInfo instanceof RayTraceResult[]
+        && rayTraceResult.hitInfo instanceof InteractionRayTraceData.List
         && (te.getPos().equals(rayTraceResult.getBlockPos()) || te.isExtendedInteraction(world, rayTraceResult.getBlockPos(), world.getBlockState(rayTraceResult.getBlockPos())))) {
 
-      RayTraceResult[] results = (RayTraceResult[]) rayTraceResult.hitInfo;
+      InteractionRayTraceData.List results = (InteractionRayTraceData.List) rayTraceResult.hitInfo;
 
-      for (int i = 0; i < results.length; i++) {
+      for (int i = 0; i < results.size(); i++) {
 
-        if (results[i].hitInfo instanceof IInteraction) {
-          IInteraction interaction = (IInteraction) results[i].hitInfo;
+        InteractionRayTraceData data = results.get(i);
+        IInteraction interaction = data.getInteraction();
+        RayTraceResult result = data.getRayTraceResult();
 
-          if (interaction.allowInteractionWithSide(results[i].sideHit)) {
+        if (interaction.allowInteractionWithSide(result.sideHit)) {
 
-            if (interaction.renderAdditivePass(world, results[i].sideHit, results[i].hitVec, results[i].getBlockPos(), blockState, player.getHeldItemMainhand(), partialTicks)) {
-              // Only keep rendering if nothing was rendered.
-              break;
-            }
+          if (interaction.renderAdditivePass(world, result.sideHit, result.hitVec, result.getBlockPos(), blockState, player.getHeldItemMainhand(), partialTicks)) {
+            // Only keep rendering if nothing was rendered.
+            break;
           }
         }
 
