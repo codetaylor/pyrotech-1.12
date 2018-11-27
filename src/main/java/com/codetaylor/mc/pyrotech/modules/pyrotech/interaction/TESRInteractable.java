@@ -4,10 +4,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -77,6 +80,8 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
 
   protected void renderAdditivePass(T te, float partialTicks, World world, IBlockState blockState) {
 
+    // TODO: move to event handler?
+
     EntityPlayerSP player = Minecraft.getMinecraft().player;
 
     if (player.isSneaking()) {
@@ -105,7 +110,29 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
             break;
           }
         }
+      }
 
+      // TODO: this is debug only
+      if (!results.isEmpty()) {
+        InteractionRenderers.setupAdditiveGLState();
+        GlStateManager.glLineWidth(8.0F);
+        GlStateManager.disableTexture2D();
+        GlStateManager.color(1, 1, 1, 1);
+
+        for (int i = 0; i < results.size(); i++) {
+
+          BlockPos pos = rayTraceResult.getBlockPos();
+          InteractionRayTraceData data = results.get(i);
+          IInteraction interaction = data.getInteraction();
+
+          AxisAlignedBB bounds = interaction.getInteractionBounds(world, pos, blockState)
+              .expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D);
+
+          RenderGlobal.drawSelectionBoundingBox(bounds, 0, 1, 0, 1);
+        }
+
+        InteractionRenderers.cleanupAdditiveGLState();
+        GlStateManager.enableTexture2D();
       }
     }
   }
