@@ -93,7 +93,7 @@ public class TileDryingRackCrude
           stackHandlers,
           0,
           EnumFacing.VALUES,
-          InteractionBounds.INFINITE,
+          InteractionBounds.BLOCK,
           new Transform(
               new Vec3d(0.5, 0.5, 0.15),
               new Quaternion(),

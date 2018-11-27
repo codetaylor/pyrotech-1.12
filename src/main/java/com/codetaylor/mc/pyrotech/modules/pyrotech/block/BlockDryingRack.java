@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionBlockDelegate;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackCrude;
@@ -24,6 +25,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -59,6 +62,12 @@ public class BlockDryingRack
         .withProperty(VARIANT, EnumType.CRUDE));
   }
 
+  @Override
+  public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+
+    return 150;
+  }
+
   // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------
@@ -77,7 +86,7 @@ public class BlockDryingRack
   }
 
   @Override
-  public void breakBlock(World world, BlockPos pos, IBlockState state) {
+  public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
 
     TileEntity tileEntity = world.getTileEntity(pos);
 
@@ -88,10 +97,21 @@ public class BlockDryingRack
     super.breakBlock(world, pos, state);
   }
 
+  @Nullable
   @Override
-  public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
 
-    return 150;
+    TileEntity tileEntity = world.getTileEntity(pos);
+    RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
+
+    if (tileEntity instanceof TileDryingRack) {
+      return InteractionBlockDelegate.collisionRayTrace(result, (TileDryingRack) tileEntity, blockState, world, pos, start, end);
+
+    } else if (tileEntity instanceof TileDryingRackCrude) {
+      return InteractionBlockDelegate.collisionRayTrace(result, (TileDryingRackCrude) tileEntity, blockState, world, pos, start, end);
+    }
+
+    return result;
   }
 
   // ---------------------------------------------------------------------------
@@ -220,6 +240,7 @@ public class BlockDryingRack
   // ---------------------------------------------------------------------------
   // - Variants
   // ---------------------------------------------------------------------------
+
   @Override
   public void getSubBlocks(
       CreativeTabs itemIn,

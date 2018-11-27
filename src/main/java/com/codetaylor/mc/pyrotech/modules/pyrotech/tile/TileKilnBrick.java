@@ -567,7 +567,7 @@ public class TileKilnBrick
           stackHandlers,
           0,
           new EnumFacing[]{EnumFacing.NORTH},
-          new InteractionBounds(0, 1, 1, 2),
+          InteractionBounds.BLOCK,
           new Transform(
               Transform.translate(0.5, 1.2, 0.5),
               Transform.rotate(),
@@ -613,7 +613,7 @@ public class TileKilnBrick
           stackHandlers,
           0,
           new EnumFacing[]{EnumFacing.NORTH},
-          new InteractionBounds(0, 0, 1, 1),
+          InteractionBounds.BLOCK,
           new Transform(
               Transform.translate(0.5, 0.2, 0.5),
               Transform.rotate(),
@@ -634,7 +634,7 @@ public class TileKilnBrick
 
     /* package */ InteractionUseFlintAndSteel() {
 
-      super(new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK_FACE);
+      super(new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK);
     }
 
     @Override

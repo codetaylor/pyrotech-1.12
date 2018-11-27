@@ -12,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -41,7 +42,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
       ItemStackHandler[] stackHandlers,
       int slot,
       EnumFacing[] sides,
-      InteractionBounds bounds,
+      AxisAlignedBB bounds,
       Transform transform
   ) {
 
@@ -179,14 +180,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
       return false;
     }
 
-    EnumFacing tileFacing = tile.getTileFacing(world, hitPos, state);
     BlockPos tilePos = tile.getPos();
-    IBlockState tileBlockState = world.getBlockState(tilePos);
-
-    if (!this.canInteractWith(world, hitSide, hitPos, new Vec3d(hitX + tilePos.getX(), hitY + tilePos.getY(), hitZ + tilePos.getZ()), tilePos, tileBlockState, tileFacing)) {
-      return false;
-    }
-
     ItemStack heldItem = player.getHeldItem(hand);
 
     if (heldItem.isEmpty()) {
@@ -334,8 +328,8 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
 
   @Override
   @SideOnly(Side.CLIENT)
-  public void renderAdditivePass(World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos pos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+  public boolean renderAdditivePass(World world, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
-    InteractionRenderers.ITEM_STACK.renderAdditivePass(this, world, hitSide, hitPos, hitVec, pos, blockState, heldItemMainHand, partialTicks);
+    return InteractionRenderers.ITEM_STACK.renderAdditivePass(this, world, hitSide, hitVec, hitPos, blockState, heldItemMainHand, partialTicks);
   }
 }

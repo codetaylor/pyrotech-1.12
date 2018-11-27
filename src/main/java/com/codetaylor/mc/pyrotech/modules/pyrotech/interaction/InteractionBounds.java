@@ -1,31 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
 
-public class InteractionBounds {
+import net.minecraft.util.math.AxisAlignedBB;
 
-  public static final InteractionBounds INFINITE = new InteractionBounds(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
-  public static final InteractionBounds BLOCK_FACE = new InteractionBounds(0, 0, 1, 1);
+public final class InteractionBounds {
 
-  private final double minX;
-  private final double maxX;
-  private final double minY;
-  private final double maxY;
+  public static final AxisAlignedBB BLOCK = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
+  public static final AxisAlignedBB SLAB = new AxisAlignedBB(0, 0, 0, 1, 0.5, 1);
 
-  public InteractionBounds(double minX, double minY, double maxX, double maxY) {
-
-    this.minX = minX;
-    this.maxX = maxX;
-    this.minY = minY;
-    this.maxY = maxY;
+  private InteractionBounds() {
+    //
   }
 
-  public boolean contains(double x, double y) {
-
-    if (x > this.minX && x < this.maxX) {
-
-      return (y > this.minY && y < this.maxY);
-
-    } else {
-      return false;
-    }
-  }
 }

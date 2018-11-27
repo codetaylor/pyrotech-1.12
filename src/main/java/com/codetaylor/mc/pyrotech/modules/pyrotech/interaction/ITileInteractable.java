@@ -6,6 +6,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public interface ITileInteractable {
@@ -41,13 +43,27 @@ public interface ITileInteractable {
 
   default <T extends TileEntity & ITileInteractable> void interact(T tile, World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    IInteraction[] interactions = tile.getInteractions();
+    Vec3d posVec = new Vec3d(player.posX, player.posY + player.eyeHeight, player.posZ);
+    int interactionDistance = 5;
+    RayTraceResult rayTraceResult = world.rayTraceBlocks(posVec, posVec.add(player.getLookVec().scale(interactionDistance)), false);
 
-    for (int i = 0; i < interactions.length; i++) {
+    if (rayTraceResult != null
+        && rayTraceResult.hitInfo instanceof RayTraceResult[]) {
 
-      //noinspection unchecked
-      if (interactions[i].interact(tile, world, pos, state, player, hand, facing, hitX, hitY, hitZ)) {
-        break;
+      RayTraceResult[] results = (RayTraceResult[]) rayTraceResult.hitInfo;
+
+      for (int i = 0; i < results.length; i++) {
+
+        if (results[i].hitInfo instanceof IInteraction) {
+          IInteraction interaction = (IInteraction) results[i].hitInfo;
+
+          //noinspection unchecked
+          if (interaction.allowInteractionWithHand(hand)
+              && interaction.allowInteractionWithSide(results[i].sideHit)
+              && interaction.interact(tile, world, pos, state, player, hand, facing, hitX, hitY, hitZ)) {
+            break;
+          }
+        }
       }
     }
   }

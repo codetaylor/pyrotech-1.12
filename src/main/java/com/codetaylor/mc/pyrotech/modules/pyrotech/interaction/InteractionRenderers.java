@@ -35,7 +35,7 @@ public final class InteractionRenderers {
     }
 
     @Override
-    public void renderAdditivePass(IInteractionItemStack interaction, World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos pos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+    public boolean renderAdditivePass(IInteractionItemStack interaction, World world, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
       // If the handler is empty, render the held item.
       // Else, render the handler's item if the player's hand is empty.
@@ -45,7 +45,7 @@ public final class InteractionRenderers {
 
         // Only render the held item if it is valid for the handler.
         if (interaction.isItemStackValid(heldItemMainHand)) {
-          Transform transform = interaction.getTransform(world, pos, blockState, heldItemMainHand, partialTicks);
+          Transform transform = interaction.getTransform(world, hitPos, blockState, heldItemMainHand, partialTicks);
 
           // Since only one item will be rendered, it is better to wrap the
           // GL setup calls as late as possible so we're not setting it up
@@ -54,13 +54,14 @@ public final class InteractionRenderers {
           InteractionRenderers.setupAdditiveGLState();
           InteractionRenderers.renderItemModelCustom(heldItemMainHand, transform);
           InteractionRenderers.cleanupAdditiveGLState();
+          return true;
         }
 
       } else if (!interaction.isEmpty()
           && heldItemMainHand.isEmpty()) {
 
         ItemStack itemStack = interaction.getStackInSlot();
-        Transform transform = interaction.getTransform(world, pos, blockState, itemStack, partialTicks);
+        Transform transform = interaction.getTransform(world, hitPos, blockState, itemStack, partialTicks);
 
         if (!itemStack.isEmpty()) {
 
@@ -71,8 +72,11 @@ public final class InteractionRenderers {
           InteractionRenderers.setupAdditiveGLState();
           InteractionRenderers.renderItemModelCustom(itemStack, transform);
           InteractionRenderers.cleanupAdditiveGLState();
+          return true;
         }
       }
+
+      return false;
     }
   }
 

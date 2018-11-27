@@ -478,7 +478,7 @@ public class TileKilnPit
 
     /* package */ InteractionThatch() {
 
-      super(new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE);
+      super(new EnumFacing[]{EnumFacing.UP}, InteractionBounds.BLOCK);
     }
 
     @Override
@@ -522,7 +522,7 @@ public class TileKilnPit
 
     /* package */ InteractionLog(ItemStackHandler logStackHandler) {
 
-      super(new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE);
+      super(new EnumFacing[]{EnumFacing.UP}, InteractionBounds.BLOCK);
       this.logStackHandler = logStackHandler;
     }
 
@@ -566,7 +566,7 @@ public class TileKilnPit
 
     public Interaction(ItemStackHandler[] stackHandlers) {
 
-      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE, new Transform(
+      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.BLOCK, new Transform(
           Transform.translate(0.5, 0.4, 0.5),
           Transform.rotate(),
           Transform.scale(0.5, 0.5, 0.5)

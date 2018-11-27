@@ -238,7 +238,7 @@ public class TileChoppingBlock
 
     /* package */ Interaction(ItemStackHandler[] stackHandlers) {
 
-      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE, new Transform(
+      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, BlockChoppingBlock.AABB, new Transform(
           Transform.translate(0.5, 0.75, 0.5),
           Transform.rotate(),
           Transform.scale(0.75, 0.75, 0.75)
@@ -276,7 +276,7 @@ public class TileChoppingBlock
 
     /* package */ InteractionShovel() {
 
-      super(EnumFacing.VALUES, InteractionBounds.INFINITE);
+      super(EnumFacing.VALUES, BlockChoppingBlock.AABB);
     }
 
     @Override
@@ -309,7 +309,7 @@ public class TileChoppingBlock
 
     /* package */ InteractionChop() {
 
-      super(new EnumFacing[]{EnumFacing.UP}, InteractionBounds.INFINITE);
+      super(new EnumFacing[]{EnumFacing.UP}, BlockChoppingBlock.AABB);
     }
 
     @Override

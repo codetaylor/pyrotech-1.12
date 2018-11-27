@@ -8,7 +8,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileData;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileDataItemStackHandler;
@@ -19,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
@@ -143,12 +143,12 @@ public class TileWoodRack
       );
     }
 
-    private static InteractionBounds createInteractionBounds(int slot) {
+    private static AxisAlignedBB createInteractionBounds(int slot) {
 
       int x = slot % 3;
       int z = slot / 3;
 
-      return new InteractionBounds(x * ONE_THIRD, z * ONE_THIRD, x * ONE_THIRD + ONE_THIRD, z * ONE_THIRD + ONE_THIRD);
+      return new AxisAlignedBB(x * ONE_THIRD, 0, z * ONE_THIRD, x * ONE_THIRD + ONE_THIRD, 1, z * ONE_THIRD + ONE_THIRD);
     }
 
     @Override

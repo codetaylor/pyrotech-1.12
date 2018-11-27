@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * This provides a default implementation of the packet update methods.
@@ -41,7 +42,7 @@ public abstract class TileNetworkedBase
 
   @SideOnly(Side.CLIENT)
   @Override
-  public void onTileDataUpdate(ITileData data) {
+  public void onTileDataUpdate(List<ITileData> data) {
     //
   }
 

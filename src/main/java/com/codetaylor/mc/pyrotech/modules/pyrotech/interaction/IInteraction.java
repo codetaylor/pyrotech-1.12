@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -15,31 +16,44 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IInteraction<T extends TileEntity & ITileInteractable> {
 
-  /**
-   * Returns true if this interaction is allowed with the given hand.
-   *
-   * @param hand the hand to test against
-   * @return true if this interaction is allowed with the given hand
-   */
-  boolean allowInteractionWithHand(EnumHand hand);
+  default boolean isEnabled() {
+
+    return true;
+  }
 
   /**
-   * Returns true if the handler can be interacted with given the criteria.
-   * <p>
-   * Note that the given tilePos may be different than the hitPos. For example, if
-   * the block above the TE is an interaction extension, the hitPos will
-   * be for the block above the given tilePos.
+   * Returns the bounds for this interaction.
+   * Bounds are relative to block space.
    *
-   * @param world          the world
-   * @param hitSide        the side hit
-   * @param hitPos         the position of the block hit
-   * @param hitVec         the location of the hit relative to world origin
-   * @param tilePos        the position of the TE, may be different than the hitPos
-   * @param tileBlockState the blockState of the TE
-   * @param tileFacing     the facing of the TE's block; default: NORTH
-   * @return true if the handler can be interacted with given the criteria
+   * @param world      the world
+   * @param pos        the position of the intersected block
+   * @param blockState the blockState of the intersected block
+   * @return the bounds for this interaction
    */
-  boolean canInteractWith(World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos tilePos, IBlockState tileBlockState, EnumFacing tileFacing);
+  AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState);
+
+  /**
+   * Returns true if this interaction should trigger with the given hand.
+   * Override this to change the hand that this interaction works with.
+   * <p>
+   * By default it will trigger only on the main hand.
+   *
+   * @param hand the hand to filter this interaction by
+   * @return true if this interaction should trigger with the given hand
+   */
+  default boolean allowInteractionWithHand(EnumHand hand) {
+
+    return (hand == EnumHand.MAIN_HAND);
+  }
+
+  /**
+   * Returns true if this interaction can be interacted with from the given
+   * side.
+   *
+   * @param facing the block space facing
+   * @return true if this interaction can be interacted with from the given side
+   */
+  boolean allowInteractionWithSide(EnumFacing facing);
 
   /**
    * Should be called from {@link net.minecraft.block.Block#onBlockActivated(World, BlockPos, IBlockState, EntityPlayer, EnumHand, EnumFacing, float, float, float)}.
@@ -73,18 +87,17 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
 
   /**
    * Render the additive pass.
-   *
-   * @param world            the world
+   *  @param world            the world
    * @param hitSide          the side hit
-   * @param hitPos           the position of the block hit
    * @param hitVec           the location of the hit relative to world origin
-   * @param pos              the position of the intersected TE, may be different than the hitPos
+   * @param hitPos           the position of the block hit
    * @param blockState       the blockState of the intersected TE
    * @param heldItemMainHand the item held in the player's main hand
    * @param partialTicks     value passed from the TESR
    */
   @SideOnly(Side.CLIENT)
-  default void renderAdditivePass(World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos pos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+  default boolean renderAdditivePass(World world, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
     // default no op
+    return false;
   }
 }

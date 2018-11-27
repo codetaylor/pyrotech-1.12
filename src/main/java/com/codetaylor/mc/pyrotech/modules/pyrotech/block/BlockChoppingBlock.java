@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionBlockDelegate;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileChoppingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,6 +19,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -32,7 +35,7 @@ public class BlockChoppingBlock
   public static final IProperty<Integer> DAMAGE = PropertyInteger.create("damage", 0, 5);
   public static final IProperty<Integer> SAWDUST = PropertyInteger.create("sawdust", 0, 5);
 
-  private static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 6f / 16f, 1);
+  public static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 6f / 16f, 1);
 
   public BlockChoppingBlock() {
 
@@ -54,7 +57,6 @@ public class BlockChoppingBlock
     }
 
     TileChoppingBlock choppingBlock = (TileChoppingBlock) tileEntity;
-
     choppingBlock.interact(choppingBlock, world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 
     return true;
@@ -84,6 +86,20 @@ public class BlockChoppingBlock
     if (!world.isRemote) {
       world.setBlockToAir(pos);
     }
+  }
+
+  @Nullable
+  @Override
+  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+    RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
+
+    if (tileEntity instanceof TileChoppingBlock) {
+      return InteractionBlockDelegate.collisionRayTrace(result, (TileChoppingBlock) tileEntity, blockState, world, pos, start, end);
+    }
+
+    return result;
   }
 
   // ---------------------------------------------------------------------------

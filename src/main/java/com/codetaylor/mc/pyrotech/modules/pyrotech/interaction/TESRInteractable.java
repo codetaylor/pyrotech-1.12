@@ -1,16 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
 
-import com.codetaylor.mc.pyrotech.Reference;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -86,37 +83,29 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
       return;
     }
 
-    // TODO: cache raytrace result
-    // Can we cache the raytrace result so we're only calling this once per
-    // frame for all renderers?
-    // Cache in static client event somewhere?
-
-    RayTraceResult rayTraceResult = player
-        .rayTrace(Reference.INTERACTION_BLOCK_REACH, partialTicks);
+    RayTraceResult rayTraceResult = Minecraft.getMinecraft().objectMouseOver;
 
     if (rayTraceResult != null
         && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
+        && rayTraceResult.hitInfo instanceof RayTraceResult[]
         && (te.getPos().equals(rayTraceResult.getBlockPos()) || te.isExtendedInteraction(world, rayTraceResult.getBlockPos(), world.getBlockState(rayTraceResult.getBlockPos())))) {
 
-      this.renderAdditivePass(te, world, blockState, player.getHeldItemMainhand(), rayTraceResult, partialTicks);
-    }
-  }
+      RayTraceResult[] results = (RayTraceResult[]) rayTraceResult.hitInfo;
 
-  protected void renderAdditivePass(T te, World world, IBlockState blockState, ItemStack heldItemMainHand, RayTraceResult rayTraceResult, float partialTicks) {
+      for (int i = 0; i < results.length; i++) {
 
-    IInteraction[] interactions = te.getInteractions();
+        if (results[i].hitInfo instanceof IInteraction) {
+          IInteraction interaction = (IInteraction) results[i].hitInfo;
 
-    for (int i = 0; i < interactions.length; i++) {
+          if (interaction.allowInteractionWithSide(results[i].sideHit)) {
 
-      IInteraction interaction = interactions[i];
+            if (interaction.renderAdditivePass(world, results[i].sideHit, results[i].hitVec, results[i].getBlockPos(), blockState, player.getHeldItemMainhand(), partialTicks)) {
+              // Only keep rendering if nothing was rendered.
+              break;
+            }
+          }
+        }
 
-      BlockPos blockPos = rayTraceResult.getBlockPos();
-      BlockPos pos = te.getPos();
-      EnumFacing tileFacing = te.getTileFacing(world, pos, blockState);
-
-      if (interaction.canInteractWith(world, rayTraceResult.sideHit, blockPos, rayTraceResult.hitVec, pos, blockState, tileFacing)) {
-        interaction.renderAdditivePass(world, rayTraceResult.sideHit, blockPos, rayTraceResult.hitVec, pos, blockState, heldItemMainHand, partialTicks);
-        //break;
       }
     }
   }

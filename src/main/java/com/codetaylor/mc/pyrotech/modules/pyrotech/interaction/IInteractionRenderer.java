@@ -12,7 +12,18 @@ public interface IInteractionRenderer<I extends IInteraction> {
 
   IInteractionRenderer<IInteraction> NO_OP = new NoOp();
 
-  void renderAdditivePass(IInteractionItemStack interaction, World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos pos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks);
+  /**
+   * @param interaction
+   * @param world
+   * @param hitSide
+   * @param hitVec
+   * @param hitPos
+   * @param blockState
+   * @param heldItemMainHand
+   * @param partialTicks
+   * @return true if any rendering was done
+   */
+  boolean renderAdditivePass(IInteractionItemStack interaction, World world, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks);
 
   void renderSolidPass(IInteractionItemStack interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks);
 
@@ -25,8 +36,9 @@ public interface IInteractionRenderer<I extends IInteraction> {
     }
 
     @Override
-    public void renderAdditivePass(IInteractionItemStack interaction, World world, EnumFacing hitSide, BlockPos hitPos, Vec3d hitVec, BlockPos pos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
-      // no op
+    public boolean renderAdditivePass(IInteractionItemStack interaction, World world, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+
+      return false;
     }
   }
 

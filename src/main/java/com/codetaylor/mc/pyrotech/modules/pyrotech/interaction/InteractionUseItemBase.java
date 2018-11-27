@@ -6,14 +6,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public abstract class InteractionUseItemBase<T extends TileEntity & ITileInteractable>
     extends InteractionBase<T> {
 
-  public InteractionUseItemBase(EnumFacing[] sides, InteractionBounds bounds) {
+  public InteractionUseItemBase(EnumFacing[] sides, AxisAlignedBB bounds) {
 
     super(sides, bounds);
   }
@@ -21,12 +21,7 @@ public abstract class InteractionUseItemBase<T extends TileEntity & ITileInterac
   @Override
   public boolean interact(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    EnumFacing tileFacing = tile.getTileFacing(world, hitPos, state);
-    BlockPos tilePos = tile.getPos();
-    IBlockState tileBlockState = world.getBlockState(tilePos);
-
     if (this.allowInteractionWithHand(hand)
-        && this.canInteractWith(world, hitSide, hitPos, new Vec3d(hitX + tilePos.getX(), hitY + tilePos.getY(), hitZ + tilePos.getZ()), tilePos, tileBlockState, tileFacing)
         && this.allowInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {
 
       boolean complete = this.doInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
@@ -61,7 +56,7 @@ public abstract class InteractionUseItemBase<T extends TileEntity & ITileInterac
    * calling code.
    *
    * @param itemStack the itemStack that will be damaged
-   * @return
+   * @return the damage to be applied to the item used
    */
   protected int getItemDamage(ItemStack itemStack) {
 
