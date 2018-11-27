@@ -21,7 +21,7 @@ public abstract class InteractionBase<T extends TileEntity & ITileInteractable>
     int sidesEncoded = 0;
 
     for (EnumFacing side : sides) {
-      sidesEncoded |= side.getIndex();
+      sidesEncoded |= (1 << side.getIndex());
     }
 
     this.sides = sidesEncoded;
@@ -36,6 +36,6 @@ public abstract class InteractionBase<T extends TileEntity & ITileInteractable>
   @Override
   public boolean allowInteractionWithSide(EnumFacing facing) {
 
-    return ((this.sides & facing.getIndex()) == facing.getIndex());
+    return ((this.sides & (1 << facing.getIndex())) == (1 << facing.getIndex()));
   }
 }
