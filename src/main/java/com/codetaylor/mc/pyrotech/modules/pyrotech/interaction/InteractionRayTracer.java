@@ -4,7 +4,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -93,40 +92,39 @@ public final class InteractionRayTracer {
     return result;
   }
 
-  private static Vec3d rotate(Vec3d vec, EnumFacing tileFacing) {
+  private static final double NORTH_SIN = Math.sin(0);
+  private static final double NORTH_COS = Math.cos(0);
 
-    float angle;
+  private static final double EAST_SIN = Math.sin(Math.PI + Math.PI / 2.0);
+  private static final double EAST_COS = Math.cos(Math.PI + Math.PI / 2.0);
+
+  private static final double SOUTH_SIN = Math.sin(Math.PI);
+  private static final double SOUTH_COS = Math.cos(Math.PI);
+
+  private static final double WEST_SIN = Math.sin(Math.PI / 2.0);
+  private static final double WEST_COS = Math.cos(Math.PI / 2.0);
+
+  private static Vec3d rotate(Vec3d vec, EnumFacing tileFacing) {
 
     switch (tileFacing) {
 
       case NORTH:
-        angle = 0;
-        break;
+        return new Vec3d(0.5 + (vec.x - 0.5) * NORTH_COS - (vec.z - 0.5) * NORTH_SIN, vec.y, 0.5 + (vec.x - 0.5) * NORTH_SIN + (vec.z - 0.5) * NORTH_COS);
 
       case EAST:
-        angle = (float) (Math.PI + Math.PI / 2);
-        break;
+        return new Vec3d(0.5 + (vec.x - 0.5) * EAST_COS - (vec.z - 0.5) * EAST_SIN, vec.y, 0.5 + (vec.x - 0.5) * EAST_SIN + (vec.z - 0.5) * EAST_COS);
 
       case SOUTH:
-        angle = (float) Math.PI;
-        break;
+        return new Vec3d(0.5 + (vec.x - 0.5) * SOUTH_COS - (vec.z - 0.5) * SOUTH_SIN, vec.y, 0.5 + (vec.x - 0.5) * SOUTH_SIN + (vec.z - 0.5) * SOUTH_COS);
 
       case WEST:
-        angle = (float) (Math.PI / 2);
-        break;
+        return new Vec3d(0.5 + (vec.x - 0.5) * WEST_COS - (vec.z - 0.5) * WEST_SIN, vec.y, 0.5 + (vec.x - 0.5) * WEST_SIN + (vec.z - 0.5) * WEST_COS);
 
       case UP:
       case DOWN:
       default:
         throw new IllegalArgumentException("Unsupported facing: " + tileFacing);
     }
-
-    float cos = MathHelper.cos(angle);
-    float sin = MathHelper.sin(angle);
-    double rx = 0.5 + (vec.x - 0.5) * cos - (vec.z - 0.5) * sin;
-    double rz = 0.5 + (vec.x - 0.5) * sin + (vec.z - 0.5) * cos;
-
-    return new Vec3d(rx, vec.y, rz);
   }
 
   private InteractionRayTracer() {
