@@ -47,6 +47,15 @@ public final class InteractionRayTracer {
     blockStart = InteractionRayTracer.rotate(blockStart, tileFacing);
     blockEnd = InteractionRayTracer.rotate(blockEnd, tileFacing);
 
+    // We have to stretch the start and end of the ray before tracing because
+    // sometimes the cast starts inside the block. We extend the cast by two
+    // in each direction to be safe.
+
+    Vec3d grow = blockEnd.subtract(blockStart).normalize().scale(2);
+
+    blockStart = blockStart.subtract(grow);
+    blockEnd = blockEnd.add(grow);
+
     IInteraction[] interactions = tile.getInteractions();
 
     if (interactions.length == 0) {
@@ -95,15 +104,15 @@ public final class InteractionRayTracer {
         break;
 
       case EAST:
-        angle = (float) -(Math.PI / 2);
+        angle = (float) (Math.PI + Math.PI / 2);
         break;
 
       case SOUTH:
-        angle = (float) -Math.PI;
+        angle = (float) Math.PI;
         break;
 
       case WEST:
-        angle = (float) -(Math.PI + Math.PI / 2);
+        angle = (float) (Math.PI / 2);
         break;
 
       case UP:
