@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -10,6 +11,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+/**
+ * Interactable tiles must implement this interface and override the
+ * {@link #getInteractions()} method to return an array of the tile's
+ * interactions.
+ */
 public interface ITileInteractable {
 
   IInteraction[] EMPTY_INTERACTION_HANDLERS = new IInteraction[0];
@@ -36,11 +42,39 @@ public interface ITileInteractable {
     return false;
   }
 
+  /**
+   * Override this for tiles with facing and return the tile's facing.
+   * <p>
+   * NOTE: The system currently works with only horizontal facings.
+   * <p>
+   * The default facing is NORTH.
+   *
+   * @param world      the world
+   * @param pos        the position of the tile
+   * @param blockState the blockState at the tile's position
+   * @return this tile's facing
+   */
   default EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
 
     return EnumFacing.NORTH;
   }
 
+  /**
+   * Call this method from the block's {@link Block#onBlockActivated(World, BlockPos, IBlockState, EntityPlayer, EnumHand, EnumFacing, float, float, float)}
+   * method and pass in the block's tile entity.
+   *
+   * @param tile   the tile being interacted with
+   * @param world  the world
+   * @param pos    the position of the block/tile being interacted with
+   * @param state  the blockState of the block being interacted with
+   * @param player the player doing the interaction
+   * @param hand   the hand the player is using
+   * @param facing the facing of the side of the block's AABB being interacted with
+   * @param hitX   the vec.x of the interaction
+   * @param hitY   the vec.y of the interaction
+   * @param hitZ   the vec.z of the interaction
+   * @param <T>    the type of tile being interacted with
+   */
   default <T extends TileEntity & ITileInteractable> void interact(T tile, World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
     Vec3d posVec = new Vec3d(player.posX, player.posY + player.eyeHeight, player.posZ);
