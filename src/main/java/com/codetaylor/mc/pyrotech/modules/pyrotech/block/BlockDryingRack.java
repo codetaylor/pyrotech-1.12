@@ -2,8 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionRayTracer;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackCrude;
@@ -37,7 +36,8 @@ import java.util.stream.Stream;
 
 public class BlockDryingRack
     extends Block
-    implements IBlockVariant<BlockDryingRack.EnumType> {
+    implements IBlockVariant<BlockDryingRack.EnumType>,
+    IBlockInteractable {
 
   public static final String NAME = "drying_rack";
 
@@ -45,7 +45,7 @@ public class BlockDryingRack
   public static final IProperty<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
   private static final AxisAlignedBB AABB = new AxisAlignedBB(0f / 16f, 0f / 16f, 0f / 16f, 16f / 16f, 12f / 16f, 16f / 16f);
-  private static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0f / 16f, 11f / 16f, 0f / 16f, 16f / 16f, 16f / 16f, 5f / 16f);
+  public static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0f / 16f, 11f / 16f, 0f / 16f, 16f / 16f, 16f / 16f, 5f / 16f);
   private static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0f / 16f, 11f / 16f, 11f / 16f, 16f / 16f, 16f / 16f, 16f / 16f);
   private static final AxisAlignedBB AABB_EAST = new AxisAlignedBB(11f / 16f, 11f / 16f, 0f / 16f, 16f / 16f, 16f / 16f, 16f / 16f);
   private static final AxisAlignedBB AABB_WEST = new AxisAlignedBB(0f / 16f, 11f / 16f, 0f / 16f, 5f / 16f, 16f / 16f, 16f / 16f);
@@ -72,17 +72,17 @@ public class BlockDryingRack
   // - Interaction
   // ---------------------------------------------------------------------------
 
+  @Nullable
+  @Override
+  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+
+    return this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos, start, end);
+  }
+
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    TileEntity tileEntity = world.getTileEntity(pos);
-
-    if (tileEntity instanceof ITileInteractable) {
-      ITileInteractable interactable = (ITileInteractable) tileEntity;
-      interactable.interact(interactable.asTileInteractable(), world, pos, state, player, hand, facing, hitX, hitY, hitZ);
-    }
-
-    return true;
+    return this.interact(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   @Override
@@ -95,23 +95,6 @@ public class BlockDryingRack
     }
 
     super.breakBlock(world, pos, state);
-  }
-
-  @Nullable
-  @Override
-  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
-
-    TileEntity tileEntity = world.getTileEntity(pos);
-    RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
-
-    if (tileEntity instanceof TileDryingRack) {
-      return InteractionRayTracer.collisionRayTrace(result, (TileDryingRack) tileEntity, blockState, world, pos, start, end);
-
-    } else if (tileEntity instanceof TileDryingRackCrude) {
-      return InteractionRayTracer.collisionRayTrace(result, (TileDryingRackCrude) tileEntity, blockState, world, pos, start, end);
-    }
-
-    return result;
   }
 
   // ---------------------------------------------------------------------------

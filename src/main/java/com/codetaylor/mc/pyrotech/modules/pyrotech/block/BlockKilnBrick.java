@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrick;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrickTop;
@@ -20,6 +21,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,7 +35,8 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class BlockKilnBrick
-    extends Block {
+    extends Block
+    implements IBlockInteractable {
 
   public static final String NAME = "kiln_brick";
 
@@ -53,6 +57,10 @@ public class BlockKilnBrick
     );
   }
 
+  // ---------------------------------------------------------------------------
+  // - Light
+  // ---------------------------------------------------------------------------
+
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
@@ -63,6 +71,30 @@ public class BlockKilnBrick
     return super.getLightValue(state, world, pos);
   }
 
+  // ---------------------------------------------------------------------------
+  // - Accessors
+  // ---------------------------------------------------------------------------
+
+  private boolean isTop(IBlockState state) {
+
+    return state.getValue(TYPE) == EnumType.Top;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Rendering
+  // ---------------------------------------------------------------------------
+
+  @Nonnull
+  @SideOnly(Side.CLIENT)
+  public BlockRenderLayer getBlockLayer() {
+
+    return BlockRenderLayer.SOLID;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Spatial
+  // ---------------------------------------------------------------------------
+
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
@@ -71,29 +103,6 @@ public class BlockKilnBrick
     }
 
     return super.getBoundingBox(state, source, pos);
-  }
-
-  @Nonnull
-  @Override
-  public IBlockState getStateForPlacement(
-      World world,
-      BlockPos pos,
-      EnumFacing facing,
-      float hitX,
-      float hitY,
-      float hitZ,
-      int meta,
-      EntityLivingBase placer,
-      EnumHand hand
-  ) {
-
-    EnumFacing opposite = placer.getHorizontalFacing().getOpposite();
-    return this.getDefaultState().withProperty(FACING, opposite);
-  }
-
-  private boolean isTop(IBlockState state) {
-
-    return state.getValue(TYPE) == EnumType.Top;
   }
 
   @Override
@@ -138,11 +147,25 @@ public class BlockKilnBrick
     return this.isFullBlock(state);
   }
 
+  // ---------------------------------------------------------------------------
+  // - Fire
+  // ---------------------------------------------------------------------------
+
   @Override
   public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
 
     return false;
   }
+
+  @Override
+  public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+
+    return 0;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Variants
+  // ---------------------------------------------------------------------------
 
   @Nonnull
   @Override
@@ -178,11 +201,27 @@ public class BlockKilnBrick
     return meta;
   }
 
+  @Nonnull
   @Override
-  public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+  public IBlockState getStateForPlacement(
+      World world,
+      BlockPos pos,
+      EnumFacing facing,
+      float hitX,
+      float hitY,
+      float hitZ,
+      int meta,
+      EntityLivingBase placer,
+      EnumHand hand
+  ) {
 
-    return 0;
+    EnumFacing opposite = placer.getHorizontalFacing().getOpposite();
+    return this.getDefaultState().withProperty(FACING, opposite);
   }
+
+  // ---------------------------------------------------------------------------
+  // - Tile Entity
+  // ---------------------------------------------------------------------------
 
   @Override
   public boolean hasTileEntity(IBlockState state) {
@@ -202,6 +241,23 @@ public class BlockKilnBrick
     }
   }
 
+  // ---------------------------------------------------------------------------
+  // - Interaction
+  // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+
+    if (this.isTop(blockState)) {
+      // TODO
+      return this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos.down(), start, end);
+
+    } else {
+      return this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos, start, end);
+    }
+  }
+
   @Override
   public boolean onBlockActivated(
       World world,
@@ -216,104 +272,17 @@ public class BlockKilnBrick
   ) {
 
     if (this.isTop(state)) {
-      return this.onBlockActivatedTop(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+      return this.interact(world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
 
     } else {
-      return this.onBlockActivatedBottom(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
-    }
-  }
+      ItemStack heldItem = player.getHeldItemMainhand();
 
-  private boolean onBlockActivatedTop(
-      World world,
-      BlockPos pos,
-      IBlockState state,
-      EntityPlayer player,
-      EnumHand hand,
-      EnumFacing facing,
-      float hitX,
-      float hitY,
-      float hitZ
-  ) {
-
-    TileEntity tileEntity = world.getTileEntity(pos.down());
-
-    if (!(tileEntity instanceof TileKilnBrick)) {
-      return false;
-    }
-
-    TileKilnBrick tileKiln = (TileKilnBrick) tileEntity;
-
-    tileKiln.interact(tileKiln, world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
-
-    return true;
-  }
-
-  private boolean onBlockActivatedBottom(
-      World world,
-      BlockPos pos,
-      IBlockState state,
-      EntityPlayer player,
-      EnumHand hand,
-      EnumFacing facing,
-      float hitX,
-      float hitY,
-      float hitZ
-  ) {
-
-    TileEntity tileEntity = world.getTileEntity(pos);
-
-    if (!(tileEntity instanceof TileKilnBrick)) {
-      return false;
-    }
-
-    TileKilnBrick tileKiln = (TileKilnBrick) tileEntity;
-    ItemStack heldItem = player.getHeldItemMainhand();
-
-    if (heldItem.getItem() instanceof ItemIgniterBase) {
-      return false;
-    }
-
-    tileKiln.interact(tileKiln, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
-
-    return true;
-  }
-
-  @Nonnull
-  @SideOnly(Side.CLIENT)
-  public BlockRenderLayer getBlockLayer() {
-
-    return BlockRenderLayer.SOLID;
-  }
-
-  @Override
-  public boolean canSilkHarvest(
-      World world, BlockPos pos, IBlockState state, EntityPlayer player
-  ) {
-
-    return false;
-  }
-
-  @Override
-  public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-
-    if (!this.isTop(state)) {
-
-      BlockPos up = pos.up();
-
-      if (super.canPlaceBlockAt(world, up)) {
-        EnumFacing facing = state.getValue(FACING);
-        world.setBlockState(up, this.getDefaultState()
-            .withProperty(FACING, facing)
-            .withProperty(TYPE, EnumType.Top));
+      if (heldItem.getItem() instanceof ItemIgniterBase) {
+        return false;
       }
+
+      return this.interact(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
     }
-  }
-
-  @Override
-  public boolean canPlaceBlockAt(World world, BlockPos pos) {
-
-    return super.canPlaceBlockAt(world, pos)
-        && super.canPlaceBlockAt(world, pos.up());
   }
 
   @Override
@@ -344,6 +313,37 @@ public class BlockKilnBrick
     }
 
     super.breakBlock(world, pos, state);
+  }
+
+  @Override
+  public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+
+    if (!this.isTop(state)) {
+
+      BlockPos up = pos.up();
+
+      if (super.canPlaceBlockAt(world, up)) {
+        EnumFacing facing = state.getValue(FACING);
+        world.setBlockState(up, this.getDefaultState()
+            .withProperty(FACING, facing)
+            .withProperty(TYPE, EnumType.Top));
+      }
+    }
+  }
+
+  @Override
+  public boolean canSilkHarvest(
+      World world, BlockPos pos, IBlockState state, EntityPlayer player
+  ) {
+
+    return false;
+  }
+
+  @Override
+  public boolean canPlaceBlockAt(World world, BlockPos pos) {
+
+    return super.canPlaceBlockAt(world, pos)
+        && super.canPlaceBlockAt(world, pos.up());
   }
 
   @Override

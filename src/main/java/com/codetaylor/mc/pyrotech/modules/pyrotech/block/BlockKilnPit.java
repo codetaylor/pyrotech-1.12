@@ -3,7 +3,9 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnPit;
 import net.minecraft.block.Block;
@@ -23,6 +25,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,8 +40,9 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class BlockKilnPit
-    extends Block
-    implements IBlockVariant<BlockKilnPit.EnumType> {
+    extends BlockPartialBase
+    implements IBlockVariant<BlockKilnPit.EnumType>,
+    IBlockInteractable {
 
   public static final String NAME = "kiln_pit";
 
@@ -51,6 +56,7 @@ public class BlockKilnPit
     this.setHardness(0.6f);
     this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.EMPTY));
   }
+
 
   @Nonnull
   @Override
@@ -91,24 +97,6 @@ public class BlockKilnPit
 
     EnumType type = state.getValue(VARIANT);
     return type == EnumType.WOOD || type == EnumType.ACTIVE || type == EnumType.COMPLETE;
-  }
-
-  @Override
-  public boolean isFullCube(IBlockState state) {
-
-    return this.isFullBlock(state);
-  }
-
-  @Override
-  public boolean isOpaqueCube(IBlockState state) {
-
-    return this.isFullBlock(state);
-  }
-
-  @Override
-  public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-
-    return this.isFullBlock(state);
   }
 
   @Override
@@ -185,19 +173,9 @@ public class BlockKilnPit
     return 0;
   }
 
-  @Nonnull
-  @Override
-  public String getModelName(ItemStack stack) {
-
-    return EnumType.fromMeta(stack.getMetadata()).getName();
-  }
-
-  @Nonnull
-  @Override
-  public IProperty<EnumType> getVariant() {
-
-    return VARIANT;
-  }
+  // ---------------------------------------------------------------------------
+  // - Tile Entity
+  // ---------------------------------------------------------------------------
 
   @Override
   public boolean hasTileEntity(IBlockState state) {
@@ -210,6 +188,17 @@ public class BlockKilnPit
   public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
 
     return new TileKilnPit();
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Interaction
+  // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+
+    return this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos, start, end);
   }
 
   @Override
@@ -231,32 +220,7 @@ public class BlockKilnPit
       return false;
     }
 
-    TileEntity tileEntity = world.getTileEntity(pos);
-
-    if (!(tileEntity instanceof TileKilnPit)) {
-      return false;
-    }
-
-    TileKilnPit tileKiln = (TileKilnPit) tileEntity;
-
-    tileKiln.interact(tileKiln, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
-
-    return true;
-  }
-
-  @Nonnull
-  @SideOnly(Side.CLIENT)
-  public BlockRenderLayer getBlockLayer() {
-
-    return BlockRenderLayer.SOLID;
-  }
-
-  @Override
-  public boolean canSilkHarvest(
-      World world, BlockPos pos, IBlockState state, EntityPlayer player
-  ) {
-
-    return false;
+    return this.interact(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   @Override
@@ -284,6 +248,21 @@ public class BlockKilnPit
     super.breakBlock(worldIn, pos, state);
   }
 
+  @Nonnull
+  @SideOnly(Side.CLIENT)
+  public BlockRenderLayer getBlockLayer() {
+
+    return BlockRenderLayer.SOLID;
+  }
+
+  @Override
+  public boolean canSilkHarvest(
+      World world, BlockPos pos, IBlockState state, EntityPlayer player
+  ) {
+
+    return false;
+  }
+
   @Override
   public int quantityDropped(IBlockState state, int fortune, Random random) {
 
@@ -300,6 +279,8 @@ public class BlockKilnPit
   @Override
   public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 
+    // TODO: spawn directly in world?
+
     EnumType type = state.getValue(VARIANT);
 
     if (type == EnumType.WOOD) {
@@ -310,6 +291,24 @@ public class BlockKilnPit
     }
 
     super.getDrops(drops, world, pos, state, fortune);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Variants
+  // ---------------------------------------------------------------------------
+
+  @Nonnull
+  @Override
+  public String getModelName(ItemStack stack) {
+
+    return EnumType.fromMeta(stack.getMetadata()).getName();
+  }
+
+  @Nonnull
+  @Override
+  public IProperty<EnumType> getVariant() {
+
+    return VARIANT;
   }
 
   public enum EnumType

@@ -470,7 +470,7 @@ public class TileCampfire
           stackHandlers,
           0,
           new EnumFacing[]{EnumFacing.UP},
-          InteractionBounds.BLOCK,
+          BlockCampfire.AABB_FULL,
           new Transform(
               Transform.translate(0.5, 0.5, 0.5),
               Transform.rotate(),
@@ -502,7 +502,7 @@ public class TileCampfire
 
     /* package */ InteractionLog() {
 
-      super(EnumFacing.VALUES, InteractionBounds.BLOCK);
+      super(EnumFacing.VALUES, BlockCampfire.AABB_FULL);
     }
 
     @Override
@@ -578,7 +578,7 @@ public class TileCampfire
 
     /* package */ InteractionShovel() {
 
-      super(EnumFacing.VALUES, InteractionBounds.BLOCK);
+      super(EnumFacing.VALUES, BlockCampfire.AABB_FULL);
     }
 
     @Override
@@ -608,7 +608,7 @@ public class TileCampfire
 
     /* package */ InteractionUseFlintAndSteel() {
 
-      super(EnumFacing.VALUES, InteractionBounds.BLOCK);
+      super(EnumFacing.VALUES, BlockCampfire.AABB_FULL);
     }
 
     @Override

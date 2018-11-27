@@ -11,7 +11,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -24,6 +23,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -50,12 +50,9 @@ public class TileKilnBrick
   private int dormantCounter;
 
   // transient
-  private EntityItem entityItem;
-  private EntityItem entityItemFuel;
-  private EntityItem[] entityItemOutput;
   private int ticksSinceLastClientSync;
 
-  private IInteraction[] interactionHandlers;
+  private IInteraction[] interactions;
 
   public TileKilnBrick() {
 
@@ -154,7 +151,7 @@ public class TileKilnBrick
       }
     };
 
-    this.interactionHandlers = new IInteraction[]{
+    this.interactions = new IInteraction[]{
         new InteractionUseFlintAndSteel(),
         new Interaction(new ItemStackHandler[]{
             TileKilnBrick.this.stackHandler,
@@ -172,14 +169,14 @@ public class TileKilnBrick
   }
 
   @Override
-  public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
 
     return (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
   }
 
   @Nullable
   @Override
-  public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
 
     if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 
@@ -246,52 +243,10 @@ public class TileKilnBrick
         && !this.stackHandler.getStackInSlot(0).isEmpty();
   }
 
-  public boolean hasFuel() {
+  private boolean hasFuel() {
 
     return this.remainingBurnTimeTicks > 0
         || !this.fuelStackHandler.getStackInSlot(0).isEmpty();
-  }
-
-  public EntityItem getEntityItem() {
-
-    if (this.entityItem == null) {
-      ItemStack stackInSlot = this.stackHandler.getStackInSlot(0);
-      this.entityItem = new EntityItem(this.world);
-      this.entityItem.setItem(stackInSlot);
-    }
-
-    return this.entityItem;
-  }
-
-  public EntityItem getEntityItemFuel() {
-
-    if (this.entityItemFuel == null) {
-      ItemStack stackInSlot = this.fuelStackHandler.getStackInSlot(0);
-      this.entityItemFuel = new EntityItem(this.world);
-      this.entityItemFuel.setItem(stackInSlot);
-    }
-
-    return this.entityItemFuel;
-  }
-
-  public EntityItem[] getEntityItemOutput() {
-
-    if (this.entityItemOutput == null) {
-      int slotCount = this.outputStackHandler.getSlots();
-      this.entityItemOutput = new EntityItem[slotCount];
-
-      for (int i = 0; i < slotCount; i++) {
-        ItemStack stackInSlot = this.outputStackHandler.getStackInSlot(i);
-
-        if (!stackInSlot.isEmpty()) {
-          this.entityItemOutput[i] = new EntityItem(this.world);
-          this.entityItemOutput[i].setItem(stackInSlot);
-        }
-      }
-
-    }
-
-    return this.entityItemOutput;
   }
 
   @Override
@@ -386,7 +341,7 @@ public class TileKilnBrick
     //this.markDirty();
   }
 
-  protected void onComplete() {
+  private void onComplete() {
 
     // set stack handler items to recipe result
 
@@ -474,12 +429,6 @@ public class TileKilnBrick
   public void onDataPacket(NetworkManager networkManager, SPacketUpdateTileEntity packet) {
 
     this.readFromNBT(packet.getNbtCompound());
-
-    // When the client sends a data packet, clear the entity items used for
-    // rendering. This will force new entity items to be created.
-    this.entityItem = null;
-    this.entityItemFuel = null;
-    this.entityItemOutput = null;
   }
 
   public void spawnAllItemsOnTop() {
@@ -539,7 +488,7 @@ public class TileKilnBrick
   @Override
   public IInteraction[] getInteractions() {
 
-    return this.interactionHandlers;
+    return this.interactions;
   }
 
   @Override
@@ -567,7 +516,7 @@ public class TileKilnBrick
           stackHandlers,
           0,
           new EnumFacing[]{EnumFacing.NORTH},
-          InteractionBounds.BLOCK,
+          new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f),
           new Transform(
               Transform.translate(0.5, 1.2, 0.5),
               Transform.rotate(),

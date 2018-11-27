@@ -1,7 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionRayTracer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileChoppingBlock;
 import net.minecraft.block.Block;
@@ -28,7 +30,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class BlockChoppingBlock
-    extends BlockPartialBase {
+    extends BlockPartialBase
+    implements IBlockInteractable {
 
   public static final String NAME = "chopping_block";
 
@@ -47,19 +50,17 @@ public class BlockChoppingBlock
   // - Interaction
   // ---------------------------------------------------------------------------
 
+  @Nullable
+  @Override
+  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+
+    return this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos, start, end);
+  }
+
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    TileEntity tileEntity = world.getTileEntity(pos);
-
-    if (!(tileEntity instanceof TileChoppingBlock)) {
-      return false;
-    }
-
-    TileChoppingBlock choppingBlock = (TileChoppingBlock) tileEntity;
-    choppingBlock.interact(choppingBlock, world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-
-    return true;
+    return this.interact(world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
   }
 
   @Override
@@ -86,20 +87,6 @@ public class BlockChoppingBlock
     if (!world.isRemote) {
       world.setBlockToAir(pos);
     }
-  }
-
-  @Nullable
-  @Override
-  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
-
-    TileEntity tileEntity = world.getTileEntity(pos);
-    RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
-
-    if (tileEntity instanceof TileChoppingBlock) {
-      return InteractionRayTracer.collisionRayTrace(result, (TileChoppingBlock) tileEntity, blockState, world, pos, start, end);
-    }
-
-    return result;
   }
 
   // ---------------------------------------------------------------------------

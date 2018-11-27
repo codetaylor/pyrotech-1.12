@@ -5,7 +5,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackCrudeRecipe;
 import net.minecraft.block.state.IBlockState;
@@ -93,7 +92,7 @@ public class TileDryingRackCrude
           stackHandlers,
           0,
           EnumFacing.VALUES,
-          InteractionBounds.BLOCK,
+          BlockDryingRack.AABB_NORTH,
           new Transform(
               new Vec3d(0.5, 0.5, 0.15),
               new Quaternion(),

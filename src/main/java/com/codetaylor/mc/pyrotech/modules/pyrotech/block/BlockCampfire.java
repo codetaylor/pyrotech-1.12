@@ -1,6 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import net.minecraft.block.Block;
@@ -21,6 +23,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -31,7 +35,8 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class BlockCampfire
-    extends BlockPartialBase {
+    extends BlockPartialBase
+    implements IBlockInteractable {
 
   public static final String NAME = "campfire";
 
@@ -39,7 +44,7 @@ public class BlockCampfire
   public static final PropertyInteger WOOD = PropertyInteger.create("wood", 0, 8);
   public static final PropertyInteger ASH = PropertyInteger.create("ash", 0, 8);
 
-  private static final AxisAlignedBB AABB_FULL = new AxisAlignedBB(0, 0, 0, 1, 6f / 16f, 1);
+  public static final AxisAlignedBB AABB_FULL = new AxisAlignedBB(0, 0, 0, 1, 6f / 16f, 1);
   private static final AxisAlignedBB AABB_TINDER = new AxisAlignedBB(4f / 16f, 0, 4f / 16f, 12f / 16f, 5f / 16f, 12f / 16f);
   private static final AxisAlignedBB AABB_ASH_A = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 1f / 16f, 14f / 16f);
   private static final AxisAlignedBB AABB_ASH_B = new AxisAlignedBB(2f / 16f, 0, 2f / 16f, 14f / 16f, 2f / 16f, 14f / 16f);
@@ -54,6 +59,10 @@ public class BlockCampfire
 
     super(Material.WOOD);
   }
+
+  // ---------------------------------------------------------------------------
+  // - Sound
+  // ---------------------------------------------------------------------------
 
   @Nonnull
   @Override
@@ -72,6 +81,10 @@ public class BlockCampfire
     }
   }
 
+  // ---------------------------------------------------------------------------
+  // - Light
+  // ---------------------------------------------------------------------------
+
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
@@ -83,6 +96,10 @@ public class BlockCampfire
 
     return super.getLightValue(state, world, pos);
   }
+
+  // ---------------------------------------------------------------------------
+  // - Rendering
+  // ---------------------------------------------------------------------------
 
   @Nonnull
   @Override
@@ -96,6 +113,35 @@ public class BlockCampfire
 
     return false;
   }
+
+  @Override
+  public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileCampfire
+        && ((TileCampfire) tileEntity).isActive()) {
+
+      double x = (double) pos.getX() + 0.5;
+      double y = (double) pos.getY() + (4.0 / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
+      double z = (double) pos.getZ() + 0.5;
+
+      if (rand.nextDouble() < 0.1) {
+        world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+      }
+
+      for (int i = 0; i < 4; i++) {
+        double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+        double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+        world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + offsetX, y, z + offsetZ, 0.0, 0.0, 0.0);
+        world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y, z + offsetZ, 0.0, 0.0, 0.0);
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Collision
+  // ---------------------------------------------------------------------------
 
   @Nonnull
   @Override
@@ -133,14 +179,35 @@ public class BlockCampfire
 
   }
 
+  // ---------------------------------------------------------------------------
+  // - Fire
+  // ---------------------------------------------------------------------------
+
   @Override
   public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
 
     return (this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == EnumType.LIT);
   }
 
+  // ---------------------------------------------------------------------------
+  // - Interaction
+  // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+
+    return this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos, start, end);
+  }
+
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+    ItemStack heldItem = player.getHeldItemMainhand();
+
+    if (heldItem.getItem() instanceof ItemIgniterBase) {
+      return false;
+    }
 
     TileEntity tileEntity = world.getTileEntity(pos);
 
@@ -154,15 +221,32 @@ public class BlockCampfire
       return false;
     }
 
-    ItemStack heldItem = player.getHeldItemMainhand();
+    return this.interact(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+  }
 
-    if (heldItem.getItem() instanceof ItemIgniterBase) {
-      return false;
+  @Override
+  public void onEntityWalk(World world, BlockPos pos, Entity entity) {
+
+    if (!entity.isImmuneToFire()
+        && entity instanceof EntityLivingBase
+        && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)
+        && this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == EnumType.LIT) {
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
     }
 
-    campfire.interact(campfire, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    super.onEntityWalk(world, pos, entity);
+  }
 
-    return true;
+  @Override
+  public void breakBlock(World world, BlockPos pos, IBlockState state) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileCampfire) {
+      ((TileCampfire) tileEntity).removeItems();
+    }
+
+    super.breakBlock(world, pos, state);
   }
 
   @Override
@@ -197,56 +281,6 @@ public class BlockCampfire
   public TileEntity createTileEntity(World world, IBlockState state) {
 
     return new TileCampfire();
-  }
-
-  @Override
-  public void onEntityWalk(World world, BlockPos pos, Entity entity) {
-
-    if (!entity.isImmuneToFire()
-        && entity instanceof EntityLivingBase
-        && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)
-        && this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == EnumType.LIT) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
-    }
-
-    super.onEntityWalk(world, pos, entity);
-  }
-
-  @Override
-  public void breakBlock(World world, BlockPos pos, IBlockState state) {
-
-    TileEntity tileEntity = world.getTileEntity(pos);
-
-    if (tileEntity instanceof TileCampfire) {
-      ((TileCampfire) tileEntity).removeItems();
-    }
-
-    super.breakBlock(world, pos, state);
-  }
-
-  @Override
-  public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
-
-    TileEntity tileEntity = world.getTileEntity(pos);
-
-    if (tileEntity instanceof TileCampfire
-        && ((TileCampfire) tileEntity).isActive()) {
-
-      double x = (double) pos.getX() + 0.5;
-      double y = (double) pos.getY() + (4.0 / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
-      double z = (double) pos.getZ() + 0.5;
-
-      if (rand.nextDouble() < 0.1) {
-        world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
-      }
-
-      for (int i = 0; i < 4; i++) {
-        double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
-        double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
-        world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + offsetX, y, z + offsetZ, 0.0, 0.0, 0.0);
-        world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y, z + offsetZ, 0.0, 0.0, 0.0);
-      }
-    }
   }
 
   @Override

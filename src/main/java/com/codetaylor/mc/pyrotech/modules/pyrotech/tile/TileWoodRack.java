@@ -148,7 +148,7 @@ public class TileWoodRack
       int x = slot % 3;
       int z = slot / 3;
 
-      return new AxisAlignedBB(x * ONE_THIRD, 0, z * ONE_THIRD, x * ONE_THIRD + ONE_THIRD, 1, z * ONE_THIRD + ONE_THIRD);
+      return new AxisAlignedBB(x * ONE_THIRD, 2f / 16f, z * ONE_THIRD, x * ONE_THIRD + ONE_THIRD, 14f / 16f, z * ONE_THIRD + ONE_THIRD);
     }
 
     @Override
