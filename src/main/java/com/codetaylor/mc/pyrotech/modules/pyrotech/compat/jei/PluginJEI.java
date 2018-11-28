@@ -7,6 +7,8 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockDryingRack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import mezz.jei.api.IGuiHelper;
@@ -37,6 +39,7 @@ public class PluginJEI
     registry.addRecipeCategories(
         new JEIRecipeCategoryKilnPit(guiHelper),
         new JEIRecipeCategoryKilnBrick(guiHelper),
+        new JEIRecipeCategoryKilnStone(guiHelper),
         new JEIRecipeCategoryPitBurn(guiHelper),
         new JEIRecipeCategoryRefractoryBurn(guiHelper),
         new JEIRecipeCategoryDryingRack(guiHelper),
@@ -121,6 +124,14 @@ public class PluginJEI
       registry.handleRecipes(KilnBrickRecipe.class, JEIRecipeWrapperKilnBrick::new, JEIRecipeCategoryUid.BRICK_KILN);
       List<KilnBrickRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.KILN_BRICK_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.BRICK_KILN);
+    }
+
+    // --- Stone Kiln
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.KILN_STONE), JEIRecipeCategoryUid.STONE_KILN);
+      registry.handleRecipes(KilnStoneRecipe.class, JEIRecipeWrapperKilnStone::new, JEIRecipeCategoryUid.STONE_KILN);
+      List<KilnStoneRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.KILN_STONE_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_KILN);
     }
 
     // --- Pit Burn

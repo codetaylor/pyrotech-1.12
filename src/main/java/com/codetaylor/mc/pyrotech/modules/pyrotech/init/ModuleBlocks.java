@@ -33,6 +33,7 @@ public class ModuleBlocks {
   public static final BlockLimestone LIMESTONE = new BlockLimestone();
   public static final BlockRefractoryGlass REFRACTORY_GLASS = new BlockRefractoryGlass();
   public static final BlockKilnBrick KILN_BRICK = new BlockKilnBrick();
+  public static final BlockKilnStone KILN_STONE = new BlockKilnStone();
   public static final BlockCampfire CAMPFIRE = new BlockCampfire();
   public static final BlockDryingRack DRYING_RACK = new BlockDryingRack();
   public static final BlockRock ROCK = new BlockRock();
@@ -60,6 +61,7 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.LIMESTONE, BlockLimestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.REFRACTORY_GLASS, BlockRefractoryGlass.NAME);
     registry.registerBlockWithItem(ModuleBlocks.KILN_BRICK, BlockKilnBrick.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.KILN_STONE, BlockKilnStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.DRYING_RACK, BlockDryingRack.NAME);
     registry.registerBlockWithItem(ModuleBlocks.WOOD_RACK, BlockWoodRack.NAME);
 
@@ -73,6 +75,8 @@ public class ModuleBlocks {
         TileActivePile.class,
         TileKilnBrick.class,
         TileKilnBrickTop.class,
+        TileKilnStone.class,
+        TileKilnStoneTop.class,
         TileCampfire.class,
         TileDryingRack.class,
         TileDryingRackCrude.class,
@@ -94,6 +98,7 @@ public class ModuleBlocks {
           ModuleBlocks.LIMESTONE,
           ModuleBlocks.REFRACTORY_GLASS,
           ModuleBlocks.KILN_BRICK,
+          ModuleBlocks.KILN_STONE,
           ModuleBlocks.WOOD_RACK
       );
 
@@ -149,6 +154,7 @@ public class ModuleBlocks {
 
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnPit.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnBrick.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileKilnStone.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCampfire.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRackCrude.class, new TESRInteractable<>());

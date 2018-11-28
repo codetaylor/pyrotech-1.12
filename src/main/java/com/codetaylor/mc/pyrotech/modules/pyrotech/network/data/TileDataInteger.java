@@ -30,6 +30,12 @@ public class TileDataInteger
     return this.value;
   }
 
+  public int add(int value) {
+
+    this.value += value;
+    return this.value;
+  }
+
   @Override
   public void read(PacketBuffer buffer) {
 

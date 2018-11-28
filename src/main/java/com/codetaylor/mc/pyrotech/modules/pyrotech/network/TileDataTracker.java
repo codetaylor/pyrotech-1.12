@@ -46,6 +46,8 @@ class TileDataTracker {
 
     for (int i = 0; i < this.data.length; i++) {
 
+      this.data[i].update();
+
       if (this.data[i].isDirty()) {
         dirtyCount += 1;
       }
@@ -58,8 +60,7 @@ class TileDataTracker {
 
       for (int i = 0; i < this.data.length; i++) {
 
-        if (this.data[i].isDirty()
-            && this.data[i].canUpdate()) {
+        if (this.data[i].isDirty()) {
           this.packetBuffer.writeInt(i);
           this.data[i].write(this.packetBuffer);
           this.data[i].setDirty(false);

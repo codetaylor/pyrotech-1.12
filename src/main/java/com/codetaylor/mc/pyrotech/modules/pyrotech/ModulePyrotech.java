@@ -69,6 +69,11 @@ public class ModulePyrotech
 
     this.registerIntegrationPlugin(
         "crafttweaker",
+        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenKilnStone"
+    );
+
+    this.registerIntegrationPlugin(
+        "crafttweaker",
         "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenBurn"
     );
 
@@ -111,6 +116,12 @@ public class ModulePyrotech
     new RegistryBuilder<KilnBrickRecipe>()
         .setName(new ResourceLocation(MOD_ID, "kiln_brick_recipe"))
         .setType(KilnBrickRecipe.class)
+        .allowModification()
+        .create();
+
+    new RegistryBuilder<KilnStoneRecipe>()
+        .setName(new ResourceLocation(MOD_ID, "kiln_stone_recipe"))
+        .setType(KilnStoneRecipe.class)
         .allowModification()
         .create();
 
@@ -160,6 +171,7 @@ public class ModulePyrotech
     ModuleRecipes.onRegisterPitBurnRecipes(ModulePyrotechRegistries.BURN_RECIPE);
     ModuleRecipes.onRegisterKilnPitRecipes(ModulePyrotechRegistries.KILN_PIT_RECIPE);
     ModuleRecipes.onRegisterKilnBrickRecipe(ModulePyrotechRegistries.KILN_BRICK_RECIPE);
+    ModuleRecipes.onRegisterKilnStoneRecipe(ModulePyrotechRegistries.KILN_STONE_RECIPE);
     ModuleRecipes.onRegisterDryingRackRecipes(ModulePyrotechRegistries.DRYING_RACK_RECIPE);
     ModuleRecipes.onRegisterChoppingBlockRecipes(ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE);
     ModuleRecipes.onRegisterDryingRackCrudeRecipes(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);

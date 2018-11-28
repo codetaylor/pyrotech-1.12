@@ -6,6 +6,7 @@ public abstract class TileDataBase
   private final int updateInterval;
   private int updateCounter;
   private boolean dirty;
+  private boolean forceUpdate;
 
   protected TileDataBase(int updateInterval) {
 
@@ -21,19 +22,28 @@ public abstract class TileDataBase
   @Override
   public boolean isDirty() {
 
-    return this.dirty;
+    return this.dirty && (this.updateCounter == 0);
   }
 
   @Override
-  public boolean canUpdate() {
+  public void forceUpdate() {
 
-    this.updateCounter += 1;
+    this.forceUpdate = true;
+  }
 
-    if (this.updateCounter >= this.updateInterval) {
+  @Override
+  public void update() {
+
+    if (this.forceUpdate) {
       this.updateCounter = 0;
-      return true;
-    }
+      this.forceUpdate = false;
 
-    return false;
+    } else {
+      this.updateCounter += 1;
+
+      if (this.updateCounter >= this.updateInterval) {
+        this.updateCounter = 0;
+      }
+    }
   }
 }

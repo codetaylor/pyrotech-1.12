@@ -10,7 +10,9 @@ public interface ITileData {
 
   void setDirty(boolean dirty);
 
-  boolean canUpdate();
+  void forceUpdate();
+
+  void update();
 
   void read(PacketBuffer buffer) throws IOException;
 

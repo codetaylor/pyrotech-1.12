@@ -2,14 +2,15 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
 public class WailaRegistrar {
 
-  static final String CONFIG_TANK = Util.prefix("tank");
-  static final String CONFIG_PROGRESS = Util.prefix("progress");
-  static final String CONFIG_CONTENTS = Util.prefix("contents");
+  public static final String CONFIG_TANK = Util.prefix("tank");
+  public static final String CONFIG_PROGRESS = Util.prefix("progress");
+  public static final String CONFIG_CONTENTS = Util.prefix("contents");
 
   @SuppressWarnings("unused")
   public static void wailaCallback(IWailaRegistrar registrar) {
@@ -18,27 +19,31 @@ public class WailaRegistrar {
     registrar.addConfig(ModulePyrotech.MOD_ID, CONFIG_PROGRESS, true);
     registrar.addConfig(ModulePyrotech.MOD_ID, CONFIG_CONTENTS, true);
 
-    TankDataProvider tankDataProvider = new TankDataProvider();
-    registrar.registerBodyProvider(tankDataProvider, TileTarTankBase.class);
+    Tank tank = new Tank();
+    registrar.registerBodyProvider(tank, TileTarTankBase.class);
 
-    KilnPitDataProvider pitKilnDataProvider = new KilnPitDataProvider();
+    KilnPit pitKilnDataProvider = new KilnPit();
     registrar.registerBodyProvider(pitKilnDataProvider, TileKilnPit.class);
 
-    KilnBrickDataProvider kilnBrickDataProvider = new KilnBrickDataProvider();
-    registrar.registerBodyProvider(kilnBrickDataProvider, TileKilnBrick.class);
-    registrar.registerBodyProvider(kilnBrickDataProvider, TileKilnBrickTop.class);
+    KilnBrick kilnBrick = new KilnBrick();
+    registrar.registerBodyProvider(kilnBrick, TileKilnBrick.class);
+    registrar.registerBodyProvider(kilnBrick, TileKilnBrickTop.class);
 
-    CampfireDataProvider campfireDataProvider = new CampfireDataProvider();
-    registrar.registerBodyProvider(campfireDataProvider, TileCampfire.class);
+    KilnStone kiLnStone = new KilnStone();
+    registrar.registerBodyProvider(kiLnStone, TileKilnStone.class);
+    registrar.registerBodyProvider(kiLnStone, TileKilnStoneTop.class);
 
-    DryingRackDataProvider dryingRackDataProvider = new DryingRackDataProvider();
-    registrar.registerBodyProvider(dryingRackDataProvider, TileDryingRackBase.class);
+    Campfire campfire = new Campfire();
+    registrar.registerBodyProvider(campfire, TileCampfire.class);
 
-    ChoppingBlockDataProvider choppingBlockDataProvider = new ChoppingBlockDataProvider();
-    registrar.registerBodyProvider(choppingBlockDataProvider, TileChoppingBlock.class);
+    DryingRack dryingRack = new DryingRack();
+    registrar.registerBodyProvider(dryingRack, TileDryingRackBase.class);
 
-    WoodRackDataProvider woodRackDataProvider = new WoodRackDataProvider();
-    registrar.registerBodyProvider(woodRackDataProvider, TileWoodRack.class);
+    ChoppingBlock choppingBlock = new ChoppingBlock();
+    registrar.registerBodyProvider(choppingBlock, TileChoppingBlock.class);
+
+    WoodRack woodRack = new WoodRack();
+    registrar.registerBodyProvider(woodRack, TileWoodRack.class);
   }
 
 }

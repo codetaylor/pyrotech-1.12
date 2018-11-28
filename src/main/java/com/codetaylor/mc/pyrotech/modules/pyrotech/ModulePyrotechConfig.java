@@ -180,9 +180,39 @@ public class ModulePyrotechConfig {
   // - Brick Kiln
   // ---------------------------------------------------------------------------
 
-  public static BrickKiln BRICK_KILN = new BrickKiln();
+  public static StoneKiln BRICK_KILN = new StoneKiln();
 
   public static class BrickKiln {
+
+    @Config.Comment({
+        "Set to true to deactivate the kiln when a recipe completes.",
+        "The kiln will need to be re-lit when it deactivates.",
+        "Default: " + false
+    })
+    public boolean KEEP_HEAT = false;
+
+    @Config.Comment({
+        "Controls the number of recipe items that can be placed in the kiln.",
+        "Range: [1, 64]",
+        "Default: " + 8
+    })
+    public int INPUT_SLOT_SIZE = 8;
+
+    @Config.Comment({
+        "Controls the number of fuel items that can be placed in the kiln.",
+        "Range: [1, 64]",
+        "Default: " + 16
+    })
+    public int FUEL_SLOT_SIZE = 16;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Stone Kiln
+  // ---------------------------------------------------------------------------
+
+  public static StoneKiln STONE_KILN = new StoneKiln();
+
+  public static class StoneKiln {
 
     @Config.Comment({
         "Set to true to deactivate the kiln when a recipe completes.",

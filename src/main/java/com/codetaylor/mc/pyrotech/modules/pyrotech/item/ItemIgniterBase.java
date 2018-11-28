@@ -1,10 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrick;
-import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnStone;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -84,7 +85,10 @@ public abstract class ItemIgniterBase
         Block block = world.getBlockState(pos).getBlock();
 
         if (block == ModuleBlocks.KILN_BRICK
+            || block == ModuleBlocks.KILN_STONE
             || block == ModuleBlocks.CAMPFIRE) {
+
+          // TODO: Abstract
 
           TileEntity tileEntity = world.getTileEntity(pos);
 
@@ -93,6 +97,9 @@ public abstract class ItemIgniterBase
 
           } else if (tileEntity instanceof TileCampfire) {
             ((TileCampfire) tileEntity).setActive(true);
+
+          } else if (tileEntity instanceof TileKilnStone) {
+            ((TileKilnStone) tileEntity).setActive(true);
           }
 
           world.playSound(

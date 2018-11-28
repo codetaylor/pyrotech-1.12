@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.network;
 
 import com.codetaylor.mc.athenaeum.network.IPacketService;
+import com.codetaylor.mc.pyrotech.Reference;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 
@@ -74,7 +75,13 @@ public class TileDataService
       PacketBuffer updateBuffer = tracker.getUpdateBuffer();
 
       if (updateBuffer.writerIndex() > 0) {
+
         BlockPos tilePos = tile.getPos();
+
+        if (Reference.IS_DEV) {
+          System.out.println(String.format("[SERVER] %s: %d bytes", tilePos, updateBuffer.writerIndex()));
+        }
+
         CPacketTileData packet = new CPacketTileData(this.serviceId, tilePos, updateBuffer);
         this.packetService.sendToAllAround(packet, tile);
       }
