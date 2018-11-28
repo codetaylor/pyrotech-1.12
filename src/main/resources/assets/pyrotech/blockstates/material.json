@@ -20,7 +20,8 @@
       "plant_fibers": {"textures": {"layer0": "pyrotech:items/plant_fibers"}},
       "plant_fibers_dried": {"textures": {"layer0": "pyrotech:items/plant_fibers_dried"}},
       "twine": {"textures": {"layer0": "pyrotech:items/twine"}},
-      "charcoal_flakes": {"textures": {"layer0": "pyrotech:items/charcoal_flakes"}}
+      "charcoal_flakes": {"textures": {"layer0": "pyrotech:items/charcoal_flakes"}},
+      "brick_stone": {"textures": {"layer0": "pyrotech:items/brick_stone"}}
     }
   }
 }
