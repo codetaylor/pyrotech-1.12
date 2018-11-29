@@ -1,6 +1,5 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.network;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.network.client;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.network.client.TileDataServiceClientMonitor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
