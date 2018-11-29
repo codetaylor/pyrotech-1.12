@@ -76,13 +76,7 @@ public class TileDataService
 
       if (updateBuffer.writerIndex() > 0) {
 
-        BlockPos tilePos = tile.getPos();
-
-        if (Reference.IS_DEV) {
-          System.out.println(String.format("[SERVER] %s: %d bytes", tilePos, updateBuffer.writerIndex()));
-        }
-
-        CPacketTileData packet = new CPacketTileData(this.serviceId, tilePos, updateBuffer);
+        CPacketTileData packet = new CPacketTileData(this.serviceId, tile.getPos(), updateBuffer);
         this.packetService.sendToAllAround(packet, tile);
       }
     }
