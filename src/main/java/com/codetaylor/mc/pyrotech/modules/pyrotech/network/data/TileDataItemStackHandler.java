@@ -4,7 +4,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileDataItemStackHan
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.TileDataBase;
 import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -56,7 +55,14 @@ public class TileDataItemStackHandler<H extends ItemStackHandler & ITileDataItem
 
     for (int i = 0; i < dirtyCount; i++) {
       int slot = buffer.readInt();
-      this.stackHandler.setStackInSlot(slot, new ItemStack(Preconditions.checkNotNull(buffer.readCompoundTag())));
+      boolean clear = buffer.readBoolean();
+
+      if (clear) {
+        this.stackHandler.setStackInSlot(slot, ItemStack.EMPTY);
+
+      } else {
+        this.stackHandler.setStackInSlot(slot, new ItemStack(Preconditions.checkNotNull(buffer.readCompoundTag())));
+      }
     }
   }
 
@@ -71,7 +77,13 @@ public class TileDataItemStackHandler<H extends ItemStackHandler & ITileDataItem
 
       for (int i = this.dirtySlots.nextSetBit(0); i >= 0; i = this.dirtySlots.nextSetBit(i + 1)) {
         buffer.writeInt(i);
-        buffer.writeCompoundTag(this.stackHandler.getStackInSlot(i).serializeNBT());
+        ItemStack itemStack = this.stackHandler.getStackInSlot(i);
+
+        buffer.writeBoolean(itemStack.isEmpty());
+
+        if (!itemStack.isEmpty()) {
+          buffer.writeCompoundTag(itemStack.serializeNBT());
+        }
       }
     }
   }
