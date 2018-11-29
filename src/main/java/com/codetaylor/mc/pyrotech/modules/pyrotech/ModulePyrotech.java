@@ -10,8 +10,8 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.*;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.network.ITileDataService;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.network.TileDataServiceContainer;
+import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
+import com.codetaylor.mc.athenaeum.network.tile.TileDataServiceContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
@@ -53,7 +53,7 @@ public class ModulePyrotech
     this.enableAutoRegistry();
 
     PACKET_SERVICE = this.enableNetwork();
-    TILE_DATA_SERVICE = TileDataServiceContainer.register(new ResourceLocation(ModPyrotech.MOD_ID, "pyrotech"), PACKET_SERVICE);
+    TILE_DATA_SERVICE = this.enableNetworkTileDataService(PACKET_SERVICE);
 
     MinecraftForge.EVENT_BUS.register(this);
 
