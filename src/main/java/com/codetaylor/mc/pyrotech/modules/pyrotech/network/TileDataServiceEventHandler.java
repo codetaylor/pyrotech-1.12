@@ -19,19 +19,23 @@ public class TileDataServiceEventHandler {
 
   private static final IntArrayList BYTES_RECEIVED_PER_SECOND = new IntArrayList(11);
   private static int BYTES_RECEIVED;
-  private static int TICK_COUNTER;
+  private static float TICK_COUNTER;
 
   @SubscribeEvent
   public static void onEvent(TickEvent.ClientTickEvent event) {
 
-    TICK_COUNTER += 1;
+    if (event.phase == TickEvent.Phase.END) {
+      return;
+    }
+
+    TICK_COUNTER += 1;//Minecraft.getMinecraft().getRenderPartialTicks();
 
     if (TICK_COUNTER >= 20) {
       TICK_COUNTER = 0;
       BYTES_RECEIVED_PER_SECOND.add(0, BYTES_RECEIVED);
       BYTES_RECEIVED = 0;
 
-      if (BYTES_RECEIVED_PER_SECOND.size() > 60) {
+      if (BYTES_RECEIVED_PER_SECOND.size() > 120) {
         BYTES_RECEIVED_PER_SECOND.removeInt(BYTES_RECEIVED_PER_SECOND.size() - 1);
       }
     }
@@ -56,15 +60,12 @@ public class TileDataServiceEventHandler {
       BufferBuilder renderer = tessellator.getBuffer();
 
       GlStateManager.disableTexture2D();
+      GlStateManager.enableAlpha();
+      GlStateManager.enableBlend();
       renderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
 
-      float red = 1;
-      float green = 1;
-      float blue = 1;
-      float alpha = 0.5f;
-
       int x = 1;
-      int y = 9;
+      int y = 10;
       int height = 1;
 
       float max = 0;
@@ -92,67 +93,38 @@ public class TileDataServiceEventHandler {
       int avg = (int) (total / (float) size);
       int totalWidth = 64;
 
+      bufferColoredQuad(renderer, 1, 11, totalWidth, size, 0, 0, 0, 0.75f);
+
       for (int i = 0; i < size; i++) {
 
         float width = BYTES_RECEIVED_PER_SECOND.getInt(i) / max;
         width *= totalWidth;
 
-        y += height + 1;
+        y += height;
 
-        renderer.pos((double) (x + 0), (double) (y + 0), 1.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((double) (x + 0), (double) (y + height), 1.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((double) (x + width), (double) (y + height), 1.0D).color(red, green, blue, alpha).endVertex();
-        renderer.pos((double) (x + width), (double) (y + 0), 1.0D).color(red, green, blue, alpha).endVertex();
+        if (i == 10) {
+          bufferColoredQuad(renderer, x, y, width, height, 0, 0, 1, 0.5f);
+
+        } else {
+          bufferColoredQuad(renderer, x, y, width, height, 1, 1, 1, 0.5f);
+        }
       }
 
-      y = 11;
-      x = (int) ((avg / max) * totalWidth);
-      height = size * 2 - 1;
-      int width = 1;
-
-      red = 1;
-      blue = 0;
-      green = 1;
-      alpha = 0.5f;
-
-      renderer.pos((double) (x + 0), (double) (y + 0), 1.0D).color(red, green, blue, alpha).endVertex();
-      renderer.pos((double) (x + 0), (double) (y + height), 1.0D).color(red, green, blue, alpha).endVertex();
-      renderer.pos((double) (x + width), (double) (y + height), 1.0D).color(red, green, blue, alpha).endVertex();
-      renderer.pos((double) (x + width), (double) (y + 0), 1.0D).color(red, green, blue, alpha).endVertex();
-
-      y = 11;
-      x = (int) ((min / max) * totalWidth);
-      height = size * 2 - 1;
-      width = 1;
-
-      red = 0;
-      blue = 0;
-      green = 1;
-      alpha = 0.5f;
-
-      renderer.pos((double) (x + 0), (double) (y + 0), 1.0D).color(red, green, blue, alpha).endVertex();
-      renderer.pos((double) (x + 0), (double) (y + height), 1.0D).color(red, green, blue, alpha).endVertex();
-      renderer.pos((double) (x + width), (double) (y + height), 1.0D).color(red, green, blue, alpha).endVertex();
-      renderer.pos((double) (x + width), (double) (y + 0), 1.0D).color(red, green, blue, alpha).endVertex();
-
-      y = 11;
-      x = totalWidth;
-      height = size * 2 - 1;
-      width = 1;
-
-      red = 1;
-      blue = 0;
-      green = 0;
-      alpha = 0.5f;
-
-      renderer.pos((double) (x + 0), (double) (y + 0), 1.0D).color(red, green, blue, alpha).endVertex();
-      renderer.pos((double) (x + 0), (double) (y + height), 1.0D).color(red, green, blue, alpha).endVertex();
-      renderer.pos((double) (x + width), (double) (y + height), 1.0D).color(red, green, blue, alpha).endVertex();
-      renderer.pos((double) (x + width), (double) (y + 0), 1.0D).color(red, green, blue, alpha).endVertex();
+      bufferColoredQuad(renderer, (int) ((avg / max) * totalWidth), 11, 1, size, 1, 1, 0, 0.5f);
+      bufferColoredQuad(renderer, (int) ((min / max) * totalWidth), 11, 1, size, 0, 1, 0, 0.5f);
+      bufferColoredQuad(renderer, totalWidth, 11, 1, size, 1, 0, 0, 0.5f);
 
       tessellator.draw();
       GlStateManager.enableTexture2D();
     }
+  }
+
+  private static void bufferColoredQuad(BufferBuilder renderer, int x, int y, float width, int height, float red, float green, float blue, float alpha) {
+
+    renderer.pos((double) (x + 0), (double) (y + 0), 1.0D).color(red, green, blue, alpha).endVertex();
+    renderer.pos((double) (x + 0), (double) (y + height), 1.0D).color(red, green, blue, alpha).endVertex();
+    renderer.pos((double) (x + width), (double) (y + height), 1.0D).color(red, green, blue, alpha).endVertex();
+    renderer.pos((double) (x + width), (double) (y + 0), 1.0D).color(red, green, blue, alpha).endVertex();
   }
 
   @SubscribeEvent
@@ -162,10 +134,15 @@ public class TileDataServiceEventHandler {
     int min = Integer.MAX_VALUE;
     int total = 0;
     int size = BYTES_RECEIVED_PER_SECOND.size();
+    int tracked = 0;
 
     for (int i = 0; i < size; i++) {
       int count = BYTES_RECEIVED_PER_SECOND.getInt(i);
       total += count;
+
+      if (i == 10) {
+        tracked = count;
+      }
 
       if (count > max) {
         max = count;
@@ -176,7 +153,7 @@ public class TileDataServiceEventHandler {
       }
     }
 
-    event.getLeft().add("N: §a" + min + " §e" + (int) (total / (float) size) + " §c" + max);
+    event.getLeft().add("§a" + min + " §e" + (int) (total / (float) size) + " §c" + max + " §9" + tracked);
 
 
     /*for (int i = 0; i < BYTES_RECEIVED_PER_SECOND.size(); i++) {
