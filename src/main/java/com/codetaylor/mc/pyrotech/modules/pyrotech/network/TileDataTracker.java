@@ -17,7 +17,7 @@ class TileDataTracker {
   private final PacketBuffer packetBuffer;
 
   /**
-   * Temporarily stores data entries to
+   * Temporarily stores data entries to pass to the tile's update method.
    */
   private final List<ITileData> toUpdate;
 

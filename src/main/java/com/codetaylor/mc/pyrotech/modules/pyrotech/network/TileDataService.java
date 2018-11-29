@@ -1,9 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.network;
 
 import com.codetaylor.mc.athenaeum.network.IPacketService;
-import com.codetaylor.mc.pyrotech.Reference;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -38,7 +36,7 @@ public class TileDataService
   @Nullable
   public TileDataTracker getTracker(TileDataContainerBase tile) {
 
-    return dataTrackerMap.get(tile);
+    return this.dataTrackerMap.get(tile);
   }
 
   @Override
@@ -76,7 +74,7 @@ public class TileDataService
 
       if (updateBuffer.writerIndex() > 0) {
 
-        CPacketTileData packet = new CPacketTileData(this.serviceId, tile.getPos(), updateBuffer);
+        SCPacketTileData packet = new SCPacketTileData(this.serviceId, tile.getPos(), updateBuffer);
         this.packetService.sendToAllAround(packet, tile);
       }
     }

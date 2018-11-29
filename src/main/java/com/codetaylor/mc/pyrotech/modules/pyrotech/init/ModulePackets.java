@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
 import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.pyrotech.library.fluid.CPacketFluidUpdate;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.network.CPacketTileData;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.network.SCPacketTileData;
 import net.minecraftforge.fml.relauncher.Side;
 
 public final class ModulePackets {
@@ -11,8 +11,8 @@ public final class ModulePackets {
 
     // Tile Data
     registry.register(
-        CPacketTileData.class,
-        CPacketTileData.class,
+        SCPacketTileData.class,
+        SCPacketTileData.class,
         Side.CLIENT
     );
 
