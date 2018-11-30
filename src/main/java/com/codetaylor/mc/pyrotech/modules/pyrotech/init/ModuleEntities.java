@@ -9,6 +9,8 @@ import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 
@@ -26,6 +28,7 @@ public class ModuleEntities {
     );
   }
 
+  @SideOnly(Side.CLIENT)
   public static void onClientRegister() {
 
     RenderingRegistry.registerEntityRenderingHandler(EntityRock.class, manager -> {
