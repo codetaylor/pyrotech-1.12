@@ -11,7 +11,6 @@ import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.*;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
-import com.codetaylor.mc.athenaeum.network.tile.TileDataServiceContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;

@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.network.tile.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
-import com.codetaylor.mc.athenaeum.network.tile.TileDataContainerBase;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataContainerBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
