@@ -52,8 +52,7 @@ public class ItemTinder
           world.setBlockState(
               offset,
               ModuleBlocks.CAMPFIRE.getDefaultState()
-                  .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.NORMAL)
-                  .withProperty(BlockCampfire.WOOD, 0),
+                  .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.NORMAL),
               3
           );
 

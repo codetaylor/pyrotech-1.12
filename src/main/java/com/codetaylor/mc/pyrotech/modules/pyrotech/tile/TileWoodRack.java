@@ -6,12 +6,13 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.impl.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -26,7 +27,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 
 public class TileWoodRack
-    extends TileNetworkedBase
+    extends TileNetBase
     implements ITileInteractable {
 
   private StackHandler stackHandler;

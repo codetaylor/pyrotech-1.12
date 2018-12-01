@@ -1,5 +1,6 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.util;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import net.minecraft.util.math.RayTraceResult;
 
 import javax.annotation.Nonnull;

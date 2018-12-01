@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import net.minecraft.block.Block;
@@ -41,7 +41,6 @@ public class BlockCampfire
   public static final String NAME = "campfire";
 
   public static final IProperty<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
-  public static final PropertyInteger WOOD = PropertyInteger.create("wood", 0, 8);
   public static final PropertyInteger ASH = PropertyInteger.create("ash", 0, 8);
 
   public static final AxisAlignedBB AABB_FULL = new AxisAlignedBB(0, 0, 0, 1, 6f / 16f, 1);
@@ -68,9 +67,15 @@ public class BlockCampfire
   @Override
   public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
 
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (!(tileEntity instanceof TileCampfire)) {
+      return SoundType.PLANT;
+    }
+
     IBlockState actualState = this.getActualState(state, world, pos);
 
-    if (actualState.getValue(WOOD) > 0) {
+    if (((TileCampfire) tileEntity).getFuelRemaining() > 0) {
       return SoundType.WOOD;
 
     } else if (actualState.getValue(VARIANT) == EnumType.ASH) {
@@ -120,7 +125,7 @@ public class BlockCampfire
     TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileCampfire
-        && ((TileCampfire) tileEntity).isActive()) {
+        && ((TileCampfire) tileEntity).workerIsActive()) {
 
       double x = (double) pos.getX() + 0.5;
       double y = (double) pos.getY() + (4.0 / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
@@ -147,9 +152,15 @@ public class BlockCampfire
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
+    TileEntity tileEntity = source.getTileEntity(pos);
+
+    if (!(tileEntity instanceof TileCampfire)) {
+      return NULL_AABB;
+    }
+
     IBlockState actualState = this.getActualState(state, source, pos);
 
-    if (actualState.getValue(WOOD) > 0) {
+    if (((TileCampfire) tileEntity).getFuelRemaining() > 0) {
       return AABB_FULL;
 
     } else {
@@ -243,7 +254,7 @@ public class BlockCampfire
     TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileCampfire) {
-      ((TileCampfire) tileEntity).removeItems();
+      ((TileCampfire) tileEntity).dropContents();
     }
 
     super.breakBlock(world, pos, state);
@@ -303,7 +314,7 @@ public class BlockCampfire
   @Override
   protected BlockStateContainer createBlockState() {
 
-    return new BlockStateContainer(this, WOOD, VARIANT, ASH);
+    return new BlockStateContainer(this, VARIANT, ASH);
   }
 
   @Nonnull
@@ -328,12 +339,10 @@ public class BlockCampfire
     if (tileEntity instanceof TileCampfire) {
 
       TileCampfire tileCampfire = (TileCampfire) tileEntity;
-      int fuelRemaining = tileCampfire.getFuelRemaining();
       EnumType type = tileCampfire.getState();
       int ashLevel = tileCampfire.getAshLevel();
 
       return state
-          .withProperty(WOOD, fuelRemaining)
           .withProperty(VARIANT, type)
           .withProperty(ASH, ashLevel);
     }

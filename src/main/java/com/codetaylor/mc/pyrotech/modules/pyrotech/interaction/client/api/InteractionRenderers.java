@@ -1,7 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.client.api;
 
 import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;

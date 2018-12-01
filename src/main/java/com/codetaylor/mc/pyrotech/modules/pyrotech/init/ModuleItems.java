@@ -123,7 +123,6 @@ public class ModuleItems {
       ModelRegistrationHelper.registerBlockItemModel(
           ModuleBlocks.CAMPFIRE.getDefaultState()
               .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.LIT)
-              .withProperty(BlockCampfire.WOOD, 8)
       );
 
       ModelRegistrationHelper.registerVariantItemModels(

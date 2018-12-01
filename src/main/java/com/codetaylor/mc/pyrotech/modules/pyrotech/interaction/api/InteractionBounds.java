@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api;
 
 import net.minecraft.util.math.AxisAlignedBB;
 

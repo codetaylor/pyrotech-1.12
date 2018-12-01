@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import net.minecraft.block.state.IBlockState;

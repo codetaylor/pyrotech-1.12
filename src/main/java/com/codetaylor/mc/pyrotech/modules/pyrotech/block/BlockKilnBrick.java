@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrick;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrickTop;

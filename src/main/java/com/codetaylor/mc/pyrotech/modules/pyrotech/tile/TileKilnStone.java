@@ -9,13 +9,18 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnStone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.impl.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -36,10 +41,9 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class TileKilnStone
-    extends TileNetworkedBase
+    extends TileNetBase
     implements ITickable,
     IProgressProvider,
     ITileInteractable {
@@ -118,9 +122,9 @@ public class TileKilnStone
   // ---------------------------------------------------------------------------
 
   @Override
-  public void onTileDataUpdate(List<ITileData> data) {
+  public void onTileDataUpdate() {
 
-    super.onTileDataUpdate(data);
+    super.onTileDataUpdate();
   }
 
   // ---------------------------------------------------------------------------
@@ -144,12 +148,12 @@ public class TileKilnStone
 
   public int getRemainingBurnTimeTicks() {
 
-    return this.remainingBurnTimeTicks.getValue();
+    return this.remainingBurnTimeTicks.get();
   }
 
   public void setRemainingBurnTimeTicks(int value) {
 
-    this.remainingBurnTimeTicks.setValue(value);
+    this.remainingBurnTimeTicks.set(value);
 
     if (this.remainingBurnTimeTicks.isDirty()) {
       this.markDirty();
@@ -158,12 +162,12 @@ public class TileKilnStone
 
   public int getRemainingRecipeTimeTicks() {
 
-    return this.remainingRecipeTimeTicks.getValue();
+    return this.remainingRecipeTimeTicks.get();
   }
 
   public void setRemainingRecipeTimeTicks(int value) {
 
-    this.remainingRecipeTimeTicks.setValue(value);
+    this.remainingRecipeTimeTicks.set(value);
 
     if (this.remainingRecipeTimeTicks.isDirty()) {
       this.markDirty();
@@ -390,8 +394,8 @@ public class TileKilnStone
     compound.setTag("stackHandler", this.stackHandler.serializeNBT());
     compound.setTag("outputStackHandler", this.outputStackHandler.serializeNBT());
     compound.setTag("fuelStackHandler", this.fuelStackHandler.serializeNBT());
-    compound.setInteger("remainingRecipeTimeTicks", this.remainingRecipeTimeTicks.getValue());
-    compound.setInteger("remainingBurnTimeTicks", this.remainingBurnTimeTicks.getValue());
+    compound.setInteger("remainingRecipeTimeTicks", this.remainingRecipeTimeTicks.get());
+    compound.setInteger("remainingBurnTimeTicks", this.remainingBurnTimeTicks.get());
     return compound;
   }
 
@@ -402,8 +406,8 @@ public class TileKilnStone
     this.stackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));
     this.outputStackHandler.deserializeNBT(compound.getCompoundTag("outputStackHandler"));
     this.fuelStackHandler.deserializeNBT(compound.getCompoundTag("fuelStackHandler"));
-    this.remainingRecipeTimeTicks.setValue(compound.getInteger("remainingRecipeTimeTicks"));
-    this.remainingBurnTimeTicks.setValue(compound.getInteger("remainingBurnTimeTicks"));
+    this.remainingRecipeTimeTicks.set(compound.getInteger("remainingRecipeTimeTicks"));
+    this.remainingBurnTimeTicks.set(compound.getInteger("remainingBurnTimeTicks"));
   }
 
   public void dropContents() {

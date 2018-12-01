@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWoodRack;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

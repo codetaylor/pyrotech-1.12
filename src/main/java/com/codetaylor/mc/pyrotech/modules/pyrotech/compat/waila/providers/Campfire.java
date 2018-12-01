@@ -64,9 +64,9 @@ public class Campfire
       TileCampfire tileCampfire;
       tileCampfire = (TileCampfire) tileEntity;
 
-      float progress = tileCampfire.getProgress();
+      float progress = tileCampfire.workerGetProgress();
 
-      ItemStackHandler stackHandler = tileCampfire.getStackHandler();
+      ItemStackHandler stackHandler = tileCampfire.getInputStackHandler();
       ItemStackHandler outputStackHandler = tileCampfire.getOutputStackHandler();
 
       ItemStack input = stackHandler.getStackInSlot(0);
@@ -110,7 +110,7 @@ public class Campfire
       {
         int fuelRemaining = tileCampfire.getFuelRemaining();
 
-        if (tileCampfire.isActive()
+        if (tileCampfire.workerIsActive()
             && tileCampfire.getRemainingBurnTimeTicks() > 0) {
           tooltip.add(Util.translateFormatted(
               "gui." + ModulePyrotech.MOD_ID + ".waila.burn.time",

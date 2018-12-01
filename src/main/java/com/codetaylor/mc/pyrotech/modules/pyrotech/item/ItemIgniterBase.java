@@ -96,7 +96,7 @@ public abstract class ItemIgniterBase
             ((TileKilnBrick) tileEntity).setActive(true);
 
           } else if (tileEntity instanceof TileCampfire) {
-            ((TileCampfire) tileEntity).setActive(true);
+            ((TileCampfire) tileEntity).workerSetActive(true);
 
           } else if (tileEntity instanceof TileKilnStone) {
             ((TileKilnStone) tileEntity).setActive(true);
