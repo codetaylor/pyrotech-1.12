@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.client.spi;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.client.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.util.InteractionRayTraceData;
@@ -18,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
+import org.lwjgl.opengl.GL11;
 
 @SuppressWarnings("WeakerAccess")
 public class TESRInteractable<T extends TileEntity & ITileInteractable>
@@ -118,7 +118,16 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
 
       // TODO: this is debug only
       if (!results.isEmpty()) {
-        InteractionRenderers.setupAdditiveGLState();
+
+        // setup additive gl state
+        {
+          GlStateManager.enableBlend();
+          GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
+          GlStateManager.enableAlpha();
+          GlStateManager.alphaFunc(GL11.GL_GREATER, 0.0f);
+          GlStateManager.enableRescaleNormal();
+        }
+
         GlStateManager.glLineWidth(8.0F);
         GlStateManager.disableTexture2D();
         GlStateManager.color(1, 1, 1, 1);
@@ -135,7 +144,13 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
           RenderGlobal.drawSelectionBoundingBox(bounds, 0, 1, 0, 1);
         }
 
-        InteractionRenderers.cleanupAdditiveGLState();
+        // cleanup additive gl state
+        {
+          GlStateManager.disableAlpha();
+          GlStateManager.disableBlend();
+          GlStateManager.disableRescaleNormal();
+        }
+
         GlStateManager.enableTexture2D();
       }
     }
