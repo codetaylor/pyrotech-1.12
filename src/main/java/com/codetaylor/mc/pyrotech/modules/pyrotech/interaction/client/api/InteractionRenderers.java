@@ -143,9 +143,11 @@ public final class InteractionRenderers {
    */
   public static void setupItemTransforms(Transform transform) {
 
-    GlStateManager.translate(transform.translation.x, transform.translation.y, transform.translation.z);
-    GlStateManager.rotate(transform.rotation);
-    GlStateManager.scale(transform.scale.x, transform.scale.y, transform.scale.z);
+    if (transform != Transform.IDENTITY) {
+      GlStateManager.translate(transform.translation.x, transform.translation.y, transform.translation.z);
+      GlStateManager.rotate(transform.rotation);
+      GlStateManager.scale(transform.scale.x, transform.scale.y, transform.scale.z);
+    }
   }
 
   private InteractionRenderers() {
