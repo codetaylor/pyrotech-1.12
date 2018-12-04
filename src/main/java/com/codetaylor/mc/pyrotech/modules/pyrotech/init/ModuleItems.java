@@ -122,7 +122,7 @@ public class ModuleItems {
 
       ModelRegistrationHelper.registerBlockItemModel(
           ModuleBlocks.CAMPFIRE.getDefaultState()
-              .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.LIT)
+              .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.ITEM)
       );
 
       ModelRegistrationHelper.registerVariantItemModels(

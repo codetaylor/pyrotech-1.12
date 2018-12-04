@@ -73,6 +73,24 @@
         "textures": {
           "particle": "pyrotech:blocks/ash_block"
         }
+      },
+      "item": {
+        "textures": {
+          "tinder": "pyrotech:blocks/active_pile",
+          "fire": "minecraft:blocks/fire_layer_1",
+          "particle": "minecraft:blocks/fire_layer_1"
+        },
+        "submodel": {
+          "f0": {"model": "pyrotech:campfire_fire"},
+          "a": {"model": "pyrotech:campfire_log_a"},
+          "b": {"model": "pyrotech:campfire_log_a", "y": 90},
+          "c": {"model": "pyrotech:campfire_log_a", "y": 180},
+          "d": {"model": "pyrotech:campfire_log_a", "y": 270},
+          "e": {"model": "pyrotech:campfire_log_b"},
+          "f": {"model": "pyrotech:campfire_log_b", "y": 90},
+          "g": {"model": "pyrotech:campfire_log_b", "y": 180},
+          "h": {"model": "pyrotech:campfire_log_b", "y": 270}
+        }
       }
     }
   }

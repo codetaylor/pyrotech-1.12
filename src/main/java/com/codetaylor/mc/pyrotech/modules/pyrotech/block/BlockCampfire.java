@@ -355,7 +355,8 @@ public class BlockCampfire
 
     NORMAL(0, "normal"),
     LIT(1, "lit"),
-    ASH(2, "ash");
+    ASH(2, "ash"),
+    ITEM(3, "item");
 
     private static final BlockTarDrain.EnumType[] META_LOOKUP = Stream.of(BlockTarDrain.EnumType.values())
         .sorted(Comparator.comparing(BlockTarDrain.EnumType::getMeta))
