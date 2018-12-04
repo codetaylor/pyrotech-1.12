@@ -1,9 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.impl;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.client.api.InteractionRenderers;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionBase;

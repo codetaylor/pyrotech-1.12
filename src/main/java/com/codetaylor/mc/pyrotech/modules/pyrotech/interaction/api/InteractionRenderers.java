@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.client.api;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api;
 
 import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;

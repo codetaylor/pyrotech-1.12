@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.client.spi.TESRInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;

@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.client.api.InteractionRenderers;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import net.minecraft.block.state.IBlockState;
