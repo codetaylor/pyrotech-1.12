@@ -32,7 +32,7 @@ public abstract class TileNetWorkerBase
     super(tileDataService);
 
     this.active = new TileDataBoolean(false);
-    this.progress = new TileDataFloat(0);
+    this.progress = new TileDataFloat(0, 20);
 
     this.registerTileData(new ITileData[]{
         this.active,
