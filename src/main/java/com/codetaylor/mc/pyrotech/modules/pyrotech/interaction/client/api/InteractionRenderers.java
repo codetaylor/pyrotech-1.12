@@ -5,7 +5,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -37,7 +36,7 @@ public final class InteractionRenderers {
     }
 
     @Override
-    public boolean renderAdditivePass(IInteractionItemStack interaction, World world, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+    public boolean renderAdditivePass(IInteractionItemStack interaction, World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
       // If the handler is empty, render the held item.
       // Else, render the handler's item if the player's hand is empty.
@@ -54,7 +53,7 @@ public final class InteractionRenderers {
           // if the item isn't going to be rendered.
 
           InteractionRenderers.setupAdditiveGLState();
-          InteractionRenderers.renderItemModelCustom(heldItemMainHand, transform);
+          InteractionRenderers.renderItemModelCustom(renderItem, heldItemMainHand, transform);
           InteractionRenderers.cleanupAdditiveGLState();
           return true;
         }
@@ -72,7 +71,7 @@ public final class InteractionRenderers {
           // if the item isn't going to be rendered.
 
           InteractionRenderers.setupAdditiveGLState();
-          InteractionRenderers.renderItemModelCustom(itemStack, transform);
+          InteractionRenderers.renderItemModelCustom(renderItem, itemStack, transform);
           InteractionRenderers.cleanupAdditiveGLState();
           return true;
         }
@@ -104,15 +103,15 @@ public final class InteractionRenderers {
    * Render the given item with the given transform without applying the
    * normal GL state.
    *
-   * @param itemStack the {@link ItemStack} to render
-   * @param transform the transform to apply to the GL state
+   * @param renderItem the instance of {@link RenderItem}
+   * @param itemStack  the {@link ItemStack} to render
+   * @param transform  the transform to apply to the GL state
    */
-  public static void renderItemModelCustom(ItemStack itemStack, Transform transform) {
+  public static void renderItemModelCustom(RenderItem renderItem, ItemStack itemStack, Transform transform) {
 
     GlStateManager.pushMatrix();
     {
       InteractionRenderers.setupItemTransforms(transform);
-      RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
       IBakedModel model = renderItem.getItemModelWithOverrides(itemStack, null, null);
       RenderHelper.renderItemModelCustom(itemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
     }

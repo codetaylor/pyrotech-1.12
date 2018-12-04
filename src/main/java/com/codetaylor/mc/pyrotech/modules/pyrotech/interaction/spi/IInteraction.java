@@ -89,6 +89,7 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
    * Render the additive pass.
    *
    * @param world            the world
+   * @param renderItem       minecraft's item renderer
    * @param hitSide          the side hit
    * @param hitVec           the location of the hit relative to world origin
    * @param hitPos           the position of the block hit
@@ -97,8 +98,15 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
    * @param partialTicks     value passed from the TESR
    */
   @SideOnly(Side.CLIENT)
-  default boolean renderAdditivePass(World world, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+  default boolean renderAdditivePass(World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
     // default no op
     return false;
   }
+
+  @SideOnly(Side.CLIENT)
+  default boolean forceRenderAdditivePassWhileSneaking() {
+
+    return false;
+  }
+
 }

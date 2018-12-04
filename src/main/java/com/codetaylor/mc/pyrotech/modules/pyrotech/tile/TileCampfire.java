@@ -13,10 +13,12 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.CampfireInteractionLogRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionUseItemToActivateWorker;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.impl.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
@@ -24,6 +26,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionBa
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetWorkerBase;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -34,7 +37,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
@@ -119,7 +124,7 @@ public class TileCampfire
         }),
         new TileCampfire.InteractionShovel(),
         new InteractionUseItemToActivateWorker(Items.FLINT_AND_STEEL, EnumFacing.VALUES, BlockCampfire.AABB_FULL),
-        new TileCampfire.InteractionLog()
+        new TileCampfire.InteractionLog(this)
     };
   }
 
@@ -449,7 +454,7 @@ public class TileCampfire
   }
 
   // ---------------------------------------------------------------------------
-  // - Interaction
+  // - Rendering
   // ---------------------------------------------------------------------------
 
   @Override
@@ -458,6 +463,17 @@ public class TileCampfire
     // Required in both passes for the interactable TESR.
     return (pass == 0) || (pass == 1);
   }
+
+  @Nonnull
+  @Override
+  public AxisAlignedBB getRenderBoundingBox() {
+
+    return new AxisAlignedBB(this.getPos());
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Interaction
+  // ---------------------------------------------------------------------------
 
   @Override
   public IInteraction[] getInteractions() {
@@ -484,6 +500,12 @@ public class TileCampfire
     }
 
     @Override
+    public boolean isEnabled() {
+
+      return !TileCampfire.this.isDead();
+    }
+
+    @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
       return (itemStack.getItem() instanceof ItemFood)
@@ -501,12 +523,59 @@ public class TileCampfire
     }
   }
 
-  private class InteractionLog
+  public static class InteractionLog
       extends InteractionBase<TileCampfire> {
 
-    /* package */ InteractionLog() {
+    /**
+     * Used to cache the last item checked for validation.
+     */
+    protected ItemStack lastItemChecked;
+
+    /**
+     * Used to cache if the last item checked was valid.
+     */
+    protected boolean lastItemValid;
+
+    private final TileCampfire tile;
+
+    /* package */ InteractionLog(TileCampfire tile) {
 
       super(EnumFacing.VALUES, BlockCampfire.AABB_FULL);
+      this.tile = tile;
+    }
+
+    public int getLogCount() {
+
+      int firstEmptyIndex = this.tile.fuelStackHandler.getFirstEmptyIndex();
+      return firstEmptyIndex == -1 ? this.tile.fuelStackHandler.getSlots() : firstEmptyIndex;
+    }
+
+    public ItemStack getLog(int slot) {
+
+      return this.tile.fuelStackHandler.getStackInSlot(slot);
+    }
+
+    public boolean isItemStackValid(ItemStack itemStack) {
+
+      if (itemStack.isEmpty()) {
+        return false;
+      }
+
+      if (this.lastItemChecked == null
+          || this.lastItemChecked.getItem() != itemStack.getItem()
+          || this.lastItemChecked.getMetadata() != itemStack.getMetadata()) {
+
+        // Run the potentially expensive check.
+        this.lastItemChecked = itemStack.copy();
+        this.lastItemValid = this.doItemStackValidation(itemStack);
+      }
+
+      return this.lastItemValid;
+    }
+
+    private boolean doItemStackValidation(ItemStack itemStack) {
+
+      return OreDictHelper.contains("logWood", itemStack);
     }
 
     @Override
@@ -545,20 +614,19 @@ public class TileCampfire
 
         // If the player is not sneaking with a full hand, attempt to add wood.
 
-        if (OreDictHelper.contains("logWood", heldItem)) {
+        if (this.isItemStackValid(heldItem)) {
           LIFOStackHandler fuelStackHandler = tile.fuelStackHandler;
 
           if (!world.isRemote) {
             int firstEmptyIndex = fuelStackHandler.getFirstEmptyIndex();
 
             if (firstEmptyIndex > -1) {
+              fuelStackHandler.insertItem(0, new ItemStack(heldItem.getItem(), 1, heldItem.getMetadata()), false);
+              world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
 
               if (!player.isCreative()) {
                 heldItem.setCount(heldItem.getCount() - 1);
               }
-
-              fuelStackHandler.insertItem(0, new ItemStack(heldItem.getItem(), 1, heldItem.getMetadata()), false);
-              world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
             }
           }
 
@@ -569,6 +637,23 @@ public class TileCampfire
       return false;
     }
 
+    @Override
+    public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
+
+      CampfireInteractionLogRenderer.INSTANCE.renderSolidPass(this, world, renderItem, pos, blockState, partialTicks);
+    }
+
+    @Override
+    public boolean forceRenderAdditivePassWhileSneaking() {
+
+      return true;
+    }
+
+    @Override
+    public boolean renderAdditivePass(World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+
+      return CampfireInteractionLogRenderer.INSTANCE.renderAdditivePass(this, world, renderItem, hitSide, hitVec, hitPos, blockState, heldItemMainHand, partialTicks);
+    }
   }
 
   private class InteractionShovel

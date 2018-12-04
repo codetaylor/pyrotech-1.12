@@ -85,12 +85,9 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
   protected void renderAdditivePass(T te, float partialTicks, World world, IBlockState blockState) {
 
     // TODO: move to event handler?
+    RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
     EntityPlayerSP player = Minecraft.getMinecraft().player;
-
-    if (player.isSneaking()) {
-      return;
-    }
 
     RayTraceResult rayTraceResult = Minecraft.getMinecraft().objectMouseOver;
 
@@ -107,11 +104,15 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
         IInteraction interaction = data.getInteraction();
         RayTraceResult result = data.getRayTraceResult();
 
-        if (interaction.allowInteractionWithSide(result.sideHit)) {
+        if (!player.isSneaking()
+            || interaction.forceRenderAdditivePassWhileSneaking()) {
 
-          if (interaction.renderAdditivePass(world, result.sideHit, result.hitVec, result.getBlockPos(), blockState, player.getHeldItemMainhand(), partialTicks)) {
-            // Only keep rendering if nothing was rendered.
-            break;
+          if (interaction.allowInteractionWithSide(result.sideHit)) {
+
+            if (interaction.renderAdditivePass(world, renderItem, result.sideHit, result.hitVec, result.getBlockPos(), blockState, player.getHeldItemMainhand(), partialTicks)) {
+              // Only keep rendering if nothing was rendered.
+              break;
+            }
           }
         }
       }

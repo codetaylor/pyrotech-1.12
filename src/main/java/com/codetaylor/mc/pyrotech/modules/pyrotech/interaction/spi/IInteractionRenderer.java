@@ -10,9 +10,12 @@ import net.minecraft.world.World;
 
 public interface IInteractionRenderer<I extends IInteraction> {
 
+  void renderSolidPass(I interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks);
+
   /**
    * @param interaction
    * @param world
+   * @param renderItem
    * @param hitSide
    * @param hitVec
    * @param hitPos
@@ -21,8 +24,6 @@ public interface IInteractionRenderer<I extends IInteraction> {
    * @param partialTicks
    * @return true if any rendering was done
    */
-  boolean renderAdditivePass(I interaction, World world, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks);
-
-  void renderSolidPass(I interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks);
+  boolean renderAdditivePass(I interaction, World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks);
 
 }
