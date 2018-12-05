@@ -111,10 +111,10 @@ public class Campfire
         int fuelRemaining = tileCampfire.getFuelRemaining();
 
         if (tileCampfire.workerIsActive()
-            && tileCampfire.getRemainingBurnTimeTicks() > 0) {
+            && tileCampfire.combustionGetRemainingBurnTime() > 0) {
           tooltip.add(Util.translateFormatted(
               "gui." + ModulePyrotech.MOD_ID + ".waila.burn.time",
-              StringHelper.ticksToHMS(tileCampfire.getRemainingBurnTimeTicks() + tileCampfire.getFuelRemaining() * ModulePyrotechConfig.CAMPFIRE.BURN_TIME_TICKS_PER_LOG)
+              StringHelper.ticksToHMS(tileCampfire.combustionGetRemainingBurnTime() + tileCampfire.getFuelRemaining() * ModulePyrotechConfig.CAMPFIRE.BURN_TIME_TICKS_PER_LOG)
           ));
         }
 

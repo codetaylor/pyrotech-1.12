@@ -18,12 +18,12 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionUseItemToActivateWorker;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetWorkerBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -46,7 +46,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 
 public class TileCampfire
-    extends TileNetWorkerBase
+    extends TileCombustionWorkerBase
     implements ITickable,
     ITileInteractable {
 
@@ -58,7 +58,6 @@ public class TileCampfire
 
   private TileDataInteger ashLevel;
   private TileDataBoolean dead;
-  private TileDataInteger burnTimeRemaining;
 
   // --- Server ---
 
@@ -68,12 +67,7 @@ public class TileCampfire
   /**
    * Indicates if this has been lit, affects drops.
    */
-  private boolean doused;
-
-  /**
-   * A counter used to extinguish the fire when raining.
-   */
-  private int rainTimeRemaining;
+  private boolean extinguishedByRain;
 
   private IInteraction[] interactions;
 
@@ -97,11 +91,9 @@ public class TileCampfire
 
     this.ashLevel = new TileDataInteger(0);
     this.dead = new TileDataBoolean(false);
-    this.burnTimeRemaining = new TileDataInteger(ModulePyrotechConfig.FUEL.TINDER_BURN_TIME_TICKS, 20);
 
     this.cookTime = -1;
     this.cookTimeTotal = -1;
-    this.rainTimeRemaining = ModulePyrotechConfig.CAMPFIRE.TICKS_BEFORE_EXTINGUISHED;
 
     // --- Network ---
 
@@ -110,8 +102,7 @@ public class TileCampfire
         new TileDataItemStackHandler<>(this.outputStackHandler),
         new TileDataItemStackHandler<>(this.fuelStackHandler),
         this.ashLevel,
-        this.dead,
-        this.burnTimeRemaining
+        this.dead
     });
 
     // --- Interactions ---
@@ -211,11 +202,6 @@ public class TileCampfire
     super.workerSetActive(active);
   }
 
-  public int getRemainingBurnTimeTicks() {
-
-    return this.burnTimeRemaining.get();
-  }
-
   @Override
   public boolean workerIsActive() {
 
@@ -223,29 +209,53 @@ public class TileCampfire
   }
 
   // ---------------------------------------------------------------------------
-  // - Update
+  // - Combustion Worker
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean workerRequiresFuel() {
+  protected int combustionGetInitialBurnTimeRemaining() {
 
-    return (this.burnTimeRemaining.get() <= 0);
+    return ModulePyrotechConfig.FUEL.TINDER_BURN_TIME_TICKS;
   }
+
+  @Override
+  protected int combustionGetBurnTimeForFuel(ItemStack fuel) {
+
+    return ModulePyrotechConfig.CAMPFIRE.BURN_TIME_TICKS_PER_LOG;
+  }
+
+  @Override
+  protected ItemStack combustionGetFuelItem() {
+
+    return this.fuelStackHandler.extractItem(0, 1, false);
+  }
+
+  @Override
+  protected int combustionGetRainDeactivateTime() {
+
+    return ModulePyrotechConfig.CAMPFIRE.TICKS_BEFORE_EXTINGUISHED;
+  }
+
+  @Override
+  protected void combustionOnDeactivatedByRain() {
+
+    this.extinguishedByRain = true;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Worker
+  // ---------------------------------------------------------------------------
 
   @Override
   public boolean workerConsumeFuel() {
 
-    ItemStack itemStack = this.fuelStackHandler.extractItem(0, 1, false);
-
-    if (!itemStack.isEmpty()) {
-      this.burnTimeRemaining.set(ModulePyrotechConfig.CAMPFIRE.BURN_TIME_TICKS_PER_LOG);
+    if (super.workerConsumeFuel()) {
       return true;
     }
 
     // No fuel remaining, deactivate, set dead, and drop any input or output
     // stacks.
 
-    this.workerSetActive(false);
     this.setDead();
 
     ItemStack contents = this.inputStackHandler.extractItem(0, 64, false);
@@ -276,6 +286,10 @@ public class TileCampfire
   @Override
   public boolean workerDoWork() {
 
+    if (!super.workerDoWork()) {
+      return false;
+    }
+
     // Deactivate the worker if the ash level gets too high.
     if (this.ashLevel.get() == 8) {
       return false; // Deactivate the worker
@@ -288,27 +302,6 @@ public class TileCampfire
         && this.world.getBlockState(this.pos.down()).getBlock().isFlammable(this.world, this.pos.down(), EnumFacing.UP)) {
       this.world.setBlockState(this.pos.down(), Blocks.FIRE.getDefaultState(), 3);
       return false; // Deactivate the worker
-    }
-
-    // If it's raining and the campfire is configured to be put out by rain,
-    // decrement the rain time and check if the fire should be doused.
-    if (ModulePyrotechConfig.CAMPFIRE.EXTINGUISHED_BY_RAIN) {
-
-      if (this.world.isRainingAt(this.pos.up())) {
-
-        if (this.rainTimeRemaining > 0) {
-          this.rainTimeRemaining -= 1;
-        }
-
-        if (this.rainTimeRemaining == 0) {
-          this.doused = true;
-          return false; // Deactivate the worker
-        }
-
-      } else {
-        // If it's not raining, reset the rain time counter.
-        this.rainTimeRemaining = ModulePyrotechConfig.CAMPFIRE.TICKS_BEFORE_EXTINGUISHED;
-      }
     }
 
     // Decrement the cook time and check for recipe completion.
@@ -326,9 +319,9 @@ public class TileCampfire
       }
     }
 
-    // Decrement the burn time remaining and randomly add ash.
+    // Randomly add ash.
 
-    if (this.burnTimeRemaining.add(-1) <= 0) {
+    if (this.combustionGetRemainingBurnTime() <= 0) {
 
       if (Math.random() < ModulePyrotechConfig.CAMPFIRE.ASH_CHANCE) {
         this.ashLevel.add(1);
@@ -354,11 +347,10 @@ public class TileCampfire
 
     compound.setBoolean("dead", this.dead.get());
     compound.setInteger("ashLevel", this.ashLevel.get());
-    compound.setInteger("burnTimeRemaining", this.burnTimeRemaining.get());
 
     compound.setInteger("cookTime", this.cookTime);
     compound.setInteger("cookTimeTotal", this.cookTimeTotal);
-    compound.setBoolean("doused", this.doused);
+    compound.setBoolean("extinguishedByRain", this.extinguishedByRain);
     return compound;
   }
 
@@ -373,11 +365,10 @@ public class TileCampfire
 
     this.dead.set(compound.getBoolean("dead"));
     this.ashLevel.set(compound.getInteger("ashLevel"));
-    this.burnTimeRemaining.set(compound.getInteger("burnTimeRemaining"));
 
     this.cookTime = compound.getInteger("cookTime");
     this.cookTimeTotal = compound.getInteger("cookTimeTotal");
-    this.doused = compound.getBoolean("doused");
+    this.extinguishedByRain = compound.getBoolean("extinguishedByRain");
   }
 
   // ---------------------------------------------------------------------------
@@ -389,7 +380,7 @@ public class TileCampfire
     if (this.getState() == BlockCampfire.EnumType.ASH) {
       StackHelper.spawnStackOnTop(this.world, ItemMaterial.EnumType.PIT_ASH.asStack(1), this.pos, -0.125);
 
-    } else if (!this.doused
+    } else if (!this.extinguishedByRain
         && this.getState() == BlockCampfire.EnumType.NORMAL) {
       StackHelper.spawnStackOnTop(this.world, new ItemStack(ModuleItems.TINDER), this.pos, -0.125);
     }
@@ -528,12 +519,12 @@ public class TileCampfire
     /**
      * Used to cache the last item checked for validation.
      */
-    protected ItemStack lastItemChecked;
+    private ItemStack lastItemChecked;
 
     /**
      * Used to cache if the last item checked was valid.
      */
-    protected boolean lastItemValid;
+    private boolean lastItemValid;
 
     private final TileCampfire tile;
 
