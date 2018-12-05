@@ -17,6 +17,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionBa
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileBurnableBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

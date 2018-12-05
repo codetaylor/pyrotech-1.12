@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTarTankBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTarTankBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;

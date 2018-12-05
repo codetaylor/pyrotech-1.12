@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockTarDrain;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTarTankBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;

@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
 
 import com.codetaylor.mc.pyrotech.library.fluid.CPacketFluidUpdate;
 import com.codetaylor.mc.pyrotech.library.fluid.FluidTankBase;
@@ -31,7 +31,7 @@ public abstract class TileTarTankBase
   protected FluidTankBase fluidTank;
   protected int ticksUntilNextUpdate;
 
-  /* package */ TileTarTankBase() {
+  public TileTarTankBase() {
 
     this.fluidTank = new FluidTankBase(this.getTankCapacity(), this);
   }

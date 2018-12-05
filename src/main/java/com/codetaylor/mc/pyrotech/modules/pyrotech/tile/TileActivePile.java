@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileBurnableBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.state.IBlockState;
@@ -163,7 +164,7 @@ public class TileActivePile
 
         } else if (tileEntity instanceof TileTarCollector) {
           TileTarCollector down = (TileTarCollector) tileEntity;
-          this.fluidTank.drain(down.fluidTank.fillInternal(this.fluidTank.getFluid(), true), true);
+          this.fluidTank.drain(down.getFluidTank().fillInternal(this.fluidTank.getFluid(), true), true);
         }
 
         if (this.fluidTank.getFluidAmount() == 0) {

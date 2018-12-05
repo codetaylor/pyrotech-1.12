@@ -4,6 +4,8 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileDryingRackBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTarTankBase;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
 public class WailaRegistrar {

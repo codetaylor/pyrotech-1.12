@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileDryingRackBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackCrude;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
