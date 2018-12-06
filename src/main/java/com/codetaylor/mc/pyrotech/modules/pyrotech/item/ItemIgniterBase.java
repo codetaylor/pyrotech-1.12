@@ -99,7 +99,7 @@ public abstract class ItemIgniterBase
             ((TileCampfire) tileEntity).workerSetActive(true);
 
           } else if (tileEntity instanceof TileKilnStone) {
-            ((TileKilnStone) tileEntity).setActive(true);
+            ((TileKilnStone) tileEntity).workerSetActive(true);
           }
 
           world.playSound(

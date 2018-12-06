@@ -299,7 +299,7 @@ public class BlockKilnStone
       TileEntity tileEntity = world.getTileEntity(pos.down());
 
       if (tileEntity instanceof TileKilnStone
-          && ((TileKilnStone) tileEntity).isActive()
+          && ((TileKilnStone) tileEntity).workerIsActive()
           && ((TileKilnStone) tileEntity).isFiring()) {
 
         double centerX = pos.getX() + 0.5;
@@ -322,7 +322,7 @@ public class BlockKilnStone
       TileEntity tileEntity = world.getTileEntity(pos);
 
       if (tileEntity instanceof TileKilnStone
-          && ((TileKilnStone) tileEntity).isActive()) {
+          && ((TileKilnStone) tileEntity).workerIsActive()) {
 
         EnumFacing enumfacing = state.getValue(Properties.FACING_HORIZONTAL);
         double d0 = (double) pos.getX() + 0.5D;
@@ -422,7 +422,7 @@ public class BlockKilnStone
       TileEntity tileEntity = world.getTileEntity(pos);
 
       if (tileEntity instanceof TileKilnStone
-          && ((TileKilnStone) tileEntity).getRemainingBurnTimeTicks() > 0) {
+          && ((TileKilnStone) tileEntity).combustionGetBurnTimeRemaining() > 0) {
 
         return state.withProperty(TYPE, EnumType.BottomDormant);
       }

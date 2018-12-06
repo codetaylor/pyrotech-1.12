@@ -1,6 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
@@ -10,17 +14,13 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnStone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnStoneRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -43,19 +43,17 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TileKilnStone
-    extends TileNetBase
+    extends TileCombustionWorkerBase
     implements ITickable,
-    IProgressProvider,
     ITileInteractable {
 
   private static final int DORMANT_COUNTER = 50;
 
   private FuelStackHandler fuelStackHandler;
-  private StackHandler stackHandler;
+  private InputStackHandler inputStackHandler;
   private OutputStackHandler outputStackHandler;
 
   private TileDataInteger remainingRecipeTimeTicks;
-  private TileDataInteger remainingBurnTimeTicks;
 
   private int dormantCounter;
 
@@ -71,8 +69,8 @@ public class TileKilnStone
 
     // --- Stack Handlers ---
 
-    this.stackHandler = new StackHandler(1);
-    this.stackHandler.addObserver((handler, slot) -> {
+    this.inputStackHandler = new InputStackHandler(1);
+    this.inputStackHandler.addObserver((handler, slot) -> {
       this.recalculateRemainingTime(handler.getStackInSlot(slot));
       this.markDirty();
     });
@@ -86,21 +84,19 @@ public class TileKilnStone
     this.fuelStackHandler = new FuelStackHandler(1);
     this.fuelStackHandler.addObserver((handler, slot) -> {
       // force the burn time to update with the fuel change
-      this.remainingBurnTimeTicks.forceUpdate();
+      this.burnTimeRemaining.forceUpdate();
       this.markDirty();
     });
 
     // --- Network ---
 
     this.remainingRecipeTimeTicks = new TileDataInteger(0, 20);
-    this.remainingBurnTimeTicks = new TileDataInteger(0, 20);
 
     this.registerTileData(new ITileData[]{
-        new TileDataItemStackHandler<>(this.stackHandler),
+        new TileDataItemStackHandler<>(this.inputStackHandler),
         new TileDataItemStackHandler<>(this.outputStackHandler),
         new TileDataItemStackHandler<>(this.fuelStackHandler),
-        this.remainingRecipeTimeTicks,
-        this.remainingBurnTimeTicks
+        this.remainingRecipeTimeTicks
     });
 
     // --- Interactions ---
@@ -108,7 +104,7 @@ public class TileKilnStone
     this.interactions = new IInteraction[]{
         new InteractionUseFlintAndSteel(),
         new Interaction(new ItemStackHandler[]{
-            TileKilnStone.this.stackHandler,
+            TileKilnStone.this.inputStackHandler,
             TileKilnStone.this.outputStackHandler
         }),
         new InteractionFuel(new ItemStackHandler[]{
@@ -136,28 +132,14 @@ public class TileKilnStone
     return this.fuelStackHandler;
   }
 
-  public ItemStackHandler getStackHandler() {
+  public ItemStackHandler getInputStackHandler() {
 
-    return this.stackHandler;
+    return this.inputStackHandler;
   }
 
   public ItemStackHandler getOutputStackHandler() {
 
     return this.outputStackHandler;
-  }
-
-  public int getRemainingBurnTimeTicks() {
-
-    return this.remainingBurnTimeTicks.get();
-  }
-
-  public void setRemainingBurnTimeTicks(int value) {
-
-    this.remainingBurnTimeTicks.set(value);
-
-    if (this.remainingBurnTimeTicks.isDirty()) {
-      this.markDirty();
-    }
   }
 
   public int getRemainingRecipeTimeTicks() {
@@ -174,62 +156,16 @@ public class TileKilnStone
     }
   }
 
-  public void setActive(boolean value) {
-
-    IBlockState blockState = this.world.getBlockState(this.pos);
-    boolean active = this.isActive();
-
-    if (value && !active) {
-
-      if (this.hasFuel()
-        /*&& !this.stackHandler.getStackInSlot(0).isEmpty()*/) {
-        blockState = blockState.withProperty(BlockKilnStone.TYPE, BlockKilnStone.EnumType.BottomLit);
-        this.world.setBlockState(this.pos, blockState, 3);
-//        BlockHelper.notifyBlockUpdate(this.world, this.pos);
-      }
-
-    } else if (!value && active) {
-
-      blockState = blockState.withProperty(BlockKilnStone.TYPE, BlockKilnStone.EnumType.Bottom);
-      this.world.setBlockState(this.pos, blockState, 3);
-//      BlockHelper.notifyBlockUpdate(this.world, this.pos);
-    }
-  }
-
-  public boolean isActive() {
-
-    return (this.world.getBlockState(this.pos).getValue(BlockKilnStone.TYPE) == BlockKilnStone.EnumType.BottomLit);
-  }
-
   public boolean isFiring() {
 
     return this.hasFuel()
-        && !this.stackHandler.getStackInSlot(0).isEmpty();
+        && !this.inputStackHandler.getStackInSlot(0).isEmpty();
   }
 
   private boolean hasFuel() {
 
-    return this.getRemainingBurnTimeTicks() > 0
+    return this.combustionGetBurnTimeRemaining() > 0
         || !this.fuelStackHandler.getStackInSlot(0).isEmpty();
-  }
-
-  @Override
-  public float getProgress() {
-
-    ItemStack itemStack = this.getStackHandler().getStackInSlot(0);
-
-    if (itemStack.isEmpty()) {
-      return 0;
-    }
-
-    KilnStoneRecipe recipe = KilnStoneRecipe.getRecipe(itemStack);
-
-    if (recipe == null) {
-      // Should never happen because we filter items on input.
-      return 0;
-    }
-
-    return 1f - (this.getRemainingRecipeTimeTicks() / (float) recipe.getTimeTicks());
   }
 
   // ---------------------------------------------------------------------------
@@ -250,7 +186,7 @@ public class TileKilnStone
 
       if (facing == EnumFacing.UP) {
         //noinspection unchecked
-        return (T) this.stackHandler;
+        return (T) this.inputStackHandler;
 
       } else if (facing == EnumFacing.DOWN) {
         //noinspection unchecked
@@ -266,14 +202,63 @@ public class TileKilnStone
   }
 
   // ---------------------------------------------------------------------------
-  // - Update
+  // - Combustion Worker
   // ---------------------------------------------------------------------------
 
   @Override
-  public void update() {
+  protected ItemStack combustionGetFuelItem() {
 
-    if (this.world.isRemote) {
-      return;
+    return this.getFuelStackHandler().extractItem(0, 1, false);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Worker
+  // ---------------------------------------------------------------------------
+
+  @Override
+  protected float workerCalculateProgress() {
+
+    ItemStack itemStack = this.getInputStackHandler().getStackInSlot(0);
+
+    if (itemStack.isEmpty()) {
+      return 0;
+    }
+
+    KilnStoneRecipe recipe = KilnStoneRecipe.getRecipe(itemStack);
+
+    if (recipe == null) {
+      // Should never happen because we filter items on input.
+      return 0;
+    }
+
+    return 1f - (this.getRemainingRecipeTimeTicks() / (float) recipe.getTimeTicks());
+  }
+
+  @Override
+  public void workerSetActive(boolean active) {
+
+    IBlockState blockState = this.world.getBlockState(this.pos);
+
+    if (active && !super.workerIsActive()) {
+
+      if (this.hasFuel()) {
+        blockState = blockState.withProperty(BlockKilnStone.TYPE, BlockKilnStone.EnumType.BottomLit);
+        this.world.setBlockState(this.pos, blockState, 3);
+        super.workerSetActive(true);
+      }
+
+    } else if (!active && super.workerIsActive()) {
+      blockState = blockState.withProperty(BlockKilnStone.TYPE, BlockKilnStone.EnumType.Bottom);
+      this.world.setBlockState(this.pos, blockState, 3);
+      super.workerSetActive(false);
+    }
+  }
+
+  @Override
+  public boolean workerDoWork() {
+
+    if (!super.workerDoWork()) {
+      return false;
     }
 
     if (this.isFiring()) {
@@ -286,51 +271,36 @@ public class TileKilnStone
     }
 
     if (this.dormantCounter == 0) {
-      this.setActive(false);
+      return false;
     }
 
-    if (!this.isActive()) {
-      return;
-    }
-
-    this.setRemainingBurnTimeTicks(this.getRemainingBurnTimeTicks() - 1);
-
-    if (this.getRemainingBurnTimeTicks() <= 0) {
-
-      // consume fuel and add burn time
-      this.setRemainingBurnTimeTicks(Math.max(0, this.getRemainingBurnTimeTicks()));
-      ItemStack itemStack = this.getFuelStackHandler().extractItem(0, 1, false);
-
-      if (!itemStack.isEmpty()) {
-        this.setRemainingBurnTimeTicks(this.getRemainingBurnTimeTicks() + StackHelper.getItemBurnTime(itemStack));
-
-      } else {
-        this.setActive(false);
-      }
-    }
-
-    if (this.isActive()
-        && this.getRemainingRecipeTimeTicks() > 0) {
+    if (this.getRemainingRecipeTimeTicks() > 0) {
 
       this.setRemainingRecipeTimeTicks(this.getRemainingRecipeTimeTicks() - 1);
 
       if (this.getRemainingRecipeTimeTicks() == 0) {
-        this.onComplete();
+        this.onRecipeComplete();
       }
     }
+
+    return true;
   }
 
-  private void onComplete() {
+  // ---------------------------------------------------------------------------
+  // - Recipe
+  // ---------------------------------------------------------------------------
+
+  private void onRecipeComplete() {
 
     // set stack handler items to recipe result
 
-    ItemStack input = this.stackHandler.getStackInSlot(0);
+    ItemStack input = this.inputStackHandler.getStackInSlot(0);
     KilnStoneRecipe recipe = KilnStoneRecipe.getRecipe(input);
 
     if (recipe != null) {
       ItemStack output = recipe.getOutput();
       output.setCount(1);
-      this.stackHandler.setStackInSlot(0, ItemStack.EMPTY);
+      this.inputStackHandler.setStackInSlot(0, ItemStack.EMPTY);
 
       ItemStack[] failureItems = recipe.getFailureItems();
       float failureChance = recipe.getFailureChance();
@@ -391,11 +361,10 @@ public class TileKilnStone
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    compound.setTag("stackHandler", this.stackHandler.serializeNBT());
+    compound.setTag("inputStackHandler", this.inputStackHandler.serializeNBT());
     compound.setTag("outputStackHandler", this.outputStackHandler.serializeNBT());
     compound.setTag("fuelStackHandler", this.fuelStackHandler.serializeNBT());
     compound.setInteger("remainingRecipeTimeTicks", this.remainingRecipeTimeTicks.get());
-    compound.setInteger("remainingBurnTimeTicks", this.remainingBurnTimeTicks.get());
     return compound;
   }
 
@@ -403,16 +372,15 @@ public class TileKilnStone
   public void readFromNBT(NBTTagCompound compound) {
 
     super.readFromNBT(compound);
-    this.stackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));
+    this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
     this.outputStackHandler.deserializeNBT(compound.getCompoundTag("outputStackHandler"));
     this.fuelStackHandler.deserializeNBT(compound.getCompoundTag("fuelStackHandler"));
     this.remainingRecipeTimeTicks.set(compound.getInteger("remainingRecipeTimeTicks"));
-    this.remainingBurnTimeTicks.set(compound.getInteger("remainingBurnTimeTicks"));
   }
 
   public void dropContents() {
 
-    ItemStackHandler stackHandler = this.getStackHandler();
+    ItemStackHandler stackHandler = this.getInputStackHandler();
     ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getStackInSlot(0).getCount(), false);
 
     if (!itemStack.isEmpty()) {
@@ -575,7 +543,7 @@ public class TileKilnStone
     protected boolean doInteraction(TileKilnStone tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (!world.isRemote) {
-        tile.setActive(true);
+        tile.workerSetActive(true);
 
         world.playSound(
             null,
@@ -595,11 +563,11 @@ public class TileKilnStone
   // - Stack Handlers
   // ---------------------------------------------------------------------------
 
-  private class StackHandler
+  private class InputStackHandler
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    /* package */ StackHandler(int size) {
+    /* package */ InputStackHandler(int size) {
 
       super(size);
     }

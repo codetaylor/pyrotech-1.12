@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataBoolean;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 
@@ -32,7 +33,10 @@ public abstract class TileNetWorkerBase
     super(tileDataService);
 
     this.active = new TileDataBoolean(false);
+    this.active.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty(this));
+
     this.progress = new TileDataFloat(0, 20);
+    this.progress.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty(this));
 
     this.registerTileData(new ITileData[]{
         this.active,
@@ -50,11 +54,6 @@ public abstract class TileNetWorkerBase
   public void workerSetActive(boolean active) {
 
     this.active.set(active);
-
-    // Only mark the tile as dirty if the value actually changed.
-    if (this.active.isDirty()) {
-      this.markDirty();
-    }
   }
 
   @Override
@@ -112,6 +111,11 @@ public abstract class TileNetWorkerBase
     return false;
   }
 
+  /**
+   * Called during this tile's update.
+   *
+   * @return this worker's current progress, [0,1]
+   */
   protected float workerCalculateProgress() {
 
     return 0;

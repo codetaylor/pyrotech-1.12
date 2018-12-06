@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,7 +13,7 @@ import javax.annotation.Nonnull;
 public abstract class TileCombustionWorkerBase
     extends TileNetWorkerBase {
 
-  private TileDataInteger burnTimeRemaining;
+  protected TileDataInteger burnTimeRemaining;
 
   private int rainTimeRemaining;
 
@@ -21,6 +22,7 @@ public abstract class TileCombustionWorkerBase
     super(tileDataService);
 
     this.burnTimeRemaining = new TileDataInteger(this.combustionGetInitialBurnTimeRemaining(), 20);
+    this.burnTimeRemaining.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty<>(this));
 
     // --- Network ---
     this.registerTileData(new ITileData[]{
@@ -34,7 +36,7 @@ public abstract class TileCombustionWorkerBase
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  public int combustionGetRemainingBurnTime() {
+  public int combustionGetBurnTimeRemaining() {
 
     return this.burnTimeRemaining.get();
   }
@@ -54,7 +56,7 @@ public abstract class TileCombustionWorkerBase
 
   protected int combustionGetInitialBurnTimeRemaining() {
 
-    return 1;
+    return 0;
   }
 
   protected int combustionGetBurnTimeForFuel(ItemStack fuel) {
@@ -85,7 +87,7 @@ public abstract class TileCombustionWorkerBase
   @Override
   public boolean workerRequiresFuel() {
 
-    return (this.burnTimeRemaining.get() <= 0);
+    return (this.combustionGetBurnTimeRemaining() <= 0);
   }
 
   @Override

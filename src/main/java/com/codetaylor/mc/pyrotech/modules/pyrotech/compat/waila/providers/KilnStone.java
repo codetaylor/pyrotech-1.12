@@ -81,9 +81,9 @@ public class KilnStone
         return tooltip;
       }
 
-      float progress = tileKiln.getProgress();
+      float progress = tileKiln.workerGetProgress();
 
-      ItemStackHandler stackHandler = tileKiln.getStackHandler();
+      ItemStackHandler stackHandler = tileKiln.getInputStackHandler();
       ItemStackHandler outputStackHandler = tileKiln.getOutputStackHandler();
       ItemStackHandler fuelStackHandler = tileKiln.getFuelStackHandler();
 
@@ -134,11 +134,11 @@ public class KilnStone
       }
 
       {
-        if (tileKiln.getRemainingBurnTimeTicks() > 0) {
+        if (tileKiln.combustionGetBurnTimeRemaining() > 0) {
           ItemStack fuelStack = tileKiln.getFuelStackHandler().getStackInSlot(0);
           tooltip.add(Util.translateFormatted(
               "gui." + ModulePyrotech.MOD_ID + ".waila.burn.time",
-              StringHelper.ticksToHMS(tileKiln.getRemainingBurnTimeTicks() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
+              StringHelper.ticksToHMS(tileKiln.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
           ));
         }
 

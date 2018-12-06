@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
@@ -87,10 +88,16 @@ public class TileCampfire
     this.outputStackHandler.addObserver((handler, slot) -> this.markDirty());
 
     this.fuelStackHandler = new FuelStackHandler();
-    this.fuelStackHandler.addObserver((handler, slot) -> this.markDirty());
+    this.fuelStackHandler.addObserver((handler, slot) -> {
+      this.burnTimeRemaining.forceUpdate();
+      this.markDirty();
+    });
 
     this.ashLevel = new TileDataInteger(0);
+    this.ashLevel.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty(this));
+
     this.dead = new TileDataBoolean(false);
+    this.dead.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty(this));
 
     this.cookTime = -1;
     this.cookTimeTotal = -1;
@@ -140,10 +147,6 @@ public class TileCampfire
   private void setAshLevel(int ashLevel) {
 
     this.ashLevel.set(ashLevel);
-
-    if (this.ashLevel.isDirty()) {
-      this.markDirty();
-    }
   }
 
   private void setCookTime(int cookTime) {
@@ -186,26 +189,6 @@ public class TileCampfire
   private void setDead() {
 
     this.dead.set(true);
-
-    if (this.dead.isDirty()) {
-      this.markDirty();
-    }
-  }
-
-  @Override
-  public void workerSetActive(boolean active) {
-
-    if (this.isDead()) {
-      return;
-    }
-
-    super.workerSetActive(active);
-  }
-
-  @Override
-  public boolean workerIsActive() {
-
-    return !this.isDead() && super.workerIsActive();
   }
 
   // ---------------------------------------------------------------------------
@@ -245,6 +228,22 @@ public class TileCampfire
   // ---------------------------------------------------------------------------
   // - Worker
   // ---------------------------------------------------------------------------
+
+  @Override
+  public void workerSetActive(boolean active) {
+
+    if (this.isDead()) {
+      return;
+    }
+
+    super.workerSetActive(active);
+  }
+
+  @Override
+  public boolean workerIsActive() {
+
+    return !this.isDead() && super.workerIsActive();
+  }
 
   @Override
   public boolean workerConsumeFuel() {
@@ -321,7 +320,7 @@ public class TileCampfire
 
     // Randomly add ash.
 
-    if (this.combustionGetRemainingBurnTime() <= 0) {
+    if (this.combustionGetBurnTimeRemaining() <= 0) {
 
       if (Math.random() < ModulePyrotechConfig.CAMPFIRE.ASH_CHANCE) {
         this.ashLevel.add(1);
