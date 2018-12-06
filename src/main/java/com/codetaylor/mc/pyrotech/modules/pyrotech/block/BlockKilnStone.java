@@ -2,7 +2,9 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnStone;
@@ -179,6 +181,16 @@ public class BlockKilnStone
   // - Interaction
   // ---------------------------------------------------------------------------
 
+  @Override
+  public int quantityDropped(IBlockState state, int fortune, Random random) {
+
+    if (this.isTop(state)) {
+      return 0;
+    }
+
+    return super.quantityDropped(state, fortune, random);
+  }
+
   @Nullable
   @Override
   public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
@@ -226,7 +238,15 @@ public class BlockKilnStone
       BlockPos down = pos.down();
 
       if (world.getBlockState(down).getBlock() == this) {
-        world.destroyBlock(down, true);
+        TileEntity tileEntity = world.getTileEntity(down);
+
+        if (tileEntity instanceof TileKilnStone) {
+          TileKilnStone tileKiln = (TileKilnStone) tileEntity;
+          tileKiln.dropContents();
+        }
+
+        StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.KILN_STONE), down);
+        world.setBlockToAir(down);
       }
 
     } else {
