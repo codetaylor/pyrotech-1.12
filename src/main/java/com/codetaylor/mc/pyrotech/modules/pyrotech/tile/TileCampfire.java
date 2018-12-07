@@ -260,13 +260,13 @@ public class TileCampfire
     ItemStack contents = this.inputStackHandler.extractItem(0, 64, false);
 
     if (!contents.isEmpty()) {
-      StackHelper.spawnStackOnTop(this.world, contents, this.pos);
+      StackHelper.spawnStackOnTop(this.world, contents, this.pos, -0.125);
     }
 
     contents = this.outputStackHandler.extractItem(0, 64, false);
 
     if (!contents.isEmpty()) {
-      StackHelper.spawnStackOnTop(this.world, contents, this.pos);
+      StackHelper.spawnStackOnTop(this.world, contents, this.pos, -0.125);
     }
 
     return false;
