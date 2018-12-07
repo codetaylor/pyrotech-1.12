@@ -66,13 +66,13 @@ public class DryingRack
           String.valueOf((int) (tile.getSpeed() * 100)) + "%"
       ));
 
-      ItemStackHandler stackHandler = tile.getStackHandler();
+      ItemStackHandler stackHandler = tile.getInputStackHandler();
       ItemStackHandler outputStackHandler = tile.getOutputStackHandler();
 
       for (int i = 0; i < stackHandler.getSlots(); i++) {
 
         ItemStack inputStack = stackHandler.getStackInSlot(i);
-        float progress = tile.getProgress(i);
+        float progress = tile.workerGetProgress(i);
 
         if (!inputStack.isEmpty()) {
 

@@ -91,7 +91,7 @@ public class BlockDryingRack
     TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileDryingRackBase) {
-      ((TileDryingRackBase) tileEntity).removeItems();
+      ((TileDryingRackBase) tileEntity).dropContents();
     }
 
     super.breakBlock(world, pos, state);

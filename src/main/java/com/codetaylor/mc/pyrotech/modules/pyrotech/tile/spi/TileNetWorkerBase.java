@@ -42,11 +42,11 @@ public abstract class TileNetWorkerBase
       this.progress[i].addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty(this));
     }
 
-    this.registerTileData(new ITileData[]{
+    this.registerTileDataForNetwork(new ITileData[]{
         this.active
     });
 
-    this.registerTileData(this.progress);
+    this.registerTileDataForNetwork(this.progress);
   }
 
   @Override
@@ -120,10 +120,10 @@ public abstract class TileNetWorkerBase
   /**
    * Called during this tile's update.
    *
-   * @param taskId
+   * @param taskIndex
    * @return this worker's current progress, [0,1]
    */
-  protected float workerCalculateProgress(int taskId) {
+  protected float workerCalculateProgress(int taskIndex) {
 
     return 0;
   }

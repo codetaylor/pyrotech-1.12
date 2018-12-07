@@ -30,11 +30,11 @@ public class TileDryingRackCrude
 
   public TileDryingRackCrude() {
 
-    super();
+    super(1);
 
     this.interactionHandlers = new IInteraction[]{
         new TileDryingRackCrude.Interaction(
-            new ItemStackHandler[]{this.stackHandler, this.outputStackHandler}
+            new ItemStackHandler[]{this.inputStackHandler, this.outputStackHandler}
         )
     };
   }

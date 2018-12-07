@@ -92,7 +92,7 @@ public class TileKilnStone
 
     this.remainingRecipeTimeTicks = new TileDataInteger(0, 20);
 
-    this.registerTileData(new ITileData[]{
+    this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.inputStackHandler),
         new TileDataItemStackHandler<>(this.outputStackHandler),
         new TileDataItemStackHandler<>(this.fuelStackHandler),
@@ -216,7 +216,7 @@ public class TileKilnStone
   // ---------------------------------------------------------------------------
 
   @Override
-  protected float workerCalculateProgress(int taskId) {
+  protected float workerCalculateProgress(int taskIndex) {
 
     ItemStack itemStack = this.getInputStackHandler().getStackInSlot(0);
 

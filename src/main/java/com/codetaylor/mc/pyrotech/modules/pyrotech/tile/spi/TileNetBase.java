@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
  * This provides a default implementation of the packet update methods.
  * <p>
  * <p>
- * Call {@link TileNetBase#registerTileData(ITileData[])}
+ * Call {@link TileNetBase#registerTileDataForNetwork(ITileData[])}
  * in the subclass' constructor to register tile data.
  */
 public abstract class TileNetBase
@@ -34,7 +34,7 @@ public abstract class TileNetBase
   // - Network
   // ---------------------------------------------------------------------------
 
-  protected void registerTileData(ITileData[] data) {
+  protected void registerTileDataForNetwork(ITileData[] data) {
 
     this.tileDataService.register(this, data);
   }

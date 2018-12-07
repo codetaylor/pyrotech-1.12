@@ -45,7 +45,7 @@ public class TileWoodRack
 
     // --- Network ---
 
-    this.registerTileData(new ITileData[]{
+    this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.stackHandler)
     });
 

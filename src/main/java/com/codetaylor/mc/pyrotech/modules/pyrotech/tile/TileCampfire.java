@@ -104,7 +104,7 @@ public class TileCampfire
 
     // --- Network ---
 
-    this.registerTileData(new ITileData[]{
+    this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.inputStackHandler),
         new TileDataItemStackHandler<>(this.outputStackHandler),
         new TileDataItemStackHandler<>(this.fuelStackHandler),
@@ -273,7 +273,7 @@ public class TileCampfire
   }
 
   @Override
-  protected float workerCalculateProgress(int taskId) {
+  protected float workerCalculateProgress(int taskIndex) {
 
     if (this.cookTime < 0) {
       return 0;
@@ -426,6 +426,9 @@ public class TileCampfire
 
   @Override
   public void onTileDataUpdate() {
+
+    // This tells the client that when one of these properties updates,
+    // we need to update the actual block state and do lighting changes.
 
     if (this.ashLevel.isDirty()) {
       BlockHelper.notifyBlockUpdate(this.world, this.pos);

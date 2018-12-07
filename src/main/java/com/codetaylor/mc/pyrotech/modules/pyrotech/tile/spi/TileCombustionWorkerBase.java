@@ -25,7 +25,7 @@ public abstract class TileCombustionWorkerBase
     this.burnTimeRemaining.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty<>(this));
 
     // --- Network ---
-    this.registerTileData(new ITileData[]{
+    this.registerTileDataForNetwork(new ITileData[]{
         this.burnTimeRemaining
     });
 

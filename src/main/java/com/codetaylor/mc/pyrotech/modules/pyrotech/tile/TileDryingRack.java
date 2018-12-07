@@ -25,7 +25,7 @@ public class TileDryingRack
 
   public TileDryingRack() {
 
-    super();
+    super(4);
 
     this.interactions = new IInteraction[4];
 
@@ -36,7 +36,7 @@ public class TileDryingRack
 
       this.interactions[slot] = new TileDryingRack.Interaction(
           new ItemStackHandler[]{
-              this.stackHandler,
+              this.inputStackHandler,
               this.outputStackHandler
           },
           slot,
