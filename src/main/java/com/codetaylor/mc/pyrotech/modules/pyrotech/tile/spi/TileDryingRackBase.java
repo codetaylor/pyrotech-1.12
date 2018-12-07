@@ -84,18 +84,9 @@ public abstract class TileDryingRackBase
     return this.outputStackHandler;
   }
 
-  protected abstract int getSlotCount();
+  public float getSpeed() {
 
-  private void initSlotDryTime(int slot, int dryTimeTicks) {
-
-    this.dryTimeTotal[slot] = dryTimeTicks;
-    this.dryTimeRemaining[slot] = dryTimeTicks;
-    this.partialTicks[slot] = 0;
-  }
-
-  private DryingRackRecipe getRecipe(ItemStack itemStack) {
-
-    return DryingRackRecipe.getRecipe(itemStack);
+    return this.speed;
   }
 
   // ---------------------------------------------------------------------------
@@ -207,12 +198,16 @@ public abstract class TileDryingRackBase
   }
 
   // ---------------------------------------------------------------------------
-  // - Speed
+  // - Internal
   // ---------------------------------------------------------------------------
 
-  public float getSpeed() {
+  protected abstract int getSlotCount();
 
-    return this.speed;
+  protected abstract float getSpeedModified(float speed);
+
+  private DryingRackRecipe getRecipe(ItemStack itemStack) {
+
+    return DryingRackRecipe.getRecipe(itemStack);
   }
 
   protected float getRainSpeed() {
@@ -220,7 +215,12 @@ public abstract class TileDryingRackBase
     return -1.0f;
   }
 
-  protected abstract float getSpeedModified(float speed);
+  private void initSlotDryTime(int slot, int dryTimeTicks) {
+
+    this.dryTimeTotal[slot] = dryTimeTicks;
+    this.dryTimeRemaining[slot] = dryTimeTicks;
+    this.partialTicks[slot] = 0;
+  }
 
   private float updateSpeed() {
 
