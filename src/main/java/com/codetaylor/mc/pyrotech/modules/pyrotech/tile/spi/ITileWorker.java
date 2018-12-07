@@ -26,11 +26,9 @@ public interface ITileWorker {
   boolean workerDoWork();
 
   /**
-   * @return a value [0,1] that reflects this worker's work progress
-   */
-  float workerGetProgress();
-
-  /**
+   * Called during each update tick to determine if the worker needs to try and
+   * consume fuel in order to remain active.
+   * <p>
    * By default, this method returns false.
    * <p>
    * Fuel is a loose term used to describe anything that this worker consumes
@@ -44,6 +42,10 @@ public interface ITileWorker {
   }
 
   /**
+   * Called if the call to {@link #workerRequiresFuel()} returns true. The
+   * worker should attempt to consume fuel and supply the appropriate return
+   * value.
+   * <p>
    * By default, this method returns true;
    * <p>
    * Fuel is a loose term used to describe anything that this worker consumes

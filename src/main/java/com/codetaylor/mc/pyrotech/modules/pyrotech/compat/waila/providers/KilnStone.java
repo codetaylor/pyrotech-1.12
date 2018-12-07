@@ -81,7 +81,7 @@ public class KilnStone
         return tooltip;
       }
 
-      float progress = tileKiln.workerGetProgress();
+      float progress = tileKiln.workerGetProgress(0);
 
       ItemStackHandler stackHandler = tileKiln.getInputStackHandler();
       ItemStackHandler outputStackHandler = tileKiln.getOutputStackHandler();

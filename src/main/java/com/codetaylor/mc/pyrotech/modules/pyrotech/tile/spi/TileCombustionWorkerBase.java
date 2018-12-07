@@ -17,9 +17,9 @@ public abstract class TileCombustionWorkerBase
 
   private int rainTimeRemaining;
 
-  protected TileCombustionWorkerBase(ITileDataService tileDataService) {
+  protected TileCombustionWorkerBase(ITileDataService tileDataService, int taskCount) {
 
-    super(tileDataService);
+    super(tileDataService, taskCount);
 
     this.burnTimeRemaining = new TileDataInteger(this.combustionGetInitialBurnTimeRemaining(), 20);
     this.burnTimeRemaining.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty<>(this));

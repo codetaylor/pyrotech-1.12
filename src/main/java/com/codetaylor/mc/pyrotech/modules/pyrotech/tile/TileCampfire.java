@@ -74,7 +74,7 @@ public class TileCampfire
 
   public TileCampfire() {
 
-    super(ModulePyrotech.TILE_DATA_SERVICE);
+    super(ModulePyrotech.TILE_DATA_SERVICE, 1);
 
     // --- Init ---
 
@@ -273,7 +273,7 @@ public class TileCampfire
   }
 
   @Override
-  protected float workerCalculateProgress() {
+  protected float workerCalculateProgress(int taskId) {
 
     if (this.cookTime < 0) {
       return 0;

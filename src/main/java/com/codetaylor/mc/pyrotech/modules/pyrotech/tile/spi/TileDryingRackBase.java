@@ -27,14 +27,18 @@ public abstract class TileDryingRackBase
 
   protected static final int SPEED_CHECK_INTERVAL_TICKS = 20;
   private static final int CLIENT_SYNC_INTERVAL_TICKS = 20;
+
   protected ItemStackHandler stackHandler;
   protected ItemStackHandler outputStackHandler;
+
   protected int[] dryTimeTotal;
   protected int[] dryTimeRemaining;
+
   // Transient
   protected float[] partialTicks;
-  protected int ticksSinceLastSpeedCheck;
   private float speed;
+
+  private int ticksSinceLastSpeedCheck;
   private int ticksSinceLastClientSync;
 
   public TileDryingRackBase() {

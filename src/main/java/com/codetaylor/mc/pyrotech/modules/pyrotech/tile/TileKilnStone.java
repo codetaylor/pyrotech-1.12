@@ -63,7 +63,7 @@ public class TileKilnStone
 
     // --- Init ---
 
-    super(ModulePyrotech.TILE_DATA_SERVICE);
+    super(ModulePyrotech.TILE_DATA_SERVICE, 1);
 
     this.dormantCounter = DORMANT_COUNTER;
 
@@ -216,7 +216,7 @@ public class TileKilnStone
   // ---------------------------------------------------------------------------
 
   @Override
-  protected float workerCalculateProgress() {
+  protected float workerCalculateProgress(int taskId) {
 
     ItemStack itemStack = this.getInputStackHandler().getStackInSlot(0);
 

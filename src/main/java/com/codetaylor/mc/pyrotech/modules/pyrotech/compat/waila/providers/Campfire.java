@@ -64,7 +64,7 @@ public class Campfire
       TileCampfire tileCampfire;
       tileCampfire = (TileCampfire) tileEntity;
 
-      float progress = tileCampfire.workerGetProgress();
+      float progress = tileCampfire.workerGetProgress(0);
 
       ItemStackHandler stackHandler = tileCampfire.getInputStackHandler();
       ItemStackHandler outputStackHandler = tileCampfire.getOutputStackHandler();

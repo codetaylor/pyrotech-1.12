@@ -26,22 +26,27 @@ public abstract class TileNetWorkerBase
   /**
    * A float [0,1] indicating the worker's current work progress.
    */
-  protected final TileDataFloat progress;
+  protected final TileDataFloat[] progress;
 
-  protected TileNetWorkerBase(ITileDataService tileDataService) {
+  protected TileNetWorkerBase(ITileDataService tileDataService, int taskCount) {
 
     super(tileDataService);
 
     this.active = new TileDataBoolean(false);
     this.active.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty(this));
 
-    this.progress = new TileDataFloat(0, 20);
-    this.progress.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty(this));
+    this.progress = new TileDataFloat[taskCount];
+
+    for (int i = 0; i < taskCount; i++) {
+      this.progress[i] = new TileDataFloat(0, 20);
+      this.progress[i].addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty(this));
+    }
 
     this.registerTileData(new ITileData[]{
-        this.active,
-        this.progress
+        this.active
     });
+
+    this.registerTileData(this.progress);
   }
 
   @Override
@@ -56,10 +61,9 @@ public abstract class TileNetWorkerBase
     this.active.set(active);
   }
 
-  @Override
-  public float workerGetProgress() {
+  public float workerGetProgress(int taskIndex) {
 
-    return this.progress.get();
+    return this.progress[taskIndex].get();
   }
 
   @Override
@@ -94,7 +98,9 @@ public abstract class TileNetWorkerBase
       this.workerSetActive(false);
     }
 
-    this.progress.set(this.workerCalculateProgress());
+    for (int i = 0; i < this.progress.length; i++) {
+      this.progress[i].set(this.workerCalculateProgress(i));
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -114,9 +120,10 @@ public abstract class TileNetWorkerBase
   /**
    * Called during this tile's update.
    *
+   * @param taskId
    * @return this worker's current progress, [0,1]
    */
-  protected float workerCalculateProgress() {
+  protected float workerCalculateProgress(int taskId) {
 
     return 0;
   }
