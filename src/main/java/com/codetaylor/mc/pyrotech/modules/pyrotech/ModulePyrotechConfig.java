@@ -69,7 +69,7 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "Any item with a tool class of axe is automatically valid.",
         "Use this to add items that you want to be valid that don't have the",
-        "axe tool class. Items you add are assumed",
+        "axe tool class. Items you add are assumed to have durability.",
         "",
         "The whitelist takes priority over the blacklist.",
         "",

@@ -1,19 +1,26 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
+import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockChoppingBlock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.ChoppingBlockRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +30,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,54 +42,44 @@ import java.util.Collections;
 import java.util.List;
 
 public class TileChoppingBlock
-    extends TileEntity
+    extends TileNetBase
     implements ITileInteractable {
 
-  private ItemStackHandler stackHandler;
+  private InputStackHandler stackHandler;
+  private TileDataFloat recipeProgress;
+
   private int sawdust;
   private int durabilityUntilNextDamage;
-  private float recipeProgress;
 
   private IInteraction[] interactions;
 
   public TileChoppingBlock() {
 
+    super(ModulePyrotech.TILE_DATA_SERVICE);
+
     this.stackHandler = new InputStackHandler();
+    this.stackHandler.addObserver((handler, slot) -> {
+      this.recipeProgress.set(0);
+      this.markDirty();
+    });
+
+    this.recipeProgress = new TileDataFloat(0);
+
+    // --- Network ---
+
+    this.registerTileDataForNetwork(new ITileData[] {
+        new TileDataItemStackHandler<>(this.stackHandler),
+        this.recipeProgress
+    });
+
+    // --- Interactions ---
+
     this.interactions = new IInteraction[]{
         new Interaction(new ItemStackHandler[]{this.stackHandler}),
         new InteractionShovel(),
         new InteractionChop()
     };
     this.durabilityUntilNextDamage = ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_PER_DAMAGE;
-  }
-
-  private class InputStackHandler
-      extends ItemStackHandler {
-
-    public InputStackHandler() {
-
-      super(1);
-    }
-
-    @Override
-    public int getSlotLimit(int slot) {
-
-      return 1;
-    }
-
-    @Override
-    protected void onContentsChanged(int slot) {
-
-      TileChoppingBlock _this = TileChoppingBlock.this;
-
-      // We explicitly don't use the setter here to avoid calling markDirty and
-      // notifyBlockUpdate redundantly.
-      // This will go away when we upgrade this tile to use the tile data service.
-      _this.recipeProgress = 0;
-
-      _this.markDirty();
-      BlockHelper.notifyBlockUpdate(_this.world, _this.pos);
-    }
   }
 
   @Override
@@ -147,17 +143,12 @@ public class TileChoppingBlock
 
   public void setRecipeProgress(float recipeProgress) {
 
-    // TODO: Network
-    // This doesn't require a full update.
-
-    this.recipeProgress = recipeProgress;
-    this.markDirty();
-    BlockHelper.notifyBlockUpdate(this.world, this.pos);
+    this.recipeProgress.set(recipeProgress);
   }
 
   public float getRecipeProgress() {
 
-    return this.recipeProgress;
+    return this.recipeProgress.get();
   }
 
   public ItemStackHandler getStackHandler() {
@@ -177,7 +168,7 @@ public class TileChoppingBlock
     compound.setTag("stackHandler", this.stackHandler.serializeNBT());
     compound.setInteger("sawdust", this.sawdust);
     compound.setInteger("durabilityUntilNextDamage", this.durabilityUntilNextDamage);
-    compound.setFloat("recipeProgress", this.recipeProgress);
+    compound.setFloat("recipeProgress", this.recipeProgress.get());
     return compound;
   }
 
@@ -188,32 +179,7 @@ public class TileChoppingBlock
     this.stackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));
     this.sawdust = compound.getInteger("sawdust");
     this.durabilityUntilNextDamage = compound.getInteger("durabilityUntilNextDamage");
-    this.recipeProgress = compound.getFloat("recipeProgress");
-  }
-
-  // ---------------------------------------------------------------------------
-  // - Network
-  // ---------------------------------------------------------------------------
-
-  @Nonnull
-  @Override
-  public NBTTagCompound getUpdateTag() {
-
-    return this.writeToNBT(new NBTTagCompound());
-  }
-
-  @Nullable
-  @Override
-  public SPacketUpdateTileEntity getUpdatePacket() {
-
-    return new SPacketUpdateTileEntity(this.pos, -1, this.getUpdateTag());
-  }
-
-  @Override
-  public void onDataPacket(NetworkManager networkManager, SPacketUpdateTileEntity packet) {
-
-    this.readFromNBT(packet.getNbtCompound());
-    BlockHelper.notifyBlockUpdate(this.world, this.pos);
+    this.recipeProgress.set(compound.getFloat("recipeProgress"));
   }
 
   // ---------------------------------------------------------------------------
@@ -474,4 +440,25 @@ public class TileChoppingBlock
       return true;
     }
   }
+
+  // ---------------------------------------------------------------------------
+  // - Stack Handlers
+  // ---------------------------------------------------------------------------
+
+  private class InputStackHandler
+      extends ObservableStackHandler
+      implements ITileDataItemStackHandler {
+
+    public InputStackHandler() {
+
+      super(1);
+    }
+
+    @Override
+    public int getSlotLimit(int slot) {
+
+      return 1;
+    }
+  }
+
 }
