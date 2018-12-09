@@ -1,20 +1,22 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
+import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnPit;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileBurnableBase;
@@ -51,63 +53,47 @@ public class TileKilnPit
 
   private static final int DEFAULT_TOTAL_BURN_TIME_TICKS = 1000;
 
-  private ItemStackHandler logStackHandler;
-  private ItemStackHandler stackHandler;
-  private ItemStackHandler outputStackHandler;
+  private InputStackHandler stackHandler;
+  private OutputStackHandler outputStackHandler;
+  private LogStackHandler logStackHandler;
+
   private int totalBurnTimeTicks;
   private boolean active;
+  private TileDataFloat progress;
 
   // transient
   private IInteraction[] interactions;
-  private int ticksSinceLastClientSync;
 
   public TileKilnPit() {
 
-    this.stackHandler = new ItemStackHandler(1) {
+    super(ModulePyrotech.TILE_DATA_SERVICE);
 
-      @Override
-      protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
+    this.stackHandler = new InputStackHandler();
+    this.stackHandler.addObserver((handler, slot) -> {
+      this.updateBurnTime(handler.getStackInSlot(slot));
+      this.markDirty();
+    });
 
-        // TODO: Config Option
-        return 8;
-      }
+    this.outputStackHandler = new OutputStackHandler();
 
-      @Override
-      protected void onContentsChanged(int slot) {
-
-        ItemStack itemStack = this.getStackInSlot(slot);
-
-        if (!itemStack.isEmpty()) {
-          KilnPitRecipe recipe = KilnPitRecipe.getRecipe(itemStack);
-
-          if (recipe != null) {
-            float modifier = (float) (1.0f - TileKilnPit.this.countAdjacentRefractoryBlocks() * ModulePyrotechConfig.PIT_KILN.REFRACTORY_BLOCK_TIME_BONUS);
-            int modifiedBurnTime = (int) (recipe.getTimeTicks() * modifier);
-            int burnTimeTicks = Math.max(1, modifiedBurnTime);
-            TileKilnPit.this.setTotalBurnTimeTicks(burnTimeTicks);
-          }
-        }
-        BlockHelper.notifyBlockUpdate(TileKilnPit.this.world, TileKilnPit.this.pos);
-        TileKilnPit.this.markDirty();
-      }
-    };
-
-    this.outputStackHandler = new ItemStackHandler(9);
-
-    this.logStackHandler = new ItemStackHandler(1) {
-
-      @Override
-      protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
-
-        // TODO: Config Option
-        return 3;
-      }
-    };
+    this.logStackHandler = new LogStackHandler();
 
     this.totalBurnTimeTicks = DEFAULT_TOTAL_BURN_TIME_TICKS;
 
     this.setNeedStructureValidation();
     this.reset();
+
+    // --- Network ---
+
+    this.progress = new TileDataFloat(0, 20);
+
+    ModulePyrotech.TILE_DATA_SERVICE.register(this, new ITileData[]{
+        new TileDataItemStackHandler<>(this.stackHandler),
+        new TileDataItemStackHandler<>(this.outputStackHandler),
+        this.progress
+    });
+
+    // --- Interactions ---
 
     this.interactions = new IInteraction[]{
         new InteractionThatch(),
@@ -115,6 +101,10 @@ public class TileKilnPit
         new Interaction(new ItemStackHandler[]{this.stackHandler, this.outputStackHandler})
     };
   }
+
+  // ---------------------------------------------------------------------------
+  // - Accessors
+  // ---------------------------------------------------------------------------
 
   public ItemStackHandler getLogStackHandler() {
 
@@ -137,7 +127,7 @@ public class TileKilnPit
     this.markDirty();
   }
 
-  public void setTotalBurnTimeTicks(int totalBurnTimeTicks) {
+  private void setTotalBurnTimeTicks(int totalBurnTimeTicks) {
 
     this.totalBurnTimeTicks = totalBurnTimeTicks;
     this.reset();
@@ -146,6 +136,33 @@ public class TileKilnPit
 
   @Override
   public float getProgress() {
+
+    return this.progress.get();
+  }
+
+  @Override
+  protected boolean isActive() {
+
+    return this.active;
+  }
+
+  @Override
+  protected int getTotalBurnTimeTicks() {
+
+    return this.totalBurnTimeTicks;
+  }
+
+  @Override
+  protected int getBurnStages() {
+
+    return 1;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Update
+  // ---------------------------------------------------------------------------
+
+  private float calculateProgress() {
 
     if (!this.isActive()) {
       return 0;
@@ -159,21 +176,22 @@ public class TileKilnPit
     return 1f - progress;
   }
 
-  @Override
-  protected boolean isActive() {
+  private void updateBurnTime(ItemStack itemStack) {
 
-    return this.active;
+    if (!itemStack.isEmpty()) {
+      KilnPitRecipe recipe = KilnPitRecipe.getRecipe(itemStack);
+
+      if (recipe != null) {
+        float modifier = (float) (1.0f - this.countAdjacentRefractoryBlocks() * ModulePyrotechConfig.PIT_KILN.REFRACTORY_BLOCK_TIME_BONUS);
+        int modifiedBurnTime = (int) (recipe.getTimeTicks() * modifier);
+        int burnTimeTicks = Math.max(1, modifiedBurnTime);
+        this.setTotalBurnTimeTicks(burnTimeTicks);
+      }
+    }
   }
 
   @Override
   protected void onUpdate() {
-
-    this.ticksSinceLastClientSync += 1;
-
-    if (this.ticksSinceLastClientSync >= 20) {
-      this.ticksSinceLastClientSync = 0;
-      BlockHelper.notifyBlockUpdate(this.world, this.pos);
-    }
 
     if (this.world.isRainingAt(this.pos)) {
       // set back to wood state and douse fire
@@ -189,6 +207,8 @@ public class TileKilnPit
 
       this.setActive(false);
     }
+
+    this.progress.set(this.calculateProgress());
   }
 
   @Override
@@ -354,7 +374,7 @@ public class TileKilnPit
     this.world.setBlockToAir(this.pos.up());
   }
 
-  public int countAdjacentRefractoryBlocks() {
+  private int countAdjacentRefractoryBlocks() {
 
     int result = 0;
 
@@ -393,32 +413,9 @@ public class TileKilnPit
     }
   }
 
-  @Override
-  protected int getTotalBurnTimeTicks() {
-
-    return this.totalBurnTimeTicks;
-  }
-
-  @Override
-  protected int getBurnStages() {
-
-    return 1;
-  }
-
-  @Override
-  public boolean shouldRefresh(
-      World world,
-      BlockPos pos,
-      @Nonnull IBlockState oldState,
-      @Nonnull IBlockState newState
-  ) {
-
-    if (oldState.getBlock() == newState.getBlock()) {
-      return false;
-    }
-
-    return super.shouldRefresh(world, pos, oldState, newState);
-  }
+  // ---------------------------------------------------------------------------
+  // - Persistence
+  // ---------------------------------------------------------------------------
 
   @Nonnull
   @Override
@@ -444,6 +441,10 @@ public class TileKilnPit
     this.active = compound.getBoolean("active");
   }
 
+  // ---------------------------------------------------------------------------
+  // - Network
+  // ---------------------------------------------------------------------------
+
   @Nonnull
   @Override
   public NBTTagCompound getUpdateTag() {
@@ -462,6 +463,26 @@ public class TileKilnPit
   public void onDataPacket(NetworkManager networkManager, SPacketUpdateTileEntity packet) {
 
     this.readFromNBT(packet.getNbtCompound());
+    BlockHelper.notifyBlockUpdate(this.world, this.pos);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Miscellaneous
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean shouldRefresh(
+      World world,
+      BlockPos pos,
+      @Nonnull IBlockState oldState,
+      @Nonnull IBlockState newState
+  ) {
+
+    if (oldState.getBlock() == newState.getBlock()) {
+      return false;
+    }
+
+    return super.shouldRefresh(world, pos, oldState, newState);
   }
 
   @Override
@@ -567,10 +588,9 @@ public class TileKilnPit
           heldItem.setCount(heldItem.getCount() - 3);
           this.logStackHandler
               .insertItem(0, new ItemStack(heldItem.getItem(), 3, heldItem.getMetadata()), false);
-          world.setBlockState(pos, ModuleBlocks.KILN_PIT.getDefaultState()
+          world.setBlockState(tile.getPos(), ModuleBlocks.KILN_PIT.getDefaultState()
               .withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.WOOD));
-          world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
-          BlockHelper.notifyBlockUpdate(world, pos);
+          world.playSound(null, tile.getPos(), SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
         }
 
         return true;
@@ -624,6 +644,53 @@ public class TileKilnPit
       }
 
       return super.doExtract(world, player, tilePos);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Stack Handlers
+  // ---------------------------------------------------------------------------
+
+  private class InputStackHandler
+      extends ObservableStackHandler
+      implements ITileDataItemStackHandler {
+
+    /* package */ InputStackHandler() {
+
+      super(1);
+    }
+
+    @Override
+    protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
+
+      // TODO: Config Option
+      return 8;
+    }
+  }
+
+  private class OutputStackHandler
+      extends ObservableStackHandler
+      implements ITileDataItemStackHandler {
+
+    /* package */ OutputStackHandler() {
+
+      super(9);
+    }
+  }
+
+  private class LogStackHandler
+      extends ObservableStackHandler
+      implements ITileDataItemStackHandler {
+
+    /* package */ LogStackHandler() {
+
+      super(1);
+    }
+
+    @Override
+    protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
+
+      return 3;
     }
   }
 }

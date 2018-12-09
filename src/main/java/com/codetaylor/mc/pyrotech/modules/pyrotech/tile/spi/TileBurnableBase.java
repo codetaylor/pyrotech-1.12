@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
 
+import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
@@ -11,20 +11,21 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 
 public abstract class TileBurnableBase
-    extends TileEntity
+    extends TileNetBase
     implements ITickable {
 
   private static final int DEFAULT_MAX_INVALID_TICKS = 100;
   private static final int DEFAULT_STRUCTURE_VALIDATION_INTERVAL = 20;
 
-  protected boolean needStructureValidation;
+  private boolean needStructureValidation;
+  private int invalidTicks;
+  private int nextStructureValidationTicks;
   protected int burnTimeTicksPerStage;
-  protected int invalidTicks;
   protected int remainingStages;
 
-  protected int nextStructureValidationTicks;
+  public TileBurnableBase(ITileDataService tileDataService) {
 
-  public TileBurnableBase() {
+    super(tileDataService);
 
     this.remainingStages = this.getBurnStages();
     this.invalidTicks = 0;
