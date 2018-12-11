@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B-B",
+    "B-B",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "pyrotech:stone_bricks",
+      "data": 0
+    },
+    "-": {
+      "item": "pyrotech:material",
+      "data": 16
+    }
+  },
+  "result": {
+    "item": "pyrotech:kiln_stone",
+    "count": 1,
+    "data": 0
+  }
+}
