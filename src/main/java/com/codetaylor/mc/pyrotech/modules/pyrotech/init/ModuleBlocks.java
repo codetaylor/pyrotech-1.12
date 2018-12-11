@@ -44,6 +44,7 @@ public class ModuleBlocks {
   public static final BlockWoodRack WOOD_RACK = new BlockWoodRack();
   public static final BlockOre ORE = new BlockOre();
   public static final BlockCobblestone COBBLESTONE = new BlockCobblestone();
+  public static final BlockStoneBricks STONE_BRICKS = new BlockStoneBricks();
 
   public static void onRegister(Registry registry) {
 
@@ -70,6 +71,7 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.WOOD_RACK, BlockWoodRack.NAME);
     registry.registerBlockWithItem(ModuleBlocks.ORE, BlockOre.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COBBLESTONE, BlockCobblestone.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.STONE_BRICKS, BlockStoneBricks.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
 
@@ -105,7 +107,8 @@ public class ModuleBlocks {
           ModuleBlocks.REFRACTORY_GLASS,
           ModuleBlocks.KILN_BRICK,
           ModuleBlocks.KILN_STONE,
-          ModuleBlocks.WOOD_RACK
+          ModuleBlocks.WOOD_RACK,
+          ModuleBlocks.STONE_BRICKS
       );
 
       // Refractory Door

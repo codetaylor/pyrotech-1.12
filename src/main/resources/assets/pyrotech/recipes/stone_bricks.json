@@ -1,9 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "A A",
-    "A A",
-    "A A"
+    "AA",
+    "AA"
   ],
   "key": {
     "A": {
@@ -12,7 +11,7 @@
     }
   },
   "result": {
-    "item": "pyrotech:tar_drain",
+    "item": "pyrotech:stone_bricks",
     "count": 1,
     "data": 0
   }

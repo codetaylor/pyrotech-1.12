@@ -8,7 +8,7 @@
     "variant": {
       "stone": {
         "textures": {
-          "all": "minecraft:blocks/stone"
+          "all": "pyrotech:blocks/kiln_stone_side"
         }
       },
       "brick": {
