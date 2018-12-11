@@ -75,6 +75,9 @@ tile.pyrotech.drying_rack.normal.name=Drying Rack
 tile.pyrotech.chopping_block.name=Chopping Block
 tile.pyrotech.wood_rack.name=Wood Rack
 tile.pyrotech.ore.fossil_ore.name=Fossil Ore
+tile.pyrotech.cobblestone.andesite.name=Cobbled Andesite
+tile.pyrotech.cobblestone.diorite.name=Cobbled Diorite
+tile.pyrotech.cobblestone.granite.name=Cobbled Granite
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock

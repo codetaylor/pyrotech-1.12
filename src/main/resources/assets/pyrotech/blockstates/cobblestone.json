@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
+  "variants": {
+    "variant": {
+      "andesite": {"textures": {"all": "pyrotech:blocks/cobblestone_andesite"}},
+      "diorite": {"textures": {"all": "pyrotech:blocks/cobblestone_diorite"}},
+      "granite": {"textures": {"all": "pyrotech:blocks/cobblestone_granite"}}
+    }
+  }
+}

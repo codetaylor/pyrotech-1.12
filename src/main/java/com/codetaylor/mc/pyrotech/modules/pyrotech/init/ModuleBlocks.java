@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
+import crafttweaker.mc1120.preprocessors.ModLoadedPreprocessor;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -42,6 +43,7 @@ public class ModuleBlocks {
   public static final BlockChoppingBlock CHOPPING_BLOCK = new BlockChoppingBlock();
   public static final BlockWoodRack WOOD_RACK = new BlockWoodRack();
   public static final BlockOre ORE = new BlockOre();
+  public static final BlockCobblestone COBBLESTONE = new BlockCobblestone();
 
   public static void onRegister(Registry registry) {
 
@@ -67,6 +69,7 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.DRYING_RACK, BlockDryingRack.NAME);
     registry.registerBlockWithItem(ModuleBlocks.WOOD_RACK, BlockWoodRack.NAME);
     registry.registerBlockWithItem(ModuleBlocks.ORE, BlockOre.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.COBBLESTONE, BlockCobblestone.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
 
@@ -150,6 +153,12 @@ public class ModuleBlocks {
           ModuleBlocks.CHOPPING_BLOCK.getDefaultState(),
           BlockChoppingBlock.DAMAGE,
           value -> value
+      );
+
+      // Cobblestone
+      ModelRegistrationHelper.registerVariantBlockItemModels(
+          ModuleBlocks.COBBLESTONE.getDefaultState(),
+          BlockCobblestone.VARIANT
       );
 
       // Ore
