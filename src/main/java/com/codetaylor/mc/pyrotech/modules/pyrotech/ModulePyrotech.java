@@ -153,6 +153,8 @@ public class ModulePyrotech
         "register",
         "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar.wailaCallback"
     );
+
+    ModuleWorldGen.register();
   }
 
   @Override

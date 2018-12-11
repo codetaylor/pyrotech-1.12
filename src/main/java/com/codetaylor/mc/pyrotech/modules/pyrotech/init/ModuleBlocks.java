@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.TESRInteractable;
@@ -40,6 +41,7 @@ public class ModuleBlocks {
   public static final BlockRockGrass ROCK_GRASS = new BlockRockGrass();
   public static final BlockChoppingBlock CHOPPING_BLOCK = new BlockChoppingBlock();
   public static final BlockWoodRack WOOD_RACK = new BlockWoodRack();
+  public static final BlockOre ORE = new BlockOre();
 
   public static void onRegister(Registry registry) {
 
@@ -64,6 +66,7 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.KILN_STONE, BlockKilnStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.DRYING_RACK, BlockDryingRack.NAME);
     registry.registerBlockWithItem(ModuleBlocks.WOOD_RACK, BlockWoodRack.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.ORE, BlockOre.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
 
@@ -147,6 +150,17 @@ public class ModuleBlocks {
           ModuleBlocks.CHOPPING_BLOCK.getDefaultState(),
           BlockChoppingBlock.DAMAGE,
           value -> value
+      );
+
+      // Ore
+      ModelLoader.setCustomStateMapper(
+          ModuleBlocks.ORE,
+          (new StateMap.Builder()).withName(BlockOre.VARIANT).build()
+      );
+      ModelRegistrationHelper.registerVariantBlockItemModelsSeparately(
+          ModulePyrotech.MOD_ID,
+          ModuleBlocks.ORE,
+          BlockOre.VARIANT
       );
 
       // TESRs
