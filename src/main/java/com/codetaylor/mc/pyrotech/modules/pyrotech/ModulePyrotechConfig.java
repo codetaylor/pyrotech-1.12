@@ -443,14 +443,24 @@ public class ModulePyrotechConfig {
     public static class WorldGenFossil {
 
       public boolean ENABLED = true;
-      public int CHANCES_TO_SPAWN = 20;
+      public int CHANCES_TO_SPAWN = 15;
       public int MIN_HEIGHT = 40;
       public int MAX_HEIGHT = 120;
       public int MIN_VEIN_SIZE = 10;
       public int MAX_VEIN_SIZE = 20;
-
     }
 
+    public WorldGenLimestone LIMESTONE = new WorldGenLimestone();
+
+    public static class WorldGenLimestone {
+
+      public boolean ENABLED = true;
+      public int CHANCES_TO_SPAWN = 15;
+      public int MIN_HEIGHT = 8;
+      public int MAX_HEIGHT = 100;
+      public int MIN_VEIN_SIZE = 10;
+      public int MAX_VEIN_SIZE = 20;
+    }
   }
 
   // ---------------------------------------------------------------------------

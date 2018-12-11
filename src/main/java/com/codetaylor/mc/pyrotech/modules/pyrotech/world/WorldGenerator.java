@@ -15,15 +15,25 @@ public class WorldGenerator
     implements IWorldGenerator {
 
   private WorldGenOre worldGenFossil;
+  private WorldGenOre worldGenLimestone;
 
   public WorldGenerator() {
 
     this.worldGenFossil = new WorldGenOre(
         ModuleBlocks.ORE.getDefaultState().withProperty(BlockOre.VARIANT, BlockOre.EnumType.FOSSIL_ORE),
-        rand -> {
+        random -> {
           int minVeinSize = ModulePyrotechConfig.WORLD_GEN.FOSSIL.MIN_VEIN_SIZE;
           int maxVeinSize = ModulePyrotechConfig.WORLD_GEN.FOSSIL.MAX_VEIN_SIZE;
-          return (minVeinSize + rand.nextInt(maxVeinSize - minVeinSize));
+          return (minVeinSize + random.nextInt(maxVeinSize - minVeinSize));
+        }
+    );
+
+    this.worldGenLimestone = new WorldGenOre(
+        ModuleBlocks.LIMESTONE.getDefaultState(),
+        random -> {
+          int minVeinSize = ModulePyrotechConfig.WORLD_GEN.LIMESTONE.MIN_VEIN_SIZE;
+          int maxVeinSize = ModulePyrotechConfig.WORLD_GEN.LIMESTONE.MAX_VEIN_SIZE;
+          return (minVeinSize + random.nextInt(maxVeinSize - minVeinSize));
         }
     );
   }
@@ -44,6 +54,22 @@ public class WorldGenerator
         int posY = minY + random.nextInt(maxY - minY);
         int posZ = blockZPos + random.nextInt(16);
         this.worldGenFossil.generate(world, random, new BlockPos(posX, posY, posZ));
+      }
+    }
+
+    // Limestone
+    if (ModulePyrotechConfig.WORLD_GEN.LIMESTONE.ENABLED) {
+      final int chancesToSpawn = ModulePyrotechConfig.WORLD_GEN.LIMESTONE.CHANCES_TO_SPAWN;
+      final int minY = ModulePyrotechConfig.WORLD_GEN.LIMESTONE.MIN_HEIGHT;
+      final int maxY = ModulePyrotechConfig.WORLD_GEN.LIMESTONE.MAX_HEIGHT;
+      final int blockXPos = chunkX << 4;
+      final int blockZPos = chunkZ << 4;
+
+      for (int i = 0; i < chancesToSpawn; i++) {
+        int posX = blockXPos + random.nextInt(16);
+        int posY = minY + random.nextInt(maxY - minY);
+        int posZ = blockZPos + random.nextInt(16);
+        this.worldGenLimestone.generate(world, random, new BlockPos(posX, posY, posZ));
       }
     }
   }
