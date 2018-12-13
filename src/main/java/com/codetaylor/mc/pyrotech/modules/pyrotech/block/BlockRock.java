@@ -200,7 +200,8 @@ public class BlockRock //'n beats
     DIRT(4, NAME + "_dirt"),
     SAND(5, NAME + "_sand"),
     SANDSTONE(6, NAME + "_sandstone"),
-    WOOD_CHIPS(7, NAME + "_wood_chips");
+    WOOD_CHIPS(7, NAME + "_wood_chips"),
+    LIMESTONE(8, NAME + "_limestone");
 
     private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
         .sorted(Comparator.comparing(EnumType::getMeta))
