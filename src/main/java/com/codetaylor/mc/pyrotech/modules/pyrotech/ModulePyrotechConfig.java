@@ -461,6 +461,11 @@ public class ModulePyrotechConfig {
       public int MIN_VEIN_SIZE = 10;
       public int MAX_VEIN_SIZE = 20;
     }
+
+    public static class WorldGenRocks {
+
+      public boolean ENABLED = true;
+    }
   }
 
   // ---------------------------------------------------------------------------

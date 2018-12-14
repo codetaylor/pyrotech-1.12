@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api;
 
 import com.codetaylor.mc.athenaeum.util.QuaternionHelper;
 import net.minecraft.util.math.Vec3d;

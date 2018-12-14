@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

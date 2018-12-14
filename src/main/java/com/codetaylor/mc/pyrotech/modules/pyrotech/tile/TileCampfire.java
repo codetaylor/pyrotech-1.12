@@ -15,7 +15,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.CampfireInteractionLogRenderer;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.Transform;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionUseItemToActivateWorker;
