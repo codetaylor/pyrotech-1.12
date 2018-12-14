@@ -11,8 +11,8 @@
       "data": 5
     },
     "G": {
-      "item": "minecraft:glass",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore": "glass"
     }
   },
   "result": {
