@@ -74,6 +74,7 @@ public class PluginDropt {
     String flint = item("minecraft", "flint");
     String tallGrassAny = item("minecraft", "tallgrass", OreDictionary.WILDCARD_VALUE);
     String sandstoneAny = item("minecraft", "sandstone", OreDictionary.WILDCARD_VALUE);
+    String limestone = item("pyrotech", "limestone");
 
     String stonePickaxe = item("minecraft", "stone_pickaxe");
 
@@ -85,14 +86,13 @@ public class PluginDropt {
     String rockSand = item(BlockRock.NAME, BlockRock.EnumType.SAND.getMeta());
     String rockSandstone = item(BlockRock.NAME, BlockRock.EnumType.SANDSTONE.getMeta());
     String rockGrass = item(BlockRockGrass.NAME, 0);
+    String rockLimestone = item(BlockRock.NAME, BlockRock.EnumType.LIMESTONE.getMeta());
 
     String flintShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.FLINT_SHARD.getMeta());
     String plantFibers = item(ItemMaterial.NAME, ItemMaterial.EnumType.PLANT_FIBERS.getMeta());
 
     String crudePickaxe = item(ItemCrudePickaxe.NAME, OreDictionary.WILDCARD_VALUE);
-
     String flintPickaxe = item(ItemFlintPickaxe.NAME, OreDictionary.WILDCARD_VALUE);
-
     String bonePickaxe = item(ItemBonePickaxe.NAME, OreDictionary.WILDCARD_VALUE);
 
     List<IDroptRuleBuilder> list = new ArrayList<>();
@@ -354,176 +354,76 @@ public class PluginDropt {
     // -------------------------------------------------------------------------
     // - Sandstone
     // -------------------------------------------------------------------------
+    {
+      String matchBlock = item("minecraft", "sandstone", OreDictionary.WILDCARD_VALUE);
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.SANDSTONE.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
 
-    // Crude Pickaxe
-    // Drops sandstone rocks
-    list.add(rule()
-        .matchBlocks(new String[]{
-            sandstoneAny
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{crudePickaxe})
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockSandstone}, range(2, 4))
-        })
-    );
-
-    // Flint / Bone / Stone Pickaxe
-    // Drops sandstone rocks
-    list.add(rule()
-        .matchBlocks(new String[]{
-            sandstoneAny
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{flintPickaxe, bonePickaxe, stonePickaxe})
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockSandstone}, range(3, 6))
-        })
-    );
+    // -------------------------------------------------------------------------
+    // - Limestone
+    // -------------------------------------------------------------------------
+    {
+      String matchBlock = item("pyrotech", "limestone");
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.LIMESTONE.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
 
     // -------------------------------------------------------------------------
     // - Stone / Cobblestone
     // -------------------------------------------------------------------------
-
-    // Crude Pickaxe
-    // Drops stone rocks
-    list.add(rule()
-        .matchBlocks(new String[]{
-            stone,
-            cobblestone
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{crudePickaxe})
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(2, 4))
-        })
-    );
-
-    // Flint / Bone / Stone Pickaxe
-    // Drops stone rocks
-    list.add(rule()
-        .matchBlocks(new String[]{
-            stone,
-            cobblestone
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{flintPickaxe, bonePickaxe, stonePickaxe})
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(3, 6))
-        })
-    );
+    {
+      String matchBlock = item("minecraft", "stone", BlockStone.EnumType.STONE.getMetadata());
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.STONE.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
+    {
+      String matchBlock = item("minecraft", "cobblestone");
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.STONE.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
 
     // -------------------------------------------------------------------------
     // - Diorite
     // -------------------------------------------------------------------------
-
-    // Crude Pickaxe
-    // Drops diorite rocks
-    list.add(rule()
-        .matchBlocks(new String[]{
-            diorite,
-            dioriteSmooth
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{crudePickaxe})
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockDiorite}, range(2, 4))
-        })
-    );
-
-    // Flint / Bone / Stone Pickaxe
-    // Drops diorite rocks
-    list.add(rule()
-        .matchBlocks(new String[]{
-            diorite,
-            dioriteSmooth
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{flintPickaxe, bonePickaxe, stonePickaxe})
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockDiorite}, range(3, 6))
-        })
-    );
+    {
+      String matchBlock = item("minecraft", "stone", BlockStone.EnumType.DIORITE.getMetadata());
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.DIORITE.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
+    {
+      String matchBlock = item("minecraft", "stone", BlockStone.EnumType.DIORITE_SMOOTH.getMetadata());
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.DIORITE.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
 
     // -------------------------------------------------------------------------
     // - Andesite
     // -------------------------------------------------------------------------
-
-    // Crude Pickaxe
-    // Drops andesite rocks
-    list.add(rule()
-        .matchBlocks(new String[]{
-            andesite,
-            andesiteSmooth
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{crudePickaxe})
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockAndesite}, range(1, 3))
-        })
-    );
-
-    // Flint / Bone / Stone Pickaxe
-    // Drops andesite rocks
-    list.add(rule()
-        .matchBlocks(new String[]{
-            andesite,
-            andesiteSmooth
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{flintPickaxe, bonePickaxe, stonePickaxe})
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockAndesite}, range(2, 5))
-        })
-    );
+    {
+      String matchBlock = item("minecraft", "stone", BlockStone.EnumType.ANDESITE.getMetadata());
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.ANDESITE.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
+    {
+      String matchBlock = item("minecraft", "stone", BlockStone.EnumType.ANDESITE_SMOOTH.getMetadata());
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.ANDESITE.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
 
     // -------------------------------------------------------------------------
     // - Granite
     // -------------------------------------------------------------------------
-
-    list.add(rule()
-        .matchBlocks(new String[]{
-            granite,
-            graniteSmooth
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{crudePickaxe})
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockGranite}, range(1, 3))
-        })
-    );
-
-    list.add(rule()
-        .matchBlocks(new String[]{
-            granite,
-            graniteSmooth
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{flintPickaxe, bonePickaxe, stonePickaxe})
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockGranite}, range(2, 5))
-        })
-    );
+    {
+      String matchBlock = item("minecraft", "stone", BlockStone.EnumType.GRANITE.getMetadata());
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.GRANITE.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
+    {
+      String matchBlock = item("minecraft", "stone", BlockStone.EnumType.GRANITE_SMOOTH.getMetadata());
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.GRANITE.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
 
     // -------------------------------------------------------------------------
     // - Registration
@@ -531,5 +431,44 @@ public class PluginDropt {
 
     ResourceLocation resourceLocation = new ResourceLocation(ModulePyrotech.MOD_ID, "dropt");
     registerRuleList(resourceLocation, 0, list);
+  }
+
+  private void addRockDrops(String matchBlock, String rock, List<IDroptRuleBuilder> list) {
+
+    // Crude Pickaxe
+    // Drops rocks
+    list.add(rule()
+        .matchBlocks(new String[]{
+            matchBlock
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.PLAYER)
+            .mainHand(new String[]{
+                item(ItemCrudePickaxe.NAME, OreDictionary.WILDCARD_VALUE)
+            })
+        )
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{rock}, range(2, 4))
+        })
+    );
+
+    // Flint / Bone / Stone Pickaxe
+    // Drops rocks
+    list.add(rule()
+        .matchBlocks(new String[]{
+            matchBlock
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.PLAYER)
+            .mainHand(new String[]{
+                item("minecraft", "stone_pickaxe"),
+                item(ItemFlintPickaxe.NAME, OreDictionary.WILDCARD_VALUE),
+                item(ItemBonePickaxe.NAME, OreDictionary.WILDCARD_VALUE)
+            })
+        )
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{rock}, range(3, 6))
+        })
+    );
   }
 }
