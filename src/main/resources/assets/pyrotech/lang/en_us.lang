@@ -52,6 +52,12 @@ item.pyrotech.flint.hoe.name=Flint Hoe
 item.pyrotech.flint.pickaxe.name=Flint Pickaxe
 item.pyrotech.flint.shovel.name=Flint Shovel
 
+item.pyrotech.stone.hammer.name=Stone Hammer
+item.pyrotech.flint.hammer.name=Flint Hammer
+item.pyrotech.bone.hammer.name=Bone Hammer
+item.pyrotech.iron.hammer.name=Iron Hammer
+item.pyrotech.diamond.hammer.name=Diamond Hammer
+
 
 # --- Tiles
 
@@ -81,6 +87,7 @@ tile.pyrotech.cobblestone.diorite.name=Cobbled Diorite
 tile.pyrotech.cobblestone.granite.name=Cobbled Granite
 tile.pyrotech.cobblestone.limestone.name=Cobbled Limestone
 tile.pyrotech.stone_bricks.name=Small Stone Bricks
+tile.pyrotech.anvil_granite.name=Granite Anvil
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock

@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
+import mcp.mobius.waila.utils.ModIdentification;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -43,6 +44,12 @@ public class ModuleItems {
   public static final ItemFlintPickaxe FLINT_PICKAXE = new ItemFlintPickaxe();
   public static final ItemFlintShovel FLINT_SHOVEL = new ItemFlintShovel();
 
+  public static final ItemBoneHammer BONE_HAMMER = new ItemBoneHammer();
+  public static final ItemDiamondHammer DIAMOND_HAMMER = new ItemDiamondHammer();
+  public static final ItemFlintHammer FLINT_HAMMER = new ItemFlintHammer();
+  public static final ItemIronHammer IRON_HAMMER = new ItemIronHammer();
+  public static final ItemStoneHammer STONE_HAMMER = new ItemStoneHammer();
+
   public static void onRegister(Registry registry) {
 
     registry.registerItem(ModuleItems.MATERIAL, ItemMaterial.NAME);
@@ -70,6 +77,12 @@ public class ModuleItems {
     registry.registerItem(ModuleItems.FLINT_HOE, ItemFlintHoe.NAME);
     registry.registerItem(ModuleItems.FLINT_PICKAXE, ItemFlintPickaxe.NAME);
     registry.registerItem(ModuleItems.FLINT_SHOVEL, ItemFlintShovel.NAME);
+
+    registry.registerItem(ModuleItems.STONE_HAMMER, ItemStoneHammer.NAME);
+    registry.registerItem(ModuleItems.BONE_HAMMER, ItemBoneHammer.NAME);
+    registry.registerItem(ModuleItems.FLINT_HAMMER, ItemFlintHammer.NAME);
+    registry.registerItem(ModuleItems.IRON_HAMMER, ItemIronHammer.NAME);
+    registry.registerItem(ModuleItems.DIAMOND_HAMMER, ItemDiamondHammer.NAME);
 
     registry.registerItemRegistrationStrategy(forgeRegistry -> {
 
@@ -110,7 +123,13 @@ public class ModuleItems {
           ModuleItems.FLINT_AXE,
           ModuleItems.FLINT_HOE,
           ModuleItems.FLINT_PICKAXE,
-          ModuleItems.FLINT_SHOVEL
+          ModuleItems.FLINT_SHOVEL,
+
+          ModuleItems.STONE_HAMMER,
+          ModuleItems.IRON_HAMMER,
+          ModuleItems.FLINT_HAMMER,
+          ModuleItems.BONE_HAMMER,
+          ModuleItems.DIAMOND_HAMMER
       );
 
       // Rock

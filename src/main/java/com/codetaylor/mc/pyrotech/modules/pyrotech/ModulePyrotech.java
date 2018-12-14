@@ -141,6 +141,12 @@ public class ModulePyrotech
         .setType(ChoppingBlockRecipe.class)
         .allowModification()
         .create();
+
+    new RegistryBuilder<GraniteAnvilRecipe>()
+        .setName(new ResourceLocation(MOD_ID, "granite_anvil_recipe"))
+        .setType(GraniteAnvilRecipe.class)
+        .allowModification()
+        .create();
   }
 
   @Override
@@ -174,6 +180,7 @@ public class ModulePyrotech
     ModuleRecipes.onRegisterKilnBrickRecipe(ModulePyrotechRegistries.KILN_BRICK_RECIPE);
     ModuleRecipes.onRegisterKilnStoneRecipe(ModulePyrotechRegistries.KILN_STONE_RECIPE);
     ModuleRecipes.onRegisterDryingRackRecipes(ModulePyrotechRegistries.DRYING_RACK_RECIPE);
+    ModuleRecipes.onRegisterGraniteAnvilRecipes(ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE);
     ModuleRecipes.onRegisterChoppingBlockRecipes(ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE);
     ModuleRecipes.onRegisterDryingRackCrudeRecipes(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
   }

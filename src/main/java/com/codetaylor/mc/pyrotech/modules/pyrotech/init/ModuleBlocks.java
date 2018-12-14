@@ -7,7 +7,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
-import crafttweaker.mc1120.preprocessors.ModLoadedPreprocessor;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -45,6 +44,7 @@ public class ModuleBlocks {
   public static final BlockOre ORE = new BlockOre();
   public static final BlockCobblestone COBBLESTONE = new BlockCobblestone();
   public static final BlockStoneBricks STONE_BRICKS = new BlockStoneBricks();
+  public static final BlockGraniteAnvil GRANITE_ANVIL = new BlockGraniteAnvil();
 
   public static void onRegister(Registry registry) {
 
@@ -74,6 +74,7 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.STONE_BRICKS, BlockStoneBricks.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
+    registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
 
     registry.registerTileEntities(
         TileTarCollector.class,
@@ -89,7 +90,8 @@ public class ModuleBlocks {
         TileDryingRack.class,
         TileDryingRackCrude.class,
         TileChoppingBlock.class,
-        TileWoodRack.class
+        TileWoodRack.class,
+        TileGraniteAnvil.class
     );
   }
 
@@ -158,6 +160,13 @@ public class ModuleBlocks {
           value -> value
       );
 
+      // Granite Anvil
+      ModelRegistrationHelper.registerVariantBlockItemModels(
+          ModuleBlocks.GRANITE_ANVIL.getDefaultState(),
+          BlockGraniteAnvil.DAMAGE,
+          value -> value
+      );
+
       // Cobblestone
       ModelRegistrationHelper.registerVariantBlockItemModels(
           ModuleBlocks.COBBLESTONE.getDefaultState(),
@@ -186,6 +195,7 @@ public class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRackCrude.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileChoppingBlock.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileWoodRack.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileGraniteAnvil.class, new TESRInteractable<>());
 
     });
   }

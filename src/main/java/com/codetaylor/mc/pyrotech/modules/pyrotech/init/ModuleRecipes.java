@@ -27,6 +27,16 @@ public class ModuleRecipes {
     }
   }
 
+  public static void onRegisterGraniteAnvilRecipes(IForgeRegistry<GraniteAnvilRecipe> registry) {
+
+    // Stone Bricks
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.BRICK_STONE.asStack(4),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE)),
+        8
+    ).setRegistryName(ModulePyrotech.MOD_ID, "brick_stone"));
+  }
+
   public static void onRegisterChoppingBlockRecipes(IForgeRegistry<ChoppingBlockRecipe> registry) {
 
     // Oak

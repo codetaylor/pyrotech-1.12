@@ -3,6 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.config.Config;
 
@@ -55,6 +57,38 @@ public class ModulePyrotechConfig {
         "minecraft:wooden_hoe",
         "minecraft:wooden_pickaxe",
         "minecraft:wooden_shovel"
+    };
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Granite Anvil
+  // ---------------------------------------------------------------------------
+
+  public static GraniteAnvil GRANITE_ANVIL = new GraniteAnvil();
+
+  public static class GraniteAnvil {
+
+    @Config.Comment({
+        "The number of times the block can be hit before applying damage",
+        "to the block. The block has a total of four damage stages. This number",
+        "represents the number of hits for just one damage stage.",
+        "Range: [1, +inf)",
+        "Default: " + 32
+    })
+    public int HITS_PER_DAMAGE = 32;
+
+    @Config.Comment({
+        "Use this to add items that you want to be valid.",
+        "Items you add are assumed to have durability.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] TOOL_WHITELIST = new String[]{
+        ModulePyrotech.MOD_ID + ":" + ItemStoneHammer.NAME,
+        ModulePyrotech.MOD_ID + ":" + ItemBoneHammer.NAME,
+        ModulePyrotech.MOD_ID + ":" + ItemFlintHammer.NAME,
+        ModulePyrotech.MOD_ID + ":" + ItemIronHammer.NAME,
+        ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME
     };
   }
 
