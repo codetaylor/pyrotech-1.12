@@ -89,7 +89,8 @@ public class BlockCobblestone
 
     ANDESITE(0, "andesite"),
     DIORITE(1, "diorite"),
-    GRANITE(2, "granite");
+    GRANITE(2, "granite"),
+    LIMESTONE(3, "limestone");
 
     private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
         .sorted(Comparator.comparing(EnumType::getMeta))

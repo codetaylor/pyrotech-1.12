@@ -7,7 +7,8 @@
     "variant": {
       "andesite": {"textures": {"all": "pyrotech:blocks/cobblestone_andesite"}},
       "diorite": {"textures": {"all": "pyrotech:blocks/cobblestone_diorite"}},
-      "granite": {"textures": {"all": "pyrotech:blocks/cobblestone_granite"}}
+      "granite": {"textures": {"all": "pyrotech:blocks/cobblestone_granite"}},
+      "limestone": {"textures": {"all": "pyrotech:blocks/cobblestone_limestone"}}
     }
   }
 }

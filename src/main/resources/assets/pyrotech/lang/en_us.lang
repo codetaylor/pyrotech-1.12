@@ -78,6 +78,7 @@ tile.pyrotech.ore.fossil_ore.name=Fossil Ore
 tile.pyrotech.cobblestone.andesite.name=Cobbled Andesite
 tile.pyrotech.cobblestone.diorite.name=Cobbled Diorite
 tile.pyrotech.cobblestone.granite.name=Cobbled Granite
+tile.pyrotech.cobblestone.granite.name=Cobbled Limestone
 tile.pyrotech.stone_bricks.name=Small Stone Bricks
 
 tile.pyrotech.rock_stone.name=Stone Rock
