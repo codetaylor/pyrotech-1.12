@@ -35,7 +35,7 @@ public class JEIRecipeCategoryKilnStone
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 54);
 
-    this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.kiln.brick");
+    this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.kiln.stone");
   }
 
   @Nonnull

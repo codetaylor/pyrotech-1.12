@@ -111,6 +111,7 @@ gui.pyrotech.waila.burn.time=Burn Time: %s
 
 gui.pyrotech.jei.category.kiln.pit=Pit Kiln Firing
 gui.pyrotech.jei.category.kiln.brick=Brick Kiln Firing
+gui.pyrotech.jei.category.kiln.stone=Stone Kiln Firing
 gui.pyrotech.jei.category.burn.pit=Pit Burning
 gui.pyrotech.jei.category.burn.refractory=Refractory Burning
 gui.pyrotech.jei.category.drying.rack=Drying
