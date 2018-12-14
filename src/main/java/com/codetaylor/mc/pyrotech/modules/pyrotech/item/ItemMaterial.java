@@ -61,7 +61,8 @@ public class ItemMaterial
     PLANT_FIBERS_DRIED(13, "plant_fibers_dried"),
     TWINE(14, "twine"),
     CHARCOAL_FLAKES(15, "charcoal_flakes"),
-    BRICK_STONE(16, "brick_stone");
+    BRICK_STONE(16, "brick_stone"),
+    CLAY_LUMP(17, "clay_lump");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())

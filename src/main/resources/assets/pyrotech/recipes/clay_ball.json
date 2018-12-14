@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pyrotech:material",
+      "data": 17
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 17
+    }
+  ],
+  "result": {
+    "item": "minecraft:clay_ball",
+    "count": 1,
+    "data": 0
+  }
+}
