@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -33,15 +34,26 @@ public class ChoppingBlockRecipe
 
   private final Ingredient input;
   private final ItemStack output;
+  private final int[] chops;
+  private final int[] quantities;
+
+  public ChoppingBlockRecipe(ItemStack output, Ingredient input) {
+
+    this(output, input, ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_REQUIRED_PER_HARVEST_LEVEL, ModulePyrotechConfig.CHOPPING_BLOCK.RECIPE_RESULT_QUANTITY_PER_HARVEST_LEVEL);
+  }
 
   public ChoppingBlockRecipe(
       ItemStack output,
-      Ingredient input
+      Ingredient input,
+      int[] chops,
+      int[] quantities
   ) {
 
     this.input = input;
     this.output = output;
-    this.output.setCount(1); // Quantity is handled in the config file.
+    this.chops = chops;
+    this.quantities = quantities;
+    this.output.setCount(1); // Quantity is managed.
   }
 
   public Ingredient getInput() {
@@ -52,6 +64,16 @@ public class ChoppingBlockRecipe
   public ItemStack getOutput() {
 
     return this.output.copy();
+  }
+
+  public int[] getChops() {
+
+    return this.chops;
+  }
+
+  public int[] getQuantities() {
+
+    return this.quantities;
   }
 
   public boolean matches(ItemStack input) {

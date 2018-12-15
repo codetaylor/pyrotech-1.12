@@ -26,11 +26,15 @@ public class JEIRecipeWrapperChoppingBlock
 
   private final List<List<ItemStack>> inputs;
   private final ItemStack output;
+  private final int[] chops;
+  private final int[] quantities;
 
   public JEIRecipeWrapperChoppingBlock(ChoppingBlockRecipe recipe) {
 
     this.inputs = Collections.singletonList(Arrays.asList(recipe.getInput().getMatchingStacks()));
     this.output = recipe.getOutput();
+    this.chops = recipe.getChops();
+    this.quantities = recipe.getQuantities();
   }
 
   @Override
@@ -43,10 +47,10 @@ public class JEIRecipeWrapperChoppingBlock
   @Override
   public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
-    int levels = Math.max(ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_REQUIRED_PER_HARVEST_LEVEL.length, ModulePyrotechConfig.CHOPPING_BLOCK.RECIPE_RESULT_QUANTITY_PER_HARVEST_LEVEL.length);
+    int levels = Math.max(this.chops.length, this.quantities.length);
     int index = (int) ((minecraft.world.getTotalWorldTime() / 40) % levels);
-    int chops = ArrayHelper.getOrLast(ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_REQUIRED_PER_HARVEST_LEVEL, index);
-    int quantity = ArrayHelper.getOrLast(ModulePyrotechConfig.CHOPPING_BLOCK.RECIPE_RESULT_QUANTITY_PER_HARVEST_LEVEL, index);
+    int chops = ArrayHelper.getOrLast(this.chops, index);
+    int quantity = ArrayHelper.getOrLast(this.quantities, index);
     String locationString = ArrayHelper.getOrLast(ModulePyrotechConfig.CHOPPING_BLOCK.JEI_HARVEST_LEVEL_ITEM, index);
     Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(locationString));
 

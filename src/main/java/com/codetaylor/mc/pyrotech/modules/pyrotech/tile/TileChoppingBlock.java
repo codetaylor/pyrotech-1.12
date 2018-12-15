@@ -13,8 +13,8 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockChoppingBlock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
@@ -64,7 +64,7 @@ public class TileChoppingBlock
 
     // --- Network ---
 
-    this.registerTileDataForNetwork(new ITileData[] {
+    this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.stackHandler),
         this.recipeProgress
     });
@@ -379,26 +379,28 @@ public class TileChoppingBlock
         ItemStack heldItem = player.getHeldItem(hand);
         int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "axe", player, null);
 
-        if (tile.getRecipeProgress() < 1) {
+        ItemStackHandler stackHandler = tile.getStackHandler();
+        ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
+        ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(itemStack);
 
-          // Check the recipe's harvest level and advance recipe progress.
+        if (recipe != null) {
 
-          int[] chops = ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_REQUIRED_PER_HARVEST_LEVEL;
+          if (tile.getRecipeProgress() < 1) {
 
-          if (chops.length > 0) {
-            float increment = 1f / ArrayHelper.getOrLast(chops, harvestLevel);
-            tile.setRecipeProgress(tile.getRecipeProgress() + increment);
+            // Check the recipe's harvest level and advance recipe progress.
+
+            int[] chops = recipe.getChops();
+
+            if (chops.length > 0) {
+              float increment = 1f / ArrayHelper.getOrLast(chops, harvestLevel);
+              tile.setRecipeProgress(tile.getRecipeProgress() + increment);
+            }
           }
-        }
 
-        if (tile.getRecipeProgress() >= 0.9999) {
-          ItemStackHandler stackHandler = tile.getStackHandler();
-          ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
-          ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(itemStack);
+          if (tile.getRecipeProgress() >= 0.9999) {
 
-          if (recipe != null) {
             ItemStack output = recipe.getOutput();
-            int[] quantities = ModulePyrotechConfig.CHOPPING_BLOCK.RECIPE_RESULT_QUANTITY_PER_HARVEST_LEVEL;
+            int[] quantities = recipe.getQuantities();
 
             if (quantities.length > 0) {
               int quantity = ArrayHelper.getOrLast(quantities, harvestLevel);
@@ -406,21 +408,21 @@ public class TileChoppingBlock
             }
 
             StackHelper.spawnStackOnTop(world, output, tile.getPos(), 0);
+
+            world.playSound(
+                player,
+                player.posX,
+                player.posY,
+                player.posZ,
+                SoundEvents.BLOCK_WOOD_BREAK,
+                SoundCategory.BLOCKS,
+                1,
+                (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
+            );
+
+            tile.markDirty();
+            BlockHelper.notifyBlockUpdate(world, tile.getPos());
           }
-
-          world.playSound(
-              player,
-              player.posX,
-              player.posY,
-              player.posZ,
-              SoundEvents.BLOCK_WOOD_BREAK,
-              SoundCategory.BLOCKS,
-              1,
-              (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
-          );
-
-          tile.markDirty();
-          BlockHelper.notifyBlockUpdate(world, tile.getPos());
         }
 
       } else {

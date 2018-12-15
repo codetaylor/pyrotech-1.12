@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.ChoppingBlockRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
@@ -29,7 +30,21 @@ public class ZenChoppingBlock {
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
         name,
         CraftTweakerMC.getItemStack(output),
-        CraftTweakerMC.getIngredient(input)
+        CraftTweakerMC.getIngredient(input),
+        ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_REQUIRED_PER_HARVEST_LEVEL,
+        ModulePyrotechConfig.CHOPPING_BLOCK.RECIPE_RESULT_QUANTITY_PER_HARVEST_LEVEL
+    ));
+  }
+
+  @ZenMethod
+  public static void addRecipe(String name, IItemStack output, IIngredient input, int[] chops, int[] quantities) {
+
+    CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
+        name,
+        CraftTweakerMC.getItemStack(output),
+        CraftTweakerMC.getIngredient(input),
+        chops,
+        quantities
     ));
   }
 
@@ -60,18 +75,24 @@ public class ZenChoppingBlock {
       implements IAction {
 
     private final ItemStack output;
+    private final int[] chops;
+    private final int[] quantities;
     private final String name;
     private final Ingredient input;
 
     public AddRecipe(
         String name,
         ItemStack output,
-        Ingredient input
+        Ingredient input,
+        int[] chops,
+        int[] quantities
     ) {
 
       this.name = name;
       this.input = input;
       this.output = output;
+      this.chops = chops;
+      this.quantities = quantities;
     }
 
     @Override
@@ -79,7 +100,9 @@ public class ZenChoppingBlock {
 
       ChoppingBlockRecipe recipe = new ChoppingBlockRecipe(
           this.output,
-          this.input
+          this.input,
+          this.chops,
+          this.quantities
       );
       ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
