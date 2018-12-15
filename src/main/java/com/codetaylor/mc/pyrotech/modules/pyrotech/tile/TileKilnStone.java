@@ -12,8 +12,8 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnStone;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
@@ -521,7 +521,8 @@ public class TileKilnStone
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return StackHelper.isFuel(itemStack);
+      return StackHelper.isFuel(itemStack)
+          && !itemStack.getItem().hasContainerItem(itemStack);
     }
   }
 
@@ -626,7 +627,8 @@ public class TileKilnStone
 
       // Filter out non-fuel items.
 
-      if (!StackHelper.isFuel(stack)) {
+      if (!StackHelper.isFuel(stack)
+          || stack.getItem().hasContainerItem(stack)) {
         return stack;
       }
 
