@@ -12,6 +12,7 @@ public class JEIRecipeCategoryUid {
   public static final String DRYING = ModulePyrotech.MOD_ID + ".drying";
   public static final String DRYING_CRUDE = ModulePyrotech.MOD_ID + ".drying.crude";
   public static final String CHOPPING = ModulePyrotech.MOD_ID + ".chopping";
+  public static final String GRANITE_ANVIL = ModulePyrotech.MOD_ID + ".granite.anvil";
 
   private JEIRecipeCategoryUid() {
     //

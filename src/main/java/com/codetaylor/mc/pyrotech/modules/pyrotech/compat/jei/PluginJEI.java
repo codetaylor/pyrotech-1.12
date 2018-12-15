@@ -44,7 +44,8 @@ public class PluginJEI
         new JEIRecipeCategoryRefractoryBurn(guiHelper),
         new JEIRecipeCategoryDryingRack(guiHelper),
         new JEIRecipeCategoryDryingRackCrude(guiHelper),
-        new JEIRecipeCategoryChoppingBlock(guiHelper)
+        new JEIRecipeCategoryChoppingBlock(guiHelper),
+        new JEIRecipeCategoryGraniteAnvil(guiHelper)
     );
   }
 
@@ -84,6 +85,14 @@ public class PluginJEI
         ModulePyrotech.LOGGER.error("", e);
       }
 
+    }
+
+    // --- Granite Anvil
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.GRANITE_ANVIL), JEIRecipeCategoryUid.GRANITE_ANVIL);
+      registry.handleRecipes(GraniteAnvilRecipe.class, JEIRecipeWrapperGraniteAnvil::new, JEIRecipeCategoryUid.GRANITE_ANVIL);
+      List<GraniteAnvilRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.GRANITE_ANVIL);
     }
 
     // --- Chopping Block
