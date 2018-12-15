@@ -61,7 +61,7 @@ public class ZenChoppingBlock {
     @Override
     public void apply() {
 
-      KilnBrickRecipe.removeRecipes(this.output);
+      ChoppingBlockRecipe.removeRecipes(this.output);
     }
 
     @Override

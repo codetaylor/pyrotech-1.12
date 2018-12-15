@@ -79,7 +79,7 @@ public class ZenKilnStone {
     @Override
     public String describe() {
 
-      return "Removing brick kiln recipes for " + this.output;
+      return "Removing stone kiln recipes for " + this.output;
     }
   }
 

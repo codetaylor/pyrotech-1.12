@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackCrudeRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import crafttweaker.IAction;
@@ -47,13 +48,13 @@ public class ZenDryingRack {
     @Override
     public void apply() {
 
-      KilnBrickRecipe.removeRecipes(this.output);
+      DryingRackRecipe.removeRecipes(this.output);
     }
 
     @Override
     public String describe() {
 
-      return "Removing brick kiln recipes for " + this.output;
+      return "Removing drying rack recipes for " + this.output;
     }
   }
 
