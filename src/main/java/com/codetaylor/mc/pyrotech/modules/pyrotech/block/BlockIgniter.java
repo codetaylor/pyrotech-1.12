@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrick;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnStone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTarCollector;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -111,11 +112,11 @@ public class BlockIgniter
       if (Util.canSetFire(world, offset)) {
         world.setBlockState(offset, Blocks.FIRE.getDefaultState(), 3);
 
-      } else if (facingBlock == ModuleBlocks.KILN_BRICK) {
+      } else if (facingBlock == ModuleBlocks.KILN_STONE) {
         TileEntity tileEntity = world.getTileEntity(offset);
 
-        if (tileEntity instanceof TileKilnBrick) {
-          ((TileKilnBrick) tileEntity).setActive(true);
+        if (tileEntity instanceof TileKilnStone) {
+          ((TileKilnStone) tileEntity).workerSetActive(true);
         }
 
       } else if (facingBlock == ModuleBlocks.KILN_PIT
