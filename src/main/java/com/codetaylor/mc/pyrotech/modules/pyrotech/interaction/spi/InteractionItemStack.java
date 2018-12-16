@@ -2,8 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionRenderers;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -211,21 +211,37 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
       int count = heldItem.getCount();
       int insertIndex = this.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
       ItemStack itemStack = heldItem.copy();
+      int insertItemCount = this.getInsertItemCount(itemStack);
+      itemStack.setCount(insertItemCount);
       ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, world.isRemote);
 
       if (result.getCount() != count) {
+        int actualInsertCount = insertItemCount - result.getCount();
 
         if (!world.isRemote) {
-          heldItem.setCount(result.getCount());
+          heldItem.setCount(heldItem.getCount() - actualInsertCount);
         }
 
-        itemStack.setCount(itemStack.getCount() - result.getCount());
+        itemStack.setCount(actualInsertCount);
         this.onInsert(itemStack, world, player, hitPos);
         return true;
       }
     }
 
     return false;
+  }
+
+  /**
+   * Override this to restrict how many items can be inserted at once.
+   * <p>
+   * The default is to insert the entire stack.
+   *
+   * @param itemStack the stack being inserted
+   * @return how many items can be inserted
+   */
+  protected int getInsertItemCount(ItemStack itemStack) {
+
+    return itemStack.getCount();
   }
 
   /**

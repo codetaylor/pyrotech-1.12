@@ -45,6 +45,7 @@ public class ModuleBlocks {
   public static final BlockCobblestone COBBLESTONE = new BlockCobblestone();
   public static final BlockStoneBricks STONE_BRICKS = new BlockStoneBricks();
   public static final BlockGraniteAnvil GRANITE_ANVIL = new BlockGraniteAnvil();
+  public static final BlockCrafting CRAFTING = new BlockCrafting();
 
   public static void onRegister(Registry registry) {
 
@@ -72,6 +73,7 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.ORE, BlockOre.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COBBLESTONE, BlockCobblestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.STONE_BRICKS, BlockStoneBricks.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.CRAFTING, BlockCrafting.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
@@ -91,7 +93,8 @@ public class ModuleBlocks {
         TileDryingRackCrude.class,
         TileChoppingBlock.class,
         TileWoodRack.class,
-        TileGraniteAnvil.class
+        TileGraniteAnvil.class,
+        TileCrafting.class
     );
   }
 
@@ -110,7 +113,8 @@ public class ModuleBlocks {
           ModuleBlocks.KILN_BRICK,
           ModuleBlocks.KILN_STONE,
           ModuleBlocks.WOOD_RACK,
-          ModuleBlocks.STONE_BRICKS
+          ModuleBlocks.STONE_BRICKS,
+          ModuleBlocks.CRAFTING
       );
 
       // Refractory Door
@@ -196,6 +200,7 @@ public class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileChoppingBlock.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileWoodRack.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileGraniteAnvil.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileCrafting.class, new TESRInteractable<>());
 
     });
   }
