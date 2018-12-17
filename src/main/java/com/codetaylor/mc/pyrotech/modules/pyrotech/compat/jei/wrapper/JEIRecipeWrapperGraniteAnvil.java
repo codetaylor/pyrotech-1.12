@@ -17,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -29,12 +30,20 @@ public class JEIRecipeWrapperGraniteAnvil
   private final int hits;
   private final GraniteAnvilRecipe.EnumType type;
 
+  private String[] pickaxeDisplayList;
+
   public JEIRecipeWrapperGraniteAnvil(GraniteAnvilRecipe recipe) {
 
     this.inputs = Collections.singletonList(Arrays.asList(recipe.getInput().getMatchingStacks()));
     this.output = recipe.getOutput();
     this.hits = recipe.getHits();
     this.type = recipe.getType();
+
+    this.pickaxeDisplayList = new String[]{
+        Items.STONE_PICKAXE.getRegistryName().toString(),
+        Items.IRON_PICKAXE.getRegistryName().toString(),
+        Items.DIAMOND_PICKAXE.getRegistryName().toString()
+    };
   }
 
   @Override
@@ -53,11 +62,7 @@ public class JEIRecipeWrapperGraniteAnvil
       toolWhitelist = ModulePyrotechConfig.GRANITE_ANVIL.HAMMER_LIST;
 
     } else if (this.type == GraniteAnvilRecipe.EnumType.PICKAXE) {
-      toolWhitelist = new String[]{
-          Items.STONE_PICKAXE.getRegistryName().toString(),
-          Items.IRON_PICKAXE.getRegistryName().toString(),
-          Items.DIAMOND_PICKAXE.getRegistryName().toString()
-      };
+      toolWhitelist = this.pickaxeDisplayList;
 
     } else {
       throw new RuntimeException("Unknown recipe type: " + this.type);
