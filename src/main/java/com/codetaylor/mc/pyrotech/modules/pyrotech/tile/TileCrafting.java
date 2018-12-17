@@ -350,8 +350,14 @@ public class TileCrafting
     @Override
     public ItemStack getStackInRowAndColumn(int row, int column) {
 
-      int index = row + column * 3;
-      return this.tile.inputStackHandler.getStackInSlot(index);
+      column = 2 - column;
+
+      if (row >= 0 && row < 3 && column >= 0 && column < 3) {
+        int index = row + column * 3;
+        return this.tile.inputStackHandler.getStackInSlot(index);
+      }
+
+      return ItemStack.EMPTY;
     }
 
     @Override
