@@ -32,7 +32,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -57,13 +56,12 @@ public class TileCrafting
 
     this.inputStackHandler = new InputStackHandler();
     this.inputStackHandler.addObserver((handler, slot) -> {
+      this.recipeProgress.set(0);
       this.markDirty();
     });
 
     this.shelfStackHandler = new ShelfStackHandler();
-    this.shelfStackHandler.addObserver((handler, slot) -> {
-      this.markDirty();
-    });
+    this.shelfStackHandler.addObserver((handler, slot) -> this.markDirty());
 
     this.recipeProgress = new TileDataFloat(0);
 
@@ -170,7 +168,13 @@ public class TileCrafting
 
       ItemStack heldItemStack = player.getHeldItem(hand);
       Item item = heldItemStack.getItem();
-      return ArrayHelper.contains(ModulePyrotechConfig.CRAFTING.HAMMER_LIST, item.getRegistryName().toString());
+      ResourceLocation registryName = item.getRegistryName();
+
+      if (registryName == null) {
+        return false;
+      }
+
+      return ArrayHelper.contains(ModulePyrotechConfig.CRAFTING.HAMMER_LIST, registryName.toString());
     }
 
     @Override
@@ -247,6 +251,11 @@ public class TileCrafting
 
       Item item = itemStack.getItem();
       ResourceLocation registryName = item.getRegistryName();
+
+      if (registryName == null) {
+        return false;
+      }
+
       return !ArrayHelper.contains(ModulePyrotechConfig.CRAFTING.HAMMER_LIST, registryName.toString());
     }
 
@@ -312,7 +321,7 @@ public class TileCrafting
 
     private final TileCrafting tile;
 
-    public InventoryWrapper(TileCrafting tile) {
+    /* package */ InventoryWrapper(TileCrafting tile) {
 
       super(new Container() {
 
