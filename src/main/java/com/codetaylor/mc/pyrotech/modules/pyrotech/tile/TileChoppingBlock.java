@@ -380,7 +380,7 @@ public class TileChoppingBlock
         int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "axe", player, null);
 
         ItemStackHandler stackHandler = tile.getStackHandler();
-        ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
+        ItemStack itemStack = stackHandler.getStackInSlot(0);
         ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(itemStack);
 
         if (recipe != null) {
@@ -398,7 +398,7 @@ public class TileChoppingBlock
           }
 
           if (tile.getRecipeProgress() >= 0.9999) {
-
+            stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
             ItemStack output = recipe.getOutput();
             int[] quantities = recipe.getQuantities();
 
