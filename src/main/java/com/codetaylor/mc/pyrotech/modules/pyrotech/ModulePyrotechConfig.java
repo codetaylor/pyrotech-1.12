@@ -103,18 +103,34 @@ public class ModulePyrotechConfig {
     public int HITS_PER_DAMAGE = 32;
 
     @Config.Comment({
-        "Use this to add items that you want to be valid.",
+        "Use this to add items that you want to be valid for hammer recipes.",
         "Items you add are assumed to have durability.",
         "",
         "String format is a resource location: (domain):(path)"
     })
-    public String[] TOOL_WHITELIST = new String[]{
+    public String[] HAMMER_LIST = new String[]{
         ModulePyrotech.MOD_ID + ":" + ItemStoneHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemBoneHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemFlintHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemIronHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME
     };
+
+    @Config.Comment({
+        "Use this to add items that you want to be valid for pickaxe recipes.",
+        "Items you add are assumed to have durability.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] PICKAXE_WHITELIST = new String[0];
+
+    @Config.Comment({
+        "Use this to add items that you want to be invalid for pickaxe recipes.",
+        "Items you add are assumed to have durability.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] PICKAXE_BLACKLIST = new String[0];
   }
 
   // ---------------------------------------------------------------------------

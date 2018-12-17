@@ -33,7 +33,8 @@ public class ModuleRecipes {
     registry.register(new GraniteAnvilRecipe(
         ItemMaterial.EnumType.BRICK_STONE.asStack(4),
         Ingredient.fromStacks(new ItemStack(Blocks.STONE)),
-        8
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "brick_stone"));
   }
 

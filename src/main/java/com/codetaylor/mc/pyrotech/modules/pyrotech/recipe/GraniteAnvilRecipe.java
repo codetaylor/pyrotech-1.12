@@ -13,6 +13,10 @@ public class GraniteAnvilRecipe
     extends IForgeRegistryEntry.Impl<GraniteAnvilRecipe>
     implements IRecipeSingleOutput {
 
+  public enum EnumType {
+    HAMMER, PICKAXE
+  }
+
   @Nullable
   public static GraniteAnvilRecipe getRecipe(ItemStack input) {
 
@@ -34,16 +38,19 @@ public class GraniteAnvilRecipe
   private final Ingredient input;
   private final ItemStack output;
   private final int hits;
+  private final EnumType type;
 
   public GraniteAnvilRecipe(
       ItemStack output,
       Ingredient input,
-      int hits
+      int hits,
+      EnumType type
   ) {
 
     this.input = input;
     this.output = output;
     this.hits = hits;
+    this.type = type;
   }
 
   public Ingredient getInput() {
@@ -59,6 +66,11 @@ public class GraniteAnvilRecipe
   public int getHits() {
 
     return this.hits;
+  }
+
+  public EnumType getType() {
+
+    return this.type;
   }
 
   public boolean matches(ItemStack input) {

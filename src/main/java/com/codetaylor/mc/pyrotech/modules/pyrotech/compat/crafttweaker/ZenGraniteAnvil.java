@@ -23,13 +23,14 @@ public class ZenGraniteAnvil {
   }
 
   @ZenMethod
-  public static void addRecipe(String name, IItemStack output, IIngredient input, int hits) {
+  public static void addRecipe(String name, IItemStack output, IIngredient input, int hits, String type) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
         name,
         CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getIngredient(input),
-        hits
+        hits,
+        GraniteAnvilRecipe.EnumType.valueOf(type.toUpperCase())
     ));
   }
 
@@ -61,6 +62,7 @@ public class ZenGraniteAnvil {
 
     private final ItemStack output;
     private final int hits;
+    private final GraniteAnvilRecipe.EnumType type;
     private final String name;
     private final Ingredient input;
 
@@ -68,13 +70,15 @@ public class ZenGraniteAnvil {
         String name,
         ItemStack output,
         Ingredient input,
-        int hits
+        int hits,
+        GraniteAnvilRecipe.EnumType type
     ) {
 
       this.name = name;
       this.input = input;
       this.output = output;
       this.hits = hits;
+      this.type = type;
     }
 
     @Override
@@ -83,7 +87,8 @@ public class ZenGraniteAnvil {
       GraniteAnvilRecipe recipe = new GraniteAnvilRecipe(
           this.output,
           this.input,
-          this.hits
+          this.hits,
+          this.type
       );
       ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }

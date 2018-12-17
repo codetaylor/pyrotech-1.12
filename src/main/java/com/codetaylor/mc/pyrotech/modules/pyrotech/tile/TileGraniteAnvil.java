@@ -234,7 +234,30 @@ public class TileGraniteAnvil
         return false;
       }
 
-      return ArrayHelper.contains(ModulePyrotechConfig.GRANITE_ANVIL.TOOL_WHITELIST, resourceLocation.toString());
+      ItemStackHandler stackHandler = tile.getStackHandler();
+      ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
+      GraniteAnvilRecipe recipe = GraniteAnvilRecipe.getRecipe(itemStack);
+
+      if (recipe == null) {
+        return false;
+      }
+
+      if (heldItem.getToolClasses(heldItemStack).contains("pickaxe")) {
+        // held item is pickaxe
+        if (!ArrayHelper.contains(ModulePyrotechConfig.GRANITE_ANVIL.PICKAXE_BLACKLIST, resourceLocation.toString())) {
+          return (recipe.getType() == GraniteAnvilRecipe.EnumType.PICKAXE);
+        }
+
+      } else if (ArrayHelper.contains(ModulePyrotechConfig.GRANITE_ANVIL.PICKAXE_WHITELIST, resourceLocation.toString())) {
+        // held item is pickaxe
+        return (recipe.getType() == GraniteAnvilRecipe.EnumType.PICKAXE);
+
+      } else if (ArrayHelper.contains(ModulePyrotechConfig.GRANITE_ANVIL.HAMMER_LIST, resourceLocation.toString())) {
+        // held item is hammer
+        return (recipe.getType() == GraniteAnvilRecipe.EnumType.HAMMER);
+      }
+
+      return false;
     }
 
     @Override
