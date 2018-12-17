@@ -61,6 +61,31 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Crafting
+  // ---------------------------------------------------------------------------
+
+  public static Crafting CRAFTING = new Crafting();
+
+  public static class Crafting {
+
+    @Config.Comment({
+        "Use this to add items that you want to be valid for the crafting log.",
+        "Items you add are assumed to have durability.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] HAMMER_LIST = new String[]{
+        ModulePyrotech.MOD_ID + ":" + ItemStoneHammer.NAME,
+        ModulePyrotech.MOD_ID + ":" + ItemBoneHammer.NAME,
+        ModulePyrotech.MOD_ID + ":" + ItemFlintHammer.NAME,
+        ModulePyrotech.MOD_ID + ":" + ItemIronHammer.NAME,
+        ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME
+    };
+
+    public int HITS_PER_CRAFT = 4;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Granite Anvil
   // ---------------------------------------------------------------------------
 

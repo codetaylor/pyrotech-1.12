@@ -1,27 +1,42 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TileCrafting
     extends TileNetBase
@@ -29,6 +44,8 @@ public class TileCrafting
 
   private InputStackHandler inputStackHandler;
   private ShelfStackHandler shelfStackHandler;
+
+  private TileDataFloat recipeProgress;
 
   private IInteraction[] interactions;
 
@@ -48,27 +65,36 @@ public class TileCrafting
       this.markDirty();
     });
 
+    this.recipeProgress = new TileDataFloat(0);
+
     // --- Network ---
 
     this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.inputStackHandler),
-        new TileDataItemStackHandler<>(this.shelfStackHandler)
+        new TileDataItemStackHandler<>(this.shelfStackHandler),
+        this.recipeProgress
     });
 
     // --- Interactions ---
 
     this.interactions = new IInteraction[12];
 
+    List<IInteraction> interactionList = new ArrayList<>();
+
+    interactionList.add(new InteractionHammer(this));
+
     for (int i = 0; i < 9; i++) {
       int x = i % 3;
       int z = i / 3;
-      this.interactions[i] = new InputInteraction(this.inputStackHandler, i, x, z);
+      interactionList.add(new InputInteraction(this.inputStackHandler, i, x, z));
     }
 
     for (int i = 0; i < 3; i++) {
       int x = i % 3;
-      this.interactions[9 + i] = new ShelfInteraction(this.shelfStackHandler, i, x);
+      interactionList.add(new ShelfInteraction(this.shelfStackHandler, i, x));
     }
+
+    this.interactions = interactionList.toArray(new IInteraction[0]);
   }
 
   // ---------------------------------------------------------------------------
@@ -128,6 +154,73 @@ public class TileCrafting
     return blockState.getValue(Properties.FACING_HORIZONTAL);
   }
 
+  private class InteractionHammer
+      extends InteractionUseItemBase<TileCrafting> {
+
+    private InventoryWrapper wrapper;
+
+    /* package */ InteractionHammer(TileCrafting tile) {
+
+      super(new EnumFacing[]{EnumFacing.UP}, InteractionBounds.BLOCK);
+      this.wrapper = new InventoryWrapper(tile);
+    }
+
+    @Override
+    protected boolean allowInteraction(TileCrafting tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack heldItemStack = player.getHeldItem(hand);
+      Item item = heldItemStack.getItem();
+      return ArrayHelper.contains(ModulePyrotechConfig.CRAFTING.HAMMER_LIST, item.getRegistryName().toString());
+    }
+
+    @Override
+    protected boolean doInteraction(TileCrafting tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      if (!world.isRemote) {
+        heldItem.damageItem(1, player);
+        world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_HIT, SoundCategory.BLOCKS, 1, 1);
+
+        IRecipe recipe = CraftingManager.findMatchingRecipe(this.wrapper, world);
+
+        if (recipe != null) {
+          tile.recipeProgress.add(1f / ModulePyrotechConfig.CRAFTING.HITS_PER_CRAFT);
+
+          if (tile.recipeProgress.get() >= 0.9999) {
+            tile.recipeProgress.set(0);
+
+            NonNullList<ItemStack> remainingItems = recipe.getRemainingItems(this.wrapper);
+
+            for (int slot = 0; slot < 9; slot++) {
+              ItemStack remainingItemStack = remainingItems.get(slot);
+              ItemStack stackInSlot = tile.inputStackHandler.getStackInSlot(slot);
+
+              if (!remainingItemStack.isEmpty()) {
+
+                if (remainingItemStack.getItem() != stackInSlot.getItem()) {
+                  StackHelper.spawnStackOnTop(world, remainingItemStack, tile.getPos(), 0.75);
+                  StackHelper.decreaseStackInSlot(tile.inputStackHandler, slot, 1, true);
+
+                } else {
+                  tile.inputStackHandler.setStackInSlot(slot, remainingItemStack);
+                }
+
+              } else {
+                StackHelper.decreaseStackInSlot(tile.inputStackHandler, slot, 1, true);
+              }
+            }
+
+            ItemStack result = recipe.getRecipeOutput().copy();
+            StackHelper.spawnStackOnTop(world, result, tile.getPos(), 0.75);
+          }
+        }
+      }
+
+      return true;
+    }
+  }
+
   private class InputInteraction
       extends InteractionItemStack<TileCrafting> {
 
@@ -147,6 +240,14 @@ public class TileCrafting
               Transform.scale(0.20, 0.20, 0.20)
           )
       );
+    }
+
+    @Override
+    protected boolean doItemStackValidation(ItemStack itemStack) {
+
+      Item item = itemStack.getItem();
+      ResourceLocation registryName = item.getRegistryName();
+      return !ArrayHelper.contains(ModulePyrotechConfig.CRAFTING.HAMMER_LIST, registryName.toString());
     }
 
     @Override
@@ -199,6 +300,55 @@ public class TileCrafting
     /* package */ ShelfStackHandler() {
 
       super(3);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Inventory
+  // ---------------------------------------------------------------------------
+
+  private class InventoryWrapper
+      extends InventoryCrafting {
+
+    private final TileCrafting tile;
+
+    public InventoryWrapper(TileCrafting tile) {
+
+      super(new Container() {
+
+        @Override
+        public boolean canInteractWith(@Nonnull EntityPlayer player) {
+
+          return true;
+        }
+      }, 3, 3);
+
+      this.tile = tile;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getStackInSlot(int index) {
+
+      if (index >= this.getSizeInventory()) {
+        return ItemStack.EMPTY;
+      }
+
+      return this.tile.inputStackHandler.getStackInSlot(index);
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getStackInRowAndColumn(int row, int column) {
+
+      int index = row + column * 3;
+      return this.tile.inputStackHandler.getStackInSlot(index);
+    }
+
+    @Override
+    public void markDirty() {
+
+      this.tile.markDirty();
     }
   }
 
