@@ -10,8 +10,8 @@
       "data": 2
     },
     "T": {
-      "item": "minecraft:stick",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
     }
   },
   "result": {
