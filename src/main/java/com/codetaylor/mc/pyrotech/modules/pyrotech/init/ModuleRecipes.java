@@ -3,8 +3,11 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
+import net.minecraft.block.BlockStone;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -29,6 +32,8 @@ public class ModuleRecipes {
 
   public static void onRegisterGraniteAnvilRecipes(IForgeRegistry<GraniteAnvilRecipe> registry) {
 
+    // --- Pickaxe Recipes ---
+
     // Stone Bricks
     registry.register(new GraniteAnvilRecipe(
         ItemMaterial.EnumType.BRICK_STONE.asStack(4),
@@ -36,6 +41,114 @@ public class ModuleRecipes {
         8,
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "brick_stone"));
+
+    // --- Hammer Recipes ---
+
+    // Stone to cobblestone
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Blocks.COBBLESTONE),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.STONE.getMetadata())),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_to_cobbled"));
+
+    // Andesite to cobbled andesite
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.ANDESITE.getMetadata())),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "andesite_to_cobbled"));
+
+    // Diorite to cobbled diorite
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.DIORITE.getMetadata())),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "diorite_to_cobbled"));
+
+    // Granite to cobbled granite
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.GRANITE.getMetadata())),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "granite_to_cobbled"));
+
+    // Limestone to cobbled limestone
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.LIMESTONE)),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "limestone_to_cobbled"));
+
+    // Cobblestone to rocks
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(ModuleBlocks.ROCK, 8, BlockRock.EnumType.STONE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE)),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "cobblestone_to_rocks"));
+
+    // Cobbled andesite to rocks
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(ModuleBlocks.ROCK, 8, BlockRock.EnumType.ANDESITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "cobbled_andesite_to_rocks"));
+
+    // Cobbled diorite to rocks
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(ModuleBlocks.ROCK, 8, BlockRock.EnumType.DIORITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "cobbled_diorite_to_rocks"));
+
+    // Cobbled granite to rocks
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(ModuleBlocks.ROCK, 8, BlockRock.EnumType.GRANITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "cobbled_granite_to_rocks"));
+
+    // Cobbled limestone to rocks
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(ModuleBlocks.ROCK, 8, BlockRock.EnumType.LIMESTONE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta())),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "cobbled_limestone_to_rocks"));
+
+    // Coal block to coal
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Items.COAL, 9),
+        Ingredient.fromStacks(new ItemStack(Blocks.COAL_BLOCK)),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_block_to_coal"));
+
+    // Coal to coal piece
+    // TODO
+    /*registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Items.COAL, 9),
+        Ingredient.fromStacks(new ItemStack(Blocks.COAL_BLOCK)),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_block_to_coal"));*/
+
+    // Coal coke block to coal coke
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.COAL_COKE.asStack(9),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COAL_COKE_BLOCK)),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_coke_block_to_coal_coke"));
+
   }
 
   public static void onRegisterChoppingBlockRecipes(IForgeRegistry<ChoppingBlockRecipe> registry) {

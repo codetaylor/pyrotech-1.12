@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OLO",
+    "LSL",
+    "OLO"
+  ],
+  "key": {
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "slabWood"
+    },
+    "O": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    },
+    "L": {
+      "item": "minecraft:ladder",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:wood_rack",
+    "count": 1,
+    "data": 0
+  }
+}

@@ -1,22 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " A ",
-    "AGA",
-    " A "
+    "R",
+    "S",
+    "S"
   ],
   "key": {
-    "A": {
+    "R": {
       "item": "pyrotech:material",
-      "data": 5
+      "data": 11
     },
-    "G": {
+    "S": {
       "type": "forge:ore_dict",
-      "ore": "blockGlass"
+      "ore": "stickWood"
     }
   },
   "result": {
-    "item": "pyrotech:refractory_glass",
+    "item": "pyrotech:bone_shovel",
     "count": 1,
     "data": 0
   }
