@@ -30,7 +30,31 @@ public class ModulePyrotechConfig {
         "minecraft:wooden_axe",
         "minecraft:wooden_hoe",
         "minecraft:wooden_pickaxe",
-        "minecraft:wooden_shovel"
+        "minecraft:wooden_shovel",
+
+        "minecraft:oak_planks",
+        "minecraft:spruce_planks",
+        "minecraft:birch_planks",
+        "minecraft:jungle_planks",
+        "minecraft:acacia_planks",
+        "minecraft:dark_oak_planks",
+
+        "minecraft:oak_wooden_slab",
+        "minecraft:spruce_wooden_slab",
+        "minecraft:birch_wooden_slab",
+        "minecraft:jungle_wooden_slab",
+        "minecraft:acacia_wooden_slab",
+        "minecraft:dark_oak_wooden_slab",
+
+        "minecraft:stone_slab",
+        "minecraft:sandstone_slab",
+        "minecraft:cobblestone_slab",
+        "minecraft:brick_slab",
+        "minecraft:stone_brick_slab",
+        "minecraft:nether_brick_slab",
+        "minecraft:quartz_slab",
+        "minecraft:red_sandstone_slab",
+        "minecraft:purpur_slab"
     };
   }
 

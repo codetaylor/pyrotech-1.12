@@ -16,10 +16,11 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
-public class ModuleRecipes {
+public final class ModuleRecipes {
 
   public static void onRegisterRecipes(IForgeRegistry<IRecipe> registry) {
 
@@ -34,13 +35,113 @@ public class ModuleRecipes {
 
     // --- Pickaxe Recipes ---
 
-    // Stone Bricks
+    // Individual Stone Bricks
     registry.register(new GraniteAnvilRecipe(
-        ItemMaterial.EnumType.BRICK_STONE.asStack(4),
-        Ingredient.fromStacks(new ItemStack(Blocks.STONE)),
+        ItemMaterial.EnumType.BRICK_STONE.asStack(2),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.STONE_SLAB, 1, 5)
+        ),
         8,
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "brick_stone"));
+
+    // Slabs
+
+    // Stone Brick Slab
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Blocks.STONE_SLAB, 2, 5),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.STONEBRICK)
+        ),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_brick_slab"));
+
+    // Cobblestone Slab
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Blocks.STONE_SLAB, 2, 3),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.COBBLESTONE)
+        ),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "cobblestone_slab"));
+
+    // Stone Slab
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Blocks.STONE_SLAB, 2, 0),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.STONE)
+        ),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_slab"));
+
+    // Sandstone Slab
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Blocks.STONE_SLAB, 2, 1),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.SANDSTONE, 1, 0),
+            new ItemStack(Blocks.SANDSTONE, 1, 1),
+            new ItemStack(Blocks.SANDSTONE, 1, 2)
+        ),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "sandstone_slab"));
+
+    // Red Sandstone Slab
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Blocks.STONE_SLAB2, 2, 0),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.RED_SANDSTONE, 1, 0),
+            new ItemStack(Blocks.RED_SANDSTONE, 1, 1),
+            new ItemStack(Blocks.RED_SANDSTONE, 1, 2)
+        ),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "red_sandstone_slab"));
+
+    // Brick Slab
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Blocks.STONE_SLAB, 2, 4),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.BRICK_BLOCK)
+        ),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "brick_slab"));
+
+    // Nether Brick Slab
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Blocks.STONE_SLAB, 2, 6),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.NETHER_BRICK)
+        ),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "nether_brick_slab"));
+
+    // Quartz Slab
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Blocks.STONE_SLAB, 2, 7),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0),
+            new ItemStack(Blocks.QUARTZ_BLOCK, 1, 1),
+            new ItemStack(Blocks.QUARTZ_BLOCK, 1, 2)
+        ),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "quartz_slab"));
+
+    // Purpur Slab
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Blocks.PURPUR_SLAB, 2, 0),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.PURPUR_BLOCK, 1, 0)
+        ),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "purpur_slab"));
 
     // --- Hammer Recipes ---
 
@@ -268,7 +369,7 @@ public class ModuleRecipes {
     // Quicklime
     registry.register(new KilnPitRecipe(
         new ItemStack(ModuleItems.QUICKLIME, 1, 0),
-        Ingredient.fromStacks(new ItemStack(ModuleBlocks.LIMESTONE)),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
         10 * 60 * 20,
         0.33f,
         new ItemStack[]{
@@ -296,7 +397,7 @@ public class ModuleRecipes {
     // Quicklime
     registry.register(new KilnStoneRecipe(
         new ItemStack(ModuleItems.QUICKLIME, 1, 0),
-        Ingredient.fromStacks(new ItemStack(ModuleBlocks.LIMESTONE)),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
         8 * 60 * 20,
         0.05f,
         new ItemStack[]{
@@ -342,5 +443,9 @@ public class ModuleRecipes {
         12 * 60 * 20
     ).setRegistryName(ModulePyrotech.MOD_ID, "plant_fibers_dried"));
 
+  }
+
+  private ModuleRecipes() {
+    //
   }
 }

@@ -11,12 +11,12 @@
     },
     {
       "item": "pyrotech:material",
-      "data": 13
+      "data": 14
     }
   ],
   "result": {
     "item": "pyrotech:material",
-    "count": 3,
-    "data": 14
+    "count": 1,
+    "data": 2
   }
 }

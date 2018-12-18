@@ -2,22 +2,22 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "RRR",
-    " S ",
-    " S "
+    "RCR",
+    "RRR"
   ],
   "key": {
-    "R": {
+    "C": {
       "item": "pyrotech:material",
-      "data": 10
+      "data": 17
     },
-    "S": {
-      "type": "forge:ore_dict",
-      "ore": "stickWood"
+    "R": {
+      "item": "pyrotech:rock",
+      "data": 1
     }
   },
   "result": {
-    "item": "pyrotech:flint_pickaxe",
+    "item": "pyrotech:cobblestone",
     "count": 1,
-    "data": 0
+    "data": 2
   }
 }
