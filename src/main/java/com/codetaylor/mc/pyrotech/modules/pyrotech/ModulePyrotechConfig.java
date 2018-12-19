@@ -46,6 +46,12 @@ public class ModulePyrotechConfig {
         "minecraft:acacia_wooden_slab",
         "minecraft:dark_oak_wooden_slab",
 
+        "minecraft:stone_axe",
+        "minecraft:stone_pickaxe",
+        "minecraft:stone_hoe",
+        "minecraft:stone_shovel",
+        "minecraft:stone_sword",
+
         "minecraft:stone_slab",
         "minecraft:sandstone_slab",
         "minecraft:cobblestone_slab",

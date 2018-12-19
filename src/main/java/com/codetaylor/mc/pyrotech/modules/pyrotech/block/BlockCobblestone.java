@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -115,6 +116,16 @@ public class BlockCobblestone
     public String getName() {
 
       return this.name;
+    }
+
+    public ItemStack asStack() {
+
+      return this.asStack(1);
+    }
+
+    public ItemStack asStack(int amount) {
+
+      return new ItemStack(ModuleBlocks.COBBLESTONE, amount, this.getMeta());
     }
 
     public static EnumType fromMeta(int meta) {

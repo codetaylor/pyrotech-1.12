@@ -180,6 +180,7 @@ public class ModulePyrotech
     super.onRegisterRecipesEvent(event);
 
     ModuleRecipes.onRegisterRecipes(event.getRegistry());
+    ModuleRecipes.onRegisterFurnaceRecipes();
     ModuleRecipes.onRegisterPitBurnRecipes(ModulePyrotechRegistries.BURN_RECIPE);
     ModuleRecipes.onRegisterKilnPitRecipes(ModulePyrotechRegistries.KILN_PIT_RECIPE);
     ModuleRecipes.onRegisterKilnBrickRecipe(ModulePyrotechRegistries.KILN_BRICK_RECIPE);

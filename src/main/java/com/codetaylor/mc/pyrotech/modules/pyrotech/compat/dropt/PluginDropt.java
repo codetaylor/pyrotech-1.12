@@ -65,6 +65,8 @@ public class PluginDropt {
     String grass = item("minecraft", "grass");
     String gravel = item("minecraft", "gravel");
     String tallGrassAny = item("minecraft", "tallgrass", OreDictionary.WILDCARD_VALUE);
+    String leaves = item("minecraft", "leaves", OreDictionary.WILDCARD_VALUE);
+    String stick = item("minecraft", "stick");
 
     String flint = item("minecraft", "flint");
     String boneMeal = item("minecraft", "dye", 15);
@@ -96,6 +98,21 @@ public class PluginDropt {
         .addDrops(new IDroptDropBuilder[]{
             drop().selector(weight(85)),
             drop().items(new String[]{plantFibers}, range(1, 2)).selector(weight(15))
+        })
+    );
+
+    // -------------------------------------------------------------------------
+    // - Leaves
+    // -------------------------------------------------------------------------
+
+    list.add(rule()
+        .matchBlocks(new String[]{
+            leaves
+        })
+        .replaceStrategy(EnumReplaceStrategy.ADD)
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{stick}).selector(weight(1)),
+            drop().selector(weight(2))
         })
     );
 

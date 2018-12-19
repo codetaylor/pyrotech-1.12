@@ -11,6 +11,7 @@ import net.minecraft.block.BlockStone;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -29,6 +30,33 @@ public final class ModuleRecipes {
     for (String resourceName : ModulePyrotechConfig.RECIPES.VANILLA_REMOVE) {
       modifiableRegistry.remove(new ResourceLocation(resourceName));
     }
+  }
+
+  public static void onRegisterFurnaceRecipes() {
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        BlockCobblestone.EnumType.ANDESITE.asStack(),
+        new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.ANDESITE.getMetadata()),
+        0.1f
+    );
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        BlockCobblestone.EnumType.GRANITE.asStack(),
+        new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.GRANITE.getMetadata()),
+        0.1f
+    );
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        BlockCobblestone.EnumType.DIORITE.asStack(),
+        new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.DIORITE.getMetadata()),
+        0.1f
+    );
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        BlockCobblestone.EnumType.LIMESTONE.asStack(),
+        new ItemStack(ModuleBlocks.LIMESTONE),
+        0.1f
+    );
   }
 
   public static void onRegisterGraniteAnvilRecipes(IForgeRegistry<GraniteAnvilRecipe> registry) {

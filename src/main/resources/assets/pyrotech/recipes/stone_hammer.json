@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " RF",
+    " SR",
+    "S  "
+  ],
+  "key": {
+    "R": {
+      "item": "pyrotech:material",
+      "data": 16
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "F": {
+      "type": "forge:ore_dict",
+      "ore": "twine"
+    }
+  },
+  "result": {
+    "item": "pyrotech:stone_hammer",
+    "count": 1,
+    "data": 0
+  }
+}
