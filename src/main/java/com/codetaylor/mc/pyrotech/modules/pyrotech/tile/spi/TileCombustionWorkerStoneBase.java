@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
@@ -11,14 +11,14 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -39,8 +39,10 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
-public abstract class TileHeaterStoneBase
+public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipeBase<E>>
     extends TileCombustionWorkerBase
     implements ITickable,
     ITileInteractable {
@@ -57,7 +59,7 @@ public abstract class TileHeaterStoneBase
 
   private IInteraction[] interactions;
 
-  public TileHeaterStoneBase() {
+  public TileCombustionWorkerStoneBase() {
 
     // --- Init ---
 
@@ -67,7 +69,7 @@ public abstract class TileHeaterStoneBase
 
     // --- Stack Handlers ---
 
-    this.inputStackHandler = new InputStackHandler(1);
+    this.inputStackHandler = new InputStackHandler(this, 1);
     this.inputStackHandler.addObserver((handler, slot) -> {
       this.recalculateRemainingTime(handler.getStackInSlot(slot));
       this.markDirty();
@@ -101,15 +103,19 @@ public abstract class TileHeaterStoneBase
 
     this.interactions = new IInteraction[]{
         new InteractionUseFlintAndSteel(),
-        new Interaction(new ItemStackHandler[]{
-            TileHeaterStoneBase.this.inputStackHandler,
-            TileHeaterStoneBase.this.outputStackHandler
+        new Interaction(this, new ItemStackHandler[]{
+            TileCombustionWorkerStoneBase.this.inputStackHandler,
+            TileCombustionWorkerStoneBase.this.outputStackHandler
         }),
         new InteractionFuel(new ItemStackHandler[]{
-            TileHeaterStoneBase.this.fuelStackHandler
+            TileCombustionWorkerStoneBase.this.fuelStackHandler
         })
     };
   }
+
+  protected abstract E getRecipe(ItemStack itemStack);
+
+  protected abstract List<ItemStack> getRecipeOutput(E recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks);
 
   // ---------------------------------------------------------------------------
   // - Network
@@ -216,7 +222,7 @@ public abstract class TileHeaterStoneBase
       return 0;
     }
 
-    KilnStoneRecipe recipe = KilnStoneRecipe.getRecipe(itemStack);
+    E recipe = this.getRecipe(itemStack);
 
     if (recipe == null) {
       // Should never happen because we filter items on input.
@@ -234,13 +240,13 @@ public abstract class TileHeaterStoneBase
     if (active && !super.workerIsActive()) {
 
       if (this.hasFuel()) {
-        blockState = blockState.withProperty(BlockKilnStone.TYPE, BlockKilnStone.EnumType.BottomLit);
+        blockState = blockState.withProperty(BlockCombustionWorkerStoneBase.TYPE, BlockCombustionWorkerStoneBase.EnumType.BottomLit);
         this.world.setBlockState(this.pos, blockState, 3);
         super.workerSetActive(true);
       }
 
     } else if (!active && super.workerIsActive()) {
-      blockState = blockState.withProperty(BlockKilnStone.TYPE, BlockKilnStone.EnumType.Bottom);
+      blockState = blockState.withProperty(BlockCombustionWorkerStoneBase.TYPE, BlockCombustionWorkerStoneBase.EnumType.Bottom);
       this.world.setBlockState(this.pos, blockState, 3);
       super.workerSetActive(false);
     }
@@ -288,32 +294,15 @@ public abstract class TileHeaterStoneBase
     // set stack handler items to recipe result
 
     ItemStack input = this.inputStackHandler.getStackInSlot(0);
-    KilnStoneRecipe recipe = KilnStoneRecipe.getRecipe(input);
+    E recipe = this.getRecipe(input);
 
     if (recipe != null) {
-      ItemStack output = recipe.getOutput();
-      output.setCount(1);
       this.inputStackHandler.setStackInSlot(0, ItemStack.EMPTY);
 
-      ItemStack[] failureItems = recipe.getFailureItems();
-      float failureChance = recipe.getFailureChance();
+      List<ItemStack> outputItems = this.getRecipeOutput(recipe, input, new ArrayList<>());
 
-      for (int i = 0; i < input.getCount(); i++) {
-
-        if (Util.RANDOM.nextFloat() < failureChance) {
-
-          if (failureItems.length > 0) {
-            ItemStack failureItemStack = failureItems[Util.RANDOM.nextInt(failureItems.length)].copy();
-            failureItemStack.setCount(1);
-            this.insertOutputItem(failureItemStack);
-
-          } else {
-            this.insertOutputItem(ItemMaterial.EnumType.PIT_ASH.asStack(input.getCount()));
-          }
-
-        } else {
-          this.insertOutputItem(output.copy());
-        }
+      for (ItemStack outputItem : outputItems) {
+        this.insertOutputItem(outputItem);
       }
     }
   }
@@ -332,7 +321,7 @@ public abstract class TileHeaterStoneBase
       this.setRemainingRecipeTimeTicks(0);
 
     } else {
-      KilnStoneRecipe recipe = KilnStoneRecipe.getRecipe(itemStack);
+      StoneMachineRecipeBase<E> recipe = this.getRecipe(itemStack);
 
       if (recipe != null) {
         this.setRemainingRecipeTimeTicks(recipe.getTimeTicks());
@@ -448,9 +437,11 @@ public abstract class TileHeaterStoneBase
   }
 
   private class Interaction
-      extends InteractionItemStack<TileHeaterStoneBase> {
+      extends InteractionItemStack<TileCombustionWorkerStoneBase> {
 
-    /* package */ Interaction(ItemStackHandler[] stackHandlers) {
+    private final TileCombustionWorkerStoneBase<E> tile;
+
+    /* package */ Interaction(TileCombustionWorkerStoneBase<E> tile, ItemStackHandler[] stackHandlers) {
 
       super(
           stackHandlers,
@@ -463,12 +454,13 @@ public abstract class TileHeaterStoneBase
               Transform.scale(0.5, 0.5, 0.5)
           )
       );
+      this.tile = tile;
     }
 
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (KilnStoneRecipe.getRecipe(itemStack) != null);
+      return (this.tile.getRecipe(itemStack) != null);
     }
 
     @Override
@@ -494,7 +486,7 @@ public abstract class TileHeaterStoneBase
   }
 
   private class InteractionFuel
-      extends InteractionItemStack<TileHeaterStoneBase> {
+      extends InteractionItemStack<TileCombustionWorkerStoneBase> {
 
     /* package */ InteractionFuel(ItemStackHandler[] stackHandlers) {
 
@@ -520,7 +512,7 @@ public abstract class TileHeaterStoneBase
   }
 
   private class InteractionUseFlintAndSteel
-      extends InteractionUseItemBase<TileHeaterStoneBase> {
+      extends InteractionUseItemBase<TileCombustionWorkerStoneBase> {
 
     /* package */ InteractionUseFlintAndSteel() {
 
@@ -528,13 +520,13 @@ public abstract class TileHeaterStoneBase
     }
 
     @Override
-    protected boolean allowInteraction(TileHeaterStoneBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean allowInteraction(TileCombustionWorkerStoneBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       return (player.getHeldItem(hand).getItem() == Items.FLINT_AND_STEEL);
     }
 
     @Override
-    protected boolean doInteraction(TileHeaterStoneBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean doInteraction(TileCombustionWorkerStoneBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (!world.isRemote) {
         tile.workerSetActive(true);
@@ -561,9 +553,12 @@ public abstract class TileHeaterStoneBase
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    /* package */ InputStackHandler(int size) {
+    private final TileCombustionWorkerStoneBase<E> tile;
+
+    /* package */ InputStackHandler(TileCombustionWorkerStoneBase<E> tile, int size) {
 
       super(size);
+      this.tile = tile;
     }
 
     @Override
@@ -578,10 +573,10 @@ public abstract class TileHeaterStoneBase
 
       // Filter out non-recipe items.
 
-      KilnStoneRecipe recipe = KilnStoneRecipe.getRecipe(stack);
+      StoneMachineRecipeBase<E> recipe = this.tile.getRecipe(stack);
 
       if (recipe == null
-          || !TileHeaterStoneBase.this.getOutputStackHandler().getStackInSlot(0).isEmpty()) {
+          || !TileCombustionWorkerStoneBase.this.getOutputStackHandler().getStackInSlot(0).isEmpty()) {
         return stack;
       }
 
