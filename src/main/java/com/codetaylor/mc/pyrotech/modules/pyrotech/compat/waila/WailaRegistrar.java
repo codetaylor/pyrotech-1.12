@@ -33,7 +33,7 @@ public class WailaRegistrar {
 
     KilnStone kiLnStone = new KilnStone();
     registrar.registerBodyProvider(kiLnStone, TileKilnStone.class);
-    registrar.registerBodyProvider(kiLnStone, TileKilnStoneTop.class);
+    registrar.registerBodyProvider(kiLnStone, TileStoneTop.class);
 
     Campfire campfire = new Campfire();
     registrar.registerBodyProvider(campfire, TileCampfire.class);

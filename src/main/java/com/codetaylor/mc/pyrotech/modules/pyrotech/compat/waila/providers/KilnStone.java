@@ -7,8 +7,9 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnStone;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnStoneTop;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
@@ -61,7 +62,7 @@ public class KilnStone
     TileEntity tileEntity = accessor.getTileEntity();
 
     if (tileEntity instanceof TileKilnStone
-        || tileEntity instanceof TileKilnStoneTop) {
+        || tileEntity instanceof TileStoneTop) {
 
       TileKilnStone tileKiln = null;
 
@@ -102,7 +103,7 @@ public class KilnStone
           renderString.append(WailaUtil.getStackRenderString(fuel));
         }
 
-        KilnStoneRecipe recipe = KilnStoneRecipe.getRecipe(input);
+        StoneMachineRecipeBase recipe = KilnStoneRecipe.getRecipe(input);
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();

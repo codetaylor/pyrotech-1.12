@@ -87,7 +87,7 @@ public class ModuleBlocks {
         TileKilnBrick.class,
         TileKilnBrickTop.class,
         TileKilnStone.class,
-        TileKilnStoneTop.class,
+        TileStoneTop.class,
         TileCampfire.class,
         TileDryingRack.class,
         TileDryingRackCrude.class,
