@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -20,10 +21,10 @@ public class OvenStoneRecipe
 
   public static OvenStoneRecipe getRecipe(ItemStack itemStack) {
 
-    ItemStack smeltingResult = FurnaceRecipes.instance().getSmeltingResult(itemStack);
+    ItemStack result = FurnaceRecipes.instance().getSmeltingResult(itemStack);
 
-    if (smeltingResult.isEmpty()
-        || !(smeltingResult.getItem() instanceof ItemFood)) {
+    if (result.isEmpty()
+        || !(result.getItem() instanceof ItemFood)) {
       return null;
     }
 
@@ -32,7 +33,7 @@ public class OvenStoneRecipe
     OvenStoneRecipe recipe = RECIPES.get(key);
 
     if (recipe == null) {
-      recipe = new OvenStoneRecipe(Ingredient.fromStacks(itemStack), smeltingResult, 60 * 20);
+      recipe = new OvenStoneRecipe(Ingredient.fromStacks(itemStack), result, ModulePyrotechConfig.STONE_OVEN.COOK_TIME_TICKS);
       RECIPES.put(key, recipe);
     }
 

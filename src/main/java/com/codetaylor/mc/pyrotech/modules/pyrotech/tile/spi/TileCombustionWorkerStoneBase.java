@@ -10,7 +10,6 @@ import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
@@ -113,7 +112,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     };
   }
 
-  protected abstract E getRecipe(ItemStack itemStack);
+  public abstract E getRecipe(ItemStack itemStack);
 
   protected abstract List<ItemStack> getRecipeOutput(E recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks);
 
@@ -263,7 +262,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
         && !this.inputStackHandler.getStackInSlot(0).isEmpty()) {
       this.dormantCounter = DORMANT_COUNTER;
 
-    } else if (ModulePyrotechConfig.STONE_KILN.KEEP_HEAT
+    } else if (this.shouldKeepHeat()
         && this.dormantCounter > 0) {
 
       this.dormantCounter -= 1;
@@ -284,6 +283,8 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     return true;
   }
+
+  protected abstract boolean shouldKeepHeat();
 
   // ---------------------------------------------------------------------------
   // - Recipe
@@ -564,7 +565,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     @Override
     protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
 
-      return MathHelper.clamp(ModulePyrotechConfig.STONE_KILN.INPUT_SLOT_SIZE, 1, 64);
+      return MathHelper.clamp(getInputSlotSize(), 1, 64);
     }
 
     @Nonnull
@@ -583,6 +584,8 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
       return super.insertItem(slot, stack, simulate);
     }
   }
+
+  protected abstract int getInputSlotSize();
 
   private class OutputStackHandler
       extends ObservableStackHandler
@@ -606,7 +609,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     @Override
     protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
 
-      return MathHelper.clamp(ModulePyrotechConfig.STONE_KILN.FUEL_SLOT_SIZE, 1, 64);
+      return MathHelper.clamp(getFuelSlotSize(), 1, 64);
     }
 
     @Nonnull
@@ -624,4 +627,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     }
 
   }
+
+  protected abstract int getFuelSlotSize();
 }

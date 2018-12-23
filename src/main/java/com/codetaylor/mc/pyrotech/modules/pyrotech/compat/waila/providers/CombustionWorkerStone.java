@@ -10,6 +10,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnStoneRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnStone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
@@ -24,7 +25,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class KilnStone
+public class CombustionWorkerStone
     implements IWailaDataProvider {
 
   @Nonnull
@@ -61,32 +62,32 @@ public class KilnStone
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileKilnStone
+    if (tileEntity instanceof TileCombustionWorkerStoneBase
         || tileEntity instanceof TileStoneTop) {
 
-      TileKilnStone tileKiln = null;
+      TileCombustionWorkerStoneBase tile = null;
 
-      if (tileEntity instanceof TileKilnStone) {
-        tileKiln = (TileKilnStone) tileEntity;
+      if (tileEntity instanceof TileCombustionWorkerStoneBase) {
+        tile = (TileCombustionWorkerStoneBase) tileEntity;
 
       } else {
         World world = tileEntity.getWorld();
         TileEntity candidate = world.getTileEntity(tileEntity.getPos().down());
 
-        if (candidate instanceof TileKilnStone) {
-          tileKiln = (TileKilnStone) candidate;
+        if (candidate instanceof TileCombustionWorkerStoneBase) {
+          tile = (TileCombustionWorkerStoneBase) candidate;
         }
       }
 
-      if (tileKiln == null) {
+      if (tile == null) {
         return tooltip;
       }
 
-      float progress = tileKiln.workerGetProgress(0);
+      float progress = tile.workerGetProgress(0);
 
-      ItemStackHandler stackHandler = tileKiln.getInputStackHandler();
-      ItemStackHandler outputStackHandler = tileKiln.getOutputStackHandler();
-      ItemStackHandler fuelStackHandler = tileKiln.getFuelStackHandler();
+      ItemStackHandler stackHandler = tile.getInputStackHandler();
+      ItemStackHandler outputStackHandler = tile.getOutputStackHandler();
+      ItemStackHandler fuelStackHandler = tile.getFuelStackHandler();
 
       ItemStack input = stackHandler.getStackInSlot(0);
       boolean hasOutput = !outputStackHandler.getStackInSlot(0).isEmpty();
@@ -103,7 +104,7 @@ public class KilnStone
           renderString.append(WailaUtil.getStackRenderString(fuel));
         }
 
-        StoneMachineRecipeBase recipe = KilnStoneRecipe.getRecipe(input);
+        StoneMachineRecipeBase recipe = tile.getRecipe(input);
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();
@@ -135,11 +136,11 @@ public class KilnStone
       }
 
       {
-        if (tileKiln.combustionGetBurnTimeRemaining() > 0) {
-          ItemStack fuelStack = tileKiln.getFuelStackHandler().getStackInSlot(0);
+        if (tile.combustionGetBurnTimeRemaining() > 0) {
+          ItemStack fuelStack = tile.getFuelStackHandler().getStackInSlot(0);
           tooltip.add(Util.translateFormatted(
               "gui." + ModulePyrotech.MOD_ID + ".waila.burn.time",
-              StringHelper.ticksToHMS(tileKiln.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
+              StringHelper.ticksToHMS(tile.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
           ));
         }
 

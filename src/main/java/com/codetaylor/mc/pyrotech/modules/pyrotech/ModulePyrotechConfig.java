@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.config.Config;
@@ -320,21 +319,57 @@ public class ModulePyrotechConfig {
   public static class StoneKiln {
 
     @Config.Comment({
-        "Set to true to deactivate the kiln when a recipe completes.",
-        "The kiln will need to be re-lit when it deactivates.",
+        "Set to true to deactivate when a recipe completes.",
+        "The worker will need to be re-lit when it deactivates.",
         "Default: " + false
     })
     public boolean KEEP_HEAT = false;
 
     @Config.Comment({
-        "Controls the number of recipe items that can be placed in the kiln.",
+        "Controls the number of recipe items that can be inserted.",
         "Range: [1, 64]",
         "Default: " + 8
     })
     public int INPUT_SLOT_SIZE = 8;
 
     @Config.Comment({
-        "Controls the number of fuel items that can be placed in the kiln.",
+        "Controls the number of fuel items that can be inserted.",
+        "Range: [1, 64]",
+        "Default: " + 16
+    })
+    public int FUEL_SLOT_SIZE = 16;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Stone Oven
+  // ---------------------------------------------------------------------------
+
+  public static StoneOven STONE_OVEN = new StoneOven();
+
+  public static class StoneOven {
+
+    @Config.Comment({
+        "Set to true to deactivate when a recipe completes.",
+        "The worker will need to be re-lit when it deactivates.",
+        "Default: " + false
+    })
+    public boolean KEEP_HEAT = false;
+
+    @Config.Comment({
+        "Time to cook the entire input stack in ticks.",
+        "Default: " + (80 * 20)
+    })
+    public int COOK_TIME_TICKS = 80 * 20;
+
+    @Config.Comment({
+        "Controls the number of recipe items that can be inserted.",
+        "Range: [1, 64]",
+        "Default: " + 8
+    })
+    public int INPUT_SLOT_SIZE = 8;
+
+    @Config.Comment({
+        "Controls the number of fuel items that can be inserted.",
         "Range: [1, 64]",
         "Default: " + 16
     })
