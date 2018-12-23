@@ -76,6 +76,14 @@ public class BlockRock //'n beats
     return true;
   }
 
+  @Override
+  public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos) {
+
+    if (!this.canPlaceBlockAt(world, pos)) {
+      world.destroyBlock(pos, true);
+    }
+  }
+
   // ---------------------------------------------------------------------------
   // - Rendering
   // ---------------------------------------------------------------------------
