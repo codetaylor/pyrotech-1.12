@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
@@ -329,19 +328,7 @@ public abstract class BlockCombustionWorkerStoneBase
           && ((TileCombustionWorkerStoneBase) tileEntity).hasFuel()
           && !((TileCombustionWorkerStoneBase) tileEntity).getInputStackHandler().getStackInSlot(0).isEmpty()) {
 
-        double centerX = pos.getX() + 0.5;
-        double centerY = pos.getY() + 0.25;
-        double centerZ = pos.getZ() + 0.5;
-
-        world.spawnParticle(
-            EnumParticleTypes.SMOKE_LARGE,
-            centerX + (Util.RANDOM.nextDouble() - 0.5),
-            centerY,
-            centerZ + (Util.RANDOM.nextDouble() - 0.5),
-            0,
-            0.05 + (Util.RANDOM.nextFloat() * 2 - 1) * 0.05,
-            0
-        );
+        this.randomDisplayTickWorkingTop(state, world, pos, rand);
       }
 
     } else {
@@ -383,6 +370,8 @@ public abstract class BlockCombustionWorkerStoneBase
       }
     }
   }
+
+  protected abstract void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand);
 
   // ---------------------------------------------------------------------------
   // - Variants

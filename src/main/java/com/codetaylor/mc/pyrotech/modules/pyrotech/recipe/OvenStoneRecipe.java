@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.Ingredient;
@@ -12,7 +13,7 @@ public class OvenStoneRecipe
 
   private static final Map<String, OvenStoneRecipe> RECIPES = new HashMap<>();
 
-  public OvenStoneRecipe(Ingredient input, ItemStack output, int timeTicks) {
+  private OvenStoneRecipe(Ingredient input, ItemStack output, int timeTicks) {
 
     super(input, output, timeTicks);
   }
@@ -21,7 +22,8 @@ public class OvenStoneRecipe
 
     ItemStack smeltingResult = FurnaceRecipes.instance().getSmeltingResult(itemStack);
 
-    if (smeltingResult.isEmpty()) {
+    if (smeltingResult.isEmpty()
+        || !(smeltingResult.getItem() instanceof ItemFood)) {
       return null;
     }
 
@@ -30,7 +32,7 @@ public class OvenStoneRecipe
     OvenStoneRecipe recipe = RECIPES.get(key);
 
     if (recipe == null) {
-      recipe = new OvenStoneRecipe(Ingredient.fromStacks(itemStack), smeltingResult, 100);
+      recipe = new OvenStoneRecipe(Ingredient.fromStacks(itemStack), smeltingResult, 60 * 20);
       RECIPES.put(key, recipe);
     }
 
