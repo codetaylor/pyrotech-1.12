@@ -1,11 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrick;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnStone;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -85,7 +87,7 @@ public abstract class ItemIgniterBase
         Block block = world.getBlockState(pos).getBlock();
 
         if (block == ModuleBlocks.KILN_BRICK
-            || block == ModuleBlocks.KILN_STONE
+            || block instanceof BlockCombustionWorkerStoneBase
             || block == ModuleBlocks.CAMPFIRE) {
 
           // TODO: Abstract
@@ -98,8 +100,8 @@ public abstract class ItemIgniterBase
           } else if (tileEntity instanceof TileCampfire) {
             ((TileCampfire) tileEntity).workerSetActive(true);
 
-          } else if (tileEntity instanceof TileKilnStone) {
-            ((TileKilnStone) tileEntity).workerSetActive(true);
+          } else if (tileEntity instanceof TileCombustionWorkerBase) {
+            ((TileCombustionWorkerBase) tileEntity).workerSetActive(true);
           }
 
           world.playSound(

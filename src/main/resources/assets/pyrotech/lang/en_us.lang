@@ -76,6 +76,7 @@ tile.pyrotech.limestone.name=Limestone
 tile.pyrotech.refractory_glass.name=Refractory Glass
 tile.pyrotech.kiln_brick.name=Brick Kiln
 tile.pyrotech.kiln_stone.name=Stone Kiln
+tile.pyrotech.oven_stone.name=Stone Oven
 tile.pyrotech.campfire.name=Campfire
 tile.pyrotech.drying_rack.crude.name=Crude Drying Rack
 tile.pyrotech.drying_rack.normal.name=Drying Rack

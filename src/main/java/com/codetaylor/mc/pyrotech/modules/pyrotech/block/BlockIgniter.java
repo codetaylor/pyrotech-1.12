@@ -2,12 +2,12 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrick;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnStone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTarCollector;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -112,11 +112,11 @@ public class BlockIgniter
       if (Util.canSetFire(world, offset)) {
         world.setBlockState(offset, Blocks.FIRE.getDefaultState(), 3);
 
-      } else if (facingBlock == ModuleBlocks.KILN_STONE) {
+      } else if (facingBlock instanceof BlockCombustionWorkerStoneBase) {
         TileEntity tileEntity = world.getTileEntity(offset);
 
-        if (tileEntity instanceof TileKilnStone) {
-          ((TileKilnStone) tileEntity).workerSetActive(true);
+        if (tileEntity instanceof TileCombustionWorkerBase) {
+          ((TileCombustionWorkerBase) tileEntity).workerSetActive(true);
         }
 
       } else if (facingBlock == ModuleBlocks.KILN_PIT
