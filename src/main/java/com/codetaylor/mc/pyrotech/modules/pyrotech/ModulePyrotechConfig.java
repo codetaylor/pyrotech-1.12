@@ -59,7 +59,9 @@ public class ModulePyrotechConfig {
         "minecraft:nether_brick_slab",
         "minecraft:quartz_slab",
         "minecraft:red_sandstone_slab",
-        "minecraft:purpur_slab"
+        "minecraft:purpur_slab",
+
+        "minecraft:stick"
     };
   }
 

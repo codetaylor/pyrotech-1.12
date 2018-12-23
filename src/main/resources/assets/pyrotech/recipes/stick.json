@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "treeSapling"
+    }
+  ],
+  "result": {
+    "item": "minecraft:stick",
+    "count": 2,
+    "data": 0
+  }
+}
