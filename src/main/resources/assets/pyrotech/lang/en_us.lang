@@ -58,6 +58,11 @@ item.pyrotech.bone.hammer.name=Bone Hammer
 item.pyrotech.iron.hammer.name=Iron Hammer
 item.pyrotech.diamond.hammer.name=Diamond Hammer
 
+item.pyrotech.mill.blade.stone.name=Stone Mill Blade
+item.pyrotech.mill.blade.flint.name=Flint Mill Blade
+item.pyrotech.mill.blade.bone.name=Bone Mill Blade
+item.pyrotech.mill.blade.iron.name=Iron Mill Blade
+item.pyrotech.mill.blade.diamond.name=Diamond Mill Blade
 
 # --- Tiles
 

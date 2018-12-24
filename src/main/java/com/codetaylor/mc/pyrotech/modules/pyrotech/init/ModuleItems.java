@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
+import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
@@ -7,7 +8,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
-import mcp.mobius.waila.utils.ModIdentification;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 @SuppressWarnings("WeakerAccess")
-public class ModuleItems {
+public final class ModuleItems {
 
   public static final ItemMaterial MATERIAL = new ItemMaterial();
   public static final Item QUICKLIME = new ItemQuicklime();
@@ -50,7 +50,19 @@ public class ModuleItems {
   public static final ItemIronHammer IRON_HAMMER = new ItemIronHammer();
   public static final ItemStoneHammer STONE_HAMMER = new ItemStoneHammer();
 
+  public static final ItemMillBlade STONE_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.STONE);
+  public static final ItemMillBlade FLINT_MILL_BLADE = new ItemMillBlade(EnumMaterial.FLINT.getToolMaterial());
+  public static final ItemMillBlade BONE_MILL_BLADE = new ItemMillBlade(EnumMaterial.BONE.getToolMaterial());
+  public static final ItemMillBlade IRON_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.IRON);
+  public static final ItemMillBlade DIAMOND_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.DIAMOND);
+
   public static void onRegister(Registry registry) {
+
+    registry.registerItem(ModuleItems.STONE_MILL_BLADE, "mill_blade_stone");
+    registry.registerItem(ModuleItems.FLINT_MILL_BLADE, "mill_blade_flint");
+    registry.registerItem(ModuleItems.BONE_MILL_BLADE, "mill_blade_bone");
+    registry.registerItem(ModuleItems.IRON_MILL_BLADE, "mill_blade_iron");
+    registry.registerItem(ModuleItems.DIAMOND_MILL_BLADE, "mill_blade_diamond");
 
     registry.registerItem(ModuleItems.MATERIAL, ItemMaterial.NAME);
     registry.registerItem(ModuleItems.QUICKLIME, ItemQuicklime.NAME);
@@ -126,10 +138,16 @@ public class ModuleItems {
           ModuleItems.FLINT_SHOVEL,
 
           ModuleItems.STONE_HAMMER,
-          ModuleItems.IRON_HAMMER,
           ModuleItems.FLINT_HAMMER,
           ModuleItems.BONE_HAMMER,
-          ModuleItems.DIAMOND_HAMMER
+          ModuleItems.IRON_HAMMER,
+          ModuleItems.DIAMOND_HAMMER,
+
+          ModuleItems.STONE_MILL_BLADE,
+          ModuleItems.FLINT_MILL_BLADE,
+          ModuleItems.BONE_MILL_BLADE,
+          ModuleItems.IRON_MILL_BLADE,
+          ModuleItems.DIAMOND_MILL_BLADE
       );
 
       // Rock
@@ -150,5 +168,9 @@ public class ModuleItems {
           ItemMaterial.EnumType.values()
       );
     });
+  }
+
+  private ModuleItems() {
+    //
   }
 }
