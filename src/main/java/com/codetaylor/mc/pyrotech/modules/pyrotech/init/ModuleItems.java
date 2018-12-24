@@ -50,11 +50,11 @@ public final class ModuleItems {
   public static final ItemIronHammer IRON_HAMMER = new ItemIronHammer();
   public static final ItemStoneHammer STONE_HAMMER = new ItemStoneHammer();
 
-  public static final ItemMillBlade STONE_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.STONE);
-  public static final ItemMillBlade FLINT_MILL_BLADE = new ItemMillBlade(EnumMaterial.FLINT.getToolMaterial());
-  public static final ItemMillBlade BONE_MILL_BLADE = new ItemMillBlade(EnumMaterial.BONE.getToolMaterial());
-  public static final ItemMillBlade IRON_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.IRON);
-  public static final ItemMillBlade DIAMOND_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.DIAMOND);
+  public static final ItemMillBlade STONE_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.STONE.getMaxUses() / 2);
+  public static final ItemMillBlade FLINT_MILL_BLADE = new ItemMillBlade(EnumMaterial.FLINT.getToolMaterial().getMaxUses());
+  public static final ItemMillBlade BONE_MILL_BLADE = new ItemMillBlade(EnumMaterial.BONE.getToolMaterial().getMaxUses());
+  public static final ItemMillBlade IRON_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.IRON.getMaxUses());
+  public static final ItemMillBlade DIAMOND_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.DIAMOND.getMaxUses());
 
   public static void onRegister(Registry registry) {
 

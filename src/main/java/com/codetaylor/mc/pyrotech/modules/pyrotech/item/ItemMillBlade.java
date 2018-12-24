@@ -5,9 +5,9 @@ import net.minecraft.item.Item;
 public class ItemMillBlade
     extends Item {
 
-  public ItemMillBlade(ToolMaterial toolMaterial) {
+  public ItemMillBlade(int maxUses) {
 
     this.setMaxStackSize(1);
-    this.setMaxDamage(toolMaterial.getMaxUses());
+    this.setMaxDamage(maxUses);
   }
 }
