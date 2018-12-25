@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
@@ -163,6 +164,11 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     return this.combustionGetBurnTimeRemaining() > 0
         || !this.fuelStackHandler.getStackInSlot(0).isEmpty();
+  }
+
+  protected void addInteractions(IInteraction[] interactions) {
+
+    this.interactions = ArrayHelper.combine(this.interactions, interactions);
   }
 
   // ---------------------------------------------------------------------------
@@ -437,6 +443,11 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
         && blockPos.getZ() == pos.getZ();
   }
 
+  protected EnumFacing[] getInputInteractionSides() {
+
+    return new EnumFacing[]{EnumFacing.NORTH};
+  }
+
   private class Interaction
       extends InteractionItemStack<TileCombustionWorkerStoneBase> {
 
@@ -447,7 +458,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
       super(
           stackHandlers,
           0,
-          new EnumFacing[]{EnumFacing.NORTH},
+          tile.getInputInteractionSides(),
           new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f),
           new Transform(
               Transform.translate(0.5, 1.2, 0.5),
@@ -577,7 +588,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
       StoneMachineRecipeBase<E> recipe = this.tile.getRecipe(stack);
 
       if (recipe == null
-          || !TileCombustionWorkerStoneBase.this.getOutputStackHandler().getStackInSlot(0).isEmpty()) {
+          || !this.tile.getOutputStackHandler().getStackInSlot(0).isEmpty()) {
         return stack;
       }
 

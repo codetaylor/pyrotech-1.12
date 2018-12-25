@@ -18,7 +18,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ModuleBlocks {
+public final class ModuleBlocks {
 
   public static final BlockLogPile LOG_PILE = new BlockLogPile();
   public static final BlockCoalCokeBlock COAL_COKE_BLOCK = new BlockCoalCokeBlock();
@@ -36,6 +36,7 @@ public class ModuleBlocks {
   public static final BlockKilnBrick KILN_BRICK = new BlockKilnBrick();
   public static final BlockKilnStone KILN_STONE = new BlockKilnStone();
   public static final BlockOvenStone OVEN_STONE = new BlockOvenStone();
+  public static final BlockMillStone MILL_STONE = new BlockMillStone();
   public static final BlockCampfire CAMPFIRE = new BlockCampfire();
   public static final BlockDryingRack DRYING_RACK = new BlockDryingRack();
   public static final BlockRock ROCK = new BlockRock();
@@ -70,6 +71,7 @@ public class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.KILN_BRICK, BlockKilnBrick.NAME);
     registry.registerBlockWithItem(ModuleBlocks.KILN_STONE, BlockKilnStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.OVEN_STONE, BlockOvenStone.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.MILL_STONE, BlockMillStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.DRYING_RACK, BlockDryingRack.NAME);
     registry.registerBlockWithItem(ModuleBlocks.WOOD_RACK, BlockWoodRack.NAME);
     registry.registerBlockWithItem(ModuleBlocks.ORE, BlockOre.NAME);
@@ -90,6 +92,7 @@ public class ModuleBlocks {
         TileKilnBrickTop.class,
         TileKilnStone.class,
         TileOvenStone.class,
+        TileMillStone.class,
         TileStoneTop.class,
         TileCampfire.class,
         TileDryingRack.class,
@@ -117,6 +120,7 @@ public class ModuleBlocks {
           ModuleBlocks.OVEN_STONE,
           ModuleBlocks.KILN_STONE,
           ModuleBlocks.OVEN_STONE,
+          ModuleBlocks.MILL_STONE,
           ModuleBlocks.WOOD_RACK,
           ModuleBlocks.STONE_BRICKS,
           ModuleBlocks.CRAFTING
@@ -200,6 +204,7 @@ public class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnBrick.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnStone.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileOvenStone.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileMillStone.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCampfire.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRackCrude.class, new TESRInteractable<>());
@@ -233,4 +238,7 @@ public class ModuleBlocks {
     }, ModuleBlocks.ROCK_GRASS);
   }
 
+  private ModuleBlocks() {
+    //
+  }
 }

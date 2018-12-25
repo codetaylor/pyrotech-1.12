@@ -1,0 +1,43 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:mill_stone"
+  },
+  "variants": {
+    "facing": {
+      "north": {
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "type": {
+      "top": {
+        "model": "pyrotech:kiln_stone_top"
+      },
+      "bottom": {
+        "submodel": {
+          "top": {"model": "pyrotech:mill_stone_top_actual"}
+        }
+      },
+      "bottom_lit": {
+        "submodel": {
+          "top": {"model": "pyrotech:mill_stone_top_actual"},
+          "lit": {"model": "pyrotech:kiln_stone_lit"}
+        }
+      },
+      "bottom_dormant": {
+        "submodel": {
+          "top": {"model": "pyrotech:mill_stone_top_actual"},
+          "dormant": {"model": "pyrotech:kiln_stone_dormant"}
+        }
+      }
+    }
+  }
+}

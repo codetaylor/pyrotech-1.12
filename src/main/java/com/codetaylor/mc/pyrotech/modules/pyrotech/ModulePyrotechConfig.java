@@ -379,6 +379,42 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Stone Oven
+  // ---------------------------------------------------------------------------
+
+  public static StoneMill STONE_MILL = new StoneMill();
+
+  public static class StoneMill {
+
+    @Config.Comment({
+        "Set to true to deactivate when a recipe completes.",
+        "The worker will need to be re-lit when it deactivates.",
+        "Default: " + false
+    })
+    public boolean KEEP_HEAT = false;
+
+    @Config.Comment({
+        "Time to cook the entire input stack in ticks.",
+        "Default: " + (80 * 20)
+    })
+    public int COOK_TIME_TICKS = 80 * 20;
+
+    @Config.Comment({
+        "Controls the number of recipe items that can be inserted.",
+        "Range: [1, 64]",
+        "Default: " + 8
+    })
+    public int INPUT_SLOT_SIZE = 8;
+
+    @Config.Comment({
+        "Controls the number of fuel items that can be inserted.",
+        "Range: [1, 64]",
+        "Default: " + 16
+    })
+    public int FUEL_SLOT_SIZE = 16;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Pit Kiln
   // ---------------------------------------------------------------------------
 
