@@ -379,7 +379,7 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Stone Oven
+  // - Stone Mill
   // ---------------------------------------------------------------------------
 
   public static StoneMill STONE_MILL = new StoneMill();
@@ -394,12 +394,6 @@ public class ModulePyrotechConfig {
     public boolean KEEP_HEAT = false;
 
     @Config.Comment({
-        "Time to cook the entire input stack in ticks.",
-        "Default: " + (80 * 20)
-    })
-    public int COOK_TIME_TICKS = 80 * 20;
-
-    @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
         "Range: [1, 64]",
         "Default: " + 8
@@ -412,6 +406,18 @@ public class ModulePyrotechConfig {
         "Default: " + 16
     })
     public int FUEL_SLOT_SIZE = 16;
+
+    @Config.Comment({
+        "Controls how much damage a spinning blade will do to an entity.",
+        "Default: " + 3
+    })
+    public int ENTITY_DAMAGE_FROM_BLADE = 3;
+
+    @Config.Comment({
+        "Set to false to disable damaging blades.",
+        "Default: " + true
+    })
+    public boolean DAMAGE_BLADES = true;
   }
 
   // ---------------------------------------------------------------------------

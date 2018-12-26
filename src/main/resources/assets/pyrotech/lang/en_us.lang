@@ -82,6 +82,7 @@ tile.pyrotech.refractory_glass.name=Refractory Glass
 tile.pyrotech.kiln_brick.name=Brick Kiln
 tile.pyrotech.kiln_stone.name=Stone Kiln
 tile.pyrotech.oven_stone.name=Stone Oven
+tile.pyrotech.mill_stone.name=Stone Mill
 tile.pyrotech.campfire.name=Campfire
 tile.pyrotech.drying_rack.crude.name=Crude Drying Rack
 tile.pyrotech.drying_rack.normal.name=Drying Rack
@@ -120,6 +121,8 @@ gui.pyrotech.waila.campfire.ash=Ash: %d of %d
 gui.pyrotech.waila.drying_rack.speed=Speed: %s
 
 gui.pyrotech.waila.burn.time=Burn Time: %s
+
+gui.pyrotech.waila.mill.stone.blade=Blade: %s
 
 # --- JEI plugin
 

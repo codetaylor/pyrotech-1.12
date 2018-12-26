@@ -5,18 +5,30 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.MillInteractionBladeRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMillBlade;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.OvenStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.MillStoneRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -24,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileMillStone
-    extends TileCombustionWorkerStoneBase<OvenStoneRecipe> {
+    extends TileCombustionWorkerStoneBase<MillStoneRecipe> {
 
   private BladeStackHandler bladeStackHandler;
 
@@ -44,8 +56,17 @@ public class TileMillStone
     // --- Interactions ---
 
     this.addInteractions(new IInteraction[]{
-        new InteractionBlade(new ItemStackHandler[]{this.bladeStackHandler})
+        new InteractionBlade(this, new ItemStackHandler[]{this.bladeStackHandler})
     });
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Accessors
+  // ---------------------------------------------------------------------------
+
+  public BladeStackHandler getBladeStackHandler() {
+
+    return this.bladeStackHandler;
   }
 
   // ---------------------------------------------------------------------------
@@ -80,17 +101,17 @@ public class TileMillStone
   }
 
   @Override
-  public OvenStoneRecipe getRecipe(ItemStack itemStack) {
+  public MillStoneRecipe getRecipe(ItemStack itemStack) {
 
-    return OvenStoneRecipe.getRecipe(itemStack);
+    return MillStoneRecipe.getRecipe(itemStack, this.bladeStackHandler.getStackInSlot(0));
   }
 
   @Override
-  protected List<ItemStack> getRecipeOutput(OvenStoneRecipe recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks) {
+  protected List<ItemStack> getRecipeOutput(MillStoneRecipe recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks) {
 
     ItemStack output = recipe.getOutput();
     ItemStack copy = output.copy();
-    copy.setCount(input.getCount());
+    copy.setCount(copy.getCount() * input.getCount());
     outputItemStacks.add(copy);
     return outputItemStacks;
   }
@@ -113,6 +134,35 @@ public class TileMillStone
     return ModulePyrotechConfig.STONE_MILL.FUEL_SLOT_SIZE;
   }
 
+  @Override
+  protected void onRecipeComplete() {
+
+    if (!ModulePyrotechConfig.STONE_MILL.DAMAGE_BLADES) {
+      super.onRecipeComplete();
+
+    } else {
+      ItemStack input = this.getInputStackHandler().getStackInSlot(0);
+
+      super.onRecipeComplete();
+
+      ItemStack blade = this.bladeStackHandler.extractItem(0, 1, false);
+
+      if (blade.attemptDamageItem(input.getCount(), this.world.rand, null)) {
+        this.world.playSound(
+            null,
+            this.pos,
+            SoundEvents.ENTITY_ITEM_BREAK,
+            SoundCategory.BLOCKS,
+            1.0F,
+            Util.RANDOM.nextFloat() * 0.4F + 0.8F
+        );
+
+      } else {
+        this.bladeStackHandler.insertItem(0, blade, false);
+      }
+    }
+  }
+
   // ---------------------------------------------------------------------------
   // - Interactions
   // ---------------------------------------------------------------------------
@@ -123,22 +173,53 @@ public class TileMillStone
     return new EnumFacing[]{EnumFacing.NORTH, EnumFacing.WEST, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.UP};
   }
 
-  private class InteractionBlade
+  @Override
+  protected AxisAlignedBB getInputInteractionBoundsTop() {
+
+    return new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 20f / 16f, 15f / 16f);
+  }
+
+  public class InteractionBlade
       extends InteractionItemStack<TileMillStone> {
 
-    /* package */ InteractionBlade(ItemStackHandler[] stackHandlers) {
+    private final TileMillStone tile;
+
+    /* package */ InteractionBlade(TileMillStone tile, ItemStackHandler[] stackHandlers) {
 
       super(
           stackHandlers,
           0,
           new EnumFacing[]{EnumFacing.NORTH, EnumFacing.WEST, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.UP},
-          new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f),
+          new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 20f / 16f, 15f / 16f),
           new Transform(
               Transform.translate(0.5, 1, 0.5),
               Transform.rotate(0, 1, 0, 90),
               Transform.scale(0.75, 0.75, 0.75)
           )
       );
+      this.tile = tile;
+    }
+
+    @Override
+    protected void onExtract(World world, EntityPlayer player, BlockPos pos) {
+
+      super.onExtract(world, player, pos);
+
+      if (this.tile.workerIsActive()
+          && ModulePyrotechConfig.STONE_MILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
+        player.attackEntityFrom(DamageSource.GENERIC, ModulePyrotechConfig.STONE_MILL.ENTITY_DAMAGE_FROM_BLADE);
+      }
+    }
+
+    @Override
+    protected void onInsert(ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
+
+      super.onInsert(itemStack, world, player, pos);
+
+      if (this.tile.workerIsActive()
+          && ModulePyrotechConfig.STONE_MILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
+        player.attackEntityFrom(DamageSource.GENERIC, ModulePyrotechConfig.STONE_MILL.ENTITY_DAMAGE_FROM_BLADE);
+      }
     }
 
     @Override
@@ -146,13 +227,32 @@ public class TileMillStone
 
       return (itemStack.getItem() instanceof ItemMillBlade);
     }
+
+    public TileMillStone getTile() {
+
+      return this.tile;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
+
+      MillInteractionBladeRenderer.INSTANCE.renderSolidPass(this, world, renderItem, pos, blockState, partialTicks);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean renderAdditivePass(World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+
+      return MillInteractionBladeRenderer.INSTANCE.renderAdditivePass(this, world, renderItem, hitSide, hitVec, hitPos, blockState, heldItemMainHand, partialTicks);
+    }
   }
 
   // ---------------------------------------------------------------------------
   // - Stack Handlers
   // ---------------------------------------------------------------------------
 
-  private class BladeStackHandler
+  public class BladeStackHandler
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 

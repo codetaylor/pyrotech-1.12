@@ -35,4 +35,9 @@ public class TileStoneTop
 
     return null;
   }
+
+  public boolean isCustom() {
+
+    return false;
+  }
 }

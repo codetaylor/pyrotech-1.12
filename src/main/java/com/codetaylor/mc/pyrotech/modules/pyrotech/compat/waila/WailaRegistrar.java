@@ -31,6 +31,10 @@ public class WailaRegistrar {
     registrar.registerBodyProvider(kilnBrick, TileKilnBrick.class);
     registrar.registerBodyProvider(kilnBrick, TileKilnBrickTop.class);
 
+    MillStone millStone = new MillStone();
+    registrar.registerBodyProvider(millStone, TileMillStone.class);
+    registrar.registerBodyProvider(millStone, TileMillStoneTop.class);
+
     CombustionWorkerStone combustionWorkerStone = new CombustionWorkerStone();
     registrar.registerBodyProvider(combustionWorkerStone, TileOvenStone.class);
     registrar.registerBodyProvider(combustionWorkerStone, TileKilnStone.class);

@@ -296,7 +296,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   // - Recipe
   // ---------------------------------------------------------------------------
 
-  private void onRecipeComplete() {
+  protected void onRecipeComplete() {
 
     // set stack handler items to recipe result
 
@@ -314,7 +314,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     }
   }
 
-  private void insertOutputItem(ItemStack output) {
+  protected void insertOutputItem(ItemStack output) {
 
     for (int i = 0; i < 9 && !output.isEmpty(); i++) {
       output = this.outputStackHandler.insertItem(i, output, false);
@@ -459,7 +459,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
           stackHandlers,
           0,
           tile.getInputInteractionSides(),
-          new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f),
+          tile.getInputInteractionBoundsTop(),
           new Transform(
               Transform.translate(0.5, 1.2, 0.5),
               Transform.rotate(),
@@ -495,6 +495,11 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
       return super.doExtract(world, player, tilePos);
     }
+  }
+
+  protected AxisAlignedBB getInputInteractionBoundsTop() {
+
+    return new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f);
   }
 
   private class InteractionFuel

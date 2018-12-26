@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class StoneMachineRecipeBase<T  extends IForgeRegistryEntry<T>>
+public abstract class StoneMachineRecipeBase<T extends IForgeRegistryEntry<T>>
     extends IForgeRegistryEntry.Impl<T>
     implements IRecipeSingleOutput,
     IRecipeTimed {

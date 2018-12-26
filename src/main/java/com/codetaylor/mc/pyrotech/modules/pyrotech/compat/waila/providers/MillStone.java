@@ -6,11 +6,9 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnStoneRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnStone;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileMillStone;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileMillStoneTop;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
@@ -25,7 +23,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class CombustionWorkerStone
+public class MillStone
     implements IWailaDataProvider {
 
   @Nonnull
@@ -62,25 +60,20 @@ public class CombustionWorkerStone
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileCombustionWorkerStoneBase
-        || tileEntity instanceof TileStoneTop) {
+    if (tileEntity instanceof TileMillStone
+        || tileEntity instanceof TileMillStoneTop) {
 
-      TileCombustionWorkerStoneBase tile = null;
+      TileMillStone tile = null;
 
-      if (tileEntity instanceof TileCombustionWorkerStoneBase) {
-        tile = (TileCombustionWorkerStoneBase) tileEntity;
+      if (tileEntity instanceof TileMillStone) {
+        tile = (TileMillStone) tileEntity;
 
       } else {
-
-        if (((TileStoneTop) tileEntity).isCustom()) {
-          return tooltip;
-        }
-
         World world = tileEntity.getWorld();
         TileEntity candidate = world.getTileEntity(tileEntity.getPos().down());
 
-        if (candidate instanceof TileCombustionWorkerStoneBase) {
-          tile = (TileCombustionWorkerStoneBase) candidate;
+        if (candidate instanceof TileMillStone) {
+          tile = (TileMillStone) candidate;
         }
       }
 
@@ -93,10 +86,12 @@ public class CombustionWorkerStone
       ItemStackHandler stackHandler = tile.getInputStackHandler();
       ItemStackHandler outputStackHandler = tile.getOutputStackHandler();
       ItemStackHandler fuelStackHandler = tile.getFuelStackHandler();
+      ItemStackHandler bladeStackHandler = tile.getBladeStackHandler();
 
       ItemStack input = stackHandler.getStackInSlot(0);
       boolean hasOutput = !outputStackHandler.getStackInSlot(0).isEmpty();
       ItemStack fuel = fuelStackHandler.getStackInSlot(0);
+      ItemStack blade = bladeStackHandler.getStackInSlot(0);
 
       if (!input.isEmpty()) {
 
@@ -104,6 +99,10 @@ public class CombustionWorkerStone
 
         StringBuilder renderString = new StringBuilder();
         renderString.append(WailaUtil.getStackRenderString(input));
+
+        if (!blade.isEmpty()) {
+          renderString.append(WailaUtil.getStackRenderString(blade));
+        }
 
         if (!fuel.isEmpty()) {
           renderString.append(WailaUtil.getStackRenderString(fuel));
@@ -113,7 +112,7 @@ public class CombustionWorkerStone
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();
-          recipeOutput.setCount(input.getCount());
+          recipeOutput.setCount(recipeOutput.getCount() * input.getCount());
           renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
           renderString.append(WailaUtil.getStackRenderString(recipeOutput));
         }
@@ -124,9 +123,11 @@ public class CombustionWorkerStone
 
         // Display output items.
 
-        //tooltip.add(Util.translate("gui." + ModuleCharcoal.MOD_ID + ".waila.kiln.brick.finished"));
-
         StringBuilder renderString = new StringBuilder();
+
+        if (!blade.isEmpty()) {
+          renderString.append(WailaUtil.getStackRenderString(blade));
+        }
 
         for (int i = 0; i < outputStackHandler.getSlots(); i++) {
           ItemStack stackInSlot = outputStackHandler.getStackInSlot(i);
@@ -136,11 +137,23 @@ public class CombustionWorkerStone
           }
         }
 
-        //tooltip.add(Util.translate("gui." + ModuleCharcoal.MOD_ID + ".waila.result"));
         tooltip.add(renderString.toString());
+
+      } else {
+
+        if (!blade.isEmpty()) {
+          tooltip.add(WailaUtil.getStackRenderString(blade));
+        }
       }
 
       {
+        if (!blade.isEmpty()) {
+          tooltip.add(Util.translateFormatted(
+              "gui." + ModulePyrotech.MOD_ID + ".waila.mill.stone.blade",
+              blade.getItem().getItemStackDisplayName(blade)
+          ));
+        }
+
         if (tile.combustionGetBurnTimeRemaining() > 0) {
           ItemStack fuelStack = tile.getFuelStackHandler().getStackInSlot(0);
           tooltip.add(Util.translateFormatted(

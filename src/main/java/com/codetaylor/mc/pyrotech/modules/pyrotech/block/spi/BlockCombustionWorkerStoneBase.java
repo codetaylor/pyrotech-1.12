@@ -75,7 +75,7 @@ public abstract class BlockCombustionWorkerStoneBase
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  private boolean isTop(IBlockState state) {
+  protected boolean isTop(IBlockState state) {
 
     return state.getValue(TYPE) == EnumType.Top;
   }

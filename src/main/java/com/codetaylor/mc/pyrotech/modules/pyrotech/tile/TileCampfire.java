@@ -42,6 +42,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -630,6 +632,7 @@ public class TileCampfire
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
 
       CampfireInteractionLogRenderer.INSTANCE.renderSolidPass(this, world, renderItem, pos, blockState, partialTicks);
@@ -642,6 +645,7 @@ public class TileCampfire
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public boolean renderAdditivePass(World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
       return CampfireInteractionLogRenderer.INSTANCE.renderAdditivePass(this, world, renderItem, hitSide, hitVec, hitPos, blockState, heldItemMainHand, partialTicks);

@@ -93,6 +93,7 @@ public final class ModuleBlocks {
         TileKilnStone.class,
         TileOvenStone.class,
         TileMillStone.class,
+        TileMillStoneTop.class,
         TileStoneTop.class,
         TileCampfire.class,
         TileDryingRack.class,
