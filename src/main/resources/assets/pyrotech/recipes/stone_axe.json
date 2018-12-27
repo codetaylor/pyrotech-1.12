@@ -7,8 +7,8 @@
   ],
   "key": {
     "R": {
-      "type": "forge:ore_dict",
-      "ore": "stone"
+      "item": "pyrotech:material",
+      "data": 16
     },
     "S": {
       "type": "forge:ore_dict",
