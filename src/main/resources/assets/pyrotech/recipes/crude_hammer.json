@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RR",
+    "ST"
+  ],
+  "key": {
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "rock"
+    },
+    "T": {
+      "item": "pyrotech:material",
+      "data": 12
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "pyrotech:crude_hammer",
+    "count": 1,
+    "data": 0
+  }
+}

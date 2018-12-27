@@ -54,6 +54,7 @@ item.pyrotech.flint.hoe.name=Flint Hoe
 item.pyrotech.flint.pickaxe.name=Flint Pickaxe
 item.pyrotech.flint.shovel.name=Flint Shovel
 
+item.pyrotech.crude.hammer.name=Crude Hammer
 item.pyrotech.stone.hammer.name=Stone Hammer
 item.pyrotech.flint.hammer.name=Flint Hammer
 item.pyrotech.bone.hammer.name=Bone Hammer

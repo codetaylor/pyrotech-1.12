@@ -49,6 +49,7 @@ public final class ModuleItems {
   public static final ItemFlintHammer FLINT_HAMMER = new ItemFlintHammer();
   public static final ItemIronHammer IRON_HAMMER = new ItemIronHammer();
   public static final ItemStoneHammer STONE_HAMMER = new ItemStoneHammer();
+  public static final ItemCrudeHammer CRUDE_HAMMER = new ItemCrudeHammer();
 
   public static final ItemMillBlade STONE_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.STONE.getMaxUses() / 2);
   public static final ItemMillBlade FLINT_MILL_BLADE = new ItemMillBlade(EnumMaterial.FLINT.getToolMaterial().getMaxUses());
@@ -90,6 +91,7 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.FLINT_PICKAXE, ItemFlintPickaxe.NAME);
     registry.registerItem(ModuleItems.FLINT_SHOVEL, ItemFlintShovel.NAME);
 
+    registry.registerItem(ModuleItems.CRUDE_HAMMER, ItemCrudeHammer.NAME);
     registry.registerItem(ModuleItems.STONE_HAMMER, ItemStoneHammer.NAME);
     registry.registerItem(ModuleItems.BONE_HAMMER, ItemBoneHammer.NAME);
     registry.registerItem(ModuleItems.FLINT_HAMMER, ItemFlintHammer.NAME);
@@ -137,6 +139,7 @@ public final class ModuleItems {
           ModuleItems.FLINT_PICKAXE,
           ModuleItems.FLINT_SHOVEL,
 
+          ModuleItems.CRUDE_HAMMER,
           ModuleItems.STONE_HAMMER,
           ModuleItems.FLINT_HAMMER,
           ModuleItems.BONE_HAMMER,
