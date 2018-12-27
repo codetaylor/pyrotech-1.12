@@ -22,7 +22,9 @@
       "twine": {"textures": {"layer0": "pyrotech:items/twine"}},
       "charcoal_flakes": {"textures": {"layer0": "pyrotech:items/charcoal_flakes"}},
       "brick_stone": {"textures": {"layer0": "pyrotech:items/brick_stone"}},
-      "clay_lump": {"textures": {"layer0": "pyrotech:items/clay_lump"}}
+      "clay_lump": {"textures": {"layer0": "pyrotech:items/clay_lump"}},
+      "diamond_shard": {"textures": {"layer0": "pyrotech:items/diamond_shard"}},
+      "iron_shard": {"textures": {"layer0": "pyrotech:items/iron_shard"}}
     }
   }
 }
