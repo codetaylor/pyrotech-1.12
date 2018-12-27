@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
@@ -14,7 +15,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -37,7 +37,7 @@ public abstract class TileDryingRackBase
 
   // Transient
   private float[] partialTicks;
-  private float speed;
+  private TileDataFloat speed;
 
   private TickCounter speedCheckTickCounter;
 
@@ -63,10 +63,13 @@ public abstract class TileDryingRackBase
     // Supplying the max as initial value makes this check immediate on create
     this.speedCheckTickCounter = new TickCounter(SPEED_CHECK_INTERVAL_TICKS, SPEED_CHECK_INTERVAL_TICKS);
 
+    this.speed = new TileDataFloat(0, 20);
+
     // --- Network ---
     this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.inputStackHandler),
-        new TileDataItemStackHandler<>(this.outputStackHandler)
+        new TileDataItemStackHandler<>(this.outputStackHandler),
+        this.speed
     });
   }
 
@@ -86,7 +89,7 @@ public abstract class TileDryingRackBase
 
   public float getSpeed() {
 
-    return this.speed;
+    return this.speed.get();
   }
 
   // ---------------------------------------------------------------------------
@@ -146,12 +149,7 @@ public abstract class TileDryingRackBase
 
     // Update the rack's drying speed.
     if (this.speedCheckTickCounter.increment()) {
-      float oldSpeed = this.speed;
-      this.speed = this.updateSpeed();
-
-      if (!MathHelper.epsilonEquals(oldSpeed, this.speed)) {
-        isDirty = true;
-      }
+      this.speed.set(this.updateSpeed());
     }
 
     for (int slotIndex = 0; slotIndex < this.inputStackHandler.getSlots(); slotIndex++) {
@@ -164,7 +162,7 @@ public abstract class TileDryingRackBase
 
       if (this.dryTimeRemaining[slotIndex] > 0) {
 
-        this.partialTicks[slotIndex] += this.speed;
+        this.partialTicks[slotIndex] += this.speed.get();
 
         double fullTicks = Math.floor(this.partialTicks[slotIndex]);
 
@@ -334,7 +332,7 @@ public abstract class TileDryingRackBase
     this.outputStackHandler.deserializeNBT(compound.getCompoundTag("outputStackHandler"));
     this.dryTimeTotal = compound.getIntArray("dryTimeTotal");
     this.dryTimeRemaining = compound.getIntArray("dryTimeRemaining");
-    this.speed = compound.getFloat("speed");
+    this.speed.set(compound.getFloat("speed"));
   }
 
   @Nonnull
@@ -346,7 +344,7 @@ public abstract class TileDryingRackBase
     compound.setTag("outputStackHandler", this.outputStackHandler.serializeNBT());
     compound.setIntArray("dryTimeTotal", this.dryTimeTotal);
     compound.setIntArray("dryTimeRemaining", this.dryTimeRemaining);
-    compound.setFloat("speed", this.speed);
+    compound.setFloat("speed", this.speed.get());
     return compound;
   }
 
