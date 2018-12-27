@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    }
+  ],
+  "result": {
+    "item": "pyrotech:chopping_block",
+    "count": 1,
+    "data": 0
+  }
+}

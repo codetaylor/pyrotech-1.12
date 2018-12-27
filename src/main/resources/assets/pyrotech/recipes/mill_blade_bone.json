@@ -1,21 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SS",
-    "FF"
+    "RRR",
+    "RSR",
+    "RRR"
   ],
   "key": {
     "S": {
-      "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "item": "minecraft:stone",
+      "data": 0
     },
-    "F": {
+    "R": {
       "item": "pyrotech:material",
-      "data": 12
+      "data": 11
     }
   },
   "result": {
-    "item": "pyrotech:drying_rack",
+    "item": "pyrotech:mill_blade_bone",
     "count": 1,
     "data": 0
   }

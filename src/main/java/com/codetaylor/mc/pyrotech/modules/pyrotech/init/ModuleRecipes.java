@@ -246,7 +246,79 @@ public final class ModuleRecipes {
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "purpur_slab"));
 
+    // Flint Shard from Flint
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.FLINT_SHARD.asStack(3),
+        Ingredient.fromStacks(new ItemStack(Items.FLINT, 1, 0)),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "flint_shard_from_flint"));
+
+    // Bone Shard from Bone
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.BONE_SHARD.asStack(3),
+        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "bone_shard_from_bone"));
+
+    // Bone Shard from Block
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.BONE_SHARD.asStack(9),
+        Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "bone_shard_from_block"));
+
+    // Charcoal Flakes from Charcoal
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(8),
+        Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 1)),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal_flakes"));
+
+    // Iron Shard from Iron Ingot
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.IRON_SHARD.asStack(9),
+        Ingredient.fromStacks(new ItemStack(Items.IRON_INGOT, 1, 0)),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "iron_shard"));
+
+    // Diamond Shard from Diamond
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.DIAMOND_SHARD.asStack(9),
+        Ingredient.fromStacks(new ItemStack(Items.DIAMOND, 1, 0)),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "diamond_shard"));
+
     // --- Hammer Recipes ---
+
+    // Bone Meal from Bone Shard
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Items.DYE, 1, 15),
+        Ingredient.fromStacks(ItemMaterial.EnumType.BONE_SHARD.asStack()),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "bone_shard"));
+
+    // Bone Meal from Bone
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Items.DYE, 3, 15),
+        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "bone_meal_from_bone"));
+
+    // Bone Meal from Bone Block
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Items.DYE, 9, 15),
+        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
+        8,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "bone_meal_from_bone_block"));
 
     // Stone to cobblestone
     registry.register(new GraniteAnvilRecipe(
@@ -469,27 +541,93 @@ public final class ModuleRecipes {
 
   public static void onRegisterKilnPitRecipes(IForgeRegistry<KilnPitRecipe> registry) {
 
+    int defaultBurnTimeTicks = 14 * 60 * 20;
+    float defaultFailureChance = 0.33f;
+
     // Quicklime
     registry.register(new KilnPitRecipe(
         new ItemStack(ModuleItems.QUICKLIME, 1, 0),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
-        10 * 60 * 20,
-        0.33f,
+        defaultBurnTimeTicks,
+        defaultFailureChance,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
     ).setRegistryName(ModulePyrotech.MOD_ID, "quicklime"));
 
+    // Stone Slab
+    registry.register(new KilnPitRecipe(
+        new ItemStack(Blocks.STONE_SLAB, 1, 0),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE_SLAB, 1, 3)),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleItems.ROCK, 3, 0)
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_slab"));
+
+    // Stone
+    registry.register(new KilnPitRecipe(
+        new ItemStack(Blocks.STONE, 1, 0),
+        Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE, 1, 0)),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.STONE.getMeta())
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone"));
+
+    // Stone - Andesite
+    registry.register(new KilnPitRecipe(
+        new ItemStack(Blocks.STONE, 1, 5),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.ANDESITE.getMeta())
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_andesite"));
+
+    // Stone - Granite
+    registry.register(new KilnPitRecipe(
+        new ItemStack(Blocks.STONE, 1, 1),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.GRANITE.getMeta())
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_granite"));
+
+    // Stone - Diorite
+    registry.register(new KilnPitRecipe(
+        new ItemStack(Blocks.STONE, 1, 3),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.DIORITE.getMeta())
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_diorite"));
+
   }
 
   public static void onRegisterKilnStoneRecipe(IForgeRegistry<KilnStoneRecipe> registry) {
+
+    int defaultBurnTimeTicks = 7 * 60 * 20;
+    float defaultFailureChance = 0.05f;
 
     // Refractory Brick
     registry.register(new KilnStoneRecipe(
         ItemMaterial.EnumType.REFRACTORY_BRICK.asStack(),
         Ingredient.fromStacks(ItemMaterial.EnumType.UNFIRED_REFRACTORY_BRICK.asStack()),
-        8 * 60 * 20,
-        0.05f,
+        defaultBurnTimeTicks,
+        defaultFailureChance,
         new ItemStack[]{
             ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack(),
             ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
@@ -501,12 +639,73 @@ public final class ModuleRecipes {
     registry.register(new KilnStoneRecipe(
         new ItemStack(ModuleItems.QUICKLIME, 1, 0),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
-        8 * 60 * 20,
-        0.05f,
+        defaultBurnTimeTicks,
+        defaultFailureChance,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
     ).setRegistryName(ModulePyrotech.MOD_ID, "quicklime"));
+
+    // Stone Slab
+    registry.register(new KilnStoneRecipe(
+        new ItemStack(Blocks.STONE_SLAB, 1, 0),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE_SLAB, 1, 3)),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleItems.ROCK, 3, 0)
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_slab"));
+
+    // Stone
+    registry.register(new KilnStoneRecipe(
+        new ItemStack(Blocks.STONE, 1, 0),
+        Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE, 1, 0)),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.STONE.getMeta())
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone"));
+
+    // Stone - Andesite
+    registry.register(new KilnStoneRecipe(
+        new ItemStack(Blocks.STONE, 1, 5),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.ANDESITE.getMeta())
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_andesite"));
+
+    // Stone - Granite
+    registry.register(new KilnStoneRecipe(
+        new ItemStack(Blocks.STONE, 1, 1),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.GRANITE.getMeta())
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_granite"));
+
+    // Stone - Diorite
+    registry.register(new KilnStoneRecipe(
+        new ItemStack(Blocks.STONE, 1, 3),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.DIORITE.getMeta())
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stone_diorite"));
+
   }
 
   public static void onRegisterKilnBrickRecipe(IForgeRegistry<KilnBrickRecipe> registry) {

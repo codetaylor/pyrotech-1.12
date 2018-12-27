@@ -7,7 +7,7 @@
   ],
   "key": {
     "E": {
-      "item": "pyrotech:kiln_pit",
+      "item": "pyrotech:chopping_block",
       "data": 0
     },
     "B": {
@@ -20,7 +20,7 @@
     }
   },
   "result": {
-    "item": "pyrotech:kiln_stone",
+    "item": "pyrotech:mill_stone",
     "count": 1,
     "data": 0
   }

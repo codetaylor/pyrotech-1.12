@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "ST",
-    "TS"
+    "B",
+    "L"
   ],
   "key": {
-    "S": {
-      "item": "pyrotech:material",
-      "data": 13
+    "B": {
+      "item": "pyrotech:chopping_block",
+      "data": 0
     },
-    "T": {
+    "L": {
       "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "ore": "logWood"
     }
   },
   "result": {
-    "item": "pyrotech:tinder",
+    "item": "pyrotech:crafting",
     "count": 1,
     "data": 0
   }

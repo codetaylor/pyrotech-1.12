@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RSR",
+    "RRR"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone",
+      "data": 0
+    },
+    "R": {
+      "item": "pyrotech:rock",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "pyrotech:mill_blade_stone",
+    "count": 1,
+    "data": 0
+  }
+}

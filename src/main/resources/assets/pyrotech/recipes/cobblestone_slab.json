@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RCR"
+  ],
+  "key": {
+    "R": {
+      "item": "pyrotech:rock",
+      "data": 0
+    },
+    "C": {
+      "item": "pyrotech:material",
+      "data": 17
+    }
+  },
+  "result": {
+    "item": "minecraft:stone_slab",
+    "count": 1,
+    "data": 3
+  }
+}

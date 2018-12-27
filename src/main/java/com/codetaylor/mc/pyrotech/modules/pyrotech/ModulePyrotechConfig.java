@@ -51,6 +51,13 @@ public class ModulePyrotechConfig {
         "minecraft:stone_shovel",
         "minecraft:stone_sword",
 
+        "minecraft:bone_meal_from_bone",
+        "minecraft:bone_meal_from_block",
+
+        "minecraft:andesite",
+        "minecraft:granite",
+        "minecraft:diorite",
+
         "minecraft:stone_slab",
         "minecraft:sandstone_slab",
         "minecraft:cobblestone_slab",
