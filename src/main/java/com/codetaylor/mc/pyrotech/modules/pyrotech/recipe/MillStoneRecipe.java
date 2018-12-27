@@ -42,4 +42,8 @@ public class MillStoneRecipe
     this.blade = blade;
   }
 
+  public Ingredient getBlade() {
+
+    return this.blade;
+  }
 }

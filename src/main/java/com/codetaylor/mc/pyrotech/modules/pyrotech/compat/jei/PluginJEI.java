@@ -45,7 +45,8 @@ public class PluginJEI
         new JEIRecipeCategoryDryingRack(guiHelper),
         new JEIRecipeCategoryDryingRackCrude(guiHelper),
         new JEIRecipeCategoryChoppingBlock(guiHelper),
-        new JEIRecipeCategoryGraniteAnvil(guiHelper)
+        new JEIRecipeCategoryGraniteAnvil(guiHelper),
+        new JEIRecipeCategoryMillStone(guiHelper)
     );
   }
 
@@ -85,6 +86,14 @@ public class PluginJEI
         ModulePyrotech.LOGGER.error("", e);
       }
 
+    }
+
+    // --- Stone Mill
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.MILL_STONE), JEIRecipeCategoryUid.STONE_MILL);
+      registry.handleRecipes(MillStoneRecipe.class, JEIRecipeWrapperMillStone::new, JEIRecipeCategoryUid.STONE_MILL);
+      List<MillStoneRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.MILL_STONE_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_MILL);
     }
 
     // --- Granite Anvil
