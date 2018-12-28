@@ -1,0 +1,45 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "torch": "pyrotech:blocks/torch_on",
+      "particle": "pyrotech:blocks/torch_off"
+    }
+  },
+  "variants": {
+    "facing": {
+      "up": {
+        "model": "pyrotech:torch"
+      },
+      "east": {
+        "model": "pyrotech:torch_wall"
+      },
+      "south": {
+        "model": "pyrotech:torch_wall", "y": 90
+      },
+      "west": {
+        "model": "pyrotech:torch_wall", "y": 180
+      },
+      "north": {
+        "model": "pyrotech:torch_wall", "y": 270
+      }
+    },
+    "state": {
+      "lit": {
+        "textures": {
+          "torch": "pyrotech:blocks/torch_on"
+        }
+      },
+      "unlit": {
+        "textures": {
+          "torch": "pyrotech:blocks/torch_off"
+        }
+      },
+      "doused": {
+        "textures": {
+          "torch": "pyrotech:blocks/torch_doused"
+        }
+      }
+    }
+  }
+}

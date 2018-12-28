@@ -99,6 +99,7 @@ tile.pyrotech.cobblestone.limestone.name=Cobbled Limestone
 tile.pyrotech.stone_bricks.name=Small Stone Bricks
 tile.pyrotech.anvil_granite.name=Granite Anvil
 tile.pyrotech.crafting.name=Crafting Log
+tile.pyrotech.torch.name=Fiber Torch
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock

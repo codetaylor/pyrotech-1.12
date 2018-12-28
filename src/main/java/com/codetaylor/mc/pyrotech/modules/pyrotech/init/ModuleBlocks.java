@@ -48,6 +48,7 @@ public final class ModuleBlocks {
   public static final BlockStoneBricks STONE_BRICKS = new BlockStoneBricks();
   public static final BlockGraniteAnvil GRANITE_ANVIL = new BlockGraniteAnvil();
   public static final BlockCrafting CRAFTING = new BlockCrafting();
+  public static final BlockTorchFiber TORCH_FIBER = new BlockTorchFiber();
 
   public static void onRegister(Registry registry) {
 
@@ -78,6 +79,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.COBBLESTONE, BlockCobblestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.STONE_BRICKS, BlockStoneBricks.NAME);
     registry.registerBlockWithItem(ModuleBlocks.CRAFTING, BlockCrafting.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.TORCH_FIBER, BlockTorchFiber.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
@@ -101,7 +103,8 @@ public final class ModuleBlocks {
         TileChoppingBlock.class,
         TileWoodRack.class,
         TileGraniteAnvil.class,
-        TileCrafting.class
+        TileCrafting.class,
+        TileTorch.class
     );
   }
 
@@ -124,7 +127,8 @@ public final class ModuleBlocks {
           ModuleBlocks.MILL_STONE,
           ModuleBlocks.WOOD_RACK,
           ModuleBlocks.STONE_BRICKS,
-          ModuleBlocks.CRAFTING
+          ModuleBlocks.CRAFTING,
+          ModuleBlocks.TORCH_FIBER
       );
 
       // Refractory Door
