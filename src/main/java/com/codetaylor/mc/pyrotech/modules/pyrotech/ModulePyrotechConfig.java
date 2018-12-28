@@ -113,6 +113,7 @@ public class ModulePyrotechConfig {
         "String format is a resource location: (domain):(path)"
     })
     public String[] HAMMER_LIST = new String[]{
+        ModulePyrotech.MOD_ID + ":" + ItemCrudeHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemStoneHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemBoneHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemFlintHammer.NAME,
