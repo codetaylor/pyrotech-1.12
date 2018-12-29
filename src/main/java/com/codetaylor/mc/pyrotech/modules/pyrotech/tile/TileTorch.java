@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockTorchFiber;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
@@ -42,8 +43,7 @@ public class TileTorch
 
     this.type = new TileDataInteger(BlockTorchFiber.EnumType.UNLIT.getMeta());
 
-    //this.duration = (int) (14 * 60 * 20 + (Math.random() * 2 - 1) * (4 * 60 * 20)); // TODO: config
-    this.duration = 15 * 20;
+    this.duration = (int) (ModulePyrotechConfig.TORCH.DURATION + (Math.random() * 2 - 1) * ModulePyrotechConfig.TORCH.DURATION_VARIANT);
 
     this.registerTileDataForNetwork(new ITileData[]{
         this.type
@@ -77,12 +77,13 @@ public class TileTorch
 
   private boolean shouldDouse() {
 
-    return this.world.isRainingAt(this.pos.up()); // TODO: config
+    return ModulePyrotechConfig.TORCH.EXTINGUISHED_BY_RAIN
+        && this.world.isRainingAt(this.pos.up());
   }
 
   private boolean shouldBurnUp() {
 
-    return true; // TODO: config
+    return ModulePyrotechConfig.TORCH.BURNS_UP;
   }
 
   // ---------------------------------------------------------------------------
@@ -98,7 +99,7 @@ public class TileTorch
     }
   }
 
-  public void update(IBlockState blockState) {
+  public void update() {
 
     if (this.type.get() == BlockTorchFiber.EnumType.LIT.getMeta()) {
 

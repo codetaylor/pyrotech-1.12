@@ -99,6 +99,40 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Torch
+  // ---------------------------------------------------------------------------
+
+  public static Torch TORCH = new Torch();
+
+  public static class Torch {
+
+    @Config.Comment({
+        "Set to true if the torch should be extinguished in the rain.",
+        "Default: " + true
+    })
+    public boolean EXTINGUISHED_BY_RAIN = true;
+
+    @Config.Comment({
+        "Set to true if the torch should burn up after the set duration.",
+        "Default: " + true
+    })
+    public boolean BURNS_UP = true;
+
+    @Config.Comment({
+        "The number of ticks before the torch burns up.",
+        "Default: " + (14 * 60 * 20)
+    })
+    public int DURATION = 14 * 60 * 20;
+
+    @Config.Comment({
+        "Random range of ticks to -/+ from the duration.",
+        "duration += rand[-variant, +variant]",
+        "Default: " + (4 * 60 * 20)
+    })
+    public int DURATION_VARIANT = 4 * 60 * 20;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Crafting
   // ---------------------------------------------------------------------------
 

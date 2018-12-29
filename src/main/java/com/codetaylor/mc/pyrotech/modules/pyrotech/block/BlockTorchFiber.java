@@ -97,7 +97,7 @@ public class BlockTorchFiber
     TileEntity tile = world.getTileEntity(pos);
 
     if (tile instanceof TileTorch) {
-      ((TileTorch) tile).update(state);
+      ((TileTorch) tile).update();
     }
   }
 
