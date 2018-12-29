@@ -8,13 +8,12 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInItemOutBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -25,19 +24,12 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends StoneMachineRecipeBase<E>>
-    extends TileCombustionWorkerStoneBase<E> {
+public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends StoneMachineRecipeItemInItemOutBase<E>>
+    extends TileCombustionWorkerStoneItemInBase<E> {
 
-  private InputStackHandler inputStackHandler;
   private OutputStackHandler outputStackHandler;
 
   public TileCombustionWorkerStoneItemInItemOutBase() {
-
-    this.inputStackHandler = new InputStackHandler(this, 1);
-    this.inputStackHandler.addObserver((handler, slot) -> {
-      this.recalculateRemainingTime(handler.getStackInSlot(slot));
-      this.markDirty();
-    });
 
     this.outputStackHandler = new OutputStackHandler(9);
     this.outputStackHandler.addObserver((handler, slot) -> {
@@ -46,13 +38,12 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
     });
 
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataItemStackHandler<>(this.inputStackHandler),
         new TileDataItemStackHandler<>(this.outputStackHandler)
     });
 
     this.addInteractions(new IInteraction[]{
         new Interaction(this, new ItemStackHandler[]{
-            this.inputStackHandler,
+            this.getInputStackHandler(),
             this.outputStackHandler
         })
     });
@@ -62,14 +53,15 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  public ItemStackHandler getInputStackHandler() {
-
-    return this.inputStackHandler;
-  }
-
   public ItemStackHandler getOutputStackHandler() {
 
     return this.outputStackHandler;
+  }
+
+  @Override
+  public boolean hasOutput() {
+
+    return !this.outputStackHandler.getStackInSlot(0).isEmpty();
   }
 
   // ---------------------------------------------------------------------------
@@ -79,7 +71,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   @Override
   public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
 
-    return (facing != null && (facing == EnumFacing.UP || facing == EnumFacing.DOWN) && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+    return (facing == EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
         || super.hasCapability(capability, facing);
   }
 
@@ -89,11 +81,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
 
     if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 
-      if (facing == EnumFacing.UP) {
-        //noinspection unchecked
-        return (T) this.inputStackHandler;
-
-      } else if (facing == EnumFacing.DOWN) {
+      if (facing == EnumFacing.DOWN) {
         //noinspection unchecked
         return (T) this.outputStackHandler;
       }
@@ -110,11 +98,11 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
 
     // set stack handler items to recipe result
 
-    ItemStack input = this.inputStackHandler.getStackInSlot(0);
+    ItemStack input = this.getInputStackHandler().getStackInSlot(0);
     E recipe = this.getRecipe(input);
 
     if (recipe != null) {
-      this.inputStackHandler.setStackInSlot(0, ItemStack.EMPTY);
+      this.getInputStackHandler().setStackInSlot(0, ItemStack.EMPTY);
 
       List<ItemStack> outputItems = this.getRecipeOutput(recipe, input, new ArrayList<>());
 
@@ -154,12 +142,6 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
     return 1f - (this.getRemainingRecipeTimeTicks() / (float) recipe.getTimeTicks());
   }
 
-  @Override
-  public boolean hasInput() {
-
-    return !this.inputStackHandler.getStackInSlot(0).isEmpty();
-  }
-
   public void dropContents() {
 
     ItemStackHandler stackHandler = this.getInputStackHandler();
@@ -191,7 +173,6 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    compound.setTag("inputStackHandler", this.inputStackHandler.serializeNBT());
     compound.setTag("outputStackHandler", this.outputStackHandler.serializeNBT());
     return compound;
   }
@@ -200,7 +181,6 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   public void readFromNBT(NBTTagCompound compound) {
 
     super.readFromNBT(compound);
-    this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
     this.outputStackHandler.deserializeNBT(compound.getCompoundTag("outputStackHandler"));
   }
 
@@ -260,43 +240,6 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   // ---------------------------------------------------------------------------
   // - Stack Handlers
   // ---------------------------------------------------------------------------
-
-  private class InputStackHandler
-      extends ObservableStackHandler
-      implements ITileDataItemStackHandler {
-
-    private final TileCombustionWorkerStoneItemInItemOutBase<E> tile;
-
-    /* package */ InputStackHandler(TileCombustionWorkerStoneItemInItemOutBase<E> tile, int size) {
-
-      super(size);
-      this.tile = tile;
-    }
-
-    @Override
-    protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
-
-      return MathHelper.clamp(getInputSlotSize(), 1, 64);
-    }
-
-    @Nonnull
-    @Override
-    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-
-      // Filter out non-recipe items.
-
-      StoneMachineRecipeBase<E> recipe = this.tile.getRecipe(stack);
-
-      if (recipe == null
-          || !this.tile.getOutputStackHandler().getStackInSlot(0).isEmpty()) {
-        return stack;
-      }
-
-      return super.insertItem(slot, stack, simulate);
-    }
-  }
-
-  protected abstract int getInputSlotSize();
 
   private class OutputStackHandler
       extends ObservableStackHandler

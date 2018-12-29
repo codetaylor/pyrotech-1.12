@@ -148,7 +148,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.KILN_STONE), JEIRecipeCategoryUid.STONE_KILN);
       registry.handleRecipes(KilnStoneRecipe.class, JEIRecipeWrapperKilnStone::new, JEIRecipeCategoryUid.STONE_KILN);
-      List<StoneMachineRecipeBase> recipeList = new ArrayList<>(ModulePyrotechRegistries.KILN_STONE_RECIPE.getValuesCollection());
+      List<StoneMachineRecipeItemInItemOutBase> recipeList = new ArrayList<>(ModulePyrotechRegistries.KILN_STONE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_KILN);
     }
 

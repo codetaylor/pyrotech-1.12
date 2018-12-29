@@ -6,7 +6,7 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInItemOutBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileMillStone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileMillStoneTop;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -108,7 +108,7 @@ public class MillStone
           renderString.append(WailaUtil.getStackRenderString(fuel));
         }
 
-        StoneMachineRecipeBase recipe = tile.getRecipe(input);
+        StoneMachineRecipeItemInItemOutBase recipe = tile.getRecipe(input);
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();

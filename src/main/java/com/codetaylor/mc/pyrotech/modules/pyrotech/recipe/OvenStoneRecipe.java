@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OvenStoneRecipe
-    extends StoneMachineRecipeBase<OvenStoneRecipe> {
+    extends StoneMachineRecipeItemInItemOutBase<OvenStoneRecipe> {
 
   private static final Map<String, OvenStoneRecipe> RECIPES = new HashMap<>();
 

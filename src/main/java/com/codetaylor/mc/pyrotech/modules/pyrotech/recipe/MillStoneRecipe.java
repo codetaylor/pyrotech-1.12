@@ -8,7 +8,7 @@ import net.minecraft.item.crafting.Ingredient;
 import javax.annotation.Nullable;
 
 public class MillStoneRecipe
-    extends StoneMachineRecipeBase<MillStoneRecipe> {
+    extends StoneMachineRecipeItemInItemOutBase<MillStoneRecipe> {
 
   private final Ingredient blade;
 

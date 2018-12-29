@@ -9,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 import javax.annotation.Nullable;
 
 public class KilnStoneRecipe
-    extends StoneMachineRecipeBase<KilnStoneRecipe> {
+    extends StoneMachineRecipeItemInItemOutBase<KilnStoneRecipe> {
 
   @Nullable
   public static KilnStoneRecipe getRecipe(ItemStack input) {

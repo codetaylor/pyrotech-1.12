@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInItemOutBase;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.ItemStack;
 
@@ -15,7 +15,7 @@ public class JEIRecipeWrapperKilnStone
   private final List<List<ItemStack>> inputs;
   private final ItemStack output;
 
-  public JEIRecipeWrapperKilnStone(StoneMachineRecipeBase recipe) {
+  public JEIRecipeWrapperKilnStone(StoneMachineRecipeItemInItemOutBase recipe) {
 
     super(recipe);
 
