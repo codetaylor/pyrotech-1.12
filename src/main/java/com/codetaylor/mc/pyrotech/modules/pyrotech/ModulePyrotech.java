@@ -92,6 +92,11 @@ public class ModulePyrotech
     );
 
     this.registerIntegrationPlugin(
+        "crafttweaker",
+        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenMillStone"
+    );
+
+    this.registerIntegrationPlugin(
         "jei",
         "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.PluginJEI"
     );
