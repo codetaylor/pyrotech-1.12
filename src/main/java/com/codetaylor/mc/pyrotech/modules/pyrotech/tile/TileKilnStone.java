@@ -4,14 +4,14 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnStoneRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TileKilnStone
-    extends TileCombustionWorkerStoneBase<KilnStoneRecipe> {
+    extends TileCombustionWorkerStoneItemInItemOutBase<KilnStoneRecipe> {
 
   @Override
   public KilnStoneRecipe getRecipe(ItemStack itemStack) {

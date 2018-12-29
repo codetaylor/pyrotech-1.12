@@ -2,14 +2,14 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.OvenStoneRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TileOvenStone
-    extends TileCombustionWorkerStoneBase<OvenStoneRecipe> {
+    extends TileCombustionWorkerStoneItemInItemOutBase<OvenStoneRecipe> {
 
   @Override
   public OvenStoneRecipe getRecipe(ItemStack itemStack) {

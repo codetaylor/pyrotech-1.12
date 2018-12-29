@@ -6,11 +6,9 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnStoneRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnStone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
@@ -62,13 +60,13 @@ public class CombustionWorkerStone
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileCombustionWorkerStoneBase
+    if (tileEntity instanceof TileCombustionWorkerStoneItemInItemOutBase
         || tileEntity instanceof TileStoneTop) {
 
-      TileCombustionWorkerStoneBase tile = null;
+      TileCombustionWorkerStoneItemInItemOutBase tile = null;
 
-      if (tileEntity instanceof TileCombustionWorkerStoneBase) {
-        tile = (TileCombustionWorkerStoneBase) tileEntity;
+      if (tileEntity instanceof TileCombustionWorkerStoneItemInItemOutBase) {
+        tile = (TileCombustionWorkerStoneItemInItemOutBase) tileEntity;
 
       } else {
 
@@ -79,8 +77,8 @@ public class CombustionWorkerStone
         World world = tileEntity.getWorld();
         TileEntity candidate = world.getTileEntity(tileEntity.getPos().down());
 
-        if (candidate instanceof TileCombustionWorkerStoneBase) {
-          tile = (TileCombustionWorkerStoneBase) candidate;
+        if (candidate instanceof TileCombustionWorkerStoneItemInItemOutBase) {
+          tile = (TileCombustionWorkerStoneItemInItemOutBase) candidate;
         }
       }
 

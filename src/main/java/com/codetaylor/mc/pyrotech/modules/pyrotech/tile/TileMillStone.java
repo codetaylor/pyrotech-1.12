@@ -13,7 +13,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMillBlade;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.MillStoneRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileMillStone
-    extends TileCombustionWorkerStoneBase<MillStoneRecipe> {
+    extends TileCombustionWorkerStoneItemInItemOutBase<MillStoneRecipe> {
 
   private BladeStackHandler bladeStackHandler;
 

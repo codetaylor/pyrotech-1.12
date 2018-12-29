@@ -50,8 +50,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   private static final int DORMANT_COUNTER = 50;
 
   private FuelStackHandler fuelStackHandler;
-  private InputStackHandler inputStackHandler;
-  private OutputStackHandler outputStackHandler;
 
   private TileDataInteger remainingRecipeTimeTicks;
 
@@ -69,18 +67,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     // --- Stack Handlers ---
 
-    this.inputStackHandler = new InputStackHandler(this, 1);
-    this.inputStackHandler.addObserver((handler, slot) -> {
-      this.recalculateRemainingTime(handler.getStackInSlot(slot));
-      this.markDirty();
-    });
-
-    this.outputStackHandler = new OutputStackHandler(9);
-    this.outputStackHandler.addObserver((handler, slot) -> {
-      this.dormantCounter = DORMANT_COUNTER;
-      this.markDirty();
-    });
-
     this.fuelStackHandler = new FuelStackHandler(1);
     this.fuelStackHandler.addObserver((handler, slot) -> {
       // force the burn time to update with the fuel change
@@ -93,8 +79,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     this.remainingRecipeTimeTicks = new TileDataInteger(0, 20);
 
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataItemStackHandler<>(this.inputStackHandler),
-        new TileDataItemStackHandler<>(this.outputStackHandler),
         new TileDataItemStackHandler<>(this.fuelStackHandler),
         this.remainingRecipeTimeTicks
     });
@@ -103,10 +87,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     this.interactions = new IInteraction[]{
         new InteractionUseFlintAndSteel(),
-        new Interaction(this, new ItemStackHandler[]{
-            TileCombustionWorkerStoneBase.this.inputStackHandler,
-            TileCombustionWorkerStoneBase.this.outputStackHandler
-        }),
         new InteractionFuel(new ItemStackHandler[]{
             TileCombustionWorkerStoneBase.this.fuelStackHandler
         })
@@ -136,16 +116,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     return this.fuelStackHandler;
   }
 
-  public ItemStackHandler getInputStackHandler() {
-
-    return this.inputStackHandler;
-  }
-
-  public ItemStackHandler getOutputStackHandler() {
-
-    return this.outputStackHandler;
-  }
-
   public int getRemainingRecipeTimeTicks() {
 
     return this.remainingRecipeTimeTicks.get();
@@ -166,6 +136,11 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
         || !this.fuelStackHandler.getStackInSlot(0).isEmpty();
   }
 
+  protected void resetDormantCounter() {
+
+    this.dormantCounter = DORMANT_COUNTER;
+  }
+
   protected void addInteractions(IInteraction[] interactions) {
 
     this.interactions = ArrayHelper.combine(this.interactions, interactions);
@@ -178,7 +153,9 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   @Override
   public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
 
-    return (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+    return (facing != null
+        && facing.getAxis().isHorizontal()
+        && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
   }
 
   @Nullable
@@ -187,15 +164,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 
-      if (facing == EnumFacing.UP) {
-        //noinspection unchecked
-        return (T) this.inputStackHandler;
-
-      } else if (facing == EnumFacing.DOWN) {
-        //noinspection unchecked
-        return (T) this.outputStackHandler;
-
-      } else {
+      if (facing != null && facing.getAxis().isHorizontal()) {
         //noinspection unchecked
         return (T) this.fuelStackHandler;
       }
@@ -217,25 +186,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   // ---------------------------------------------------------------------------
   // - Worker
   // ---------------------------------------------------------------------------
-
-  @Override
-  protected float workerCalculateProgress(int taskIndex) {
-
-    ItemStack itemStack = this.getInputStackHandler().getStackInSlot(0);
-
-    if (itemStack.isEmpty()) {
-      return 0;
-    }
-
-    E recipe = this.getRecipe(itemStack);
-
-    if (recipe == null) {
-      // Should never happen because we filter items on input.
-      return 0;
-    }
-
-    return 1f - (this.getRemainingRecipeTimeTicks() / (float) recipe.getTimeTicks());
-  }
 
   @Override
   public void workerSetActive(boolean active) {
@@ -265,7 +215,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     }
 
     if (this.hasFuel()
-        && !this.inputStackHandler.getStackInSlot(0).isEmpty()) {
+        && this.hasInput()) {
       this.dormantCounter = DORMANT_COUNTER;
 
     } else if (this.shouldKeepHeat()
@@ -290,38 +240,17 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     return true;
   }
 
+  public abstract boolean hasInput();
+
   protected abstract boolean shouldKeepHeat();
 
   // ---------------------------------------------------------------------------
   // - Recipe
   // ---------------------------------------------------------------------------
 
-  protected void onRecipeComplete() {
+  protected abstract void onRecipeComplete();
 
-    // set stack handler items to recipe result
-
-    ItemStack input = this.inputStackHandler.getStackInSlot(0);
-    E recipe = this.getRecipe(input);
-
-    if (recipe != null) {
-      this.inputStackHandler.setStackInSlot(0, ItemStack.EMPTY);
-
-      List<ItemStack> outputItems = this.getRecipeOutput(recipe, input, new ArrayList<>());
-
-      for (ItemStack outputItem : outputItems) {
-        this.insertOutputItem(outputItem);
-      }
-    }
-  }
-
-  protected void insertOutputItem(ItemStack output) {
-
-    for (int i = 0; i < 9 && !output.isEmpty(); i++) {
-      output = this.outputStackHandler.insertItem(i, output, false);
-    }
-  }
-
-  private void recalculateRemainingTime(ItemStack itemStack) {
+  protected void recalculateRemainingTime(ItemStack itemStack) {
     // Recalculate remaining recipe time.
 
     if (itemStack.isEmpty()) {
@@ -350,8 +279,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    compound.setTag("inputStackHandler", this.inputStackHandler.serializeNBT());
-    compound.setTag("outputStackHandler", this.outputStackHandler.serializeNBT());
     compound.setTag("fuelStackHandler", this.fuelStackHandler.serializeNBT());
     compound.setInteger("remainingRecipeTimeTicks", this.remainingRecipeTimeTicks.get());
     return compound;
@@ -361,33 +288,14 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   public void readFromNBT(NBTTagCompound compound) {
 
     super.readFromNBT(compound);
-    this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
-    this.outputStackHandler.deserializeNBT(compound.getCompoundTag("outputStackHandler"));
     this.fuelStackHandler.deserializeNBT(compound.getCompoundTag("fuelStackHandler"));
     this.remainingRecipeTimeTicks.set(compound.getInteger("remainingRecipeTimeTicks"));
   }
 
   public void dropContents() {
 
-    ItemStackHandler stackHandler = this.getInputStackHandler();
+    ItemStackHandler stackHandler = this.getFuelStackHandler();
     ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getStackInSlot(0).getCount(), false);
-
-    if (!itemStack.isEmpty()) {
-      StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
-    }
-
-    stackHandler = this.getOutputStackHandler();
-
-    for (int i = 0; i < stackHandler.getSlots(); i++) {
-      itemStack = stackHandler.extractItem(i, stackHandler.getStackInSlot(i).getCount(), false);
-
-      if (!itemStack.isEmpty()) {
-        StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
-      }
-    }
-
-    stackHandler = this.getFuelStackHandler();
-    itemStack = stackHandler.extractItem(0, stackHandler.getStackInSlot(0).getCount(), false);
 
     if (!itemStack.isEmpty()) {
       StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
@@ -446,55 +354,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   protected EnumFacing[] getInputInteractionSides() {
 
     return new EnumFacing[]{EnumFacing.NORTH};
-  }
-
-  private class Interaction
-      extends InteractionItemStack<TileCombustionWorkerStoneBase> {
-
-    private final TileCombustionWorkerStoneBase<E> tile;
-
-    /* package */ Interaction(TileCombustionWorkerStoneBase<E> tile, ItemStackHandler[] stackHandlers) {
-
-      super(
-          stackHandlers,
-          0,
-          tile.getInputInteractionSides(),
-          tile.getInputInteractionBoundsTop(),
-          new Transform(
-              Transform.translate(0.5, 1.2, 0.5),
-              Transform.rotate(),
-              Transform.scale(0.5, 0.5, 0.5)
-          )
-      );
-      this.tile = tile;
-    }
-
-    @Override
-    protected boolean doItemStackValidation(ItemStack itemStack) {
-
-      return (this.tile.getRecipe(itemStack) != null);
-    }
-
-    @Override
-    protected boolean doExtract(World world, EntityPlayer player, BlockPos tilePos) {
-
-      // Extract all slots in the output stack handler.
-
-      ItemStackHandler outputStackHandler = this.stackHandlers[1];
-
-      int slots = outputStackHandler.getSlots();
-
-      for (int i = 1; i < slots; i++) {
-        ItemStack extractItem = outputStackHandler.extractItem(i, outputStackHandler.getStackInSlot(i).getCount(), world.isRemote);
-
-        if (!extractItem.isEmpty()
-            && !world.isRemote) {
-          StackHelper.addToInventoryOrSpawn(world, player, extractItem, tilePos);
-        }
-      }
-
-      return super.doExtract(world, player, tilePos);
-    }
   }
 
   protected AxisAlignedBB getInputInteractionBoundsTop() {
@@ -565,53 +424,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   // ---------------------------------------------------------------------------
   // - Stack Handlers
   // ---------------------------------------------------------------------------
-
-  private class InputStackHandler
-      extends ObservableStackHandler
-      implements ITileDataItemStackHandler {
-
-    private final TileCombustionWorkerStoneBase<E> tile;
-
-    /* package */ InputStackHandler(TileCombustionWorkerStoneBase<E> tile, int size) {
-
-      super(size);
-      this.tile = tile;
-    }
-
-    @Override
-    protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
-
-      return MathHelper.clamp(getInputSlotSize(), 1, 64);
-    }
-
-    @Nonnull
-    @Override
-    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-
-      // Filter out non-recipe items.
-
-      StoneMachineRecipeBase<E> recipe = this.tile.getRecipe(stack);
-
-      if (recipe == null
-          || !this.tile.getOutputStackHandler().getStackInSlot(0).isEmpty()) {
-        return stack;
-      }
-
-      return super.insertItem(slot, stack, simulate);
-    }
-  }
-
-  protected abstract int getInputSlotSize();
-
-  private class OutputStackHandler
-      extends ObservableStackHandler
-      implements ITileDataItemStackHandler {
-
-    /* package */ OutputStackHandler(int size) {
-
-      super(size);
-    }
-  }
 
   private class FuelStackHandler
       extends ObservableStackHandler

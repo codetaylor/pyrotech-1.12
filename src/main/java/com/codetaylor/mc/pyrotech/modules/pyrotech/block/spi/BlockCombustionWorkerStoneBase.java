@@ -326,7 +326,7 @@ public abstract class BlockCombustionWorkerStoneBase
       if (tileEntity instanceof TileCombustionWorkerStoneBase
           && ((TileCombustionWorkerStoneBase) tileEntity).workerIsActive()
           && ((TileCombustionWorkerStoneBase) tileEntity).hasFuel()
-          && !((TileCombustionWorkerStoneBase) tileEntity).getInputStackHandler().getStackInSlot(0).isEmpty()) {
+          && ((TileCombustionWorkerStoneBase) tileEntity).hasInput()) {
 
         this.randomDisplayTickWorkingTop(state, world, pos, rand);
       }
