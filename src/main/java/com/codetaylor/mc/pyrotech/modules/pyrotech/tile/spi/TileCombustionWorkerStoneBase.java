@@ -321,6 +321,17 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     return super.shouldRefresh(world, pos, oldState, newState);
   }
 
+  // ---------------------------------------------------------------------------
+  // - Render
+  // ---------------------------------------------------------------------------
+
+  @Nonnull
+  @Override
+  public AxisAlignedBB getRenderBoundingBox() {
+
+    return super.getRenderBoundingBox().expand(0, 1, 0);
+  }
+
   @Override
   public boolean shouldRenderInPass(int pass) {
 
