@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
+import com.codetaylor.mc.athenaeum.recipe.CompoundIngredientPublic;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
@@ -15,10 +16,13 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
+import scala.actors.threadpool.Arrays;
 
 public final class ModuleRecipes {
 
@@ -56,6 +60,20 @@ public final class ModuleRecipes {
         new ItemStack(ModuleBlocks.LIMESTONE),
         0.1f
     );
+  }
+
+  public static void onRegisterCrucibleStoneRecipes(IForgeRegistryModifiable<CrucibleStoneRecipe> registry) {
+
+    //noinspection unchecked
+    registry.register(
+        new CrucibleStoneRecipe(
+            new FluidStack(FluidRegistry.LAVA, 250),
+            new CompoundIngredientPublic(Arrays.asList(new Ingredient[]{
+                new OreIngredient("stone"),
+                new OreIngredient("cobblestone")
+            })),
+            2 * 60 * 20
+        ).setRegistryName(ModulePyrotech.MOD_ID, "lava_from_stone"));
   }
 
   public static void onRegisterMillStoneRecipes(IForgeRegistryModifiable<MillStoneRecipe> registry) {

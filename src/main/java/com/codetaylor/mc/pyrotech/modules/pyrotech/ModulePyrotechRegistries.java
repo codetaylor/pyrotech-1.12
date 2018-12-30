@@ -15,6 +15,7 @@ public class ModulePyrotechRegistries {
   public static final IForgeRegistryModifiable<KilnBrickRecipe> KILN_BRICK_RECIPE;
   public static final IForgeRegistryModifiable<KilnStoneRecipe> KILN_STONE_RECIPE;
   public static final IForgeRegistryModifiable<MillStoneRecipe> MILL_STONE_RECIPE;
+  public static final IForgeRegistryModifiable<CrucibleStoneRecipe> CRUCIBLE_STONE_RECIPE;
   public static final IForgeRegistryModifiable<PitBurnRecipe> BURN_RECIPE;
   public static final IForgeRegistryModifiable<DryingRackRecipe> DRYING_RACK_RECIPE;
   public static final IForgeRegistryModifiable<DryingRackCrudeRecipe> DRYING_RACK_CRUDE_RECIPE;
@@ -29,6 +30,7 @@ public class ModulePyrotechRegistries {
     KILN_BRICK_RECIPE = (IForgeRegistryModifiable<KilnBrickRecipe>) GameRegistry.findRegistry(KilnBrickRecipe.class);
     KILN_STONE_RECIPE = (IForgeRegistryModifiable<KilnStoneRecipe>) GameRegistry.findRegistry(KilnStoneRecipe.class);
     MILL_STONE_RECIPE = (IForgeRegistryModifiable<MillStoneRecipe>) GameRegistry.findRegistry(MillStoneRecipe.class);
+    CRUCIBLE_STONE_RECIPE = (IForgeRegistryModifiable<CrucibleStoneRecipe>) GameRegistry.findRegistry(CrucibleStoneRecipe.class);
     BURN_RECIPE = (IForgeRegistryModifiable<PitBurnRecipe>) GameRegistry.findRegistry(PitBurnRecipe.class);
     DRYING_RACK_RECIPE = (IForgeRegistryModifiable<DryingRackRecipe>) GameRegistry.findRegistry(DryingRackRecipe.class);
     DRYING_RACK_CRUDE_RECIPE = (IForgeRegistryModifiable<DryingRackCrudeRecipe>) GameRegistry.findRegistry(DryingRackCrudeRecipe.class);

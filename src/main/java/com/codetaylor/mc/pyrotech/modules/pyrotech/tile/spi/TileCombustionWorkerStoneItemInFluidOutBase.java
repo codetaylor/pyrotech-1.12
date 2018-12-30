@@ -1,50 +1,46 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
 
-import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInItemOutBase;
-import net.minecraft.entity.player.EntityPlayer;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInFluidOutBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 
-public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends StoneMachineRecipeItemInItemOutBase<E>>
+public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends StoneMachineRecipeItemInFluidOutBase<E>>
     extends TileCombustionWorkerStoneItemInBase<E> {
 
-  private OutputStackHandler outputStackHandler;
+  private OutputFluidTank outputFluidTank;
 
-  public TileCombustionWorkerStoneItemInItemOutBase() {
+  public TileCombustionWorkerStoneItemInFluidOutBase() {
 
-    this.outputStackHandler = new OutputStackHandler(9);
-    this.outputStackHandler.addObserver((handler, slot) -> {
+    this.outputFluidTank = new OutputFluidTank(this.getOutputFluidTankSize());
+    this.outputFluidTank.addObserver((handler, slot) -> {
       this.resetDormantCounter();
       this.markDirty();
     });
 
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataItemStackHandler<>(this.outputStackHandler)
+        new TileDataFluidTank<>(this.outputFluidTank)
     });
 
     this.addInteractions(new IInteraction[]{
         new Interaction(this, new ItemStackHandler[]{
-            this.getInputStackHandler(),
-            this.outputStackHandler
+            this.getInputStackHandler()
         })
     });
   }
@@ -53,15 +49,23 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  public ItemStackHandler getOutputStackHandler() {
+  public FluidTank getOutputFluidTank() {
 
-    return this.outputStackHandler;
+    return this.outputFluidTank;
+  }
+
+  protected int getOutputFluidTankSize() {
+
+    return 4000;
   }
 
   @Override
   public boolean allowInsertInput(ItemStack stack, E recipe) {
 
-    return this.outputStackHandler.getStackInSlot(0).isEmpty();
+    FluidStack fluid = this.outputFluidTank.getFluid();
+
+    return fluid == null
+        || fluid.amount == 0;
   }
 
   // ---------------------------------------------------------------------------
@@ -71,7 +75,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   @Override
   public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
 
-    return (facing == EnumFacing.DOWN && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+    return (facing == EnumFacing.DOWN && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
         || super.hasCapability(capability, facing);
   }
 
@@ -79,11 +83,11 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   @Override
   public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
 
-    if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+    if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 
       if (facing == EnumFacing.DOWN) {
         //noinspection unchecked
-        return (T) this.outputStackHandler;
+        return (T) this.outputFluidTank;
       }
     }
 
@@ -96,30 +100,17 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
 
   protected void onRecipeComplete() {
 
-    // set stack handler items to recipe result
-
     ItemStack input = this.getInputStackHandler().getStackInSlot(0);
     E recipe = this.getRecipe(input);
 
     if (recipe != null) {
       this.getInputStackHandler().setStackInSlot(0, ItemStack.EMPTY);
-
-      List<ItemStack> outputItems = this.getRecipeOutput(recipe, input, new ArrayList<>());
-
-      for (ItemStack outputItem : outputItems) {
-        this.insertOutputItem(outputItem);
-      }
+      FluidStack recipeOutput = this.getRecipeOutput(recipe, input);
+      this.outputFluidTank.fill(recipeOutput, true);
     }
   }
 
-  protected void insertOutputItem(ItemStack output) {
-
-    for (int i = 0; i < 9 && !output.isEmpty(); i++) {
-      output = this.outputStackHandler.insertItem(i, output, false);
-    }
-  }
-
-  protected abstract List<ItemStack> getRecipeOutput(E recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks);
+  protected abstract FluidStack getRecipeOutput(E recipe, ItemStack input);
 
   // ---------------------------------------------------------------------------
   // - Worker
@@ -153,16 +144,6 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
       StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
     }
 
-    stackHandler = this.getOutputStackHandler();
-
-    for (int i = 0; i < stackHandler.getSlots(); i++) {
-      itemStack = stackHandler.extractItem(i, stackHandler.getStackInSlot(i).getCount(), false);
-
-      if (!itemStack.isEmpty()) {
-        StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
-      }
-    }
-
     super.dropContents();
   }
 
@@ -175,7 +156,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    compound.setTag("outputStackHandler", this.outputStackHandler.serializeNBT());
+    compound.setTag("outputFluidTank", this.outputFluidTank.writeToNBT(new NBTTagCompound()));
     return compound;
   }
 
@@ -183,7 +164,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   public void readFromNBT(NBTTagCompound compound) {
 
     super.readFromNBT(compound);
-    this.outputStackHandler.deserializeNBT(compound.getCompoundTag("outputStackHandler"));
+    this.outputFluidTank.readFromNBT(compound.getCompoundTag("outputFluidTank"));
   }
 
   // ---------------------------------------------------------------------------
@@ -216,38 +197,17 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
 
       return (this.tile.getRecipe(itemStack) != null);
     }
-
-    @Override
-    protected boolean doExtract(World world, EntityPlayer player, BlockPos tilePos) {
-
-      // Extract all slots in the output stack handler.
-
-      ItemStackHandler outputStackHandler = this.stackHandlers[1];
-
-      int slots = outputStackHandler.getSlots();
-
-      for (int i = 1; i < slots; i++) {
-        ItemStack extractItem = outputStackHandler.extractItem(i, outputStackHandler.getStackInSlot(i).getCount(), world.isRemote);
-
-        if (!extractItem.isEmpty()
-            && !world.isRemote) {
-          StackHelper.addToInventoryOrSpawn(world, player, extractItem, tilePos);
-        }
-      }
-
-      return super.doExtract(world, player, tilePos);
-    }
   }
 
   // ---------------------------------------------------------------------------
   // - Stack Handlers
   // ---------------------------------------------------------------------------
 
-  private class OutputStackHandler
-      extends ObservableStackHandler
-      implements ITileDataItemStackHandler {
+  private class OutputFluidTank
+      extends ObservableFluidTank
+      implements ITileDataFluidTank {
 
-    /* package */ OutputStackHandler(int size) {
+    /* package */ OutputFluidTank(int size) {
 
       super(size);
     }

@@ -18,7 +18,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInItemOutBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -39,10 +39,8 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 
-public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipeItemInItemOutBase<E>>
+public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipeBase<E>>
     extends TileCombustionWorkerBase
     implements ITickable,
     ITileInteractable {
@@ -94,8 +92,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   }
 
   public abstract E getRecipe(ItemStack itemStack);
-
-  protected abstract List<ItemStack> getRecipeOutput(E recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks);
 
   // ---------------------------------------------------------------------------
   // - Network
@@ -230,7 +226,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     if (this.getRemainingRecipeTimeTicks() > 0) {
 
-      this.setRemainingRecipeTimeTicks(this.getRemainingRecipeTimeTicks() - 1);
+      this.reduceRecipeTime();
 
       if (this.getRemainingRecipeTimeTicks() == 0) {
         this.onRecipeComplete();
@@ -240,9 +236,14 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     return true;
   }
 
+  protected void reduceRecipeTime() {
+
+    this.setRemainingRecipeTimeTicks(this.getRemainingRecipeTimeTicks() - 1);
+  }
+
   public abstract boolean hasInput();
 
-  public abstract boolean hasOutput();
+  public abstract boolean allowInsertInput(ItemStack stack, E recipe);
 
   protected abstract boolean shouldKeepHeat();
 
@@ -259,7 +260,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
       this.setRemainingRecipeTimeTicks(0);
 
     } else {
-      StoneMachineRecipeItemInItemOutBase<E> recipe = this.getRecipe(itemStack);
+      StoneMachineRecipeBase<E> recipe = this.getRecipe(itemStack);
 
       if (recipe != null) {
         this.setRemainingRecipeTimeTicks(recipe.getTimeTicks());

@@ -463,6 +463,43 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Stone Crucible
+  // ---------------------------------------------------------------------------
+
+  public static StoneCrucible STONE_CRUCIBLE = new StoneCrucible();
+
+  public static class StoneCrucible {
+
+    @Config.Comment({
+        "Set to true to deactivate when a recipe completes.",
+        "The worker will need to be re-lit when it deactivates.",
+        "Default: " + false
+    })
+    public boolean KEEP_HEAT = false;
+
+    @Config.Comment({
+        "Controls the number of recipe items that can be inserted.",
+        "Range: [1, 64]",
+        "Default: " + 8
+    })
+    public int INPUT_SLOT_SIZE = 8;
+
+    @Config.Comment({
+        "Controls the number of fuel items that can be inserted.",
+        "Range: [1, 64]",
+        "Default: " + 16
+    })
+    public int FUEL_SLOT_SIZE = 16;
+
+    @Config.Comment({
+        "Controls the size of the output tank in millibuckets.",
+        "Range: [1, +inf)",
+        "Default: " + 4000
+    })
+    public int OUTPUT_TANK_SIZE = 4000;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Pit Kiln
   // ---------------------------------------------------------------------------
 

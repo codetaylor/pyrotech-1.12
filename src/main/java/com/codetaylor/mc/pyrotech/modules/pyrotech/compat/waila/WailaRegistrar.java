@@ -35,10 +35,14 @@ public class WailaRegistrar {
     registrar.registerBodyProvider(millStone, TileMillStone.class);
     registrar.registerBodyProvider(millStone, TileMillStoneTop.class);
 
-    CombustionWorkerStone combustionWorkerStone = new CombustionWorkerStone();
-    registrar.registerBodyProvider(combustionWorkerStone, TileOvenStone.class);
-    registrar.registerBodyProvider(combustionWorkerStone, TileKilnStone.class);
-    registrar.registerBodyProvider(combustionWorkerStone, TileStoneTop.class);
+    CombustionWorkerStoneItemInItemOut combustionWorkerStoneItemInItemOut = new CombustionWorkerStoneItemInItemOut();
+    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOut, TileOvenStone.class);
+    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOut, TileKilnStone.class);
+    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOut, TileStoneTop.class);
+
+    CombustionWorkerStoneItemInFluidOut combustionWorkerStoneItemInFluidOut = new CombustionWorkerStoneItemInFluidOut();
+    registrar.registerBodyProvider(combustionWorkerStoneItemInFluidOut, TileCrucibleStone.class);
+    registrar.registerBodyProvider(combustionWorkerStoneItemInFluidOut, TileStoneTop.class);
 
     Campfire campfire = new Campfire();
     registrar.registerBodyProvider(campfire, TileCampfire.class);

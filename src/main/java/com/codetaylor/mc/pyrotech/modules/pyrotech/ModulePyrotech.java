@@ -163,6 +163,12 @@ public class ModulePyrotech
         .setType(MillStoneRecipe.class)
         .allowModification()
         .create();
+
+    new RegistryBuilder<CrucibleStoneRecipe>()
+        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "crucible_stone_recipe"))
+        .setType(CrucibleStoneRecipe.class)
+        .allowModification()
+        .create();
   }
 
   @Override
@@ -201,6 +207,7 @@ public class ModulePyrotech
     ModuleRecipes.onRegisterChoppingBlockRecipes(ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE);
     ModuleRecipes.onRegisterDryingRackCrudeRecipes(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
     ModuleRecipes.onRegisterMillStoneRecipes(ModulePyrotechRegistries.MILL_STONE_RECIPE);
+    ModuleRecipes.onRegisterCrucibleStoneRecipes(ModulePyrotechRegistries.CRUCIBLE_STONE_RECIPE);
   }
 
   @Override

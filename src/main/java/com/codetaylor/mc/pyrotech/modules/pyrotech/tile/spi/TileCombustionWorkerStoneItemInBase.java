@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInItemOutBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -16,7 +16,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public abstract class TileCombustionWorkerStoneItemInBase<E extends StoneMachineRecipeItemInItemOutBase<E>>
+public abstract class TileCombustionWorkerStoneItemInBase<E extends StoneMachineRecipeItemInBase<E>>
     extends TileCombustionWorkerStoneBase<E> {
 
   private InputStackHandler inputStackHandler;
@@ -123,10 +123,21 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends StoneMachine
 
       // Filter out non-recipe items.
 
-      StoneMachineRecipeItemInItemOutBase<E> recipe = this.tile.getRecipe(stack);
+      ItemStack remainingItems = super.insertItem(slot, stack, true);
 
-      if (recipe == null
-          || this.tile.hasOutput()) {
+      if (remainingItems.getCount() == stack.getCount()) {
+        return stack;
+      }
+
+      E recipe = this.tile.getRecipe(stack);
+
+      if (recipe == null) {
+        return stack;
+      }
+
+      remainingItems.setCount(stack.getCount() - remainingItems.getCount());
+
+      if (!this.tile.allowInsertInput(remainingItems, recipe)) {
         return stack;
       }
 

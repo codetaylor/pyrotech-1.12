@@ -31,7 +31,6 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
 
     int renderPass = MinecraftForgeClient.getRenderPass();
 
-    GlStateManager.pushAttrib();
     GlStateManager.pushMatrix();
     GlStateManager.translate(x, y, z);
 
@@ -62,8 +61,6 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
     }
 
     GlStateManager.popMatrix();
-
-    GlStateManager.popAttrib();
     GlStateManager.popMatrix();
   }
 
@@ -118,7 +115,7 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
       }
 
       // TODO: this is debug only
-      if (!results.isEmpty()) {
+      /*if (!results.isEmpty()) {
 
         // setup additive gl state
         {
@@ -153,7 +150,7 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
         }
 
         GlStateManager.enableTexture2D();
-      }
+      }*/
     }
   }
 
