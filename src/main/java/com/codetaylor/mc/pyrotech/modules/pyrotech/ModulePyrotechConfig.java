@@ -328,7 +328,7 @@ public class ModulePyrotechConfig {
   // - Brick Kiln
   // ---------------------------------------------------------------------------
 
-  public static StoneKiln BRICK_KILN = new StoneKiln();
+  public static BrickKiln BRICK_KILN = new BrickKiln();
 
   public static class BrickKiln {
 
