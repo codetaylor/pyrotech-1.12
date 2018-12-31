@@ -35,7 +35,7 @@ public class MillInteractionBladeRenderer
         InteractionRenderers.setupItemTransforms(transform);
 
         if (interaction.getTile().workerIsActive()) {
-          GlStateManager.rotate(System.currentTimeMillis() % 360, 0, 0, 1);
+          GlStateManager.rotate((world.getTotalWorldTime() % 360 + partialTicks) * 64, 0, 0, 1);
         }
         IBakedModel model = renderItem.getItemModelWithOverrides(itemStack, null, null);
         RenderHelper.renderItemModel(itemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
@@ -85,7 +85,7 @@ public class MillInteractionBladeRenderer
           InteractionRenderers.setupItemTransforms(transform);
 
           if (interaction.getTile().workerIsActive()) {
-            GlStateManager.rotate(System.currentTimeMillis() % 360, 0, 0, 1);
+            GlStateManager.rotate((world.getTotalWorldTime() % 360 + partialTicks) * 64, 0, 0, 1);
           }
           IBakedModel model = renderItem.getItemModelWithOverrides(itemStack, null, null);
           RenderHelper.renderItemModelCustom(itemStack, model, ItemCameraTransforms.TransformType.NONE, false, false);
