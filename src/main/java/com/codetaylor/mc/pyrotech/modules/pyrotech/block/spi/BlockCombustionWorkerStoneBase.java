@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
@@ -75,7 +76,7 @@ public abstract class BlockCombustionWorkerStoneBase
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  protected boolean isTop(IBlockState state) {
+  public boolean isTop(IBlockState state) {
 
     return state.getValue(TYPE) == EnumType.Top;
   }
@@ -222,7 +223,7 @@ public abstract class BlockCombustionWorkerStoneBase
   ) {
 
     if (this.isTop(state)) {
-      return this.interact(world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
+      return this.interact(IInteraction.Type.MouseClick, world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
 
     } else {
       ItemStack heldItem = player.getHeldItemMainhand();
@@ -231,7 +232,7 @@ public abstract class BlockCombustionWorkerStoneBase
         return false;
       }
 
-      return this.interact(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+      return this.interact(IInteraction.Type.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
     }
   }
 

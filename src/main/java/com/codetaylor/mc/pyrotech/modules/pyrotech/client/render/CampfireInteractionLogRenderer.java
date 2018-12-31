@@ -41,9 +41,8 @@ public class CampfireInteractionLogRenderer
     int logCount = interaction.getLogCount();
     EntityPlayerSP player = Minecraft.getMinecraft().player;
 
-    if (!player.isSneaking()
-        && logCount < 8
-        && !heldItemMainHand.isEmpty()) {
+    if (logCount < 8
+        && interaction.shouldRenderAdditivePassForHeldItem(heldItemMainHand)) {
 
       // Only render the held item if it is valid for the handler.
       if (interaction.isItemStackValid(heldItemMainHand)) {
@@ -58,9 +57,8 @@ public class CampfireInteractionLogRenderer
         return true;
       }
 
-    } else if (player.isSneaking()
-        && logCount > 0
-        && heldItemMainHand.isEmpty()) {
+    } else if (logCount > 0
+        && interaction.shouldRenderAdditivePassForStackInSlot(player.isSneaking(), heldItemMainHand)) {
 
       ItemStack log = interaction.getLog(logCount - 1);
 

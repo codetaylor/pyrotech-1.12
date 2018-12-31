@@ -536,7 +536,7 @@ public class TileKilnBrick
     }
 
     @Override
-    protected boolean doExtract(World world, EntityPlayer player, BlockPos tilePos) {
+    protected boolean doExtract(Type type, World world, EntityPlayer player, BlockPos tilePos) {
 
       // Extract all slots in the output stack handler.
 
@@ -553,7 +553,7 @@ public class TileKilnBrick
         }
       }
 
-      return super.doExtract(world, player, tilePos);
+      return super.doExtract(type, world, player, tilePos);
     }
   }
 

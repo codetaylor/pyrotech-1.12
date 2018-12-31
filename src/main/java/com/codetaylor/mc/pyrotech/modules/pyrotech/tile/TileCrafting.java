@@ -260,7 +260,7 @@ public class TileCrafting
     }
 
     @Override
-    protected int getInsertItemCount(ItemStack itemStack) {
+    protected int getInsertItemCount(Type type, ItemStack itemStack) {
 
       return 1;
     }

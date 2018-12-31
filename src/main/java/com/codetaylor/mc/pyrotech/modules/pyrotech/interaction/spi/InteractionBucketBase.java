@@ -23,7 +23,7 @@ public abstract class InteractionBucketBase<T extends TileEntity & ITileInteract
   }
 
   @Override
-  public boolean interact(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+  public boolean interact(Type type, T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
     if (this.allowInteractionWithHand(hand)
         && this.allowInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {

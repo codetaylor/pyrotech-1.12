@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 public interface IBlockInteractable {
 
   default boolean interact(
+      IInteraction.Type type,
       World world,
       BlockPos pos,
       IBlockState state,
@@ -29,7 +30,7 @@ public interface IBlockInteractable {
 
     if (tileEntity instanceof ITileInteractable) {
       ITileInteractable tile = (ITileInteractable) tileEntity;
-      tile.interact(tile.asTileInteractable(), world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+      tile.interact(type, tile.asTileInteractable(), world, pos, state, player, hand, facing, hitX, hitY, hitZ);
     }
 
     return true;

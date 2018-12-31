@@ -567,7 +567,7 @@ public class TileKilnPit
     }
 
     @Override
-    public boolean interact(TileKilnPit tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    public boolean interact(Type type, TileKilnPit tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (world.getBlockState(hitPos).getValue(VARIANT) != BlockKilnPit.EnumType.THATCH) {
         return false;
@@ -625,7 +625,7 @@ public class TileKilnPit
     }
 
     @Override
-    protected boolean doExtract(World world, EntityPlayer player, BlockPos tilePos) {
+    protected boolean doExtract(Type type, World world, EntityPlayer player, BlockPos tilePos) {
 
       // Extract all slots in the output stack handler.
 
@@ -643,7 +643,7 @@ public class TileKilnPit
         }
       }
 
-      return super.doExtract(world, player, tilePos);
+      return super.doExtract(type, world, player, tilePos);
     }
   }
 

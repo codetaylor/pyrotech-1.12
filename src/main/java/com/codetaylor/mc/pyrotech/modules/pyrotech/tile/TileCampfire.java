@@ -15,10 +15,10 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.CampfireInteractionLogRenderer;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionUseItemToActivateWorker;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionBase;
@@ -507,13 +507,14 @@ public class TileCampfire
     }
 
     @Override
-    public boolean interact(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    public boolean interact(Type type, TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      if (player.isSneaking()) {
+      if (player.isSneaking()
+          && type == Type.MouseClick) {
         return false;
       }
 
-      return super.interact(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
+      return super.interact(type, tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
     }
   }
 
@@ -573,14 +574,15 @@ public class TileCampfire
     }
 
     @Override
-    public boolean interact(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    public boolean interact(Type type, TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       ItemStack heldItem = player.getHeldItemMainhand();
 
-      if (heldItem.isEmpty()
-          && player.isSneaking()) {
+      if ((type == Type.MouseClick && heldItem.isEmpty())
+          || type == Type.MouseWheelDown) {
 
-        // If the player is sneaking with an empty hand, remove logs and damage the player.
+        // If the player is sneaking with an empty hand, or it's a mouse wheel
+        // down type, remove logs and damage the player.
 
         ItemStack itemStack = tile.fuelStackHandler.extractItem(0, 1, world.isRemote);
 
@@ -603,8 +605,8 @@ public class TileCampfire
           return true;
         }
 
-      } else if (!heldItem.isEmpty()
-          && !player.isSneaking()) {
+      } else if ((type == Type.MouseClick && !heldItem.isEmpty())
+          || type == Type.MouseWheelUp) {
 
         // If the player is not sneaking with a full hand, attempt to add wood.
 
@@ -661,7 +663,7 @@ public class TileCampfire
     }
 
     @Override
-    public boolean interact(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    public boolean interact(Type type, TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       ItemStack heldItem = player.getHeldItemMainhand();
 

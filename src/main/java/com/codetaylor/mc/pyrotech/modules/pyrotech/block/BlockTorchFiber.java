@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorch;
@@ -161,7 +162,7 @@ public class BlockTorchFiber
       return false;
     }
 
-    return this.interact(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.Type.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   @ParametersAreNonnullByDefault

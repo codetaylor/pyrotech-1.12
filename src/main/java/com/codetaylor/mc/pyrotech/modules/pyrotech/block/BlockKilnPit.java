@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnPit;
 import net.minecraft.block.Block;
@@ -214,7 +215,7 @@ public class BlockKilnPit
       return false;
     }
 
-    return this.interact(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.Type.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   @Override

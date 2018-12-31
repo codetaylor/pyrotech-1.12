@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileDryingRackBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackCrude;
@@ -82,7 +83,7 @@ public class BlockDryingRack
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    return this.interact(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.Type.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   @Override

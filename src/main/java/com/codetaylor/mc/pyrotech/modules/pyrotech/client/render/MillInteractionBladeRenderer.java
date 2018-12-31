@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileMillStone;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -51,7 +52,7 @@ public class MillInteractionBladeRenderer
     // Else, render the handler's item if the player's hand is empty.
 
     if (interaction.isEmpty()
-        && !heldItemMainHand.isEmpty()) {
+        && interaction.shouldRenderAdditivePassForHeldItem(heldItemMainHand)) {
 
       // Only render the held item if it is valid for the handler.
       if (interaction.isItemStackValid(heldItemMainHand)) {
@@ -68,7 +69,7 @@ public class MillInteractionBladeRenderer
       }
 
     } else if (!interaction.isEmpty()
-        && heldItemMainHand.isEmpty()) {
+        && interaction.shouldRenderAdditivePassForStackInSlot(Minecraft.getMinecraft().player.isSneaking(), heldItemMainHand)) {
 
       ItemStack itemStack = interaction.getStackInSlot();
       Transform transform = interaction.getTransform(world, hitPos, blockState, itemStack, partialTicks);

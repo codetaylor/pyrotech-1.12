@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -62,7 +63,7 @@ public class BlockGraniteAnvil
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    return this.interact(world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.Type.MouseClick, world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
   }
 
   @Override

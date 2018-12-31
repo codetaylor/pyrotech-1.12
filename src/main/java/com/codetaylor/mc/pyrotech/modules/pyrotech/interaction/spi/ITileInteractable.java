@@ -64,6 +64,8 @@ public interface ITileInteractable {
    * Call this method from the block's {@link Block#onBlockActivated(World, BlockPos, IBlockState, EntityPlayer, EnumHand, EnumFacing, float, float, float)}
    * method and pass in the block's tile entity.
    *
+   * @param <T>    the type of tile being interacted with
+   * @param type the source of the interaction
    * @param tile   the tile being interacted with
    * @param world  the world
    * @param pos    the position of the block/tile being interacted with
@@ -74,9 +76,8 @@ public interface ITileInteractable {
    * @param hitX   the vec.x of the interaction
    * @param hitY   the vec.y of the interaction
    * @param hitZ   the vec.z of the interaction
-   * @param <T>    the type of tile being interacted with
    */
-  default <T extends TileEntity & ITileInteractable> void interact(T tile, World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+  default <T extends TileEntity & ITileInteractable> void interact(IInteraction.Type type, T tile, World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
     Vec3d posVec = new Vec3d(player.posX, player.posY + player.eyeHeight, player.posZ);
     int interactionDistance = 5;
@@ -95,7 +96,7 @@ public interface ITileInteractable {
         //noinspection unchecked
         if (interaction.allowInteractionWithHand(hand)
             && interaction.allowInteractionWithSide(data.getRayTraceResult().sideHit)
-            && interaction.interact(tile, world, pos, state, player, hand, facing, hitX, hitY, hitZ)) {
+            && interaction.interact(type, tile, world, pos, state, player, hand, facing, hitX, hitY, hitZ)) {
           break;
         }
       }

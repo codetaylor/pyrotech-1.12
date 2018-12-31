@@ -175,7 +175,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   }
 
   @Override
-  public boolean interact(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+  public boolean interact(Type type, T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
     if (!this.allowInteractionWithHand(hand)) {
       return false;
@@ -184,13 +184,13 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
     BlockPos tilePos = tile.getPos();
     ItemStack heldItem = player.getHeldItem(hand);
 
-    if (heldItem.isEmpty()) {
+    if ((heldItem.isEmpty() && type == Type.MouseClick) || type == Type.MouseWheelDown) {
 
       // Remove item with empty hand
 
       if (!this.isEmpty()) {
 
-        if (this.doExtract(world, player, tilePos)) {
+        if (this.doExtract(type, world, player, tilePos)) {
           this.onExtract(world, player, tilePos);
           return true;
 
@@ -211,7 +211,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
       int count = heldItem.getCount();
       int insertIndex = this.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
       ItemStack itemStack = heldItem.copy();
-      int insertItemCount = this.getInsertItemCount(itemStack);
+      int insertItemCount = this.getInsertItemCount(type, itemStack);
       itemStack.setCount(insertItemCount);
       ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, world.isRemote);
 
@@ -236,10 +236,15 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
    * <p>
    * The default is to insert the entire stack.
    *
+   * @param type
    * @param itemStack the stack being inserted
    * @return how many items can be inserted
    */
-  protected int getInsertItemCount(ItemStack itemStack) {
+  protected int getInsertItemCount(Type type, ItemStack itemStack) {
+
+    if (type == Type.MouseWheelUp) {
+      return 1;
+    }
 
     return itemStack.getCount();
   }
@@ -288,14 +293,24 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   /**
    * Override this to change the extraction behavior.
    *
+   * @param type
    * @param world
    * @param player
    * @param tilePos
    * @return true to prevent processing subsequent interactions
    */
-  protected boolean doExtract(World world, EntityPlayer player, BlockPos tilePos) {
+  protected boolean doExtract(Type type, World world, EntityPlayer player, BlockPos tilePos) {
 
-    ItemStack result = this.extract(this.getStackInSlot().getCount(), world.isRemote);
+    int extractItemCount;
+
+    if (type == Type.MouseWheelDown) {
+      extractItemCount = 1;
+
+    } else {
+      extractItemCount = this.getStackInSlot().getCount();
+    }
+
+    ItemStack result = this.extract(extractItemCount, world.isRemote);
 
     if (!result.isEmpty()) {
 
@@ -348,5 +363,23 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   public boolean renderAdditivePass(World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
     return InteractionRenderers.ITEM_STACK.renderAdditivePass(this, world, renderItem, hitSide, hitVec, hitPos, blockState, heldItemMainHand, partialTicks);
+  }
+
+  @Override
+  public boolean forceRenderAdditivePassWhileSneaking() {
+
+    return true;
+  }
+
+  @SideOnly(Side.CLIENT)
+  public boolean shouldRenderAdditivePassForHeldItem(ItemStack heldItemMainHand) {
+
+    return !heldItemMainHand.isEmpty();
+  }
+
+  @SideOnly(Side.CLIENT)
+  public boolean shouldRenderAdditivePassForStackInSlot(boolean sneaking, ItemStack heldItemMainHand) {
+
+    return heldItemMainHand.isEmpty() || sneaking;
   }
 }

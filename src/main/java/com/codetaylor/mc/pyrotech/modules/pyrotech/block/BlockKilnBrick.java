@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrick;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrickTop;
@@ -272,7 +273,7 @@ public class BlockKilnBrick
   ) {
 
     if (this.isTop(state)) {
-      return this.interact(world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
+      return this.interact(IInteraction.Type.MouseClick, world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
 
     } else {
       ItemStack heldItem = player.getHeldItemMainhand();
@@ -281,7 +282,7 @@ public class BlockKilnBrick
         return false;
       }
 
-      return this.interact(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+      return this.interact(IInteraction.Type.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
     }
   }
 

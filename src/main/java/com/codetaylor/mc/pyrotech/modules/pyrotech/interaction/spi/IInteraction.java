@@ -16,6 +16,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IInteraction<T extends TileEntity & ITileInteractable> {
 
+  enum Type {
+    MouseClick,
+    MouseWheelUp,
+    MouseWheelDown
+  }
+
   default boolean isEnabled() {
 
     return true;
@@ -58,6 +64,7 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
   /**
    * Should be called from {@link net.minecraft.block.Block#onBlockActivated(World, BlockPos, IBlockState, EntityPlayer, EnumHand, EnumFacing, float, float, float)}.
    *
+   * @param type    the source of the interaction
    * @param world   the world
    * @param hitPos  the blockPos of the block hit
    * @param state   the blockState of the block it
@@ -69,7 +76,7 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
    * @param hitZ    the z position of the hit, relative to the hitPos
    * @return true to prevent processing subsequent interactions
    */
-  boolean interact(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
+  boolean interact(Type type, T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
 
   /**
    * Render the solid pass.
@@ -107,6 +114,18 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
   default boolean forceRenderAdditivePassWhileSneaking() {
 
     return false;
+  }
+
+  @SideOnly(Side.CLIENT)
+  default boolean shouldRenderAdditivePassForHeldItem(ItemStack heldItemMainHand) {
+
+    return !heldItemMainHand.isEmpty();
+  }
+
+  @SideOnly(Side.CLIENT)
+  default boolean shouldRenderAdditivePassForStackInSlot(boolean sneaking, ItemStack heldItemMainHand) {
+
+    return heldItemMainHand.isEmpty();
   }
 
 }

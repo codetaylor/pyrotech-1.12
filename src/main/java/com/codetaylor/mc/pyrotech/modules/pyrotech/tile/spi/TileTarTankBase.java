@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
 
-import com.codetaylor.mc.pyrotech.library.fluid.CPacketFluidUpdate;
+import com.codetaylor.mc.pyrotech.library.fluid.SCPacketFluidUpdate;
 import com.codetaylor.mc.pyrotech.library.fluid.FluidTankBase;
 import com.codetaylor.mc.pyrotech.library.fluid.IFluidTankUpdateListener;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
@@ -23,7 +23,7 @@ import java.util.List;
 public abstract class TileTarTankBase
     extends TileEntity
     implements ITickable,
-    CPacketFluidUpdate.IFluidUpdatePacketConsumer,
+    SCPacketFluidUpdate.IFluidUpdatePacketConsumer,
     IFluidTankUpdateListener {
 
   private static final int UPDATE_DELAY_TICKS = 5;
@@ -84,7 +84,7 @@ public abstract class TileTarTankBase
 
   @SideOnly(Side.CLIENT)
   @Override
-  public void onFluidUpdatePacket(CPacketFluidUpdate packet) {
+  public void onFluidUpdatePacket(SCPacketFluidUpdate packet) {
 
     FluidStack fluidStack = packet.getFluidStack();
     this.fluidTank.setFluid(fluidStack);
@@ -94,7 +94,7 @@ public abstract class TileTarTankBase
   public void onTankContentsChanged(FluidTank fluidTank) {
 
     if (!this.world.isRemote) {
-      ModulePyrotech.PACKET_SERVICE.sendToAllAround(new CPacketFluidUpdate(this.pos, fluidTank.getFluid()), this);
+      ModulePyrotech.PACKET_SERVICE.sendToAllAround(new SCPacketFluidUpdate(this.pos, fluidTank.getFluid()), this);
     }
   }
 

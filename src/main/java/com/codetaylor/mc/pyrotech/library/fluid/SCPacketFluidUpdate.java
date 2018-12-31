@@ -10,17 +10,17 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class CPacketFluidUpdate
-    extends CPacketTileEntityBase<CPacketFluidUpdate> {
+public class SCPacketFluidUpdate
+    extends CPacketTileEntityBase<SCPacketFluidUpdate> {
 
   private FluidStack fluidStack;
 
   @SuppressWarnings("unused")
-  public CPacketFluidUpdate() {
+  public SCPacketFluidUpdate() {
     // serialization
   }
 
-  public CPacketFluidUpdate(BlockPos blockPos, FluidStack fluidStack) {
+  public SCPacketFluidUpdate(BlockPos blockPos, FluidStack fluidStack) {
 
     super(blockPos);
     this.fluidStack = fluidStack;
@@ -53,7 +53,7 @@ public class CPacketFluidUpdate
   }
 
   @Override
-  protected IMessage onMessage(CPacketFluidUpdate message, MessageContext ctx, TileEntity tileEntity) {
+  protected IMessage onMessage(SCPacketFluidUpdate message, MessageContext ctx, TileEntity tileEntity) {
 
     if (tileEntity instanceof IFluidUpdatePacketConsumer) {
       ((IFluidUpdatePacketConsumer) tileEntity).onFluidUpdatePacket(message);
@@ -64,6 +64,6 @@ public class CPacketFluidUpdate
 
   public interface IFluidUpdatePacketConsumer {
 
-    void onFluidUpdatePacket(CPacketFluidUpdate packet);
+    void onFluidUpdatePacket(SCPacketFluidUpdate packet);
   }
 }
