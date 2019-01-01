@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
@@ -182,6 +183,7 @@ public class ModulePyrotechConfig {
         "String format is a resource location: (domain):(path)"
     })
     public String[] HAMMER_LIST = new String[]{
+        ModulePyrotech.MOD_ID + ":" + ItemCrudeHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemStoneHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemBoneHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemFlintHammer.NAME,
