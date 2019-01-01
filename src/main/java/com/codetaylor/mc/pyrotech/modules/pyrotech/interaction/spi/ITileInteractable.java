@@ -79,7 +79,7 @@ public interface ITileInteractable {
    */
   default <T extends TileEntity & ITileInteractable> void interact(IInteraction.Type type, T tile, World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    Vec3d posVec = new Vec3d(player.posX, player.posY + player.eyeHeight, player.posZ);
+    Vec3d posVec = new Vec3d(player.posX, player.posY + player.getEyeHeight(), player.posZ);
     int interactionDistance = 5;
     RayTraceResult rayTraceResult = world.rayTraceBlocks(posVec, posVec.add(player.getLookVec().scale(interactionDistance)), false);
 
