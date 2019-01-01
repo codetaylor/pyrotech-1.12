@@ -5,16 +5,23 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionI
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
 
 public final class InteractionRenderers {
 
@@ -32,6 +39,18 @@ public final class InteractionRenderers {
         ItemStack itemStack = interaction.getStackInSlot();
         Transform transform = interaction.getTransform(world, pos, blockState, itemStack, partialTicks);
         InteractionRenderers.renderItemModel(renderItem, itemStack, transform);
+      }
+    }
+
+    @Override
+    public void renderSolidPassText(IInteractionItemStack interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
+
+      // If the handler is not empty, render the handler's item count.
+
+      if (!interaction.isEmpty()) {
+        ItemStack itemStack = interaction.getStackInSlot();
+        Transform transform = interaction.getTransform(world, pos, blockState, itemStack, partialTicks);
+        InteractionRenderers.renderItemCount(fontRenderer, yaw, itemStack, transform, offset);
       }
     }
 
@@ -99,6 +118,18 @@ public final class InteractionRenderers {
     GlStateManager.popMatrix();
   }
 
+  public static void renderItemCount(FontRenderer fontRenderer, int yaw, ItemStack itemStack, Transform transform, Vec3d offset) {
+
+    GlStateManager.pushMatrix();
+    {
+      if (transform != Transform.IDENTITY) {
+        GlStateManager.translate(transform.translation.x, transform.translation.y, transform.translation.z);
+      }
+      InteractionRenderers.renderItemCount(fontRenderer, yaw, itemStack.getCount(), offset);
+    }
+    GlStateManager.popMatrix();
+  }
+
   /**
    * Render the given item with the given transform without applying the
    * normal GL state.
@@ -147,6 +178,53 @@ public final class InteractionRenderers {
       GlStateManager.rotate(transform.rotation);
       GlStateManager.scale(transform.scale.x, transform.scale.y, transform.scale.z);
     }
+  }
+
+  public static void renderItemCount(FontRenderer fontRenderer, int yaw, int count, Vec3d offset) {
+
+    if (count <= 1) {
+      return;
+    }
+
+    int verticalShift = 0;
+    String countString = String.valueOf(count);
+    RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
+    float viewerYaw = renderManager.playerViewY;
+    float viewerPitch = renderManager.playerViewX;
+    int i = fontRenderer.getStringWidth(countString) / 2;
+
+    GlStateManager.pushMatrix();
+    GlStateManager.translate(offset.x, offset.y, offset.z);
+    GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
+    GlStateManager.rotate(-viewerYaw - yaw, 0.0F, 1.0F, 0.0F);
+    GlStateManager.rotate(viewerPitch, 1.0F, 0.0F, 0.0F);
+    GlStateManager.scale(-0.0125F, -0.0125F, 0.0125F);
+    GlStateManager.disableLighting();
+    GlStateManager.depthMask(false);
+    GlStateManager.disableDepth();
+    GlStateManager.enableBlend();
+    GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+    GlStateManager.disableTexture2D();
+
+    Tessellator tessellator = Tessellator.getInstance();
+    BufferBuilder bufferbuilder = tessellator.getBuffer();
+    bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+    bufferbuilder.pos((double) (-i - 1), (double) (-1 + verticalShift), 0.0D).color(0.0F, 0.0F, 0.0F, 0.5f).endVertex();
+    bufferbuilder.pos((double) (-i - 1), (double) (8 + verticalShift), 0.0D).color(0.0F, 0.0F, 0.0F, 0.5f).endVertex();
+    bufferbuilder.pos((double) (i + 1), (double) (8 + verticalShift), 0.0D).color(0.0F, 0.0F, 0.0F, 0.5f).endVertex();
+    bufferbuilder.pos((double) (i + 1), (double) (-1 + verticalShift), 0.0D).color(0.0F, 0.0F, 0.0F, 0.5f).endVertex();
+    tessellator.draw();
+
+    GlStateManager.enableTexture2D();
+    GlStateManager.depthMask(true);
+
+    fontRenderer.drawString(countString, -fontRenderer.getStringWidth(countString) / 2, verticalShift, Color.WHITE.getRGB());
+
+    GlStateManager.enableLighting();
+    GlStateManager.disableBlend();
+    GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+    GlStateManager.enableDepth();
+    GlStateManager.popMatrix();
   }
 
   private InteractionRenderers() {

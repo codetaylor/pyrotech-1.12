@@ -21,6 +21,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -142,6 +143,12 @@ public class TileWoodRack
           Transform.rotate(),
           Transform.scale(ONE_THIRD, 12.0 / 16.0, ONE_THIRD)
       );
+    }
+
+    @Override
+    public Vec3d getTextOffset() {
+
+      return new Vec3d(0, 0.5, 0);
     }
 
     private static AxisAlignedBB createInteractionBounds(int slot) {

@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -90,6 +91,27 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
   @SideOnly(Side.CLIENT)
   default void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
     // default no op
+  }
+
+  /**
+   * Render the solid pass text.
+   *
+   * @param world        the world
+   * @param fontRenderer the font renderer
+   * @param yaw
+   * @param offset
+   * @param pos          the position of the TE
+   * @param blockState   the blockState of the TE
+   * @param partialTicks value passed from the TESR
+   */
+  @SideOnly(Side.CLIENT)
+  default void renderSolidPassText(World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
+    // default no op
+  }
+
+  default Vec3d getTextOffset() {
+
+    return Vec3d.ZERO;
   }
 
   /**

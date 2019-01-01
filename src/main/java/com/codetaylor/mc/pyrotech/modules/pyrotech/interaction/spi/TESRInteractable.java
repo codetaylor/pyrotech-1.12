@@ -4,6 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.util.InteractionR
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -32,16 +33,20 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
     GlStateManager.translate(0.5, 0, 0.5);
 
     EnumFacing facing = te.getTileFacing(world, te.getPos(), blockState);
+    int yaw = 0;
 
     switch (facing) {
       case EAST:
         GlStateManager.rotate(-90, 0, 1, 0);
+        yaw = -90;
         break;
       case SOUTH:
         GlStateManager.rotate(-180, 0, 1, 0);
+        yaw = -180;
         break;
       case WEST:
         GlStateManager.rotate(-270, 0, 1, 0);
+        yaw = -270;
         break;
     }
 
@@ -54,13 +59,32 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
       this.renderAdditivePass(te, partialTicks, world, blockState);
     }
 
+    RayTraceResult rayTraceResult = Minecraft.getMinecraft().objectMouseOver;
+
+    if (rayTraceResult != null
+        && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
+        && (te.getPos().equals(rayTraceResult.getBlockPos()) || te.isExtendedInteraction(world, rayTraceResult.getBlockPos(), world.getBlockState(rayTraceResult.getBlockPos())))) {
+
+      Minecraft minecraft = Minecraft.getMinecraft();
+
+      if (minecraft.player.isSneaking()) {
+        FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
+        IInteraction[] interactions = te.getInteractions();
+
+        for (int i = 0; i < interactions.length; i++) {
+          interactions[i].renderSolidPassText(world, fontrenderer, yaw, interactions[i].getTextOffset(), te.getPos(), blockState, partialTicks);
+        }
+      }
+    }
+
     GlStateManager.popMatrix();
     GlStateManager.popMatrix();
   }
 
   protected void renderSolidPass(T te, World world, IBlockState blockState, float partialTicks) {
 
-    RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+    Minecraft minecraft = Minecraft.getMinecraft();
+    RenderItem renderItem = minecraft.getRenderItem();
 
     net.minecraft.client.renderer.RenderHelper.enableStandardItemLighting();
 

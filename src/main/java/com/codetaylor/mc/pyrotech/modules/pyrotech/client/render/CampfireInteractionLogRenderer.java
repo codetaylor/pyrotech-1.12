@@ -2,11 +2,13 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.item.ItemStack;
@@ -30,6 +32,11 @@ public class CampfireInteractionLogRenderer
     for (int i = 0; i < logCount; i++) {
       this.renderLog(renderItem, i, interaction.getLog(i));
     }
+  }
+
+  @Override
+  public void renderSolidPassText(IInteractionItemStack interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
+    // TODO
   }
 
   @Override

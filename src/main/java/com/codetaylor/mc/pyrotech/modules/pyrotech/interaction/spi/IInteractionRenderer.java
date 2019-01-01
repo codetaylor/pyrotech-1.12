@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -11,6 +12,8 @@ import net.minecraft.world.World;
 public interface IInteractionRenderer<I extends IInteraction> {
 
   void renderSolidPass(I interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks);
+
+  void renderSolidPassText(IInteractionItemStack interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks);
 
   /**
    * @param interaction

@@ -5,6 +5,7 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -356,6 +357,18 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
 
     InteractionRenderers.ITEM_STACK.renderSolidPass(this, world, renderItem, pos, blockState, partialTicks);
+  }
+
+  @Override
+  public void renderSolidPassText(World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
+
+    InteractionRenderers.ITEM_STACK.renderSolidPassText(this, world, fontRenderer, yaw, offset, pos, blockState, partialTicks);
+  }
+
+  @Override
+  public Vec3d getTextOffset() {
+
+    return new Vec3d(0, 0.1, 0);
   }
 
   @Override
