@@ -580,10 +580,10 @@ public class ModulePyrotechConfig {
     public int STRAW_BURN_TIME_TICKS = 50;
 
     @Config.Comment({
-        "Thatch burn time in ticks.",
+        "Straw bale burn time in ticks.",
         "Default: " + 200
     })
-    public int THATCH_BURN_TIME_TICKS = 200;
+    public int STRAW_BALE_BURN_TIME_TICKS = 200;
 
     @Config.Comment({
         "Coal tar burn time in ticks.",

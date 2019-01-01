@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.event;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
@@ -35,7 +34,7 @@ public class FuelHandler {
       event.setBurnTime(ModulePyrotechConfig.FUEL.COAL_TAR_BURN_TIME_TICKS);
 
     } else if (fuel.getItem() == Item.getItemFromBlock(ModuleBlocks.THATCH)) {
-      event.setBurnTime(ModulePyrotechConfig.FUEL.THATCH_BURN_TIME_TICKS);
+      event.setBurnTime(ModulePyrotechConfig.FUEL.STRAW_BALE_BURN_TIME_TICKS);
 
     } else if (fuel.getItem() == ModuleItems.MATERIAL) {
 
