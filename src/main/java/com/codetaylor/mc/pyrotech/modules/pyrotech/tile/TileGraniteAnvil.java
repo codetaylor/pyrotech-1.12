@@ -28,6 +28,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
@@ -44,6 +45,7 @@ public class TileGraniteAnvil
   private int durabilityUntilNextDamage;
 
   private IInteraction[] interactions;
+  private AxisAlignedBB renderBounds;
 
   public TileGraniteAnvil() {
 
@@ -159,6 +161,17 @@ public class TileGraniteAnvil
   // ---------------------------------------------------------------------------
   // - Rendering
   // ---------------------------------------------------------------------------
+
+  @Nonnull
+  @Override
+  public AxisAlignedBB getRenderBoundingBox() {
+
+    if (this.renderBounds == null) {
+      this.renderBounds = new AxisAlignedBB(this.getPos()).expand(0, 0.5, 0);
+    }
+
+    return this.renderBounds;
+  }
 
   @Override
   public boolean shouldRenderInPass(int pass) {
