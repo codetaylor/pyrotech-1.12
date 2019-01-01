@@ -108,14 +108,14 @@ public class BlockTorchFiber
     if (this.getActualState(state, world, pos).getValue(TYPE) == EnumType.LIT) {
 
       EnumFacing enumfacing = state.getValue(FACING);
-      double x = (double) pos.getX() + 0.5D;
-      double y = (double) pos.getY() + 0.7D + (1.0 / 16.0);
-      double z = (double) pos.getZ() + 0.5D;
+      double x = (double) pos.getX() + 0.5D + (rand.nextDouble() * 2 - 1) * 0.1;
+      double y = (double) pos.getY() + 0.7D + (2.0 / 16.0);
+      double z = (double) pos.getZ() + 0.5D + (rand.nextDouble() * 2 - 1) * 0.1;
 
       if (enumfacing.getAxis().isHorizontal()) {
         EnumFacing enumfacing1 = enumfacing.getOpposite();
-        world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + 0.27D * (double) enumfacing1.getFrontOffsetX(), y + 0.22D, z + 0.27D * (double) enumfacing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
-        world.spawnParticle(EnumParticleTypes.FLAME, x + 0.27D * (double) enumfacing1.getFrontOffsetX(), y + 0.22D, z + 0.27D * (double) enumfacing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
+        world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + 0.17D * (double) enumfacing1.getFrontOffsetX(), y + 0.22D, z + 0.17D * (double) enumfacing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
+        world.spawnParticle(EnumParticleTypes.FLAME, x + 0.17D * (double) enumfacing1.getFrontOffsetX(), y + 0.22D, z + 0.17D * (double) enumfacing1.getFrontOffsetZ(), 0.0D, 0.0D, 0.0D);
 
       } else {
         world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, 0.0D, 0.0D, 0.0D);
