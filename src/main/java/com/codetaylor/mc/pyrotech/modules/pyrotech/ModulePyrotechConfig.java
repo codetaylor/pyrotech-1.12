@@ -607,6 +607,12 @@ public class ModulePyrotechConfig {
     })
     public int COAL_COKE_BLOCK_BURN_TIME_TICKS = 32000;
 
+    @Config.Comment({
+        "Log pile burn time in ticks.",
+        "Default: " + (300 * 9)
+    })
+    public int LOG_PILE_BURN_TIME_TICKS = 300 * 9;
+
   }
 
   // ---------------------------------------------------------------------------
