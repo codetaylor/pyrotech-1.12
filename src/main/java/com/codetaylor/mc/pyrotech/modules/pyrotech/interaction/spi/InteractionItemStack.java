@@ -26,6 +26,8 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
     extends InteractionBase<T>
     implements IInteractionItemStack<T> {
 
+  private static final Vec3d TEXT_OFFSET = new Vec3d(0, 0.1, 0);
+
   protected final ItemStackHandler[] stackHandlers;
   protected final int slot;
   protected final Transform transform;
@@ -368,7 +370,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   @Override
   public Vec3d getTextOffset() {
 
-    return new Vec3d(0, 0.1, 0);
+    return TEXT_OFFSET;
   }
 
   @Override

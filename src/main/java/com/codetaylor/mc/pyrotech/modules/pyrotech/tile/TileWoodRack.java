@@ -1,6 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
@@ -9,9 +12,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -127,6 +127,7 @@ public class TileWoodRack
 
     private static final double ONE_THIRD = 1.0 / 3.0;
     private static final double ONE_SIXTH = 1.0 / 6.0;
+    private static final Vec3d TEXT_OFFSET = new Vec3d(0, 0.5, 0);
 
     public Interaction(ItemStackHandler[] stackHandlers, int slot) {
 
@@ -148,7 +149,7 @@ public class TileWoodRack
     @Override
     public Vec3d getTextOffset() {
 
-      return new Vec3d(0, 0.5, 0);
+      return TEXT_OFFSET;
     }
 
     private static AxisAlignedBB createInteractionBounds(int slot) {
