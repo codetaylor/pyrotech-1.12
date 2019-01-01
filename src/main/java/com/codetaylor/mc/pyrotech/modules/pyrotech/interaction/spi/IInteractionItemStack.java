@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IInteractionItemStack<T extends TileEntity & ITileInteractable>
     extends IInteraction<T> {
@@ -73,4 +75,17 @@ public interface IInteractionItemStack<T extends TileEntity & ITileInteractable>
    * @return the transform used to render an item in this slot
    */
   Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack, float partialTicks);
+
+  /**
+   * Override for more control over the additive render pass.
+   *
+   * @param sneaking         is the player sneaking
+   * @param heldItemMainHand the player's main hand item
+   * @return true if the interaction's item should be rendered in the interaction
+   */
+  @SideOnly(Side.CLIENT)
+  default boolean shouldRenderAdditivePassForStackInSlot(boolean sneaking, ItemStack heldItemMainHand) {
+
+    return heldItemMainHand.isEmpty();
+  }
 }

@@ -156,17 +156,4 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
     return !heldItemMainHand.isEmpty();
   }
 
-  /**
-   * Override for more control over the additive render pass.
-   *
-   * @param sneaking         is the player sneaking
-   * @param heldItemMainHand the player's main hand item
-   * @return true if the interaction's item should be rendered in the interaction
-   */
-  @SideOnly(Side.CLIENT)
-  default boolean shouldRenderAdditivePassForStackInSlot(boolean sneaking, ItemStack heldItemMainHand) {
-
-    return heldItemMainHand.isEmpty();
-  }
-
 }
