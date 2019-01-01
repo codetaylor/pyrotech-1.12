@@ -98,8 +98,8 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
    *
    * @param world        the world
    * @param fontRenderer the font renderer
-   * @param yaw
-   * @param offset
+   * @param yaw          the rotation of the TE
+   * @param offset       the text rendering offset
    * @param pos          the position of the TE
    * @param blockState   the blockState of the TE
    * @param partialTicks value passed from the TESR
@@ -109,6 +109,9 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
     // default no op
   }
 
+  /**
+   * @return the text rendering offset
+   */
   default Vec3d getTextOffset() {
 
     return Vec3d.ZERO;
@@ -132,18 +135,34 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
     return false;
   }
 
+  /**
+   * @return true to force rendering the additive pass while sneaking
+   */
   @SideOnly(Side.CLIENT)
   default boolean forceRenderAdditivePassWhileSneaking() {
 
     return false;
   }
 
+  /**
+   * Override for more control over the additive render pass.
+   *
+   * @param heldItemMainHand the player's main hand item
+   * @return true if the held item should be rendered in the interaction
+   */
   @SideOnly(Side.CLIENT)
   default boolean shouldRenderAdditivePassForHeldItem(ItemStack heldItemMainHand) {
 
     return !heldItemMainHand.isEmpty();
   }
 
+  /**
+   * Override for more control over the additive render pass.
+   *
+   * @param sneaking         is the player sneaking
+   * @param heldItemMainHand the player's main hand item
+   * @return true if the interaction's item should be rendered in the interaction
+   */
   @SideOnly(Side.CLIENT)
   default boolean shouldRenderAdditivePassForStackInSlot(boolean sneaking, ItemStack heldItemMainHand) {
 
