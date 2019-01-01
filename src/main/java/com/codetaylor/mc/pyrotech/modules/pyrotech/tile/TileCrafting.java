@@ -33,6 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
+import org.lwjgl.util.vector.Quaternion;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -242,7 +243,10 @@ public class TileCrafting
           new AxisAlignedBB(x * ONE_THIRD, 14f / 16f, z * ONE_THIRD, x * ONE_THIRD + ONE_THIRD, 15f / 16f, z * ONE_THIRD + ONE_THIRD),
           new Transform(
               Transform.translate(x * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025, 15f / 16f, z * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025),
-              Transform.rotate(1, 0, 0, 90),
+              Transform.rotate(new Quaternion[]{
+                  Transform.rotate(0, 1, 0, 180),
+                  Transform.rotate(1, 0, 0, -90)
+              }),
               Transform.scale(0.20, 0.20, 0.20)
           )
       );
@@ -289,7 +293,10 @@ public class TileCrafting
           new AxisAlignedBB(x * ONE_THIRD, 0, 0, x * ONE_THIRD + ONE_THIRD, 5f / 16f, ONE_THIRD),
           new Transform(
               Transform.translate(x * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025, 5f / 16f, ONE_SIXTH + 0.025),
-              Transform.rotate(1, 0, 0, 90),
+              Transform.rotate(new Quaternion[]{
+                  Transform.rotate(0, 1, 0, 180),
+                  Transform.rotate(1, 0, 0, -90)
+              }),
               Transform.scale(0.20, 0.20, 0.20)
           )
       );

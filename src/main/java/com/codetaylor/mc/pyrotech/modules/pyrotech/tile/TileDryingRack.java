@@ -84,7 +84,7 @@ public class TileDryingRack
           new AxisAlignedBB(x * 0.5, 0, z * 0.5, x * 0.5 + 0.5, 12f / 16f, z * 0.5 + 0.5),
           new Transform(
               Transform.translate(x * 0.375 + 0.25 + 0.0625, 0.75 + 0.03125, z * 0.375 + 0.25 + 0.0625),
-              Transform.rotate(1, 0, 0, 90),
+              Transform.rotate(1, 0, 0, -90),
               Transform.scale(0.25, 0.25, 0.25)
           )
       );

@@ -31,6 +31,17 @@ public class Transform {
     return NO_ROTATION;
   }
 
+  public static Quaternion rotate(Quaternion[] rotations) {
+
+    Quaternion result = new Quaternion(rotations[0]);
+
+    for (int i = 1; i < rotations.length; i++) {
+      QuaternionHelper.mult(result, rotations[i], result);
+    }
+
+    return result;
+  }
+
   public static Quaternion rotate(double x, double y, double z, double angle) {
 
     return QuaternionHelper.setFromAxisAngle(new Quaternion(), (float) x, (float) y, (float) z, (float) Math.toRadians(angle));
