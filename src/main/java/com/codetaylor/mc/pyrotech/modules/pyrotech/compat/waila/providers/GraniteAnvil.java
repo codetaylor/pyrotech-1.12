@@ -79,7 +79,6 @@ public class GraniteAnvil
           ItemStack recipeOutput = recipe.getOutput();
 
           if (!recipeOutput.isEmpty()) {
-            recipeOutput.setCount(input.getCount());
             renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
             renderString.append(WailaUtil.getStackRenderString(recipeOutput));
           }
