@@ -33,7 +33,6 @@ public final class ModuleBlocks {
   public static final BlockRefractoryDoor REFRACTORY_DOOR = new BlockRefractoryDoor();
   public static final BlockLimestone LIMESTONE = new BlockLimestone();
   public static final BlockRefractoryGlass REFRACTORY_GLASS = new BlockRefractoryGlass();
-  public static final BlockKilnBrick KILN_BRICK = new BlockKilnBrick();
   public static final BlockKilnStone KILN_STONE = new BlockKilnStone();
   public static final BlockOvenStone OVEN_STONE = new BlockOvenStone();
   public static final BlockMillStone MILL_STONE = new BlockMillStone();
@@ -71,7 +70,6 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.IGNITER, BlockIgniter.NAME);
     registry.registerBlockWithItem(ModuleBlocks.LIMESTONE, BlockLimestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.REFRACTORY_GLASS, BlockRefractoryGlass.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.KILN_BRICK, BlockKilnBrick.NAME);
     registry.registerBlockWithItem(ModuleBlocks.KILN_STONE, BlockKilnStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.OVEN_STONE, BlockOvenStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.MILL_STONE, BlockMillStone.NAME);
@@ -94,8 +92,6 @@ public final class ModuleBlocks {
         TileKilnPit.class,
         TilePitAsh.class,
         TileActivePile.class,
-        TileKilnBrick.class,
-        TileKilnBrickTop.class,
         TileKilnStone.class,
         TileOvenStone.class,
         TileMillStone.class,
@@ -126,7 +122,6 @@ public final class ModuleBlocks {
           ModuleBlocks.REFRACTORY_BRICK,
           ModuleBlocks.LIMESTONE,
           ModuleBlocks.REFRACTORY_GLASS,
-          ModuleBlocks.KILN_BRICK,
           ModuleBlocks.OVEN_STONE,
           ModuleBlocks.KILN_STONE,
           ModuleBlocks.OVEN_STONE,
@@ -214,7 +209,6 @@ public final class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileTarCollector.class, new TESRTarCollector());
 
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnPit.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileKilnBrick.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnStone.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileOvenStone.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileMillStone.class, new TESRInteractable<>());

@@ -5,7 +5,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWork
 import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnBrick;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorch;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import net.minecraft.block.Block;
@@ -86,8 +85,7 @@ public abstract class ItemIgniterBase
         BlockPos offset = pos.offset(rayTraceResult.sideHit);
         Block block = world.getBlockState(pos).getBlock();
 
-        if (block == ModuleBlocks.KILN_BRICK
-            || block instanceof BlockCombustionWorkerStoneBase
+        if (block instanceof BlockCombustionWorkerStoneBase
             || block == ModuleBlocks.CAMPFIRE
             || block == ModuleBlocks.TORCH_FIBER) {
 
@@ -95,10 +93,7 @@ public abstract class ItemIgniterBase
 
           TileEntity tileEntity = world.getTileEntity(pos);
 
-          if (tileEntity instanceof TileKilnBrick) {
-            ((TileKilnBrick) tileEntity).setActive(true);
-
-          } else if (tileEntity instanceof TileCampfire) {
+          if (tileEntity instanceof TileCampfire) {
             ((TileCampfire) tileEntity).workerSetActive(true);
 
           } else if (tileEntity instanceof TileCombustionWorkerBase) {

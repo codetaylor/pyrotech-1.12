@@ -38,7 +38,6 @@ public class PluginJEI
 
     registry.addRecipeCategories(
         new JEIRecipeCategoryKilnPit(guiHelper),
-        new JEIRecipeCategoryKilnBrick(guiHelper),
         new JEIRecipeCategoryKilnStone(guiHelper),
         new JEIRecipeCategoryPitBurn(guiHelper),
         new JEIRecipeCategoryRefractoryBurn(guiHelper),
@@ -134,14 +133,6 @@ public class PluginJEI
       registry.handleRecipes(KilnPitRecipe.class, JEIRecipeWrapperKilnPit::new, JEIRecipeCategoryUid.PIT_KILN);
       List<KilnPitRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.KILN_PIT_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.PIT_KILN);
-    }
-
-    // --- Brick Kiln
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.KILN_BRICK), JEIRecipeCategoryUid.BRICK_KILN);
-      registry.handleRecipes(KilnBrickRecipe.class, JEIRecipeWrapperKilnBrick::new, JEIRecipeCategoryUid.BRICK_KILN);
-      List<KilnBrickRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.KILN_BRICK_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.BRICK_KILN);
     }
 
     // --- Stone Kiln

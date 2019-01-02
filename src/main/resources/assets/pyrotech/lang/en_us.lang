@@ -84,7 +84,6 @@ tile.pyrotech.refractory_brick_block.name=Refractory Block
 tile.pyrotech.kiln_pit.name=Pit Kiln
 tile.pyrotech.limestone.name=Limestone
 tile.pyrotech.refractory_glass.name=Refractory Glass
-tile.pyrotech.kiln_brick.name=Brick Kiln
 tile.pyrotech.kiln_stone.name=Stone Kiln
 tile.pyrotech.oven_stone.name=Stone Oven
 tile.pyrotech.mill_stone.name=Stone Sawmill

@@ -12,7 +12,6 @@ import java.util.function.Predicate;
 public class ModulePyrotechRegistries {
 
   public static final IForgeRegistryModifiable<KilnPitRecipe> KILN_PIT_RECIPE;
-  public static final IForgeRegistryModifiable<KilnBrickRecipe> KILN_BRICK_RECIPE;
   public static final IForgeRegistryModifiable<KilnStoneRecipe> KILN_STONE_RECIPE;
   public static final IForgeRegistryModifiable<MillStoneRecipe> MILL_STONE_RECIPE;
   public static final IForgeRegistryModifiable<CrucibleStoneRecipe> CRUCIBLE_STONE_RECIPE;
@@ -27,7 +26,6 @@ public class ModulePyrotechRegistries {
 
   static {
     KILN_PIT_RECIPE = (IForgeRegistryModifiable<KilnPitRecipe>) GameRegistry.findRegistry(KilnPitRecipe.class);
-    KILN_BRICK_RECIPE = (IForgeRegistryModifiable<KilnBrickRecipe>) GameRegistry.findRegistry(KilnBrickRecipe.class);
     KILN_STONE_RECIPE = (IForgeRegistryModifiable<KilnStoneRecipe>) GameRegistry.findRegistry(KilnStoneRecipe.class);
     MILL_STONE_RECIPE = (IForgeRegistryModifiable<MillStoneRecipe>) GameRegistry.findRegistry(MillStoneRecipe.class);
     CRUCIBLE_STONE_RECIPE = (IForgeRegistryModifiable<CrucibleStoneRecipe>) GameRegistry.findRegistry(CrucibleStoneRecipe.class);

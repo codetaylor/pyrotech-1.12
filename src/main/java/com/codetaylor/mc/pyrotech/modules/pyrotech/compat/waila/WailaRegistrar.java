@@ -27,10 +27,6 @@ public class WailaRegistrar {
     KilnPit pitKilnDataProvider = new KilnPit();
     registrar.registerBodyProvider(pitKilnDataProvider, TileKilnPit.class);
 
-    KilnBrick kilnBrick = new KilnBrick();
-    registrar.registerBodyProvider(kilnBrick, TileKilnBrick.class);
-    registrar.registerBodyProvider(kilnBrick, TileKilnBrickTop.class);
-
     MillStone millStone = new MillStone();
     registrar.registerBodyProvider(millStone, TileMillStone.class);
     registrar.registerBodyProvider(millStone, TileMillStoneTop.class);

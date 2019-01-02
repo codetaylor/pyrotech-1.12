@@ -752,34 +752,6 @@ public final class ModuleRecipes {
 
   }
 
-  public static void onRegisterKilnBrickRecipe(IForgeRegistry<KilnBrickRecipe> registry) {
-
-    // Refractory Brick
-    registry.register(new KilnBrickRecipe(
-        ItemMaterial.EnumType.REFRACTORY_BRICK.asStack(),
-        Ingredient.fromStacks(ItemMaterial.EnumType.UNFIRED_REFRACTORY_BRICK.asStack()),
-        8 * 60 * 20,
-        0.05f,
-        new ItemStack[]{
-            ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack(),
-            ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
-            ItemMaterial.EnumType.PIT_ASH.asStack()
-        }
-    ).setRegistryName(ModulePyrotech.MOD_ID, "refractory_brick"));
-
-    // Quicklime
-    registry.register(new KilnBrickRecipe(
-        new ItemStack(ModuleItems.QUICKLIME, 1, 0),
-        Ingredient.fromStacks(new ItemStack(ModuleBlocks.LIMESTONE)),
-        8 * 60 * 20,
-        0.05f,
-        new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack()
-        }
-    ).setRegistryName(ModulePyrotech.MOD_ID, "quicklime"));
-
-  }
-
   public static void onRegisterDryingRackCrudeRecipes(IForgeRegistryModifiable<DryingRackCrudeRecipe> registry) {
 
     // Dried Plant Fibers

@@ -1,9 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackCrudeRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnBrickRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
