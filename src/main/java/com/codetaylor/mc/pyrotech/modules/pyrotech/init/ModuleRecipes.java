@@ -346,7 +346,7 @@ public final class ModuleRecipes {
     // Bone Meal from Bone Block
     registry.register(new GraniteAnvilRecipe(
         new ItemStack(Items.DYE, 9, 15),
-        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
+        Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
         8,
         GraniteAnvilRecipe.EnumType.HAMMER
     ).setRegistryName(ModulePyrotech.MOD_ID, "bone_meal_from_bone_block"));
