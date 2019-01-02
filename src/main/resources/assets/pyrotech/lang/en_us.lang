@@ -63,11 +63,11 @@ item.pyrotech.bone.hammer.name=Bone Hammer
 item.pyrotech.iron.hammer.name=Iron Hammer
 item.pyrotech.diamond.hammer.name=Diamond Hammer
 
-item.pyrotech.mill.blade.stone.name=Stone Mill Blade
-item.pyrotech.mill.blade.flint.name=Flint Mill Blade
-item.pyrotech.mill.blade.bone.name=Bone Mill Blade
-item.pyrotech.mill.blade.iron.name=Iron Mill Blade
-item.pyrotech.mill.blade.diamond.name=Diamond Mill Blade
+item.pyrotech.mill.blade.stone.name=Stone Sawmill Blade
+item.pyrotech.mill.blade.flint.name=Flint Sawmill Blade
+item.pyrotech.mill.blade.bone.name=Bone Sawmill Blade
+item.pyrotech.mill.blade.iron.name=Iron Sawmill Blade
+item.pyrotech.mill.blade.diamond.name=Diamond Sawmill Blade
 
 # --- Tiles
 
@@ -87,7 +87,7 @@ tile.pyrotech.refractory_glass.name=Refractory Glass
 tile.pyrotech.kiln_brick.name=Brick Kiln
 tile.pyrotech.kiln_stone.name=Stone Kiln
 tile.pyrotech.oven_stone.name=Stone Oven
-tile.pyrotech.mill_stone.name=Stone Mill
+tile.pyrotech.mill_stone.name=Stone Sawmill
 tile.pyrotech.crucible_stone.name=Stone Crucible
 tile.pyrotech.campfire.name=Campfire
 tile.pyrotech.drying_rack.crude.name=Crude Drying Rack
@@ -143,4 +143,4 @@ gui.pyrotech.jei.category.drying.rack=Drying
 gui.pyrotech.jei.category.drying.rack.crude=Crude Drying
 gui.pyrotech.jei.category.chopping=Chopping
 gui.pyrotech.jei.category.granite.anvil=Granite Anvil
-gui.pyrotech.jei.category.mill.stone=Stone Mill
+gui.pyrotech.jei.category.mill.stone=Stone Sawmill
