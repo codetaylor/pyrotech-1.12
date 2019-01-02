@@ -566,6 +566,17 @@ public final class ModuleRecipes {
     int defaultBurnTimeTicks = 14 * 60 * 20;
     float defaultFailureChance = 0.33f;
 
+    // Charcoal Flakes
+    registry.register(new KilnPitRecipe(
+        ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack()
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal_flakes"));
+
     // Quicklime
     registry.register(new KilnPitRecipe(
         new ItemStack(ModuleItems.QUICKLIME, 1, 0),
@@ -656,6 +667,17 @@ public final class ModuleRecipes {
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
     ).setRegistryName(ModulePyrotech.MOD_ID, "refractory_brick"));
+
+    // Charcoal Flakes
+    registry.register(new KilnStoneRecipe(
+        ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack()
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal_flakes"));
 
     // Quicklime
     registry.register(new KilnStoneRecipe(
