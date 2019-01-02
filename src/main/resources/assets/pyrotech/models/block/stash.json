@@ -1,0 +1,64 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "shelf": "pyrotech:blocks/shelf",
+    "planks": "blocks/planks_oak",
+    "particle": "pyrotech:blocks/shelf"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 1, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 16, 1], "texture": "#shelf"},
+        "east": {"uv": [0, 0, 16, 1], "texture": "#shelf"},
+        "south": {"uv": [0, 0, 16, 1], "texture": "#shelf"},
+        "west": {"uv": [0, 0, 16, 1], "texture": "#shelf"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#shelf"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#shelf"}
+      }
+    },
+    {
+      "from": [0, 1, 0],
+      "to": [1, 6, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 1, 4], "texture": "#shelf"},
+        "east": {"uv": [0, 3, 16, 8], "texture": "#planks"},
+        "south": {"uv": [0, 0, 1, 4], "texture": "#shelf"},
+        "west": {"uv": [0, 0, 16, 5], "texture": "#shelf"},
+        "up": {"uv": [0, 0, 1, 16], "texture": "#shelf"}
+      }
+    },
+    {
+      "from": [15, 1, 0],
+      "to": [16, 6, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 1, 4], "texture": "#shelf"},
+        "east": {"uv": [0, 0, 16, 5], "texture": "#shelf"},
+        "south": {"uv": [0, 0, 1, 4], "texture": "#shelf"},
+        "west": {"uv": [0, 7, 16, 12], "texture": "#planks"},
+        "up": {"uv": [0, 0, 1, 16], "texture": "#shelf"}
+      }
+    },
+    {
+      "from": [1, 1, 0],
+      "to": [15, 6, 1],
+      "faces": {
+        "north": {"uv": [1, 10, 15, 15], "texture": "#shelf"},
+        "south": {"uv": [1, 11, 15, 16], "texture": "#planks"},
+        "west": {"uv": [0, 0, 1, 5], "texture": "#planks"},
+        "up": {"uv": [1, 5, 15, 6], "texture": "#shelf"}
+      }
+    },
+    {
+      "from": [1, 1, 15],
+      "to": [15, 6, 16],
+      "faces": {
+        "north": {"uv": [1, 7, 15, 12], "texture": "#planks"},
+        "south": {"uv": [1, 5, 15, 10], "texture": "#shelf"},
+        "west": {"uv": [0, 0, 1, 5], "texture": "#planks"},
+        "up": {"uv": [1, 10, 15, 11], "texture": "#shelf"}
+      }
+    }
+  ]
+}

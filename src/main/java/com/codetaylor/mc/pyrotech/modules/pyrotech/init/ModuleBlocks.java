@@ -50,6 +50,7 @@ public final class ModuleBlocks {
   public static final BlockCrafting CRAFTING = new BlockCrafting();
   public static final BlockTorchFiber TORCH_FIBER = new BlockTorchFiber();
   public static final BlockShelf SHELF = new BlockShelf();
+  public static final BlockStash STASH = new BlockStash();
 
   public static void onRegister(Registry registry) {
 
@@ -82,6 +83,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.CRAFTING, BlockCrafting.NAME);
     registry.registerBlockWithItem(ModuleBlocks.TORCH_FIBER, BlockTorchFiber.NAME);
     registry.registerBlockWithItem(ModuleBlocks.SHELF, BlockShelf.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.STASH, BlockStash.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
@@ -106,7 +108,8 @@ public final class ModuleBlocks {
         TileGraniteAnvil.class,
         TileCrafting.class,
         TileTorch.class,
-        TileShelf.class
+        TileShelf.class,
+        TileStash.class
     );
   }
 
@@ -131,7 +134,8 @@ public final class ModuleBlocks {
           ModuleBlocks.STONE_BRICKS,
           ModuleBlocks.CRAFTING,
           ModuleBlocks.TORCH_FIBER,
-          ModuleBlocks.SHELF
+          ModuleBlocks.SHELF,
+          ModuleBlocks.STASH
       );
 
       // Refractory Door
@@ -221,6 +225,7 @@ public final class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileGraniteAnvil.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCrafting.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileShelf.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileStash.class, new TESRInteractable<>());
 
     });
   }

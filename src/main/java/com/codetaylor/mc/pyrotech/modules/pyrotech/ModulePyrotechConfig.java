@@ -133,6 +133,21 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Stash
+  // ---------------------------------------------------------------------------
+
+  public static Stash STASH = new Stash();
+
+  public static class Stash {
+
+    @Config.Comment({
+        "The maximum number of stacks that can be stored in the stash.",
+        "Default: " + 4
+    })
+    public int MAX_STACKS = 4;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Crafting
   // ---------------------------------------------------------------------------
 
