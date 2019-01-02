@@ -38,11 +38,13 @@ public final class ModuleItems {
   public static final ItemBoneHoe BONE_HOE = new ItemBoneHoe();
   public static final ItemBonePickaxe BONE_PICKAXE = new ItemBonePickaxe();
   public static final ItemBoneShovel BONE_SHOVEL = new ItemBoneShovel();
+  public static final ItemBoneSword BONE_SWORD = new ItemBoneSword();
 
   public static final ItemFlintAxe FLINT_AXE = new ItemFlintAxe();
   public static final ItemFlintHoe FLINT_HOE = new ItemFlintHoe();
   public static final ItemFlintPickaxe FLINT_PICKAXE = new ItemFlintPickaxe();
   public static final ItemFlintShovel FLINT_SHOVEL = new ItemFlintShovel();
+  public static final ItemFlintSword FLINT_SWORD = new ItemFlintSword();
 
   public static final ItemBoneHammer BONE_HAMMER = new ItemBoneHammer();
   public static final ItemDiamondHammer DIAMOND_HAMMER = new ItemDiamondHammer();
@@ -85,11 +87,13 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.BONE_HOE, ItemBoneHoe.NAME);
     registry.registerItem(ModuleItems.BONE_PICKAXE, ItemBonePickaxe.NAME);
     registry.registerItem(ModuleItems.BONE_SHOVEL, ItemBoneShovel.NAME);
+    registry.registerItem(ModuleItems.BONE_SWORD, ItemBoneSword.NAME);
 
     registry.registerItem(ModuleItems.FLINT_AXE, ItemFlintAxe.NAME);
     registry.registerItem(ModuleItems.FLINT_HOE, ItemFlintHoe.NAME);
     registry.registerItem(ModuleItems.FLINT_PICKAXE, ItemFlintPickaxe.NAME);
     registry.registerItem(ModuleItems.FLINT_SHOVEL, ItemFlintShovel.NAME);
+    registry.registerItem(ModuleItems.FLINT_SWORD, ItemFlintSword.NAME);
 
     registry.registerItem(ModuleItems.CRUDE_HAMMER, ItemCrudeHammer.NAME);
     registry.registerItem(ModuleItems.STONE_HAMMER, ItemStoneHammer.NAME);
@@ -133,11 +137,13 @@ public final class ModuleItems {
           ModuleItems.BONE_HOE,
           ModuleItems.BONE_PICKAXE,
           ModuleItems.BONE_SHOVEL,
+          ModuleItems.BONE_SWORD,
 
           ModuleItems.FLINT_AXE,
           ModuleItems.FLINT_HOE,
           ModuleItems.FLINT_PICKAXE,
           ModuleItems.FLINT_SHOVEL,
+          ModuleItems.FLINT_SWORD,
 
           ModuleItems.CRUDE_HAMMER,
           ModuleItems.STONE_HAMMER,

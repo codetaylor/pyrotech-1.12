@@ -50,11 +50,13 @@ item.pyrotech.bone.axe.name=Bone Axe
 item.pyrotech.bone.hoe.name=Bone Hoe
 item.pyrotech.bone.pickaxe.name=Bone Pickaxe
 item.pyrotech.bone.shovel.name=Bone Shovel
+item.pyrotech.bone.sword.name=Bone Sword
 
 item.pyrotech.flint.axe.name=Flint Axe
 item.pyrotech.flint.hoe.name=Flint Hoe
 item.pyrotech.flint.pickaxe.name=Flint Pickaxe
 item.pyrotech.flint.shovel.name=Flint Shovel
+item.pyrotech.flint.sword.name=Flint Sword
 
 item.pyrotech.crude.hammer.name=Crude Hammer
 item.pyrotech.stone.hammer.name=Stone Hammer
