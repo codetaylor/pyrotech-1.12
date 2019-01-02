@@ -154,7 +154,7 @@ public class TileStash
     @Override
     public Vec3d getTextOffset() {
 
-      return new Vec3d(0, 0, 0.5);
+      return new Vec3d(0, 0.5, 0);
     }
 
     @Override
