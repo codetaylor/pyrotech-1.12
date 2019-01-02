@@ -50,6 +50,7 @@ public final class ModuleBlocks {
   public static final BlockGraniteAnvil GRANITE_ANVIL = new BlockGraniteAnvil();
   public static final BlockCrafting CRAFTING = new BlockCrafting();
   public static final BlockTorchFiber TORCH_FIBER = new BlockTorchFiber();
+  public static final BlockShelf SHELF = new BlockShelf();
 
   public static void onRegister(Registry registry) {
 
@@ -82,6 +83,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.STONE_BRICKS, BlockStoneBricks.NAME);
     registry.registerBlockWithItem(ModuleBlocks.CRAFTING, BlockCrafting.NAME);
     registry.registerBlockWithItem(ModuleBlocks.TORCH_FIBER, BlockTorchFiber.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.SHELF, BlockShelf.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
@@ -107,7 +109,8 @@ public final class ModuleBlocks {
         TileWoodRack.class,
         TileGraniteAnvil.class,
         TileCrafting.class,
-        TileTorch.class
+        TileTorch.class,
+        TileShelf.class
     );
   }
 
@@ -132,7 +135,8 @@ public final class ModuleBlocks {
           ModuleBlocks.WOOD_RACK,
           ModuleBlocks.STONE_BRICKS,
           ModuleBlocks.CRAFTING,
-          ModuleBlocks.TORCH_FIBER
+          ModuleBlocks.TORCH_FIBER,
+          ModuleBlocks.SHELF
       );
 
       // Refractory Door
@@ -222,6 +226,7 @@ public final class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileWoodRack.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileGraniteAnvil.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCrafting.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileShelf.class, new TESRInteractable<>());
 
     });
   }
