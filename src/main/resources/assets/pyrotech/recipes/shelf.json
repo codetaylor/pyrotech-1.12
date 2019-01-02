@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P-P",
+    "P-P",
+    "P-P"
+  ],
+  "key": {
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "-": {
+      "item": "pyrotech:material",
+      "data": 20
+    }
+  },
+  "result": {
+    "item": "pyrotech:shelf",
+    "count": 1,
+    "data": 0
+  }
+}

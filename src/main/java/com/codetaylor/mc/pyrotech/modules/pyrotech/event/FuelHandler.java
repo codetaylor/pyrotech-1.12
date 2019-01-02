@@ -43,6 +43,12 @@ public class FuelHandler {
 
       } else if (fuel.getMetadata() == ItemMaterial.EnumType.CHARCOAL_FLAKES.getMeta()) {
         event.setBurnTime(ModulePyrotechConfig.FUEL.CHARCOAL_FLAKES_BURN_TIME_TICKS);
+
+      } else if (fuel.getMetadata() == ItemMaterial.EnumType.COAL_PIECES.getMeta()) {
+        event.setBurnTime(ModulePyrotechConfig.FUEL.COAL_PIECES_BURN_TIME_TICKS);
+
+      } else if (fuel.getMetadata() == ItemMaterial.EnumType.BOARD.getMeta()) {
+        event.setBurnTime(ModulePyrotechConfig.FUEL.BOARD_BURN_TIME_TICKS);
       }
 
     } else if (fuel.getItem() == ModuleItems.TINDER) {

@@ -67,9 +67,11 @@ public class PluginDropt {
     String tallGrassAny = item("minecraft", "tallgrass", OreDictionary.WILDCARD_VALUE);
     String leaves = item("minecraft", "leaves", OreDictionary.WILDCARD_VALUE);
     String stick = item("minecraft", "stick");
+    String coalOre = item("minecraft", "coal_ore");
 
     String flint = item("minecraft", "flint");
     String boneMeal = item("minecraft", "dye", 15);
+    String coal = item("minecraft", "coal", 0);
 
     String fossilOre = item(BlockOre.NAME, BlockOre.EnumType.FOSSIL_ORE.getMeta());
     String rockStone = item(BlockRock.NAME, BlockRock.EnumType.STONE.getMeta());
@@ -83,6 +85,7 @@ public class PluginDropt {
     String flintShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.FLINT_SHARD.getMeta());
     String boneShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.BONE_SHARD.getMeta());
     String plantFibers = item(ItemMaterial.NAME, ItemMaterial.EnumType.PLANT_FIBERS.getMeta());
+    String coalPieces = item(ItemMaterial.NAME, ItemMaterial.EnumType.COAL_PIECES.getMeta());
 
     List<IDroptRuleBuilder> list = new ArrayList<>();
 
@@ -353,6 +356,47 @@ public class PluginDropt {
             drop().items(new String[]{rockAndesite}, range(3, 6)).selector(weight(2)),
             drop().items(new String[]{flintShard}).selector(weight(2)),
             drop().items(new String[]{flint}).selector(weight(1))
+        })
+    );
+
+    // -------------------------------------------------------------------------
+    // - Coal
+    // -------------------------------------------------------------------------
+
+    // Crude Pickaxe
+    list.add(rule()
+        .matchBlocks(new String[]{
+            coalOre
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.PLAYER)
+            .mainHand(new String[]{
+                item(ItemCrudePickaxe.NAME, OreDictionary.WILDCARD_VALUE)
+            })
+        )
+        .dropCount(range(2))
+        .dropStrategy(EnumDropStrategy.UNIQUE)
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
+            drop().items(new String[]{coalPieces}, range(4, 8)).selector(weight(1))
+        })
+    );
+
+    // Flint / Bone / Stone Pickaxe
+    list.add(rule()
+        .matchBlocks(new String[]{
+            coalOre
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.PLAYER)
+            .mainHand(EnumListType.BLACKLIST, "pickaxe;2;-1")
+        )
+        .dropCount(range(2))
+        .dropStrategy(EnumDropStrategy.UNIQUE)
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(4)),
+            drop().items(new String[]{coalPieces}).selector(weight(4)),
+            drop().items(new String[]{coal}).selector(weight(1))
         })
     );
 

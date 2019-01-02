@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech;
 
-import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
@@ -560,6 +559,18 @@ public class ModulePyrotechConfig {
   public static Fuel FUEL = new Fuel();
 
   public static class Fuel {
+
+    @Config.Comment({
+        "Board burn time in ticks.",
+        "Default: " + 120
+    })
+    public int BOARD_BURN_TIME_TICKS = 120;
+
+    @Config.Comment({
+        "Coal pieces burn time in ticks.",
+        "Default: " + (1600 / 8)
+    })
+    public int COAL_PIECES_BURN_TIME_TICKS = 1600 / 8;
 
     @Config.Comment({
         "Charcoal flakes burn time in ticks.",

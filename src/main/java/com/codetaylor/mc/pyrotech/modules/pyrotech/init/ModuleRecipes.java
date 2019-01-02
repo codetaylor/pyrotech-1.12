@@ -107,6 +107,11 @@ public final class ModuleRecipes {
         new ItemStack(Blocks.PLANKS, 1, 5),
         Ingredient.fromStacks(new ItemStack(Blocks.LOG2, 1, 1))
     );
+
+    registerMillStoneRecipe(registry, "board",
+        ItemMaterial.EnumType.BOARD.asStack(),
+        new OreIngredient("slabWood")
+    );
   }
 
   private static void registerMillStoneRecipe(IForgeRegistryModifiable<MillStoneRecipe> registry, String name, ItemStack output, Ingredient input) {
@@ -154,7 +159,7 @@ public final class ModuleRecipes {
 
   public static void onRegisterGraniteAnvilRecipes(IForgeRegistry<GraniteAnvilRecipe> registry) {
 
-    // --- Pickaxe Recipes ---
+    // --- Pickaxe Recipes -----------------------------------------------------
 
     // Individual Stone Bricks
     registry.register(new GraniteAnvilRecipe(
@@ -296,6 +301,14 @@ public final class ModuleRecipes {
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal_flakes"));
 
+    // Coal Pieces from Coal
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.COAL_PIECES.asStack(8),
+        Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 0)),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_pieces"));
+
     // Iron Shard from Iron Ingot
     registry.register(new GraniteAnvilRecipe(
         ItemMaterial.EnumType.IRON_SHARD.asStack(9),
@@ -312,7 +325,7 @@ public final class ModuleRecipes {
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "diamond_shard"));
 
-    // --- Hammer Recipes ---
+    // --- Hammer Recipes ------------------------------------------------------
 
     // Bone Meal from Bone Shard
     registry.register(new GraniteAnvilRecipe(
@@ -425,15 +438,6 @@ public final class ModuleRecipes {
         8,
         GraniteAnvilRecipe.EnumType.HAMMER
     ).setRegistryName(ModulePyrotech.MOD_ID, "coal_block_to_coal"));
-
-    // Coal to coal piece
-    // TODO
-    /*registry.register(new GraniteAnvilRecipe(
-        new ItemStack(Items.COAL, 9),
-        Ingredient.fromStacks(new ItemStack(Blocks.COAL_BLOCK)),
-        8,
-        GraniteAnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_block_to_coal"));*/
 
     // Coal coke block to coal coke
     registry.register(new GraniteAnvilRecipe(

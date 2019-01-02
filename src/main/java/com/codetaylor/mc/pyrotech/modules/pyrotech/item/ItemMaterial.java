@@ -64,7 +64,9 @@ public class ItemMaterial
     BRICK_STONE(16, "brick_stone"),
     CLAY_LUMP(17, "clay_lump"),
     DIAMOND_SHARD(18, "diamond_shard"),
-    IRON_SHARD(19, "iron_shard");
+    IRON_SHARD(19, "iron_shard"),
+    BOARD(20, "board"),
+    COAL_PIECES(21, "coal_pieces");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())

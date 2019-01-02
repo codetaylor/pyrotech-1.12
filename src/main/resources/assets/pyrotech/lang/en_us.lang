@@ -38,6 +38,8 @@ item.pyrotech.brick.stone.name=Stone Brick
 item.pyrotech.clay.lump.name=Lump of Clay
 item.pyrotech.iron.shard.name=Iron Shard
 item.pyrotech.diamond.shard.name=Diamond Shard
+item.pyrotech.board.name=Board
+item.pyrotech.coal.pieces.name=Coal Pieces
 
 item.pyrotech.crude.axe.name=Crude Axe
 item.pyrotech.crude.hoe.name=Crude Hoe
