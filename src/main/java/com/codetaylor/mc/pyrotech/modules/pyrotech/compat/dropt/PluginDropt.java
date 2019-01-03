@@ -115,7 +115,7 @@ public class PluginDropt {
         .replaceStrategy(EnumReplaceStrategy.ADD)
         .addDrops(new IDroptDropBuilder[]{
             drop().items(new String[]{stick}).selector(weight(1)),
-            drop().selector(weight(5))
+            drop().selector(weight(11))
         })
     );
 
