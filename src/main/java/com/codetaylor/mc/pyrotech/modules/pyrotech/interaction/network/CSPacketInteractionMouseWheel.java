@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.network;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.network;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
