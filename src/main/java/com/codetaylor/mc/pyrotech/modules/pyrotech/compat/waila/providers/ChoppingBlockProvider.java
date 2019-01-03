@@ -2,8 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.ChoppingBlockRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileChoppingBlock;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class GraniteAnvil
+public class ChoppingBlockProvider
     extends BodyProviderAdapter {
 
   @Nonnull
@@ -31,10 +31,10 @@ public class GraniteAnvil
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileGraniteAnvil) {
+    if (tileEntity instanceof TileChoppingBlock) {
 
-      TileGraniteAnvil tile;
-      tile = (TileGraniteAnvil) tileEntity;
+      TileChoppingBlock tile;
+      tile = (TileChoppingBlock) tileEntity;
 
       float progress = tile.getRecipeProgress();
 
@@ -49,12 +49,13 @@ public class GraniteAnvil
         StringBuilder renderString = new StringBuilder();
         renderString.append(WailaUtil.getStackRenderString(input));
 
-        GraniteAnvilRecipe recipe = GraniteAnvilRecipe.getRecipe(input);
+        ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(input);
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();
 
           if (!recipeOutput.isEmpty()) {
+            recipeOutput.setCount(input.getCount());
             renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
             renderString.append(WailaUtil.getStackRenderString(recipeOutput));
           }

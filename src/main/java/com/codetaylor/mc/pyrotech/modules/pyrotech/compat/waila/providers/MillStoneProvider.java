@@ -19,7 +19,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class MillStone
+public class MillStoneProvider
     extends BodyProviderAdapter {
 
   @Nonnull

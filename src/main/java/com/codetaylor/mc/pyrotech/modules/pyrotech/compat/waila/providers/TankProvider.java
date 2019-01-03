@@ -14,7 +14,7 @@ import net.minecraftforge.fluids.FluidTank;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class Tank
+public class TankProvider
     extends BodyProviderAdapter {
 
   @Nonnull

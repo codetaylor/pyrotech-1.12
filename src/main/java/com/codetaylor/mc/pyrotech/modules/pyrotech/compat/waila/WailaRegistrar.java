@@ -21,39 +21,39 @@ public class WailaRegistrar {
     registrar.addConfig(ModulePyrotech.MOD_ID, CONFIG_PROGRESS, true);
     registrar.addConfig(ModulePyrotech.MOD_ID, CONFIG_CONTENTS, true);
 
-    Tank tank = new Tank();
-    registrar.registerBodyProvider(tank, TileTarTankBase.class);
+    TankProvider tankProvider = new TankProvider();
+    registrar.registerBodyProvider(tankProvider, TileTarTankBase.class);
 
-    KilnPit pitKilnDataProvider = new KilnPit();
+    KilnPitProvider pitKilnDataProvider = new KilnPitProvider();
     registrar.registerBodyProvider(pitKilnDataProvider, TileKilnPit.class);
 
-    MillStone millStone = new MillStone();
-    registrar.registerBodyProvider(millStone, TileMillStone.class);
-    registrar.registerBodyProvider(millStone, TileMillStoneTop.class);
+    MillStoneProvider millStoneProvider = new MillStoneProvider();
+    registrar.registerBodyProvider(millStoneProvider, TileMillStone.class);
+    registrar.registerBodyProvider(millStoneProvider, TileMillStoneTop.class);
 
-    CombustionWorkerStoneItemInItemOut combustionWorkerStoneItemInItemOut = new CombustionWorkerStoneItemInItemOut();
-    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOut, TileOvenStone.class);
-    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOut, TileKilnStone.class);
-    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOut, TileStoneTop.class);
+    CombustionWorkerStoneItemInItemOutProvider combustionWorkerStoneItemInItemOutProvider = new CombustionWorkerStoneItemInItemOutProvider();
+    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOutProvider, TileOvenStone.class);
+    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOutProvider, TileKilnStone.class);
+    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOutProvider, TileStoneTop.class);
 
-    CombustionWorkerStoneItemInFluidOut combustionWorkerStoneItemInFluidOut = new CombustionWorkerStoneItemInFluidOut();
-    registrar.registerBodyProvider(combustionWorkerStoneItemInFluidOut, TileCrucibleStone.class);
-    registrar.registerBodyProvider(combustionWorkerStoneItemInFluidOut, TileStoneTop.class);
+    CombustionWorkerStoneItemInFluidOutProvider combustionWorkerStoneItemInFluidOutProvider = new CombustionWorkerStoneItemInFluidOutProvider();
+    registrar.registerBodyProvider(combustionWorkerStoneItemInFluidOutProvider, TileCrucibleStone.class);
+    registrar.registerBodyProvider(combustionWorkerStoneItemInFluidOutProvider, TileStoneTop.class);
 
-    Campfire campfire = new Campfire();
-    registrar.registerBodyProvider(campfire, TileCampfire.class);
+    CampfireProvider campfireProvider = new CampfireProvider();
+    registrar.registerBodyProvider(campfireProvider, TileCampfire.class);
 
-    DryingRack dryingRack = new DryingRack();
-    registrar.registerBodyProvider(dryingRack, TileDryingRackBase.class);
+    DryingRackProvider dryingRackProvider = new DryingRackProvider();
+    registrar.registerBodyProvider(dryingRackProvider, TileDryingRackBase.class);
 
-    ChoppingBlock choppingBlock = new ChoppingBlock();
-    registrar.registerBodyProvider(choppingBlock, TileChoppingBlock.class);
+    ChoppingBlockProvider choppingBlockProvider = new ChoppingBlockProvider();
+    registrar.registerBodyProvider(choppingBlockProvider, TileChoppingBlock.class);
 
-    WoodRack woodRack = new WoodRack();
-    registrar.registerBodyProvider(woodRack, TileWoodRack.class);
+    WoodRackProvider woodRackProvider = new WoodRackProvider();
+    registrar.registerBodyProvider(woodRackProvider, TileWoodRack.class);
 
-    GraniteAnvil graniteAnvil = new GraniteAnvil();
-    registrar.registerBodyProvider(graniteAnvil, TileGraniteAnvil.class);
+    GraniteAnvilProvider graniteAnvilProvider = new GraniteAnvilProvider();
+    registrar.registerBodyProvider(graniteAnvilProvider, TileGraniteAnvil.class);
 
     CraftingProvider craftingProvider = new CraftingProvider();
     registrar.registerBodyProvider(craftingProvider, TileCrafting.class);

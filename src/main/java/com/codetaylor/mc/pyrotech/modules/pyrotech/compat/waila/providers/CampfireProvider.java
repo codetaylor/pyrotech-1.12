@@ -17,7 +17,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class Campfire
+public class CampfireProvider
     extends BodyProviderAdapter {
 
   @Nonnull

@@ -6,23 +6,24 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInFluidOutBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInItemOutBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneItemInFluidOutBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
+import mcp.mobius.waila.api.IWailaDataProvider;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class CombustionWorkerStoneItemInFluidOut
+public class CombustionWorkerStoneItemInItemOutProvider
     extends BodyProviderAdapter {
 
   @Nonnull
@@ -40,13 +41,13 @@ public class CombustionWorkerStoneItemInFluidOut
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileCombustionWorkerStoneItemInFluidOutBase
+    if (tileEntity instanceof TileCombustionWorkerStoneItemInItemOutBase
         || tileEntity instanceof TileStoneTop) {
 
-      TileCombustionWorkerStoneItemInFluidOutBase tile = null;
+      TileCombustionWorkerStoneItemInItemOutBase tile = null;
 
-      if (tileEntity instanceof TileCombustionWorkerStoneItemInFluidOutBase) {
-        tile = (TileCombustionWorkerStoneItemInFluidOutBase) tileEntity;
+      if (tileEntity instanceof TileCombustionWorkerStoneItemInItemOutBase) {
+        tile = (TileCombustionWorkerStoneItemInItemOutBase) tileEntity;
 
       } else {
 
@@ -57,8 +58,8 @@ public class CombustionWorkerStoneItemInFluidOut
         World world = tileEntity.getWorld();
         TileEntity candidate = world.getTileEntity(tileEntity.getPos().down());
 
-        if (candidate instanceof TileCombustionWorkerStoneItemInFluidOutBase) {
-          tile = (TileCombustionWorkerStoneItemInFluidOutBase) candidate;
+        if (candidate instanceof TileCombustionWorkerStoneItemInItemOutBase) {
+          tile = (TileCombustionWorkerStoneItemInItemOutBase) candidate;
         }
       }
 
@@ -69,11 +70,11 @@ public class CombustionWorkerStoneItemInFluidOut
       float progress = tile.workerGetProgress(0);
 
       ItemStackHandler stackHandler = tile.getInputStackHandler();
-      FluidTank outputFluidTank = tile.getOutputFluidTank();
+      ItemStackHandler outputStackHandler = tile.getOutputStackHandler();
       ItemStackHandler fuelStackHandler = tile.getFuelStackHandler();
 
       ItemStack input = stackHandler.getStackInSlot(0);
-      boolean hasOutput = outputFluidTank.getFluid() != null && outputFluidTank.getFluid().amount > 0;
+      boolean hasOutput = !outputStackHandler.getStackInSlot(0).isEmpty();
       ItemStack fuel = fuelStackHandler.getStackInSlot(0);
 
       if (!input.isEmpty()) {
@@ -87,30 +88,35 @@ public class CombustionWorkerStoneItemInFluidOut
           renderString.append(WailaUtil.getStackRenderString(fuel));
         }
 
-        StoneMachineRecipeItemInFluidOutBase recipe = (StoneMachineRecipeItemInFluidOutBase) tile.getRecipe(input);
+        StoneMachineRecipeItemInItemOutBase recipe = (StoneMachineRecipeItemInItemOutBase) tile.getRecipe(input);
 
         if (recipe != null) {
-          FluidStack output = recipe.getOutput();
-          ItemStack filledBucket = FluidUtil.getFilledBucket(output);
+          ItemStack recipeOutput = recipe.getOutput();
+          recipeOutput.setCount(input.getCount());
           renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
-          renderString.append(WailaUtil.getStackRenderString(filledBucket));
+          renderString.append(WailaUtil.getStackRenderString(recipeOutput));
         }
 
         tooltip.add(renderString.toString());
 
-      }
+      } else if (hasOutput) {
 
-      if (hasOutput) {
+        // Display output items.
 
-        // Display output fluid.
+        //tooltip.add(Util.translate("gui." + ModuleCharcoal.MOD_ID + ".waila.kiln.brick.finished"));
 
-        FluidStack fluid = outputFluidTank.getFluid();
-        tooltip.add(Util.translateFormatted(
-            "%s: %d / %d mB",
-            fluid.getLocalizedName(),
-            fluid.amount,
-            outputFluidTank.getCapacity()
-        ));
+        StringBuilder renderString = new StringBuilder();
+
+        for (int i = 0; i < outputStackHandler.getSlots(); i++) {
+          ItemStack stackInSlot = outputStackHandler.getStackInSlot(i);
+
+          if (!stackInSlot.isEmpty()) {
+            renderString.append(WailaUtil.getStackRenderString(stackInSlot));
+          }
+        }
+
+        //tooltip.add(Util.translate("gui." + ModuleCharcoal.MOD_ID + ".waila.result"));
+        tooltip.add(renderString.toString());
       }
 
       {
@@ -124,7 +130,7 @@ public class CombustionWorkerStoneItemInFluidOut
 
         if (!fuel.isEmpty()) {
           tooltip.add(Util.translateFormatted(
-              "gui." + ModulePyrotech.MOD_ID + ".waila.kiln.brick.fuel", // TODO: rename this
+              "gui." + ModulePyrotech.MOD_ID + ".waila.kiln.brick.fuel",
               fuel.getItem().getItemStackDisplayName(fuel) + " * " + fuel.getCount()
           ));
         }

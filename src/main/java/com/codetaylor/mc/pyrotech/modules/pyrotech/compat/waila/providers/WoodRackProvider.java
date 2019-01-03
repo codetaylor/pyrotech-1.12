@@ -12,7 +12,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class WoodRack
+public class WoodRackProvider
     extends BodyProviderAdapter {
 
   @Nonnull
