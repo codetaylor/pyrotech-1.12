@@ -105,6 +105,15 @@ public class TileDryingRackCrude
     @Override
     protected int getInsertionIndex(TileDryingRackCrude tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
+      if (!this.stackHandlers[0].getStackInSlot(this.slot).isEmpty()) {
+        // This will prevent an item being placed in handler 1 while handler 0 is occupied.
+        return 0;
+
+      } else if (!this.stackHandlers[1].getStackInSlot(this.slot).isEmpty()) {
+        // This will prevent an item being placed in handler 0 while handler 1 is occupied.
+        return 1;
+      }
+
       return (DryingRackCrudeRecipe.getRecipe(player.getHeldItemMainhand()) != null) ? 0 : 1;
     }
   }
