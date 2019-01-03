@@ -77,7 +77,7 @@ public interface ITileInteractable {
    * @param hitY   the vec.y of the interaction
    * @param hitZ   the vec.z of the interaction
    */
-  default <T extends TileEntity & ITileInteractable> void interact(IInteraction.Type type, T tile, World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+  default <T extends TileEntity & ITileInteractable> void interact(IInteraction.EnumType type, T tile, World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
     Vec3d posVec = new Vec3d(player.posX, player.posY + player.getEyeHeight(), player.posZ);
     int interactionDistance = 5;

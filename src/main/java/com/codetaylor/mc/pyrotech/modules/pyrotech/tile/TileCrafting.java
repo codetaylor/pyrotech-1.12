@@ -234,11 +234,16 @@ public class TileCrafting
 
       ItemStack heldItem = player.getHeldItemMainhand();
 
+      IRecipe recipe = tile.getRecipe();
+
+      if (tile.getRecipe() == null) {
+        tile.updateRecipe();
+        recipe = tile.getRecipe();
+      }
+
       if (!world.isRemote) {
         heldItem.damageItem(1, player);
         world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_HIT, SoundCategory.BLOCKS, 1, 1);
-
-        IRecipe recipe = tile.getRecipe();
 
         if (recipe != null) {
           tile.recipeProgress.add(1f / ModulePyrotechConfig.CRAFTING.HITS_PER_CRAFT);
@@ -322,7 +327,7 @@ public class TileCrafting
     }
 
     @Override
-    protected int getInsertItemCount(Type type, ItemStack itemStack) {
+    protected int getInsertItemCount(EnumType type, ItemStack itemStack) {
 
       return 1;
     }

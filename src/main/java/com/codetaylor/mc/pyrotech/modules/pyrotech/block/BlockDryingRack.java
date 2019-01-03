@@ -60,7 +60,7 @@ public class BlockDryingRack
     this.setHarvestLevel("axe", 0);
     this.setDefaultState(this.blockState.getBaseState()
         .withProperty(FACING, EnumFacing.SOUTH)
-        .withProperty(VARIANT, EnumType.CRUDE));
+        .withProperty(VARIANT, BlockDryingRack.EnumType.CRUDE));
   }
 
   @Override
@@ -83,7 +83,7 @@ public class BlockDryingRack
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    return this.interact(IInteraction.Type.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   @Override
@@ -116,12 +116,12 @@ public class BlockDryingRack
     IBlockState blockState = world.getBlockState(pos.offset(facing.getOpposite()));
 
     if (blockState.getBlock() == this
-        && blockState.getValue(VARIANT) == EnumType.CRUDE) {
+        && blockState.getValue(VARIANT) == BlockDryingRack.EnumType.CRUDE) {
       horizontalFacing = blockState.getValue(BlockDryingRack.FACING);
     }
 
     return this.getDefaultState()
-        .withProperty(VARIANT, EnumType.fromMeta(meta))
+        .withProperty(VARIANT, BlockDryingRack.EnumType.fromMeta(meta))
         .withProperty(FACING, horizontalFacing);
   }
 
@@ -172,7 +172,7 @@ public class BlockDryingRack
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
-    if (state.getValue(VARIANT) == EnumType.CRUDE) {
+    if (state.getValue(VARIANT) == BlockDryingRack.EnumType.CRUDE) {
 
       EnumFacing facing = state.getValue(FACING);
 
@@ -201,8 +201,8 @@ public class BlockDryingRack
 
     EnumType type = state.getValue(VARIANT);
 
-    return (type == EnumType.CRUDE)
-        || (type == EnumType.NORMAL);
+    return (type == BlockDryingRack.EnumType.CRUDE)
+        || (type == BlockDryingRack.EnumType.NORMAL);
   }
 
   @Nullable
@@ -211,10 +211,10 @@ public class BlockDryingRack
 
     EnumType type = state.getValue(VARIANT);
 
-    if (type == EnumType.CRUDE) {
+    if (type == BlockDryingRack.EnumType.CRUDE) {
       return new TileDryingRackCrude();
 
-    } else if (type == EnumType.NORMAL) {
+    } else if (type == BlockDryingRack.EnumType.NORMAL) {
       return new TileDryingRack();
     }
 
@@ -231,7 +231,7 @@ public class BlockDryingRack
       NonNullList<ItemStack> list
   ) {
 
-    for (EnumType type : EnumType.values()) {
+    for (EnumType type : BlockDryingRack.EnumType.values()) {
       list.add(new ItemStack(this, 1, type.getMeta()));
     }
   }
@@ -251,7 +251,7 @@ public class BlockDryingRack
     // 4-7 type 1
 
     return this.getDefaultState()
-        .withProperty(VARIANT, EnumType.fromMeta((meta >> 2) & 1))
+        .withProperty(VARIANT, BlockDryingRack.EnumType.fromMeta((meta >> 2) & 1))
         .withProperty(FACING, EnumFacing.HORIZONTALS[meta & 3]);
   }
 
@@ -271,7 +271,7 @@ public class BlockDryingRack
   @Override
   public String getModelName(ItemStack itemStack) {
 
-    return EnumType.fromMeta(itemStack.getMetadata()).getName();
+    return BlockDryingRack.EnumType.fromMeta(itemStack.getMetadata()).getName();
   }
 
   @Nonnull
@@ -287,8 +287,8 @@ public class BlockDryingRack
     CRUDE(0, "crude"),
     NORMAL(1, "normal");
 
-    private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
-        .sorted(Comparator.comparing(EnumType::getMeta))
+    private static final EnumType[] META_LOOKUP = Stream.of(BlockDryingRack.EnumType.values())
+        .sorted(Comparator.comparing(BlockDryingRack.EnumType::getMeta))
         .toArray(EnumType[]::new);
 
     private final int meta;

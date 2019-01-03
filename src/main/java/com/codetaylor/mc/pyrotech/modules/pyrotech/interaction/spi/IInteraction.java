@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IInteraction<T extends TileEntity & ITileInteractable> {
 
-  enum Type {
+  enum EnumType {
     MouseClick,
     MouseWheelUp,
     MouseWheelDown
@@ -53,6 +53,11 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
     return (hand == EnumHand.MAIN_HAND);
   }
 
+  default boolean allowInteractionWithType(EnumType type) {
+
+    return true;
+  }
+
   /**
    * Returns true if this interaction can be interacted with from the given
    * side.
@@ -77,7 +82,7 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
    * @param hitZ    the z position of the hit, relative to the hitPos
    * @return true to prevent processing subsequent interactions
    */
-  boolean interact(Type type, T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
+  boolean interact(EnumType type, T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
 
   /**
    * Render the solid pass.

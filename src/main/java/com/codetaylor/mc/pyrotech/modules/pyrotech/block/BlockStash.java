@@ -55,7 +55,7 @@ public class BlockStash
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    return this.interact(IInteraction.Type.MouseClick, world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
   }
 
   @ParametersAreNonnullByDefault

@@ -51,7 +51,7 @@ public class BlockTorchFiber
     super();
     this.setDefaultState(this.blockState.getBaseState()
         .withProperty(FACING, EnumFacing.UP)
-        .withProperty(TYPE, EnumType.UNLIT)
+        .withProperty(TYPE, BlockTorchFiber.EnumType.UNLIT)
     );
   }
 
@@ -81,7 +81,7 @@ public class BlockTorchFiber
     IBlockState actualState = this.getActualState(state, world, pos);
     EnumType type = actualState.getValue(TYPE);
 
-    if (type == EnumType.LIT) {
+    if (type == BlockTorchFiber.EnumType.LIT) {
       return 9;
     }
 
@@ -105,7 +105,7 @@ public class BlockTorchFiber
   @Override
   public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 
-    if (this.getActualState(state, world, pos).getValue(TYPE) == EnumType.LIT) {
+    if (this.getActualState(state, world, pos).getValue(TYPE) == BlockTorchFiber.EnumType.LIT) {
 
       EnumFacing enumfacing = state.getValue(FACING);
       double x = (double) pos.getX() + 0.5D + (rand.nextDouble() * 2 - 1) * 0.1;
@@ -162,7 +162,7 @@ public class BlockTorchFiber
       return false;
     }
 
-    return this.interact(IInteraction.Type.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   @ParametersAreNonnullByDefault
@@ -172,7 +172,7 @@ public class BlockTorchFiber
     IBlockState actualState = this.getActualState(state, world, pos);
     EnumType type = actualState.getValue(BlockTorchFiber.TYPE);
 
-    if (type == EnumType.UNLIT) {
+    if (type == BlockTorchFiber.EnumType.UNLIT) {
       super.getDrops(drops, world, pos, state, fortune);
 
     } else {
@@ -243,8 +243,8 @@ public class BlockTorchFiber
     UNLIT(1, "unlit"),
     DOUSED(2, "doused");
 
-    private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
-        .sorted(Comparator.comparing(EnumType::getMeta))
+    private static final EnumType[] META_LOOKUP = Stream.of(BlockTorchFiber.EnumType.values())
+        .sorted(Comparator.comparing(BlockTorchFiber.EnumType::getMeta))
         .toArray(EnumType[]::new);
 
     private final int meta;

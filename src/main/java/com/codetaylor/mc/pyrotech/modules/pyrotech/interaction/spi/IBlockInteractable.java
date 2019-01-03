@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public interface IBlockInteractable {
 
   default boolean interact(
-      IInteraction.Type type,
+      IInteraction.EnumType type,
       World world,
       BlockPos pos,
       IBlockState state,

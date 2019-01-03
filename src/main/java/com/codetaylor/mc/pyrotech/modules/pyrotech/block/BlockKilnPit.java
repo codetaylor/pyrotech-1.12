@@ -57,7 +57,7 @@ public class BlockKilnPit
 
     super(Material.WOOD);
     this.setHardness(0.6f);
-    this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.EMPTY));
+    this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockKilnPit.EnumType.EMPTY));
   }
 
   @Nonnull
@@ -84,10 +84,10 @@ public class BlockKilnPit
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
-    if (state.getValue(VARIANT) == EnumType.EMPTY) {
+    if (state.getValue(VARIANT) == BlockKilnPit.EnumType.EMPTY) {
       return AABB_EMPTY;
 
-    } else if (state.getValue(VARIANT) == EnumType.THATCH) {
+    } else if (state.getValue(VARIANT) == BlockKilnPit.EnumType.THATCH) {
       return AABB_THATCH;
     }
 
@@ -98,7 +98,7 @@ public class BlockKilnPit
   public boolean isFullBlock(IBlockState state) {
 
     EnumType type = state.getValue(VARIANT);
-    return type == EnumType.WOOD || type == EnumType.ACTIVE || type == EnumType.COMPLETE;
+    return type == BlockKilnPit.EnumType.WOOD || type == BlockKilnPit.EnumType.ACTIVE || type == BlockKilnPit.EnumType.COMPLETE;
   }
 
   @Override
@@ -107,7 +107,7 @@ public class BlockKilnPit
     EnumType type = state.getValue(VARIANT);
 
     if (face == EnumFacing.DOWN) {
-      return !(type == EnumType.EMPTY);
+      return !(type == BlockKilnPit.EnumType.EMPTY);
 
     } else {
       return this.isFullBlock(state);
@@ -120,7 +120,7 @@ public class BlockKilnPit
     EnumType type = state.getValue(VARIANT);
 
     if (face == EnumFacing.DOWN) {
-      return !(type == EnumType.EMPTY);
+      return !(type == BlockKilnPit.EnumType.EMPTY);
 
     } else {
       return this.isFullBlock(state);
@@ -130,7 +130,7 @@ public class BlockKilnPit
   @Override
   public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
 
-    return world.getBlockState(pos).getValue(VARIANT) == EnumType.ACTIVE;
+    return world.getBlockState(pos).getValue(VARIANT) == BlockKilnPit.EnumType.ACTIVE;
   }
 
   @Nonnull
@@ -144,7 +144,7 @@ public class BlockKilnPit
   @Override
   public IBlockState getStateFromMeta(int meta) {
 
-    return this.getDefaultState().withProperty(VARIANT, EnumType.fromMeta(meta));
+    return this.getDefaultState().withProperty(VARIANT, BlockKilnPit.EnumType.fromMeta(meta));
   }
 
   @Override
@@ -156,7 +156,7 @@ public class BlockKilnPit
   @Override
   public int damageDropped(IBlockState state) {
 
-    return EnumType.EMPTY.getMeta();
+    return BlockKilnPit.EnumType.EMPTY.getMeta();
   }
 
   @Override
@@ -215,7 +215,7 @@ public class BlockKilnPit
       return false;
     }
 
-    return this.interact(IInteraction.Type.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   @Override
@@ -234,7 +234,7 @@ public class BlockKilnPit
       }
 
       // Pop the used wood into the world.
-      if (state.getValue(VARIANT) == EnumType.WOOD) {
+      if (state.getValue(VARIANT) == BlockKilnPit.EnumType.WOOD) {
         stackHandler = tileKiln.getLogStackHandler();
         StackHelper.spawnStackOnTop(worldIn, stackHandler.getStackInSlot(0), pos);
       }
@@ -263,8 +263,8 @@ public class BlockKilnPit
 
     EnumType type = state.getValue(VARIANT);
 
-    if (type == EnumType.COMPLETE
-        || type == EnumType.ACTIVE) {
+    if (type == BlockKilnPit.EnumType.COMPLETE
+        || type == BlockKilnPit.EnumType.ACTIVE) {
       return 0;
     }
 
@@ -278,10 +278,10 @@ public class BlockKilnPit
 
     EnumType type = state.getValue(VARIANT);
 
-    if (type == EnumType.WOOD) {
+    if (type == BlockKilnPit.EnumType.WOOD) {
       drops.add(new ItemStack(ModuleBlocks.THATCH, 1, 0));
 
-    } else if (type == EnumType.THATCH) {
+    } else if (type == BlockKilnPit.EnumType.THATCH) {
       drops.add(new ItemStack(ModuleBlocks.THATCH, 1, 0));
     }
 
@@ -296,7 +296,7 @@ public class BlockKilnPit
   @Override
   public String getModelName(ItemStack stack) {
 
-    return EnumType.fromMeta(stack.getMetadata()).getName();
+    return BlockKilnPit.EnumType.fromMeta(stack.getMetadata()).getName();
   }
 
   @Nonnull
@@ -315,8 +315,8 @@ public class BlockKilnPit
     ACTIVE(3, "active"),
     COMPLETE(4, "complete");
 
-    private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
-        .sorted(Comparator.comparing(EnumType::getMeta))
+    private static final EnumType[] META_LOOKUP = Stream.of(BlockKilnPit.EnumType.values())
+        .sorted(Comparator.comparing(BlockKilnPit.EnumType::getMeta))
         .toArray(EnumType[]::new);
 
     private final int meta;

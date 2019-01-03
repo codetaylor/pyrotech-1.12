@@ -661,7 +661,7 @@ public class TileKilnPit
     }
 
     @Override
-    protected boolean doExtract(Type type, World world, EntityPlayer player, BlockPos tilePos) {
+    protected boolean doExtract(EnumType type, World world, EntityPlayer player, BlockPos tilePos) {
 
       // Extract all slots in the output stack handler.
 

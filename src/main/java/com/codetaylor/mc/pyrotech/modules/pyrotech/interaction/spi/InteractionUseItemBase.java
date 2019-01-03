@@ -19,9 +19,16 @@ public abstract class InteractionUseItemBase<T extends TileEntity & ITileInterac
   }
 
   @Override
-  public boolean interact(Type type, T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+  public boolean allowInteractionWithType(EnumType type) {
+
+    return (type == EnumType.MouseClick);
+  }
+
+  @Override
+  public boolean interact(EnumType type, T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
     if (this.allowInteractionWithHand(hand)
+        && this.allowInteractionWithType(type)
         && this.allowInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {
 
       boolean complete = this.doInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);

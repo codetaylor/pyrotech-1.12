@@ -178,16 +178,18 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   }
 
   @Override
-  public boolean interact(Type type, T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+  public boolean interact(EnumType type, T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    if (!this.allowInteractionWithHand(hand)) {
+    if (!this.allowInteractionWithHand(hand)
+        || !this.allowInteractionWithType(type)
+    ) {
       return false;
     }
 
     BlockPos tilePos = tile.getPos();
     ItemStack heldItem = player.getHeldItem(hand);
 
-    if ((heldItem.isEmpty() && type == Type.MouseClick) || type == Type.MouseWheelDown) {
+    if ((heldItem.isEmpty() && type == EnumType.MouseClick) || type == EnumType.MouseWheelDown) {
 
       // Remove item with empty hand
 
@@ -243,9 +245,9 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
    * @param itemStack the stack being inserted
    * @return how many items can be inserted
    */
-  protected int getInsertItemCount(Type type, ItemStack itemStack) {
+  protected int getInsertItemCount(EnumType type, ItemStack itemStack) {
 
-    if (type == Type.MouseWheelUp) {
+    if (type == EnumType.MouseWheelUp) {
       return 1;
     }
 
@@ -302,11 +304,11 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
    * @param tilePos
    * @return true to prevent processing subsequent interactions
    */
-  protected boolean doExtract(Type type, World world, EntityPlayer player, BlockPos tilePos) {
+  protected boolean doExtract(EnumType type, World world, EntityPlayer player, BlockPos tilePos) {
 
     int extractItemCount;
 
-    if (type == Type.MouseWheelDown) {
+    if (type == EnumType.MouseWheelDown) {
       extractItemCount = 1;
 
     } else {

@@ -79,7 +79,7 @@ public class BlockCampfire
     if (((TileCampfire) tileEntity).getFuelRemaining() > 0) {
       return SoundType.WOOD;
 
-    } else if (actualState.getValue(VARIANT) == EnumType.ASH) {
+    } else if (actualState.getValue(VARIANT) == BlockCampfire.EnumType.ASH) {
       return SoundType.SAND;
 
     } else {
@@ -96,7 +96,7 @@ public class BlockCampfire
 
     IBlockState actualState = this.getActualState(state, world, pos);
 
-    if (actualState.getValue(VARIANT) == EnumType.LIT) {
+    if (actualState.getValue(VARIANT) == BlockCampfire.EnumType.LIT) {
       return 15;
     }
 
@@ -169,7 +169,7 @@ public class BlockCampfire
       switch (actualState.getValue(ASH)) {
         default:
         case 0:
-          return (actualState.getValue(VARIANT) == EnumType.ASH) ? AABB_ASH_A : AABB_TINDER;
+          return (actualState.getValue(VARIANT) == BlockCampfire.EnumType.ASH) ? AABB_ASH_A : AABB_TINDER;
         case 1:
           return AABB_ASH_A;
         case 2:
@@ -198,7 +198,7 @@ public class BlockCampfire
   @Override
   public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
 
-    return (this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == EnumType.LIT);
+    return (this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == BlockCampfire.EnumType.LIT);
   }
 
   // ---------------------------------------------------------------------------
@@ -233,7 +233,7 @@ public class BlockCampfire
       return false;
     }
 
-    return this.interact(IInteraction.Type.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   @Override
@@ -242,7 +242,7 @@ public class BlockCampfire
     if (!entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)
-        && this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == EnumType.LIT) {
+        && this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == BlockCampfire.EnumType.LIT) {
       entity.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
     }
 

@@ -77,13 +77,13 @@ public class CSPacketInteractionMouseWheel
 
       if (block instanceof IBlockInteractable) {
 
-        IInteraction.Type type;
+        IInteraction.EnumType type;
 
         if (message.wheelDelta > 0) {
-          type = IInteraction.Type.MouseWheelUp;
+          type = IInteraction.EnumType.MouseWheelUp;
 
         } else {
-          type = IInteraction.Type.MouseWheelDown;
+          type = IInteraction.EnumType.MouseWheelDown;
         }
 
         if (block instanceof BlockCombustionWorkerStoneBase

@@ -54,7 +54,7 @@ public abstract class BlockCombustionWorkerStoneBase
     this.setHarvestLevel("pickaxe", 0);
     this.setDefaultState(this.blockState.getBaseState()
         .withProperty(Properties.FACING_HORIZONTAL, EnumFacing.NORTH)
-        .withProperty(TYPE, EnumType.Bottom)
+        .withProperty(TYPE, BlockCombustionWorkerStoneBase.EnumType.Bottom)
     );
   }
 
@@ -65,7 +65,7 @@ public abstract class BlockCombustionWorkerStoneBase
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
-    if (state.getValue(TYPE) == EnumType.BottomLit) {
+    if (state.getValue(TYPE) == BlockCombustionWorkerStoneBase.EnumType.BottomLit) {
       return 10;
     }
 
@@ -78,7 +78,7 @@ public abstract class BlockCombustionWorkerStoneBase
 
   public boolean isTop(IBlockState state) {
 
-    return state.getValue(TYPE) == EnumType.Top;
+    return state.getValue(TYPE) == BlockCombustionWorkerStoneBase.EnumType.Top;
   }
 
   // ---------------------------------------------------------------------------
@@ -223,7 +223,7 @@ public abstract class BlockCombustionWorkerStoneBase
   ) {
 
     if (this.isTop(state)) {
-      return this.interact(IInteraction.Type.MouseClick, world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
+      return this.interact(IInteraction.EnumType.MouseClick, world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
 
     } else {
       ItemStack heldItem = player.getHeldItemMainhand();
@@ -232,7 +232,7 @@ public abstract class BlockCombustionWorkerStoneBase
         return false;
       }
 
-      return this.interact(IInteraction.Type.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+      return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
     }
   }
 
@@ -285,7 +285,7 @@ public abstract class BlockCombustionWorkerStoneBase
         EnumFacing facing = state.getValue(Properties.FACING_HORIZONTAL);
         world.setBlockState(up, this.getDefaultState()
             .withProperty(Properties.FACING_HORIZONTAL, facing)
-            .withProperty(TYPE, EnumType.Top));
+            .withProperty(TYPE, BlockCombustionWorkerStoneBase.EnumType.Top));
       }
     }
   }
@@ -398,7 +398,7 @@ public abstract class BlockCombustionWorkerStoneBase
 
     return this.getDefaultState()
         .withProperty(Properties.FACING_HORIZONTAL, EnumFacing.VALUES[facingIndex])
-        .withProperty(TYPE, EnumType.fromMeta(type));
+        .withProperty(TYPE, BlockCombustionWorkerStoneBase.EnumType.fromMeta(type));
   }
 
   @Override
@@ -434,14 +434,14 @@ public abstract class BlockCombustionWorkerStoneBase
   @Override
   public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
 
-    if (state.getValue(TYPE) == EnumType.Bottom) {
+    if (state.getValue(TYPE) == BlockCombustionWorkerStoneBase.EnumType.Bottom) {
 
       TileEntity tileEntity = world.getTileEntity(pos);
 
       if (tileEntity instanceof TileCombustionWorkerBase
           && ((TileCombustionWorkerBase) tileEntity).combustionGetBurnTimeRemaining() > 0) {
 
-        return state.withProperty(TYPE, EnumType.BottomDormant);
+        return state.withProperty(TYPE, BlockCombustionWorkerStoneBase.EnumType.BottomDormant);
       }
     }
 
@@ -456,8 +456,8 @@ public abstract class BlockCombustionWorkerStoneBase
     BottomLit(2, "bottom_lit"),
     BottomDormant(3, "bottom_dormant");
 
-    private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
-        .sorted(Comparator.comparing(EnumType::getMeta))
+    private static final EnumType[] META_LOOKUP = Stream.of(BlockCombustionWorkerStoneBase.EnumType.values())
+        .sorted(Comparator.comparing(BlockCombustionWorkerStoneBase.EnumType::getMeta))
         .toArray(EnumType[]::new);
 
     private final int meta;

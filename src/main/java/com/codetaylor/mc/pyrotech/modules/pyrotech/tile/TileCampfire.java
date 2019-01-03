@@ -511,10 +511,10 @@ public class TileCampfire
     }
 
     @Override
-    public boolean interact(Type type, TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    public boolean interact(EnumType type, TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (player.isSneaking()
-          && type == Type.MouseClick) {
+          && type == EnumType.MouseClick) {
         return false;
       }
 
@@ -578,12 +578,12 @@ public class TileCampfire
     }
 
     @Override
-    public boolean interact(Type type, TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    public boolean interact(EnumType type, TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       ItemStack heldItem = player.getHeldItemMainhand();
 
-      if ((type == Type.MouseClick && heldItem.isEmpty())
-          || type == Type.MouseWheelDown) {
+      if ((type == EnumType.MouseClick && heldItem.isEmpty())
+          || type == EnumType.MouseWheelDown) {
 
         // If the player is sneaking with an empty hand, or it's a mouse wheel
         // down type, remove logs and damage the player.
@@ -609,8 +609,8 @@ public class TileCampfire
           return true;
         }
 
-      } else if ((type == Type.MouseClick && !heldItem.isEmpty())
-          || type == Type.MouseWheelUp) {
+      } else if ((type == EnumType.MouseClick && !heldItem.isEmpty())
+          || type == EnumType.MouseWheelUp) {
 
         // If the player is not sneaking with a full hand, attempt to add wood.
 
@@ -667,7 +667,7 @@ public class TileCampfire
     }
 
     @Override
-    public boolean interact(Type type, TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    public boolean interact(EnumType type, TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       ItemStack heldItem = player.getHeldItemMainhand();
 
