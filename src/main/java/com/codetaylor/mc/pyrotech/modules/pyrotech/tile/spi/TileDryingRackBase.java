@@ -5,14 +5,16 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.TickCounter;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -255,15 +257,18 @@ public abstract class TileDryingRackBase
       }
     }
 
-    for (EnumFacing facing : EnumFacing.HORIZONTALS) {
-      BlockPos offset = this.pos.offset(facing);
-      IBlockState blockState = this.world.getBlockState(offset);
+    final float[] fireSourceBonus = new float[1];
 
-      if (this.isSpeedBonusBlock(blockState, offset, facing)) {
-        // Add speed bonus for each adjacent fire source block.
-        newSpeed += 0.2f;
+    BlockHelper.forBlocksInCube(this.world, this.pos, 2, 2, 2, (w, p, bs) -> {
+
+      if (this.isSpeedBonusBlock(bs, p)) {
+        // Add speed bonus for each adjacent speed bonus block.
+        fireSourceBonus[0] += 0.2f;
       }
-    }
+      return true;
+    });
+
+    newSpeed += fireSourceBonus[0];
 
     if (!this.world.isRaining()
         && this.world.canSeeSky(this.pos.up())
@@ -277,9 +282,12 @@ public abstract class TileDryingRackBase
     return this.getSpeedModified(newSpeed);
   }
 
-  private boolean isSpeedBonusBlock(IBlockState blockState, BlockPos pos, EnumFacing facing) {
+  private boolean isSpeedBonusBlock(IBlockState blockState, BlockPos pos) {
 
-    return blockState.getBlock().isFireSource(this.world, pos, facing.getOpposite());
+    Block block = blockState.getBlock();
+
+    return block == Blocks.FIRE
+        || block.isFireSource(this.world, pos, null);
   }
 
   private int getDryTimeTicks(ItemStack itemStack) {
