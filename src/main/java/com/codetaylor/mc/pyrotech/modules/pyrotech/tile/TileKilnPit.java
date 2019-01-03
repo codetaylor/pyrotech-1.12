@@ -16,7 +16,10 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnPit;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileBurnableBase;
@@ -91,6 +94,7 @@ public class TileKilnPit
 
     ModulePyrotech.TILE_DATA_SERVICE.register(this, new ITileData[]{
         new TileDataItemStackHandler<>(this.stackHandler),
+        new TileDataItemStackHandler<>(this.logStackHandler),
         new TileDataItemStackHandler<>(this.outputStackHandler),
         this.progress
     });
@@ -99,7 +103,9 @@ public class TileKilnPit
 
     this.interactions = new IInteraction[]{
         new InteractionThatch(),
-        new InteractionLog(this.logStackHandler),
+        new InteractionLog(this, this.logStackHandler, 0),
+        new InteractionLog(this, this.logStackHandler, 1),
+        new InteractionLog(this, this.logStackHandler, 2),
         new Interaction(new ItemStackHandler[]{this.stackHandler, this.outputStackHandler})
     };
   }
@@ -126,6 +132,9 @@ public class TileKilnPit
   public void setActive(boolean active) {
 
     this.active = active;
+    this.logStackHandler.setStackInSlot(0, ItemStack.EMPTY);
+    this.logStackHandler.setStackInSlot(1, ItemStack.EMPTY);
+    this.logStackHandler.setStackInSlot(2, ItemStack.EMPTY);
     this.markDirty();
   }
 
@@ -552,53 +561,70 @@ public class TileKilnPit
   }
 
   private class InteractionLog
-      extends InteractionBase<TileKilnPit> {
+      extends InteractionItemStack<TileKilnPit> {
 
-    private final ItemStackHandler logStackHandler;
+    private static final double ONE_THIRD = 1.0 / 3.0;
+    private static final double ONE_SIXTH = 1.0 / 6.0;
 
-    /* package */ InteractionLog(ItemStackHandler logStackHandler) {
+    private final TileKilnPit tile;
 
-      super(EnumFacing.VALUES, InteractionBounds.BLOCK);
-      this.logStackHandler = logStackHandler;
+    public InteractionLog(TileKilnPit tile, ItemStackHandler stackHandler, int slot) {
+
+      super(
+          new ItemStackHandler[]{stackHandler},
+          slot,
+          new EnumFacing[]{EnumFacing.UP},
+          new AxisAlignedBB(slot * ONE_THIRD, 0, 0, slot * ONE_THIRD + ONE_THIRD, 1, 1),
+          new Transform(
+              Transform.translate(slot * ONE_THIRD + ONE_SIXTH, 2 * ONE_THIRD + ONE_SIXTH, 0.5),
+              Transform.rotate(1, 0, 0, 90),
+              Transform.scale(ONE_THIRD, 1, ONE_THIRD)
+          )
+      );
+      this.tile = tile;
     }
 
     @Override
-    public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
+    protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return blockState.getBlock().getBoundingBox(blockState, world, pos);
+      return OreDictHelper.contains("logWood", itemStack);
     }
 
     @Override
-    public boolean interact(Type type, TileKilnPit tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    public boolean isEnabled() {
 
-      if (world.getBlockState(hitPos).getValue(VARIANT) != BlockKilnPit.EnumType.THATCH) {
-        return false;
-      }
+      World world = this.tile.getWorld();
+      IBlockState blockState = world.getBlockState(this.tile.getPos());
+      BlockKilnPit.EnumType type = blockState.getValue(BlockKilnPit.VARIANT);
+      return type == BlockKilnPit.EnumType.THATCH
+          || type == BlockKilnPit.EnumType.WOOD;
+    }
 
-      // If the player is holding enough ore:logWood, place the wood and set the
-      // kiln state to wood.
+    @Override
+    protected void onInsert(ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
 
-      ItemStack heldItem = player.getHeldItemMainhand();
+      ItemStackHandler stackHandler = this.stackHandlers[0];
 
-      if (heldItem.getCount() < 3) {
-        return false;
-      }
-
-      if (OreDictHelper.contains("logWood", heldItem)) {
+      if (!stackHandler.getStackInSlot(0).isEmpty()
+          && !stackHandler.getStackInSlot(1).isEmpty()
+          && !stackHandler.getStackInSlot(2).isEmpty()) {
 
         if (!world.isRemote) {
-          heldItem.setCount(heldItem.getCount() - 3);
-          this.logStackHandler
-              .insertItem(0, new ItemStack(heldItem.getItem(), 3, heldItem.getMetadata()), false);
-          world.setBlockState(tile.getPos(), ModuleBlocks.KILN_PIT.getDefaultState()
+          world.setBlockState(pos, ModuleBlocks.KILN_PIT.getDefaultState()
               .withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.WOOD));
-          world.playSound(null, tile.getPos(), SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
+          world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
         }
-
-        return true;
       }
+    }
 
-      return false;
+    @Override
+    protected void onExtract(World world, EntityPlayer player, BlockPos pos) {
+
+      if (!world.isRemote
+          && world.getBlockState(pos).getValue(BlockKilnPit.VARIANT) == BlockKilnPit.EnumType.WOOD) {
+        world.setBlockState(pos, ModuleBlocks.KILN_PIT.getDefaultState()
+            .withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.THATCH));
+      }
     }
   }
 
@@ -694,13 +720,13 @@ public class TileKilnPit
 
     /* package */ LogStackHandler() {
 
-      super(1);
+      super(3);
     }
 
     @Override
     protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
 
-      return 3;
+      return 1;
     }
   }
 }

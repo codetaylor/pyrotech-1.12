@@ -9,7 +9,7 @@
         "model": "pyrotech:kiln_pit_thatch"
       },
       "wood": {
-        "model": "pyrotech:kiln_pit_wood"
+        "model": "pyrotech:kiln_pit_thatch"
       },
       "active": {
         "model": "pyrotech:kiln_pit_active"
