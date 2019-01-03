@@ -218,7 +218,11 @@ public class TileCampfire
   @Override
   protected int combustionGetRainDeactivateTime() {
 
-    return ModulePyrotechConfig.CAMPFIRE.TICKS_BEFORE_EXTINGUISHED;
+    if (ModulePyrotechConfig.CAMPFIRE.EXTINGUISHED_BY_RAIN) {
+      return ModulePyrotechConfig.CAMPFIRE.TICKS_BEFORE_EXTINGUISHED;
+    }
+
+    return -1;
   }
 
   @Override
