@@ -96,6 +96,11 @@ public class ModulePyrotechConfig {
         "minecraft:wooden_pickaxe",
         "minecraft:wooden_shovel"
     };
+
+    @Config.Comment({
+        "Set to true to render the interaction bounds for debugging."
+    })
+    public boolean SHOW_INTERACTION_BOUNDS = false;
   }
 
   // ---------------------------------------------------------------------------
