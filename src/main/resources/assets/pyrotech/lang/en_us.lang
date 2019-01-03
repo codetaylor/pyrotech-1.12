@@ -106,6 +106,7 @@ tile.pyrotech.crafting.name=Crafting Log
 tile.pyrotech.torch.name=Fiber Torch
 tile.pyrotech.shelf.name=Shelf
 tile.pyrotech.stash.name=Stash
+tile.pyrotech.crate.name=Crate
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock
