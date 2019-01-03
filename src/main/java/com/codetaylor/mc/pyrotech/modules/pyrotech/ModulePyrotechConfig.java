@@ -630,9 +630,9 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "The amount of ticks of burn time added to the campfire",
         "for each log consumed.",
-        "Default: " + (60 * 20)
+        "Default: " + (60 * 2 * 20)
     })
-    public int BURN_TIME_TICKS_PER_LOG = 60 * 20;
+    public int BURN_TIME_TICKS_PER_LOG = 60 * 2 * 20;
 
     @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",
