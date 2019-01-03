@@ -43,6 +43,8 @@ public class TileCrafting
     extends TileNetBase
     implements ITileInteractable {
 
+  private InventoryWrapper inventoryWrapper;
+  private TileDataItemStackHandler<InputStackHandler> inputTileDataItemStackHandler;
   private InputStackHandler inputStackHandler;
   private ShelfStackHandler shelfStackHandler;
 
@@ -50,15 +52,21 @@ public class TileCrafting
 
   private IInteraction[] interactions;
 
+  // Client only, used for waila and such
+  private IRecipe recipe;
+
   public TileCrafting() {
 
     super(ModulePyrotech.TILE_DATA_SERVICE);
 
     // --- Initialize ---
 
+    this.inventoryWrapper = new InventoryWrapper(this);
+
     this.inputStackHandler = new InputStackHandler();
     this.inputStackHandler.addObserver((handler, slot) -> {
       this.recipeProgress.set(0);
+      this.updateRecipe();
       this.markDirty();
     });
 
@@ -69,8 +77,10 @@ public class TileCrafting
 
     // --- Network ---
 
+    this.inputTileDataItemStackHandler = new TileDataItemStackHandler<>(this.inputStackHandler);
+
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataItemStackHandler<>(this.inputStackHandler),
+        this.inputTileDataItemStackHandler,
         new TileDataItemStackHandler<>(this.shelfStackHandler),
         this.recipeProgress
     });
@@ -81,7 +91,7 @@ public class TileCrafting
 
     List<IInteraction> interactionList = new ArrayList<>();
 
-    interactionList.add(new InteractionHammer(this));
+    interactionList.add(new InteractionHammer(this.inventoryWrapper));
 
     for (int i = 0; i < 9; i++) {
       int x = i % 3;
@@ -98,6 +108,25 @@ public class TileCrafting
   }
 
   // ---------------------------------------------------------------------------
+  // - Accessors
+  // ---------------------------------------------------------------------------
+
+  public float getRecipeProgress() {
+
+    return this.recipeProgress.get();
+  }
+
+  public ItemStackHandler getInputStackHandler() {
+
+    return this.inputStackHandler;
+  }
+
+  public IRecipe getRecipe() {
+
+    return this.recipe;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Container
   // ---------------------------------------------------------------------------
 
@@ -105,6 +134,27 @@ public class TileCrafting
 
     StackHelper.spawnStackHandlerContentsOnTop(this.world, this.inputStackHandler, this.pos);
     StackHelper.spawnStackHandlerContentsOnTop(this.world, this.shelfStackHandler, this.pos);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Network
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void onTileDataUpdate() {
+
+    if (this.inputTileDataItemStackHandler.isDirty()) {
+      this.updateRecipe();
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Recipe
+  // ---------------------------------------------------------------------------
+
+  private void updateRecipe() {
+
+    this.recipe = CraftingManager.findMatchingRecipe(this.inventoryWrapper, world);
   }
 
   // ---------------------------------------------------------------------------
@@ -159,10 +209,10 @@ public class TileCrafting
 
     private InventoryWrapper wrapper;
 
-    /* package */ InteractionHammer(TileCrafting tile) {
+    /* package */ InteractionHammer(InventoryWrapper inventoryWrapper) {
 
       super(new EnumFacing[]{EnumFacing.UP}, InteractionBounds.BLOCK);
-      this.wrapper = new InventoryWrapper(tile);
+      this.wrapper = inventoryWrapper;
     }
 
     @Override
@@ -188,7 +238,7 @@ public class TileCrafting
         heldItem.damageItem(1, player);
         world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_HIT, SoundCategory.BLOCKS, 1, 1);
 
-        IRecipe recipe = CraftingManager.findMatchingRecipe(this.wrapper, world);
+        IRecipe recipe = tile.getRecipe();
 
         if (recipe != null) {
           tile.recipeProgress.add(1f / ModulePyrotechConfig.CRAFTING.HITS_PER_CRAFT);

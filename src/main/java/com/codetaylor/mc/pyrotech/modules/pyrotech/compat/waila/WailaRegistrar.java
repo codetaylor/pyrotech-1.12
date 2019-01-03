@@ -54,6 +54,9 @@ public class WailaRegistrar {
 
     GraniteAnvil graniteAnvil = new GraniteAnvil();
     registrar.registerBodyProvider(graniteAnvil, TileGraniteAnvil.class);
+
+    CraftingProvider craftingProvider = new CraftingProvider();
+    registrar.registerBodyProvider(craftingProvider, TileCrafting.class);
   }
 
 }
