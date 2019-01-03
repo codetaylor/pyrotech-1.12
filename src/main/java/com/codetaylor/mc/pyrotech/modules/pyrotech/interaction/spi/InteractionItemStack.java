@@ -207,15 +207,39 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
 
     } else {
 
-      if (!this.isItemStackValid(heldItem)) {
+      ItemStack itemStackToInsert = heldItem;
+      int insertIndex = this.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
+
+      if (!this.isItemStackValid(itemStackToInsert)
+          && type == EnumType.MouseClick) {
         return false;
+
+      } else if (!this.isEmpty()
+          && type == EnumType.MouseWheelUp) {
+
+        // If the interaction already contains an item stack, first check if the
+        // current held item can be inserted, then search the player
+        // inventory for more of the same item and insert from that stack.
+
+        ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStackToInsert, true);
+
+        if (result.getCount() == itemStackToInsert.getCount()) {
+
+          for (ItemStack itemStack : player.inventory.mainInventory) {
+            result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, true);
+
+            if (result.getCount() != itemStack.getCount()) {
+              itemStackToInsert = itemStack;
+              break;
+            }
+          }
+        }
       }
 
       // Insert item
 
-      int count = heldItem.getCount();
-      int insertIndex = this.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
-      ItemStack itemStack = heldItem.copy();
+      int count = itemStackToInsert.getCount();
+      ItemStack itemStack = itemStackToInsert.copy();
       int insertItemCount = this.getInsertItemCount(type, itemStack);
       itemStack.setCount(insertItemCount);
       ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, world.isRemote);
@@ -224,7 +248,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
         int actualInsertCount = insertItemCount - result.getCount();
 
         if (!world.isRemote) {
-          heldItem.setCount(heldItem.getCount() - actualInsertCount);
+          itemStackToInsert.setCount(itemStackToInsert.getCount() - actualInsertCount);
         }
 
         itemStack.setCount(actualInsertCount);
