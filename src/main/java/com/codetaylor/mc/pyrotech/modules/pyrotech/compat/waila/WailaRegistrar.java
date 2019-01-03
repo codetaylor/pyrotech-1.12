@@ -57,6 +57,11 @@ public class WailaRegistrar {
 
     CraftingProvider craftingProvider = new CraftingProvider();
     registrar.registerBodyProvider(craftingProvider, TileCrafting.class);
+
+    StorageItemStackProvider storageItemStackProvider = new StorageItemStackProvider();
+    registrar.registerBodyProvider(storageItemStackProvider, TileShelf.class);
+    registrar.registerBodyProvider(storageItemStackProvider, TileCrate.class);
+    registrar.registerBodyProvider(storageItemStackProvider, TileStash.class);
   }
 
 }
