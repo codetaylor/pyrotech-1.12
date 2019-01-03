@@ -4,10 +4,13 @@ import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.MillInteractionBladeRenderer;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
@@ -33,6 +36,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TileMillStone
@@ -119,29 +123,30 @@ public class TileMillStone
   @Override
   protected boolean shouldKeepHeat() {
 
-    return ModulePyrotechConfig.STONE_MILL.KEEP_HEAT;
+    return ModulePyrotechConfig.STONE_SAWMILL.KEEP_HEAT;
   }
 
   @Override
   protected int getInputSlotSize() {
 
-    return ModulePyrotechConfig.STONE_MILL.INPUT_SLOT_SIZE;
+    return ModulePyrotechConfig.STONE_SAWMILL.INPUT_SLOT_SIZE;
   }
 
   @Override
   protected int getFuelSlotSize() {
 
-    return ModulePyrotechConfig.STONE_MILL.FUEL_SLOT_SIZE;
+    return ModulePyrotechConfig.STONE_SAWMILL.FUEL_SLOT_SIZE;
   }
 
   @Override
   protected void onRecipeComplete() {
 
-    if (!ModulePyrotechConfig.STONE_MILL.DAMAGE_BLADES) {
+    ItemStack input = this.getInputStackHandler().getStackInSlot(0);
+
+    if (!ModulePyrotechConfig.STONE_SAWMILL.DAMAGE_BLADES) {
       super.onRecipeComplete();
 
     } else {
-      ItemStack input = this.getInputStackHandler().getStackInSlot(0);
 
       super.onRecipeComplete();
 
@@ -159,6 +164,29 @@ public class TileMillStone
 
       } else {
         this.bladeStackHandler.insertItem(0, blade, false);
+      }
+    }
+
+    if (Math.random() < ModulePyrotechConfig.STONE_SAWMILL.WOOD_CHIPS_CHANCE) {
+      List<BlockPos> candidates = new ArrayList<>();
+
+      BlockHelper.forBlocksInCube(this.world, this.getPos(), 1, 1, 1, (w, p, bs) -> {
+
+        if (w.isAirBlock(p)
+            && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
+            && bs.getBlock() != ModuleBlocks.ROCK) {
+
+          candidates.add(p);
+        }
+
+        return true;
+      });
+
+      if (candidates.size() > 0) {
+        Collections.shuffle(candidates);
+
+        this.world.setBlockState(candidates.get(0), ModuleBlocks.ROCK.getDefaultState()
+            .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
       }
     }
   }
@@ -206,8 +234,8 @@ public class TileMillStone
       super.onExtract(world, player, pos);
 
       if (this.tile.workerIsActive()
-          && ModulePyrotechConfig.STONE_MILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
-        player.attackEntityFrom(DamageSource.GENERIC, ModulePyrotechConfig.STONE_MILL.ENTITY_DAMAGE_FROM_BLADE);
+          && ModulePyrotechConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
+        player.attackEntityFrom(DamageSource.GENERIC, ModulePyrotechConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE);
       }
     }
 
@@ -217,8 +245,8 @@ public class TileMillStone
       super.onInsert(itemStack, world, player, pos);
 
       if (this.tile.workerIsActive()
-          && ModulePyrotechConfig.STONE_MILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
-        player.attackEntityFrom(DamageSource.GENERIC, ModulePyrotechConfig.STONE_MILL.ENTITY_DAMAGE_FROM_BLADE);
+          && ModulePyrotechConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
+        player.attackEntityFrom(DamageSource.GENERIC, ModulePyrotechConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE);
       }
     }
 

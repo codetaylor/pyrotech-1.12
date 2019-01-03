@@ -412,12 +412,12 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Stone Mill
+  // - Stone Sawmill
   // ---------------------------------------------------------------------------
 
-  public static StoneMill STONE_MILL = new StoneMill();
+  public static StoneSawmill STONE_SAWMILL = new StoneSawmill();
 
-  public static class StoneMill {
+  public static class StoneSawmill {
 
     @Config.Comment({
         "Set to true to deactivate when a recipe completes.",
@@ -451,6 +451,12 @@ public class ModulePyrotechConfig {
         "Default: " + true
     })
     public boolean DAMAGE_BLADES = true;
+
+    @Config.Comment({
+        "Chance of producing wood chips when a recipe completes.",
+        "Default: " + 0.8
+    })
+    public double WOOD_CHIPS_CHANCE = 0.8;
   }
 
   // ---------------------------------------------------------------------------

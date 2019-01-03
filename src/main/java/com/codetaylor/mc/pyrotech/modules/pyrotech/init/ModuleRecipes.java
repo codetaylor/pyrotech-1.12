@@ -122,7 +122,7 @@ public final class ModuleRecipes {
     registry.register(new MillStoneRecipe(
         output,
         input,
-        ModulePyrotechConfig.STONE_MILL.INPUT_SLOT_SIZE * 4 * 20,
+        ModulePyrotechConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
         Ingredient.fromStacks(new ItemStack(ModuleItems.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE))
     ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_0"));
 
@@ -132,7 +132,7 @@ public final class ModuleRecipes {
     registry.register(new MillStoneRecipe(
         output,
         input,
-        ModulePyrotechConfig.STONE_MILL.INPUT_SLOT_SIZE * 3 * 20,
+        ModulePyrotechConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 3 * 20,
         Ingredient.fromStacks(new ItemStack(ModuleItems.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(ModuleItems.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE))
     ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_1"));
 
@@ -142,7 +142,7 @@ public final class ModuleRecipes {
     registry.register(new MillStoneRecipe(
         output,
         input,
-        ModulePyrotechConfig.STONE_MILL.INPUT_SLOT_SIZE * 2 * 20,
+        ModulePyrotechConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 2 * 20,
         Ingredient.fromStacks(new ItemStack(ModuleItems.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE))
     ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_2"));
 
@@ -152,7 +152,7 @@ public final class ModuleRecipes {
     registry.register(new MillStoneRecipe(
         output,
         input,
-        ModulePyrotechConfig.STONE_MILL.INPUT_SLOT_SIZE * 20,
+        ModulePyrotechConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 20,
         Ingredient.fromStacks(new ItemStack(ModuleItems.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE))
     ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_3"));
   }

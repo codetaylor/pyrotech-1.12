@@ -59,8 +59,8 @@ public class BlockMillStone
 
       if (tile instanceof TileMillStone
           && ((TileMillStone) tile).workerIsActive()
-          && ModulePyrotechConfig.STONE_MILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
-        entity.attackEntityFrom(DamageSource.GENERIC, ModulePyrotechConfig.STONE_MILL.ENTITY_DAMAGE_FROM_BLADE);
+          && ModulePyrotechConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
+        entity.attackEntityFrom(DamageSource.GENERIC, ModulePyrotechConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE);
       }
     }
 
