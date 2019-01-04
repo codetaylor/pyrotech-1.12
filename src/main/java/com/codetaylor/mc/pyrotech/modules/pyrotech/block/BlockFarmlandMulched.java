@@ -1,7 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.network.SCPacketParticleBoneMeal;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockFarmland;
@@ -15,7 +17,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemDye;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -91,9 +92,11 @@ public class BlockFarmlandMulched
             growable.grow(world, world.rand, posUp, blockStateUp);
             world.setBlockState(pos, state
                 .withProperty(FERTILIZER, fertilizer - 1), 1 | 2 | 4);
-
-          } else {
-            ItemDye.spawnBonemealParticles(world, posUp, 4);
+            ModulePyrotech.PACKET_SERVICE.sendToAllAround(
+                new SCPacketParticleBoneMeal(posUp, 4),
+                world.provider.getDimension(),
+                posUp
+            );
           }
         }
       }
