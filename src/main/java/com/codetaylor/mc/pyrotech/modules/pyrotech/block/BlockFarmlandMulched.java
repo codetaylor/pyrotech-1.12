@@ -54,6 +54,18 @@ public class BlockFarmlandMulched
     return AABB;
   }
 
+  @Override
+  public void onFallenUpon(World world, BlockPos pos, Entity entity, float fallDistance) {
+
+    if (!world.isRemote
+        && ModulePyrotechConfig.MULCHED_FARMLAND.ALLOW_TRAMPLE
+        && entity.canTrample(world, this, pos, fallDistance)) {
+      this.turnToDirt(world, pos);
+    }
+
+    super.onFallenUpon(world, pos, entity, fallDistance);
+  }
+
   @ParametersAreNonnullByDefault
   @Override
   public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {

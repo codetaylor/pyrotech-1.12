@@ -125,6 +125,13 @@ public class ModulePyrotechConfig {
         "Default: " + false
     })
     public boolean UNLIMITED_CHARGES = false;
+
+    @Config.Comment({
+        "Set to true to allow the farmland to be trampled and turned to dirt the",
+        "same as vanilla farmland.",
+        "Default: " + false
+    })
+    public boolean ALLOW_TRAMPLE = false;
   }
 
   // ---------------------------------------------------------------------------
