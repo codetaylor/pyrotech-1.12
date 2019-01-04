@@ -76,6 +76,10 @@ public class BlockFarmlandMulched
   @Override
   public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 
+    if (rand.nextFloat() > 0.5) {
+      return;
+    }
+
     int fertilizer = state.getValue(FERTILIZER);
 
     BlockPos posUp = pos.up();
