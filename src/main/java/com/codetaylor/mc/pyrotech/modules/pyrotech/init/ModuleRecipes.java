@@ -78,6 +78,8 @@ public final class ModuleRecipes {
 
   public static void onRegisterMillStoneRecipes(IForgeRegistryModifiable<MillStoneRecipe> registry) {
 
+    // --- Planks ---
+
     registerMillStoneRecipe(registry, "planks_oak",
         new ItemStack(Blocks.PLANKS, 1, 0),
         Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 0))
@@ -108,6 +110,41 @@ public final class ModuleRecipes {
         Ingredient.fromStacks(new ItemStack(Blocks.LOG2, 1, 1))
     );
 
+    // --- Slabs ---
+
+    registerMillStoneRecipe(registry, "slab_oak",
+        new ItemStack(Blocks.WOODEN_SLAB, 1, 0),
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 0))
+    );
+
+    registerMillStoneRecipe(registry, "slab_spruce",
+        new ItemStack(Blocks.WOODEN_SLAB, 1, 1),
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 1))
+    );
+
+    registerMillStoneRecipe(registry, "slab_birch",
+        new ItemStack(Blocks.WOODEN_SLAB, 1, 2),
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 2))
+    );
+
+    registerMillStoneRecipe(registry, "slab_jungle",
+        new ItemStack(Blocks.WOODEN_SLAB, 1, 3),
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 3))
+    );
+
+    registerMillStoneRecipe(registry, "slab_acacia",
+        new ItemStack(Blocks.WOODEN_SLAB, 1, 4),
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 4))
+    );
+
+    registerMillStoneRecipe(registry, "slab_dark_oak",
+        new ItemStack(Blocks.WOODEN_SLAB, 1, 5),
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 5))
+    );
+
+    // --- Misc ---
+
+    // board
     registerMillStoneRecipe(registry, "board",
         ItemMaterial.EnumType.BOARD.asStack(),
         new OreIngredient("slabWood")
