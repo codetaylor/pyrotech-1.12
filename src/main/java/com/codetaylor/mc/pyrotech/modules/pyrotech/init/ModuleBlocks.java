@@ -7,13 +7,10 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
-import com.google.common.base.Preconditions;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.item.Item;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
@@ -117,7 +114,8 @@ public final class ModuleBlocks {
         TileTorch.class,
         TileShelf.class,
         TileStash.class,
-        TileCrate.class
+        TileCrate.class,
+        TileFarmlandMulched.class
     );
   }
 
@@ -144,7 +142,8 @@ public final class ModuleBlocks {
           ModuleBlocks.TORCH_FIBER,
           ModuleBlocks.SHELF,
           ModuleBlocks.STASH,
-          ModuleBlocks.CRATE
+          ModuleBlocks.CRATE,
+          ModuleBlocks.FARMLAND_MULCHED
       );
 
       // Refractory Door
@@ -185,19 +184,6 @@ public final class ModuleBlocks {
       ModelLoader.setCustomStateMapper(
           ModuleBlocks.ROCK,
           (new StateMap.Builder()).withName(BlockRock.VARIANT).build()
-      );
-
-      // Mulched Farmland
-      ModelLoader.setCustomStateMapper(
-          ModuleBlocks.FARMLAND_MULCHED,
-          (new StateMap.Builder()).ignore(BlockFarmlandMulched.FERTILIZER).build()
-      );
-      ModelRegistrationHelper.registerItemModel(
-          Item.getItemFromBlock(ModuleBlocks.FARMLAND_MULCHED),
-          new ModelResourceLocation(
-              Preconditions.checkNotNull(ModuleBlocks.FARMLAND_MULCHED.getRegistryName(), "Block %s has null registry name", ModuleBlocks.FARMLAND_MULCHED),
-              "inventory"
-          )
       );
 
       // Chopping Block

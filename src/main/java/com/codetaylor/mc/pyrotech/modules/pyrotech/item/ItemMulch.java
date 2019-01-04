@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockFarmlandMulched;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import net.minecraft.block.BlockFarmland;
@@ -61,8 +60,7 @@ public class ItemMulch
           if (blockState.getValue(BlockFarmland.MOISTURE) > 0) {
 
             if (!world.isRemote) {
-              world.setBlockState(blockPos, ModuleBlocks.FARMLAND_MULCHED.getDefaultState()
-                  .withProperty(BlockFarmlandMulched.FERTILIZER, 15), 1 | 2);
+              world.setBlockState(blockPos, ModuleBlocks.FARMLAND_MULCHED.getDefaultState());
 
             } else {
               this.playSound(world, player);

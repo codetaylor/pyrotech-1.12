@@ -104,6 +104,30 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Mulched Farmland
+  // ---------------------------------------------------------------------------
+
+  public static MulchedFarmland MULCHED_FARMLAND = new MulchedFarmland();
+
+  public static class MulchedFarmland {
+
+    @Config.Comment({
+        "The number of times the mulched farmland will apply bonemeal to a crop before",
+        "reverting to normal moisturized farmland.",
+        "Range: [1,+int]",
+        "Default: " + 4
+    })
+    public int CHARGES = 4;
+
+    @Config.Comment({
+        "Set to true to ignore the charge count and allow the mulched farmland",
+        "to exist indefinitely.",
+        "Default: " + false
+    })
+    public boolean UNLIMITED_CHARGES = false;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Torch
   // ---------------------------------------------------------------------------
 
@@ -190,7 +214,7 @@ public class ModulePyrotechConfig {
         "The number of times the block can be hit before applying damage",
         "to the block. The block has a total of four damage stages. This number",
         "represents the number of hits for just one damage stage.",
-        "Range: [1, +inf)",
+        "Range: [1, +int]",
         "Default: " + 32
     })
     public int HITS_PER_DAMAGE = 32;
@@ -264,7 +288,7 @@ public class ModulePyrotechConfig {
         "last element in the array is used.",
         "",
         "ie. {wood, stone, iron, diamond}",
-        "Valid values are in the range: [1,+inf)",
+        "Valid values are in the range: [1,+int]",
         "Default: {6, 4, 2, 1}"
     })
     public int[] CHOPS_REQUIRED_PER_HARVEST_LEVEL = new int[]{6, 4, 2, 2};
@@ -277,7 +301,7 @@ public class ModulePyrotechConfig {
         "last element in the array is used.",
         "",
         "ie. {wood, stone, iron, diamond}",
-        "Valid values are in the range: [0,+inf)",
+        "Valid values are in the range: [0,+int]",
         "Default: {1, 2, 3, 4}"
     })
     public int[] RECIPE_RESULT_QUANTITY_PER_HARVEST_LEVEL = new int[]{1, 2, 3, 4};
@@ -309,7 +333,7 @@ public class ModulePyrotechConfig {
         "The number of times the block can be chopped on before applying damage",
         "to the block. The block has a total of six damage stages. This number",
         "represents the number of chops for just one damage stage.",
-        "Range: [1, +inf)",
+        "Range: [1, +int]",
         "Default: " + 16
     })
     public int CHOPS_PER_DAMAGE = 16;
@@ -490,7 +514,7 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Controls the size of the output tank in millibuckets.",
-        "Range: [1, +inf)",
+        "Range: [1, +int]",
         "Default: " + 4000
     })
     public int OUTPUT_TANK_SIZE = 4000;
