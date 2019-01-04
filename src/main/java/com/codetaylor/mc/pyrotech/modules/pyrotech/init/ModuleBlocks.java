@@ -7,10 +7,13 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
+import com.google.common.base.Preconditions;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.item.Item;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
@@ -52,6 +55,7 @@ public final class ModuleBlocks {
   public static final BlockShelf SHELF = new BlockShelf();
   public static final BlockStash STASH = new BlockStash();
   public static final BlockCrate CRATE = new BlockCrate();
+  public static final BlockFarmlandMulched FARMLAND_MULCHED = new BlockFarmlandMulched();
 
   public static void onRegister(Registry registry) {
 
@@ -86,6 +90,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.SHELF, BlockShelf.NAME);
     registry.registerBlockWithItem(ModuleBlocks.STASH, BlockStash.NAME);
     registry.registerBlockWithItem(ModuleBlocks.CRATE, BlockCrate.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.FARMLAND_MULCHED, BlockFarmlandMulched.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
@@ -180,6 +185,19 @@ public final class ModuleBlocks {
       ModelLoader.setCustomStateMapper(
           ModuleBlocks.ROCK,
           (new StateMap.Builder()).withName(BlockRock.VARIANT).build()
+      );
+
+      // Mulched Farmland
+      ModelLoader.setCustomStateMapper(
+          ModuleBlocks.FARMLAND_MULCHED,
+          (new StateMap.Builder()).ignore(BlockFarmlandMulched.FERTILIZER).build()
+      );
+      ModelRegistrationHelper.registerItemModel(
+          Item.getItemFromBlock(ModuleBlocks.FARMLAND_MULCHED),
+          new ModelResourceLocation(
+              Preconditions.checkNotNull(ModuleBlocks.FARMLAND_MULCHED.getRegistryName(), "Block %s has null registry name", ModuleBlocks.FARMLAND_MULCHED),
+              "inventory"
+          )
       );
 
       // Chopping Block

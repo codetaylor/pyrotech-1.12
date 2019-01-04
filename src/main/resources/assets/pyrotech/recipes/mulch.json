@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WAW",
+    "ACA",
+    "WAW"
+  ],
+  "key": {
+    "W": {
+      "item": "pyrotech:rock",
+      "data": 7
+    },
+    "A": {
+      "item": "pyrotech:material",
+      "data": 0
+    },
+    "C": {
+      "item": "pyrotech:rock_grass",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:mulch",
+    "count": 4,
+    "data": 0
+  }
+}

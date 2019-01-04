@@ -28,6 +28,7 @@ public final class ModuleItems {
   public static final ItemTinder TINDER = new ItemTinder();
   public static final ItemRock ROCK = new ItemRock(ModuleBlocks.ROCK);
   public static final ItemRockGrass ROCK_GRASS = new ItemRockGrass(ModuleBlocks.ROCK_GRASS);
+  public static final ItemMulch MULCH = new ItemMulch();
 
   public static final ItemCrudeAxe CRUDE_AXE = new ItemCrudeAxe();
   public static final ItemCrudeHoe CRUDE_HOE = new ItemCrudeHoe();
@@ -77,6 +78,7 @@ public final class ModuleItems {
     registry.registerItem(new ItemBlock(ModuleBlocks.CAMPFIRE), BlockCampfire.NAME);
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
     registry.registerItem(ModuleItems.ROCK_GRASS, BlockRockGrass.NAME);
+    registry.registerItem(ModuleItems.MULCH, ItemMulch.NAME);
 
     registry.registerItem(ModuleItems.CRUDE_AXE, ItemCrudeAxe.NAME);
     registry.registerItem(ModuleItems.CRUDE_HOE, ItemCrudeHoe.NAME);
@@ -127,6 +129,7 @@ public final class ModuleItems {
           ModuleItems.REFRACTORY_DOOR,
           ModuleItems.TINDER,
           ModuleItems.ROCK_GRASS,
+          ModuleItems.MULCH,
 
           ModuleItems.CRUDE_AXE,
           ModuleItems.CRUDE_HOE,

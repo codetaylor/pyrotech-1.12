@@ -40,6 +40,7 @@ item.pyrotech.iron.shard.name=Iron Shard
 item.pyrotech.diamond.shard.name=Diamond Shard
 item.pyrotech.board.name=Board
 item.pyrotech.coal.pieces.name=Coal Pieces
+item.pyrotech.mulch.name=Potash Mulch
 
 item.pyrotech.crude.axe.name=Crude Axe
 item.pyrotech.crude.hoe.name=Crude Hoe
@@ -107,6 +108,7 @@ tile.pyrotech.torch.name=Fiber Torch
 tile.pyrotech.shelf.name=Shelf
 tile.pyrotech.stash.name=Stash
 tile.pyrotech.crate.name=Crate
+tile.pyrotech.farmland_mulched.name=Mulched Farmland
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock
