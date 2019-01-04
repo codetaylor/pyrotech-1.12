@@ -4,10 +4,15 @@ import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileMillStone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileMillStoneTop;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
@@ -16,6 +21,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
@@ -109,5 +115,30 @@ public class BlockMillStone
         0.05 + (Util.RANDOM.nextFloat() * 2 - 1) * 0.05,
         0
     );
+
+    TileEntity tileEntity = world.getTileEntity(pos.down());
+
+    if (tileEntity instanceof TileMillStone) {
+      ItemStackHandler inputStackHandler = ((TileMillStone) tileEntity).getInputStackHandler();
+      ItemStack stackInSlot = inputStackHandler.getStackInSlot(0);
+      Block blockFromItem = Block.getBlockFromItem(stackInSlot.getItem());
+
+      if (blockFromItem != Blocks.AIR) {
+        IBlockState blockState = ModuleBlocks.CHOPPING_BLOCK.getDefaultState();
+        int stateId = Block.getStateId(blockState);
+
+        for (int i = 0; i < 8; ++i) {
+          world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5, 0.0D, 0.0D, 0.0D, stateId);
+        }
+
+      } else {
+
+        for (int i = 0; i < 8; ++i) {
+          int itemId = Item.getIdFromItem(stackInSlot.getItem());
+          int metadata = stackInSlot.getMetadata();
+          world.spawnParticle(EnumParticleTypes.ITEM_CRACK, pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5, 0.0D, 0.0D, 0.0D, itemId, metadata);
+        }
+      }
+    }
   }
 }
