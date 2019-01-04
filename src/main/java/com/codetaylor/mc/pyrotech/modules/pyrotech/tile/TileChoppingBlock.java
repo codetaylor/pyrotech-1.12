@@ -100,7 +100,7 @@ public class TileChoppingBlock
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  public void setSawdust(int sawdust) {
+  private void setSawdust(int sawdust) {
 
     // This requires a full update because it is used for actual state.
 
@@ -125,22 +125,18 @@ public class TileChoppingBlock
     return this.world.getBlockState(this.pos).getValue(BlockChoppingBlock.DAMAGE);
   }
 
-  public void setDurabilityUntilNextDamage(int durabilityUntilNextDamage) {
-
-    // TODO: Network
-    // This doesn't require a full update.
+  private void setDurabilityUntilNextDamage(int durabilityUntilNextDamage) {
 
     this.durabilityUntilNextDamage = durabilityUntilNextDamage;
     this.markDirty();
-    BlockHelper.notifyBlockUpdate(this.world, this.pos);
   }
 
-  public int getDurabilityUntilNextDamage() {
+  private int getDurabilityUntilNextDamage() {
 
     return this.durabilityUntilNextDamage;
   }
 
-  public void setRecipeProgress(float recipeProgress) {
+  private void setRecipeProgress(float recipeProgress) {
 
     this.recipeProgress.set(recipeProgress);
   }
@@ -461,7 +457,7 @@ public class TileChoppingBlock
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    public InputStackHandler() {
+    /* package */ InputStackHandler() {
 
       super(1);
     }
