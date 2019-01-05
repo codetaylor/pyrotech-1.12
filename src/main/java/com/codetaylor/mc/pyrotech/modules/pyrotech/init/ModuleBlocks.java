@@ -53,6 +53,7 @@ public final class ModuleBlocks {
   public static final BlockStash STASH = new BlockStash();
   public static final BlockCrate CRATE = new BlockCrate();
   public static final BlockFarmlandMulched FARMLAND_MULCHED = new BlockFarmlandMulched();
+  public static final BlockCompactingBin COMPACTING_BIN = new BlockCompactingBin();
 
   public static void onRegister(Registry registry) {
 
@@ -88,6 +89,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.STASH, BlockStash.NAME);
     registry.registerBlockWithItem(ModuleBlocks.CRATE, BlockCrate.NAME);
     registry.registerBlockWithItem(ModuleBlocks.FARMLAND_MULCHED, BlockFarmlandMulched.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.COMPACTING_BIN, BlockCompactingBin.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
@@ -115,7 +117,8 @@ public final class ModuleBlocks {
         TileShelf.class,
         TileStash.class,
         TileCrate.class,
-        TileFarmlandMulched.class
+        TileFarmlandMulched.class,
+        TileCompactingBin.class
     );
   }
 
@@ -143,7 +146,8 @@ public final class ModuleBlocks {
           ModuleBlocks.SHELF,
           ModuleBlocks.STASH,
           ModuleBlocks.CRATE,
-          ModuleBlocks.FARMLAND_MULCHED
+          ModuleBlocks.FARMLAND_MULCHED,
+          ModuleBlocks.COMPACTING_BIN
       );
 
       // Refractory Door
@@ -235,6 +239,7 @@ public final class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileShelf.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileStash.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCrate.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileCompactingBin.class, new TESRInteractable<>());
 
     });
   }

@@ -163,6 +163,12 @@ public class ModulePyrotech
         .setType(CrucibleStoneRecipe.class)
         .allowModification()
         .create();
+
+    new RegistryBuilder<CompactingBinRecipe>()
+        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "compacting_bin_recipe"))
+        .setType(CompactingBinRecipe.class)
+        .allowModification()
+        .create();
   }
 
   @Override
@@ -201,6 +207,7 @@ public class ModulePyrotech
     ModuleRecipes.onRegisterDryingRackCrudeRecipes(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
     ModuleRecipes.onRegisterMillStoneRecipes(ModulePyrotechRegistries.MILL_STONE_RECIPE);
     ModuleRecipes.onRegisterCrucibleStoneRecipes(ModulePyrotechRegistries.CRUCIBLE_STONE_RECIPE);
+    ModuleRecipes.onRegisterCompactingBinRecipes(ModulePyrotechRegistries.COMPACTING_BIN_RECIPE);
   }
 
   @Override

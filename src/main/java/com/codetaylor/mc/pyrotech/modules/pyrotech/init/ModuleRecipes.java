@@ -24,6 +24,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 import scala.actors.threadpool.Arrays;
 
+import static com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks.ROCK;
+
 public final class ModuleRecipes {
 
   public static void onRegisterRecipes(IForgeRegistry<IRecipe> registry) {
@@ -60,6 +62,20 @@ public final class ModuleRecipes {
         new ItemStack(ModuleBlocks.LIMESTONE),
         0.1f
     );
+  }
+
+  public static void onRegisterCompactingBinRecipes(IForgeRegistryModifiable<CompactingBinRecipe> registry) {
+
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(Blocks.GRAVEL),
+        Ingredient.fromStacks(
+            new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
+            new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.DIORITE.getMeta()),
+            new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.GRANITE.getMeta()),
+            new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.ANDESITE.getMeta())
+        ),
+        10
+    ).setRegistryName(ModulePyrotech.MOD_ID, "gravel"));
   }
 
   public static void onRegisterCrucibleStoneRecipes(IForgeRegistryModifiable<CrucibleStoneRecipe> registry) {
@@ -430,7 +446,7 @@ public final class ModuleRecipes {
 
     // Cobblestone to rocks
     registry.register(new GraniteAnvilRecipe(
-        new ItemStack(ModuleBlocks.ROCK, 8, BlockRock.EnumType.STONE.getMeta()),
+        new ItemStack(ROCK, 8, BlockRock.EnumType.STONE.getMeta()),
         Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE)),
         8,
         GraniteAnvilRecipe.EnumType.HAMMER
@@ -438,7 +454,7 @@ public final class ModuleRecipes {
 
     // Cobbled andesite to rocks
     registry.register(new GraniteAnvilRecipe(
-        new ItemStack(ModuleBlocks.ROCK, 8, BlockRock.EnumType.ANDESITE.getMeta()),
+        new ItemStack(ROCK, 8, BlockRock.EnumType.ANDESITE.getMeta()),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
         8,
         GraniteAnvilRecipe.EnumType.HAMMER
@@ -446,7 +462,7 @@ public final class ModuleRecipes {
 
     // Cobbled diorite to rocks
     registry.register(new GraniteAnvilRecipe(
-        new ItemStack(ModuleBlocks.ROCK, 8, BlockRock.EnumType.DIORITE.getMeta()),
+        new ItemStack(ROCK, 8, BlockRock.EnumType.DIORITE.getMeta()),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
         8,
         GraniteAnvilRecipe.EnumType.HAMMER
@@ -454,7 +470,7 @@ public final class ModuleRecipes {
 
     // Cobbled granite to rocks
     registry.register(new GraniteAnvilRecipe(
-        new ItemStack(ModuleBlocks.ROCK, 8, BlockRock.EnumType.GRANITE.getMeta()),
+        new ItemStack(ROCK, 8, BlockRock.EnumType.GRANITE.getMeta()),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
         8,
         GraniteAnvilRecipe.EnumType.HAMMER
@@ -462,7 +478,7 @@ public final class ModuleRecipes {
 
     // Cobbled limestone to rocks
     registry.register(new GraniteAnvilRecipe(
-        new ItemStack(ModuleBlocks.ROCK, 8, BlockRock.EnumType.LIMESTONE.getMeta()),
+        new ItemStack(ROCK, 8, BlockRock.EnumType.LIMESTONE.getMeta()),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta())),
         8,
         GraniteAnvilRecipe.EnumType.HAMMER
@@ -606,7 +622,7 @@ public final class ModuleRecipes {
     // Charcoal Flakes
     registry.register(new KilnPitRecipe(
         ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(),
-        Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
+        Ingredient.fromStacks(new ItemStack(ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
         defaultBurnTimeTicks,
         defaultFailureChance,
         new ItemStack[]{
@@ -617,7 +633,7 @@ public final class ModuleRecipes {
     // Quicklime
     registry.register(new KilnPitRecipe(
         new ItemStack(ModuleItems.QUICKLIME, 1, 0),
-        Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
+        Ingredient.fromStacks(new ItemStack(ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
         defaultBurnTimeTicks,
         defaultFailureChance,
         new ItemStack[]{
@@ -708,7 +724,7 @@ public final class ModuleRecipes {
     // Charcoal Flakes
     registry.register(new KilnStoneRecipe(
         ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(),
-        Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
+        Ingredient.fromStacks(new ItemStack(ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
         defaultBurnTimeTicks,
         defaultFailureChance,
         new ItemStack[]{
@@ -719,7 +735,7 @@ public final class ModuleRecipes {
     // Quicklime
     registry.register(new KilnStoneRecipe(
         new ItemStack(ModuleItems.QUICKLIME, 1, 0),
-        Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
+        Ingredient.fromStacks(new ItemStack(ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
         defaultBurnTimeTicks,
         defaultFailureChance,
         new ItemStack[]{

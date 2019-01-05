@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import net.minecraft.block.state.IBlockState;
@@ -35,7 +34,7 @@ public class CampfireInteractionLogRenderer
   }
 
   @Override
-  public void renderSolidPassText(IInteractionItemStack interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
+  public void renderSolidPassText(TileCampfire.InteractionLog interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
     // TODO
   }
 

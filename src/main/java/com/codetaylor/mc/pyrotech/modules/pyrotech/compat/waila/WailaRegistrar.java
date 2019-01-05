@@ -62,6 +62,9 @@ public class WailaRegistrar {
     registrar.registerBodyProvider(storageItemStackProvider, TileShelf.class);
     registrar.registerBodyProvider(storageItemStackProvider, TileCrate.class);
     registrar.registerBodyProvider(storageItemStackProvider, TileStash.class);
+
+    CompactingBinProvider compactingBinProvider = new CompactingBinProvider();
+    registrar.registerBodyProvider(compactingBinProvider, TileCompactingBin.class);
   }
 
 }

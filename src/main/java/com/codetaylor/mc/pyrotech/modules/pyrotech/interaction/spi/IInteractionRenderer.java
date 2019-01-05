@@ -13,7 +13,7 @@ public interface IInteractionRenderer<I extends IInteraction> {
 
   void renderSolidPass(I interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks);
 
-  void renderSolidPassText(IInteractionItemStack interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks);
+  void renderSolidPassText(I interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks);
 
   /**
    * @param interaction
