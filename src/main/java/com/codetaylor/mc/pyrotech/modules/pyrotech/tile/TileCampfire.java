@@ -669,6 +669,10 @@ public class TileCampfire
     @Override
     public boolean interact(EnumType type, TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
+      if (type != EnumType.MouseClick) {
+        return false;
+      }
+
       ItemStack heldItem = player.getHeldItemMainhand();
 
       if (tile.getAshLevel() > 0
