@@ -68,7 +68,10 @@ public class ModulePyrotechConfig {
         "minecraft:red_sandstone_slab",
         "minecraft:purpur_slab",
 
-        "minecraft:stick"
+        "minecraft:stick",
+        "minecraft:clay",
+        "minecraft:snow",
+        "minecraft:bone_block"
     };
   }
 
@@ -115,9 +118,9 @@ public class ModulePyrotechConfig {
         "The number of times the mulched farmland will apply bonemeal to a crop before",
         "reverting to normal moisturized farmland.",
         "Range: [1,+int]",
-        "Default: " + 4
+        "Default: " + 3
     })
-    public int CHARGES = 4;
+    public int CHARGES = 3;
 
     @Config.Comment({
         "Set to true to ignore the charge count and allow the mulched farmland",

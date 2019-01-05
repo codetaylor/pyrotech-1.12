@@ -6,7 +6,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.block.BlockStone;
@@ -76,7 +75,7 @@ public final class ModuleRecipes {
             new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.GRANITE.getMeta()),
             new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.ANDESITE.getMeta())
         ),
-        10
+        9
     ).setRegistryName(ModulePyrotech.MOD_ID, "gravel"));
 
     // Dirt
@@ -85,7 +84,7 @@ public final class ModuleRecipes {
         Ingredient.fromStacks(
             new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.DIRT.getMeta())
         ),
-        10
+        9
     ).setRegistryName(ModulePyrotech.MOD_ID, "dirt"));
 
     // Sand
@@ -94,7 +93,7 @@ public final class ModuleRecipes {
         Ingredient.fromStacks(
             new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta())
         ),
-        10
+        9
     ).setRegistryName(ModulePyrotech.MOD_ID, "sand"));
 
     // Grass
@@ -103,22 +102,85 @@ public final class ModuleRecipes {
         Ingredient.fromStacks(
             new ItemStack(ModuleBlocks.ROCK_GRASS, 1, 0)
         ),
-        10
+        9
     ).setRegistryName(ModulePyrotech.MOD_ID, "grass"));
+
+    // Clay
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(Blocks.CLAY, 1, 0),
+        Ingredient.fromStacks(
+            new ItemStack(Items.CLAY_BALL, 1, 0)
+        ),
+        4
+    ).setRegistryName(ModulePyrotech.MOD_ID, "clay"));
+
+    // Snow
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(Blocks.SNOW, 1, 0),
+        Ingredient.fromStacks(
+            new ItemStack(Items.SNOWBALL, 1, 0)
+        ),
+        4
+    ).setRegistryName(ModulePyrotech.MOD_ID, "snow"));
+
+    // Bone Block
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(Blocks.BONE_BLOCK, 1, 0),
+        Ingredient.fromStacks(
+            new ItemStack(Items.DYE, 1, 15)
+        ),
+        9
+    ).setRegistryName(ModulePyrotech.MOD_ID, "bone_block"));
   }
 
   public static void onRegisterCrucibleStoneRecipes(IForgeRegistryModifiable<CrucibleStoneRecipe> registry) {
 
+    // Lava
     //noinspection unchecked
-    registry.register(
-        new CrucibleStoneRecipe(
-            new FluidStack(FluidRegistry.LAVA, 250),
-            new CompoundIngredientPublic(Arrays.asList(new Ingredient[]{
-                new OreIngredient("stone"),
-                new OreIngredient("cobblestone")
-            })),
-            2 * 60 * 20
-        ).setRegistryName(ModulePyrotech.MOD_ID, "lava_from_stone"));
+    registry.register(new CrucibleStoneRecipe(
+        new FluidStack(FluidRegistry.LAVA, 250),
+        new CompoundIngredientPublic(Arrays.asList(new Ingredient[]{
+            new OreIngredient("stone"),
+            new OreIngredient("cobblestone")
+        })),
+        2 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "lava_from_stone"));
+
+    // Water from Ice
+    registry.register(new CrucibleStoneRecipe(
+        new FluidStack(FluidRegistry.WATER, 2000),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.ICE, 1, 0)
+        ),
+        60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "water_from_ice"));
+
+    // Water from Snow
+    registry.register(new CrucibleStoneRecipe(
+        new FluidStack(FluidRegistry.WATER, 500),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.SNOW, 1, 0)
+        ),
+        15 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "water_from_snow"));
+
+    // Water from Snowballs
+    registry.register(new CrucibleStoneRecipe(
+        new FluidStack(FluidRegistry.WATER, 125),
+        Ingredient.fromStacks(
+            new ItemStack(Items.SNOWBALL, 1, 0)
+        ),
+        15 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "water_from_snow"));
+
+    // Water from Packed Ice
+    registry.register(new CrucibleStoneRecipe(
+        new FluidStack(FluidRegistry.WATER, 4000),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.PACKED_ICE, 1, 0)
+        ),
+        4 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "water_from_packed_ice"));
   }
 
   public static void onRegisterMillStoneRecipes(IForgeRegistryModifiable<MillStoneRecipe> registry) {
