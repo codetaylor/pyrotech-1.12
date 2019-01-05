@@ -171,7 +171,7 @@ public final class ModuleRecipes {
             new ItemStack(Items.SNOWBALL, 1, 0)
         ),
         15 * 20
-    ).setRegistryName(ModulePyrotech.MOD_ID, "water_from_snow"));
+    ).setRegistryName(ModulePyrotech.MOD_ID, "water_from_snowballs"));
 
     // Water from Packed Ice
     registry.register(new CrucibleStoneRecipe(
