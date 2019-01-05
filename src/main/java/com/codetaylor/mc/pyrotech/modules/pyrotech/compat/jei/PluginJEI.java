@@ -45,7 +45,8 @@ public class PluginJEI
         new JEIRecipeCategoryDryingRackCrude(guiHelper),
         new JEIRecipeCategoryChoppingBlock(guiHelper),
         new JEIRecipeCategoryGraniteAnvil(guiHelper),
-        new JEIRecipeCategoryMillStone(guiHelper)
+        new JEIRecipeCategoryMillStone(guiHelper),
+        new JEIRecipeCategoryCompactingBin(guiHelper)
     );
   }
 
@@ -85,6 +86,14 @@ public class PluginJEI
         ModulePyrotech.LOGGER.error("", e);
       }
 
+    }
+
+    // --- Compacting Bin
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.COMPACTING_BIN), JEIRecipeCategoryUid.COMPACTING_BIN);
+      registry.handleRecipes(CompactingBinRecipe.class, JEIRecipeWrapperCompactingBin::new, JEIRecipeCategoryUid.COMPACTING_BIN);
+      List<CompactingBinRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.COMPACTING_BIN_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.COMPACTING_BIN);
     }
 
     // --- Stone Mill

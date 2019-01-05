@@ -244,6 +244,13 @@ public class ModulePyrotechConfig {
         "Default: 4"
     })
     public int MAX_CAPACITY = 4;
+
+    @Config.Comment({
+        "The shovel displayed in JEI recipes.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String JEI_DISPLAY_SHOVEL = "minecraft:stone_shovel";
   }
 
   // ---------------------------------------------------------------------------
@@ -806,11 +813,6 @@ public class ModulePyrotechConfig {
       public int MAX_HEIGHT = 100;
       public int MIN_VEIN_SIZE = 10;
       public int MAX_VEIN_SIZE = 20;
-    }
-
-    public static class WorldGenRocks {
-
-      public boolean ENABLED = true;
     }
   }
 
