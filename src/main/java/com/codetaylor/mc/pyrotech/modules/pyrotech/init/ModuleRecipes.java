@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.block.BlockStone;
@@ -66,6 +67,7 @@ public final class ModuleRecipes {
 
   public static void onRegisterCompactingBinRecipes(IForgeRegistryModifiable<CompactingBinRecipe> registry) {
 
+    // Gravel
     registry.register(new CompactingBinRecipe(
         new ItemStack(Blocks.GRAVEL),
         Ingredient.fromStacks(
@@ -76,6 +78,33 @@ public final class ModuleRecipes {
         ),
         10
     ).setRegistryName(ModulePyrotech.MOD_ID, "gravel"));
+
+    // Dirt
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(Blocks.DIRT, 1, 0),
+        Ingredient.fromStacks(
+            new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.DIRT.getMeta())
+        ),
+        10
+    ).setRegistryName(ModulePyrotech.MOD_ID, "dirt"));
+
+    // Sand
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(Blocks.SAND, 1, 0),
+        Ingredient.fromStacks(
+            new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta())
+        ),
+        10
+    ).setRegistryName(ModulePyrotech.MOD_ID, "sand"));
+
+    // Grass
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(Blocks.GRASS, 1, 0),
+        Ingredient.fromStacks(
+            new ItemStack(ModuleBlocks.ROCK_GRASS, 1, 0)
+        ),
+        10
+    ).setRegistryName(ModulePyrotech.MOD_ID, "grass"));
   }
 
   public static void onRegisterCrucibleStoneRecipes(IForgeRegistryModifiable<CrucibleStoneRecipe> registry) {
