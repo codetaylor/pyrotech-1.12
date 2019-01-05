@@ -210,6 +210,22 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Compacting Bin
+  // ---------------------------------------------------------------------------
+
+  public static CompactingBin COMPACTING_BIN = new CompactingBin();
+
+  public static class CompactingBin {
+
+    @Config.Comment({
+        "The number of output items the compacting bin can hold.",
+        "Range: [1, +int)",
+        "Default: 4"
+    })
+    public int MAX_CAPACITY = 4;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Granite Anvil
   // ---------------------------------------------------------------------------
 

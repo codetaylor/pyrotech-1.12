@@ -10,6 +10,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.CompactingBinOutputInteractionRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
@@ -55,7 +56,6 @@ public class TileCompactingBin
     this.inputStackHandler = new InputStackHandler(this);
     this.inputStackHandler.addObserver((handler, slot) -> {
       this.recipeProgress.set(0);
-      // TODO:
       this.markDirty();
     });
 
@@ -272,7 +272,7 @@ public class TileCompactingBin
     public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack, float partialTicks) {
 
       Transform transform = super.getTransform(world, pos, blockState, itemStack, partialTicks);
-      float maxOutputStacks = 4; // TODO: config
+      float maxOutputStacks = ModulePyrotechConfig.COMPACTING_BIN.MAX_CAPACITY;
       float count = this.tile.getOutputStackHandler().getStackInSlot(0).getCount();
       float totalProgress = (count + this.tile.getRecipeProgress()) / maxOutputStacks;
 
@@ -385,7 +385,7 @@ public class TileCompactingBin
     @Override
     public int getSlotLimit(int slot) {
 
-      return 4; // TODO: config
+      return ModulePyrotechConfig.COMPACTING_BIN.MAX_CAPACITY;
     }
   }
 

@@ -32,6 +32,7 @@ public class BlockCompactingBin
 
     super(Material.WOOD);
     this.setHardness(4f);
+    this.setResistance(0.5F);
   }
 
   // ---------------------------------------------------------------------------

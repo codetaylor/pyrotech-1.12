@@ -33,8 +33,11 @@ public class CompactingBinOutputInteractionRenderer
       TileCompactingBin tile = interaction.getTile();
       ItemStackHandler outputStackHandler = tile.getOutputStackHandler();
       ItemStack outputStack = outputStackHandler.getStackInSlot(1);
-      Transform transform = interaction.getTransform(world, pos, blockState, outputStack, partialTicks);
-      InteractionRenderers.renderItemModel(renderItem, outputStack, transform);
+
+      if (!outputStack.isEmpty()) {
+        Transform transform = interaction.getTransform(world, pos, blockState, outputStack, partialTicks);
+        InteractionRenderers.renderItemModel(renderItem, outputStack, transform);
+      }
     }
   }
 
