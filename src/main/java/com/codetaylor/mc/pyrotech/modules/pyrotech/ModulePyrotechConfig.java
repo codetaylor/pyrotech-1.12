@@ -218,6 +218,27 @@ public class ModulePyrotechConfig {
   public static class CompactingBin {
 
     @Config.Comment({
+        "Any item with a tool class of shovel is automatically valid.",
+        "Use this to add items that you want to be valid that don't have the",
+        "shovel tool class. Items you add are assumed to have durability.",
+        "",
+        "The whitelist takes priority over the blacklist.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] SHOVEL_WHITELIST = new String[0];
+
+    @Config.Comment({
+        "Any item with a tool class of shovel is automatically valid.",
+        "Use this to remove items that you don't want to be valid.",
+        "",
+        "The whitelist takes priority over the blacklist.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] SHOVEL_BLACKLIST = new String[0];
+
+    @Config.Comment({
         "The number of output items the compacting bin can hold.",
         "Range: [1, +int)",
         "Default: 4"

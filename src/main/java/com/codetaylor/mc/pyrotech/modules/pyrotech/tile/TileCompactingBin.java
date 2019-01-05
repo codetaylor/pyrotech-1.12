@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
@@ -24,12 +25,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -216,10 +215,26 @@ public class TileCompactingBin
     @Override
     protected boolean allowInteraction(TileCompactingBin tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      ItemStack heldItemStack = player.getHeldItem(hand);
+      if (tile.getOutputStackHandler().getStackInSlot(0).isEmpty()) {
+        return false;
+      }
 
-      return !tile.getOutputStackHandler().getStackInSlot(0).isEmpty()
-          && heldItemStack.getItem().getToolClasses(heldItemStack).contains("shovel");
+      ItemStack heldItemStack = player.getHeldItem(hand);
+      Item heldItem = heldItemStack.getItem();
+      ResourceLocation resourceLocation = heldItem.getRegistryName();
+
+      if (resourceLocation == null) {
+        return false;
+      }
+
+      String registryName = resourceLocation.toString();
+
+      if (heldItem.getToolClasses(heldItemStack).contains("shovel")) {
+        return !ArrayHelper.contains(ModulePyrotechConfig.COMPACTING_BIN.SHOVEL_BLACKLIST, registryName);
+
+      } else {
+        return ArrayHelper.contains(ModulePyrotechConfig.COMPACTING_BIN.SHOVEL_WHITELIST, registryName);
+      }
     }
 
     @Override
