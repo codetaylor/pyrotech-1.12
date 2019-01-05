@@ -25,13 +25,21 @@ public class JEIRecipeWrapperCompactingBin
 
   private final List<List<ItemStack>> inputs;
   private final ItemStack output;
-  private final int amount;
+  private final String amount;
 
   public JEIRecipeWrapperCompactingBin(CompactingBinRecipe recipe) {
 
     this.inputs = Collections.singletonList(Arrays.asList(recipe.getInput().getMatchingStacks()));
     this.output = recipe.getOutput();
-    this.amount = recipe.getAmount();
+    this.amount = "x" + String.valueOf(recipe.getAmount());
+
+    // Ensure that the inputs never render a quantity.
+    for (List<ItemStack> inputList : this.inputs) {
+
+      for (ItemStack itemStack : inputList) {
+        itemStack.setCount(1);
+      }
+    }
   }
 
   @Override
@@ -69,8 +77,7 @@ public class JEIRecipeWrapperCompactingBin
 
     GlStateManager.pushMatrix();
     GlStateManager.translate(0, 0, 250);
-    String text = this.amount + "%";
-    minecraft.fontRenderer.drawString(text, 0, 8, 0xFFFFFFFF, true);
+    minecraft.fontRenderer.drawString(this.amount, 0, 8, 0xFFFFFFFF, true);
     GlStateManager.popMatrix();
 
   }

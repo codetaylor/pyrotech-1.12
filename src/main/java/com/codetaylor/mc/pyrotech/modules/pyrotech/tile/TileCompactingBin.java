@@ -359,7 +359,7 @@ public class TileCompactingBin
         }
 
         if (!simulate) {
-          this.tile.recipeProgress.add(recipe.getAmount() / 100f);
+          this.tile.recipeProgress.add(1f / (float) recipe.getAmount());
           inserted += 1;
 
           ItemStack toStore = stack.copy();
