@@ -209,7 +209,11 @@ public class ModulePyrotechConfig {
         ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME
     };
 
-    public int HITS_PER_CRAFT = 4;
+    @Config.Comment({
+        "The number of hammer hits required to complete a craft.",
+        "Default: " + 3
+    })
+    public int HITS_PER_CRAFT = 3;
   }
 
   // ---------------------------------------------------------------------------
