@@ -7,6 +7,8 @@ import net.minecraft.item.ItemDye;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SCPacketParticleBoneMeal
     extends PacketBlockPosBase<SCPacketParticleBoneMeal> {
@@ -38,6 +40,7 @@ public class SCPacketParticleBoneMeal
     this.amount = buf.readInt();
   }
 
+  @SideOnly(Side.CLIENT)
   @Override
   public IMessage onMessage(SCPacketParticleBoneMeal message, MessageContext ctx) {
 
