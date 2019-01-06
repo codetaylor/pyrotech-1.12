@@ -22,7 +22,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
-import scala.actors.threadpool.Arrays;
+
+import java.util.Arrays;
 
 import static com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks.ROCK;
 
