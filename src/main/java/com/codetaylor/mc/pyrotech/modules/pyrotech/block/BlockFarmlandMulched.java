@@ -43,6 +43,7 @@ public class BlockFarmlandMulched
   public BlockFarmlandMulched() {
 
     super(Material.GROUND);
+    this.setHardness(0.7f);
     this.setTickRandomly(true);
     this.setLightOpacity(255);
   }
