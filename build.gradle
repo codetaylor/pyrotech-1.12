@@ -22,7 +22,7 @@ project.ext.mcversion = "1.12.2"
 project.ext.forgeversion = "14.23.2.2618"
 version = getVersionName("${project.projectDir}")
 group = "com.sudoplay.mc"
-archivesBaseName = "pwcustom"
+archivesBaseName = "pyrotech"
 project.ext.athenaeum_version = "1.12.2-1.5.3"
 project.ext.dependencies = ',dependencies = "required-after:athenaeum@[' + project.ext.athenaeum_version + ',);after:crafttweaker;after:jei@[4.8.5.139,);after:gamestages;required-after:bookshelf@[2.2.525,);after:*"'
 
