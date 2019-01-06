@@ -210,40 +210,37 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
 
       ItemStack itemStackToInsert = heldItem;
       int insertIndex = this.getInsertionIndex(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
-      boolean heldItemValid = this.isItemStackValid(itemStackToInsert);
 
-      if (!heldItemValid) {
+      ItemStack alternateItemStack = null;
 
-        ItemStack alternateItemStack = null;
+      if (!this.isEmpty()
+          && type == EnumType.MouseWheelUp) {
 
-        if (!this.isEmpty()
-            && type == EnumType.MouseWheelUp) {
+        // If the interaction already contains an item stack, first check if the
+        // current held item can be inserted, then search the player
+        // inventory for more of the same item and insert from that stack.
 
-          // If the interaction already contains an item stack, first check if the
-          // current held item can be inserted, then search the player
-          // inventory for more of the same item and insert from that stack.
+        ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStackToInsert, true);
 
-          ItemStack result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStackToInsert, true);
+        if (result.getCount() == itemStackToInsert.getCount()) {
 
-          if (result.getCount() == itemStackToInsert.getCount()) {
+          for (ItemStack itemStack : player.inventory.mainInventory) {
+            result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, true);
 
-            for (ItemStack itemStack : player.inventory.mainInventory) {
-              result = this.stackHandlers[insertIndex].insertItem(this.slot, itemStack, true);
-
-              if (result.getCount() != itemStack.getCount()) {
-                alternateItemStack = itemStack;
-                break;
-              }
+            if (result.getCount() != itemStack.getCount()) {
+              alternateItemStack = itemStack;
+              break;
             }
           }
         }
+      }
 
-        if (alternateItemStack == null) {
-          return false;
+      if (alternateItemStack != null) {
+        itemStackToInsert = alternateItemStack;
+      }
 
-        } else {
-          itemStackToInsert = alternateItemStack;
-        }
+      if (!this.isItemStackValid(itemStackToInsert)) {
+        return false;
       }
 
       // Insert item
