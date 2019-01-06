@@ -311,7 +311,7 @@ public final class ModuleRecipes {
         Ingredient.fromStacks(
             new ItemStack(Blocks.STONE_SLAB, 1, 5)
         ),
-        8,
+        4,
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "brick_stone"));
 
@@ -417,7 +417,7 @@ public final class ModuleRecipes {
     registry.register(new GraniteAnvilRecipe(
         ItemMaterial.EnumType.FLINT_SHARD.asStack(3),
         Ingredient.fromStacks(new ItemStack(Items.FLINT, 1, 0)),
-        8,
+        4,
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "flint_shard_from_flint"));
 
@@ -425,7 +425,7 @@ public final class ModuleRecipes {
     registry.register(new GraniteAnvilRecipe(
         ItemMaterial.EnumType.BONE_SHARD.asStack(3),
         Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
-        8,
+        4,
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "bone_shard_from_bone"));
 
@@ -441,7 +441,7 @@ public final class ModuleRecipes {
     registry.register(new GraniteAnvilRecipe(
         ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(8),
         Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 1)),
-        8,
+        4,
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal_flakes"));
 
@@ -449,7 +449,7 @@ public final class ModuleRecipes {
     registry.register(new GraniteAnvilRecipe(
         ItemMaterial.EnumType.COAL_PIECES.asStack(8),
         Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 0)),
-        8,
+        4,
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "coal_pieces"));
 
@@ -465,7 +465,7 @@ public final class ModuleRecipes {
     registry.register(new GraniteAnvilRecipe(
         ItemMaterial.EnumType.DIAMOND_SHARD.asStack(9),
         Ingredient.fromStacks(new ItemStack(Items.DIAMOND, 1, 0)),
-        8,
+        16,
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "diamond_shard"));
 
@@ -475,7 +475,7 @@ public final class ModuleRecipes {
     registry.register(new GraniteAnvilRecipe(
         new ItemStack(Items.DYE, 1, 15),
         Ingredient.fromStacks(ItemMaterial.EnumType.BONE_SHARD.asStack()),
-        8,
+        4,
         GraniteAnvilRecipe.EnumType.HAMMER
     ).setRegistryName(ModulePyrotech.MOD_ID, "bone_shard"));
 
@@ -483,7 +483,7 @@ public final class ModuleRecipes {
     registry.register(new GraniteAnvilRecipe(
         new ItemStack(Items.DYE, 3, 15),
         Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
-        8,
+        4,
         GraniteAnvilRecipe.EnumType.HAMMER
     ).setRegistryName(ModulePyrotech.MOD_ID, "bone_meal_from_bone"));
 
@@ -670,6 +670,12 @@ public final class ModuleRecipes {
         6 * 60 * 20
     ).setRegistryName(ModulePyrotech.MOD_ID, "plant_fibers_dried"));
 
+    // Dried Plant Fibers
+    registry.register(new DryingRackRecipe(
+        ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack(),
+        new OreIngredient("treeSapling"),
+        6 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "plant_fibers_dried_from_sapling"));
   }
 
   public static void onRegisterPitBurnRecipes(IForgeRegistry<PitBurnRecipe> registry) {
@@ -905,6 +911,12 @@ public final class ModuleRecipes {
         12 * 60 * 20
     ).setRegistryName(ModulePyrotech.MOD_ID, "plant_fibers_dried"));
 
+    // Dried Plant Fibers
+    registry.register(new DryingRackCrudeRecipe(
+        ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack(),
+        new OreIngredient("treeSapling"),
+        12 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "plant_fibers_dried_from_sapling"));
   }
 
   private ModuleRecipes() {
