@@ -11,6 +11,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
@@ -201,18 +202,18 @@ public class ModulePyrotech
 
     super.onRegisterRecipesEvent(event);
 
-    ModuleRecipes.onRegisterRecipes(event.getRegistry());
-    ModuleRecipes.onRegisterFurnaceRecipes();
-    ModuleRecipes.onRegisterPitBurnRecipes(ModulePyrotechRegistries.BURN_RECIPE);
-    ModuleRecipes.onRegisterKilnPitRecipes(ModulePyrotechRegistries.KILN_PIT_RECIPE);
-    ModuleRecipes.onRegisterKilnStoneRecipe(ModulePyrotechRegistries.KILN_STONE_RECIPE);
-    ModuleRecipes.onRegisterDryingRackRecipes(ModulePyrotechRegistries.DRYING_RACK_RECIPE);
-    ModuleRecipes.onRegisterGraniteAnvilRecipes(ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE);
-    ModuleRecipes.onRegisterChoppingBlockRecipes(ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE);
-    ModuleRecipes.onRegisterDryingRackCrudeRecipes(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
-    ModuleRecipes.onRegisterMillStoneRecipes(ModulePyrotechRegistries.MILL_STONE_RECIPE);
-    ModuleRecipes.onRegisterCrucibleStoneRecipes(ModulePyrotechRegistries.CRUCIBLE_STONE_RECIPE);
-    ModuleRecipes.onRegisterCompactingBinRecipes(ModulePyrotechRegistries.COMPACTING_BIN_RECIPE);
+    VanillaCraftingRecipesRemove.apply(event.getRegistry());
+    VanillaFurnaceRecipesAdd.apply();
+    BurnPitRecipesAdd.apply(ModulePyrotechRegistries.BURN_RECIPE);
+    PitKilnRecipesAdd.apply(ModulePyrotechRegistries.KILN_PIT_RECIPE);
+    StoneKilnRecipesAdd.apply(ModulePyrotechRegistries.KILN_STONE_RECIPE);
+    DryingRackRecipesAdd.apply(ModulePyrotechRegistries.DRYING_RACK_RECIPE);
+    GraniteAnvilRecipesAdd.apply(ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE);
+    ChoppingBlockRecipesAdd.apply(ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE);
+    DryingRackCrudeRecipesAdd.apply(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
+    StoneSawmillRecipesAdd.apply(ModulePyrotechRegistries.MILL_STONE_RECIPE);
+    StoneCrucibleRecipesAdd.apply(ModulePyrotechRegistries.CRUCIBLE_STONE_RECIPE);
+    CompactingBinRecipesAdd.apply(ModulePyrotechRegistries.COMPACTING_BIN_RECIPE);
   }
 
   @Override
