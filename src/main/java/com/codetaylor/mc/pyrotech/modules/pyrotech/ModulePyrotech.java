@@ -175,6 +175,12 @@ public class ModulePyrotech
         .setType(CompactingBinRecipe.class)
         .allowModification()
         .create();
+
+    new RegistryBuilder<CampfireRecipe>()
+        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "campfire_recipe"))
+        .setType(CampfireRecipe.class)
+        .allowModification()
+        .create();
   }
 
   @Override

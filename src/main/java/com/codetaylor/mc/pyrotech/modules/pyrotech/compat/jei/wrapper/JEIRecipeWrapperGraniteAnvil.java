@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -17,7 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -49,8 +49,8 @@ public class JEIRecipeWrapperGraniteAnvil
   @Override
   public void getIngredients(@Nonnull IIngredients ingredients) {
 
-    ingredients.setInputLists(ItemStack.class, this.inputs);
-    ingredients.setOutput(ItemStack.class, this.output);
+    ingredients.setInputLists(VanillaTypes.ITEM, this.inputs);
+    ingredients.setOutput(VanillaTypes.ITEM, this.output);
   }
 
   @Override

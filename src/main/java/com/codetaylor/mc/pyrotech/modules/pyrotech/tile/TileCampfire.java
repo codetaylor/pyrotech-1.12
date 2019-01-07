@@ -24,6 +24,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteract
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CampfireRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
@@ -32,9 +33,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -319,8 +318,12 @@ public class TileCampfire
       ItemStack itemStack = this.inputStackHandler.extractItem(0, 1, false);
 
       if (!itemStack.isEmpty()) {
-        ItemStack result = FurnaceRecipes.instance().getSmeltingResult(itemStack).copy();
-        this.outputStackHandler.insertItem(0, result, false);
+        CampfireRecipe recipe = CampfireRecipe.getRecipe(itemStack);
+
+        if (recipe != null) {
+          ItemStack result = recipe.getOutput();
+          this.outputStackHandler.insertItem(0, result, false);
+        }
       }
     }
 
@@ -506,8 +509,7 @@ public class TileCampfire
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (itemStack.getItem() instanceof ItemFood)
-          && !FurnaceRecipes.instance().getSmeltingResult(itemStack).isEmpty();
+      return CampfireRecipe.getRecipe(itemStack) != null;
     }
 
     @Override

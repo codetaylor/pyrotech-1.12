@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.ChoppingBlockRecipe;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -40,8 +41,8 @@ public class JEIRecipeWrapperChoppingBlock
   @Override
   public void getIngredients(@Nonnull IIngredients ingredients) {
 
-    ingredients.setInputLists(ItemStack.class, this.inputs);
-    ingredients.setOutput(ItemStack.class, this.output);
+    ingredients.setInputLists(VanillaTypes.ITEM, this.inputs);
+    ingredients.setOutput(VanillaTypes.ITEM, this.output);
   }
 
   @Override

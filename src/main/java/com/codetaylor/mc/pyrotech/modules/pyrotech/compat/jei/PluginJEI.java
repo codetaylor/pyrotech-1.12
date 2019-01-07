@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
@@ -16,16 +17,21 @@ import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
+import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class PluginJEI
@@ -47,12 +53,16 @@ public class PluginJEI
         new JEIRecipeCategoryChoppingBlock(guiHelper),
         new JEIRecipeCategoryGraniteAnvil(guiHelper),
         new JEIRecipeCategoryMillStone(guiHelper),
-        new JEIRecipeCategoryCompactingBin(guiHelper)
+        new JEIRecipeCategoryCompactingBin(guiHelper),
+        new JEIRecipeCategoryCampfire(guiHelper)
     );
   }
 
   @Override
   public void register(IModRegistry registry) {
+
+    final IIngredientRegistry ingredientRegistry = registry.getIngredientRegistry();
+    final IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 
     // Leave as an example in case I decide to add info later.
     /*
@@ -73,7 +83,7 @@ public class PluginJEI
     // --- Blacklist Ingredients
 
     IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-    blacklist.addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModuleBlocks.CAMPFIRE)));
+    //blacklist.addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModuleBlocks.CAMPFIRE)));
 
     RecipeItemParser parser = new RecipeItemParser();
 
@@ -91,6 +101,27 @@ public class PluginJEI
         ModulePyrotech.LOGGER.error("", e);
       }
 
+    }
+
+    // --- Campfire
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CAMPFIRE), JEIRecipeCategoryUid.CAMPFIRE);
+      List<JEIRecipeWrapperCampfire> furnaceRecipes = PluginJEI.getFurnaceRecipes(input -> {
+
+        ItemStack output = FurnaceRecipes.instance().getSmeltingResult(input);
+
+        if (CampfireRecipe.hasWhitelist()) {
+          return CampfireRecipe.isWhitelisted(output);
+
+        } else if (CampfireRecipe.hasBlacklist()) {
+          return !CampfireRecipe.isBlacklisted(output);
+        }
+
+        return RecipeHelper.hasFurnaceFoodRecipe(input);
+      });
+      registry.addRecipes(furnaceRecipes, JEIRecipeCategoryUid.CAMPFIRE);
+      List<CampfireRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.CAMPFIRE_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.CAMPFIRE);
     }
 
     // --- Compacting Bin
@@ -179,5 +210,27 @@ public class PluginJEI
       List<PitBurnRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.BURN_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.REFRACTORY_BURN);
     }
+  }
+
+  private static List<JEIRecipeWrapperCampfire> getFurnaceRecipes(Predicate<ItemStack> filter) {
+
+    FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
+    Map<ItemStack, ItemStack> smeltingMap = furnaceRecipes.getSmeltingList();
+
+    List<JEIRecipeWrapperCampfire> recipes = new ArrayList<>();
+
+    for (Map.Entry<ItemStack, ItemStack> entry : smeltingMap.entrySet()) {
+
+      ItemStack input = entry.getKey();
+
+      if (!filter.test(input)) {
+        continue;
+      }
+
+      ItemStack output = entry.getValue();
+      recipes.add(new JEIRecipeWrapperCampfire(Ingredient.fromStacks(input), output));
+    }
+
+    return recipes;
   }
 }

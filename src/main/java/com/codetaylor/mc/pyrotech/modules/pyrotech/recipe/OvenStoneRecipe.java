@@ -14,7 +14,7 @@ public class OvenStoneRecipe
 
   private static final Map<String, OvenStoneRecipe> RECIPES = new HashMap<>();
 
-  private OvenStoneRecipe(Ingredient input, ItemStack output, int timeTicks) {
+  public OvenStoneRecipe(Ingredient input, ItemStack output, int timeTicks) {
 
     super(input, output, timeTicks);
   }
