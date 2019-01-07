@@ -145,7 +145,7 @@ public class GraniteAnvilRecipesAdd {
 
     // Bone Shard from Block
     registry.register(new GraniteAnvilRecipe(
-        ItemMaterial.EnumType.BONE_SHARD.asStack(9),
+        ItemMaterial.EnumType.BONE_SHARD.asStack(8),
         Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
         8,
         GraniteAnvilRecipe.EnumType.PICKAXE
@@ -203,7 +203,7 @@ public class GraniteAnvilRecipesAdd {
 
     // Bone Meal from Bone Block
     registry.register(new GraniteAnvilRecipe(
-        new ItemStack(Items.DYE, 9, 15),
+        new ItemStack(Items.DYE, 8, 15),
         Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
         8,
         GraniteAnvilRecipe.EnumType.HAMMER
