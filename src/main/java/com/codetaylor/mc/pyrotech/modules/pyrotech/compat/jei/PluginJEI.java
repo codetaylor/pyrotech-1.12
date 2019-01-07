@@ -106,6 +106,7 @@ public class PluginJEI
     // --- Campfire
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CAMPFIRE), JEIRecipeCategoryUid.CAMPFIRE);
+      registry.handleRecipes(CampfireRecipe.class, JEIRecipeWrapperCampfire::new, JEIRecipeCategoryUid.CAMPFIRE);
       List<JEIRecipeWrapperCampfire> furnaceRecipes = PluginJEI.getFurnaceRecipes(input -> {
 
         ItemStack output = FurnaceRecipes.instance().getSmeltingResult(input);
