@@ -17,6 +17,7 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -64,6 +65,10 @@ public class PluginJEI
       registry.addIngredientInfo(outputList, ItemStack.class, "gui." + ModuleCharcoal.MOD_ID + ".jei.info.burn.pit");
     }
     */
+
+    // --- Crafting Catalyst
+
+    registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CRAFTING), VanillaRecipeCategoryUid.CRAFTING);
 
     // --- Blacklist Ingredients
 
