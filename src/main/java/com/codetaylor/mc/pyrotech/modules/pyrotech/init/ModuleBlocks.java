@@ -112,7 +112,7 @@ public final class ModuleBlocks {
         TileChoppingBlock.class,
         TileWoodRack.class,
         TileGraniteAnvil.class,
-        TileCrafting.class,
+        TileWorktable.class,
         TileTorch.class,
         TileShelf.class,
         TileStash.class,
@@ -235,7 +235,7 @@ public final class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileChoppingBlock.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileWoodRack.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileGraniteAnvil.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileCrafting.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileWorktable.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileShelf.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileStash.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCrate.class, new TESRInteractable<>());

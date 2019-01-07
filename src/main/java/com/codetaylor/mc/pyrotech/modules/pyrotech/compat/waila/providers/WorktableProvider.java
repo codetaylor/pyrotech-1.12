@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCrafting;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWorktable;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.init.Blocks;
@@ -34,10 +34,10 @@ public class CraftingProvider
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileCrafting) {
+    if (tileEntity instanceof TileWorktable) {
 
-      TileCrafting tile;
-      tile = (TileCrafting) tileEntity;
+      TileWorktable tile;
+      tile = (TileWorktable) tileEntity;
 
       float progress = tile.getRecipeProgress();
 

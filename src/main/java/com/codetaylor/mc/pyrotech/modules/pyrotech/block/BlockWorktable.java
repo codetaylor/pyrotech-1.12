@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCrafting;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWorktable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -58,8 +58,8 @@ public class BlockCrafting
     if (!world.isRemote) {
       TileEntity tileEntity = world.getTileEntity(pos);
 
-      if (tileEntity instanceof TileCrafting) {
-        ((TileCrafting) tileEntity).dropContents();
+      if (tileEntity instanceof TileWorktable) {
+        ((TileWorktable) tileEntity).dropContents();
       }
     }
 
@@ -98,7 +98,7 @@ public class BlockCrafting
   @Override
   public TileEntity createTileEntity(World world, IBlockState state) {
 
-    return new TileCrafting();
+    return new TileWorktable();
   }
 
   // ---------------------------------------------------------------------------

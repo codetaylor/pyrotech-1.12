@@ -39,7 +39,7 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileCrafting
+public class TileWorktable
     extends TileNetBase
     implements ITileInteractable {
 
@@ -55,7 +55,7 @@ public class TileCrafting
   // Client only, used for waila and such
   private IRecipe recipe;
 
-  public TileCrafting() {
+  public TileWorktable() {
 
     super(ModulePyrotech.TILE_DATA_SERVICE);
 
@@ -63,7 +63,7 @@ public class TileCrafting
 
     this.inventoryWrapper = new InventoryWrapper(this);
 
-    this.inputStackHandler = new InputStackHandler();
+    this.inputStackHandler = new InputStackHandler(this);
     this.inputStackHandler.addObserver((handler, slot) -> {
       this.recipeProgress.set(0);
       this.updateRecipe();
@@ -124,6 +124,11 @@ public class TileCrafting
   public IRecipe getRecipe() {
 
     return this.recipe;
+  }
+
+  protected int getGridMaxStackSize() {
+
+    return ModulePyrotechConfig.WORKTABLE.GRID_MAX_STACK_SIZE;
   }
 
   // ---------------------------------------------------------------------------
@@ -205,7 +210,7 @@ public class TileCrafting
   }
 
   private class InteractionHammer
-      extends InteractionUseItemBase<TileCrafting> {
+      extends InteractionUseItemBase<TileWorktable> {
 
     private InventoryWrapper wrapper;
 
@@ -216,7 +221,7 @@ public class TileCrafting
     }
 
     @Override
-    protected boolean allowInteraction(TileCrafting tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean allowInteraction(TileWorktable tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       ItemStack heldItemStack = player.getHeldItem(hand);
       Item item = heldItemStack.getItem();
@@ -226,11 +231,11 @@ public class TileCrafting
         return false;
       }
 
-      return ArrayHelper.contains(ModulePyrotechConfig.CRAFTING.HAMMER_LIST, registryName.toString());
+      return ArrayHelper.contains(ModulePyrotechConfig.WORKTABLE.HAMMER_LIST, registryName.toString());
     }
 
     @Override
-    protected boolean doInteraction(TileCrafting tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean doInteraction(TileWorktable tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       ItemStack heldItem = player.getHeldItemMainhand();
 
@@ -246,7 +251,7 @@ public class TileCrafting
         world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_HIT, SoundCategory.BLOCKS, 1, 1);
 
         if (recipe != null) {
-          tile.recipeProgress.add(1f / ModulePyrotechConfig.CRAFTING.HITS_PER_CRAFT);
+          tile.recipeProgress.add(1f / ModulePyrotechConfig.WORKTABLE.HITS_PER_CRAFT);
 
           if (tile.recipeProgress.get() >= 0.9999) {
             tile.recipeProgress.set(0);
@@ -283,7 +288,7 @@ public class TileCrafting
   }
 
   private class InputInteraction
-      extends InteractionItemStack<TileCrafting> {
+      extends InteractionItemStack<TileWorktable> {
 
     private static final double ONE_THIRD = 1.0 / 3.0;
     private static final double ONE_SIXTH = 1.0 / 6.0;
@@ -323,7 +328,7 @@ public class TileCrafting
         return false;
       }
 
-      return !ArrayHelper.contains(ModulePyrotechConfig.CRAFTING.HAMMER_LIST, registryName.toString());
+      return !ArrayHelper.contains(ModulePyrotechConfig.WORKTABLE.HAMMER_LIST, registryName.toString());
     }
 
     @Override
@@ -334,7 +339,7 @@ public class TileCrafting
   }
 
   private class ShelfInteraction
-      extends InteractionItemStack<TileCrafting> {
+      extends InteractionItemStack<TileWorktable> {
 
     private static final double ONE_THIRD = 1.0 / 3.0;
     private static final double ONE_SIXTH = 1.0 / 6.0;
@@ -366,9 +371,18 @@ public class TileCrafting
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    /* package */ InputStackHandler() {
+    private final TileWorktable tile;
+
+    /* package */ InputStackHandler(TileWorktable tile) {
 
       super(9);
+      this.tile = tile;
+    }
+
+    @Override
+    public int getSlotLimit(int slot) {
+
+      return this.tile.getGridMaxStackSize();
     }
   }
 
@@ -389,9 +403,9 @@ public class TileCrafting
   private class InventoryWrapper
       extends InventoryCrafting {
 
-    private final TileCrafting tile;
+    private final TileWorktable tile;
 
-    /* package */ InventoryWrapper(TileCrafting tile) {
+    /* package */ InventoryWrapper(TileWorktable tile) {
 
       super(new Container() {
 

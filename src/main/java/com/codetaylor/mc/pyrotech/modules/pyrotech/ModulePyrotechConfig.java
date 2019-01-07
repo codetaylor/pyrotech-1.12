@@ -187,15 +187,16 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Crafting
+  // - Worktable
   // ---------------------------------------------------------------------------
 
-  public static Crafting CRAFTING = new Crafting();
+  public static Worktable WORKTABLE = new Worktable();
 
-  public static class Crafting {
+  public static class Worktable {
 
     @Config.Comment({
-        "Use this to add items that you want to be valid for the crafting log.",
+        "Use this to add items that you want to be valid for banging on the ",
+        "worktable.",
         "Items you add are assumed to have durability.",
         "",
         "String format is a resource location: (domain):(path)"
@@ -211,9 +212,16 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "The number of hammer hits required to complete a craft.",
-        "Default: " + 3
+        "Default: " + 4
     })
-    public int HITS_PER_CRAFT = 3;
+    public int HITS_PER_CRAFT = 4;
+
+    @Config.Comment({
+        "The maximum stack size for each slot in the crafting grid.",
+        "Range: [1, 64]",
+        "Default: " + 1
+    })
+    public int GRID_MAX_STACK_SIZE = 1;
   }
 
   // ---------------------------------------------------------------------------
