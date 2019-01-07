@@ -23,7 +23,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.GRANITE.getMeta()),
             new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.ANDESITE.getMeta())
         ),
-        9
+        8
     ).setRegistryName(ModulePyrotech.MOD_ID, "gravel"));
 
     // Dirt
@@ -32,7 +32,7 @@ public class CompactingBinRecipesAdd {
         Ingredient.fromStacks(
             new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.DIRT.getMeta())
         ),
-        9
+        8
     ).setRegistryName(ModulePyrotech.MOD_ID, "dirt"));
 
     // Sand
@@ -41,7 +41,7 @@ public class CompactingBinRecipesAdd {
         Ingredient.fromStacks(
             new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta())
         ),
-        9
+        8
     ).setRegistryName(ModulePyrotech.MOD_ID, "sand"));
 
     // Grass
@@ -50,7 +50,7 @@ public class CompactingBinRecipesAdd {
         Ingredient.fromStacks(
             new ItemStack(ModuleBlocks.ROCK_GRASS, 1, 0)
         ),
-        9
+        8
     ).setRegistryName(ModulePyrotech.MOD_ID, "grass"));
 
     // Clay
@@ -77,7 +77,7 @@ public class CompactingBinRecipesAdd {
         Ingredient.fromStacks(
             new ItemStack(Items.DYE, 1, 15)
         ),
-        9
+        8
     ).setRegistryName(ModulePyrotech.MOD_ID, "bone_block"));
   }
 }
