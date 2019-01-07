@@ -3,8 +3,11 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileChoppingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -78,7 +81,9 @@ public class BlockChoppingBlock
       TileEntity tileEntity = world.getTileEntity(pos);
 
       if (tileEntity instanceof TileChoppingBlock) {
-        StackHelper.spawnStackHandlerContentsOnTop(world, ((TileChoppingBlock) tileEntity).getStackHandler(), pos);
+        TileChoppingBlock tile = (TileChoppingBlock) tileEntity;
+        StackHelper.spawnStackHandlerContentsOnTop(world, tile.getStackHandler(), pos);
+        StackHelper.spawnStackOnTop(world, new ItemStack(ModuleItems.ROCK, tile.getSawdust(), BlockRock.EnumType.WOOD_CHIPS.getMeta()), pos);
       }
     }
 
