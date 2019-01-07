@@ -23,13 +23,13 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class BlockCrafting
+public class BlockWorktable
     extends BlockPartialBase
     implements IBlockInteractable {
 
-  public static final String NAME = "crafting";
+  public static final String NAME = "worktable";
 
-  public BlockCrafting() {
+  public BlockWorktable() {
 
     super(Material.WOOD);
     this.setHardness(0.75f);

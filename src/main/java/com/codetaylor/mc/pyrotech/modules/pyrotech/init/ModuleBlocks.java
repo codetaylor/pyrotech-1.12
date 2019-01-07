@@ -47,7 +47,7 @@ public final class ModuleBlocks {
   public static final BlockCobblestone COBBLESTONE = new BlockCobblestone();
   public static final BlockStoneBricks STONE_BRICKS = new BlockStoneBricks();
   public static final BlockGraniteAnvil GRANITE_ANVIL = new BlockGraniteAnvil();
-  public static final BlockCrafting CRAFTING = new BlockCrafting();
+  public static final BlockWorktable CRAFTING = new BlockWorktable();
   public static final BlockTorchFiber TORCH_FIBER = new BlockTorchFiber();
   public static final BlockShelf SHELF = new BlockShelf();
   public static final BlockStash STASH = new BlockStash();
@@ -83,7 +83,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.ORE, BlockOre.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COBBLESTONE, BlockCobblestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.STONE_BRICKS, BlockStoneBricks.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.CRAFTING, BlockCrafting.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.CRAFTING, BlockWorktable.NAME);
     registry.registerBlockWithItem(ModuleBlocks.TORCH_FIBER, BlockTorchFiber.NAME);
     registry.registerBlockWithItem(ModuleBlocks.SHELF, BlockShelf.NAME);
     registry.registerBlockWithItem(ModuleBlocks.STASH, BlockStash.NAME);

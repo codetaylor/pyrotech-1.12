@@ -4,7 +4,7 @@
     "bark": "blocks/log_oak",
     "log": "blocks/log_oak_top",
     "planks": "blocks/planks_oak",
-    "crafting": "pyrotech:blocks/crafting_top",
+    "crafting": "pyrotech:blocks/worktable_top",
     "particle": "blocks/log_oak"
   },
   "elements": [
