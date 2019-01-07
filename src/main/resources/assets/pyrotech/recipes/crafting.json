@@ -6,8 +6,8 @@
   ],
   "key": {
     "B": {
-      "item": "pyrotech:chopping_block",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore": "slabWood"
     },
     "L": {
       "type": "forge:ore_dict",
