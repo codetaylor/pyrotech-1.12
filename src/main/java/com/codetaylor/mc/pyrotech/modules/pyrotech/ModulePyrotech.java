@@ -181,6 +181,12 @@ public class ModulePyrotech
         .setType(CampfireRecipe.class)
         .allowModification()
         .create();
+
+    new RegistryBuilder<OvenStoneRecipe>()
+        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "oven_stone_recipe"))
+        .setType(OvenStoneRecipe.class)
+        .allowModification()
+        .create();
   }
 
   @Override

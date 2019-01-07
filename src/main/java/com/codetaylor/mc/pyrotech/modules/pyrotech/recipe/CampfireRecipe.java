@@ -18,8 +18,6 @@ public class CampfireRecipe
     extends IForgeRegistryEntry.Impl<CampfireRecipe>
     implements IRecipeSingleOutput {
 
-  private static final CampfireRecipe NULL = new CampfireRecipe(ItemStack.EMPTY, Ingredient.EMPTY);
-
   private static final Map<String, CampfireRecipe> SMELTING_RECIPES = new HashMap<>();
   private static final List<Ingredient> WHITELIST = new ArrayList<>();
   private static final List<Ingredient> BLACKLIST = new ArrayList<>();
