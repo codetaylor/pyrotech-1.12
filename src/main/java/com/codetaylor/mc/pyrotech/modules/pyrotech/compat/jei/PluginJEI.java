@@ -68,7 +68,7 @@ public class PluginJEI
 
     // --- Crafting Catalyst
 
-    registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CRAFTING), VanillaRecipeCategoryUid.CRAFTING);
+    registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.WORKTABLE), VanillaRecipeCategoryUid.CRAFTING);
 
     // --- Blacklist Ingredients
 

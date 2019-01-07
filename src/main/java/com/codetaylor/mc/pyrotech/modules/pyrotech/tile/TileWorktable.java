@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
@@ -47,6 +48,7 @@ public class TileWorktable
   private TileDataItemStackHandler<InputStackHandler> inputTileDataItemStackHandler;
   private InputStackHandler inputStackHandler;
   private ShelfStackHandler shelfStackHandler;
+  private TileDataInteger remainingDurability;
 
   private TileDataFloat recipeProgress;
 
@@ -74,6 +76,8 @@ public class TileWorktable
     this.shelfStackHandler.addObserver((handler, slot) -> this.markDirty());
 
     this.recipeProgress = new TileDataFloat(0);
+
+    this.remainingDurability = new TileDataInteger(this.getDurability());
 
     // --- Network ---
 
@@ -136,6 +140,16 @@ public class TileWorktable
     return ModulePyrotechConfig.WORKTABLE.TOOL_DAMAGE_PER_CRAFT;
   }
 
+  protected boolean usesDurability() {
+
+    return ModulePyrotechConfig.WORKTABLE.USES_DURABILITY;
+  }
+
+  protected int getDurability() {
+
+    return ModulePyrotechConfig.WORKTABLE.DURABILITY;
+  }
+
   // ---------------------------------------------------------------------------
   // - Container
   // ---------------------------------------------------------------------------
@@ -178,6 +192,7 @@ public class TileWorktable
 
     this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
     this.shelfStackHandler.deserializeNBT(compound.getCompoundTag("shelfStackHandler"));
+    this.remainingDurability.set(compound.getInteger("remainingDurability"));
   }
 
   @Nonnull
@@ -188,6 +203,7 @@ public class TileWorktable
 
     compound.setTag("inputStackHandler", this.inputStackHandler.serializeNBT());
     compound.setTag("shelfStackHandler", this.shelfStackHandler.serializeNBT());
+    compound.setInteger("remainingDurability", this.remainingDurability.get());
 
     return compound;
   }
@@ -283,7 +299,18 @@ public class TileWorktable
 
             ItemStack result = recipe.getRecipeOutput().copy();
             StackHelper.spawnStackOnTop(world, result, tile.getPos(), 0.75);
-            heldItem.damageItem(tile.getToolDamagePerCraft(), player);
+
+            int toolDamagePerCraft = tile.getToolDamagePerCraft();
+
+            if (toolDamagePerCraft > 0) {
+              heldItem.damageItem(toolDamagePerCraft, player);
+            }
+
+            if (tile.usesDurability()
+                && tile.remainingDurability.add(-1) == 0) {
+
+              world.destroyBlock(tile.pos, false);
+            }
           }
         }
       }

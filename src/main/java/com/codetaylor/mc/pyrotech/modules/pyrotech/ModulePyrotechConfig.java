@@ -212,12 +212,14 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "The number of hammer hits required to complete a craft.",
+        "Range: [1, +int]",
         "Default: " + 4
     })
     public int HITS_PER_CRAFT = 4;
 
     @Config.Comment({
         "The amount of damage applied to the tool per craft.",
+        "Range: [0, +int]",
         "Default: " + 1
     })
     public int TOOL_DAMAGE_PER_CRAFT = 1;
@@ -228,6 +230,20 @@ public class ModulePyrotechConfig {
         "Default: " + 1
     })
     public int GRID_MAX_STACK_SIZE = 1;
+
+    @Config.Comment({
+        "If true, the worktable has durability and will break after the configured",
+        "number of crafts completed.",
+        "Default: " + true
+    })
+    public boolean USES_DURABILITY = true;
+
+    @Config.Comment({
+        "The number of crafts that the worktable can perform before it breaks.",
+        "Range: [1, +int]",
+        "Default: " + (64 * 8)
+    })
+    public int DURABILITY = 64 * 8;
   }
 
   // ---------------------------------------------------------------------------
