@@ -217,6 +217,12 @@ public class ModulePyrotechConfig {
     public int HITS_PER_CRAFT = 4;
 
     @Config.Comment({
+        "The amount of damage applied to the tool per craft.",
+        "Default: " + 1
+    })
+    public int TOOL_DAMAGE_PER_CRAFT = 1;
+
+    @Config.Comment({
         "The maximum stack size for each slot in the crafting grid.",
         "Range: [1, 64]",
         "Default: " + 1

@@ -131,6 +131,11 @@ public class TileWorktable
     return ModulePyrotechConfig.WORKTABLE.GRID_MAX_STACK_SIZE;
   }
 
+  protected int getToolDamagePerCraft() {
+
+    return ModulePyrotechConfig.WORKTABLE.TOOL_DAMAGE_PER_CRAFT;
+  }
+
   // ---------------------------------------------------------------------------
   // - Container
   // ---------------------------------------------------------------------------
@@ -247,7 +252,6 @@ public class TileWorktable
       }
 
       if (!world.isRemote) {
-        heldItem.damageItem(1, player);
         world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_HIT, SoundCategory.BLOCKS, 1, 1);
 
         if (recipe != null) {
@@ -279,6 +283,7 @@ public class TileWorktable
 
             ItemStack result = recipe.getRecipeOutput().copy();
             StackHelper.spawnStackOnTop(world, result, tile.getPos(), 0.75);
+            heldItem.damageItem(tile.getToolDamagePerCraft(), player);
           }
         }
       }
