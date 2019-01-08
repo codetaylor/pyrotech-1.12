@@ -66,7 +66,8 @@ public class ModulePyrotech
         "ZenGraniteAnvil",
         "ZenMillStone",
         "ZenCrucibleStone",
-        "ZenCompactingBin"
+        "ZenCompactingBin",
+        "ZenCampfire"
     };
 
     for (String plugin : craftTweakerPlugins) {
