@@ -48,6 +48,7 @@ public final class ModuleBlocks {
   public static final BlockStoneBricks STONE_BRICKS = new BlockStoneBricks();
   public static final BlockGraniteAnvil GRANITE_ANVIL = new BlockGraniteAnvil();
   public static final BlockWorktable WORKTABLE = new BlockWorktable();
+  public static final BlockWorktableStone WORKTABLE_STONE = new BlockWorktableStone();
   public static final BlockTorchFiber TORCH_FIBER = new BlockTorchFiber();
   public static final BlockShelf SHELF = new BlockShelf();
   public static final BlockStash STASH = new BlockStash();
@@ -84,6 +85,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.COBBLESTONE, BlockCobblestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.STONE_BRICKS, BlockStoneBricks.NAME);
     registry.registerBlockWithItem(ModuleBlocks.WORKTABLE, BlockWorktable.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.WORKTABLE_STONE, BlockWorktableStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.TORCH_FIBER, BlockTorchFiber.NAME);
     registry.registerBlockWithItem(ModuleBlocks.SHELF, BlockShelf.NAME);
     registry.registerBlockWithItem(ModuleBlocks.STASH, BlockStash.NAME);
@@ -113,6 +115,7 @@ public final class ModuleBlocks {
         TileWoodRack.class,
         TileGraniteAnvil.class,
         TileWorktable.class,
+        TileWorktableStone.class,
         TileTorch.class,
         TileShelf.class,
         TileStash.class,
@@ -142,6 +145,7 @@ public final class ModuleBlocks {
           ModuleBlocks.WOOD_RACK,
           ModuleBlocks.STONE_BRICKS,
           ModuleBlocks.WORKTABLE,
+          ModuleBlocks.WORKTABLE_STONE,
           ModuleBlocks.TORCH_FIBER,
           ModuleBlocks.SHELF,
           ModuleBlocks.STASH,

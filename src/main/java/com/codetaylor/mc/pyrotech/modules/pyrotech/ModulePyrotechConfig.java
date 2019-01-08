@@ -187,17 +187,18 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Worktable
+  // - Worktable Common
   // ---------------------------------------------------------------------------
 
-  public static Worktable WORKTABLE = new Worktable();
+  public static WorktableCommon WORKTABLE_COMMON = new WorktableCommon();
 
-  public static class Worktable {
+  public static class WorktableCommon {
 
     @Config.Comment({
         "Use this to add items that you want to be valid for banging on the ",
-        "worktable.",
-        "Items you add are assumed to have durability.",
+        "worktable. This list is shared between all worktables.",
+        "",
+        "NOTE: Items you add are assumed to have durability.",
         "",
         "String format is a resource location: (domain):(path)"
     })
@@ -209,6 +210,15 @@ public class ModulePyrotechConfig {
         ModulePyrotech.MOD_ID + ":" + ItemIronHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME
     };
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Worktable
+  // ---------------------------------------------------------------------------
+
+  public static Worktable WORKTABLE = new Worktable();
+
+  public static class Worktable {
 
     @Config.Comment({
         "The number of hammer hits required to complete a craft.",
@@ -216,6 +226,58 @@ public class ModulePyrotechConfig {
         "Default: " + 4
     })
     public int HITS_PER_CRAFT = 4;
+
+    @Config.Comment({
+        "The amount of damage applied to the tool per craft.",
+        "Range: [0, +int]",
+        "Default: " + 2
+    })
+    public int TOOL_DAMAGE_PER_CRAFT = 2;
+
+    @Config.Comment({
+        "The maximum stack size for each slot in the crafting grid.",
+        "Range: [1, 64]",
+        "Default: " + 1
+    })
+    public int GRID_MAX_STACK_SIZE = 1;
+
+    @Config.Comment({
+        "The maximum stack size for each slot in the shelf.",
+        "Range: [1, 64]",
+        "Default: " + 1
+    })
+    public int SHELF_MAX_STACK_SIZE = 1;
+
+    @Config.Comment({
+        "If true, the worktable has durability and will break after the configured",
+        "number of crafts completed.",
+        "Default: " + true
+    })
+    public boolean USES_DURABILITY = true;
+
+    @Config.Comment({
+        "The number of crafts that the worktable can perform before it breaks.",
+        "This is only relevant if the `USES_DURABILITY` flag is true.",
+        "Range: [1, +int]",
+        "Default: " + (64 * 8)
+    })
+    public int DURABILITY = 64 * 8;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Stone Worktable
+  // ---------------------------------------------------------------------------
+
+  public static StoneWorktable STONE_WORKTABLE = new StoneWorktable();
+
+  public static class StoneWorktable {
+
+    @Config.Comment({
+        "The number of hammer hits required to complete a craft.",
+        "Range: [1, +int]",
+        "Default: " + 1
+    })
+    public int HITS_PER_CRAFT = 2;
 
     @Config.Comment({
         "The amount of damage applied to the tool per craft.",
@@ -229,17 +291,25 @@ public class ModulePyrotechConfig {
         "Range: [1, 64]",
         "Default: " + 1
     })
-    public int GRID_MAX_STACK_SIZE = 1;
+    public int GRID_MAX_STACK_SIZE = 32;
+
+    @Config.Comment({
+        "The maximum stack size for each slot in the shelf.",
+        "Range: [1, 64]",
+        "Default: " + 64
+    })
+    public int SHELF_MAX_STACK_SIZE = 64;
 
     @Config.Comment({
         "If true, the worktable has durability and will break after the configured",
         "number of crafts completed.",
-        "Default: " + true
+        "Default: " + false
     })
-    public boolean USES_DURABILITY = true;
+    public boolean USES_DURABILITY = false;
 
     @Config.Comment({
         "The number of crafts that the worktable can perform before it breaks.",
+        "This is only relevant if the `USES_DURABILITY` flag is true.",
         "Range: [1, +int]",
         "Default: " + (64 * 8)
     })

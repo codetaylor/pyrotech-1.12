@@ -65,14 +65,14 @@ public class TileWorktable
 
     this.inventoryWrapper = new InventoryWrapper(this);
 
-    this.inputStackHandler = new InputStackHandler(this);
+    this.inputStackHandler = new InputStackHandler(this.getGridMaxStackSize());
     this.inputStackHandler.addObserver((handler, slot) -> {
       this.recipeProgress.set(0);
       this.updateRecipe();
       this.markDirty();
     });
 
-    this.shelfStackHandler = new ShelfStackHandler();
+    this.shelfStackHandler = new ShelfStackHandler(this.getShelfMaxStackSize());
     this.shelfStackHandler.addObserver((handler, slot) -> this.markDirty());
 
     this.recipeProgress = new TileDataFloat(0);
@@ -135,6 +135,11 @@ public class TileWorktable
     return ModulePyrotechConfig.WORKTABLE.GRID_MAX_STACK_SIZE;
   }
 
+  protected int getShelfMaxStackSize() {
+
+    return ModulePyrotechConfig.WORKTABLE.SHELF_MAX_STACK_SIZE;
+  }
+
   protected int getToolDamagePerCraft() {
 
     return ModulePyrotechConfig.WORKTABLE.TOOL_DAMAGE_PER_CRAFT;
@@ -148,6 +153,11 @@ public class TileWorktable
   protected int getDurability() {
 
     return ModulePyrotechConfig.WORKTABLE.DURABILITY;
+  }
+
+  protected int getHitsPerCraft() {
+
+    return ModulePyrotechConfig.WORKTABLE.HITS_PER_CRAFT;
   }
 
   // ---------------------------------------------------------------------------
@@ -259,7 +269,7 @@ public class TileWorktable
         return false;
       }
 
-      return ArrayHelper.contains(ModulePyrotechConfig.WORKTABLE.HAMMER_LIST, registryName.toString());
+      return ArrayHelper.contains(ModulePyrotechConfig.WORKTABLE_COMMON.HAMMER_LIST, registryName.toString());
     }
 
     @Override
@@ -278,7 +288,7 @@ public class TileWorktable
         world.playSound(null, hitPos, SoundEvents.BLOCK_WOOD_HIT, SoundCategory.BLOCKS, 1, 1);
 
         if (recipe != null) {
-          tile.recipeProgress.add(1f / ModulePyrotechConfig.WORKTABLE.HITS_PER_CRAFT);
+          tile.recipeProgress.add(1f / tile.getHitsPerCraft());
 
           if (tile.recipeProgress.get() >= 0.9999) {
             tile.recipeProgress.set(0);
@@ -368,7 +378,7 @@ public class TileWorktable
         return false;
       }
 
-      return !ArrayHelper.contains(ModulePyrotechConfig.WORKTABLE.HAMMER_LIST, registryName.toString());
+      return !ArrayHelper.contains(ModulePyrotechConfig.WORKTABLE_COMMON.HAMMER_LIST, registryName.toString());
     }
 
     @Override
@@ -411,18 +421,18 @@ public class TileWorktable
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    private final TileWorktable tile;
+    private final int maxStackSize;
 
-    /* package */ InputStackHandler(TileWorktable tile) {
+    /* package */ InputStackHandler(int maxStackSize) {
 
       super(9);
-      this.tile = tile;
+      this.maxStackSize = maxStackSize;
     }
 
     @Override
     public int getSlotLimit(int slot) {
 
-      return this.tile.getGridMaxStackSize();
+      return this.maxStackSize;
     }
   }
 
@@ -430,9 +440,18 @@ public class TileWorktable
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    /* package */ ShelfStackHandler() {
+    private final int maxStackSize;
+
+    /* package */ ShelfStackHandler(int maxStackSize) {
 
       super(3);
+      this.maxStackSize = maxStackSize;
+    }
+
+    @Override
+    public int getSlotLimit(int slot) {
+
+      return this.maxStackSize;
     }
   }
 

@@ -2,20 +2,20 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWorktable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWorktableStone;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 
-public class BlockWorktable
+public class BlockWorktableStone
     extends BlockWorktableBase
     implements IBlockInteractable {
 
-  public static final String NAME = "worktable";
+  public static final String NAME = "worktable_stone";
 
-  public BlockWorktable() {
+  public BlockWorktableStone() {
 
-    super(Material.WOOD, 2.0f, 5.0f);
+    super(Material.WOOD, 1.5f, 10.0f);
   }
 
   // ---------------------------------------------------------------------------
@@ -25,7 +25,7 @@ public class BlockWorktable
   @Override
   protected Block getDroppedBlock() {
 
-    return ModuleBlocks.WORKTABLE;
+    return ModuleBlocks.WORKTABLE_STONE;
   }
 
   // ---------------------------------------------------------------------------
@@ -35,7 +35,7 @@ public class BlockWorktable
   @Override
   protected TileEntity createTileEntity() {
 
-    return new TileWorktable();
+    return new TileWorktableStone();
   }
 
 }
