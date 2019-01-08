@@ -34,7 +34,7 @@ public class ZenCampfire {
   }
 
   @ZenMethod
-  public static void blacklistSmeltingRecipe(IIngredient[] output) {
+  public static void blacklistSmeltingRecipes(IIngredient[] output) {
 
     CraftTweaker.LATE_ACTIONS.add(new IAction() {
 
@@ -49,13 +49,13 @@ public class ZenCampfire {
       @Override
       public String describe() {
 
-        return "Blacklisting smelting recipes from campfire: " + CTLogHelper.getStackDescription(output);
+        return "Blacklisting smelting recipes for campfire: " + CTLogHelper.getStackDescription(output);
       }
     });
   }
 
   @ZenMethod
-  public static void whitelistSmeltingRecipe(IIngredient[] output) {
+  public static void whitelistSmeltingRecipes(IIngredient[] output) {
 
     CraftTweaker.LATE_ACTIONS.add(new IAction() {
 
@@ -70,7 +70,7 @@ public class ZenCampfire {
       @Override
       public String describe() {
 
-        return "Whitelisting smelting recipes from campfire: " + CTLogHelper.getStackDescription(output);
+        return "Whitelisting smelting recipes for campfire: " + CTLogHelper.getStackDescription(output);
       }
     });
   }
