@@ -43,13 +43,13 @@ public class OvenStoneRecipe
 
       if (OvenStoneRecipe.hasWhitelist()
           && OvenStoneRecipe.isWhitelisted(output)) {
-        result = new OvenStoneRecipe(output, Ingredient.fromStacks(input), ModulePyrotechConfig.STONE_OVEN.COOK_TIME_TICKS);
+        result = new OvenStoneRecipe(output, Ingredient.fromStacks(input));
         SMELTING_RECIPES.put(key, result);
         return result;
 
       } else if (OvenStoneRecipe.hasBlacklist()
           && !OvenStoneRecipe.isBlacklisted(output)) {
-        result = new OvenStoneRecipe(output, Ingredient.fromStacks(input), ModulePyrotechConfig.STONE_OVEN.COOK_TIME_TICKS);
+        result = new OvenStoneRecipe(output, Ingredient.fromStacks(input));
         SMELTING_RECIPES.put(key, result);
         return result;
       }
@@ -121,9 +121,9 @@ public class OvenStoneRecipe
     return false;
   }
 
-  public OvenStoneRecipe(ItemStack output, Ingredient input, int timeTicks) {
+  public OvenStoneRecipe(ItemStack output, Ingredient input) {
 
-    super(input, output, timeTicks);
+    super(input, output, ModulePyrotechConfig.STONE_OVEN.COOK_TIME_TICKS);
   }
 
 }
