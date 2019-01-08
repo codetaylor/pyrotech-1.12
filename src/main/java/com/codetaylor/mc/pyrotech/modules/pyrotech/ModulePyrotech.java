@@ -57,50 +57,24 @@ public class ModulePyrotech
 
     MinecraftForge.EVENT_BUS.register(this);
 
-    this.registerIntegrationPlugin(
-        "crafttweaker",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenKilnPit"
-    );
+    String[] craftTweakerPlugins = {
+        "ZenKilnPit",
+        "ZenKilnStone",
+        "ZenBurn",
+        "ZenDryingRack",
+        "ZenChoppingBlock",
+        "ZenGraniteAnvil",
+        "ZenMillStone",
+        "ZenCrucibleStone",
+        "ZenCompactingBin"
+    };
 
-    this.registerIntegrationPlugin(
-        "crafttweaker",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenKilnStone"
-    );
-
-    this.registerIntegrationPlugin(
-        "crafttweaker",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenBurn"
-    );
-
-    this.registerIntegrationPlugin(
-        "crafttweaker",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenDryingRack"
-    );
-
-    this.registerIntegrationPlugin(
-        "crafttweaker",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenChoppingBlock"
-    );
-
-    this.registerIntegrationPlugin(
-        "crafttweaker",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenGraniteAnvil"
-    );
-
-    this.registerIntegrationPlugin(
-        "crafttweaker",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenMillStone"
-    );
-
-    this.registerIntegrationPlugin(
-        "crafttweaker",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenCrucibleStone"
-    );
-
-    this.registerIntegrationPlugin(
-        "crafttweaker",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker.ZenCompactingBin"
-    );
+    for (String plugin : craftTweakerPlugins) {
+      this.registerIntegrationPlugin(
+          "crafttweaker",
+          "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker." + plugin
+      );
+    }
 
     this.registerIntegrationPlugin(
         "jei",
