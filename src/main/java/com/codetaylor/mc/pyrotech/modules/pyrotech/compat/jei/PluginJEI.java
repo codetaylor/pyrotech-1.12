@@ -22,10 +22,7 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
-import mezz.jei.plugins.vanilla.crafting.CraftingRecipeChecker;
-import mezz.jei.plugins.vanilla.crafting.ShapedOreRecipeWrapper;
-import mezz.jei.plugins.vanilla.crafting.ShapedRecipesWrapper;
-import mezz.jei.plugins.vanilla.crafting.ShapelessRecipeWrapper;
+import mezz.jei.plugins.vanilla.crafting.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -160,6 +157,21 @@ public class PluginJEI
           })
           .collect(Collectors.toList());
       registry.addRecipes(vanillaRecipes, JEIRecipeCategoryUid.WORKTABLE);
+
+      ResourceLocation resourceLocation = new ResourceLocation("minecraft:tipped_arrow");
+
+      if (WorktableRecipe.hasWhitelist()
+          && WorktableRecipe.isWhitelisted(resourceLocation)) {
+        registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
+
+      } else if (WorktableRecipe.hasBlacklist()
+          && !WorktableRecipe.isBlacklisted(resourceLocation)) {
+        registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
+
+      } else {
+        registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
+      }
+
       List<WorktableRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.WORKTABLE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.WORKTABLE);
     }
