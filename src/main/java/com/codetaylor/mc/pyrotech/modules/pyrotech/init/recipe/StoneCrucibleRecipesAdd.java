@@ -31,7 +31,7 @@ public class StoneCrucibleRecipesAdd {
 
     // Water from Ice
     registry.register(new CrucibleStoneRecipe(
-        new FluidStack(FluidRegistry.WATER, 2000),
+        new FluidStack(FluidRegistry.WATER, 1000),
         Ingredient.fromStacks(
             new ItemStack(Blocks.ICE, 1, 0)
         ),
@@ -58,7 +58,7 @@ public class StoneCrucibleRecipesAdd {
 
     // Water from Packed Ice
     registry.register(new CrucibleStoneRecipe(
-        new FluidStack(FluidRegistry.WATER, 4000),
+        new FluidStack(FluidRegistry.WATER, 2000),
         Ingredient.fromStacks(
             new ItemStack(Blocks.PACKED_ICE, 1, 0)
         ),
