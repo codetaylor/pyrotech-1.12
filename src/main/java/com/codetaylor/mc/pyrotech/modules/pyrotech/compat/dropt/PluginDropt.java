@@ -417,9 +417,8 @@ public class PluginDropt {
             })
         )
         .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(7)),
-            drop().items(new String[]{boneMeal}, range(1)).selector(weight(1)),
-            drop().items(new String[]{boneShard}, range(1)).selector(weight(1))
+            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
+            drop().items(new String[]{boneShard}, range(1, 2)).selector(weight(1))
         })
     );
 
@@ -438,7 +437,7 @@ public class PluginDropt {
         .addDrops(new IDroptDropBuilder[]{
             drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(6)),
             drop().items(new String[]{boneMeal}, range(1)).selector(weight(1)),
-            drop().items(new String[]{boneShard}, range(1)).selector(weight(2))
+            drop().items(new String[]{boneShard}, range(2, 3)).selector(weight(2))
         })
     );
 
