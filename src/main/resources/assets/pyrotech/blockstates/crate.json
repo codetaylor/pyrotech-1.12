@@ -4,6 +4,18 @@
     "model": "pyrotech:crate"
   },
   "variants": {
-    "normal": [{}]
+    "facing": {
+      "north": {
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    }
   }
 }
