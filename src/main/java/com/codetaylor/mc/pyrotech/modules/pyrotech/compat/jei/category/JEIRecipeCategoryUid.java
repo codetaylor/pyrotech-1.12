@@ -16,6 +16,7 @@ public class JEIRecipeCategoryUid {
   public static final String COMPACTING_BIN = ModulePyrotech.MOD_ID + ".compacting.bin";
   public static final String CAMPFIRE = ModulePyrotech.MOD_ID + ".campfire";
   public static final String STONE_OVEN = ModulePyrotech.MOD_ID + ".stone.oven";
+  public static final String WORKTABLE = ModulePyrotech.MOD_ID + ".worktable";
 
   private JEIRecipeCategoryUid() {
     //

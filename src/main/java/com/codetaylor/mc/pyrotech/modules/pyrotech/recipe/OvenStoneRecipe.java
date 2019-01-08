@@ -55,7 +55,7 @@ public class OvenStoneRecipe
       }
     }
 
-    // Finally, check the custom campfire recipes.
+    // Finally, check the custom recipes.
 
     for (OvenStoneRecipe recipe : ModulePyrotechRegistries.OVEN_STONE_RECIPE) {
 

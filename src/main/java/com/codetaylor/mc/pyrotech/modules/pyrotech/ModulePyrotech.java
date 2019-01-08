@@ -187,6 +187,12 @@ public class ModulePyrotech
         .setType(OvenStoneRecipe.class)
         .allowModification()
         .create();
+
+    new RegistryBuilder<WorktableRecipe>()
+        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "worktable_recipe"))
+        .setType(WorktableRecipe.class)
+        .allowModification()
+        .create();
   }
 
   @Override

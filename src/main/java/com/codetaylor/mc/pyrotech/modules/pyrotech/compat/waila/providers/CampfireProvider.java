@@ -6,11 +6,11 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CampfireRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -56,9 +56,10 @@ public class CampfireProvider
         renderString.append(WailaUtil.getStackRenderString(input));
         //renderString.append(WailaUtil.getStackRenderString(fuel));
 
-        ItemStack recipeOutput = FurnaceRecipes.instance().getSmeltingResult(input);
+        CampfireRecipe recipe = CampfireRecipe.getRecipe(input);
 
-        if (!recipeOutput.isEmpty()) {
+        if (recipe != null) {
+          ItemStack recipeOutput = recipe.getOutput();
           recipeOutput.setCount(input.getCount());
           renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
           renderString.append(WailaUtil.getStackRenderString(recipeOutput));

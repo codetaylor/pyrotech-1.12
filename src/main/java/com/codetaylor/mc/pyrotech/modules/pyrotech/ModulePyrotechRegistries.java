@@ -23,6 +23,7 @@ public class ModulePyrotechRegistries {
   public static final IForgeRegistryModifiable<CompactingBinRecipe> COMPACTING_BIN_RECIPE;
   public static final IForgeRegistryModifiable<CampfireRecipe> CAMPFIRE_RECIPE;
   public static final IForgeRegistryModifiable<OvenStoneRecipe> OVEN_STONE_RECIPE;
+  public static final IForgeRegistryModifiable<WorktableRecipe> WORKTABLE_RECIPE;
 
   public static final List<Predicate<IBlockState>> REFRACTORY_BLOCK_LIST;
   public static final List<Predicate<IBlockState>> COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST;
@@ -40,6 +41,7 @@ public class ModulePyrotechRegistries {
     COMPACTING_BIN_RECIPE = (IForgeRegistryModifiable<CompactingBinRecipe>) GameRegistry.findRegistry(CompactingBinRecipe.class);
     CAMPFIRE_RECIPE = (IForgeRegistryModifiable<CampfireRecipe>) GameRegistry.findRegistry(CampfireRecipe.class);
     OVEN_STONE_RECIPE = (IForgeRegistryModifiable<OvenStoneRecipe>) GameRegistry.findRegistry(OvenStoneRecipe.class);
+    WORKTABLE_RECIPE = (IForgeRegistryModifiable<WorktableRecipe>) GameRegistry.findRegistry(WorktableRecipe.class);
 
     REFRACTORY_BLOCK_LIST = new ArrayList<>();
     COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST = new ArrayList<>();

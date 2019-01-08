@@ -19,15 +19,23 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import mezz.jei.api.recipe.IRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
+import mezz.jei.plugins.vanilla.crafting.CraftingRecipeChecker;
+import mezz.jei.plugins.vanilla.crafting.ShapedOreRecipeWrapper;
+import mezz.jei.plugins.vanilla.crafting.ShapedRecipesWrapper;
+import mezz.jei.plugins.vanilla.crafting.ShapelessRecipeWrapper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +63,8 @@ public class PluginJEI
         new JEIRecipeCategoryMillStone(guiHelper),
         new JEIRecipeCategoryCompactingBin(guiHelper),
         new JEIRecipeCategoryCampfire(guiHelper),
-        new JEIRecipeCategoryOvenStone(guiHelper)
+        new JEIRecipeCategoryOvenStone(guiHelper),
+        new JEIRecipeCategoryWorktable(guiHelper)
     );
   }
 
@@ -102,6 +111,57 @@ public class PluginJEI
         ModulePyrotech.LOGGER.error("", e);
       }
 
+    }
+
+    // --- Worktable
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.WORKTABLE), JEIRecipeCategoryUid.WORKTABLE);
+      registry.handleRecipes(ShapedOreRecipe.class, recipe -> new ShapedOreRecipeWrapper(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
+      registry.handleRecipes(ShapedRecipes.class, recipe -> new ShapedRecipesWrapper(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
+      registry.handleRecipes(ShapelessOreRecipe.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
+      registry.handleRecipes(ShapelessRecipes.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
+      registry.handleRecipes(WorktableRecipe.class, new IRecipeWrapperFactory<WorktableRecipe>() {
+
+        @Nonnull
+        @Override
+        public IRecipeWrapper getRecipeWrapper(@Nonnull WorktableRecipe recipe) {
+
+          IRecipe wrappedRecipe = recipe.getRecipe();
+
+          if (wrappedRecipe instanceof ShapedOreRecipe) {
+            return new ShapedOreRecipeWrapper(jeiHelpers, (ShapedOreRecipe) wrappedRecipe);
+
+          } else if (wrappedRecipe instanceof ShapedRecipes) {
+            return new ShapedRecipesWrapper(jeiHelpers, (ShapedRecipes) wrappedRecipe);
+
+          } else if (wrappedRecipe instanceof ShapelessOreRecipe
+              || wrappedRecipe instanceof ShapelessRecipes) {
+            return new ShapelessRecipeWrapper<>(jeiHelpers, wrappedRecipe);
+          }
+
+          throw new RuntimeException("Unknown recipe type: " + wrappedRecipe.getClass());
+        }
+      }, JEIRecipeCategoryUid.WORKTABLE);
+      List<IRecipe> vanillaRecipes = CraftingRecipeChecker.getValidRecipes(jeiHelpers)
+          .stream()
+          .filter(recipe -> {
+            ResourceLocation resourceLocation = recipe.getRegistryName();
+
+            if (WorktableRecipe.hasWhitelist()
+                && WorktableRecipe.isWhitelisted(resourceLocation)) {
+              return true;
+
+            } else if (WorktableRecipe.hasBlacklist()
+                && !WorktableRecipe.isBlacklisted(resourceLocation)) {
+              return true;
+            }
+
+            return true;
+          })
+          .collect(Collectors.toList());
+      registry.addRecipes(vanillaRecipes, JEIRecipeCategoryUid.WORKTABLE);
+      List<WorktableRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.WORKTABLE_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.WORKTABLE);
     }
 
     // --- Stone Oven

@@ -17,6 +17,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.WorktableRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +26,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
@@ -54,7 +54,6 @@ public class TileWorktable
 
   private IInteraction[] interactions;
 
-  // Client only, used for waila and such
   private IRecipe recipe;
 
   public TileWorktable() {
@@ -178,7 +177,14 @@ public class TileWorktable
 
   private void updateRecipe() {
 
-    this.recipe = CraftingManager.findMatchingRecipe(this.inventoryWrapper, world);
+    WorktableRecipe recipe = WorktableRecipe.getRecipe(this.inventoryWrapper, this.world);
+
+    if (recipe == null) {
+      this.recipe = null;
+
+    } else {
+      this.recipe = recipe.getRecipe();
+    }
   }
 
   // ---------------------------------------------------------------------------
