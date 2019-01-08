@@ -69,7 +69,8 @@ public class ModulePyrotech
         "ZenCrucibleStone",
         "ZenCompactingBin",
         "ZenCampfire",
-        "ZenOvenStone"
+        "ZenOvenStone",
+        "ZenWorktable"
     };
 
     for (String plugin : craftTweakerPlugins) {
