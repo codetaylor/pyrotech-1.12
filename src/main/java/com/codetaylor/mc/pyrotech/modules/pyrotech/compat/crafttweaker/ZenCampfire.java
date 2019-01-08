@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CampfireRecipe;
 import crafttweaker.IAction;
@@ -30,6 +31,48 @@ public class ZenCampfire {
         CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getIngredient(input)
     ));
+  }
+
+  @ZenMethod
+  public static void blacklistSmeltingRecipe(IIngredient[] output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new IAction() {
+
+      @Override
+      public void apply() {
+
+        for (IIngredient ingredient : output) {
+          CampfireRecipe.blacklistSmeltingRecipe(CraftTweakerMC.getIngredient(ingredient));
+        }
+      }
+
+      @Override
+      public String describe() {
+
+        return "Blacklisting smelting recipes from campfire: " + CTLogHelper.getStackDescription(output);
+      }
+    });
+  }
+
+  @ZenMethod
+  public static void whitelistSmeltingRecipe(IIngredient[] output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new IAction() {
+
+      @Override
+      public void apply() {
+
+        for (IIngredient ingredient : output) {
+          CampfireRecipe.whitelistSmeltingRecipe(CraftTweakerMC.getIngredient(ingredient));
+        }
+      }
+
+      @Override
+      public String describe() {
+
+        return "Whitelisting smelting recipes from campfire: " + CTLogHelper.getStackDescription(output);
+      }
+    });
   }
 
   public static class RemoveRecipe
