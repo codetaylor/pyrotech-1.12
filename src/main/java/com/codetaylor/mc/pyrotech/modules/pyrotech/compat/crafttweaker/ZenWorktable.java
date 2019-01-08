@@ -38,31 +38,31 @@ public class ZenWorktable {
   }
 
   @ZenMethod
-  public void addShaped(IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+  public static void addShaped(IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
     CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(output, ingredients, function, action, false, false));
   }
 
   @ZenMethod
-  void addShaped(String name, IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+  public static void addShaped(String name, IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
     CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(name, output, ingredients, function, action, false, false));
   }
 
   @ZenMethod
-  public void addShapedMirrored(IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+  public static void addShapedMirrored(IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
     CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(output, ingredients, function, action, true, false));
   }
 
   @ZenMethod
-  public void addShapedMirrored(String name, IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+  public static void addShapedMirrored(String name, IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
     CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(name, output, ingredients, function, action, true, false));
   }
 
   @ZenMethod
-  public void addShapeless(IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+  public static void addShapeless(IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
     boolean valid = (output != null);
 
@@ -82,7 +82,7 @@ public class ZenWorktable {
   }
 
   @ZenMethod
-  public void addShapeless(String name, IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+  public static void addShapeless(String name, IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
     boolean valid = output != null;
 
@@ -254,7 +254,7 @@ public class ZenWorktable {
 
     public MCRecipeBase getRecipe() {
 
-      return recipe;
+      return this.recipe;
     }
   }
 
