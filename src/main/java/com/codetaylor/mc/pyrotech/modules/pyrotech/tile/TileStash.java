@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
@@ -125,6 +126,12 @@ public class TileStash
   // ---------------------------------------------------------------------------
   // - Interactions
   // ---------------------------------------------------------------------------
+
+  @Override
+  public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
+
+    return blockState.getValue(Properties.FACING_HORIZONTAL);
+  }
 
   @Override
   public IInteraction[] getInteractions() {
