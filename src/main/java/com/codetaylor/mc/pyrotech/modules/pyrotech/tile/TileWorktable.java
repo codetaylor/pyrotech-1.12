@@ -33,6 +33,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.lwjgl.util.vector.Quaternion;
 
@@ -282,6 +283,8 @@ public class TileWorktable
           if (tile.recipeProgress.get() >= 0.9999) {
             tile.recipeProgress.set(0);
 
+            ItemStack result = recipe.getRecipeOutput().copy();
+            FMLCommonHandler.instance().firePlayerCraftingEvent(player, result, this.wrapper);
             NonNullList<ItemStack> remainingItems = recipe.getRemainingItems(this.wrapper);
 
             for (int slot = 0; slot < 9; slot++) {
@@ -303,7 +306,6 @@ public class TileWorktable
               }
             }
 
-            ItemStack result = recipe.getRecipeOutput().copy();
             StackHelper.spawnStackOnTop(world, result, tile.getPos(), 0.75);
 
             int toolDamagePerCraft = tile.getToolDamagePerCraft();
