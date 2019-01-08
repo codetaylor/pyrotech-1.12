@@ -38,7 +38,9 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -86,9 +88,6 @@ public class BlockKilnPit
 
     if (state.getValue(VARIANT) == BlockKilnPit.EnumType.EMPTY) {
       return AABB_EMPTY;
-
-    } else if (state.getValue(VARIANT) == BlockKilnPit.EnumType.THATCH) {
-      return AABB_THATCH;
     }
 
     return FULL_BLOCK_AABB;
@@ -173,6 +172,18 @@ public class BlockKilnPit
   public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
 
     return 0;
+  }
+
+  @ParametersAreNonnullByDefault
+  @Override
+  public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState) {
+
+    if (state.getValue(VARIANT) == EnumType.THATCH) {
+      addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_THATCH);
+
+    } else {
+      super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entity, isActualState);
+    }
   }
 
   // ---------------------------------------------------------------------------

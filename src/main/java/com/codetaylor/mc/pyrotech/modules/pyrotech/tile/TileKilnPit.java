@@ -106,7 +106,7 @@ public class TileKilnPit
         new InteractionLog(this, this.logStackHandler, 0),
         new InteractionLog(this, this.logStackHandler, 1),
         new InteractionLog(this, this.logStackHandler, 2),
-        new Interaction(new ItemStackHandler[]{this.stackHandler, this.outputStackHandler})
+        new Interaction(this, new ItemStackHandler[]{this.stackHandler, this.outputStackHandler})
     };
   }
 
@@ -573,8 +573,8 @@ public class TileKilnPit
       super(
           new ItemStackHandler[]{stackHandler},
           slot,
-          new EnumFacing[]{EnumFacing.UP},
-          new AxisAlignedBB(slot * ONE_THIRD, 0, 0, slot * ONE_THIRD + ONE_THIRD, 1, 1),
+          EnumFacing.VALUES,
+          new AxisAlignedBB(slot * ONE_THIRD, 2 * ONE_THIRD, 0, slot * ONE_THIRD + ONE_THIRD, 1, 1),
           new Transform(
               Transform.translate(slot * ONE_THIRD + ONE_SIXTH, 2 * ONE_THIRD + ONE_SIXTH, 0.5),
               Transform.rotate(1, 0, 0, 90),
@@ -631,13 +631,23 @@ public class TileKilnPit
   private class Interaction
       extends InteractionItemStack<TileKilnPit> {
 
-    public Interaction(ItemStackHandler[] stackHandlers) {
+    private final TileKilnPit tile;
+
+    public Interaction(TileKilnPit tile, ItemStackHandler[] stackHandlers) {
 
       super(stackHandlers, 0, EnumFacing.VALUES, InteractionBounds.BLOCK, new Transform(
           Transform.translate(0.5, 0.4, 0.5),
           Transform.rotate(),
           Transform.scale(0.5, 0.5, 0.5)
       ));
+      this.tile = tile;
+    }
+
+    @Override
+    public boolean isEnabled() {
+
+      IBlockState blockState = this.tile.world.getBlockState(this.tile.pos);
+      return blockState.getValue(BlockKilnPit.VARIANT) == BlockKilnPit.EnumType.EMPTY;
     }
 
     @Override
