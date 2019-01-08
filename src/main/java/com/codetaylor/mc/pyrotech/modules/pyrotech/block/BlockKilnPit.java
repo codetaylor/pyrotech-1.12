@@ -219,28 +219,26 @@ public class BlockKilnPit
   }
 
   @Override
-  public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+  public void breakBlock(World world, BlockPos pos, IBlockState state) {
 
-    TileEntity tileEntity = worldIn.getTileEntity(pos);
+    TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileKilnPit) {
       TileKilnPit tileKiln = (TileKilnPit) tileEntity;
       ItemStackHandler stackHandler = tileKiln.getStackHandler();
-      StackHelper.spawnStackOnTop(worldIn, stackHandler.getStackInSlot(0), pos);
+      StackHelper.spawnStackOnTop(world, stackHandler.getStackInSlot(0), pos);
       stackHandler = tileKiln.getOutputStackHandler();
 
       for (int i = 0; i < stackHandler.getSlots(); i++) {
-        StackHelper.spawnStackOnTop(worldIn, stackHandler.getStackInSlot(i), pos);
+        StackHelper.spawnStackOnTop(world, stackHandler.getStackInSlot(i), pos);
       }
 
       // Pop the used wood into the world.
-      if (state.getValue(VARIANT) == BlockKilnPit.EnumType.WOOD) {
-        stackHandler = tileKiln.getLogStackHandler();
-        StackHelper.spawnStackOnTop(worldIn, stackHandler.getStackInSlot(0), pos);
-      }
+      stackHandler = tileKiln.getLogStackHandler();
+      StackHelper.spawnStackHandlerContentsOnTop(world, stackHandler, pos);
     }
 
-    super.breakBlock(worldIn, pos, state);
+    super.breakBlock(world, pos, state);
   }
 
   @Nonnull
