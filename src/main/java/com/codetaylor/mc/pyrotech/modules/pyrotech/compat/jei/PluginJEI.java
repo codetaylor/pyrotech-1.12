@@ -21,12 +21,14 @@ import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
+import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 import mezz.jei.plugins.vanilla.crafting.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -116,28 +118,7 @@ public class PluginJEI
       registry.handleRecipes(ShapedRecipes.class, recipe -> new ShapedRecipesWrapper(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
       registry.handleRecipes(ShapelessOreRecipe.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
       registry.handleRecipes(ShapelessRecipes.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
-      registry.handleRecipes(WorktableRecipe.class, new IRecipeWrapperFactory<WorktableRecipe>() {
-
-        @Nonnull
-        @Override
-        public IRecipeWrapper getRecipeWrapper(@Nonnull WorktableRecipe recipe) {
-
-          IRecipe wrappedRecipe = recipe.getRecipe();
-
-          if (wrappedRecipe instanceof ShapedOreRecipe) {
-            return new ShapedOreRecipeWrapper(jeiHelpers, (ShapedOreRecipe) wrappedRecipe);
-
-          } else if (wrappedRecipe instanceof ShapedRecipes) {
-            return new ShapedRecipesWrapper(jeiHelpers, (ShapedRecipes) wrappedRecipe);
-
-          } else if (wrappedRecipe instanceof ShapelessOreRecipe
-              || wrappedRecipe instanceof ShapelessRecipes) {
-            return new ShapelessRecipeWrapper<>(jeiHelpers, wrappedRecipe);
-          }
-
-          throw new RuntimeException("Unknown recipe type: " + wrappedRecipe.getClass());
-        }
-      }, JEIRecipeCategoryUid.WORKTABLE);
+      registry.handleRecipes(WorktableRecipe.class, new WorktableRecipeHandler(jeiHelpers), JEIRecipeCategoryUid.WORKTABLE);
       List<IRecipe> vanillaRecipes = CraftingRecipeChecker.getValidRecipes(jeiHelpers)
           .stream()
           .filter(recipe -> {
@@ -157,13 +138,17 @@ public class PluginJEI
 
       ResourceLocation resourceLocation = new ResourceLocation("minecraft:tipped_arrow");
 
-      if (WorktableRecipe.hasWhitelist()
-          && WorktableRecipe.isWhitelisted(resourceLocation)) {
-        registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
+      if (WorktableRecipe.hasWhitelist()) {
 
-      } else if (WorktableRecipe.hasBlacklist()
-          && !WorktableRecipe.isBlacklisted(resourceLocation)) {
-        registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
+        if (WorktableRecipe.isWhitelisted(resourceLocation)) {
+          registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
+        }
+
+      } else if (WorktableRecipe.hasBlacklist()) {
+
+        if (!WorktableRecipe.isBlacklisted(resourceLocation)) {
+          registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
+        }
 
       } else {
         registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
@@ -347,5 +332,52 @@ public class PluginJEI
     }
 
     return recipes;
+  }
+
+  private static class WorktableRecipeHandler
+      implements IRecipeWrapperFactory<WorktableRecipe> {
+
+    private final IJeiHelpers jeiHelpers;
+
+    public WorktableRecipeHandler(IJeiHelpers jeiHelpers) {
+
+      this.jeiHelpers = jeiHelpers;
+    }
+
+    @Nonnull
+    @Override
+    public IRecipeWrapper getRecipeWrapper(@Nonnull WorktableRecipe recipe) {
+
+      IRecipe wrappedRecipe = recipe.getRecipe();
+
+      if (wrappedRecipe instanceof IShapedRecipe) {
+        return new ShapedRecipeWrapper(this.jeiHelpers, (IShapedRecipe) wrappedRecipe);
+
+      } else {
+        return new ShapelessRecipeWrapper<>(this.jeiHelpers, wrappedRecipe);
+      }
+    }
+  }
+
+  private static class ShapedRecipeWrapper
+      extends ShapelessRecipeWrapper<IShapedRecipe>
+      implements IShapedCraftingRecipeWrapper {
+
+    public ShapedRecipeWrapper(IJeiHelpers jeiHelpers, IShapedRecipe recipe) {
+
+      super(jeiHelpers, recipe);
+    }
+
+    @Override
+    public int getWidth() {
+
+      return this.recipe.getRecipeWidth();
+    }
+
+    @Override
+    public int getHeight() {
+
+      return this.recipe.getRecipeHeight();
+    }
   }
 }
