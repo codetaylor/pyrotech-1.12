@@ -1,6 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockStone;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 
 public class TileWorktableStone
     extends TileWorktable {
@@ -35,4 +39,11 @@ public class TileWorktableStone
     return ModulePyrotechConfig.STONE_WORKTABLE.HITS_PER_CRAFT;
   }
 
+  @Override
+  protected int getBlockStateIdForParticles() {
+
+    IBlockState state = Blocks.STONE.getDefaultState()
+        .withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE);
+    return Block.getStateId(state);
+  }
 }

@@ -9,6 +9,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
@@ -19,8 +20,11 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionIt
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.WorktableRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryCrafting;
@@ -328,13 +332,45 @@ public class TileWorktable
                 && tile.remainingDurability.add(-1) == 0) {
 
               world.destroyBlock(tile.pos, false);
+              world.playSound(
+                  null,
+                  tile.pos,
+                  SoundEvents.ENTITY_ITEM_BREAK,
+                  SoundCategory.BLOCKS,
+                  1.0F,
+                  Util.RANDOM.nextFloat() * 0.4F + 0.8F
+              );
             }
           }
+        }
+
+      } else {
+
+        int stateId = tile.getBlockStateIdForParticles();
+
+        for (int i = 0; i < 2; ++i) {
+          world.spawnParticle(
+              EnumParticleTypes.BLOCK_CRACK,
+              tile.pos.getX() + hitX + (tile.world.rand.nextFloat() * 2 - 1) * 0.1,
+              tile.pos.getY() + hitY + 0.1,
+              tile.pos.getZ() + hitZ + (tile.world.rand.nextFloat() * 2 - 1) * 0.1,
+              0.0D,
+              0.0D,
+              0.0D,
+              stateId
+          );
         }
       }
 
       return true;
     }
+  }
+
+  protected int getBlockStateIdForParticles() {
+
+    IBlockState state = Blocks.PLANKS.getDefaultState()
+        .withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.OAK);
+    return Block.getStateId(state);
   }
 
   private class InputInteraction
