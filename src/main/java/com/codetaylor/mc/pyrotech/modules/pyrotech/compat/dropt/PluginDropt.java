@@ -378,7 +378,7 @@ public class PluginDropt {
         .dropStrategy(EnumDropStrategy.UNIQUE)
         .addDrops(new IDroptDropBuilder[]{
             drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
-            drop().items(new String[]{coalPieces}, range(4, 8)).selector(weight(1))
+            drop().items(new String[]{coalPieces}, range(1, 2)).selector(weight(1))
         })
     );
 
@@ -394,8 +394,8 @@ public class PluginDropt {
         .dropCount(range(2))
         .dropStrategy(EnumDropStrategy.UNIQUE)
         .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(4)),
-            drop().items(new String[]{coalPieces}, range(4, 8)).selector(weight(4)),
+            drop().items(new String[]{rockStone}, range(1, 2)).selector(weight(8)),
+            drop().items(new String[]{coalPieces}, range(2, 4)).selector(weight(8)),
             drop().items(new String[]{coal}).selector(weight(1))
         })
     );
