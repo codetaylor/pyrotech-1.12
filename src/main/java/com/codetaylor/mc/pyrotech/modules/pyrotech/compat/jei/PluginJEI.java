@@ -21,7 +21,6 @@ import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
-import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import mezz.jei.plugins.vanilla.crafting.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -144,13 +143,11 @@ public class PluginJEI
           .filter(recipe -> {
             ResourceLocation resourceLocation = recipe.getRegistryName();
 
-            if (WorktableRecipe.hasWhitelist()
-                && WorktableRecipe.isWhitelisted(resourceLocation)) {
-              return true;
+            if (WorktableRecipe.hasWhitelist()) {
+              return WorktableRecipe.isWhitelisted(resourceLocation);
 
-            } else if (WorktableRecipe.hasBlacklist()
-                && !WorktableRecipe.isBlacklisted(resourceLocation)) {
-              return true;
+            } else if (WorktableRecipe.hasBlacklist()) {
+              return !WorktableRecipe.isBlacklisted(resourceLocation);
             }
 
             return true;
