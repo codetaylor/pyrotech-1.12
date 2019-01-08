@@ -124,7 +124,7 @@ public class BlockMillStone
       Block blockFromItem = Block.getBlockFromItem(stackInSlot.getItem());
 
       if (blockFromItem != Blocks.AIR) {
-        IBlockState blockState = ModuleBlocks.CHOPPING_BLOCK.getDefaultState();
+        IBlockState blockState = blockFromItem.getDefaultState();
         int stateId = Block.getStateId(blockState);
 
         for (int i = 0; i < 8; ++i) {
