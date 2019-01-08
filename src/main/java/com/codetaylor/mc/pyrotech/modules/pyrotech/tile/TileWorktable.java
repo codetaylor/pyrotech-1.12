@@ -97,8 +97,8 @@ public class TileWorktable
     interactionList.add(new InteractionHammer(this.inventoryWrapper));
 
     for (int i = 0; i < 9; i++) {
-      int x = i % 3;
-      int z = i / 3;
+      int x = 2 - (i % 3);
+      int z = 2 - (i / 3);
       interactionList.add(new InputInteraction(this.inputStackHandler, i, x, z));
     }
 
@@ -470,12 +470,10 @@ public class TileWorktable
 
     @Nonnull
     @Override
-    public ItemStack getStackInRowAndColumn(int row, int column) {
+    public ItemStack getStackInRowAndColumn(int x, int y) {
 
-      column = 2 - column;
-
-      if (row >= 0 && row < 3 && column >= 0 && column < 3) {
-        int index = row + column * 3;
+      if (x >= 0 && x < 3 && y >= 0 && y < 3) {
+        int index = x + y * 3;
         return this.tile.inputStackHandler.getStackInSlot(index);
       }
 
