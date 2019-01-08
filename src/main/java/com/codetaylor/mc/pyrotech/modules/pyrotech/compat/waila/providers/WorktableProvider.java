@@ -55,12 +55,10 @@ public class WorktableProvider
       if (notEmpty) {
 
         // Display input item and recipe output.
-
-        StringBuilder renderString = new StringBuilder();
-
         IRecipe recipe = tile.getRecipe();
 
         if (recipe != null) {
+          StringBuilder renderString = new StringBuilder();
           ItemStack recipeOutput = recipe.getRecipeOutput();
 
           if (!recipeOutput.isEmpty()) {
@@ -73,12 +71,9 @@ public class WorktableProvider
             renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
             renderString.append(WailaUtil.getStackRenderString(recipeOutput));
           }
+          tooltip.add(renderString.toString());
         }
-
-        tooltip.add(renderString.toString());
-
       }
-
     }
 
     return tooltip;
