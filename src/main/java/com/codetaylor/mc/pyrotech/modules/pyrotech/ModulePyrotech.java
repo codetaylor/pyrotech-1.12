@@ -62,6 +62,7 @@ public class ModulePyrotech
         "ZenKilnStone",
         "ZenBurn",
         "ZenDryingRack",
+        "ZenDryingRackCrude",
         "ZenChoppingBlock",
         "ZenGraniteAnvil",
         "ZenMillStone",

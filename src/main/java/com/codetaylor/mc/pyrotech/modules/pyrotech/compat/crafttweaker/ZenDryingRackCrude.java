@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackCrudeRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -13,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.pyrotech.DryingRack")
-public class ZenDryingRack {
+@ZenClass("mods.pyrotech.CrudeDryingRack")
+public class ZenDryingRackCrude {
 
   @ZenMethod
   public static void removeRecipes(IIngredient output) {
@@ -52,7 +53,7 @@ public class ZenDryingRack {
     @Override
     public String describe() {
 
-      return "Removing drying rack recipes for " + this.output;
+      return "Removing crude drying rack recipes for " + this.output;
     }
   }
 
@@ -80,18 +81,18 @@ public class ZenDryingRack {
     @Override
     public void apply() {
 
-      DryingRackRecipe recipe = new DryingRackRecipe(
+      DryingRackCrudeRecipe recipe = new DryingRackCrudeRecipe(
           this.output,
           this.input,
           this.timeTicks
       );
-      ModulePyrotechRegistries.DRYING_RACK_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override
     public String describe() {
 
-      return "Adding drying rack recipe for " + this.output;
+      return "Adding crude drying rack recipe for " + this.output;
     }
   }
 
