@@ -100,17 +100,31 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Ston
 
   protected void onRecipeComplete() {
 
-    ItemStack input = this.getInputStackHandler().getStackInSlot(0);
+    ItemStackHandler inputStackHandler = this.getInputStackHandler();
+    ItemStack input = inputStackHandler.getStackInSlot(0);
     E recipe = this.getRecipe(input);
 
     if (recipe != null) {
-      this.getInputStackHandler().setStackInSlot(0, ItemStack.EMPTY);
-      FluidStack recipeOutput = this.getRecipeOutput(recipe, input);
-      this.outputFluidTank.fill(recipeOutput, true);
+
+      if (this.processAsynchronous()) {
+        inputStackHandler.setStackInSlot(0, ItemStack.EMPTY);
+        FluidStack recipeOutput = this.getRecipeOutput(recipe, input);
+        this.outputFluidTank.fill(recipeOutput, true);
+
+      } else {
+        StackHelper.decreaseStackInSlot(inputStackHandler, 0, 1, false);
+        FluidStack recipeOutput = this.getRecipeOutput(recipe, input);
+        this.outputFluidTank.fill(recipeOutput, true);
+      }
     }
   }
 
   protected abstract FluidStack getRecipeOutput(E recipe, ItemStack input);
+
+  protected boolean processAsynchronous() {
+
+    return true;
+  }
 
   // ---------------------------------------------------------------------------
   // - Worker

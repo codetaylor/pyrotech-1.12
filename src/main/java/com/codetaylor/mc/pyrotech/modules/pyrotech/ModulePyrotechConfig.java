@@ -676,6 +676,13 @@ public class ModulePyrotechConfig {
         "Default: " + 4000
     })
     public int OUTPUT_TANK_SIZE = 4000;
+
+    @Config.Comment({
+        "If true, the machine will process all input items at the same time.",
+        "If false, the machine will process one recipe at a time.",
+        "Default: " + false
+    })
+    public boolean ASYNCHRONOUS_OPERATION = false;
   }
 
   // ---------------------------------------------------------------------------

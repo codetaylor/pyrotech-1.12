@@ -43,8 +43,18 @@ public class TileCrucibleStone
   protected FluidStack getRecipeOutput(CrucibleStoneRecipe recipe, ItemStack input) {
 
     FluidStack fluidStack = recipe.getOutput();
-    fluidStack.amount = fluidStack.amount * input.getCount();
+
+    if (this.processAsynchronous()) {
+      fluidStack.amount = fluidStack.amount * input.getCount();
+    }
+
     return fluidStack;
+  }
+
+  @Override
+  protected boolean processAsynchronous() {
+
+    return ModulePyrotechConfig.STONE_CRUCIBLE.ASYNCHRONOUS_OPERATION;
   }
 
   @Override
