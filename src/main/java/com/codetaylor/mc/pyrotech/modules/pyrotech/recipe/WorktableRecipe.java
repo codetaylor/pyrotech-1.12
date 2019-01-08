@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -65,11 +66,6 @@ public class WorktableRecipe
     return null;
   }
 
-  private static String getRecipeKey(ItemStack itemStack) {
-
-    return itemStack.getItem().getUnlocalizedName() + ":" + itemStack.getItemDamage();
-  }
-
   public static boolean removeRecipes(Ingredient output) {
 
     return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.WORKTABLE_RECIPE, output);
@@ -114,6 +110,7 @@ public class WorktableRecipe
     this.recipe = recipe;
   }
 
+  @Nonnull
   public IRecipe getRecipe() {
 
     return this.recipe;
