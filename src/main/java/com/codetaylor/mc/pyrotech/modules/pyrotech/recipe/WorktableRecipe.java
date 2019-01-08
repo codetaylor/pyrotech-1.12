@@ -52,6 +52,10 @@ public class WorktableRecipe
         CACHE.put(resourceLocation, worktableRecipe);
         return worktableRecipe;
       }
+
+      WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
+      CACHE.put(resourceLocation, worktableRecipe);
+      return worktableRecipe;
     }
 
     // Finally, check the custom recipes.
