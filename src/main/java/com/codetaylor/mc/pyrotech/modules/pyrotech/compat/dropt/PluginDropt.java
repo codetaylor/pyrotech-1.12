@@ -126,7 +126,6 @@ public class PluginDropt {
     // - Dirt
     // -------------------------------------------------------------------------
 
-    // Dirt
     // Not a shovel
     // Drops dirt clumps
     list.add(rule()
@@ -134,7 +133,6 @@ public class PluginDropt {
             dirtAny
         })
         .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
             .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
         )
         .addDrops(new IDroptDropBuilder[]{
@@ -142,7 +140,6 @@ public class PluginDropt {
         })
     );
 
-    // Dirt
     // Shovel 0
     // Drops dirt clumps
     list.add(rule()
@@ -160,7 +157,6 @@ public class PluginDropt {
         })
     );
 
-    // Dirt
     // Shovel 1
     // Drops dirt clumps
     list.add(rule()
@@ -180,7 +176,6 @@ public class PluginDropt {
     // - Grass
     // -------------------------------------------------------------------------
 
-    // Grass
     // Not a shovel
     // Drops dirt clumps
     list.add(rule()
@@ -188,7 +183,6 @@ public class PluginDropt {
             grass
         })
         .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
             .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
         )
         .addDrops(new IDroptDropBuilder[]{
@@ -196,7 +190,6 @@ public class PluginDropt {
         })
     );
 
-    // Grass
     // Shovel 0
     // Drops dirt clumps and grass clumps
     list.add(rule()
@@ -215,7 +208,6 @@ public class PluginDropt {
         })
     );
 
-    // Grass
     // Shovel 1
     // Drops dirt clumps and grass clumps
     list.add(rule()
@@ -234,7 +226,6 @@ public class PluginDropt {
         })
     );
 
-    // Grass
     // Shovel Any
     // Adds grass clumps to drops
     list.add(rule()
@@ -256,14 +247,12 @@ public class PluginDropt {
     // - Sand
     // -------------------------------------------------------------------------
 
-    // Sand
     // Not a shovel
     list.add(rule()
         .matchBlocks(new String[]{
             sand
         })
         .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
             .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
         )
         .addDrops(new IDroptDropBuilder[]{
@@ -271,7 +260,6 @@ public class PluginDropt {
         })
     );
 
-    // Sand
     // Shovel 0
     list.add(rule()
         .matchBlocks(new String[]{
@@ -286,7 +274,6 @@ public class PluginDropt {
         })
     );
 
-    // Sand
     // Shovel 1
     list.add(rule()
         .matchBlocks(new String[]{
@@ -305,14 +292,12 @@ public class PluginDropt {
     // - Gravel
     // -------------------------------------------------------------------------
 
-    // Gravel
     // Not a shovel
     list.add(rule()
         .matchBlocks(new String[]{
             gravel
         })
         .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
             .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
         )
         .addDrops(new IDroptDropBuilder[]{
@@ -323,7 +308,6 @@ public class PluginDropt {
         })
     );
 
-    // Gravel
     // Shovel 0
     list.add(rule()
         .matchBlocks(new String[]{
@@ -342,7 +326,6 @@ public class PluginDropt {
         })
     );
 
-    // Gravel
     // Shovel 1
     list.add(rule()
         .matchBlocks(new String[]{
@@ -372,7 +355,6 @@ public class PluginDropt {
             clay
         })
         .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
             .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
         )
         .addDrops(new IDroptDropBuilder[]{
@@ -418,6 +400,22 @@ public class PluginDropt {
     // - Coal
     // -------------------------------------------------------------------------
 
+    // Non-Player
+    list.add(rule()
+        .matchBlocks(new String[]{
+            coalOre
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.NON_PLAYER)
+        )
+        .dropCount(range(2))
+        .dropStrategy(EnumDropStrategy.UNIQUE)
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
+            drop().items(new String[]{coalPieces}, range(1, 2)).selector(weight(1))
+        })
+    );
+
     // Crude Pickaxe
     list.add(rule()
         .matchBlocks(new String[]{
@@ -458,6 +456,20 @@ public class PluginDropt {
     // -------------------------------------------------------------------------
     // - Fossil Ore
     // -------------------------------------------------------------------------
+
+    // Non-Player
+    list.add(rule()
+        .matchBlocks(new String[]{
+            fossilOre
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.NON_PLAYER)
+        )
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
+            drop().items(new String[]{boneShard}, range(1, 2)).selector(weight(1))
+        })
+    );
 
     // Crude Pickaxe
     // Drops rocks
@@ -608,6 +620,19 @@ public class PluginDropt {
   }
 
   private void addRockDrops(String matchBlock, String rock, @Nullable String replaceBlock, List<IDroptRuleBuilder> list) {
+
+    // Non-Player
+    list.add(rule()
+        .matchBlocks(new String[]{
+            matchBlock
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.NON_PLAYER)
+        )
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{rock}, range(2, 4))
+        })
+    );
 
     // Crude Pickaxe
     // Drops rocks
