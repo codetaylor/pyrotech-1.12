@@ -1,7 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -87,22 +89,26 @@ public class WorktableRecipe
 
   public static boolean hasBlacklist() {
 
-    return !BLACKLIST.isEmpty();
+    return !BLACKLIST.isEmpty()
+        && ModulePyrotechConfig.WORKTABLE_COMMON.RECIPE_BLACKLIST.length > 0;
   }
 
   public static boolean hasWhitelist() {
 
-    return !WHITELIST.isEmpty();
+    return !WHITELIST.isEmpty()
+        && ModulePyrotechConfig.WORKTABLE_COMMON.RECIPE_WHITELIST.length > 0;
   }
 
   public static boolean isBlacklisted(ResourceLocation resourceLocation) {
 
-    return BLACKLIST.contains(resourceLocation);
+    return BLACKLIST.contains(resourceLocation)
+        || ArrayHelper.contains(ModulePyrotechConfig.WORKTABLE_COMMON.RECIPE_BLACKLIST, resourceLocation.toString());
   }
 
   public static boolean isWhitelisted(ResourceLocation resourceLocation) {
 
-    return WHITELIST.contains(resourceLocation);
+    return WHITELIST.contains(resourceLocation)
+        || ArrayHelper.contains(ModulePyrotechConfig.WORKTABLE_COMMON.RECIPE_WHITELIST, resourceLocation.toString());
   }
 
   private final IRecipe recipe;

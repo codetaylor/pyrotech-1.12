@@ -291,6 +291,30 @@ public class ModulePyrotechConfig {
         ModulePyrotech.MOD_ID + ":" + ItemIronHammer.NAME,
         ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME
     };
+
+    @Config.Comment({
+        "Any recipe that you can complete in a vanilla crafting table can also",
+        "be completed in this mod's worktables.",
+        "",
+        "If this list is not empty, only the recipes listed here will be allowed.",
+        "",
+        "The whitelist takes priority over the blacklist.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] RECIPE_WHITELIST = new String[0];
+
+    @Config.Comment({
+        "Any recipe that you can complete in a vanilla crafting table can also",
+        "be completed in this mod's worktables.",
+        "",
+        "If this list is not empty, recipes listed here will be disallowed.",
+        "",
+        "The whitelist takes priority over the blacklist.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] RECIPE_BLACKLIST = new String[0];
   }
 
   // ---------------------------------------------------------------------------
