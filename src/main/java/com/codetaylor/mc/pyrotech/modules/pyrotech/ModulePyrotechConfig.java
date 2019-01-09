@@ -463,6 +463,25 @@ public class ModulePyrotechConfig {
         "String format is a resource location: (domain):(path)"
     })
     public String JEI_DISPLAY_SHOVEL = "minecraft:stone_shovel";
+
+    @Config.Comment({
+        "The number of uses required per harvest level of the tool used.",
+        "The index into the array is the harvest level, the value at that index",
+        "is the required number of uses. The array can be expanded as needed.",
+        "If the harvest level of the tool used exceeds the array length, the",
+        "last element in the array is used.",
+        "",
+        "ie. {wood, stone, iron, diamond}",
+        "Valid values are in the range: [1,+int]",
+        "Default: {4, 3, 2, 1}"
+    })
+    public int[] TOOL_USES_REQUIRED_PER_HARVEST_LEVEL = new int[]{4, 3, 2, 1};
+
+    @Config.Comment({
+        "The amount of damage applied to the tool when a craft completes.",
+        "Default: " + 1
+    })
+    public int TOOL_DAMAGE_PER_CRAFT = 1;
   }
 
   // ---------------------------------------------------------------------------
@@ -552,7 +571,7 @@ public class ModulePyrotechConfig {
         "",
         "ie. {wood, stone, iron, diamond}",
         "Valid values are in the range: [1,+int]",
-        "Default: {6, 4, 2, 1}"
+        "Default: {6, 4, 2, 2}"
     })
     public int[] CHOPS_REQUIRED_PER_HARVEST_LEVEL = new int[]{6, 4, 2, 2};
 

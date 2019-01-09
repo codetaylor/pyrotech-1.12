@@ -51,7 +51,6 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   ) {
 
     super(sides, bounds);
-
     this.stackHandlers = stackHandlers;
     this.slot = slot;
     this.transform = transform;
@@ -151,6 +150,16 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
       return false;
     }
 
+    // TODO: Rethink cache invalidation
+    // 2019-01-09
+    // There is currently no way to invalidate this cache when the
+    // underlying handler changes on the client. When the interaction is run
+    // on the client, no changes to the stack handler are actually made. They
+    // instead ride in over the network, therefore, any cache invalidation
+    // that we do inside the interact method occurs before stacks are changed.
+    // Item stack validation that relies on interrogating the state of the
+    // stacks is then incorrect on the client.
+    /*
     if (this.lastItemChecked == null
         || this.lastItemChecked.getItem() != itemStack.getItem()
         || this.lastItemChecked.getMetadata() != itemStack.getMetadata()) {
@@ -161,6 +170,9 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
     }
 
     return this.lastItemValid;
+    */
+
+    return this.doItemStackValidation(itemStack);
   }
 
   /**

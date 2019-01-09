@@ -61,10 +61,8 @@ public class BlockCompactingBin
       TileEntity tileEntity = world.getTileEntity(pos);
 
       if (tileEntity instanceof TileCompactingBin) {
-        ItemStackHandler handler = ((TileCompactingBin) tileEntity).getOutputStackHandler();
+        ItemStackHandler handler = ((TileCompactingBin) tileEntity).getInputStackHandler();
         StackHelper.spawnStackHandlerSlotContentsOnTop(world, handler, 0, pos);
-        ItemStackHandler storedInputHandler = ((TileCompactingBin) tileEntity).getStoredInputStackHandler();
-        StackHelper.spawnStackHandlerContentsOnTop(world, storedInputHandler, pos);
       }
     }
 

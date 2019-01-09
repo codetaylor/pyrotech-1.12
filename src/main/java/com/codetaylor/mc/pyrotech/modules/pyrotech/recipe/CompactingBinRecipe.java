@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -34,16 +35,24 @@ public class CompactingBinRecipe
   private final Ingredient input;
   private final ItemStack output;
   private final int amount;
+  private final int[] requiredToolUses;
+
+  public CompactingBinRecipe(ItemStack output, Ingredient input, int amount) {
+
+    this(output, input, amount, ModulePyrotechConfig.COMPACTING_BIN.TOOL_USES_REQUIRED_PER_HARVEST_LEVEL);
+  }
 
   public CompactingBinRecipe(
       ItemStack output,
       Ingredient input,
-      int amount
+      int amount,
+      int[] requiredToolUses
   ) {
 
     this.input = input;
     this.output = output;
     this.amount = amount;
+    this.requiredToolUses = requiredToolUses;
   }
 
   public Ingredient getInput() {
@@ -59,6 +68,11 @@ public class CompactingBinRecipe
   public int getAmount() {
 
     return this.amount;
+  }
+
+  public int[] getRequiredToolUses() {
+
+    return this.requiredToolUses;
   }
 
   public boolean matches(ItemStack input) {

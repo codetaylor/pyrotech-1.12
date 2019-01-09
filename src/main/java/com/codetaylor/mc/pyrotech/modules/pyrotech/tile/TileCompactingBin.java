@@ -1,10 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
-import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
@@ -12,7 +10,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.CompactingBinOutputInteractionRenderer;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.CompactingBinInteractionInputRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
@@ -22,6 +20,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUs
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -42,10 +41,9 @@ public class TileCompactingBin
     implements ITileInteractable {
 
   private InputStackHandler inputStackHandler;
-  private StoredInputStackHandler storedInputStackHandler;
-  private OutputStackHandler outputStackHandler;
   private TileDataFloat recipeProgress;
-
+  private TileDataItemStackHandler tileDataInputStackHandler;
+  private CompactingBinRecipe currentRecipe;
   private IInteraction[] interactions;
 
   public TileCompactingBin() {
@@ -55,71 +53,89 @@ public class TileCompactingBin
     this.inputStackHandler = new InputStackHandler(this);
     this.inputStackHandler.addObserver((handler, slot) -> {
       this.recipeProgress.set(0);
+      this.updateRecipe();
       this.markDirty();
     });
-
-    this.storedInputStackHandler = new StoredInputStackHandler();
-    this.storedInputStackHandler.addObserver((handler, slot) -> this.markDirty());
-
-    this.outputStackHandler = new OutputStackHandler();
-    this.outputStackHandler.addObserver((handler, slot) -> this.markDirty());
 
     this.recipeProgress = new TileDataFloat(0);
 
     // --- Network ---
 
+    this.tileDataInputStackHandler = new TileDataItemStackHandler<>(this.inputStackHandler);
+
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataLargeItemStackHandler<>(this.outputStackHandler),
-        new TileDataItemStackHandler<>(this.storedInputStackHandler),
+        this.tileDataInputStackHandler,
         this.recipeProgress
     });
 
     // --- Interactions ---
 
     this.interactions = new IInteraction[]{
-        new Interaction(new ItemStackHandler[]{this.inputStackHandler}),
-        new InteractionShovel(),
-        new InteractionOutput(this, this.outputStackHandler)
+        new InteractionInput(this, this.inputStackHandler),
+        new InteractionShovel()
     };
   }
 
-  @Override
-  public boolean shouldRefresh(
-      World world,
-      BlockPos pos,
-      @Nonnull IBlockState oldState,
-      @Nonnull IBlockState newState
-  ) {
+  // ---------------------------------------------------------------------------
+  // - Network
+  // ---------------------------------------------------------------------------
 
-    if (oldState.getBlock() == newState.getBlock()) {
+  @Override
+  public void onTileDataUpdate() {
+
+    if (this.tileDataInputStackHandler.isDirty()) {
+      this.updateRecipe();
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Recipe
+  // ---------------------------------------------------------------------------
+
+  private void updateRecipe() {
+
+    ItemStack itemStack = this.inputStackHandler.getFirstNonEmptyItemStack();
+
+    if (!itemStack.isEmpty()) {
+      this.currentRecipe = CompactingBinRecipe.getRecipe(itemStack);
+
+    } else {
+      this.currentRecipe = null;
+    }
+  }
+
+  private boolean isItemValidForInsertion(ItemStack itemStack) {
+
+    CompactingBinRecipe recipe = CompactingBinRecipe.getRecipe(itemStack);
+
+    if (recipe == null) {
       return false;
     }
 
-    return super.shouldRefresh(world, pos, oldState, newState);
+    if (this.currentRecipe == null) {
+      return true;
+    }
+
+    return (recipe == this.currentRecipe);
   }
 
   // ---------------------------------------------------------------------------
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  private void setRecipeProgress(float recipeProgress) {
-
-    this.recipeProgress.set(recipeProgress);
-  }
-
   public float getRecipeProgress() {
 
     return this.recipeProgress.get();
   }
 
-  public ItemStackHandler getStoredInputStackHandler() {
+  public InputStackHandler getInputStackHandler() {
 
-    return this.storedInputStackHandler;
+    return this.inputStackHandler;
   }
 
-  public ItemStackHandler getOutputStackHandler() {
+  public CompactingBinRecipe getCurrentRecipe() {
 
-    return this.outputStackHandler;
+    return this.currentRecipe;
   }
 
   // ---------------------------------------------------------------------------
@@ -131,8 +147,7 @@ public class TileCompactingBin
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    compound.setTag("outputStackHandler", this.outputStackHandler.serializeNBT());
-    compound.setTag("storedInputStackHandler", this.storedInputStackHandler.serializeNBT());
+    compound.setTag("inputStackHandler", this.inputStackHandler.serializeNBT());
     compound.setFloat("recipeProgress", this.recipeProgress.get());
     return compound;
   }
@@ -141,9 +156,9 @@ public class TileCompactingBin
   public void readFromNBT(NBTTagCompound compound) {
 
     super.readFromNBT(compound);
-    this.outputStackHandler.deserializeNBT(compound.getCompoundTag("outputStackHandler"));
-    this.storedInputStackHandler.deserializeNBT(compound.getCompoundTag("storedInputStackHandler"));
+    this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
     this.recipeProgress.set(compound.getFloat("recipeProgress"));
+    this.updateRecipe();
   }
 
   // ---------------------------------------------------------------------------
@@ -166,22 +181,30 @@ public class TileCompactingBin
     return this.interactions;
   }
 
-  private class Interaction
+  public static class InteractionInput
       extends InteractionItemStack<TileCompactingBin> {
 
-    /* package */ Interaction(ItemStackHandler[] stackHandlers) {
+    private final TileCompactingBin tile;
 
-      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.BLOCK, new Transform(
+    /* package */ InteractionInput(TileCompactingBin tile, ItemStackHandler stackHandler) {
+
+      super(new ItemStackHandler[]{stackHandler}, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.BLOCK, new Transform(
           Transform.translate(0.5, 1.0, 0.5),
           Transform.rotate(),
           Transform.scale(0.75, 0.75, 0.75)
       ));
+      this.tile = tile;
+    }
+
+    public TileCompactingBin getTile() {
+
+      return this.tile;
     }
 
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (CompactingBinRecipe.getRecipe(itemStack) != null);
+      return this.tile.isItemValidForInsertion(itemStack);
     }
 
     @Override
@@ -202,6 +225,24 @@ public class TileCompactingBin
         );
       }
     }
+
+    @Override
+    public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
+
+      CompactingBinInteractionInputRenderer.INSTANCE.renderSolidPass(this, world, renderItem, pos, blockState, partialTicks);
+    }
+
+    @Override
+    public void renderSolidPassText(World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
+
+      CompactingBinInteractionInputRenderer.INSTANCE.renderSolidPassText(this, world, fontRenderer, yaw, offset, pos, blockState, partialTicks);
+    }
+
+    @Override
+    public boolean renderAdditivePass(World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+
+      return CompactingBinInteractionInputRenderer.INSTANCE.renderAdditivePass(this, world, renderItem, hitSide, hitVec, hitPos, blockState, heldItemMainHand, partialTicks);
+    }
   }
 
   private class InteractionShovel
@@ -215,7 +256,8 @@ public class TileCompactingBin
     @Override
     protected boolean allowInteraction(TileCompactingBin tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      if (tile.getOutputStackHandler().getStackInSlot(0).isEmpty()) {
+      if (tile.currentRecipe == null
+          || tile.currentRecipe.getAmount() > tile.getInputStackHandler().getTotalItemCount()) {
         return false;
       }
 
@@ -243,71 +285,25 @@ public class TileCompactingBin
       ItemStack heldItem = player.getHeldItemMainhand();
 
       if (!world.isRemote) {
-        ItemStackHandler outputStackHandler = tile.getOutputStackHandler();
-        ItemStack itemStack = outputStackHandler.extractItem(0, 1, false);
-        StackHelper.spawnStackOnTop(world, itemStack, hitPos, 1.0);
-        heldItem.damageItem(1, player);
-        world.playSound(null, hitPos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1, 1);
+
+        int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "shovel", player, null);
+        int[] requiredToolUses = tile.currentRecipe.getRequiredToolUses();
+        tile.recipeProgress.add(1f / ArrayHelper.getOrLast(requiredToolUses, harvestLevel));
+
+        if (tile.recipeProgress.get() > 0.9999) {
+          // recipe complete
+          StackHelper.spawnStackOnTop(world, tile.currentRecipe.getOutput(), hitPos, 1.0);
+          world.playSound(null, hitPos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1, 1);
+
+          // reduce input items
+          tile.getInputStackHandler().removeItems(tile.currentRecipe.getAmount());
+
+          // damage tool
+          heldItem.damageItem(ModulePyrotechConfig.COMPACTING_BIN.TOOL_DAMAGE_PER_CRAFT, player);
+        }
       }
 
       return true;
-    }
-  }
-
-  public class InteractionOutput
-      extends InteractionItemStack<TileCompactingBin> {
-
-    private final TileCompactingBin tile;
-
-    public InteractionOutput(
-        TileCompactingBin tile,
-        ItemStackHandler stackHandler
-    ) {
-
-      super(
-          new ItemStackHandler[]{stackHandler},
-          0,
-          new EnumFacing[0],
-          InteractionBounds.BLOCK,
-          new Transform(
-              Transform.translate(0.5, 0.5, 0.5),
-              Transform.rotate(),
-              Transform.scale(12.0 / 16.0, 1.0 / 16.0, 12.0 / 16.0)
-          )
-      );
-      this.tile = tile;
-    }
-
-    public TileCompactingBin getTile() {
-
-      return this.tile;
-    }
-
-    @Override
-    public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack, float partialTicks) {
-
-      Transform transform = super.getTransform(world, pos, blockState, itemStack, partialTicks);
-      float maxOutputStacks = ModulePyrotechConfig.COMPACTING_BIN.MAX_CAPACITY;
-      float count = this.tile.getOutputStackHandler().getStackInSlot(0).getCount();
-      float totalProgress = (count + this.tile.getRecipeProgress()) / maxOutputStacks;
-
-      return new Transform(
-          Transform.translate(0.5, totalProgress * (14.0 / 16.0) + (1.0 / 16.0), 0.5),
-          transform.rotation,
-          transform.scale
-      );
-    }
-
-    @Override
-    public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
-
-      CompactingBinOutputInteractionRenderer.INSTANCE.renderSolidPass(this, world, renderItem, pos, blockState, partialTicks);
-    }
-
-    @Override
-    public boolean renderAdditivePass(World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
-
-      return false;
     }
   }
 
@@ -316,8 +312,7 @@ public class TileCompactingBin
   // ---------------------------------------------------------------------------
 
   public class InputStackHandler
-      extends ObservableStackHandler
-      implements ITileDataItemStackHandler {
+      extends DynamicStackHandler {
 
     private final TileCompactingBin tile;
 
@@ -327,91 +322,112 @@ public class TileCompactingBin
       this.tile = tile;
     }
 
-    @Override
-    public int getSlotLimit(int slot) {
+    public int getTotalItemCount() {
 
-      return 1;
+      int result = 0;
+
+      for (int i = 0; i < this.getSlots(); i++) {
+        ItemStack stackInSlot = this.getStackInSlot(i);
+
+        if (!stackInSlot.isEmpty()) {
+          result += stackInSlot.getCount();
+        }
+      }
+
+      return result;
+    }
+
+    public ItemStack getFirstNonEmptyItemStack() {
+
+      for (int i = 0; i < this.getSlots(); i++) {
+        ItemStack stackInSlot = this.getStackInSlot(0);
+
+        if (!stackInSlot.isEmpty()) {
+          return stackInSlot;
+        }
+      }
+      return ItemStack.EMPTY;
     }
 
     @Nonnull
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
-      // The output stack handler has two slots:
-      // 0 - actual output
-      // 1 - buffered, next output
+      if (!this.tile.isItemValidForInsertion(stack)) {
+        return stack; // item is not valid for insertion, fail
+      }
 
       CompactingBinRecipe recipe = CompactingBinRecipe.getRecipe(stack);
 
       if (recipe == null) {
+        // This should never happen because the item's recipe is checked above.
         return stack; // item has no recipe, fail
       }
 
-      ItemStack output = recipe.getOutput();
-      ItemStackHandler outputStackHandler = this.tile.getOutputStackHandler();
-      int inserted = 0;
+      int max = ModulePyrotechConfig.COMPACTING_BIN.MAX_CAPACITY * recipe.getAmount();
+      int currentTotal = this.tile.getInputStackHandler().getTotalItemCount();
 
-      for (int i = 0; i < stack.getCount(); i++) {
+      if (currentTotal == max) {
+        return stack; // There's no room for insert, fail
 
-        if ((!outputStackHandler.getStackInSlot(0).isEmpty() && !outputStackHandler.insertItem(0, output, true).isEmpty())
-            || (!outputStackHandler.getStackInSlot(1).isEmpty() && !outputStackHandler.insertItem(1, output, true).isEmpty())) {
-          break; // recipe result cannot be stacked in output, fail
-        }
+      } else if (currentTotal + stack.getCount() <= max) {
+        // There's enough room for all items in the stack
+        this.insertItem(stack, simulate);
+        return ItemStack.EMPTY;
 
-        if (!simulate) {
-          this.tile.recipeProgress.add(1f / (float) recipe.getAmount());
-          inserted += 1;
+      } else {
+        // Trim the input stack down to size and insert
+        ItemStack toInsert = stack.copy();
+        int insertCount = max - currentTotal;
+        toInsert.setCount(insertCount);
+        this.insertItem(toInsert, simulate);
+        ItemStack toReturn = stack.copy();
+        toReturn.setCount(toReturn.getCount() - insertCount);
+        return toReturn;
+      }
+    }
 
-          ItemStack toStore = stack.copy();
-          toStore.setCount(1);
-          this.tile.storedInputStackHandler.insertItem(toStore, false);
+    public int removeItems(int amount) {
 
-          if (outputStackHandler.getStackInSlot(1).isEmpty()) {
-            outputStackHandler.insertItem(1, output.copy(), false);
-          }
+      int remaining = amount;
 
-          if (this.tile.recipeProgress.get() >= 0.9999
-              && !outputStackHandler.getStackInSlot(1).isEmpty()) {
-            this.tile.recipeProgress.set(0);
-            this.tile.storedInputStackHandler.clearStacks();
-            outputStackHandler.extractItem(1, outputStackHandler.getSlotLimit(1), false);
-            outputStackHandler.insertItem(0, output.copy(), false);
+      for (int i = this.getSlots() - 1; i >= 0; i--) {
+
+        if (!this.getStackInSlot(i).isEmpty()) {
+          remaining -= super.extractItem(i, remaining, false).getCount();
+
+          if (remaining == 0) {
+            return amount;
           }
         }
       }
 
-      if (inserted > 0) {
-        return StackHelper.decrease(stack, inserted, false);
-      }
-
-      return stack;
-    }
-  }
-
-  private class OutputStackHandler
-      extends LargeObservableStackHandler
-      implements ITileDataItemStackHandler {
-
-    /* package */ OutputStackHandler() {
-
-      super(2);
+      return amount - remaining;
     }
 
+    @Nonnull
     @Override
-    public int getSlotLimit(int slot) {
+    public ItemStack extractItem(int slot, int amount, boolean simulate) {
 
-      return ModulePyrotechConfig.COMPACTING_BIN.MAX_CAPACITY;
+      for (int i = this.getSlots() - 1; i >= 0; i--) {
+
+        if (!this.getStackInSlot(i).isEmpty()) {
+          return super.extractItem(i, amount, simulate);
+        }
+      }
+
+      return ItemStack.EMPTY;
     }
   }
 
-  private class StoredInputStackHandler
+  private class DynamicStackHandler
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    public StoredInputStackHandler() {
+    public DynamicStackHandler(int initialSize) {
 
       super(1);
-      this.stacks = new ItemStackList(1);
+      this.stacks = new ItemStackList(initialSize);
     }
 
     @Override
@@ -458,12 +474,13 @@ public class TileCompactingBin
       int i = 0;
 
       while (!remaining.isEmpty()) {
-        remaining = this.insertItem(i, remaining, simulate);
-        i += 1;
 
-        if (remaining.isEmpty()) {
-          break;
+        while (this.getSlots() - 1 < i) {
+          this.stacks.add(ItemStack.EMPTY);
         }
+
+        remaining = super.insertItem(i, remaining, simulate);
+        i += 1;
       }
     }
 

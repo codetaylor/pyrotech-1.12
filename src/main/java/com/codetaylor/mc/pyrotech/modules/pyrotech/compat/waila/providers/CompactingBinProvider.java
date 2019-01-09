@@ -2,12 +2,12 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCompactingBin;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -34,40 +34,37 @@ public class CompactingBinProvider
 
       TileCompactingBin tile;
       tile = (TileCompactingBin) tileEntity;
+      CompactingBinRecipe currentRecipe = tile.getCurrentRecipe();
+
+      if (currentRecipe == null) {
+        return tooltip;
+      }
 
       float progress = tile.getRecipeProgress();
-      ItemStackHandler outputStackHandler = tile.getOutputStackHandler();
-      ItemStackHandler storedInputStackHandler = tile.getStoredInputStackHandler();
-      ItemStack output = outputStackHandler.getStackInSlot(0);
-      ItemStack pendingOutput = outputStackHandler.getStackInSlot(1);
+      TileCompactingBin.InputStackHandler inputStackHandler = tile.getInputStackHandler();
+      int totalItemCount = tile.getInputStackHandler().getTotalItemCount();
+      int completeRecipeCount = totalItemCount / currentRecipe.getAmount();
 
-      if (!storedInputStackHandler.getStackInSlot(0).isEmpty()) {
+      if (totalItemCount > 0) {
         StringBuilder renderString = new StringBuilder();
 
-        for (int i = 0; i < storedInputStackHandler.getSlots(); i++) {
-          ItemStack stackInSlot = storedInputStackHandler.getStackInSlot(i);
+        for (int i = 0; i < inputStackHandler.getSlots(); i++) {
+          ItemStack stackInSlot = inputStackHandler.getStackInSlot(i);
 
           if (!stackInSlot.isEmpty()) {
             renderString.append(WailaUtil.getStackRenderString(stackInSlot));
           }
         }
 
-        renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
-
-        if (output.isEmpty()) {
-          renderString.append(WailaUtil.getStackRenderString(pendingOutput));
-
-        } else {
+        if (completeRecipeCount > 0) {
+          renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
+          ItemStack output = currentRecipe.getOutput();
+          output.setCount(completeRecipeCount);
           renderString.append(WailaUtil.getStackRenderString(output));
         }
 
         tooltip.add(renderString.toString());
       }
-
-      if (!output.isEmpty()) {
-        tooltip.add(WailaUtil.getStackRenderString(output));
-      }
-
     }
 
     return tooltip;

@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
 import crafttweaker.IAction;
@@ -25,11 +26,24 @@ public class ZenCompactingBin {
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int amount) {
 
+    ZenCompactingBin.addRecipe(
+        name,
+        output,
+        input,
+        amount,
+        ModulePyrotechConfig.COMPACTING_BIN.TOOL_USES_REQUIRED_PER_HARVEST_LEVEL
+    );
+  }
+
+  @ZenMethod
+  public static void addRecipe(String name, IItemStack output, IIngredient input, int amount, int[] toolUsesRequired) {
+
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
         name,
         CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getIngredient(input),
-        amount
+        amount,
+        toolUsesRequired
     ));
   }
 
@@ -59,22 +73,25 @@ public class ZenCompactingBin {
   public static class AddRecipe
       implements IAction {
 
-    private final ItemStack output;
-    private final int amount;
     private final String name;
+    private final ItemStack output;
     private final Ingredient input;
+    private final int amount;
+    private final int[] uses;
 
     public AddRecipe(
         String name,
         ItemStack output,
         Ingredient input,
-        int amount
+        int amount,
+        int[] uses
     ) {
 
       this.name = name;
       this.input = input;
       this.output = output;
       this.amount = amount;
+      this.uses = uses;
     }
 
     @Override
@@ -83,7 +100,8 @@ public class ZenCompactingBin {
       CompactingBinRecipe recipe = new CompactingBinRecipe(
           this.output,
           this.input,
-          this.amount
+          this.amount,
+          this.uses
       );
       ModulePyrotechRegistries.COMPACTING_BIN_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
