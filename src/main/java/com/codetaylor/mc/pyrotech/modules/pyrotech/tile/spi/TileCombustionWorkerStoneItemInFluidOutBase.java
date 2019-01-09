@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
+import com.codetaylor.mc.athenaeum.util.FluidHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
@@ -115,6 +116,16 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Ston
         StackHelper.decreaseStackInSlot(inputStackHandler, 0, 1, false);
         FluidStack recipeOutput = this.getRecipeOutput(recipe, input);
         this.outputFluidTank.fill(recipeOutput, true);
+      }
+
+      FluidStack fluid = this.outputFluidTank.getFluid();
+
+      if (fluid != null) {
+        FluidHelper.playFluidFillSoundServer(
+            fluid.getFluid(),
+            this.world,
+            this.pos
+        );
       }
     }
   }
