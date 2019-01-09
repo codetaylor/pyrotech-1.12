@@ -11,8 +11,8 @@
       "ore": "plankWood"
     },
     "-": {
-      "item": "pyrotech:material",
-      "data": 20
+      "type": "forge:ore_dict",
+      "ore": "slabWood"
     }
   },
   "result": {
