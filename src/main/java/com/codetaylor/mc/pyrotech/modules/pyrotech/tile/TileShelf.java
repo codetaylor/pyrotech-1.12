@@ -1,25 +1,26 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
-import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
-import org.lwjgl.util.vector.Quaternion;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class TileShelf
     extends TileNetBase
     implements ITileInteractable {
 
-  private ShelfStackHandler shelfStackHandler;
+  private StackHandler stackHandler;
 
   private IInteraction[] interactions;
 
@@ -39,13 +40,13 @@ public class TileShelf
 
     // --- Initialize ---
 
-    this.shelfStackHandler = new ShelfStackHandler();
-    this.shelfStackHandler.addObserver((handler, slot) -> this.markDirty());
+    this.stackHandler = new StackHandler(this.getMaxStacks());
+    this.stackHandler.addObserver((handler, slot) -> this.markDirty());
 
     // --- Network ---
 
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataItemStackHandler<>(this.shelfStackHandler)
+        new TileDataLargeItemStackHandler<>(this.stackHandler)
     });
 
     // --- Interactions ---
@@ -57,10 +58,19 @@ public class TileShelf
     for (int i = 0; i < 9; i++) {
       int x = i % 3;
       int y = i / 3;
-      interactionList.add(new ShelfInteraction(this.shelfStackHandler, i, x, y));
+      interactionList.add(new ShelfInteraction(this.stackHandler, i, x, y));
     }
 
     this.interactions = interactionList.toArray(new IInteraction[0]);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Accessors
+  // ---------------------------------------------------------------------------
+
+  protected int getMaxStacks() {
+
+    return ModulePyrotechConfig.SHELF.MAX_STACKS;
   }
 
   // ---------------------------------------------------------------------------
@@ -69,7 +79,7 @@ public class TileShelf
 
   public void dropContents() {
 
-    StackHelper.spawnStackHandlerContentsOnTop(this.world, this.shelfStackHandler, this.pos);
+    StackHelper.spawnStackHandlerContentsOnTop(this.world, this.stackHandler, this.pos);
   }
 
   // ---------------------------------------------------------------------------
@@ -81,7 +91,7 @@ public class TileShelf
 
     super.readFromNBT(compound);
 
-    this.shelfStackHandler.deserializeNBT(compound.getCompoundTag("shelfStackHandler"));
+    this.stackHandler.deserializeNBT(compound.getCompoundTag("shelfStackHandler"));
   }
 
   @Nonnull
@@ -90,7 +100,7 @@ public class TileShelf
 
     super.writeToNBT(compound);
 
-    compound.setTag("shelfStackHandler", this.shelfStackHandler.serializeNBT());
+    compound.setTag("shelfStackHandler", this.stackHandler.serializeNBT());
 
     return compound;
   }
@@ -143,13 +153,22 @@ public class TileShelf
   // - Stack Handler
   // ---------------------------------------------------------------------------
 
-  private class ShelfStackHandler
-      extends ObservableStackHandler
+  private class StackHandler
+      extends LargeObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    /* package */ ShelfStackHandler() {
+    private final int maxStacks;
+
+    /* package */ StackHandler(int maxStacks) {
 
       super(9);
+      this.maxStacks = maxStacks;
+    }
+
+    @Override
+    protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
+
+      return stack.getMaxStackSize() * this.maxStacks;
     }
   }
 

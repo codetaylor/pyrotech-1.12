@@ -1,0 +1,63 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "bottom": "pyrotech:blocks/crate_stone_bottom",
+    "side_handle": "pyrotech:blocks/crate_stone_side_handle",
+    "top": "pyrotech:blocks/crate_stone_top",
+    "particle": "pyrotech:blocks/crate_stone_bottom"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 1, 16],
+      "faces": {
+        "north": {"uv": [0, 15, 16, 16], "texture": "#side_handle"},
+        "east": {"uv": [0, 15, 16, 16], "texture": "#side_handle"},
+        "south": {"uv": [0, 15, 16, 16], "texture": "#side_handle"},
+        "west": {"uv": [0, 15, 16, 16], "texture": "#side_handle"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#top"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#bottom"}
+      }
+    },
+    {
+      "from": [0, 1, 0],
+      "to": [1, 6, 16],
+      "faces": {
+        "north": {"uv": [15, 10, 16, 15], "texture": "#side_handle"},
+        "east": {"uv": [0, 10, 16, 15], "texture": "#side_handle"},
+        "south": {"uv": [0, 10, 1, 15], "texture": "#side_handle"},
+        "west": {"uv": [0, 10, 16, 15], "texture": "#side_handle"},
+        "up": {"uv": [0, 0, 16, 1], "rotation": 90, "texture": "#bottom"}
+      }
+    },
+    {
+      "from": [15, 1, 0],
+      "to": [16, 6, 16],
+      "faces": {
+        "north": {"uv": [0, 10, 1, 15], "texture": "#side_handle"},
+        "east": {"uv": [0, 10, 16, 15], "texture": "#side_handle"},
+        "south": {"uv": [0, 10, 1, 15], "texture": "#side_handle"},
+        "west": {"uv": [0, 10, 16, 15], "texture": "#side_handle"},
+        "up": {"uv": [0, 0, 16, 1], "rotation": 90, "texture": "#bottom"}
+      }
+    },
+    {
+      "from": [1, 1, 0],
+      "to": [15, 6, 1],
+      "faces": {
+        "north": {"uv": [1, 10, 15, 15], "texture": "#side_handle"},
+        "south": {"uv": [1, 10, 15, 15], "texture": "#side_handle"},
+        "up": {"uv": [1, 0, 15, 1], "texture": "#bottom"}
+      }
+    },
+    {
+      "from": [1, 1, 15],
+      "to": [15, 6, 16],
+      "faces": {
+        "north": {"uv": [1, 10, 15, 15], "texture": "#side_handle"},
+        "south": {"uv": [1, 10, 15, 15], "texture": "#side_handle"},
+        "up": {"uv": [1, 0, 15, 1], "texture": "#bottom"}
+      }
+    }
+  ]
+}

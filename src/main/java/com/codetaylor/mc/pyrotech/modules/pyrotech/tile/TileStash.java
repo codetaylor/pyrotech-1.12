@@ -33,7 +33,7 @@ public class TileStash
     extends TileNetBase
     implements ITileInteractable {
 
-  private InputStackHandler stackHandler;
+  private StackHandler stackHandler;
 
   private IInteraction[] interactions;
   private AxisAlignedBB renderBounds;
@@ -42,7 +42,7 @@ public class TileStash
 
     super(ModulePyrotech.TILE_DATA_SERVICE);
 
-    this.stackHandler = new InputStackHandler();
+    this.stackHandler = new StackHandler(this.getMaxStacks());
     this.stackHandler.addObserver((handler, slot) -> this.markDirty());
 
     // --- Network ---
@@ -80,6 +80,11 @@ public class TileStash
   public ItemStackHandler getStackHandler() {
 
     return this.stackHandler;
+  }
+
+  protected int getMaxStacks() {
+
+    return ModulePyrotechConfig.STASH.MAX_STACKS;
   }
 
   // ---------------------------------------------------------------------------
@@ -188,19 +193,22 @@ public class TileStash
   // - Stack Handlers
   // ---------------------------------------------------------------------------
 
-  private class InputStackHandler
+  private class StackHandler
       extends LargeObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    /* protected */ InputStackHandler() {
+    private final int maxStacks;
+
+    /* protected */ StackHandler(int maxStacks) {
 
       super(1);
+      this.maxStacks = maxStacks;
     }
 
     @Override
     protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
 
-      return stack.getMaxStackSize() * ModulePyrotechConfig.STASH.MAX_STACKS;
+      return stack.getMaxStackSize() * this.maxStacks;
     }
   }
 

@@ -1,18 +1,20 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
-import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -28,7 +30,7 @@ public class TileCrate
     extends TileNetBase
     implements ITileInteractable {
 
-  private ShelfStackHandler stackHandler;
+  private StackHandler stackHandler;
 
   private IInteraction[] interactions;
 
@@ -38,13 +40,13 @@ public class TileCrate
 
     // --- Initialize ---
 
-    this.stackHandler = new ShelfStackHandler();
+    this.stackHandler = new StackHandler(this.getMaxStacks());
     this.stackHandler.addObserver((handler, slot) -> this.markDirty());
 
     // --- Network ---
 
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataItemStackHandler<>(this.stackHandler)
+        new TileDataLargeItemStackHandler<>(this.stackHandler)
     });
 
     // --- Interactions ---
@@ -56,10 +58,19 @@ public class TileCrate
     for (int i = 0; i < 9; i++) {
       int x = i % 3;
       int z = i / 3;
-      interactionList.add(new ShelfInteraction(this.stackHandler, i, x, z));
+      interactionList.add(new Interaction(this.stackHandler, i, x, z));
     }
 
     this.interactions = interactionList.toArray(new IInteraction[0]);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Accessors
+  // ---------------------------------------------------------------------------
+
+  protected int getMaxStacks() {
+
+    return ModulePyrotechConfig.CRATE.MAX_STACKS;
   }
 
   // ---------------------------------------------------------------------------
@@ -116,13 +127,13 @@ public class TileCrate
     return this.interactions;
   }
 
-  private class ShelfInteraction
+  private class Interaction
       extends InteractionItemStack<TileCrate> {
 
     private static final double ONE_THIRD = 1.0 / 3.0;
     private static final double ONE_SIXTH = 1.0 / 6.0;
 
-    /* package */ ShelfInteraction(ItemStackHandler stackHandler, int slot, double x, int z) {
+    /* package */ Interaction(ItemStackHandler stackHandler, int slot, double x, int z) {
 
       super(
           new ItemStackHandler[]{stackHandler},
@@ -130,7 +141,8 @@ public class TileCrate
           new EnumFacing[]{EnumFacing.UP},
           new AxisAlignedBB(
               x * ONE_THIRD, 13f / 16f, z * ONE_THIRD,
-              x * ONE_THIRD + ONE_THIRD, 14f / 16f, z * ONE_THIRD + ONE_THIRD),
+              x * ONE_THIRD + ONE_THIRD, 14f / 16f, z * ONE_THIRD + ONE_THIRD
+          ),
           new Transform(
               Transform.translate(x * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025, 15f / 16f, z * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025),
               Transform.rotate(),
@@ -144,13 +156,22 @@ public class TileCrate
   // - Stack Handler
   // ---------------------------------------------------------------------------
 
-  private class ShelfStackHandler
-      extends ObservableStackHandler
+  private class StackHandler
+      extends LargeObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    /* package */ ShelfStackHandler() {
+    private final int maxStackSize;
+
+    /* package */ StackHandler(int maxStackSize) {
 
       super(9);
+      this.maxStackSize = maxStackSize;
+    }
+
+    @Override
+    protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
+
+      return stack.getMaxStackSize() * this.maxStackSize;
     }
   }
 

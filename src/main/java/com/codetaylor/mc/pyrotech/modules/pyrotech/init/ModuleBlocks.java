@@ -51,8 +51,11 @@ public final class ModuleBlocks {
   public static final BlockWorktableStone WORKTABLE_STONE = new BlockWorktableStone();
   public static final BlockTorchFiber TORCH_FIBER = new BlockTorchFiber();
   public static final BlockShelf SHELF = new BlockShelf();
+  public static final BlockShelfStone SHELF_STONE = new BlockShelfStone();
   public static final BlockStash STASH = new BlockStash();
+  public static final BlockStashStone STASH_STONE = new BlockStashStone();
   public static final BlockCrate CRATE = new BlockCrate();
+  public static final BlockCrateStone CRATE_STONE = new BlockCrateStone();
   public static final BlockFarmlandMulched FARMLAND_MULCHED = new BlockFarmlandMulched();
   public static final BlockCompactingBin COMPACTING_BIN = new BlockCompactingBin();
 
@@ -88,8 +91,11 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.WORKTABLE_STONE, BlockWorktableStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.TORCH_FIBER, BlockTorchFiber.NAME);
     registry.registerBlockWithItem(ModuleBlocks.SHELF, BlockShelf.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.SHELF_STONE, BlockShelfStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.STASH, BlockStash.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.STASH_STONE, BlockStashStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.CRATE, BlockCrate.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.CRATE_STONE, BlockCrateStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.FARMLAND_MULCHED, BlockFarmlandMulched.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COMPACTING_BIN, BlockCompactingBin.NAME);
 
@@ -118,8 +124,11 @@ public final class ModuleBlocks {
         TileWorktableStone.class,
         TileTorch.class,
         TileShelf.class,
+        TileShelfStone.class,
         TileStash.class,
+        TileStashStone.class,
         TileCrate.class,
+        TileCrateStone.class,
         TileFarmlandMulched.class,
         TileCompactingBin.class
     );
@@ -148,8 +157,11 @@ public final class ModuleBlocks {
           ModuleBlocks.WORKTABLE_STONE,
           ModuleBlocks.TORCH_FIBER,
           ModuleBlocks.SHELF,
+          ModuleBlocks.SHELF_STONE,
           ModuleBlocks.STASH,
+          ModuleBlocks.STASH_STONE,
           ModuleBlocks.CRATE,
+          ModuleBlocks.CRATE_STONE,
           ModuleBlocks.FARMLAND_MULCHED,
           ModuleBlocks.COMPACTING_BIN
       );
