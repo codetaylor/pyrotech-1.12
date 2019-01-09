@@ -465,6 +465,22 @@ public class ModulePyrotechConfig {
     public String JEI_DISPLAY_SHOVEL = "minecraft:stone_shovel";
 
     @Config.Comment({
+        "The item displayed to represent each harvest level in JEI.",
+        "The index into the array is the harvest level, the value at that index",
+        "is the displayed item. The array can be expanded as needed.",
+        "If the harvest level of the tool used exceeds the array length, the",
+        "last element in the array is used.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] JEI_HARVEST_LEVEL_ITEM = new String[]{
+        "pyrotech:crude_shovel",
+        "minecraft:stone_shovel",
+        "minecraft:iron_shovel",
+        "minecraft:diamond_shovel"
+    };
+
+    @Config.Comment({
         "The number of uses required per harvest level of the tool used.",
         "The index into the array is the harvest level, the value at that index",
         "is the required number of uses. The array can be expanded as needed.",

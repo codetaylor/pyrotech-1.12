@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper;
 
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
@@ -27,12 +28,14 @@ public class JEIRecipeWrapperCompactingBin
   private final List<List<ItemStack>> inputs;
   private final ItemStack output;
   private final String amount;
+  private final int[] uses;
 
   public JEIRecipeWrapperCompactingBin(CompactingBinRecipe recipe) {
 
     this.inputs = Collections.singletonList(Arrays.asList(recipe.getInput().getMatchingStacks()));
     this.output = recipe.getOutput();
-    this.amount = "x" + String.valueOf(recipe.getAmount());
+    this.amount = String.valueOf(recipe.getAmount());
+    this.uses = recipe.getRequiredToolUses();
 
     // Ensure that the inputs never render a quantity.
     for (List<ItemStack> inputList : this.inputs) {
@@ -53,7 +56,10 @@ public class JEIRecipeWrapperCompactingBin
   @Override
   public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
-    String locationString = ModulePyrotechConfig.COMPACTING_BIN.JEI_DISPLAY_SHOVEL;
+    int levels = this.uses.length;
+    int index = (int) ((minecraft.world.getTotalWorldTime() / 40) % levels);
+    int uses = ArrayHelper.getOrLast(this.uses, index);
+    String locationString = ArrayHelper.getOrLast(ModulePyrotechConfig.COMPACTING_BIN.JEI_HARVEST_LEVEL_ITEM, index);
     Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(locationString));
 
     if (item != null) {
@@ -65,7 +71,7 @@ public class JEIRecipeWrapperCompactingBin
 
       GlStateManager.pushMatrix();
       {
-        int stage = (int) ((minecraft.world.getTotalWorldTime() % 40) / 20);
+        int stage = (int) (1 - (minecraft.world.getTotalWorldTime() % 40) / 20);
         GlStateManager.translate(70, 6 + (stage * 4), 100);
         GlStateManager.rotate(-90 + (stage * -90), 0, 0, 1);
         GlStateManager.scale(16.0F, -16.0F, 16.0F);
@@ -77,8 +83,18 @@ public class JEIRecipeWrapperCompactingBin
     }
 
     GlStateManager.pushMatrix();
-    GlStateManager.translate(0, 0, 250);
-    minecraft.fontRenderer.drawString(this.amount, 0, 8, 0xFFFFFFFF, true);
+    {
+      GlStateManager.translate(0, 0, 250);
+      {
+        int stringWidth = minecraft.fontRenderer.getStringWidth(this.amount);
+        minecraft.fontRenderer.drawString(this.amount, 18 - stringWidth, 31, 0xFFFFFFFF, true);
+      }
+      {
+        String usesString = "x" + uses;
+        int stringWidth = minecraft.fontRenderer.getStringWidth(usesString);
+        minecraft.fontRenderer.drawString(usesString, 58 - stringWidth, 4, 0xFFFFFFFF, true);
+      }
+    }
     GlStateManager.popMatrix();
 
   }
