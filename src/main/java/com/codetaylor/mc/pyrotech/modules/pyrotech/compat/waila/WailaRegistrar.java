@@ -65,6 +65,9 @@ public class WailaRegistrar {
 
     CompactingBinProvider compactingBinProvider = new CompactingBinProvider();
     registrar.registerBodyProvider(compactingBinProvider, TileCompactingBin.class);
+
+    SoakingPotProvider soakingPotProvider = new SoakingPotProvider();
+    registrar.registerBodyProvider(soakingPotProvider, TileSoakingPot.class);
   }
 
 }

@@ -58,6 +58,7 @@ public final class ModuleBlocks {
   public static final BlockCrateStone CRATE_STONE = new BlockCrateStone();
   public static final BlockFarmlandMulched FARMLAND_MULCHED = new BlockFarmlandMulched();
   public static final BlockCompactingBin COMPACTING_BIN = new BlockCompactingBin();
+  public static final BlockSoakingPot SOAKING_POT = new BlockSoakingPot();
 
   public static void onRegister(Registry registry) {
 
@@ -98,6 +99,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.CRATE_STONE, BlockCrateStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.FARMLAND_MULCHED, BlockFarmlandMulched.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COMPACTING_BIN, BlockCompactingBin.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.SOAKING_POT, BlockSoakingPot.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
@@ -130,7 +132,8 @@ public final class ModuleBlocks {
         TileCrate.class,
         TileCrateStone.class,
         TileFarmlandMulched.class,
-        TileCompactingBin.class
+        TileCompactingBin.class,
+        TileSoakingPot.class
     );
   }
 
@@ -163,7 +166,8 @@ public final class ModuleBlocks {
           ModuleBlocks.CRATE,
           ModuleBlocks.CRATE_STONE,
           ModuleBlocks.FARMLAND_MULCHED,
-          ModuleBlocks.COMPACTING_BIN
+          ModuleBlocks.COMPACTING_BIN,
+          ModuleBlocks.SOAKING_POT
       );
 
       // Refractory Door
@@ -256,7 +260,7 @@ public final class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileStash.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCrate.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCompactingBin.class, new TESRInteractable<>());
-
+      ClientRegistry.bindTileEntitySpecialRenderer(TileSoakingPot.class, new TESRInteractable<>());
     });
   }
 

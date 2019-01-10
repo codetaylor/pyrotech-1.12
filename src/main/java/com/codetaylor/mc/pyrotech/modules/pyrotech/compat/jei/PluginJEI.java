@@ -63,7 +63,8 @@ public class PluginJEI
         new JEIRecipeCategoryCampfire(guiHelper),
         new JEIRecipeCategoryOvenStone(guiHelper),
         new JEIRecipeCategoryWorktable(guiHelper),
-        new JEIRecipeCategoryCrucibleStone(guiHelper)
+        new JEIRecipeCategoryCrucibleStone(guiHelper),
+        new JEIRecipeCategorySoakingPot(guiHelper)
     );
   }
 
@@ -201,6 +202,14 @@ public class PluginJEI
       registry.addRecipes(furnaceRecipes, JEIRecipeCategoryUid.CAMPFIRE);
       List<CampfireRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.CAMPFIRE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.CAMPFIRE);
+    }
+
+    // --- Soaking Pot
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.SOAKING_POT), JEIRecipeCategoryUid.SOAKING_POT);
+      registry.handleRecipes(SoakingPotRecipe.class, JEIRecipeWrapperSoakingPot::new, JEIRecipeCategoryUid.SOAKING_POT);
+      List<SoakingPotRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.SOAKING_POT_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.SOAKING_POT);
     }
 
     // --- Stone Crucible

@@ -18,6 +18,7 @@ public class JEIRecipeCategoryUid {
   public static final String STONE_OVEN = ModulePyrotech.MOD_ID + ".stone.oven";
   public static final String WORKTABLE = ModulePyrotech.MOD_ID + ".worktable";
   public static final String STONE_CRUCIBLE = ModulePyrotech.MOD_ID + ".stone.crucible";
+  public static final String SOAKING_POT = ModulePyrotech.MOD_ID + ".soaking.pot";
 
   private JEIRecipeCategoryUid() {
     //

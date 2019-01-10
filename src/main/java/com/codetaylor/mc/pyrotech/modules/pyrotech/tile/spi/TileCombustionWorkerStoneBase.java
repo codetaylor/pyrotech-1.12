@@ -121,6 +121,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     this.remainingRecipeTimeTicks.set(value);
 
+    // TODO: Pretty sure this isn't necessary anymore.
     if (this.remainingRecipeTimeTicks.isDirty()) {
       this.markDirty();
     }

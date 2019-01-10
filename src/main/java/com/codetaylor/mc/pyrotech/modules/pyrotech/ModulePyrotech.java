@@ -70,7 +70,8 @@ public class ModulePyrotech
         "ZenCompactingBin",
         "ZenCampfire",
         "ZenOvenStone",
-        "ZenWorktable"
+        "ZenWorktable",
+        "ZenSoakingPot"
     };
 
     for (String plugin : craftTweakerPlugins) {
@@ -171,6 +172,12 @@ public class ModulePyrotech
         .setType(WorktableRecipe.class)
         .allowModification()
         .create();
+
+    new RegistryBuilder<SoakingPotRecipe>()
+        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "soaking_pot_recipe"))
+        .setType(SoakingPotRecipe.class)
+        .allowModification()
+        .create();
   }
 
   @Override
@@ -210,6 +217,7 @@ public class ModulePyrotech
     StoneSawmillRecipesAdd.apply(ModulePyrotechRegistries.MILL_STONE_RECIPE);
     StoneCrucibleRecipesAdd.apply(ModulePyrotechRegistries.CRUCIBLE_STONE_RECIPE);
     CompactingBinRecipesAdd.apply(ModulePyrotechRegistries.COMPACTING_BIN_RECIPE);
+    SoakingPotRecipesAdd.apply(ModulePyrotechRegistries.SOAKING_POT_RECIPE);
   }
 
   @Override
