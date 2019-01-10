@@ -277,6 +277,12 @@ public class TileWorktable
     }
 
     @Override
+    protected void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
+
+      // We apply our own item damage on recipe completion.
+    }
+
+    @Override
     protected boolean doInteraction(TileWorktable tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       ItemStack heldItem = player.getHeldItemMainhand();
