@@ -334,7 +334,7 @@ public class TileGraniteAnvil
                 player.posX,
                 player.posY,
                 player.posZ,
-                SoundEvents.BLOCK_WOOD_BREAK,
+                SoundEvents.BLOCK_STONE_BREAK,
                 SoundCategory.BLOCKS,
                 1,
                 (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
