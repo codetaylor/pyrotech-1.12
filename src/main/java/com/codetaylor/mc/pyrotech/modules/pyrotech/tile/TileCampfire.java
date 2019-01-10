@@ -716,6 +716,17 @@ public class TileCampfire
 
       return 1;
     }
+
+    @Nonnull
+    @Override
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+
+      if (!TileCampfire.this.outputStackHandler.getStackInSlot(0).isEmpty()) {
+        return stack;
+      }
+
+      return super.insertItem(slot, stack, simulate);
+    }
   }
 
   private class OutputStackHandler
