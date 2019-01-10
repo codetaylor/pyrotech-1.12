@@ -265,7 +265,7 @@ public class TileGraniteAnvil
         // held item is pickaxe
         return (recipe.getType() == GraniteAnvilRecipe.EnumType.PICKAXE);
 
-      } else if (ArrayHelper.contains(ModulePyrotechConfig.GRANITE_ANVIL.HAMMER_LIST, resourceLocation.toString())) {
+      } else if (ModulePyrotechConfig.GRANITE_ANVIL.getHammerHitReduction(resourceLocation) > -1) {
         // held item is hammer
         return (recipe.getType() == GraniteAnvilRecipe.EnumType.HAMMER);
       }
@@ -322,7 +322,19 @@ public class TileGraniteAnvil
         if (recipe != null) {
 
           if (tile.getRecipeProgress() < 1) {
-            tile.setRecipeProgress(tile.getRecipeProgress() + 1f / recipe.getHits());
+            ItemStack heldItemMainHand = player.getHeldItemMainhand();
+            Item item = heldItemMainHand.getItem();
+            int hitReduction;
+
+            if (item.getToolClasses(heldItemMainHand).contains("pickaxe")) {
+              hitReduction = item.getHarvestLevel(heldItemMainHand, "pickaxe", player, null);
+
+            } else {
+              hitReduction = ModulePyrotechConfig.GRANITE_ANVIL.getHammerHitReduction(item.getRegistryName());
+            }
+
+            int hits = Math.max(1, recipe.getHits() - hitReduction);
+            tile.setRecipeProgress(tile.getRecipeProgress() + 1f / hits);
           }
 
           if (tile.getRecipeProgress() >= 0.9999) {

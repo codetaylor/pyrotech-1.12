@@ -5,6 +5,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
 import java.util.HashMap;
@@ -519,18 +520,45 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Use this to add items that you want to be valid for hammer recipes.",
+        "The reduction parameter supplied here is used to reduce the number",
+        "of hits required to complete a recipe. The reduction amount is subtracted",
+        "from the recipe's number of hits, if the recipe is configured to allow",
+        "a reduction in hits.",
         "Items you add are assumed to have durability.",
         "",
-        "String format is a resource location: (domain):(path)"
+        "String format is a resource location: (domain):(path);(hit_reduction)"
     })
     public String[] HAMMER_LIST = new String[]{
-        ModulePyrotech.MOD_ID + ":" + ItemCrudeHammer.NAME,
-        ModulePyrotech.MOD_ID + ":" + ItemStoneHammer.NAME,
-        ModulePyrotech.MOD_ID + ":" + ItemBoneHammer.NAME,
-        ModulePyrotech.MOD_ID + ":" + ItemFlintHammer.NAME,
-        ModulePyrotech.MOD_ID + ":" + ItemIronHammer.NAME,
-        ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME
+        ModulePyrotech.MOD_ID + ":" + ItemCrudeHammer.NAME + ";" + 0,
+        ModulePyrotech.MOD_ID + ":" + ItemStoneHammer.NAME + ";" + 1,
+        ModulePyrotech.MOD_ID + ":" + ItemBoneHammer.NAME + ";" + 1,
+        ModulePyrotech.MOD_ID + ":" + ItemFlintHammer.NAME + ";" + 1,
+        ModulePyrotech.MOD_ID + ":" + ItemIronHammer.NAME + ";" + 2,
+        ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME + ";" + 3
     };
+
+    /**
+     * Returns the hammer hit reduction for the given hammer resource location,
+     * or -1 if the given hammer isn't in the list.
+     *
+     * @param resourceLocation the hammer
+     * @return the hammer hit reduction
+     */
+    public int getHammerHitReduction(ResourceLocation resourceLocation) {
+
+      String resourceLocationString = resourceLocation.toString();
+
+      for (String entry : this.HAMMER_LIST) {
+        String[] split = entry.split(";");
+        String toMatch = split[0];
+
+        if (resourceLocationString.equals(toMatch)) {
+          return (split.length > 1) ? Integer.valueOf(split[1]) : 0;
+        }
+      }
+
+      return -1;
+    }
 
     @Config.Comment({
         "Use this to add items that you want to be valid for pickaxe recipes.",
