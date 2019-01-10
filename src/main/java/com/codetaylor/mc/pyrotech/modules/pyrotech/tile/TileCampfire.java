@@ -562,6 +562,7 @@ public class TileCampfire
         return false;
       }
 
+      /*
       if (this.lastItemChecked == null
           || this.lastItemChecked.getItem() != itemStack.getItem()
           || this.lastItemChecked.getMetadata() != itemStack.getMetadata()) {
@@ -572,6 +573,9 @@ public class TileCampfire
       }
 
       return this.lastItemValid;
+      */
+
+      return this.doItemStackValidation(itemStack);
     }
 
     private boolean doItemStackValidation(ItemStack itemStack) {

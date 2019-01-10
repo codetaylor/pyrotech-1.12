@@ -55,6 +55,10 @@ public class CampfireRecipe
         SMELTING_RECIPES.put(key, result);
         return result;
       }
+
+      result = new CampfireRecipe(output, Ingredient.fromStacks(input));
+      SMELTING_RECIPES.put(key, result);
+      return result;
     }
 
     // Finally, check the custom campfire recipes.
