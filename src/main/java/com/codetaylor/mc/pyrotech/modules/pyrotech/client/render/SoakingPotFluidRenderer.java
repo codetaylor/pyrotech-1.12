@@ -24,7 +24,7 @@ public class SoakingPotFluidRenderer
   public static final SoakingPotFluidRenderer INSTANCE = new SoakingPotFluidRenderer();
 
   private static final float PX = 0.0625f;
-  private static final float INSET = 2 * PX;
+  private static final float INSET = 4 * PX;
 
   @Override
   public void renderSolidPass(TileSoakingPot.InteractionInputFluid interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
