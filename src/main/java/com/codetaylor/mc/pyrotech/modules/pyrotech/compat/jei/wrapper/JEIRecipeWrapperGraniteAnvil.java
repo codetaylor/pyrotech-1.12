@@ -69,7 +69,7 @@ public class JEIRecipeWrapperGraniteAnvil
     }
 
     int length = toolWhitelist.length;
-    int index = (int) ((minecraft.world.getTotalWorldTime() / 40) % length);
+    int index = (int) ((minecraft.world.getTotalWorldTime() / 39) % length);
     String locationString = toolWhitelist[index];
     Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(locationString));
 
@@ -82,7 +82,7 @@ public class JEIRecipeWrapperGraniteAnvil
 
       GlStateManager.pushMatrix();
       {
-        int stage = (int) ((minecraft.world.getTotalWorldTime() % 40) / 20);
+        int stage = (int) ((minecraft.world.getTotalWorldTime() % 39) / 20);
         GlStateManager.translate(8, 5 + (stage * 4), 100);
         GlStateManager.rotate(-90 + (stage * -90), 0, 0, 1);
         GlStateManager.scale(16.0F, -16.0F, 16.0F);

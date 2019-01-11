@@ -49,7 +49,7 @@ public class JEIRecipeWrapperChoppingBlock
   public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
     int levels = Math.max(this.chops.length, this.quantities.length);
-    int index = (int) ((minecraft.world.getTotalWorldTime() / 40) % levels);
+    int index = (int) ((minecraft.world.getTotalWorldTime() / 39) % levels);
     int chops = ArrayHelper.getOrLast(this.chops, index);
     int quantity = ArrayHelper.getOrLast(this.quantities, index);
     String locationString = ArrayHelper.getOrLast(ModulePyrotechConfig.CHOPPING_BLOCK.JEI_HARVEST_LEVEL_ITEM, index);
@@ -64,7 +64,7 @@ public class JEIRecipeWrapperChoppingBlock
 
       GlStateManager.pushMatrix();
       {
-        int stage = (int) ((minecraft.world.getTotalWorldTime() % 40) / 20);
+        int stage = (int) ((minecraft.world.getTotalWorldTime() % 39) / 20);
         GlStateManager.translate(8, 5 + (stage * 4), 100);
         GlStateManager.rotate(-90 + (stage * -90), 0, 0, 1);
         GlStateManager.scale(16.0F, -16.0F, 16.0F);

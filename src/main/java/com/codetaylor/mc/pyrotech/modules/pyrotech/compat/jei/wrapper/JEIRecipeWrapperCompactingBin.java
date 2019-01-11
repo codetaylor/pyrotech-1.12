@@ -57,7 +57,7 @@ public class JEIRecipeWrapperCompactingBin
   public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
     int levels = this.uses.length;
-    int index = (int) ((minecraft.world.getTotalWorldTime() / 40) % levels);
+    int index = (int) ((minecraft.world.getTotalWorldTime() / 39) % levels);
     int uses = ArrayHelper.getOrLast(this.uses, index);
     String locationString = ArrayHelper.getOrLast(ModulePyrotechConfig.COMPACTING_BIN.JEI_HARVEST_LEVEL_ITEM, index);
     Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(locationString));
@@ -71,7 +71,7 @@ public class JEIRecipeWrapperCompactingBin
 
       GlStateManager.pushMatrix();
       {
-        int stage = (int) (1 - (minecraft.world.getTotalWorldTime() % 40) / 20);
+        int stage = (int) (1 - (minecraft.world.getTotalWorldTime() % 39) / 20);
         GlStateManager.translate(70, 6 + (stage * 4), 100);
         GlStateManager.rotate(-90 + (stage * -90), 0, 0, 1);
         GlStateManager.scale(16.0F, -16.0F, 16.0F);
