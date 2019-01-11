@@ -459,13 +459,6 @@ public class ModulePyrotechConfig {
     public int MAX_CAPACITY = 4;
 
     @Config.Comment({
-        "The shovel displayed in JEI recipes.",
-        "",
-        "String format is a resource location: (domain):(path)"
-    })
-    public String JEI_DISPLAY_SHOVEL = "minecraft:stone_shovel";
-
-    @Config.Comment({
         "The item displayed to represent each harvest level in JEI.",
         "The index into the array is the harvest level, the value at that index",
         "is the displayed item. The array can be expanded as needed.",
@@ -598,6 +591,22 @@ public class ModulePyrotechConfig {
         "String format is a resource location: (domain):(path)"
     })
     public String[] PICKAXE_BLACKLIST = new String[0];
+
+    @Config.Comment({
+        "The pickaxe displayed to represent each harvest level in JEI.",
+        "The index into the array is the harvest level, the value at that index",
+        "is the displayed item. The array can be expanded as needed.",
+        "If the harvest level of the tool used exceeds the array length, the",
+        "last element in the array is used.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] JEI_HARVEST_LEVEL_PICKAXE = new String[]{
+        "pyrotech:crude_pickaxe",
+        "minecraft:stone_pickaxe",
+        "minecraft:iron_pickaxe",
+        "minecraft:diamond_pickaxe"
+    };
   }
 
   // ---------------------------------------------------------------------------

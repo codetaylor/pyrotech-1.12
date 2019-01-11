@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper;
 
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
@@ -11,7 +12,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -30,20 +30,12 @@ public class JEIRecipeWrapperGraniteAnvil
   private final int hits;
   private final GraniteAnvilRecipe.EnumType type;
 
-  private String[] pickaxeDisplayList;
-
   public JEIRecipeWrapperGraniteAnvil(GraniteAnvilRecipe recipe) {
 
     this.inputs = Collections.singletonList(Arrays.asList(recipe.getInput().getMatchingStacks()));
     this.output = recipe.getOutput();
     this.hits = recipe.getHits();
     this.type = recipe.getType();
-
-    this.pickaxeDisplayList = new String[]{
-        Items.STONE_PICKAXE.getRegistryName().toString(),
-        Items.IRON_PICKAXE.getRegistryName().toString(),
-        Items.DIAMOND_PICKAXE.getRegistryName().toString()
-    };
   }
 
   @Override
@@ -62,7 +54,7 @@ public class JEIRecipeWrapperGraniteAnvil
       toolWhitelist = ModulePyrotechConfig.GRANITE_ANVIL.HAMMER_LIST;
 
     } else if (this.type == GraniteAnvilRecipe.EnumType.PICKAXE) {
-      toolWhitelist = this.pickaxeDisplayList;
+      toolWhitelist = ModulePyrotechConfig.GRANITE_ANVIL.JEI_HARVEST_LEVEL_PICKAXE;
 
     } else {
       throw new RuntimeException("Unknown recipe type: " + this.type);
@@ -70,10 +62,21 @@ public class JEIRecipeWrapperGraniteAnvil
 
     int length = toolWhitelist.length;
     int index = (int) ((minecraft.world.getTotalWorldTime() / 39) % length);
-    String locationString = toolWhitelist[index];
+    String locationString = ArrayHelper.getOrLast(toolWhitelist, index);
     Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(locationString));
+    int hits = this.hits;
 
     if (item != null) {
+
+      if (this.type == GraniteAnvilRecipe.EnumType.HAMMER) {
+        hits -= ModulePyrotechConfig.GRANITE_ANVIL.getHammerHitReduction(item.getRegistryName());
+
+      } else {
+        hits -= item.getHarvestLevel(null, "pickaxe", null, null);
+      }
+
+      hits = Math.max(1, hits);
+
       RenderItem renderItem = minecraft.getRenderItem();
       ItemStack stack = new ItemStack(item);
       IBakedModel model = renderItem.getItemModelWithOverrides(stack, null, null);
@@ -91,12 +94,11 @@ public class JEIRecipeWrapperGraniteAnvil
       GlStateManager.popMatrix();
 
       net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
-
     }
 
     GlStateManager.pushMatrix();
     GlStateManager.translate(0, 0, 250);
-    minecraft.fontRenderer.drawString("x" + this.hits, 18, 2, 0xFFFFFFFF, true);
+    minecraft.fontRenderer.drawString("x" + hits, 18, 2, 0xFFFFFFFF, true);
     GlStateManager.popMatrix();
   }
 }
