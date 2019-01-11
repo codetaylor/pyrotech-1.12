@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.MillStoneRecipe;
@@ -87,6 +88,12 @@ public class StoneSawmillRecipesAdd {
         ItemMaterial.EnumType.BOARD.asStack(),
         new OreIngredient("slabWood")
     );
+
+    // tarred board
+    registerMillStoneRecipe(registry, "board_tarred",
+        ItemMaterial.EnumType.BOARD_TARRED.asStack(),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.PLANKS_TARRED))
+    );
   }
 
   private static void registerMillStoneRecipe(IForgeRegistryModifiable<MillStoneRecipe> registry, String name, ItemStack output, Ingredient input) {
@@ -108,7 +115,10 @@ public class StoneSawmillRecipesAdd {
         output,
         input,
         ModulePyrotechConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 3 * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleItems.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(ModuleItems.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE))
+        Ingredient.fromStacks(
+            new ItemStack(ModuleItems.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
+            new ItemStack(ModuleItems.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
+        )
     ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_1"));
 
     output = output.copy();

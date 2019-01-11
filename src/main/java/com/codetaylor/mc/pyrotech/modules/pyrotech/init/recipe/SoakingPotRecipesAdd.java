@@ -33,6 +33,14 @@ public class SoakingPotRecipesAdd {
         6 * 60 * 20
     ).setRegistryName(ModulePyrotech.MOD_ID, "planks_tarred"));
 
+    // Tarred Board
+    registry.register(new SoakingPotRecipe(
+        ItemMaterial.EnumType.BOARD_TARRED.asStack(),
+        Ingredient.fromStacks(ItemMaterial.EnumType.BOARD.asStack()),
+        new FluidStack(ModuleFluids.WOOD_TAR, 50),
+        (6 * 60 * 20) / 4
+    ).setRegistryName(ModulePyrotech.MOD_ID, "board_tarred"));
+
     // Slaked Lime
     registry.register(new SoakingPotRecipe(
         ItemMaterial.EnumType.SLAKED_LIME.asStack(),
