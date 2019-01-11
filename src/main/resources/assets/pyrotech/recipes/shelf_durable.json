@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SBS",
+    "BFB",
+    "SBS"
+  ],
+  "key": {
+    "F": {
+      "item": "pyrotech:shelf",
+      "data": 0
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 16
+    },
+    "B": {
+      "item": "pyrotech:material",
+      "data": 23
+    }
+  },
+  "result": {
+    "item": "pyrotech:shelf_stone",
+    "count": 1,
+    "data": 0
+  }
+}

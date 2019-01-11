@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SBS",
+    "BTB",
+    "SBS"
+  ],
+  "key": {
+    "T": {
+      "item": "pyrotech:stash",
+      "data": 0
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 16
+    },
+    "B": {
+      "item": "pyrotech:material",
+      "data": 23
+    }
+  },
+  "result": {
+    "item": "pyrotech:stash_stone",
+    "count": 1,
+    "data": 0
+  }
+}
