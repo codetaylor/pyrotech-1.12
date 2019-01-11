@@ -11,7 +11,7 @@ public class WailaUtil {
 
   public static String getProgressRenderString(int progress, int total) {
 
-    return SpecialChars.getRenderString(WAILA_PROGRESS, String.valueOf(progress), String.valueOf(total));
+    return SpecialChars.getRenderString(WAILA_PROGRESS, String.valueOf(WailaUtil.getCorrectDisplayProgress(progress)), String.valueOf(total));
   }
 
   public static String getStackRenderString(ItemStack stack) {
@@ -39,6 +39,11 @@ public class WailaUtil {
     }
 
     return result;
+  }
+
+  public static int getCorrectDisplayProgress(float progress) {
+
+    return (int) (progress * 0.8f);
   }
 
   private WailaUtil() {
