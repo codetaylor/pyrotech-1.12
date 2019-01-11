@@ -21,7 +21,6 @@ import net.minecraftforge.oredict.OreDictionary;
 public final class ModuleItems {
 
   public static final ItemMaterial MATERIAL = new ItemMaterial();
-  public static final Item QUICKLIME = new ItemQuicklime();
   public static final ItemIgniterBase BOW_DRILL = new ItemBowDrill();
   public static final ItemIgniterBase FLINT_AND_TINDER = new ItemFlintAndTinder();
   public static final ItemDoor REFRACTORY_DOOR = new ItemDoor(ModuleBlocks.REFRACTORY_DOOR);
@@ -69,7 +68,6 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.DIAMOND_MILL_BLADE, "mill_blade_diamond");
 
     registry.registerItem(ModuleItems.MATERIAL, ItemMaterial.NAME);
-    registry.registerItem(ModuleItems.QUICKLIME, ItemQuicklime.NAME);
     registry.registerItem(ModuleItems.BOW_DRILL, ItemBowDrill.NAME);
     registry.registerItem(ModuleItems.FLINT_AND_TINDER, ItemFlintAndTinder.NAME);
     registry.registerItem(ModuleItems.REFRACTORY_DOOR, ModuleBlocks.REFRACTORY_DOOR.getRegistryName());
@@ -124,7 +122,6 @@ public final class ModuleItems {
     registry.registerClientModelRegistrationStrategy(() -> {
 
       ModelRegistrationHelper.registerItemModels(
-          ModuleItems.QUICKLIME,
           ModuleItems.BOW_DRILL,
           ModuleItems.FLINT_AND_TINDER,
           ModuleItems.REFRACTORY_DOOR,

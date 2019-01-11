@@ -45,7 +45,7 @@ public class StoneKilnRecipesAdd {
 
     // Quicklime
     registry.register(new KilnStoneRecipe(
-        new ItemStack(ModuleItems.QUICKLIME, 1, 0),
+        ItemMaterial.EnumType.QUICKLIME.asStack(),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
         defaultBurnTimeTicks,
         defaultFailureChance,

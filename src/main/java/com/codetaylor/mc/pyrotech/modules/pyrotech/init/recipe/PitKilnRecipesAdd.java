@@ -32,7 +32,7 @@ public class PitKilnRecipesAdd {
 
     // Quicklime
     registry.register(new KilnPitRecipe(
-        new ItemStack(ModuleItems.QUICKLIME, 1, 0),
+        ItemMaterial.EnumType.QUICKLIME.asStack(),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
         defaultBurnTimeTicks,
         defaultFailureChance,

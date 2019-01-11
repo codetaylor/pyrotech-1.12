@@ -26,7 +26,7 @@ public class SoakingPotRecipesAdd {
     // Slaked Lime
     registry.register(new SoakingPotRecipe(
         ItemMaterial.EnumType.SLAKED_LIME.asStack(),
-        Ingredient.fromStacks(new ItemStack(ModuleItems.QUICKLIME)),
+        Ingredient.fromStacks(ItemMaterial.EnumType.QUICKLIME.asStack()),
         new FluidStack(FluidRegistry.WATER, 125),
         2 * 60 * 20
     ).setRegistryName(ModulePyrotech.MOD_ID, "slaked_lime"));

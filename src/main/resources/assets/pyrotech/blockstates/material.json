@@ -26,7 +26,8 @@
       "diamond_shard": {"textures": {"layer0": "pyrotech:items/diamond_shard"}},
       "iron_shard": {"textures": {"layer0": "pyrotech:items/iron_shard"}},
       "board": {"textures": {"layer0": "pyrotech:items/board"}},
-      "coal_pieces": {"textures": {"layer0": "pyrotech:items/coal_pieces"}}
+      "coal_pieces": {"textures": {"layer0": "pyrotech:items/coal_pieces"}},
+      "quicklime": {"textures": {"layer0": "pyrotech:items/quicklime"}}
     }
   }
 }
