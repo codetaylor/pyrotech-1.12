@@ -1,7 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.SoakingPotRecipe;
 import net.minecraft.init.Blocks;
@@ -9,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class SoakingPotRecipesAdd {
@@ -22,6 +24,14 @@ public class SoakingPotRecipesAdd {
         new FluidStack(FluidRegistry.WATER, 1000),
         1
     ).setRegistryName(ModulePyrotech.MOD_ID, "sponge"));
+
+    // Tarred Planks
+    registry.register(new SoakingPotRecipe(
+        new ItemStack(ModuleBlocks.PLANKS_TARRED),
+        new OreIngredient("plankWood"),
+        new FluidStack(ModuleFluids.WOOD_TAR, 125),
+        6 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "planks_tarred"));
 
     // Slaked Lime
     registry.register(new SoakingPotRecipe(

@@ -59,6 +59,7 @@ public final class ModuleBlocks {
   public static final BlockFarmlandMulched FARMLAND_MULCHED = new BlockFarmlandMulched();
   public static final BlockCompactingBin COMPACTING_BIN = new BlockCompactingBin();
   public static final BlockSoakingPot SOAKING_POT = new BlockSoakingPot();
+  public static final BlockPlanksTarred PLANKS_TARRED = new BlockPlanksTarred();
 
   public static void onRegister(Registry registry) {
 
@@ -100,6 +101,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.FARMLAND_MULCHED, BlockFarmlandMulched.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COMPACTING_BIN, BlockCompactingBin.NAME);
     registry.registerBlockWithItem(ModuleBlocks.SOAKING_POT, BlockSoakingPot.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.PLANKS_TARRED, BlockPlanksTarred.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
@@ -167,7 +169,8 @@ public final class ModuleBlocks {
           ModuleBlocks.CRATE_STONE,
           ModuleBlocks.FARMLAND_MULCHED,
           ModuleBlocks.COMPACTING_BIN,
-          ModuleBlocks.SOAKING_POT
+          ModuleBlocks.SOAKING_POT,
+          ModuleBlocks.PLANKS_TARRED
       );
 
       // Refractory Door

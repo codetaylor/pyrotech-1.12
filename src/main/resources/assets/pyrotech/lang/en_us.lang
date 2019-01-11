@@ -115,6 +115,7 @@ tile.pyrotech.crate_stone.name=Durable Crate
 tile.pyrotech.farmland_mulched.name=Mulched Farmland
 tile.pyrotech.compacting_bin.name=Compacting Bin
 tile.pyrotech.soaking_pot.name=Soaking Pot
+tile.pyrotech.planks_tarred.name=Tarred Planks
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock
