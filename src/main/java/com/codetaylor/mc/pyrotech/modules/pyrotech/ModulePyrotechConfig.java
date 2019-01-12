@@ -1187,9 +1187,9 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "The durability of the bow drill.",
-        "Default: 16"
+        "Default: " + 32
     })
-    public int BOW_DRILL_DURABILITY = 16;
+    public int BOW_DRILL_DURABILITY = 32;
 
     @Config.Comment({
         "Defines how many ticks it takes to start a fire while using the bow drill.",
