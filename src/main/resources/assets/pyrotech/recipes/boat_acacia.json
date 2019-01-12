@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P P",
+    "T-T"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:planks",
+      "data": 4
+    },
+    "T": {
+      "item": "pyrotech:planks_tarred",
+      "data": 0
+    },
+    "-": {
+      "item": "pyrotech:material",
+      "data": 23
+    }
+  },
+  "result": {
+    "item": "minecraft:acacia_boat",
+    "count": 1,
+    "data": 0
+  }
+}

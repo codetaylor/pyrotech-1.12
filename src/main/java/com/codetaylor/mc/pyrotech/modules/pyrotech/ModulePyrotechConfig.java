@@ -72,7 +72,14 @@ public class ModulePyrotechConfig {
         "minecraft:stick",
         "minecraft:clay",
         "minecraft:snow",
-        "minecraft:bone_block"
+        "minecraft:bone_block",
+
+        "minecraft:boat",
+        "minecraft:spruce_boat",
+        "minecraft:birch_boat",
+        "minecraft:jungle_boat",
+        "minecraft:acacia_boat",
+        "minecraft:dark_oak_boat"
     };
   }
 
