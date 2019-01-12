@@ -164,6 +164,21 @@ public class TileWorktable
     return ModulePyrotechConfig.WORKTABLE.HITS_PER_CRAFT;
   }
 
+  protected int getMinimumHungerToUse() {
+
+    return ModulePyrotechConfig.WORKTABLE.MINIMUM_HUNGER_TO_USE;
+  }
+
+  protected double getExhaustionCostPerHit() {
+
+    return ModulePyrotechConfig.WORKTABLE.EXHAUSTION_COST_PER_HIT;
+  }
+
+  protected double getExhaustionCostPerCraftComplete() {
+
+    return ModulePyrotechConfig.WORKTABLE.EXHAUSTION_COST_PER_CRAFT_COMPLETE;
+  }
+
   // ---------------------------------------------------------------------------
   // - Container
   // ---------------------------------------------------------------------------
@@ -265,6 +280,10 @@ public class TileWorktable
     @Override
     protected boolean allowInteraction(TileWorktable tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
+      if (player.getFoodStats().getFoodLevel() < tile.getMinimumHungerToUse()) {
+        return false;
+      }
+
       ItemStack heldItemStack = player.getHeldItem(hand);
       Item item = heldItemStack.getItem();
       ResourceLocation registryName = item.getRegistryName();
@@ -299,6 +318,10 @@ public class TileWorktable
 
         if (recipe != null) {
           tile.recipeProgress.add(1f / tile.getHitsPerCraft());
+
+          if (tile.getExhaustionCostPerHit() > 0) {
+            player.addExhaustion((float) tile.getExhaustionCostPerHit());
+          }
 
           if (tile.recipeProgress.get() >= 0.9999) {
             tile.recipeProgress.set(0);
@@ -346,6 +369,10 @@ public class TileWorktable
                   1.0F,
                   Util.RANDOM.nextFloat() * 0.4F + 0.8F
               );
+            }
+
+            if (tile.getExhaustionCostPerCraftComplete() > 0) {
+              player.addExhaustion((float) tile.getExhaustionCostPerCraftComplete());
             }
           }
         }

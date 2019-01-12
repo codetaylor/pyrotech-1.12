@@ -39,6 +39,21 @@ public class TileWorktableStone
     return ModulePyrotechConfig.STONE_WORKTABLE.HITS_PER_CRAFT;
   }
 
+  protected int getMinimumHungerToUse() {
+
+    return ModulePyrotechConfig.STONE_WORKTABLE.MINIMUM_HUNGER_TO_USE;
+  }
+
+  protected double getExhaustionCostPerHit() {
+
+    return ModulePyrotechConfig.STONE_WORKTABLE.EXHAUSTION_COST_PER_HIT;
+  }
+
+  protected double getExhaustionCostPerCraftComplete() {
+
+    return ModulePyrotechConfig.STONE_WORKTABLE.EXHAUSTION_COST_PER_CRAFT_COMPLETE;
+  }
+
   @Override
   protected int getBlockStateIdForParticles() {
 
