@@ -277,7 +277,7 @@ public final class ModuleBlocks {
     Minecraft minecraft = Minecraft.getMinecraft();
     BlockColors blockColors = minecraft.getBlockColors();
 
-    // Grass Block
+    // Grass Rock
     blockColors.registerBlockColorHandler((state, world, pos, tintIndex) -> {
 
       if (world != null && pos != null) {
