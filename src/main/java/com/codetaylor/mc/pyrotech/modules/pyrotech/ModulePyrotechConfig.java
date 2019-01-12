@@ -957,9 +957,9 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Chance of producing wood chips per second of operation.",
-        "Default: " + 0.8
+        "Default: " + 0.4
     })
-    public double WOOD_CHIPS_CHANCE = 0.8;
+    public double WOOD_CHIPS_CHANCE = 0.4;
   }
 
   // ---------------------------------------------------------------------------
