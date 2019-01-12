@@ -256,6 +256,10 @@ public class TileCompactingBin
     @Override
     protected boolean allowInteraction(TileCompactingBin tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
+      if (player.getFoodStats().getFoodLevel() < ModulePyrotechConfig.COMPACTING_BIN.MINIMUM_HUNGER_TO_USE) {
+        return false;
+      }
+
       if (tile.currentRecipe == null
           || tile.currentRecipe.getAmount() > tile.getInputStackHandler().getTotalItemCount()) {
         return false;
@@ -292,6 +296,10 @@ public class TileCompactingBin
 
       if (!world.isRemote) {
 
+        if (ModulePyrotechConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_HIT > 0) {
+          player.addExhaustion((float) ModulePyrotechConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_HIT);
+        }
+
         int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "shovel", player, null);
         int[] requiredToolUses = tile.currentRecipe.getRequiredToolUses();
         tile.recipeProgress.add(1f / ArrayHelper.getOrLast(requiredToolUses, harvestLevel));
@@ -306,6 +314,10 @@ public class TileCompactingBin
 
           // damage tool
           heldItem.damageItem(ModulePyrotechConfig.COMPACTING_BIN.TOOL_DAMAGE_PER_CRAFT, player);
+
+          if (ModulePyrotechConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_CRAFT_COMPLETE > 0) {
+            player.addExhaustion((float) ModulePyrotechConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_CRAFT_COMPLETE);
+          }
         }
       }
 
