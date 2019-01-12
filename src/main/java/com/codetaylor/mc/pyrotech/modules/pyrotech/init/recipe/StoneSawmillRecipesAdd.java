@@ -184,7 +184,7 @@ public class StoneSawmillRecipesAdd {
         output.copy(),
         input,
         ModulePyrotechConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 2 * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleItems.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+        Ingredient.fromStacks(new ItemStack(ModuleItems.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
         false
     ).setRegistryName(ModulePyrotech.MOD_ID, name + "_diamond"));
   }
