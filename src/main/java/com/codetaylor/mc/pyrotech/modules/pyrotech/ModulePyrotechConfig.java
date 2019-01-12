@@ -530,9 +530,9 @@ public class ModulePyrotechConfig {
         "to the block. The block has a total of four damage stages. This number",
         "represents the number of hits for just one damage stage.",
         "Range: [1, +int]",
-        "Default: " + 32
+        "Default: " + 64
     })
-    public int HITS_PER_DAMAGE = 32;
+    public int HITS_PER_DAMAGE = 64;
 
     @Config.Comment({
         "Use this to add items that you want to be valid for hammer recipes.",
