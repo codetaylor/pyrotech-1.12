@@ -315,7 +315,9 @@ public class ModulePyrotechConfig {
         "",
         "String format is a resource location: (domain):(path)"
     })
-    public String[] RECIPE_BLACKLIST = new String[0];
+    public String[] RECIPE_BLACKLIST = {
+        "minecraft:chest"
+    };
   }
 
   // ---------------------------------------------------------------------------
