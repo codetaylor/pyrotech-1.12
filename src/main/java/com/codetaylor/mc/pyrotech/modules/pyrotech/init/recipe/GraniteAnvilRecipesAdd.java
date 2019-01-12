@@ -127,22 +127,6 @@ public class GraniteAnvilRecipesAdd {
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "purpur_slab"));
 
-    // Flint Shard from Flint
-    registry.register(new GraniteAnvilRecipe(
-        ItemMaterial.EnumType.FLINT_SHARD.asStack(3),
-        Ingredient.fromStacks(new ItemStack(Items.FLINT, 1, 0)),
-        4,
-        GraniteAnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModulePyrotech.MOD_ID, "flint_shard_from_flint"));
-
-    // Bone Shard from Bone
-    registry.register(new GraniteAnvilRecipe(
-        ItemMaterial.EnumType.BONE_SHARD.asStack(3),
-        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
-        4,
-        GraniteAnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModulePyrotech.MOD_ID, "bone_shard_from_bone"));
-
     // Bone Shard from Block
     registry.register(new GraniteAnvilRecipe(
         ItemMaterial.EnumType.BONE_SHARD.asStack(8),
@@ -150,22 +134,6 @@ public class GraniteAnvilRecipesAdd {
         8,
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "bone_shard_from_block"));
-
-    // Charcoal Flakes from Charcoal
-    registry.register(new GraniteAnvilRecipe(
-        ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(8),
-        Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 1)),
-        4,
-        GraniteAnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal_flakes"));
-
-    // Coal Pieces from Coal
-    registry.register(new GraniteAnvilRecipe(
-        ItemMaterial.EnumType.COAL_PIECES.asStack(8),
-        Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 0)),
-        4,
-        GraniteAnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_pieces"));
 
     // Iron Shard from Iron Ingot
     registry.register(new GraniteAnvilRecipe(
@@ -183,7 +151,55 @@ public class GraniteAnvilRecipesAdd {
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "diamond_shard"));
 
+    // Coal block to coal
+    registry.register(new GraniteAnvilRecipe(
+        new ItemStack(Items.COAL, 9),
+        Ingredient.fromStacks(new ItemStack(Blocks.COAL_BLOCK)),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_block_to_coal"));
+
+    // Coal coke block to coal coke
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.COAL_COKE.asStack(9),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COAL_COKE_BLOCK)),
+        8,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_coke_block_to_coal_coke"));
+
     // --- Hammer Recipes ------------------------------------------------------
+
+    // Flint Shard from Flint
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.FLINT_SHARD.asStack(3),
+        Ingredient.fromStacks(new ItemStack(Items.FLINT, 1, 0)),
+        4,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "flint_shard_from_flint"));
+
+    // Bone Shard from Bone
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.BONE_SHARD.asStack(3),
+        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
+        4,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "bone_shard_from_bone"));
+
+    // Charcoal Flakes from Charcoal
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(8),
+        Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 1)),
+        4,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal_flakes"));
+
+    // Coal Pieces from Coal
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.COAL_PIECES.asStack(8),
+        Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 0)),
+        4,
+        GraniteAnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_pieces"));
 
     // Bone Meal from Bone Shard
     registry.register(new GraniteAnvilRecipe(
@@ -288,22 +304,5 @@ public class GraniteAnvilRecipesAdd {
         8,
         GraniteAnvilRecipe.EnumType.HAMMER
     ).setRegistryName(ModulePyrotech.MOD_ID, "cobbled_limestone_to_rocks"));
-
-    // Coal block to coal
-    registry.register(new GraniteAnvilRecipe(
-        new ItemStack(Items.COAL, 9),
-        Ingredient.fromStacks(new ItemStack(Blocks.COAL_BLOCK)),
-        8,
-        GraniteAnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_block_to_coal"));
-
-    // Coal coke block to coal coke
-    registry.register(new GraniteAnvilRecipe(
-        ItemMaterial.EnumType.COAL_COKE.asStack(9),
-        Ingredient.fromStacks(new ItemStack(ModuleBlocks.COAL_COKE_BLOCK)),
-        8,
-        GraniteAnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_coke_block_to_coal_coke"));
-
   }
 }
