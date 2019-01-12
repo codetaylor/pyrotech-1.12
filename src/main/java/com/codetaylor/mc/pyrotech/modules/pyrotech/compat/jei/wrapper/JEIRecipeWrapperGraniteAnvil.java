@@ -62,7 +62,7 @@ public class JEIRecipeWrapperGraniteAnvil
 
     int length = toolWhitelist.length;
     int index = (int) ((minecraft.world.getTotalWorldTime() / 39) % length);
-    String locationString = ArrayHelper.getOrLast(toolWhitelist, index);
+    String locationString = ArrayHelper.getOrLast(toolWhitelist, index).split(";")[0];
     Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(locationString));
     int hits = this.hits;
 

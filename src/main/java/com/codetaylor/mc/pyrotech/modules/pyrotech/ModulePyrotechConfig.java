@@ -610,8 +610,7 @@ public class ModulePyrotechConfig {
         "Use this to add items that you want to be valid for hammer recipes.",
         "The reduction parameter supplied here is used to reduce the number",
         "of hits required to complete a recipe. The reduction amount is subtracted",
-        "from the recipe's number of hits, if the recipe is configured to allow",
-        "a reduction in hits.",
+        "from the recipe's number of hits.",
         "Items you add are assumed to have durability.",
         "",
         "String format is a resource location: (domain):(path);(hit_reduction)"
