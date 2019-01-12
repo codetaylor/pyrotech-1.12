@@ -10,8 +10,8 @@
       "data": 13
     },
     {
-      "item": "pyrotech:material",
-      "data": 14
+      "type": "forge:ore_dict",
+      "ore": "twine"
     }
   ],
   "result": {
