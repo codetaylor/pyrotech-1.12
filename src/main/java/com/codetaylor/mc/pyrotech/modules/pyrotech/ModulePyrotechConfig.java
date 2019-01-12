@@ -695,6 +695,34 @@ public class ModulePyrotechConfig {
         "Default: " + 16
     })
     public int CHOPS_PER_DAMAGE = 16;
+
+    @Config.Comment({
+        "How much exhaustion to apply per axe chop.",
+        "Range: [0, 40]",
+        "Default: " + 0.5
+    })
+    public double EXHAUSTION_COST_PER_AXE_CHOP = 0.5;
+
+    @Config.Comment({
+        "How much exhaustion to apply per shovel scoop.",
+        "Range: [0, 40]",
+        "Default: " + 0.5
+    })
+    public double EXHAUSTION_COST_PER_SHOVEL_SCOOP = 0.5;
+
+    @Config.Comment({
+        "How much exhaustion to apply per completed craft.",
+        "Range: [0, 40]",
+        "Default: " + 0
+    })
+    public double EXHAUSTION_COST_PER_CRAFT_COMPLETE = 0;
+
+    @Config.Comment({
+        "Minimum amount of hunger the player needs to chop.",
+        "Range: [0, 20]",
+        "Default: 3"
+    })
+    public int MINIMUM_HUNGER_TO_CHOP = 3;
   }
 
   // ---------------------------------------------------------------------------

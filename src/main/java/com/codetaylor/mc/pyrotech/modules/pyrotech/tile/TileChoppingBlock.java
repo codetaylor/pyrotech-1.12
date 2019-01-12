@@ -273,6 +273,10 @@ public class TileChoppingBlock
         StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta()), hitPos, 0);
         heldItem.damageItem(1, player);
         world.playSound(null, hitPos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
+
+        if (ModulePyrotechConfig.CHOPPING_BLOCK.EXHAUSTION_COST_PER_SHOVEL_SCOOP > 0) {
+          player.addExhaustion((float) ModulePyrotechConfig.CHOPPING_BLOCK.EXHAUSTION_COST_PER_SHOVEL_SCOOP);
+        }
       }
 
       return true;
@@ -289,6 +293,10 @@ public class TileChoppingBlock
 
     @Override
     protected boolean allowInteraction(TileChoppingBlock tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      if (player.getFoodStats().getFoodLevel() < ModulePyrotechConfig.CHOPPING_BLOCK.MINIMUM_HUNGER_TO_CHOP) {
+        return false;
+      }
 
       ItemStack heldItemStack = player.getHeldItem(hand);
       Item heldItem = heldItemStack.getItem();
@@ -315,6 +323,10 @@ public class TileChoppingBlock
       if (!world.isRemote) {
 
         // Server logic
+
+        if (ModulePyrotechConfig.CHOPPING_BLOCK.EXHAUSTION_COST_PER_AXE_CHOP > 0) {
+          player.addExhaustion((float) ModulePyrotechConfig.CHOPPING_BLOCK.EXHAUSTION_COST_PER_AXE_CHOP);
+        }
 
         // Decrement the chopping block's damage and reset the chops
         // remaining until next damage. If the damage reaches the threshold,
@@ -428,6 +440,10 @@ public class TileChoppingBlock
                 1,
                 (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
             );
+
+            if (ModulePyrotechConfig.CHOPPING_BLOCK.EXHAUSTION_COST_PER_CRAFT_COMPLETE > 0) {
+              player.addExhaustion((float) ModulePyrotechConfig.CHOPPING_BLOCK.EXHAUSTION_COST_PER_CRAFT_COMPLETE);
+            }
 
             tile.markDirty();
             BlockHelper.notifyBlockUpdate(world, tile.getPos());
