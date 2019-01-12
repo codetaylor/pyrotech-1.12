@@ -294,7 +294,7 @@ public class TileChoppingBlock
     @Override
     protected boolean allowInteraction(TileChoppingBlock tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      if (player.getFoodStats().getFoodLevel() < ModulePyrotechConfig.CHOPPING_BLOCK.MINIMUM_HUNGER_TO_CHOP) {
+      if (player.getFoodStats().getFoodLevel() < ModulePyrotechConfig.CHOPPING_BLOCK.MINIMUM_HUNGER_TO_USE) {
         return false;
       }
 

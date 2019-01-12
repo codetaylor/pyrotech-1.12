@@ -70,7 +70,7 @@ public class TileGraniteAnvil
 
     this.interactions = new IInteraction[]{
         new Interaction(new ItemStackHandler[]{this.stackHandler}),
-        new InteractionChop()
+        new InteractionHit()
     };
     this.durabilityUntilNextDamage = ModulePyrotechConfig.GRANITE_ANVIL.HITS_PER_DAMAGE;
   }
@@ -227,16 +227,20 @@ public class TileGraniteAnvil
     }
   }
 
-  private class InteractionChop
+  private class InteractionHit
       extends InteractionUseItemBase<TileGraniteAnvil> {
 
-    /* package */ InteractionChop() {
+    /* package */ InteractionHit() {
 
       super(new EnumFacing[]{EnumFacing.UP}, BlockGraniteAnvil.AABB);
     }
 
     @Override
     protected boolean allowInteraction(TileGraniteAnvil tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      if (player.getFoodStats().getFoodLevel() < ModulePyrotechConfig.GRANITE_ANVIL.MINIMUM_HUNGER_TO_USE) {
+        return false;
+      }
 
       ItemStack heldItemStack = player.getHeldItem(hand);
       Item heldItem = heldItemStack.getItem();
@@ -279,6 +283,10 @@ public class TileGraniteAnvil
       if (!world.isRemote) {
 
         // Server logic
+
+        if (ModulePyrotechConfig.GRANITE_ANVIL.EXHAUSTION_COST_PER_HIT > 0) {
+          player.addExhaustion((float) ModulePyrotechConfig.GRANITE_ANVIL.EXHAUSTION_COST_PER_HIT);
+        }
 
         // Decrement the tile's damage and reset the hits
         // remaining until next damage. If the damage reaches the threshold,
@@ -351,6 +359,10 @@ public class TileGraniteAnvil
                 1,
                 (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
             );
+
+            if (ModulePyrotechConfig.GRANITE_ANVIL.EXHAUSTION_COST_PER_CRAFT_COMPLETE > 0) {
+              player.addExhaustion((float) ModulePyrotechConfig.GRANITE_ANVIL.EXHAUSTION_COST_PER_CRAFT_COMPLETE);
+            }
 
             tile.markDirty();
             BlockHelper.notifyBlockUpdate(world, tile.getPos());
