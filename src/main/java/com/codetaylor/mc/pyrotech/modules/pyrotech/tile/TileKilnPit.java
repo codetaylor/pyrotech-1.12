@@ -601,7 +601,7 @@ public class TileKilnPit
     }
 
     @Override
-    protected void onInsert(ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
+    protected void onInsert(EnumType type, ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
 
       ItemStackHandler stackHandler = this.stackHandlers[0];
 
@@ -618,7 +618,7 @@ public class TileKilnPit
     }
 
     @Override
-    protected void onExtract(World world, EntityPlayer player, BlockPos pos) {
+    protected void onExtract(EnumType type, World world, EntityPlayer player, BlockPos pos) {
 
       if (!world.isRemote
           && world.getBlockState(pos).getValue(BlockKilnPit.VARIANT) == BlockKilnPit.EnumType.WOOD) {

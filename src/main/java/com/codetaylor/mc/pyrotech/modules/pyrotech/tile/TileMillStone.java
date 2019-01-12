@@ -229,9 +229,9 @@ public class TileMillStone
     }
 
     @Override
-    protected void onExtract(World world, EntityPlayer player, BlockPos pos) {
+    protected void onExtract(EnumType type, World world, EntityPlayer player, BlockPos pos) {
 
-      super.onExtract(world, player, pos);
+      super.onExtract(type, world, player, pos);
 
       if (this.tile.workerIsActive()
           && ModulePyrotechConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
@@ -240,9 +240,9 @@ public class TileMillStone
     }
 
     @Override
-    protected void onInsert(ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
+    protected void onInsert(EnumType type, ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
 
-      super.onInsert(itemStack, world, player, pos);
+      super.onInsert(type, itemStack, world, player, pos);
 
       if (this.tile.workerIsActive()
           && ModulePyrotechConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE > 0) {

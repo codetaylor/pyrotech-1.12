@@ -5,7 +5,6 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandl
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockStash;
@@ -15,12 +14,9 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteract
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -167,25 +163,6 @@ public class TileStash
     public Vec3d getTextOffset() {
 
       return new Vec3d(0, 0.5, 0);
-    }
-
-    @Override
-    protected void onInsert(ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
-
-      super.onInsert(itemStack, world, player, pos);
-
-      if (!world.isRemote) {
-        world.playSound(
-            null,
-            pos.getX(),
-            pos.getY(),
-            pos.getZ(),
-            SoundEvents.BLOCK_WOOD_PLACE,
-            SoundCategory.BLOCKS,
-            0.5f,
-            (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
-        );
-      }
     }
   }
 

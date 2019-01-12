@@ -209,7 +209,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
       if (!this.isEmpty()) {
 
         if (this.doExtract(type, world, player, tilePos)) {
-          this.onExtract(world, player, tilePos);
+          this.onExtract(type, world, player, tilePos);
           return true;
 
         } else {
@@ -271,7 +271,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
         }
 
         itemStack.setCount(actualInsertCount);
-        this.onInsert(itemStack, world, player, hitPos);
+        this.onInsert(type, itemStack, world, player, hitPos);
         return true;
       }
     }
@@ -304,27 +304,28 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
    * The stack passed is a copy of the stack that was inserted. Changing this
    * stack will have no effect.
    *
+   * @param type
    * @param itemStack copy of the stack inserted
    * @param world     the world
    * @param player    the interacting player
    * @param pos       the block position interacted with
    */
-  protected void onInsert(ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
+  protected void onInsert(EnumType type, ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
     //
   }
 
   /**
    * Called immediately after a successful extract.
    *
+   * @param type
    * @param world  the world
    * @param player the interacting player
    * @param pos    the block position interacted with
    */
-  protected void onExtract(World world, EntityPlayer player, BlockPos pos) {
+  protected void onExtract(EnumType type, World world, EntityPlayer player, BlockPos pos) {
 
-    if (!world.isRemote) {
-      // Plays for everyone. To switch to player local, play on client with
-      // nonnull player parameter.
+    if (!world.isRemote
+        && type == EnumType.MouseClick) {
       world.playSound(
           null,
           pos.getX(),
