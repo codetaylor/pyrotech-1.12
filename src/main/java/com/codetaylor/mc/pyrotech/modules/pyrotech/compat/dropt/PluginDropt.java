@@ -69,6 +69,7 @@ public class PluginDropt {
     String stick = item("minecraft", "stick");
     String coalOre = item("minecraft", "coal_ore");
     String clay = item("minecraft", "clay");
+    String cobblestone = item("minecraft", "cobblestone");
 
     String flint = item("minecraft", "flint");
     String boneMeal = item("minecraft", "dye", 15);
@@ -483,9 +484,11 @@ public class PluginDropt {
                 item(ItemCrudePickaxe.NAME, OreDictionary.WILDCARD_VALUE)
             })
         )
+        .dropStrategy(EnumDropStrategy.UNIQUE)
+        .dropCount(range(2))
         .addDrops(new IDroptDropBuilder[]{
             drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
-            drop().items(new String[]{boneShard}, range(1, 2)).selector(weight(1))
+            drop().items(new String[]{boneShard}, range(1)).selector(weight(1))
         })
     );
 
@@ -500,11 +503,23 @@ public class PluginDropt {
             .mainHand(EnumListType.BLACKLIST, "pickaxe;2;-1")
         )
         .dropStrategy(EnumDropStrategy.UNIQUE)
-        .dropCount(range(1, 2))
+        .dropCount(range(2))
         .addDrops(new IDroptDropBuilder[]{
             drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(6)),
             drop().items(new String[]{boneMeal}, range(1)).selector(weight(1)),
             drop().items(new String[]{boneShard}, range(2, 3)).selector(weight(2))
+        })
+    );
+
+    // Tier 2+
+    list.add(rule()
+        .matchBlocks(new String[]{
+            fossilOre
+        })
+        .replaceStrategy(EnumReplaceStrategy.ADD)
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{cobblestone, rockStone}, range(3, 6)).selector(weight(4)),
+            drop().items(new String[]{boneShard}, range(2, 4)).selector(weight(5))
         })
     );
 
