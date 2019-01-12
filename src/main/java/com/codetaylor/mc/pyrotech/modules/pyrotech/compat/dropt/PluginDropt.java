@@ -123,6 +123,20 @@ public class PluginDropt {
         })
     );
 
+    list.add(rule()
+        .matchBlocks(new String[]{
+            leaves
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.PLAYER)
+        )
+        .replaceStrategy(EnumReplaceStrategy.ADD)
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{stick}).selector(weight(1)),
+            drop().selector(weight(1))
+        })
+    );
+
     // -------------------------------------------------------------------------
     // - Dirt
     // -------------------------------------------------------------------------
