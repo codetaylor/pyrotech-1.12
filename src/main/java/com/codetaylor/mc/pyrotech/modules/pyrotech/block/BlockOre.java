@@ -70,7 +70,7 @@ public class BlockOre
   public int quantityDropped(IBlockState state, int fortune, Random random) {
 
     if (state.getValue(VARIANT) == EnumType.FOSSIL_ORE) {
-      return random.nextInt(3) + 1;
+      return random.nextInt(3) + 1 + fortune;
     }
 
     return super.quantityDropped(state, fortune, random);
