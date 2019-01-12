@@ -1,11 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
+import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWoodRack;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -19,6 +22,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class BlockWoodRack
     extends BlockPartialBase
@@ -75,6 +79,25 @@ public class BlockWoodRack
     super.breakBlock(world, pos, state);
   }
 
+  @ParametersAreNonnullByDefault
+  @Nonnull
+  @Override
+  public IBlockState getStateForPlacement(
+      World world,
+      BlockPos pos,
+      EnumFacing facing,
+      float hitX,
+      float hitY,
+      float hitZ,
+      int meta,
+      EntityLivingBase placer,
+      EnumHand hand
+  ) {
+
+    EnumFacing opposite = placer.getHorizontalFacing().getOpposite();
+    return this.getDefaultState().withProperty(Properties.FACING_HORIZONTAL, opposite);
+  }
+
   // ---------------------------------------------------------------------------
   // - Tile Entity
   // ---------------------------------------------------------------------------
@@ -91,4 +114,30 @@ public class BlockWoodRack
 
     return new TileWoodRack();
   }
+
+  // ---------------------------------------------------------------------------
+  // - Variants
+  // ---------------------------------------------------------------------------
+
+  @Nonnull
+  @Override
+  protected BlockStateContainer createBlockState() {
+
+    return new BlockStateContainer(this, Properties.FACING_HORIZONTAL);
+  }
+
+  @Nonnull
+  @Override
+  public IBlockState getStateFromMeta(int meta) {
+
+    return this.getDefaultState()
+        .withProperty(Properties.FACING_HORIZONTAL, EnumFacing.HORIZONTALS[meta]);
+  }
+
+  @Override
+  public int getMetaFromState(IBlockState state) {
+
+    return state.getValue(Properties.FACING_HORIZONTAL).getIndex() - 2;
+  }
+
 }
