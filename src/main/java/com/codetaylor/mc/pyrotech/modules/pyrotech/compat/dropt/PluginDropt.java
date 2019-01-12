@@ -84,6 +84,10 @@ public class PluginDropt {
     String rockDirt = item(BlockRock.NAME, BlockRock.EnumType.DIRT.getMeta());
     String rockSand = item(BlockRock.NAME, BlockRock.EnumType.SAND.getMeta());
     String rockGrass = item(BlockRockGrass.NAME, 0);
+    String cobbledAndesite = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.ANDESITE.getMeta());
+    String cobbledDiorite = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.DIORITE.getMeta());
+    String cobbledGranite = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.GRANITE.getMeta());
+    String cobbledLimestone = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.LIMESTONE.getMeta());
 
     String flintShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.FLINT_SHARD.getMeta());
     String boneShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.BONE_SHARD.getMeta());
@@ -554,6 +558,11 @@ public class PluginDropt {
       String rock = item(BlockRock.NAME, BlockRock.EnumType.LIMESTONE.getMeta());
       this.addRockDrops(matchBlock, rock, list);
     }
+    {
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.LIMESTONE.getMeta());
+      this.addRockDrops(cobbledLimestone, rock, cobbledLimestone, list);
+      this.addBlockReplace(cobbledLimestone, cobbledLimestone, list);
+    }
 
     // -------------------------------------------------------------------------
     // - Stone / Cobblestone
@@ -586,6 +595,11 @@ public class PluginDropt {
       this.addRockDrops(matchBlock, rock, replaceBlock, list);
       this.addBlockReplace(matchBlock, replaceBlock, list);
     }
+    {
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.DIORITE.getMeta());
+      this.addRockDrops(cobbledDiorite, rock, cobbledDiorite, list);
+      this.addBlockReplace(cobbledDiorite, cobbledDiorite, list);
+    }
 
     // -------------------------------------------------------------------------
     // - Andesite
@@ -604,6 +618,11 @@ public class PluginDropt {
       this.addRockDrops(matchBlock, rock, replaceBlock, list);
       this.addBlockReplace(matchBlock, replaceBlock, list);
     }
+    {
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.ANDESITE.getMeta());
+      this.addRockDrops(cobbledAndesite, rock, cobbledAndesite, list);
+      this.addBlockReplace(cobbledAndesite, cobbledAndesite, list);
+    }
 
     // -------------------------------------------------------------------------
     // - Granite
@@ -621,6 +640,11 @@ public class PluginDropt {
       String replaceBlock = item("minecraft", "stone", BlockStone.EnumType.GRANITE.getMetadata());
       this.addRockDrops(matchBlock, rock, replaceBlock, list);
       this.addBlockReplace(matchBlock, replaceBlock, list);
+    }
+    {
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.GRANITE.getMeta());
+      this.addRockDrops(cobbledGranite, rock, cobbledGranite, list);
+      this.addBlockReplace(cobbledGranite, cobbledGranite, list);
     }
 
     // -------------------------------------------------------------------------
