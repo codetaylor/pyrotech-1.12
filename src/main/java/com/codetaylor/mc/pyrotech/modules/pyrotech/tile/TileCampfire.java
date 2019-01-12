@@ -556,6 +556,12 @@ public class TileCampfire
       return this.tile.fuelStackHandler.getStackInSlot(slot);
     }
 
+    @Override
+    public boolean isEnabled() {
+
+      return !this.tile.isDead();
+    }
+
     public boolean isItemStackValid(ItemStack itemStack) {
 
       if (itemStack.isEmpty()) {
