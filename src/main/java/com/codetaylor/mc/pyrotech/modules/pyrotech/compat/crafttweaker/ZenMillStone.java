@@ -10,6 +10,7 @@ import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -28,7 +29,8 @@ public class ZenMillStone {
       IItemStack output,
       IIngredient input,
       int burnTimeTicks,
-      IIngredient blade
+      IIngredient blade,
+      @Optional(valueBoolean = true) boolean createWoodChips
   ) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
@@ -36,7 +38,8 @@ public class ZenMillStone {
         CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getIngredient(input),
         burnTimeTicks,
-        CraftTweakerMC.getIngredient(blade)
+        CraftTweakerMC.getIngredient(blade),
+        createWoodChips
     ));
   }
 
@@ -71,13 +74,15 @@ public class ZenMillStone {
     private final Ingredient input;
     private final int burnTimeTicks;
     private final Ingredient blade;
+    private final boolean createWoodChips;
 
     public AddRecipe(
         String name,
         ItemStack output,
         Ingredient input,
         int burnTimeTicks,
-        Ingredient blade
+        Ingredient blade,
+        boolean createWoodChips
     ) {
 
       this.name = name;
@@ -85,6 +90,7 @@ public class ZenMillStone {
       this.output = output;
       this.burnTimeTicks = burnTimeTicks;
       this.blade = blade;
+      this.createWoodChips = createWoodChips;
     }
 
     @Override
@@ -94,7 +100,8 @@ public class ZenMillStone {
           this.output,
           this.input,
           this.burnTimeTicks,
-          this.blade
+          this.blade,
+          this.createWoodChips
       );
       ModulePyrotechRegistries.MILL_STONE_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }

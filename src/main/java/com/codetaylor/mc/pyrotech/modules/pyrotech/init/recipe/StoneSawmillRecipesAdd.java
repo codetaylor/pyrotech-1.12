@@ -21,64 +21,76 @@ public class StoneSawmillRecipesAdd {
 
     registerMillStoneRecipe(registry, "planks_oak",
         new ItemStack(Blocks.PLANKS, 1, 0),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 0))
+        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 0)),
+        true
     );
 
     registerMillStoneRecipe(registry, "planks_spruce",
         new ItemStack(Blocks.PLANKS, 1, 1),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 1))
+        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 1)),
+        true
     );
 
     registerMillStoneRecipe(registry, "planks_birch",
         new ItemStack(Blocks.PLANKS, 1, 2),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 2))
+        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 2)),
+        true
     );
 
     registerMillStoneRecipe(registry, "planks_jungle",
         new ItemStack(Blocks.PLANKS, 1, 3),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 3))
+        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 3)),
+        true
     );
 
     registerMillStoneRecipe(registry, "planks_acacia",
         new ItemStack(Blocks.PLANKS, 1, 4),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG2, 1, 0))
+        Ingredient.fromStacks(new ItemStack(Blocks.LOG2, 1, 0)),
+        true
     );
 
     registerMillStoneRecipe(registry, "planks_dark_oak",
         new ItemStack(Blocks.PLANKS, 1, 5),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG2, 1, 1))
+        Ingredient.fromStacks(new ItemStack(Blocks.LOG2, 1, 1)),
+        true
     );
 
     // --- Slabs ---
 
     registerMillStoneRecipe(registry, "slab_oak",
         new ItemStack(Blocks.WOODEN_SLAB, 1, 0),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 0))
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 0)),
+        true
     );
 
     registerMillStoneRecipe(registry, "slab_spruce",
         new ItemStack(Blocks.WOODEN_SLAB, 1, 1),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 1))
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 1)),
+        true
     );
 
     registerMillStoneRecipe(registry, "slab_birch",
         new ItemStack(Blocks.WOODEN_SLAB, 1, 2),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 2))
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 2)),
+        true
     );
 
     registerMillStoneRecipe(registry, "slab_jungle",
         new ItemStack(Blocks.WOODEN_SLAB, 1, 3),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 3))
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 3)),
+        true
     );
 
     registerMillStoneRecipe(registry, "slab_acacia",
         new ItemStack(Blocks.WOODEN_SLAB, 1, 4),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 4))
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 4)),
+        true
     );
 
     registerMillStoneRecipe(registry, "slab_dark_oak",
         new ItemStack(Blocks.WOODEN_SLAB, 1, 5),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 5))
+        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 5)),
+        true
     );
 
     // --- Misc ---
@@ -86,17 +98,19 @@ public class StoneSawmillRecipesAdd {
     // board
     registerMillStoneRecipe(registry, "board",
         ItemMaterial.EnumType.BOARD.asStack(),
-        new OreIngredient("slabWood")
+        new OreIngredient("slabWood"),
+        true
     );
 
     // tarred board
     registerMillStoneRecipe(registry, "board_tarred",
         ItemMaterial.EnumType.BOARD_TARRED.asStack(),
-        Ingredient.fromStacks(new ItemStack(ModuleBlocks.PLANKS_TARRED))
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.PLANKS_TARRED)),
+        true
     );
   }
 
-  private static void registerMillStoneRecipe(IForgeRegistryModifiable<MillStoneRecipe> registry, String name, ItemStack output, Ingredient input) {
+  private static void registerMillStoneRecipe(IForgeRegistryModifiable<MillStoneRecipe> registry, String name, ItemStack output, Ingredient input, boolean createWoodChips) {
 
     output = output.copy();
     output.setCount(1);
@@ -105,7 +119,8 @@ public class StoneSawmillRecipesAdd {
         output,
         input,
         ModulePyrotechConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleItems.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE))
+        Ingredient.fromStacks(new ItemStack(ModuleItems.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+        createWoodChips
     ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_0"));
 
     output = output.copy();
@@ -118,7 +133,8 @@ public class StoneSawmillRecipesAdd {
         Ingredient.fromStacks(
             new ItemStack(ModuleItems.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
             new ItemStack(ModuleItems.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
-        )
+        ),
+        createWoodChips
     ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_1"));
 
     output = output.copy();
@@ -128,7 +144,8 @@ public class StoneSawmillRecipesAdd {
         output,
         input,
         ModulePyrotechConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 2 * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleItems.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE))
+        Ingredient.fromStacks(new ItemStack(ModuleItems.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+        createWoodChips
     ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_2"));
 
     output = output.copy();
@@ -138,7 +155,8 @@ public class StoneSawmillRecipesAdd {
         output,
         input,
         ModulePyrotechConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleItems.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE))
+        Ingredient.fromStacks(new ItemStack(ModuleItems.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+        createWoodChips
     ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_3"));
   }
 }

@@ -11,6 +11,7 @@ public class MillStoneRecipe
     extends StoneMachineRecipeItemInItemOutBase<MillStoneRecipe> {
 
   private final Ingredient blade;
+  private final boolean createWoodChips;
 
   @Nullable
   public static MillStoneRecipe getRecipe(ItemStack input, ItemStack blade) {
@@ -35,15 +36,22 @@ public class MillStoneRecipe
       ItemStack output,
       Ingredient input,
       int timeTicks,
-      Ingredient blade
+      Ingredient blade,
+      boolean createWoodChips
   ) {
 
     super(input, output, timeTicks);
     this.blade = blade;
+    this.createWoodChips = createWoodChips;
   }
 
   public Ingredient getBlade() {
 
     return this.blade;
+  }
+
+  public boolean createWoodChips() {
+
+    return this.createWoodChips;
   }
 }

@@ -956,7 +956,7 @@ public class ModulePyrotechConfig {
     public boolean DAMAGE_BLADES = true;
 
     @Config.Comment({
-        "Chance of producing wood chips when a recipe completes.",
+        "Chance of producing wood chips per second of operation.",
         "Default: " + 0.8
     })
     public double WOOD_CHIPS_CHANCE = 0.8;

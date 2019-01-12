@@ -139,6 +139,44 @@ public class TileMillStone
   }
 
   @Override
+  protected void reduceRecipeTime() {
+
+    super.reduceRecipeTime();
+
+    if (this.world.getTotalWorldTime() % 20 != 0) {
+      // Only perform the wood chips check each second.
+      return;
+    }
+
+    ItemStack input = this.getInputStackHandler().getStackInSlot(0);
+    MillStoneRecipe recipe = this.getRecipe(input);
+
+    if (recipe.createWoodChips()
+        && Math.random() < ModulePyrotechConfig.STONE_SAWMILL.WOOD_CHIPS_CHANCE) {
+      List<BlockPos> candidates = new ArrayList<>();
+
+      BlockHelper.forBlocksInCube(this.world, this.getPos(), 1, 1, 1, (w, p, bs) -> {
+
+        if (w.isAirBlock(p)
+            && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
+            && bs.getBlock() != ModuleBlocks.ROCK) {
+
+          candidates.add(p);
+        }
+
+        return true;
+      });
+
+      if (candidates.size() > 0) {
+        Collections.shuffle(candidates);
+
+        this.world.setBlockState(candidates.get(0), ModuleBlocks.ROCK.getDefaultState()
+            .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
+      }
+    }
+  }
+
+  @Override
   protected void onRecipeComplete() {
 
     ItemStack input = this.getInputStackHandler().getStackInSlot(0);
@@ -164,29 +202,6 @@ public class TileMillStone
 
       } else {
         this.bladeStackHandler.insertItem(0, blade, false);
-      }
-    }
-
-    if (Math.random() < ModulePyrotechConfig.STONE_SAWMILL.WOOD_CHIPS_CHANCE) {
-      List<BlockPos> candidates = new ArrayList<>();
-
-      BlockHelper.forBlocksInCube(this.world, this.getPos(), 1, 1, 1, (w, p, bs) -> {
-
-        if (w.isAirBlock(p)
-            && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
-            && bs.getBlock() != ModuleBlocks.ROCK) {
-
-          candidates.add(p);
-        }
-
-        return true;
-      });
-
-      if (candidates.size() > 0) {
-        Collections.shuffle(candidates);
-
-        this.world.setBlockState(candidates.get(0), ModuleBlocks.ROCK.getDefaultState()
-            .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
       }
     }
   }
