@@ -12,7 +12,7 @@ public class VanillaCraftingRecipesRemove {
 
     IForgeRegistryModifiable modifiableRegistry = (IForgeRegistryModifiable) registry;
 
-    for (String resourceName : ModulePyrotechConfig.RECIPES.VANILLA_REMOVE) {
+    for (String resourceName : ModulePyrotechConfig.RECIPES.VANILLA_CRAFTING_REMOVE) {
       modifiableRegistry.remove(new ResourceLocation(resourceName));
     }
   }

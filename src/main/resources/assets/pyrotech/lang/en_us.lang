@@ -19,6 +19,7 @@ item.pyrotech.pit.ash.name=Ash
 item.pyrotech.flint.clay.ball.name=Flint Clay
 item.pyrotech.refractory.clay.ball.name=Refractory Clay
 item.pyrotech.unfired.refractory.brick.name=Unfired Refractory Brick
+item.pyrotech.unfired.brick.name=Unfired Clay Brick
 item.pyrotech.refractory.brick.name=Refractory Brick
 item.pyrotech.pottery.fragments.name=Pottery Fragments
 item.pyrotech.pottery.shard.name=Pottery Shard

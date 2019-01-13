@@ -15,6 +15,7 @@
       "slaked_lime": {"textures": {"layer0": "pyrotech:items/slaked_lime"}},
       "refractory_brick": {"textures": {"layer0": "pyrotech:items/refractory_brick"}},
       "unfired_refractory_brick": {"textures": {"layer0": "pyrotech:items/unfired_refractory_brick"}},
+      "unfired_brick": {"textures": {"layer0": "pyrotech:items/unfired_brick"}},
       "flint_shard": {"textures": {"layer0": "pyrotech:items/flint_shard"}},
       "bone_shard": {"textures": {"layer0": "pyrotech:items/bone_shard"}},
       "plant_fibers": {"textures": {"layer0": "pyrotech:items/plant_fibers"}},

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CC"
+  ],
+  "key": {
+    "C": {
+      "item": "pyrotech:material",
+      "data": 17
+    }
+  },
+  "result": {
+    "item": "pyrotech:material",
+    "count": 1,
+    "data": 24
+  }
+}

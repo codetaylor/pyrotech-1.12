@@ -23,10 +23,19 @@ public class ModulePyrotechConfig {
   public static class Recipes {
 
     @Config.Comment({
-        "These recipes will be removed by resource name during the recipe",
+        "This is a list of vanilla furnace output recipe items that will have",
+        "their recipe removed.",
+        "Format is (domain):(path) or (domain):(path):(meta)"
+    })
+    public String[] VANILLA_FURNACE_REMOVE = new String[]{
+        "minecraft:brick"
+    };
+
+    @Config.Comment({
+        "These crafting recipes will be removed by resource name during the recipe",
         "registration event."
     })
-    public String[] VANILLA_REMOVE = new String[]{
+    public String[] VANILLA_CRAFTING_REMOVE = new String[]{
         "minecraft:wooden_axe",
         "minecraft:wooden_hoe",
         "minecraft:wooden_pickaxe",

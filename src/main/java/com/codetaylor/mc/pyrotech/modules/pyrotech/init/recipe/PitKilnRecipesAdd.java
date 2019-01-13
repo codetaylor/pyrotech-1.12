@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -18,6 +19,19 @@ public class PitKilnRecipesAdd {
 
     int defaultBurnTimeTicks = 14 * 60 * 20;
     float defaultFailureChance = 0.33f;
+
+    // Brick
+    registry.register(new KilnPitRecipe(
+        new ItemStack(Items.BRICK),
+        Ingredient.fromStacks(ItemMaterial.EnumType.UNFIRED_BRICK.asStack()),
+        defaultBurnTimeTicks,
+        defaultFailureChance,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
+            ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
+        }
+    ).setRegistryName(ModulePyrotech.MOD_ID, "brick"));
 
     // Charcoal Flakes
     registry.register(new KilnPitRecipe(

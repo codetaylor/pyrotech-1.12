@@ -206,6 +206,7 @@ public class ModulePyrotech
     super.onRegisterRecipesEvent(event);
 
     VanillaCraftingRecipesRemove.apply(event.getRegistry());
+    VanillaFurnaceRecipesRemove.apply();
     VanillaFurnaceRecipesAdd.apply();
     BurnPitRecipesAdd.apply(ModulePyrotechRegistries.BURN_RECIPE);
     PitKilnRecipesAdd.apply(ModulePyrotechRegistries.KILN_PIT_RECIPE);
