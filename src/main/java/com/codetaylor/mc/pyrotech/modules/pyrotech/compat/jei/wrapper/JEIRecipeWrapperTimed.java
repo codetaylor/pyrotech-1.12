@@ -26,7 +26,7 @@ public abstract class JEIRecipeWrapperTimed
 
   protected int getTimeDisplayX(int stringWidth) {
 
-    return 35 - stringWidth / 2;
+    return 36 - stringWidth / 2;
   }
 
   protected int getTimeDisplayY() {
