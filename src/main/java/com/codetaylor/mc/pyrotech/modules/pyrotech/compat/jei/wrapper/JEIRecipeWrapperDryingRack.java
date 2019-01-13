@@ -30,4 +30,10 @@ public class JEIRecipeWrapperDryingRack
     ingredients.setInputLists(VanillaTypes.ITEM, this.inputs);
     ingredients.setOutput(VanillaTypes.ITEM, this.output);
   }
+
+  @Override
+  protected int getTimeDisplayY() {
+
+    return super.getTimeDisplayY() - 14;
+  }
 }
