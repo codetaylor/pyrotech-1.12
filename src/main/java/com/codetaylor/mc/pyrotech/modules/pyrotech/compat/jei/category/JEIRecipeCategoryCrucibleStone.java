@@ -12,6 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryCrucibleStone
     implements IRecipeCategory<JEIRecipeWrapperCrucibleStone> {
@@ -34,7 +35,7 @@ public class JEIRecipeCategoryCrucibleStone
 
     this.animatedFlame = guiHelper.createAnimatedDrawable(staticFlame, 300, top, true);
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
-    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 54);
+    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 33);
 
     this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.crucible.stone");
   }
@@ -70,20 +71,21 @@ public class JEIRecipeCategoryCrucibleStone
   @Override
   public void drawExtras(Minecraft minecraft) {
 
-    this.animatedFlame.draw(minecraft, 1, 27);
-    this.arrow.draw(minecraft, 24, 18);
+    this.animatedFlame.draw(minecraft, 1, 19);
+    this.arrow.draw(minecraft, 24, 10);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperCrucibleStone recipeWrapper, IIngredients ingredients) {
 
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
-    itemStacks.init(0, true, 0, 8);
+    itemStacks.init(0, true, 0, 0);
     itemStacks.set(ingredients);
 
     IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
     int capacity = ModulePyrotechConfig.STONE_CRUCIBLE.OUTPUT_TANK_SIZE;
-    fluidStacks.init(1, false, 61, 19, 16, 16, capacity, true, null);
+    fluidStacks.init(1, false, 61, 11, 16, 16, capacity, true, null);
     fluidStacks.set(ingredients);
   }
 }

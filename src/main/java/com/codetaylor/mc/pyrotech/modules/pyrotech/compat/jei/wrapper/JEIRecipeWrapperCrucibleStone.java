@@ -31,4 +31,10 @@ public class JEIRecipeWrapperCrucibleStone
     ingredients.setInputLists(VanillaTypes.ITEM, this.inputs);
     ingredients.setOutput(VanillaTypes.FLUID, this.output);
   }
+
+  @Override
+  protected int getTimeDisplayY() {
+
+    return super.getTimeDisplayY() - 8;
+  }
 }
