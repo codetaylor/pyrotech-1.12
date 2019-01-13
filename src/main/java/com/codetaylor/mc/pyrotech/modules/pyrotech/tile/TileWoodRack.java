@@ -245,8 +245,8 @@ public class TileWoodRack
           return true;
         }
 
-        // We're empty, but the one below is not full. Deactivate!
-        return false;
+        // We're empty, but the one below is not full, delegate to item validation!
+        return true;
       }
 
       // We're not empty, we're active!
@@ -271,17 +271,35 @@ public class TileWoodRack
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return OreDictHelper.contains("logWood", itemStack);
+      if (!OreDictHelper.contains("logWood", itemStack)) {
+        return false;
+      }
+
+      if (this.isEmpty()
+          && this.below != null) {
+
+        if (this.below.isEmpty()) {
+          return false;
+        }
+
+        ItemStack remaining = this.below.insert(itemStack, true);
+
+        if (itemStack.getCount() > remaining.getCount()) {
+          // Some items can be stacked below, reject!
+          return false;
+        }
+      }
+
+      return true;
     }
 
     @Override
     protected void onInsert(EnumType type, ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
 
-      System.out.println(this.slot);
-
       super.onInsert(type, itemStack, world, player, pos);
 
-      if (!world.isRemote) {
+      if (!world.isRemote
+          && type == EnumType.MouseClick) {
         world.playSound(
             null,
             pos.getX(),
