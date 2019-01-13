@@ -116,6 +116,7 @@ public class PluginJEI
     // --- Worktable
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.WORKTABLE), JEIRecipeCategoryUid.WORKTABLE);
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.WORKTABLE_STONE), JEIRecipeCategoryUid.WORKTABLE);
       registry.handleRecipes(ShapedOreRecipe.class, recipe -> new ShapedOreRecipeWrapper(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
       registry.handleRecipes(ShapedRecipes.class, recipe -> new ShapedRecipesWrapper(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
       registry.handleRecipes(ShapelessOreRecipe.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
