@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryCampfire
     implements IRecipeCategory<JEIRecipeWrapperCampfire> {
@@ -33,7 +34,7 @@ public class JEIRecipeCategoryCampfire
 
     this.animatedFlame = guiHelper.createAnimatedDrawable(staticFlame, 300, top, true);
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
-    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 54);
+    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 33);
 
     this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.campfire");
   }
@@ -69,16 +70,17 @@ public class JEIRecipeCategoryCampfire
   @Override
   public void drawExtras(Minecraft minecraft) {
 
-    this.animatedFlame.draw(minecraft, 1, 27);
-    this.arrow.draw(minecraft, 24, 18);
+    this.animatedFlame.draw(minecraft, 1, 19);
+    this.arrow.draw(minecraft, 24, 10);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperCampfire recipeWrapper, IIngredients ingredients) {
 
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
-    itemStacks.init(0, true, 0, 8);
-    itemStacks.init(1, false, 60, 18);
+    itemStacks.init(0, true, 0, 0);
+    itemStacks.init(1, false, 60, 10);
 
     itemStacks.set(ingredients);
   }

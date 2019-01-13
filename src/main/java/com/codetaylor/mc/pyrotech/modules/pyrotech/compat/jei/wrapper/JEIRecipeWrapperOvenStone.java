@@ -46,6 +46,6 @@ public class JEIRecipeWrapperOvenStone
   public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
     int stringWidth = minecraft.fontRenderer.getStringWidth(TIME_STRING);
-    minecraft.fontRenderer.drawString(TIME_STRING, 36 - stringWidth / 2, 30, Color.DARK_GRAY.getRGB());
+    minecraft.fontRenderer.drawString(TIME_STRING, 36 - stringWidth / 2, 22, Color.DARK_GRAY.getRGB());
   }
 }
