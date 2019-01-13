@@ -134,19 +134,16 @@ tile.pyrotech.rock_limestone.name=Limestone Rock
 
 gui.pyrotech.waila.tank.fluid=Liquid: %s
 gui.pyrotech.waila.tank.amount=Amount: %d of %d mb
-
 gui.pyrotech.waila.kiln.brick.fuel=Fuel: %s
-
 gui.pyrotech.waila.campfire.fuel=Logs: %d of %d
 gui.pyrotech.waila.campfire.ash=Ash: %d of %d
-
 gui.pyrotech.waila.drying_rack.speed=Speed: %s
-
 gui.pyrotech.waila.burn.time=Burn Time: %s
-
 gui.pyrotech.waila.mill.stone.blade=Blade: %s
 
 # --- JEI plugin
+
+gui.pyrotech.jei.failure=Failure: %d%%
 
 gui.pyrotech.jei.category.kiln.pit=Pit Kiln Firing
 gui.pyrotech.jei.category.kiln.brick=Brick Kiln Firing

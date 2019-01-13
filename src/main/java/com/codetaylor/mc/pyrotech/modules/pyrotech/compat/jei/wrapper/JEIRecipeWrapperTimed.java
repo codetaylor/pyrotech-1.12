@@ -21,6 +21,16 @@ public abstract class JEIRecipeWrapperTimed
   public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
     int stringWidth = minecraft.fontRenderer.getStringWidth(this.timeString);
-    minecraft.fontRenderer.drawString(this.timeString, recipeWidth - stringWidth, 0, Color.GRAY.getRGB());
+    minecraft.fontRenderer.drawString(this.timeString, this.getTimeDisplayX(stringWidth), this.getTimeDisplayY(), Color.DARK_GRAY.getRGB());
+  }
+
+  protected int getTimeDisplayX(int stringWidth) {
+
+    return 35 - stringWidth / 2;
+  }
+
+  protected int getTimeDisplayY() {
+
+    return 30;
   }
 }
