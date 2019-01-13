@@ -414,7 +414,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   }
 
   @Override
-  public Vec3d getTextOffset() {
+  public Vec3d getTextOffset(EnumFacing tileFacing, EnumFacing playerHorizontalFacing, EnumFacing sideHit) {
 
     return TEXT_OFFSET;
   }

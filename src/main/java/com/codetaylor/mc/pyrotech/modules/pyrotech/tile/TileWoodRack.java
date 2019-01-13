@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.util.FacingHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
@@ -167,7 +168,8 @@ public class TileWoodRack
   private static class Interaction
       extends InteractionItemStack {
 
-    private static final Vec3d TEXT_OFFSET = new Vec3d(0, 0, -0.5);
+    private static final Vec3d TEXT_OFFSET_NORTH = new Vec3d(0, 0, -0.5);
+    private static final Vec3d TEXT_OFFSET_SOUTH = new Vec3d(0, 0, 0.5);
 
     private InteractionItemStack below;
     private InteractionItemStack above;
@@ -252,9 +254,18 @@ public class TileWoodRack
     }
 
     @Override
-    public Vec3d getTextOffset() {
+    public Vec3d getTextOffset(EnumFacing tileFacing, EnumFacing playerHorizontalFacing, EnumFacing sideHit) {
 
-      return TEXT_OFFSET;
+      EnumFacing actualSideHit = FacingHelper.translateFacing(tileFacing, sideHit);
+
+      if (actualSideHit == EnumFacing.NORTH) {
+        return TEXT_OFFSET_NORTH;
+
+      } else if (actualSideHit == EnumFacing.SOUTH) {
+        return TEXT_OFFSET_SOUTH;
+      }
+
+      return null;
     }
 
     @Override

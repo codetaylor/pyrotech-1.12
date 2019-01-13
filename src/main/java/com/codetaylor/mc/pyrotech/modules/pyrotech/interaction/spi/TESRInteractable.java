@@ -15,6 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
@@ -75,9 +76,14 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
       if (minecraft.player.isSneaking()) {
         FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
         IInteraction[] interactions = te.getInteractions();
+        EnumFacing horizontalFacing = minecraft.player.getHorizontalFacing();
 
         for (int i = 0; i < interactions.length; i++) {
-          interactions[i].renderSolidPassText(world, fontrenderer, yaw, interactions[i].getTextOffset(), te.getPos(), blockState, partialTicks);
+          Vec3d textOffset = interactions[i].getTextOffset(facing, horizontalFacing, rayTraceResult.sideHit);
+
+          if (textOffset != null) {
+            interactions[i].renderSolidPassText(world, fontrenderer, yaw, textOffset, te.getPos(), blockState, partialTicks);
+          }
         }
       }
     }

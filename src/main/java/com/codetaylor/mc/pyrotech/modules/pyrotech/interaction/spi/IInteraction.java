@@ -116,8 +116,11 @@ public interface IInteraction<T extends TileEntity & ITileInteractable> {
 
   /**
    * @return the text rendering offset
+   * @param tileFacing
+   * @param playerHorizontalFacing
+   * @param sideHit
    */
-  default Vec3d getTextOffset() {
+  default Vec3d getTextOffset(EnumFacing tileFacing, EnumFacing playerHorizontalFacing, EnumFacing sideHit) {
 
     return Vec3d.ZERO;
   }

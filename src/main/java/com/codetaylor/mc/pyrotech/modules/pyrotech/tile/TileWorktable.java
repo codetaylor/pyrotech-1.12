@@ -432,7 +432,7 @@ public class TileWorktable
     }
 
     @Override
-    public Vec3d getTextOffset() {
+    public Vec3d getTextOffset(EnumFacing tileFacing, EnumFacing playerHorizontalFacing, EnumFacing sideHit) {
 
       return this.textOffset;
     }

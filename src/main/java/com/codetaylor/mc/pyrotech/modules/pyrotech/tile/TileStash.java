@@ -160,7 +160,7 @@ public class TileStash
     }
 
     @Override
-    public Vec3d getTextOffset() {
+    public Vec3d getTextOffset(EnumFacing tileFacing, EnumFacing playerHorizontalFacing, EnumFacing sideHit) {
 
       return new Vec3d(0, 0.5, 0);
     }
