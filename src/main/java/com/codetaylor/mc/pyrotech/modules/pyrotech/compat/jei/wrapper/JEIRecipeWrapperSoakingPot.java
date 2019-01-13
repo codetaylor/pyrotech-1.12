@@ -36,4 +36,10 @@ public class JEIRecipeWrapperSoakingPot
     ingredients.setInput(VanillaTypes.FLUID, this.inputFluid);
     ingredients.setOutput(VanillaTypes.ITEM, this.output);
   }
+
+  @Override
+  protected int getTimeDisplayY() {
+
+    return super.getTimeDisplayY() - 2;
+  }
 }

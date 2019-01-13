@@ -34,4 +34,10 @@ public class JEIRecipeWrapperMillStone
     ingredients.setInputLists(VanillaTypes.ITEM, this.inputs);
     ingredients.setOutput(VanillaTypes.ITEM, this.output);
   }
+
+  @Override
+  protected int getTimeDisplayY() {
+
+    return super.getTimeDisplayY() - 2;
+  }
 }

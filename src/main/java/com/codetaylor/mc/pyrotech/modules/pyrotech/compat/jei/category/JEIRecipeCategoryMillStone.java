@@ -30,7 +30,7 @@ public class JEIRecipeCategoryMillStone
     IDrawableAnimated.StartDirection left = IDrawableAnimated.StartDirection.LEFT;
 
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
-    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 54);
+    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 38);
 
     this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.mill.stone");
   }
@@ -66,7 +66,7 @@ public class JEIRecipeCategoryMillStone
   @Override
   public void drawExtras(Minecraft minecraft) {
 
-    this.arrow.draw(minecraft, 24, 18);
+    this.arrow.draw(minecraft, 24, 16);
   }
 
   @ParametersAreNonnullByDefault
@@ -74,9 +74,9 @@ public class JEIRecipeCategoryMillStone
   public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperMillStone recipeWrapper, IIngredients ingredients) {
 
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
-    itemStacks.init(0, true, 0, 2);
-    itemStacks.init(1, true, 0, 21);
-    itemStacks.init(2, false, 60, 18);
+    itemStacks.init(0, true, 0, 0);
+    itemStacks.init(1, true, 0, 19);
+    itemStacks.init(2, false, 60, 16);
 
     itemStacks.set(ingredients);
   }
