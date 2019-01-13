@@ -15,6 +15,25 @@ import java.util.Map;
 public class ModulePyrotechConfig {
 
   // ---------------------------------------------------------------------------
+  // - Food
+  // ---------------------------------------------------------------------------
+
+  public static Food FOOD = new Food();
+
+  public static class Food {
+
+    @Config.Comment({
+        "The amount of hunger healed by eating."
+    })
+    public int BAKED_APPLE_AMOUNT = 8;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating."
+    })
+    public double BAKED_APPLE_SATURATION = 0.6;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Recipes
   // ---------------------------------------------------------------------------
 

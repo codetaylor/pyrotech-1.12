@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import net.minecraft.block.BlockStone;
 import net.minecraft.init.Blocks;
@@ -41,6 +42,12 @@ public class VanillaFurnaceRecipesAdd {
         ItemMaterial.EnumType.UNFIRED_BRICK.asStack(),
         new ItemStack(Items.BRICK),
         0.4f
+    );
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        new ItemStack(Items.APPLE),
+        new ItemStack(ModuleItems.APPLE_BAKED),
+        0.1f
     );
   }
 }

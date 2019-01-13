@@ -29,6 +29,8 @@ public final class ModuleItems {
   public static final ItemRockGrass ROCK_GRASS = new ItemRockGrass(ModuleBlocks.ROCK_GRASS);
   public static final ItemMulch MULCH = new ItemMulch();
 
+  public static final ItemAppleBaked APPLE_BAKED = new ItemAppleBaked();
+
   public static final ItemCrudeAxe CRUDE_AXE = new ItemCrudeAxe();
   public static final ItemCrudeHoe CRUDE_HOE = new ItemCrudeHoe();
   public static final ItemCrudePickaxe CRUDE_PICKAXE = new ItemCrudePickaxe();
@@ -77,6 +79,8 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
     registry.registerItem(ModuleItems.ROCK_GRASS, BlockRockGrass.NAME);
     registry.registerItem(ModuleItems.MULCH, ItemMulch.NAME);
+
+    registry.registerItem(ModuleItems.APPLE_BAKED, ItemAppleBaked.NAME);
 
     registry.registerItem(ModuleItems.CRUDE_AXE, ItemCrudeAxe.NAME);
     registry.registerItem(ModuleItems.CRUDE_HOE, ItemCrudeHoe.NAME);
@@ -128,6 +132,8 @@ public final class ModuleItems {
           ModuleItems.TINDER,
           ModuleItems.ROCK_GRASS,
           ModuleItems.MULCH,
+
+          ModuleItems.APPLE_BAKED,
 
           ModuleItems.CRUDE_AXE,
           ModuleItems.CRUDE_HOE,

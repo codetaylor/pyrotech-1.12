@@ -44,6 +44,8 @@ item.pyrotech.coal.pieces.name=Coal Pieces
 item.pyrotech.mulch.name=Potash Mulch
 item.pyrotech.board.tarred.name=Tarred Board
 
+item.pyrotech.apple.baked.name=Baked Apple
+
 item.pyrotech.crude.axe.name=Crude Axe
 item.pyrotech.crude.hoe.name=Crude Hoe
 item.pyrotech.crude.pickaxe.name=Crude Pickaxe
