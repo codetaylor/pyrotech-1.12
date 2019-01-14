@@ -4,6 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
+import net.minecraft.block.BlockSand;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -43,6 +44,15 @@ public class CompactingBinRecipesAdd {
         ),
         8
     ).setRegistryName(ModulePyrotech.MOD_ID, "sand"));
+
+    // Red Sand
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(Blocks.SAND, 1, BlockSand.EnumType.RED_SAND.getMetadata()),
+        Ingredient.fromStacks(
+            new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.SAND_RED.getMeta())
+        ),
+        8
+    ).setRegistryName(ModulePyrotech.MOD_ID, "sand_red"));
 
     // Grass
     registry.register(new CompactingBinRecipe(

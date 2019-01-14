@@ -131,6 +131,7 @@ tile.pyrotech.rock_sandstone.name=Sandstone Rock
 tile.pyrotech.rock_grass.name=Grass Clump
 tile.pyrotech.rock_wood_chips.name=Wood Chips
 tile.pyrotech.rock_limestone.name=Limestone Rock
+tile.pyrotech.rock_sand_red.name=Red Sand Pile
 
 # --- Waila plugin
 

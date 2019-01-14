@@ -48,7 +48,8 @@ public class BlockRock //'n beats
 
     EnumType type = state.getValue(VARIANT);
 
-    if (type == EnumType.SAND) {
+    if (type == EnumType.SAND
+        || type == EnumType.SAND_RED) {
       return SoundType.SAND;
 
     } else if (type == EnumType.DIRT
@@ -210,7 +211,8 @@ public class BlockRock //'n beats
     SAND(5, NAME + "_sand"),
     SANDSTONE(6, NAME + "_sandstone"),
     WOOD_CHIPS(7, NAME + "_wood_chips"),
-    LIMESTONE(8, NAME + "_limestone");
+    LIMESTONE(8, NAME + "_limestone"),
+    SAND_RED(9, NAME + "_sand_red");
 
     private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
         .sorted(Comparator.comparing(EnumType::getMeta))

@@ -15,6 +15,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemCrudePickaxe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import net.minecraft.block.BlockSand;
 import net.minecraft.block.BlockStone;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -61,6 +62,7 @@ public class PluginDropt {
     // -------------------------------------------------------------------------
 
     String sand = item("minecraft", "sand");
+    String sandRed = item("minecraft", "sand", BlockSand.EnumType.RED_SAND.getMetadata());
     String dirtAny = item("minecraft", "dirt", OreDictionary.WILDCARD_VALUE);
     String grass = item("minecraft", "grass");
     String gravel = item("minecraft", "gravel");
@@ -83,6 +85,7 @@ public class PluginDropt {
     String rockAndesite = item(BlockRock.NAME, BlockRock.EnumType.ANDESITE.getMeta());
     String rockDirt = item(BlockRock.NAME, BlockRock.EnumType.DIRT.getMeta());
     String rockSand = item(BlockRock.NAME, BlockRock.EnumType.SAND.getMeta());
+    String rockSandRed = item(BlockRock.NAME, BlockRock.EnumType.SAND_RED.getMeta());
     String rockGrass = item(BlockRockGrass.NAME, 0);
     String cobbledAndesite = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.ANDESITE.getMeta());
     String cobbledDiorite = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.DIORITE.getMeta());
@@ -304,6 +307,51 @@ public class PluginDropt {
         )
         .addDrops(new IDroptDropBuilder[]{
             drop().items(new String[]{rockSand}, range(3, 6))
+        })
+    );
+
+    // -------------------------------------------------------------------------
+    // - Red Sand
+    // -------------------------------------------------------------------------
+
+    // Not a shovel
+    list.add(rule()
+        .matchBlocks(new String[]{
+            sandRed
+        })
+        .matchHarvester(harvester()
+            .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
+        )
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{rockSandRed}, range(1, 3))
+        })
+    );
+
+    // Shovel 0
+    list.add(rule()
+        .matchBlocks(new String[]{
+            sandRed
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.PLAYER)
+            .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
+        )
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{rockSandRed}, range(2, 4))
+        })
+    );
+
+    // Shovel 1
+    list.add(rule()
+        .matchBlocks(new String[]{
+            sandRed
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.PLAYER)
+            .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
+        )
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{rockSandRed}, range(3, 6))
         })
     );
 
