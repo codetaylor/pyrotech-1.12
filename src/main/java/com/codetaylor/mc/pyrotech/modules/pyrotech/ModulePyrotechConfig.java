@@ -23,12 +23,16 @@ public class ModulePyrotechConfig {
   public static class Food {
 
     @Config.Comment({
-        "The amount of hunger healed by eating."
+        "The amount of hunger healed by eating.",
+        "The vanilla apple restores 4 hunger.",
+        "Default: " + 8
     })
-    public int BAKED_APPLE_AMOUNT = 8;
+    public int BAKED_APPLE_HUNGER = 8;
 
     @Config.Comment({
-        "The amount of saturation healed by eating."
+        "The amount of saturation healed by eating.",
+        "The vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.6
     })
     public double BAKED_APPLE_SATURATION = 0.6;
   }

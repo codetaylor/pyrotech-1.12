@@ -10,6 +10,6 @@ public class ItemAppleBaked
 
   public ItemAppleBaked() {
 
-    super(ModulePyrotechConfig.FOOD.BAKED_APPLE_AMOUNT, (float) ModulePyrotechConfig.FOOD.BAKED_APPLE_SATURATION, false);
+    super(ModulePyrotechConfig.FOOD.BAKED_APPLE_HUNGER, (float) ModulePyrotechConfig.FOOD.BAKED_APPLE_SATURATION, false);
   }
 }
