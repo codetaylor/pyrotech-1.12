@@ -2,8 +2,8 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "all": "minecraft:blocks/sand_red",
-      "particle": "minecraft:blocks/sand_red"
+      "all": "minecraft:blocks/red_sand",
+      "particle": "minecraft:blocks/red_sand"
     }
   },
   "variants": {

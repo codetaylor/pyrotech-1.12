@@ -76,6 +76,18 @@ item.pyrotech.mill.blade.bone.name=Bone Sawmill Blade
 item.pyrotech.mill.blade.iron.name=Iron Sawmill Blade
 item.pyrotech.mill.blade.diamond.name=Diamond Sawmill Blade
 
+item.pyrotech.bucket.wood.name=%s Wood Bucket
+item.pyrotech.bucket.wood.empty.name=Wood Bucket
+item.pyrotech.bucket.wood.milk.name=Milk Wood Bucket
+
+item.pyrotech.bucket.clay.name=%s Clay Bucket
+item.pyrotech.bucket.clay.empty.name=Clay Bucket
+item.pyrotech.bucket.clay.milk.name=Milk Clay Bucket
+
+item.pyrotech.bucket.stone.name=%s Stone Bucket
+item.pyrotech.bucket.stone.empty.name=Stone Bucket
+item.pyrotech.bucket.stone.milk.name=Milk Stone Bucket
+
 # --- Tiles
 
 tile.pyrotech.thatch.name=Straw Bale

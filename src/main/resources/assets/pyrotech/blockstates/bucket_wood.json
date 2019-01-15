@@ -1,0 +1,27 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "inventory": {
+      "model": "forge:forgebucket",
+      "textures": {
+        "base": "pyrotech:items/bucket_wood_base",
+        "fluid": "pyrotech:items/bucket_wood_base",
+        "cover": "pyrotech:items/bucket_wood_cover"
+      },
+      "transform": "forge:default-item",
+      "custom": {
+        "fluid": "water",
+        "flipGas": true
+      }
+    },
+    "milk": {
+      "model": "forge:item-layer",
+      "textures": {
+        "layer0": "pyrotech:items/bucket_wood_base",
+        "layer1": "forge:items/bucket_fluid",
+        "layer2": "pyrotech:items/bucket_wood_cover"
+      },
+      "transform": "forge:default-item"
+    }
+  }
+}

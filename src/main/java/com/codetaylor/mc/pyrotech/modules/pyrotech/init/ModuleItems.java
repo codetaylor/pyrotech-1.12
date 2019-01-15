@@ -8,14 +8,19 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import javax.annotation.Nonnull;
 
 @SuppressWarnings("WeakerAccess")
 public final class ModuleItems {
@@ -28,6 +33,9 @@ public final class ModuleItems {
   public static final ItemRock ROCK = new ItemRock(ModuleBlocks.ROCK);
   public static final ItemRockGrass ROCK_GRASS = new ItemRockGrass(ModuleBlocks.ROCK_GRASS);
   public static final ItemMulch MULCH = new ItemMulch();
+  public static final ItemBucketWood BUCKET_WOOD = new ItemBucketWood();
+  public static final ItemBucketClay BUCKET_CLAY = new ItemBucketClay();
+  public static final ItemBucketStone BUCKET_STONE = new ItemBucketStone();
 
   public static final ItemAppleBaked APPLE_BAKED = new ItemAppleBaked();
 
@@ -79,6 +87,9 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
     registry.registerItem(ModuleItems.ROCK_GRASS, BlockRockGrass.NAME);
     registry.registerItem(ModuleItems.MULCH, ItemMulch.NAME);
+    registry.registerItem(ModuleItems.BUCKET_WOOD, ItemBucketWood.NAME);
+    registry.registerItem(ModuleItems.BUCKET_CLAY, ItemBucketClay.NAME);
+    registry.registerItem(ModuleItems.BUCKET_STONE, ItemBucketStone.NAME);
 
     registry.registerItem(ModuleItems.APPLE_BAKED, ItemAppleBaked.NAME);
 
@@ -132,6 +143,9 @@ public final class ModuleItems {
           ModuleItems.TINDER,
           ModuleItems.ROCK_GRASS,
           ModuleItems.MULCH,
+          ModuleItems.BUCKET_WOOD,
+          ModuleItems.BUCKET_CLAY,
+          ModuleItems.BUCKET_STONE,
 
           ModuleItems.APPLE_BAKED,
 
@@ -164,6 +178,24 @@ public final class ModuleItems {
           ModuleItems.BONE_MILL_BLADE,
           ModuleItems.IRON_MILL_BLADE,
           ModuleItems.DIAMOND_MILL_BLADE
+      );
+
+      ModelRegistrationHelper.registerItemModel(
+          ModuleItems.BUCKET_WOOD,
+          ItemBucketBase.EnumType.MILK.getMeta(),
+          ItemBucketBase.EnumType.MILK.getName()
+      );
+
+      ModelRegistrationHelper.registerItemModel(
+          ModuleItems.BUCKET_CLAY,
+          ItemBucketBase.EnumType.MILK.getMeta(),
+          ItemBucketBase.EnumType.MILK.getName()
+      );
+
+      ModelRegistrationHelper.registerItemModel(
+          ModuleItems.BUCKET_STONE,
+          ItemBucketBase.EnumType.MILK.getMeta(),
+          ItemBucketBase.EnumType.MILK.getName()
       );
 
       // Rock
