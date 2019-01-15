@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.FluidHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityCow;
@@ -97,6 +96,7 @@ public abstract class ItemBucketBase
     }
 
     subItems.add(new ItemStack(this));
+    subItems.add(new ItemStack(this, 1, EnumType.MILK.getMeta()));
 
     for (Fluid fluid : FluidRegistry.getRegisteredFluids().values()) {
 
@@ -245,7 +245,7 @@ public abstract class ItemBucketBase
 
       } else {
         stack.shrink(1);
-        ItemHandlerHelper.giveItemToPlayer(player, EnumType.MILK.asStack());
+        ItemHandlerHelper.giveItemToPlayer(player, EnumType.MILK.asStack(this));
       }
 
       return true;
@@ -366,10 +366,10 @@ public abstract class ItemBucketBase
     EMPTY(0, "empty"),
     MILK(1, "milk");
 
-    private static final ItemMaterial.EnumType[] META_LOOKUP = Stream
-        .of(ItemMaterial.EnumType.values())
-        .sorted(Comparator.comparing(ItemMaterial.EnumType::getMeta))
-        .toArray(ItemMaterial.EnumType[]::new);
+    private static final EnumType[] META_LOOKUP = Stream
+        .of(EnumType.values())
+        .sorted(Comparator.comparing(EnumType::getMeta))
+        .toArray(EnumType[]::new);
 
     private final String name;
     private final int meta;
@@ -392,17 +392,17 @@ public abstract class ItemBucketBase
       return this.name;
     }
 
-    public ItemStack asStack() {
+    public ItemStack asStack(ItemBucketBase item) {
 
-      return this.asStack(1);
+      return this.asStack(item, 1);
     }
 
-    public ItemStack asStack(int amount) {
+    public ItemStack asStack(ItemBucketBase item, int amount) {
 
-      return new ItemStack(ModuleItems.MATERIAL, amount, this.meta);
+      return new ItemStack(item, amount, this.meta);
     }
 
-    public static ItemMaterial.EnumType fromMeta(int meta) {
+    public static EnumType fromMeta(int meta) {
 
       if (meta < 0 || meta > META_LOOKUP.length) {
         meta = 0;
