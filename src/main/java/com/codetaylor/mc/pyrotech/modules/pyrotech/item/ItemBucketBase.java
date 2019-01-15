@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.athenaeum.util.FluidHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,14 +19,16 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -140,20 +143,26 @@ public abstract class ItemBucketBase
 
   protected abstract String getLangKey();
 
+  @Nonnull
+  @Override
+  public RayTraceResult rayTrace(World worldIn, EntityPlayer playerIn, boolean useLiquids) {
+
+    return super.rayTrace(worldIn, playerIn, useLiquids); // TODO: remove
+  }
+
   @ParametersAreNonnullByDefault
   @Nonnull
   @Override
   public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 
     ItemStack stack = player.getHeldItem(hand);
-    FluidStack fluidStack = this.getFluid(stack);
 
     if (stack.getMetadata() == EnumType.MILK.getMeta()) {
       player.setActiveHand(hand);
       return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 
-    RayTraceResult target = this.rayTrace(world, player, !hasFluid(stack));
+    RayTraceResult target = this.rayTrace(world, player, !this.hasFluid(stack));
     ActionResult<ItemStack> ret = ForgeEventFactory.onBucketUse(player, world, stack, target);
 
     if (ret != null
@@ -167,42 +176,14 @@ public abstract class ItemBucketBase
       return ActionResult.newResult(EnumActionResult.PASS, stack);
     }
 
-    BlockPos clickPos = target.getBlockPos();
+    ItemStack result = FluidHelper.placeUniversalBucketFluid(world, player, target.getBlockPos(), target.sideHit, stack, this);
 
-    // can we place liquid there?
-    if (world.isBlockModifiable(player, clickPos)) {
-      // the block adjacent to the side we clicked on
-      BlockPos targetPos = clickPos.offset(target.sideHit);
+    if (result.isEmpty()) {
+      return ActionResult.newResult(EnumActionResult.FAIL, stack);
 
-      // can the player place there?
-      if (player.canPlayerEdit(targetPos, target.sideHit, stack)) {
-        // try placing liquid
-        FluidActionResult result = FluidUtil.tryPlaceFluid(player, world, targetPos, stack, fluidStack);
-
-        if (result.isSuccess() && !player.capabilities.isCreativeMode) {
-          // success!
-          //noinspection ConstantConditions
-          player.addStat(StatList.getObjectUseStats(this));
-
-          stack.shrink(1);
-          ItemStack drained = result.getResult();
-          ItemStack emptyStack = !drained.isEmpty() ? drained.copy() : new ItemStack(this);
-
-          // check whether we replace the item or add the empty one to the inventory
-          if (stack.isEmpty()) {
-            return ActionResult.newResult(EnumActionResult.SUCCESS, emptyStack);
-
-          } else {
-            // add empty bucket to player inventory
-            ItemHandlerHelper.giveItemToPlayer(player, emptyStack);
-            return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
-          }
-        }
-      }
+    } else {
+      return ActionResult.newResult(EnumActionResult.SUCCESS, result);
     }
-
-    // couldn't place liquid there
-    return ActionResult.newResult(EnumActionResult.FAIL, stack);
   }
 
   // ---------------------------------------------------------------------------
