@@ -15,6 +15,189 @@ import java.util.Map;
 public class ModulePyrotechConfig {
 
   // ---------------------------------------------------------------------------
+  // - Bucket - Wood
+  // ---------------------------------------------------------------------------
+
+  public static BucketWood BUCKET_WOOD = new BucketWood();
+
+  public static class BucketWood {
+
+    @Config.Comment({
+        "Set to false to only show empty buckets.",
+        "Default: " + true
+    })
+    public boolean SHOW_ALL_BUCKETS = true;
+
+    @Config.Comment({
+        "Set the number of times the bucket can be filled / drained.",
+        "Multiples of two work best (fill / drain pairs).",
+        "Range: [1, +int]",
+        "Default: " + 8
+    })
+    public int MAX_DURABILITY = 8;
+
+    @Config.Comment({
+        "The temperature that the bucket considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Range: [-int, +int]",
+        "Default: " + 450
+    })
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "The bucket will take damage if it is in the player's inventory",
+        "and is filled with a hot fluid.",
+        "This controls the amount of damage done to the container per second.",
+        "Set to zero to disable.",
+        "Range: [0, +int]",
+        "Default: " + 8
+    })
+    public int HOT_CONTAINER_DAMAGE_PER_SECOND = 8;
+
+    @Config.Comment({
+        "The player will take damage if the bucket is in the player's inventory",
+        "and is filled with a hot fluid.",
+        "This controls the amount of damage done to the player per second.",
+        "Set to zero to disable.",
+        "Range: [0, +int]",
+        "Default: " + 2
+    })
+    public int HOT_PLAYER_DAMAGE_PER_SECOND = 2;
+
+    @Config.Comment({
+        "The container will take damage if the it is in the player's inventory",
+        "and is filled.",
+        "This controls the amount of damage done to the container per second.",
+        "Set to zero to disable.",
+        "Range: [0, +int]",
+        "Default: " + 1
+    })
+    public int FULL_CONTAINER_DAMAGE_PER_SECOND = 1;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Bucket - Clay
+  // ---------------------------------------------------------------------------
+
+  public static BucketClay BUCKET_CLAY = new BucketClay();
+
+  public static class BucketClay {
+
+    @Config.Comment({
+        "Set to false to only show empty buckets.",
+        "Default: " + true
+    })
+    public boolean SHOW_ALL_BUCKETS = true;
+
+    @Config.Comment({
+        "Set the number of times the bucket can be filled / drained.",
+        "Multiples of two work best (fill / drain pairs).",
+        "Range: [1, +int]",
+        "Default: " + 16
+    })
+    public int MAX_DURABILITY = 16;
+
+    @Config.Comment({
+        "The temperature that the bucket considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Range: [-int, +int]",
+        "Default: " + 450
+    })
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "The bucket will take damage if it is in the player's inventory",
+        "and is filled with a hot fluid.",
+        "This controls the amount of damage done to the container per second.",
+        "Set to zero to disable.",
+        "Range: [0, +int]",
+        "Default: " + 4
+    })
+    public int HOT_CONTAINER_DAMAGE_PER_SECOND = 4;
+
+    @Config.Comment({
+        "The player will take damage if the bucket is in the player's inventory",
+        "and is filled with a hot fluid.",
+        "This controls the amount of damage done to the player per second.",
+        "Set to zero to disable.",
+        "Range: [0, +int]",
+        "Default: " + 2
+    })
+    public int HOT_PLAYER_DAMAGE_PER_SECOND = 2;
+
+    @Config.Comment({
+        "The container will take damage if the it is in the player's inventory",
+        "and is filled.",
+        "This controls the amount of damage done to the container per second.",
+        "Set to zero to disable.",
+        "Range: [0, +int]",
+        "Default: " + 0
+    })
+    public int FULL_CONTAINER_DAMAGE_PER_SECOND = 0;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Bucket - Stone
+  // ---------------------------------------------------------------------------
+
+  public static BucketStone BUCKET_STONE = new BucketStone();
+
+  public static class BucketStone {
+
+    @Config.Comment({
+        "Set to false to only show empty buckets.",
+        "Default: " + true
+    })
+    public boolean SHOW_ALL_BUCKETS = true;
+
+    @Config.Comment({
+        "Set the number of times the bucket can be filled / drained.",
+        "Multiples of two work best (fill / drain pairs).",
+        "Range: [1, +int]",
+        "Default: " + 32
+    })
+    public int MAX_DURABILITY = 32;
+
+    @Config.Comment({
+        "The temperature that the bucket considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Range: [-int, +int]",
+        "Default: " + 450
+    })
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "The bucket will take damage if it is in the player's inventory",
+        "and is filled with a hot fluid.",
+        "This controls the amount of damage done to the container per second.",
+        "Set to zero to disable.",
+        "Range: [0, +int]",
+        "Default: " + 4
+    })
+    public int HOT_CONTAINER_DAMAGE_PER_SECOND = 4;
+
+    @Config.Comment({
+        "The player will take damage if the bucket is in the player's inventory",
+        "and is filled with a hot fluid.",
+        "This controls the amount of damage done to the player per second.",
+        "Set to zero to disable.",
+        "Range: [0, +int]",
+        "Default: " + 2
+    })
+    public int HOT_PLAYER_DAMAGE_PER_SECOND = 2;
+
+    @Config.Comment({
+        "The container will take damage if the it is in the player's inventory",
+        "and is filled.",
+        "This controls the amount of damage done to the container per second.",
+        "Set to zero to disable.",
+        "Range: [0, +int]",
+        "Default: " + 0
+    })
+    public int FULL_CONTAINER_DAMAGE_PER_SECOND = 0;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Food
   // ---------------------------------------------------------------------------
 
