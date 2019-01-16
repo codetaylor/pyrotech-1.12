@@ -3,7 +3,7 @@
   "conditions": [
     {
       "type": "config_enabled",
-      "key": "bucket_wood"
+      "key": "bucket_stone"
     }
   ],
   "pattern": [
