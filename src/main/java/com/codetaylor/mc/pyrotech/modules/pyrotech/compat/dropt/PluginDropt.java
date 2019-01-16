@@ -123,17 +123,6 @@ public class PluginDropt {
         .matchBlocks(new String[]{
             leaves
         })
-        .replaceStrategy(EnumReplaceStrategy.ADD)
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{stick}).selector(weight(1)),
-            drop().selector(weight(11))
-        })
-    );
-
-    list.add(rule()
-        .matchBlocks(new String[]{
-            leaves
-        })
         .matchHarvester(harvester()
             .type(EnumHarvesterType.PLAYER)
         )
@@ -141,6 +130,17 @@ public class PluginDropt {
         .addDrops(new IDroptDropBuilder[]{
             drop().items(new String[]{stick}).selector(weight(1)),
             drop().selector(weight(1))
+        })
+    );
+
+    list.add(rule()
+        .matchBlocks(new String[]{
+            leaves
+        })
+        .replaceStrategy(EnumReplaceStrategy.ADD)
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{stick}).selector(weight(1)),
+            drop().selector(weight(11))
         })
     );
 
