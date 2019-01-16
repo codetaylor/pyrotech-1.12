@@ -35,7 +35,7 @@ public class ModulePyrotechConfig {
     public boolean ENABLED = true;
 
     @Config.Comment({
-        "Set to true to only show all bucket / fluid combinations.",
+        "Set to true to show all bucket / fluid combinations.",
         "Default: " + false
     })
     public boolean SHOW_ALL_BUCKETS = false;
@@ -101,7 +101,7 @@ public class ModulePyrotechConfig {
     public boolean ENABLED = true;
 
     @Config.Comment({
-        "Set to true to only show all bucket / fluid combinations.",
+        "Set to true to show all bucket / fluid combinations.",
         "Default: " + false
     })
     public boolean SHOW_ALL_BUCKETS = false;
@@ -167,7 +167,7 @@ public class ModulePyrotechConfig {
     public boolean ENABLED = true;
 
     @Config.Comment({
-        "Set to true to only show all bucket / fluid combinations.",
+        "Set to true to show all bucket / fluid combinations.",
         "Default: " + false
     })
     public boolean SHOW_ALL_BUCKETS = false;
