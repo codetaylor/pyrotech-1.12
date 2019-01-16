@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "config_enabled",
+      "key": "bucket_wood"
+    }
+  ],
+  "pattern": [
+    "MFM",
+    " M "
+  ],
+  "key": {
+    "M": {
+      "item": "pyrotech:material",
+      "data": 16
+    },
+    "F": {
+      "item": "minecraft:clay_ball",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:bucket_wood",
+    "count": 1,
+    "data": 0
+  }
+}

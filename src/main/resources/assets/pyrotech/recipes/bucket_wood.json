@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "config_enabled",
+      "key": "bucket_wood"
+    }
+  ],
+  "pattern": [
+    "MFM",
+    " M "
+  ],
+  "key": {
+    "M": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "F": {
+      "item": "pyrotech:material",
+      "data": 12
+    }
+  },
+  "result": {
+    "item": "pyrotech:bucket_wood",
+    "count": 1,
+    "data": 0
+  }
+}
