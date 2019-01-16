@@ -95,6 +95,7 @@ public class PluginDropt {
     String flintShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.FLINT_SHARD.getMeta());
     String boneShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.BONE_SHARD.getMeta());
     String plantFibers = item(ItemMaterial.NAME, ItemMaterial.EnumType.PLANT_FIBERS.getMeta());
+    String plantFibersDried = item(ItemMaterial.NAME, ItemMaterial.EnumType.PLANT_FIBERS_DRIED.getMeta());
     String coalPieces = item(ItemMaterial.NAME, ItemMaterial.EnumType.COAL_PIECES.getMeta());
     String clayLump = item(ItemMaterial.NAME, ItemMaterial.EnumType.CLAY_LUMP.getMeta());
 
@@ -110,8 +111,9 @@ public class PluginDropt {
         })
         .replaceStrategy(EnumReplaceStrategy.ADD)
         .addDrops(new IDroptDropBuilder[]{
-            drop().selector(weight(85)),
-            drop().items(new String[]{plantFibers}, range(1, 2)).selector(weight(15))
+            drop().selector(weight(80)),
+            drop().items(new String[]{plantFibers}, range(1, 2)).selector(weight(15)),
+            drop().items(new String[]{plantFibersDried}, range(1, 2)).selector(weight(5))
         })
     );
 
