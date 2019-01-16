@@ -35,10 +35,10 @@ public class ModulePyrotechConfig {
     public boolean ENABLED = true;
 
     @Config.Comment({
-        "Set to false to only show empty buckets.",
-        "Default: " + true
+        "Set to true to only show all bucket / fluid combinations.",
+        "Default: " + false
     })
-    public boolean SHOW_ALL_BUCKETS = true;
+    public boolean SHOW_ALL_BUCKETS = false;
 
     @Config.Comment({
         "Set the number of times the bucket can be drained.",
@@ -101,10 +101,10 @@ public class ModulePyrotechConfig {
     public boolean ENABLED = true;
 
     @Config.Comment({
-        "Set to false to only show empty buckets.",
-        "Default: " + true
+        "Set to true to only show all bucket / fluid combinations.",
+        "Default: " + false
     })
-    public boolean SHOW_ALL_BUCKETS = true;
+    public boolean SHOW_ALL_BUCKETS = false;
 
     @Config.Comment({
         "Set the number of times the bucket can be drained.",
@@ -167,10 +167,10 @@ public class ModulePyrotechConfig {
     public boolean ENABLED = true;
 
     @Config.Comment({
-        "Set to false to only show empty buckets.",
-        "Default: " + true
+        "Set to true to only show all bucket / fluid combinations.",
+        "Default: " + false
     })
-    public boolean SHOW_ALL_BUCKETS = true;
+    public boolean SHOW_ALL_BUCKETS = false;
 
     @Config.Comment({
         "Set the number of times the bucket can be drained.",
