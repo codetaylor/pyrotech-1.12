@@ -58,6 +58,7 @@ public class BlockCampfire
   public BlockCampfire() {
 
     super(Material.WOOD);
+    this.setHardness(0.5f);
   }
 
   // ---------------------------------------------------------------------------
