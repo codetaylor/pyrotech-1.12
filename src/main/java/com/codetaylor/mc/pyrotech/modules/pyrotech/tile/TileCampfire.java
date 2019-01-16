@@ -18,11 +18,9 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.CampfireInterac
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.InteractionUseItemToActivateWorker;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CampfireRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
@@ -41,6 +39,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
@@ -116,6 +117,7 @@ public class TileCampfire
     // --- Interactions ---
 
     this.interactions = new IInteraction[]{
+        new InteractionBucket(),
         new TileCampfire.InteractionFood(new ItemStackHandler[]{
             this.inputStackHandler,
             this.outputStackHandler
@@ -480,6 +482,47 @@ public class TileCampfire
   public IInteraction[] getInteractions() {
 
     return this.interactions;
+  }
+
+  private class InteractionBucket
+      extends InteractionBucketBase<TileCampfire> {
+
+    public InteractionBucket() {
+
+      super(new FluidTank(1000) {
+
+        @Override
+        public boolean canFillFluidType(FluidStack fluid) {
+
+          return fluid != null && fluid.getFluid() == FluidRegistry.WATER;
+        }
+
+        @Override
+        public int fillInternal(FluidStack resource, boolean doFill) {
+
+          int filled = super.fillInternal(resource, doFill);
+          this.setFluid(null);
+          return filled;
+        }
+      }, EnumFacing.VALUES, InteractionBounds.BLOCK);
+    }
+
+    @Override
+    protected boolean doInteraction(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      if (!tile.workerIsActive()
+          || tile.isDead()) {
+        return false;
+      }
+
+      if (super.doInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {
+        tile.combustionOnDeactivatedByRain();
+        tile.workerSetActive(false);
+        return true;
+      }
+
+      return false;
+    }
   }
 
   private class InteractionFood
