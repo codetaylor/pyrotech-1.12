@@ -1569,4 +1569,25 @@ public class ModulePyrotechConfig {
     public int FLINT_AND_TINDER_USE_DURATION = 5 * 20;
   }
 
+  @SuppressWarnings("unused")
+  public static class ConditionConfig
+      implements IConditionFactory {
+
+    @Override
+    public BooleanSupplier parse(JsonContext context, JsonObject json) {
+
+      String key = JsonUtils.getString(json, "key");
+
+      switch (key) {
+        case "bucket_wood":
+          return () -> BUCKET_WOOD.ENABLED;
+        case "bucket_clay":
+          return () -> BUCKET_CLAY.ENABLED;
+        case "bucket_stone":
+          return () -> BUCKET_STONE.ENABLED;
+        default:
+          throw new JsonSyntaxException("Unknown config key [" + key + "]");
+      }
+    }
+  }
 }
