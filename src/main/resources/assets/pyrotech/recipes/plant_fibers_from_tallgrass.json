@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:tallgrass",
+      "data": 1
+    }
+  ],
+  "result": {
+    "item": "pyrotech:material",
+    "count": 1,
+    "data": 12
+  }
+}
