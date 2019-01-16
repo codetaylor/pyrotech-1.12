@@ -50,6 +50,37 @@ public abstract class ItemBucketBase
     MinecraftForge.EVENT_BUS.register(this);
   }
 
+  @ParametersAreNonnullByDefault
+  @Override
+  public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+
+    if (oldStack.getItem() != newStack.getItem()) {
+      return true;
+    }
+
+    if (oldStack.getMetadata() != newStack.getMetadata()) {
+      return true;
+    }
+
+    FluidStack oldFluidStack = this.getFluid(oldStack);
+    FluidStack newFluidStack = this.getFluid(newStack);
+
+    if (oldFluidStack == null
+        && newFluidStack == null) {
+      return slotChanged;
+    }
+
+    if (oldFluidStack == null) {
+      return true;
+    }
+
+    if (newFluidStack == null) {
+      return true;
+    }
+
+    return slotChanged || oldFluidStack.getFluid() != newFluidStack.getFluid();
+  }
+
   @Override
   public int getItemStackLimit(ItemStack stack) {
 
