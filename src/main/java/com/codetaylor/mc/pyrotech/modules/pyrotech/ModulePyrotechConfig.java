@@ -41,8 +41,7 @@ public class ModulePyrotechConfig {
     public boolean SHOW_ALL_BUCKETS = true;
 
     @Config.Comment({
-        "Set the number of times the bucket can be filled / drained.",
-        "Multiples of two work best (fill / drain pairs).",
+        "Set the number of times the bucket can be drained.",
         "Range: [1, +int]",
         "Default: " + 8
     })
@@ -108,8 +107,7 @@ public class ModulePyrotechConfig {
     public boolean SHOW_ALL_BUCKETS = true;
 
     @Config.Comment({
-        "Set the number of times the bucket can be filled / drained.",
-        "Multiples of two work best (fill / drain pairs).",
+        "Set the number of times the bucket can be drained.",
         "Range: [1, +int]",
         "Default: " + 16
     })
@@ -175,8 +173,7 @@ public class ModulePyrotechConfig {
     public boolean SHOW_ALL_BUCKETS = true;
 
     @Config.Comment({
-        "Set the number of times the bucket can be filled / drained.",
-        "Multiples of two work best (fill / drain pairs).",
+        "Set the number of times the bucket can be drained.",
         "Range: [1, +int]",
         "Default: " + 32
     })

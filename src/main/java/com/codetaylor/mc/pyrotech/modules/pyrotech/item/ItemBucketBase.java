@@ -294,13 +294,7 @@ public abstract class ItemBucketBase
           containerStack.shrink(1);
           FluidStack water = new FluidStack(FluidRegistry.WATER, Fluid.BUCKET_VOLUME);
           ItemStack filledBucket = this.createWithFluid(water);
-          this.setDurability(filledBucket, durability - 1);
-
-          if (this.isBroken(filledBucket)) {
-            this.tryPlaceFluid(world, player, player.getPosition(), this.createWithFluid(water), water);
-            filledBucket = this.getBrokenItemStack();
-            SoundHelper.playSoundServer(world, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
-          }
+          this.setDurability(filledBucket, durability);
 
           if (containerStack.isEmpty()) {
             return filledBucket;
@@ -456,25 +450,12 @@ public abstract class ItemBucketBase
 
       if (stack.getCount() == 1) {
         stack.setItemDamage(EnumType.MILK.getMeta());
-        this.setDurability(stack, durability - 1);
-
-        if (this.isBroken(stack)) {
-          this.tryPlaceFluid(player.getEntityWorld(), player, player.getPosition(), stack, this.getFluid(stack));
-          stack.shrink(1);
-          ItemHandlerHelper.giveItemToPlayer(player, this.getBrokenItemStack());
-          SoundHelper.playSoundServer(player.getEntityWorld(), player.getPosition(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
-        }
+        this.setDurability(stack, durability);
 
       } else {
         stack.shrink(1);
         ItemStack result = EnumType.MILK.asStack(this);
-        this.setDurability(result, durability - 1);
-
-        if (this.isBroken(result)) {
-          this.tryPlaceFluid(player.getEntityWorld(), player, player.getPosition(), result, this.getFluid(stack));
-          result = this.getBrokenItemStack();
-          SoundHelper.playSoundServer(player.getEntityWorld(), player.getPosition(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
-        }
+        this.setDurability(result, durability);
 
         ItemHandlerHelper.giveItemToPlayer(player, result);
       }
@@ -750,12 +731,13 @@ public abstract class ItemBucketBase
 
       if (fluidStack == null) {
         this.container = new ItemStack(ItemBucketBase.this, 1, 0);
+        durability -= 1;
 
       } else {
         this.container = ItemBucketBase.this.createWithFluid(fluidStack);
       }
 
-      ItemBucketBase.this.setDurability(this.container, durability - 1);
+      ItemBucketBase.this.setDurability(this.container, durability);
 
       if (ItemBucketBase.this.isBroken(this.container)) {
         this.container = ItemStack.EMPTY;
