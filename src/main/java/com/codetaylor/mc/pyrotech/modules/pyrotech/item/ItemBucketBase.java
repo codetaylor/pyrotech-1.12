@@ -111,14 +111,12 @@ public abstract class ItemBucketBase
   @Override
   public Item getContainerItem() {
 
-    // TODO: break check?
     return super.getContainerItem();
   }
 
   @Override
   public boolean hasContainerItem(@Nonnull ItemStack stack) {
 
-    // TODO: break check?
     return super.hasContainerItem(stack);
   }
 
@@ -785,7 +783,6 @@ public abstract class ItemBucketBase
     @Override
     public boolean canFillFluidType(FluidStack fluid) {
 
-      // TODO: can bucket hold hot fluids?
       return super.canFillFluidType(fluid);
     }
   }
