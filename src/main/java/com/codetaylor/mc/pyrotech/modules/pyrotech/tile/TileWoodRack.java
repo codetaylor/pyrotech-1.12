@@ -110,7 +110,8 @@ public class TileWoodRack
 
   private void settleStacks() {
 
-    if (this.settlingStacks) {
+    if (this.settlingStacks
+        || this.world.isRemote) {
       return;
     }
 
