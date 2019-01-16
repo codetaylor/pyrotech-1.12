@@ -72,7 +72,7 @@ public class JEIRecipeWrapperCompactingBin
       GlStateManager.pushMatrix();
       {
         int stage = (int) (1 - (minecraft.world.getTotalWorldTime() % 39) / 20);
-        GlStateManager.translate(70, 6 + (stage * 4), 100);
+        GlStateManager.translate(8, 5 + (stage * 4), 100);
         GlStateManager.rotate(-90 + (stage * -90), 0, 0, 1);
         GlStateManager.scale(16.0F, -16.0F, 16.0F);
         RenderHelper.renderItemModel(stack, model, ItemCameraTransforms.TransformType.GUI, false, false);
@@ -87,12 +87,11 @@ public class JEIRecipeWrapperCompactingBin
       GlStateManager.translate(0, 0, 250);
       {
         int stringWidth = minecraft.fontRenderer.getStringWidth(this.amount);
-        minecraft.fontRenderer.drawString(this.amount, 18 - stringWidth, 31, 0xFFFFFFFF, true);
+        minecraft.fontRenderer.drawString(this.amount, 18 - stringWidth, 27, 0xFFFFFFFF, true);
       }
       {
         String usesString = "x" + uses;
-        int stringWidth = minecraft.fontRenderer.getStringWidth(usesString);
-        minecraft.fontRenderer.drawString(usesString, 58 - stringWidth, 4, 0xFFFFFFFF, true);
+        minecraft.fontRenderer.drawString(usesString, 18, 2, 0xFFFFFFFF, true);
       }
     }
     GlStateManager.popMatrix();

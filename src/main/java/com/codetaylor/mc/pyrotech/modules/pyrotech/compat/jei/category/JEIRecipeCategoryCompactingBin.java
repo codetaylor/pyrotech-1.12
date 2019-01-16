@@ -22,14 +22,14 @@ public class JEIRecipeCategoryCompactingBin
 
   public JEIRecipeCategoryCompactingBin(IGuiHelper guiHelper) {
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModulePyrotech.MOD_ID, "textures/gui/jei5.png");
+    ResourceLocation resourceLocation = new ResourceLocation(ModulePyrotech.MOD_ID, "textures/gui/jei3.png");
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82, 0, 24, 17);
 
     IDrawableAnimated.StartDirection left = IDrawableAnimated.StartDirection.LEFT;
 
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
-    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 44);
+    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 40);
 
     this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.compacting.bin");
   }
@@ -65,15 +65,15 @@ public class JEIRecipeCategoryCompactingBin
   @Override
   public void drawExtras(Minecraft minecraft) {
 
-    this.arrow.draw(minecraft, 24, 22);
+    this.arrow.draw(minecraft, 24, 18);
   }
 
   @Override
   public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull JEIRecipeWrapperCompactingBin recipeWrapper, @Nonnull IIngredients ingredients) {
 
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
-    itemStacks.init(0, true, 0, 21);
-    itemStacks.init(1, false, 60, 22);
+    itemStacks.init(0, true, 0, 17);
+    itemStacks.init(1, false, 60, 18);
 
     itemStacks.set(ingredients);
   }
