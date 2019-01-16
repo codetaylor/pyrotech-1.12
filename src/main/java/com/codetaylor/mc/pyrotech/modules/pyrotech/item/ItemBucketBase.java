@@ -522,6 +522,10 @@ public abstract class ItemBucketBase
   @Override
   public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
 
+    if (world.isRemote) {
+      return;
+    }
+
     if (world.getTotalWorldTime() % 20 != 0) {
       return;
     }
