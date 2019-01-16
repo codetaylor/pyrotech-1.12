@@ -43,6 +43,7 @@ item.pyrotech.board.name=Board
 item.pyrotech.coal.pieces.name=Coal Pieces
 item.pyrotech.mulch.name=Potash Mulch
 item.pyrotech.board.tarred.name=Tarred Board
+item.pyrotech.bucket.clay.unfired.name=Unfired Clay Bucket
 
 item.pyrotech.apple.baked.name=Baked Apple
 

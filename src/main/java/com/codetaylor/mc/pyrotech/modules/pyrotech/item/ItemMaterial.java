@@ -69,7 +69,8 @@ public class ItemMaterial
     COAL_PIECES(21, "coal_pieces"),
     QUICKLIME(22, "quicklime"),
     BOARD_TARRED(23, "board_tarred"),
-    UNFIRED_BRICK(24, "unfired_brick");
+    UNFIRED_BRICK(24, "unfired_brick"),
+    BUCKET_CLAY_UNFIRED(25, "bucket_clay_unfired");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())

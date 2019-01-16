@@ -29,7 +29,8 @@
       "board": {"textures": {"layer0": "pyrotech:items/board"}},
       "coal_pieces": {"textures": {"layer0": "pyrotech:items/coal_pieces"}},
       "quicklime": {"textures": {"layer0": "pyrotech:items/quicklime"}},
-      "board_tarred": {"textures": {"layer0": "pyrotech:items/board_tarred"}}
+      "board_tarred": {"textures": {"layer0": "pyrotech:items/board_tarred"}},
+      "bucket_clay_unfired": {"textures": {"layer0": "pyrotech:items/bucket_clay_unfired"}}
     }
   }
 }

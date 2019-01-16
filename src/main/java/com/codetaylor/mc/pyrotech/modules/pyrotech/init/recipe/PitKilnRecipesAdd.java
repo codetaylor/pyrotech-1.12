@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
@@ -32,6 +33,21 @@ public class PitKilnRecipesAdd {
             ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
         }
     ).setRegistryName(ModulePyrotech.MOD_ID, "brick"));
+
+    // Clay Bucket
+    if (ModulePyrotechConfig.BUCKET_CLAY.ENABLED) {
+      registry.register(new KilnPitRecipe(
+          new ItemStack(ModuleItems.BUCKET_CLAY),
+          Ingredient.fromStacks(ItemMaterial.EnumType.BUCKET_CLAY_UNFIRED.asStack()),
+          defaultBurnTimeTicks,
+          defaultFailureChance,
+          new ItemStack[]{
+              ItemMaterial.EnumType.PIT_ASH.asStack(),
+              ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
+              ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
+          }
+      ).setRegistryName(ModulePyrotech.MOD_ID, "bucket_clay"));
+    }
 
     // Charcoal Flakes
     registry.register(new KilnPitRecipe(
