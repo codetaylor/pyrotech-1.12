@@ -1,11 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.SoakingPotRecipe;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -24,6 +26,22 @@ public class SoakingPotRecipesAdd {
         new FluidStack(FluidRegistry.WATER, 1000),
         1
     ).setRegistryName(ModulePyrotech.MOD_ID, "sponge"));
+
+    // Pulp from reeds
+    registry.register(new SoakingPotRecipe(
+        ItemMaterial.EnumType.PULP.asStack(),
+        Ingredient.fromStacks(new ItemStack(Items.REEDS, 1, 0)),
+        new FluidStack(FluidRegistry.WATER, 125),
+        2 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "pulp_from_reeds"));
+
+    // Pulp from wood chips
+    registry.register(new SoakingPotRecipe(
+        ItemMaterial.EnumType.PULP.asStack(),
+        Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
+        new FluidStack(FluidRegistry.WATER, 500),
+        8 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "pulp_from_wood_chips"));
 
     // Tarred Planks
     registry.register(new SoakingPotRecipe(

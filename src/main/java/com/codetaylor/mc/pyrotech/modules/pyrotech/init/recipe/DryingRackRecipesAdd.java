@@ -41,5 +41,12 @@ public class DryingRackRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Blocks.SPONGE, 1, 1)),
         8 * 60 * 20
     ).setRegistryName(ModulePyrotech.MOD_ID, "sponge"));
+
+    // Paper
+    registry.register(new DryingRackRecipe(
+        new ItemStack(Items.PAPER, 1, 0),
+        Ingredient.fromStacks(ItemMaterial.EnumType.PULP.asStack()),
+        4 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "paper"));
   }
 }

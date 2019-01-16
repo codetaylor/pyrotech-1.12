@@ -309,6 +309,7 @@ public class ModulePyrotechConfig {
         "minecraft:clay",
         "minecraft:snow",
         "minecraft:bone_block",
+        "minecraft:paper",
 
         "minecraft:boat",
         "minecraft:spruce_boat",

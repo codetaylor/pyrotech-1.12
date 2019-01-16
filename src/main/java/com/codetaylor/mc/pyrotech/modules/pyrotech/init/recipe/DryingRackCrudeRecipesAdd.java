@@ -4,6 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackCrudeRecipe;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreIngredient;
@@ -33,5 +34,12 @@ public class DryingRackCrudeRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Blocks.SPONGE, 1, 1)),
         8 * 60 * 20
     ).setRegistryName(ModulePyrotech.MOD_ID, "sponge"));
+
+    // Paper
+    registry.register(new DryingRackCrudeRecipe(
+        new ItemStack(Items.PAPER, 1, 0),
+        Ingredient.fromStacks(ItemMaterial.EnumType.PULP.asStack()),
+        8 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "paper"));
   }
 }
