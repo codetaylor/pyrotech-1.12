@@ -4,12 +4,18 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.crafting.IConditionFactory;
+import net.minecraftforge.common.crafting.JsonContext;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BooleanSupplier;
 
 @Config(modid = ModulePyrotech.MOD_ID, name = ModulePyrotech.MOD_ID + "/" + ModulePyrotech.MOD_ID + ".module.Pyrotech")
 public class ModulePyrotechConfig {
@@ -21,6 +27,12 @@ public class ModulePyrotechConfig {
   public static BucketWood BUCKET_WOOD = new BucketWood();
 
   public static class BucketWood {
+
+    @Config.Comment({
+        "Set to false to disable the bucket.",
+        "Default: " + true
+    })
+    public boolean ENABLED = true;
 
     @Config.Comment({
         "Set to false to only show empty buckets.",
@@ -84,6 +96,12 @@ public class ModulePyrotechConfig {
   public static class BucketClay {
 
     @Config.Comment({
+        "Set to false to disable the bucket.",
+        "Default: " + true
+    })
+    public boolean ENABLED = true;
+
+    @Config.Comment({
         "Set to false to only show empty buckets.",
         "Default: " + true
     })
@@ -143,6 +161,12 @@ public class ModulePyrotechConfig {
   public static BucketStone BUCKET_STONE = new BucketStone();
 
   public static class BucketStone {
+
+    @Config.Comment({
+        "Set to false to disable the bucket.",
+        "Default: " + true
+    })
+    public boolean ENABLED = true;
 
     @Config.Comment({
         "Set to false to only show empty buckets.",

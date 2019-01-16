@@ -4,23 +4,19 @@ import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-
-import javax.annotation.Nonnull;
 
 @SuppressWarnings("WeakerAccess")
 public final class ModuleItems {
@@ -87,9 +83,18 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
     registry.registerItem(ModuleItems.ROCK_GRASS, BlockRockGrass.NAME);
     registry.registerItem(ModuleItems.MULCH, ItemMulch.NAME);
-    registry.registerItem(ModuleItems.BUCKET_WOOD, ItemBucketWood.NAME);
-    registry.registerItem(ModuleItems.BUCKET_CLAY, ItemBucketClay.NAME);
-    registry.registerItem(ModuleItems.BUCKET_STONE, ItemBucketStone.NAME);
+
+    if (ModulePyrotechConfig.BUCKET_WOOD.ENABLED) {
+      registry.registerItem(ModuleItems.BUCKET_WOOD, ItemBucketWood.NAME);
+    }
+
+    if (ModulePyrotechConfig.BUCKET_CLAY.ENABLED) {
+      registry.registerItem(ModuleItems.BUCKET_CLAY, ItemBucketClay.NAME);
+    }
+
+    if (ModulePyrotechConfig.BUCKET_STONE.ENABLED) {
+      registry.registerItem(ModuleItems.BUCKET_STONE, ItemBucketStone.NAME);
+    }
 
     registry.registerItem(ModuleItems.APPLE_BAKED, ItemAppleBaked.NAME);
 
@@ -143,9 +148,6 @@ public final class ModuleItems {
           ModuleItems.TINDER,
           ModuleItems.ROCK_GRASS,
           ModuleItems.MULCH,
-          ModuleItems.BUCKET_WOOD,
-          ModuleItems.BUCKET_CLAY,
-          ModuleItems.BUCKET_STONE,
 
           ModuleItems.APPLE_BAKED,
 
@@ -180,23 +182,32 @@ public final class ModuleItems {
           ModuleItems.DIAMOND_MILL_BLADE
       );
 
-      ModelRegistrationHelper.registerItemModel(
-          ModuleItems.BUCKET_WOOD,
-          ItemBucketBase.EnumType.MILK.getMeta(),
-          ItemBucketBase.EnumType.MILK.getName()
-      );
+      if (ModulePyrotechConfig.BUCKET_WOOD.ENABLED) {
+        ModelRegistrationHelper.registerItemModels(ModuleItems.BUCKET_WOOD);
+        ModelRegistrationHelper.registerItemModel(
+            ModuleItems.BUCKET_WOOD,
+            ItemBucketBase.EnumType.MILK.getMeta(),
+            ItemBucketBase.EnumType.MILK.getName()
+        );
+      }
 
-      ModelRegistrationHelper.registerItemModel(
-          ModuleItems.BUCKET_CLAY,
-          ItemBucketBase.EnumType.MILK.getMeta(),
-          ItemBucketBase.EnumType.MILK.getName()
-      );
+      if (ModulePyrotechConfig.BUCKET_CLAY.ENABLED) {
+        ModelRegistrationHelper.registerItemModels(ModuleItems.BUCKET_CLAY);
+        ModelRegistrationHelper.registerItemModel(
+            ModuleItems.BUCKET_CLAY,
+            ItemBucketBase.EnumType.MILK.getMeta(),
+            ItemBucketBase.EnumType.MILK.getName()
+        );
+      }
 
-      ModelRegistrationHelper.registerItemModel(
-          ModuleItems.BUCKET_STONE,
-          ItemBucketBase.EnumType.MILK.getMeta(),
-          ItemBucketBase.EnumType.MILK.getName()
-      );
+      if (ModulePyrotechConfig.BUCKET_STONE.ENABLED) {
+        ModelRegistrationHelper.registerItemModels(ModuleItems.BUCKET_STONE);
+        ModelRegistrationHelper.registerItemModel(
+            ModuleItems.BUCKET_STONE,
+            ItemBucketBase.EnumType.MILK.getMeta(),
+            ItemBucketBase.EnumType.MILK.getName()
+        );
+      }
 
       // Rock
       ModelRegistrationHelper.registerVariantBlockItemModelsSeparately(
