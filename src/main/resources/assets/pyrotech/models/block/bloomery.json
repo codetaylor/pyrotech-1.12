@@ -8,7 +8,8 @@
     "4": "pyrotech:blocks/bloomery_side",
     "5": "pyrotech:blocks/bloomery_top_side",
     "6": "pyrotech:blocks/bloomery_inside_side",
-    "7": "pyrotech:blocks/bloomery_bottom"
+    "7": "pyrotech:blocks/bloomery_bottom",
+    "particle": "pyrotech:blocks/bloomery_side"
   },
   "elements": [
     {
