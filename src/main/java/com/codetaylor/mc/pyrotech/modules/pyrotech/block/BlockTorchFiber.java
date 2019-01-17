@@ -10,6 +10,7 @@ import net.minecraft.block.BlockTorch;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -29,6 +30,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -143,6 +145,24 @@ public class BlockTorchFiber
   }
 
   // ---------------------------------------------------------------------------
+  // - Collision
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void addCollisionBoxToList(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState) {
+
+    if (entity == null) {
+      super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, null, isActualState);
+    }
+  }
+
+  @Nullable
+  public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos) {
+
+    return this.getBoundingBox(blockState, world, pos);
+  }
+
+  // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------
 
@@ -184,13 +204,6 @@ public class BlockTorchFiber
         drops.add(ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack());
       }
     }
-  }
-
-  @Nullable
-  @Override
-  public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos) {
-
-    return this.getBoundingBox(blockState, world, pos);
   }
 
   @Override
