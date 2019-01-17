@@ -1,0 +1,29 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:bloomery"
+  },
+  "variants": {
+    "facing": {
+      "north": {
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "type": {
+      "top": {
+        "model": "pyrotech:kiln_stone_top"
+      },
+      "bottom": {},
+      "bottom_lit": {},
+      "bottom_dormant": {}
+    }
+  }
+}
