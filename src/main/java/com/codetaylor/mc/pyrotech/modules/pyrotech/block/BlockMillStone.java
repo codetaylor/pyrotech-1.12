@@ -124,7 +124,7 @@ public class BlockMillStone
       Block blockFromItem = Block.getBlockFromItem(stackInSlot.getItem());
 
       if (blockFromItem != Blocks.AIR) {
-        IBlockState blockState = blockFromItem.getDefaultState();
+        IBlockState blockState = blockFromItem.getStateFromMeta(stackInSlot.getMetadata());
         int stateId = Block.getStateId(blockState);
 
         for (int i = 0; i < 8; ++i) {
