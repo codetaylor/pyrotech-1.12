@@ -10,6 +10,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockTorchFiber;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.state.IBlockState;
@@ -24,6 +25,9 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 
 import javax.annotation.Nonnull;
 
@@ -50,6 +54,7 @@ public class TileTorch
     });
 
     this.interactions = new IInteraction[]{
+        new InteractionBucket(),
         new InteractionUseItemToActivate(Items.FLINT_AND_STEEL, EnumFacing.VALUES)
     };
   }
@@ -100,6 +105,10 @@ public class TileTorch
   }
 
   public void update() {
+
+    // This update is called from the block's random update.
+    // The idea is to reduce the tick time consumed by the torches since
+    // it seems reasonable that many might be placed.
 
     if (this.type.get() == BlockTorchFiber.EnumType.LIT.getMeta()) {
 
@@ -156,6 +165,48 @@ public class TileTorch
   public IInteraction[] getInteractions() {
 
     return this.interactions;
+  }
+
+  private class InteractionBucket
+      extends InteractionBucketBase<TileTorch> {
+
+    /* package */ InteractionBucket() {
+
+      super(new FluidTank(1000) {
+
+        @Override
+        public boolean canFillFluidType(FluidStack fluid) {
+
+          return (fluid != null) && (fluid.getFluid() == FluidRegistry.WATER);
+        }
+
+        @Override
+        public int fillInternal(FluidStack resource, boolean doFill) {
+
+          int filled = super.fillInternal(resource, doFill);
+          this.setFluid(null);
+          return filled;
+        }
+      }, EnumFacing.VALUES, InteractionBounds.BLOCK);
+    }
+
+    @Override
+    protected boolean doInteraction(TileTorch tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      if (tile.type.get() != BlockTorchFiber.EnumType.LIT.getMeta()) {
+        return false;
+      }
+
+      if (super.doInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {
+        tile.type.set(BlockTorchFiber.EnumType.DOUSED.getMeta());
+
+        // This causes the last timestamp to be reset the next time the torch is lit.
+        tile.lastTimeStamp = 0;
+        return true;
+      }
+
+      return false;
+    }
   }
 
   public class InteractionUseItemToActivate
