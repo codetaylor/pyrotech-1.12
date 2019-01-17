@@ -21,11 +21,7 @@ public class FuelHandler {
 
     ItemStack fuel = event.getItemStack();
 
-    if (fuel.getItem() == ModuleItems.MATERIAL
-        && fuel.getMetadata() == ItemMaterial.EnumType.COAL_COKE.getMeta()) {
-      event.setBurnTime(ModulePyrotechConfig.FUEL.COAL_COKE_BURN_TIME_TICKS);
-
-    } else if (fuel.getItem() == Item.getItemFromBlock(ModuleBlocks.COAL_COKE_BLOCK)) {
+    if (fuel.getItem() == Item.getItemFromBlock(ModuleBlocks.COAL_COKE_BLOCK)) {
       event.setBurnTime(ModulePyrotechConfig.FUEL.COAL_COKE_BLOCK_BURN_TIME_TICKS);
 
     } else if (Util.isFluidBucket(fuel, ModuleFluids.WOOD_TAR.getName())) {
@@ -36,21 +32,6 @@ public class FuelHandler {
 
     } else if (fuel.getItem() == Item.getItemFromBlock(ModuleBlocks.THATCH)) {
       event.setBurnTime(ModulePyrotechConfig.FUEL.STRAW_BALE_BURN_TIME_TICKS);
-
-    } else if (fuel.getItem() == ModuleItems.MATERIAL) {
-
-      if (fuel.getMetadata() == ItemMaterial.EnumType.STRAW.getMeta()) {
-        event.setBurnTime(ModulePyrotechConfig.FUEL.STRAW_BURN_TIME_TICKS);
-
-      } else if (fuel.getMetadata() == ItemMaterial.EnumType.CHARCOAL_FLAKES.getMeta()) {
-        event.setBurnTime(ModulePyrotechConfig.FUEL.CHARCOAL_FLAKES_BURN_TIME_TICKS);
-
-      } else if (fuel.getMetadata() == ItemMaterial.EnumType.COAL_PIECES.getMeta()) {
-        event.setBurnTime(ModulePyrotechConfig.FUEL.COAL_PIECES_BURN_TIME_TICKS);
-
-      } else if (fuel.getMetadata() == ItemMaterial.EnumType.BOARD.getMeta()) {
-        event.setBurnTime(ModulePyrotechConfig.FUEL.BOARD_BURN_TIME_TICKS);
-      }
 
     } else if (fuel.getItem() == ModuleItems.TINDER) {
       event.setBurnTime(ModulePyrotechConfig.FUEL.TINDER_BURN_TIME_TICKS);

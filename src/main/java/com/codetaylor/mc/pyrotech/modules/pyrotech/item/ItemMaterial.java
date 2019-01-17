@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -20,6 +21,26 @@ public class ItemMaterial
   public ItemMaterial() {
 
     this.setHasSubtypes(true);
+  }
+
+  @Override
+  public int getItemBurnTime(ItemStack itemStack) {
+
+    switch (EnumType.fromMeta(itemStack.getMetadata())) {
+
+      case CHARCOAL_FLAKES:
+        return ModulePyrotechConfig.FUEL.CHARCOAL_FLAKES_BURN_TIME_TICKS;
+      case STRAW:
+        return ModulePyrotechConfig.FUEL.STRAW_BURN_TIME_TICKS;
+      case COAL_COKE:
+        return ModulePyrotechConfig.FUEL.COAL_COKE_BURN_TIME_TICKS;
+      case COAL_PIECES:
+        return ModulePyrotechConfig.FUEL.COAL_PIECES_BURN_TIME_TICKS;
+      case BOARD:
+        return ModulePyrotechConfig.FUEL.BOARD_BURN_TIME_TICKS;
+    }
+
+    return 0;
   }
 
   @Override
