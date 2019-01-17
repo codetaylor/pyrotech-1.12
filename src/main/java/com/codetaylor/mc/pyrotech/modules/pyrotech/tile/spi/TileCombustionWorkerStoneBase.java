@@ -14,10 +14,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -61,7 +58,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     super(ModulePyrotech.TILE_DATA_SERVICE, 1);
 
-    this.dormantCounter = DORMANT_COUNTER;
+    this.resetDormantCounter();
 
     // --- Stack Handlers ---
 
@@ -213,7 +210,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     if (this.hasFuel()
         && this.hasInput()) {
-      this.dormantCounter = DORMANT_COUNTER;
+      this.resetDormantCounter();
 
     } else if (this.shouldKeepHeat()
         && this.dormantCounter > 0) {
@@ -271,7 +268,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
       }
     }
 
-    this.dormantCounter = DORMANT_COUNTER;
+    this.resetDormantCounter();
   }
 
   // ---------------------------------------------------------------------------
