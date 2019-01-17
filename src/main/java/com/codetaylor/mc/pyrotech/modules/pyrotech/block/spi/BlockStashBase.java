@@ -1,22 +1,20 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWorktable;
-import net.minecraft.block.Block;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStash;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -27,15 +25,15 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public abstract class BlockWorktableBase
+public abstract class BlockStashBase
     extends BlockPartialBase
     implements IBlockInteractable {
 
-  public static final String NAME = "worktable";
+  public static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 6f / 16f, 1);
 
-  public BlockWorktableBase(Material material, float hardness, float resistance) {
+  public BlockStashBase(float hardness, float resistance) {
 
-    super(material);
+    super(Material.WOOD);
     this.setHardness(hardness);
     this.setResistance(resistance);
   }
@@ -44,6 +42,7 @@ public abstract class BlockWorktableBase
   // - Interaction
   // ---------------------------------------------------------------------------
 
+  @SuppressWarnings("deprecation")
   @Nullable
   @Override
   public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
@@ -57,30 +56,19 @@ public abstract class BlockWorktableBase
     return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean removedByPlayer(@Nonnull IBlockState state, World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
-
-    // Delay the destruction of the TE until after #getDrops is called. We need
-    // access to the TE while creating the dropped item in order to serialize it.
-    return willHarvest || super.removedByPlayer(state, world, pos, player, false);
-  }
-
-  @Override
-  public void harvestBlock(@Nonnull World world, EntityPlayer player, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+  public void breakBlock(World world, BlockPos pos, IBlockState state) {
 
     if (!world.isRemote) {
       TileEntity tileEntity = world.getTileEntity(pos);
 
-      if (tileEntity instanceof TileWorktable) {
-        ((TileWorktable) tileEntity).dropContents();
+      if (tileEntity instanceof TileStash) {
+        StackHelper.spawnStackHandlerContentsOnTop(world, ((TileStash) tileEntity).getStackHandler(), pos);
       }
     }
 
-    super.harvestBlock(world, player, pos, state, te, stack);
-
-    if (!world.isRemote) {
-      world.setBlockToAir(pos);
-    }
+    super.breakBlock(world, pos, state);
   }
 
   @ParametersAreNonnullByDefault
@@ -103,26 +91,6 @@ public abstract class BlockWorktableBase
   }
 
   // ---------------------------------------------------------------------------
-  // - Drops
-  // ---------------------------------------------------------------------------
-
-  @Override
-  public void getDrops(@Nonnull NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
-
-    // Serialize the TE into the item dropped.
-    // Called before #breakBlock
-
-    drops.add(StackHelper.createItemStackFromTileEntity(
-        this.getDroppedBlock(),
-        1,
-        0,
-        world.getTileEntity(pos)
-    ));
-  }
-
-  protected abstract Block getDroppedBlock();
-
-  // ---------------------------------------------------------------------------
   // - Tile
   // ---------------------------------------------------------------------------
 
@@ -132,6 +100,7 @@ public abstract class BlockWorktableBase
     return true;
   }
 
+  @ParametersAreNonnullByDefault
   @Nullable
   @Override
   public TileEntity createTileEntity(World world, IBlockState state) {
@@ -173,10 +142,19 @@ public abstract class BlockWorktableBase
   @Override
   public boolean isSideSolid(IBlockState base_state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, EnumFacing side) {
 
-    return (side == EnumFacing.DOWN
-        || side == EnumFacing.EAST
-        || side == EnumFacing.WEST
-        || side == EnumFacing.SOUTH);
+    return (side == EnumFacing.DOWN);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Collision
+  // ---------------------------------------------------------------------------
+
+  @SuppressWarnings("deprecation")
+  @Nonnull
+  @Override
+  public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+
+    return AABB;
   }
 
 }

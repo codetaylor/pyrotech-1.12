@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockShelfBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileShelfStone;
 import net.minecraft.tileentity.TileEntity;
 

@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockStashBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStash;
 import net.minecraft.tileentity.TileEntity;
 

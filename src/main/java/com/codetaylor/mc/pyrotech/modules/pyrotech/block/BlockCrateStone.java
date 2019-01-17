@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCrateBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCrateStone;
 import net.minecraft.tileentity.TileEntity;
 
