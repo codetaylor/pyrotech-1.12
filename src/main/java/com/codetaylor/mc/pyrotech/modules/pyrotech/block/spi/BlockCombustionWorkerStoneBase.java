@@ -247,8 +247,8 @@ public abstract class BlockCombustionWorkerStoneBase
         TileEntity tileEntity = world.getTileEntity(down);
 
         if (tileEntity instanceof TileCombustionWorkerStoneBase) {
-          TileCombustionWorkerStoneBase tileKiln = (TileCombustionWorkerStoneBase) tileEntity;
-          tileKiln.dropContents();
+          TileCombustionWorkerStoneBase tile = (TileCombustionWorkerStoneBase) tileEntity;
+          tile.dropContents();
         }
 
         StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.KILN_STONE), down);
@@ -266,8 +266,8 @@ public abstract class BlockCombustionWorkerStoneBase
       TileEntity tileEntity = world.getTileEntity(pos);
 
       if (tileEntity instanceof TileCombustionWorkerStoneBase) {
-        TileCombustionWorkerStoneBase tileKiln = (TileCombustionWorkerStoneBase) tileEntity;
-        tileKiln.dropContents();
+        TileCombustionWorkerStoneBase tile = (TileCombustionWorkerStoneBase) tileEntity;
+        tile.dropContents();
       }
     }
 
