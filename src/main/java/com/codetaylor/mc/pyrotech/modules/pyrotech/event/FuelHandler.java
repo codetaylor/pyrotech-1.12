@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.event;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
@@ -56,6 +57,15 @@ public class FuelHandler {
 
     } else if (fuel.getItem() == Item.getItemFromBlock(ModuleBlocks.LOG_PILE)) {
       event.setBurnTime(ModulePyrotechConfig.FUEL.LOG_PILE_BURN_TIME_TICKS);
+
+    } else if (fuel.getItem() == ModuleItems.ROCK) {
+
+      if (fuel.getMetadata() == BlockRock.EnumType.WOOD_CHIPS.getMeta()) {
+        event.setBurnTime(ModulePyrotechConfig.FUEL.WOOD_CHIPS_BURN_TIME_TICKS);
+      }
+
+    } else if (fuel.getItem() == Item.getItemFromBlock(ModuleBlocks.PILE_WOOD_CHIPS)) {
+      event.setBurnTime(ModulePyrotechConfig.FUEL.PILE_WOOD_CHIPS_BURN_TIME_TICKS);
     }
   }
 

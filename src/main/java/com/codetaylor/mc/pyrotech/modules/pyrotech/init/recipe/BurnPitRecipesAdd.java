@@ -17,7 +17,7 @@ public class BurnPitRecipesAdd {
 
   public static void apply(IForgeRegistry<PitBurnRecipe> registry) {
 
-    // Coal
+    // Charcoal
     registry.register(new PitBurnRecipe(
         new ItemStack(Items.COAL, 1, 1),
         new BlockMetaMatcher(ModuleBlocks.LOG_PILE, OreDictionary.WILDCARD_VALUE),
@@ -26,11 +26,28 @@ public class BurnPitRecipesAdd {
         new FluidStack(ModuleFluids.WOOD_TAR, 50),
         0.33f,
         new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack()
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(8)
         },
         false,
         true
-    ).setRegistryName(ModulePyrotech.MOD_ID, "coal"));
+    ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal"));
+
+    // Charcoal from Pile of Wood Chips
+    registry.register(new PitBurnRecipe(
+        new ItemStack(Items.COAL, 1, 1),
+        new BlockMetaMatcher(ModuleBlocks.PILE_WOOD_CHIPS, 8),
+        4,
+        6 * 60 * 20,
+        new FluidStack(ModuleFluids.WOOD_TAR, 50),
+        0.33f,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(4)
+        },
+        false,
+        true
+    ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal_from_pile_wood_chips"));
 
     // Coal Coke
     registry.register(new PitBurnRecipe(
@@ -41,7 +58,8 @@ public class BurnPitRecipesAdd {
         new FluidStack(ModuleFluids.COAL_TAR, 50),
         0.33f,
         new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack()
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            ItemMaterial.EnumType.COAL_PIECES.asStack(2)
         },
         true,
         true

@@ -85,7 +85,7 @@ public class JEIRecipeCategoryPitBurn
 
     IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
     int capacity = ModulePyrotechConfig.REFRACTORY.ACTIVE_PILE_MAX_FLUID_CAPACITY;
-    fluidStacks.init(2, false, 56, 42, 26, 8, capacity, false, null);
+    fluidStacks.init(2, false, 56, 42, 26, 8, capacity, true, null);
 
     if (recipeWrapper.getFluidStack() != null) {
       fluidStacks.set(2, recipeWrapper.getFluidStack());

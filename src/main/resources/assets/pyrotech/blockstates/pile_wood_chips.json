@@ -1,0 +1,37 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "pyrotech:blocks/wood_chips",
+      "particle": "pyrotech:blocks/wood_chips"
+    }
+  },
+  "variants": {
+    "level": {
+      "1": {
+        "model": "pyrotech:pile_block_2"
+      },
+      "2": {
+        "model": "pyrotech:pile_block_4"
+      },
+      "3": {
+        "model": "pyrotech:pile_block_6"
+      },
+      "4": {
+        "model": "pyrotech:pile_block_8"
+      },
+      "5": {
+        "model": "pyrotech:pile_block_10"
+      },
+      "6": {
+        "model": "pyrotech:pile_block_12"
+      },
+      "7": {
+        "model": "pyrotech:pile_block_14"
+      },
+      "8": {
+        "model": "minecraft:cube_all"
+      }
+    }
+  }
+}

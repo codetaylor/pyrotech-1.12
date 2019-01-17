@@ -9,6 +9,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPileBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.MillInteractionBladeRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
@@ -17,8 +18,10 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionIt
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMillBlade;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.MillStoneRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -159,7 +162,8 @@ public class TileMillStone
 
         if (w.isAirBlock(p)
             && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
-            && bs.getBlock() != ModuleBlocks.ROCK) {
+            || (bs.getBlock() == ModuleBlocks.ROCK && bs.getValue(BlockRock.VARIANT) == BlockRock.EnumType.WOOD_CHIPS)
+            || bs.getBlock() == ModuleBlocks.PILE_WOOD_CHIPS) {
 
           candidates.add(p);
         }
@@ -170,8 +174,47 @@ public class TileMillStone
       if (candidates.size() > 0) {
         Collections.shuffle(candidates);
 
-        this.world.setBlockState(candidates.get(0), ModuleBlocks.ROCK.getDefaultState()
-            .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
+        BlockPos pos = candidates.get(0);
+
+        IBlockState blockState = this.world.getBlockState(pos);
+        Block block = blockState.getBlock();
+
+        if (block == ModuleBlocks.ROCK
+            && blockState.getValue(BlockRock.VARIANT) == BlockRock.EnumType.WOOD_CHIPS) {
+
+          // If wood chips already exist, start a pile.
+          this.world.setBlockState(pos, ModuleBlocks.PILE_WOOD_CHIPS.getDefaultState()
+              .withProperty(BlockPileBase.LEVEL, 1));
+
+          // Adjust entity height.
+          AxisAlignedBB boundingBox = block.getBoundingBox(blockState, this.world, pos);
+          AxisAlignedBB offsetBoundingBox = new AxisAlignedBB(boundingBox.minX, 1.0 - boundingBox.maxY, boundingBox.minZ, boundingBox.maxX, 1.0, boundingBox.maxZ).offset(pos);
+
+          for (Entity entity : this.world.getEntitiesWithinAABBExcludingEntity(null, offsetBoundingBox)) {
+            entity.setPositionAndUpdate(entity.posX, entity.posY + (2.0 / 16.0) +  0.001D, entity.posZ);
+          }
+
+        } else if (block == ModuleBlocks.PILE_WOOD_CHIPS) {
+          int level = blockState.getValue(BlockPileBase.LEVEL);
+
+          if (level < 8) {
+            this.world.setBlockState(pos, ModuleBlocks.PILE_WOOD_CHIPS.getDefaultState()
+                .withProperty(BlockPileBase.LEVEL, level + 1));
+
+            // Adjust entity height.
+            AxisAlignedBB boundingBox = block.getBoundingBox(blockState, this.world, pos);
+            AxisAlignedBB offsetBoundingBox = new AxisAlignedBB(boundingBox.minX, 1.0 - boundingBox.maxY, boundingBox.minZ, boundingBox.maxX, 1.0, boundingBox.maxZ).offset(pos);
+
+            for (Entity entity : this.world.getEntitiesWithinAABBExcludingEntity(null, offsetBoundingBox)) {
+                entity.setPositionAndUpdate(entity.posX, entity.posY + (2.0 / 16.0) +  0.001D, entity.posZ);
+            }
+          }
+
+        } else {
+
+          this.world.setBlockState(pos, ModuleBlocks.ROCK.getDefaultState()
+              .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
+        }
       }
     }
   }

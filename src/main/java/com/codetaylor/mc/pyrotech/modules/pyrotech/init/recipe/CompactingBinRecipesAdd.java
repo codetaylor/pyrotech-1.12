@@ -89,5 +89,14 @@ public class CompactingBinRecipesAdd {
         ),
         8
     ).setRegistryName(ModulePyrotech.MOD_ID, "bone_block"));
+
+    // Pile of Wood Chips
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(ModuleBlocks.PILE_WOOD_CHIPS, 1, 0),
+        Ingredient.fromStacks(
+            new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())
+        ),
+        8
+    ).setRegistryName(ModulePyrotech.MOD_ID, "pile_wood_chips"));
   }
 }

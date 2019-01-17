@@ -1193,9 +1193,9 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Chance of producing wood chips per second of operation.",
-        "Default: " + 0.4
+        "Default: " + 0.15
     })
-    public double WOOD_CHIPS_CHANCE = 0.4;
+    public double WOOD_CHIPS_CHANCE = 0.15;
   }
 
   // ---------------------------------------------------------------------------
@@ -1367,6 +1367,18 @@ public class ModulePyrotechConfig {
         "Default: " + (300 * 9)
     })
     public int LOG_PILE_BURN_TIME_TICKS = 300 * 9;
+
+    @Config.Comment({
+        "Wood chips burn time in ticks.",
+        "Default: " + (1600 / 8)
+    })
+    public int WOOD_CHIPS_BURN_TIME_TICKS = 1600 / 8;
+
+    @Config.Comment({
+        "Wood chips burn time in ticks.",
+        "Default: " + (1600 / 8)
+    })
+    public int PILE_WOOD_CHIPS_BURN_TIME_TICKS = 1600;
 
   }
 
