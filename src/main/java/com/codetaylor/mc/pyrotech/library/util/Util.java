@@ -11,8 +11,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.text.DecimalFormat;
@@ -82,16 +85,21 @@ public class Util {
 
   public static boolean isFluidBucket(ItemStack fuel, String name) {
 
-    FluidStack fluidStack = FluidRegistry.getFluidStack(name, 1000);
+    FluidStack fluidStack = FluidRegistry.getFluidStack(name, Fluid.BUCKET_VOLUME);
 
     if (fluidStack == null) {
       return false;
     }
 
-    FluidStack candidate = FluidStack.loadFluidStackFromNBT(fuel.getTagCompound());
-    return fluidStack.isFluidStackIdentical(candidate);
-  }
+    IFluidHandlerItem fluidHandler = FluidUtil.getFluidHandler(fuel);
 
+    if (fluidHandler == null) {
+      return false;
+    }
+
+    FluidStack drained = fluidHandler.drain(Fluid.BUCKET_VOLUME, false);
+    return fluidStack.isFluidStackIdentical(drained);
+  }
 
   private Util() {
     //
