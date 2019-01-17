@@ -31,6 +31,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -81,6 +84,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     // --- Interactions ---
 
     this.interactions = new IInteraction[]{
+        new InteractionBucket(),
         new InteractionUseFlintAndSteel(),
         new InteractionFuel(new ItemStackHandler[]{
             TileCombustionWorkerStoneBase.this.fuelStackHandler
@@ -371,6 +375,46 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   protected AxisAlignedBB getInputInteractionBoundsTop() {
 
     return new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f);
+  }
+
+  private class InteractionBucket
+      extends InteractionBucketBase<TileCombustionWorkerStoneBase> {
+
+    /* package */ InteractionBucket() {
+
+      super(new FluidTank(1000) {
+
+        @Override
+        public boolean canFillFluidType(FluidStack fluid) {
+
+          return (fluid != null) && (fluid.getFluid() == FluidRegistry.WATER);
+        }
+
+        @Override
+        public int fillInternal(FluidStack resource, boolean doFill) {
+
+          int filled = super.fillInternal(resource, doFill);
+          this.setFluid(null);
+          return filled;
+        }
+      }, new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK);
+    }
+
+    @Override
+    protected boolean doInteraction(TileCombustionWorkerStoneBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      if (!tile.workerIsActive()) {
+        return false;
+      }
+
+      if (super.doInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {
+        tile.combustionOnDeactivatedByRain();
+        tile.workerSetActive(false);
+        return true;
+      }
+
+      return false;
+    }
   }
 
   private class InteractionFuel
