@@ -43,8 +43,8 @@ public class WailaUtil {
 
   public static int getCorrectDisplayProgress(float progress) {
 
-    int offset = 4;
-    return (int) ((progress * 0.76f) + offset);
+    int offset = 3;
+    return (int) ((progress * 0.77f) + offset);
   }
 
   private WailaUtil() {
