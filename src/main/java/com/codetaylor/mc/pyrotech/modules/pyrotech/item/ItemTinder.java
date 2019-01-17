@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
@@ -23,6 +24,12 @@ public class ItemTinder
     extends Item {
 
   public static final String NAME = "tinder";
+
+  @Override
+  public int getItemBurnTime(ItemStack itemStack) {
+
+    return ModulePyrotechConfig.FUEL.TINDER_BURN_TIME_TICKS;
+  }
 
   @Nonnull
   @Override
