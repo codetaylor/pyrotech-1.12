@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
+import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.MillStoneRecipe;
 import crafttweaker.IAction;
@@ -14,15 +16,14 @@ import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.pyrotech.StoneMill")
+@ZenDocClass("mods.pyrotech.StoneSawmill")
+@ZenClass("mods.pyrotech.StoneSawmill")
 public class ZenMillStone {
 
-  @ZenMethod
-  public static void removeRecipes(IIngredient output) {
-
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
-  }
-
+  @ZenDocMethod(
+      order = 1,
+      args = {"name", "output", "input", "burnTimeTicks", "blade", "createWoodChips"}
+  )
   @ZenMethod
   public static void addRecipe(
       String name,
@@ -41,6 +42,16 @@ public class ZenMillStone {
         CraftTweakerMC.getIngredient(blade),
         createWoodChips
     ));
+  }
+
+  @ZenDocMethod(
+      order = 2,
+      args = {"output"}
+  )
+  @ZenMethod
+  public static void removeRecipes(IIngredient output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
   }
 
   public static class RemoveRecipe

@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
+import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.ChoppingBlockRecipe;
@@ -14,15 +16,14 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+@ZenDocClass("mods.pyrotech.Chopping")
 @ZenClass("mods.pyrotech.Chopping")
 public class ZenChoppingBlock {
 
-  @ZenMethod
-  public static void removeRecipes(IIngredient output) {
-
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
-  }
-
+  @ZenDocMethod(
+      order = 1,
+      args = {"name", "output", "input"}
+  )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input) {
 
@@ -35,6 +36,19 @@ public class ZenChoppingBlock {
     ));
   }
 
+  @ZenDocMethod(
+      order = 2,
+      description = {
+          "|Parameter|Description|\n" +
+              "|---------|-----------|\n" +
+              "|name|the name of the recipe|\n" +
+              "|output|the recipe output|\n" +
+              "|input|the recipe input|\n" +
+              "|chops|the int array provided here will override the array provided in the config file; see the config file for an explanation|\n" +
+              "|quantities|the int array provided here will override the array provided in the config file; see the config file for an explanation|"
+      },
+      args = {"name", "output", "input", "chops", "quantities"}
+  )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int[] chops, int[] quantities) {
 
@@ -45,6 +59,16 @@ public class ZenChoppingBlock {
         chops,
         quantities
     ));
+  }
+
+  @ZenDocMethod(
+      order = 3,
+      args = {"output"}
+  )
+  @ZenMethod
+  public static void removeRecipes(IIngredient output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
   }
 
   public static class RemoveRecipe

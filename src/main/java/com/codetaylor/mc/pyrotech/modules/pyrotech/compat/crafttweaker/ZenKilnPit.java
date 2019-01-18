@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
+import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import crafttweaker.IAction;
@@ -13,33 +15,24 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+@ZenDocClass("mods.pyrotech.PitKiln")
 @ZenClass("mods.pyrotech.PitKiln")
 public class ZenKilnPit {
 
-  @ZenMethod
-  public static void removeRecipes(IIngredient output) {
-
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
-  }
-
+  @ZenDocMethod(
+      order = 1,
+      args = {"name", "output", "input", "burnTimeTicks"}
+  )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int burnTimeTicks) {
 
     ZenKilnPit.addRecipe(name, output, input, burnTimeTicks, 0, new IItemStack[0]);
   }
 
-  @ZenMethod
-  public static void addRecipe(
-      String name,
-      IItemStack output,
-      IIngredient input,
-      int burnTimeTicks,
-      float failureChance
-  ) {
-
-    ZenKilnPit.addRecipe(name, output, input, burnTimeTicks, failureChance, new IItemStack[0]);
-  }
-
+  @ZenDocMethod(
+      order = 2,
+      args = {"name", "output", "input", "burnTimeTicks", "failureChance", "failureItems"}
+  )
   @ZenMethod
   public static void addRecipe(
       String name,
@@ -58,6 +51,16 @@ public class ZenKilnPit {
         failureChance,
         CraftTweakerMC.getItemStacks(failureItems)
     ));
+  }
+
+  @ZenDocMethod(
+      order = 3,
+      args = {"output"}
+  )
+  @ZenMethod
+  public static void removeRecipes(IIngredient output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
   }
 
   public static class RemoveRecipe

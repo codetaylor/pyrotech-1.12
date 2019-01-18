@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
+import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackCrudeRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
@@ -14,15 +16,14 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+@ZenDocClass("mods.pyrotech.CrudeDryingRack")
 @ZenClass("mods.pyrotech.CrudeDryingRack")
 public class ZenDryingRackCrude {
 
-  @ZenMethod
-  public static void removeRecipes(IIngredient output) {
-
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
-  }
-
+  @ZenDocMethod(
+      order = 1,
+      args = {"name", "output", "input", "dryTimeTicks"}
+  )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int dryTimeTicks) {
 
@@ -32,6 +33,16 @@ public class ZenDryingRackCrude {
         CraftTweakerMC.getIngredient(input),
         dryTimeTicks
     ));
+  }
+
+  @ZenDocMethod(
+      order = 2,
+      args = {"output"}
+  )
+  @ZenMethod
+  public static void removeRecipes(IIngredient output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
   }
 
   public static class RemoveRecipe

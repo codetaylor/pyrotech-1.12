@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
+import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
@@ -14,15 +16,14 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+@ZenDocClass("mods.pyrotech.CompactingBin")
 @ZenClass("mods.pyrotech.CompactingBin")
 public class ZenCompactingBin {
 
-  @ZenMethod
-  public static void removeRecipes(IIngredient output) {
-
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
-  }
-
+  @ZenDocMethod(
+      order = 1,
+      args = {"name", "output", "input", "amount"}
+  )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int amount) {
 
@@ -35,6 +36,10 @@ public class ZenCompactingBin {
     );
   }
 
+  @ZenDocMethod(
+      order = 2,
+      args = {"name", "output", "input", "amount", "toolUsesRequired"}
+  )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int amount, int[] toolUsesRequired) {
 
@@ -45,6 +50,16 @@ public class ZenCompactingBin {
         amount,
         toolUsesRequired
     ));
+  }
+
+  @ZenDocMethod(
+      order = 3,
+      args = {"output"}
+  )
+  @ZenMethod
+  public static void removeRecipes(IIngredient output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
   }
 
   public static class RemoveRecipe

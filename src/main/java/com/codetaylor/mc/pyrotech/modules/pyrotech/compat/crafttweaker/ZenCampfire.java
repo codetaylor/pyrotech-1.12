@@ -1,6 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogHelper;
+import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
+import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CampfireRecipe;
 import crafttweaker.IAction;
@@ -14,15 +16,14 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+@ZenDocClass("mods.pyrotech.Campfire")
 @ZenClass("mods.pyrotech.Campfire")
 public class ZenCampfire {
 
-  @ZenMethod
-  public static void removeRecipes(IIngredient output) {
-
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
-  }
-
+  @ZenDocMethod(
+      order = 1,
+      args = {"name", "output", "input"}
+  )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input) {
 
@@ -33,6 +34,15 @@ public class ZenCampfire {
     ));
   }
 
+  @ZenDocMethod(
+      order = 2,
+      description = {
+          "|Parameter|Description|\n" +
+              "|---------|-----------|\n" +
+              "|output|furnace recipes that have an output that matches any of the given ingredients will be disallowed|"
+      },
+      args = {"output"}
+  )
   @ZenMethod
   public static void blacklistSmeltingRecipes(IIngredient[] output) {
 
@@ -54,6 +64,15 @@ public class ZenCampfire {
     });
   }
 
+  @ZenDocMethod(
+      order = 3,
+      description = {
+          "|Parameter|Description|\n" +
+              "|---------|-----------|\n" +
+              "|output|only furnace recipes that have an output that matches any of the given ingredients will be allowed|"
+      },
+      args = {"output"}
+  )
   @ZenMethod
   public static void whitelistSmeltingRecipes(IIngredient[] output) {
 
@@ -73,6 +92,17 @@ public class ZenCampfire {
         return "Whitelisting smelting recipes for campfire: " + CTLogHelper.getStackDescription(output);
       }
     });
+  }
+
+  @ZenDocMethod(
+      order = 4,
+      description = "Remove all recipes with the given recipe output.",
+      args = {"output"}
+  )
+  @ZenMethod
+  public static void removeRecipes(IIngredient output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
   }
 
   public static class RemoveRecipe

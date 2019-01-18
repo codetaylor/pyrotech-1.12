@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
+import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.WorktableRecipe;
 import crafttweaker.CraftTweakerAPI;
@@ -25,42 +27,57 @@ import stanhebben.zenscript.annotations.ZenMethod;
 import java.util.Arrays;
 import java.util.HashSet;
 
+@ZenDocClass("mods.pyrotech.Worktable")
 @ZenClass("mods.pyrotech.Worktable")
 public class ZenWorktable {
 
   private static final HashSet<String> USED_RECIPE_NAMES = new HashSet<>();
   private static final TIntSet USED_HASHES = new TIntHashSet();
 
-  @ZenMethod
-  public static void removeRecipes(IIngredient output) {
-
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
-  }
-
+  @ZenDocMethod(
+      order = 1,
+      args = {"output", "ingredients", "function", "action"}
+  )
   @ZenMethod
   public static void addShaped(IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
     CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(output, ingredients, function, action, false, false));
   }
 
+  @ZenDocMethod(
+      order = 2,
+      args = {"name", "output", "ingredients", "function", "action"}
+  )
   @ZenMethod
   public static void addShaped(String name, IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
     CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(name, output, ingredients, function, action, false, false));
   }
 
+  @ZenDocMethod(
+      order = 3,
+      args = {"output", "ingredients", "function", "action"}
+  )
   @ZenMethod
   public static void addShapedMirrored(IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
     CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(output, ingredients, function, action, true, false));
   }
 
+  @ZenDocMethod(
+      order = 4,
+      args = {"name", "output", "input", "function", "action"}
+  )
   @ZenMethod
   public static void addShapedMirrored(String name, IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
     CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(name, output, ingredients, function, action, true, false));
   }
 
+  @ZenDocMethod(
+      order = 5,
+      args = {"output", "ingredients", "function", "action"}
+  )
   @ZenMethod
   public static void addShapeless(IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
@@ -81,6 +98,10 @@ public class ZenWorktable {
     CraftTweaker.LATE_ACTIONS.add(new ActionAddShapelessRecipe(output, ingredients, function, action));
   }
 
+  @ZenDocMethod(
+      order = 6,
+      args = {"name", "output", "ingredients", "function", "action"}
+  )
   @ZenMethod
   public static void addShapeless(String name, IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
 
@@ -101,6 +122,10 @@ public class ZenWorktable {
     CraftTweaker.LATE_ACTIONS.add(new ActionAddShapelessRecipe(name, output, ingredients, function, action, false));
   }
 
+  @ZenDocMethod(
+      order = 7,
+      args = {"resourceLocations"}
+  )
   @ZenMethod
   public static void blacklistVanillaRecipes(String[] resourceLocations) {
 
@@ -122,6 +147,10 @@ public class ZenWorktable {
     });
   }
 
+  @ZenDocMethod(
+      order = 8,
+      args = {"resourceLocations"}
+  )
   @ZenMethod
   public static void whitelistVanillaRecipes(String[] resourceLocations) {
 
@@ -141,6 +170,16 @@ public class ZenWorktable {
         return "Whitelisting vanilla crafting recipes for worktable by resource locations: " + Arrays.toString(resourceLocations);
       }
     });
+  }
+
+  @ZenDocMethod(
+      order = 9,
+      args = {"output"}
+  )
+  @ZenMethod
+  public static void removeRecipes(IIngredient output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
   }
 
   public static class RemoveRecipe

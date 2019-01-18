@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
+import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CrucibleStoneRecipe;
 import crafttweaker.IAction;
@@ -13,15 +15,14 @@ import net.minecraftforge.fluids.FluidStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+@ZenDocClass("mods.pyrotech.StoneCrucible")
 @ZenClass("mods.pyrotech.StoneCrucible")
 public class ZenCrucibleStone {
 
-  @ZenMethod
-  public static void removeRecipes(ILiquidStack output) {
-
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getLiquidStack(output)));
-  }
-
+  @ZenDocMethod(
+      order = 1,
+      args = {"name", "output", "input", "burnTimeTicks"}
+  )
   @ZenMethod
   public static void addRecipe(
       String name,
@@ -36,6 +37,16 @@ public class ZenCrucibleStone {
         CraftTweakerMC.getIngredient(input),
         burnTimeTicks
     ));
+  }
+
+  @ZenDocMethod(
+      order = 2,
+      args = {"output"}
+  )
+  @ZenMethod
+  public static void removeRecipes(ILiquidStack output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getLiquidStack(output)));
   }
 
   public static class RemoveRecipe

@@ -1,0 +1,30 @@
+site_name: Dropt
+
+pages:
+- Introduction: index.md
+- ChangeLog: changelog.md
+- ZenScript:
+  - Burn: zs/burn.md
+  - Campfire: zs/campfire.md
+  - Chopping Block: zs/chopping.md
+  - Compacting Bin: zs/compactingbin.md
+  - Crude Drying Rack: zs/crudedryingrack.md
+  - Drying Rack: zs/dryingrack.md
+  - Granite Anvil: zs/graniteanvil.md
+  - Pit Kiln: zs/pitkiln.md
+  - Soaking Pot: zs/soakingpot.md
+  - Stone Crucible: zs/stonecrucible.md
+  - Stone Kiln: zs/stonekiln.md
+  - Stone Oven: zs/stoneoven.md
+  - Stone Sawmill: zs/stonesawmill.md
+  - Worktable: zs/worktable.md
+- Development:
+  - Contributor's License Agreement: cla.md
+
+theme: readthedocs
+
+markdown_extensions:
+- admonition
+- attr_list
+
+extra_css: [custom.css]

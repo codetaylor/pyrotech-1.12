@@ -2,6 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
+import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
+import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
@@ -20,15 +22,27 @@ import net.minecraftforge.fluids.FluidStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+@ZenDocClass("mods.pyrotech.Burn")
 @ZenClass("mods.pyrotech.Burn")
 public class ZenBurn {
 
-  @ZenMethod
-  public static void removeRecipes(IIngredient output) {
-
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
-  }
-
+  @ZenDocMethod(
+      order = 1,
+      description = {
+          "|Parameter|Description|\n"+
+          "|---------|-----------|\n"+
+          "|name|the name of the recipe|\n"+
+          "|output|the output for each completed burn stage|\n"+
+          "|burnStages|the number of burn stages|\n"+
+          "|totalBurnTimeTicks|the total number of ticks required to complete all burn stages|\n"+
+          "|fluidProduced|the fluid produced for each completed burn stage|\n"+
+          "|failureChance|the chance a failure item will be substituted for each burn stage result|\n"+
+          "|failureItems|a list of items from which to pick a substitute for each failed burn stage result; items chosen randomly|\n"+
+          "|requiresRefractoryBlocks|true if the recipe requires using refractory blocks|\n"+
+          "|fluidLevelAffectsFailureChance|true if the build-up of fluid in burning blocks increases the failure chance of burn stages|"
+      },
+      args = {"name", "output", "blockString", "burnStages", "totalBurnTimeTicks", "fluidProduced", "failureChance", "failureItems", "requiresRefractoryBlocks", "fluidLevelAffectsFailureChance"}
+  )
   @ZenMethod
   public static void addRecipe(
       String name,
@@ -55,6 +69,17 @@ public class ZenBurn {
         requiresRefractoryBlocks,
         fluidLevelAffectsFailureChance
     ));
+  }
+
+  @ZenDocMethod(
+      order = 2,
+      description = "Remove all recipes with the given recipe output.",
+      args = {"output"}
+  )
+  @ZenMethod
+  public static void removeRecipes(IIngredient output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
   }
 
   public static class RemoveRecipe
