@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -27,13 +28,21 @@ public class SoakingPotRecipesAdd {
         1
     ).setRegistryName(ModulePyrotech.MOD_ID, "sponge"));
 
-    // Bowstring
+    // Durable Twine
     registry.register(new SoakingPotRecipe(
         ItemMaterial.EnumType.TWINE_DURABLE.asStack(),
         Ingredient.fromStacks(ItemMaterial.EnumType.TWINE.asStack()),
-        new FluidStack(FluidRegistry.WATER, 250),
-        1
+        new FluidStack(ModuleFluids.WOOD_TAR, 250),
+        2 * 60 * 20
     ).setRegistryName(ModulePyrotech.MOD_ID, "twine_durable"));
+
+    // Tarred Wool
+    registry.register(new SoakingPotRecipe(
+        new ItemStack(ModuleBlocks.WOOL_TARRED),
+        Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE)),
+        new FluidStack(ModuleFluids.WOOD_TAR, 250),
+        8 * 60 * 20
+    ).setRegistryName(ModulePyrotech.MOD_ID, "wool_tarred"));
 
     // Pulp from reeds
     registry.register(new SoakingPotRecipe(
@@ -102,23 +111,7 @@ public class SoakingPotRecipesAdd {
     // White Wool
     registry.register(new SoakingPotRecipe(
         new ItemStack(Blocks.WOOL, 1, 0),
-        Ingredient.fromStacks(
-            new ItemStack(Blocks.WOOL, 1, 1),
-            new ItemStack(Blocks.WOOL, 1, 2),
-            new ItemStack(Blocks.WOOL, 1, 3),
-            new ItemStack(Blocks.WOOL, 1, 4),
-            new ItemStack(Blocks.WOOL, 1, 5),
-            new ItemStack(Blocks.WOOL, 1, 6),
-            new ItemStack(Blocks.WOOL, 1, 7),
-            new ItemStack(Blocks.WOOL, 1, 8),
-            new ItemStack(Blocks.WOOL, 1, 9),
-            new ItemStack(Blocks.WOOL, 1, 10),
-            new ItemStack(Blocks.WOOL, 1, 11),
-            new ItemStack(Blocks.WOOL, 1, 12),
-            new ItemStack(Blocks.WOOL, 1, 13),
-            new ItemStack(Blocks.WOOL, 1, 14),
-            new ItemStack(Blocks.WOOL, 1, 15)
-        ),
+        Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE)),
         new FluidStack(FluidRegistry.WATER, 250),
         5 * 60 * 20
     ).setRegistryName(ModulePyrotech.MOD_ID, "white_wool"));

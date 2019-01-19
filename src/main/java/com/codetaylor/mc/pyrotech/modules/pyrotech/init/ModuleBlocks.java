@@ -62,6 +62,7 @@ public final class ModuleBlocks {
   public static final BlockPlanksTarred PLANKS_TARRED = new BlockPlanksTarred();
   public static final BlockBloomery BLOOMERY = new BlockBloomery();
   public static final BlockPileWoodChips PILE_WOOD_CHIPS = new BlockPileWoodChips();
+  public static final BlockWoolTarred WOOL_TARRED = new BlockWoolTarred();
 
   public static void onRegister(Registry registry) {
 
@@ -106,6 +107,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.PLANKS_TARRED, BlockPlanksTarred.NAME);
     registry.registerBlockWithItem(ModuleBlocks.BLOOMERY, BlockBloomery.NAME);
     registry.registerBlockWithItem(ModuleBlocks.PILE_WOOD_CHIPS, BlockPileWoodChips.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.WOOL_TARRED, BlockWoolTarred.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
@@ -177,7 +179,8 @@ public final class ModuleBlocks {
           ModuleBlocks.SOAKING_POT,
           ModuleBlocks.PLANKS_TARRED,
           ModuleBlocks.BLOOMERY,
-          ModuleBlocks.PILE_WOOD_CHIPS
+          ModuleBlocks.PILE_WOOD_CHIPS,
+          ModuleBlocks.WOOL_TARRED
       );
 
       // Refractory Door
