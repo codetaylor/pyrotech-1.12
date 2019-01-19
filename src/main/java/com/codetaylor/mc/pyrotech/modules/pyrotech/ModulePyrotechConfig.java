@@ -618,9 +618,9 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "How much exhaustion to apply per hit.",
         "Range: [0, 40]",
-        "Default: " + 0.5
+        "Default: " + 1
     })
-    public double EXHAUSTION_COST_PER_HIT = 0.5;
+    public double EXHAUSTION_COST_PER_HIT = 1;
 
     @Config.Comment({
         "How much exhaustion to apply per completed craft.",
