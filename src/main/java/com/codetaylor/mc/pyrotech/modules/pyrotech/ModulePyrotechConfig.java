@@ -363,9 +363,9 @@ public class ModulePyrotechConfig {
         "The number of times the mulched farmland will apply bonemeal to a crop before",
         "reverting to normal moisturized farmland.",
         "Range: [1,+int]",
-        "Default: " + 3
+        "Default: " + 6
     })
-    public int CHARGES = 3;
+    public int CHARGES = 6;
 
     @Config.Comment({
         "Set to true to ignore the charge count and allow the mulched farmland",
