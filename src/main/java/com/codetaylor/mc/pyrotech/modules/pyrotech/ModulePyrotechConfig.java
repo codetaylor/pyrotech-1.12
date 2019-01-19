@@ -1028,9 +1028,9 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "How much exhaustion to apply per axe chop.",
         "Range: [0, 40]",
-        "Default: " + 0.5
+        "Default: " + 1.5
     })
-    public double EXHAUSTION_COST_PER_AXE_CHOP = 0.5;
+    public double EXHAUSTION_COST_PER_AXE_CHOP = 1.5;
 
     @Config.Comment({
         "How much exhaustion to apply per shovel scoop.",
