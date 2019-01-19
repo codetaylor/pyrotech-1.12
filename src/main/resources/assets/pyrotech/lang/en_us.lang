@@ -159,6 +159,7 @@ gui.pyrotech.waila.campfire.ash=Ash: %d of %d
 gui.pyrotech.waila.drying_rack.speed=Speed: %s
 gui.pyrotech.waila.burn.time=Burn Time: %s
 gui.pyrotech.waila.mill.stone.blade=Blade: %s
+gui.pyrotech.waila.empty=Empty
 
 # --- JEI plugin
 
