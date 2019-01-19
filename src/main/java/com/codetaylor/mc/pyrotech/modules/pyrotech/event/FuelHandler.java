@@ -37,6 +37,12 @@ public class FuelHandler {
   @GameRegistry.ObjectHolder(ModulePyrotech.MOD_ID + ":" + BlockCampfire.NAME)
   private static Item ITEM_CAMPFIRE;
 
+  @GameRegistry.ObjectHolder(ModulePyrotech.MOD_ID + ":" + BlockPlanksTarred.NAME)
+  private static Item ITEM_TARRED_PLANKS;
+
+  @GameRegistry.ObjectHolder(ModulePyrotech.MOD_ID + ":" + BlockWoolTarred.NAME)
+  private static Item ITEM_TARRED_WOOL;
+
   @SubscribeEvent
   public static void onFurnaceFuelBurnTimeEvent(FurnaceFuelBurnTimeEvent event) {
 
@@ -71,6 +77,12 @@ public class FuelHandler {
         || item == ITEM_REFRACTORY_DOOR
         || item == ITEM_CAMPFIRE) {
       event.setBurnTime(0);
+
+    } else if (item == ITEM_TARRED_PLANKS) {
+      event.setBurnTime(ModulePyrotechConfig.FUEL.TARRED_PLANKS_BURN_TIME_TICKS);
+
+    } else if (item == ITEM_TARRED_WOOL) {
+      event.setBurnTime(ModulePyrotechConfig.FUEL.TARRED_WOOL_BURN_TIME_TICKS);
     }
   }
 

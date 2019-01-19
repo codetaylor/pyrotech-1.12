@@ -1381,6 +1381,17 @@ public class ModulePyrotechConfig {
     })
     public int PILE_WOOD_CHIPS_BURN_TIME_TICKS = 1600;
 
+    @Config.Comment({
+        "Tarred planks burn time in ticks.",
+        "Default: " + 800
+    })
+    public int TARRED_PLANKS_BURN_TIME_TICKS = 800;
+
+    @Config.Comment({
+        "Tarred wool burn time in ticks.",
+        "Default: " + 800
+    })
+    public int TARRED_WOOL_BURN_TIME_TICKS = 800;
   }
 
   // ---------------------------------------------------------------------------
