@@ -251,7 +251,7 @@ public abstract class BlockCombustionWorkerStoneBase
           tile.dropContents();
         }
 
-        StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.KILN_STONE), down);
+        StackHelper.spawnStackOnTop(world, new ItemStack(this), down);
         world.setBlockToAir(down);
       }
 
