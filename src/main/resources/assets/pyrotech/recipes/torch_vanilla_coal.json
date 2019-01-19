@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W",
+    "|"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:coal",
+      "data": 0
+    },
+    "|": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "minecraft:torch",
+    "count": 4,
+    "data": 0
+  }
+}
