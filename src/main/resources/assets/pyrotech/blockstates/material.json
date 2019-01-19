@@ -31,7 +31,8 @@
       "quicklime": {"textures": {"layer0": "pyrotech:items/quicklime"}},
       "board_tarred": {"textures": {"layer0": "pyrotech:items/board_tarred"}},
       "bucket_clay_unfired": {"textures": {"layer0": "pyrotech:items/bucket_clay_unfired"}},
-      "pulp": {"textures": {"layer0": "pyrotech:items/pulp"}}
+      "pulp": {"textures": {"layer0": "pyrotech:items/pulp"}},
+      "twine_durable": {"textures": {"layer0": "pyrotech:items/twine_durable"}}
     }
   }
 }

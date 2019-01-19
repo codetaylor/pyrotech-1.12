@@ -27,6 +27,14 @@ public class SoakingPotRecipesAdd {
         1
     ).setRegistryName(ModulePyrotech.MOD_ID, "sponge"));
 
+    // Bowstring
+    registry.register(new SoakingPotRecipe(
+        ItemMaterial.EnumType.TWINE_DURABLE.asStack(),
+        Ingredient.fromStacks(ItemMaterial.EnumType.TWINE.asStack()),
+        new FluidStack(FluidRegistry.WATER, 250),
+        1
+    ).setRegistryName(ModulePyrotech.MOD_ID, "twine_durable"));
+
     // Pulp from reeds
     registry.register(new SoakingPotRecipe(
         ItemMaterial.EnumType.PULP.asStack(),

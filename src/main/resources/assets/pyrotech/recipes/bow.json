@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S|",
+    "S |",
+    " S|"
+  ],
+  "key": {
+    "|": {
+      "item": "pyrotech:material",
+      "data": 27
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "minecraft:bow",
+    "count": 1,
+    "data": 0
+  }
+}
