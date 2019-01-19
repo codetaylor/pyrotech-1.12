@@ -611,9 +611,9 @@ public class ModulePyrotechConfig {
         "The number of crafts that the worktable can perform before it breaks.",
         "This is only relevant if the `USES_DURABILITY` flag is true.",
         "Range: [1, +int]",
-        "Default: " + (64 * 8)
+        "Default: " + 64
     })
-    public int DURABILITY = 64 * 8;
+    public int DURABILITY = 64;
 
     @Config.Comment({
         "How much exhaustion to apply per hit.",
