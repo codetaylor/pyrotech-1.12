@@ -520,8 +520,22 @@ public class PluginDropt {
         .dropStrategy(EnumDropStrategy.UNIQUE)
         .addDrops(new IDroptDropBuilder[]{
             drop().items(new String[]{rockStone}, range(1, 2)).selector(weight(8)),
-            drop().items(new String[]{coalPieces}, range(2, 4)).selector(weight(8)),
-            drop().items(new String[]{coal}).selector(weight(1))
+            drop().items(new String[]{coalPieces}, range(2, 4)).selector(weight(8))
+        })
+    );
+
+    // Iron Pickaxe
+    list.add(rule()
+        .matchBlocks(new String[]{
+            coalOre
+        })
+        .matchHarvester(harvester()
+            .type(EnumHarvesterType.PLAYER)
+            .mainHand(EnumListType.BLACKLIST, "pickaxe;3;-1")
+        )
+        .addDrops(new IDroptDropBuilder[]{
+            drop().items(new String[]{coalPieces}, range(4, 8, 4)).selector(weight(3)),
+            drop().items(new String[]{coal}, range(1, 1)).selector(weight(1, 1))
         })
     );
 
