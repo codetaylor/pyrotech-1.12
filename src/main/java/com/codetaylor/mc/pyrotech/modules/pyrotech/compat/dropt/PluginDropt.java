@@ -68,6 +68,7 @@ public class PluginDropt {
     String gravel = item("minecraft", "gravel");
     String tallGrassAny = item("minecraft", "tallgrass", OreDictionary.WILDCARD_VALUE);
     String leaves = item("minecraft", "leaves", OreDictionary.WILDCARD_VALUE);
+    String leaves2 = item("minecraft", "leaves2", OreDictionary.WILDCARD_VALUE);
     String stick = item("minecraft", "stick");
     String coalOre = item("minecraft", "coal_ore");
     String clay = item("minecraft", "clay");
@@ -123,7 +124,8 @@ public class PluginDropt {
 
     list.add(rule()
         .matchBlocks(new String[]{
-            leaves
+            leaves,
+            leaves2
         })
         .matchHarvester(harvester()
             .type(EnumHarvesterType.PLAYER)
@@ -137,7 +139,8 @@ public class PluginDropt {
 
     list.add(rule()
         .matchBlocks(new String[]{
-            leaves
+            leaves,
+            leaves2
         })
         .replaceStrategy(EnumReplaceStrategy.ADD)
         .addDrops(new IDroptDropBuilder[]{
