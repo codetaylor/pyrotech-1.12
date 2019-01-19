@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockTarDrain;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockTarDrain;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTarTankBase;
 import net.minecraft.block.state.IBlockState;
@@ -37,21 +37,31 @@ public class TileTarDrain
   @Override
   public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
 
-    return (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
-        && facing == this.world.getBlockState(this.pos).getValue(BlockTarDrain.FACING).getOpposite());
+    if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+      EnumFacing tileFacing = this.world.getBlockState(this.pos).getValue(BlockTarDrain.FACING);
+
+      return facing == tileFacing
+          || facing == tileFacing.getOpposite();
+    }
+
+    return false;
   }
 
   @Nullable
   @Override
   public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
 
-    if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
-        && facing == this.world.getBlockState(this.pos).getValue(BlockTarDrain.FACING).getOpposite()) {
-      //noinspection unchecked
-      return (T) this.fluidTank;
+    if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+      EnumFacing tileFacing = this.world.getBlockState(this.pos).getValue(BlockTarDrain.FACING);
+
+      if (facing == tileFacing
+          || facing == tileFacing.getOpposite()) {
+        //noinspection unchecked
+        return (T) this.fluidTank;
+      }
     }
 
-    return super.getCapability(capability, facing);
+    return null;
   }
 
   @Override
