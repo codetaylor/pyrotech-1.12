@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "pyrotech:mill_stone"
+    "model": "pyrotech:mill_stone",
+    "textures": {
+      "particle": "pyrotech:blocks/kiln_stone_side"
+    }
   },
   "variants": {
     "facing": {
