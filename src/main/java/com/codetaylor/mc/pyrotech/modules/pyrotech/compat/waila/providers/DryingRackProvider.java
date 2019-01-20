@@ -38,7 +38,7 @@ public class DryingRackProvider
       TileDryingRackBase tile = (TileDryingRackBase) tileEntity;
 
       tooltip.add(Util.translateFormatted(
-          "gui." + ModulePyrotech.MOD_ID + ".waila.drying_rack.speed",
+          "gui." + ModulePyrotech.MOD_ID + ".waila.speed",
           String.valueOf((int) (tile.getSpeed() * 100)) + "%"
       ));
 

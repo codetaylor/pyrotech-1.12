@@ -68,6 +68,10 @@ public class WailaRegistrar {
 
     SoakingPotProvider soakingPotProvider = new SoakingPotProvider();
     registrar.registerBodyProvider(soakingPotProvider, TileSoakingPot.class);
+
+    BloomeryProvider bloomeryProvider = new BloomeryProvider();
+    registrar.registerBodyProvider(bloomeryProvider, TileBloomery.class);
+    registrar.registerBodyProvider(bloomeryProvider, TileStoneTop.class);
   }
 
 }

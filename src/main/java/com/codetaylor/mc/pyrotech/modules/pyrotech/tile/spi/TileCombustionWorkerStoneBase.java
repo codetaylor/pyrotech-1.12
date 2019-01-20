@@ -43,9 +43,11 @@ import javax.annotation.Nullable;
 public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipeBase<E>>
     extends TileCombustionWorkerBase
     implements ITickable,
-    ITileInteractable {
+    ITileInteractable,
+    ITileContainer {
 
   private static final int DORMANT_COUNTER = 50;
+  private static final AxisAlignedBB INTERACTION_BOUNDS_TOP = new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f);
 
   private FuelStackHandler fuelStackHandler;
 
@@ -375,7 +377,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
   protected AxisAlignedBB getInputInteractionBoundsTop() {
 
-    return new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f);
+    return INTERACTION_BOUNDS_TOP;
   }
 
   private class InteractionBucket

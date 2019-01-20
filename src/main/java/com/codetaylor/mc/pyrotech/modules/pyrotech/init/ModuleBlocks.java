@@ -274,6 +274,7 @@ public final class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileCrate.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCompactingBin.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileSoakingPot.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileBloomery.class, new TESRInteractable<>());
     });
   }
 

@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "pyrotech:bloomery"
+    "model": "pyrotech:bloomery",
+    "textures": {
+      "particle": "pyrotech:blocks/bloomery_side"
+    }
   },
   "variants": {
     "facing": {

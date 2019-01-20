@@ -178,6 +178,12 @@ public class ModulePyrotech
         .setType(SoakingPotRecipe.class)
         .allowModification()
         .create();
+
+    new RegistryBuilder<BloomeryRecipe>()
+        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "bloomery_recipe"))
+        .setType(BloomeryRecipe.class)
+        .allowModification()
+        .create();
   }
 
   @Override
@@ -219,6 +225,7 @@ public class ModulePyrotech
     StoneCrucibleRecipesAdd.apply(ModulePyrotechRegistries.CRUCIBLE_STONE_RECIPE);
     CompactingBinRecipesAdd.apply(ModulePyrotechRegistries.COMPACTING_BIN_RECIPE);
     SoakingPotRecipesAdd.apply(ModulePyrotechRegistries.SOAKING_POT_RECIPE);
+    BloomeryRecipesAdd.apply(ModulePyrotechRegistries.BLOOMERY_RECIPE);
   }
 
   @Override

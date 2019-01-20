@@ -356,7 +356,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
       extractItemCount = 1;
 
     } else {
-      extractItemCount = this.getStackInSlot().getCount();
+      extractItemCount = Integer.MAX_VALUE;
     }
 
     ItemStack result = this.extract(extractItemCount, world.isRemote);

@@ -4,7 +4,9 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorch;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import net.minecraft.block.Block;
@@ -87,7 +89,8 @@ public abstract class ItemIgniterBase
 
         if (block instanceof BlockCombustionWorkerStoneBase
             || block == ModuleBlocks.CAMPFIRE
-            || block == ModuleBlocks.TORCH_FIBER) {
+            || block == ModuleBlocks.TORCH_FIBER
+            || block == ModuleBlocks.BLOOMERY) {
 
           // TODO: Abstract
 
@@ -101,6 +104,13 @@ public abstract class ItemIgniterBase
 
           } else if (tileEntity instanceof TileTorch) {
             ((TileTorch) tileEntity).activate();
+
+          } else if (tileEntity instanceof TileStoneTop) {
+            TileEntity candidate = world.getTileEntity(pos.down());
+
+            if (candidate instanceof TileBloomery) {
+              ((TileBloomery) candidate).setActive();
+            }
           }
 
           world.playSound(

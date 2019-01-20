@@ -1,10 +1,15 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloomery;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -39,6 +44,36 @@ public class BlockBloomery
     }
 
     return super.getBoundingBox(state, source, pos);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Interaction
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean onBlockActivated(
+      World world,
+      BlockPos pos,
+      IBlockState state,
+      EntityPlayer player,
+      EnumHand hand,
+      EnumFacing facing,
+      float hitX,
+      float hitY,
+      float hitZ
+  ) {
+
+    if (this.isTop(state)) {
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      if (heldItem.getItem() instanceof ItemIgniterBase) {
+        return false;
+      }
+      return this.interact(IInteraction.EnumType.MouseClick, world, pos.down(), state, player, hand, facing, hitX, hitY, hitZ);
+
+    } else {
+      return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    }
   }
 
   // ---------------------------------------------------------------------------
