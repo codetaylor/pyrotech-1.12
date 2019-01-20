@@ -297,6 +297,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     this.remainingRecipeTimeTicks.set(compound.getInteger("remainingRecipeTimeTicks"));
   }
 
+  @Override
   public void dropContents() {
 
     ItemStackHandler stackHandler = this.getFuelStackHandler();

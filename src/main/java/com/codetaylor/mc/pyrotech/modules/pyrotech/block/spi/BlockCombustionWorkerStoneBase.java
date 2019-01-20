@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInterac
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
 import net.minecraft.block.Block;
@@ -246,8 +247,8 @@ public abstract class BlockCombustionWorkerStoneBase
       if (world.getBlockState(down).getBlock() == this) {
         TileEntity tileEntity = world.getTileEntity(down);
 
-        if (tileEntity instanceof TileCombustionWorkerStoneBase) {
-          TileCombustionWorkerStoneBase tile = (TileCombustionWorkerStoneBase) tileEntity;
+        if (tileEntity instanceof ITileContainer) {
+          ITileContainer tile = (ITileContainer) tileEntity;
           tile.dropContents();
         }
 
@@ -265,8 +266,8 @@ public abstract class BlockCombustionWorkerStoneBase
 
       TileEntity tileEntity = world.getTileEntity(pos);
 
-      if (tileEntity instanceof TileCombustionWorkerStoneBase) {
-        TileCombustionWorkerStoneBase tile = (TileCombustionWorkerStoneBase) tileEntity;
+      if (tileEntity instanceof ITileContainer) {
+        ITileContainer tile = (ITileContainer) tileEntity;
         tile.dropContents();
       }
     }
