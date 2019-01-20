@@ -26,7 +26,10 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -210,7 +213,8 @@ public class TileCompactingBin
 
       super.onInsert(type, itemStack, world, player, pos);
 
-      if (!world.isRemote) {
+      if (!world.isRemote
+          && type == EnumType.MouseClick) {
         world.playSound(
             null,
             pos.getX(),
@@ -336,33 +340,6 @@ public class TileCompactingBin
 
       super(1);
       this.tile = tile;
-    }
-
-    public int getTotalItemCount() {
-
-      int result = 0;
-
-      for (int i = 0; i < this.getSlots(); i++) {
-        ItemStack stackInSlot = this.getStackInSlot(i);
-
-        if (!stackInSlot.isEmpty()) {
-          result += stackInSlot.getCount();
-        }
-      }
-
-      return result;
-    }
-
-    public ItemStack getFirstNonEmptyItemStack() {
-
-      for (int i = 0; i < this.getSlots(); i++) {
-        ItemStack stackInSlot = this.getStackInSlot(0);
-
-        if (!stackInSlot.isEmpty()) {
-          return stackInSlot;
-        }
-      }
-      return ItemStack.EMPTY;
     }
 
     @Nonnull
