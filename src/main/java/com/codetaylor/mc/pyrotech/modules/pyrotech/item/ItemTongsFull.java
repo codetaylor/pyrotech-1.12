@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -18,10 +19,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemTongsFull
     extends ItemTongs {
@@ -77,13 +80,11 @@ public class ItemTongsFull
     return ActionResult.newResult(EnumActionResult.PASS, heldItem);
   }
 
-  @SuppressWarnings("deprecation")
-  @Nonnull
   @Override
-  public String getItemStackDisplayName(@Nonnull ItemStack stack) {
+  public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 
     if (stack.getItem() != this) {
-      return super.getItemStackDisplayName(stack);
+      return;
     }
 
     NBTTagCompound tagCompound = stack.getTagCompound();
@@ -96,10 +97,15 @@ public class ItemTongsFull
 
       if (I18n.canTranslate(langKey)) {
         String translatedLangKey = I18n.translateToLocal(langKey);
-        return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".unique.name", translatedLangKey).trim();
+        String translatedTooltip = I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".unique.name", translatedLangKey).trim();
+
+        if (tooltip.size() > 1) {
+          tooltip.add(1, TextFormatting.DARK_RED + translatedTooltip + TextFormatting.RESET);
+
+        } else {
+          tooltip.add(TextFormatting.GOLD + translatedTooltip + TextFormatting.RESET);
+        }
       }
     }
-
-    return I18n.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name").trim();
   }
 }

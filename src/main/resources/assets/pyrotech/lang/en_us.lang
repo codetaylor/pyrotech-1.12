@@ -92,7 +92,7 @@ item.pyrotech.bucket.stone.empty.name=Stone Bucket
 item.pyrotech.bucket.stone.milk.name=Milk Stone Bucket
 
 item.pyrotech.tongs.name=Iron Tongs
-item.pyrotech.tongs.full.name=Full Iron Tongs
+item.pyrotech.tongs.full.name=Iron Tongs
 item.pyrotech.tongs.full.unique.name=%s Bloom
 
 # --- Tiles
