@@ -266,21 +266,23 @@ public class BlockBloom
     this.tryCatchFire(world, pos.north(), 300 + humidityModifier, rand, age, EnumFacing.SOUTH);
     this.tryCatchFire(world, pos.south(), 300 + humidityModifier, rand, age, EnumFacing.NORTH);
 
-    BlockHelper.forBlocksInCube(world, pos, 1, 1, 1, (w, p, bs) -> {
+    if (rand.nextDouble() < 0.5) {
+      BlockHelper.forBlocksInCube(world, pos, 1, 1, 1, (w, p, bs) -> {
 
-      if (w.isAirBlock(p)) {
+        if (w.isAirBlock(p)) {
 
-        BlockPos down = p.down();
-        IBlockState blockState = w.getBlockState(down);
+          BlockPos down = p.down();
+          IBlockState blockState = w.getBlockState(down);
 
-        if (blockState.isSideSolid(w, down, EnumFacing.UP)) {
-          w.setBlockState(p, Blocks.FIRE.getDefaultState(), 1 | 2);
-          return false;
+          if (blockState.isSideSolid(w, down, EnumFacing.UP)) {
+            w.setBlockState(p, Blocks.FIRE.getDefaultState(), 1 | 2);
+            return false;
+          }
         }
-      }
 
-      return true;
-    });
+        return true;
+      });
+    }
   }
 
   private void tryCatchFire(World world, BlockPos pos, int chance, Random random, int age, EnumFacing face) {
