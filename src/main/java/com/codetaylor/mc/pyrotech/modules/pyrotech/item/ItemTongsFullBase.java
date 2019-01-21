@@ -90,7 +90,7 @@ public abstract class ItemTongsFullBase
       tagCompound.removeTag(StackHelper.BLOCK_ENTITY_TAG);
       itemStack.setTagCompound(tagCompound);
 
-      if (itemStack.attemptDamageItem(ModulePyrotechConfig.GENERAL.TONGS_DAMAGE_PER_USE, RandomHelper.random(), null)) {
+      if (itemStack.attemptDamageItem(this.getDamagePerUse(), RandomHelper.random(), null)) {
 
         if (!world.isRemote) {
           world.playSound(
@@ -111,6 +111,8 @@ public abstract class ItemTongsFullBase
 
     return ActionResult.newResult(EnumActionResult.PASS, heldItem);
   }
+
+  protected abstract int getDamagePerUse();
 
   @Override
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {

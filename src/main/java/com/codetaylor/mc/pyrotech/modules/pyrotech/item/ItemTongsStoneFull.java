@@ -12,4 +12,10 @@ public class ItemTongsStoneFull
 
     super(() -> ModuleItems.TONGS_STONE, ModulePyrotechConfig.GENERAL.STONE_TONGS_DURABILITY);
   }
+
+  @Override
+  protected int getDamagePerUse() {
+
+    return ModulePyrotechConfig.GENERAL.STONE_TONGS_DAMAGE_PER_USE;
+  }
 }
