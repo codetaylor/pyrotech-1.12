@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech;
 
+import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
@@ -1632,6 +1633,18 @@ public class ModulePyrotechConfig {
         "Default: 1000"
     })
     public int TAR_DRAIN_CAPACITY = 1000;
+
+    @Config.Comment({
+        "The durability of the iron tongs.",
+        "Default: " + 250
+    })
+    public int IRON_TONGS_DURABILITY = EnumMaterial.IRON.getToolMaterial().getMaxUses();
+
+    @Config.Comment({
+        "The amount of damage applied to all tongs per use.",
+        "Default: " + 5
+    })
+    public int TONGS_DAMAGE_PER_USE = 5;
 
     @Config.Comment({
         "The durability of the bow drill.",

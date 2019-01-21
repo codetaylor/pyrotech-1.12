@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
@@ -52,7 +53,7 @@ public class ItemTongsFull
 
       ItemStack itemStack = new ItemStack(ModuleItems.TONGS, 1, this.getMetadata(heldItem));
 
-      if (itemStack.attemptDamageItem(1, RandomHelper.random(), null)) {
+      if (itemStack.attemptDamageItem(ModulePyrotechConfig.GENERAL.TONGS_DAMAGE_PER_USE, RandomHelper.random(), null)) {
 
         if (!world.isRemote) {
           world.playSound(

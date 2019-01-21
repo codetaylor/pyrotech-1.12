@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
-import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
@@ -27,8 +27,7 @@ public class ItemTongs
   public ItemTongs() {
 
     this.setMaxStackSize(1);
-    //this.setMaxDamage(EnumMaterial.IRON.getToolMaterial().getMaxUses());
-    this.setMaxDamage(3);
+    this.setMaxDamage(ModulePyrotechConfig.GENERAL.IRON_TONGS_DURABILITY);
   }
 
   @Override
