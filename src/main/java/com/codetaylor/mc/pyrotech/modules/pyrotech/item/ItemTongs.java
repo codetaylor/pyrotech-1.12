@@ -27,7 +27,8 @@ public class ItemTongs
   public ItemTongs() {
 
     this.setMaxStackSize(1);
-    this.setMaxDamage(EnumMaterial.IRON.getToolMaterial().getMaxUses());
+    //this.setMaxDamage(EnumMaterial.IRON.getToolMaterial().getMaxUses());
+    this.setMaxDamage(3);
   }
 
   @Override
@@ -54,10 +55,10 @@ public class ItemTongs
       return ActionResult.newResult(EnumActionResult.FAIL, heldItem);
     }
 
-    return this.onItemRightClick(world, heldItem, target);
+    return this.onItemRightClick(world, player, heldItem, target);
   }
 
-  protected ActionResult<ItemStack> onItemRightClick(World world, ItemStack heldItem, RayTraceResult target) {
+  protected ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, ItemStack heldItem, RayTraceResult target) {
 
     BlockPos pos = target.getBlockPos();
     IBlockState blockState = world.getBlockState(pos);
@@ -68,14 +69,12 @@ public class ItemTongs
         && tileEntity instanceof TileBloom) {
 
       TileBloom tile = (TileBloom) tileEntity;
-      ItemStack itemStack = new ItemStack(ModuleItems.TONGS_FULL, 1, this.getMetadata(heldItem) + 1);
+      ItemStack itemStack = new ItemStack(ModuleItems.TONGS_FULL, 1, this.getMetadata(heldItem));
       TileBloom.toItemStack(tile, itemStack);
 
       if (!world.isRemote) {
         world.setBlockToAir(pos);
       }
-
-      // TODO: item break
 
       return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);
     }

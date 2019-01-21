@@ -24,7 +24,7 @@ public class ItemPickupEventHandler {
 
     if (heldItem.getItem() == ModuleItems.TONGS
         && pickedUp.getItem() == Item.getItemFromBlock(ModuleBlocks.BLOOM)) {
-      ItemStack itemStack = new ItemStack(ModuleItems.TONGS_FULL, 1, heldItem.getMetadata() + 1);
+      ItemStack itemStack = new ItemStack(ModuleItems.TONGS_FULL, 1, heldItem.getMetadata());
       itemStack.setTagCompound(pickedUp.getTagCompound());
       heldItem.shrink(1);
       ItemHandlerHelper.giveItemToPlayer(entityPlayer, itemStack);

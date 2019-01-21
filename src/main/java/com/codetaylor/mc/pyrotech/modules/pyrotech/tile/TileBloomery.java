@@ -352,10 +352,8 @@ public class TileBloomery
       ItemStack itemStack = tile.outputStackHandler.extractItem(0, 1, false);
       ItemStack heldItem = player.getHeldItemMainhand();
 
-      ItemStack tongs = new ItemStack(ModuleItems.TONGS_FULL, 1, heldItem.getMetadata() + 1);
+      ItemStack tongs = new ItemStack(ModuleItems.TONGS_FULL, 1, heldItem.getMetadata());
       tongs.setTagCompound(itemStack.getTagCompound());
-
-      // TODO: break tongs
 
       heldItem.shrink(1);
       ItemHandlerHelper.giveItemToPlayer(player, tongs);

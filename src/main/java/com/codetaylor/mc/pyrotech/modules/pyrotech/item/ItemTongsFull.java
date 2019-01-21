@@ -1,16 +1,20 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
-import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.translation.I18n;
@@ -23,14 +27,8 @@ public class ItemTongsFull
 
   public static final String NAME = "tongs_full";
 
-  public ItemTongsFull() {
-
-    this.setMaxStackSize(1);
-    this.setMaxDamage(EnumMaterial.IRON.getToolMaterial().getMaxUses());
-  }
-
   @Override
-  protected ActionResult<ItemStack> onItemRightClick(World world, ItemStack heldItem, RayTraceResult target) {
+  protected ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, ItemStack heldItem, RayTraceResult target) {
 
     EnumFacing sideHit = target.sideHit;
     BlockPos pos = target.getBlockPos();
@@ -52,9 +50,24 @@ public class ItemTongsFull
         }
       }
 
-      // TODO: item break
+      ItemStack itemStack = new ItemStack(ModuleItems.TONGS, 1, this.getMetadata(heldItem));
 
-      ItemStack itemStack = new ItemStack(ModuleItems.TONGS, 1, this.getMetadata(heldItem) + 1);
+      if (itemStack.attemptDamageItem(1, RandomHelper.random(), null)) {
+
+        if (!world.isRemote) {
+          world.playSound(
+              null,
+              player.getPosition(),
+              SoundEvents.ENTITY_ITEM_BREAK,
+              SoundCategory.BLOCKS,
+              1.0F,
+              Util.RANDOM.nextFloat() * 0.4F + 0.8F
+          );
+        }
+
+        return ActionResult.newResult(EnumActionResult.SUCCESS, ItemStack.EMPTY);
+      }
+
       return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);
     }
 
