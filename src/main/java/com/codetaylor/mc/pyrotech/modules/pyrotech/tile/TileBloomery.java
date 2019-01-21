@@ -359,6 +359,13 @@ public class TileBloomery
 
       return true;
     }
+
+    @Override
+    protected void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
+
+      // This is a no-op because we only want the tongs to take damage
+      // when a bloom is placed, not retrieved.
+    }
   }
 
   private class InteractionUseFlintAndSteel
