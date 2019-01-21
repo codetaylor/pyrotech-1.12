@@ -20,6 +20,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFallingBlock;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
@@ -340,6 +341,27 @@ public class BlockBloom
       super(block);
     }
 
+    @Override
+    public boolean hasCustomEntity(ItemStack stack) {
+
+      return true;
+    }
+
+    @Nullable
+    @Override
+    public Entity createEntity(World world, Entity entity, ItemStack itemstack) {
+
+      EntityItemBloom entityItemBloom = new EntityItemBloom(world, entity.posX, entity.posY, entity.posZ, itemstack);
+
+      entityItemBloom.motionX = entity.motionX;
+      entityItemBloom.motionY = entity.motionY;
+      entityItemBloom.motionZ = entity.motionZ;
+
+      entityItemBloom.setPickupDelay(40);
+
+      return entityItemBloom;
+    }
+
     @SuppressWarnings("deprecation")
     @Nonnull
     @Override
@@ -382,6 +404,56 @@ public class BlockBloom
       if (playerDamagePerSecond > 0) {
         entity.attackEntityFrom(DamageSource.IN_FIRE, playerDamagePerSecond);
         entity.setFire(1);
+      }
+    }
+
+    public static class EntityItemBloom
+        extends EntityItem {
+
+      public static final String NAME = "pyrotech.EntityItemBloom";
+
+      @SuppressWarnings("unused")
+      public EntityItemBloom(World world) {
+
+        // Serialization
+        super(world);
+      }
+
+      /* package */ EntityItemBloom(World world, double x, double y, double z, ItemStack stack) {
+
+        super(world, x, y, z, stack);
+        this.setNoDespawn();
+        this.isImmuneToFire = true;
+      }
+
+      @Override
+      public void onUpdate() {
+
+        super.onUpdate();
+      }
+
+      @Override
+      public void onEntityUpdate() {
+
+        super.onEntityUpdate();
+
+        if (this.world != null
+            && this.world.isRemote
+            && this.world.getTotalWorldTime() % 5 == 0) {
+
+          double x = this.posX;
+          double y = this.posY + (4.0 / 16.0) + (this.rand.nextDouble() * 2.0 / 16.0);
+          double z = this.posZ;
+
+          if (this.rand.nextDouble() < 0.1) {
+            this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+          }
+
+          double offsetX = (this.rand.nextDouble() * 2.0 - 1.0) * 0.1;
+          double offsetY = (this.rand.nextDouble() * 2.0 - 1.0) * 0.1;
+          double offsetZ = (this.rand.nextDouble() * 2.0 - 1.0) * 0.1;
+          this.world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
+        }
       }
     }
 
