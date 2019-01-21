@@ -1447,7 +1447,13 @@ public class ModulePyrotechConfig {
         "campfire is lit.",
         "Default: " + 1.0
     })
-    public double PLAYER_BURN_DAMAGE = 1.0;
+    public double PLAYER_LOG_BURN_DAMAGE = 1.0;
+
+    @Config.Comment({
+        "The amount of damage done to an entity when walking on top of a lit campfire.",
+        "Default: " + 1.0
+    })
+    public double ENTITY_WALK_BURN_DAMAGE = 1.0;
   }
 
   // ---------------------------------------------------------------------------

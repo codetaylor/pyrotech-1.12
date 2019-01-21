@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
@@ -244,7 +245,7 @@ public class BlockCampfire
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)
         && this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == BlockCampfire.EnumType.LIT) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.CAMPFIRE.ENTITY_WALK_BURN_DAMAGE);
     }
 
     super.onEntityWalk(world, pos, entity);
