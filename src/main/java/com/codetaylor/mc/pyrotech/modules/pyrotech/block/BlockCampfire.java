@@ -241,7 +241,8 @@ public class BlockCampfire
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
-    if (!entity.isImmuneToFire()
+    if (ModulePyrotechConfig.CAMPFIRE.ENTITY_WALK_BURN_DAMAGE > 0
+        && !entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)
         && this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == BlockCampfire.EnumType.LIT) {

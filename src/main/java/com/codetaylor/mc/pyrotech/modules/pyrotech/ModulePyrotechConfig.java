@@ -1451,6 +1451,7 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "The amount of damage done to an entity when walking on top of a lit campfire.",
+        "Set to -1 to disable.",
         "Default: " + 1.0
     })
     public double ENTITY_WALK_BURN_DAMAGE = 1.0;
