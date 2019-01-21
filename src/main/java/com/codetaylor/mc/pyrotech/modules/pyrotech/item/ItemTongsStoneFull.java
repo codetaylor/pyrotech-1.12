@@ -10,6 +10,6 @@ public class ItemTongsStoneFull
 
   public ItemTongsStoneFull() {
 
-    super(() -> ModuleItems.TONGS_IRON, ModulePyrotechConfig.GENERAL.STONE_TONGS_DURABILITY);
+    super(() -> ModuleItems.TONGS_STONE, ModulePyrotechConfig.GENERAL.STONE_TONGS_DURABILITY);
   }
 }
