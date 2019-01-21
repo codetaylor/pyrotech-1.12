@@ -128,9 +128,9 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.DIAMOND_HAMMER, ItemDiamondHammer.NAME);
 
     registry.registerItem(ModuleItems.TONGS_STONE, ItemTongsStone.NAME);
-    registry.registerItem(ModuleItems.TONGS_STONE_FULL, ItemTongsStoneFull.NAME);
+    registry.registerItem(ModuleItems.TONGS_STONE_FULL, ItemTongsStoneFull.NAME, true);
     registry.registerItem(ModuleItems.TONGS_IRON, ItemTongsIron.NAME);
-    registry.registerItem(ModuleItems.TONGS_IRON_FULL, ItemTongsIronFull.NAME);
+    registry.registerItem(ModuleItems.TONGS_IRON_FULL, ItemTongsIronFull.NAME, true);
 
     registry.registerItemRegistrationStrategy(forgeRegistry -> {
 
