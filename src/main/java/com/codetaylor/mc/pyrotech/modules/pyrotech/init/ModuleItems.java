@@ -65,6 +65,9 @@ public final class ModuleItems {
   public static final ItemMillBlade IRON_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.IRON.getMaxUses());
   public static final ItemMillBlade DIAMOND_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.DIAMOND.getMaxUses());
 
+  public static final ItemTongs TONGS = new ItemTongs();
+  public static final ItemTongsFull TONGS_FULL = new ItemTongsFull();
+
   public static void onRegister(Registry registry) {
 
     registry.registerItem(ModuleItems.STONE_MILL_BLADE, "mill_blade_stone");
@@ -121,6 +124,9 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.FLINT_HAMMER, ItemFlintHammer.NAME);
     registry.registerItem(ModuleItems.IRON_HAMMER, ItemIronHammer.NAME);
     registry.registerItem(ModuleItems.DIAMOND_HAMMER, ItemDiamondHammer.NAME);
+
+    registry.registerItem(ModuleItems.TONGS, ItemTongs.NAME);
+    registry.registerItem(ModuleItems.TONGS_FULL, ItemTongsFull.NAME);
 
     registry.registerItemRegistrationStrategy(forgeRegistry -> {
 
@@ -179,7 +185,10 @@ public final class ModuleItems {
           ModuleItems.FLINT_MILL_BLADE,
           ModuleItems.BONE_MILL_BLADE,
           ModuleItems.IRON_MILL_BLADE,
-          ModuleItems.DIAMOND_MILL_BLADE
+          ModuleItems.DIAMOND_MILL_BLADE,
+
+          ModuleItems.TONGS,
+          ModuleItems.TONGS_FULL
       );
 
       if (ModulePyrotechConfig.BUCKET_WOOD.ENABLED) {

@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
@@ -105,7 +104,12 @@ public class TileBloom
 
   public static ItemStack toItemStack(TileBloom tile) {
 
-    return StackHelper.writeTileEntityToItemStack(tile, new ItemStack(ModuleBlocks.BLOOM));
+    return TileBloom.toItemStack(tile, new ItemStack(ModuleBlocks.BLOOM));
+  }
+
+  public static ItemStack toItemStack(TileBloom tile, ItemStack itemStack) {
+
+    return StackHelper.writeTileEntityToItemStack(tile, itemStack);
   }
 
   @Nonnull

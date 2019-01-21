@@ -11,6 +11,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
@@ -93,6 +94,7 @@ public class PluginJEI
     // --- Blacklist Ingredients
 
     IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleItems.TONGS_FULL));
     //blacklist.addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModuleBlocks.CAMPFIRE)));
 
     RecipeItemParser parser = new RecipeItemParser();

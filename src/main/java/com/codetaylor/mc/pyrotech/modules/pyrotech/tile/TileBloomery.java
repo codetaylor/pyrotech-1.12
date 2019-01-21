@@ -11,6 +11,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.BloomeryFuelRenderer;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
@@ -37,6 +38,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -103,6 +105,9 @@ public class TileBloomery
     // --- Interactions ---
 
     this.interactions = new IInteraction[]{
+        new InteractionTongs(
+            this.getInputInteractionBoundsTop()
+        ),
         new InteractionUseFlintAndSteel(
             this.getInputInteractionBoundsTop()
         ),
@@ -322,6 +327,41 @@ public class TileBloomery
     return blockPos.getX() == pos.getX()
         && blockPos.getY() + 1 == pos.getY()
         && blockPos.getZ() == pos.getZ();
+  }
+
+  private class InteractionTongs
+      extends InteractionUseItemBase<TileBloomery> {
+
+    public InteractionTongs(AxisAlignedBB bounds) {
+
+      super(new EnumFacing[]{EnumFacing.UP}, bounds);
+    }
+
+    @Override
+    protected boolean allowInteraction(TileBloomery tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      return (heldItem.getItem() == ModuleItems.TONGS)
+          && !tile.outputStackHandler.getStackInSlot(0).isEmpty();
+    }
+
+    @Override
+    protected boolean doInteraction(TileBloomery tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack itemStack = tile.outputStackHandler.extractItem(0, 1, false);
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      ItemStack tongs = new ItemStack(ModuleItems.TONGS_FULL, 1, heldItem.getMetadata() + 1);
+      tongs.setTagCompound(itemStack.getTagCompound());
+
+      // TODO: break tongs
+
+      heldItem.shrink(1);
+      ItemHandlerHelper.giveItemToPlayer(player, tongs);
+
+      return true;
+    }
   }
 
   private class InteractionUseFlintAndSteel
