@@ -262,10 +262,16 @@ public class BlockBloom
 
     this.tryCatchFire(world, pos.east(), 300 + humidityModifier, rand, age, EnumFacing.WEST);
     this.tryCatchFire(world, pos.west(), 300 + humidityModifier, rand, age, EnumFacing.EAST);
-    this.tryCatchFire(world, pos.down(), 250 + humidityModifier, rand, age, EnumFacing.UP);
+    this.tryCatchFire(world, pos.down(), 50, rand, age, EnumFacing.UP);
     this.tryCatchFire(world, pos.up(), 250 + humidityModifier, rand, age, EnumFacing.DOWN);
     this.tryCatchFire(world, pos.north(), 300 + humidityModifier, rand, age, EnumFacing.SOUTH);
     this.tryCatchFire(world, pos.south(), 300 + humidityModifier, rand, age, EnumFacing.NORTH);
+
+    int flammability = world.getBlockState(pos.down()).getBlock().getFlammability(world, pos, EnumFacing.UP);
+
+    if (flammability > 0) {
+      world.setBlockState(pos.down(), Blocks.FIRE.getDefaultState(), 1 | 2);
+    }
 
     if (rand.nextDouble() < 0.5) {
       BlockHelper.forBlocksInCube(world, pos, 1, 1, 1, (w, p, bs) -> {
