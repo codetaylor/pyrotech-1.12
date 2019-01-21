@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
+import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
@@ -10,12 +11,15 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongs;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFire;
+import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -35,6 +39,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Random;
 
 public class BlockBloom
     extends BlockPartialBase
@@ -50,6 +55,7 @@ public class BlockBloom
     this.setHardness(7.5f);
     this.setResistance(30.0f);
     this.setHarvestLevel("pickaxe", 1);
+    this.setTickRandomly(true);
   }
 
   // ---------------------------------------------------------------------------
@@ -143,6 +149,69 @@ public class BlockBloom
 
       if (!firstNonEmptyItemStack.isEmpty()) {
         drops.add(TileBloom.toItemStack(tile));
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Update
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+
+    int age = 0;
+    int humidityModifier = 0;
+
+    if (world.isBlockinHighHumidity(pos)) {
+      humidityModifier = -50;
+    }
+
+    this.tryCatchFire(world, pos.east(), 300 + humidityModifier, rand, age, EnumFacing.WEST);
+    this.tryCatchFire(world, pos.west(), 300 + humidityModifier, rand, age, EnumFacing.EAST);
+    this.tryCatchFire(world, pos.down(), 250 + humidityModifier, rand, age, EnumFacing.UP);
+    this.tryCatchFire(world, pos.up(), 250 + humidityModifier, rand, age, EnumFacing.DOWN);
+    this.tryCatchFire(world, pos.north(), 300 + humidityModifier, rand, age, EnumFacing.SOUTH);
+    this.tryCatchFire(world, pos.south(), 300 + humidityModifier, rand, age, EnumFacing.NORTH);
+
+    BlockHelper.forBlocksInCube(world, pos, 1, 1, 1, (w, p, bs) -> {
+
+      if (w.isAirBlock(p)) {
+
+        BlockPos down = p.down();
+        IBlockState blockState = w.getBlockState(down);
+
+        if (blockState.isSideSolid(w, down, EnumFacing.UP)) {
+          w.setBlockState(p, Blocks.FIRE.getDefaultState(), 1 | 2);
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }
+
+  private void tryCatchFire(World world, BlockPos pos, int chance, Random random, int age, EnumFacing face) {
+
+    // From BlockFire#tryCatchFire
+
+    int flammability = world.getBlockState(pos).getBlock().getFlammability(world, pos, face);
+
+    if (random.nextInt(chance) < flammability) {
+      IBlockState blockState = world.getBlockState(pos);
+
+      if (random.nextInt(age + 10) < 5 && !world.isRainingAt(pos)) {
+        int j = age + random.nextInt(5) / 4;
+
+        if (j > 15) {
+          j = 15;
+        }
+
+        world.setBlockState(pos, Blocks.FIRE.getDefaultState().withProperty(BlockFire.AGE, j), 3);
+      }
+
+      if (blockState.getBlock() == Blocks.TNT) {
+        Blocks.TNT.onBlockDestroyedByPlayer(world, pos, blockState.withProperty(BlockTNT.EXPLODE, true));
       }
     }
   }
