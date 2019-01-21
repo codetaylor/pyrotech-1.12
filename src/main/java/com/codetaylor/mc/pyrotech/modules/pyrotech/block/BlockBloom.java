@@ -20,14 +20,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -35,6 +33,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -223,6 +223,25 @@ public class BlockBloom
       if (blockState.getBlock() == Blocks.TNT) {
         Blocks.TNT.onBlockDestroyedByPlayer(world, pos, blockState.withProperty(BlockTNT.EXPLODE, true));
       }
+    }
+  }
+
+  @SideOnly(Side.CLIENT)
+  public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+
+    double x = (double) pos.getX() + 0.5;
+    double y = (double) pos.getY() + (4.0 / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
+    double z = (double) pos.getZ() + 0.5;
+
+    if (rand.nextDouble() < 0.1) {
+      world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+    }
+
+    for (int i = 0; i < 4; i++) {
+      double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
+      double offsetY = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
+      double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
+      world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
     }
   }
 
