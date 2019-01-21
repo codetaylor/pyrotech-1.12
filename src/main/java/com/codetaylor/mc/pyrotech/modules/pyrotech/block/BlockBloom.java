@@ -11,6 +11,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongs;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
@@ -18,6 +19,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
@@ -40,6 +42,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
+
+import static net.minecraft.block.BlockFalling.canFallThrough;
 
 public class BlockBloom
     extends BlockPartialBase
@@ -170,6 +174,84 @@ public class BlockBloom
   @Override
   public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 
+    this.checkFire(world, pos, rand);
+    this.checkFall(world, pos);
+  }
+
+  @SideOnly(Side.CLIENT)
+  public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+
+    double x = (double) pos.getX() + 0.5;
+    double y = (double) pos.getY() + (4.0 / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
+    double z = (double) pos.getZ() + 0.5;
+
+    if (rand.nextDouble() < 0.1) {
+      world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+    }
+
+    for (int i = 0; i < 4; i++) {
+      double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
+      double offsetY = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
+      double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
+      world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Falling
+  // ---------------------------------------------------------------------------
+
+  public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
+
+    world.scheduleUpdate(pos, this, this.tickRate(world));
+  }
+
+  public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+
+    world.scheduleUpdate(pos, this, this.tickRate(world));
+  }
+
+  @Override
+  public int tickRate(World world) {
+
+    return 2;
+  }
+
+  private void checkFall(World world, BlockPos pos) {
+
+    // From BlockFalling#checkFallable
+
+    if ((world.isAirBlock(pos.down()) || BlockFalling.canFallThrough(world.getBlockState(pos.down()))) && pos.getY() >= 0) {
+
+      if (!BlockFalling.fallInstantly && world.isAreaLoaded(pos.add(-32, -32, -32), pos.add(32, 32, 32))) {
+
+        if (!world.isRemote) {
+          EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, (double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, world.getBlockState(pos));
+          world.spawnEntity(entityfallingblock);
+        }
+
+      } else {
+        IBlockState state = world.getBlockState(pos);
+        world.setBlockToAir(pos);
+        BlockPos blockpos;
+
+        for (blockpos = pos.down(); (world.isAirBlock(blockpos) || canFallThrough(world.getBlockState(blockpos))) && blockpos.getY() > 0; blockpos = blockpos.down()) {
+          ;
+        }
+
+        if (blockpos.getY() > 0) {
+          world.setBlockState(blockpos.up(), state); //Forge: Fix loss of state information during world gen.
+        }
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Fire
+  // ---------------------------------------------------------------------------
+
+  private void checkFire(World world, BlockPos pos, Random rand) {
+
     int age = 0;
     int humidityModifier = 0;
 
@@ -223,25 +305,6 @@ public class BlockBloom
       if (blockState.getBlock() == Blocks.TNT) {
         Blocks.TNT.onBlockDestroyedByPlayer(world, pos, blockState.withProperty(BlockTNT.EXPLODE, true));
       }
-    }
-  }
-
-  @SideOnly(Side.CLIENT)
-  public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
-
-    double x = (double) pos.getX() + 0.5;
-    double y = (double) pos.getY() + (4.0 / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
-    double z = (double) pos.getZ() + 0.5;
-
-    if (rand.nextDouble() < 0.1) {
-      world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
-    }
-
-    for (int i = 0; i < 4; i++) {
-      double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
-      double offsetY = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
-      double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
-      world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
     }
   }
 
