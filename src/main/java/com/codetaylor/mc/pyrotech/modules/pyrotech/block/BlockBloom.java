@@ -8,7 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongs;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -101,7 +101,7 @@ public class BlockBloom
 
     ItemStack heldItem = playerIn.getHeldItemMainhand();
 
-    if (heldItem.getItem() instanceof ItemTongs) {
+    if (heldItem.getItem() instanceof ItemTongsBase) {
       return false;
     }
 

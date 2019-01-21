@@ -6,33 +6,65 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.Supplier;
 
-public class ItemTongsFull
-    extends ItemTongs {
+public abstract class ItemTongsFullBase
+    extends Item {
 
-  public static final String NAME = "tongs_full";
+  private final Supplier<ItemTongsBase> otherTongsSupplier;
+
+  /* package */ ItemTongsFullBase(Supplier<ItemTongsBase> otherTongsSupplier, int durability) {
+
+    this.otherTongsSupplier = otherTongsSupplier;
+
+    this.setMaxStackSize(1);
+    this.setMaxDamage(durability);
+  }
 
   @Override
-  protected ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, ItemStack heldItem, RayTraceResult target) {
+  public boolean isEnchantable(@Nonnull ItemStack stack) {
+
+    return false;
+  }
+
+  @Nonnull
+  @Override
+  public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+
+    ItemStack heldItem = player.getHeldItem(hand);
+
+    if (hand != EnumHand.MAIN_HAND
+        || heldItem.getItem() != this) {
+      return ActionResult.newResult(EnumActionResult.FAIL, heldItem);
+    }
+
+    RayTraceResult target = this.rayTrace(world, player, false);
+
+    if (target.typeOfHit != RayTraceResult.Type.BLOCK) {
+      return ActionResult.newResult(EnumActionResult.FAIL, heldItem);
+    }
+
+    return this.onItemRightClick(world, player, heldItem, target);
+  }
+
+  private ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, ItemStack heldItem, RayTraceResult target) {
 
     EnumFacing sideHit = target.sideHit;
     BlockPos pos = target.getBlockPos();
@@ -54,7 +86,7 @@ public class ItemTongsFull
         }
       }
 
-      ItemStack itemStack = new ItemStack(ModuleItems.TONGS, 1, this.getMetadata(heldItem));
+      ItemStack itemStack = new ItemStack(this.otherTongsSupplier.get(), 1, this.getMetadata(heldItem));
       tagCompound.removeTag(StackHelper.BLOCK_ENTITY_TAG);
       itemStack.setTagCompound(tagCompound);
 

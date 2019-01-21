@@ -1635,6 +1635,12 @@ public class ModulePyrotechConfig {
     public int TAR_DRAIN_CAPACITY = 1000;
 
     @Config.Comment({
+        "The durability of the stone tongs.",
+        "Default: " + 131
+    })
+    public int STONE_TONGS_DURABILITY = EnumMaterial.STONE.getToolMaterial().getMaxUses();
+
+    @Config.Comment({
         "The durability of the iron tongs.",
         "Default: " + 250
     })

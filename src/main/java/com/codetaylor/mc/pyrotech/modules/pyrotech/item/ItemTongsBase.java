@@ -1,8 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -19,16 +17,19 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import java.util.function.Supplier;
 
-public class ItemTongs
+public abstract class ItemTongsBase
     extends Item {
 
-  public static final String NAME = "tongs";
+  private final Supplier<ItemTongsFullBase> otherTongsSupplier;
 
-  public ItemTongs() {
+  /* package */ ItemTongsBase(Supplier<ItemTongsFullBase> otherTongsSupplier, int durability) {
+
+    this.otherTongsSupplier = otherTongsSupplier;
 
     this.setMaxStackSize(1);
-    this.setMaxDamage(ModulePyrotechConfig.GENERAL.IRON_TONGS_DURABILITY);
+    this.setMaxDamage(durability);
   }
 
   /**
@@ -43,13 +44,13 @@ public class ItemTongs
 
     Item item = toFill.getItem();
 
-    if (item.getClass() != ItemTongs.class) {
+    if (!(item instanceof ItemTongsBase)) {
       return toFill;
     }
 
-    ItemTongs tongs = (ItemTongs) item;
+    ItemTongsBase tongs = (ItemTongsBase) item;
 
-    ItemStack itemStack = new ItemStack(tongs.getTongsFull(), 1, toFill.getMetadata());
+    ItemStack itemStack = new ItemStack(tongs.otherTongsSupplier.get(), 1, toFill.getMetadata());
 
     NBTTagCompound tag = new NBTTagCompound();
 
@@ -66,15 +67,10 @@ public class ItemTongs
     return itemStack;
   }
 
-  protected ItemTongsFull getTongsFull() {
-
-    return ModuleItems.TONGS_FULL;
-  }
-
   @Override
   public boolean isEnchantable(@Nonnull ItemStack stack) {
 
-    return (stack.getItem().getClass() == ItemTongs.class);
+    return true;
   }
 
   @Nonnull
@@ -109,7 +105,7 @@ public class ItemTongs
 
       TileBloom tile = (TileBloom) tileEntity;
       ItemStack bloomStack = TileBloom.toItemStack(tile, new ItemStack(ModuleBlocks.BLOOM));
-      ItemStack itemStack = ItemTongs.getFilledItemStack(heldItem, bloomStack);
+      ItemStack itemStack = ItemTongsBase.getFilledItemStack(heldItem, bloomStack);
 
       if (!world.isRemote) {
         world.setBlockToAir(pos);

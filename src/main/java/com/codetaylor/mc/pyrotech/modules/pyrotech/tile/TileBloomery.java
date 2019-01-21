@@ -11,13 +11,12 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.BloomeryFuelRenderer;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongs;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
@@ -343,7 +342,7 @@ public class TileBloomery
 
       ItemStack heldItem = player.getHeldItemMainhand();
 
-      return (heldItem.getItem() == ModuleItems.TONGS)
+      return (heldItem.getItem() instanceof ItemTongsBase)
           && !tile.outputStackHandler.getStackInSlot(0).isEmpty();
     }
 
@@ -352,7 +351,7 @@ public class TileBloomery
 
       ItemStack bloomStack = tile.outputStackHandler.extractItem(0, 1, false);
       ItemStack heldItem = player.getHeldItemMainhand();
-      ItemStack tongs = ItemTongs.getFilledItemStack(heldItem, bloomStack);
+      ItemStack tongs = ItemTongsBase.getFilledItemStack(heldItem, bloomStack);
 
       heldItem.shrink(1);
       ItemHandlerHelper.giveItemToPlayer(player, tongs, player.inventory.currentItem);

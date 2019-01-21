@@ -94,7 +94,8 @@ public class PluginJEI
     // --- Blacklist Ingredients
 
     IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleItems.TONGS_FULL));
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleItems.TONGS_STONE_FULL));
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleItems.TONGS_IRON_FULL));
     //blacklist.addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModuleBlocks.CAMPFIRE)));
 
     RecipeItemParser parser = new RecipeItemParser();

@@ -65,8 +65,10 @@ public final class ModuleItems {
   public static final ItemMillBlade IRON_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.IRON.getMaxUses());
   public static final ItemMillBlade DIAMOND_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.DIAMOND.getMaxUses());
 
-  public static final ItemTongs TONGS = new ItemTongs();
-  public static final ItemTongsFull TONGS_FULL = new ItemTongsFull();
+  public static final ItemTongsBase TONGS_STONE = new ItemTongsStone();
+  public static final ItemTongsFullBase TONGS_STONE_FULL = new ItemTongsStoneFull();
+  public static final ItemTongsBase TONGS_IRON = new ItemTongsIron();
+  public static final ItemTongsFullBase TONGS_IRON_FULL = new ItemTongsIronFull();
 
   public static void onRegister(Registry registry) {
 
@@ -125,8 +127,10 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.IRON_HAMMER, ItemIronHammer.NAME);
     registry.registerItem(ModuleItems.DIAMOND_HAMMER, ItemDiamondHammer.NAME);
 
-    registry.registerItem(ModuleItems.TONGS, ItemTongs.NAME);
-    registry.registerItem(ModuleItems.TONGS_FULL, ItemTongsFull.NAME);
+    registry.registerItem(ModuleItems.TONGS_STONE, ItemTongsStone.NAME);
+    registry.registerItem(ModuleItems.TONGS_STONE_FULL, ItemTongsStoneFull.NAME);
+    registry.registerItem(ModuleItems.TONGS_IRON, ItemTongsIron.NAME);
+    registry.registerItem(ModuleItems.TONGS_IRON_FULL, ItemTongsIronFull.NAME);
 
     registry.registerItemRegistrationStrategy(forgeRegistry -> {
 
@@ -187,8 +191,10 @@ public final class ModuleItems {
           ModuleItems.IRON_MILL_BLADE,
           ModuleItems.DIAMOND_MILL_BLADE,
 
-          ModuleItems.TONGS,
-          ModuleItems.TONGS_FULL
+          ModuleItems.TONGS_STONE,
+          ModuleItems.TONGS_STONE_FULL,
+          ModuleItems.TONGS_IRON,
+          ModuleItems.TONGS_IRON_FULL
       );
 
       if (ModulePyrotechConfig.BUCKET_WOOD.ENABLED) {
