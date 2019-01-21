@@ -130,6 +130,16 @@ public class BlockBloom
     return AABB;
   }
 
+  @Override
+  public boolean canPlaceBlockAt(World world, @Nonnull BlockPos pos) {
+
+    BlockPos down = pos.down();
+    IBlockState blockState = world.getBlockState(down);
+
+    return super.canPlaceBlockAt(world, pos)
+        && blockState.getBlock().isSideSolid(blockState, world, down, EnumFacing.UP);
+  }
+
   // ---------------------------------------------------------------------------
   // - Drops
   // ---------------------------------------------------------------------------
