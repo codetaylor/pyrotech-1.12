@@ -126,7 +126,7 @@ public class BloomeryProvider
 
       tooltip.add(Util.translateFormatted(
           "gui." + ModulePyrotech.MOD_ID + ".waila.speed",
-          ((int) (tile.getSpeed() * 100)) + "%"
+          (int) (tile.getSpeed() * 100)
       ));
 
     }

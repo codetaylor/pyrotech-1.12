@@ -514,6 +514,66 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Bloomery
+  // ---------------------------------------------------------------------------
+
+  public static Bloom BLOOM = new Bloom();
+
+  public static class Bloom {
+
+    @Config.Comment({
+        "Minimum amount of hunger the player needs to use.",
+        "Default: " + 3
+    })
+    @Config.RangeInt(min = 0, max = 20)
+    public int MINIMUM_HUNGER_TO_USE = 3;
+
+    @Config.Comment({
+        "How much exhaustion to apply per hit.",
+        "Default: " + 1
+    })
+    @Config.RangeDouble(min = 0, max = 40)
+    public double EXHAUSTION_COST_PER_HIT = 1;
+
+    @Config.Comment({
+        "The number of hammer hits required to extract one item from the bloom's contents.",
+        "This will be further reduced using the hammer hit reduction number provided",
+        "in the Granite Anvil section.",
+        "Default: " + 12
+    })
+    @Config.RangeInt(min = 1)
+    public int HAMMER_HITS_REQUIRED = 12;
+
+    @Config.Comment({
+        "If true, using the hammer on the bloom when the bloom is placed in the",
+        "world will have a chance to break the block below the bloom when the bloom",
+        "releases a stored item. This chance is based on the hardness of the block.",
+        "",
+        "Uses this to calculate the chance: 1 - (x/60)^(1/8), where 0 <= x <= 50",
+        "This means that obsidian has roughly a 2.25% chance to break",
+        "and average blocks with a hardness of 2 have roughly a 30% chance to break.",
+        "Default: " + true
+    })
+    public boolean BREAKS_BLOCKS = true;
+
+    @Config.Comment({
+        "The amount of fire damage applied to a player when the bloom is in their",
+        "inventory. Set to -1 to disable.",
+        "Default: " + 3
+    })
+    @Config.RangeDouble(min = -1)
+    public double FIRE_DAMAGE_PER_SECOND = 3;
+
+    @Config.Comment({
+        "The amount of fire damage applied to a player when the bloom is in their",
+        "inventory. Set to -1 to disable.",
+        "Default: " + 3
+    })
+    @Config.RangeDouble(min = -1)
+    public double ENTITY_WALK_DAMAGE = 3;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Worktable Common
   // ---------------------------------------------------------------------------
 

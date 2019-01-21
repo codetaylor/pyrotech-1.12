@@ -72,6 +72,9 @@ public class WailaRegistrar {
     BloomeryProvider bloomeryProvider = new BloomeryProvider();
     registrar.registerBodyProvider(bloomeryProvider, TileBloomery.class);
     registrar.registerBodyProvider(bloomeryProvider, TileStoneTop.class);
+
+    BloomProvider bloomProvider = new BloomProvider();
+    registrar.registerBodyProvider(bloomProvider, TileBloom.class);
   }
 
 }

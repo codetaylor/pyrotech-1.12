@@ -654,7 +654,7 @@ public class TileCampfire
               if (!player.isImmuneToFire()
                   && !EnchantmentHelper.hasFrostWalkerEnchantment(player)
                   && ModuleBlocks.CAMPFIRE.getActualState(state, world, hitPos).getValue(BlockCampfire.VARIANT) == BlockCampfire.EnumType.LIT) {
-                player.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.CAMPFIRE.PLAYER_BURN_DAMAGE);
+                player.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.CAMPFIRE.PLAYER_LOG_BURN_DAMAGE);
               }
             }
 

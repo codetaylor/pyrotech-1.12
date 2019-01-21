@@ -1,0 +1,22 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "all": "pyrotech:blocks/active_pile",
+    "particle": "pyrotech:blocks/active_pile"
+  },
+  "ambientocclusion": false,
+  "elements": [
+    {
+      "from": [4, 0, 4],
+      "to": [12, 8, 12],
+      "faces": {
+        "north": {"uv": [4, 7, 12, 15], "texture": "#all"},
+        "east": {"uv": [4, 0, 12, 8], "texture": "#all"},
+        "south": {"uv": [4, 8, 12, 16], "texture": "#all"},
+        "west": {"uv": [5, 0, 13, 8], "texture": "#all"},
+        "up": {"uv": [1, 0, 9, 8], "texture": "#all"},
+        "down": {"uv": [3, 4, 11, 12], "texture": "#all"}
+      }
+    }
+  ]
+}

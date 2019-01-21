@@ -408,6 +408,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
   }
 
   @Override
+  @SideOnly(Side.CLIENT)
   public void renderSolidPassText(World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
 
     InteractionRenderers.ITEM_STACK.renderSolidPassText(this, world, fontRenderer, yaw, offset, pos, blockState, partialTicks);

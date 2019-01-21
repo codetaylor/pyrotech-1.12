@@ -39,7 +39,7 @@ public class DryingRackProvider
 
       tooltip.add(Util.translateFormatted(
           "gui." + ModulePyrotech.MOD_ID + ".waila.speed",
-          String.valueOf((int) (tile.getSpeed() * 100)) + "%"
+          (int) (tile.getSpeed() * 100)
       ));
 
       ItemStackHandler stackHandler = tile.getInputStackHandler();

@@ -13,12 +13,12 @@ public class BloomeryRecipesAdd {
 
   public static void apply(IForgeRegistry<BloomeryRecipe> registry) {
 
-    int defaultBurnTimeTicks = 12 * 60 * 20;
+    int defaultBurnTimeTicks = 30 * 20; //12 * 60 * 20; // TODO: dev
     float defaultFailureChance = 0.33f;
 
     // Iron Nugget
     registry.register(new BloomeryRecipe(
-        new ItemStack(Items.IRON_NUGGET),
+        new ItemStack(Items.IRON_NUGGET, 9),
         Ingredient.fromStacks(new ItemStack(Blocks.IRON_ORE)),
         defaultBurnTimeTicks,
         defaultFailureChance,
@@ -27,7 +27,8 @@ public class BloomeryRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
             ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
-        }
+        },
+        null
     ).setRegistryName(ModulePyrotech.MOD_ID, "iron_nugget"));
   }
 }

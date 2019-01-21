@@ -35,6 +35,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -225,11 +227,14 @@ public class TileBloomery
         this.recipeProgress.set(0);
         this.active.set(false);
 
-        // TODO: complete recipe
-        // create the bloom itemstack with TE nbt
+        // Create the bloom itemstack with nbt
+        ItemStack output = this.currentRecipe.getUniqueBloomFromOutput();
+
+        // Swap the items
+        this.inputStackHandler.extractItem(0, 1, false);
+        this.outputStackHandler.insertItem(0, output, false);
       }
     }
-
   }
 
   // ---------------------------------------------------------------------------
@@ -442,18 +447,21 @@ public class TileBloomery
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
 
       BloomeryFuelRenderer.INSTANCE.renderSolidPass(this, world, renderItem, pos, blockState, partialTicks);
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void renderSolidPassText(World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
 
       //
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public boolean renderAdditivePass(World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
       return false;
@@ -549,7 +557,9 @@ public class TileBloomery
       } else {
 
         if (this.tile.burnTime + fuelBurnTimeTotal <= max) {
-          // There's enough room for all items in the stack
+          // There's enough room for all items in the stack. If not a simulation
+          // Increase the burn time. Only do the insertion if the machine is
+          // not active.
 
           if (!simulate) {
             this.tile.burnTime += fuelBurnTimeTotal;
@@ -562,7 +572,9 @@ public class TileBloomery
           return ItemStack.EMPTY;
 
         } else {
-          // Trim the input stack down to size and insert
+          // Trim the input stack down to size and, if this isn't a simulation,
+          // increase the burn time. Only do the insertion if the machine is
+          // not active.
 
           ItemStack toInsert = stack.copy();
           int insertCount = Math.min(toInsert.getCount(), (int) ((max - this.tile.burnTime) / (float) fuelBurnTimeSingle));
@@ -587,6 +599,14 @@ public class TileBloomery
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
 
+      // Find the first non-empty slot with the highest index and extract from
+      // that slot. If this isn't a simulation and the machine isn't active,
+      // reduce the burn time.
+
+      // If the machine is active, we don't want to reduce the burn time because
+      // this method is called to remove any fuel that is allowed to be inserted
+      // when the machine is active.
+
       for (int i = this.getSlots() - 1; i >= 0; i--) {
 
         if (!this.getStackInSlot(i).isEmpty()) {
@@ -594,7 +614,7 @@ public class TileBloomery
 
           if (!simulate) {
 
-            if (!this.tile.isActive()) { // this prevents calling clearStacks when activated will from reducing
+            if (!this.tile.isActive()) {
               this.tile.burnTime -= StackHelper.getItemBurnTime(extractItem) * extractItem.getCount();
             }
             super.extractItem(i, amount, false);
