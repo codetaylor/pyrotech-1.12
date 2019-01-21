@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.event;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -41,8 +42,7 @@ public class ItemPickupEventHandler {
     event.getItem().setDead();
     event.setCanceled(true);
 
-    ItemStack itemStack = new ItemStack(ModuleItems.TONGS_FULL, 1, heldItem.getMetadata());
-    itemStack.setTagCompound(pickedUp.getTagCompound());
+    ItemStack itemStack = ItemTongs.getFilledItemStack(heldItem, pickedUp);
     heldItem.shrink(1);
 
     if (isOffhand) {

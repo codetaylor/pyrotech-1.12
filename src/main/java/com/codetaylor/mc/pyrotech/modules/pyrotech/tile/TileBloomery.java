@@ -17,6 +17,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongs;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
@@ -349,14 +350,12 @@ public class TileBloomery
     @Override
     protected boolean doInteraction(TileBloomery tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      ItemStack itemStack = tile.outputStackHandler.extractItem(0, 1, false);
+      ItemStack bloomStack = tile.outputStackHandler.extractItem(0, 1, false);
       ItemStack heldItem = player.getHeldItemMainhand();
-
-      ItemStack tongs = new ItemStack(ModuleItems.TONGS_FULL, 1, heldItem.getMetadata());
-      tongs.setTagCompound(itemStack.getTagCompound());
+      ItemStack tongs = ItemTongs.getFilledItemStack(heldItem, bloomStack);
 
       heldItem.shrink(1);
-      ItemHandlerHelper.giveItemToPlayer(player, tongs);
+      ItemHandlerHelper.giveItemToPlayer(player, tongs, player.inventory.currentItem);
 
       return true;
     }

@@ -52,6 +52,8 @@ public class ItemTongsFull
       }
 
       ItemStack itemStack = new ItemStack(ModuleItems.TONGS, 1, this.getMetadata(heldItem));
+      tagCompound.removeTag(StackHelper.BLOCK_ENTITY_TAG);
+      itemStack.setTagCompound(tagCompound);
 
       if (itemStack.attemptDamageItem(ModulePyrotechConfig.GENERAL.TONGS_DAMAGE_PER_USE, RandomHelper.random(), null)) {
 

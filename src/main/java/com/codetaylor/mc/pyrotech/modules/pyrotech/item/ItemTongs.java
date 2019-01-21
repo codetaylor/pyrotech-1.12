@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -30,11 +31,50 @@ public class ItemTongs
     this.setMaxDamage(ModulePyrotechConfig.GENERAL.IRON_TONGS_DURABILITY);
   }
 
+  /**
+   * Creates a new filled tongs item and merges NBT data from the empty tongs
+   * and the bloom into the new item.
+   *
+   * @param toFill the empty tongs
+   * @param bloom  the bloom
+   * @return a new filled tongs item stack
+   */
+  public static ItemStack getFilledItemStack(ItemStack toFill, ItemStack bloom) {
+
+    Item item = toFill.getItem();
+
+    if (item.getClass() != ItemTongs.class) {
+      return toFill;
+    }
+
+    ItemTongs tongs = (ItemTongs) item;
+
+    ItemStack itemStack = new ItemStack(tongs.getTongsFull(), 1, toFill.getMetadata());
+
+    NBTTagCompound tag = new NBTTagCompound();
+
+    if (bloom.getTagCompound() != null) {
+      tag.merge(bloom.getTagCompound());
+    }
+
+    if (toFill.getTagCompound() != null) {
+      tag.merge(toFill.getTagCompound());
+    }
+
+    itemStack.setTagCompound(tag);
+
+    return itemStack;
+  }
+
+  protected ItemTongsFull getTongsFull() {
+
+    return ModuleItems.TONGS_FULL;
+  }
+
   @Override
   public boolean isEnchantable(@Nonnull ItemStack stack) {
 
-    // TODO: transfer enchantments
-    return false;
+    return (stack.getItem().getClass() == ItemTongs.class);
   }
 
   @Nonnull
@@ -68,8 +108,8 @@ public class ItemTongs
         && tileEntity instanceof TileBloom) {
 
       TileBloom tile = (TileBloom) tileEntity;
-      ItemStack itemStack = new ItemStack(ModuleItems.TONGS_FULL, 1, this.getMetadata(heldItem));
-      TileBloom.toItemStack(tile, itemStack);
+      ItemStack bloomStack = TileBloom.toItemStack(tile, new ItemStack(ModuleBlocks.BLOOM));
+      ItemStack itemStack = ItemTongs.getFilledItemStack(heldItem, bloomStack);
 
       if (!world.isRemote) {
         world.setBlockToAir(pos);
