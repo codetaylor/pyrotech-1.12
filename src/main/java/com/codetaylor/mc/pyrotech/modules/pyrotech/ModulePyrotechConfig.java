@@ -531,11 +531,15 @@ public class ModulePyrotechConfig {
     @Config.RangeInt(min = 1)
     public int FUEL_CAPACITY_BURN_TIME = 32000 * 4;
 
-    public int FUEL_CAPACITY_ITEMS = 64;
+    @Config.Comment({
+        "The total number of fuel items that the device can hold",
+        "Default: " + 16
+    })
+    public int FUEL_CAPACITY_ITEMS = 16;
 
     @Config.Comment({
         "The bloomery speed is based on the quality (burn time) of the fuel",
-        "inserted: y = (scalar)(x)^(1/2)",
+        "inserted: y = (scalar)(burnTime/maxBurnTime)^(1/2)",
         "For example, if set to 2, the max speed of the bloomery is 200% and",
         "25% of the total fuel capacity is required for a speed of 100%. If set",
         "to 3, the max speed is 300% and roughly 11% capacity is required for",
