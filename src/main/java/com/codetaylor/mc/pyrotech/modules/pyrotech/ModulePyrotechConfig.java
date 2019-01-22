@@ -522,13 +522,16 @@ public class ModulePyrotechConfig {
   public static class Bloomery {
 
     @Config.Comment({
-        "The bloomery capacity is not based on quantity, but rather the total",
-        "burn time of all inserted fuel. More fuel will increase the speed of",
-        "the device, but with diminishing returns.",
+        "This is the total amount of fuel burn time required to operate the device",
+        "at maximum speed. More fuel will increase the speed of the device with",
+        "diminishing returns. Inserted fuel items that cause the total burn time",
+        "of all inserted fuel items to exceed this value will not be inserted.",
         "Default: " + (32000 * 4)
     })
     @Config.RangeInt(min = 1)
     public int FUEL_CAPACITY_BURN_TIME = 32000 * 4;
+
+    public int FUEL_CAPACITY_ITEMS = 64;
 
     @Config.Comment({
         "The bloomery speed is based on the quality (burn time) of the fuel",

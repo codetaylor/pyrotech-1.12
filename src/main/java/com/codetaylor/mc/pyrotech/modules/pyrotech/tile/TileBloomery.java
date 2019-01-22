@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataBoolean;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
@@ -53,6 +54,18 @@ public class TileBloomery
 
   private static final AxisAlignedBB INTERACTION_BOUNDS_TOP = new AxisAlignedBB(2f / 16f, 1, 2f / 16f, 14f / 16f, 24f / 16f, 14f / 16f);
 
+  private static final Transform UPPER_TRANSFORM = new Transform(
+      Transform.translate(0.5, 24.0 / 16.0, 0.5),
+      Transform.rotate(),
+      Transform.scale(0.5, 0.5, 0.5)
+  );
+
+  private static final Transform LOWER_TRANSFORM = new Transform(
+      Transform.translate(0.5, 5.0 / 16.0, 0.5),
+      Transform.rotate(),
+      Transform.scale(0.5, 0.5, 0.5)
+  );
+
   private InputStackHandler inputStackHandler;
   private OutputStackHandler outputStackHandler;
   private FuelStackHandler fuelStackHandler;
@@ -62,7 +75,8 @@ public class TileBloomery
   private TileDataFloat recipeProgress;
   private TileDataFloat speed;
   private TileDataBoolean active;
-  private int burnTime;
+  private TileDataInteger fuelCount;
+  private TileDataInteger burnTime;
   private int lastBurnTime;
   private BloomeryRecipe currentRecipe;
 
@@ -87,6 +101,8 @@ public class TileBloomery
     this.recipeProgress = new TileDataFloat(0, 20);
     this.speed = new TileDataFloat(0);
     this.active = new TileDataBoolean(false);
+    this.fuelCount = new TileDataInteger(0);
+    this.burnTime = new TileDataInteger(0);
 
     // --- Network ---
 
@@ -98,7 +114,9 @@ public class TileBloomery
         new TileDataItemStackHandler<>(this.fuelStackHandler),
         this.recipeProgress,
         this.speed,
-        this.active
+        this.active,
+        this.fuelCount,
+        this.burnTime
     });
 
     // --- Interactions ---
@@ -111,6 +129,7 @@ public class TileBloomery
             this.getInputInteractionBoundsTop()
         ),
         new InteractionInput(
+            this,
             new ItemStackHandler[]{
                 this.inputStackHandler,
                 this.outputStackHandler
@@ -135,7 +154,7 @@ public class TileBloomery
 
     if (!this.active.get()
         && !this.inputStackHandler.getStackInSlot(0).isEmpty()
-        && this.burnTime > 0) {
+        && this.burnTime.get() > 0) {
       this.active.set(true);
       this.fuelStackHandler.clearStacks();
     }
@@ -171,12 +190,33 @@ public class TileBloomery
     return this.currentRecipe;
   }
 
+  public boolean isFuelFull() {
+
+    return this.getFuelCount() >= this.getMaxFuelCount()
+        || this.burnTime.get() >= this.getMaxBurnTime();
+  }
+
+  public int getFuelCount() {
+
+    return this.fuelCount.get();
+  }
+
+  public int getMaxFuelCount() {
+
+    return ModulePyrotechConfig.BLOOMERY.FUEL_CAPACITY_ITEMS;
+  }
+
   public float getSpeed() {
 
     return this.speed.get();
   }
 
-  private int getMaxBurnTime() {
+  public int getBurnTime() {
+
+    return this.burnTime.get();
+  }
+
+  public int getMaxBurnTime() {
 
     return ModulePyrotechConfig.BLOOMERY.FUEL_CAPACITY_BURN_TIME;
   }
@@ -192,7 +232,7 @@ public class TileBloomery
 
   private void updateSpeed() {
 
-    float linearSpeed = this.burnTime / (float) this.getMaxBurnTime();
+    float linearSpeed = this.burnTime.get() / (float) this.getMaxBurnTime();
     float speed = (float) (ModulePyrotechConfig.BLOOMERY.SPEED_SCALAR * (float) Math.pow(linearSpeed, 0.5));
     this.speed.set(speed);
   }
@@ -208,15 +248,15 @@ public class TileBloomery
       return;
     }
 
-    if (this.lastBurnTime != this.burnTime) {
-      this.lastBurnTime = this.burnTime;
+    if (this.lastBurnTime != this.burnTime.get()) {
+      this.lastBurnTime = this.burnTime.get();
       this.updateSpeed();
     }
 
     if (this.isActive()) {
 
       if (this.currentRecipe == null) {
-        this.burnTime = 0;
+        this.burnTime.set(0);
         this.recipeProgress.set(0);
         this.active.set(false);
         return;
@@ -225,7 +265,8 @@ public class TileBloomery
       float increment = (1.0f / this.currentRecipe.getTimeTicks()) * this.speed.get();
 
       if (this.recipeProgress.add(increment) >= 0.9999) {
-        this.burnTime = 0;
+        this.burnTime.set(0);
+        this.fuelCount.set(0);
         this.recipeProgress.set(0);
         this.active.set(false);
 
@@ -266,7 +307,8 @@ public class TileBloomery
     compound.setFloat("recipeProgress", this.recipeProgress.get());
     compound.setBoolean("active", this.active.get());
     compound.setFloat("speed", this.speed.get());
-    compound.setInteger("burnTime", this.burnTime);
+    compound.setInteger("burnTime", this.burnTime.get());
+    compound.setInteger("fuelCount", this.fuelCount.get());
     return compound;
   }
 
@@ -280,7 +322,8 @@ public class TileBloomery
     this.recipeProgress.set(compound.getFloat("recipeProgress"));
     this.active.set(compound.getBoolean("active"));
     this.speed.set(compound.getFloat("speed"));
-    this.burnTime = compound.getInteger("burnTime");
+    this.burnTime.set(compound.getInteger("burnTime"));
+    this.fuelCount.set(compound.getInteger("fuelCount"));
     this.updateRecipe();
   }
 
@@ -326,6 +369,8 @@ public class TileBloomery
         && blockPos.getZ() == pos.getZ();
   }
 
+  // --- TONGS ---
+
   private class InteractionTongs
       extends InteractionUseItemBase<TileBloomery> {
 
@@ -364,6 +409,8 @@ public class TileBloomery
     }
   }
 
+  // --- FLINT AND STEEL ---
+
   private class InteractionUseFlintAndSteel
       extends InteractionUseItemBase<TileBloomery> {
 
@@ -399,25 +446,39 @@ public class TileBloomery
     }
   }
 
+  // --- INPUT / OUTPUT ---
+
   private class InteractionInput
       extends InteractionItemStack<TileBloomery> {
 
+    private final TileBloomery tile;
     private final BooleanSupplier isEnabled;
 
-    /* package */ InteractionInput(ItemStackHandler[] stackHandlers, AxisAlignedBB interactionBounds, BooleanSupplier isEnabled) {
+    /* package */ InteractionInput(TileBloomery tile, ItemStackHandler[] stackHandlers, AxisAlignedBB interactionBounds, BooleanSupplier isEnabled) {
 
       super(
           stackHandlers,
           0,
           new EnumFacing[]{EnumFacing.UP},
           interactionBounds,
-          new Transform(
-              Transform.translate(0.5, 5.0 / 16.0, 0.5),
-              Transform.rotate(),
-              Transform.scale(0.5, 0.5, 0.5)
-          )
+          LOWER_TRANSFORM
       );
+      this.tile = tile;
       this.isEnabled = isEnabled;
+    }
+
+    @Override
+    public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack, float partialTicks) {
+
+      ItemStack input = this.stackHandlers[0].getStackInSlot(0);
+      ItemStack output = this.stackHandlers[1].getStackInSlot(0);
+
+      if (input.isEmpty()
+          && output.isEmpty()) {
+        return UPPER_TRANSFORM;
+      }
+
+      return super.getTransform(world, pos, blockState, itemStack, partialTicks);
     }
 
     @Override
@@ -439,6 +500,8 @@ public class TileBloomery
     }
   }
 
+  // --- FUEL ---
+
   public class InteractionFuel
       extends InteractionItemStack<TileBloomery> {
 
@@ -453,11 +516,7 @@ public class TileBloomery
           0,
           new EnumFacing[]{EnumFacing.UP},
           interactionBounds,
-          new Transform(
-              Transform.translate(0.5, 5.0 / 16.0, 0.5),
-              Transform.rotate(),
-              Transform.scale(0.5, 0.5, 0.5)
-          )
+          UPPER_TRANSFORM
       );
       this.tile = tile;
       this.fuelStackHandler = fuelStackHandler;
@@ -487,6 +546,13 @@ public class TileBloomery
     }
 
     @Override
+    protected boolean doItemStackValidation(ItemStack itemStack) {
+
+      return StackHelper.isFuel(itemStack)
+          && !itemStack.getItem().hasContainerItem(itemStack);
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
 
@@ -504,7 +570,7 @@ public class TileBloomery
     @SideOnly(Side.CLIENT)
     public boolean renderAdditivePass(World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
-      return false;
+      return BloomeryFuelRenderer.INSTANCE.renderAdditivePass(this, world, renderItem, hitSide, hitVec, hitPos, blockState, heldItemMainHand, partialTicks);
     }
   }
 
@@ -536,7 +602,8 @@ public class TileBloomery
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
-      if (BloomeryRecipe.getRecipe(stack) == null) {
+      if (BloomeryRecipe.getRecipe(stack) == null
+          || !TileBloomery.this.outputStackHandler.getStackInSlot(0).isEmpty()) {
         return stack;
       }
 
@@ -575,10 +642,20 @@ public class TileBloomery
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
-      // Only allow solid fuel items if the input stack handler is not empty.
+      // Only allow if the input stack handler is not empty.
+      if (this.tile.inputStackHandler.getStackInSlot(0).isEmpty()) {
+        return stack;
+      }
 
-      if (this.tile.inputStackHandler.getStackInSlot(0).isEmpty()
-          || stack.getItem().hasContainerItem(stack)) {
+      // Only solid fuel
+      if (stack.getItem().hasContainerItem(stack)) {
+        return stack;
+      }
+
+      int fuelCount = this.tile.fuelCount.get();
+
+      // Only if not full of items
+      if (fuelCount >= this.tile.getMaxFuelCount()) {
         return stack;
       }
 
@@ -591,18 +668,21 @@ public class TileBloomery
       int max = this.tile.getMaxBurnTime();
       int fuelBurnTimeTotal = fuelBurnTimeSingle * stack.getCount();
 
-      if (this.tile.burnTime >= max) {
+      if (this.tile.burnTime.get() >= max) {
         return stack; // There's no room for insert, fail
 
       } else {
 
-        if (this.tile.burnTime + fuelBurnTimeTotal <= max) {
+        if (this.tile.burnTime.get() + fuelBurnTimeTotal <= max
+            && fuelCount + stack.getCount() <= this.tile.getMaxFuelCount()) {
+
           // There's enough room for all items in the stack. If not a simulation
           // Increase the burn time. Only do the insertion if the machine is
           // not active.
 
           if (!simulate) {
-            this.tile.burnTime += fuelBurnTimeTotal;
+            this.tile.burnTime.add(fuelBurnTimeTotal);
+            this.tile.fuelCount.add(stack.getCount());
 
             if (!this.tile.isActive()) {
               this.insertItem(stack, false);
@@ -612,16 +692,20 @@ public class TileBloomery
           return ItemStack.EMPTY;
 
         } else {
+
           // Trim the input stack down to size and, if this isn't a simulation,
           // increase the burn time. Only do the insertion if the machine is
           // not active.
 
           ItemStack toInsert = stack.copy();
-          int insertCount = Math.min(toInsert.getCount(), (int) ((max - this.tile.burnTime) / (float) fuelBurnTimeSingle));
+          int burnTimeInsertCount = Math.min(toInsert.getCount(), (int) ((max - this.tile.burnTime.get()) / (float) fuelBurnTimeSingle));
+          int itemCountInsertCount = Math.min(toInsert.getCount(), this.tile.getMaxFuelCount() - fuelCount);
+          int insertCount = Math.min(burnTimeInsertCount, itemCountInsertCount);
           toInsert.setCount(insertCount);
 
           if (!simulate) {
-            this.tile.burnTime += insertCount * fuelBurnTimeSingle;
+            this.tile.burnTime.add(insertCount * fuelBurnTimeSingle);
+            this.tile.fuelCount.add(insertCount);
 
             if (!this.tile.isActive()) {
               this.insertItem(toInsert, false);
@@ -655,7 +739,8 @@ public class TileBloomery
           if (!simulate) {
 
             if (!this.tile.isActive()) {
-              this.tile.burnTime -= StackHelper.getItemBurnTime(extractItem) * extractItem.getCount();
+              this.tile.burnTime.add(-StackHelper.getItemBurnTime(extractItem) * extractItem.getCount());
+              this.tile.fuelCount.add(-extractItem.getCount());
             }
             super.extractItem(i, amount, false);
           }

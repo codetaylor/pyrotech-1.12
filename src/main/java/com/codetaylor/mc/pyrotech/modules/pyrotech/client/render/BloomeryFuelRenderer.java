@@ -1,6 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
+import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionRenderers;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloomery;
 import net.minecraft.block.state.IBlockState;
@@ -33,7 +37,8 @@ public class BloomeryFuelRenderer
 
     TileBloomery.FuelStackHandler fuelStackHandler = interaction.getFuelStackHandler();
     boolean hasFuel = !fuelStackHandler.getFirstNonEmptyItemStack().isEmpty();
-    boolean isActive = interaction.getTile().isActive();
+    TileBloomery tile = interaction.getTile();
+    boolean isActive = tile.isActive();
     boolean shouldRender = hasFuel || isActive;
 
     if (shouldRender) {
@@ -53,7 +58,7 @@ public class BloomeryFuelRenderer
       int j = i >> 0x10 & 0xFFFF;
       int k = i & 0xFFFF;
 
-      float level = (PX * 9) * (interaction.getTile().getSpeed() * 0.5f) + (14 * PX);
+      float level = (PX * 9) * (tile.getFuelCount() / (float) tile.getMaxFuelCount()) + (14 * PX);
 
       Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
       RenderHelper.disableStandardItemLighting();
@@ -117,6 +122,29 @@ public class BloomeryFuelRenderer
 
   @Override
   public boolean renderAdditivePass(TileBloomery.InteractionFuel interaction, World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+
+    // If the tile isn't full of fuel, render the held item.
+
+    TileBloomery tile = interaction.getTile();
+
+    if (!tile.isFuelFull()
+        && StackHelper.getItemBurnTime(heldItemMainHand) + tile.getBurnTime() <= tile.getMaxBurnTime()
+        && interaction.shouldRenderAdditivePassForHeldItem(heldItemMainHand)) {
+
+      // Only render the held item if it is valid for the handler.
+      if (interaction.isItemStackValid(heldItemMainHand)) {
+        Transform transform = interaction.getTransform(world, hitPos, blockState, heldItemMainHand, partialTicks);
+
+        // Since only one item will be rendered, it is better to wrap the
+        // GL setup calls as late as possible so we're not setting it up
+        // if the item isn't going to be rendered.
+
+        InteractionRenderers.setupAdditiveGLState();
+        InteractionRenderers.renderItemModelCustom(renderItem, heldItemMainHand, transform);
+        InteractionRenderers.cleanupAdditiveGLState();
+        return true;
+      }
+    }
 
     return false;
   }

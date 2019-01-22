@@ -129,6 +129,12 @@ public class BloomeryProvider
           (int) (tile.getSpeed() * 100)
       ));
 
+      tooltip.add(Util.translateFormatted(
+          "gui." + ModulePyrotech.MOD_ID + ".waila.bloomery.fuel",
+          tile.getFuelCount(),
+          tile.getMaxFuelCount()
+      ));
+
     }
 
     return tooltip;

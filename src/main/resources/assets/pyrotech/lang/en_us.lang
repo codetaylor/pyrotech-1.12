@@ -173,6 +173,7 @@ gui.pyrotech.waila.speed=Speed: %d%%
 gui.pyrotech.waila.empty=Empty
 gui.pyrotech.waila.bloom.hammered=Hammered: %d%%
 gui.pyrotech.waila.bloom.integrity=Integrity: %d%%
+gui.pyrotech.waila.bloomery.fuel=Fuel: %d of %d
 
 # --- JEI plugin
 
