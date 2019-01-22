@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionRenderers;
@@ -11,6 +10,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -75,7 +75,6 @@ public class BloomeryFuelRenderer
 
       Tessellator tessellator = Tessellator.getInstance();
       BufferBuilder buffer = tessellator.getBuffer();
-
       buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
 
       //GlStateManager.translate(-pos.getX(), -pos.getY(), -pos.getZ());
@@ -106,12 +105,26 @@ public class BloomeryFuelRenderer
           .lightmap(j, k)
           .endVertex();
 
-      //buffer.setTranslation(0, 0, 0);
       tessellator.draw();
 
-      RenderHelper.enableStandardItemLighting();
-      //GlStateManager.enableCull();
+      if (isActive) {
+        GlStateManager.pushMatrix();
+        {
+          GlStateManager.translate(3.0 / 16.0, level, 3.0 / 16.0);
+          GlStateManager.scale(10.0 / 16.0, 10.0 / 16.0, 10.0 / 16.0);
+          GlStateManager.enableCull();
 
+          BlockRendererDispatcher renderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
+          IBlockState fireState = Blocks.FIRE.getDefaultState();
+          IBakedModel model = renderer.getModelForState(fireState);
+          buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
+          renderer.getBlockModelRenderer().renderModel(world, model, fireState, BlockPos.ORIGIN, buffer, true);
+          tessellator.draw();
+        }
+        GlStateManager.popMatrix();
+      }
+
+      RenderHelper.enableStandardItemLighting();
     }
   }
 
