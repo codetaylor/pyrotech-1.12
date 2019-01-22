@@ -539,10 +539,10 @@ public class ModulePyrotechConfig {
         "The number of hammer hits required to extract one item from the bloom's contents.",
         "This will be further reduced using the hammer hit reduction number provided",
         "for anvil hammers.",
-        "Default: " + 12
+        "Default: " + 16
     })
     @Config.RangeInt(min = 1)
-    public int HAMMER_HITS_REQUIRED = 12;
+    public int HAMMER_HITS_REQUIRED = 16;
 
     @Config.Comment({
         "The number of hammer hits required to extract one item from the bloom's contents",
@@ -551,6 +551,7 @@ public class ModulePyrotechConfig {
         "for anvil hammers.",
         "Default: " + 8
     })
+    @Config.RangeInt(min = 1)
     public int HAMMER_HITS_IN_ANVIL_REQUIRED = 8;
 
     @Config.Comment({
