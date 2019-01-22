@@ -19,6 +19,8 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsFullBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
@@ -34,6 +36,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -75,6 +78,7 @@ public class TileGraniteAnvil
     // --- Interactions ---
 
     this.interactions = new IInteraction[]{
+        new InteractionTongs(),
         new Interaction(new ItemStackHandler[]{this.stackHandler}),
         new InteractionHit()
     };
@@ -203,6 +207,83 @@ public class TileGraniteAnvil
   public IInteraction[] getInteractions() {
 
     return this.interactions;
+  }
+
+  private class InteractionTongs
+      extends InteractionUseItemBase<TileGraniteAnvil> {
+
+    /* package */ InteractionTongs() {
+
+      super(new EnumFacing[]{EnumFacing.UP}, BlockGraniteAnvil.AABB);
+    }
+
+    @Override
+    protected boolean allowInteraction(TileGraniteAnvil tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack stackInSlot = tile.stackHandler.getStackInSlot(0);
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      if (stackInSlot.isEmpty()) {
+        return (heldItem.getItem() instanceof ItemTongsFullBase);
+
+      } else {
+
+        if (stackInSlot.getItem() == Item.getItemFromBlock(ModuleBlocks.BLOOM)) {
+          return (heldItem.getItem() instanceof ItemTongsBase);
+        }
+      }
+
+      return false;
+    }
+
+    @Override
+    protected boolean doInteraction(TileGraniteAnvil tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      if (heldItem.getItem() instanceof ItemTongsBase) {
+        return this.doInteractionTongsEmpty(tile, player, heldItem);
+
+      } else {
+        return this.doInteractionTongsFull(tile, player, heldItem);
+      }
+    }
+
+    private boolean doInteractionTongsEmpty(TileGraniteAnvil tile, EntityPlayer player, ItemStack tongsStack) {
+
+      ItemStack bloomStack = tile.stackHandler.extractItem(0, 1, false);
+      ItemStack fullTongsStack = ItemTongsBase.getFilledItemStack(tongsStack, bloomStack);
+      tongsStack.shrink(1);
+      ItemHandlerHelper.giveItemToPlayer(player, fullTongsStack, player.inventory.currentItem);
+      return true;
+    }
+
+    private boolean doInteractionTongsFull(TileGraniteAnvil tile, EntityPlayer player, ItemStack tongsStack) {
+
+      NBTTagCompound tagCompound = tongsStack.getTagCompound();
+
+      if (tagCompound == null) {
+        return false;
+      }
+
+      NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
+      ItemStack bloomStack = TileBloom.createBloomAsItemStack(new ItemStack(ModuleBlocks.BLOOM), tileTag);
+      tile.stackHandler.insertItem(0, bloomStack, false);
+      ItemStack emptyTongsStack = ItemTongsFullBase.getEmptyItemStack(tongsStack);
+      tongsStack.shrink(1);
+
+      if (!emptyTongsStack.isEmpty()) {
+        ItemHandlerHelper.giveItemToPlayer(player, emptyTongsStack, player.inventory.currentItem);
+      }
+
+      return true;
+    }
+
+    @Override
+    protected void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
+
+      // This is a no-op because the tong damage is applied elsewhere.
+    }
   }
 
   private class Interaction

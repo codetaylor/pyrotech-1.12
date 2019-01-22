@@ -4,7 +4,6 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
 import net.minecraft.client.util.ITooltipFlag;
@@ -36,6 +35,44 @@ public abstract class ItemTongsFullBase
 
     this.setMaxStackSize(1);
     this.setMaxDamage(durability);
+  }
+
+  /**
+   * Returns the empty version of the full tongs passed in, with damage. If the
+   * tongs are destroyed as a result of the damage, an empty itemstack is
+   * returned instead.
+   * <p>
+   * Does not modify input stack.
+   *
+   * @param toEmpty the full tongs itemstack
+   * @return the empty version of the full tongs passed in
+   */
+  public static ItemStack getEmptyItemStack(ItemStack toEmpty) {
+
+    NBTTagCompound tagCompound = toEmpty.getTagCompound();
+
+    if (tagCompound == null) {
+      return toEmpty;
+    }
+
+    Item item = toEmpty.getItem();
+
+    if (!(item instanceof ItemTongsFullBase)) {
+      return toEmpty;
+    }
+
+    if (toEmpty.attemptDamageItem(((ItemTongsFullBase) item).getDamagePerUse(), RandomHelper.random(), null)) {
+      return ItemStack.EMPTY;
+    }
+
+    ItemTongsFullBase tongs = (ItemTongsFullBase) item;
+
+    ItemStack itemStack = new ItemStack(tongs.otherTongsSupplier.get(), 1, toEmpty.getMetadata());
+    NBTTagCompound copy = tagCompound.copy();
+    copy.removeTag(StackHelper.BLOCK_ENTITY_TAG);
+    itemStack.setTagCompound(copy);
+
+    return itemStack;
   }
 
   @Override
@@ -86,11 +123,9 @@ public abstract class ItemTongsFullBase
         }
       }
 
-      ItemStack itemStack = new ItemStack(this.otherTongsSupplier.get(), 1, this.getMetadata(heldItem));
-      tagCompound.removeTag(StackHelper.BLOCK_ENTITY_TAG);
-      itemStack.setTagCompound(tagCompound);
+      ItemStack itemStack = ItemTongsFullBase.getEmptyItemStack(heldItem);
 
-      if (itemStack.attemptDamageItem(this.getDamagePerUse(), RandomHelper.random(), null)) {
+      if (itemStack.isEmpty()) {
 
         if (!world.isRemote) {
           world.playSound(

@@ -35,6 +35,9 @@ public abstract class ItemTongsBase
   /**
    * Creates a new filled tongs item and merges NBT data from the empty tongs
    * and the bloom into the new item.
+   * <p>
+   * Does not apply damage.
+   * Does not modify input stack.
    *
    * @param toFill the empty tongs
    * @param bloom  the bloom
