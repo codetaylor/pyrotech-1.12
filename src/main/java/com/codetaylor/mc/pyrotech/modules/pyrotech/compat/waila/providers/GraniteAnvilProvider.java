@@ -1,11 +1,15 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
 
+import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.items.ItemStackHandler;
@@ -55,12 +59,33 @@ public class GraniteAnvilProvider
           ItemStack recipeOutput = recipe.getOutput();
 
           if (!recipeOutput.isEmpty()) {
+
+            if (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe) {
+              recipeOutput.setCount(1);
+            }
+
             renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
             renderString.append(WailaUtil.getStackRenderString(recipeOutput));
           }
         }
 
         tooltip.add(renderString.toString());
+
+        if (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe) {
+          tooltip.add(input.getDisplayName());
+          Item item = input.getItem();
+
+          if (item instanceof BlockBloom.ItemBlockBloom) {
+            BlockBloom.ItemBlockBloom bloom = (BlockBloom.ItemBlockBloom) item;
+
+            int integrity = (int) ((bloom.getIntegrity(input) / (float) bloom.getMaxIntegrity(input)) * 100);
+
+            tooltip.add(Util.translateFormatted(
+                "gui." + ModulePyrotech.MOD_ID + ".waila.bloom.integrity",
+                integrity
+            ));
+          }
+        }
 
       }
 

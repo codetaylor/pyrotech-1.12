@@ -11,6 +11,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockGraniteAnvil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
@@ -18,6 +19,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.Block;
@@ -30,6 +32,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -39,6 +42,7 @@ public class TileGraniteAnvil
     extends TileNetBase
     implements ITileInteractable {
 
+  private final TileDataItemStackHandler<InputStackHandler> tileDataItemStackHandler;
   private InputStackHandler stackHandler;
   private TileDataFloat recipeProgress;
 
@@ -61,8 +65,10 @@ public class TileGraniteAnvil
 
     // --- Network ---
 
+    this.tileDataItemStackHandler = new TileDataItemStackHandler<>(this.stackHandler);
+
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataItemStackHandler<>(this.stackHandler),
+        this.tileDataItemStackHandler,
         this.recipeProgress
     });
 
@@ -107,9 +113,6 @@ public class TileGraniteAnvil
 
   public void setDurabilityUntilNextDamage(int durabilityUntilNextDamage) {
 
-    // TODO: Network
-    // This doesn't require a full update.
-
     this.durabilityUntilNextDamage = durabilityUntilNextDamage;
     this.markDirty();
   }
@@ -132,6 +135,19 @@ public class TileGraniteAnvil
   public ItemStackHandler getStackHandler() {
 
     return this.stackHandler;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Network
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void onTileDataUpdate() {
+
+    if (this.tileDataItemStackHandler.isDirty()) {
+      BlockHelper.notifyBlockUpdate(this.world, this.pos);
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -346,8 +362,27 @@ public class TileGraniteAnvil
           }
 
           if (tile.getRecipeProgress() >= 0.9999) {
-            stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
-            StackHelper.spawnStackOnTop(world, recipe.getOutput(), tile.getPos(), 0);
+
+            if (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe) {
+
+              // Spawn in the bloomery recipe output
+              BloomeryRecipe bloomeryRecipe = ((GraniteAnvilRecipe.BloomAnvilRecipe) recipe).getBloomeryRecipe();
+              StackHelper.spawnStackOnTop(world, bloomeryRecipe.getRandomOutput(), tile.getPos(), 0);
+
+              // Reduce the integrity of the bloom
+              ItemStack bloom = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
+              BlockBloom.ItemBlockBloom item = (BlockBloom.ItemBlockBloom) bloom.getItem();
+              int integrity = item.getIntegrity(bloom) - 1;
+
+              if (integrity > 0) {
+                item.setIntegrity(bloom, integrity);
+                stackHandler.insertItem(0, bloom, false);
+              }
+
+            } else {
+              stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
+              StackHelper.spawnStackOnTop(world, recipe.getOutput(), tile.getPos(), 0);
+            }
 
             world.playSound(
                 player,
@@ -377,6 +412,17 @@ public class TileGraniteAnvil
 
         for (int i = 0; i < 8; ++i) {
           world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, tile.getPos().getX() + hitX, tile.getPos().getY() + hitY, tile.getPos().getZ() + hitZ, 0.0D, 0.0D, 0.0D, Block.getStateId(blockState));
+        }
+
+        // Bloom particles
+
+        ItemStack stackInSlot = tile.stackHandler.getStackInSlot(0);
+
+        if (stackInSlot.getItem() == Item.getItemFromBlock(ModuleBlocks.BLOOM)) {
+
+          for (int i = 0; i < 8; ++i) {
+            world.spawnParticle(EnumParticleTypes.LAVA, tile.getPos().getX() + hitX, tile.getPos().getY() + hitY, tile.getPos().getZ() + hitZ, 0.0D, 0.0D, 0.0D);
+          }
         }
       }
 

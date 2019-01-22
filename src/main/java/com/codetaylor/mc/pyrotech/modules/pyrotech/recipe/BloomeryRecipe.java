@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
-import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
@@ -41,36 +40,45 @@ public class BloomeryRecipe
 
   private final Ingredient input;
   private final ItemStack output;
+  private final ItemStack outputBloom;
   private final int burnTimeTicks;
   private final float failureChance;
+  private final int bloomYieldMin;
+  private final int bloomYieldMax;
   private final ItemStack[] failureItems;
+  private final String langKey;
 
   public BloomeryRecipe(
       ItemStack output,
       Ingredient input,
       int burnTimeTicks,
       float failureChance,
+      int bloomYieldMin,
+      int bloomYieldMax,
       ItemStack[] failureItems,
       @Nullable String langKey
   ) {
 
+    this.output = output;
     this.input = input;
     this.burnTimeTicks = burnTimeTicks;
     this.failureChance = MathHelper.clamp(failureChance, 0, 1);
+    this.bloomYieldMin = bloomYieldMin;
+    this.bloomYieldMax = bloomYieldMax;
     this.failureItems = failureItems;
 
-    TileBloom bloom = new TileBloom();
-    DynamicStackHandler stackHandler = bloom.getStackHandler();
-    stackHandler.insertItem(output, false);
-
     if (langKey != null) {
-      bloom.setLangKey(langKey);
+      this.langKey = langKey;
 
     } else {
-      bloom.setLangKey(this.getLangKeyFrom(this.input));
+      this.langKey = this.getLangKeyFrom(this.input);
     }
 
-    this.output = StackHelper.writeTileEntityToItemStack(bloom, new ItemStack(ModuleBlocks.BLOOM));
+    this.outputBloom = TileBloom.createBloomAsItemStack(
+        bloomYieldMax,
+        null,
+        this.langKey
+    );
   }
 
   public Ingredient getInput() {
@@ -83,29 +91,20 @@ public class BloomeryRecipe
     return this.output.copy();
   }
 
+  public ItemStack getOutputBloom() {
+
+    return this.outputBloom.copy();
+  }
+
   public ItemStack getUniqueBloomFromOutput() {
 
-    TileBloom fromBloom = TileBloom.fromItemStack(this.output);
-    DynamicStackHandler fromStackHandler = fromBloom.getStackHandler();
+    int integrity = MathHelper.getInt(RandomHelper.random(), this.bloomYieldMin, this.bloomYieldMax);
 
-    TileBloom toBloom = new TileBloom();
-    DynamicStackHandler toStackHandler = toBloom.getStackHandler();
-
-    ItemStack candidate;
-
-    while (!(candidate = fromStackHandler.extractItem(false)).isEmpty()) {
-
-      if (RandomHelper.random().nextDouble() > this.failureChance) {
-        toStackHandler.insertItem(candidate, false);
-
-      } else {
-        toStackHandler.insertItem(this.selectRandomFailureItemStack().copy(), false);
-      }
-    }
-
-    toBloom.setLangKey(fromBloom.getLangKey());
-    toBloom.setMaxIntegrity(toStackHandler.getTotalItemCount());
-    return StackHelper.writeTileEntityToItemStack(toBloom, new ItemStack(ModuleBlocks.BLOOM));
+    return TileBloom.createBloomAsItemStack(
+        integrity,
+        this.getRegistryName().toString(),
+        this.langKey
+    );
   }
 
   @Override
@@ -129,13 +128,23 @@ public class BloomeryRecipe
     return this.input.apply(input);
   }
 
+  public ItemStack getRandomOutput() {
+
+    if (RandomHelper.random().nextDouble() < this.failureChance) {
+      return this.selectRandomFailureItemStack();
+
+    } else {
+      return this.getOutput();
+    }
+  }
+
   private ItemStack selectRandomFailureItemStack() {
 
     if (this.failureItems.length == 0) {
       return ItemStack.EMPTY;
     }
 
-    return ArrayHelper.randomElement(this.failureItems, RandomHelper.random());
+    return ArrayHelper.randomElement(this.failureItems, RandomHelper.random()).copy();
   }
 
   private String getLangKeyFrom(Ingredient input) {

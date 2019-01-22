@@ -258,6 +258,11 @@ public class ModulePyrotech
 
     super.onPostInitializationEvent(event);
 
+    BloomeryRecipesAdd.applyBloomRecipes(
+        ModulePyrotechRegistries.BLOOMERY_RECIPE,
+        ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE
+    );
+
     RecipeItemParser parser = new RecipeItemParser();
 
     // ------------------------------------------------------------------------

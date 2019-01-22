@@ -1,18 +1,20 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
-import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -27,14 +29,16 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class TileBloom
     extends TileNetBase
     implements ITileInteractable {
 
+  private String recipeId;
   private String langKey;
-  private DynamicStackHandler stackHandler = new DynamicStackHandler(1);
   private TileDataFloat recipeProgress;
+  private TileDataInteger integrity;
 
   private IInteraction[] interactions;
   private int maxIntegrity;
@@ -44,11 +48,13 @@ public class TileBloom
     super(ModulePyrotech.TILE_DATA_SERVICE);
 
     this.recipeProgress = new TileDataFloat(0);
+    this.integrity = new TileDataInteger(0);
 
     // --- Network ---
 
     this.registerTileDataForNetwork(new ITileData[]{
-        this.recipeProgress
+        this.recipeProgress,
+        this.integrity
     });
 
     // --- Interactions ---
@@ -62,9 +68,9 @@ public class TileBloom
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  public DynamicStackHandler getStackHandler() {
+  public void setRecipeId(String recipeId) {
 
-    return this.stackHandler;
+    this.recipeId = recipeId;
   }
 
   public void setLangKey(String langKey) {
@@ -82,9 +88,15 @@ public class TileBloom
     return this.maxIntegrity;
   }
 
+  public int getIntegrity() {
+
+    return this.integrity.get();
+  }
+
   public void setMaxIntegrity(int maxIntegrity) {
 
     this.maxIntegrity = maxIntegrity;
+    this.integrity.set(maxIntegrity);
   }
 
   public float getRecipeProgress() {
@@ -96,9 +108,17 @@ public class TileBloom
   // - Serialization
   // ---------------------------------------------------------------------------
 
-  public static TileBloom fromItemStack(ItemStack itemStack) {
+  public static ItemStack createBloomAsItemStack(int maxIntegrity, @Nullable String recipeId, @Nullable String langKey) {
 
-    return StackHelper.readTileEntityFromItemStack(new TileBloom(), itemStack);
+    return TileBloom.createBloomAsItemStack(new ItemStack(ModuleBlocks.BLOOM), maxIntegrity, maxIntegrity, recipeId, langKey);
+  }
+
+  public static ItemStack createBloomAsItemStack(ItemStack itemStack, int maxIntegrity, int integrity, @Nullable String recipeId, @Nullable String langKey) {
+
+    NBTTagCompound itemTag = StackHelper.getTagSafe(itemStack);
+    NBTTagCompound tileTag = TileBloom.writeToNBT(new NBTTagCompound(), maxIntegrity, integrity, recipeId, langKey);
+    itemTag.setTag(StackHelper.BLOCK_ENTITY_TAG, tileTag);
+    return itemStack;
   }
 
   public static ItemStack toItemStack(TileBloom tile) {
@@ -116,11 +136,21 @@ public class TileBloom
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    compound.setInteger("maxIntegrity", this.maxIntegrity);
-    compound.setTag("stackHandler", this.stackHandler.serializeNBT());
+    TileBloom.writeToNBT(compound, this.maxIntegrity, this.integrity.get(), this.recipeId, this.langKey);
+    return compound;
+  }
 
-    if (this.langKey != null) {
-      compound.setString("langKey", this.langKey);
+  public static NBTTagCompound writeToNBT(NBTTagCompound compound, int maxIntegrity, int integrity, @Nullable String recipeId, @Nullable String langKey) {
+
+    compound.setInteger("maxIntegrity", maxIntegrity);
+    compound.setInteger("integrity", integrity);
+
+    if (recipeId != null) {
+      compound.setString("recipeId", recipeId);
+    }
+
+    if (langKey != null) {
+      compound.setString("langKey", langKey);
     }
 
     return compound;
@@ -131,7 +161,11 @@ public class TileBloom
 
     super.readFromNBT(compound);
     this.maxIntegrity = compound.getInteger("maxIntegrity");
-    this.stackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));
+    this.integrity.set(compound.getInteger("integrity"));
+
+    if (compound.hasKey("recipeId")) {
+      this.recipeId = compound.getString("recipeId");
+    }
 
     if (compound.hasKey("langKey")) {
       this.langKey = compound.getString("langKey");
@@ -199,8 +233,6 @@ public class TileBloom
             (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
         );
 
-        DynamicStackHandler stackHandler = tile.getStackHandler();
-
         if (tile.recipeProgress.get() < 1) {
           ItemStack heldItemMainHand = player.getHeldItemMainhand();
           Item item = heldItemMainHand.getItem();
@@ -212,8 +244,13 @@ public class TileBloom
         }
 
         if (tile.recipeProgress.get() >= 0.9999) {
-          ItemStack output = stackHandler.extractRandomItem(false, RandomHelper.random());
-          StackHelper.spawnStackOnTop(world, output, tile.getPos(), 0);
+          tile.integrity.add(-1);
+          BloomeryRecipe recipe = ModulePyrotechRegistries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
+
+          if (recipe != null) {
+            ItemStack output = recipe.getRandomOutput();
+            StackHelper.spawnStackOnTop(world, output, tile.getPos(), 0);
+          }
 
           world.playSound(
               player,

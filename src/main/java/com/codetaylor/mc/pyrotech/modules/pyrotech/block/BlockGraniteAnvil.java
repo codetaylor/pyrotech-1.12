@@ -14,21 +14,25 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class BlockGraniteAnvil
     extends BlockPartialBase
@@ -47,6 +51,29 @@ public class BlockGraniteAnvil
     this.setResistance(5.0F);
     this.setSoundType(SoundType.STONE);
     this.setHarvestLevel("pickaxe", 0);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Light
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileGraniteAnvil) {
+      ItemStackHandler stackHandler = ((TileGraniteAnvil) tileEntity).getStackHandler();
+      ItemStack stackInSlot = stackHandler.getStackInSlot(0);
+      Item item = stackInSlot.getItem();
+
+      if (item instanceof ItemBlock) {
+        Block block = ((ItemBlock) item).getBlock();
+        return block.getLightValue(block.getDefaultState());
+      }
+    }
+
+    return super.getLightValue(state, world, pos);
   }
 
   // ---------------------------------------------------------------------------
@@ -166,6 +193,37 @@ public class BlockGraniteAnvil
   public boolean isSideSolid(IBlockState base_state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, EnumFacing side) {
 
     return (side == EnumFacing.DOWN);
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileGraniteAnvil) {
+
+      ItemStackHandler stackHandler = ((TileGraniteAnvil) tileEntity).getStackHandler();
+      ItemStack stackInSlot = stackHandler.getStackInSlot(0);
+
+      if (stackInSlot.getItem() == Item.getItemFromBlock(ModuleBlocks.BLOOM)) {
+
+        double x = (double) pos.getX() + 0.5;
+        double y = (double) pos.getY() + (10.0 / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
+        double z = (double) pos.getZ() + 0.5;
+
+        if (rand.nextDouble() < 0.1) {
+          world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+        }
+
+        for (int i = 0; i < 4; i++) {
+          double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          double offsetY = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
+        }
+      }
+    }
   }
 
   // ---------------------------------------------------------------------------

@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
 
-import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
@@ -36,10 +35,7 @@ public class BloomProvider
       TileBloom tile;
       tile = (TileBloom) tileEntity;
 
-      DynamicStackHandler stackHandler = tile.getStackHandler();
-      int totalItemCount = stackHandler.getTotalItemCount();
-      int maxIntegrity = tile.getMaxIntegrity();
-      int integrity = (int) ((totalItemCount / (float) maxIntegrity) * 100);
+      int integrity = (int) ((tile.getIntegrity() / (float) tile.getMaxIntegrity()) * 100);
 
       tooltip.add(Util.translateFormatted(
           "gui." + ModulePyrotech.MOD_ID + ".waila.bloom.integrity",

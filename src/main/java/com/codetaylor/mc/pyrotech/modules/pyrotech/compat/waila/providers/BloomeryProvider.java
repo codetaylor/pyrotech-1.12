@@ -81,7 +81,7 @@ public class BloomeryProvider
         BloomeryRecipe recipe = tile.getCurrentRecipe();
 
         if (recipe != null) {
-          ItemStack recipeOutput = recipe.getOutput();
+          ItemStack recipeOutput = recipe.getOutputBloom();
           recipeOutput.setCount(input.getCount());
           renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
           renderString.append(WailaUtil.getStackRenderString(recipeOutput));

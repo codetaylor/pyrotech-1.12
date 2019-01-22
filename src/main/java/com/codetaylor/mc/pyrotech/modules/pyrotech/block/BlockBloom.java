@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
-import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
@@ -69,6 +68,12 @@ public class BlockBloom
 
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    return 9;
+  }
+
+  @Override
+  public int getLightValue(IBlockState state) {
 
     return 9;
   }
@@ -159,10 +164,8 @@ public class BlockBloom
 
     if (tileEntity instanceof TileBloom) {
       TileBloom tile = (TileBloom) tileEntity;
-      DynamicStackHandler stackHandler = tile.getStackHandler();
-      ItemStack firstNonEmptyItemStack = stackHandler.getFirstNonEmptyItemStack();
 
-      if (!firstNonEmptyItemStack.isEmpty()) {
+      if (tile.getIntegrity() > 0) {
         drops.add(TileBloom.toItemStack(tile));
       }
     }
@@ -345,6 +348,57 @@ public class BlockBloom
     public ItemBlockBloom(Block block) {
 
       super(block);
+    }
+
+    public int getMaxIntegrity(ItemStack itemStack) {
+
+      return this.getTileInteger(itemStack, "maxIntegrity");
+    }
+
+    public int getIntegrity(ItemStack itemStack) {
+
+      return this.getTileInteger(itemStack, "integrity");
+    }
+
+    public void setIntegrity(ItemStack itemStack, int integrity) {
+
+      if (itemStack.getItem() == this) {
+        NBTTagCompound tagCompound = itemStack.getTagCompound();
+
+        if (tagCompound != null) {
+          NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
+          tileTag.setInteger("integrity", integrity);
+        }
+      }
+    }
+
+    private int getTileInteger(ItemStack itemStack, String key) {
+
+      if (itemStack.getItem() == this) {
+        NBTTagCompound tagCompound = itemStack.getTagCompound();
+
+        if (tagCompound != null) {
+          NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
+          return tileTag.getInteger(key);
+        }
+      }
+
+      return 0;
+    }
+
+    @Nullable
+    public String getRecipeId(ItemStack itemStack) {
+
+      if (itemStack.getItem() == this) {
+        NBTTagCompound tagCompound = itemStack.getTagCompound();
+
+        if (tagCompound != null) {
+          NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
+          return tileTag.getString("recipeId");
+        }
+      }
+
+      return null;
     }
 
     @Override
