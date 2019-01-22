@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
@@ -13,6 +14,9 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -77,8 +81,41 @@ public class BlockGraniteAnvil
   }
 
   // ---------------------------------------------------------------------------
+  // - Helper
+  // ---------------------------------------------------------------------------
+
+  private boolean hasBloom(World world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileGraniteAnvil) {
+
+      ItemStackHandler stackHandler = ((TileGraniteAnvil) tileEntity).getStackHandler();
+      ItemStack stackInSlot = stackHandler.getStackInSlot(0);
+
+      return (stackInSlot.getItem() == Item.getItemFromBlock(ModuleBlocks.BLOOM));
+    }
+
+    return false;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------
+
+  @Override
+  public void onEntityWalk(World world, BlockPos pos, Entity entity) {
+
+    if (ModulePyrotechConfig.BLOOM.ENTITY_WALK_DAMAGE > 0
+        && this.hasBloom(world, pos)
+        && !entity.isImmuneToFire()
+        && entity instanceof EntityLivingBase
+        && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.BLOOM.ENTITY_WALK_DAMAGE);
+    }
+
+    super.onEntityWalk(world, pos, entity);
+  }
 
   @Nullable
   @Override
@@ -199,29 +236,21 @@ public class BlockGraniteAnvil
   @Override
   public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 
-    TileEntity tileEntity = world.getTileEntity(pos);
+    if (this.hasBloom(world, pos)) {
 
-    if (tileEntity instanceof TileGraniteAnvil) {
+      double x = (double) pos.getX() + 0.5;
+      double y = (double) pos.getY() + (10.0 / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
+      double z = (double) pos.getZ() + 0.5;
 
-      ItemStackHandler stackHandler = ((TileGraniteAnvil) tileEntity).getStackHandler();
-      ItemStack stackInSlot = stackHandler.getStackInSlot(0);
+      if (rand.nextDouble() < 0.1) {
+        world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+      }
 
-      if (stackInSlot.getItem() == Item.getItemFromBlock(ModuleBlocks.BLOOM)) {
-
-        double x = (double) pos.getX() + 0.5;
-        double y = (double) pos.getY() + (10.0 / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
-        double z = (double) pos.getZ() + 0.5;
-
-        if (rand.nextDouble() < 0.1) {
-          world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
-        }
-
-        for (int i = 0; i < 4; i++) {
-          double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
-          double offsetY = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
-          double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
-          world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
-        }
+      for (int i = 0; i < 4; i++) {
+        double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+        double offsetY = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+        double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+        world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
       }
     }
   }
