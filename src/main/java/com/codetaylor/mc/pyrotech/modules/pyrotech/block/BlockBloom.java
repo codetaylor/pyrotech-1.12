@@ -233,7 +233,35 @@ public class BlockBloom
           TileEntity tileEntity = world.getTileEntity(pos);
 
           if (tileEntity != null) {
-            EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, (double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, world.getBlockState(pos));
+            EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, (double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, world.getBlockState(pos)) {
+
+              @Nullable
+              @Override
+              public EntityItem entityDropItem(ItemStack stack, float offsetY) {
+
+                if (stack.isEmpty()) {
+                  return null;
+
+                } else {
+
+                  if (this.tileEntityData != null) {
+                    TileBloom.createBloomAsItemStack(stack, this.tileEntityData);
+                  }
+
+                  EntityItem entityitem = new EntityItem(this.world, this.posX, this.posY + (double) offsetY, this.posZ, stack);
+                  entityitem.setDefaultPickupDelay();
+
+                  if (captureDrops) {
+                    this.capturedDrops.add(entityitem);
+
+                  } else {
+                    this.world.spawnEntity(entityitem);
+                  }
+
+                  return entityitem;
+                }
+              }
+            };
             entityfallingblock.tileEntityData = tileEntity.writeToNBT(new NBTTagCompound());
             world.spawnEntity(entityfallingblock);
           }

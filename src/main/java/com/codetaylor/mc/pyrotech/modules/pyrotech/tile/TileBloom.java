@@ -115,8 +115,13 @@ public class TileBloom
 
   public static ItemStack createBloomAsItemStack(ItemStack itemStack, int maxIntegrity, int integrity, @Nullable String recipeId, @Nullable String langKey) {
 
-    NBTTagCompound itemTag = StackHelper.getTagSafe(itemStack);
     NBTTagCompound tileTag = TileBloom.writeToNBT(new NBTTagCompound(), maxIntegrity, integrity, recipeId, langKey);
+    return TileBloom.createBloomAsItemStack(itemStack, tileTag);
+  }
+
+  public static ItemStack createBloomAsItemStack(ItemStack itemStack, NBTTagCompound tileTag) {
+
+    NBTTagCompound itemTag = StackHelper.getTagSafe(itemStack);
     itemTag.setTag(StackHelper.BLOCK_ENTITY_TAG, tileTag);
     return itemStack;
   }
