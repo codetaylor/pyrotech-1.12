@@ -10,6 +10,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.BloomeryFuelRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
@@ -177,11 +178,9 @@ public class TileBloomery
     return this.speed.get();
   }
 
-  protected int getMaxBurnTime() {
+  private int getMaxBurnTime() {
 
-    // TODO: Config
-    // 32,000 is the coal coke block burn time.
-    return 32000 * 4;
+    return ModulePyrotechConfig.BLOOMERY.FUEL_CAPACITY_BURN_TIME;
   }
 
   // ---------------------------------------------------------------------------
@@ -332,7 +331,7 @@ public class TileBloomery
   private class InteractionTongs
       extends InteractionUseItemBase<TileBloomery> {
 
-    public InteractionTongs(AxisAlignedBB bounds) {
+    /* package */ InteractionTongs(AxisAlignedBB bounds) {
 
       super(new EnumFacing[]{EnumFacing.UP}, bounds);
     }
@@ -407,7 +406,7 @@ public class TileBloomery
 
     private final BooleanSupplier isEnabled;
 
-    public InteractionInput(ItemStackHandler[] stackHandlers, AxisAlignedBB interactionBounds, BooleanSupplier isEnabled) {
+    /* package */ InteractionInput(ItemStackHandler[] stackHandlers, AxisAlignedBB interactionBounds, BooleanSupplier isEnabled) {
 
       super(
           stackHandlers,
@@ -449,7 +448,7 @@ public class TileBloomery
     private final FuelStackHandler fuelStackHandler;
     private final BooleanSupplier isEnabled;
 
-    public InteractionFuel(TileBloomery tile, FuelStackHandler fuelStackHandler, AxisAlignedBB interactionBounds, BooleanSupplier isEnabled) {
+    /* package */ InteractionFuel(TileBloomery tile, FuelStackHandler fuelStackHandler, AxisAlignedBB interactionBounds, BooleanSupplier isEnabled) {
 
       super(
           new ItemStackHandler[]{fuelStackHandler},
