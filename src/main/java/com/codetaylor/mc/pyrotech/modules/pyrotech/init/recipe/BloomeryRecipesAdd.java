@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
@@ -59,7 +60,7 @@ public class BloomeryRecipesAdd {
       registryAnvil.register(new GraniteAnvilRecipe.BloomAnvilRecipe(
           bloomeryRecipe.getOutput(),
           Ingredient.fromStacks(bloomeryRecipe.getOutputBloom()),
-          8,
+          ModulePyrotechConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
           GraniteAnvilRecipe.EnumType.HAMMER,
           bloomeryRecipe
       ).setRegistryName(bloomeryRecipe.getRegistryName()));

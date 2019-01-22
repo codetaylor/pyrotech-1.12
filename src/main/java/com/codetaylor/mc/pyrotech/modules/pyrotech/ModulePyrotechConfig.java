@@ -514,7 +514,7 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Bloomery
+  // - Bloom
   // ---------------------------------------------------------------------------
 
   public static Bloom BLOOM = new Bloom();
@@ -538,11 +538,20 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "The number of hammer hits required to extract one item from the bloom's contents.",
         "This will be further reduced using the hammer hit reduction number provided",
-        "in the Granite Anvil section.",
+        "for anvil hammers.",
         "Default: " + 12
     })
     @Config.RangeInt(min = 1)
     public int HAMMER_HITS_REQUIRED = 12;
+
+    @Config.Comment({
+        "The number of hammer hits required to extract one item from the bloom's contents",
+        "when the bloom is placed on this mod's anvil.",
+        "This will be further reduced using the hammer hit reduction number provided",
+        "for anvil hammers.",
+        "Default: " + 8
+    })
+    public int HAMMER_HITS_IN_ANVIL_REQUIRED = 8;
 
     @Config.Comment({
         "If true, using the hammer on the bloom when the bloom is placed in the",
