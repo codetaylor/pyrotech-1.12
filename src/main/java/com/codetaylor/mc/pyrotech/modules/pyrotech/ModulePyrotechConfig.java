@@ -529,6 +529,17 @@ public class ModulePyrotechConfig {
     })
     @Config.RangeInt(min = 1)
     public int FUEL_CAPACITY_BURN_TIME = 32000 * 4;
+
+    @Config.Comment({
+        "The bloomery speed is based on the quality (burn time) of the fuel",
+        "inserted: y = (scalar)(x)^(1/2)",
+        "For example, if set to 2, the max speed of the bloomery is 200% and",
+        "25% of the total fuel capacity is required for a speed of 100%. If set",
+        "to 3, the max speed is 300% and roughly 11% capacity is required for",
+        "100% speed."
+    })
+    @Config.RangeInt(min = 0)
+    public double SPEED_SCALAR = 2;
   }
 
   // ---------------------------------------------------------------------------

@@ -82,9 +82,7 @@ public class TileBloomery
     this.outputStackHandler.addObserver((handler, slot) -> this.markDirty());
 
     this.fuelStackHandler = new FuelStackHandler(this);
-    this.fuelStackHandler.addObserver((handler, slot) -> {
-      this.markDirty();
-    });
+    this.fuelStackHandler.addObserver((handler, slot) -> this.markDirty());
 
     this.recipeProgress = new TileDataFloat(0, 20);
     this.speed = new TileDataFloat(0);
@@ -195,7 +193,7 @@ public class TileBloomery
   private void updateSpeed() {
 
     float linearSpeed = this.burnTime / (float) this.getMaxBurnTime();
-    float speed = 2 * (float) Math.pow(linearSpeed, 0.5);
+    float speed = (float) (ModulePyrotechConfig.BLOOMERY.SPEED_SCALAR * (float) Math.pow(linearSpeed, 0.5));
     this.speed.set(speed);
   }
 
