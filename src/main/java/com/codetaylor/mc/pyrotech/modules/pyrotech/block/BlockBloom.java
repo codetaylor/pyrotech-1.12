@@ -230,8 +230,13 @@ public class BlockBloom
       if (!BlockFalling.fallInstantly && world.isAreaLoaded(pos.add(-32, -32, -32), pos.add(32, 32, 32))) {
 
         if (!world.isRemote) {
-          EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, (double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, world.getBlockState(pos));
-          world.spawnEntity(entityfallingblock);
+          TileEntity tileEntity = world.getTileEntity(pos);
+
+          if (tileEntity != null) {
+            EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, (double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, world.getBlockState(pos));
+            entityfallingblock.tileEntityData = tileEntity.writeToNBT(new NBTTagCompound());
+            world.spawnEntity(entityfallingblock);
+          }
         }
 
       } else {
