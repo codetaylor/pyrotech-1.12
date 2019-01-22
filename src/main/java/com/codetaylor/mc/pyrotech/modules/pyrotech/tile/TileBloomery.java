@@ -193,7 +193,7 @@ public class TileBloomery
   public boolean isFuelFull() {
 
     return this.getFuelCount() >= this.getMaxFuelCount()
-        || this.burnTime.get() >= this.getMaxBurnTime();
+        || (this.hasSpeedCap() && this.burnTime.get() >= this.getMaxBurnTime());
   }
 
   public int getFuelCount() {
@@ -219,6 +219,11 @@ public class TileBloomery
   public int getMaxBurnTime() {
 
     return ModulePyrotechConfig.BLOOMERY.FUEL_CAPACITY_BURN_TIME;
+  }
+
+  public boolean hasSpeedCap() {
+
+    return ModulePyrotechConfig.BLOOMERY.HAS_SPEED_CAP;
   }
 
   // ---------------------------------------------------------------------------
@@ -668,55 +673,63 @@ public class TileBloomery
       int max = this.tile.getMaxBurnTime();
       int fuelBurnTimeTotal = fuelBurnTimeSingle * stack.getCount();
 
-      if (this.tile.burnTime.get() >= max) {
+      if (this.tile.hasSpeedCap()
+          && this.tile.burnTime.get() >= max) {
         return stack; // There's no room for insert, fail
+      }
+
+      if ((!this.tile.hasSpeedCap() || this.tile.burnTime.get() + fuelBurnTimeTotal <= max)
+          && fuelCount + stack.getCount() <= this.tile.getMaxFuelCount()) {
+
+        // There's enough room for all items in the stack. If not a simulation
+        // Increase the burn time. Only do the insertion if the machine is
+        // not active.
+
+        if (!simulate) {
+          this.tile.burnTime.add(fuelBurnTimeTotal);
+          this.tile.fuelCount.add(stack.getCount());
+
+          if (!this.tile.isActive()) {
+            this.insertItem(stack, false);
+          }
+        }
+
+        return ItemStack.EMPTY;
 
       } else {
 
-        if (this.tile.burnTime.get() + fuelBurnTimeTotal <= max
-            && fuelCount + stack.getCount() <= this.tile.getMaxFuelCount()) {
+        // Trim the input stack down to size and, if this isn't a simulation,
+        // increase the burn time. Only do the insertion if the machine is
+        // not active.
 
-          // There's enough room for all items in the stack. If not a simulation
-          // Increase the burn time. Only do the insertion if the machine is
-          // not active.
+        ItemStack toInsert = stack.copy();
+        int itemCountInsertCount = Math.min(toInsert.getCount(), this.tile.getMaxFuelCount() - fuelCount);
+        int insertCount;
 
-          if (!simulate) {
-            this.tile.burnTime.add(fuelBurnTimeTotal);
-            this.tile.fuelCount.add(stack.getCount());
-
-            if (!this.tile.isActive()) {
-              this.insertItem(stack, false);
-            }
-          }
-
-          return ItemStack.EMPTY;
-
-        } else {
-
-          // Trim the input stack down to size and, if this isn't a simulation,
-          // increase the burn time. Only do the insertion if the machine is
-          // not active.
-
-          ItemStack toInsert = stack.copy();
+        if (this.tile.hasSpeedCap()) {
           int burnTimeInsertCount = Math.min(toInsert.getCount(), (int) ((max - this.tile.burnTime.get()) / (float) fuelBurnTimeSingle));
-          int itemCountInsertCount = Math.min(toInsert.getCount(), this.tile.getMaxFuelCount() - fuelCount);
-          int insertCount = Math.min(burnTimeInsertCount, itemCountInsertCount);
+          insertCount = Math.min(burnTimeInsertCount, itemCountInsertCount);
           toInsert.setCount(insertCount);
 
-          if (!simulate) {
-            this.tile.burnTime.add(insertCount * fuelBurnTimeSingle);
-            this.tile.fuelCount.add(insertCount);
-
-            if (!this.tile.isActive()) {
-              this.insertItem(toInsert, false);
-            }
-          }
-
-          ItemStack toReturn = stack.copy();
-          toReturn.setCount(toReturn.getCount() - insertCount);
-          return toReturn;
+        } else {
+          insertCount = itemCountInsertCount;
+          toInsert.setCount(insertCount);
         }
+
+        if (!simulate) {
+          this.tile.burnTime.add(insertCount * fuelBurnTimeSingle);
+          this.tile.fuelCount.add(insertCount);
+
+          if (!this.tile.isActive()) {
+            this.insertItem(toInsert, false);
+          }
+        }
+
+        ItemStack toReturn = stack.copy();
+        toReturn.setCount(toReturn.getCount() - insertCount);
+        return toReturn;
       }
+
     }
 
     @Nonnull
