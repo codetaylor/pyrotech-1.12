@@ -238,6 +238,8 @@ public class TileBloom
             (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
         );
 
+        BlockBloom.trySpawnFire(world, tile.getPos(), RandomHelper.random());
+
         if (tile.recipeProgress.get() < 1) {
           ItemStack heldItemMainHand = player.getHeldItemMainhand();
           Item item = heldItemMainHand.getItem();

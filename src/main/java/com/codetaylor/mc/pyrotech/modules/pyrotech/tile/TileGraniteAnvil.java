@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
@@ -425,6 +426,11 @@ public class TileGraniteAnvil
         GraniteAnvilRecipe recipe = GraniteAnvilRecipe.getRecipe(itemStack);
 
         if (recipe != null) {
+          boolean isBloomRecipe = (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe);
+
+          if (isBloomRecipe) {
+            BlockBloom.trySpawnFire(world, tile.getPos(), RandomHelper.random());
+          }
 
           if (tile.getRecipeProgress() < 1) {
             ItemStack heldItemMainHand = player.getHeldItemMainhand();
@@ -444,7 +450,7 @@ public class TileGraniteAnvil
 
           if (tile.getRecipeProgress() >= 0.9999) {
 
-            if (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe) {
+            if (isBloomRecipe) {
 
               // Spawn in the bloomery recipe output
               BloomeryRecipe bloomeryRecipe = ((GraniteAnvilRecipe.BloomAnvilRecipe) recipe).getBloomeryRecipe();

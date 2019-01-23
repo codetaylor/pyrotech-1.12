@@ -309,8 +309,13 @@ public class BlockBloom
       world.setBlockState(pos.down(), Blocks.FIRE.getDefaultState(), 1 | 2);
     }
 
-    if (rand.nextDouble() < 0.5) {
-      BlockHelper.forBlocksInCube(world, pos, 1, 1, 1, (w, p, bs) -> {
+    BlockBloom.trySpawnFire(world, pos, rand);
+  }
+
+  public static void trySpawnFire(World world, BlockPos pos, Random rand) {
+
+    if (rand.nextDouble() < 0.25) {
+      BlockHelper.forBlocksInCubeShuffled(world, pos, 1, 1, 1, (w, p, bs) -> {
 
         if (w.isAirBlock(p)) {
 
