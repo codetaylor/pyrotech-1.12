@@ -25,7 +25,12 @@
         "model": "pyrotech:kiln_stone_top"
       },
       "bottom": {},
-      "bottom_lit": {},
+      "bottom_lit": {
+        "submodel": {
+          "lit": {"model": "pyrotech:bloomery_lit"},
+          "lit_lava_top": {"model": "pyrotech:bloomery_lit_lava_top"}
+        }
+      },
       "bottom_dormant": {}
     }
   }

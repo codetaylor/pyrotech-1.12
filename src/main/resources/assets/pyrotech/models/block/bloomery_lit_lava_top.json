@@ -1,0 +1,20 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "still": "blocks/lava_still",
+    "flow": "blocks/lava_flow"
+  },
+  "elements": [
+    {
+      "from": [7, 0, -1],
+      "to": [9, 2, 0],
+      "faces": {
+        "north": {"uv": [0, 15, 1, 16], "texture": "#flow"},
+        "east": {"uv": [0, 15, 0.5, 16], "texture": "#flow"},
+        "west": {"uv": [0, 15, 0.5, 16], "texture": "#flow"},
+        "up": {"uv": [0, 14.5, 1, 15], "rotation": 180, "texture": "#flow"},
+        "down": {"uv": [0, 0, 2, 1], "texture": "#still"}
+      }
+    }
+  ]
+}

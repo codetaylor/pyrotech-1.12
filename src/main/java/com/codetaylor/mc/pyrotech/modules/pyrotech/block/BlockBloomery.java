@@ -106,6 +106,24 @@ public class BlockBloomery
     return (face == EnumFacing.DOWN);
   }
 
+  @Nonnull
+  @Override
+  public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    if (!this.isTop(state)) {
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity instanceof TileBloomery) {
+
+        if (((TileBloomery) tileEntity).isActive()) {
+          return state.withProperty(BlockCombustionWorkerStoneBase.TYPE, EnumType.BottomLit);
+        }
+      }
+    }
+
+    return super.getActualState(state, world, pos);
+  }
+
   @SideOnly(Side.CLIENT)
   @Override
   public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
