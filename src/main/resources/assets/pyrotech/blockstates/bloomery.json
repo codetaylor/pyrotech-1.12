@@ -26,6 +26,10 @@
       },
       "bottom": {},
       "bottom_lit": {
+        "textures": {
+          "front": "pyrotech:blocks/bloomery_front_lit",
+          "inside_top": "pyrotech:blocks/bloomery_inside_top_lit"
+        },
         "submodel": {
           "lit": {"model": "pyrotech:bloomery_lit"},
           "lit_lava_top": {"model": "pyrotech:bloomery_lit_lava_top"}
