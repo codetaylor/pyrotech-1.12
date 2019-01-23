@@ -14,7 +14,7 @@ public class ItemTongsIronFull
   }
 
   @Override
-  protected int getDamagePerUse() {
+  public int getDamagePerUse() {
 
     return ModulePyrotechConfig.GENERAL.IRON_TONGS_DAMAGE_PER_USE;
   }

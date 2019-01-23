@@ -1,14 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockFire;
@@ -107,7 +107,7 @@ public class BlockBloom
 
     ItemStack heldItem = playerIn.getHeldItemMainhand();
 
-    if (heldItem.getItem() instanceof ItemTongsBase) {
+    if (heldItem.getItem() instanceof ItemTongsEmptyBase) {
       return false;
     }
 
@@ -166,7 +166,7 @@ public class BlockBloom
       TileBloom tile = (TileBloom) tileEntity;
 
       if (tile.getIntegrity() > 0) {
-        drops.add(TileBloom.toItemStack(tile));
+        drops.add(BloomHelper.toItemStack(tile));
       }
     }
   }
@@ -245,7 +245,7 @@ public class BlockBloom
                 } else {
 
                   if (this.tileEntityData != null) {
-                    TileBloom.createBloomAsItemStack(stack, this.tileEntityData);
+                    BloomHelper.createBloomAsItemStack(stack, this.tileEntityData);
                   }
 
                   EntityItem entityitem = new EntityItem(this.world, this.posX, this.posY + (double) offsetY, this.posZ, stack);
@@ -309,28 +309,7 @@ public class BlockBloom
       world.setBlockState(pos.down(), Blocks.FIRE.getDefaultState(), 1 | 2);
     }
 
-    BlockBloom.trySpawnFire(world, pos, rand);
-  }
-
-  public static void trySpawnFire(World world, BlockPos pos, Random rand) {
-
-    if (rand.nextDouble() < 0.25) {
-      BlockHelper.forBlocksInCubeShuffled(world, pos, 1, 1, 1, (w, p, bs) -> {
-
-        if (w.isAirBlock(p)) {
-
-          BlockPos down = p.down();
-          IBlockState blockState = w.getBlockState(down);
-
-          if (blockState.isSideSolid(w, down, EnumFacing.UP)) {
-            w.setBlockState(p, Blocks.FIRE.getDefaultState(), 1 | 2);
-            return false;
-          }
-        }
-
-        return true;
-      });
-    }
+    BloomHelper.trySpawnFire(world, pos, rand);
   }
 
   private void tryCatchFire(World world, BlockPos pos, int chance, Random random, int age, EnumFacing face) {

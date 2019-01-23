@@ -1,7 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.event;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -29,19 +30,19 @@ public class ItemPickupEventHandler {
     ItemStack heldItem = entityPlayer.getHeldItemMainhand();
     boolean isOffhand = false;
 
-    if (!(heldItem.getItem() instanceof ItemTongsBase)) {
+    if (!(heldItem.getItem() instanceof ItemTongsEmptyBase)) {
       heldItem = entityPlayer.getHeldItemOffhand();
       isOffhand = true;
     }
 
-    if (!(heldItem.getItem() instanceof ItemTongsBase)) {
+    if (!(heldItem.getItem() instanceof ItemTongsEmptyBase)) {
       return;
     }
 
     event.getItem().setDead();
     event.setCanceled(true);
 
-    ItemStack itemStack = ItemTongsBase.getFilledItemStack(heldItem, pickedUp);
+    ItemStack itemStack = BloomHelper.createItemTongsFull(heldItem, pickedUp);
     heldItem.shrink(1);
 
     if (isOffhand) {

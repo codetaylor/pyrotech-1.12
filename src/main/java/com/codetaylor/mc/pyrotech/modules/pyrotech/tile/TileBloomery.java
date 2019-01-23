@@ -19,10 +19,11 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
@@ -396,7 +397,7 @@ public class TileBloomery
 
       ItemStack heldItem = player.getHeldItemMainhand();
 
-      return (heldItem.getItem() instanceof ItemTongsBase)
+      return (heldItem.getItem() instanceof ItemTongsEmptyBase)
           && !tile.outputStackHandler.getStackInSlot(0).isEmpty();
     }
 
@@ -405,7 +406,7 @@ public class TileBloomery
 
       ItemStack bloomStack = tile.outputStackHandler.extractItem(0, 1, false);
       ItemStack heldItem = player.getHeldItemMainhand();
-      ItemStack tongs = ItemTongsBase.getFilledItemStack(heldItem, bloomStack);
+      ItemStack tongs = BloomHelper.createItemTongsFull(heldItem, bloomStack);
 
       heldItem.shrink(1);
       ItemHandlerHelper.giveItemToPlayer(player, tongs, player.inventory.currentItem);

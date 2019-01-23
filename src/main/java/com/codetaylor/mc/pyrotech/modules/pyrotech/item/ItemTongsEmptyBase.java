@@ -2,12 +2,12 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -19,12 +19,12 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
-public abstract class ItemTongsBase
+public abstract class ItemTongsEmptyBase
     extends Item {
 
   private final Supplier<ItemTongsFullBase> otherTongsSupplier;
 
-  /* package */ ItemTongsBase(Supplier<ItemTongsFullBase> otherTongsSupplier, int durability) {
+  /* package */ ItemTongsEmptyBase(Supplier<ItemTongsFullBase> otherTongsSupplier, int durability) {
 
     this.otherTongsSupplier = otherTongsSupplier;
 
@@ -32,42 +32,9 @@ public abstract class ItemTongsBase
     this.setMaxDamage(durability);
   }
 
-  /**
-   * Creates a new filled tongs item and merges NBT data from the empty tongs
-   * and the bloom into the new item.
-   * <p>
-   * Does not apply damage.
-   * Does not modify input stack.
-   *
-   * @param toFill the empty tongs
-   * @param bloom  the bloom
-   * @return a new filled tongs item stack
-   */
-  public static ItemStack getFilledItemStack(ItemStack toFill, ItemStack bloom) {
+  public ItemTongsFullBase getItemTongsFull() {
 
-    Item item = toFill.getItem();
-
-    if (!(item instanceof ItemTongsBase)) {
-      return toFill;
-    }
-
-    ItemTongsBase tongs = (ItemTongsBase) item;
-
-    ItemStack itemStack = new ItemStack(tongs.otherTongsSupplier.get(), 1, toFill.getMetadata());
-
-    NBTTagCompound tag = new NBTTagCompound();
-
-    if (bloom.getTagCompound() != null) {
-      tag.merge(bloom.getTagCompound());
-    }
-
-    if (toFill.getTagCompound() != null) {
-      tag.merge(toFill.getTagCompound());
-    }
-
-    itemStack.setTagCompound(tag);
-
-    return itemStack;
+    return this.otherTongsSupplier.get();
   }
 
   @Override
@@ -107,8 +74,8 @@ public abstract class ItemTongsBase
         && tileEntity instanceof TileBloom) {
 
       TileBloom tile = (TileBloom) tileEntity;
-      ItemStack bloomStack = TileBloom.toItemStack(tile, new ItemStack(ModuleBlocks.BLOOM));
-      ItemStack itemStack = ItemTongsBase.getFilledItemStack(heldItem, bloomStack);
+      ItemStack bloomStack = BloomHelper.toItemStack(tile, new ItemStack(ModuleBlocks.BLOOM));
+      ItemStack itemStack = BloomHelper.createItemTongsFull(heldItem, bloomStack);
 
       if (!world.isRemote) {
         world.setBlockToAir(pos);

@@ -14,7 +14,7 @@ public class ItemTongsStoneFull
   }
 
   @Override
-  protected int getDamagePerUse() {
+  public int getDamagePerUse() {
 
     return ModulePyrotechConfig.GENERAL.STONE_TONGS_DAMAGE_PER_USE;
   }

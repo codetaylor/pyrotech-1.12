@@ -1,11 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -27,9 +27,9 @@ import java.util.function.Supplier;
 public abstract class ItemTongsFullBase
     extends Item {
 
-  private final Supplier<ItemTongsBase> otherTongsSupplier;
+  private final Supplier<ItemTongsEmptyBase> otherTongsSupplier;
 
-  /* package */ ItemTongsFullBase(Supplier<ItemTongsBase> otherTongsSupplier, int durability) {
+  /* package */ ItemTongsFullBase(Supplier<ItemTongsEmptyBase> otherTongsSupplier, int durability) {
 
     this.otherTongsSupplier = otherTongsSupplier;
 
@@ -37,42 +37,9 @@ public abstract class ItemTongsFullBase
     this.setMaxDamage(durability);
   }
 
-  /**
-   * Returns the empty version of the full tongs passed in, with damage. If the
-   * tongs are destroyed as a result of the damage, an empty itemstack is
-   * returned instead.
-   * <p>
-   * Does not modify input stack.
-   *
-   * @param toEmpty the full tongs itemstack
-   * @return the empty version of the full tongs passed in
-   */
-  public static ItemStack getEmptyItemStack(ItemStack toEmpty) {
+  public ItemTongsEmptyBase getItemTongsEmpty() {
 
-    NBTTagCompound tagCompound = toEmpty.getTagCompound();
-
-    if (tagCompound == null) {
-      return toEmpty;
-    }
-
-    Item item = toEmpty.getItem();
-
-    if (!(item instanceof ItemTongsFullBase)) {
-      return toEmpty;
-    }
-
-    if (toEmpty.attemptDamageItem(((ItemTongsFullBase) item).getDamagePerUse(), RandomHelper.random(), null)) {
-      return ItemStack.EMPTY;
-    }
-
-    ItemTongsFullBase tongs = (ItemTongsFullBase) item;
-
-    ItemStack itemStack = new ItemStack(tongs.otherTongsSupplier.get(), 1, toEmpty.getMetadata());
-    NBTTagCompound copy = tagCompound.copy();
-    copy.removeTag(StackHelper.BLOCK_ENTITY_TAG);
-    itemStack.setTagCompound(copy);
-
-    return itemStack;
+    return this.otherTongsSupplier.get();
   }
 
   @Override
@@ -123,7 +90,7 @@ public abstract class ItemTongsFullBase
         }
       }
 
-      ItemStack itemStack = ItemTongsFullBase.getEmptyItemStack(heldItem);
+      ItemStack itemStack = BloomHelper.createItemTongsEmpty(heldItem);
 
       if (itemStack.isEmpty()) {
 
@@ -147,7 +114,7 @@ public abstract class ItemTongsFullBase
     return ActionResult.newResult(EnumActionResult.PASS, heldItem);
   }
 
-  protected abstract int getDamagePerUse();
+  public abstract int getDamagePerUse();
 
   @Override
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {

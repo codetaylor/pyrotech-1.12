@@ -20,11 +20,12 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsFullBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -230,7 +231,7 @@ public class TileGraniteAnvil
       } else {
 
         if (stackInSlot.getItem() == Item.getItemFromBlock(ModuleBlocks.BLOOM)) {
-          return (heldItem.getItem() instanceof ItemTongsBase);
+          return (heldItem.getItem() instanceof ItemTongsEmptyBase);
         }
       }
 
@@ -242,7 +243,7 @@ public class TileGraniteAnvil
 
       ItemStack heldItem = player.getHeldItemMainhand();
 
-      if (heldItem.getItem() instanceof ItemTongsBase) {
+      if (heldItem.getItem() instanceof ItemTongsEmptyBase) {
         return this.doInteractionTongsEmpty(tile, player, heldItem);
 
       } else {
@@ -253,7 +254,7 @@ public class TileGraniteAnvil
     private boolean doInteractionTongsEmpty(TileGraniteAnvil tile, EntityPlayer player, ItemStack tongsStack) {
 
       ItemStack bloomStack = tile.stackHandler.extractItem(0, 1, false);
-      ItemStack fullTongsStack = ItemTongsBase.getFilledItemStack(tongsStack, bloomStack);
+      ItemStack fullTongsStack = BloomHelper.createItemTongsFull(tongsStack, bloomStack);
       tongsStack.shrink(1);
       ItemHandlerHelper.giveItemToPlayer(player, fullTongsStack, player.inventory.currentItem);
       return true;
@@ -268,9 +269,9 @@ public class TileGraniteAnvil
       }
 
       NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
-      ItemStack bloomStack = TileBloom.createBloomAsItemStack(new ItemStack(ModuleBlocks.BLOOM), tileTag);
+      ItemStack bloomStack = BloomHelper.createBloomAsItemStack(new ItemStack(ModuleBlocks.BLOOM), tileTag);
       tile.stackHandler.insertItem(0, bloomStack, false);
-      ItemStack emptyTongsStack = ItemTongsFullBase.getEmptyItemStack(tongsStack);
+      ItemStack emptyTongsStack = BloomHelper.createItemTongsEmpty(tongsStack);
       tongsStack.shrink(1);
 
       if (!emptyTongsStack.isEmpty()) {
@@ -429,7 +430,7 @@ public class TileGraniteAnvil
           boolean isBloomRecipe = (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe);
 
           if (isBloomRecipe) {
-            BlockBloom.trySpawnFire(world, tile.getPos(), RandomHelper.random());
+            BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random());
           }
 
           if (tile.getRecipeProgress() < 1) {

@@ -10,12 +10,12 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockBloom;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +29,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class TileBloom
     extends TileNetBase
@@ -108,56 +107,12 @@ public class TileBloom
   // - Serialization
   // ---------------------------------------------------------------------------
 
-  public static ItemStack createBloomAsItemStack(int maxIntegrity, @Nullable String recipeId, @Nullable String langKey) {
-
-    return TileBloom.createBloomAsItemStack(new ItemStack(ModuleBlocks.BLOOM), maxIntegrity, maxIntegrity, recipeId, langKey);
-  }
-
-  public static ItemStack createBloomAsItemStack(ItemStack itemStack, int maxIntegrity, int integrity, @Nullable String recipeId, @Nullable String langKey) {
-
-    NBTTagCompound tileTag = TileBloom.writeToNBT(new NBTTagCompound(), maxIntegrity, integrity, recipeId, langKey);
-    return TileBloom.createBloomAsItemStack(itemStack, tileTag);
-  }
-
-  public static ItemStack createBloomAsItemStack(ItemStack itemStack, NBTTagCompound tileTag) {
-
-    NBTTagCompound itemTag = StackHelper.getTagSafe(itemStack);
-    itemTag.setTag(StackHelper.BLOCK_ENTITY_TAG, tileTag);
-    return itemStack;
-  }
-
-  public static ItemStack toItemStack(TileBloom tile) {
-
-    return TileBloom.toItemStack(tile, new ItemStack(ModuleBlocks.BLOOM));
-  }
-
-  public static ItemStack toItemStack(TileBloom tile, ItemStack itemStack) {
-
-    return StackHelper.writeTileEntityToItemStack(tile, itemStack);
-  }
-
   @Nonnull
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    TileBloom.writeToNBT(compound, this.maxIntegrity, this.integrity.get(), this.recipeId, this.langKey);
-    return compound;
-  }
-
-  public static NBTTagCompound writeToNBT(NBTTagCompound compound, int maxIntegrity, int integrity, @Nullable String recipeId, @Nullable String langKey) {
-
-    compound.setInteger("maxIntegrity", maxIntegrity);
-    compound.setInteger("integrity", integrity);
-
-    if (recipeId != null) {
-      compound.setString("recipeId", recipeId);
-    }
-
-    if (langKey != null) {
-      compound.setString("langKey", langKey);
-    }
-
+    BloomHelper.writeToNBT(compound, this.maxIntegrity, this.integrity.get(), this.recipeId, this.langKey);
     return compound;
   }
 
@@ -238,7 +193,7 @@ public class TileBloom
             (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
         );
 
-        BlockBloom.trySpawnFire(world, tile.getPos(), RandomHelper.random());
+        BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random());
 
         if (tile.recipeProgress.get() < 1) {
           ItemStack heldItemMainHand = player.getHeldItemMainhand();

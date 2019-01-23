@@ -4,10 +4,8 @@ import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.math.MathHelper;
@@ -74,7 +72,7 @@ public class BloomeryRecipe
       this.langKey = this.getLangKeyFrom(this.input);
     }
 
-    this.outputBloom = TileBloom.createBloomAsItemStack(
+    this.outputBloom = BloomHelper.createBloomAsItemStack(
         bloomYieldMax,
         null,
         this.langKey
@@ -100,7 +98,7 @@ public class BloomeryRecipe
 
     int integrity = MathHelper.getInt(RandomHelper.random(), this.bloomYieldMin, this.bloomYieldMax);
 
-    return TileBloom.createBloomAsItemStack(
+    return BloomHelper.createBloomAsItemStack(
         integrity,
         this.getRegistryName().toString(),
         this.langKey
