@@ -202,7 +202,8 @@ public class TileBloom
           hitReduction = ModulePyrotechConfig.GRANITE_ANVIL.getHammerHitReduction(item.getRegistryName());
 
           int hits = Math.max(1, ModulePyrotechConfig.BLOOM.HAMMER_HITS_REQUIRED - hitReduction);
-          tile.recipeProgress.set(tile.recipeProgress.get() + 1f / hits);
+          float recipeProgressIncrement = (float) ((1f / hits) * BloomHelper.calculateHammerPower(tile.getPos(), player.posX, player.posY, player.posZ));
+          tile.recipeProgress.set(tile.recipeProgress.get() + recipeProgressIncrement);
         }
 
         if (tile.recipeProgress.get() >= 0.9999) {

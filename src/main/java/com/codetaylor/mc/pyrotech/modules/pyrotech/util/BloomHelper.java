@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.util;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.DistanceHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
@@ -20,6 +21,16 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BloomHelper {
+
+  public static double calculateHammerPower(BlockPos pos, double playerX, double playerY, double playerZ) {
+
+    double originX = pos.getX() + 0.5;
+    double originY = pos.getY() + 0.5;
+    double originZ = pos.getZ() + 0.5;
+
+    double distance = DistanceHelper.getDistance(originX, originY, originZ, playerX, playerY, playerZ);
+    return Math.max(0, 1 - (1.0 / 24.0) * Math.pow(distance, 2));
+  }
 
   public static ItemStack createBloomAsItemStack(int maxIntegrity, @Nullable String recipeId, @Nullable String langKey) {
 

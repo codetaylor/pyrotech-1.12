@@ -4,8 +4,11 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -47,6 +50,14 @@ public class BloomProvider
       tooltip.add(Util.translateFormatted(
           "gui." + ModulePyrotech.MOD_ID + ".waila.bloom.hammered",
           recipeProgress
+      ));
+
+      EntityPlayerSP player = Minecraft.getMinecraft().player;
+      int hammerPower = (int) (BloomHelper.calculateHammerPower(tile.getPos(), player.posX, player.posY, player.posZ) * 100);
+
+      tooltip.add(Util.translateFormatted(
+          "gui." + ModulePyrotech.MOD_ID + ".waila.bloom.hammer.power",
+          hammerPower
       ));
     }
 

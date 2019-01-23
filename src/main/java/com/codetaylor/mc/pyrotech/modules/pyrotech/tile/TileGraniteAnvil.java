@@ -446,7 +446,13 @@ public class TileGraniteAnvil
             }
 
             int hits = Math.max(1, recipe.getHits() - hitReduction);
-            tile.setRecipeProgress(tile.getRecipeProgress() + 1f / hits);
+            float recipeProgressIncrement = 1f / hits;
+
+            if (isBloomRecipe) {
+              recipeProgressIncrement *= BloomHelper.calculateHammerPower(tile.getPos(), player.posX, player.posY, player.posZ);
+            }
+
+            tile.setRecipeProgress(tile.getRecipeProgress() + recipeProgressIncrement);
           }
 
           if (tile.getRecipeProgress() >= 0.9999) {

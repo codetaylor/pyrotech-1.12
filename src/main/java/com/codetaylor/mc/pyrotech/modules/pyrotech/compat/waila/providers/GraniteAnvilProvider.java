@@ -7,8 +7,11 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -100,6 +103,14 @@ public class GraniteAnvilProvider
             tooltip.add(Util.translateFormatted(
                 "gui." + ModulePyrotech.MOD_ID + ".waila.bloom.integrity",
                 integrity
+            ));
+
+            EntityPlayerSP player = Minecraft.getMinecraft().player;
+            int hammerPower = (int) (BloomHelper.calculateHammerPower(tile.getPos(), player.posX, player.posY, player.posZ) * 100);
+
+            tooltip.add(Util.translateFormatted(
+                "gui." + ModulePyrotech.MOD_ID + ".waila.bloom.hammer.power",
+                hammerPower
             ));
           }
         }
