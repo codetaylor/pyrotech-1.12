@@ -38,6 +38,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -299,6 +300,7 @@ public class TileBloomery
 
     if (this.active.isDirty()) {
       BlockHelper.notifyBlockUpdate(this.world, this.pos);
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
     }
   }
 

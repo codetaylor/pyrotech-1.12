@@ -86,6 +86,20 @@ public class BlockBloomery
   }
 
   // ---------------------------------------------------------------------------
+  // - Light
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    if (this.getActualState(state, world, pos).getValue(TYPE) == EnumType.BottomLit) {
+      return 9;
+    }
+
+    return super.getLightValue(state, world, pos);
+  }
+
+  // ---------------------------------------------------------------------------
   // - Rendering
   // ---------------------------------------------------------------------------
 
