@@ -12,6 +12,7 @@ import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -50,9 +51,6 @@ public class GraniteAnvilProvider
 
         // Display input item and recipe output.
 
-        StringBuilder renderString = new StringBuilder();
-        renderString.append(WailaUtil.getStackRenderString(input));
-
         GraniteAnvilRecipe recipe = GraniteAnvilRecipe.getRecipe(input);
 
         if (recipe != null) {
@@ -64,12 +62,31 @@ public class GraniteAnvilProvider
               recipeOutput.setCount(1);
             }
 
-            renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
-            renderString.append(WailaUtil.getStackRenderString(recipeOutput));
+            tooltip.add(WailaUtil.getStackRenderString(input) +
+                WailaUtil.getProgressRenderString((int) (100 * progress), 100) +
+                WailaUtil.getStackRenderString(recipeOutput));
+          }
+
+          GraniteAnvilRecipe.EnumType recipeType = recipe.getType();
+
+          if (recipeType == GraniteAnvilRecipe.EnumType.HAMMER) {
+            String typeString = Util.translateFormatted("gui." + ModulePyrotech.MOD_ID + ".waila.anvil.recipe.type.hammer");
+            tooltip.add(Util.translateFormatted(
+                "gui." + ModulePyrotech.MOD_ID + ".waila.anvil.recipe.type",
+                typeString
+            ));
+
+          } else if (recipeType == GraniteAnvilRecipe.EnumType.PICKAXE) {
+            String typeString = Util.translateFormatted("gui." + ModulePyrotech.MOD_ID + ".waila.anvil.recipe.type.pickaxe");
+            tooltip.add(Util.translateFormatted(
+                "gui." + ModulePyrotech.MOD_ID + ".waila.anvil.recipe.type",
+                typeString
+            ));
+
+          } else {
+            throw new RuntimeException("Unknown recipe type: " + recipeType);
           }
         }
-
-        tooltip.add(renderString.toString());
 
         if (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe) {
           tooltip.add(TextFormatting.GOLD + input.getDisplayName());

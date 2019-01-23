@@ -174,6 +174,9 @@ gui.pyrotech.waila.empty=Empty
 gui.pyrotech.waila.bloom.hammered=Hammered: %d%%
 gui.pyrotech.waila.bloom.integrity=Integrity: %d%%
 gui.pyrotech.waila.bloomery.fuel=Fuel: %d of %d
+gui.pyrotech.waila.anvil.recipe.type=Type: %s
+gui.pyrotech.waila.anvil.recipe.type.hammer=Hammer
+gui.pyrotech.waila.anvil.recipe.type.pickaxe=Pickaxe
 
 # --- JEI plugin
 
