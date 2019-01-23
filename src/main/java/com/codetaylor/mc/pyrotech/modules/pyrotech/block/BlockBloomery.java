@@ -1,19 +1,28 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
+import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloomery;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
@@ -97,8 +106,124 @@ public class BlockBloomery
     return (face == EnumFacing.DOWN);
   }
 
+  @SideOnly(Side.CLIENT)
   @Override
-  protected void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand) {
+  public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 
+    if (this.isTop(state)) {
+
+      TileEntity tileEntity = world.getTileEntity(pos.down());
+
+      if (tileEntity instanceof TileBloomery
+          && ((TileBloomery) tileEntity).isActive()) {
+
+        double x = (double) pos.getX() + 0.5;
+        double y = (double) pos.getY() + (4.0 / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
+        double z = (double) pos.getZ() + 0.5;
+
+        if (rand.nextDouble() < 0.1) {
+          world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+        }
+
+        for (int i = 0; i < 8; i++) {
+          double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          double offsetY = 0.25 + (rand.nextDouble() * 2.0 - 1.0) * 0.25;
+          double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
+        }
+
+        for (int i = 0; i < 4; i++) {
+          double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x + offsetX, y, z + offsetZ, 0.0, 0.0, 0.0);
+        }
+
+        for (int i = 0; i < 4; i++) {
+          double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y, z + offsetZ, 0.0, 0.0, 0.0);
+        }
+
+        if (RandomHelper.random().nextFloat() < 0.05) {
+          double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          world.spawnParticle(EnumParticleTypes.LAVA, x + offsetX, y, z + offsetZ, 0.0, 0.0, 0.0);
+        }
+      }
+
+    } else {
+
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity instanceof TileBloomery
+          && ((TileBloomery) tileEntity).isActive()) {
+
+        EnumFacing enumfacing = state.getValue(Properties.FACING_HORIZONTAL);
+        double offsetY = rand.nextDouble() * 6.0 / 16.0;
+        double x = (double) pos.getX() + 0.5;
+        double y = (double) pos.getY() + offsetY;
+        double z = (double) pos.getZ() + 0.5;
+        double randomOffset = rand.nextDouble() * 0.4 - 0.2;
+
+        if (rand.nextDouble() < 0.1) {
+          world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+        }
+
+        double offset = 0.55;
+        double lavaOffset = 0.075;
+        double dripChance = 0.25;
+
+        switch (enumfacing) {
+
+          case WEST:
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x - offset, y, z + randomOffset, 0, 0, 0);
+            world.spawnParticle(EnumParticleTypes.FLAME, x - offset, y, z + randomOffset, 0, 0, 0);
+
+            if (rand.nextFloat() < dripChance) {
+              world.spawnParticle(EnumParticleTypes.FLAME, x - offset, y, z + randomOffset, 0, 0, 0);
+              Minecraft.getMinecraft().effectRenderer.addEffect(
+                  ParticleBloomeryDrip.createParticle(world, x - offset - lavaOffset, y - offsetY, z)
+              );
+            }
+            break;
+
+          case EAST:
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + offset, y, z + randomOffset, 0, 0, 0);
+            world.spawnParticle(EnumParticleTypes.FLAME, x + offset, y, z + randomOffset, 0, 0, 0);
+
+            if (rand.nextFloat() < dripChance) {
+              world.spawnParticle(EnumParticleTypes.FLAME, x + offset, y, z + randomOffset, 0, -0.1, 0);
+              Minecraft.getMinecraft().effectRenderer.addEffect(
+                  ParticleBloomeryDrip.createParticle(world, x + offset + lavaOffset, y - offsetY, z)
+              );
+            }
+            break;
+
+          case NORTH:
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + randomOffset, y, z - offset, 0, 0, 0);
+            world.spawnParticle(EnumParticleTypes.FLAME, x + randomOffset, y, z - offset, 0, 0, 0);
+
+            if (rand.nextFloat() < dripChance) {
+              world.spawnParticle(EnumParticleTypes.FLAME, x + randomOffset, y, z - offset, 0, -0.1, 0);
+              Minecraft.getMinecraft().effectRenderer.addEffect(
+                  ParticleBloomeryDrip.createParticle(world, x, y - offsetY, z - offset - lavaOffset)
+              );
+            }
+
+            break;
+
+          case SOUTH:
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + randomOffset, y, z + offset, 0, 0, 0);
+            world.spawnParticle(EnumParticleTypes.FLAME, x + randomOffset, y, z + offset, 0, 0, 0);
+
+            if (rand.nextFloat() < dripChance) {
+              world.spawnParticle(EnumParticleTypes.FLAME, x + randomOffset, y, z + offset, 0, -0.1, 0);
+              Minecraft.getMinecraft().effectRenderer.addEffect(
+                  ParticleBloomeryDrip.createParticle(world, x, y - offsetY, z + offset + lavaOffset)
+              );
+            }
+        }
+      }
+    }
   }
 }

@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
@@ -373,7 +372,9 @@ public abstract class BlockCombustionWorkerStoneBase
     }
   }
 
-  protected abstract void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand);
+  protected void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand) {
+    //
+  }
 
   // ---------------------------------------------------------------------------
   // - Variants
