@@ -143,6 +143,11 @@ public class TileGraniteAnvil
     return this.stackHandler;
   }
 
+  public int getBloomAnvilDamagePerHit() {
+
+    return ModulePyrotechConfig.GRANITE_ANVIL.BLOOM_DAMAGE_PER_HIT;
+  }
+
   // ---------------------------------------------------------------------------
   // - Network
   // ---------------------------------------------------------------------------
@@ -420,8 +425,6 @@ public class TileGraniteAnvil
         // Decrement the durability until next damage and progress or
         // complete the recipe.
 
-        tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);
-
         ItemStackHandler stackHandler = tile.getStackHandler();
         ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
         GraniteAnvilRecipe recipe = GraniteAnvilRecipe.getRecipe(itemStack);
@@ -430,7 +433,11 @@ public class TileGraniteAnvil
           boolean isBloomRecipe = (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe);
 
           if (isBloomRecipe) {
+            tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - tile.getBloomAnvilDamagePerHit());
             BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random());
+
+          } else {
+            tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);
           }
 
           if (tile.getRecipeProgress() < 1) {

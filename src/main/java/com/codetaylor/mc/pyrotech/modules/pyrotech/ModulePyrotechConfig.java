@@ -953,6 +953,13 @@ public class ModulePyrotechConfig {
     public int HITS_PER_DAMAGE = 64;
 
     @Config.Comment({
+        "The amount of hits to apply to the anvil damage when hitting a bloom.",
+        "Default: " + 4
+    })
+    @Config.RangeInt(min = 0)
+    public int BLOOM_DAMAGE_PER_HIT = 4;
+
+    @Config.Comment({
         "Use this to add items that you want to be valid for hammer recipes.",
         "The reduction parameter supplied here is used to reduce the number",
         "of hits required to complete a recipe. The reduction amount is subtracted",
