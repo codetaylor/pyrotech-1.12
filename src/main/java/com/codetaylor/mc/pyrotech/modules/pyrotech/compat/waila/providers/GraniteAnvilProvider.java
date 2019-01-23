@@ -72,7 +72,7 @@ public class GraniteAnvilProvider
         tooltip.add(renderString.toString());
 
         if (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe) {
-          tooltip.add(input.getDisplayName());
+          tooltip.add(TextFormatting.GOLD + input.getDisplayName());
           Item item = input.getItem();
 
           if (item instanceof BlockBloom.ItemBlockBloom) {
