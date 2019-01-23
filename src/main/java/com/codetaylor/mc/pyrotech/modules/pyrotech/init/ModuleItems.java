@@ -141,8 +141,10 @@ public final class ModuleItems {
       OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.SANDSTONE.getMeta()));
       OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta()));
 
-      OreDictionary.registerOre("twine", new ItemStack(MATERIAL, 1, ItemMaterial.EnumType.TWINE.getMeta()));
+      OreDictionary.registerOre("twine", ItemMaterial.EnumType.TWINE.asStack());
       OreDictionary.registerOre("twine", new ItemStack(Items.STRING));
+
+      OreDictionary.registerOre("nuggetIron", ItemMaterial.EnumType.IRON_SHARD.asStack());
     });
   }
 
