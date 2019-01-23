@@ -8,6 +8,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
@@ -295,6 +296,10 @@ public class TileBloomery
     if (this.tileDataInputStackHandler.isDirty()) {
       this.updateRecipe();
     }
+
+    if (this.active.isDirty()) {
+      BlockHelper.notifyBlockUpdate(this.world, this.pos);
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -435,6 +440,7 @@ public class TileBloomery
     protected boolean doInteraction(TileBloomery tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (!world.isRemote) {
+
         tile.setActive();
 
         world.playSound(
