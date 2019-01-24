@@ -193,7 +193,7 @@ public class TileBloom
             (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
         );
 
-        BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random());
+        BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModulePyrotechConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_RAW);
 
         if (tile.recipeProgress.get() < 1) {
           ItemStack heldItemMainHand = player.getHeldItemMainhand();

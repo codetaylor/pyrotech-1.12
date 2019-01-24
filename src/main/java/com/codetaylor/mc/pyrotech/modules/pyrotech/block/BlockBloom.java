@@ -309,7 +309,7 @@ public class BlockBloom
       world.setBlockState(pos.down(), Blocks.FIRE.getDefaultState(), 1 | 2);
     }
 
-    BloomHelper.trySpawnFire(world, pos, rand);
+    BloomHelper.trySpawnFire(world, pos, rand, ModulePyrotechConfig.BLOOM.FIRE_SPAWN_CHANCE_RANDOM);
   }
 
   private void tryCatchFire(World world, BlockPos pos, int chance, Random random, int age, EnumFacing face) {

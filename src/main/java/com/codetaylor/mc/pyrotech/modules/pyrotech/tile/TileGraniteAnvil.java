@@ -434,7 +434,7 @@ public class TileGraniteAnvil
 
           if (isBloomRecipe) {
             tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - tile.getBloomAnvilDamagePerHit());
-            BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random());
+            BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModulePyrotechConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL);
 
           } else {
             tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);

@@ -83,9 +83,9 @@ public class BloomHelper {
     return compound;
   }
 
-  public static void trySpawnFire(World world, BlockPos pos, Random rand) {
+  public static void trySpawnFire(World world, BlockPos pos, Random rand, double chance) {
 
-    if (rand.nextDouble() < 0.25) {
+    if (rand.nextDouble() < chance) {
       BlockHelper.forBlocksInCubeShuffled(world, pos, 1, 1, 1, (w, p, bs) -> {
 
         if (w.isAirBlock(p)) {
