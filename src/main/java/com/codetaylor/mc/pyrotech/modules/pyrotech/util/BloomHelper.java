@@ -48,7 +48,13 @@ public class BloomHelper {
     double distance = DistanceHelper.getDistance(originX, originY, originZ, playerX, playerY, playerZ);
     double offsetX = 1;
     double clampedDistance = Math.max(offsetX, distance);
-    return Math.max(0, 1 - (1.0 / 4.0) * Math.pow(clampedDistance - offsetX, 3));
+    double result = Math.max(0, 1 - (1.0 / 4.0) * Math.pow(clampedDistance - offsetX, 3));
+
+    if (result > 0.985) {
+      result = 1;
+    }
+
+    return result;
   }
 
   public static ItemStack createBloomAsItemStack(int maxIntegrity, @Nullable String recipeId, @Nullable String langKey) {
