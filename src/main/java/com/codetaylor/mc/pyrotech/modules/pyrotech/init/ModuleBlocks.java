@@ -109,12 +109,12 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.PLANKS_TARRED, BlockPlanksTarred.NAME);
     registry.registerBlockWithItem(ModuleBlocks.BLOOMERY, BlockBloomery.NAME);
     registry.registerBlockWithItem(ModuleBlocks.PILE_WOOD_CHIPS, BlockPileWoodChips.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.PILE_SLAG, BlockPileSlag.NAME);
     registry.registerBlockWithItem(ModuleBlocks.WOOL_TARRED, BlockWoolTarred.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
     registry.registerBlock(ModuleBlocks.BLOOM, new BlockBloom.ItemBlockBloom(ModuleBlocks.BLOOM), BlockBloom.NAME);
+    registry.registerBlock(ModuleBlocks.PILE_SLAG, new BlockPileSlag.ItemBlockPileSlag(ModuleBlocks.PILE_SLAG), BlockPileSlag.NAME);
 
     registry.registerTileEntities(
         TileTarCollector.class,

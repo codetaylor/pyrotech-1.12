@@ -260,7 +260,8 @@ public class ModulePyrotech
 
     BloomeryRecipesAdd.applyBloomRecipes(
         ModulePyrotechRegistries.BLOOMERY_RECIPE,
-        ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE
+        ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE,
+        ModulePyrotechRegistries.COMPACTING_BIN_RECIPE
     );
 
     RecipeItemParser parser = new RecipeItemParser();

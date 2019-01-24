@@ -564,7 +564,7 @@ public class TileBloomery
       ResourceLocation registryName = this.currentRecipe.getRegistryName();
 
       if (registryName != null) {
-        ItemStack itemStack = BloomHelper.createSlagItem(registryName, this.currentRecipe.getLangKey());
+        ItemStack itemStack = BloomHelper.createSlagItem(new ResourceLocation(registryName.toString().replaceAll("\\.slag", "")), this.currentRecipe.getLangKey());
         stackHandler.insertItem(0, itemStack, false);
       }
     }

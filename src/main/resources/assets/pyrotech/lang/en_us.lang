@@ -145,6 +145,7 @@ tile.pyrotech.planks_tarred.name=Tarred Planks
 tile.pyrotech.bloomery.name=Bloomery
 tile.pyrotech.pile_wood_chips.name=Wood Chips
 tile.pyrotech.pile_slag.name=Slag
+tile.pyrotech.pile_slag.unique.name=%s Slag
 tile.pyrotech.wool_tarred.name=Tarred Wool
 tile.pyrotech.bloom.name=Bloom
 tile.pyrotech.bloom.unique.name=%s Bloom

@@ -3,6 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPileBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TilePileSlag;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -11,10 +13,16 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -132,5 +140,68 @@ public class BlockPileSlag
 
     return (state.getValue(BlockPileBase.LEVEL) - 1)
         | ((state.getValue(BlockPileSlag.MOLTEN) ? 1 : 0) << 3);
+  }
+
+  public static class ItemBlockPileSlag
+      extends ItemBlock {
+
+    public ItemBlockPileSlag(Block block) {
+
+      super(block);
+    }
+
+    @Override
+    public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, @Nonnull IBlockState newState) {
+
+      NBTTagCompound tagCompound = stack.getTagCompound();
+
+      if (tagCompound == null) {
+        return false;
+      }
+
+      boolean result = super.placeBlockAt(stack, player, world, pos, side, hitX, hitY, hitZ, newState);
+
+      if (result) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+
+        if (tileEntity instanceof TilePileSlag) {
+          TilePileSlag.StackHandler stackHandler = ((TilePileSlag) tileEntity).getStackHandler();
+
+          for (int i = 0; i < 8; i++) {
+            ItemStack slagItem = BloomHelper.createSlagItem(
+                new ResourceLocation(tagCompound.getString("recipeId")),
+                tagCompound.getString("langKey")
+            );
+            stackHandler.insertItem(i, slagItem, false);
+          }
+        }
+      }
+
+      return result;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Nonnull
+    @Override
+    public String getItemStackDisplayName(@Nonnull ItemStack stack) {
+
+      if (stack.getItem() == this) {
+
+        NBTTagCompound tagCompound = stack.getTagCompound();
+
+        if (tagCompound != null
+            && tagCompound.hasKey("langKey")) {
+
+          String langKey = tagCompound.getString("langKey") + ".name";
+
+          if (I18n.canTranslate(langKey)) {
+            String translatedLangKey = I18n.translateToLocal(langKey);
+            return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".unique.name", translatedLangKey).trim();
+          }
+        }
+      }
+
+      return I18n.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name").trim();
+    }
   }
 }

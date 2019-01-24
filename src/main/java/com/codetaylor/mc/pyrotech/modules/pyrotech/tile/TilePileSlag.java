@@ -14,6 +14,7 @@ public class TilePileSlag
   public TilePileSlag() {
 
     this.stackHandler = new StackHandler();
+    this.stackHandler.addObserver((handler, slot) -> this.markDirty());
   }
 
   public StackHandler getStackHandler() {
