@@ -321,6 +321,14 @@ public class TileBloomery
       this.airflow.set(0.5f);
     }
 
+    // Adding fuel reduces the airflow, y is modifier, x is fuel percentage.
+    // y=0.5(1-x^2)+0.5
+    {
+      double x = this.fuelCount.get() / (double) this.getMaxFuelCount();
+      double airflowFuelModifier = 0.5 * (1 - Math.pow(x, 2)) + 0.5;
+      this.airflow.set((float) (this.airflow.get() * airflowFuelModifier));
+    }
+
     this.updateSpeed();
   }
 
