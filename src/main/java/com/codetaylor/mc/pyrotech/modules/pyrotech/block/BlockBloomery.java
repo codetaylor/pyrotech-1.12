@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.client.particles.ParticleBloo
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloomery;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -82,6 +83,17 @@ public class BlockBloomery
 
     } else {
       return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    }
+  }
+
+  @SuppressWarnings("deprecation")
+  @Override
+  public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileBloomery) {
+      ((TileBloomery) tileEntity).updateAirflow();
     }
   }
 

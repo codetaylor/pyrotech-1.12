@@ -89,6 +89,7 @@ public class TileBloomery
   private TileDataBoolean active;
   private TileDataInteger fuelCount;
   private TileDataInteger burnTime;
+  private TileDataFloat airflow;
   private int lastBurnTime;
   private BloomeryRecipe currentRecipe;
   private int remainingSlag;
@@ -116,6 +117,7 @@ public class TileBloomery
     this.active = new TileDataBoolean(false);
     this.fuelCount = new TileDataInteger(0);
     this.burnTime = new TileDataInteger(0);
+    this.airflow = new TileDataFloat(-1);
 
     // --- Network ---
 
@@ -129,7 +131,8 @@ public class TileBloomery
         this.speed,
         this.active,
         this.fuelCount,
-        this.burnTime
+        this.burnTime,
+        this.airflow
     });
 
     // --- Interactions ---
@@ -241,6 +244,11 @@ public class TileBloomery
     return ModulePyrotechConfig.BLOOMERY.HAS_SPEED_CAP;
   }
 
+  public float getAirflow() {
+
+    return this.airflow.get();
+  }
+
   // ---------------------------------------------------------------------------
   // - Recipe
   // ---------------------------------------------------------------------------
@@ -250,11 +258,58 @@ public class TileBloomery
     this.currentRecipe = BloomeryRecipe.getRecipe(this.inputStackHandler.getStackInSlot(0));
   }
 
+  // ---------------------------------------------------------------------------
+  // - Speed
+  // ---------------------------------------------------------------------------
+
   private void updateSpeed() {
 
     float linearSpeed = this.burnTime.get() / (float) this.getMaxBurnTime();
     float speed = (float) (ModulePyrotechConfig.BLOOMERY.SPEED_SCALAR * (float) Math.pow(linearSpeed, 0.5));
+    speed *= this.calculateSpeedAirflowModifier();
     this.speed.set(speed);
+  }
+
+  private double calculateSpeedAirflowModifier() {
+
+    float airflow = this.airflow.get();
+    return Math.pow(airflow - (airflow * 0.19), 0.5) + 0.1;
+  }
+
+  public void updateAirflow() {
+
+    IBlockState tileBlockState = this.world.getBlockState(this.pos);
+    EnumFacing tileFacing = this.getTileFacing(this.world, this.pos, tileBlockState);
+    BlockPos offset = this.pos.offset(tileFacing);
+    IBlockState blockState = this.world.getBlockState(offset);
+
+    if (this.world.isAirBlock(offset)) {
+      this.airflow.set(1);
+
+    } else if (blockState.getBlock() == ModuleBlocks.PILE_SLAG) {
+      int level = blockState.getValue(BlockPileSlag.LEVEL);
+
+      if (level == 1) {
+        this.airflow.set(1);
+
+      } else if (level == 2) {
+        this.airflow.set(0.66f);
+
+      } else if (level == 3) {
+        this.airflow.set(0.33f);
+
+      } else if (level == 4) {
+        this.airflow.set(0);
+      }
+
+    } else if (blockState.getBlock().isSideSolid(blockState, this.world, offset, tileFacing.getOpposite())) {
+      this.airflow.set(0);
+
+    } else {
+      this.airflow.set(0.5f);
+    }
+
+    this.updateSpeed();
   }
 
   // ---------------------------------------------------------------------------
@@ -322,6 +377,10 @@ public class TileBloomery
       }
 
       return;
+    }
+
+    if (this.airflow.get() < 0) {
+      this.updateAirflow();
     }
 
     if (this.lastBurnTime != this.burnTime.get()) {
@@ -484,6 +543,7 @@ public class TileBloomery
     compound.setFloat("speed", this.speed.get());
     compound.setInteger("burnTime", this.burnTime.get());
     compound.setInteger("fuelCount", this.fuelCount.get());
+    compound.setFloat("airflow", this.airflow.get());
     return compound;
   }
 
@@ -499,6 +559,7 @@ public class TileBloomery
     this.speed.set(compound.getFloat("speed"));
     this.burnTime.set(compound.getInteger("burnTime"));
     this.fuelCount.set(compound.getInteger("fuelCount"));
+    this.airflow.set(compound.getFloat("airflow"));
     this.updateRecipe();
   }
 
