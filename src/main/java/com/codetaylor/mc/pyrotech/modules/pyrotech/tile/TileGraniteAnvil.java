@@ -456,7 +456,7 @@ public class TileGraniteAnvil
             float recipeProgressIncrement = 1f / hits;
 
             if (isBloomRecipe) {
-              recipeProgressIncrement *= BloomHelper.calculateHammerPower(tile.getPos(), player.posX, player.posY, player.posZ);
+              recipeProgressIncrement *= BloomHelper.calculateHammerPower(tile.getPos(), player);
             }
 
             tile.setRecipeProgress(tile.getRecipeProgress() + recipeProgressIncrement);

@@ -9,6 +9,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsFullBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,14 +23,20 @@ import java.util.Random;
 
 public class BloomHelper {
 
-  public static double calculateHammerPower(BlockPos pos, double playerX, double playerY, double playerZ) {
+  public static double calculateHammerPower(BlockPos pos, EntityPlayer player) {
 
     double originX = pos.getX() + 0.5;
-    double originY = pos.getY() + 0.5;
+    double originY = pos.getY() + 0.25;
     double originZ = pos.getZ() + 0.5;
 
+    double playerX = player.posX;
+    double playerY = player.posY + player.getEyeHeight() * 0.5;
+    double playerZ = player.posZ;
+
     double distance = DistanceHelper.getDistance(originX, originY, originZ, playerX, playerY, playerZ);
-    return Math.max(0, 1 - (1.0 / 24.0) * Math.pow(distance, 2));
+    double offsetX = 1;
+    double clampedDistance = Math.max(offsetX, distance);
+    return Math.max(0, 1 - (1.0 / 4.0) * Math.pow(clampedDistance - offsetX, 3));
   }
 
   public static ItemStack createBloomAsItemStack(int maxIntegrity, @Nullable String recipeId, @Nullable String langKey) {
