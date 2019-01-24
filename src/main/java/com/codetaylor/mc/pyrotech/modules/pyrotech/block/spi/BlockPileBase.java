@@ -60,14 +60,14 @@ public abstract class BlockPileBase
     if (!world.isRemote) {
       int level = state.getValue(BlockPileBase.LEVEL);
 
+      StackHelper.spawnStackOnTop(world, this.getDrop(world, pos, state), pos, (level * 2) / 16.0);
+
       if (level == 1) {
         world.setBlockToAir(pos);
 
       } else {
         world.setBlockState(pos, this.getDefaultState().withProperty(BlockPileBase.LEVEL, level - 1), 1 | 2);
       }
-
-      StackHelper.spawnStackOnTop(world, this.getDrop(), pos, (level * 2) / 16.0);
     }
   }
 
@@ -80,7 +80,7 @@ public abstract class BlockPileBase
     //
   }
 
-  protected abstract ItemStack getDrop();
+  protected abstract ItemStack getDrop(World world, BlockPos pos, IBlockState state);
 
   // ---------------------------------------------------------------------------
   // - Collision

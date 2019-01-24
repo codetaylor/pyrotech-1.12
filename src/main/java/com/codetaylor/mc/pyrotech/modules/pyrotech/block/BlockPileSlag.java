@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPileBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TilePileSlag;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -12,11 +12,13 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockPileSlag
@@ -41,9 +43,15 @@ public class BlockPileSlag
   }
 
   @Override
-  protected ItemStack getDrop() {
+  protected ItemStack getDrop(World world, BlockPos pos, IBlockState state) {
 
-    return new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.SLAG.getMeta());
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TilePileSlag) {
+      return ((TilePileSlag) tileEntity).getStackHandler().extractItem(0, 1, false);
+    }
+
+    return ItemStack.EMPTY;
   }
 
   // ---------------------------------------------------------------------------
@@ -80,6 +88,23 @@ public class BlockPileSlag
     }
 
     super.onEntityWalk(world, pos, entity);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Tile
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean hasTileEntity(IBlockState state) {
+
+    return true;
+  }
+
+  @Nullable
+  @Override
+  public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+
+    return new TilePileSlag();
   }
 
   // ---------------------------------------------------------------------------

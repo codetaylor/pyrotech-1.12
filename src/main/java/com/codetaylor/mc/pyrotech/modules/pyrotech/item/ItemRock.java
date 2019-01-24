@@ -8,10 +8,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -57,5 +59,30 @@ public class ItemRock
   public int getMetadata(int damage) {
 
     return damage;
+  }
+
+  @SuppressWarnings("deprecation")
+  @Nonnull
+  @Override
+  public String getItemStackDisplayName(@Nonnull ItemStack stack) {
+
+    if (stack.getItem() == this
+        && stack.getMetadata() == BlockRock.EnumType.SLAG.getMeta()) {
+
+      NBTTagCompound tagCompound = stack.getTagCompound();
+
+      if (tagCompound != null
+          && tagCompound.hasKey("langKey")) {
+
+        String langKey = tagCompound.getString("langKey") + ".name";
+
+        if (I18n.canTranslate(langKey)) {
+          String translatedLangKey = I18n.translateToLocal(langKey);
+          return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".unique.name", translatedLangKey).trim();
+        }
+      }
+    }
+
+    return I18n.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name").trim();
   }
 }

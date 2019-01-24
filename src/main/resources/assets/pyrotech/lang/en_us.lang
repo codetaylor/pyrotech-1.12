@@ -161,6 +161,7 @@ tile.pyrotech.rock_wood_chips.name=Pile of Wood Chips
 tile.pyrotech.rock_limestone.name=Limestone Rock
 tile.pyrotech.rock_sand_red.name=Red Sand Pile
 tile.pyrotech.rock_slag.name=Slag Rock
+tile.pyrotech.rock_slag.unique.name=%s Slag Rock
 
 # --- Waila plugin
 

@@ -38,10 +38,8 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ITickable;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -481,6 +479,8 @@ public class TileBloomery
           return false;
         }
 
+        this.addSlagItemToTileEntity(pos);
+
         this.world.setBlockState(pos, blockState
             .withProperty(BlockPileSlag.LEVEL, level + 1)
             .withProperty(BlockPileSlag.MOLTEN, true));
@@ -521,9 +521,13 @@ public class TileBloomery
         int level = blockState.getValue(BlockPileBase.LEVEL);
 
         if (level < 8) {
+
+          this.addSlagItemToTileEntity(pos);
+
           this.world.setBlockState(pos, blockState
               .withProperty(BlockPileSlag.LEVEL, level + 1)
               .withProperty(BlockPileSlag.MOLTEN, true));
+
           return true;
         }
       }
@@ -534,10 +538,28 @@ public class TileBloomery
       this.world.setBlockState(pos, ModuleBlocks.PILE_SLAG.getDefaultState()
           .withProperty(BlockPileSlag.LEVEL, 1)
           .withProperty(BlockPileSlag.MOLTEN, true));
+
+      this.addSlagItemToTileEntity(pos);
+
       return true;
     }
 
     return false;
+  }
+
+  private void addSlagItemToTileEntity(BlockPos pos) {
+
+    TileEntity tileEntity = this.world.getTileEntity(pos);
+
+    if (tileEntity instanceof TilePileSlag) {
+      TilePileSlag.StackHandler stackHandler = ((TilePileSlag) tileEntity).getStackHandler();
+      ResourceLocation registryName = this.currentRecipe.getRegistryName();
+
+      if (registryName != null) {
+        ItemStack itemStack = BloomHelper.createSlagItem(registryName, this.currentRecipe.getLangKey());
+        stackHandler.insertItem(0, itemStack, false);
+      }
+    }
   }
 
   // ---------------------------------------------------------------------------

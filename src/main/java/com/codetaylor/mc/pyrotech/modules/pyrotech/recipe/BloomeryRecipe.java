@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
@@ -44,10 +45,12 @@ public class BloomeryRecipe
   private final int bloomYieldMin;
   private final int bloomYieldMax;
   private final int slag;
+  private final boolean bloomSlag;
   private final ItemStack[] failureItems;
   private final String langKey;
 
   public BloomeryRecipe(
+      ResourceLocation resourceLocation,
       ItemStack output,
       Ingredient input,
       int burnTimeTicks,
@@ -55,9 +58,12 @@ public class BloomeryRecipe
       int bloomYieldMin,
       int bloomYieldMax,
       int slag,
+      boolean bloomSlag,
       ItemStack[] failureItems,
       @Nullable String langKey
   ) {
+
+    this.setRegistryName(resourceLocation);
 
     this.output = output;
     this.input = input;
@@ -66,7 +72,7 @@ public class BloomeryRecipe
     this.bloomYieldMin = bloomYieldMin;
     this.bloomYieldMax = bloomYieldMax;
     this.slag = slag;
-    this.failureItems = failureItems;
+    this.bloomSlag = bloomSlag;
 
     if (langKey != null) {
       this.langKey = langKey;
@@ -80,6 +86,14 @@ public class BloomeryRecipe
         null,
         this.langKey
     );
+
+    if (this.bloomSlag) {
+      ItemStack[] toAdd = {BloomHelper.createSlagItem(resourceLocation, this.langKey)};
+      this.failureItems = ArrayHelper.combine(failureItems, toAdd);
+
+    } else {
+      this.failureItems = failureItems;
+    }
   }
 
   public Ingredient getInput() {
@@ -113,6 +127,11 @@ public class BloomeryRecipe
     return this.slag;
   }
 
+  public boolean isBloomSlag() {
+
+    return this.bloomSlag;
+  }
+
   @Override
   public int getTimeTicks() {
 
@@ -127,6 +146,11 @@ public class BloomeryRecipe
   public ItemStack[] getFailureItems() {
 
     return this.failureItems;
+  }
+
+  public String getLangKey() {
+
+    return this.langKey;
   }
 
   public boolean matches(ItemStack input) {

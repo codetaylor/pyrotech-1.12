@@ -147,7 +147,8 @@ public final class ModuleBlocks {
         TileCompactingBin.class,
         TileSoakingPot.class,
         TileBloomery.class,
-        TileBloom.class
+        TileBloom.class,
+        TilePileSlag.class
     );
   }
 

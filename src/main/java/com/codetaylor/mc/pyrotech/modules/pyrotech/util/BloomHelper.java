@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.DistanceHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsFullBase;
@@ -15,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -22,6 +24,16 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BloomHelper {
+
+  public static ItemStack createSlagItem(ResourceLocation recipeId, String langKey) {
+
+    ItemStack itemStack = new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.SLAG.getMeta());
+    NBTTagCompound itemTag = new NBTTagCompound();
+    itemTag.setString("recipeId", recipeId.toString());
+    itemTag.setString("langKey", langKey);
+    itemStack.setTagCompound(itemTag);
+    return itemStack;
+  }
 
   public static double calculateHammerPower(BlockPos pos, EntityPlayer player) {
 
