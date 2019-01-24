@@ -98,14 +98,14 @@ public class BlockPileSlag
   public IBlockState getStateFromMeta(int meta) {
 
     return this.getDefaultState()
-        .withProperty(BlockPileBase.LEVEL, (meta & 3) + 1)
-        .withProperty(BlockPileSlag.MOLTEN, ((meta >> 2) & 1) == 1);
+        .withProperty(BlockPileBase.LEVEL, (meta & 7) + 1)
+        .withProperty(BlockPileSlag.MOLTEN, ((meta >> 3) & 1) == 1);
   }
 
   @Override
   public int getMetaFromState(IBlockState state) {
 
     return (state.getValue(BlockPileBase.LEVEL) - 1)
-        | ((state.getValue(BlockPileSlag.MOLTEN) ? 1 : 0) << 2);
+        | ((state.getValue(BlockPileSlag.MOLTEN) ? 1 : 0) << 3);
   }
 }
