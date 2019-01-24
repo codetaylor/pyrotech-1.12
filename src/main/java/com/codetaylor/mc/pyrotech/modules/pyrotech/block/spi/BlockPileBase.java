@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi;
 
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -65,6 +66,8 @@ public abstract class BlockPileBase
       } else {
         world.setBlockState(pos, this.getDefaultState().withProperty(BlockPileBase.LEVEL, level - 1), 1 | 2);
       }
+
+      StackHelper.spawnStackOnTop(world, this.getDrop(), pos, (level * 2) / 16.0);
     }
   }
 
@@ -74,8 +77,7 @@ public abstract class BlockPileBase
 
   @Override
   public void getDrops(@Nonnull NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
-
-    drops.add(this.getDrop());
+    //
   }
 
   protected abstract ItemStack getDrop();
