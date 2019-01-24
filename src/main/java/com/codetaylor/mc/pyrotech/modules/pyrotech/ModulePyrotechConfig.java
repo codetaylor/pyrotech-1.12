@@ -599,6 +599,13 @@ public class ModulePyrotechConfig {
     })
     @Config.RangeDouble(min = 0, max = 1)
     public double ASH_CONVERSION_CHANCE = 0.75;
+
+    @Config.Comment({
+        "The amount of damage done to an entity walking on top of the device",
+        "when it is active.",
+        "Default: " + 3
+    })
+    public double ENTITY_WALK_BURN_DAMAGE = 3;
   }
 
   // ---------------------------------------------------------------------------

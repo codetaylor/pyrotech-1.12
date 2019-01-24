@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
@@ -10,14 +11,14 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloomery;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -97,6 +98,28 @@ public class BlockBloomery
     }
   }
 
+  @Override
+  public void onEntityWalk(World world, BlockPos pos, Entity entity) {
+
+    if (ModulePyrotechConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE > 0
+        && this.isTop(world.getBlockState(pos))) {
+
+      TileEntity tileEntity = world.getTileEntity(pos.down());
+
+      if (tileEntity instanceof TileBloomery
+          && ((TileBloomery) tileEntity).isActive()) {
+
+        if (!entity.isImmuneToFire()
+            && entity instanceof EntityLivingBase
+            && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
+          entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE);
+          entity.setFire(4);
+        }
+      }
+    }
+
+    super.onEntityWalk(world, pos, entity);
+  }
   // ---------------------------------------------------------------------------
   // - Light
   // ---------------------------------------------------------------------------
