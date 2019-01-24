@@ -14,6 +14,12 @@ public class ItemBucketStone
   }
 
   @Override
+  protected int getBucketStackLimit() {
+
+    return ModulePyrotechConfig.BUCKET_STONE.MAX_STACK_SIZE;
+  }
+
+  @Override
   protected boolean showAllBuckets() {
 
     return ModulePyrotechConfig.BUCKET_STONE.SHOW_ALL_BUCKETS;

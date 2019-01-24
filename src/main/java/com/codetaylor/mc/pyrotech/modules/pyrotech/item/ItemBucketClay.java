@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 
 public class ItemBucketClay
@@ -11,6 +12,12 @@ public class ItemBucketClay
   protected String getLangKey() {
 
     return "bucket.clay";
+  }
+
+  @Override
+  protected int getBucketStackLimit() {
+
+    return ModulePyrotechConfig.BUCKET_CLAY.MAX_STACK_SIZE;
   }
 
   @Override

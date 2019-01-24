@@ -14,6 +14,12 @@ public class ItemBucketWood
   }
 
   @Override
+  protected int getBucketStackLimit() {
+
+    return ModulePyrotechConfig.BUCKET_WOOD.MAX_STACK_SIZE;
+  }
+
+  @Override
   protected boolean showAllBuckets() {
 
     return ModulePyrotechConfig.BUCKET_WOOD.SHOW_ALL_BUCKETS;

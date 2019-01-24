@@ -84,6 +84,13 @@ public class ModulePyrotechConfig {
         "Default: " + 1
     })
     public int FULL_CONTAINER_DAMAGE_PER_SECOND = 1;
+
+    @Config.Comment({
+        "The maximum stack size for empty buckets.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int MAX_STACK_SIZE = 1;
   }
 
   // ---------------------------------------------------------------------------
@@ -150,6 +157,13 @@ public class ModulePyrotechConfig {
         "Default: " + 0
     })
     public int FULL_CONTAINER_DAMAGE_PER_SECOND = 0;
+
+    @Config.Comment({
+        "The maximum stack size for empty buckets.",
+        "Default: " + 4
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int MAX_STACK_SIZE = 4;
   }
 
   // ---------------------------------------------------------------------------
@@ -216,6 +230,13 @@ public class ModulePyrotechConfig {
         "Default: " + 0
     })
     public int FULL_CONTAINER_DAMAGE_PER_SECOND = 0;
+
+    @Config.Comment({
+        "The maximum stack size for empty buckets.",
+        "Default: " + 4
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int MAX_STACK_SIZE = 4;
   }
 
   // ---------------------------------------------------------------------------

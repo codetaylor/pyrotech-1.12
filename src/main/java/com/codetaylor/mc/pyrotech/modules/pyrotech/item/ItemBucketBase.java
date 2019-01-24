@@ -84,8 +84,10 @@ public abstract class ItemBucketBase
   @Override
   public int getItemStackLimit(ItemStack stack) {
 
-    return this.hasFluid(stack) ? 1 : 16;
+    return this.hasFluid(stack) ? 1 : this.getBucketStackLimit();
   }
+
+  protected abstract int getBucketStackLimit();
 
   @Override
   public int getItemBurnTime(ItemStack stack) {
