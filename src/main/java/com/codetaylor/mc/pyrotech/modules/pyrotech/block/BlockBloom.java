@@ -365,6 +365,7 @@ public class BlockBloom
     public ItemBlockBloom(Block block) {
 
       super(block);
+      this.setMaxStackSize(1);
     }
 
     public int getMaxIntegrity(ItemStack itemStack) {
