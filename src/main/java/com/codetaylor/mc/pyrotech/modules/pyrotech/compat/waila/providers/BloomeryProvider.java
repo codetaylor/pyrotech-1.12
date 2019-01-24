@@ -140,6 +140,12 @@ public class BloomeryProvider
           tile.getMaxFuelCount()
       ));
 
+      tooltip.add(Util.translateFormatted(
+          "gui." + ModulePyrotech.MOD_ID + ".waila.ash",
+          tile.getAshCount(),
+          tile.getMaxAshCapacity()
+      ));
+
     }
 
     return tooltip;

@@ -584,6 +584,21 @@ public class ModulePyrotechConfig {
     })
     @Config.RangeDouble(min = 0)
     public double MOLTEN_SLAG_ENTITY_WALK_DAMAGE = 3;
+
+    @Config.Comment({
+        "The maximum amount of ash the device can hold.",
+        "Default: " + 16
+    })
+    @Config.RangeInt(min = 1)
+    public int MAX_ASH_CAPACITY = 16;
+
+    @Config.Comment({
+        "The chance that one fuel item will convert to one ash upon recipe",
+        "completion.",
+        "Default: " + 0.75
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double ASH_CONVERSION_CHANCE = 0.75;
   }
 
   // ---------------------------------------------------------------------------

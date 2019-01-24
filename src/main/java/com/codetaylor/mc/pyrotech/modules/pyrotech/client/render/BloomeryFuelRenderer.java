@@ -39,15 +39,22 @@ public class BloomeryFuelRenderer
     boolean hasFuel = !fuelStackHandler.getFirstNonEmptyItemStack().isEmpty();
     TileBloomery tile = interaction.getTile();
     boolean isActive = tile.isActive();
-    boolean shouldRender = hasFuel || isActive;
+    boolean hasAsh = tile.getAshCount() > 0;
+    boolean shouldRender = hasFuel || hasAsh || isActive;
 
     if (shouldRender) {
+
+      float fuelLevel = tile.getFuelCount() / (float) tile.getMaxFuelCount();
+      float ashLevel = tile.getAshCount() / (float) tile.getMaxAshCapacity();
 
       BlockModelShapes bm = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes();
       TextureAtlasSprite sprite;
 
       if (hasFuel) {
         sprite = bm.getTexture(Blocks.COAL_BLOCK.getDefaultState());
+
+      } else if (hasAsh) {
+        sprite = bm.getTexture(ModuleBlocks.PIT_ASH_BLOCK.getDefaultState());
 
       } else {
         sprite = bm.getTexture(ModuleBlocks.ACTIVE_PILE.getDefaultState());
@@ -58,7 +65,8 @@ public class BloomeryFuelRenderer
       int j = i >> 0x10 & 0xFFFF;
       int k = i & 0xFFFF;
 
-      float level = (PX * 9) * (tile.getFuelCount() / (float) tile.getMaxFuelCount()) + (14 * PX);
+      float level = Math.max(fuelLevel, ashLevel);
+      float adjustedLevel = (PX * 9) * level + (14 * PX);
 
       Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
       RenderHelper.disableStandardItemLighting();
@@ -81,25 +89,25 @@ public class BloomeryFuelRenderer
       //buffer.setTranslation(pos.getX(), pos.getY(), pos.getZ());
 
       buffer
-          .pos(INSET, level, INSET)
+          .pos(INSET, adjustedLevel, INSET)
           .color(1f, 1f, 1f, 1f)
           .tex(sprite.getMinU(), sprite.getMinV())
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - INSET, level, INSET)
+          .pos(1 - INSET, adjustedLevel, INSET)
           .color(1f, 1f, 1f, 1f)
           .tex(sprite.getMaxU(), sprite.getMinV())
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - INSET, level, 1 - INSET)
+          .pos(1 - INSET, adjustedLevel, 1 - INSET)
           .color(1f, 1f, 1f, 1f)
           .tex(sprite.getMaxU(), sprite.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(INSET, level, 1 - INSET)
+          .pos(INSET, adjustedLevel, 1 - INSET)
           .color(1f, 1f, 1f, 1f)
           .tex(sprite.getMinU(), sprite.getMaxV())
           .lightmap(j, k)
@@ -110,7 +118,7 @@ public class BloomeryFuelRenderer
       if (isActive) {
         GlStateManager.pushMatrix();
         {
-          GlStateManager.translate(3.0 / 16.0, level, 3.0 / 16.0);
+          GlStateManager.translate(3.0 / 16.0, adjustedLevel, 3.0 / 16.0);
           GlStateManager.scale(10.0 / 16.0, 10.0 / 16.0, 10.0 / 16.0);
           GlStateManager.enableCull();
 

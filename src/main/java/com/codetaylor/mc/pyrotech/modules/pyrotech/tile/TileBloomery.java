@@ -21,10 +21,8 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.client.particles.ParticleBloo
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.BloomeryFuelRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.ITileContainer;
@@ -93,6 +91,7 @@ public class TileBloomery
   private int lastBurnTime;
   private BloomeryRecipe currentRecipe;
   private int remainingSlag;
+  private TileDataInteger ashCount;
 
   private IInteraction[] interactions;
 
@@ -118,6 +117,7 @@ public class TileBloomery
     this.fuelCount = new TileDataInteger(0);
     this.burnTime = new TileDataInteger(0);
     this.airflow = new TileDataFloat(-1);
+    this.ashCount = new TileDataInteger(0);
 
     // --- Network ---
 
@@ -132,7 +132,8 @@ public class TileBloomery
         this.active,
         this.fuelCount,
         this.burnTime,
-        this.airflow
+        this.airflow,
+        this.ashCount
     });
 
     // --- Interactions ---
@@ -144,6 +145,9 @@ public class TileBloomery
         new InteractionUseFlintAndSteel(
             this.getInputInteractionBoundsTop()
         ),
+        new InteractionShovel(
+            this.getInputInteractionBoundsTop()
+        ),
         new InteractionInput(
             this,
             new ItemStackHandler[]{
@@ -151,13 +155,13 @@ public class TileBloomery
                 this.outputStackHandler
             },
             this.getInputInteractionBoundsTop(),
-            () -> (this.fuelStackHandler.getTotalItemCount() == 0 && !this.isActive())
+            () -> (this.fuelStackHandler.getTotalItemCount() == 0 && !this.isActive() && this.getAshCount() == 0)
         ),
         new InteractionFuel(
             this,
             this.fuelStackHandler,
             this.getInputInteractionBoundsTop(),
-            () -> (!this.inputStackHandler.getStackInSlot(0).isEmpty())
+            () -> (!this.inputStackHandler.getStackInSlot(0).isEmpty() && this.getAshCount() == 0)
         )
     };
   }
@@ -247,6 +251,16 @@ public class TileBloomery
   public float getAirflow() {
 
     return this.airflow.get();
+  }
+
+  public int getAshCount() {
+
+    return this.ashCount.get();
+  }
+
+  public int getMaxAshCapacity() {
+
+    return ModulePyrotechConfig.BLOOMERY.MAX_ASH_CAPACITY;
   }
 
   // ---------------------------------------------------------------------------
@@ -416,10 +430,21 @@ public class TileBloomery
       }
 
       if (recipeProgress >= 0.9999) {
-        this.burnTime.set(0);
-        this.fuelCount.set(0);
-        this.recipeProgress.set(0);
-        this.active.set(false);
+
+        // Create ash
+        int ashCount = this.ashCount.get();
+        Random random = RandomHelper.random();
+        int fuelCount = this.fuelCount.get();
+
+        for (int i = 0; i < fuelCount; i++) {
+
+          if (random.nextFloat() < ModulePyrotechConfig.BLOOMERY.ASH_CONVERSION_CHANCE) {
+            ashCount += 1;
+          }
+        }
+
+        ashCount = Math.min(this.getMaxAshCapacity(), ashCount);
+        this.ashCount.set(ashCount);
 
         // Create the bloom itemstack with nbt
         ItemStack output = this.currentRecipe.getUniqueBloomFromOutput();
@@ -427,6 +452,12 @@ public class TileBloomery
         // Swap the items
         this.inputStackHandler.extractItem(0, 1, false);
         this.outputStackHandler.insertItem(0, output, false);
+
+        // Reset
+        this.burnTime.set(0);
+        this.fuelCount.set(0);
+        this.recipeProgress.set(0);
+        this.active.set(false);
       }
     }
   }
@@ -544,6 +575,7 @@ public class TileBloomery
     compound.setInteger("burnTime", this.burnTime.get());
     compound.setInteger("fuelCount", this.fuelCount.get());
     compound.setFloat("airflow", this.airflow.get());
+    compound.setInteger("ashCount", this.ashCount.get());
     return compound;
   }
 
@@ -560,6 +592,7 @@ public class TileBloomery
     this.burnTime.set(compound.getInteger("burnTime"));
     this.fuelCount.set(compound.getInteger("fuelCount"));
     this.airflow.set(compound.getFloat("airflow"));
+    this.ashCount.set(compound.getInteger("ashCount"));
     this.updateRecipe();
   }
 
@@ -808,6 +841,42 @@ public class TileBloomery
     public boolean renderAdditivePass(World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
       return BloomeryFuelRenderer.INSTANCE.renderAdditivePass(this, world, renderItem, hitSide, hitVec, hitPos, blockState, heldItemMainHand, partialTicks);
+    }
+  }
+
+  // --- ASH ---
+
+  private class InteractionShovel
+      extends InteractionBase<TileBloomery> {
+
+    /* package */ InteractionShovel(AxisAlignedBB interactionBounds) {
+
+      super(new EnumFacing[]{EnumFacing.UP}, interactionBounds);
+    }
+
+    @Override
+    public boolean interact(EnumType type, TileBloomery tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      if (type != EnumType.MouseClick) {
+        return false;
+      }
+
+      ItemStack heldItem = player.getHeldItemMainhand();
+
+      if (tile.ashCount.get() > 0
+          && heldItem.getItem().getToolClasses(heldItem).contains("shovel")) {
+
+        if (!world.isRemote) {
+          tile.ashCount.set(tile.ashCount.get() - 1);
+          StackHelper.spawnStackOnTop(world, ItemMaterial.EnumType.PIT_ASH.asStack(), hitPos, 1.5);
+          heldItem.damageItem(1, player);
+          world.playSound(null, hitPos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
+        }
+
+        return true;
+      }
+
+      return false;
     }
   }
 
