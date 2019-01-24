@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTarCollector;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import net.minecraft.block.Block;
@@ -111,6 +112,16 @@ public class BlockIgniter
 
       if (Util.canSetFire(world, offset)) {
         world.setBlockState(offset, Blocks.FIRE.getDefaultState(), 3);
+
+      } else if (facingBlock == ModuleBlocks.BLOOMERY) {
+
+        if (!ModuleBlocks.BLOOMERY.isTop(facingBlockState)) {
+          TileEntity tileEntity = world.getTileEntity(offset);
+
+          if (tileEntity instanceof TileBloomery) {
+            ((TileBloomery) tileEntity).setActive();
+          }
+        }
 
       } else if (facingBlock instanceof BlockCombustionWorkerStoneBase) {
         TileEntity tileEntity = world.getTileEntity(offset);
