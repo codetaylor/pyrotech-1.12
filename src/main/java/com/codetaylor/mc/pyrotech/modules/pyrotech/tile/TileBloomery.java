@@ -9,12 +9,15 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPileBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.BloomeryFuelRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
@@ -29,6 +32,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,6 +55,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import java.util.Random;
 import java.util.function.BooleanSupplier;
 
 public class TileBloomery
@@ -260,6 +265,62 @@ public class TileBloomery
   public void update() {
 
     if (this.world.isRemote) {
+      Random rand = RandomHelper.random();
+
+      if (this.isActive()
+          && rand.nextDouble() < 0.5) {
+        IBlockState state = this.world.getBlockState(this.pos);
+
+        EnumFacing enumfacing = state.getValue(Properties.FACING_HORIZONTAL);
+        double offsetY = rand.nextDouble() * 6.0 / 16.0;
+        double x = (double) pos.getX() + 0.5;
+        double y = (double) pos.getY() + offsetY;
+        double z = (double) pos.getZ() + 0.5;
+
+        if (rand.nextDouble() < 0.1) {
+          world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+        }
+
+        double offset = 0.55;
+        double lavaOffset = 0.075;
+        double dripChance = 0.25;
+
+        switch (enumfacing) {
+
+          case WEST:
+            if (rand.nextFloat() < dripChance) {
+              Minecraft.getMinecraft().effectRenderer.addEffect(
+                  ParticleBloomeryDrip.createParticle(world, x - offset - lavaOffset, y - offsetY, z)
+              );
+            }
+            break;
+
+          case EAST:
+            if (rand.nextFloat() < dripChance) {
+              Minecraft.getMinecraft().effectRenderer.addEffect(
+                  ParticleBloomeryDrip.createParticle(world, x + offset + lavaOffset, y - offsetY, z)
+              );
+            }
+            break;
+
+          case NORTH:
+            if (rand.nextFloat() < dripChance) {
+              Minecraft.getMinecraft().effectRenderer.addEffect(
+                  ParticleBloomeryDrip.createParticle(world, x, y - offsetY, z - offset - lavaOffset)
+              );
+            }
+
+            break;
+
+          case SOUTH:
+            if (rand.nextFloat() < dripChance) {
+              Minecraft.getMinecraft().effectRenderer.addEffect(
+                  ParticleBloomeryDrip.createParticle(world, x, y - offsetY, z + offset + lavaOffset)
+              );
+            }
+        }
+      }
+
       return;
     }
 
