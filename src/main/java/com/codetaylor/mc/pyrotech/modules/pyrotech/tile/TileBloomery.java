@@ -13,7 +13,10 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockPileSlag;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPileBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.BloomeryFuelRenderer;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
@@ -24,6 +27,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
@@ -82,6 +86,7 @@ public class TileBloomery
   private TileDataInteger burnTime;
   private int lastBurnTime;
   private BloomeryRecipe currentRecipe;
+  private int remainingSlag;
 
   private IInteraction[] interactions;
 
@@ -157,9 +162,11 @@ public class TileBloomery
 
     if (!this.active.get()
         && !this.inputStackHandler.getStackInSlot(0).isEmpty()
-        && this.burnTime.get() > 0) {
+        && this.burnTime.get() > 0
+        && this.currentRecipe != null) {
       this.active.set(true);
       this.fuelStackHandler.clearStacks();
+      this.remainingSlag = this.currentRecipe.getSlag();
     }
   }
 
@@ -270,9 +277,25 @@ public class TileBloomery
         return;
       }
 
-      float increment = (1.0f / this.currentRecipe.getTimeTicks()) * this.speed.get();
+      // Recipe
 
-      if (this.recipeProgress.add(increment) >= 0.9999) {
+      float increment = (1.0f / this.currentRecipe.getTimeTicks()) * this.speed.get();
+      float recipeProgress = this.recipeProgress.add(increment);
+
+      {
+        IBlockState blockState = this.world.getBlockState(this.pos);
+        EnumFacing facing = this.getTileFacing(this.world, this.pos, blockState);
+
+        int slag = this.currentRecipe.getSlag();
+        float nextSlagInterval = (slag - this.remainingSlag) * (1f / slag) + (1f / slag) * 0.5f;
+
+        if (recipeProgress >= nextSlagInterval) {
+          this.remainingSlag -= 1;
+          this.createSlag(facing);
+        }
+      }
+
+      if (recipeProgress >= 0.9999) {
         this.burnTime.set(0);
         this.fuelCount.set(0);
         this.recipeProgress.set(0);
@@ -286,6 +309,84 @@ public class TileBloomery
         this.outputStackHandler.insertItem(0, output, false);
       }
     }
+  }
+
+  private boolean createSlag(EnumFacing facing) {
+
+    BlockPos pos = this.pos.offset(facing);
+
+    {
+      // Add to an existing pile directly in front of the device
+      // if it isn't too big already.
+
+      IBlockState blockState = this.world.getBlockState(pos);
+      Block block = blockState.getBlock();
+
+      if (block == ModuleBlocks.PILE_SLAG) {
+
+        int level = blockState.getValue(BlockPileBase.LEVEL);
+
+        if (level >= 4) {
+          return false;
+        }
+
+        this.world.setBlockState(pos, blockState
+            .withProperty(BlockPileSlag.LEVEL, level + 1)
+            .withProperty(BlockPileSlag.MOLTEN, true));
+        return true;
+      }
+    }
+
+    int y = pos.getY();
+    BlockPos startPos = pos;
+
+    // Find the first non-replaceable block.
+
+    for (int i = 0; i < y; i++) {
+      pos = startPos.down(i);
+
+      if (!this.world.getBlockState(pos).getBlock().isReplaceable(this.world, pos)) {
+        break;
+      }
+    }
+
+    if (pos.getY() < y
+        && pos.getY() > 0) {
+
+      // Clear a path.
+
+      int toClear = y - pos.getY();
+
+      for (int i = 1; i < toClear; i++) {
+        this.world.destroyBlock(pos.up(i + 1), true);
+      }
+
+      IBlockState blockState = this.world.getBlockState(pos);
+
+      if (blockState.getBlock() == ModuleBlocks.PILE_SLAG) {
+
+        // Add to an existing pile if it isn't too big.
+
+        int level = blockState.getValue(BlockPileBase.LEVEL);
+
+        if (level < 8) {
+          this.world.setBlockState(pos, blockState
+              .withProperty(BlockPileSlag.LEVEL, level + 1)
+              .withProperty(BlockPileSlag.MOLTEN, true));
+          return true;
+        }
+      }
+
+      pos = pos.up();
+
+      // Create a new pile.
+      this.world.setBlockState(pos, ModuleBlocks.PILE_SLAG.getDefaultState()
+          .withProperty(BlockPileSlag.LEVEL, 1)
+          .withProperty(BlockPileSlag.MOLTEN, true));
+      return true;
+    }
+
+    return false;
   }
 
   // ---------------------------------------------------------------------------

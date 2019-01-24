@@ -62,6 +62,7 @@ public final class ModuleBlocks {
   public static final BlockPlanksTarred PLANKS_TARRED = new BlockPlanksTarred();
   public static final BlockBloomery BLOOMERY = new BlockBloomery();
   public static final BlockPileWoodChips PILE_WOOD_CHIPS = new BlockPileWoodChips();
+  public static final BlockPileSlag PILE_SLAG = new BlockPileSlag();
   public static final BlockWoolTarred WOOL_TARRED = new BlockWoolTarred();
   public static final BlockBloom BLOOM = new BlockBloom();
 
@@ -108,6 +109,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.PLANKS_TARRED, BlockPlanksTarred.NAME);
     registry.registerBlockWithItem(ModuleBlocks.BLOOMERY, BlockBloomery.NAME);
     registry.registerBlockWithItem(ModuleBlocks.PILE_WOOD_CHIPS, BlockPileWoodChips.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.PILE_SLAG, BlockPileSlag.NAME);
     registry.registerBlockWithItem(ModuleBlocks.WOOL_TARRED, BlockWoolTarred.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
@@ -183,6 +185,7 @@ public final class ModuleBlocks {
           ModuleBlocks.PLANKS_TARRED,
           ModuleBlocks.BLOOMERY,
           ModuleBlocks.PILE_WOOD_CHIPS,
+          ModuleBlocks.PILE_SLAG,
           ModuleBlocks.WOOL_TARRED,
           ModuleBlocks.BLOOM
       );

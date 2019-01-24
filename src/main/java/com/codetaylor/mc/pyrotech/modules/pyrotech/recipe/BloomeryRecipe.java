@@ -43,6 +43,7 @@ public class BloomeryRecipe
   private final float failureChance;
   private final int bloomYieldMin;
   private final int bloomYieldMax;
+  private final int slag;
   private final ItemStack[] failureItems;
   private final String langKey;
 
@@ -53,6 +54,7 @@ public class BloomeryRecipe
       float failureChance,
       int bloomYieldMin,
       int bloomYieldMax,
+      int slag,
       ItemStack[] failureItems,
       @Nullable String langKey
   ) {
@@ -63,6 +65,7 @@ public class BloomeryRecipe
     this.failureChance = MathHelper.clamp(failureChance, 0, 1);
     this.bloomYieldMin = bloomYieldMin;
     this.bloomYieldMax = bloomYieldMax;
+    this.slag = slag;
     this.failureItems = failureItems;
 
     if (langKey != null) {
@@ -103,6 +106,11 @@ public class BloomeryRecipe
         this.getRegistryName().toString(),
         this.langKey
     );
+  }
+
+  public int getSlag() {
+
+    return this.slag;
   }
 
   @Override

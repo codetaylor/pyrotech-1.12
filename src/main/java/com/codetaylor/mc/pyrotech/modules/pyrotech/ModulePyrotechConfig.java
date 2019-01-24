@@ -524,8 +524,9 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "This is the total amount of fuel burn time required to operate the device",
         "at maximum speed. More fuel will increase the speed of the device with",
-        "diminishing returns. Inserted fuel items that cause the total burn time",
-        "of all inserted fuel items to exceed this value will not be inserted.",
+        "diminishing returns. If the speed cap flag is set to true, inserted ",
+        "fuel items that cause the total burn time of all inserted fuel items",
+        "to exceed this value will not be inserted.",
         "Default: " + (32000 * 4)
     })
     @Config.RangeInt(min = 1)
@@ -537,6 +538,12 @@ public class ModulePyrotechConfig {
     })
     public int FUEL_CAPACITY_ITEMS = 16;
 
+    @Config.Comment({
+        "If true, inserted fuel items that cause the total burn time of all",
+        "inserted fuel items to exceed the device's capacity will not be",
+        "inserted.",
+        "Default: " + false
+    })
     public boolean HAS_SPEED_CAP = false;
 
     @Config.Comment({
@@ -549,6 +556,13 @@ public class ModulePyrotechConfig {
     })
     @Config.RangeInt(min = 0)
     public double SPEED_SCALAR = 2;
+
+    @Config.Comment({
+        "Fire damage applied to entities from the molten slag.",
+        "Default: " + 3
+    })
+    @Config.RangeDouble(min = 0)
+    public double MOLTEN_SLAG_ENTITY_WALK_DAMAGE = 3;
   }
 
   // ---------------------------------------------------------------------------

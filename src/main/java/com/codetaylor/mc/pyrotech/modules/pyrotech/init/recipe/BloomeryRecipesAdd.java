@@ -26,6 +26,7 @@ public class BloomeryRecipesAdd {
         defaultFailureChance,
         8,
         10,
+        4,
         new ItemStack[]{
             // TODO: slag
             ItemMaterial.EnumType.PIT_ASH.asStack(),
@@ -43,6 +44,7 @@ public class BloomeryRecipesAdd {
         defaultFailureChance,
         8,
         10,
+        4,
         new ItemStack[]{
             // TODO: slag
             ItemMaterial.EnumType.PIT_ASH.asStack(),
