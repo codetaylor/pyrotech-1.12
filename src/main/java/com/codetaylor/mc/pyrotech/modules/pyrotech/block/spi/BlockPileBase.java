@@ -47,6 +47,12 @@ public abstract class BlockPileBase
   // ---------------------------------------------------------------------------
 
   @Override
+  public boolean canSilkHarvest(World world, BlockPos pos, @Nonnull IBlockState state, EntityPlayer player) {
+
+    return false;
+  }
+
+  @Override
   public boolean removedByPlayer(@Nonnull IBlockState state, World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
 
     return willHarvest || super.removedByPlayer(state, world, pos, player, false);
