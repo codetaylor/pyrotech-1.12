@@ -120,7 +120,7 @@ public class BloomeryRecipe
 
     return BloomHelper.createBloomAsItemStack(
         integrity,
-        this.getRegistryName().toString(),
+        this.getRegistryName().toString().replaceAll("\\.slag", ""),
         this.langKey
     );
   }
