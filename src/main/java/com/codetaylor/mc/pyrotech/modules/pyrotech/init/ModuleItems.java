@@ -32,6 +32,7 @@ public final class ModuleItems {
   public static final ItemRock ROCK = new ItemRock(ModuleBlocks.ROCK);
   public static final ItemRockGrass ROCK_GRASS = new ItemRockGrass(ModuleBlocks.ROCK_GRASS);
   public static final ItemMulch MULCH = new ItemMulch();
+  public static final ItemSlag SLAG = new ItemSlag();
   public static final ItemBucketWood BUCKET_WOOD = new ItemBucketWood();
   public static final ItemBucketClay BUCKET_CLAY = new ItemBucketClay();
   public static final ItemBucketStone BUCKET_STONE = new ItemBucketStone();
@@ -97,6 +98,7 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
     registry.registerItem(ModuleItems.ROCK_GRASS, BlockRockGrass.NAME);
     registry.registerItem(ModuleItems.MULCH, ItemMulch.NAME);
+    registry.registerItem(ModuleItems.SLAG, ItemSlag.NAME);
 
     if (ModulePyrotechConfig.BUCKET_WOOD.ENABLED) {
       registry.registerItem(ModuleItems.BUCKET_WOOD, ItemBucketWood.NAME);
@@ -175,6 +177,7 @@ public final class ModuleItems {
           ModuleItems.TINDER,
           ModuleItems.ROCK_GRASS,
           ModuleItems.MULCH,
+          ModuleItems.SLAG,
 
           ModuleItems.APPLE_BAKED,
 
@@ -279,8 +282,7 @@ public final class ModuleItems {
 
     itemColors.registerItemColorHandler((stack, tintIndex) -> {
 
-      if (tintIndex == 1
-          && stack.getMetadata() == BlockRock.EnumType.SLAG.getMeta()) {
+      if (tintIndex == 1) {
 
         NBTTagCompound tagCompound = stack.getTagCompound();
 
@@ -291,7 +293,7 @@ public final class ModuleItems {
       }
 
       return 0xFFFFFF;
-    }, ModuleItems.ROCK);
+    }, ModuleItems.SLAG);
   }
 
   private ModuleItems() {

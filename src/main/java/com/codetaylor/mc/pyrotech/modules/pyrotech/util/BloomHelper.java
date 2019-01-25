@@ -4,8 +4,8 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.DistanceHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsFullBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
@@ -27,7 +27,7 @@ public class BloomHelper {
 
   public static ItemStack createSlagItem(ResourceLocation recipeId, String langKey, int color) {
 
-    ItemStack itemStack = new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.SLAG.getMeta());
+    ItemStack itemStack = new ItemStack(ModuleItems.SLAG);
     NBTTagCompound itemTag = new NBTTagCompound();
     itemTag.setString("recipeId", recipeId.toString());
     itemTag.setString("langKey", langKey);
