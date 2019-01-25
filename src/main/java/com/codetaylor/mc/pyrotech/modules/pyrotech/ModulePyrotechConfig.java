@@ -595,10 +595,10 @@ public class ModulePyrotechConfig {
     @Config.Comment({
         "The chance that one fuel item will convert to one ash upon recipe",
         "completion.",
-        "Default: " + 0.75
+        "Default: " + 0.35
     })
     @Config.RangeDouble(min = 0, max = 1)
-    public double ASH_CONVERSION_CHANCE = 0.75;
+    public double ASH_CONVERSION_CHANCE = 0.35;
 
     @Config.Comment({
         "The amount of damage done to an entity walking on top of the device",
