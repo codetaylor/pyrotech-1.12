@@ -66,9 +66,15 @@ public final class ModuleItems {
   public static final ItemMillBlade DIAMOND_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.DIAMOND.getMaxUses());
 
   public static final ItemTongsEmptyBase TONGS_STONE = new ItemTongsEmptyStone();
-  public static final ItemTongsFullBase TONGS_STONE_FULL = new ItemTongsStoneFull();
+  public static final ItemTongsFullBase TONGS_STONE_FULL = new ItemTongsFullStone();
+  public static final ItemTongsEmptyBase TONGS_FLINT = new ItemTongsEmptyFlint();
+  public static final ItemTongsFullBase TONGS_FLINT_FULL = new ItemTongsFullFlint();
+  public static final ItemTongsEmptyBase TONGS_BONE = new ItemTongsEmptyBone();
+  public static final ItemTongsFullBase TONGS_BONE_FULL = new ItemTongsFullBone();
   public static final ItemTongsEmptyBase TONGS_IRON = new ItemTongsEmptyIron();
-  public static final ItemTongsFullBase TONGS_IRON_FULL = new ItemTongsIronFull();
+  public static final ItemTongsFullBase TONGS_IRON_FULL = new ItemTongsFullIron();
+  public static final ItemTongsEmptyBase TONGS_DIAMOND = new ItemTongsEmptyDiamond();
+  public static final ItemTongsFullBase TONGS_DIAMOND_FULL = new ItemTongsFullDiamond();
 
   public static void onRegister(Registry registry) {
 
@@ -128,9 +134,15 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.DIAMOND_HAMMER, ItemDiamondHammer.NAME);
 
     registry.registerItem(ModuleItems.TONGS_STONE, ItemTongsEmptyStone.NAME);
-    registry.registerItem(ModuleItems.TONGS_STONE_FULL, ItemTongsStoneFull.NAME, true);
+    registry.registerItem(ModuleItems.TONGS_STONE_FULL, ItemTongsFullStone.NAME, true);
+    registry.registerItem(ModuleItems.TONGS_FLINT, ItemTongsEmptyFlint.NAME);
+    registry.registerItem(ModuleItems.TONGS_FLINT_FULL, ItemTongsFullFlint.NAME, true);
+    registry.registerItem(ModuleItems.TONGS_BONE, ItemTongsEmptyBone.NAME);
+    registry.registerItem(ModuleItems.TONGS_BONE_FULL, ItemTongsFullBone.NAME, true);
     registry.registerItem(ModuleItems.TONGS_IRON, ItemTongsEmptyIron.NAME);
-    registry.registerItem(ModuleItems.TONGS_IRON_FULL, ItemTongsIronFull.NAME, true);
+    registry.registerItem(ModuleItems.TONGS_IRON_FULL, ItemTongsFullIron.NAME, true);
+    registry.registerItem(ModuleItems.TONGS_DIAMOND, ItemTongsEmptyDiamond.NAME);
+    registry.registerItem(ModuleItems.TONGS_DIAMOND_FULL, ItemTongsFullDiamond.NAME, true);
 
     registry.registerItemRegistrationStrategy(forgeRegistry -> {
 
@@ -195,8 +207,14 @@ public final class ModuleItems {
 
           ModuleItems.TONGS_STONE,
           ModuleItems.TONGS_STONE_FULL,
+          ModuleItems.TONGS_FLINT,
+          ModuleItems.TONGS_FLINT_FULL,
+          ModuleItems.TONGS_BONE,
+          ModuleItems.TONGS_BONE_FULL,
           ModuleItems.TONGS_IRON,
-          ModuleItems.TONGS_IRON_FULL
+          ModuleItems.TONGS_IRON_FULL,
+          ModuleItems.TONGS_DIAMOND,
+          ModuleItems.TONGS_DIAMOND_FULL
       );
 
       if (ModulePyrotechConfig.BUCKET_WOOD.ENABLED) {

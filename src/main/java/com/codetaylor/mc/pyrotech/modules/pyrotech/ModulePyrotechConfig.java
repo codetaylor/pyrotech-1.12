@@ -1769,27 +1769,33 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "The durability of the stone tongs.",
-        "Default: " + 2
+        "Default: " + 4
     })
-    public int STONE_TONGS_DURABILITY = 2;
+    public int STONE_TONGS_DURABILITY = 4;
 
     @Config.Comment({
-        "The amount of damage applied to stone tongs per use.",
-        "Default: " + 1
+        "The durability of the flint tongs.",
+        "Default: " + 4
     })
-    public int STONE_TONGS_DAMAGE_PER_USE = 1;
+    public int FLINT_TONGS_DURABILITY = 4;
+
+    @Config.Comment({
+        "The durability of the bone tongs.",
+        "Default: " + 4
+    })
+    public int BONE_TONGS_DURABILITY = 4;
 
     @Config.Comment({
         "The durability of the iron tongs.",
-        "Default: " + 8
+        "Default: " + 16
     })
-    public int IRON_TONGS_DURABILITY = 8;
+    public int IRON_TONGS_DURABILITY = 16;
 
     @Config.Comment({
-        "The amount of damage applied to iron tongs per use.",
-        "Default: " + 1
+        "The durability of the diamond tongs.",
+        "Default: " + 64
     })
-    public int IRON_TONGS_DAMAGE_PER_USE = 1;
+    public int DIAMOND_TONGS_DURABILITY = 64;
 
     @Config.Comment({
         "The durability of the bow drill.",

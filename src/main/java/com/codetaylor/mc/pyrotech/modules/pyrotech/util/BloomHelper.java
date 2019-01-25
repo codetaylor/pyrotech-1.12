@@ -183,7 +183,7 @@ public class BloomHelper {
       return toEmpty;
     }
 
-    if (toEmpty.attemptDamageItem(((ItemTongsFullBase) item).getDamagePerUse(), RandomHelper.random(), null)) {
+    if (toEmpty.attemptDamageItem(1, RandomHelper.random(), null)) {
       return ItemStack.EMPTY;
     }
 

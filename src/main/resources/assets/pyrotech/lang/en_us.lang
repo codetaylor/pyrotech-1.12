@@ -91,12 +91,21 @@ item.pyrotech.bucket.stone.name=%s Stone Bucket
 item.pyrotech.bucket.stone.empty.name=Stone Bucket
 item.pyrotech.bucket.stone.milk.name=Milk Stone Bucket
 
+item.pyrotech.tongs.flint.name=Flint Tongs
+item.pyrotech.tongs.flint.full.name=Flint Tongs
+item.pyrotech.tongs.flint.full.unique.name=%s Bloom
+item.pyrotech.tongs.bone.name=Bone Tongs
+item.pyrotech.tongs.bone.full.name=Bone Tongs
+item.pyrotech.tongs.bone.full.unique.name=%s Bloom
 item.pyrotech.tongs.stone.name=Stone Tongs
 item.pyrotech.tongs.stone.full.name=Stone Tongs
 item.pyrotech.tongs.stone.full.unique.name=%s Bloom
 item.pyrotech.tongs.iron.name=Iron Tongs
 item.pyrotech.tongs.iron.full.name=Iron Tongs
 item.pyrotech.tongs.iron.full.unique.name=%s Bloom
+item.pyrotech.tongs.diamond.name=Diamond Tongs
+item.pyrotech.tongs.diamond.full.name=Diamond Tongs
+item.pyrotech.tongs.diamond.full.unique.name=%s Bloom
 
 # --- Tiles
 

@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "pyrotech:items/tongs_diamond_full"
+  }
+}

@@ -114,8 +114,6 @@ public abstract class ItemTongsFullBase
     return ActionResult.newResult(EnumActionResult.PASS, heldItem);
   }
 
-  public abstract int getDamagePerUse();
-
   @Override
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 
