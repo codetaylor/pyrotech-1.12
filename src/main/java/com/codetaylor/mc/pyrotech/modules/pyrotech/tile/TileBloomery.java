@@ -107,7 +107,10 @@ public class TileBloomery
     this.outputStackHandler.addObserver((handler, slot) -> this.markDirty());
 
     this.fuelStackHandler = new FuelStackHandler(this);
-    this.fuelStackHandler.addObserver((handler, slot) -> this.markDirty());
+    this.fuelStackHandler.addObserver((handler, slot) -> {
+      this.updateAirflow();
+      this.markDirty();
+    });
 
     this.recipeProgress = new TileDataFloat(0, 20);
     this.speed = new TileDataFloat(0);
@@ -464,6 +467,8 @@ public class TileBloomery
         this.fuelCount.set(0);
         this.recipeProgress.set(0);
         this.active.set(false);
+
+        this.updateAirflow();
       }
     }
   }
