@@ -39,7 +39,7 @@ public class BloomeryRecipesAdd {
         DEFAULT_FAILURE_CHANCE,
         8,
         10,
-        4 * 4,
+        4,
         true,
         new Color(Integer.decode("0xd8af93")).getRGB(),
         new ItemStack[]{
@@ -57,7 +57,7 @@ public class BloomeryRecipesAdd {
         DEFAULT_FAILURE_CHANCE,
         8,
         10,
-        4 * 4,
+        4,
         true,
         new Color(Integer.decode("0xfcee4b")).getRGB(),
         new ItemStack[]{
