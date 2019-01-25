@@ -438,11 +438,11 @@ public class TileBloomery
       if (recipeProgress >= 0.9999) {
 
         // Create ash
-        int ashCount = this.ashCount.get();
+        int ashCount = this.ashCount.get() + 1;
         Random random = RandomHelper.random();
         int fuelCount = this.fuelCount.get();
 
-        for (int i = 0; i < fuelCount; i++) {
+        for (int i = 1; i < fuelCount; i++) {
 
           if (random.nextFloat() < ModulePyrotechConfig.BLOOMERY.ASH_CONVERSION_CHANCE) {
             ashCount += 1;
