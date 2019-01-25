@@ -1,10 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.spi.block.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorch;
@@ -90,7 +91,7 @@ public abstract class ItemIgniterBase
         if (block instanceof BlockCombustionWorkerStoneBase
             || block == ModuleBlocks.CAMPFIRE
             || block == ModuleBlocks.TORCH_FIBER
-            || block == ModuleBlocks.BLOOMERY) {
+            || block == ModuleBloomery.Blocks.BLOOMERY) {
 
           // TODO: Abstract
 

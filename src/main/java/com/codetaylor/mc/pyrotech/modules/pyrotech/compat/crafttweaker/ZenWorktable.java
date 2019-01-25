@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.WorktableRecipe;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
@@ -277,7 +277,7 @@ public class ZenWorktable {
 
       ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", this.name);
       WorktableRecipe recipe = new WorktableRecipe(this.recipe.setRegistryName(resourceLocation)).setRegistryName(resourceLocation);
-      ModulePyrotechRegistries.WORKTABLE_RECIPE.register(recipe);
+      ModPyrotechRegistries.WORKTABLE_RECIPE.register(recipe);
     }
 
     @Override

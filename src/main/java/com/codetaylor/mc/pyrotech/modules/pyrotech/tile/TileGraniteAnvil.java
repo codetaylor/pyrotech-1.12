@@ -9,23 +9,26 @@ import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.interaction.api.Transform;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
+import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemTongsEmptyBase;
+import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemTongsFullBase;
+import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomAnvilRecipe;
+import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockGraniteAnvil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsFullBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -235,7 +238,7 @@ public class TileGraniteAnvil
 
       } else {
 
-        if (stackInSlot.getItem() == Item.getItemFromBlock(ModuleBlocks.BLOOM)) {
+        if (stackInSlot.getItem() == ModuleBloomery.Items.BLOOM) {
           return (heldItem.getItem() instanceof ItemTongsEmptyBase);
         }
       }
@@ -274,7 +277,7 @@ public class TileGraniteAnvil
       }
 
       NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
-      ItemStack bloomStack = BloomHelper.createBloomAsItemStack(new ItemStack(ModuleBlocks.BLOOM), tileTag);
+      ItemStack bloomStack = BloomHelper.createBloomAsItemStack(new ItemStack(ModuleBloomery.Blocks.BLOOM), tileTag);
       tile.stackHandler.insertItem(0, bloomStack, false);
       ItemStack emptyTongsStack = BloomHelper.createItemTongsEmpty(tongsStack);
       tongsStack.shrink(1);
@@ -430,11 +433,11 @@ public class TileGraniteAnvil
         GraniteAnvilRecipe recipe = GraniteAnvilRecipe.getRecipe(itemStack);
 
         if (recipe != null) {
-          boolean isBloomRecipe = (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe);
+          boolean isBloomRecipe = (recipe instanceof BloomAnvilRecipe);
 
           if (isBloomRecipe) {
             tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - tile.getBloomAnvilDamagePerHit());
-            BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModulePyrotechConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL);
+            BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModuleBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL);
 
           } else {
             tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);
@@ -469,7 +472,7 @@ public class TileGraniteAnvil
               float extraProgress = tile.getRecipeProgress() - 1;
 
               // Spawn in the bloomery recipe output
-              BloomeryRecipe bloomeryRecipe = ((GraniteAnvilRecipe.BloomAnvilRecipe) recipe).getBloomeryRecipe();
+              BloomeryRecipe bloomeryRecipe = ((BloomAnvilRecipe) recipe).getBloomeryRecipe();
               StackHelper.spawnStackOnTop(world, bloomeryRecipe.getRandomOutput(), tile.getPos(), 0);
 
               // Reduce the integrity of the bloom
@@ -525,7 +528,7 @@ public class TileGraniteAnvil
 
         ItemStack stackInSlot = tile.stackHandler.getStackInSlot(0);
 
-        if (stackInSlot.getItem() == Item.getItemFromBlock(ModuleBlocks.BLOOM)) {
+        if (stackInSlot.getItem() == ModuleBloomery.Items.BLOOM) {
 
           for (int i = 0; i < 8; ++i) {
             world.spawnParticle(EnumParticleTypes.LAVA, tile.getPos().getX() + hitX, tile.getPos().getY() + hitY, tile.getPos().getZ() + hitZ, 0.0D, 0.0D, 0.0D);

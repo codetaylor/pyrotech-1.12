@@ -2,7 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
+import com.codetaylor.mc.pyrotech.spi.recipe.IRecipeTimed;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.math.MathHelper;
@@ -18,7 +19,7 @@ public class KilnPitRecipe
   @Nullable
   public static KilnPitRecipe getRecipe(ItemStack input) {
 
-    for (KilnPitRecipe recipe : ModulePyrotechRegistries.KILN_PIT_RECIPE) {
+    for (KilnPitRecipe recipe : ModPyrotechRegistries.KILN_PIT_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -30,7 +31,7 @@ public class KilnPitRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.KILN_PIT_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.KILN_PIT_RECIPE, output);
   }
 
   private final Ingredient input;

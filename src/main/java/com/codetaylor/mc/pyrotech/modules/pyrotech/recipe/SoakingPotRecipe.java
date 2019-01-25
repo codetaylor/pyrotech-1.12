@@ -2,7 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
+import com.codetaylor.mc.pyrotech.spi.recipe.IRecipeTimed;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
@@ -18,7 +19,7 @@ public class SoakingPotRecipe
   @Nullable
   public static SoakingPotRecipe getRecipe(ItemStack inputItem, FluidStack inputFluid) {
 
-    for (SoakingPotRecipe recipe : ModulePyrotechRegistries.SOAKING_POT_RECIPE) {
+    for (SoakingPotRecipe recipe : ModPyrotechRegistries.SOAKING_POT_RECIPE) {
 
       if (recipe.matches(inputItem, inputFluid)) {
         return recipe;
@@ -30,7 +31,7 @@ public class SoakingPotRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.SOAKING_POT_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.SOAKING_POT_RECIPE, output);
   }
 
   private final ItemStack output;

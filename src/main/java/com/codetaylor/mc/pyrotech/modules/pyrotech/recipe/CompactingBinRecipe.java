@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -17,7 +17,7 @@ public class CompactingBinRecipe
   @Nullable
   public static CompactingBinRecipe getRecipe(ItemStack input) {
 
-    for (CompactingBinRecipe recipe : ModulePyrotechRegistries.COMPACTING_BIN_RECIPE) {
+    for (CompactingBinRecipe recipe : ModPyrotechRegistries.COMPACTING_BIN_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -29,7 +29,7 @@ public class CompactingBinRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.COMPACTING_BIN_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.COMPACTING_BIN_RECIPE, output);
   }
 
   private final Ingredient input;

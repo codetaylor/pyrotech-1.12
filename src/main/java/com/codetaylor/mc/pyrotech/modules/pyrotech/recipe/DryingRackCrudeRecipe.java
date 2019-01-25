@@ -2,7 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
+import com.codetaylor.mc.pyrotech.spi.recipe.IRecipeTimed;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -17,7 +18,7 @@ public class DryingRackCrudeRecipe
   @Nullable
   public static DryingRackCrudeRecipe getRecipe(ItemStack input) {
 
-    for (DryingRackCrudeRecipe recipe : ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE) {
+    for (DryingRackCrudeRecipe recipe : ModPyrotechRegistries.DRYING_RACK_CRUDE_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -29,7 +30,7 @@ public class DryingRackCrudeRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.DRYING_RACK_CRUDE_RECIPE, output);
   }
 
   private final Ingredient input;

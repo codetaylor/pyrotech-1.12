@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 
@@ -16,7 +16,7 @@ public class MillStoneRecipe
   @Nullable
   public static MillStoneRecipe getRecipe(ItemStack input, ItemStack blade) {
 
-    for (MillStoneRecipe recipe : ModulePyrotechRegistries.MILL_STONE_RECIPE) {
+    for (MillStoneRecipe recipe : ModPyrotechRegistries.MILL_STONE_RECIPE) {
 
       if (recipe.matches(input)
           && recipe.blade.apply(blade)) {
@@ -29,7 +29,7 @@ public class MillStoneRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.MILL_STONE_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.MILL_STONE_RECIPE, output);
   }
 
   public MillStoneRecipe(

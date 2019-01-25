@@ -2,12 +2,13 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockBloom;
+import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
+import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.client.Minecraft;
@@ -61,7 +62,7 @@ public class GraniteAnvilProvider
 
           if (!recipeOutput.isEmpty()) {
 
-            if (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe) {
+            if (recipe instanceof BloomAnvilRecipe) {
               recipeOutput.setCount(1);
             }
 
@@ -91,7 +92,7 @@ public class GraniteAnvilProvider
           }
         }
 
-        if (recipe instanceof GraniteAnvilRecipe.BloomAnvilRecipe) {
+        if (recipe instanceof BloomAnvilRecipe) {
           tooltip.add(TextFormatting.GOLD + input.getDisplayName());
           Item item = input.getItem();
 

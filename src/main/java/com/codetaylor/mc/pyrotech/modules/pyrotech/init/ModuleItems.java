@@ -9,14 +9,11 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -32,7 +29,6 @@ public final class ModuleItems {
   public static final ItemRock ROCK = new ItemRock(ModuleBlocks.ROCK);
   public static final ItemRockGrass ROCK_GRASS = new ItemRockGrass(ModuleBlocks.ROCK_GRASS);
   public static final ItemMulch MULCH = new ItemMulch();
-  public static final ItemSlag SLAG = new ItemSlag();
   public static final ItemBucketWood BUCKET_WOOD = new ItemBucketWood();
   public static final ItemBucketClay BUCKET_CLAY = new ItemBucketClay();
   public static final ItemBucketStone BUCKET_STONE = new ItemBucketStone();
@@ -69,17 +65,6 @@ public final class ModuleItems {
   public static final ItemMillBlade IRON_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.IRON.getMaxUses());
   public static final ItemMillBlade DIAMOND_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.DIAMOND.getMaxUses());
 
-  public static final ItemTongsEmptyBase TONGS_STONE = new ItemTongsEmptyStone();
-  public static final ItemTongsFullBase TONGS_STONE_FULL = new ItemTongsFullStone();
-  public static final ItemTongsEmptyBase TONGS_FLINT = new ItemTongsEmptyFlint();
-  public static final ItemTongsFullBase TONGS_FLINT_FULL = new ItemTongsFullFlint();
-  public static final ItemTongsEmptyBase TONGS_BONE = new ItemTongsEmptyBone();
-  public static final ItemTongsFullBase TONGS_BONE_FULL = new ItemTongsFullBone();
-  public static final ItemTongsEmptyBase TONGS_IRON = new ItemTongsEmptyIron();
-  public static final ItemTongsFullBase TONGS_IRON_FULL = new ItemTongsFullIron();
-  public static final ItemTongsEmptyBase TONGS_DIAMOND = new ItemTongsEmptyDiamond();
-  public static final ItemTongsFullBase TONGS_DIAMOND_FULL = new ItemTongsFullDiamond();
-
   public static void onRegister(Registry registry) {
 
     registry.registerItem(ModuleItems.STONE_MILL_BLADE, "mill_blade_stone");
@@ -98,7 +83,6 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
     registry.registerItem(ModuleItems.ROCK_GRASS, BlockRockGrass.NAME);
     registry.registerItem(ModuleItems.MULCH, ItemMulch.NAME);
-    registry.registerItem(ModuleItems.SLAG, ItemSlag.NAME);
 
     if (ModulePyrotechConfig.BUCKET_WOOD.ENABLED) {
       registry.registerItem(ModuleItems.BUCKET_WOOD, ItemBucketWood.NAME);
@@ -138,17 +122,6 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.IRON_HAMMER, ItemIronHammer.NAME);
     registry.registerItem(ModuleItems.DIAMOND_HAMMER, ItemDiamondHammer.NAME);
 
-    registry.registerItem(ModuleItems.TONGS_STONE, ItemTongsEmptyStone.NAME);
-    registry.registerItem(ModuleItems.TONGS_STONE_FULL, ItemTongsFullStone.NAME, true);
-    registry.registerItem(ModuleItems.TONGS_FLINT, ItemTongsEmptyFlint.NAME);
-    registry.registerItem(ModuleItems.TONGS_FLINT_FULL, ItemTongsFullFlint.NAME, true);
-    registry.registerItem(ModuleItems.TONGS_BONE, ItemTongsEmptyBone.NAME);
-    registry.registerItem(ModuleItems.TONGS_BONE_FULL, ItemTongsFullBone.NAME, true);
-    registry.registerItem(ModuleItems.TONGS_IRON, ItemTongsEmptyIron.NAME);
-    registry.registerItem(ModuleItems.TONGS_IRON_FULL, ItemTongsFullIron.NAME, true);
-    registry.registerItem(ModuleItems.TONGS_DIAMOND, ItemTongsEmptyDiamond.NAME);
-    registry.registerItem(ModuleItems.TONGS_DIAMOND_FULL, ItemTongsFullDiamond.NAME, true);
-
     registry.registerItemRegistrationStrategy(forgeRegistry -> {
 
       OreDictionary.registerOre("rock", new ItemStack(ROCK, 1, BlockRock.EnumType.STONE.getMeta()));
@@ -177,7 +150,6 @@ public final class ModuleItems {
           ModuleItems.TINDER,
           ModuleItems.ROCK_GRASS,
           ModuleItems.MULCH,
-          ModuleItems.SLAG,
 
           ModuleItems.APPLE_BAKED,
 
@@ -209,18 +181,7 @@ public final class ModuleItems {
           ModuleItems.FLINT_MILL_BLADE,
           ModuleItems.BONE_MILL_BLADE,
           ModuleItems.IRON_MILL_BLADE,
-          ModuleItems.DIAMOND_MILL_BLADE,
-
-          ModuleItems.TONGS_STONE,
-          ModuleItems.TONGS_STONE_FULL,
-          ModuleItems.TONGS_FLINT,
-          ModuleItems.TONGS_FLINT_FULL,
-          ModuleItems.TONGS_BONE,
-          ModuleItems.TONGS_BONE_FULL,
-          ModuleItems.TONGS_IRON,
-          ModuleItems.TONGS_IRON_FULL,
-          ModuleItems.TONGS_DIAMOND,
-          ModuleItems.TONGS_DIAMOND_FULL
+          ModuleItems.DIAMOND_MILL_BLADE
       );
 
       if (ModulePyrotechConfig.BUCKET_WOOD.ENABLED) {
@@ -268,32 +229,6 @@ public final class ModuleItems {
           ItemMaterial.EnumType.values()
       );
     });
-  }
-
-  @SideOnly(Side.CLIENT)
-  public static void onClientInitialization() {
-
-    // -------------------------------------------------------------------------
-    // - Item Colors
-    // -------------------------------------------------------------------------
-
-    Minecraft minecraft = Minecraft.getMinecraft();
-    ItemColors itemColors = minecraft.getItemColors();
-
-    itemColors.registerItemColorHandler((stack, tintIndex) -> {
-
-      if (tintIndex == 1) {
-
-        NBTTagCompound tagCompound = stack.getTagCompound();
-
-        if (tagCompound != null
-            && tagCompound.hasKey("color")) {
-          return tagCompound.getInteger("color");
-        }
-      }
-
-      return 0xFFFFFF;
-    }, ModuleItems.SLAG);
   }
 
   private ModuleItems() {

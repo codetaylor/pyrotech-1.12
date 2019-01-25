@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileSoakingPot;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

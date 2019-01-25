@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper;
 
 import com.codetaylor.mc.athenaeum.util.StringHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.IRecipeTimed;
+import com.codetaylor.mc.pyrotech.spi.recipe.IRecipeTimed;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 

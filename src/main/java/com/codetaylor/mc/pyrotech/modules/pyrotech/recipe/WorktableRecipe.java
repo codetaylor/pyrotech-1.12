@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -62,7 +62,7 @@ public class WorktableRecipe
 
     // Finally, check the custom recipes.
 
-    for (WorktableRecipe worktableRecipe : ModulePyrotechRegistries.WORKTABLE_RECIPE) {
+    for (WorktableRecipe worktableRecipe : ModPyrotechRegistries.WORKTABLE_RECIPE) {
 
       if (worktableRecipe.matches(inventory, world)) {
         return worktableRecipe;
@@ -74,7 +74,7 @@ public class WorktableRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.WORKTABLE_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.WORKTABLE_RECIPE, output);
   }
 
   public static void blacklistVanillaRecipe(ResourceLocation resourceLocation) {

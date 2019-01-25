@@ -1,11 +1,12 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
+package com.codetaylor.mc.pyrotech.modules.bloomery.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
+import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.spi.recipe.IRecipeTimed;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -22,7 +23,7 @@ public class BloomeryRecipe
   @Nullable
   public static BloomeryRecipe getRecipe(ItemStack input) {
 
-    for (BloomeryRecipe recipe : ModulePyrotechRegistries.BLOOMERY_RECIPE) {
+    for (BloomeryRecipe recipe : ModPyrotechRegistries.BLOOMERY_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -34,7 +35,7 @@ public class BloomeryRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.BLOOMERY_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.BLOOMERY_RECIPE, output);
   }
 
   private final Ingredient input;
@@ -45,7 +46,6 @@ public class BloomeryRecipe
   private final int bloomYieldMin;
   private final int bloomYieldMax;
   private final int slag;
-  private final boolean bloomSlag;
   private final int slagColor;
   private final ItemStack[] failureItems;
   private final String langKey;
@@ -74,7 +74,6 @@ public class BloomeryRecipe
     this.bloomYieldMin = bloomYieldMin;
     this.bloomYieldMax = bloomYieldMax;
     this.slag = slag;
-    this.bloomSlag = bloomSlag;
     this.slagColor = slagColor;
 
     if (langKey != null) {
@@ -90,7 +89,7 @@ public class BloomeryRecipe
         this.langKey
     );
 
-    if (this.bloomSlag) {
+    if (bloomSlag) {
       ItemStack[] toAdd = {BloomHelper.createSlagItem(resourceLocation, this.langKey, this.slagColor)};
       this.failureItems = ArrayHelper.combine(failureItems, toAdd);
 
@@ -128,11 +127,6 @@ public class BloomeryRecipe
   public int getSlag() {
 
     return this.slag;
-  }
-
-  public boolean isBloomSlag() {
-
-    return this.bloomSlag;
   }
 
   public int getSlagColor() {

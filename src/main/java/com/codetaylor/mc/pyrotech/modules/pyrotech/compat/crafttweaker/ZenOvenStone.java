@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogHelper;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.OvenStoneRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -142,7 +142,7 @@ public class ZenOvenStone {
           this.output,
           this.input
       );
-      ModulePyrotechRegistries.OVEN_STONE_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModPyrotechRegistries.OVEN_STONE_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override

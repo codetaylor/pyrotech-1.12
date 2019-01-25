@@ -1,21 +1,22 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
+package com.codetaylor.mc.pyrotech.modules.bloomery.tile;
 
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
+import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockBloom;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +45,7 @@ public class TileBloom
 
   public TileBloom() {
 
-    super(ModulePyrotech.TILE_DATA_SERVICE);
+    super(ModuleBloomery.TILE_DATA_SERVICE);
 
     this.recipeProgress = new TileDataFloat(0);
     this.integrity = new TileDataInteger(0);
@@ -173,12 +174,12 @@ public class TileBloom
 
         // Server logic
 
-        if (player.getFoodStats().getFoodLevel() < ModulePyrotechConfig.BLOOM.MINIMUM_HUNGER_TO_USE) {
+        if (player.getFoodStats().getFoodLevel() < ModuleBloomeryConfig.BLOOM.MINIMUM_HUNGER_TO_USE) {
           return false;
         }
 
-        if (ModulePyrotechConfig.BLOOM.EXHAUSTION_COST_PER_HIT > 0) {
-          player.addExhaustion((float) ModulePyrotechConfig.BLOOM.EXHAUSTION_COST_PER_HIT);
+        if (ModuleBloomeryConfig.BLOOM.EXHAUSTION_COST_PER_HIT > 0) {
+          player.addExhaustion((float) ModuleBloomeryConfig.BLOOM.EXHAUSTION_COST_PER_HIT);
         }
 
         // Play sound for hit.
@@ -193,7 +194,7 @@ public class TileBloom
             (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
         );
 
-        BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModulePyrotechConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_RAW);
+        BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModuleBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_RAW);
 
         if (tile.recipeProgress.get() < 1) {
           ItemStack heldItemMainHand = player.getHeldItemMainhand();
@@ -201,14 +202,14 @@ public class TileBloom
           int hitReduction;
           hitReduction = ModulePyrotechConfig.GRANITE_ANVIL.getHammerHitReduction(item.getRegistryName());
 
-          int hits = Math.max(1, ModulePyrotechConfig.BLOOM.HAMMER_HITS_REQUIRED - hitReduction);
+          int hits = Math.max(1, ModuleBloomeryConfig.BLOOM.HAMMER_HITS_REQUIRED - hitReduction);
           float recipeProgressIncrement = (float) ((1f / hits) * BloomHelper.calculateHammerPower(tile.getPos(), player));
           tile.recipeProgress.set(tile.recipeProgress.get() + recipeProgressIncrement);
         }
 
         if (tile.recipeProgress.get() >= 0.9999) {
           tile.integrity.add(-1);
-          BloomeryRecipe recipe = ModulePyrotechRegistries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
+          BloomeryRecipe recipe = ModPyrotechRegistries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
 
           if (recipe != null) {
             ItemStack output = recipe.getRandomOutput();
@@ -228,7 +229,7 @@ public class TileBloom
 
           world.destroyBlock(tile.getPos(), true);
 
-          if (ModulePyrotechConfig.BLOOM.BREAKS_BLOCKS) {
+          if (ModuleBloomeryConfig.BLOOM.BREAKS_BLOCKS) {
 
             // Check and destroy block below the bloom.
 

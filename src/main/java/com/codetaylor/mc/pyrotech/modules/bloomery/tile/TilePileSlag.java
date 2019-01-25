@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
+package com.codetaylor.mc.pyrotech.modules.bloomery.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.LIFOStackHandler;
 import com.codetaylor.mc.athenaeum.spi.TileEntityBase;

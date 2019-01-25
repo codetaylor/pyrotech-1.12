@@ -4,14 +4,13 @@ import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemExcepti
 import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
@@ -94,11 +93,6 @@ public class PluginJEI
     // --- Blacklist Ingredients
 
     IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleItems.TONGS_STONE_FULL));
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleItems.TONGS_FLINT_FULL));
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleItems.TONGS_BONE_FULL));
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleItems.TONGS_IRON_FULL));
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleItems.TONGS_DIAMOND_FULL));
     //blacklist.addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModuleBlocks.CAMPFIRE)));
 
     RecipeItemParser parser = new RecipeItemParser();
@@ -163,7 +157,7 @@ public class PluginJEI
         registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
       }
 
-      List<WorktableRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.WORKTABLE_RECIPE.getValuesCollection());
+      List<WorktableRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.WORKTABLE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.WORKTABLE);
     }
 
@@ -185,7 +179,7 @@ public class PluginJEI
         return RecipeHelper.hasFurnaceFoodRecipe(input);
       });
       registry.addRecipes(furnaceRecipes, JEIRecipeCategoryUid.STONE_OVEN);
-      List<OvenStoneRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.OVEN_STONE_RECIPE.getValuesCollection());
+      List<OvenStoneRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.OVEN_STONE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_OVEN);
     }
 
@@ -207,7 +201,7 @@ public class PluginJEI
         return RecipeHelper.hasFurnaceFoodRecipe(input);
       });
       registry.addRecipes(furnaceRecipes, JEIRecipeCategoryUid.CAMPFIRE);
-      List<CampfireRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.CAMPFIRE_RECIPE.getValuesCollection());
+      List<CampfireRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.CAMPFIRE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.CAMPFIRE);
     }
 
@@ -215,7 +209,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.SOAKING_POT), JEIRecipeCategoryUid.SOAKING_POT);
       registry.handleRecipes(SoakingPotRecipe.class, JEIRecipeWrapperSoakingPot::new, JEIRecipeCategoryUid.SOAKING_POT);
-      List<SoakingPotRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.SOAKING_POT_RECIPE.getValuesCollection());
+      List<SoakingPotRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.SOAKING_POT_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.SOAKING_POT);
     }
 
@@ -223,7 +217,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CRUCIBLE_STONE), JEIRecipeCategoryUid.STONE_CRUCIBLE);
       registry.handleRecipes(CrucibleStoneRecipe.class, JEIRecipeWrapperCrucibleStone::new, JEIRecipeCategoryUid.STONE_CRUCIBLE);
-      List<CrucibleStoneRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.CRUCIBLE_STONE_RECIPE.getValuesCollection());
+      List<CrucibleStoneRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.CRUCIBLE_STONE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_CRUCIBLE);
     }
 
@@ -231,7 +225,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.COMPACTING_BIN), JEIRecipeCategoryUid.COMPACTING_BIN);
       registry.handleRecipes(CompactingBinRecipe.class, JEIRecipeWrapperCompactingBin::new, JEIRecipeCategoryUid.COMPACTING_BIN);
-      List<CompactingBinRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.COMPACTING_BIN_RECIPE.getValuesCollection());
+      List<CompactingBinRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.COMPACTING_BIN_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.COMPACTING_BIN);
     }
 
@@ -239,7 +233,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.MILL_STONE), JEIRecipeCategoryUid.STONE_MILL);
       registry.handleRecipes(MillStoneRecipe.class, JEIRecipeWrapperMillStone::new, JEIRecipeCategoryUid.STONE_MILL);
-      List<MillStoneRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.MILL_STONE_RECIPE.getValuesCollection());
+      List<MillStoneRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.MILL_STONE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_MILL);
     }
 
@@ -247,7 +241,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.GRANITE_ANVIL), JEIRecipeCategoryUid.GRANITE_ANVIL);
       registry.handleRecipes(GraniteAnvilRecipe.class, JEIRecipeWrapperGraniteAnvil::new, JEIRecipeCategoryUid.GRANITE_ANVIL);
-      List<GraniteAnvilRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE.getValuesCollection());
+      List<GraniteAnvilRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.GRANITE_ANVIL_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.GRANITE_ANVIL);
     }
 
@@ -255,7 +249,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CHOPPING_BLOCK), JEIRecipeCategoryUid.CHOPPING);
       registry.handleRecipes(ChoppingBlockRecipe.class, JEIRecipeWrapperChoppingBlock::new, JEIRecipeCategoryUid.CHOPPING);
-      List<ChoppingBlockRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE.getValuesCollection());
+      List<ChoppingBlockRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.CHOPPING_BLOCK_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.CHOPPING);
     }
 
@@ -263,7 +257,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.DRYING_RACK, 1, BlockDryingRack.EnumType.CRUDE.getMeta()), JEIRecipeCategoryUid.DRYING_CRUDE);
       registry.handleRecipes(DryingRackCrudeRecipe.class, JEIRecipeWrapperDryingRackCrude::new, JEIRecipeCategoryUid.DRYING_CRUDE);
-      List<DryingRackCrudeRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE.getValuesCollection());
+      List<DryingRackCrudeRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.DRYING_RACK_CRUDE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.DRYING_CRUDE);
     }
 
@@ -271,7 +265,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.DRYING_RACK, 1, BlockDryingRack.EnumType.NORMAL.getMeta()), JEIRecipeCategoryUid.DRYING);
       registry.handleRecipes(DryingRackRecipe.class, JEIRecipeWrapperDryingRack::new, JEIRecipeCategoryUid.DRYING);
-      List<DryingRackRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.DRYING_RACK_RECIPE.getValuesCollection());
+      List<DryingRackRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.DRYING_RACK_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.DRYING);
     }
 
@@ -279,7 +273,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.KILN_PIT), JEIRecipeCategoryUid.PIT_KILN);
       registry.handleRecipes(KilnPitRecipe.class, JEIRecipeWrapperKilnPit::new, JEIRecipeCategoryUid.PIT_KILN);
-      List<KilnPitRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.KILN_PIT_RECIPE.getValuesCollection());
+      List<KilnPitRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.KILN_PIT_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.PIT_KILN);
     }
 
@@ -287,7 +281,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.KILN_STONE), JEIRecipeCategoryUid.STONE_KILN);
       registry.handleRecipes(KilnStoneRecipe.class, JEIRecipeWrapperKilnStone::new, JEIRecipeCategoryUid.STONE_KILN);
-      List<StoneMachineRecipeItemInItemOutBase> recipeList = new ArrayList<>(ModulePyrotechRegistries.KILN_STONE_RECIPE.getValuesCollection());
+      List<StoneMachineRecipeItemInItemOutBase> recipeList = new ArrayList<>(ModPyrotechRegistries.KILN_STONE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_KILN);
     }
 
@@ -295,7 +289,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(Blocks.DIRT), JEIRecipeCategoryUid.PIT_BURN);
       registry.handleRecipes(PitBurnRecipe.class, JEIRecipeWrapperPitBurn::new, JEIRecipeCategoryUid.PIT_BURN);
-      List<PitBurnRecipe> recipeList = ModulePyrotechRegistries.BURN_RECIPE.getValuesCollection()
+      List<PitBurnRecipe> recipeList = ModPyrotechRegistries.BURN_RECIPE.getValuesCollection()
           .stream()
           .filter(burnRecipe -> !burnRecipe.requiresRefractoryBlocks())
           .collect(Collectors.toList());
@@ -310,7 +304,7 @@ public class PluginJEI
           JEIRecipeWrapperRefractoryBurn::new,
           JEIRecipeCategoryUid.REFRACTORY_BURN
       );
-      List<PitBurnRecipe> recipeList = new ArrayList<>(ModulePyrotechRegistries.BURN_RECIPE.getValuesCollection());
+      List<PitBurnRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.BURN_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.REFRACTORY_BURN);
     }
   }

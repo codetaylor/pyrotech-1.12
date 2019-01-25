@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
+package com.codetaylor.mc.pyrotech.modules.bloomery.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
@@ -12,22 +12,21 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.interaction.api.Transform;
+import com.codetaylor.mc.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockPileSlag;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPileBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.particles.ParticleBloomeryDrip;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.BloomeryFuelRenderer;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.*;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
+import com.codetaylor.mc.pyrotech.modules.bloomery.client.particles.ParticleBloomeryDrip;
+import com.codetaylor.mc.pyrotech.modules.bloomery.client.render.BloomeryFuelRenderer;
+import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemTongsEmptyBase;
+import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.BloomeryRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.ITileContainer;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileNetBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.spi.block.BlockPileBase;
+import com.codetaylor.mc.pyrotech.spi.tile.ITileContainer;
+import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -95,7 +94,7 @@ public class TileBloomery
 
   public TileBloomery() {
 
-    super(ModulePyrotech.TILE_DATA_SERVICE);
+    super(ModuleBloomery.TILE_DATA_SERVICE);
 
     this.inputStackHandler = new InputStackHandler();
     this.inputStackHandler.addObserver((handler, slot) -> {
@@ -226,7 +225,7 @@ public class TileBloomery
 
   public int getMaxFuelCount() {
 
-    return ModulePyrotechConfig.BLOOMERY.FUEL_CAPACITY_ITEMS;
+    return ModuleBloomeryConfig.BLOOMERY.FUEL_CAPACITY_ITEMS;
   }
 
   public float getSpeed() {
@@ -241,12 +240,12 @@ public class TileBloomery
 
   public int getMaxBurnTime() {
 
-    return ModulePyrotechConfig.BLOOMERY.FUEL_CAPACITY_BURN_TIME;
+    return ModuleBloomeryConfig.BLOOMERY.FUEL_CAPACITY_BURN_TIME;
   }
 
   public boolean hasSpeedCap() {
 
-    return ModulePyrotechConfig.BLOOMERY.HAS_SPEED_CAP;
+    return ModuleBloomeryConfig.BLOOMERY.HAS_SPEED_CAP;
   }
 
   public float getAirflow() {
@@ -261,7 +260,7 @@ public class TileBloomery
 
   public int getMaxAshCapacity() {
 
-    return ModulePyrotechConfig.BLOOMERY.MAX_ASH_CAPACITY;
+    return ModuleBloomeryConfig.BLOOMERY.MAX_ASH_CAPACITY;
   }
 
   // ---------------------------------------------------------------------------
@@ -280,7 +279,7 @@ public class TileBloomery
   private void updateSpeed() {
 
     float linearSpeed = this.burnTime.get() / (float) this.getMaxBurnTime();
-    float speed = (float) (ModulePyrotechConfig.BLOOMERY.SPEED_SCALAR * (float) Math.pow(linearSpeed, 0.5));
+    float speed = (float) (ModuleBloomeryConfig.BLOOMERY.SPEED_SCALAR * (float) Math.pow(linearSpeed, 0.5));
     speed *= this.calculateSpeedAirflowModifier();
     this.speed.set(speed);
   }
@@ -301,7 +300,7 @@ public class TileBloomery
     if (this.world.isAirBlock(offset)) {
       this.airflow.set(1);
 
-    } else if (blockState.getBlock() == ModuleBlocks.PILE_SLAG) {
+    } else if (blockState.getBlock() == ModuleBloomery.Blocks.PILE_SLAG) {
       int level = blockState.getValue(BlockPileSlag.LEVEL);
 
       if (level == 1) {
@@ -447,7 +446,7 @@ public class TileBloomery
 
         for (int i = 1; i < fuelCount; i++) {
 
-          if (random.nextFloat() < ModulePyrotechConfig.BLOOMERY.ASH_CONVERSION_CHANCE) {
+          if (random.nextFloat() < ModuleBloomeryConfig.BLOOMERY.ASH_CONVERSION_CHANCE) {
             ashCount += 1;
           }
         }
@@ -484,7 +483,7 @@ public class TileBloomery
       IBlockState blockState = this.world.getBlockState(pos);
       Block block = blockState.getBlock();
 
-      if (block == ModuleBlocks.PILE_SLAG) {
+      if (block == ModuleBloomery.Blocks.PILE_SLAG) {
 
         int level = blockState.getValue(BlockPileBase.LEVEL);
 
@@ -527,7 +526,7 @@ public class TileBloomery
 
       IBlockState blockState = this.world.getBlockState(pos);
 
-      if (blockState.getBlock() == ModuleBlocks.PILE_SLAG) {
+      if (blockState.getBlock() == ModuleBloomery.Blocks.PILE_SLAG) {
 
         // Add to an existing pile if it isn't too big.
 
@@ -548,7 +547,7 @@ public class TileBloomery
       pos = pos.up();
 
       // Create a new pile.
-      this.world.setBlockState(pos, ModuleBlocks.PILE_SLAG.getDefaultState()
+      this.world.setBlockState(pos, ModuleBloomery.Blocks.PILE_SLAG.getDefaultState()
           .withProperty(BlockPileSlag.LEVEL, 1)
           .withProperty(BlockPileSlag.MOLTEN, true));
 

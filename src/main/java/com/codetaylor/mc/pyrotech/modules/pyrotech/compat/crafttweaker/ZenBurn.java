@@ -6,7 +6,7 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
@@ -161,7 +161,7 @@ public class ZenBurn {
             this.requiresRefractoryBlocks,
             this.fluidLevelAffectsFailureChance
         );
-        ModulePyrotechRegistries.BURN_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+        ModPyrotechRegistries.BURN_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
 
       } catch (MalformedRecipeItemException e) {
         CraftTweakerAPI.logError("", e);

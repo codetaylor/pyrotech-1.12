@@ -2,10 +2,13 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TilePileSlag;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.TESRInteractable;
+import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
@@ -60,11 +63,8 @@ public final class ModuleBlocks {
   public static final BlockCompactingBin COMPACTING_BIN = new BlockCompactingBin();
   public static final BlockSoakingPot SOAKING_POT = new BlockSoakingPot();
   public static final BlockPlanksTarred PLANKS_TARRED = new BlockPlanksTarred();
-  public static final BlockBloomery BLOOMERY = new BlockBloomery();
   public static final BlockPileWoodChips PILE_WOOD_CHIPS = new BlockPileWoodChips();
-  public static final BlockPileSlag PILE_SLAG = new BlockPileSlag();
   public static final BlockWoolTarred WOOL_TARRED = new BlockWoolTarred();
-  public static final BlockBloom BLOOM = new BlockBloom();
 
   public static void onRegister(Registry registry) {
 
@@ -107,14 +107,11 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.COMPACTING_BIN, BlockCompactingBin.NAME);
     registry.registerBlockWithItem(ModuleBlocks.SOAKING_POT, BlockSoakingPot.NAME);
     registry.registerBlockWithItem(ModuleBlocks.PLANKS_TARRED, BlockPlanksTarred.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.BLOOMERY, BlockBloomery.NAME);
     registry.registerBlockWithItem(ModuleBlocks.PILE_WOOD_CHIPS, BlockPileWoodChips.NAME);
     registry.registerBlockWithItem(ModuleBlocks.WOOL_TARRED, BlockWoolTarred.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
     registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
-    registry.registerBlock(ModuleBlocks.BLOOM, new BlockBloom.ItemBlockBloom(ModuleBlocks.BLOOM), BlockBloom.NAME);
-    registry.registerBlock(ModuleBlocks.PILE_SLAG, new BlockPileSlag.ItemBlockPileSlag(ModuleBlocks.PILE_SLAG), BlockPileSlag.NAME);
 
     registry.registerTileEntities(
         TileTarCollector.class,
@@ -184,11 +181,8 @@ public final class ModuleBlocks {
           ModuleBlocks.COMPACTING_BIN,
           ModuleBlocks.SOAKING_POT,
           ModuleBlocks.PLANKS_TARRED,
-          ModuleBlocks.BLOOMERY,
           ModuleBlocks.PILE_WOOD_CHIPS,
-          ModuleBlocks.PILE_SLAG,
-          ModuleBlocks.WOOL_TARRED,
-          ModuleBlocks.BLOOM
+          ModuleBlocks.WOOL_TARRED
       );
 
       // Refractory Door

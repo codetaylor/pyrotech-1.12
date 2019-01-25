@@ -1,12 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
+import com.codetaylor.mc.pyrotech.spi.block.BlockPartialBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -86,14 +87,19 @@ public class BlockGraniteAnvil
 
   private boolean hasBloom(World world, BlockPos pos) {
 
-    TileEntity tileEntity = world.getTileEntity(pos);
+    if (ModuleBloomery.Items.BLOOM != null) {
 
-    if (tileEntity instanceof TileGraniteAnvil) {
+      // If the bloom object was registered, it means that the bloomery
+      // module is enabled.
 
-      ItemStackHandler stackHandler = ((TileGraniteAnvil) tileEntity).getStackHandler();
-      ItemStack stackInSlot = stackHandler.getStackInSlot(0);
+      TileEntity tileEntity = world.getTileEntity(pos);
 
-      return (stackInSlot.getItem() == Item.getItemFromBlock(ModuleBlocks.BLOOM));
+      if (tileEntity instanceof TileGraniteAnvil) {
+
+        ItemStackHandler stackHandler = ((TileGraniteAnvil) tileEntity).getStackHandler();
+        ItemStack stackInSlot = stackHandler.getStackInSlot(0);
+        return (stackInSlot.getItem() == ModuleBloomery.Items.BLOOM);
+      }
     }
 
     return false;
@@ -106,12 +112,12 @@ public class BlockGraniteAnvil
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
-    if (ModulePyrotechConfig.BLOOM.ENTITY_WALK_DAMAGE > 0
+    if (ModuleBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE > 0
         && this.hasBloom(world, pos)
         && !entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.BLOOM.ENTITY_WALK_DAMAGE);
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE);
     }
 
     super.onEntityWalk(world, pos, entity);

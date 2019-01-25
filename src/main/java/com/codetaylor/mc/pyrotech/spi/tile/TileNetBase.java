@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
+package com.codetaylor.mc.pyrotech.spi.tile;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;

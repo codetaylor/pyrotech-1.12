@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -122,7 +122,7 @@ public class ZenKilnPit {
           this.failureChance,
           this.failureItems
       );
-      ModulePyrotechRegistries.KILN_PIT_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModPyrotechRegistries.KILN_PIT_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override

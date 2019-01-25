@@ -2,10 +2,10 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.InteractionRenderers;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloomery;
+import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
+import com.codetaylor.mc.pyrotech.interaction.api.Transform;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

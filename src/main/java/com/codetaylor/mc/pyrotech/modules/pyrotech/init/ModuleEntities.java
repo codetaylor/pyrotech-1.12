@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockBloom;
+import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.entity.EntityRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.entity.EntityRockGrass;
 import net.minecraft.client.Minecraft;

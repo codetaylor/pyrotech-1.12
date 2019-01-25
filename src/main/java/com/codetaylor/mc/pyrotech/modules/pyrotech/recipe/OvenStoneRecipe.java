@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.Ingredient;
@@ -57,7 +57,7 @@ public class OvenStoneRecipe
 
     // Finally, check the custom recipes.
 
-    for (OvenStoneRecipe recipe : ModulePyrotechRegistries.OVEN_STONE_RECIPE) {
+    for (OvenStoneRecipe recipe : ModPyrotechRegistries.OVEN_STONE_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -74,7 +74,7 @@ public class OvenStoneRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.OVEN_STONE_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.OVEN_STONE_RECIPE, output);
   }
 
   public static void blacklistSmeltingRecipe(Ingredient output) {

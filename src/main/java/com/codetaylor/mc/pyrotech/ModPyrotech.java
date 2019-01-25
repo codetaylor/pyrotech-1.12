@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech;
 
 import com.codetaylor.mc.athenaeum.module.ModuleManager;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import net.minecraft.creativetab.CreativeTabs;
@@ -38,13 +39,20 @@ public class ModPyrotech {
   public ModPyrotech() {
 
     this.moduleManager = new ModuleManager(MOD_ID);
-    this.moduleManager.registerModules(
-        ModulePyrotech.class
-    );
   }
 
   @Mod.EventHandler
   public void onConstructionEvent(FMLConstructionEvent event) {
+
+    this.moduleManager.registerModules(
+        ModulePyrotech.class
+    );
+
+    if (ModPyrotechConfig.MODULES.get("bloomery")) {
+      this.moduleManager.registerModules(
+          ModuleBloomery.class
+      );
+    }
 
     this.moduleManager.onConstructionEvent();
     this.moduleManager.routeFMLStateEvent(event);

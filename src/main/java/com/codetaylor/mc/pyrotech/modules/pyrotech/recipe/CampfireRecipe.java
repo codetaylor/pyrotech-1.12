@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.Ingredient;
@@ -63,7 +63,7 @@ public class CampfireRecipe
 
     // Finally, check the custom campfire recipes.
 
-    for (CampfireRecipe recipe : ModulePyrotechRegistries.CAMPFIRE_RECIPE) {
+    for (CampfireRecipe recipe : ModPyrotechRegistries.CAMPFIRE_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -80,7 +80,7 @@ public class CampfireRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.CAMPFIRE_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.CAMPFIRE_RECIPE, output);
   }
 
   public static void blacklistSmeltingRecipe(Ingredient output) {

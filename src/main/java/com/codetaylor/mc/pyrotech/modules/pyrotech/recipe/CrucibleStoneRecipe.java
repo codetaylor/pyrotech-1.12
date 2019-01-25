@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
@@ -14,7 +14,7 @@ public class CrucibleStoneRecipe
   @Nullable
   public static CrucibleStoneRecipe getRecipe(ItemStack input) {
 
-    for (CrucibleStoneRecipe recipe : ModulePyrotechRegistries.CRUCIBLE_STONE_RECIPE) {
+    for (CrucibleStoneRecipe recipe : ModPyrotechRegistries.CRUCIBLE_STONE_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -26,7 +26,7 @@ public class CrucibleStoneRecipe
 
   public static boolean removeRecipes(FluidStack output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.CRUCIBLE_STONE_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.CRUCIBLE_STONE_RECIPE, output);
   }
 
   public CrucibleStoneRecipe(

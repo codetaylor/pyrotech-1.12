@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPileBase;
+import com.codetaylor.mc.pyrotech.spi.block.BlockPileBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

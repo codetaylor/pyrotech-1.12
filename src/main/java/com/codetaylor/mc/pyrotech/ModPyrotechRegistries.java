@@ -1,5 +1,6 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech;
+package com.codetaylor.mc.pyrotech;
 
+import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ModulePyrotechRegistries {
+public class ModPyrotechRegistries {
 
   public static final IForgeRegistryModifiable<KilnPitRecipe> KILN_PIT_RECIPE;
   public static final IForgeRegistryModifiable<KilnStoneRecipe> KILN_STONE_RECIPE;
@@ -51,7 +52,7 @@ public class ModulePyrotechRegistries {
     COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST = new ArrayList<>();
   }
 
-  private ModulePyrotechRegistries() {
+  private ModPyrotechRegistries() {
     //
   }
 }

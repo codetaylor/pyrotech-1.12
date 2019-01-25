@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi;
+package com.codetaylor.mc.pyrotech.spi.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

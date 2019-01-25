@@ -1,12 +1,12 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.util;
+package com.codetaylor.mc.pyrotech.modules.bloomery.util;
 
 import com.codetaylor.mc.athenaeum.util.*;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemTongsEmptyBase;
+import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemTongsFullBase;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsFullBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -25,7 +25,7 @@ public class BloomHelper {
 
   public static ItemStack createSlagItem(ResourceLocation recipeId, String langKey, int color) {
 
-    ItemStack itemStack = new ItemStack(ModuleItems.SLAG);
+    ItemStack itemStack = new ItemStack(ModuleBloomery.Items.SLAG);
     NBTTagCompound itemTag = new NBTTagCompound();
     itemTag.setString("recipeId", recipeId.toString());
     itemTag.setString("langKey", langKey);
@@ -60,14 +60,14 @@ public class BloomHelper {
       result = 1;
     }
 
-    result *= ArrayHelper.getOrLast(ModulePyrotechConfig.BLOOM.HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL, hammerHarvestLevel);
+    result *= ArrayHelper.getOrLast(ModuleBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL, hammerHarvestLevel);
 
     return Math.max(0, result);
   }
 
   public static ItemStack createBloomAsItemStack(int maxIntegrity, @Nullable String recipeId, @Nullable String langKey) {
 
-    return createBloomAsItemStack(new ItemStack(ModuleBlocks.BLOOM), maxIntegrity, maxIntegrity, recipeId, langKey);
+    return createBloomAsItemStack(new ItemStack(ModuleBloomery.Blocks.BLOOM), maxIntegrity, maxIntegrity, recipeId, langKey);
   }
 
   public static ItemStack createBloomAsItemStack(ItemStack itemStack, int maxIntegrity, int integrity, @Nullable String recipeId, @Nullable String langKey) {
@@ -85,7 +85,7 @@ public class BloomHelper {
 
   public static ItemStack toItemStack(TileBloom tile) {
 
-    return BloomHelper.toItemStack(tile, new ItemStack(ModuleBlocks.BLOOM));
+    return BloomHelper.toItemStack(tile, new ItemStack(ModuleBloomery.Blocks.BLOOM));
   }
 
   public static ItemStack toItemStack(TileBloom tile, ItemStack itemStack) {

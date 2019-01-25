@@ -8,8 +8,10 @@ import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemExcepti
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
@@ -178,12 +180,6 @@ public class ModulePyrotech
         .setType(SoakingPotRecipe.class)
         .allowModification()
         .create();
-
-    new RegistryBuilder<BloomeryRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "bloomery_recipe"))
-        .setType(BloomeryRecipe.class)
-        .allowModification()
-        .create();
   }
 
   @Override
@@ -214,18 +210,17 @@ public class ModulePyrotech
     VanillaCraftingRecipesRemove.apply(event.getRegistry());
     VanillaFurnaceRecipesRemove.apply();
     VanillaFurnaceRecipesAdd.apply();
-    BurnPitRecipesAdd.apply(ModulePyrotechRegistries.BURN_RECIPE);
-    PitKilnRecipesAdd.apply(ModulePyrotechRegistries.KILN_PIT_RECIPE);
-    StoneKilnRecipesAdd.apply(ModulePyrotechRegistries.KILN_STONE_RECIPE);
-    DryingRackRecipesAdd.apply(ModulePyrotechRegistries.DRYING_RACK_RECIPE);
-    GraniteAnvilRecipesAdd.apply(ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE);
-    ChoppingBlockRecipesAdd.apply(ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE);
-    DryingRackCrudeRecipesAdd.apply(ModulePyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
-    StoneSawmillRecipesAdd.apply(ModulePyrotechRegistries.MILL_STONE_RECIPE);
-    StoneCrucibleRecipesAdd.apply(ModulePyrotechRegistries.CRUCIBLE_STONE_RECIPE);
-    CompactingBinRecipesAdd.apply(ModulePyrotechRegistries.COMPACTING_BIN_RECIPE);
-    SoakingPotRecipesAdd.apply(ModulePyrotechRegistries.SOAKING_POT_RECIPE);
-    BloomeryRecipesAdd.apply(ModulePyrotechRegistries.BLOOMERY_RECIPE);
+    BurnPitRecipesAdd.apply(ModPyrotechRegistries.BURN_RECIPE);
+    PitKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_PIT_RECIPE);
+    StoneKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_STONE_RECIPE);
+    DryingRackRecipesAdd.apply(ModPyrotechRegistries.DRYING_RACK_RECIPE);
+    GraniteAnvilRecipesAdd.apply(ModPyrotechRegistries.GRANITE_ANVIL_RECIPE);
+    ChoppingBlockRecipesAdd.apply(ModPyrotechRegistries.CHOPPING_BLOCK_RECIPE);
+    DryingRackCrudeRecipesAdd.apply(ModPyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
+    StoneSawmillRecipesAdd.apply(ModPyrotechRegistries.MILL_STONE_RECIPE);
+    StoneCrucibleRecipesAdd.apply(ModPyrotechRegistries.CRUCIBLE_STONE_RECIPE);
+    CompactingBinRecipesAdd.apply(ModPyrotechRegistries.COMPACTING_BIN_RECIPE);
+    SoakingPotRecipesAdd.apply(ModPyrotechRegistries.SOAKING_POT_RECIPE);
   }
 
   @Override
@@ -251,19 +246,13 @@ public class ModulePyrotech
     super.onClientInitializationEvent(event);
 
     ModuleBlocks.onClientInitialization();
-    ModuleItems.onClientInitialization();
+
   }
 
   @Override
   public void onPostInitializationEvent(FMLPostInitializationEvent event) {
 
     super.onPostInitializationEvent(event);
-
-    BloomeryRecipesAdd.applyBloomRecipes(
-        ModulePyrotechRegistries.BLOOMERY_RECIPE,
-        ModulePyrotechRegistries.GRANITE_ANVIL_RECIPE,
-        ModulePyrotechRegistries.COMPACTING_BIN_RECIPE
-    );
 
     RecipeItemParser parser = new RecipeItemParser();
 
@@ -273,7 +262,7 @@ public class ModulePyrotech
 
     for (String blockString : ModulePyrotechConfig.GENERAL.REFRACTORY_BRICKS) {
       try {
-        ModulePyrotechRegistries.REFRACTORY_BLOCK_LIST.add(Util.parseBlockStringWithWildcard(blockString, parser));
+        ModPyrotechRegistries.REFRACTORY_BLOCK_LIST.add(Util.parseBlockStringWithWildcard(blockString, parser));
 
       } catch (MalformedRecipeItemException e) {
         LOGGER.error("", e);
@@ -285,11 +274,11 @@ public class ModulePyrotech
     // ------------------------------------------------------------------------
 
     {
-      ModulePyrotechRegistries.COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST.add(new BlockMetaMatcher(
+      ModPyrotechRegistries.COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST.add(new BlockMetaMatcher(
           ModuleBlocks.ACTIVE_PILE,
           0
       ));
-      ModulePyrotechRegistries.COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST.add(new BlockMetaMatcher(
+      ModPyrotechRegistries.COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST.add(new BlockMetaMatcher(
           ModuleBlocks.PIT_ASH_BLOCK,
           0
       ));

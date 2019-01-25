@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechRegistries;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -17,7 +17,7 @@ public class ChoppingBlockRecipe
   @Nullable
   public static ChoppingBlockRecipe getRecipe(ItemStack input) {
 
-    for (ChoppingBlockRecipe recipe : ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE) {
+    for (ChoppingBlockRecipe recipe : ModPyrotechRegistries.CHOPPING_BLOCK_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -29,7 +29,7 @@ public class ChoppingBlockRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModulePyrotechRegistries.CHOPPING_BLOCK_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.CHOPPING_BLOCK_RECIPE, output);
   }
 
   private final Ingredient input;
