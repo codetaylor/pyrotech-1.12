@@ -1,14 +1,15 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
+package com.codetaylor.mc.pyrotech.modules.bloomery.init.recipe;
 
 import com.codetaylor.mc.athenaeum.util.IngredientHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomAnvilRecipe;
+import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -32,7 +33,7 @@ public class BloomeryRecipesAdd {
 
     // Iron Nugget
     registry.register(new BloomeryRecipe(
-        new ResourceLocation(ModulePyrotech.MOD_ID, "iron_nugget"),
+        new ResourceLocation(ModuleBloomery.MOD_ID, "iron_nugget"),
         new ItemStack(Items.IRON_NUGGET),
         Ingredient.fromStacks(new ItemStack(Blocks.IRON_ORE)),
         DEFAULT_BURN_TIME_TICKS,
@@ -50,7 +51,7 @@ public class BloomeryRecipesAdd {
 
     // Gold Nugget
     registry.register(new BloomeryRecipe(
-        new ResourceLocation(ModulePyrotech.MOD_ID, "gold_nugget"),
+        new ResourceLocation(ModuleBloomery.MOD_ID, "gold_nugget"),
         new ItemStack(Items.GOLD_NUGGET),
         Ingredient.fromStacks(new ItemStack(Blocks.GOLD_ORE)),
         DEFAULT_BURN_TIME_TICKS,
@@ -81,17 +82,17 @@ public class BloomeryRecipesAdd {
       // --- Anvil Recipes ---
 
       //noinspection ConstantConditions
-      registryAnvil.register(new GraniteAnvilRecipe.BloomAnvilRecipe(
+      registryAnvil.register(new BloomAnvilRecipe(
           bloomeryRecipe.getOutput(),
           IngredientHelper.fromStackWithNBT(bloomeryRecipe.getOutputBloom()),
-          ModulePyrotechConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
+          ModuleBloomeryConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
           GraniteAnvilRecipe.EnumType.HAMMER,
           bloomeryRecipe
       ).setRegistryName(bloomeryRecipe.getRegistryName()));
 
       // --- Compacting Bin Recipes ---
 
-      ItemStack slagPile = new ItemStack(ModuleBlocks.PILE_SLAG, 1);
+      ItemStack slagPile = new ItemStack(ModuleBloomery.Blocks.PILE_SLAG, 1);
       NBTTagCompound tag = new NBTTagCompound();
       tag.setString("recipeId", bloomeryRecipe.getRegistryName().toString());
       tag.setString("langKey", bloomeryRecipe.getLangKey());

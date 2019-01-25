@@ -1,11 +1,11 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
+package com.codetaylor.mc.pyrotech.modules.bloomery.item;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -75,11 +75,11 @@ public abstract class ItemTongsFullBase
     BlockPos offset = pos.offset(sideHit);
     NBTTagCompound tagCompound = heldItem.getTagCompound();
 
-    if (ModuleBlocks.BLOOM.canPlaceBlockAt(world, offset)
+    if (ModuleBloomery.Blocks.BLOOM.canPlaceBlockAt(world, offset)
         && tagCompound != null) {
 
       if (!world.isRemote) {
-        world.setBlockState(offset, ModuleBlocks.BLOOM.getDefaultState());
+        world.setBlockState(offset, ModuleBloomery.Blocks.BLOOM.getDefaultState());
         TileBloom tile = (TileBloom) world.getTileEntity(offset);
 
         if (tile != null) {

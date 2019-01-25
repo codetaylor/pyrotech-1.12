@@ -1,13 +1,13 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.bloomery.block;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.particles.ParticleBloomeryDrip;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.bloomery.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
+import com.codetaylor.mc.pyrotech.spi.block.BlockCombustionWorkerStoneBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -80,6 +80,7 @@ public class BlockBloomery
       if (heldItem.getItem() instanceof ItemIgniterBase) {
         return false;
       }
+
       return this.interact(IInteraction.EnumType.MouseClick, world, pos.down(), state, player, hand, facing, hitX, hitY, hitZ);
 
     } else {
@@ -101,7 +102,7 @@ public class BlockBloomery
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
-    if (ModulePyrotechConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE > 0
+    if (ModuleBloomeryConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE > 0
         && this.isTop(world.getBlockState(pos))) {
 
       TileEntity tileEntity = world.getTileEntity(pos.down());
@@ -112,7 +113,7 @@ public class BlockBloomery
         if (!entity.isImmuneToFire()
             && entity instanceof EntityLivingBase
             && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
-          entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE);
+          entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleBloomeryConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE);
           entity.setFire(4);
         }
       }

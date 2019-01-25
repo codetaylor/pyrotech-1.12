@@ -1,9 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.bloomery.block;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPileBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TilePileSlag;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TilePileSlag;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.spi.block.BlockPileBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -88,11 +88,11 @@ public class BlockPileSlag
 
     if (blockState.getBlock() == this
         && blockState.getValue(BlockPileSlag.MOLTEN)
-        && ModulePyrotechConfig.BLOOMERY.MOLTEN_SLAG_ENTITY_WALK_DAMAGE > 0
+        && ModuleBloomeryConfig.BLOOMERY.MOLTEN_SLAG_ENTITY_WALK_DAMAGE > 0
         && !entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.BLOOMERY.MOLTEN_SLAG_ENTITY_WALK_DAMAGE);
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleBloomeryConfig.BLOOMERY.MOLTEN_SLAG_ENTITY_WALK_DAMAGE);
     }
 
     super.onEntityWalk(world, pos, entity);

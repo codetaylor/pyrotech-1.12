@@ -1,6 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.event;
+package com.codetaylor.mc.pyrotech.modules.bloomery.event;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import net.minecraft.entity.item.EntityItem;
@@ -11,10 +12,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+@GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID)
 @Mod.EventBusSubscriber
 public class ItemPickupEventHandler {
+
+  @GameRegistry.ObjectHolder(BlockBloom.NAME)
+  private static final Item ITEM_BLOOM;
+
+  static {
+    ITEM_BLOOM = null;
+  }
 
   @SubscribeEvent
   public static void onEvent(EntityItemPickupEvent event) {
@@ -22,7 +32,7 @@ public class ItemPickupEventHandler {
     EntityItem entityItem = event.getItem();
     ItemStack pickedUp = entityItem.getItem();
 
-    if (pickedUp.getItem() != Item.getItemFromBlock(ModuleBlocks.BLOOM)) {
+    if (pickedUp.getItem() != ITEM_BLOOM) {
       return;
     }
 

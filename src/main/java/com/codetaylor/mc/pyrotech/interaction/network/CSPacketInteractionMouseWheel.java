@@ -1,8 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.network;
+package com.codetaylor.mc.pyrotech.interaction.network;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCombustionWorkerStoneBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.spi.block.BlockCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

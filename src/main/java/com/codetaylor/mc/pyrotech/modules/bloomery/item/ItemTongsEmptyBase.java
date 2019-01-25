@@ -1,8 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
+package com.codetaylor.mc.pyrotech.modules.bloomery.item;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileBloom;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -70,11 +70,11 @@ public abstract class ItemTongsEmptyBase
     Block block = blockState.getBlock();
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (block == ModuleBlocks.BLOOM
+    if (block == ModuleBloomery.Blocks.BLOOM
         && tileEntity instanceof TileBloom) {
 
       TileBloom tile = (TileBloom) tileEntity;
-      ItemStack bloomStack = BloomHelper.toItemStack(tile, new ItemStack(ModuleBlocks.BLOOM));
+      ItemStack bloomStack = BloomHelper.toItemStack(tile, new ItemStack(ModuleBloomery.Blocks.BLOOM));
       ItemStack itemStack = BloomHelper.createItemTongsFull(heldItem, bloomStack);
 
       if (!world.isRemote) {

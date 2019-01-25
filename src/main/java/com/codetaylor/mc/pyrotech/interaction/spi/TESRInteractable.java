@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi;
+package com.codetaylor.mc.pyrotech.interaction.spi;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.util.InteractionRayTraceData;
+import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;

@@ -1,14 +1,14 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.bloomery.block;
 
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockPartialBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IBlockInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.spi.block.BlockPartialBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockFire;
@@ -85,11 +85,11 @@ public class BlockBloom
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
-    if (ModulePyrotechConfig.BLOOM.ENTITY_WALK_DAMAGE > 0
+    if (ModuleBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE > 0
         && !entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.BLOOM.ENTITY_WALK_DAMAGE);
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE);
     }
 
     super.onEntityWalk(world, pos, entity);
@@ -309,7 +309,7 @@ public class BlockBloom
       world.setBlockState(pos.down(), Blocks.FIRE.getDefaultState(), 1 | 2);
     }
 
-    BloomHelper.trySpawnFire(world, pos, rand, ModulePyrotechConfig.BLOOM.FIRE_SPAWN_CHANCE_RANDOM);
+    BloomHelper.trySpawnFire(world, pos, rand, ModuleBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_RANDOM);
   }
 
   private void tryCatchFire(World world, BlockPos pos, int chance, Random random, int age, EnumFacing face) {
@@ -477,7 +477,7 @@ public class BlockBloom
         return;
       }
 
-      float playerDamagePerSecond = (float) ModulePyrotechConfig.BLOOM.FIRE_DAMAGE_PER_SECOND;
+      float playerDamagePerSecond = (float) ModuleBloomeryConfig.BLOOM.FIRE_DAMAGE_PER_SECOND;
 
       if (playerDamagePerSecond > 0) {
         entity.attackEntityFrom(DamageSource.IN_FIRE, playerDamagePerSecond);

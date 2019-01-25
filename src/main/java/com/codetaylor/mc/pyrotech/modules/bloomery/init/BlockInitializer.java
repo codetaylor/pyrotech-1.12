@@ -14,14 +14,17 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public final class ModuleBlocks {
+public final class BlockInitializer {
 
   public static void onRegister(Registry registry) {
 
-    registry.registerBlockWithItem(ModuleBloomery.Blocks.BLOOMERY, BlockBloomery.NAME);
+    registry.registerBlockWithItem(new BlockBloomery(), BlockBloomery.NAME);
 
-    registry.registerBlock(ModuleBloomery.Blocks.BLOOM, new BlockBloom.ItemBlockBloom(ModuleBloomery.Blocks.BLOOM), BlockBloom.NAME);
-    registry.registerBlock(ModuleBloomery.Blocks.PILE_SLAG, new BlockPileSlag.ItemBlockPileSlag(ModuleBloomery.Blocks.PILE_SLAG), BlockPileSlag.NAME);
+    BlockBloom blockBloom = new BlockBloom();
+    registry.registerBlock(blockBloom, new BlockBloom.ItemBlockBloom(blockBloom), BlockBloom.NAME);
+
+    BlockPileSlag blockPileSlag = new BlockPileSlag();
+    registry.registerBlock(blockPileSlag, new BlockPileSlag.ItemBlockPileSlag(blockPileSlag), BlockPileSlag.NAME);
 
     registry.registerTileEntities(
         TileBloomery.class,
@@ -46,7 +49,7 @@ public final class ModuleBlocks {
     });
   }
 
-  private ModuleBlocks() {
+  private BlockInitializer() {
     //
   }
 }

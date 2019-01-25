@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
+package com.codetaylor.mc.pyrotech.modules.bloomery.item;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 
 public class ItemTongsFullStone
     extends ItemTongsFullBase {
@@ -10,6 +10,6 @@ public class ItemTongsFullStone
 
   public ItemTongsFullStone() {
 
-    super(() -> ModuleItems.TONGS_STONE, ModulePyrotechConfig.GENERAL.STONE_TONGS_DURABILITY);
+    super(() -> ModuleBloomery.Items.TONGS_STONE, ModuleBloomeryConfig.TONGS.STONE_TONGS_DURABILITY);
   }
 }

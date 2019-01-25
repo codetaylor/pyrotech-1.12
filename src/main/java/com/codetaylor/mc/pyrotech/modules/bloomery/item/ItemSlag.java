@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
+package com.codetaylor.mc.pyrotech.modules.bloomery.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

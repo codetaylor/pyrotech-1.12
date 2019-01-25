@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.util;
+package com.codetaylor.mc.pyrotech.interaction.util;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;

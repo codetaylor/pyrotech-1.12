@@ -1,8 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.api;
+package com.codetaylor.mc.pyrotech.interaction.api;
 
 import com.codetaylor.mc.athenaeum.util.RenderHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
