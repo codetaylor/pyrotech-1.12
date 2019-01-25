@@ -466,6 +466,8 @@ public class TileGraniteAnvil
 
             if (isBloomRecipe) {
 
+              float extraProgress = tile.getRecipeProgress() - 1;
+
               // Spawn in the bloomery recipe output
               BloomeryRecipe bloomeryRecipe = ((GraniteAnvilRecipe.BloomAnvilRecipe) recipe).getBloomeryRecipe();
               StackHelper.spawnStackOnTop(world, bloomeryRecipe.getRandomOutput(), tile.getPos(), 0);
@@ -478,6 +480,10 @@ public class TileGraniteAnvil
               if (integrity > 0) {
                 item.setIntegrity(bloom, integrity);
                 stackHandler.insertItem(0, bloom, false);
+              }
+
+              if (extraProgress > 0) {
+                tile.setRecipeProgress(extraProgress);
               }
 
             } else {

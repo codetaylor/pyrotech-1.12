@@ -55,10 +55,12 @@ public class BloomProvider
       EntityPlayerSP player = Minecraft.getMinecraft().player;
       int hammerPower = (int) (BloomHelper.calculateHammerPower(tile.getPos(), player) * 100);
 
-      tooltip.add(Util.translateFormatted(
-          "gui." + ModulePyrotech.MOD_ID + ".waila.bloom.hammer.power",
-          hammerPower
-      ));
+      if (hammerPower > 0) {
+        tooltip.add(Util.translateFormatted(
+            "gui." + ModulePyrotech.MOD_ID + ".waila.bloom.hammer.power",
+            hammerPower
+        ));
+      }
     }
 
     return tooltip;

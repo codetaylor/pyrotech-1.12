@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech;
 
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
@@ -698,6 +699,19 @@ public class ModulePyrotechConfig {
     })
     @Config.RangeDouble(min = 0, max = 1)
     public double FIRE_SPAWN_CHANCE_RANDOM = 0.25;
+
+    @Config.Comment({
+        "A percentage modifier for hammer power per harvest level.",
+        "",
+        "The index into the array is the harvest level, the value at that index",
+        "is the hammer power modifier. The array can be expanded as needed.",
+        "If the harvest level of the tool used exceeds the array length, the",
+        "last element in the array is used.",
+        "",
+        "ie. {wood, stone, iron, diamond}",
+        "Default: {0.7, 0.85, 1.15, 1.3}"
+    })
+    public double[] HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL = {0.7, 0.85, 1.15, 1.3};
   }
 
   // ---------------------------------------------------------------------------
@@ -1040,12 +1054,12 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Use this to add items that you want to be valid for hammer recipes.",
-        "The reduction parameter supplied here is used to reduce the number",
-        "of hits required to complete a recipe. The reduction amount is subtracted",
-        "from the recipe's number of hits.",
+        "The harvest level is used for hammer hit reduction with anvil recipes",
+        "and for the bloom hammer power modifier.",
+        "",
         "Items you add are assumed to have durability.",
         "",
-        "String format is a resource location: (domain):(path);(hit_reduction)"
+        "String format is a resource location: (domain):(path);(harvest_level)"
     })
     public String[] HAMMER_LIST = new String[]{
         ModulePyrotech.MOD_ID + ":" + ItemCrudeHammer.NAME + ";" + 0,
@@ -1056,6 +1070,20 @@ public class ModulePyrotechConfig {
         ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME + ";" + 3
     };
 
+    @Config.Comment({
+        "These values are used to reduce the number of hits required to complete",
+        "a recipe.",
+        "",
+        "The index into the array is the harvest level, the value at that index",
+        "is the hit reduction. The array can be expanded as needed.",
+        "If the harvest level of the tool used exceeds the array length, the",
+        "last element in the array is used.",
+        "",
+        "ie. {wood, stone, iron, diamond}",
+        "Default: {0, 1, 2, 3}"
+    })
+    public int[] HIT_REDUCTION_PER_ANVIL_HARVEST_LEVEL = {0, 1, 2, 3};
+
     /**
      * Returns the hammer hit reduction for the given hammer resource location,
      * or -1 if the given hammer isn't in the list.
@@ -1064,6 +1092,24 @@ public class ModulePyrotechConfig {
      * @return the hammer hit reduction
      */
     public int getHammerHitReduction(ResourceLocation resourceLocation) {
+
+      int hammerHarvestLevel = this.getHammerHarvestLevel(resourceLocation);
+
+      if (hammerHarvestLevel > -1) {
+        return ArrayHelper.getOrLast(this.HIT_REDUCTION_PER_ANVIL_HARVEST_LEVEL, hammerHarvestLevel);
+      }
+
+      return -1;
+    }
+
+    /**
+     * Returns the hammer harvest level for the given hammer resource location,
+     * or -1 if the given hammer isn't in the list.
+     *
+     * @param resourceLocation the hammer
+     * @return the hammer hit reduction
+     */
+    public int getHammerHarvestLevel(ResourceLocation resourceLocation) {
 
       String resourceLocationString = resourceLocation.toString();
 

@@ -1,9 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.util;
 
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.util.DistanceHelper;
-import com.codetaylor.mc.athenaeum.util.RandomHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.athenaeum.util.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemTongsEmptyBase;
@@ -38,6 +36,13 @@ public class BloomHelper {
 
   public static double calculateHammerPower(BlockPos pos, EntityPlayer player) {
 
+    ItemStack heldItem = player.getHeldItemMainhand();
+    int hammerHarvestLevel = ModulePyrotechConfig.GRANITE_ANVIL.getHammerHarvestLevel(heldItem.getItem().getRegistryName());
+
+    if (hammerHarvestLevel == -1) {
+      return 0;
+    }
+
     double originX = pos.getX() + 0.5;
     double originY = pos.getY() + 0.25;
     double originZ = pos.getZ() + 0.5;
@@ -55,7 +60,9 @@ public class BloomHelper {
       result = 1;
     }
 
-    return result;
+    result *= ArrayHelper.getOrLast(ModulePyrotechConfig.BLOOM.HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL, hammerHarvestLevel);
+
+    return Math.max(0, result);
   }
 
   public static ItemStack createBloomAsItemStack(int maxIntegrity, @Nullable String recipeId, @Nullable String langKey) {
