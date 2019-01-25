@@ -9,11 +9,14 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -262,6 +265,33 @@ public final class ModuleItems {
           ItemMaterial.EnumType.values()
       );
     });
+  }
+
+  @SideOnly(Side.CLIENT)
+  public static void onClientInitialization() {
+
+    // -------------------------------------------------------------------------
+    // - Item Colors
+    // -------------------------------------------------------------------------
+
+    Minecraft minecraft = Minecraft.getMinecraft();
+    ItemColors itemColors = minecraft.getItemColors();
+
+    itemColors.registerItemColorHandler((stack, tintIndex) -> {
+
+      if (tintIndex == 1
+          && stack.getMetadata() == BlockRock.EnumType.SLAG.getMeta()) {
+
+        NBTTagCompound tagCompound = stack.getTagCompound();
+
+        if (tagCompound != null
+            && tagCompound.hasKey("color")) {
+          return tagCompound.getInteger("color");
+        }
+      }
+
+      return 0xFFFFFF;
+    }, ModuleItems.ROCK);
   }
 
   private ModuleItems() {

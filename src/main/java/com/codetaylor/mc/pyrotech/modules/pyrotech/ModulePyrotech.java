@@ -251,6 +251,7 @@ public class ModulePyrotech
     super.onClientInitializationEvent(event);
 
     ModuleBlocks.onClientInitialization();
+    ModuleItems.onClientInitialization();
   }
 
   @Override

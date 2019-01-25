@@ -46,6 +46,7 @@ public class BloomeryRecipe
   private final int bloomYieldMax;
   private final int slag;
   private final boolean bloomSlag;
+  private final int slagColor;
   private final ItemStack[] failureItems;
   private final String langKey;
 
@@ -59,6 +60,7 @@ public class BloomeryRecipe
       int bloomYieldMax,
       int slag,
       boolean bloomSlag,
+      int slagColor,
       ItemStack[] failureItems,
       @Nullable String langKey
   ) {
@@ -73,6 +75,7 @@ public class BloomeryRecipe
     this.bloomYieldMax = bloomYieldMax;
     this.slag = slag;
     this.bloomSlag = bloomSlag;
+    this.slagColor = slagColor;
 
     if (langKey != null) {
       this.langKey = langKey;
@@ -88,7 +91,7 @@ public class BloomeryRecipe
     );
 
     if (this.bloomSlag) {
-      ItemStack[] toAdd = {BloomHelper.createSlagItem(resourceLocation, this.langKey)};
+      ItemStack[] toAdd = {BloomHelper.createSlagItem(resourceLocation, this.langKey, this.slagColor)};
       this.failureItems = ArrayHelper.combine(failureItems, toAdd);
 
     } else {
@@ -130,6 +133,11 @@ public class BloomeryRecipe
   public boolean isBloomSlag() {
 
     return this.bloomSlag;
+  }
+
+  public int getSlagColor() {
+
+    return this.slagColor;
   }
 
   @Override

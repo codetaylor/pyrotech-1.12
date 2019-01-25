@@ -170,7 +170,8 @@ public class BlockPileSlag
           for (int i = 0; i < 8; i++) {
             ItemStack slagItem = BloomHelper.createSlagItem(
                 new ResourceLocation(tagCompound.getString("recipeId")),
-                tagCompound.getString("langKey")
+                tagCompound.getString("langKey"),
+                tagCompound.getInteger("color")
             );
             stackHandler.insertItem(i, slagItem, false);
           }

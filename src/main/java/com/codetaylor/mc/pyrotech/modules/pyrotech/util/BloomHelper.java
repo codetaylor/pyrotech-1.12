@@ -25,12 +25,13 @@ import java.util.Random;
 
 public class BloomHelper {
 
-  public static ItemStack createSlagItem(ResourceLocation recipeId, String langKey) {
+  public static ItemStack createSlagItem(ResourceLocation recipeId, String langKey, int color) {
 
     ItemStack itemStack = new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.SLAG.getMeta());
     NBTTagCompound itemTag = new NBTTagCompound();
     itemTag.setString("recipeId", recipeId.toString());
     itemTag.setString("langKey", langKey);
+    itemTag.setInteger("color", color);
     itemStack.setTagCompound(itemTag);
     return itemStack;
   }

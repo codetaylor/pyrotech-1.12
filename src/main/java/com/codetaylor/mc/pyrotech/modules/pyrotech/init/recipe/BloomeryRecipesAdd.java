@@ -18,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -40,6 +41,7 @@ public class BloomeryRecipesAdd {
         10,
         4 * 4,
         true,
+        new Color(Integer.decode("0xd8af93")).getRGB(),
         new ItemStack[]{
             new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
         },
@@ -57,6 +59,7 @@ public class BloomeryRecipesAdd {
         10,
         4 * 4,
         true,
+        new Color(Integer.decode("0xfcee4b")).getRGB(),
         new ItemStack[]{
             new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
         },
@@ -92,11 +95,16 @@ public class BloomeryRecipesAdd {
       NBTTagCompound tag = new NBTTagCompound();
       tag.setString("recipeId", bloomeryRecipe.getRegistryName().toString());
       tag.setString("langKey", bloomeryRecipe.getLangKey());
+      tag.setInteger("color", bloomeryRecipe.getSlagColor());
       slagPile.setTagCompound(tag);
 
       registryCompacting.register(new CompactingBinRecipe(
           slagPile.copy(),
-          IngredientHelper.fromStackWithNBT(BloomHelper.createSlagItem(bloomeryRecipe.getRegistryName(), bloomeryRecipe.getLangKey())),
+          IngredientHelper.fromStackWithNBT(BloomHelper.createSlagItem(
+              bloomeryRecipe.getRegistryName(),
+              bloomeryRecipe.getLangKey(),
+              bloomeryRecipe.getSlagColor()
+          )),
           8
       ).setRegistryName(bloomeryRecipe.getRegistryName()));
 
@@ -112,6 +120,7 @@ public class BloomeryRecipesAdd {
           5,
           2,
           false,
+          bloomeryRecipe.getSlagColor(),
           new ItemStack[]{
               new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
           },
