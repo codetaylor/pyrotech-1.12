@@ -682,14 +682,14 @@ public class ModulePyrotechConfig {
         "Default: " + 0.25
     })
     @Config.RangeDouble(min = 0, max = 1)
-    public double FIRE_SPAWN_CHANCE_ON_HIT_RAW = 0.25;
+    public double FIRE_SPAWN_CHANCE_ON_HIT_RAW = 0.1;
 
     @Config.Comment({
         "The chance that hitting a bloom in an anvil will spawn a nearby fire.",
         "Default: " + 0.125
     })
     @Config.RangeDouble(min = 0, max = 1)
-    public double FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL = 0.125;
+    public double FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL = 0.05;
 
     @Config.Comment({
         "The chance that a bloom will randomly spawn a nearby fire when the",
