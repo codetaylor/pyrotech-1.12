@@ -9,6 +9,7 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.spi.plugin.waila.BodyProviderAdapter;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.client.Minecraft;

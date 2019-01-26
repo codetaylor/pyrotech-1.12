@@ -9,6 +9,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.StoneMachineRecipeItemInFluidOutBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneItemInFluidOutBase;
+import com.codetaylor.mc.pyrotech.spi.plugin.waila.BodyProviderAdapter;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;

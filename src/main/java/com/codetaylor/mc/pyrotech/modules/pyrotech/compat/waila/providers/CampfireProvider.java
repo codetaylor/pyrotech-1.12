@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CampfireRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
+import com.codetaylor.mc.pyrotech.spi.plugin.waila.BodyProviderAdapter;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;

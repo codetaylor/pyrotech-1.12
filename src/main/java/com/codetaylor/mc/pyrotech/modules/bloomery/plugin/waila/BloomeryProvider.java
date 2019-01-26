@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
+package com.codetaylor.mc.pyrotech.modules.bloomery.plugin.waila;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
+import com.codetaylor.mc.pyrotech.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
