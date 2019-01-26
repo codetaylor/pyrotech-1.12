@@ -8,6 +8,7 @@ import com.codetaylor.mc.dropt.api.reference.EnumHarvesterType;
 import com.codetaylor.mc.dropt.api.reference.EnumListType;
 import com.codetaylor.mc.dropt.api.reference.EnumReplaceStrategy;
 import com.codetaylor.mc.pyrotech.ModPyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDroptConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockOre;
@@ -48,6 +49,12 @@ public class PluginDropt {
   private static String item(String modId, String name, int meta) {
 
     return itemString(modId, name, meta);
+  }
+
+  private static boolean enabled(String key) {
+
+    return ModulePluginDroptConfig.ENABLED_RULES.containsKey(key)
+        && ModulePluginDroptConfig.ENABLED_RULES.get(key);
   }
 
   @SubscribeEvent
@@ -106,512 +113,541 @@ public class PluginDropt {
     // - Tall Grass
     // -------------------------------------------------------------------------
 
-    list.add(rule()
-        .matchBlocks(new String[]{
-            tallGrassAny
-        })
-        .replaceStrategy(EnumReplaceStrategy.ADD)
-        .addDrops(new IDroptDropBuilder[]{
-            drop().selector(weight(80)),
-            drop().items(new String[]{plantFibers}, range(1, 2)).selector(weight(35)),
-            drop().items(new String[]{plantFibersDried}, range(1, 2)).selector(weight(5))
-        })
-    );
+    if (enabled("grass_tall")) {
+      list.add(rule()
+          .matchBlocks(new String[]{
+              tallGrassAny
+          })
+          .replaceStrategy(EnumReplaceStrategy.ADD)
+          .addDrops(new IDroptDropBuilder[]{
+              drop().selector(weight(80)),
+              drop().items(new String[]{plantFibers}, range(1, 2)).selector(weight(35)),
+              drop().items(new String[]{plantFibersDried}, range(1, 2)).selector(weight(5))
+          })
+      );
+    }
 
     // -------------------------------------------------------------------------
     // - Leaves
     // -------------------------------------------------------------------------
 
-    list.add(rule()
-        .matchBlocks(new String[]{
-            leaves,
-            leaves2
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-        )
-        .replaceStrategy(EnumReplaceStrategy.ADD)
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{stick}).selector(weight(1)),
-            drop().selector(weight(1))
-        })
-    );
+    if (enabled("leaves")) {
+      list.add(rule()
+          .matchBlocks(new String[]{
+              leaves,
+              leaves2
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+          )
+          .replaceStrategy(EnumReplaceStrategy.ADD)
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{stick}).selector(weight(1)),
+              drop().selector(weight(1))
+          })
+      );
 
-    list.add(rule()
-        .matchBlocks(new String[]{
-            leaves,
-            leaves2
-        })
-        .replaceStrategy(EnumReplaceStrategy.ADD)
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{stick}).selector(weight(1)),
-            drop().selector(weight(11))
-        })
-    );
+      list.add(rule()
+          .matchBlocks(new String[]{
+              leaves,
+              leaves2
+          })
+          .replaceStrategy(EnumReplaceStrategy.ADD)
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{stick}).selector(weight(1)),
+              drop().selector(weight(11))
+          })
+      );
+    }
 
     // -------------------------------------------------------------------------
     // - Dirt
     // -------------------------------------------------------------------------
 
-    // Not a shovel
-    // Drops dirt clumps
-    list.add(rule()
-        .matchBlocks(new String[]{
-            dirtAny
-        })
-        .matchHarvester(harvester()
-            .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockDirt}, range(1, 3))
-        })
-    );
+    if (enabled("dirt")) {
 
-    // Shovel 0
-    // Drops dirt clumps
-    list.add(rule()
-        .matchBlocks(new String[]{
-            dirtAny
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
-        )
-        .dropStrategy(EnumDropStrategy.UNIQUE)
-        .dropCount(range(1, 2))
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockDirt}, range(2, 4))
-        })
-    );
+      // Not a shovel
+      // Drops dirt clumps
+      list.add(rule()
+          .matchBlocks(new String[]{
+              dirtAny
+          })
+          .matchHarvester(harvester()
+              .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockDirt}, range(1, 3))
+          })
+      );
 
-    // Shovel 1
-    // Drops dirt clumps
-    list.add(rule()
-        .matchBlocks(new String[]{
-            dirtAny
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockDirt}, range(3, 6))
-        })
-    );
+      // Shovel 0
+      // Drops dirt clumps
+      list.add(rule()
+          .matchBlocks(new String[]{
+              dirtAny
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
+          )
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .dropCount(range(1, 2))
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockDirt}, range(2, 4))
+          })
+      );
+
+      // Shovel 1
+      // Drops dirt clumps
+      list.add(rule()
+          .matchBlocks(new String[]{
+              dirtAny
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockDirt}, range(3, 6))
+          })
+      );
+    }
 
     // -------------------------------------------------------------------------
     // - Grass
     // -------------------------------------------------------------------------
 
-    // Not a shovel
-    // Drops dirt clumps
-    list.add(rule()
-        .matchBlocks(new String[]{
-            grass
-        })
-        .matchHarvester(harvester()
-            .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockDirt}, range(1, 3))
-        })
-    );
+    if (enabled("grass")) {
 
-    // Shovel 0
-    // Drops dirt clumps and grass clumps
-    list.add(rule()
-        .matchBlocks(new String[]{
-            grass
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
-        )
-        .dropStrategy(EnumDropStrategy.UNIQUE)
-        .dropCount(range(1, 2))
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockDirt}, range(2, 4)).selector(weight(4)),
-            drop().items(new String[]{rockGrass}).selector(weight(1))
-        })
-    );
+      // Not a shovel
+      // Drops dirt clumps
+      list.add(rule()
+          .matchBlocks(new String[]{
+              grass
+          })
+          .matchHarvester(harvester()
+              .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockDirt}, range(1, 3))
+          })
+      );
 
-    // Shovel 1
-    // Drops dirt clumps and grass clumps
-    list.add(rule()
-        .matchBlocks(new String[]{
-            grass
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
-        )
-        .dropStrategy(EnumDropStrategy.UNIQUE)
-        .dropCount(range(2))
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(1)),
-            drop().items(new String[]{rockGrass}, range(1, 3)).selector(weight(2))
-        })
-    );
+      // Shovel 0
+      // Drops dirt clumps and grass clumps
+      list.add(rule()
+          .matchBlocks(new String[]{
+              grass
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
+          )
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .dropCount(range(1, 2))
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockDirt}, range(2, 4)).selector(weight(4)),
+              drop().items(new String[]{rockGrass}).selector(weight(1))
+          })
+      );
 
-    // Shovel Any
-    // Adds grass clumps to drops
-    list.add(rule()
-        .matchBlocks(new String[]{
-            grass
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand("shovel;-1;-1")
-        )
-        .replaceStrategy(EnumReplaceStrategy.ADD)
-        .dropCount(range(0, 1))
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockGrass}, range(1, 3))
-        })
-    );
+      // Shovel 1
+      // Drops dirt clumps and grass clumps
+      list.add(rule()
+          .matchBlocks(new String[]{
+              grass
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
+          )
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .dropCount(range(2))
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(1)),
+              drop().items(new String[]{rockGrass}, range(1, 3)).selector(weight(2))
+          })
+      );
+
+      // Shovel Any
+      // Adds grass clumps to drops
+      list.add(rule()
+          .matchBlocks(new String[]{
+              grass
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand("shovel;-1;-1")
+          )
+          .replaceStrategy(EnumReplaceStrategy.ADD)
+          .dropCount(range(0, 1))
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockGrass}, range(1, 3))
+          })
+      );
+    }
 
     // -------------------------------------------------------------------------
     // - Sand
     // -------------------------------------------------------------------------
 
-    // Not a shovel
-    list.add(rule()
-        .matchBlocks(new String[]{
-            sand
-        })
-        .matchHarvester(harvester()
-            .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockSand}, range(1, 3))
-        })
-    );
+    if (enabled("sand")) {
 
-    // Shovel 0
-    list.add(rule()
-        .matchBlocks(new String[]{
-            sand
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockSand}, range(2, 4))
-        })
-    );
+      // Not a shovel
+      list.add(rule()
+          .matchBlocks(new String[]{
+              sand
+          })
+          .matchHarvester(harvester()
+              .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockSand}, range(1, 3))
+          })
+      );
 
-    // Shovel 1
-    list.add(rule()
-        .matchBlocks(new String[]{
-            sand
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockSand}, range(3, 6))
-        })
-    );
+      // Shovel 0
+      list.add(rule()
+          .matchBlocks(new String[]{
+              sand
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockSand}, range(2, 4))
+          })
+      );
+
+      // Shovel 1
+      list.add(rule()
+          .matchBlocks(new String[]{
+              sand
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockSand}, range(3, 6))
+          })
+      );
+    }
 
     // -------------------------------------------------------------------------
     // - Red Sand
     // -------------------------------------------------------------------------
 
-    // Not a shovel
-    list.add(rule()
-        .matchBlocks(new String[]{
-            sandRed
-        })
-        .matchHarvester(harvester()
-            .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockSandRed}, range(1, 3))
-        })
-    );
+    if (enabled("sand_red")) {
 
-    // Shovel 0
-    list.add(rule()
-        .matchBlocks(new String[]{
-            sandRed
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockSandRed}, range(2, 4))
-        })
-    );
+      // Not a shovel
+      list.add(rule()
+          .matchBlocks(new String[]{
+              sandRed
+          })
+          .matchHarvester(harvester()
+              .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockSandRed}, range(1, 3))
+          })
+      );
 
-    // Shovel 1
-    list.add(rule()
-        .matchBlocks(new String[]{
-            sandRed
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockSandRed}, range(3, 6))
-        })
-    );
+      // Shovel 0
+      list.add(rule()
+          .matchBlocks(new String[]{
+              sandRed
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockSandRed}, range(2, 4))
+          })
+      );
+
+      // Shovel 1
+      list.add(rule()
+          .matchBlocks(new String[]{
+              sandRed
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockSandRed}, range(3, 6))
+          })
+      );
+    }
 
     // -------------------------------------------------------------------------
     // - Gravel
     // -------------------------------------------------------------------------
 
-    // Not a shovel
-    list.add(rule()
-        .matchBlocks(new String[]{
-            gravel
-        })
-        .matchHarvester(harvester()
-            .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(1, 3)).selector(weight(10)),
-            drop().items(new String[]{rockGranite}, range(1, 3)).selector(weight(10)),
-            drop().items(new String[]{rockDiorite}, range(1, 3)).selector(weight(10)),
-            drop().items(new String[]{rockAndesite}, range(1, 3)).selector(weight(10))
-        })
-    );
+    if (enabled("gravel")) {
 
-    // Shovel 0
-    list.add(rule()
-        .matchBlocks(new String[]{
-            gravel
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(2)),
-            drop().items(new String[]{rockGranite}, range(2, 4)).selector(weight(2)),
-            drop().items(new String[]{rockDiorite}, range(2, 4)).selector(weight(2)),
-            drop().items(new String[]{rockAndesite}, range(2, 4)).selector(weight(2)),
-            drop().items(new String[]{flintShard}).selector(weight(1))
-        })
-    );
+      // Not a shovel
+      list.add(rule()
+          .matchBlocks(new String[]{
+              gravel
+          })
+          .matchHarvester(harvester()
+              .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockStone}, range(1, 3)).selector(weight(10)),
+              drop().items(new String[]{rockGranite}, range(1, 3)).selector(weight(10)),
+              drop().items(new String[]{rockDiorite}, range(1, 3)).selector(weight(10)),
+              drop().items(new String[]{rockAndesite}, range(1, 3)).selector(weight(10))
+          })
+      );
 
-    // Shovel 1
-    list.add(rule()
-        .matchBlocks(new String[]{
-            gravel
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(3, 6)).selector(weight(1)),
-            drop().items(new String[]{rockGranite}, range(3, 6)).selector(weight(2)),
-            drop().items(new String[]{rockDiorite}, range(3, 6)).selector(weight(2)),
-            drop().items(new String[]{rockAndesite}, range(3, 6)).selector(weight(2)),
-            drop().items(new String[]{flintShard}).selector(weight(2)),
-            drop().items(new String[]{flint}).selector(weight(1))
-        })
-    );
+      // Shovel 0
+      list.add(rule()
+          .matchBlocks(new String[]{
+              gravel
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(2)),
+              drop().items(new String[]{rockGranite}, range(2, 4)).selector(weight(2)),
+              drop().items(new String[]{rockDiorite}, range(2, 4)).selector(weight(2)),
+              drop().items(new String[]{rockAndesite}, range(2, 4)).selector(weight(2)),
+              drop().items(new String[]{flintShard}).selector(weight(1))
+          })
+      );
+
+      // Shovel 1
+      list.add(rule()
+          .matchBlocks(new String[]{
+              gravel
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockStone}, range(3, 6)).selector(weight(1)),
+              drop().items(new String[]{rockGranite}, range(3, 6)).selector(weight(2)),
+              drop().items(new String[]{rockDiorite}, range(3, 6)).selector(weight(2)),
+              drop().items(new String[]{rockAndesite}, range(3, 6)).selector(weight(2)),
+              drop().items(new String[]{flintShard}).selector(weight(2)),
+              drop().items(new String[]{flint}).selector(weight(1))
+          })
+      );
+    }
 
     // -------------------------------------------------------------------------
     // - Clay
     // -------------------------------------------------------------------------
 
-    // Not a shovel
-    list.add(rule()
-        .matchBlocks(new String[]{
-            clay
-        })
-        .matchHarvester(harvester()
-            .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{clayLump}, range(1, 3))
-        })
-    );
+    if (enabled("clay")) {
 
-    // Shovel 0
-    list.add(rule()
-        .matchBlocks(new String[]{
-            clay
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
-        )
-        .dropCount(range(2))
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{clayLump}, range(1, 2)).selector(weight(90)),
-            drop().items(new String[]{clayBall}, range(1, 2)).selector(weight(10))
-        })
-    );
+      // Not a shovel
+      list.add(rule()
+          .matchBlocks(new String[]{
+              clay
+          })
+          .matchHarvester(harvester()
+              .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{clayLump}, range(1, 3))
+          })
+      );
 
-    // Shovel 1
-    list.add(rule()
-        .matchBlocks(new String[]{
-            clay
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
-        )
-        .dropStrategy(EnumDropStrategy.UNIQUE)
-        .dropCount(range(2))
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{clayLump}, range(1, 4)).selector(weight(40)),
-            drop().items(new String[]{clayBall}, range(1, 2)).selector(weight(30)),
-            drop().items(new String[]{clayBall}, range(1, 2)).selector(weight(30))
-        })
-    );
+      // Shovel 0
+      list.add(rule()
+          .matchBlocks(new String[]{
+              clay
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
+          )
+          .dropCount(range(2))
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{clayLump}, range(1, 2)).selector(weight(90)),
+              drop().items(new String[]{clayBall}, range(1, 2)).selector(weight(10))
+          })
+      );
+
+      // Shovel 1
+      list.add(rule()
+          .matchBlocks(new String[]{
+              clay
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
+          )
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .dropCount(range(2))
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{clayLump}, range(1, 4)).selector(weight(40)),
+              drop().items(new String[]{clayBall}, range(1, 2)).selector(weight(30)),
+              drop().items(new String[]{clayBall}, range(1, 2)).selector(weight(30))
+          })
+      );
+    }
 
     // -------------------------------------------------------------------------
     // - Coal
     // -------------------------------------------------------------------------
 
-    // Non-Player
-    list.add(rule()
-        .matchBlocks(new String[]{
-            coalOre
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.NON_PLAYER)
-        )
-        .dropCount(range(2))
-        .dropStrategy(EnumDropStrategy.UNIQUE)
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
-            drop().items(new String[]{coalPieces}, range(1, 2)).selector(weight(1))
-        })
-    );
+    if (enabled("ore_coal")) {
 
-    // Crude Pickaxe
-    list.add(rule()
-        .matchBlocks(new String[]{
-            coalOre
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{
-                item(ItemCrudePickaxe.NAME, OreDictionary.WILDCARD_VALUE)
-            })
-        )
-        .dropCount(range(2))
-        .dropStrategy(EnumDropStrategy.UNIQUE)
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
-            drop().items(new String[]{coalPieces}, range(1, 2)).selector(weight(1))
-        })
-    );
+      // Non-Player
+      list.add(rule()
+          .matchBlocks(new String[]{
+              coalOre
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.NON_PLAYER)
+          )
+          .dropCount(range(2))
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
+              drop().items(new String[]{coalPieces}, range(1, 2)).selector(weight(1))
+          })
+      );
 
-    // Flint / Bone / Stone Pickaxe
-    list.add(rule()
-        .matchBlocks(new String[]{
-            coalOre
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "pickaxe;2;-1")
-        )
-        .dropCount(range(2))
-        .dropStrategy(EnumDropStrategy.UNIQUE)
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(1, 2)).selector(weight(8)),
-            drop().items(new String[]{coalPieces}, range(2, 4)).selector(weight(8))
-        })
-    );
+      // Crude Pickaxe
+      list.add(rule()
+          .matchBlocks(new String[]{
+              coalOre
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(new String[]{
+                  item(ItemCrudePickaxe.NAME, OreDictionary.WILDCARD_VALUE)
+              })
+          )
+          .dropCount(range(2))
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
+              drop().items(new String[]{coalPieces}, range(1, 2)).selector(weight(1))
+          })
+      );
 
-    // Iron Pickaxe
-    list.add(rule()
-        .matchBlocks(new String[]{
-            coalOre
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "pickaxe;3;-1")
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{coalPieces}, range(4, 8, 4)).selector(weight(3)),
-            drop().items(new String[]{coal}, range(1, 1)).selector(weight(1, 1))
-        })
-    );
+      // Flint / Bone / Stone Pickaxe
+      list.add(rule()
+          .matchBlocks(new String[]{
+              coalOre
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "pickaxe;2;-1")
+          )
+          .dropCount(range(2))
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockStone}, range(1, 2)).selector(weight(8)),
+              drop().items(new String[]{coalPieces}, range(2, 4)).selector(weight(8))
+          })
+      );
+
+      // Iron Pickaxe
+      list.add(rule()
+          .matchBlocks(new String[]{
+              coalOre
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "pickaxe;3;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{coalPieces}, range(4, 8, 4)).selector(weight(3)),
+              drop().items(new String[]{coal}, range(1, 1)).selector(weight(1, 1))
+          })
+      );
+    }
 
     // -------------------------------------------------------------------------
     // - Fossil Ore
     // -------------------------------------------------------------------------
 
-    // Non-Player
-    list.add(rule()
-        .matchBlocks(new String[]{
-            fossilOre
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.NON_PLAYER)
-        )
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
-            drop().items(new String[]{boneShard}, range(1, 2)).selector(weight(1))
-        })
-    );
+    if (enabled("ore_fossil")) {
 
-    // Crude Pickaxe
-    // Drops rocks
-    list.add(rule()
-        .matchBlocks(new String[]{
-            fossilOre
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(new String[]{
-                item(ItemCrudePickaxe.NAME, OreDictionary.WILDCARD_VALUE)
-            })
-        )
-        .dropStrategy(EnumDropStrategy.UNIQUE)
-        .dropCount(range(2))
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
-            drop().items(new String[]{boneShard}, range(1)).selector(weight(1))
-        })
-    );
+      // Non-Player
+      list.add(rule()
+          .matchBlocks(new String[]{
+              fossilOre
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.NON_PLAYER)
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
+              drop().items(new String[]{boneShard}, range(1, 2)).selector(weight(1))
+          })
+      );
 
-    // Flint / Bone / Stone Pickaxe
-    // Drops rocks
-    list.add(rule()
-        .matchBlocks(new String[]{
-            fossilOre
-        })
-        .matchHarvester(harvester()
-            .type(EnumHarvesterType.PLAYER)
-            .mainHand(EnumListType.BLACKLIST, "pickaxe;2;-1")
-        )
-        .dropStrategy(EnumDropStrategy.UNIQUE)
-        .dropCount(range(2))
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(6)),
-            drop().items(new String[]{boneMeal}, range(1)).selector(weight(1)),
-            drop().items(new String[]{boneShard}, range(2, 3)).selector(weight(2))
-        })
-    );
+      // Crude Pickaxe
+      // Drops rocks
+      list.add(rule()
+          .matchBlocks(new String[]{
+              fossilOre
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(new String[]{
+                  item(ItemCrudePickaxe.NAME, OreDictionary.WILDCARD_VALUE)
+              })
+          )
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .dropCount(range(2))
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(8)),
+              drop().items(new String[]{boneShard}, range(1)).selector(weight(1))
+          })
+      );
 
-    // Tier 2+
-    list.add(rule()
-        .matchBlocks(new String[]{
-            fossilOre
-        })
-        .replaceStrategy(EnumReplaceStrategy.ADD)
-        .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{cobblestone, rockStone}, range(3, 6)).selector(weight(4)),
-            drop().items(new String[]{boneShard}, range(2, 4)).selector(weight(5))
-        })
-    );
+      // Flint / Bone / Stone Pickaxe
+      // Drops rocks
+      list.add(rule()
+          .matchBlocks(new String[]{
+              fossilOre
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "pickaxe;2;-1")
+          )
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .dropCount(range(2))
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(6)),
+              drop().items(new String[]{boneMeal}, range(1)).selector(weight(1)),
+              drop().items(new String[]{boneShard}, range(2, 3)).selector(weight(2))
+          })
+      );
+
+      // Tier 2+
+      list.add(rule()
+          .matchBlocks(new String[]{
+              fossilOre
+          })
+          .replaceStrategy(EnumReplaceStrategy.ADD)
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{cobblestone, rockStone}, range(3, 6)).selector(weight(4)),
+              drop().items(new String[]{boneShard}, range(2, 4)).selector(weight(5))
+          })
+      );
+    }
 
     // -------------------------------------------------------------------------
     // - Sandstone
     // -------------------------------------------------------------------------
-    {
+
+    if (enabled("sandstone")) {
       String matchBlock = item("minecraft", "sandstone", OreDictionary.WILDCARD_VALUE);
       String rock = item(BlockRock.NAME, BlockRock.EnumType.SANDSTONE.getMeta());
       this.addRockDrops(matchBlock, rock, list);
@@ -620,12 +656,14 @@ public class PluginDropt {
     // -------------------------------------------------------------------------
     // - Limestone
     // -------------------------------------------------------------------------
-    {
+
+    if (enabled("limestone")) {
       String matchBlock = item("pyrotech", "limestone");
       String rock = item(BlockRock.NAME, BlockRock.EnumType.LIMESTONE.getMeta());
       this.addRockDrops(matchBlock, rock, list);
     }
-    {
+
+    if (enabled("limestone_cobbled")) {
       String rock = item(BlockRock.NAME, BlockRock.EnumType.LIMESTONE.getMeta());
       this.addRockDrops(cobbledLimestone, rock, cobbledLimestone, list);
       this.addBlockReplace(cobbledLimestone, cobbledLimestone, list);
@@ -634,12 +672,14 @@ public class PluginDropt {
     // -------------------------------------------------------------------------
     // - Stone / Cobblestone
     // -------------------------------------------------------------------------
-    {
+
+    if (enabled("stone")) {
       String matchBlock = item("minecraft", "stone", BlockStone.EnumType.STONE.getMetadata());
       String rock = item(BlockRock.NAME, BlockRock.EnumType.STONE.getMeta());
       this.addRockDrops(matchBlock, rock, list);
     }
-    {
+
+    if (enabled("cobblestone")) {
       String matchBlock = item("minecraft", "cobblestone");
       String rock = item(BlockRock.NAME, BlockRock.EnumType.STONE.getMeta());
       this.addRockDrops(matchBlock, rock, list);
@@ -648,21 +688,24 @@ public class PluginDropt {
     // -------------------------------------------------------------------------
     // - Diorite
     // -------------------------------------------------------------------------
-    {
+
+    if (enabled("diorite")) {
       String matchBlock = item("minecraft", "stone", BlockStone.EnumType.DIORITE.getMetadata());
       String rock = item(BlockRock.NAME, BlockRock.EnumType.DIORITE.getMeta());
       String replaceBlock = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.DIORITE.getMeta());
       this.addRockDrops(matchBlock, rock, replaceBlock, list);
       this.addBlockReplace(matchBlock, replaceBlock, list);
     }
-    {
+
+    if (enabled("diorite_smooth")) {
       String matchBlock = item("minecraft", "stone", BlockStone.EnumType.DIORITE_SMOOTH.getMetadata());
       String rock = item(BlockRock.NAME, BlockRock.EnumType.DIORITE.getMeta());
       String replaceBlock = item("minecraft", "stone", BlockStone.EnumType.DIORITE.getMetadata());
       this.addRockDrops(matchBlock, rock, replaceBlock, list);
       this.addBlockReplace(matchBlock, replaceBlock, list);
     }
-    {
+
+    if (enabled("diorite_cobbled")) {
       String rock = item(BlockRock.NAME, BlockRock.EnumType.DIORITE.getMeta());
       this.addRockDrops(cobbledDiorite, rock, cobbledDiorite, list);
       this.addBlockReplace(cobbledDiorite, cobbledDiorite, list);
@@ -671,21 +714,24 @@ public class PluginDropt {
     // -------------------------------------------------------------------------
     // - Andesite
     // -------------------------------------------------------------------------
-    {
+
+    if (enabled("andesite")) {
       String matchBlock = item("minecraft", "stone", BlockStone.EnumType.ANDESITE.getMetadata());
       String rock = item(BlockRock.NAME, BlockRock.EnumType.ANDESITE.getMeta());
       String replaceBlock = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.ANDESITE.getMeta());
       this.addRockDrops(matchBlock, rock, replaceBlock, list);
       this.addBlockReplace(matchBlock, replaceBlock, list);
     }
-    {
+
+    if (enabled("andesite_smooth")) {
       String matchBlock = item("minecraft", "stone", BlockStone.EnumType.ANDESITE_SMOOTH.getMetadata());
       String rock = item(BlockRock.NAME, BlockRock.EnumType.ANDESITE.getMeta());
       String replaceBlock = item("minecraft", "stone", BlockStone.EnumType.ANDESITE.getMetadata());
       this.addRockDrops(matchBlock, rock, replaceBlock, list);
       this.addBlockReplace(matchBlock, replaceBlock, list);
     }
-    {
+
+    if (enabled("andesite_cobbled")) {
       String rock = item(BlockRock.NAME, BlockRock.EnumType.ANDESITE.getMeta());
       this.addRockDrops(cobbledAndesite, rock, cobbledAndesite, list);
       this.addBlockReplace(cobbledAndesite, cobbledAndesite, list);
@@ -694,21 +740,24 @@ public class PluginDropt {
     // -------------------------------------------------------------------------
     // - Granite
     // -------------------------------------------------------------------------
-    {
+
+    if (enabled("granite")) {
       String matchBlock = item("minecraft", "stone", BlockStone.EnumType.GRANITE.getMetadata());
       String rock = item(BlockRock.NAME, BlockRock.EnumType.GRANITE.getMeta());
       String replaceBlock = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.GRANITE.getMeta());
       this.addRockDrops(matchBlock, rock, replaceBlock, list);
       this.addBlockReplace(matchBlock, replaceBlock, list);
     }
-    {
+
+    if (enabled("granite_smooth")) {
       String matchBlock = item("minecraft", "stone", BlockStone.EnumType.GRANITE_SMOOTH.getMetadata());
       String rock = item(BlockRock.NAME, BlockRock.EnumType.GRANITE.getMeta());
       String replaceBlock = item("minecraft", "stone", BlockStone.EnumType.GRANITE.getMetadata());
       this.addRockDrops(matchBlock, rock, replaceBlock, list);
       this.addBlockReplace(matchBlock, replaceBlock, list);
     }
-    {
+
+    if (enabled("granite_cobbled")) {
       String rock = item(BlockRock.NAME, BlockRock.EnumType.GRANITE.getMeta());
       this.addRockDrops(cobbledGranite, rock, cobbledGranite, list);
       this.addBlockReplace(cobbledGranite, cobbledGranite, list);

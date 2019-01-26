@@ -23,7 +23,7 @@ public class ModulePluginDropt
 
     this.registerIntegrationPlugin(
         "dropt",
-        "com.codetaylor.mc.pyrotech.modules.dropt.plugin.dropt.PluginDropt"
+        "com.codetaylor.mc.pyrotech.modules.plugin.dropt.plugin.dropt.PluginDropt"
     );
   }
 }
