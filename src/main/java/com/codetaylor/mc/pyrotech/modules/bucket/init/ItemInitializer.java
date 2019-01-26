@@ -3,10 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.bucket.init;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucketConfig;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketBase;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketClay;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketStone;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketWood;
+import com.codetaylor.mc.pyrotech.modules.bucket.item.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -16,6 +13,7 @@ public final class ItemInitializer {
   public static final ItemBucketWood BUCKET_WOOD = new ItemBucketWood();
   public static final ItemBucketClay BUCKET_CLAY = new ItemBucketClay();
   public static final ItemBucketStone BUCKET_STONE = new ItemBucketStone();
+  public static final ItemBucketClayUnfired BUCKET_CLAY_UNFIRED = new ItemBucketClayUnfired();
 
   public static void onRegister(Registry registry) {
 
@@ -25,6 +23,7 @@ public final class ItemInitializer {
 
     if (ModuleBucketConfig.BUCKET_CLAY.ENABLED) {
       registry.registerItem(ItemInitializer.BUCKET_CLAY, ItemBucketClay.NAME);
+      registry.registerItem(ItemInitializer.BUCKET_CLAY_UNFIRED, ItemBucketClayUnfired.NAME);
     }
 
     if (ModuleBucketConfig.BUCKET_STONE.ENABLED) {
@@ -47,7 +46,10 @@ public final class ItemInitializer {
       }
 
       if (ModuleBucketConfig.BUCKET_CLAY.ENABLED) {
-        ModelRegistrationHelper.registerItemModels(ItemInitializer.BUCKET_CLAY);
+        ModelRegistrationHelper.registerItemModels(
+            ItemInitializer.BUCKET_CLAY,
+            ItemInitializer.BUCKET_CLAY_UNFIRED
+        );
         ModelRegistrationHelper.registerItemModel(
             ItemInitializer.BUCKET_CLAY,
             ItemBucketBase.EnumType.MILK.getMeta(),
