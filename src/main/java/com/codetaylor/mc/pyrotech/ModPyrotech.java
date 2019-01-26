@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech;
 
+import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.module.ModuleManager;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
@@ -12,6 +13,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Mod(
     modid = ModPyrotech.MOD_ID,
@@ -40,6 +44,8 @@ public class ModPyrotech {
 
   private final ModuleManager moduleManager;
 
+  private Set<Class<? extends ModuleBase>> registeredModules = new HashSet<>();
+
   public ModPyrotech() {
 
     this.moduleManager = new ModuleManager(MOD_ID);
@@ -55,29 +61,40 @@ public class ModPyrotech {
     // --- MODULES ---
 
     if (ModPyrotechConfig.MODULES.get(ModuleBloomery.MODULE_ID)) {
-      this.moduleManager.registerModules(ModuleBloomery.class);
+      this.registerModule(ModuleBloomery.class);
     }
 
     if (ModPyrotechConfig.MODULES.get(ModuleBucket.MODULE_ID)) {
-      this.moduleManager.registerModules(ModuleBucket.class);
+      this.registerModule(ModuleBucket.class);
     }
 
     if (ModPyrotechConfig.MODULES.get(ModuleStorage.MODULE_ID)) {
-      this.moduleManager.registerModules(ModuleStorage.class);
+      this.registerModule(ModuleStorage.class);
     }
 
     if (ModPyrotechConfig.MODULES.get(ModuleWorldGen.MODULE_ID)) {
-      this.moduleManager.registerModules(ModuleWorldGen.class);
+      this.registerModule(ModuleWorldGen.class);
     }
 
     // --- PLUGINS ---
 
     if (ModPyrotechConfig.MODULES.get(ModulePluginDropt.MODULE_ID)) {
-      this.moduleManager.registerModules(ModulePluginDropt.class);
+      this.registerModule(ModulePluginDropt.class);
     }
 
     this.moduleManager.onConstructionEvent();
     this.moduleManager.routeFMLStateEvent(event);
+  }
+
+  private void registerModule(Class<? extends ModuleBase> moduleClass) {
+
+    this.moduleManager.registerModules(moduleClass);
+    this.registeredModules.add(moduleClass);
+  }
+
+  public boolean isModuleEnabled(Class<? extends ModuleBase> moduleClass) {
+
+    return this.registeredModules.contains(moduleClass);
   }
 
   @Mod.EventHandler
