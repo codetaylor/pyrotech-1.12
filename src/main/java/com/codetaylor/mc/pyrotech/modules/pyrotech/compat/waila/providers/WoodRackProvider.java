@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWoodRack;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.TileWoodRack;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;

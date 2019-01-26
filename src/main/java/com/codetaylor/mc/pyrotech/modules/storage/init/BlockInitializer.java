@@ -2,15 +2,15 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
-import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TilePileSlag;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
+import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
-import com.codetaylor.mc.pyrotech.modules.storage.block.BlockWoodRack;
+import com.codetaylor.mc.pyrotech.modules.storage.block.*;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.*;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
@@ -55,6 +55,12 @@ public final class ModuleBlocks {
   public static final BlockWorktable WORKTABLE = new BlockWorktable();
   public static final BlockWorktableStone WORKTABLE_STONE = new BlockWorktableStone();
   public static final BlockTorchFiber TORCH_FIBER = new BlockTorchFiber();
+  public static final BlockShelf SHELF = new BlockShelf();
+  public static final BlockShelfStone SHELF_STONE = new BlockShelfStone();
+  public static final BlockStash STASH = new BlockStash();
+  public static final BlockStashStone STASH_STONE = new BlockStashStone();
+  public static final BlockCrate CRATE = new BlockCrate();
+  public static final BlockCrateStone CRATE_STONE = new BlockCrateStone();
   public static final BlockFarmlandMulched FARMLAND_MULCHED = new BlockFarmlandMulched();
   public static final BlockCompactingBin COMPACTING_BIN = new BlockCompactingBin();
   public static final BlockSoakingPot SOAKING_POT = new BlockSoakingPot();
@@ -93,6 +99,12 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.WORKTABLE, BlockWorktable.NAME);
     registry.registerBlockWithItem(ModuleBlocks.WORKTABLE_STONE, BlockWorktableStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.TORCH_FIBER, BlockTorchFiber.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.SHELF, BlockShelf.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.SHELF_STONE, BlockShelfStone.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.STASH, BlockStash.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.STASH_STONE, BlockStashStone.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.CRATE, BlockCrate.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.CRATE_STONE, BlockCrateStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.FARMLAND_MULCHED, BlockFarmlandMulched.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COMPACTING_BIN, BlockCompactingBin.NAME);
     registry.registerBlockWithItem(ModuleBlocks.SOAKING_POT, BlockSoakingPot.NAME);
@@ -161,6 +173,12 @@ public final class ModuleBlocks {
           ModuleBlocks.WORKTABLE,
           ModuleBlocks.WORKTABLE_STONE,
           ModuleBlocks.TORCH_FIBER,
+          ModuleBlocks.SHELF,
+          ModuleBlocks.SHELF_STONE,
+          ModuleBlocks.STASH,
+          ModuleBlocks.STASH_STONE,
+          ModuleBlocks.CRATE,
+          ModuleBlocks.CRATE_STONE,
           ModuleBlocks.FARMLAND_MULCHED,
           ModuleBlocks.COMPACTING_BIN,
           ModuleBlocks.SOAKING_POT,

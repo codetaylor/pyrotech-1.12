@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.module.ModuleManager;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -49,9 +50,11 @@ public class ModPyrotech {
     );
 
     if (ModPyrotechConfig.MODULES.get("bloomery")) {
-      this.moduleManager.registerModules(
-          ModuleBloomery.class
-      );
+      this.moduleManager.registerModules(ModuleBloomery.class);
+    }
+
+    if (ModPyrotechConfig.MODULES.get("storage")) {
+      this.moduleManager.registerModules(ModuleStorage.class);
     }
 
     this.moduleManager.onConstructionEvent();

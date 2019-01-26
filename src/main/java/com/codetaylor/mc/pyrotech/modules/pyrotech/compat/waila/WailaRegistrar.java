@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileDryingRackBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTarTankBase;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.TileWoodRack;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
 public class WailaRegistrar {
@@ -59,11 +60,6 @@ public class WailaRegistrar {
 
     WorktableProvider worktableProvider = new WorktableProvider();
     registrar.registerBodyProvider(worktableProvider, TileWorktable.class);
-
-    StorageItemStackProvider storageItemStackProvider = new StorageItemStackProvider();
-    registrar.registerBodyProvider(storageItemStackProvider, TileShelf.class);
-    registrar.registerBodyProvider(storageItemStackProvider, TileCrate.class);
-    registrar.registerBodyProvider(storageItemStackProvider, TileStash.class);
 
     CompactingBinProvider compactingBinProvider = new CompactingBinProvider();
     registrar.registerBodyProvider(compactingBinProvider, TileCompactingBin.class);

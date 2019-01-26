@@ -1,17 +1,17 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
+package com.codetaylor.mc.pyrotech.modules.storage.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockStash;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -19,24 +19,26 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
 
-public class TileStash
+public class TileShelf
     extends TileNetBase
     implements ITileInteractable {
 
   private StackHandler stackHandler;
 
   private IInteraction[] interactions;
-  private AxisAlignedBB renderBounds;
 
-  public TileStash() {
+  public TileShelf() {
 
-    super(ModulePyrotech.TILE_DATA_SERVICE);
+    super(ModuleStorage.TILE_DATA_SERVICE);
+
+    // --- Initialize ---
 
     this.stackHandler = new StackHandler(this.getMaxStacks());
     this.stackHandler.addObserver((handler, slot) -> this.markDirty());
@@ -49,79 +51,58 @@ public class TileStash
 
     // --- Interactions ---
 
-    this.interactions = new IInteraction[]{
-        new Interaction(new ItemStackHandler[]{this.stackHandler})
-    };
-  }
+    this.interactions = new IInteraction[12];
 
-  @Override
-  public boolean shouldRefresh(
-      World world,
-      BlockPos pos,
-      @Nonnull IBlockState oldState,
-      @Nonnull IBlockState newState
-  ) {
+    List<IInteraction> interactionList = new ArrayList<>();
 
-    if (oldState.getBlock() == newState.getBlock()) {
-      return false;
+    for (int i = 0; i < 9; i++) {
+      int x = i % 3;
+      int y = i / 3;
+      interactionList.add(new ShelfInteraction(this.stackHandler, i, x, y));
     }
 
-    return super.shouldRefresh(world, pos, oldState, newState);
+    this.interactions = interactionList.toArray(new IInteraction[0]);
   }
 
   // ---------------------------------------------------------------------------
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  public ItemStackHandler getStackHandler() {
-
-    return this.stackHandler;
-  }
-
   protected int getMaxStacks() {
 
-    return ModulePyrotechConfig.STASH.MAX_STACKS;
+    return ModuleStorageConfig.SHELF.MAX_STACKS;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Container
+  // ---------------------------------------------------------------------------
+
+  public void dropContents() {
+
+    StackHelper.spawnStackHandlerContentsOnTop(this.world, this.stackHandler, this.pos);
   }
 
   // ---------------------------------------------------------------------------
   // - Serialization
   // ---------------------------------------------------------------------------
 
+  @Override
+  public void readFromNBT(NBTTagCompound compound) {
+
+    super.readFromNBT(compound);
+
+    this.stackHandler.deserializeNBT(compound.getCompoundTag("shelfStackHandler"));
+  }
+
   @Nonnull
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    compound.setTag("stackHandler", this.stackHandler.serializeNBT());
+
+    compound.setTag("shelfStackHandler", this.stackHandler.serializeNBT());
+
     return compound;
-  }
-
-  @Override
-  public void readFromNBT(NBTTagCompound compound) {
-
-    super.readFromNBT(compound);
-    this.stackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));
-  }
-
-  // ---------------------------------------------------------------------------
-  // - Rendering
-  // ---------------------------------------------------------------------------
-
-  @Nonnull
-  @Override
-  public AxisAlignedBB getRenderBoundingBox() {
-
-    if (this.renderBounds == null) {
-      this.renderBounds = new AxisAlignedBB(this.getPos()).expand(0, 0.5, 0);
-    }
-
-    return this.renderBounds;
-  }
-
-  @Override
-  public boolean shouldRenderInPass(int pass) {
-
-    return (pass == 0) || (pass == 1);
   }
 
   // ---------------------------------------------------------------------------
@@ -129,9 +110,9 @@ public class TileStash
   // ---------------------------------------------------------------------------
 
   @Override
-  public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
+  public boolean shouldRenderInPass(int pass) {
 
-    return blockState.getValue(Properties.FACING_HORIZONTAL);
+    return (pass == 0) || (pass == 1);
   }
 
   @Override
@@ -140,34 +121,36 @@ public class TileStash
     return this.interactions;
   }
 
-  private class Interaction
-      extends InteractionItemStack<TileStash> {
+  @Override
+  public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
 
-    /* package */ Interaction(ItemStackHandler[] stackHandlers) {
+    return blockState.getValue(Properties.FACING_HORIZONTAL);
+  }
 
-      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, BlockStash.AABB, new Transform(
-          Transform.translate(0.5, 7.0 / 16.0, 0.5),
-          Transform.rotate(),
-          Transform.scale(0.75, 0.75, 0.75)
-      ));
-    }
+  private class ShelfInteraction
+      extends InteractionItemStack<TileShelf> {
 
-    @Override
-    protected boolean doItemStackValidation(ItemStack itemStack) {
+    private static final double ONE_THIRD = 1.0 / 3.0;
+    private static final double ONE_SIXTH = 1.0 / 6.0;
 
-      // TODO: config blacklist? whitelist?
-      return true;
-    }
+    /* package */ ShelfInteraction(ItemStackHandler stackHandler, int slot, double x, int y) {
 
-    @Override
-    public Vec3d getTextOffset(EnumFacing tileFacing, EnumFacing playerHorizontalFacing, EnumFacing sideHit) {
-
-      return new Vec3d(0, 0.5, 0);
+      super(
+          new ItemStackHandler[]{stackHandler},
+          slot,
+          new EnumFacing[]{EnumFacing.NORTH},
+          new AxisAlignedBB(x * ONE_THIRD, y * ONE_THIRD, 10.0 / 16.0, x * ONE_THIRD + ONE_THIRD, y * ONE_THIRD + ONE_THIRD, 1),
+          new Transform(
+              Transform.translate(x * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025, y * (ONE_THIRD - 0.025) + ONE_SIXTH, 2 * ONE_THIRD + ONE_SIXTH - 0.025),
+              Transform.rotate(0, 1, 0, 180),
+              Transform.scale(0.20, 0.20, 0.20)
+          )
+      );
     }
   }
 
   // ---------------------------------------------------------------------------
-  // - Stack Handlers
+  // - Stack Handler
   // ---------------------------------------------------------------------------
 
   private class StackHandler
@@ -176,9 +159,9 @@ public class TileStash
 
     private final int maxStacks;
 
-    /* protected */ StackHandler(int maxStacks) {
+    /* package */ StackHandler(int maxStacks) {
 
-      super(1);
+      super(9);
       this.maxStacks = maxStacks;
     }
 

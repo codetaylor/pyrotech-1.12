@@ -20,7 +20,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -39,10 +38,6 @@ public class ModuleBloomery
   public static final CreativeTabs CREATIVE_TAB = ModPyrotech.CREATIVE_TAB;
 
   public static final Logger LOGGER = LogManager.getLogger(MOD_ID + "." + ModuleBloomery.class.getSimpleName());
-
-  static {
-    FluidRegistry.enableUniversalBucket();
-  }
 
   public static IPacketService PACKET_SERVICE;
   public static ITileDataService TILE_DATA_SERVICE;

@@ -1,10 +1,11 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
+package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWorktable;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -19,7 +20,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class StorageItemStackProvider
+public class StorageProvider
     extends BodyProviderAdapter {
 
   private String craftingTableRenderString;

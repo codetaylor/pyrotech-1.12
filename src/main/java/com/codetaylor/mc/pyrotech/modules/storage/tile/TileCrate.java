@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
+package com.codetaylor.mc.pyrotech.modules.storage.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
@@ -6,12 +6,12 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -36,7 +36,7 @@ public class TileCrate
 
   public TileCrate() {
 
-    super(ModulePyrotech.TILE_DATA_SERVICE);
+    super(ModuleStorage.TILE_DATA_SERVICE);
 
     // --- Initialize ---
 
@@ -70,7 +70,7 @@ public class TileCrate
 
   protected int getMaxStacks() {
 
-    return ModulePyrotechConfig.CRATE.MAX_STACKS;
+    return ModuleStorageConfig.CRATE.MAX_STACKS;
   }
 
   // ---------------------------------------------------------------------------
