@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech;
 
 import com.codetaylor.mc.athenaeum.module.ModuleManager;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
@@ -55,6 +56,10 @@ public class ModPyrotech {
 
     if (ModPyrotechConfig.MODULES.get("storage")) {
       this.moduleManager.registerModules(ModuleStorage.class);
+    }
+
+    if (ModPyrotechConfig.MODULES.get("plugin.dropt")) {
+      this.moduleManager.registerModules(ModulePluginDropt.class);
     }
 
     this.moduleManager.onConstructionEvent();

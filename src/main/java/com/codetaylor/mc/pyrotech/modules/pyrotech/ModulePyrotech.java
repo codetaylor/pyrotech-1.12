@@ -11,7 +11,6 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
@@ -86,11 +85,6 @@ public class ModulePyrotech
     this.registerIntegrationPlugin(
         "jei",
         "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.PluginJEI"
-    );
-
-    this.registerIntegrationPlugin(
-        "dropt",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.dropt.PluginDropt"
     );
   }
 

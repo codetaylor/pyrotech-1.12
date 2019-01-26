@@ -1423,29 +1423,6 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Compat
-  // ---------------------------------------------------------------------------
-
-  public static CompatDropt COMPAT_DROPT = new CompatDropt();
-
-  public static class CompatDropt {
-
-    @Config.Comment({
-        "This mod uses Dropt to replace certain block drops.",
-        "To disable all of the block drop replacement rules, set this to false.",
-        "",
-        "The Dropt rule list for this mod uses a priority of zero, so",
-        "if you want to override some of the Dropt rules, set your",
-        "rule list priority to a value greater than zero.",
-        "",
-        "Changing this during runtime requires the '/dropt reload' command.",
-        "Default: " + true
-    })
-    public boolean ENABLE = true;
-
-  }
-
-  // ---------------------------------------------------------------------------
   // - World Gen
   // ---------------------------------------------------------------------------
 

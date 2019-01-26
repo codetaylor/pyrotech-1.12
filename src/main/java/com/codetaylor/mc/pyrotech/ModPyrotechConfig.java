@@ -20,6 +20,7 @@ public class ModPyrotechConfig {
 
   static {
     MODULES.put("bloomery", true);
+    MODULES.put("plugin.dropt", true);
     MODULES.put("storage", true);
   }
 

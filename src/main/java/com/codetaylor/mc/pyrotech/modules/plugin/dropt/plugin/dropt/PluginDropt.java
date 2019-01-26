@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.dropt;
+package com.codetaylor.mc.pyrotech.modules.plugin.dropt.plugin.dropt;
 
 import com.codetaylor.mc.dropt.api.api.IDroptDropBuilder;
 import com.codetaylor.mc.dropt.api.api.IDroptRuleBuilder;
@@ -7,8 +7,8 @@ import com.codetaylor.mc.dropt.api.reference.EnumDropStrategy;
 import com.codetaylor.mc.dropt.api.reference.EnumHarvesterType;
 import com.codetaylor.mc.dropt.api.reference.EnumListType;
 import com.codetaylor.mc.dropt.api.reference.EnumReplaceStrategy;
+import com.codetaylor.mc.pyrotech.ModPyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockOre;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
@@ -53,7 +53,7 @@ public class PluginDropt {
   @SubscribeEvent
   public void on(DroptLoadRulesEvent event) {
 
-    if (!ModulePyrotechConfig.COMPAT_DROPT.ENABLE) {
+    if (!ModPyrotechConfig.MODULES.get("plugin.dropt")) {
       return;
     }
 
