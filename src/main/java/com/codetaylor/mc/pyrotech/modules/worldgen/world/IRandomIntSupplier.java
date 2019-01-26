@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.world;
+package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import java.util.Random;
 

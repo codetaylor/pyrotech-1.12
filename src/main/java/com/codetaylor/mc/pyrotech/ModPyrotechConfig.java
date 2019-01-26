@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
+import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGen;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -12,18 +13,20 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.crafting.IConditionFactory;
 import net.minecraftforge.common.crafting.JsonContext;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.function.BooleanSupplier;
 
 @Config(modid = ModPyrotech.MOD_ID, name = ModPyrotech.MOD_ID + "/.modules")
 public class ModPyrotechConfig {
 
-  public static Map<String, Boolean> MODULES = new HashMap<>();
+  public static Map<String, Boolean> MODULES = new TreeMap<>();
 
   static {
     MODULES.put(ModuleBloomery.MODULE_ID, true);
     MODULES.put(ModuleStorage.MODULE_ID, true);
+    MODULES.put(ModuleWorldGen.MODULE_ID, true);
+
     MODULES.put(ModulePluginDropt.MODULE_ID, true);
   }
 

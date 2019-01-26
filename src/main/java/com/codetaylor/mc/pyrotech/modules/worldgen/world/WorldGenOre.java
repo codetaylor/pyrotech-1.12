@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.world;
+package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.google.common.base.Predicate;
 import net.minecraft.block.BlockStone;
