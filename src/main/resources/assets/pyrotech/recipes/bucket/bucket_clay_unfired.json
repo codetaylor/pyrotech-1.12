@@ -2,6 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "conditions": [
     {
+      "type": "modules_enabled",
+      "modules": ["module.bucket"]
+    },
+    {
       "type": "bucket_enabled",
       "key": "clay"
     }
