@@ -1,22 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["storage"]
+    }
+  ],
   "pattern": [
-    "P-P",
-    "P-P",
-    "P-P"
+    "PPP",
+    "PSP",
+    "PPP"
   ],
   "key": {
     "P": {
       "type": "forge:ore_dict",
       "ore": "plankWood"
     },
-    "-": {
+    "S": {
       "type": "forge:ore_dict",
       "ore": "slabWood"
     }
   },
   "result": {
-    "item": "pyrotech:shelf",
+    "item": "pyrotech:crate",
     "count": 1,
     "data": 0
   }

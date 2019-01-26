@@ -1,5 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["storage"]
+    }
+  ],
   "pattern": [
     "SBS",
     "BFB",

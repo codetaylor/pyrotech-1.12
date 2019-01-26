@@ -1,13 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["storage"]
+    }
+  ],
   "pattern": [
     "SBS",
-    "BTB",
+    "BCB",
     "SBS"
   ],
   "key": {
-    "T": {
-      "item": "pyrotech:stash",
+    "C": {
+      "item": "pyrotech:crate",
       "data": 0
     },
     "S": {
@@ -20,7 +26,7 @@
     }
   },
   "result": {
-    "item": "pyrotech:stash_stone",
+    "item": "pyrotech:crate_stone",
     "count": 1,
     "data": 0
   }
