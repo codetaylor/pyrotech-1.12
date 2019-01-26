@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
+package com.codetaylor.mc.pyrotech.modules.bucket.item;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.FluidHelper;
@@ -459,7 +459,7 @@ public abstract class ItemBucketBase
         ItemStack result = EnumType.MILK.asStack(this);
         this.setDurability(result, durability);
 
-        ItemHandlerHelper.giveItemToPlayer(player, result);
+        ItemHandlerHelper.giveItemToPlayer(player, result, player.inventory.currentItem);
       }
 
       return true;

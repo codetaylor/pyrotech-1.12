@@ -1,6 +1,6 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
+package com.codetaylor.mc.pyrotech.modules.bucket.item;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucketConfig;
 
 public class ItemBucketWood
     extends ItemBucketBase {
@@ -16,42 +16,42 @@ public class ItemBucketWood
   @Override
   protected int getBucketStackLimit() {
 
-    return ModulePyrotechConfig.BUCKET_WOOD.MAX_STACK_SIZE;
+    return ModuleBucketConfig.BUCKET_WOOD.MAX_STACK_SIZE;
   }
 
   @Override
   protected boolean showAllBuckets() {
 
-    return ModulePyrotechConfig.BUCKET_WOOD.SHOW_ALL_BUCKETS;
+    return ModuleBucketConfig.BUCKET_WOOD.SHOW_ALL_BUCKETS;
   }
 
   @Override
   protected int getMaxDurability() {
 
-    return ModulePyrotechConfig.BUCKET_WOOD.MAX_DURABILITY;
+    return ModuleBucketConfig.BUCKET_WOOD.MAX_DURABILITY;
   }
 
   @Override
   protected int getHotTemperature() {
 
-    return ModulePyrotechConfig.BUCKET_WOOD.HOT_TEMPERATURE;
+    return ModuleBucketConfig.BUCKET_WOOD.HOT_TEMPERATURE;
   }
 
   @Override
   protected int getHotContainerDamagePerSecond() {
 
-    return ModulePyrotechConfig.BUCKET_WOOD.HOT_CONTAINER_DAMAGE_PER_SECOND;
+    return ModuleBucketConfig.BUCKET_WOOD.HOT_CONTAINER_DAMAGE_PER_SECOND;
   }
 
   @Override
   protected int getHotPlayerDamagePerSecond() {
 
-    return ModulePyrotechConfig.BUCKET_WOOD.HOT_PLAYER_DAMAGE_PER_SECOND;
+    return ModuleBucketConfig.BUCKET_WOOD.HOT_PLAYER_DAMAGE_PER_SECOND;
   }
 
   @Override
   protected int getFullContainerDamagePerSecond() {
 
-    return ModulePyrotechConfig.BUCKET_WOOD.FULL_CONTAINER_DAMAGE_PER_SECOND;
+    return ModuleBucketConfig.BUCKET_WOOD.FULL_CONTAINER_DAMAGE_PER_SECOND;
   }
 }
