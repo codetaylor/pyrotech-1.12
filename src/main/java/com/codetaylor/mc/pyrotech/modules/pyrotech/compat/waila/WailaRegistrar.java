@@ -1,8 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
@@ -66,13 +64,6 @@ public class WailaRegistrar {
 
     SoakingPotProvider soakingPotProvider = new SoakingPotProvider();
     registrar.registerBodyProvider(soakingPotProvider, TileSoakingPot.class);
-
-    BloomeryProvider bloomeryProvider = new BloomeryProvider();
-    registrar.registerBodyProvider(bloomeryProvider, TileBloomery.class);
-    registrar.registerBodyProvider(bloomeryProvider, TileStoneTop.class);
-
-    BloomProvider bloomProvider = new BloomProvider();
-    registrar.registerBodyProvider(bloomProvider, TileBloom.class);
   }
 
 }

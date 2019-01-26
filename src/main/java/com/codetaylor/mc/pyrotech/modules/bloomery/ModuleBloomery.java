@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -101,13 +102,11 @@ public class ModuleBloomery
 
     super.onPreInitializationEvent(event);
 
-    /*
     FMLInterModComms.sendMessage(
         "waila",
         "register",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar.wailaCallback"
+        "com.codetaylor.mc.pyrotech.modules.bloomery.plugin.waila.PluginWaila.wailaCallback"
     );
-    */
   }
 
   @Override
