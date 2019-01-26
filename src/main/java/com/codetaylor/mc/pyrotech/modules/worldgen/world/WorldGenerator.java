@@ -1,10 +1,10 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.world;
+package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockOre;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -27,8 +27,8 @@ public class WorldGenerator
     this.worldGenFossil = new WorldGenOre(
         ModuleBlocks.ORE.getDefaultState().withProperty(BlockOre.VARIANT, BlockOre.EnumType.FOSSIL_ORE),
         random -> {
-          int minVeinSize = ModulePyrotechConfig.WORLD_GEN.FOSSIL.MIN_VEIN_SIZE;
-          int maxVeinSize = ModulePyrotechConfig.WORLD_GEN.FOSSIL.MAX_VEIN_SIZE;
+          int minVeinSize = ModuleWorldGenConfig.FOSSIL.MIN_VEIN_SIZE;
+          int maxVeinSize = ModuleWorldGenConfig.FOSSIL.MAX_VEIN_SIZE;
           return (minVeinSize + random.nextInt(maxVeinSize - minVeinSize));
         }
     );
@@ -36,8 +36,8 @@ public class WorldGenerator
     this.worldGenLimestone = new WorldGenOre(
         ModuleBlocks.LIMESTONE.getDefaultState(),
         random -> {
-          int minVeinSize = ModulePyrotechConfig.WORLD_GEN.LIMESTONE.MIN_VEIN_SIZE;
-          int maxVeinSize = ModulePyrotechConfig.WORLD_GEN.LIMESTONE.MAX_VEIN_SIZE;
+          int minVeinSize = ModuleWorldGenConfig.LIMESTONE.MIN_VEIN_SIZE;
+          int maxVeinSize = ModuleWorldGenConfig.LIMESTONE.MAX_VEIN_SIZE;
           return (minVeinSize + random.nextInt(maxVeinSize - minVeinSize));
         }
     );
@@ -47,11 +47,11 @@ public class WorldGenerator
   public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 
     // Fossil
-    if (ModulePyrotechConfig.WORLD_GEN.FOSSIL.ENABLED
-        && ModulePyrotechConfig.WORLD_GEN.FOSSIL.CHANCES_TO_SPAWN > 0) {
-      final int chancesToSpawn = ModulePyrotechConfig.WORLD_GEN.FOSSIL.CHANCES_TO_SPAWN;
-      final int minY = ModulePyrotechConfig.WORLD_GEN.FOSSIL.MIN_HEIGHT;
-      final int maxY = ModulePyrotechConfig.WORLD_GEN.FOSSIL.MAX_HEIGHT;
+    if (ModuleWorldGenConfig.FOSSIL.ENABLED
+        && ModuleWorldGenConfig.FOSSIL.CHANCES_TO_SPAWN > 0) {
+      final int chancesToSpawn = ModuleWorldGenConfig.FOSSIL.CHANCES_TO_SPAWN;
+      final int minY = ModuleWorldGenConfig.FOSSIL.MIN_HEIGHT;
+      final int maxY = ModuleWorldGenConfig.FOSSIL.MAX_HEIGHT;
       final int blockXPos = chunkX << 4;
       final int blockZPos = chunkZ << 4;
 
@@ -64,11 +64,11 @@ public class WorldGenerator
     }
 
     // Limestone
-    if (ModulePyrotechConfig.WORLD_GEN.LIMESTONE.ENABLED
-        && ModulePyrotechConfig.WORLD_GEN.LIMESTONE.CHANCES_TO_SPAWN > 0) {
-      final int chancesToSpawn = ModulePyrotechConfig.WORLD_GEN.LIMESTONE.CHANCES_TO_SPAWN;
-      final int minY = ModulePyrotechConfig.WORLD_GEN.LIMESTONE.MIN_HEIGHT;
-      final int maxY = ModulePyrotechConfig.WORLD_GEN.LIMESTONE.MAX_HEIGHT;
+    if (ModuleWorldGenConfig.LIMESTONE.ENABLED
+        && ModuleWorldGenConfig.LIMESTONE.CHANCES_TO_SPAWN > 0) {
+      final int chancesToSpawn = ModuleWorldGenConfig.LIMESTONE.CHANCES_TO_SPAWN;
+      final int minY = ModuleWorldGenConfig.LIMESTONE.MIN_HEIGHT;
+      final int maxY = ModuleWorldGenConfig.LIMESTONE.MAX_HEIGHT;
       final int blockXPos = chunkX << 4;
       final int blockZPos = chunkZ << 4;
 
