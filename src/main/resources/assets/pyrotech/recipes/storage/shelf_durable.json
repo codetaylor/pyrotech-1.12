@@ -3,7 +3,7 @@
   "conditions": [
     {
       "type": "modules_enabled",
-      "modules": ["storage"]
+      "modules": ["module.storage"]
     }
   ],
   "pattern": [

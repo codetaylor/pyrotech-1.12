@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModuleStorage
     extends ModuleBase {
 
+  public static final String MODULE_ID = "module.storage";
   public static final String MOD_ID = ModPyrotech.MOD_ID;
   public static final CreativeTabs CREATIVE_TAB = ModPyrotech.CREATIVE_TAB;
 

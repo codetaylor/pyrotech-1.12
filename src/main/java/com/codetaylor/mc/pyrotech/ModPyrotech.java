@@ -50,15 +50,15 @@ public class ModPyrotech {
         ModulePyrotech.class
     );
 
-    if (ModPyrotechConfig.MODULES.get("bloomery")) {
+    if (ModPyrotechConfig.MODULES.get(ModuleBloomery.MODULE_ID)) {
       this.moduleManager.registerModules(ModuleBloomery.class);
     }
 
-    if (ModPyrotechConfig.MODULES.get("storage")) {
+    if (ModPyrotechConfig.MODULES.get(ModuleStorage.MODULE_ID)) {
       this.moduleManager.registerModules(ModuleStorage.class);
     }
 
-    if (ModPyrotechConfig.MODULES.get("plugin.dropt")) {
+    if (ModPyrotechConfig.MODULES.get(ModulePluginDropt.MODULE_ID)) {
       this.moduleManager.registerModules(ModulePluginDropt.class);
     }
 

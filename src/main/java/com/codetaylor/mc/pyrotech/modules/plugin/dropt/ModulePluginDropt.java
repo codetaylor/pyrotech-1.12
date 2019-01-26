@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 public class ModulePluginDropt
     extends ModuleBase {
 
+  public static final String MODULE_ID = "plugin.dropt";
   public static final String MOD_ID = ModPyrotech.MOD_ID;
   public static final CreativeTabs CREATIVE_TAB = ModPyrotech.CREATIVE_TAB;
 

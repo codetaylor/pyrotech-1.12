@@ -1,5 +1,8 @@
 package com.codetaylor.mc.pyrotech;
 
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -19,9 +22,9 @@ public class ModPyrotechConfig {
   public static Map<String, Boolean> MODULES = new HashMap<>();
 
   static {
-    MODULES.put("bloomery", true);
-    MODULES.put("plugin.dropt", true);
-    MODULES.put("storage", true);
+    MODULES.put(ModuleBloomery.MODULE_ID, true);
+    MODULES.put(ModuleStorage.MODULE_ID, true);
+    MODULES.put(ModulePluginDropt.MODULE_ID, true);
   }
 
   @SuppressWarnings("unused")

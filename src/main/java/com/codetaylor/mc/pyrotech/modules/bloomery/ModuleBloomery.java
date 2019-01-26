@@ -35,10 +35,11 @@ import org.apache.logging.log4j.Logger;
 public class ModuleBloomery
     extends ModuleBase {
 
+  public static final String MODULE_ID = "module.bloomery";
   public static final String MOD_ID = ModPyrotech.MOD_ID;
   public static final CreativeTabs CREATIVE_TAB = ModPyrotech.CREATIVE_TAB;
 
-  public static final Logger LOGGER = LogManager.getLogger(MOD_ID + "." + ModuleBloomery.class.getSimpleName());
+  //public static final Logger LOGGER = LogManager.getLogger(MOD_ID + "." + ModuleBloomery.class.getSimpleName());
 
   public static IPacketService PACKET_SERVICE;
   public static ITileDataService TILE_DATA_SERVICE;
