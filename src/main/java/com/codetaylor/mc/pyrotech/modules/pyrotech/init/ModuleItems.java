@@ -3,12 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketBase;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketClay;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketStone;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketWood;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
@@ -33,9 +28,6 @@ public final class ModuleItems {
   public static final ItemRock ROCK = new ItemRock(ModuleBlocks.ROCK);
   public static final ItemRockGrass ROCK_GRASS = new ItemRockGrass(ModuleBlocks.ROCK_GRASS);
   public static final ItemMulch MULCH = new ItemMulch();
-  public static final ItemBucketWood BUCKET_WOOD = new ItemBucketWood();
-  public static final ItemBucketClay BUCKET_CLAY = new ItemBucketClay();
-  public static final ItemBucketStone BUCKET_STONE = new ItemBucketStone();
 
   public static final ItemAppleBaked APPLE_BAKED = new ItemAppleBaked();
 
@@ -87,18 +79,6 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
     registry.registerItem(ModuleItems.ROCK_GRASS, BlockRockGrass.NAME);
     registry.registerItem(ModuleItems.MULCH, ItemMulch.NAME);
-
-    if (ModulePyrotechConfig.BUCKET_WOOD.ENABLED) {
-      registry.registerItem(ModuleItems.BUCKET_WOOD, ItemBucketWood.NAME);
-    }
-
-    if (ModulePyrotechConfig.BUCKET_CLAY.ENABLED) {
-      registry.registerItem(ModuleItems.BUCKET_CLAY, ItemBucketClay.NAME);
-    }
-
-    if (ModulePyrotechConfig.BUCKET_STONE.ENABLED) {
-      registry.registerItem(ModuleItems.BUCKET_STONE, ItemBucketStone.NAME);
-    }
 
     registry.registerItem(ModuleItems.APPLE_BAKED, ItemAppleBaked.NAME);
 
@@ -187,33 +167,6 @@ public final class ModuleItems {
           ModuleItems.IRON_MILL_BLADE,
           ModuleItems.DIAMOND_MILL_BLADE
       );
-
-      if (ModulePyrotechConfig.BUCKET_WOOD.ENABLED) {
-        ModelRegistrationHelper.registerItemModels(ModuleItems.BUCKET_WOOD);
-        ModelRegistrationHelper.registerItemModel(
-            ModuleItems.BUCKET_WOOD,
-            ItemBucketBase.EnumType.MILK.getMeta(),
-            ItemBucketBase.EnumType.MILK.getName()
-        );
-      }
-
-      if (ModulePyrotechConfig.BUCKET_CLAY.ENABLED) {
-        ModelRegistrationHelper.registerItemModels(ModuleItems.BUCKET_CLAY);
-        ModelRegistrationHelper.registerItemModel(
-            ModuleItems.BUCKET_CLAY,
-            ItemBucketBase.EnumType.MILK.getMeta(),
-            ItemBucketBase.EnumType.MILK.getName()
-        );
-      }
-
-      if (ModulePyrotechConfig.BUCKET_STONE.ENABLED) {
-        ModelRegistrationHelper.registerItemModels(ModuleItems.BUCKET_STONE);
-        ModelRegistrationHelper.registerItemModel(
-            ModuleItems.BUCKET_STONE,
-            ItemBucketBase.EnumType.MILK.getMeta(),
-            ItemBucketBase.EnumType.MILK.getName()
-        );
-      }
 
       // Rock
       ModelRegistrationHelper.registerVariantBlockItemModelsSeparately(
