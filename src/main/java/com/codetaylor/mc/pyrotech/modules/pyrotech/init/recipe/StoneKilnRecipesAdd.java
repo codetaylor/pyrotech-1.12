@@ -1,13 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnStoneRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -34,21 +32,6 @@ public class StoneKilnRecipesAdd {
             ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
         }
     ).setRegistryName(ModulePyrotech.MOD_ID, "brick"));
-
-    // Clay Bucket
-    if (ModulePyrotechConfig.BUCKET_CLAY.ENABLED) {
-      registry.register(new KilnStoneRecipe(
-          new ItemStack(ModuleItems.BUCKET_CLAY),
-          Ingredient.fromStacks(ItemMaterial.EnumType.BUCKET_CLAY_UNFIRED.asStack()),
-          defaultBurnTimeTicks,
-          defaultFailureChance,
-          new ItemStack[]{
-              ItemMaterial.EnumType.PIT_ASH.asStack(),
-              ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
-              ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
-          }
-      ).setRegistryName(ModulePyrotech.MOD_ID, "bucket_clay"));
-    }
 
     // Refractory Brick
     registry.register(new KilnStoneRecipe(
