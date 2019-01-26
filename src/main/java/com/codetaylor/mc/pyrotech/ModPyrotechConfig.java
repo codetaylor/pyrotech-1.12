@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech;
 
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGen;
@@ -24,6 +25,7 @@ public class ModPyrotechConfig {
 
   static {
     MODULES.put(ModuleBloomery.MODULE_ID, true);
+    MODULES.put(ModuleBucket.MODULE_ID, true);
     MODULES.put(ModuleStorage.MODULE_ID, true);
     MODULES.put(ModuleWorldGen.MODULE_ID, true);
 
