@@ -1,11 +1,11 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi;
+package com.codetaylor.mc.pyrotech.modules.storage.block.spi;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStash;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.TileStash;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;

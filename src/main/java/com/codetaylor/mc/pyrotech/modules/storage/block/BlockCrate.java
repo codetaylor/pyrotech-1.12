@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.storage.block;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockCrateBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCrate;
+import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockCrateBase;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.TileCrate;
 import net.minecraft.tileentity.TileEntity;
 
 public class BlockCrate

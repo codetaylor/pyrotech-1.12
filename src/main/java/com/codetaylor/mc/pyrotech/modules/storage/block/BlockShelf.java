@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.storage.block;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockShelfBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileShelf;
+import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockShelfBase;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.TileShelf;
 import net.minecraft.tileentity.TileEntity;
 
 public class BlockShelf
