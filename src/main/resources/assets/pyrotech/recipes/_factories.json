@@ -1,6 +1,6 @@
 {
   "conditions": {
     "modules_enabled": "com.codetaylor.mc.pyrotech.ModPyrotechConfig$ConditionConfig",
-    "config_enabled": "com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig$ConditionConfig"
+    "bucket_enabled": "com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucketConfig$ConditionConfig"
   }
 }

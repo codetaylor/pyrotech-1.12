@@ -11,7 +11,10 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleEntities;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModulePackets;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
@@ -186,8 +189,6 @@ public class ModulePyrotech
         "register",
         "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar.wailaCallback"
     );
-
-    ModuleWorldGen.register();
   }
 
   @Override
@@ -204,6 +205,7 @@ public class ModulePyrotech
     VanillaCraftingRecipesRemove.apply(event.getRegistry());
     VanillaFurnaceRecipesRemove.apply();
     VanillaFurnaceRecipesAdd.apply();
+
     BurnPitRecipesAdd.apply(ModPyrotechRegistries.BURN_RECIPE);
     PitKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_PIT_RECIPE);
     StoneKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_STONE_RECIPE);

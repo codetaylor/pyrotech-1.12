@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "conditions": [
     {
-      "type": "config_enabled",
-      "key": "bucket_wood"
+      "type": "bucket_enabled",
+      "key": "wood"
     }
   ],
   "pattern": [

@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech;
 
 import com.codetaylor.mc.athenaeum.module.ModuleManager;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
@@ -51,20 +52,28 @@ public class ModPyrotech {
         ModulePyrotech.class
     );
 
+    // --- MODULES ---
+
     if (ModPyrotechConfig.MODULES.get(ModuleBloomery.MODULE_ID)) {
       this.moduleManager.registerModules(ModuleBloomery.class);
+    }
+
+    if (ModPyrotechConfig.MODULES.get(ModuleBucket.MODULE_ID)) {
+      this.moduleManager.registerModules(ModuleBucket.class);
     }
 
     if (ModPyrotechConfig.MODULES.get(ModuleStorage.MODULE_ID)) {
       this.moduleManager.registerModules(ModuleStorage.class);
     }
 
-    if (ModPyrotechConfig.MODULES.get(ModulePluginDropt.MODULE_ID)) {
-      this.moduleManager.registerModules(ModulePluginDropt.class);
-    }
-
     if (ModPyrotechConfig.MODULES.get(ModuleWorldGen.MODULE_ID)) {
       this.moduleManager.registerModules(ModuleWorldGen.class);
+    }
+
+    // --- PLUGINS ---
+
+    if (ModPyrotechConfig.MODULES.get(ModulePluginDropt.MODULE_ID)) {
+      this.moduleManager.registerModules(ModulePluginDropt.class);
     }
 
     this.moduleManager.onConstructionEvent();
