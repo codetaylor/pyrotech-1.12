@@ -2,22 +2,27 @@ package com.codetaylor.mc.pyrotech.modules.bloomery.item;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItem;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -25,7 +30,8 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public abstract class ItemTongsFullBase
-    extends Item {
+    extends Item
+    implements IInteractionItem {
 
   private final Supplier<ItemTongsEmptyBase> otherTongsSupplier;
 
@@ -141,5 +147,47 @@ public abstract class ItemTongsFullBase
         }
       }
     }
+  }
+
+  @Override
+  public boolean allowInteraction(TileEntity tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+    if (tile instanceof TileGraniteAnvil) {
+      return ((TileGraniteAnvil) tile).getStackHandler().getStackInSlot(0).isEmpty();
+    }
+
+    return false;
+  }
+
+  @Override
+  public boolean doInteraction(TileEntity tile, World world, ItemStack heldItem, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+    if (tile instanceof TileGraniteAnvil) {
+      NBTTagCompound tagCompound = heldItem.getTagCompound();
+
+      if (tagCompound == null) {
+        return false;
+      }
+
+      NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
+      ItemStack bloomStack = BloomHelper.createBloomAsItemStack(new ItemStack(ModuleBloomery.Blocks.BLOOM), tileTag);
+      ((TileGraniteAnvil) tile).getStackHandler().insertItem(0, bloomStack, false);
+      ItemStack emptyTongsStack = BloomHelper.createItemTongsEmpty(heldItem);
+      heldItem.shrink(1);
+
+      if (!emptyTongsStack.isEmpty()) {
+        ItemHandlerHelper.giveItemToPlayer(player, emptyTongsStack, player.inventory.currentItem);
+      }
+
+      return true;
+    }
+
+    return false;
+  }
+
+  @Override
+  public void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
+
+    // Damage is applied during the interaction.
   }
 }

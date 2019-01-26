@@ -1,26 +1,28 @@
 package com.codetaylor.mc.pyrotech.modules.bloomery.item;
 
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItem;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
-import net.minecraft.block.Block;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
 public abstract class ItemTongsEmptyBase
-    extends Item {
+    extends Item
+    implements IInteractionItem {
 
   private final Supplier<ItemTongsFullBase> otherTongsSupplier;
 
@@ -43,47 +45,56 @@ public abstract class ItemTongsEmptyBase
     return true;
   }
 
-  @Nonnull
   @Override
-  public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+  public boolean allowInteraction(TileEntity tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    ItemStack heldItem = player.getHeldItem(hand);
+    if (tile instanceof TileGraniteAnvil) {
+      return ((TileGraniteAnvil) tile).getStackHandler().getStackInSlot(0).getItem() == ModuleBloomery.Items.BLOOM;
 
-    if (hand != EnumHand.MAIN_HAND
-        || heldItem.getItem() != this) {
-      return ActionResult.newResult(EnumActionResult.FAIL, heldItem);
+    } else if (tile instanceof TileBloomery) {
+      return ((TileBloomery) tile).getOutputStackHandler().getStackInSlot(0).getItem() == ModuleBloomery.Items.BLOOM;
     }
 
-    RayTraceResult target = this.rayTrace(world, player, false);
-
-    if (target.typeOfHit != RayTraceResult.Type.BLOCK) {
-      return ActionResult.newResult(EnumActionResult.FAIL, heldItem);
-    }
-
-    return this.onItemRightClick(world, player, heldItem, target);
+    return tile instanceof TileBloom;
   }
 
-  protected ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, ItemStack heldItem, RayTraceResult target) {
+  @Override
+  public boolean doInteraction(TileEntity tile, World world, ItemStack heldItem, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    BlockPos pos = target.getBlockPos();
-    IBlockState blockState = world.getBlockState(pos);
-    Block block = blockState.getBlock();
-    TileEntity tileEntity = world.getTileEntity(pos);
+    if (tile instanceof TileGraniteAnvil) {
+      ItemStack bloomStack = ((TileGraniteAnvil) tile).getStackHandler().extractItem(0, 1, false);
+      ItemStack tongsFull = BloomHelper.createItemTongsFull(heldItem, bloomStack);
+      heldItem.shrink(1);
+      ItemHandlerHelper.giveItemToPlayer(player, tongsFull, player.inventory.currentItem);
+      return true;
 
-    if (block == ModuleBloomery.Blocks.BLOOM
-        && tileEntity instanceof TileBloom) {
+    } else if (tile instanceof TileBloomery) {
 
-      TileBloom tile = (TileBloom) tileEntity;
-      ItemStack bloomStack = BloomHelper.toItemStack(tile, new ItemStack(ModuleBloomery.Blocks.BLOOM));
-      ItemStack itemStack = BloomHelper.createItemTongsFull(heldItem, bloomStack);
+      ItemStack bloomStack = ((TileBloomery) tile).getOutputStackHandler().extractItem(0, 1, false);
+      ItemStack tongsFull = BloomHelper.createItemTongsFull(heldItem, bloomStack);
+      heldItem.shrink(1);
+      ItemHandlerHelper.giveItemToPlayer(player, tongsFull, player.inventory.currentItem);
+      return true;
+
+    } else if (tile instanceof TileBloom) {
+
+      ItemStack bloomStack = BloomHelper.toItemStack((TileBloom) tile, new ItemStack(ModuleBloomery.Blocks.BLOOM));
+      ItemStack tongsFull = BloomHelper.createItemTongsFull(heldItem, bloomStack);
 
       if (!world.isRemote) {
-        world.setBlockToAir(pos);
+        world.setBlockToAir(tile.getPos());
       }
 
-      return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);
+      heldItem.shrink(1);
+      ItemHandlerHelper.giveItemToPlayer(player, tongsFull, player.inventory.currentItem);
     }
 
-    return ActionResult.newResult(EnumActionResult.PASS, heldItem);
+    return false;
+  }
+
+  @Override
+  public void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
+
+    // Only apply item damage when a bloom is placed.
   }
 }

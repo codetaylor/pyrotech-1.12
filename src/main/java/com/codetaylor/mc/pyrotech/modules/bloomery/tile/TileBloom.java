@@ -60,6 +60,7 @@ public class TileBloom
     // --- Interactions ---
 
     this.interactions = new IInteraction[]{
+        new InteractionItem(),
         new InteractionHit()
     };
   }
@@ -141,6 +142,20 @@ public class TileBloom
   public IInteraction[] getInteractions() {
 
     return this.interactions;
+  }
+
+  private class InteractionItem
+      extends InteractionUseItemBase<TileBloom> {
+
+    /* package */ InteractionItem() {
+
+      super(EnumFacing.VALUES, BlockBloom.AABB);
+    }
+
+    @Override
+    protected void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
+      // TODO: remove
+    }
   }
 
   private class InteractionHit

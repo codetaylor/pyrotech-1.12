@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.interaction.spi;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -53,7 +54,12 @@ public abstract class InteractionUseItemBase<T extends TileEntity & ITileInterac
 
   protected void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
 
-    itemStack.damageItem(this.getItemDamage(itemStack), player);
+    if (itemStack.getItem() instanceof IInteractionItem) {
+      ((IInteractionItem) itemStack.getItem()).applyItemDamage(itemStack, player);
+
+    } else {
+      itemStack.damageItem(this.getItemDamage(itemStack), player);
+    }
   }
 
   /**
@@ -70,8 +76,27 @@ public abstract class InteractionUseItemBase<T extends TileEntity & ITileInterac
     return 1;
   }
 
-  protected abstract boolean allowInteraction(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
+  protected boolean allowInteraction(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-  protected abstract boolean doInteraction(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ);
+    ItemStack heldItem = player.getHeldItemMainhand();
+    Item item = heldItem.getItem();
 
+    if (item instanceof IInteractionItem) {
+      return ((IInteractionItem) item).allowInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
+    }
+
+    return false;
+  }
+
+  protected boolean doInteraction(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+    ItemStack heldItem = player.getHeldItemMainhand();
+    Item item = heldItem.getItem();
+
+    if (item instanceof IInteractionItem) {
+      return ((IInteractionItem) item).doInteraction(tile, world, heldItem, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ);
+    }
+
+    return false;
+  }
 }

@@ -20,7 +20,6 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.bloomery.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.bloomery.client.render.BloomeryFuelRenderer;
-import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
@@ -46,7 +45,6 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -139,7 +137,7 @@ public class TileBloomery
     // --- Interactions ---
 
     this.interactions = new IInteraction[]{
-        new InteractionTongs(
+        new InteractionItem(
             this.getInputInteractionBoundsTop()
         ),
         new InteractionUseFlintAndSteel(
@@ -676,43 +674,19 @@ public class TileBloomery
         && blockPos.getZ() == pos.getZ();
   }
 
-  // --- TONGS ---
+  // --- ITEM ---
 
-  private class InteractionTongs
+  private class InteractionItem
       extends InteractionUseItemBase<TileBloomery> {
 
-    /* package */ InteractionTongs(AxisAlignedBB bounds) {
+    /* package */ InteractionItem(AxisAlignedBB bounds) {
 
       super(new EnumFacing[]{EnumFacing.UP}, bounds);
     }
 
     @Override
-    protected boolean allowInteraction(TileBloomery tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
-
-      ItemStack heldItem = player.getHeldItemMainhand();
-
-      return (heldItem.getItem() instanceof ItemTongsEmptyBase)
-          && !tile.outputStackHandler.getStackInSlot(0).isEmpty();
-    }
-
-    @Override
-    protected boolean doInteraction(TileBloomery tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
-
-      ItemStack bloomStack = tile.outputStackHandler.extractItem(0, 1, false);
-      ItemStack heldItem = player.getHeldItemMainhand();
-      ItemStack tongs = BloomHelper.createItemTongsFull(heldItem, bloomStack);
-
-      heldItem.shrink(1);
-      ItemHandlerHelper.giveItemToPlayer(player, tongs, player.inventory.currentItem);
-
-      return true;
-    }
-
-    @Override
     protected void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
-
-      // This is a no-op because we only want the tongs to take damage
-      // when a bloom is placed, not retrieved.
+      // TODO: remove
     }
   }
 
