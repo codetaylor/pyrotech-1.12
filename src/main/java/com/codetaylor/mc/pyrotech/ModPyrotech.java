@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
+import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGen;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -60,6 +61,10 @@ public class ModPyrotech {
 
     if (ModPyrotechConfig.MODULES.get(ModulePluginDropt.MODULE_ID)) {
       this.moduleManager.registerModules(ModulePluginDropt.class);
+    }
+
+    if (ModPyrotechConfig.MODULES.get(ModuleWorldGen.MODULE_ID)) {
+      this.moduleManager.registerModules(ModuleWorldGen.class);
     }
 
     this.moduleManager.onConstructionEvent();
