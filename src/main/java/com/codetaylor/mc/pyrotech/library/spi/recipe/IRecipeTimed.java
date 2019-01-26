@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.spi.recipe;
+package com.codetaylor.mc.pyrotech.library.spi.recipe;
 
 public interface IRecipeTimed {
 

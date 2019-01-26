@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.spi.block.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;

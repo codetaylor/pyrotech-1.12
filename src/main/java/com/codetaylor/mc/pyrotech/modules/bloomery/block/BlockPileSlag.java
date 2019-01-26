@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.bloomery.block;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TilePileSlag;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
-import com.codetaylor.mc.pyrotech.spi.block.BlockPileBase;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

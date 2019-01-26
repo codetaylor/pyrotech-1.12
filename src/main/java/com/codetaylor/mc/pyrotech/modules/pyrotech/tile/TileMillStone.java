@@ -9,7 +9,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
-import com.codetaylor.mc.pyrotech.spi.block.BlockPileBase;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.MillInteractionBladeRenderer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;

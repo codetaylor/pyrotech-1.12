@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.spi.tile;
+package com.codetaylor.mc.pyrotech.library.spi.tile;
 
 public interface ITileContainer {
 

@@ -7,7 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.bloomery.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
-import com.codetaylor.mc.pyrotech.spi.block.BlockCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

@@ -16,7 +16,7 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

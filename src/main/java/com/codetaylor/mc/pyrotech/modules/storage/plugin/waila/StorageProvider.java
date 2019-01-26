@@ -1,11 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaUtil;
+import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
-import com.codetaylor.mc.pyrotech.spi.plugin.waila.BodyProviderAdapter;
+import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWorktable;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;

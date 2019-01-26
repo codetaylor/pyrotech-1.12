@@ -6,7 +6,7 @@ import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
-import com.codetaylor.mc.pyrotech.spi.recipe.IRecipeTimed;
+import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;

@@ -4,7 +4,7 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTarTankBase;
-import com.codetaylor.mc.pyrotech.spi.plugin.waila.BodyProviderAdapter;
+import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;

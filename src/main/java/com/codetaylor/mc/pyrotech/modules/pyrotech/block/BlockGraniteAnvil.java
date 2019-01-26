@@ -7,7 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
-import com.codetaylor.mc.pyrotech.spi.block.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

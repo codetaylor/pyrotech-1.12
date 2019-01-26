@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
-import com.codetaylor.mc.pyrotech.spi.recipe.IRecipeTimed;
+import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 public abstract class StoneMachineRecipeBase<T extends IForgeRegistryEntry<T>>

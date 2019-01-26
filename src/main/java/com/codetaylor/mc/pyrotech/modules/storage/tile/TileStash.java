@@ -12,7 +12,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import com.codetaylor.mc.pyrotech.modules.storage.block.BlockStash;
-import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

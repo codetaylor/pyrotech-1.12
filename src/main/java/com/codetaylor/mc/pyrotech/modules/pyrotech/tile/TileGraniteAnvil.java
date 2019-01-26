@@ -19,7 +19,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockGraniteAnvil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
-import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

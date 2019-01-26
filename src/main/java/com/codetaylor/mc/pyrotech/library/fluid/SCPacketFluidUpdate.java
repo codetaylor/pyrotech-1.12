@@ -10,6 +10,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
+// TODO: switch to tile data tank and remove this
+
 public class SCPacketFluidUpdate
     extends CPacketTileEntityBase<SCPacketFluidUpdate> {
 

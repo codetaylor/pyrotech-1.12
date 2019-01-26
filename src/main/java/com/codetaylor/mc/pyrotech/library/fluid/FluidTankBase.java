@@ -5,6 +5,8 @@ import net.minecraftforge.fluids.FluidTank;
 
 import javax.annotation.Nullable;
 
+// TODO: switch to tile data tank and remove this
+
 /**
  * Derived from:
  * https://github.com/SlimeKnights/TinkersConstruct/blob/master/src/main/java/slimeknights/tconstruct/library/fluid/FluidTankBase.java

@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.spi.block;
+package com.codetaylor.mc.pyrotech.library.spi.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.Properties;
@@ -7,7 +7,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
-import com.codetaylor.mc.pyrotech.spi.tile.ITileContainer;
+import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
 import net.minecraft.block.Block;

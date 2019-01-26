@@ -12,7 +12,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;

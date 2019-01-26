@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.interaction.network;
 
-import com.codetaylor.mc.pyrotech.spi.block.BlockCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import io.netty.buffer.ByteBuf;

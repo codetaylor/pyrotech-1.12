@@ -19,7 +19,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.WorktableRecipe;
-import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;

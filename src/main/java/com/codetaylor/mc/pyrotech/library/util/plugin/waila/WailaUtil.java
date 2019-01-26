@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila;
+package com.codetaylor.mc.pyrotech.library.util.plugin.waila;
 
 import mcp.mobius.waila.api.SpecialChars;
 import net.minecraft.item.ItemStack;

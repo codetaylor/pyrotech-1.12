@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
-import com.codetaylor.mc.pyrotech.spi.recipe.IRecipeTimed;
+import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;

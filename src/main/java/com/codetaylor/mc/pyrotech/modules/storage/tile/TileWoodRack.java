@@ -14,7 +14,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
-import com.codetaylor.mc.pyrotech.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;

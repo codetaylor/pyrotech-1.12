@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.spi.plugin.waila;
+package com.codetaylor.mc.pyrotech.library.spi.plugin.waila;
 
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;

@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.spi.block;
+package com.codetaylor.mc.pyrotech.library.spi.block;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import net.minecraft.block.material.Material;
