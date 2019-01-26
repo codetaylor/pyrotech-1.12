@@ -1,8 +1,64 @@
+itemGroup.pyrotech=Pyrotech
+
+#------------------------------------------------------------------------------
+# Module: Bloomery
+#------------------------------------------------------------------------------
+
+item.pyrotech.slag.name=Slag
+item.pyrotech.slag.unique.name=%s Slag
+item.pyrotech.tongs.flint.name=Flint Tongs
+item.pyrotech.tongs.flint.full.name=Flint Tongs
+item.pyrotech.tongs.flint.full.unique.name=%s Bloom
+item.pyrotech.tongs.bone.name=Bone Tongs
+item.pyrotech.tongs.bone.full.name=Bone Tongs
+item.pyrotech.tongs.bone.full.unique.name=%s Bloom
+item.pyrotech.tongs.stone.name=Stone Tongs
+item.pyrotech.tongs.stone.full.name=Stone Tongs
+item.pyrotech.tongs.stone.full.unique.name=%s Bloom
+item.pyrotech.tongs.iron.name=Iron Tongs
+item.pyrotech.tongs.iron.full.name=Iron Tongs
+item.pyrotech.tongs.iron.full.unique.name=%s Bloom
+item.pyrotech.tongs.diamond.name=Diamond Tongs
+item.pyrotech.tongs.diamond.full.name=Diamond Tongs
+item.pyrotech.tongs.diamond.full.unique.name=%s Bloom
+
+tile.pyrotech.bloom.name=Bloom
+tile.pyrotech.bloom.unique.name=%s Bloom
+tile.pyrotech.bloomery.name=Bloomery
+tile.pyrotech.pile_slag.name=Slag Block
+tile.pyrotech.pile_slag.unique.name=%s Slag Block
+
+#------------------------------------------------------------------------------
+# Module: Bucket
+#------------------------------------------------------------------------------
+
+item.pyrotech.bucket.clay.unfired.name=Unfired Clay Bucket
+item.pyrotech.bucket.clay.name=%s Clay Bucket
+item.pyrotech.bucket.clay.empty.name=Clay Bucket
+item.pyrotech.bucket.clay.milk.name=Milk Clay Bucket
+
+item.pyrotech.bucket.stone.name=%s Stone Bucket
+item.pyrotech.bucket.stone.empty.name=Stone Bucket
+item.pyrotech.bucket.stone.milk.name=Milk Stone Bucket
+
+item.pyrotech.bucket.wood.name=%s Wood Bucket
+item.pyrotech.bucket.wood.empty.name=Wood Bucket
+item.pyrotech.bucket.wood.milk.name=Milk Wood Bucket
+
+#------------------------------------------------------------------------------
+# Module: Storage
+#------------------------------------------------------------------------------
+
+tile.pyrotech.shelf.name=Shelf
+tile.pyrotech.shelf_stone.name=Durable Shelf
+tile.pyrotech.stash.name=Stash
+tile.pyrotech.stash_stone.name=Durable Stash
+tile.pyrotech.crate.name=Crate
+tile.pyrotech.crate_stone.name=Durable Crate
+
 #------------------------------------------------------------------------------
 # Pyrotech Module
 #------------------------------------------------------------------------------
-
-itemGroup.pyrotech=Pyrotech
 
 # --- Fluids
 
@@ -43,11 +99,8 @@ item.pyrotech.board.name=Board
 item.pyrotech.coal.pieces.name=Coal Pieces
 item.pyrotech.mulch.name=Potash Mulch
 item.pyrotech.board.tarred.name=Tarred Board
-item.pyrotech.bucket.clay.unfired.name=Unfired Clay Bucket
 item.pyrotech.pulp.name=Pulp
 item.pyrotech.twine.durable.name=Durable Twine
-item.pyrotech.slag.name=Slag
-item.pyrotech.slag.unique.name=%s Slag
 
 item.pyrotech.apple.baked.name=Baked Apple
 
@@ -80,34 +133,6 @@ item.pyrotech.mill.blade.flint.name=Flint Sawmill Blade
 item.pyrotech.mill.blade.bone.name=Bone Sawmill Blade
 item.pyrotech.mill.blade.iron.name=Iron Sawmill Blade
 item.pyrotech.mill.blade.diamond.name=Diamond Sawmill Blade
-
-item.pyrotech.bucket.wood.name=%s Wood Bucket
-item.pyrotech.bucket.wood.empty.name=Wood Bucket
-item.pyrotech.bucket.wood.milk.name=Milk Wood Bucket
-
-item.pyrotech.bucket.clay.name=%s Clay Bucket
-item.pyrotech.bucket.clay.empty.name=Clay Bucket
-item.pyrotech.bucket.clay.milk.name=Milk Clay Bucket
-
-item.pyrotech.bucket.stone.name=%s Stone Bucket
-item.pyrotech.bucket.stone.empty.name=Stone Bucket
-item.pyrotech.bucket.stone.milk.name=Milk Stone Bucket
-
-item.pyrotech.tongs.flint.name=Flint Tongs
-item.pyrotech.tongs.flint.full.name=Flint Tongs
-item.pyrotech.tongs.flint.full.unique.name=%s Bloom
-item.pyrotech.tongs.bone.name=Bone Tongs
-item.pyrotech.tongs.bone.full.name=Bone Tongs
-item.pyrotech.tongs.bone.full.unique.name=%s Bloom
-item.pyrotech.tongs.stone.name=Stone Tongs
-item.pyrotech.tongs.stone.full.name=Stone Tongs
-item.pyrotech.tongs.stone.full.unique.name=%s Bloom
-item.pyrotech.tongs.iron.name=Iron Tongs
-item.pyrotech.tongs.iron.full.name=Iron Tongs
-item.pyrotech.tongs.iron.full.unique.name=%s Bloom
-item.pyrotech.tongs.diamond.name=Diamond Tongs
-item.pyrotech.tongs.diamond.full.name=Diamond Tongs
-item.pyrotech.tongs.diamond.full.unique.name=%s Bloom
 
 # --- Tiles
 
@@ -143,23 +168,12 @@ tile.pyrotech.anvil_granite.name=Granite Anvil
 tile.pyrotech.worktable.name=Worktable
 tile.pyrotech.worktable_stone.name=Stone Worktable
 tile.pyrotech.torch.name=Fiber Torch
-tile.pyrotech.shelf.name=Shelf
-tile.pyrotech.shelf_stone.name=Durable Shelf
-tile.pyrotech.stash.name=Stash
-tile.pyrotech.stash_stone.name=Durable Stash
-tile.pyrotech.crate.name=Crate
-tile.pyrotech.crate_stone.name=Durable Crate
 tile.pyrotech.farmland_mulched.name=Mulched Farmland
 tile.pyrotech.compacting_bin.name=Compacting Bin
 tile.pyrotech.soaking_pot.name=Soaking Pot
 tile.pyrotech.planks_tarred.name=Tarred Planks
-tile.pyrotech.bloomery.name=Bloomery
 tile.pyrotech.pile_wood_chips.name=Wood Chips
-tile.pyrotech.pile_slag.name=Slag Block
-tile.pyrotech.pile_slag.unique.name=%s Slag Block
 tile.pyrotech.wool_tarred.name=Tarred Wool
-tile.pyrotech.bloom.name=Bloom
-tile.pyrotech.bloom.unique.name=%s Bloom
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock
