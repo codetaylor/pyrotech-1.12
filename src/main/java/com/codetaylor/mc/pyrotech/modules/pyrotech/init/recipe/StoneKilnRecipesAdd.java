@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
 
+import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
@@ -17,15 +18,12 @@ public class StoneKilnRecipesAdd {
 
   public static void apply(IForgeRegistry<KilnStoneRecipe> registry) {
 
-    int defaultBurnTimeTicks = 7 * 60 * 20;
-    float defaultFailureChance = 0.05f;
-
     // Brick
     registry.register(new KilnStoneRecipe(
         new ItemStack(Items.BRICK),
         Ingredient.fromStacks(ItemMaterial.EnumType.UNFIRED_BRICK.asStack()),
-        defaultBurnTimeTicks,
-        defaultFailureChance,
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
@@ -37,8 +35,8 @@ public class StoneKilnRecipesAdd {
     registry.register(new KilnStoneRecipe(
         ItemMaterial.EnumType.REFRACTORY_BRICK.asStack(),
         Ingredient.fromStacks(ItemMaterial.EnumType.UNFIRED_REFRACTORY_BRICK.asStack()),
-        defaultBurnTimeTicks,
-        defaultFailureChance,
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
             ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack(),
             ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
@@ -50,8 +48,8 @@ public class StoneKilnRecipesAdd {
     registry.register(new KilnStoneRecipe(
         ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
-        defaultBurnTimeTicks,
-        defaultFailureChance,
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
@@ -61,8 +59,8 @@ public class StoneKilnRecipesAdd {
     registry.register(new KilnStoneRecipe(
         ItemMaterial.EnumType.QUICKLIME.asStack(),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
-        defaultBurnTimeTicks,
-        defaultFailureChance,
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
@@ -72,8 +70,8 @@ public class StoneKilnRecipesAdd {
     registry.register(new KilnStoneRecipe(
         new ItemStack(Blocks.STONE_SLAB, 1, 0),
         Ingredient.fromStacks(new ItemStack(Blocks.STONE_SLAB, 1, 3)),
-        defaultBurnTimeTicks,
-        defaultFailureChance,
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleItems.ROCK, 3, 0)
@@ -84,8 +82,8 @@ public class StoneKilnRecipesAdd {
     registry.register(new KilnStoneRecipe(
         new ItemStack(Blocks.STONE, 1, 0),
         Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE, 1, 0)),
-        defaultBurnTimeTicks,
-        defaultFailureChance,
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.STONE.getMeta())
@@ -96,8 +94,8 @@ public class StoneKilnRecipesAdd {
     registry.register(new KilnStoneRecipe(
         new ItemStack(Blocks.STONE, 1, 5),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
-        defaultBurnTimeTicks,
-        defaultFailureChance,
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.ANDESITE.getMeta())
@@ -108,8 +106,8 @@ public class StoneKilnRecipesAdd {
     registry.register(new KilnStoneRecipe(
         new ItemStack(Blocks.STONE, 1, 1),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
-        defaultBurnTimeTicks,
-        defaultFailureChance,
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.GRANITE.getMeta())
@@ -120,8 +118,8 @@ public class StoneKilnRecipesAdd {
     registry.register(new KilnStoneRecipe(
         new ItemStack(Blocks.STONE, 1, 3),
         Ingredient.fromStacks(new ItemStack(ModuleBlocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
-        defaultBurnTimeTicks,
-        defaultFailureChance,
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleItems.ROCK, 5, BlockRock.EnumType.DIORITE.getMeta())

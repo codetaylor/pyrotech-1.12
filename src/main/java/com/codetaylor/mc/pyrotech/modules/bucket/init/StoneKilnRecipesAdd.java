@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.bucket.init;
 
+import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucketConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
@@ -13,16 +14,14 @@ public class StoneKilnRecipesAdd {
 
   public static void apply(IForgeRegistry<KilnStoneRecipe> registry) {
 
-    int defaultBurnTimeTicks = 7 * 60 * 20;
-    float defaultFailureChance = 0.05f;
 
     // Clay Bucket
     if (ModuleBucketConfig.BUCKET_CLAY.ENABLED) {
       registry.register(new KilnStoneRecipe(
           new ItemStack(ModuleBucket.Items.BUCKET_CLAY),
           Ingredient.fromStacks(new ItemStack(ModuleBucket.Items.BUCKET_CLAY_UNFIRED)),
-          defaultBurnTimeTicks,
-          defaultFailureChance,
+          Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+          Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
           new ItemStack[]{
               ItemMaterial.EnumType.PIT_ASH.asStack(),
               ItemMaterial.EnumType.POTTERY_SHARD.asStack(),

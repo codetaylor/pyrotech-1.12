@@ -14,4 +14,10 @@ public class Reference {
     public static final float DEFAULT_FAILURE_CHANCE = 0.33f;
   }
 
+  public static class StoneKiln {
+
+    public static final int DEFAULT_BURN_TIME_TICKS = 7 * 60 * 20;
+    public static final float DEFAULT_FAILURE_CHANCE = 0.05f;
+  }
+
 }
