@@ -678,17 +678,15 @@ public class TileBloomery
 
   // --- ITEM ---
 
+  /**
+   * Used for interaction items like the tongs.
+   */
   private class InteractionItem
       extends InteractionUseItemBase<TileBloomery> {
 
     /* package */ InteractionItem(AxisAlignedBB bounds) {
 
       super(new EnumFacing[]{EnumFacing.UP}, bounds);
-    }
-
-    @Override
-    protected void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
-      // TODO: remove
     }
   }
 
