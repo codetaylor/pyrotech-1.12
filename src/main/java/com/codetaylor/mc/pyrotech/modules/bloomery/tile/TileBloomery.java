@@ -14,6 +14,9 @@ import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.*;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
@@ -21,11 +24,7 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.bloomery.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.bloomery.client.render.BloomeryFuelRenderer;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
-import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
-import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
-import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -34,10 +33,14 @@ import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -176,7 +179,7 @@ public class TileBloomery
         && this.currentRecipe != null) {
       this.active.set(true);
       this.fuelStackHandler.clearStacks();
-      this.remainingSlag = this.currentRecipe.getSlag();
+      this.remainingSlag = this.currentRecipe.getSlagCount();
     }
   }
 
@@ -298,7 +301,7 @@ public class TileBloomery
     if (this.world.isAirBlock(offset)) {
       this.airflow.set(1);
 
-    } else if (blockState.getBlock() == ModuleBloomery.Blocks.PILE_SLAG) {
+    } else if (blockState.getBlock() == ModuleBloomery.Blocks.GENERATED_PILE_SLAG) {
       int level = blockState.getValue(BlockPileSlag.LEVEL);
 
       if (level == 1) {
@@ -426,7 +429,7 @@ public class TileBloomery
         IBlockState blockState = this.world.getBlockState(this.pos);
         EnumFacing facing = this.getTileFacing(this.world, this.pos, blockState);
 
-        int slag = this.currentRecipe.getSlag();
+        int slag = this.currentRecipe.getSlagCount();
         float nextSlagInterval = (slag - this.remainingSlag) * (1f / slag) + (1f / slag) * 0.5f;
 
         if (recipeProgress >= nextSlagInterval) {
@@ -563,16 +566,15 @@ public class TileBloomery
 
     if (tileEntity instanceof TilePileSlag) {
       TilePileSlag.StackHandler stackHandler = ((TilePileSlag) tileEntity).getStackHandler();
-      ResourceLocation registryName = this.currentRecipe.getRegistryName();
+      ItemStack slagItemStack = this.currentRecipe.getSlagItemStack();
 
-      if (registryName != null) {
-        ItemStack itemStack = BloomHelper.createSlagItem(
-            new ResourceLocation(registryName.toString().replaceAll("\\.slag", "")),
-            this.currentRecipe.getLangKey(),
-            this.currentRecipe.getSlagColor()
-        );
+      if (!slagItemStack.isEmpty()) {
+        Item slagItem = slagItemStack.getItem();
+        ItemStack itemStack = new ItemStack(slagItem);
         stackHandler.insertItem(0, itemStack, false);
       }
+
+      ((TilePileSlag) tileEntity).setLastMolten(this.world.getTotalWorldTime());
     }
   }
 

@@ -10,6 +10,7 @@ public class TilePileSlag
     extends TileEntityBase {
 
   private StackHandler stackHandler;
+  private long lastMolten;
 
   public TilePileSlag() {
 
@@ -22,6 +23,16 @@ public class TilePileSlag
     return this.stackHandler;
   }
 
+  public void setLastMolten(long timestamp) {
+
+    this.lastMolten = timestamp;
+  }
+
+  public long getLastMolten() {
+
+    return this.lastMolten;
+  }
+
   // ---------------------------------------------------------------------------
   // - Serialization
   // ---------------------------------------------------------------------------
@@ -32,6 +43,7 @@ public class TilePileSlag
 
     super.writeToNBT(compound);
     compound.setTag("stackHandler", this.stackHandler.serializeNBT());
+    compound.setLong("lastMolten", this.lastMolten);
     return compound;
   }
 
@@ -40,6 +52,7 @@ public class TilePileSlag
 
     super.readFromNBT(compound);
     this.stackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));
+    this.lastMolten = compound.getLong("lastMolten");
   }
 
   public static class StackHandler

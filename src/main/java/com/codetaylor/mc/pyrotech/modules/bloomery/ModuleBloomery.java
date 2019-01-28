@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.bloomery;
 
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
+import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
@@ -11,7 +12,10 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.bloomery.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.bloomery.init.ItemInitializer;
+import com.codetaylor.mc.pyrotech.modules.bloomery.init.PacketInitializer;
+import com.codetaylor.mc.pyrotech.modules.bloomery.init.SlagInitializer;
 import com.codetaylor.mc.pyrotech.modules.bloomery.init.recipe.BloomeryRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.bloomery.init.recipe.CompactingBinRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.bloomery.item.*;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import net.minecraft.creativetab.CreativeTabs;
@@ -32,6 +36,10 @@ import net.minecraftforge.registries.RegistryBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.util.IdentityHashMap;
+import java.util.Map;
+
 public class ModuleBloomery
     extends ModuleBase {
 
@@ -39,10 +47,12 @@ public class ModuleBloomery
   public static final String MOD_ID = ModPyrotech.MOD_ID;
   public static final CreativeTabs CREATIVE_TAB = ModPyrotech.CREATIVE_TAB;
 
-  //public static final Logger LOGGER = LogManager.getLogger(MOD_ID + "." + ModuleBloomery.class.getSimpleName());
+  public static final Logger LOGGER = LogManager.getLogger(MOD_ID + "." + ModuleBloomery.class.getSimpleName());
 
   public static IPacketService PACKET_SERVICE;
   public static ITileDataService TILE_DATA_SERVICE;
+
+  private File modConfigurationDirectory;
 
   public ModuleBloomery() {
 
@@ -101,6 +111,8 @@ public class ModuleBloomery
   @Override
   public void onPreInitializationEvent(FMLPreInitializationEvent event) {
 
+    this.modConfigurationDirectory = event.getModConfigurationDirectory();
+
     super.onPreInitializationEvent(event);
 
     FMLInterModComms.sendMessage(
@@ -111,11 +123,18 @@ public class ModuleBloomery
   }
 
   @Override
+  public void onNetworkRegister(IPacketRegistry registry) {
+
+    PacketInitializer.register(registry);
+  }
+
+  @Override
   public void onRegisterRecipesEvent(RegistryEvent.Register<IRecipe> event) {
 
     super.onRegisterRecipesEvent(event);
 
     BloomeryRecipesAdd.apply(ModPyrotechRegistries.BLOOMERY_RECIPE);
+    CompactingBinRecipesAdd.apply(ModPyrotechRegistries.COMPACTING_BIN_RECIPE);
   }
 
   @Override
@@ -123,6 +142,10 @@ public class ModuleBloomery
 
     BlockInitializer.onRegister(registry);
     ItemInitializer.onRegister(registry);
+
+    registry.registerItemRegistrationStrategy(forgeRegistry -> {
+      SlagInitializer.initializeSlag(this.modConfigurationDirectory);
+    });
   }
 
   @SideOnly(Side.CLIENT)
@@ -131,6 +154,8 @@ public class ModuleBloomery
 
     BlockInitializer.onClientRegister(registry);
     ItemInitializer.onClientRegister(registry);
+
+    registry.registerClientModelRegistrationStrategy(SlagInitializer::initializeSlagModels);
   }
 
   @Override
@@ -138,7 +163,7 @@ public class ModuleBloomery
 
     super.onClientInitializationEvent(event);
 
-    ItemInitializer.onClientInitialization();
+    SlagInitializer.initializeSlagColors();
   }
 
   @Override
@@ -146,74 +171,78 @@ public class ModuleBloomery
 
     super.onPostInitializationEvent(event);
 
-    BloomeryRecipesAdd.applyBloomRecipes(
+    BloomeryRecipesAdd.registerBloomAnvilRecipes(
         ModPyrotechRegistries.BLOOMERY_RECIPE,
-        ModPyrotechRegistries.GRANITE_ANVIL_RECIPE,
-        ModPyrotechRegistries.COMPACTING_BIN_RECIPE
+        ModPyrotechRegistries.GRANITE_ANVIL_RECIPE
     );
   }
 
-  @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID)
+  @Override
+  public void onClientPostInitializationEvent(FMLPostInitializationEvent event) {
+
+    super.onClientPostInitializationEvent(event);
+
+  }
+
   public static class Blocks {
 
-    @GameRegistry.ObjectHolder(BlockBloomery.NAME)
-    public static final BlockBloomery BLOOMERY;
+    public static final Map<BlockPileSlag, BlockPileSlag.Properties> GENERATED_PILE_SLAG = new IdentityHashMap<>();
 
-    @GameRegistry.ObjectHolder(BlockBloom.NAME)
-    public static final BlockBloom BLOOM;
-
-    @GameRegistry.ObjectHolder(BlockPileSlag.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + BlockPileSlag.NAME)
     public static final BlockPileSlag PILE_SLAG;
 
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + BlockBloomery.NAME)
+    public static final BlockBloomery BLOOMERY;
+
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + BlockBloom.NAME)
+    public static final BlockBloom BLOOM;
+
     static {
+      PILE_SLAG = null;
       BLOOMERY = null;
       BLOOM = null;
-      PILE_SLAG = null;
     }
   }
 
-  @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID)
   public static class Items {
 
-    @GameRegistry.ObjectHolder(BlockBloom.NAME)
+    public static final Map<ItemSlag, ItemSlag.Properties> GENERATED_SLAG = new IdentityHashMap<>();
+
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + BlockBloom.NAME)
     public static final Item BLOOM;
 
-    @GameRegistry.ObjectHolder(ItemSlag.NAME)
-    public static final ItemSlag SLAG;
-
-    @GameRegistry.ObjectHolder(ItemTongsEmptyStone.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemTongsEmptyStone.NAME)
     public static final ItemTongsEmptyBase TONGS_STONE;
 
-    @GameRegistry.ObjectHolder(ItemTongsFullStone.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemTongsFullStone.NAME)
     public static final ItemTongsFullBase TONGS_STONE_FULL;
 
-    @GameRegistry.ObjectHolder(ItemTongsEmptyFlint.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemTongsEmptyFlint.NAME)
     public static final ItemTongsEmptyBase TONGS_FLINT;
 
-    @GameRegistry.ObjectHolder(ItemTongsFullFlint.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemTongsFullFlint.NAME)
     public static final ItemTongsFullBase TONGS_FLINT_FULL;
 
-    @GameRegistry.ObjectHolder(ItemTongsEmptyBone.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemTongsEmptyBone.NAME)
     public static final ItemTongsEmptyBase TONGS_BONE;
 
-    @GameRegistry.ObjectHolder(ItemTongsFullBone.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemTongsFullBone.NAME)
     public static final ItemTongsFullBase TONGS_BONE_FULL;
 
-    @GameRegistry.ObjectHolder(ItemTongsEmptyIron.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemTongsEmptyIron.NAME)
     public static final ItemTongsEmptyBase TONGS_IRON;
 
-    @GameRegistry.ObjectHolder(ItemTongsFullIron.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemTongsFullIron.NAME)
     public static final ItemTongsFullBase TONGS_IRON_FULL;
 
-    @GameRegistry.ObjectHolder(ItemTongsEmptyDiamond.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemTongsEmptyDiamond.NAME)
     public static final ItemTongsEmptyBase TONGS_DIAMOND;
 
-    @GameRegistry.ObjectHolder(ItemTongsFullDiamond.NAME)
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemTongsFullDiamond.NAME)
     public static final ItemTongsFullBase TONGS_DIAMOND_FULL;
 
     static {
       BLOOM = null;
-      SLAG = null;
       TONGS_STONE = null;
       TONGS_STONE_FULL = null;
       TONGS_BONE = null;
@@ -226,4 +255,5 @@ public class ModuleBloomery
       TONGS_DIAMOND_FULL = null;
     }
   }
+
 }

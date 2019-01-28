@@ -3,23 +3,23 @@ package com.codetaylor.mc.pyrotech.modules.bloomery.init.recipe;
 import com.codetaylor.mc.athenaeum.util.IngredientHelper;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
+import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemSlag;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
-import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.IForgeRegistryModifiable;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,47 +31,108 @@ public class BloomeryRecipesAdd {
 
   public static void apply(IForgeRegistry<BloomeryRecipe> registry) {
 
-    // Iron Nugget
-    registry.register(new BloomeryRecipe(
-        new ResourceLocation(ModuleBloomery.MOD_ID, "iron_nugget"),
-        new ItemStack(Items.IRON_NUGGET),
-        Ingredient.fromStacks(new ItemStack(Blocks.IRON_ORE)),
-        DEFAULT_BURN_TIME_TICKS,
-        DEFAULT_FAILURE_CHANCE,
-        8,
-        10,
-        4,
-        true,
-        new Color(Integer.decode("0xd8af93")).getRGB(),
-        new ItemStack[]{
-            new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
-        },
-        null
+    Item itemSlagIron = ForgeRegistries.ITEMS.getValue(new ResourceLocation(
+        ModuleBloomery.MOD_ID,
+        "generated_" + ItemSlag.NAME + "_iron"
     ));
 
-    // Gold Nugget
-    registry.register(new BloomeryRecipe(
-        new ResourceLocation(ModuleBloomery.MOD_ID, "gold_nugget"),
-        new ItemStack(Items.GOLD_NUGGET),
-        Ingredient.fromStacks(new ItemStack(Blocks.GOLD_ORE)),
-        DEFAULT_BURN_TIME_TICKS,
-        DEFAULT_FAILURE_CHANCE,
-        8,
-        10,
-        4,
-        true,
-        new Color(Integer.decode("0xfcee4b")).getRGB(),
-        new ItemStack[]{
-            new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
-        },
-        null
+    Block blockSlagIron = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(
+        ModuleBloomery.MOD_ID,
+        "generated_" + BlockPileSlag.NAME + "_iron"
     ));
+
+    if (itemSlagIron != null
+        && blockSlagIron != null) {
+
+      // Iron Bloom
+      registry.register(new BloomeryRecipe(
+          new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_iron_ore"),
+          new ItemStack(Items.IRON_NUGGET),
+          Ingredient.fromStacks(new ItemStack(Blocks.IRON_ORE)),
+          DEFAULT_BURN_TIME_TICKS,
+          DEFAULT_FAILURE_CHANCE,
+          8,
+          10,
+          4,
+          new ItemStack(itemSlagIron),
+          new ItemStack[]{
+              new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
+              new ItemStack(itemSlagIron)
+          },
+          null
+      ));
+
+      // Iron Slag Bloom
+      registry.register(new BloomeryRecipe(
+          new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_iron_slag"),
+          new ItemStack(Items.IRON_NUGGET),
+          Ingredient.fromStacks(new ItemStack(blockSlagIron)),
+          DEFAULT_BURN_TIME_TICKS,
+          DEFAULT_FAILURE_CHANCE,
+          4,
+          5,
+          2,
+          new ItemStack(itemSlagIron),
+          new ItemStack[]{
+              new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
+          },
+          Blocks.IRON_ORE.getUnlocalizedName()
+      ));
+    }
+
+    Item itemSlagGold = ForgeRegistries.ITEMS.getValue(new ResourceLocation(
+        ModuleBloomery.MOD_ID,
+        "generated_" + ItemSlag.NAME + "_gold"
+    ));
+
+    Block blockSlagGold = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(
+        ModuleBloomery.MOD_ID,
+        "generated_" + BlockPileSlag.NAME + "_gold"
+    ));
+
+    if (itemSlagGold != null
+        && blockSlagGold != null) {
+
+      // Gold Nugget
+      registry.register(new BloomeryRecipe(
+          new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_gold_ore"),
+          new ItemStack(Items.GOLD_NUGGET),
+          Ingredient.fromStacks(new ItemStack(Blocks.GOLD_ORE)),
+          DEFAULT_BURN_TIME_TICKS,
+          DEFAULT_FAILURE_CHANCE,
+          8,
+          10,
+          4,
+          new ItemStack(itemSlagGold),
+          new ItemStack[]{
+              new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
+              new ItemStack(itemSlagGold)
+          },
+          null
+      ));
+
+      // Gold Slag Bloom
+      registry.register(new BloomeryRecipe(
+          new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_gold_slag"),
+          new ItemStack(Items.GOLD_NUGGET),
+          Ingredient.fromStacks(new ItemStack(blockSlagGold)),
+          DEFAULT_BURN_TIME_TICKS,
+          DEFAULT_FAILURE_CHANCE,
+          4,
+          5,
+          2,
+          new ItemStack(itemSlagGold),
+          new ItemStack[]{
+              new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
+          },
+          Blocks.GOLD_ORE.getUnlocalizedName()
+      ));
+    }
   }
 
-  public static void applyBloomRecipes(
+  public static void registerBloomAnvilRecipes(
       IForgeRegistry<BloomeryRecipe> registryBloomery,
-      IForgeRegistry<GraniteAnvilRecipe> registryAnvil,
-      IForgeRegistryModifiable<CompactingBinRecipe> registryCompacting
+      IForgeRegistry<GraniteAnvilRecipe> registryAnvil
   ) {
 
     Collection<BloomeryRecipe> bloomeryRecipes = registryBloomery.getValuesCollection();
@@ -89,45 +150,7 @@ public class BloomeryRecipesAdd {
           GraniteAnvilRecipe.EnumType.HAMMER,
           bloomeryRecipe
       ).setRegistryName(bloomeryRecipe.getRegistryName()));
-
-      // --- Compacting Bin Recipes ---
-
-      ItemStack slagPile = new ItemStack(ModuleBloomery.Blocks.PILE_SLAG, 1);
-      NBTTagCompound tag = new NBTTagCompound();
-      tag.setString("recipeId", bloomeryRecipe.getRegistryName().toString());
-      tag.setString("langKey", bloomeryRecipe.getLangKey());
-      tag.setInteger("color", bloomeryRecipe.getSlagColor());
-      slagPile.setTagCompound(tag);
-
-      registryCompacting.register(new CompactingBinRecipe(
-          slagPile.copy(),
-          IngredientHelper.fromStackWithNBT(BloomHelper.createSlagItem(
-              bloomeryRecipe.getRegistryName(),
-              bloomeryRecipe.getLangKey(),
-              bloomeryRecipe.getSlagColor()
-          )),
-          8
-      ).setRegistryName(bloomeryRecipe.getRegistryName()));
-
-      // --- Bloomery Recipes ---
-
-      registryBloomery.register(new BloomeryRecipe(
-          new ResourceLocation(bloomeryRecipe.getRegistryName() + ".slag"),
-          bloomeryRecipe.getOutput(),
-          IngredientHelper.fromStackWithNBT(slagPile.copy()),
-          DEFAULT_BURN_TIME_TICKS,
-          DEFAULT_FAILURE_CHANCE,
-          4,
-          5,
-          2,
-          false,
-          bloomeryRecipe.getSlagColor(),
-          new ItemStack[]{
-              new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
-          },
-          bloomeryRecipe.getLangKey()
-      ));
     }
-
   }
+
 }

@@ -5,8 +5,8 @@ import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
-import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
+import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -45,9 +45,11 @@ public class BloomeryRecipe
   private final float failureChance;
   private final int bloomYieldMin;
   private final int bloomYieldMax;
-  private final int slag;
-  private final int slagColor;
+  private final int slagCount;
   private final ItemStack[] failureItems;
+  private final ItemStack slagItem;
+
+  @Nullable
   private final String langKey;
 
   public BloomeryRecipe(
@@ -58,12 +60,13 @@ public class BloomeryRecipe
       float failureChance,
       int bloomYieldMin,
       int bloomYieldMax,
-      int slag,
-      boolean bloomSlag,
-      int slagColor,
+      int slagCount,
+      ItemStack slagItem,
       ItemStack[] failureItems,
       @Nullable String langKey
   ) {
+
+    this.slagItem = slagItem;
 
     this.setRegistryName(resourceLocation);
 
@@ -73,8 +76,7 @@ public class BloomeryRecipe
     this.failureChance = MathHelper.clamp(failureChance, 0, 1);
     this.bloomYieldMin = bloomYieldMin;
     this.bloomYieldMax = bloomYieldMax;
-    this.slag = slag;
-    this.slagColor = slagColor;
+    this.slagCount = slagCount;
 
     if (langKey != null) {
       this.langKey = langKey;
@@ -89,13 +91,7 @@ public class BloomeryRecipe
         this.langKey
     );
 
-    if (bloomSlag) {
-      ItemStack[] toAdd = {BloomHelper.createSlagItem(resourceLocation, this.langKey, this.slagColor)};
-      this.failureItems = ArrayHelper.combine(failureItems, toAdd);
-
-    } else {
-      this.failureItems = failureItems;
-    }
+    this.failureItems = failureItems;
   }
 
   public Ingredient getInput() {
@@ -124,14 +120,9 @@ public class BloomeryRecipe
     );
   }
 
-  public int getSlag() {
+  public int getSlagCount() {
 
-    return this.slag;
-  }
-
-  public int getSlagColor() {
-
-    return this.slagColor;
+    return this.slagCount;
   }
 
   @Override
@@ -150,9 +141,9 @@ public class BloomeryRecipe
     return this.failureItems;
   }
 
-  public String getLangKey() {
+  public ItemStack getSlagItemStack() {
 
-    return this.langKey;
+    return this.slagItem;
   }
 
   public boolean matches(ItemStack input) {

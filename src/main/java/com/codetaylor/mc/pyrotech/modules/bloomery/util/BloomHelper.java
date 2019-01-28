@@ -14,7 +14,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -22,17 +21,6 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BloomHelper {
-
-  public static ItemStack createSlagItem(ResourceLocation recipeId, String langKey, int color) {
-
-    ItemStack itemStack = new ItemStack(ModuleBloomery.Items.SLAG);
-    NBTTagCompound itemTag = new NBTTagCompound();
-    itemTag.setString("recipeId", recipeId.toString());
-    itemTag.setString("langKey", langKey);
-    itemTag.setInteger("color", color);
-    itemStack.setTagCompound(itemTag);
-    return itemStack;
-  }
 
   public static double calculateHammerPower(BlockPos pos, EntityPlayer player) {
 

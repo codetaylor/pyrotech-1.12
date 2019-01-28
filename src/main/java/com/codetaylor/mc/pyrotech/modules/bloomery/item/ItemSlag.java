@@ -1,11 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.bloomery.item;
 
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.translation.I18n;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class ItemSlag
     extends Item {
@@ -19,12 +20,12 @@ public class ItemSlag
 
     if (stack.getItem() == this) {
 
-      NBTTagCompound tagCompound = stack.getTagCompound();
+      Properties properties = ModuleBloomery.Items.GENERATED_SLAG.get(this);
 
-      if (tagCompound != null
-          && tagCompound.hasKey("langKey")) {
+      if (properties != null
+          && properties.langKey != null) {
 
-        String langKey = tagCompound.getString("langKey") + ".name";
+        String langKey = properties.langKey + ".name";
 
         if (I18n.canTranslate(langKey)) {
           String translatedLangKey = I18n.translateToLocal(langKey);
@@ -36,4 +37,16 @@ public class ItemSlag
     return I18n.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name").trim();
   }
 
+  public static class Properties {
+
+    @Nullable
+    public final String langKey;
+    public final int color;
+
+    public Properties(@Nullable String langKey, int color) {
+
+      this.langKey = langKey;
+      this.color = color;
+    }
+  }
 }

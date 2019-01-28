@@ -1,10 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.bloomery.block;
 
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TilePileSlag;
-import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
-import net.minecraft.block.Block;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemSlag;
+import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TilePileSlag;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -16,14 +16,15 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -116,6 +117,18 @@ public class BlockPileSlag
   }
 
   // ---------------------------------------------------------------------------
+  // - Rendering
+  // ---------------------------------------------------------------------------
+
+  @SideOnly(Side.CLIENT)
+  @Nonnull
+  @Override
+  public BlockRenderLayer getBlockLayer() {
+
+    return BlockRenderLayer.CUTOUT;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Variants
   // ---------------------------------------------------------------------------
 
@@ -145,17 +158,24 @@ public class BlockPileSlag
   public static class ItemBlockPileSlag
       extends ItemBlock {
 
-    public ItemBlockPileSlag(Block block) {
+    public ItemBlockPileSlag(BlockPileSlag block) {
 
       super(block);
+    }
+
+    @Nonnull
+    @Override
+    public BlockPileSlag getBlock() {
+
+      return (BlockPileSlag) super.getBlock();
     }
 
     @Override
     public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, @Nonnull IBlockState newState) {
 
-      NBTTagCompound tagCompound = stack.getTagCompound();
+      Properties properties = ModuleBloomery.Blocks.GENERATED_PILE_SLAG.get(this.getBlock());
 
-      if (tagCompound == null) {
+      if (properties == null) {
         return false;
       }
 
@@ -168,11 +188,7 @@ public class BlockPileSlag
           TilePileSlag.StackHandler stackHandler = ((TilePileSlag) tileEntity).getStackHandler();
 
           for (int i = 0; i < 8; i++) {
-            ItemStack slagItem = BloomHelper.createSlagItem(
-                new ResourceLocation(tagCompound.getString("recipeId")),
-                tagCompound.getString("langKey"),
-                tagCompound.getInteger("color")
-            );
+            ItemStack slagItem = new ItemStack(properties.slagItem);
             stackHandler.insertItem(i, slagItem, false);
           }
         }
@@ -188,12 +204,11 @@ public class BlockPileSlag
 
       if (stack.getItem() == this) {
 
-        NBTTagCompound tagCompound = stack.getTagCompound();
+        Properties properties = ModuleBloomery.Blocks.GENERATED_PILE_SLAG.get(this.getBlock());
 
-        if (tagCompound != null
-            && tagCompound.hasKey("langKey")) {
+        if (properties != null) {
 
-          String langKey = tagCompound.getString("langKey") + ".name";
+          String langKey = properties.langKey + ".name";
 
           if (I18n.canTranslate(langKey)) {
             String translatedLangKey = I18n.translateToLocal(langKey);
@@ -203,6 +218,21 @@ public class BlockPileSlag
       }
 
       return I18n.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name").trim();
+    }
+  }
+
+  public static class Properties {
+
+    @Nullable
+    public final String langKey;
+    public final int color;
+    public final ItemSlag slagItem;
+
+    public Properties(@Nullable String langKey, int color, ItemSlag slagItem) {
+
+      this.langKey = langKey;
+      this.color = color;
+      this.slagItem = slagItem;
     }
   }
 }

@@ -2,7 +2,8 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "top": "pyrotech:blocks/slag",
+      "top": "pyrotech:blocks/_empty",
+      "overlay": "pyrotech:blocks/slag_overlay",
       "all": "pyrotech:blocks/slag",
       "particle": "pyrotech:blocks/slag"
     }
@@ -18,28 +19,28 @@
     },
     "level": {
       "1": {
-        "model": "pyrotech:pile_block_2"
+        "model": "pyrotech:slag_pile_block_2"
       },
       "2": {
-        "model": "pyrotech:pile_block_4"
+        "model": "pyrotech:slag_pile_block_4"
       },
       "3": {
-        "model": "pyrotech:pile_block_6"
+        "model": "pyrotech:slag_pile_block_6"
       },
       "4": {
-        "model": "pyrotech:pile_block_8"
+        "model": "pyrotech:slag_pile_block_8"
       },
       "5": {
-        "model": "pyrotech:pile_block_10"
+        "model": "pyrotech:slag_pile_block_10"
       },
       "6": {
-        "model": "pyrotech:pile_block_12"
+        "model": "pyrotech:slag_pile_block_12"
       },
       "7": {
-        "model": "pyrotech:pile_block_14"
+        "model": "pyrotech:slag_pile_block_14"
       },
       "8": {
-        "model": "pyrotech:pile_block_16"
+        "model": "pyrotech:slag_pile_block_16"
       }
     }
   }

@@ -5,17 +5,18 @@ import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.item.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 @SuppressWarnings("WeakerAccess")
 public final class ItemInitializer {
 
   public static void onRegister(Registry registry) {
-
-    registry.registerItem(new ItemSlag(), ItemSlag.NAME);
 
     registry.registerItem(new ItemTongsEmptyStone(), ItemTongsEmptyStone.NAME);
     registry.registerItem(new ItemTongsFullStone(), ItemTongsFullStone.NAME, true);
@@ -34,8 +35,6 @@ public final class ItemInitializer {
 
     registry.registerClientModelRegistrationStrategy(
         () -> ModelRegistrationHelper.registerItemModels(
-            ModuleBloomery.Items.SLAG,
-
             ModuleBloomery.Items.TONGS_STONE,
             ModuleBloomery.Items.TONGS_STONE_FULL,
             ModuleBloomery.Items.TONGS_FLINT,
@@ -53,27 +52,6 @@ public final class ItemInitializer {
   @SideOnly(Side.CLIENT)
   public static void onClientInitialization() {
 
-    // -------------------------------------------------------------------------
-    // - Item Colors
-    // -------------------------------------------------------------------------
-
-    Minecraft minecraft = Minecraft.getMinecraft();
-    ItemColors itemColors = minecraft.getItemColors();
-
-    itemColors.registerItemColorHandler((stack, tintIndex) -> {
-
-      if (tintIndex == 1) {
-
-        NBTTagCompound tagCompound = stack.getTagCompound();
-
-        if (tagCompound != null
-            && tagCompound.hasKey("color")) {
-          return tagCompound.getInteger("color");
-        }
-      }
-
-      return 0xFFFFFF;
-    }, ModuleBloomery.Items.SLAG);
   }
 
   private ItemInitializer() {

@@ -27,6 +27,7 @@ tile.pyrotech.bloom.unique.name=%s Bloom
 tile.pyrotech.bloomery.name=Bloomery
 tile.pyrotech.pile_slag.name=Slag Block
 tile.pyrotech.pile_slag.unique.name=%s Slag Block
+tile.pyrotech.pile_slag_mixed.name=Mixed Slag
 
 #------------------------------------------------------------------------------
 # Module: Bucket
