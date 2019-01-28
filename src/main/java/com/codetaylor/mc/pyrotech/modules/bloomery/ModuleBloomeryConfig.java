@@ -174,14 +174,14 @@ public class ModuleBloomeryConfig {
 
     @Config.Comment({
         "The chance that hitting a raw bloom will spawn a nearby fire.",
-        "Default: " + 0.25
+        "Default: " + 0.1
     })
     @Config.RangeDouble(min = 0, max = 1)
     public double FIRE_SPAWN_CHANCE_ON_HIT_RAW = 0.1;
 
     @Config.Comment({
         "The chance that hitting a bloom in an anvil will spawn a nearby fire.",
-        "Default: " + 0.125
+        "Default: " + 0.05
     })
     @Config.RangeDouble(min = 0, max = 1)
     public double FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL = 0.05;
