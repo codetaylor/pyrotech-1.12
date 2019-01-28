@@ -8,7 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorch;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorchBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -91,6 +91,7 @@ public abstract class ItemIgniterBase
         if (block instanceof BlockCombustionWorkerStoneBase
             || block == ModuleBlocks.CAMPFIRE
             || block == ModuleBlocks.TORCH_FIBER
+            || block == ModuleBlocks.TORCH_STONE
             || block == ModuleBloomery.Blocks.BLOOMERY) {
 
           // TODO: Abstract
@@ -103,8 +104,8 @@ public abstract class ItemIgniterBase
           } else if (tileEntity instanceof TileCombustionWorkerBase) {
             ((TileCombustionWorkerBase) tileEntity).workerSetActive(true);
 
-          } else if (tileEntity instanceof TileTorch) {
-            ((TileTorch) tileEntity).activate();
+          } else if (tileEntity instanceof TileTorchBase) {
+            ((TileTorchBase) tileEntity).activate();
 
           } else if (tileEntity instanceof TileStoneTop) {
             TileEntity candidate = world.getTileEntity(pos.down());

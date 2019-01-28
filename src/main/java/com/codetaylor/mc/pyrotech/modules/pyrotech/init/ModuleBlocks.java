@@ -55,6 +55,7 @@ public final class ModuleBlocks {
   public static final BlockWorktable WORKTABLE = new BlockWorktable();
   public static final BlockWorktableStone WORKTABLE_STONE = new BlockWorktableStone();
   public static final BlockTorchFiber TORCH_FIBER = new BlockTorchFiber();
+  public static final BlockTorchStone TORCH_STONE = new BlockTorchStone();
   public static final BlockFarmlandMulched FARMLAND_MULCHED = new BlockFarmlandMulched();
   public static final BlockCompactingBin COMPACTING_BIN = new BlockCompactingBin();
   public static final BlockSoakingPot SOAKING_POT = new BlockSoakingPot();
@@ -93,6 +94,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.WORKTABLE, BlockWorktable.NAME);
     registry.registerBlockWithItem(ModuleBlocks.WORKTABLE_STONE, BlockWorktableStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.TORCH_FIBER, BlockTorchFiber.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.TORCH_STONE, BlockTorchStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.FARMLAND_MULCHED, BlockFarmlandMulched.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COMPACTING_BIN, BlockCompactingBin.NAME);
     registry.registerBlockWithItem(ModuleBlocks.SOAKING_POT, BlockSoakingPot.NAME);
@@ -123,7 +125,8 @@ public final class ModuleBlocks {
         TileGraniteAnvil.class,
         TileWorktable.class,
         TileWorktableStone.class,
-        TileTorch.class,
+        TileTorchFiber.class,
+        TileTorchStone.class,
         TileShelf.class,
         TileShelfStone.class,
         TileStash.class,
@@ -161,6 +164,7 @@ public final class ModuleBlocks {
           ModuleBlocks.WORKTABLE,
           ModuleBlocks.WORKTABLE_STONE,
           ModuleBlocks.TORCH_FIBER,
+          ModuleBlocks.TORCH_STONE,
           ModuleBlocks.FARMLAND_MULCHED,
           ModuleBlocks.COMPACTING_BIN,
           ModuleBlocks.SOAKING_POT,

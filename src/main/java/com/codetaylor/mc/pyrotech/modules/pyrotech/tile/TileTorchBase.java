@@ -3,16 +3,15 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockTorchFiber;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockTorchFiber;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -31,7 +30,7 @@ import net.minecraftforge.fluids.FluidTank;
 
 import javax.annotation.Nonnull;
 
-public class TileTorch
+public abstract class TileTorchBase
     extends TileNetBase
     implements ITileInteractable {
 
@@ -41,13 +40,13 @@ public class TileTorch
   private long lastTimeStamp;
   private IInteraction[] interactions;
 
-  public TileTorch() {
+  public TileTorchBase() {
 
     super(ModulePyrotech.TILE_DATA_SERVICE);
 
     this.type = new TileDataInteger(BlockTorchFiber.EnumType.UNLIT.getMeta());
 
-    this.duration = (int) (ModulePyrotechConfig.TORCH.DURATION + (Math.random() * 2 - 1) * ModulePyrotechConfig.TORCH.DURATION_VARIANT);
+    this.duration = (int) (this.getDuration() + (Math.random() * 2 - 1) * this.getDurationVariant());
 
     this.registerTileDataForNetwork(new ITileData[]{
         this.type
@@ -82,14 +81,17 @@ public class TileTorch
 
   private boolean shouldDouse() {
 
-    return ModulePyrotechConfig.TORCH.EXTINGUISHED_BY_RAIN
+    return this.isExtinguishedByRain()
         && this.world.isRainingAt(this.pos.up());
   }
 
-  private boolean shouldBurnUp() {
+  protected abstract boolean isExtinguishedByRain();
 
-    return ModulePyrotechConfig.TORCH.BURNS_UP;
-  }
+  protected abstract boolean shouldBurnUp();
+
+  protected abstract int getDuration();
+
+  protected abstract int getDurationVariant();
 
   // ---------------------------------------------------------------------------
   // - Update
@@ -168,7 +170,7 @@ public class TileTorch
   }
 
   private class InteractionBucket
-      extends InteractionBucketBase<TileTorch> {
+      extends InteractionBucketBase<TileTorchBase> {
 
     /* package */ InteractionBucket() {
 
@@ -191,7 +193,7 @@ public class TileTorch
     }
 
     @Override
-    protected boolean doInteraction(TileTorch tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean doInteraction(TileTorchBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (tile.type.get() != BlockTorchFiber.EnumType.LIT.getMeta()) {
         return false;
@@ -210,7 +212,7 @@ public class TileTorch
   }
 
   public class InteractionUseItemToActivate
-      extends InteractionUseItemBase<TileTorch> {
+      extends InteractionUseItemBase<TileTorchBase> {
 
     private final Item item;
 
@@ -227,13 +229,13 @@ public class TileTorch
     }
 
     @Override
-    protected boolean allowInteraction(TileTorch tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean allowInteraction(TileTorchBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       return (player.getHeldItem(hand).getItem() == this.item);
     }
 
     @Override
-    protected boolean doInteraction(TileTorch tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean doInteraction(TileTorchBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (!world.isRemote) {
 

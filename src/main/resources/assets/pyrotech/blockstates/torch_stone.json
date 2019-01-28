@@ -2,8 +2,8 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "torch": "pyrotech:blocks/torch_on",
-      "particle": "pyrotech:blocks/torch_off"
+      "torch": "pyrotech:blocks/torch_stone_on",
+      "particle": "pyrotech:blocks/torch_stone_off"
     }
   },
   "variants": {
@@ -27,17 +27,17 @@
     "type": {
       "lit": {
         "textures": {
-          "torch": "pyrotech:blocks/torch_on"
+          "torch": "pyrotech:blocks/torch_stone_on"
         }
       },
       "unlit": {
         "textures": {
-          "torch": "pyrotech:blocks/torch_off"
+          "torch": "pyrotech:blocks/torch_stone_off"
         }
       },
       "doused": {
         "textures": {
-          "torch": "pyrotech:blocks/torch_doused"
+          "torch": "pyrotech:blocks/torch_stone_doused"
         }
       }
     }

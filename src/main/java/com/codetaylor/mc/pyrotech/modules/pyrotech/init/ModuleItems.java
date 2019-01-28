@@ -119,6 +119,8 @@ public final class ModuleItems {
       OreDictionary.registerOre("twine", new ItemStack(Items.STRING));
 
       OreDictionary.registerOre("nuggetIron", ItemMaterial.EnumType.IRON_SHARD.asStack());
+
+      OreDictionary.registerOre("stickStone", ItemMaterial.EnumType.STICK_STONE.asStack());
     });
   }
 

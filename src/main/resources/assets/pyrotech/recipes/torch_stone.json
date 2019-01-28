@@ -11,11 +11,11 @@
     },
     "S": {
       "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "ore": "stickStone"
     }
   },
   "result": {
-    "item": "pyrotech:torch",
+    "item": "pyrotech:torch_stone",
     "count": 1,
     "data": 0
   }
