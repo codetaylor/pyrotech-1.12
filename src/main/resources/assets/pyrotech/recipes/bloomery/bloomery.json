@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.bloomery"]
+    }
+  ],
+  "pattern": [
+    "X X",
+    "X X",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "pyrotech:refractory_brick_block",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:bloomery",
+    "count": 1,
+    "data": 0
+  }
+}
