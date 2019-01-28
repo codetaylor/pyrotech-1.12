@@ -13,13 +13,11 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockGraniteAnvil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
-import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockAnvilBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.AnvilRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +34,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 
-public class TileGraniteAnvil
+public abstract class TileAnvilBase
     extends TileNetBase
     implements ITileInteractable {
 
@@ -49,7 +47,7 @@ public class TileGraniteAnvil
   private IInteraction[] interactions;
   private AxisAlignedBB renderBounds;
 
-  public TileGraniteAnvil() {
+  public TileAnvilBase() {
 
     super(ModulePyrotech.TILE_DATA_SERVICE);
 
@@ -77,7 +75,7 @@ public class TileGraniteAnvil
         new Interaction(new ItemStackHandler[]{this.stackHandler}),
         new InteractionHit()
     };
-    this.durabilityUntilNextDamage = ModulePyrotechConfig.GRANITE_ANVIL.HITS_PER_DAMAGE;
+    this.durabilityUntilNextDamage = this.getHitsPerDamage();
   }
 
   @Override
@@ -101,13 +99,13 @@ public class TileGraniteAnvil
 
   public void setDamage(int damage) {
 
-    this.world.setBlockState(this.pos, ModuleBlocks.GRANITE_ANVIL.getDefaultState()
-        .withProperty(BlockGraniteAnvil.DAMAGE, damage), 3);
+    this.world.setBlockState(this.pos, this.getBlock().getDefaultState()
+        .withProperty(BlockAnvilBase.DAMAGE, damage), 3);
   }
 
   public int getDamage() {
 
-    return this.world.getBlockState(this.pos).getValue(BlockGraniteAnvil.DAMAGE);
+    return this.world.getBlockState(this.pos).getValue(BlockAnvilBase.DAMAGE);
   }
 
   public void setDurabilityUntilNextDamage(int durabilityUntilNextDamage) {
@@ -136,10 +134,28 @@ public class TileGraniteAnvil
     return this.stackHandler;
   }
 
-  public int getBloomAnvilDamagePerHit() {
+  // ---------------------------------------------------------------------------
+  // - Subclass
+  // ---------------------------------------------------------------------------
 
-    return ModulePyrotechConfig.GRANITE_ANVIL.BLOOM_DAMAGE_PER_HIT;
-  }
+  public abstract int getBloomAnvilDamagePerHit();
+
+  protected abstract int getHitsPerDamage();
+
+  protected abstract double getExhaustionCostPerCraftComplete();
+
+  protected abstract double getExhaustionCostPerHit();
+
+  protected abstract int getHammerHitReduction(ResourceLocation resourceLocation);
+
+  protected abstract String[] getPickaxeWhitelist();
+
+  protected abstract String[] getPickaxeBlacklist();
+
+  protected abstract int getMinimumHungerToUse();
+
+  @Nonnull
+  protected abstract BlockAnvilBase getBlock();
 
   // ---------------------------------------------------------------------------
   // - Network
@@ -210,20 +226,20 @@ public class TileGraniteAnvil
   }
 
   private class InteractionItem
-      extends InteractionUseItemBase<TileGraniteAnvil> {
+      extends InteractionUseItemBase<TileAnvilBase> {
 
     /* package */ InteractionItem() {
 
-      super(new EnumFacing[]{EnumFacing.UP}, BlockGraniteAnvil.AABB);
+      super(new EnumFacing[]{EnumFacing.UP}, BlockAnvilBase.AABB);
     }
   }
 
   private class Interaction
-      extends InteractionItemStack<TileGraniteAnvil> {
+      extends InteractionItemStack<TileAnvilBase> {
 
     /* package */ Interaction(ItemStackHandler[] stackHandlers) {
 
-      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, BlockGraniteAnvil.AABB, new Transform(
+      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, BlockAnvilBase.AABB, new Transform(
           Transform.translate(0.5, 0.75, 0.5),
           Transform.rotate(),
           Transform.scale(0.75, 0.75, 0.75)
@@ -233,7 +249,7 @@ public class TileGraniteAnvil
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (GraniteAnvilRecipe.getRecipe(itemStack) != null);
+      return (AnvilRecipe.getRecipe(itemStack) != null);
     }
 
     @Override
@@ -257,17 +273,17 @@ public class TileGraniteAnvil
   }
 
   private class InteractionHit
-      extends InteractionUseItemBase<TileGraniteAnvil> {
+      extends InteractionUseItemBase<TileAnvilBase> {
 
     /* package */ InteractionHit() {
 
-      super(new EnumFacing[]{EnumFacing.UP}, BlockGraniteAnvil.AABB);
+      super(new EnumFacing[]{EnumFacing.UP}, BlockAnvilBase.AABB);
     }
 
     @Override
-    protected boolean allowInteraction(TileGraniteAnvil tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean allowInteraction(TileAnvilBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      if (player.getFoodStats().getFoodLevel() < ModulePyrotechConfig.GRANITE_ANVIL.MINIMUM_HUNGER_TO_USE) {
+      if (player.getFoodStats().getFoodLevel() < tile.getMinimumHungerToUse()) {
         return false;
       }
 
@@ -282,7 +298,7 @@ public class TileGraniteAnvil
 
       ItemStackHandler stackHandler = tile.getStackHandler();
       ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
-      GraniteAnvilRecipe recipe = GraniteAnvilRecipe.getRecipe(itemStack);
+      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack);
 
       if (recipe == null) {
         return false;
@@ -290,37 +306,37 @@ public class TileGraniteAnvil
 
       if (heldItem.getToolClasses(heldItemStack).contains("pickaxe")) {
         // held item is pickaxe
-        if (!ArrayHelper.contains(ModulePyrotechConfig.GRANITE_ANVIL.PICKAXE_BLACKLIST, resourceLocation.toString())) {
-          return (recipe.getType() == GraniteAnvilRecipe.EnumType.PICKAXE);
+        if (!ArrayHelper.contains(tile.getPickaxeBlacklist(), resourceLocation.toString())) {
+          return (recipe.getType() == AnvilRecipe.EnumType.PICKAXE);
         }
 
-      } else if (ArrayHelper.contains(ModulePyrotechConfig.GRANITE_ANVIL.PICKAXE_WHITELIST, resourceLocation.toString())) {
+      } else if (ArrayHelper.contains(tile.getPickaxeWhitelist(), resourceLocation.toString())) {
         // held item is pickaxe
-        return (recipe.getType() == GraniteAnvilRecipe.EnumType.PICKAXE);
+        return (recipe.getType() == AnvilRecipe.EnumType.PICKAXE);
 
-      } else if (ModulePyrotechConfig.GRANITE_ANVIL.getHammerHitReduction(resourceLocation) > -1) {
+      } else if (tile.getHammerHitReduction(resourceLocation) > -1) {
         // held item is hammer
-        return (recipe.getType() == GraniteAnvilRecipe.EnumType.HAMMER);
+        return (recipe.getType() == AnvilRecipe.EnumType.HAMMER);
       }
 
       return false;
     }
 
     @Override
-    protected boolean doInteraction(TileGraniteAnvil tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean doInteraction(TileAnvilBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       ItemStackHandler stackHandler = tile.getStackHandler();
       ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
-      GraniteAnvilRecipe recipe = GraniteAnvilRecipe.getRecipe(itemStack);
+      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack);
 
-      boolean isExtendedRecipe = (recipe instanceof GraniteAnvilRecipe.IExtendedRecipe);
+      boolean isExtendedRecipe = (recipe instanceof AnvilRecipe.IExtendedRecipe);
 
       if (!world.isRemote) {
 
         // Server logic
 
-        if (ModulePyrotechConfig.GRANITE_ANVIL.EXHAUSTION_COST_PER_HIT > 0) {
-          player.addExhaustion((float) ModulePyrotechConfig.GRANITE_ANVIL.EXHAUSTION_COST_PER_HIT);
+        if (tile.getExhaustionCostPerHit() > 0) {
+          player.addExhaustion((float) tile.getExhaustionCostPerHit());
         }
 
         // Decrement the tile's damage and reset the hits
@@ -329,7 +345,7 @@ public class TileGraniteAnvil
 
         if (tile.getDurabilityUntilNextDamage() <= 1) {
 
-          tile.setDurabilityUntilNextDamage(ModulePyrotechConfig.GRANITE_ANVIL.HITS_PER_DAMAGE);
+          tile.setDurabilityUntilNextDamage(tile.getHitsPerDamage());
 
           if (tile.getDamage() + 1 < 4) {
             tile.setDamage(tile.getDamage() + 1);
@@ -359,7 +375,7 @@ public class TileGraniteAnvil
         if (recipe != null) {
 
           if (isExtendedRecipe) {
-            ((GraniteAnvilRecipe.IExtendedRecipe) recipe).applyDamage(world, tile);
+            ((AnvilRecipe.IExtendedRecipe) recipe).applyDamage(world, tile);
 
           } else {
             tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);
@@ -374,14 +390,14 @@ public class TileGraniteAnvil
               hitReduction = item.getHarvestLevel(heldItemMainHand, "pickaxe", player, null);
 
             } else {
-              hitReduction = ModulePyrotechConfig.GRANITE_ANVIL.getHammerHitReduction(item.getRegistryName());
+              hitReduction = tile.getHammerHitReduction(item.getRegistryName());
             }
 
             int hits = Math.max(1, recipe.getHits() - hitReduction);
             float recipeProgressIncrement = 1f / hits;
 
             if (isExtendedRecipe) {
-              recipeProgressIncrement = ((GraniteAnvilRecipe.IExtendedRecipe) recipe).getModifiedRecipeProgressIncrement(recipeProgressIncrement, tile, player);
+              recipeProgressIncrement = ((AnvilRecipe.IExtendedRecipe) recipe).getModifiedRecipeProgressIncrement(recipeProgressIncrement, tile, player);
             }
 
             tile.setRecipeProgress(tile.getRecipeProgress() + recipeProgressIncrement);
@@ -391,7 +407,7 @@ public class TileGraniteAnvil
 
             if (isExtendedRecipe) {
               //noinspection unchecked
-              ((GraniteAnvilRecipe.IExtendedRecipe) recipe).onRecipeCompleted(tile, world, stackHandler, recipe);
+              ((AnvilRecipe.IExtendedRecipe) recipe).onRecipeCompleted(tile, world, stackHandler, recipe);
 
             } else {
               stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
@@ -409,8 +425,8 @@ public class TileGraniteAnvil
                 (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
             );
 
-            if (ModulePyrotechConfig.GRANITE_ANVIL.EXHAUSTION_COST_PER_CRAFT_COMPLETE > 0) {
-              player.addExhaustion((float) ModulePyrotechConfig.GRANITE_ANVIL.EXHAUSTION_COST_PER_CRAFT_COMPLETE);
+            if (tile.getExhaustionCostPerCraftComplete() > 0) {
+              player.addExhaustion((float) tile.getExhaustionCostPerCraftComplete());
             }
 
             tile.markDirty();
@@ -422,14 +438,14 @@ public class TileGraniteAnvil
 
         // Client particles
 
-        IBlockState blockState = ModuleBlocks.GRANITE_ANVIL.getDefaultState();
+        IBlockState blockState = tile.getBlock().getDefaultState();
 
         for (int i = 0; i < 8; ++i) {
           world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, tile.getPos().getX() + hitX, tile.getPos().getY() + hitY, tile.getPos().getZ() + hitZ, 0.0D, 0.0D, 0.0D, Block.getStateId(blockState));
         }
 
         if (isExtendedRecipe) {
-          ((GraniteAnvilRecipe.IExtendedRecipe) recipe).onAnvilHitClient(world, tile, hitX, hitY, hitZ);
+          ((AnvilRecipe.IExtendedRecipe) recipe).onAnvilHitClient(world, tile, hitX, hitY, hitZ);
         }
       }
 

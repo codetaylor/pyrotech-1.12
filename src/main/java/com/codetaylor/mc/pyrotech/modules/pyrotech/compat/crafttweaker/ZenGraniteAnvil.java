@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.AnvilRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
@@ -31,7 +31,7 @@ public class ZenGraniteAnvil {
         CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getIngredient(input),
         hits,
-        GraniteAnvilRecipe.EnumType.valueOf(type.toUpperCase())
+        AnvilRecipe.EnumType.valueOf(type.toUpperCase())
     ));
   }
 
@@ -58,7 +58,7 @@ public class ZenGraniteAnvil {
     @Override
     public void apply() {
 
-      GraniteAnvilRecipe.removeRecipes(this.output);
+      AnvilRecipe.removeRecipes(this.output);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class ZenGraniteAnvil {
 
     private final ItemStack output;
     private final int hits;
-    private final GraniteAnvilRecipe.EnumType type;
+    private final AnvilRecipe.EnumType type;
     private final String name;
     private final Ingredient input;
 
@@ -82,7 +82,7 @@ public class ZenGraniteAnvil {
         ItemStack output,
         Ingredient input,
         int hits,
-        GraniteAnvilRecipe.EnumType type
+        AnvilRecipe.EnumType type
     ) {
 
       this.name = name;
@@ -95,13 +95,13 @@ public class ZenGraniteAnvil {
     @Override
     public void apply() {
 
-      GraniteAnvilRecipe recipe = new GraniteAnvilRecipe(
+      AnvilRecipe recipe = new AnvilRecipe(
           this.output,
           this.input,
           this.hits,
           this.type
       );
-      ModPyrotechRegistries.GRANITE_ANVIL_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModPyrotechRegistries.ANVIL_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override

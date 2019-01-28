@@ -54,7 +54,7 @@ public class WailaRegistrar {
     registrar.registerBodyProvider(woodRackProvider, TileWoodRack.class);
 
     GraniteAnvilProvider graniteAnvilProvider = new GraniteAnvilProvider();
-    registrar.registerBodyProvider(graniteAnvilProvider, TileGraniteAnvil.class);
+    registrar.registerBodyProvider(graniteAnvilProvider, TileAnvilBase.class);
 
     WorktableProvider worktableProvider = new WorktableProvider();
     registrar.registerBodyProvider(worktableProvider, TileWorktable.class);

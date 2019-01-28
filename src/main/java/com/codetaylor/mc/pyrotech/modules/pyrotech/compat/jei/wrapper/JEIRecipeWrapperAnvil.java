@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.AnvilRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -22,15 +22,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class JEIRecipeWrapperGraniteAnvil
+public class JEIRecipeWrapperAnvil
     implements IRecipeWrapper {
 
   private final List<List<ItemStack>> inputs;
   private final ItemStack output;
   private final int hits;
-  private final GraniteAnvilRecipe.EnumType type;
+  private final AnvilRecipe.EnumType type;
 
-  public JEIRecipeWrapperGraniteAnvil(GraniteAnvilRecipe recipe) {
+  public JEIRecipeWrapperAnvil(AnvilRecipe recipe) {
 
     this.inputs = Collections.singletonList(Arrays.asList(recipe.getInput().getMatchingStacks()));
     this.output = recipe.getOutput();
@@ -50,11 +50,11 @@ public class JEIRecipeWrapperGraniteAnvil
 
     String[] toolWhitelist;
 
-    if (this.type == GraniteAnvilRecipe.EnumType.HAMMER) {
-      toolWhitelist = ModulePyrotechConfig.GRANITE_ANVIL.HAMMER_LIST;
+    if (this.type == AnvilRecipe.EnumType.HAMMER) {
+      toolWhitelist = ModulePyrotechConfig.ANVIL_COMMON.HAMMER_LIST;
 
-    } else if (this.type == GraniteAnvilRecipe.EnumType.PICKAXE) {
-      toolWhitelist = ModulePyrotechConfig.GRANITE_ANVIL.JEI_HARVEST_LEVEL_PICKAXE;
+    } else if (this.type == AnvilRecipe.EnumType.PICKAXE) {
+      toolWhitelist = ModulePyrotechConfig.ANVIL_COMMON.JEI_HARVEST_LEVEL_PICKAXE;
 
     } else {
       throw new RuntimeException("Unknown recipe type: " + this.type);
@@ -68,8 +68,8 @@ public class JEIRecipeWrapperGraniteAnvil
 
     if (item != null) {
 
-      if (this.type == GraniteAnvilRecipe.EnumType.HAMMER) {
-        hits -= ModulePyrotechConfig.GRANITE_ANVIL.getHammerHitReduction(item.getRegistryName());
+      if (this.type == AnvilRecipe.EnumType.HAMMER) {
+        hits -= ModulePyrotechConfig.ANVIL_COMMON.getHammerHitReduction(item.getRegistryName());
 
       } else {
         hits -= item.getHarvestLevel(null, "pickaxe", null, null);

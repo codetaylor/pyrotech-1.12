@@ -563,28 +563,12 @@ public class ModulePyrotechConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Granite Anvil
+  // - Anvil Common
   // ---------------------------------------------------------------------------
 
-  public static GraniteAnvil GRANITE_ANVIL = new GraniteAnvil();
+  public static AnvilCommon ANVIL_COMMON = new AnvilCommon();
 
-  public static class GraniteAnvil {
-
-    @Config.Comment({
-        "The number of times the block can be hit before applying damage",
-        "to the block. The block has a total of four damage stages. This number",
-        "represents the number of hits for just one damage stage.",
-        "Range: [1, +int]",
-        "Default: " + 64
-    })
-    public int HITS_PER_DAMAGE = 64;
-
-    @Config.Comment({
-        "The amount of hits to apply to the anvil damage when hitting a bloom.",
-        "Default: " + 4
-    })
-    @Config.RangeInt(min = 0)
-    public int BLOOM_DAMAGE_PER_HIT = 4;
+  public static class AnvilCommon {
 
     @Config.Comment({
         "Use this to add items that you want to be valid for hammer recipes.",
@@ -604,38 +588,6 @@ public class ModulePyrotechConfig {
         ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME + ";" + 3
     };
 
-    @Config.Comment({
-        "These values are used to reduce the number of hits required to complete",
-        "a recipe.",
-        "",
-        "The index into the array is the harvest level, the value at that index",
-        "is the hit reduction. The array can be expanded as needed.",
-        "If the harvest level of the tool used exceeds the array length, the",
-        "last element in the array is used.",
-        "",
-        "ie. {wood, stone, iron, diamond}",
-        "Default: {0, 1, 2, 3}"
-    })
-    public int[] HIT_REDUCTION_PER_ANVIL_HARVEST_LEVEL = {0, 1, 2, 3};
-
-    /**
-     * Returns the hammer hit reduction for the given hammer resource location,
-     * or -1 if the given hammer isn't in the list.
-     *
-     * @param resourceLocation the hammer
-     * @return the hammer hit reduction
-     */
-    public int getHammerHitReduction(ResourceLocation resourceLocation) {
-
-      int hammerHarvestLevel = this.getHammerHarvestLevel(resourceLocation);
-
-      if (hammerHarvestLevel > -1) {
-        return ArrayHelper.getOrLast(this.HIT_REDUCTION_PER_ANVIL_HARVEST_LEVEL, hammerHarvestLevel);
-      }
-
-      return -1;
-    }
-
     /**
      * Returns the hammer harvest level for the given hammer resource location,
      * or -1 if the given hammer isn't in the list.
@@ -654,6 +606,38 @@ public class ModulePyrotechConfig {
         if (resourceLocationString.equals(toMatch)) {
           return (split.length > 1) ? Integer.valueOf(split[1]) : 0;
         }
+      }
+
+      return -1;
+    }
+
+    @Config.Comment({
+        "These values are used to reduce the number of hits required to complete",
+        "a recipe.",
+        "",
+        "The index into the array is the harvest level, the value at that index",
+        "is the hit reduction. The array can be expanded as needed.",
+        "If the harvest level of the tool used exceeds the array length, the",
+        "last element in the array is used.",
+        "",
+        "ie. {wood, stone, iron, diamond}",
+        "Default: {0, 1, 2, 3}"
+    })
+    public int[] HIT_REDUCTION_PER_HAMMER_HARVEST_LEVEL = {0, 1, 2, 3};
+
+    /**
+     * Returns the hammer hit reduction for the given hammer resource location,
+     * or -1 if the given hammer isn't in the list.
+     *
+     * @param resourceLocation the hammer
+     * @return the hammer hit reduction
+     */
+    public int getHammerHitReduction(ResourceLocation resourceLocation) {
+
+      int hammerHarvestLevel = this.getHammerHarvestLevel(resourceLocation);
+
+      if (hammerHarvestLevel > -1) {
+        return ArrayHelper.getOrLast(this.HIT_REDUCTION_PER_HAMMER_HARVEST_LEVEL, hammerHarvestLevel);
       }
 
       return -1;
@@ -690,6 +674,77 @@ public class ModulePyrotechConfig {
         "minecraft:iron_pickaxe",
         "minecraft:diamond_pickaxe"
     };
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Granite Anvil
+  // ---------------------------------------------------------------------------
+
+  public static GraniteAnvil GRANITE_ANVIL = new GraniteAnvil();
+
+  public static class GraniteAnvil {
+
+    @Config.Comment({
+        "The number of times the block can be hit before applying damage",
+        "to the block. The block has a total of four damage stages. This number",
+        "represents the number of hits for just one damage stage.",
+        "Range: [1, +int]",
+        "Default: " + 64
+    })
+    public int HITS_PER_DAMAGE = 64;
+
+    @Config.Comment({
+        "The amount of hits to apply to the anvil damage when hitting a bloom.",
+        "Default: " + 4
+    })
+    @Config.RangeInt(min = 0)
+    public int BLOOM_DAMAGE_PER_HIT = 4;
+
+    @Config.Comment({
+        "How much exhaustion to apply per hit.",
+        "Range: [0, 40]",
+        "Default: " + 0.5
+    })
+    public double EXHAUSTION_COST_PER_HIT = 0.5;
+
+    @Config.Comment({
+        "How much exhaustion to apply per completed craft.",
+        "Range: [0, 40]",
+        "Default: " + 0
+    })
+    public double EXHAUSTION_COST_PER_CRAFT_COMPLETE = 0;
+
+    @Config.Comment({
+        "Minimum amount of hunger the player needs to use.",
+        "Range: [0, 20]",
+        "Default: 3"
+    })
+    public int MINIMUM_HUNGER_TO_USE = 3;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Iron Plated Anvil
+  // ---------------------------------------------------------------------------
+
+  public static IronPlatedAnvil IRON_PLATED_ANVIL = new IronPlatedAnvil();
+
+  public static class IronPlatedAnvil {
+
+    @Config.Comment({
+        "The number of times the block can be hit before applying damage",
+        "to the block. The block has a total of four damage stages. This number",
+        "represents the number of hits for just one damage stage.",
+        "Range: [1, +int]",
+        "Default: " + 256
+    })
+    public int HITS_PER_DAMAGE = 256;
+
+    @Config.Comment({
+        "The amount of hits to apply to the anvil damage when hitting a bloom.",
+        "Default: " + 2
+    })
+    @Config.RangeInt(min = 0)
+    public int BLOOM_DAMAGE_PER_HIT = 2;
 
     @Config.Comment({
         "How much exhaustion to apply per hit.",

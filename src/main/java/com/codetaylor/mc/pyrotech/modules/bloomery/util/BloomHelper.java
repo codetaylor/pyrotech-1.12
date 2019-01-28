@@ -25,7 +25,7 @@ public class BloomHelper {
   public static double calculateHammerPower(BlockPos pos, EntityPlayer player) {
 
     ItemStack heldItem = player.getHeldItemMainhand();
-    int hammerHarvestLevel = ModulePyrotechConfig.GRANITE_ANVIL.getHammerHarvestLevel(heldItem.getItem().getRegistryName());
+    int hammerHarvestLevel = ModulePyrotechConfig.ANVIL_COMMON.getHammerHarvestLevel(heldItem.getItem().getRegistryName());
 
     if (hammerHarvestLevel == -1) {
       return 0;

@@ -130,9 +130,9 @@ public class ModulePyrotech
         .allowModification()
         .create();
 
-    new RegistryBuilder<GraniteAnvilRecipe>()
+    new RegistryBuilder<AnvilRecipe>()
         .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "granite_anvil_recipe"))
-        .setType(GraniteAnvilRecipe.class)
+        .setType(AnvilRecipe.class)
         .allowModification()
         .create();
 
@@ -210,7 +210,7 @@ public class ModulePyrotech
     PitKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_PIT_RECIPE);
     StoneKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_STONE_RECIPE);
     DryingRackRecipesAdd.apply(ModPyrotechRegistries.DRYING_RACK_RECIPE);
-    GraniteAnvilRecipesAdd.apply(ModPyrotechRegistries.GRANITE_ANVIL_RECIPE);
+    AnvilRecipesAdd.apply(ModPyrotechRegistries.ANVIL_RECIPE);
     ChoppingBlockRecipesAdd.apply(ModPyrotechRegistries.CHOPPING_BLOCK_RECIPE);
     DryingRackCrudeRecipesAdd.apply(ModPyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
     StoneSawmillRecipesAdd.apply(ModPyrotechRegistries.MILL_STONE_RECIPE);

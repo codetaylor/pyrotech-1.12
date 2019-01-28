@@ -11,7 +11,7 @@ public class JEIRecipeCategoryUid {
   public static final String DRYING = ModulePyrotech.MOD_ID + ".drying";
   public static final String DRYING_CRUDE = ModulePyrotech.MOD_ID + ".drying.crude";
   public static final String CHOPPING = ModulePyrotech.MOD_ID + ".chopping";
-  public static final String GRANITE_ANVIL = ModulePyrotech.MOD_ID + ".granite.anvil";
+  public static final String ANVIL = ModulePyrotech.MOD_ID + ".anvil";
   public static final String STONE_MILL = ModulePyrotech.MOD_ID + ".stone.mill";
   public static final String COMPACTING_BIN = ModulePyrotech.MOD_ID + ".compacting.bin";
   public static final String CAMPFIRE = ModulePyrotech.MOD_ID + ".campfire";

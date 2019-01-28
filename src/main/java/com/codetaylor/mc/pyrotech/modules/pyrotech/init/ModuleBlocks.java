@@ -51,7 +51,8 @@ public final class ModuleBlocks {
   public static final BlockOre ORE = new BlockOre();
   public static final BlockCobblestone COBBLESTONE = new BlockCobblestone();
   public static final BlockStoneBricks STONE_BRICKS = new BlockStoneBricks();
-  public static final BlockGraniteAnvil GRANITE_ANVIL = new BlockGraniteAnvil();
+  public static final BlockAnvilGranite ANVIL_GRANITE = new BlockAnvilGranite();
+  public static final BlockAnvilIronPlated ANVIL_IRON_PLATED = new BlockAnvilIronPlated();
   public static final BlockWorktable WORKTABLE = new BlockWorktable();
   public static final BlockWorktableStone WORKTABLE_STONE = new BlockWorktableStone();
   public static final BlockTorchFiber TORCH_FIBER = new BlockTorchFiber();
@@ -103,7 +104,8 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.WOOL_TARRED, BlockWoolTarred.NAME);
 
     registry.registerBlock(ModuleBlocks.CHOPPING_BLOCK, new BlockChoppingBlock.ItemChoppingBlock(ModuleBlocks.CHOPPING_BLOCK), BlockChoppingBlock.NAME);
-    registry.registerBlock(ModuleBlocks.GRANITE_ANVIL, new BlockGraniteAnvil.ItemGraniteAnvil(ModuleBlocks.GRANITE_ANVIL), BlockGraniteAnvil.NAME);
+    registry.registerBlock(ModuleBlocks.ANVIL_GRANITE, new BlockAnvilBase.ItemAnvil(ModuleBlocks.ANVIL_GRANITE), BlockAnvilGranite.NAME);
+    registry.registerBlock(ModuleBlocks.ANVIL_IRON_PLATED, new BlockAnvilIronPlated.ItemAnvil(ModuleBlocks.ANVIL_IRON_PLATED), BlockAnvilIronPlated.NAME);
 
     registry.registerTileEntities(
         TileTarCollector.class,
@@ -122,7 +124,8 @@ public final class ModuleBlocks {
         TileDryingRackCrude.class,
         TileChoppingBlock.class,
         TileWoodRack.class,
-        TileGraniteAnvil.class,
+        TileAnvilGranite.class,
+        TileAnvilIronPlated.class,
         TileWorktable.class,
         TileWorktableStone.class,
         TileTorchFiber.class,
@@ -222,8 +225,15 @@ public final class ModuleBlocks {
 
       // Granite Anvil
       ModelRegistrationHelper.registerVariantBlockItemModels(
-          ModuleBlocks.GRANITE_ANVIL.getDefaultState(),
-          BlockGraniteAnvil.DAMAGE,
+          ModuleBlocks.ANVIL_GRANITE.getDefaultState(),
+          BlockAnvilBase.DAMAGE,
+          value -> value
+      );
+
+      // Iron Plated Anvil
+      ModelRegistrationHelper.registerVariantBlockItemModels(
+          ModuleBlocks.ANVIL_IRON_PLATED.getDefaultState(),
+          BlockAnvilBase.DAMAGE,
           value -> value
       );
 
@@ -257,7 +267,7 @@ public final class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRackCrude.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileChoppingBlock.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileWoodRack.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileGraniteAnvil.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileAnvilBase.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileWorktable.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileShelf.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileStash.class, new TESRInteractable<>());

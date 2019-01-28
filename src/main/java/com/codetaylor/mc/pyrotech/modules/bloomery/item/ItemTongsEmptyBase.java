@@ -5,7 +5,7 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileAnvilBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -48,8 +48,8 @@ public abstract class ItemTongsEmptyBase
   @Override
   public boolean allowInteraction(TileEntity tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    if (tile instanceof TileGraniteAnvil) {
-      return ((TileGraniteAnvil) tile).getStackHandler().getStackInSlot(0).getItem() == ModuleBloomery.Items.BLOOM;
+    if (tile instanceof TileAnvilBase) {
+      return ((TileAnvilBase) tile).getStackHandler().getStackInSlot(0).getItem() == ModuleBloomery.Items.BLOOM;
 
     } else if (tile instanceof TileBloomery) {
       return ((TileBloomery) tile).getOutputStackHandler().getStackInSlot(0).getItem() == ModuleBloomery.Items.BLOOM;
@@ -61,8 +61,8 @@ public abstract class ItemTongsEmptyBase
   @Override
   public boolean doInteraction(TileEntity tile, World world, ItemStack heldItem, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    if (tile instanceof TileGraniteAnvil) {
-      ItemStack bloomStack = ((TileGraniteAnvil) tile).getStackHandler().extractItem(0, 1, false);
+    if (tile instanceof TileAnvilBase) {
+      ItemStack bloomStack = ((TileAnvilBase) tile).getStackHandler().extractItem(0, 1, false);
       ItemStack tongsFull = BloomHelper.createItemTongsFull(heldItem, bloomStack);
       heldItem.shrink(1);
       ItemHandlerHelper.giveItemToPlayer(player, tongsFull, player.inventory.currentItem);

@@ -6,8 +6,8 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.AnvilRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileAnvilBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -17,8 +17,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class BloomAnvilRecipe
-    extends GraniteAnvilRecipe
-    implements GraniteAnvilRecipe.IExtendedRecipe<BloomAnvilRecipe> {
+    extends AnvilRecipe
+    implements AnvilRecipe.IExtendedRecipe<BloomAnvilRecipe> {
 
   private final BloomeryRecipe bloomeryRecipe;
 
@@ -63,20 +63,20 @@ public class BloomAnvilRecipe
   }
 
   @Override
-  public void applyDamage(World world, TileGraniteAnvil tile) {
+  public void applyDamage(World world, TileAnvilBase tile) {
 
     tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - tile.getBloomAnvilDamagePerHit());
     BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModuleBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL);
   }
 
   @Override
-  public float getModifiedRecipeProgressIncrement(float increment, TileGraniteAnvil tile, EntityPlayer player) {
+  public float getModifiedRecipeProgressIncrement(float increment, TileAnvilBase tile, EntityPlayer player) {
 
     return (float) (increment * BloomHelper.calculateHammerPower(tile.getPos(), player));
   }
 
   @Override
-  public void onRecipeCompleted(TileGraniteAnvil tile, World world, ItemStackHandler stackHandler, BloomAnvilRecipe recipe) {
+  public void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, BloomAnvilRecipe recipe) {
 
     float extraProgress = tile.getRecipeProgress() - 1;
 
@@ -100,7 +100,7 @@ public class BloomAnvilRecipe
   }
 
   @Override
-  public void onAnvilHitClient(World world, TileGraniteAnvil tile, float hitX, float hitY, float hitZ) {
+  public void onAnvilHitClient(World world, TileAnvilBase tile, float hitX, float hitY, float hitZ) {
 
     // Bloom particles
 

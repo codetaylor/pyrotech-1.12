@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileAnvilBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -13,8 +13,8 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
-public class GraniteAnvilRecipe
-    extends IForgeRegistryEntry.Impl<GraniteAnvilRecipe>
+public class AnvilRecipe
+    extends IForgeRegistryEntry.Impl<AnvilRecipe>
     implements IRecipeSingleOutput {
 
   public enum EnumType {
@@ -22,9 +22,9 @@ public class GraniteAnvilRecipe
   }
 
   @Nullable
-  public static GraniteAnvilRecipe getRecipe(ItemStack input) {
+  public static AnvilRecipe getRecipe(ItemStack input) {
 
-    for (GraniteAnvilRecipe recipe : ModPyrotechRegistries.GRANITE_ANVIL_RECIPE) {
+    for (AnvilRecipe recipe : ModPyrotechRegistries.ANVIL_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -36,7 +36,7 @@ public class GraniteAnvilRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.GRANITE_ANVIL_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.ANVIL_RECIPE, output);
   }
 
   private final Ingredient input;
@@ -44,7 +44,7 @@ public class GraniteAnvilRecipe
   private final int hits;
   private final EnumType type;
 
-  public GraniteAnvilRecipe(
+  public AnvilRecipe(
       ItemStack output,
       Ingredient input,
       int hits,
@@ -82,14 +82,14 @@ public class GraniteAnvilRecipe
     return this.input.apply(input);
   }
 
-  public interface IExtendedRecipe<T extends GraniteAnvilRecipe & IExtendedRecipe> {
+  public interface IExtendedRecipe<T extends AnvilRecipe & IExtendedRecipe> {
 
-    void applyDamage(World world, TileGraniteAnvil tile);
+    void applyDamage(World world, TileAnvilBase tile);
 
-    float getModifiedRecipeProgressIncrement(float increment, TileGraniteAnvil tile, EntityPlayer player);
+    float getModifiedRecipeProgressIncrement(float increment, TileAnvilBase tile, EntityPlayer player);
 
-    void onRecipeCompleted(TileGraniteAnvil tile, World world, ItemStackHandler stackHandler, T recipe);
+    void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, T recipe);
 
-    void onAnvilHitClient(World world, TileGraniteAnvil tile, float hitX, float hitY, float hitZ);
+    void onAnvilHitClient(World world, TileAnvilBase tile, float hitX, float hitY, float hitZ);
   }
 }

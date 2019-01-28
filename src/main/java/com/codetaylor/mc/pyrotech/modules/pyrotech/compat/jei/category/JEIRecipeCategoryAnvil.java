@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperGraniteAnvil;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperAnvil;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -12,15 +12,15 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 
-public class JEIRecipeCategoryGraniteAnvil
-    implements IRecipeCategory<JEIRecipeWrapperGraniteAnvil> {
+public class JEIRecipeCategoryAnvil
+    implements IRecipeCategory<JEIRecipeWrapperAnvil> {
 
   private final IDrawableAnimated arrow;
   private final IDrawable background;
 
   private final String title;
 
-  public JEIRecipeCategoryGraniteAnvil(IGuiHelper guiHelper) {
+  public JEIRecipeCategoryAnvil(IGuiHelper guiHelper) {
 
     ResourceLocation resourceLocation = new ResourceLocation(ModulePyrotech.MOD_ID, "textures/gui/jei3.png");
 
@@ -38,7 +38,7 @@ public class JEIRecipeCategoryGraniteAnvil
   @Override
   public String getUid() {
 
-    return JEIRecipeCategoryUid.GRANITE_ANVIL;
+    return JEIRecipeCategoryUid.ANVIL;
   }
 
   @Nonnull
@@ -69,7 +69,7 @@ public class JEIRecipeCategoryGraniteAnvil
   }
 
   @Override
-  public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull JEIRecipeWrapperGraniteAnvil recipeWrapper, @Nonnull IIngredients ingredients) {
+  public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull JEIRecipeWrapperAnvil recipeWrapper, @Nonnull IIngredients ingredients) {
 
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 17);

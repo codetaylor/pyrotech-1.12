@@ -3,11 +3,11 @@
   "defaults": {
     "model": "pyrotech:anvil",
     "textures": {
-      "top": "blocks/stone_granite_smooth",
-      "top_side": "blocks/stone_granite_smooth",
+      "top": "blocks/iron_block",
+      "top_side": "blocks/iron_block",
       "bottom_side": "blocks/stone_slab_side",
       "bottom": "blocks/stone_slab_top",
-      "particle": "blocks/stone_granite_smooth"
+      "particle": "blocks/iron_block"
     }
   },
   "variants": {
@@ -15,17 +15,17 @@
       "0": {},
       "1": {
         "textures": {
-          "top": "pyrotech:blocks/anvil_granite_damaged_a"
+          "top": "pyrotech:blocks/anvil_iron_plated_damaged_a"
         }
       },
       "2": {
         "textures": {
-          "top": "pyrotech:blocks/anvil_granite_damaged_b"
+          "top": "pyrotech:blocks/anvil_iron_plated_damaged_b"
         }
       },
       "3": {
         "textures": {
-          "top": "pyrotech:blocks/anvil_granite_damaged_c"
+          "top": "pyrotech:blocks/anvil_iron_plated_damaged_c"
         }
       }
     }

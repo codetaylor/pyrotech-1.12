@@ -1,12 +1,5 @@
 {
   "parent": "block/block",
-  "textures": {
-    "top": "blocks/stone_granite_smooth",
-    "top_side": "blocks/stone_granite_smooth",
-    "bottom_side": "blocks/stone_slab_side",
-    "bottom": "blocks/stone_slab_top",
-    "particle": "blocks/stone_granite_smooth"
-  },
   "elements": [
     {
       "from": [0, 0, 0],

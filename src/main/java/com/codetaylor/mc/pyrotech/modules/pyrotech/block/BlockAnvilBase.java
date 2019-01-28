@@ -3,13 +3,12 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
-import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileAnvilBase;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
@@ -37,25 +36,20 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
-public class BlockGraniteAnvil
+public abstract class BlockAnvilBase
     extends BlockPartialBase
     implements IBlockInteractable {
-
-  public static final String NAME = "anvil_granite";
 
   public static final IProperty<Integer> DAMAGE = PropertyInteger.create("damage", 0, 3);
 
   public static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 6f / 16f, 1);
 
-  public BlockGraniteAnvil() {
+  public BlockAnvilBase(Material material) {
 
-    super(Material.ROCK);
-    this.setHardness(3.0F);
-    this.setResistance(5.0F);
-    this.setSoundType(SoundType.STONE);
-    this.setHarvestLevel("pickaxe", 0);
+    super(material);
   }
 
   // ---------------------------------------------------------------------------
@@ -67,8 +61,8 @@ public class BlockGraniteAnvil
 
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileGraniteAnvil) {
-      ItemStackHandler stackHandler = ((TileGraniteAnvil) tileEntity).getStackHandler();
+    if (tileEntity instanceof TileAnvilBase) {
+      ItemStackHandler stackHandler = ((TileAnvilBase) tileEntity).getStackHandler();
       ItemStack stackInSlot = stackHandler.getStackInSlot(0);
       Item item = stackInSlot.getItem();
 
@@ -94,9 +88,9 @@ public class BlockGraniteAnvil
 
       TileEntity tileEntity = world.getTileEntity(pos);
 
-      if (tileEntity instanceof TileGraniteAnvil) {
+      if (tileEntity instanceof TileAnvilBase) {
 
-        ItemStackHandler stackHandler = ((TileGraniteAnvil) tileEntity).getStackHandler();
+        ItemStackHandler stackHandler = ((TileAnvilBase) tileEntity).getStackHandler();
         ItemStack stackInSlot = stackHandler.getStackInSlot(0);
         return (stackInSlot.getItem() == ModuleBloomery.Items.BLOOM);
       }
@@ -150,8 +144,8 @@ public class BlockGraniteAnvil
     if (!world.isRemote) {
       TileEntity tileEntity = world.getTileEntity(pos);
 
-      if (tileEntity instanceof TileGraniteAnvil) {
-        StackHelper.spawnStackHandlerContentsOnTop(world, ((TileGraniteAnvil) tileEntity).getStackHandler(), pos);
+      if (tileEntity instanceof TileAnvilBase) {
+        StackHelper.spawnStackHandlerContentsOnTop(world, ((TileAnvilBase) tileEntity).getStackHandler(), pos);
       }
     }
 
@@ -173,9 +167,9 @@ public class BlockGraniteAnvil
     // Called before #breakBlock
 
     drops.add(StackHelper.createItemStackFromTileEntity(
-        ModuleBlocks.GRANITE_ANVIL,
+        ModuleBlocks.ANVIL_GRANITE,
         1,
-        state.getValue(BlockGraniteAnvil.DAMAGE),
+        state.getValue(BlockAnvilBase.DAMAGE),
         world.getTileEntity(pos)
     ));
   }
@@ -190,12 +184,15 @@ public class BlockGraniteAnvil
     return true;
   }
 
+  @ParametersAreNonnullByDefault
   @Nullable
   @Override
   public TileEntity createTileEntity(World world, IBlockState state) {
 
-    return new TileGraniteAnvil();
+    return this.createTileEntity();
   }
+
+  protected abstract TileEntity createTileEntity();
 
   // ---------------------------------------------------------------------------
   // - Variants
@@ -272,10 +269,10 @@ public class BlockGraniteAnvil
     return AABB;
   }
 
-  public static class ItemGraniteAnvil
+  public static class ItemAnvil
       extends ItemBlock {
 
-    public ItemGraniteAnvil(Block block) {
+    public ItemAnvil(Block block) {
 
       super(block);
     }

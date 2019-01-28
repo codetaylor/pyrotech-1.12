@@ -6,8 +6,8 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomAnvilRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.AnvilRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -41,10 +41,10 @@ public class GraniteAnvilProvider
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileGraniteAnvil) {
+    if (tileEntity instanceof TileAnvilBase) {
 
-      TileGraniteAnvil tile;
-      tile = (TileGraniteAnvil) tileEntity;
+      TileAnvilBase tile;
+      tile = (TileAnvilBase) tileEntity;
 
       float progress = tile.getRecipeProgress();
 
@@ -56,7 +56,7 @@ public class GraniteAnvilProvider
 
         // Display input item and recipe output.
 
-        GraniteAnvilRecipe recipe = GraniteAnvilRecipe.getRecipe(input);
+        AnvilRecipe recipe = AnvilRecipe.getRecipe(input);
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();
@@ -72,16 +72,16 @@ public class GraniteAnvilProvider
                 WailaUtil.getStackRenderString(recipeOutput));
           }
 
-          GraniteAnvilRecipe.EnumType recipeType = recipe.getType();
+          AnvilRecipe.EnumType recipeType = recipe.getType();
 
-          if (recipeType == GraniteAnvilRecipe.EnumType.HAMMER) {
+          if (recipeType == AnvilRecipe.EnumType.HAMMER) {
             String typeString = Util.translateFormatted("gui." + ModulePyrotech.MOD_ID + ".waila.anvil.recipe.type.hammer");
             tooltip.add(Util.translateFormatted(
                 "gui." + ModulePyrotech.MOD_ID + ".waila.anvil.recipe.type",
                 typeString
             ));
 
-          } else if (recipeType == GraniteAnvilRecipe.EnumType.PICKAXE) {
+          } else if (recipeType == AnvilRecipe.EnumType.PICKAXE) {
             String typeString = Util.translateFormatted("gui." + ModulePyrotech.MOD_ID + ".waila.anvil.recipe.type.pickaxe");
             tooltip.add(Util.translateFormatted(
                 "gui." + ModulePyrotech.MOD_ID + ".waila.anvil.recipe.type",

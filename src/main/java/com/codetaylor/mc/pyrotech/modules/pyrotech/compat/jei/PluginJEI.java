@@ -57,7 +57,7 @@ public class PluginJEI
         new JEIRecipeCategoryDryingRack(guiHelper),
         new JEIRecipeCategoryDryingRackCrude(guiHelper),
         new JEIRecipeCategoryChoppingBlock(guiHelper),
-        new JEIRecipeCategoryGraniteAnvil(guiHelper),
+        new JEIRecipeCategoryAnvil(guiHelper),
         new JEIRecipeCategoryMillStone(guiHelper),
         new JEIRecipeCategoryCompactingBin(guiHelper),
         new JEIRecipeCategoryCampfire(guiHelper),
@@ -239,10 +239,11 @@ public class PluginJEI
 
     // --- Granite Anvil
     {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.GRANITE_ANVIL), JEIRecipeCategoryUid.GRANITE_ANVIL);
-      registry.handleRecipes(GraniteAnvilRecipe.class, JEIRecipeWrapperGraniteAnvil::new, JEIRecipeCategoryUid.GRANITE_ANVIL);
-      List<GraniteAnvilRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.GRANITE_ANVIL_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.GRANITE_ANVIL);
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.ANVIL_GRANITE), JEIRecipeCategoryUid.ANVIL);
+      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.ANVIL_IRON_PLATED), JEIRecipeCategoryUid.ANVIL);
+      registry.handleRecipes(AnvilRecipe.class, JEIRecipeWrapperAnvil::new, JEIRecipeCategoryUid.ANVIL);
+      List<AnvilRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.ANVIL_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryUid.ANVIL);
     }
 
     // --- Chopping Block

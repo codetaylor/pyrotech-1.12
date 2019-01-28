@@ -7,7 +7,7 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileGraniteAnvil;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileAnvilBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -152,8 +152,8 @@ public abstract class ItemTongsFullBase
   @Override
   public boolean allowInteraction(TileEntity tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    if (tile instanceof TileGraniteAnvil) {
-      return ((TileGraniteAnvil) tile).getStackHandler().getStackInSlot(0).isEmpty();
+    if (tile instanceof TileAnvilBase) {
+      return ((TileAnvilBase) tile).getStackHandler().getStackInSlot(0).isEmpty();
     }
 
     return false;
@@ -162,7 +162,7 @@ public abstract class ItemTongsFullBase
   @Override
   public boolean doInteraction(TileEntity tile, World world, ItemStack heldItem, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    if (tile instanceof TileGraniteAnvil) {
+    if (tile instanceof TileAnvilBase) {
       NBTTagCompound tagCompound = heldItem.getTagCompound();
 
       if (tagCompound == null) {
@@ -171,7 +171,7 @@ public abstract class ItemTongsFullBase
 
       NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
       ItemStack bloomStack = BloomHelper.createBloomAsItemStack(new ItemStack(ModuleBloomery.Blocks.BLOOM), tileTag);
-      ((TileGraniteAnvil) tile).getStackHandler().insertItem(0, bloomStack, false);
+      ((TileAnvilBase) tile).getStackHandler().insertItem(0, bloomStack, false);
       ItemStack emptyTongsStack = BloomHelper.createItemTongsEmpty(heldItem);
       heldItem.shrink(1);
 

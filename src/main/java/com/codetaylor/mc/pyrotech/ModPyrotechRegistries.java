@@ -20,7 +20,7 @@ public class ModPyrotechRegistries {
   public static final IForgeRegistryModifiable<DryingRackRecipe> DRYING_RACK_RECIPE;
   public static final IForgeRegistryModifiable<DryingRackCrudeRecipe> DRYING_RACK_CRUDE_RECIPE;
   public static final IForgeRegistryModifiable<ChoppingBlockRecipe> CHOPPING_BLOCK_RECIPE;
-  public static final IForgeRegistryModifiable<GraniteAnvilRecipe> GRANITE_ANVIL_RECIPE;
+  public static final IForgeRegistryModifiable<AnvilRecipe> ANVIL_RECIPE;
   public static final IForgeRegistryModifiable<CompactingBinRecipe> COMPACTING_BIN_RECIPE;
   public static final IForgeRegistryModifiable<CampfireRecipe> CAMPFIRE_RECIPE;
   public static final IForgeRegistryModifiable<OvenStoneRecipe> OVEN_STONE_RECIPE;
@@ -40,7 +40,7 @@ public class ModPyrotechRegistries {
     DRYING_RACK_RECIPE = (IForgeRegistryModifiable<DryingRackRecipe>) GameRegistry.findRegistry(DryingRackRecipe.class);
     DRYING_RACK_CRUDE_RECIPE = (IForgeRegistryModifiable<DryingRackCrudeRecipe>) GameRegistry.findRegistry(DryingRackCrudeRecipe.class);
     CHOPPING_BLOCK_RECIPE = (IForgeRegistryModifiable<ChoppingBlockRecipe>) GameRegistry.findRegistry(ChoppingBlockRecipe.class);
-    GRANITE_ANVIL_RECIPE = (IForgeRegistryModifiable<GraniteAnvilRecipe>) GameRegistry.findRegistry(GraniteAnvilRecipe.class);
+    ANVIL_RECIPE = (IForgeRegistryModifiable<AnvilRecipe>) GameRegistry.findRegistry(AnvilRecipe.class);
     COMPACTING_BIN_RECIPE = (IForgeRegistryModifiable<CompactingBinRecipe>) GameRegistry.findRegistry(CompactingBinRecipe.class);
     CAMPFIRE_RECIPE = (IForgeRegistryModifiable<CampfireRecipe>) GameRegistry.findRegistry(CampfireRecipe.class);
     OVEN_STONE_RECIPE = (IForgeRegistryModifiable<OvenStoneRecipe>) GameRegistry.findRegistry(OvenStoneRecipe.class);

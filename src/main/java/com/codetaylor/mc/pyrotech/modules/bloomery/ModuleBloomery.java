@@ -24,7 +24,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -174,7 +173,7 @@ public class ModuleBloomery
 
     BloomeryRecipesAdd.registerBloomAnvilRecipes(
         ModPyrotechRegistries.BLOOMERY_RECIPE,
-        ModPyrotechRegistries.GRANITE_ANVIL_RECIPE
+        ModPyrotechRegistries.ANVIL_RECIPE
     );
   }
 

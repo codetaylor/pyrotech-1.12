@@ -9,7 +9,7 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.GraniteAnvilRecipe;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.AnvilRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -132,7 +132,7 @@ public class BloomeryRecipesAdd {
 
   public static void registerBloomAnvilRecipes(
       IForgeRegistry<BloomeryRecipe> registryBloomery,
-      IForgeRegistry<GraniteAnvilRecipe> registryAnvil
+      IForgeRegistry<AnvilRecipe> registryAnvil
   ) {
 
     Collection<BloomeryRecipe> bloomeryRecipes = registryBloomery.getValuesCollection();
@@ -147,7 +147,7 @@ public class BloomeryRecipesAdd {
           bloomeryRecipe.getOutput(),
           IngredientHelper.fromStackWithNBT(bloomeryRecipe.getOutputBloom()),
           ModuleBloomeryConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
-          GraniteAnvilRecipe.EnumType.HAMMER,
+          AnvilRecipe.EnumType.HAMMER,
           bloomeryRecipe
       ).setRegistryName(bloomeryRecipe.getRegistryName()));
     }
