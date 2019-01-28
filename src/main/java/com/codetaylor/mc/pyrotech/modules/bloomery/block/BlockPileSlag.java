@@ -129,6 +129,14 @@ public class BlockPileSlag
     if (state.getBlock() == this
         && state.getValue(BlockPileSlag.MOLTEN)) {
 
+      BlockPos posUp = pos.up();
+      IBlockState blockStateUp = world.getBlockState(posUp);
+
+      if (!world.isAirBlock(posUp)
+          && blockStateUp.getBlock().isNormalCube(blockStateUp, world, posUp)) {
+        return;
+      }
+
       int level = state.getValue(BlockPileSlag.LEVEL);
 
       double x = (double) pos.getX() + 0.5;
