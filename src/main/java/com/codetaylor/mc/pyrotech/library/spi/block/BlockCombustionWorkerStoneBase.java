@@ -1,13 +1,14 @@
 package com.codetaylor.mc.pyrotech.library.spi.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
-import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
 import net.minecraft.block.Block;
@@ -45,6 +46,11 @@ public abstract class BlockCombustionWorkerStoneBase
   public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
   private static final AxisAlignedBB AABB_TOP = new AxisAlignedBB(1.0 / 16.0, 0.0 / 16.0, 1.0 / 16.0, 15.0 / 16.0, 8.0 / 16.0, 15.0 / 16.0);
+
+  private static final AxisAlignedBB[] AABB_BOTTOM = {
+      AABBHelper.create(0, 0, 0, 16, 8, 16),
+      AABBHelper.create(1, 8, 1, 15, 16, 15)
+  };
 
   public BlockCombustionWorkerStoneBase() {
 
@@ -201,11 +207,22 @@ public abstract class BlockCombustionWorkerStoneBase
   @Override
   public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
 
+    RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
+
     if (this.isTop(blockState)) {
-      return this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos.down(), start, end);
+      return this.interactionRayTrace(result, blockState, world, pos.down(), start, end);
 
     } else {
-      return this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos, start, end);
+
+      boolean hit = this.rayTrace(pos, start, end, AABB_BOTTOM[0]) != null
+          || this.rayTrace(pos, start, end, AABB_BOTTOM[1]) != null;
+
+      if (hit) {
+        return this.interactionRayTrace(result, blockState, world, pos, start, end);
+
+      } else {
+        return null;
+      }
     }
   }
 
