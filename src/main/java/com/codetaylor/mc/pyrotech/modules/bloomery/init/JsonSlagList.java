@@ -6,8 +6,8 @@ import java.util.List;
 public class JsonSlagList {
 
   private String[] __comments = {
-      "WARNING: All changes should be made to the file with the name 'Custom'",
-      "in the title. Changes made to the 'Generated' file will be overwritten.",
+      "WARNING: All changes should be made to the file with the name Custom",
+      "in the title. Changes made to the Generated file will be overwritten.",
       "",
       "This file defines properties of the auto-generated slag item and slag block.",
       "Adding new entries will generate new content and removing entries will",
@@ -18,9 +18,9 @@ public class JsonSlagList {
       "    - unique name used as the suffix for the auto-generated content",
       "    - NOTE: accepts only alphanumeric and underscore characters",
       "  langKey:",
-      "    - the lang key used to lookup part of the generated content's display names",
+      "    - the lang key used to lookup part of the generated content display name",
       "  color:",
-      "    - the hex color for the generated content's tint"
+      "    - the hex color for the generated content tint"
   };
 
   private List<JsonSlagListEntry> list = new ArrayList<>();

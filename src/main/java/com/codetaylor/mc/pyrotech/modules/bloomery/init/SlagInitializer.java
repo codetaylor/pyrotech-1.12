@@ -173,6 +173,13 @@ public final class SlagInitializer {
       itemColors.registerItemColorHandler(new ItemColor(properties.color, 0), itemBlock);
       blockColors.registerBlockColorHandler(new BlockColor(properties.color), blockPileSlag);
     });
+
+    int defaultColor = Integer.decode("0x676767");
+    itemColors.registerItemColorHandler(
+        new ItemColor(defaultColor, 0),
+        Item.getItemFromBlock(ModuleBloomery.Blocks.PILE_SLAG)
+    );
+    blockColors.registerBlockColorHandler(new BlockColor(defaultColor), ModuleBloomery.Blocks.PILE_SLAG);
   }
 
   private static class ItemColor

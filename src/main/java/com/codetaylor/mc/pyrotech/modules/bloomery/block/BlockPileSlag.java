@@ -4,6 +4,7 @@ import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemSlag;
+import com.codetaylor.mc.pyrotech.modules.bloomery.network.SCPacketParticleLava;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TilePileSlag;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,20 +15,18 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class BlockPileSlag
@@ -71,10 +70,54 @@ public class BlockPileSlag
   public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 
     if (state.getBlock() == this
-        && state.getValue(BlockPileSlag.MOLTEN)
-        && rand.nextDouble() < 1.0) {
+        && state.getValue(BlockPileSlag.MOLTEN)) {
 
-      world.setBlockState(pos, state.withProperty(BlockPileSlag.MOLTEN, false));
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity instanceof TilePileSlag) {
+        long lastMolten = ((TilePileSlag) tileEntity).getLastMolten();
+
+        if (world.getTotalWorldTime() - lastMolten > 5 * 60 * 20) {
+          world.setBlockState(pos, state.withProperty(BlockPileSlag.MOLTEN, false));
+        }
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Rendering
+  // ---------------------------------------------------------------------------
+
+  @Nonnull
+  @Override
+  public BlockRenderLayer getBlockLayer() {
+
+    return BlockRenderLayer.CUTOUT;
+  }
+
+  @Override
+  public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+
+    if (state.getBlock() == this
+        && state.getValue(BlockPileSlag.MOLTEN)) {
+
+      int level = state.getValue(BlockPileSlag.LEVEL);
+
+      double x = (double) pos.getX() + 0.5;
+      double y = (double) pos.getY() + ((level - 1) / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
+      double z = (double) pos.getZ() + 0.5;
+
+      for (int i = 0; i < 4; i++) {
+        double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
+        double offsetY = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
+        double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
+        world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
+
+        if (rand.nextDouble() < 0.05) {
+          world.spawnParticle(EnumParticleTypes.LAVA, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
+          world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+        }
+      }
     }
   }
 
@@ -99,6 +142,29 @@ public class BlockPileSlag
     super.onEntityWalk(world, pos, entity);
   }
 
+  @Override
+  public void harvestBlock(@Nonnull World world, EntityPlayer player, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+
+    if (state.getBlock() == this) {
+
+      if (!world.isRemote
+          && state.getValue(BlockPileSlag.MOLTEN)) {
+        int level = state.getValue(BlockPileBase.LEVEL);
+        int dimension = world.provider.getDimension();
+        ModuleBloomery.PACKET_SERVICE.sendToAllAround(new SCPacketParticleLava(pos, level), dimension, pos);
+      }
+    }
+
+    super.harvestBlock(world, player, pos, state, te, stack);
+  }
+
+  @ParametersAreNonnullByDefault
+  @Override
+  public void breakBlock(World world, BlockPos pos, IBlockState state) {
+
+    super.breakBlock(world, pos, state);
+  }
+
   // ---------------------------------------------------------------------------
   // - Tile
   // ---------------------------------------------------------------------------
@@ -114,18 +180,6 @@ public class BlockPileSlag
   public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
 
     return new TilePileSlag();
-  }
-
-  // ---------------------------------------------------------------------------
-  // - Rendering
-  // ---------------------------------------------------------------------------
-
-  @SideOnly(Side.CLIENT)
-  @Nonnull
-  @Override
-  public BlockRenderLayer getBlockLayer() {
-
-    return BlockRenderLayer.CUTOUT;
   }
 
   // ---------------------------------------------------------------------------
