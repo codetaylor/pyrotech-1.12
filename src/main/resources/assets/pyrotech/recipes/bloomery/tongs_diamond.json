@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.bloomery"]
+    }
+  ],
+  "pattern": [
+    " X ",
+    "SIX",
+    " S "
+  ],
+  "key": {
+    "X": {
+      "item": "pyrotech:material",
+      "data": 18
+    },
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 27
+    }
+  },
+  "result": {
+    "item": "pyrotech:tongs_diamond",
+    "count": 1,
+    "data": 0
+  }
+}

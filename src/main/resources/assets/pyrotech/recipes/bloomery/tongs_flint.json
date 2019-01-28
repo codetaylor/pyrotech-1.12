@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.bloomery"]
+    }
+  ],
+  "pattern": [
+    " X ",
+    "SXX",
+    " S "
+  ],
+  "key": {
+    "X": {
+      "item": "pyrotech:material",
+      "data": 10
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 27
+    }
+  },
+  "result": {
+    "item": "pyrotech:tongs_flint",
+    "count": 1,
+    "data": 0
+  }
+}
