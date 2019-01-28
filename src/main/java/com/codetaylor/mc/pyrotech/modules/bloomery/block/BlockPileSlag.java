@@ -262,9 +262,13 @@ public class BlockPileSlag
     public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, @Nonnull IBlockState newState) {
 
       Properties properties = ModuleBloomery.Blocks.GENERATED_PILE_SLAG.get(this.getBlock());
+      ItemStack slagItem;
 
       if (properties == null) {
-        return false;
+        slagItem = new ItemStack(ModuleBloomery.Items.SLAG);
+
+      } else {
+        slagItem = new ItemStack(properties.slagItem);
       }
 
       boolean result = super.placeBlockAt(stack, player, world, pos, side, hitX, hitY, hitZ, newState);
@@ -276,8 +280,7 @@ public class BlockPileSlag
           TilePileSlag.StackHandler stackHandler = ((TilePileSlag) tileEntity).getStackHandler();
 
           for (int i = 0; i < 8; i++) {
-            ItemStack slagItem = new ItemStack(properties.slagItem);
-            stackHandler.insertItem(i, slagItem, false);
+            stackHandler.insertItem(i, slagItem.copy(), false);
           }
         }
       }

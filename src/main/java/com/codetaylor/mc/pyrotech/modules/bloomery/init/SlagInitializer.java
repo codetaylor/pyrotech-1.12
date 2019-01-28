@@ -175,6 +175,14 @@ public final class SlagInitializer {
     });
 
     int defaultColor = Integer.decode("0x676767");
+
+    // Slag Item
+    itemColors.registerItemColorHandler(
+        new ItemColor(defaultColor, 1),
+        ModuleBloomery.Items.SLAG
+    );
+
+    // Slag Block Item
     itemColors.registerItemColorHandler(
         new ItemColor(defaultColor, 0),
         Item.getItemFromBlock(ModuleBloomery.Blocks.PILE_SLAG)

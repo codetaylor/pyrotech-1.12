@@ -4,6 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemSlag;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
+import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -18,20 +19,27 @@ public class CompactingBinRecipesAdd {
     for (Map.Entry<BlockPileSlag, BlockPileSlag.Properties> entry : ModuleBloomery.Blocks.GENERATED_PILE_SLAG.entrySet()) {
       BlockPileSlag slagBlock = entry.getKey();
       ItemSlag slagItem = entry.getValue().slagItem;
-      ResourceLocation slagBlockRegistryName = slagBlock.getRegistryName();
-      ResourceLocation slagItemRegistryName = slagItem.getRegistryName();
+      ResourceLocation slagBlockRegistryName = Preconditions.checkNotNull(slagBlock.getRegistryName());
+      ResourceLocation slagItemRegistryName = Preconditions.checkNotNull(slagItem.getRegistryName());
 
-      if (slagBlockRegistryName != null
-          && slagItemRegistryName != null) {
-        String prefix = alphanumeric(slagBlockRegistryName);
-        String suffix = alphanumeric(slagItemRegistryName);
-        registry.register(new CompactingBinRecipe(
-            new ItemStack(slagBlock),
-            Ingredient.fromStacks(new ItemStack(slagItem)),
-            8
-        ).setRegistryName(prefix + "_from_" + suffix));
-      }
+      String prefix = alphanumeric(slagBlockRegistryName);
+      String suffix = alphanumeric(slagItemRegistryName);
+      registry.register(new CompactingBinRecipe(
+          new ItemStack(slagBlock),
+          Ingredient.fromStacks(new ItemStack(slagItem)),
+          8
+      ).setRegistryName(prefix + "_from_" + suffix));
     }
+
+    ResourceLocation slagBlockRegistryName = Preconditions.checkNotNull(ModuleBloomery.Blocks.PILE_SLAG.getRegistryName());
+    ResourceLocation slagItemRegistryName = Preconditions.checkNotNull(ModuleBloomery.Items.SLAG.getRegistryName());
+
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(ModuleBloomery.Blocks.PILE_SLAG),
+        Ingredient.fromStacks(new ItemStack(ModuleBloomery.Items.SLAG)),
+        8
+    ).setRegistryName(alphanumeric(slagBlockRegistryName) + "_from_" + alphanumeric(slagItemRegistryName)));
+
   }
 
   private static String alphanumeric(ResourceLocation input) {

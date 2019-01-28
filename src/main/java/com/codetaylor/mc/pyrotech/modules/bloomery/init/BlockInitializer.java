@@ -19,7 +19,8 @@ public final class BlockInitializer {
   public static void onRegister(Registry registry) {
 
     registry.registerBlockWithItem(new BlockBloomery(), BlockBloomery.NAME);
-    registry.registerBlockWithItem(new BlockPileSlag(), BlockPileSlag.NAME);
+    BlockPileSlag blockPileSlag = new BlockPileSlag();
+    registry.registerBlock(blockPileSlag, new BlockPileSlag.ItemBlockPileSlag(blockPileSlag), BlockPileSlag.NAME);
 
     BlockBloom blockBloom = new BlockBloom();
     registry.registerBlock(blockBloom, new BlockBloom.ItemBlockBloom(blockBloom), BlockBloom.NAME);

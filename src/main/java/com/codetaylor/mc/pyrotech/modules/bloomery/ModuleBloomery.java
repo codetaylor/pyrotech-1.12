@@ -24,6 +24,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -208,6 +209,9 @@ public class ModuleBloomery
 
     public static final Map<ItemSlag, ItemSlag.Properties> GENERATED_SLAG = new IdentityHashMap<>();
 
+    @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + ItemSlag.NAME)
+    public static final Item SLAG;
+
     @GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID + ":" + BlockBloom.NAME)
     public static final Item BLOOM;
 
@@ -242,6 +246,7 @@ public class ModuleBloomery
     public static final ItemTongsFullBase TONGS_DIAMOND_FULL;
 
     static {
+      SLAG = null;
       BLOOM = null;
       TONGS_STONE = null;
       TONGS_STONE_FULL = null;
