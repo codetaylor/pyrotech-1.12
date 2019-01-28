@@ -31,7 +31,8 @@
       "quicklime": {"textures": {"layer0": "pyrotech:items/quicklime"}},
       "board_tarred": {"textures": {"layer0": "pyrotech:items/board_tarred"}},
       "pulp": {"textures": {"layer0": "pyrotech:items/pulp"}},
-      "twine_durable": {"textures": {"layer0": "pyrotech:items/twine_durable"}}
+      "twine_durable": {"textures": {"layer0": "pyrotech:items/twine_durable"}},
+      "stick_stone": {"textures": {"layer0": "pyrotech:items/stick_stone"}}
     }
   }
 }

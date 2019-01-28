@@ -29,6 +29,16 @@ public class GraniteAnvilRecipesAdd {
         GraniteAnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModulePyrotech.MOD_ID, "brick_stone"));
 
+    // Stone Sticks
+    registry.register(new GraniteAnvilRecipe(
+        ItemMaterial.EnumType.STICK_STONE.asStack(2),
+        Ingredient.fromStacks(
+            ItemMaterial.EnumType.BRICK_STONE.asStack()
+        ),
+        4,
+        GraniteAnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModulePyrotech.MOD_ID, "stick_stone"));
+
     // Slabs
 
     // Stone Brick Slab
