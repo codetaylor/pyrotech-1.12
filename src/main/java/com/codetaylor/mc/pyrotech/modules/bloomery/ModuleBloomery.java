@@ -68,31 +68,16 @@ public class ModuleBloomery
 
     MinecraftForge.EVENT_BUS.register(this);
 
-    /*
     String[] craftTweakerPlugins = {
-        "ZenKilnPit",
-        "ZenKilnStone",
-        "ZenBurn",
-        "ZenDryingRack",
-        "ZenDryingRackCrude",
-        "ZenChoppingBlock",
-        "ZenGraniteAnvil",
-        "ZenMillStone",
-        "ZenCrucibleStone",
-        "ZenCompactingBin",
-        "ZenCampfire",
-        "ZenOvenStone",
-        "ZenWorktable",
-        "ZenSoakingPot"
+        "ZenBloomery"
     };
 
     for (String plugin : craftTweakerPlugins) {
       this.registerIntegrationPlugin(
           "crafttweaker",
-          "com.codetaylor.mc.pyrotech.modules.pyrotech.compat.crafttweaker." + plugin
+          "com.codetaylor.mc.pyrotech.modules.bloomery.plugin.crafttweaker." + plugin
       );
     }
-    */
 
     this.registerIntegrationPlugin(
         "jei",
