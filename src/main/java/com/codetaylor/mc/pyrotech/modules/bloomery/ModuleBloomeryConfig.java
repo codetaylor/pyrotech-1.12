@@ -6,6 +6,37 @@ import net.minecraftforge.common.config.Config;
 public class ModuleBloomeryConfig {
 
   // ---------------------------------------------------------------------------
+  // - Slag
+  // ---------------------------------------------------------------------------
+
+  public static Slag SLAG = new Slag();
+
+  public static class Slag {
+
+    @Config.Comment({
+        "Fire damage applied to entities from the molten slag.",
+        "Default: " + 3
+    })
+    @Config.RangeDouble(min = 0)
+    public double MOLTEN_WALK_DAMAGE = 3;
+
+    @Config.Comment({
+        "Chance that the player will catch fire when harvesting molten slag.",
+        "Default: " + 0.125
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double HARVESTING_PLAYER_FIRE_CHANCE = 0.125;
+
+    @Config.Comment({
+        "How many seconds the fire will last when a player catches fire",
+        "from harvesting molten slag.",
+        "Default: " + 3
+    })
+    @Config.RangeInt(min = 0)
+    public int HARVESTING_PLAYER_FIRE_DURATION_SECONDS = 3;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Bloomery
   // ---------------------------------------------------------------------------
 
@@ -48,13 +79,6 @@ public class ModuleBloomeryConfig {
     })
     @Config.RangeInt(min = 0)
     public double SPEED_SCALAR = 2;
-
-    @Config.Comment({
-        "Fire damage applied to entities from the molten slag.",
-        "Default: " + 3
-    })
-    @Config.RangeDouble(min = 0)
-    public double MOLTEN_SLAG_ENTITY_WALK_DAMAGE = 3;
 
     @Config.Comment({
         "The maximum amount of ash the device can hold.",

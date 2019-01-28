@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.bloomery.block;
 
+import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
@@ -159,11 +160,11 @@ public class BlockPileSlag
 
     if (blockState.getBlock() == this
         && blockState.getValue(BlockPileSlag.MOLTEN)
-        && ModuleBloomeryConfig.BLOOMERY.MOLTEN_SLAG_ENTITY_WALK_DAMAGE > 0
+        && ModuleBloomeryConfig.SLAG.MOLTEN_WALK_DAMAGE > 0
         && !entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleBloomeryConfig.BLOOMERY.MOLTEN_SLAG_ENTITY_WALK_DAMAGE);
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleBloomeryConfig.SLAG.MOLTEN_WALK_DAMAGE);
     }
 
     super.onEntityWalk(world, pos, entity);
@@ -179,6 +180,12 @@ public class BlockPileSlag
         int level = state.getValue(BlockPileBase.LEVEL);
         int dimension = world.provider.getDimension();
         ModuleBloomery.PACKET_SERVICE.sendToAllAround(new SCPacketParticleLava(pos, level), dimension, pos);
+
+        if (ModuleBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_DURATION_SECONDS > 0
+            && ModuleBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_CHANCE > 0
+            && RandomHelper.random().nextDouble() < ModuleBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_CHANCE) {
+          player.setFire(ModuleBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_DURATION_SECONDS);
+        }
       }
     }
 
