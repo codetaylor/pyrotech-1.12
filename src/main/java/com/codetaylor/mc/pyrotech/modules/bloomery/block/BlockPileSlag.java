@@ -22,6 +22,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -60,6 +61,32 @@ public class BlockPileSlag
     }
 
     return ItemStack.EMPTY;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Light
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    if (state.getBlock() == this
+        && state.getValue(BlockPileSlag.MOLTEN)) {
+      return 6;
+    }
+
+    return super.getLightValue(state, world, pos);
+  }
+
+  @Override
+  public int getLightValue(IBlockState state) {
+
+    if (state.getBlock() == this
+        && state.getValue(BlockPileSlag.MOLTEN)) {
+      return 6;
+    }
+
+    return super.getLightValue(state);
   }
 
   // ---------------------------------------------------------------------------
