@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.bloomery.plugin.jei;
 
-import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import mezz.jei.api.IGuiHelper;
@@ -44,7 +43,7 @@ public class PluginJEI
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBloomery.Blocks.BLOOMERY), JEIRecipeCategoryBloomery.UID);
       registry.handleRecipes(BloomeryRecipe.class, JEIRecipeWrapperBloomery::new, JEIRecipeCategoryBloomery.UID);
-      List<BloomeryRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.BLOOMERY_RECIPE.getValuesCollection());
+      List<BloomeryRecipe> recipeList = new ArrayList<>(ModuleBloomery.Registries.BLOOMERY_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryBloomery.UID);
     }
   }

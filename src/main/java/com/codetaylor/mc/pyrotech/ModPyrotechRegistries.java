@@ -26,7 +26,6 @@ public class ModPyrotechRegistries {
   public static final IForgeRegistryModifiable<OvenStoneRecipe> OVEN_STONE_RECIPE;
   public static final IForgeRegistryModifiable<WorktableRecipe> WORKTABLE_RECIPE;
   public static final IForgeRegistryModifiable<SoakingPotRecipe> SOAKING_POT_RECIPE;
-  public static final IForgeRegistryModifiable<BloomeryRecipe> BLOOMERY_RECIPE;
 
   public static final List<Predicate<IBlockState>> REFRACTORY_BLOCK_LIST;
   public static final List<Predicate<IBlockState>> COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST;
@@ -46,7 +45,6 @@ public class ModPyrotechRegistries {
     OVEN_STONE_RECIPE = (IForgeRegistryModifiable<OvenStoneRecipe>) GameRegistry.findRegistry(OvenStoneRecipe.class);
     WORKTABLE_RECIPE = (IForgeRegistryModifiable<WorktableRecipe>) GameRegistry.findRegistry(WorktableRecipe.class);
     SOAKING_POT_RECIPE = (IForgeRegistryModifiable<SoakingPotRecipe>) GameRegistry.findRegistry(SoakingPotRecipe.class);
-    BLOOMERY_RECIPE = (IForgeRegistryModifiable<BloomeryRecipe>) GameRegistry.findRegistry(BloomeryRecipe.class);
 
     REFRACTORY_BLOCK_LIST = new ArrayList<>();
     COKE_OVEN_VALID_STRUCTURE_BLOCK_LIST = new ArrayList<>();

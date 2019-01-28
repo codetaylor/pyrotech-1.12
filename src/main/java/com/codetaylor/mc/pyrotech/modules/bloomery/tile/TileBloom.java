@@ -224,7 +224,7 @@ public class TileBloom
 
         if (tile.recipeProgress.get() >= 0.9999) {
           tile.integrity.add(-1);
-          BloomeryRecipe recipe = ModPyrotechRegistries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
+          BloomeryRecipe recipe = ModuleBloomery.Registries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
 
           if (recipe != null) {
             ItemStack output = recipe.getRandomOutput();

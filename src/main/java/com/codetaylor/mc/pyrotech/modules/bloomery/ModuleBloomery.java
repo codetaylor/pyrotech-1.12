@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
+import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
@@ -32,6 +33,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistryModifiable;
 import net.minecraftforge.registries.RegistryBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -101,11 +103,23 @@ public class ModuleBloomery
   @SubscribeEvent
   public void onNewRegistryEvent(RegistryEvent.NewRegistry event) {
 
+    // --- Creation
+
     new RegistryBuilder<BloomeryRecipe>()
         .setName(new ResourceLocation(ModuleBloomery.MOD_ID, "bloomery_recipe"))
         .setType(BloomeryRecipe.class)
         .allowModification()
         .create();
+
+    // --- Injection
+
+    Injector injector = new Injector();
+
+    injector.inject(
+        ModuleBloomery.Registries.class,
+        "BLOOMERY_RECIPE",
+        GameRegistry.findRegistry(BloomeryRecipe.class)
+    );
   }
 
   @Override
@@ -133,7 +147,7 @@ public class ModuleBloomery
 
     super.onRegisterRecipesEvent(event);
 
-    BloomeryRecipesAdd.apply(ModPyrotechRegistries.BLOOMERY_RECIPE);
+    BloomeryRecipesAdd.apply(ModuleBloomery.Registries.BLOOMERY_RECIPE);
     CompactingBinRecipesAdd.apply(ModPyrotechRegistries.COMPACTING_BIN_RECIPE);
   }
 
@@ -172,7 +186,7 @@ public class ModuleBloomery
     super.onPostInitializationEvent(event);
 
     BloomeryRecipesAdd.registerBloomAnvilRecipes(
-        ModPyrotechRegistries.BLOOMERY_RECIPE,
+        ModuleBloomery.Registries.BLOOMERY_RECIPE,
         ModPyrotechRegistries.ANVIL_RECIPE
     );
   }
@@ -257,6 +271,15 @@ public class ModuleBloomery
       TONGS_IRON_FULL = null;
       TONGS_DIAMOND = null;
       TONGS_DIAMOND_FULL = null;
+    }
+  }
+
+  public static class Registries {
+
+    public static final IForgeRegistryModifiable<BloomeryRecipe> BLOOMERY_RECIPE;
+
+    static {
+      BLOOMERY_RECIPE = null;
     }
   }
 
