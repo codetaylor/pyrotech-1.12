@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.library;
 
 import com.codetaylor.mc.athenaeum.util.FileHelper;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +25,7 @@ public class JsonInitializer {
         Files.createDirectories(configurationPath);
 
       } catch (IOException e) {
-        ModuleBloomery.LOGGER.error("", e);
+        logger.error("", e);
       }
     }
 
