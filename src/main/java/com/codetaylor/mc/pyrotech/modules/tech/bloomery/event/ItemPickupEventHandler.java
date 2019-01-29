@@ -1,9 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.event;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.event;
 
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
-import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemTongsEmptyBase;
-import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemTongsEmptyBase;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;

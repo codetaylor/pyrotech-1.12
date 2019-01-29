@@ -1,12 +1,12 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.block;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.block;
 
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
-import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemSlag;
-import com.codetaylor.mc.pyrotech.modules.bloomery.network.SCPacketParticleLava;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TilePileSlag;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.network.SCPacketParticleLava;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TilePileSlag;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;

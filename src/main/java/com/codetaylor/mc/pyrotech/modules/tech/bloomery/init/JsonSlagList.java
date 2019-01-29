@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.init;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 
 import java.util.ArrayList;
 import java.util.List;

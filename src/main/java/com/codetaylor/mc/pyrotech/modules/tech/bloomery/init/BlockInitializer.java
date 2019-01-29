@@ -1,15 +1,15 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.init;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TilePileSlag;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TilePileSlag;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

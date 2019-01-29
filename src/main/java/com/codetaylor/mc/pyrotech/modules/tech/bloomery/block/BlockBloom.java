@@ -1,12 +1,12 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.block;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.block;
 
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
-import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;

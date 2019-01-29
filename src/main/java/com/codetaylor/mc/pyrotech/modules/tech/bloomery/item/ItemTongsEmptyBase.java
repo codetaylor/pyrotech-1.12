@@ -1,10 +1,10 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.item;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.item;
 
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItem;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileAnvilBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

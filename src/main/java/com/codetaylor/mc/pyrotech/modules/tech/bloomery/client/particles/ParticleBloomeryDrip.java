@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.client.particles;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.client.particles;
 
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;

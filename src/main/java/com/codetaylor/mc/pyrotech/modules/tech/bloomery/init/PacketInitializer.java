@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.init;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 
 import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
-import com.codetaylor.mc.pyrotech.modules.bloomery.network.SCPacketParticleLava;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.network.SCPacketParticleLava;
 import net.minecraftforge.fml.relauncher.Side;
 
 public final class PacketInitializer {

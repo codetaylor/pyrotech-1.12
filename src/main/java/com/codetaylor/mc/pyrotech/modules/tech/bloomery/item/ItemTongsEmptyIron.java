@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.item;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.item;
 
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
 
 public class ItemTongsEmptyIron
     extends ItemTongsEmptyBase {

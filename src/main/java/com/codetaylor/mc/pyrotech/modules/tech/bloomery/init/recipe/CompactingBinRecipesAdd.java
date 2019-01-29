@@ -1,8 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.init.recipe;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe;
 
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
-import com.codetaylor.mc.pyrotech.modules.bloomery.item.ItemSlag;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
 import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;

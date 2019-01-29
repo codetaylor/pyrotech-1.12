@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.init;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 
 public final class EntityInitializer {
