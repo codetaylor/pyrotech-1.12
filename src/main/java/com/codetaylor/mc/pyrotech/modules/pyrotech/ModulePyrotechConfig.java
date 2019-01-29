@@ -184,7 +184,7 @@ public class ModulePyrotechConfig {
   // - Fiber Torch
   // ---------------------------------------------------------------------------
 
-  public static StoneTorch FIBER_TORCH = new StoneTorch();
+  public static FiberTorch FIBER_TORCH = new FiberTorch();
 
   public static class FiberTorch {
 
@@ -230,7 +230,7 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Set to true if the torch should burn up after the set duration.",
-        "Default: " + true
+        "Default: " + false
     })
     public boolean BURNS_UP = false;
 
