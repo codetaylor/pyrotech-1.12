@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileCrate;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileShelf;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileStash;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.TileWoodRack;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
 public class PluginWaila {
@@ -10,10 +11,16 @@ public class PluginWaila {
   @SuppressWarnings("unused")
   public static void wailaCallback(IWailaRegistrar registrar) {
 
-    StorageProvider storageProvider = new StorageProvider();
-    registrar.registerBodyProvider(storageProvider, TileShelf.class);
-    registrar.registerBodyProvider(storageProvider, TileCrate.class);
-    registrar.registerBodyProvider(storageProvider, TileStash.class);
-  }
+    {
+      StorageProvider provider = new StorageProvider();
+      registrar.registerBodyProvider(provider, TileShelf.class);
+      registrar.registerBodyProvider(provider, TileCrate.class);
+      registrar.registerBodyProvider(provider, TileStash.class);
+    }
 
+    {
+      WoodRackProvider provider = new WoodRackProvider();
+      registrar.registerBodyProvider(provider, TileWoodRack.class);
+    }
+  }
 }

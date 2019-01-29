@@ -57,6 +57,21 @@ tile.pyrotech.crate.name=Crate
 tile.pyrotech.crate_stone.name=Durable Crate
 
 #------------------------------------------------------------------------------
+# Module: Tech - Machine
+#------------------------------------------------------------------------------
+
+item.pyrotech.sawmill.blade.stone.name=Stone Sawmill Blade
+item.pyrotech.sawmill.blade.flint.name=Flint Sawmill Blade
+item.pyrotech.sawmill.blade.bone.name=Bone Sawmill Blade
+item.pyrotech.sawmill.blade.iron.name=Iron Sawmill Blade
+item.pyrotech.sawmill.blade.diamond.name=Diamond Sawmill Blade
+
+tile.pyrotech.stone_kiln.name=Stone Kiln
+tile.pyrotech.stone_oven.name=Stone Oven
+tile.pyrotech.stone_sawmill.name=Stone Sawmill
+tile.pyrotech.stone_crucible.name=Stone Crucible
+
+#------------------------------------------------------------------------------
 # Pyrotech Module
 #------------------------------------------------------------------------------
 
@@ -129,12 +144,6 @@ item.pyrotech.bone.hammer.name=Bone Hammer
 item.pyrotech.iron.hammer.name=Iron Hammer
 item.pyrotech.diamond.hammer.name=Diamond Hammer
 
-item.pyrotech.mill.blade.stone.name=Stone Sawmill Blade
-item.pyrotech.mill.blade.flint.name=Flint Sawmill Blade
-item.pyrotech.mill.blade.bone.name=Bone Sawmill Blade
-item.pyrotech.mill.blade.iron.name=Iron Sawmill Blade
-item.pyrotech.mill.blade.diamond.name=Diamond Sawmill Blade
-
 # --- Tiles
 
 tile.pyrotech.thatch.name=Straw Bale
@@ -150,10 +159,6 @@ tile.pyrotech.refractory_brick_block.name=Refractory Block
 tile.pyrotech.kiln_pit.name=Pit Kiln
 tile.pyrotech.limestone.name=Limestone
 tile.pyrotech.refractory_glass.name=Refractory Glass
-tile.pyrotech.kiln_stone.name=Stone Kiln
-tile.pyrotech.oven_stone.name=Stone Oven
-tile.pyrotech.mill_stone.name=Stone Sawmill
-tile.pyrotech.crucible_stone.name=Stone Crucible
 tile.pyrotech.campfire.name=Campfire
 tile.pyrotech.drying_rack.crude.name=Crude Drying Rack
 tile.pyrotech.drying_rack.normal.name=Drying Rack

@@ -20,6 +20,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockStashStone(), BlockStashStone.NAME);
     registry.registerBlockWithItem(new BlockCrate(), BlockCrate.NAME);
     registry.registerBlockWithItem(new BlockCrateStone(), BlockCrateStone.NAME);
+    registry.registerBlockWithItem(new BlockWoodRack(), BlockWoodRack.NAME);
 
     registry.registerTileEntities(
         TileShelf.class,
@@ -27,7 +28,8 @@ public final class BlockInitializer {
         TileStash.class,
         TileStashStone.class,
         TileCrate.class,
-        TileCrateStone.class
+        TileCrateStone.class,
+        TileWoodRack.class
     );
   }
 
@@ -42,13 +44,15 @@ public final class BlockInitializer {
           ModuleStorage.Blocks.STASH,
           ModuleStorage.Blocks.STASH_STONE,
           ModuleStorage.Blocks.CRATE,
-          ModuleStorage.Blocks.CRATE_STONE
+          ModuleStorage.Blocks.CRATE_STONE,
+          ModuleStorage.Blocks.WOOD_RACK
       );
 
       // TESRs
       ClientRegistry.bindTileEntitySpecialRenderer(TileShelf.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileStash.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCrate.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileWoodRack.class, new TESRInteractable<>());
     });
   }
 

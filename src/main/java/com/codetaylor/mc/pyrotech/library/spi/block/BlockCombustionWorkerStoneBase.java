@@ -6,10 +6,9 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -176,10 +175,7 @@ public abstract class BlockCombustionWorkerStoneBase
     }
   }
 
-  protected TileEntity createTileEntityTop() {
-
-    return new TileStoneTop();
-  }
+  protected abstract TileEntity createTileEntityTop();
 
   protected abstract TileEntity createTileEntityBottom();
 

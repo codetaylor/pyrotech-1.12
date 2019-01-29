@@ -6,7 +6,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileDryingRackBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTarTankBase;
-import com.codetaylor.mc.pyrotech.modules.storage.tile.TileWoodRack;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
 public class WailaRegistrar {
@@ -28,19 +27,6 @@ public class WailaRegistrar {
     KilnPitProvider pitKilnDataProvider = new KilnPitProvider();
     registrar.registerBodyProvider(pitKilnDataProvider, TileKilnPit.class);
 
-    MillStoneProvider millStoneProvider = new MillStoneProvider();
-    registrar.registerBodyProvider(millStoneProvider, TileMillStone.class);
-    registrar.registerBodyProvider(millStoneProvider, TileMillStoneTop.class);
-
-    CombustionWorkerStoneItemInItemOutProvider combustionWorkerStoneItemInItemOutProvider = new CombustionWorkerStoneItemInItemOutProvider();
-    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOutProvider, TileOvenStone.class);
-    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOutProvider, TileKilnStone.class);
-    registrar.registerBodyProvider(combustionWorkerStoneItemInItemOutProvider, TileStoneTop.class);
-
-    CombustionWorkerStoneItemInFluidOutProvider combustionWorkerStoneItemInFluidOutProvider = new CombustionWorkerStoneItemInFluidOutProvider();
-    registrar.registerBodyProvider(combustionWorkerStoneItemInFluidOutProvider, TileCrucibleStone.class);
-    registrar.registerBodyProvider(combustionWorkerStoneItemInFluidOutProvider, TileStoneTop.class);
-
     CampfireProvider campfireProvider = new CampfireProvider();
     registrar.registerBodyProvider(campfireProvider, TileCampfire.class);
 
@@ -49,9 +35,6 @@ public class WailaRegistrar {
 
     ChoppingBlockProvider choppingBlockProvider = new ChoppingBlockProvider();
     registrar.registerBodyProvider(choppingBlockProvider, TileChoppingBlock.class);
-
-    WoodRackProvider woodRackProvider = new WoodRackProvider();
-    registrar.registerBodyProvider(woodRackProvider, TileWoodRack.class);
 
     GraniteAnvilProvider graniteAnvilProvider = new GraniteAnvilProvider();
     registrar.registerBodyProvider(graniteAnvilProvider, TileAnvilBase.class);

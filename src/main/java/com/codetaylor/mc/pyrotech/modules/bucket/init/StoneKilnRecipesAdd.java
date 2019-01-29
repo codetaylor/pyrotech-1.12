@@ -5,7 +5,7 @@ import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucketConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.KilnStoneRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -13,7 +13,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class StoneKilnRecipesAdd {
 
   public static void apply(IForgeRegistry<KilnStoneRecipe> registry) {
-
 
     // Clay Bucket
     if (ModuleBucketConfig.BUCKET_CLAY.ENABLED) {

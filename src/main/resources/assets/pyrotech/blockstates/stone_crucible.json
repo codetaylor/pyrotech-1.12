@@ -1,0 +1,40 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:stone_crucible",
+    "textures": {
+      "particle": "pyrotech:blocks/kiln_stone_side"
+    }
+  },
+  "variants": {
+    "facing": {
+      "north": {
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "type": {
+      "top": {
+        "model": "pyrotech:_empty"
+      },
+      "bottom": {},
+      "bottom_lit": {
+        "submodel": {
+          "lit": {"model": "pyrotech:stone_machine_lit"}
+        }
+      },
+      "bottom_dormant": {
+        "submodel": {
+          "dormant": {"model": "pyrotech:stone_machine_dormant"}
+        }
+      }
+    }
+  }
+}

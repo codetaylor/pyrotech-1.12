@@ -51,19 +51,15 @@ public class PluginJEI
 
     registry.addRecipeCategories(
         new JEIRecipeCategoryKilnPit(guiHelper),
-        new JEIRecipeCategoryKilnStone(guiHelper),
         new JEIRecipeCategoryPitBurn(guiHelper),
         new JEIRecipeCategoryRefractoryBurn(guiHelper),
         new JEIRecipeCategoryDryingRack(guiHelper),
         new JEIRecipeCategoryDryingRackCrude(guiHelper),
         new JEIRecipeCategoryChoppingBlock(guiHelper),
         new JEIRecipeCategoryAnvil(guiHelper),
-        new JEIRecipeCategoryMillStone(guiHelper),
         new JEIRecipeCategoryCompactingBin(guiHelper),
         new JEIRecipeCategoryCampfire(guiHelper),
-        new JEIRecipeCategoryOvenStone(guiHelper),
         new JEIRecipeCategoryWorktable(guiHelper),
-        new JEIRecipeCategoryCrucibleStone(guiHelper),
         new JEIRecipeCategorySoakingPot(guiHelper)
     );
   }
@@ -161,28 +157,6 @@ public class PluginJEI
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.WORKTABLE);
     }
 
-    // --- Stone Oven
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.OVEN_STONE), JEIRecipeCategoryUid.STONE_OVEN);
-      registry.handleRecipes(OvenStoneRecipe.class, JEIRecipeWrapperOvenStone::new, JEIRecipeCategoryUid.STONE_OVEN);
-      List<JEIRecipeWrapperOvenStone> furnaceRecipes = PluginJEI.getFurnaceRecipesForStoneOven(input -> {
-
-        ItemStack output = FurnaceRecipes.instance().getSmeltingResult(input);
-
-        if (OvenStoneRecipe.hasWhitelist()) {
-          return OvenStoneRecipe.isWhitelisted(output);
-
-        } else if (OvenStoneRecipe.hasBlacklist()) {
-          return !OvenStoneRecipe.isBlacklisted(output);
-        }
-
-        return RecipeHelper.hasFurnaceFoodRecipe(input);
-      });
-      registry.addRecipes(furnaceRecipes, JEIRecipeCategoryUid.STONE_OVEN);
-      List<OvenStoneRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.OVEN_STONE_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_OVEN);
-    }
-
     // --- Campfire
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CAMPFIRE), JEIRecipeCategoryUid.CAMPFIRE);
@@ -213,28 +187,12 @@ public class PluginJEI
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.SOAKING_POT);
     }
 
-    // --- Stone Crucible
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CRUCIBLE_STONE), JEIRecipeCategoryUid.STONE_CRUCIBLE);
-      registry.handleRecipes(CrucibleStoneRecipe.class, JEIRecipeWrapperCrucibleStone::new, JEIRecipeCategoryUid.STONE_CRUCIBLE);
-      List<CrucibleStoneRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.CRUCIBLE_STONE_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_CRUCIBLE);
-    }
-
     // --- Compacting Bin
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.COMPACTING_BIN), JEIRecipeCategoryUid.COMPACTING_BIN);
       registry.handleRecipes(CompactingBinRecipe.class, JEIRecipeWrapperCompactingBin::new, JEIRecipeCategoryUid.COMPACTING_BIN);
       List<CompactingBinRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.COMPACTING_BIN_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.COMPACTING_BIN);
-    }
-
-    // --- Stone Mill
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.MILL_STONE), JEIRecipeCategoryUid.STONE_MILL);
-      registry.handleRecipes(MillStoneRecipe.class, JEIRecipeWrapperMillStone::new, JEIRecipeCategoryUid.STONE_MILL);
-      List<MillStoneRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.MILL_STONE_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_MILL);
     }
 
     // --- Granite Anvil
@@ -278,14 +236,6 @@ public class PluginJEI
       registry.addRecipes(recipeList, JEIRecipeCategoryUid.PIT_KILN);
     }
 
-    // --- Stone Kiln
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.KILN_STONE), JEIRecipeCategoryUid.STONE_KILN);
-      registry.handleRecipes(KilnStoneRecipe.class, JEIRecipeWrapperKilnStone::new, JEIRecipeCategoryUid.STONE_KILN);
-      List<StoneMachineRecipeItemInItemOutBase> recipeList = new ArrayList<>(ModPyrotechRegistries.KILN_STONE_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.STONE_KILN);
-    }
-
     // --- Pit Burn
     {
       registry.addRecipeCatalyst(new ItemStack(Blocks.DIRT), JEIRecipeCategoryUid.PIT_BURN);
@@ -327,28 +277,6 @@ public class PluginJEI
 
       ItemStack output = entry.getValue();
       recipes.add(new JEIRecipeWrapperCampfire(Ingredient.fromStacks(input), output));
-    }
-
-    return recipes;
-  }
-
-  private static List<JEIRecipeWrapperOvenStone> getFurnaceRecipesForStoneOven(Predicate<ItemStack> filter) {
-
-    FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
-    Map<ItemStack, ItemStack> smeltingMap = furnaceRecipes.getSmeltingList();
-
-    List<JEIRecipeWrapperOvenStone> recipes = new ArrayList<>();
-
-    for (Map.Entry<ItemStack, ItemStack> entry : smeltingMap.entrySet()) {
-
-      ItemStack input = entry.getKey();
-
-      if (!filter.test(input)) {
-        continue;
-      }
-
-      ItemStack output = entry.getValue();
-      recipes.add(new JEIRecipeWrapperOvenStone(Ingredient.fromStacks(input), output));
     }
 
     return recipes;

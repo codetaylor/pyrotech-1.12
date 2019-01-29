@@ -84,6 +84,9 @@ public class ModuleStorage
     @GameRegistry.ObjectHolder(BlockCrateStone.NAME)
     public static final BlockCrateStone CRATE_STONE;
 
+    @GameRegistry.ObjectHolder(BlockWoodRack.NAME)
+    public static final BlockWoodRack WOOD_RACK;
+
     static {
       SHELF = null;
       STASH = null;
@@ -91,6 +94,7 @@ public class ModuleStorage
       SHELF_STONE = null;
       STASH_STONE = null;
       CRATE_STONE = null;
+      WOOD_RACK = null;
     }
   }
 }

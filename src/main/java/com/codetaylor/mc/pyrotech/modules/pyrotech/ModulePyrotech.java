@@ -63,17 +63,13 @@ public class ModulePyrotech
 
     String[] craftTweakerPlugins = {
         "ZenKilnPit",
-        "ZenKilnStone",
         "ZenBurn",
         "ZenDryingRack",
         "ZenDryingRackCrude",
         "ZenChoppingBlock",
         "ZenGraniteAnvil",
-        "ZenMillStone",
-        "ZenCrucibleStone",
         "ZenCompactingBin",
         "ZenCampfire",
-        "ZenOvenStone",
         "ZenWorktable",
         "ZenSoakingPot"
     };
@@ -106,12 +102,6 @@ public class ModulePyrotech
         .allowModification()
         .create();
 
-    new RegistryBuilder<KilnStoneRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "kiln_stone_recipe"))
-        .setType(KilnStoneRecipe.class)
-        .allowModification()
-        .create();
-
     new RegistryBuilder<DryingRackRecipe>()
         .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "drying_rack_recipe"))
         .setType(DryingRackRecipe.class)
@@ -136,18 +126,6 @@ public class ModulePyrotech
         .allowModification()
         .create();
 
-    new RegistryBuilder<MillStoneRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "mill_stone_recipe"))
-        .setType(MillStoneRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<CrucibleStoneRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "crucible_stone_recipe"))
-        .setType(CrucibleStoneRecipe.class)
-        .allowModification()
-        .create();
-
     new RegistryBuilder<CompactingBinRecipe>()
         .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "compacting_bin_recipe"))
         .setType(CompactingBinRecipe.class)
@@ -157,12 +135,6 @@ public class ModulePyrotech
     new RegistryBuilder<CampfireRecipe>()
         .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "campfire_recipe"))
         .setType(CampfireRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<OvenStoneRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "oven_stone_recipe"))
-        .setType(OvenStoneRecipe.class)
         .allowModification()
         .create();
 
@@ -208,13 +180,10 @@ public class ModulePyrotech
 
     BurnPitRecipesAdd.apply(ModPyrotechRegistries.BURN_RECIPE);
     PitKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_PIT_RECIPE);
-    StoneKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_STONE_RECIPE);
     DryingRackRecipesAdd.apply(ModPyrotechRegistries.DRYING_RACK_RECIPE);
     AnvilRecipesAdd.apply(ModPyrotechRegistries.ANVIL_RECIPE);
     ChoppingBlockRecipesAdd.apply(ModPyrotechRegistries.CHOPPING_BLOCK_RECIPE);
     DryingRackCrudeRecipesAdd.apply(ModPyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
-    StoneSawmillRecipesAdd.apply(ModPyrotechRegistries.MILL_STONE_RECIPE);
-    StoneCrucibleRecipesAdd.apply(ModPyrotechRegistries.CRUCIBLE_STONE_RECIPE);
     CompactingBinRecipesAdd.apply(ModPyrotechRegistries.COMPACTING_BIN_RECIPE);
     SoakingPotRecipesAdd.apply(ModPyrotechRegistries.SOAKING_POT_RECIPE);
   }

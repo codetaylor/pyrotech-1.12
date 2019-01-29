@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.machine"]
+    }
+  ],
+  "pattern": [
+    "RRR",
+    "RSR",
+    "RRR"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone",
+      "data": 3
+    },
+    "R": {
+      "item": "pyrotech:material",
+      "data": 11
+    }
+  },
+  "result": {
+    "item": "pyrotech:sawmill_blade_bone",
+    "count": 1,
+    "data": 0
+  }
+}

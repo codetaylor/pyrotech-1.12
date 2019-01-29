@@ -11,6 +11,7 @@ import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketClay;
 import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketClayUnfired;
 import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketStone;
 import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketWood;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.RegistryEvent;
@@ -52,7 +53,10 @@ public class ModuleBucket
     super.onRegisterRecipesEvent(event);
 
     PitKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_PIT_RECIPE);
-    StoneKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_STONE_RECIPE);
+
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechMachine.class)) {
+      StoneKilnRecipesAdd.apply(ModuleTechMachine.Registries.KILN_STONE_RECIPE);
+    }
   }
 
   @GameRegistry.ObjectHolder(ModuleBucket.MOD_ID)

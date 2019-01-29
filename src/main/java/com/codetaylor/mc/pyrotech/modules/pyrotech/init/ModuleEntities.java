@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.entity.EntityRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.entity.EntityRockGrass;
 import net.minecraft.client.Minecraft;
@@ -26,10 +25,6 @@ public class ModuleEntities {
     registry.createEntityEntry(EntityRockGrass.NAME, EntityEntryBuilder.create()
         .entity(EntityRockGrass.class)
         .tracker(80, 1, true)
-    );
-    registry.createEntityEntry(BlockBloom.ItemBlockBloom.EntityItemBloom.NAME, EntityEntryBuilder.create()
-        .entity(BlockBloom.ItemBlockBloom.EntityItemBloom.class)
-        .tracker(80, 4, true)
     );
   }
 

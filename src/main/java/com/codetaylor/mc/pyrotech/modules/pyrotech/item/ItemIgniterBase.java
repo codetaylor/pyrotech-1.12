@@ -7,9 +7,9 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDelegateMachineTop;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTorchBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -107,7 +107,7 @@ public abstract class ItemIgniterBase
           } else if (tileEntity instanceof TileTorchBase) {
             ((TileTorchBase) tileEntity).activate();
 
-          } else if (tileEntity instanceof TileStoneTop) {
+          } else if (tileEntity instanceof TileCapabilityDelegateMachineTop) {
             TileEntity candidate = world.getTileEntity(pos.down());
 
             if (candidate instanceof TileBloomery) {

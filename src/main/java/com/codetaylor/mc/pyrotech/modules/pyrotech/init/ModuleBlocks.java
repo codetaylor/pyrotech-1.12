@@ -3,15 +3,10 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TilePileSlag;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
-import com.codetaylor.mc.pyrotech.modules.storage.block.BlockWoodRack;
-import com.codetaylor.mc.pyrotech.modules.storage.tile.*;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -38,16 +33,11 @@ public final class ModuleBlocks {
   public static final BlockRefractoryDoor REFRACTORY_DOOR = new BlockRefractoryDoor();
   public static final BlockLimestone LIMESTONE = new BlockLimestone();
   public static final BlockRefractoryGlass REFRACTORY_GLASS = new BlockRefractoryGlass();
-  public static final BlockKilnStone KILN_STONE = new BlockKilnStone();
-  public static final BlockOvenStone OVEN_STONE = new BlockOvenStone();
-  public static final BlockMillStone MILL_STONE = new BlockMillStone();
-  public static final BlockCrucibleStone CRUCIBLE_STONE = new BlockCrucibleStone();
   public static final BlockCampfire CAMPFIRE = new BlockCampfire();
   public static final BlockDryingRack DRYING_RACK = new BlockDryingRack();
   public static final BlockRock ROCK = new BlockRock();
   public static final BlockRockGrass ROCK_GRASS = new BlockRockGrass();
   public static final BlockChoppingBlock CHOPPING_BLOCK = new BlockChoppingBlock();
-  public static final BlockWoodRack WOOD_RACK = new BlockWoodRack();
   public static final BlockOre ORE = new BlockOre();
   public static final BlockCobblestone COBBLESTONE = new BlockCobblestone();
   public static final BlockStoneBricks STONE_BRICKS = new BlockStoneBricks();
@@ -83,12 +73,7 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.IGNITER, BlockIgniter.NAME);
     registry.registerBlockWithItem(ModuleBlocks.LIMESTONE, BlockLimestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.REFRACTORY_GLASS, BlockRefractoryGlass.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.KILN_STONE, BlockKilnStone.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.OVEN_STONE, BlockOvenStone.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.MILL_STONE, BlockMillStone.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.CRUCIBLE_STONE, BlockCrucibleStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.DRYING_RACK, BlockDryingRack.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.WOOD_RACK, BlockWoodRack.NAME);
     registry.registerBlockWithItem(ModuleBlocks.ORE, BlockOre.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COBBLESTONE, BlockCobblestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.STONE_BRICKS, BlockStoneBricks.NAME);
@@ -113,35 +98,19 @@ public final class ModuleBlocks {
         TileKilnPit.class,
         TilePitAsh.class,
         TileActivePile.class,
-        TileKilnStone.class,
-        TileOvenStone.class,
-        TileMillStone.class,
-        TileMillStoneTop.class,
-        TileCrucibleStone.class,
-        TileStoneTop.class,
         TileCampfire.class,
         TileDryingRack.class,
         TileDryingRackCrude.class,
         TileChoppingBlock.class,
-        TileWoodRack.class,
         TileAnvilGranite.class,
         TileAnvilIronPlated.class,
         TileWorktable.class,
         TileWorktableStone.class,
         TileTorchFiber.class,
         TileTorchStone.class,
-        TileShelf.class,
-        TileShelfStone.class,
-        TileStash.class,
-        TileStashStone.class,
-        TileCrate.class,
-        TileCrateStone.class,
         TileFarmlandMulched.class,
         TileCompactingBin.class,
-        TileSoakingPot.class,
-        TileBloomery.class,
-        TileBloom.class,
-        TilePileSlag.class
+        TileSoakingPot.class
     );
   }
 
@@ -157,12 +126,6 @@ public final class ModuleBlocks {
           ModuleBlocks.REFRACTORY_BRICK,
           ModuleBlocks.LIMESTONE,
           ModuleBlocks.REFRACTORY_GLASS,
-          ModuleBlocks.OVEN_STONE,
-          ModuleBlocks.KILN_STONE,
-          ModuleBlocks.OVEN_STONE,
-          ModuleBlocks.MILL_STONE,
-          ModuleBlocks.CRUCIBLE_STONE,
-          ModuleBlocks.WOOD_RACK,
           ModuleBlocks.STONE_BRICKS,
           ModuleBlocks.WORKTABLE,
           ModuleBlocks.WORKTABLE_STONE,
@@ -258,23 +221,14 @@ public final class ModuleBlocks {
       ClientRegistry.bindTileEntitySpecialRenderer(TileTarCollector.class, new TESRTarCollector());
 
       ClientRegistry.bindTileEntitySpecialRenderer(TileKilnPit.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileKilnStone.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileOvenStone.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileMillStone.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleStone.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCampfire.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRack.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileDryingRackCrude.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileChoppingBlock.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileWoodRack.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileAnvilBase.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileWorktable.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileShelf.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileStash.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileCrate.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCompactingBin.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileSoakingPot.class, new TESRInteractable<>());
-      ClientRegistry.bindTileEntitySpecialRenderer(TileBloomery.class, new TESRInteractable<>());
     });
   }
 

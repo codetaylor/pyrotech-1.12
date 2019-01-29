@@ -8,6 +8,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.TickCounter;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
 import net.minecraft.block.Block;

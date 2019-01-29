@@ -2,14 +2,14 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTarCollector;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileCombustionWorkerBase;
-import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;

@@ -11,10 +11,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
-import com.codetaylor.mc.pyrotech.modules.bloomery.init.BlockInitializer;
-import com.codetaylor.mc.pyrotech.modules.bloomery.init.ItemInitializer;
-import com.codetaylor.mc.pyrotech.modules.bloomery.init.PacketInitializer;
-import com.codetaylor.mc.pyrotech.modules.bloomery.init.SlagInitializer;
+import com.codetaylor.mc.pyrotech.modules.bloomery.init.*;
 import com.codetaylor.mc.pyrotech.modules.bloomery.init.recipe.BloomeryRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.bloomery.init.recipe.CompactingBinRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.bloomery.item.*;
@@ -145,6 +142,8 @@ public class ModuleBloomery
     registry.registerItemRegistrationStrategy(forgeRegistry -> {
       SlagInitializer.initializeSlag(this.modConfigurationDirectory);
     });
+
+    EntityInitializer.onRegister(registry);
   }
 
   @SideOnly(Side.CLIENT)

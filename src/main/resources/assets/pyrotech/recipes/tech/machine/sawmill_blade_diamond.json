@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.machine"]
+    }
+  ],
+  "pattern": [
+    "RRR",
+    "RSR",
+    "RRR"
+  ],
+  "key": {
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "R": {
+      "item": "pyrotech:material",
+      "data": 18
+    }
+  },
+  "result": {
+    "item": "pyrotech:sawmill_blade_diamond",
+    "count": 1,
+    "data": 0
+  }
+}

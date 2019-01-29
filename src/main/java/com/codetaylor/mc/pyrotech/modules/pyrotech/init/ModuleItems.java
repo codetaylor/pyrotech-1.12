@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
-import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
@@ -9,7 +8,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
@@ -55,19 +53,7 @@ public final class ModuleItems {
   public static final ItemStoneHammer STONE_HAMMER = new ItemStoneHammer();
   public static final ItemCrudeHammer CRUDE_HAMMER = new ItemCrudeHammer();
 
-  public static final ItemMillBlade STONE_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.STONE.getMaxUses() / 2);
-  public static final ItemMillBlade FLINT_MILL_BLADE = new ItemMillBlade(EnumMaterial.FLINT.getToolMaterial().getMaxUses());
-  public static final ItemMillBlade BONE_MILL_BLADE = new ItemMillBlade(EnumMaterial.BONE.getToolMaterial().getMaxUses());
-  public static final ItemMillBlade IRON_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.IRON.getMaxUses());
-  public static final ItemMillBlade DIAMOND_MILL_BLADE = new ItemMillBlade(Item.ToolMaterial.DIAMOND.getMaxUses());
-
   public static void onRegister(Registry registry) {
-
-    registry.registerItem(ModuleItems.STONE_MILL_BLADE, "mill_blade_stone");
-    registry.registerItem(ModuleItems.FLINT_MILL_BLADE, "mill_blade_flint");
-    registry.registerItem(ModuleItems.BONE_MILL_BLADE, "mill_blade_bone");
-    registry.registerItem(ModuleItems.IRON_MILL_BLADE, "mill_blade_iron");
-    registry.registerItem(ModuleItems.DIAMOND_MILL_BLADE, "mill_blade_diamond");
 
     registry.registerItem(ModuleItems.MATERIAL, ItemMaterial.NAME);
     registry.registerItem(ModuleItems.BOW_DRILL, ItemBowDrill.NAME);
@@ -161,13 +147,7 @@ public final class ModuleItems {
           ModuleItems.FLINT_HAMMER,
           ModuleItems.BONE_HAMMER,
           ModuleItems.IRON_HAMMER,
-          ModuleItems.DIAMOND_HAMMER,
-
-          ModuleItems.STONE_MILL_BLADE,
-          ModuleItems.FLINT_MILL_BLADE,
-          ModuleItems.BONE_MILL_BLADE,
-          ModuleItems.IRON_MILL_BLADE,
-          ModuleItems.DIAMOND_MILL_BLADE
+          ModuleItems.DIAMOND_HAMMER
       );
 
       // Rock

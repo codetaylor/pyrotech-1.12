@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.machine"]
+    }
+  ],
+  "pattern": [
+    "B-B",
+    "BEB",
+    "BBB"
+  ],
+  "key": {
+    "E": {
+      "item": "pyrotech:tinder",
+      "data": 0
+    },
+    "B": {
+      "item": "pyrotech:stone_bricks",
+      "data": 0
+    },
+    "-": {
+      "item": "pyrotech:material",
+      "data": 16
+    }
+  },
+  "result": {
+    "item": "pyrotech:stone_oven",
+    "count": 1,
+    "data": 0
+  }
+}

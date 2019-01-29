@@ -4,7 +4,6 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 
 public class JEIRecipeCategoryUid {
 
-  public static final String STONE_KILN = ModulePyrotech.MOD_ID + ".stone.kiln";
   public static final String PIT_KILN = ModulePyrotech.MOD_ID + ".pit.kiln";
   public static final String PIT_BURN = ModulePyrotech.MOD_ID + ".pit.burn";
   public static final String REFRACTORY_BURN = ModulePyrotech.MOD_ID + ".refractory.burn";
@@ -12,12 +11,9 @@ public class JEIRecipeCategoryUid {
   public static final String DRYING_CRUDE = ModulePyrotech.MOD_ID + ".drying.crude";
   public static final String CHOPPING = ModulePyrotech.MOD_ID + ".chopping";
   public static final String ANVIL = ModulePyrotech.MOD_ID + ".anvil";
-  public static final String STONE_MILL = ModulePyrotech.MOD_ID + ".stone.mill";
   public static final String COMPACTING_BIN = ModulePyrotech.MOD_ID + ".compacting.bin";
   public static final String CAMPFIRE = ModulePyrotech.MOD_ID + ".campfire";
-  public static final String STONE_OVEN = ModulePyrotech.MOD_ID + ".stone.oven";
   public static final String WORKTABLE = ModulePyrotech.MOD_ID + ".worktable";
-  public static final String STONE_CRUCIBLE = ModulePyrotech.MOD_ID + ".stone.crucible";
   public static final String SOAKING_POT = ModulePyrotech.MOD_ID + ".soaking.pot";
 
   private JEIRecipeCategoryUid() {
