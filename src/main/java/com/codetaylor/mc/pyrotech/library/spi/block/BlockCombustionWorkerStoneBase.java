@@ -224,18 +224,15 @@ public abstract class BlockCombustionWorkerStoneBase
       float hitZ
   ) {
 
-    if (this.isTop(state)) {
-      return this.interact(IInteraction.EnumType.MouseClick, world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
-
-    } else {
+    if (!this.isTop(state)) {
       ItemStack heldItem = player.getHeldItemMainhand();
 
       if (heldItem.getItem() instanceof ItemIgniterBase) {
         return false;
       }
-
-      return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
     }
+
+    return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   @Override
