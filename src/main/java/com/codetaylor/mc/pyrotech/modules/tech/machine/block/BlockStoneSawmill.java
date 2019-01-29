@@ -4,7 +4,8 @@ import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMillStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneSawmill;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneSawmillTop;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -25,23 +26,23 @@ import javax.annotation.Nonnull;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class BlockMillStone
+public class BlockStoneSawmill
     extends BlockCombustionWorkerStoneBase {
 
-  public static final String NAME = "mill_stone";
+  public static final String NAME = "stone_sawmill";
 
   private static final AxisAlignedBB AABB_TOP = new AxisAlignedBB(1.0 / 16.0, 0.0 / 16.0, 1.0 / 16.0, 15.0 / 16.0, 4.0 / 16.0, 15.0 / 16.0);
 
   @Override
   protected TileEntity createTileEntityTop() {
 
-    return new TileMillStone.Top();
+    return new TileStoneSawmillTop();
   }
 
   @Override
   protected TileEntity createTileEntityBottom() {
 
-    return new TileMillStone();
+    return new TileStoneSawmill();
   }
 
   @Nonnull
@@ -61,8 +62,8 @@ public class BlockMillStone
     if (this.isTop(world.getBlockState(pos))) {
       TileEntity tile = world.getTileEntity(pos.down());
 
-      if (tile instanceof TileMillStone
-          && ((TileMillStone) tile).workerIsActive()
+      if (tile instanceof TileStoneSawmill
+          && ((TileStoneSawmill) tile).workerIsActive()
           && ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
         entity.attackEntityFrom(DamageSource.GENERIC, ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE);
       }
@@ -116,8 +117,8 @@ public class BlockMillStone
 
     TileEntity tileEntity = world.getTileEntity(pos.down());
 
-    if (tileEntity instanceof TileMillStone) {
-      ItemStackHandler inputStackHandler = ((TileMillStone) tileEntity).getInputStackHandler();
+    if (tileEntity instanceof TileStoneSawmill) {
+      ItemStackHandler inputStackHandler = ((TileStoneSawmill) tileEntity).getInputStackHandler();
       ItemStack stackInSlot = inputStackHandler.getStackInSlot(0);
       Block blockFromItem = Block.getBlockFromItem(stackInSlot.getItem());
 

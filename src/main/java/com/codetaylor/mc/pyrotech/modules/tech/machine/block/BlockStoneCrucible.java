@@ -3,7 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileCrucibleStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneCrucible;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneCrucibleTop;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -14,21 +15,21 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class BlockCrucibleStone
+public class BlockStoneCrucible
     extends BlockCombustionWorkerStoneBase {
 
-  public static final String NAME = "crucible_stone";
+  public static final String NAME = "stone_crucible";
 
   @Override
   protected TileEntity createTileEntityTop() {
 
-    return new TileCrucibleStone.Top();
+    return new TileStoneCrucibleTop();
   }
 
   @Override
   protected TileEntity createTileEntityBottom() {
 
-    return new TileCrucibleStone();
+    return new TileStoneCrucible();
   }
 
   @Override

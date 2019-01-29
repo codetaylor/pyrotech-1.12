@@ -1,9 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.tech.machine.init;
+package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.MillStoneRecipe;
 import net.minecraft.init.Blocks;
@@ -176,17 +175,17 @@ public class StoneSawmillRecipesAdd {
         output.copy(),
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleItems.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+        Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
         false
-    ).setRegistryName(ModulePyrotech.MOD_ID, name + "_iron"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_iron"));
 
     registry.register(new MillStoneRecipe(
         output.copy(),
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 2 * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleItems.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+        Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
         false
-    ).setRegistryName(ModulePyrotech.MOD_ID, name + "_diamond"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_diamond"));
   }
 
   private static void registerSawmillRecipeWood(IForgeRegistryModifiable<MillStoneRecipe> registry, String name, ItemStack output, Ingredient input) {
@@ -198,9 +197,9 @@ public class StoneSawmillRecipesAdd {
         output,
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleItems.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+        Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
         true
-    ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_0"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_0"));
 
     output = output.copy();
     output.setCount(2);
@@ -210,11 +209,11 @@ public class StoneSawmillRecipesAdd {
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 3 * 20,
         Ingredient.fromStacks(
-            new ItemStack(ModuleItems.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
-            new ItemStack(ModuleItems.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
+            new ItemStack(ModuleTechMachine.Items.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
+            new ItemStack(ModuleTechMachine.Items.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
         ),
         true
-    ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_1"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_1"));
 
     output = output.copy();
     output.setCount(3);
@@ -223,9 +222,9 @@ public class StoneSawmillRecipesAdd {
         output,
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 2 * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleItems.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+        Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
         true
-    ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_2"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_2"));
 
     output = output.copy();
     output.setCount(4);
@@ -234,8 +233,8 @@ public class StoneSawmillRecipesAdd {
         output,
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleItems.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+        Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
         true
-    ).setRegistryName(ModulePyrotech.MOD_ID, name + "_tier_3"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_3"));
   }
 }

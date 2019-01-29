@@ -2,7 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileKilnStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneKiln;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneKilnTop;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
@@ -12,21 +13,21 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class BlockKilnStone
+public class BlockStoneKiln
     extends BlockCombustionWorkerStoneBase {
 
-  public static final String NAME = "kiln_stone";
+  public static final String NAME = "stone_kiln";
 
   @Override
   protected TileEntity createTileEntityTop() {
 
-    return new TileKilnStone.Top();
+    return new TileStoneKilnTop();
   }
 
   @Override
   protected TileEntity createTileEntityBottom() {
 
-    return new TileKilnStone();
+    return new TileStoneKiln();
   }
 
   @Override

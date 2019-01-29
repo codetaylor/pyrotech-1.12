@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category;
+package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperOvenStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperOvenStone;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -15,6 +15,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryOvenStone
     implements IRecipeCategory<JEIRecipeWrapperOvenStone> {
+
+  public static final String UID = ModulePyrotech.MOD_ID + ".stone.oven";
 
   private final IDrawableAnimated animatedFlame;
   private final IDrawableAnimated arrow;
@@ -43,7 +45,7 @@ public class JEIRecipeCategoryOvenStone
   @Override
   public String getUid() {
 
-    return JEIRecipeCategoryUid.STONE_OVEN;
+    return UID;
   }
 
   @Nonnull

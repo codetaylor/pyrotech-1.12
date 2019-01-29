@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.machine.init;
+package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
 import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;

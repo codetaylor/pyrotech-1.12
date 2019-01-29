@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category;
+package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperMillStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperMillStone;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -15,6 +15,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryMillStone
     implements IRecipeCategory<JEIRecipeWrapperMillStone> {
+
+  public static final String UID = ModulePyrotech.MOD_ID + ".stone.mill";
 
   private final IDrawableAnimated arrow;
   private final IDrawable background;
@@ -39,7 +41,7 @@ public class JEIRecipeCategoryMillStone
   @Override
   public String getUid() {
 
-    return JEIRecipeCategoryUid.STONE_MILL;
+    return UID;
   }
 
   @Nonnull

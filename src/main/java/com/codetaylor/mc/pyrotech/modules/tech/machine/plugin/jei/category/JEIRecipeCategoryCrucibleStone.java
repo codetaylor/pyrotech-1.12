@@ -1,8 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category;
+package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperCrucibleStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperCrucibleStone;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -16,6 +17,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryCrucibleStone
     implements IRecipeCategory<JEIRecipeWrapperCrucibleStone> {
+
+  public static final String UID = ModuleTechMachine.MOD_ID + ".stone.crucible";
 
   private final IDrawableAnimated animatedFlame;
   private final IDrawableAnimated arrow;
@@ -44,7 +47,7 @@ public class JEIRecipeCategoryCrucibleStone
   @Override
   public String getUid() {
 
-    return JEIRecipeCategoryUid.STONE_CRUCIBLE;
+    return UID;
   }
 
   @Nonnull
@@ -84,7 +87,7 @@ public class JEIRecipeCategoryCrucibleStone
     itemStacks.set(ingredients);
 
     IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-    int capacity = ModulePyrotechConfig.STONE_CRUCIBLE.OUTPUT_TANK_SIZE;
+    int capacity = ModuleTechMachineConfig.STONE_CRUCIBLE.OUTPUT_TANK_SIZE;
     fluidStacks.init(1, false, 61, 11, 16, 16, capacity, true, null);
     fluidStacks.set(ingredients);
   }

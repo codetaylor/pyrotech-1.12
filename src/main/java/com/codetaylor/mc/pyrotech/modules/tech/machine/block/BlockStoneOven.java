@@ -3,7 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileOvenStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneOven;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneOvenTop;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
@@ -19,21 +20,21 @@ import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class BlockOvenStone
+public class BlockStoneOven
     extends BlockCombustionWorkerStoneBase {
 
-  public static final String NAME = "oven_stone";
+  public static final String NAME = "stone_oven";
 
   @Override
   protected TileEntity createTileEntityTop() {
 
-    return new TileOvenStone.Top();
+    return new TileStoneOvenTop();
   }
 
   @Override
   protected TileEntity createTileEntityBottom() {
 
-    return new TileOvenStone();
+    return new TileStoneOven();
   }
 
   @ParametersAreNonnullByDefault
