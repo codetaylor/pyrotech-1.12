@@ -85,7 +85,7 @@ public class WorldGenerator
       final int chancesToSpawn = 4;
       final int blockXPos = chunkX << 4;
       final int blockZPos = chunkZ << 4;
-      final double density = 0.0625;
+      final double density = ModuleWorldGenConfig.ROCKS.DENSITY;
 
       for (int i = 0; i < chancesToSpawn; i++) {
 

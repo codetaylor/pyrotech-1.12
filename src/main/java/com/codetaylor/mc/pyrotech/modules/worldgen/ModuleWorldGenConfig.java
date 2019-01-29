@@ -33,4 +33,12 @@ public class ModuleWorldGenConfig {
     public int MIN_VEIN_SIZE = 10;
     public int MAX_VEIN_SIZE = 20;
   }
+
+  public static WorldGenRocks ROCKS = new WorldGenRocks();
+
+  public static class WorldGenRocks {
+
+    public double DENSITY = 0.0625;
+  }
+
 }
