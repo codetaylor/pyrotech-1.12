@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.library;
 
 import com.codetaylor.mc.athenaeum.util.FileHelper;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.logging.log4j.Logger;

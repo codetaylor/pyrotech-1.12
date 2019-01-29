@@ -3,7 +3,7 @@
   "conditions": [
     {
       "type": "modules_enabled",
-      "modules": ["module.bloomery"]
+      "modules": ["module.tech.bloomery"]
     }
   ],
   "pattern": [

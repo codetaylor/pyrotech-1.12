@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery;
 
 import net.minecraftforge.common.config.Config;
 

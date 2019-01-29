@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.tile;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile;
 
 import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
@@ -19,12 +19,12 @@ import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCapabilityDelegate;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
-import com.codetaylor.mc.pyrotech.modules.bloomery.client.particles.ParticleBloomeryDrip;
-import com.codetaylor.mc.pyrotech.modules.bloomery.client.render.BloomeryFuelRenderer;
-import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.client.particles.ParticleBloomeryDrip;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.client.render.BloomeryFuelRenderer;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery;
 
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
@@ -8,14 +8,14 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockPileSlag;
-import com.codetaylor.mc.pyrotech.modules.bloomery.init.*;
-import com.codetaylor.mc.pyrotech.modules.bloomery.init.recipe.BloomeryRecipesAdd;
-import com.codetaylor.mc.pyrotech.modules.bloomery.init.recipe.CompactingBinRecipesAdd;
-import com.codetaylor.mc.pyrotech.modules.bloomery.item.*;
-import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.*;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.BloomeryRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.CompactingBinRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.*;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
@@ -42,7 +42,7 @@ import java.util.Map;
 public class ModuleBloomery
     extends ModuleBase {
 
-  public static final String MODULE_ID = "module.bloomery";
+  public static final String MODULE_ID = "module.tech.bloomery";
   public static final String MOD_ID = ModPyrotech.MOD_ID;
   public static final CreativeTabs CREATIVE_TAB = ModPyrotech.CREATIVE_TAB;
 
@@ -72,13 +72,13 @@ public class ModuleBloomery
     for (String plugin : craftTweakerPlugins) {
       this.registerIntegrationPlugin(
           "crafttweaker",
-          "com.codetaylor.mc.pyrotech.modules.bloomery.plugin.crafttweaker." + plugin
+          "com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.crafttweaker." + plugin
       );
     }
 
     this.registerIntegrationPlugin(
         "jei",
-        "com.codetaylor.mc.pyrotech.modules.bloomery.plugin.jei.PluginJEI"
+        "com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.jei.PluginJEI"
     );
   }
 
@@ -114,7 +114,7 @@ public class ModuleBloomery
     FMLInterModComms.sendMessage(
         "waila",
         "register",
-        "com.codetaylor.mc.pyrotech.modules.bloomery.plugin.waila.PluginWaila.wailaCallback"
+        "com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.PluginWaila.wailaCallback"
     );
   }
 

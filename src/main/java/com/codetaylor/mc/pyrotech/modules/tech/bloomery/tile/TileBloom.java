@@ -1,20 +1,19 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.tile;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile;
 
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
-import com.codetaylor.mc.pyrotech.modules.bloomery.block.BlockBloom;
-import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
-import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import net.minecraft.block.Block;

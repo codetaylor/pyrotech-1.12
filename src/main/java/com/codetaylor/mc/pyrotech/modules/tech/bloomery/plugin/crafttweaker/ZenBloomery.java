@@ -1,9 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.plugin.crafttweaker;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;

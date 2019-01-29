@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.plugin.waila;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila;
 
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloom;
-import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
 public class PluginWaila {

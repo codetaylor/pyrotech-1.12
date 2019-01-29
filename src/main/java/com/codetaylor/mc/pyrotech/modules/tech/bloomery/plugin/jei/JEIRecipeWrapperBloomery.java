@@ -1,6 +1,6 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.plugin.jei;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.jei;
 
-import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperTimed;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;

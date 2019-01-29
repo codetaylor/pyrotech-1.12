@@ -1,13 +1,12 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.recipe;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
-import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.util.BloomHelper;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;

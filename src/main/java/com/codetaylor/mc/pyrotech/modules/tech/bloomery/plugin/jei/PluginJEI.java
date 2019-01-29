@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.modules.bloomery.plugin.jei;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.jei;
 
-import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
