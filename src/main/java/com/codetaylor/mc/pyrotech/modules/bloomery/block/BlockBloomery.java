@@ -1,13 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.bloomery.block;
 
+import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.bloomery.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
-import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -21,12 +22,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockBloomery
@@ -35,6 +39,11 @@ public class BlockBloomery
   public static final String NAME = "bloomery";
 
   private static final AxisAlignedBB AABB_TOP = new AxisAlignedBB(2.0 / 16.0, 0.0 / 16.0, 2.0 / 16.0, 14.0 / 16.0, 8.0 / 16.0, 14.0 / 16.0);
+
+  private static final AxisAlignedBB[] AABB_BOTTOM = {
+      AABBHelper.create(0, 0, 0, 16, 8, 16),
+      AABBHelper.create(1, 8, 1, 15, 16, 15)
+  };
 
   @Override
   protected TileEntity createTileEntityBottom() {
@@ -120,6 +129,29 @@ public class BlockBloomery
     }
 
     super.onEntityWalk(world, pos, entity);
+  }
+
+  @Nullable
+  @Override
+  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+
+    RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
+
+    if (this.isTop(blockState)) {
+      return this.interactionRayTrace(result, blockState, world, pos.down(), start, end);
+
+    } else {
+
+      boolean hit = this.rayTrace(pos, start, end, AABB_BOTTOM[0]) != null
+          || this.rayTrace(pos, start, end, AABB_BOTTOM[1]) != null;
+
+      if (hit) {
+        return this.interactionRayTrace(result, blockState, world, pos, start, end);
+
+      } else {
+        return null;
+      }
+    }
   }
 
   // ---------------------------------------------------------------------------

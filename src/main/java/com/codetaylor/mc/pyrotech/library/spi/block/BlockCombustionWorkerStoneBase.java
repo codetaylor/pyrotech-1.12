@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.library.spi.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
@@ -46,11 +45,6 @@ public abstract class BlockCombustionWorkerStoneBase
   public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
   private static final AxisAlignedBB AABB_TOP = new AxisAlignedBB(1.0 / 16.0, 0.0 / 16.0, 1.0 / 16.0, 15.0 / 16.0, 8.0 / 16.0, 15.0 / 16.0);
-
-  private static final AxisAlignedBB[] AABB_BOTTOM = {
-      AABBHelper.create(0, 0, 0, 16, 8, 16),
-      AABBHelper.create(1, 8, 1, 15, 16, 15)
-  };
 
   public BlockCombustionWorkerStoneBase() {
 
@@ -213,16 +207,7 @@ public abstract class BlockCombustionWorkerStoneBase
       return this.interactionRayTrace(result, blockState, world, pos.down(), start, end);
 
     } else {
-
-      boolean hit = this.rayTrace(pos, start, end, AABB_BOTTOM[0]) != null
-          || this.rayTrace(pos, start, end, AABB_BOTTOM[1]) != null;
-
-      if (hit) {
-        return this.interactionRayTrace(result, blockState, world, pos, start, end);
-
-      } else {
-        return null;
-      }
+      return this.interactionRayTrace(result, blockState, world, pos, start, end);
     }
   }
 
