@@ -1,24 +1,26 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile;
 
+import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockSoakingPot;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.SoakingPotFluidRenderer;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.SoakingPotRecipe;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockSoakingPot;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.SoakingPotFluidRenderer;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.SoakingPotRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.item.ItemStack;
@@ -78,7 +80,7 @@ public class TileSoakingPot
     this.registerTileDataForNetwork(new ITileData[]{
         this.tileDataFluidTank,
         this.tileDataItemStackHandler,
-        new TileDataItemStackHandler<>(this.outputStackHandler),
+        new TileDataLargeItemStackHandler<>(this.outputStackHandler),
         this.remainingRecipeTimeTicks
     });
 
@@ -325,18 +327,12 @@ public class TileSoakingPot
   }
 
   public static class OutputStackHandler
-      extends ObservableStackHandler
+      extends LargeObservableStackHandler
       implements ITileDataItemStackHandler {
 
     /* package */ OutputStackHandler() {
 
       super(1);
-    }
-
-    @Override
-    public int getSlotLimit(int slot) {
-
-      return ModulePyrotechConfig.SOAKING_POT.MAX_STACK_SIZE;
     }
   }
 
