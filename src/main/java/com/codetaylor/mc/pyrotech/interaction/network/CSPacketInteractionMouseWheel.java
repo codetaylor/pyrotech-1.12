@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.interaction.network;
 
-import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import io.netty.buffer.ByteBuf;
@@ -84,22 +83,6 @@ public class CSPacketInteractionMouseWheel
 
         } else {
           type = IInteraction.EnumType.MouseWheelDown;
-        }
-
-        if (block instanceof BlockCombustionWorkerStoneBase
-            && ((BlockCombustionWorkerStoneBase) block).isTop(blockState)) {
-          ((IBlockInteractable) block).interact(
-              type,
-              world,
-              origin.down(),
-              blockState,
-              player,
-              EnumHand.MAIN_HAND,
-              facing,
-              (float) message.hitVec.x,
-              (float) message.hitVec.y + 1,
-              (float) message.hitVec.z
-          );
         }
 
         ((IBlockInteractable) block).interact(

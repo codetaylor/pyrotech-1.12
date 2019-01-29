@@ -27,6 +27,7 @@ public final class BlockInitializer {
 
     registry.registerTileEntities(
         TileBloomery.class,
+        TileBloomery.Top.class,
         TileBloom.class,
         TilePileSlag.class
     );

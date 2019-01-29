@@ -307,6 +307,16 @@ public abstract class BlockCombustionWorkerStoneBase
         && super.canPlaceBlockAt(world, pos.up());
   }
 
+  @Override
+  public boolean interact(IInteraction.EnumType type, World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+    if (this.isTop(state)) {
+      return IBlockInteractable.super.interact(type, world, pos.down(), state, player, hand, facing, hitX, hitY + 1, hitZ);
+    }
+
+    return IBlockInteractable.super.interact(type, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+  }
+
   // ---------------------------------------------------------------------------
   // - Rendering
   // ---------------------------------------------------------------------------

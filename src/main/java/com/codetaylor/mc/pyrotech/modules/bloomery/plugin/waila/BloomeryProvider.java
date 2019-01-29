@@ -1,13 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.bloomery.plugin.waila;
 
+import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
+import com.codetaylor.mc.pyrotech.modules.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.bloomery.tile.TileBloomery;
-import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileStoneTop;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
@@ -30,14 +28,10 @@ public class BloomeryProvider
       IWailaConfigHandler config
   ) {
 
-    if (!config.getConfig(WailaRegistrar.CONFIG_PROGRESS)) {
-      return tooltip;
-    }
-
     TileEntity tileEntity = accessor.getTileEntity();
 
     if (tileEntity instanceof TileBloomery
-        || tileEntity instanceof TileStoneTop) {
+        || tileEntity instanceof TileBloomery.Top) {
 
       TileBloomery tile = null;
 
@@ -45,11 +39,6 @@ public class BloomeryProvider
         tile = (TileBloomery) tileEntity;
 
       } else {
-
-        if (((TileStoneTop) tileEntity).isCustom()) {
-          return tooltip;
-        }
-
         World world = tileEntity.getWorld();
         TileEntity candidate = world.getTileEntity(tileEntity.getPos().down());
 
@@ -126,23 +115,23 @@ public class BloomeryProvider
       }
 
       tooltip.add(Util.translateFormatted(
-          "gui." + ModulePyrotech.MOD_ID + ".waila.speed",
+          "gui." + ModuleBloomery.MOD_ID + ".waila.speed",
           (int) (tile.getSpeed() * 100)
       ));
 
       tooltip.add(Util.translateFormatted(
-          "gui." + ModulePyrotech.MOD_ID + ".waila.bloomery.airflow",
+          "gui." + ModuleBloomery.MOD_ID + ".waila.bloomery.airflow",
           (int) (tile.getAirflow() * 100)
       ));
 
       tooltip.add(Util.translateFormatted(
-          "gui." + ModulePyrotech.MOD_ID + ".waila.bloomery.fuel",
+          "gui." + ModuleBloomery.MOD_ID + ".waila.bloomery.fuel",
           tile.getFuelCount(),
           tile.getMaxFuelCount()
       ));
 
       tooltip.add(Util.translateFormatted(
-          "gui." + ModulePyrotech.MOD_ID + ".waila.ash",
+          "gui." + ModuleBloomery.MOD_ID + ".waila.ash",
           tile.getAshCount(),
           tile.getMaxAshCapacity()
       ));
