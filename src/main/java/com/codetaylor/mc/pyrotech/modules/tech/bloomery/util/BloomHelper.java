@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.util;
 
 import com.codetaylor.mc.athenaeum.util.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemTongsFullBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

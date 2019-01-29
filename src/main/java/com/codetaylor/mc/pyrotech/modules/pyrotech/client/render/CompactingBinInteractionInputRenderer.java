@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCompactingBin;
 import net.minecraft.block.state.IBlockState;

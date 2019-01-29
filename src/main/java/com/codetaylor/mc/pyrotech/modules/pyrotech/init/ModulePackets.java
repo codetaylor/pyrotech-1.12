@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
 import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
-import com.codetaylor.mc.pyrotech.library.fluid.SCPacketFluidUpdate;
 import com.codetaylor.mc.athenaeum.network.tile.SCPacketTileData;
 import com.codetaylor.mc.pyrotech.interaction.network.CSPacketInteractionMouseWheel;
+import com.codetaylor.mc.pyrotech.library.fluid.SCPacketFluidUpdate;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.network.SCPacketParticleBoneMeal;
 import net.minecraftforge.fml.relauncher.Side;
 

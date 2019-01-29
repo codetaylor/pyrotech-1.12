@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.fluid.BlockFluidCoalTar;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.fluid.BlockFluidWoodTar;
 import com.google.common.base.Preconditions;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;

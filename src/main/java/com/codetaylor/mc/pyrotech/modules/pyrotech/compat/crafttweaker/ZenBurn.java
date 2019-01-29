@@ -4,9 +4,9 @@ import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemExcepti
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
@@ -29,17 +29,17 @@ public class ZenBurn {
   @ZenDocMethod(
       order = 1,
       description = {
-          "|Parameter|Description|\n"+
-          "|---------|-----------|\n"+
-          "|name|the name of the recipe|\n"+
-          "|output|the output for each completed burn stage|\n"+
-          "|burnStages|the number of burn stages|\n"+
-          "|totalBurnTimeTicks|the total number of ticks required to complete all burn stages|\n"+
-          "|fluidProduced|the fluid produced for each completed burn stage|\n"+
-          "|failureChance|the chance a failure item will be substituted for each burn stage result|\n"+
-          "|failureItems|a list of items from which to pick a substitute for each failed burn stage result; items chosen randomly|\n"+
-          "|requiresRefractoryBlocks|true if the recipe requires using refractory blocks|\n"+
-          "|fluidLevelAffectsFailureChance|true if the build-up of fluid in burning blocks increases the failure chance of burn stages|"
+          "|Parameter|Description|\n" +
+              "|---------|-----------|\n" +
+              "|name|the name of the recipe|\n" +
+              "|output|the output for each completed burn stage|\n" +
+              "|burnStages|the number of burn stages|\n" +
+              "|totalBurnTimeTicks|the total number of ticks required to complete all burn stages|\n" +
+              "|fluidProduced|the fluid produced for each completed burn stage|\n" +
+              "|failureChance|the chance a failure item will be substituted for each burn stage result|\n" +
+              "|failureItems|a list of items from which to pick a substitute for each failed burn stage result; items chosen randomly|\n" +
+              "|requiresRefractoryBlocks|true if the recipe requires using refractory blocks|\n" +
+              "|fluidLevelAffectsFailureChance|true if the build-up of fluid in burning blocks increases the failure chance of burn stages|"
       },
       args = {"name", "output", "blockString", "burnStages", "totalBurnTimeTicks", "fluidProduced", "failureChance", "failureItems", "requiresRefractoryBlocks", "fluidLevelAffectsFailureChance"}
   )

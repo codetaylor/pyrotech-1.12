@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
 
-import com.codetaylor.mc.pyrotech.library.fluid.SCPacketFluidUpdate;
 import com.codetaylor.mc.pyrotech.library.fluid.FluidTankBase;
 import com.codetaylor.mc.pyrotech.library.fluid.IFluidTankUpdateListener;
+import com.codetaylor.mc.pyrotech.library.fluid.SCPacketFluidUpdate;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;

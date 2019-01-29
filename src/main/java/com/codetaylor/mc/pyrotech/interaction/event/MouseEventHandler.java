@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.interaction.event;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
 import com.codetaylor.mc.pyrotech.interaction.network.CSPacketInteractionMouseWheel;
+import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.math.RayTraceResult;

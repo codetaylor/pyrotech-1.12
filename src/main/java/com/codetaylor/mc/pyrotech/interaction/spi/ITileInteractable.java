@@ -65,7 +65,7 @@ public interface ITileInteractable {
    * method and pass in the block's tile entity.
    *
    * @param <T>    the type of tile being interacted with
-   * @param type the source of the interaction
+   * @param type   the source of the interaction
    * @param tile   the tile being interacted with
    * @param world  the world
    * @param pos    the position of the block/tile being interacted with

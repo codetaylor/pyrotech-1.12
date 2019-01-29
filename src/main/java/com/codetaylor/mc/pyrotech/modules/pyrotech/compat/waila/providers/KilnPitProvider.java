@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.providers;
 
+import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnPit;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
-import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnPit;
 import mcp.mobius.waila.api.IWailaConfigHandler;
