@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "pyrotech:mill_stone",
+    "model": "pyrotech:sawmill_stone",
     "textures": {
       "particle": "pyrotech:blocks/kiln_stone_side"
     }
@@ -22,22 +22,16 @@
     },
     "type": {
       "top": {
-        "model": "pyrotech:kiln_stone_top"
+        "model": "pyrotech:_empty"
       },
-      "bottom": {
-        "submodel": {
-          "top": {"model": "pyrotech:mill_stone_top_actual"}
-        }
-      },
+      "bottom": {},
       "bottom_lit": {
         "submodel": {
-          "top": {"model": "pyrotech:mill_stone_top_actual"},
           "lit": {"model": "pyrotech:kiln_stone_lit"}
         }
       },
       "bottom_dormant": {
         "submodel": {
-          "top": {"model": "pyrotech:mill_stone_top_actual"},
           "dormant": {"model": "pyrotech:kiln_stone_dormant"}
         }
       }

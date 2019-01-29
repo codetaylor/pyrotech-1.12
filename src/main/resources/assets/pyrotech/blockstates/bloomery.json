@@ -22,7 +22,7 @@
     },
     "type": {
       "top": {
-        "model": "pyrotech:kiln_stone_top"
+        "model": "pyrotech:_empty"
       },
       "bottom": {},
       "bottom_lit": {
@@ -34,8 +34,7 @@
           "lit": {"model": "pyrotech:bloomery_lit"},
           "lit_lava_top": {"model": "pyrotech:bloomery_lit_lava_top"}
         }
-      },
-      "bottom_dormant": {}
+      }
     }
   }
 }
