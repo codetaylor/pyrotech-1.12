@@ -34,7 +34,7 @@ public class JEIRecipeCategoryAnvil
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 40);
 
-    this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.granite.anvil");
+    this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.anvil");
   }
 
   @Nonnull
