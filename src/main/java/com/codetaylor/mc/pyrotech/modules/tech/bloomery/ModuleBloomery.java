@@ -16,10 +16,12 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.BloomeryReci
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.CompactingBinRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.*;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -116,6 +118,14 @@ public class ModuleBloomery
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.PluginWaila.wailaCallback"
     );
+  }
+
+  @SubscribeEvent
+  public void onTextureStitchEvent(TextureStitchEvent event) {
+
+    TextureMap map = event.getMap();
+    map.registerSprite(new ResourceLocation("pyrotech:blocks/active_pile"));
+    map.registerSprite(new ResourceLocation("pyrotech:blocks/ash_block"));
   }
 
   @Override

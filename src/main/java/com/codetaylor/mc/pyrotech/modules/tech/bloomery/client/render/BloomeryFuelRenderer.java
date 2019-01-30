@@ -5,7 +5,6 @@ import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -47,17 +46,16 @@ public class BloomeryFuelRenderer
       float fuelLevel = tile.getFuelCount() / (float) tile.getMaxFuelCount();
       float ashLevel = tile.getAshCount() / (float) tile.getMaxAshCapacity();
 
-      BlockModelShapes bm = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes();
       TextureAtlasSprite sprite;
 
       if (hasFuel) {
-        sprite = bm.getTexture(Blocks.COAL_BLOCK.getDefaultState());
+        sprite = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(Blocks.COAL_BLOCK.getDefaultState());
 
       } else if (hasAsh) {
-        sprite = bm.getTexture(ModuleTechRefractory.Blocks.PIT_ASH_BLOCK.getDefaultState());
+        sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("pyrotech:blocks/ash_block");
 
       } else {
-        sprite = bm.getTexture(ModuleTechRefractory.Blocks.ACTIVE_PILE.getDefaultState());
+        sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("pyrotech:blocks/active_pile");
       }
 
       BlockPos blockpos = new BlockPos(pos.getX(), pos.getY(), pos.getZ());
