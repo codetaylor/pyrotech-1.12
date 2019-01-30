@@ -340,9 +340,9 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Board burn time in ticks.",
-        "Default: " + 120
+        "Default: " + 200
     })
-    public int BOARD_BURN_TIME_TICKS = 120;
+    public int BOARD_BURN_TIME_TICKS = 200;
 
     @Config.Comment({
         "Coal pieces burn time in ticks.",
