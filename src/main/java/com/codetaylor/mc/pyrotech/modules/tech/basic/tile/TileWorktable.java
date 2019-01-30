@@ -6,7 +6,6 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
@@ -17,6 +16,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
@@ -292,7 +292,7 @@ public class TileWorktable
         return false;
       }
 
-      return ArrayHelper.contains(ModuleTechBasicConfig.WORKTABLE_COMMON.HAMMER_LIST, registryName.toString());
+      return ModulePyrotechConfig.HAMMERS.getHammerHarvestLevel(registryName) > -1;
     }
 
     @Override
@@ -447,7 +447,7 @@ public class TileWorktable
         return false;
       }
 
-      return !ArrayHelper.contains(ModuleTechBasicConfig.WORKTABLE_COMMON.HAMMER_LIST, registryName.toString());
+      return ModulePyrotechConfig.HAMMERS.getHammerHarvestLevel(registryName) == -1;
     }
 
     @Override

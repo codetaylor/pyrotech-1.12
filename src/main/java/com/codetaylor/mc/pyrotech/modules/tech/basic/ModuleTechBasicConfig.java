@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
@@ -17,23 +16,6 @@ public class ModuleTechBasicConfig {
   public static WorktableCommon WORKTABLE_COMMON = new WorktableCommon();
 
   public static class WorktableCommon {
-
-    @Config.Comment({
-        "Use this to add items that you want to be valid for banging on the ",
-        "worktable. This list is shared between all worktables.",
-        "",
-        "NOTE: Items you add are assumed to have durability.",
-        "",
-        "String format is a resource location: (domain):(path)"
-    })
-    public String[] HAMMER_LIST = new String[]{
-        ModulePyrotech.MOD_ID + ":" + ItemCrudeHammer.NAME,
-        ModulePyrotech.MOD_ID + ":" + ItemStoneHammer.NAME,
-        ModulePyrotech.MOD_ID + ":" + ItemBoneHammer.NAME,
-        ModulePyrotech.MOD_ID + ":" + ItemFlintHammer.NAME,
-        ModulePyrotech.MOD_ID + ":" + ItemIronHammer.NAME,
-        ModulePyrotech.MOD_ID + ":" + ItemDiamondHammer.NAME
-    };
 
     @Config.Comment({
         "Any recipe that you can complete in a vanilla crafting table can also",
