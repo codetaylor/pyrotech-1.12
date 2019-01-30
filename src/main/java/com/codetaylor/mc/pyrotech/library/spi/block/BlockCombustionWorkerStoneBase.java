@@ -39,7 +39,8 @@ import java.util.stream.Stream;
 @SuppressWarnings("deprecation")
 public abstract class BlockCombustionWorkerStoneBase
     extends Block
-    implements IBlockInteractable {
+    implements IBlockInteractable,
+    IBlockIgnitableAdjacentIgniterBlock {
 
   public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
@@ -55,6 +56,20 @@ public abstract class BlockCombustionWorkerStoneBase
         .withProperty(Properties.FACING_HORIZONTAL, EnumFacing.NORTH)
         .withProperty(TYPE, BlockCombustionWorkerStoneBase.EnumType.Bottom)
     );
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Ignition
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void igniteWithAdjacentIgniterBlock(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileCombustionWorkerBase) {
+      ((TileCombustionWorkerBase) tileEntity).workerSetActive(true);
+    }
   }
 
   // ---------------------------------------------------------------------------

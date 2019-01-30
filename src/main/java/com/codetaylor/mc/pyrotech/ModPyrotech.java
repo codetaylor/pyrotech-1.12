@@ -10,6 +10,7 @@ import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGen;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -85,6 +86,10 @@ public class ModPyrotech {
 
     if (ModPyrotechConfig.MODULES.get(ModuleTechMachine.MODULE_ID)) {
       this.registerModule(ModuleTechMachine.class);
+    }
+
+    if (ModPyrotechConfig.MODULES.get(ModuleTechRefractory.MODULE_ID)) {
+      this.registerModule(ModuleTechRefractory.class);
     }
 
     if (ModPyrotechConfig.MODULES.get(ModuleWorldGen.MODULE_ID)) {

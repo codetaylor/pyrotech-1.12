@@ -4,8 +4,9 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.client.render.TESRTarCollector;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileFarmlandMulched;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorchFiber;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorchStone;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -13,7 +14,6 @@ import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -22,12 +22,8 @@ public final class ModuleBlocks {
   public static final BlockLogPile LOG_PILE = new BlockLogPile();
   public static final BlockCoalCokeBlock COAL_COKE_BLOCK = new BlockCoalCokeBlock();
   public static final BlockThatch THATCH = new BlockThatch();
-  public static final BlockTarCollector TAR_COLLECTOR = new BlockTarCollector();
-  public static final BlockTarDrain TAR_DRAIN = new BlockTarDrain();
   public static final BlockRefractoryBrick REFRACTORY_BRICK = new BlockRefractoryBrick();
   public static final BlockIgniter IGNITER = new BlockIgniter();
-  public static final BlockPitAsh PIT_ASH_BLOCK = new BlockPitAsh();
-  public static final BlockActivePile ACTIVE_PILE = new BlockActivePile();
   public static final BlockRefractoryDoor REFRACTORY_DOOR = new BlockRefractoryDoor();
   public static final BlockLimestone LIMESTONE = new BlockLimestone();
   public static final BlockRefractoryGlass REFRACTORY_GLASS = new BlockRefractoryGlass();
@@ -46,8 +42,6 @@ public final class ModuleBlocks {
 
   public static void onRegister(Registry registry) {
 
-    registry.registerBlock(ModuleBlocks.ACTIVE_PILE, BlockActivePile.NAME);
-    registry.registerBlock(ModuleBlocks.PIT_ASH_BLOCK, BlockPitAsh.NAME);
     registry.registerBlock(ModuleBlocks.REFRACTORY_DOOR, BlockRefractoryDoor.NAME);
     registry.registerBlock(ModuleBlocks.ROCK, BlockRock.NAME);
     registry.registerBlock(ModuleBlocks.ROCK_GRASS, BlockRockGrass.NAME);
@@ -55,8 +49,6 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.LOG_PILE, BlockLogPile.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COAL_COKE_BLOCK, BlockCoalCokeBlock.NAME);
     registry.registerBlockWithItem(ModuleBlocks.THATCH, BlockThatch.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.TAR_COLLECTOR, BlockTarCollector.NAME);
-    registry.registerBlockWithItem(ModuleBlocks.TAR_DRAIN, BlockTarDrain.NAME);
     registry.registerBlockWithItem(ModuleBlocks.REFRACTORY_BRICK, BlockRefractoryBrick.NAME);
     registry.registerBlockWithItem(ModuleBlocks.IGNITER, BlockIgniter.NAME);
     registry.registerBlockWithItem(ModuleBlocks.LIMESTONE, BlockLimestone.NAME);
@@ -73,10 +65,6 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.CHARCOAL_BLOCK, BlockCharcoalBlock.NAME);
 
     registry.registerTileEntities(
-        TileTarCollector.class,
-        TileTarDrain.class,
-        TilePitAsh.class,
-        TileActivePile.class,
         TileTorchFiber.class,
         TileTorchStone.class,
         TileFarmlandMulched.class
@@ -111,18 +99,6 @@ public final class ModuleBlocks {
           (new StateMap.Builder()).ignore(BlockDoor.POWERED).build()
       );
 
-      // Tar Collector
-      ModelRegistrationHelper.registerVariantBlockItemModels(
-          ModuleBlocks.TAR_COLLECTOR.getDefaultState(),
-          BlockTarCollector.VARIANT
-      );
-
-      // Tar Drain
-      ModelRegistrationHelper.registerVariantBlockItemModels(
-          ModuleBlocks.TAR_DRAIN.getDefaultState(),
-          BlockTarDrain.VARIANT
-      );
-
       // Igniter
       ModelRegistrationHelper.registerVariantBlockItemModels(
           ModuleBlocks.IGNITER.getDefaultState(),
@@ -151,9 +127,6 @@ public final class ModuleBlocks {
           ModuleBlocks.ORE,
           BlockOre.VARIANT
       );
-
-      // TESRs
-      ClientRegistry.bindTileEntitySpecialRenderer(TileTarCollector.class, new TESRTarCollector());
     });
   }
 

@@ -1,10 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.event;
 
-import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockWorktableStone;
@@ -59,12 +57,6 @@ public class FuelHandler {
 
     } else if (item == ITEM_CHARCOAL_BLOCK) {
       event.setBurnTime(ModulePyrotechConfig.FUEL.CHARCOAL_BLOCK_BURN_TIME_TICKS);
-
-    } else if (Util.isFluidBucket(itemStack, ModuleFluids.WOOD_TAR.getName())) {
-      event.setBurnTime(ModulePyrotechConfig.FUEL.WOOD_TAR_BURN_TIME_TICKS);
-
-    } else if (Util.isFluidBucket(itemStack, ModuleFluids.COAL_TAR.getName())) {
-      event.setBurnTime(ModulePyrotechConfig.FUEL.COAL_TAR_BURN_TIME_TICKS);
 
     } else if (item == ITEM_THATCH_BLOCK) {
       event.setBurnTime(ModulePyrotechConfig.FUEL.STRAW_BALE_BURN_TIME_TICKS);

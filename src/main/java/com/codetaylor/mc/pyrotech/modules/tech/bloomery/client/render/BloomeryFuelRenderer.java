@@ -4,8 +4,8 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -54,10 +54,10 @@ public class BloomeryFuelRenderer
         sprite = bm.getTexture(Blocks.COAL_BLOCK.getDefaultState());
 
       } else if (hasAsh) {
-        sprite = bm.getTexture(ModuleBlocks.PIT_ASH_BLOCK.getDefaultState());
+        sprite = bm.getTexture(ModuleTechRefractory.Blocks.PIT_ASH_BLOCK.getDefaultState());
 
       } else {
-        sprite = bm.getTexture(ModuleBlocks.ACTIVE_PILE.getDefaultState());
+        sprite = bm.getTexture(ModuleTechRefractory.Blocks.ACTIVE_PILE.getDefaultState());
       }
 
       BlockPos blockpos = new BlockPos(pos.getX(), pos.getY(), pos.getZ());

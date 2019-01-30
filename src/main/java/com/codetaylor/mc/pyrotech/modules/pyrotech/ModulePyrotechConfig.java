@@ -1,15 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Config(modid = ModulePyrotech.MOD_ID, name = ModulePyrotech.MOD_ID + "/" + "module.Pyrotech")
 public class ModulePyrotechConfig {
@@ -174,12 +167,6 @@ public class ModulePyrotechConfig {
   public static class Client {
 
     @Config.Comment({
-        "How many smoke particles a burning collector will emit per tick.",
-        "Default: " + 10
-    })
-    public int BURNING_COLLECTOR_SMOKE_PARTICLES = 10;
-
-    @Config.Comment({
         "These items will be removed from JEI.",
         "String format is a resource location: (domain):(path)"
     })
@@ -293,41 +280,6 @@ public class ModulePyrotechConfig {
         "Default: " + (4 * 60 * 20)
     })
     public int DURATION_VARIANT = 4 * 60 * 20;
-  }
-
-  // ---------------------------------------------------------------------------
-  // - Refractory
-  // ---------------------------------------------------------------------------
-
-  public static Refractory REFRACTORY = new Refractory();
-
-  public static class Refractory {
-
-    @Config.Comment({
-        "Maximum chance for a recipe item to fail conversion.",
-        "Default: " + 0.95
-    })
-    public double MAX_FAILURE_CHANCE = 0.95;
-
-    @Config.Comment({
-        "Minimum chance for a recipe item to fail conversion.",
-        "Default: " + 0.05
-    })
-    public double MIN_FAILURE_CHANCE = 0.05;
-
-    @Config.Comment({
-        "The maximum fluid capacity of an active pile in mb.",
-        "Default: " + 500
-    })
-    public int ACTIVE_PILE_MAX_FLUID_CAPACITY = 500;
-
-    @Config.Comment({
-        "The duration in ticks that 1 mb of fluid will burn in the Tar Collector."
-    })
-    public Map<String, Integer> FLUID_BURN_TICKS = new HashMap<String, Integer>() {{
-      this.put(ModuleFluids.WOOD_TAR.getName(), 20);
-      this.put(ModuleFluids.COAL_TAR.getName(), 40);
-    }};
   }
 
   // ---------------------------------------------------------------------------
@@ -465,53 +417,6 @@ public class ModulePyrotechConfig {
   public static General GENERAL = new General();
 
   public static class General {
-
-    @Config.Comment({
-        "List of valid refractory bricks used in the pit kiln and coke oven."
-    })
-    public String[] REFRACTORY_BRICKS = new String[]{
-        ModulePyrotech.MOD_ID + ":" + BlockRefractoryBrick.NAME,
-        ModulePyrotech.MOD_ID + ":" + BlockTarCollector.NAME + ":" + BlockTarCollector.EnumType.BRICK.getMeta(),
-        ModulePyrotech.MOD_ID + ":" + BlockTarDrain.NAME + ":" + this.getTarDrainMeta(EnumFacing.NORTH),
-        ModulePyrotech.MOD_ID + ":" + BlockTarDrain.NAME + ":" + this.getTarDrainMeta(EnumFacing.EAST),
-        ModulePyrotech.MOD_ID + ":" + BlockTarDrain.NAME + ":" + this.getTarDrainMeta(EnumFacing.SOUTH),
-        ModulePyrotech.MOD_ID + ":" + BlockTarDrain.NAME + ":" + this.getTarDrainMeta(EnumFacing.WEST),
-        ModulePyrotech.MOD_ID + ":" + BlockIgniter.NAME + ":" + this.getIgniterMeta(EnumFacing.NORTH),
-        ModulePyrotech.MOD_ID + ":" + BlockIgniter.NAME + ":" + this.getIgniterMeta(EnumFacing.EAST),
-        ModulePyrotech.MOD_ID + ":" + BlockIgniter.NAME + ":" + this.getIgniterMeta(EnumFacing.SOUTH),
-        ModulePyrotech.MOD_ID + ":" + BlockIgniter.NAME + ":" + this.getIgniterMeta(EnumFacing.WEST),
-        ModulePyrotech.MOD_ID + ":" + BlockRefractoryGlass.NAME + ":*"
-    };
-
-    private int getTarDrainMeta(EnumFacing facing) {
-
-      return ModuleBlocks.TAR_DRAIN.getMetaFromState(
-          ModuleBlocks.TAR_DRAIN.getDefaultState()
-              .withProperty(BlockTarDrain.VARIANT, BlockTarDrain.EnumType.BRICK)
-              .withProperty(BlockTarDrain.FACING, facing)
-      );
-    }
-
-    private int getIgniterMeta(EnumFacing facing) {
-
-      return ModuleBlocks.IGNITER.getMetaFromState(
-          ModuleBlocks.IGNITER.getDefaultState()
-              .withProperty(BlockIgniter.VARIANT, BlockIgniter.EnumType.BRICK)
-              .withProperty(BlockIgniter.FACING, facing)
-      );
-    }
-
-    @Config.Comment({
-        "Fluid capacity of the tar collector in mb.",
-        "Default: 8000"
-    })
-    public int TAR_COLLECTOR_CAPACITY = 8000;
-
-    @Config.Comment({
-        "Fluid capacity of the tar drain in mb.",
-        "Default: 1000"
-    })
-    public int TAR_DRAIN_CAPACITY = 1000;
 
     @Config.Comment({
         "The durability of the bow drill.",

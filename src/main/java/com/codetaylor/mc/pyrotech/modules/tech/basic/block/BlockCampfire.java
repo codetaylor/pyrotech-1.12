@@ -4,7 +4,6 @@ import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockTarDrain;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
@@ -363,9 +362,9 @@ public class BlockCampfire
     ASH(2, "ash"),
     ITEM(3, "item");
 
-    private static final BlockTarDrain.EnumType[] META_LOOKUP = Stream.of(BlockTarDrain.EnumType.values())
-        .sorted(Comparator.comparing(BlockTarDrain.EnumType::getMeta))
-        .toArray(BlockTarDrain.EnumType[]::new);
+    private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
+        .sorted(Comparator.comparing(EnumType::getMeta))
+        .toArray(EnumType[]::new);
 
     private final int meta;
     private final String name;
@@ -389,7 +388,7 @@ public class BlockCampfire
       return this.name;
     }
 
-    public static BlockTarDrain.EnumType fromMeta(int meta) {
+    public static EnumType fromMeta(int meta) {
 
       if (meta < 0 || meta >= META_LOOKUP.length) {
         meta = 0;

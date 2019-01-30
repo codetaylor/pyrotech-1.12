@@ -8,7 +8,6 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
@@ -24,6 +23,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockKilnPit;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.KilnPitRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
@@ -408,7 +408,7 @@ public class TileKilnPit
 
   private boolean isRefractoryBlock(IBlockState blockState) {
 
-    for (Predicate<IBlockState> matcher : ModPyrotechRegistries.REFRACTORY_BLOCK_LIST) {
+    for (Predicate<IBlockState> matcher : ModuleTechRefractory.Registries.REFRACTORY_BLOCK_LIST) {
 
       if (matcher.test(blockState)) {
         return true;

@@ -2,20 +2,13 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.pyrotech.library.spi.block.BlockCombustionWorkerStoneBase;
-import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
+import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTarCollector;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockKilnPit;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.util.RefractoryIgnitionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -23,7 +16,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -43,7 +35,6 @@ public class BlockIgniter
 
   public static final String NAME = "igniter";
 
-  public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
   public static final IProperty<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
   public BlockIgniter() {
@@ -53,14 +44,14 @@ public class BlockIgniter
     this.setHardness(2);
     this.setDefaultState(this.blockState.getBaseState()
         .withProperty(VARIANT, EnumType.STONE)
-        .withProperty(FACING, EnumFacing.SOUTH));
+        .withProperty(Properties.FACING_HORIZONTAL, EnumFacing.SOUTH));
   }
 
   @Nonnull
   @Override
   protected BlockStateContainer createBlockState() {
 
-    return new BlockStateContainer(this, VARIANT, FACING);
+    return new BlockStateContainer(this, VARIANT, Properties.FACING_HORIZONTAL);
   }
 
   @Nonnull
@@ -69,13 +60,13 @@ public class BlockIgniter
 
     return this.getDefaultState()
         .withProperty(VARIANT, EnumType.fromMeta(meta & 0x3))
-        .withProperty(FACING, EnumFacing.HORIZONTALS[(meta >> 2) & 0x3]);
+        .withProperty(Properties.FACING_HORIZONTAL, EnumFacing.HORIZONTALS[(meta >> 2) & 0x3]);
   }
 
   @Override
   public int getMetaFromState(IBlockState state) {
 
-    return state.getValue(VARIANT).getMeta() | (state.getValue(FACING).getHorizontalIndex() << 2);
+    return state.getValue(VARIANT).getMeta() | (state.getValue(Properties.FACING_HORIZONTAL).getHorizontalIndex() << 2);
   }
 
   @Override
@@ -104,7 +95,7 @@ public class BlockIgniter
       return;
     }
 
-    EnumFacing selfFacing = state.getValue(FACING);
+    EnumFacing selfFacing = state.getValue(Properties.FACING_HORIZONTAL);
     EnumFacing selfFacingOpposite = selfFacing.getOpposite();
     boolean blockPowered = world.isSidePowered(pos.offset(selfFacing), selfFacingOpposite);
 
@@ -116,42 +107,11 @@ public class BlockIgniter
       if (Util.canSetFire(world, offset)) {
         world.setBlockState(offset, Blocks.FIRE.getDefaultState(), 3);
 
-      } else if (facingBlock == ModuleBloomery.Blocks.BLOOMERY) {
-
-        if (!ModuleBloomery.Blocks.BLOOMERY.isTop(facingBlockState)) {
-          TileEntity tileEntity = world.getTileEntity(offset);
-
-          if (tileEntity instanceof TileBloomery) {
-            ((TileBloomery) tileEntity).setActive();
-          }
-        }
-
-      } else if (facingBlock instanceof BlockCombustionWorkerStoneBase) {
-        TileEntity tileEntity = world.getTileEntity(offset);
-
-        if (tileEntity instanceof TileCombustionWorkerBase) {
-          ((TileCombustionWorkerBase) tileEntity).workerSetActive(true);
-        }
-
-      } else if (facingBlock == ModuleTechBasic.Blocks.KILN_PIT
-          && facingBlockState.getValue(BlockKilnPit.VARIANT) == BlockKilnPit.EnumType.WOOD
-          && Util.canSetFire(world, offset.up())) {
-        world.setBlockState(offset.up(), Blocks.FIRE.getDefaultState(), 3);
-
-      } else if (facingBlock == ModuleBlocks.TAR_COLLECTOR
-          && Util.canSetFire(world, offset.up())) {
-
-        TileEntity tileEntity = world.getTileEntity(offset);
-
-        if (tileEntity instanceof TileTarCollector) {
-
-          if (((TileTarCollector) tileEntity).isFlammable()) {
-            ((TileTarCollector) tileEntity).setBurning(true);
-          }
-        }
+      } else if (facingBlock instanceof IBlockIgnitableAdjacentIgniterBlock) {
+        ((IBlockIgnitableAdjacentIgniterBlock) facingBlock).igniteWithAdjacentIgniterBlock(world, offset, facingBlockState, selfFacing);
 
       } else {
-        IgnitionHandler.igniteBlocks(world, offset);
+        RefractoryIgnitionHelper.igniteBlocks(world, offset);
       }
     }
   }
@@ -171,7 +131,7 @@ public class BlockIgniter
   ) {
 
     EnumFacing opposite = placer.getHorizontalFacing().getOpposite();
-    return this.getDefaultState().withProperty(VARIANT, EnumType.fromMeta(meta)).withProperty(FACING, opposite);
+    return this.getDefaultState().withProperty(VARIANT, EnumType.fromMeta(meta)).withProperty(Properties.FACING_HORIZONTAL, opposite);
   }
 
   @Nonnull

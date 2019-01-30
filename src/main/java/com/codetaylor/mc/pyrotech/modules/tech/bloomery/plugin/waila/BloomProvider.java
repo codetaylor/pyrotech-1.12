@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -27,10 +26,6 @@ public class BloomProvider
       IWailaDataAccessor accessor,
       IWailaConfigHandler config
   ) {
-
-    if (!config.getConfig(WailaRegistrar.CONFIG_PROGRESS)) {
-      return tooltip;
-    }
 
     TileEntity tileEntity = accessor.getTileEntity();
 

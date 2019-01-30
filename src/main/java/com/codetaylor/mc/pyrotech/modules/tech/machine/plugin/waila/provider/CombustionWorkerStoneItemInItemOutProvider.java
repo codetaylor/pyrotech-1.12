@@ -6,7 +6,6 @@ import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInItemOutBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDelegateMachineTop;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
@@ -31,10 +30,6 @@ public class CombustionWorkerStoneItemInItemOutProvider
       IWailaDataAccessor accessor,
       IWailaConfigHandler config
   ) {
-
-    if (!config.getConfig(WailaRegistrar.CONFIG_PROGRESS)) {
-      return tooltip;
-    }
 
     TileEntity tileEntity = accessor.getTileEntity();
 

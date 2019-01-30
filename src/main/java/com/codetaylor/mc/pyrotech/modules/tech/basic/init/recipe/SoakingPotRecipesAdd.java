@@ -1,11 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -29,20 +30,24 @@ public class SoakingPotRecipesAdd {
     ).setRegistryName(ModulePyrotech.MOD_ID, "sponge"));
 
     // Durable Twine
-    registry.register(new SoakingPotRecipe(
-        ItemMaterial.EnumType.TWINE_DURABLE.asStack(),
-        Ingredient.fromStacks(ItemMaterial.EnumType.TWINE.asStack()),
-        new FluidStack(ModuleFluids.WOOD_TAR, 250),
-        2 * 60 * 20
-    ).setRegistryName(ModulePyrotech.MOD_ID, "twine_durable"));
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+      registry.register(new SoakingPotRecipe(
+          ItemMaterial.EnumType.TWINE_DURABLE.asStack(),
+          Ingredient.fromStacks(ItemMaterial.EnumType.TWINE.asStack()),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 250),
+          2 * 60 * 20
+      ).setRegistryName(ModulePyrotech.MOD_ID, "twine_durable"));
+    }
 
     // Tarred Wool
-    registry.register(new SoakingPotRecipe(
-        new ItemStack(ModuleBlocks.WOOL_TARRED),
-        Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE)),
-        new FluidStack(ModuleFluids.WOOD_TAR, 250),
-        8 * 60 * 20
-    ).setRegistryName(ModulePyrotech.MOD_ID, "wool_tarred"));
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+      registry.register(new SoakingPotRecipe(
+          new ItemStack(ModuleBlocks.WOOL_TARRED),
+          Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE)),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 250),
+          8 * 60 * 20
+      ).setRegistryName(ModulePyrotech.MOD_ID, "wool_tarred"));
+    }
 
     // Pulp from reeds
     registry.register(new SoakingPotRecipe(
@@ -61,20 +66,24 @@ public class SoakingPotRecipesAdd {
     ).setRegistryName(ModulePyrotech.MOD_ID, "pulp_from_wood_chips"));
 
     // Tarred Planks
-    registry.register(new SoakingPotRecipe(
-        new ItemStack(ModuleBlocks.PLANKS_TARRED),
-        new OreIngredient("plankWood"),
-        new FluidStack(ModuleFluids.WOOD_TAR, 125),
-        6 * 60 * 20
-    ).setRegistryName(ModulePyrotech.MOD_ID, "planks_tarred"));
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+      registry.register(new SoakingPotRecipe(
+          new ItemStack(ModuleBlocks.PLANKS_TARRED),
+          new OreIngredient("plankWood"),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 125),
+          6 * 60 * 20
+      ).setRegistryName(ModulePyrotech.MOD_ID, "planks_tarred"));
+    }
 
     // Tarred Board
-    registry.register(new SoakingPotRecipe(
-        ItemMaterial.EnumType.BOARD_TARRED.asStack(),
-        Ingredient.fromStacks(ItemMaterial.EnumType.BOARD.asStack()),
-        new FluidStack(ModuleFluids.WOOD_TAR, 50),
-        (6 * 60 * 20) / 4
-    ).setRegistryName(ModulePyrotech.MOD_ID, "board_tarred"));
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+      registry.register(new SoakingPotRecipe(
+          ItemMaterial.EnumType.BOARD_TARRED.asStack(),
+          Ingredient.fromStacks(ItemMaterial.EnumType.BOARD.asStack()),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 50),
+          (6 * 60 * 20) / 4
+      ).setRegistryName(ModulePyrotech.MOD_ID, "board_tarred"));
+    }
 
     // Slaked Lime
     registry.register(new SoakingPotRecipe(

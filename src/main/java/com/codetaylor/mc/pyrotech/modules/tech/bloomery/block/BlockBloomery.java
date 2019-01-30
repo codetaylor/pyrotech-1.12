@@ -7,8 +7,10 @@ import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
@@ -44,7 +46,8 @@ import java.util.stream.Stream;
 
 public class BlockBloomery
     extends Block
-    implements IBlockInteractable {
+    implements IBlockInteractable,
+    IBlockIgnitableAdjacentIgniterBlock {
 
   public static final String NAME = "bloomery";
 
@@ -76,6 +79,22 @@ public class BlockBloomery
   public boolean isTop(IBlockState state) {
 
     return state.getValue(TYPE) == EnumType.Top;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Ignition
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void igniteWithAdjacentIgniterBlock(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+
+    if (!this.isTop(blockState)) {
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity instanceof TileBloomery) {
+        ((TileBloomery) tileEntity).setActive();
+      }
+    }
   }
 
   // ---------------------------------------------------------------------------

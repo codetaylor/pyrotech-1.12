@@ -161,7 +161,7 @@ public class PluginJEI
     // --- Drying Rack
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.DRYING_RACK, 1, BlockDryingRack.EnumType.NORMAL.getMeta()), JEIRecipeCategoryDryingRack.UID);
-      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.DRYING_RACK, 1, BlockDryingRack.EnumType.CRUDE.getMeta()));
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.DRYING_RACK, 1, BlockDryingRack.EnumType.CRUDE.getMeta()), JEIRecipeCategoryDryingRack.UID);
       registry.handleRecipes(DryingRackRecipe.class, JEIRecipeWrapperDryingRack::new, JEIRecipeCategoryDryingRack.UID);
       List<DryingRackRecipe> recipeList = new ArrayList<>(ModuleTechBasic.Registries.DRYING_RACK_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryDryingRack.UID);

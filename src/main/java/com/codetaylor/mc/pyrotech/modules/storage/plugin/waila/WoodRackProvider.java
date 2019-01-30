@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila;
 
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileWoodRack;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -24,10 +23,6 @@ public class WoodRackProvider
       IWailaDataAccessor accessor,
       IWailaConfigHandler config
   ) {
-
-    if (!config.getConfig(WailaRegistrar.CONFIG_CONTENTS)) {
-      return tooltip;
-    }
 
     TileEntity tileEntity = accessor.getTileEntity();
 

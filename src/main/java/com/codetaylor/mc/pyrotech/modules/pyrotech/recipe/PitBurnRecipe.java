@@ -2,9 +2,9 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
-import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -21,7 +21,7 @@ public class PitBurnRecipe
   @Nullable
   public static PitBurnRecipe getRecipe(IBlockState input) {
 
-    for (PitBurnRecipe recipe : ModPyrotechRegistries.BURN_RECIPE) {
+    for (PitBurnRecipe recipe : ModuleTechRefractory.Registries.BURN_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -33,7 +33,7 @@ public class PitBurnRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModPyrotechRegistries.BURN_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModuleTechRefractory.Registries.BURN_RECIPE, output);
   }
 
   private final BlockMetaMatcher inputMatcher;

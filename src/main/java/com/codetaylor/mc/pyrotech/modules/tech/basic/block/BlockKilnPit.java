@@ -6,6 +6,9 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentFire;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileKilnPit;
@@ -18,6 +21,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -47,7 +51,9 @@ import java.util.stream.Stream;
 public class BlockKilnPit
     extends BlockPartialBase
     implements IBlockVariant<BlockKilnPit.EnumType>,
-    IBlockInteractable {
+    IBlockInteractable,
+    IBlockIgnitableAdjacentFire,
+    IBlockIgnitableAdjacentIgniterBlock {
 
   public static final String NAME = "kiln_pit";
 
@@ -183,6 +189,35 @@ public class BlockKilnPit
 
     } else {
       super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entity, isActualState);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Ignition
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void igniteWithAdjacentFire(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+
+    if (facing == EnumFacing.UP
+        && blockState.getValue(BlockKilnPit.VARIANT) == BlockKilnPit.EnumType.WOOD) {
+
+      world.setBlockState(pos, blockState.withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.ACTIVE));
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity instanceof TileKilnPit) {
+        ((TileKilnPit) tileEntity).setActive(true);
+      }
+    }
+  }
+
+  @Override
+  public void igniteWithAdjacentIgniterBlock(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+
+    if (blockState.getValue(BlockKilnPit.VARIANT) == BlockKilnPit.EnumType.WOOD
+        && Util.canSetFire(world, pos.up())) {
+
+      world.setBlockState(pos.up(), Blocks.FIRE.getDefaultState(), 3);
     }
   }
 

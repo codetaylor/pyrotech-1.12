@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.refractory"]
+    }
+  ],
+  "pattern": [
+    "A A",
+    "A A",
+    "A A"
+  ],
+  "key": {
+    "A": {
+      "item": "pyrotech:material",
+      "data": 16
+    }
+  },
+  "result": {
+    "item": "pyrotech:tar_drain",
+    "count": 1,
+    "data": 0
+  }
+}

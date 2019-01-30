@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 
-public class ModuleEntities {
+public final class ModuleEntities {
 
   public static void onRegister(Registry registry) {
 
@@ -60,4 +60,7 @@ public class ModuleEntities {
     });
   }
 
+  private ModuleEntities() {
+    //
+  }
 }

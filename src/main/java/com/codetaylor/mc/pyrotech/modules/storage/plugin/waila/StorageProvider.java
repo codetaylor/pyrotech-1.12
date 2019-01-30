@@ -5,7 +5,6 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.waila.WailaRegistrar;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileWorktable;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -33,10 +32,6 @@ public class StorageProvider
       IWailaDataAccessor accessor,
       IWailaConfigHandler config
   ) {
-
-    if (!config.getConfig(WailaRegistrar.CONFIG_PROGRESS)) {
-      return tooltip;
-    }
 
     TileEntity tileEntity = accessor.getTileEntity();
     RayTraceResult rayTraceResult = Minecraft.getMinecraft().objectMouseOver;
