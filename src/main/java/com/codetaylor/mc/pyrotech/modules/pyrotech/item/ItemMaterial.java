@@ -38,6 +38,8 @@ public class ItemMaterial
         return ModulePyrotechConfig.FUEL.COAL_PIECES_BURN_TIME_TICKS;
       case BOARD:
         return ModulePyrotechConfig.FUEL.BOARD_BURN_TIME_TICKS;
+      case BOARD_TARRED:
+        return ModulePyrotechConfig.FUEL.TARRED_BOARD_BURN_TIME_TICKS;
     }
 
     return 0;

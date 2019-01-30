@@ -340,99 +340,122 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Board burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 200
     })
     public int BOARD_BURN_TIME_TICKS = 200;
 
     @Config.Comment({
         "Coal pieces burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + (1600 / 8)
     })
     public int COAL_PIECES_BURN_TIME_TICKS = 1600 / 8;
 
     @Config.Comment({
         "Charcoal flakes burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + (1600 / 8)
     })
     public int CHARCOAL_FLAKES_BURN_TIME_TICKS = 1600 / 8;
 
     @Config.Comment({
         "Tinder burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 120
     })
     public int TINDER_BURN_TIME_TICKS = 120;
 
     @Config.Comment({
         "Straw burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 50
     })
     public int STRAW_BURN_TIME_TICKS = 50;
 
     @Config.Comment({
         "Straw bale burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 200
     })
     public int STRAW_BALE_BURN_TIME_TICKS = 200;
 
     @Config.Comment({
         "Coal tar burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 6400
     })
     public int COAL_TAR_BURN_TIME_TICKS = 6400;
 
     @Config.Comment({
         "Wood tar burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 4800
     })
     public int WOOD_TAR_BURN_TIME_TICKS = 4800;
 
     @Config.Comment({
         "Coal coke burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 3200
     })
     public int COAL_COKE_BURN_TIME_TICKS = 3200;
 
     @Config.Comment({
         "Coal coke block burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 32000
     })
     public int COAL_COKE_BLOCK_BURN_TIME_TICKS = 32000;
 
     @Config.Comment({
         "Log pile burn time in ticks.",
-        "Default: " + (300 * 9)
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + (300 * 10)
     })
-    public int LOG_PILE_BURN_TIME_TICKS = 300 * 9;
+    public int LOG_PILE_BURN_TIME_TICKS = 300 * 10;
 
     @Config.Comment({
         "Wood chips burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 100
     })
     public int WOOD_CHIPS_BURN_TIME_TICKS = 100;
 
     @Config.Comment({
         "Wood chips burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 800
     })
     public int PILE_WOOD_CHIPS_BURN_TIME_TICKS = 800;
 
     @Config.Comment({
+        "Charcoal block burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 16000
+    })
+    public int CHARCOAL_BLOCK_BURN_TIME_TICKS = 16000;
+
+    @Config.Comment({
         "Tarred planks burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 800
     })
     public int TARRED_PLANKS_BURN_TIME_TICKS = 800;
 
     @Config.Comment({
         "Tarred wool burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 800
     })
     public int TARRED_WOOL_BURN_TIME_TICKS = 800;
 
     @Config.Comment({
-        "Charcoal block burn time in ticks.",
-        "Default: " + 16000
+        "Tarred board burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 400
     })
-    public int CHARCOAL_BLOCK_BURN_TIME_TICKS = 16000;
+    public int TARRED_BOARD_BURN_TIME_TICKS = 400;
   }
 
   // ---------------------------------------------------------------------------
