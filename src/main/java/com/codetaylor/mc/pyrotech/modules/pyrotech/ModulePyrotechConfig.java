@@ -154,6 +154,7 @@ public class ModulePyrotechConfig {
         "minecraft:bone_block",
         "minecraft:paper",
         "minecraft:torch",
+        "minecraft:coal_block",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
