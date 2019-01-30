@@ -108,7 +108,7 @@ public abstract class ItemIgniterBase
           } else if (tileEntity instanceof TileTorchBase) {
             ((TileTorchBase) tileEntity).activate();
 
-          } else if (tileEntity instanceof TileCapabilityDelegateMachineTop) {
+          } else if (tileEntity instanceof TileBloomery.Top) {
             TileEntity candidate = world.getTileEntity(pos.down());
 
             if (candidate instanceof TileBloomery) {
