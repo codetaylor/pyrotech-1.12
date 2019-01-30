@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.basic"]
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "pyrotech:kiln_pit",
+      "data": 0
+    }
+  ],
+  "result": {
+    "item": "pyrotech:material",
+    "count": 2,
+    "data": 13
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "SS",
+    "FF"
+  ],
+  "key": {
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "F": {
+      "item": "pyrotech:material",
+      "data": 12
+    }
+  },
+  "result": {
+    "item": "pyrotech:drying_rack",
+    "count": 1,
+    "data": 0
+  }
+}

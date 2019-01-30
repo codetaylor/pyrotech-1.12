@@ -3,12 +3,10 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.init;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,7 +20,6 @@ public final class ModuleItems {
   public static final ItemIgniterBase BOW_DRILL = new ItemBowDrill();
   public static final ItemIgniterBase FLINT_AND_TINDER = new ItemFlintAndTinder();
   public static final ItemDoor REFRACTORY_DOOR = new ItemDoor(ModuleBlocks.REFRACTORY_DOOR);
-  public static final ItemTinder TINDER = new ItemTinder();
   public static final ItemRock ROCK = new ItemRock(ModuleBlocks.ROCK);
   public static final ItemRockGrass ROCK_GRASS = new ItemRockGrass(ModuleBlocks.ROCK_GRASS);
   public static final ItemMulch MULCH = new ItemMulch();
@@ -59,9 +56,6 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.BOW_DRILL, ItemBowDrill.NAME);
     registry.registerItem(ModuleItems.FLINT_AND_TINDER, ItemFlintAndTinder.NAME);
     registry.registerItem(ModuleItems.REFRACTORY_DOOR, ModuleBlocks.REFRACTORY_DOOR.getRegistryName());
-    registry.registerItem(new ItemBlock(ModuleBlocks.KILN_PIT), ModuleBlocks.KILN_PIT.getRegistryName());
-    registry.registerItem(ModuleItems.TINDER, ItemTinder.NAME);
-    registry.registerItem(new ItemBlock(ModuleBlocks.CAMPFIRE), BlockCampfire.NAME);
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
     registry.registerItem(ModuleItems.ROCK_GRASS, BlockRockGrass.NAME);
     registry.registerItem(ModuleItems.MULCH, ItemMulch.NAME);
@@ -119,7 +113,6 @@ public final class ModuleItems {
           ModuleItems.BOW_DRILL,
           ModuleItems.FLINT_AND_TINDER,
           ModuleItems.REFRACTORY_DOOR,
-          ModuleItems.TINDER,
           ModuleItems.ROCK_GRASS,
           ModuleItems.MULCH,
 
@@ -157,11 +150,7 @@ public final class ModuleItems {
           BlockRock.VARIANT
       );
 
-      ModelRegistrationHelper.registerBlockItemModel(
-          ModuleBlocks.CAMPFIRE.getDefaultState()
-              .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.ITEM)
-      );
-
+      // Material
       ModelRegistrationHelper.registerVariantItemModels(
           ModuleItems.MATERIAL,
           "variant",

@@ -8,6 +8,8 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTarCollector;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockKilnPit;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
 import net.minecraft.block.Block;
@@ -131,7 +133,7 @@ public class BlockIgniter
           ((TileCombustionWorkerBase) tileEntity).workerSetActive(true);
         }
 
-      } else if (facingBlock == ModuleBlocks.KILN_PIT
+      } else if (facingBlock == ModuleTechBasic.Blocks.KILN_PIT
           && facingBlockState.getValue(BlockKilnPit.VARIANT) == BlockKilnPit.EnumType.WOOD
           && Util.canSetFire(world, offset.up())) {
         world.setBlockState(offset.up(), Blocks.FIRE.getDefaultState(), 3);

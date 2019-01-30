@@ -5,8 +5,9 @@ import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.event.IgnitionHandler;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTorchBase;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDelegateMachineTop;
@@ -89,7 +90,7 @@ public abstract class ItemIgniterBase
         Block block = world.getBlockState(pos).getBlock();
 
         if (block instanceof BlockCombustionWorkerStoneBase
-            || block == ModuleBlocks.CAMPFIRE
+            || block == ModuleTechBasic.Blocks.CAMPFIRE
             || block == ModuleBlocks.TORCH_FIBER
             || block == ModuleBlocks.TORCH_STONE
             || block == ModuleBloomery.Blocks.BLOOMERY) {

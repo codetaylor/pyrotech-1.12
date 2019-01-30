@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGen;
@@ -39,7 +40,12 @@ public class ModPyrotech {
     @Override
     public ItemStack getTabIconItem() {
 
-      return new ItemStack(ModuleBlocks.CAMPFIRE, 1, 0);
+      if (INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
+        return new ItemStack(ModuleTechBasic.Blocks.CAMPFIRE, 1, 0);
+
+      } else {
+        return new ItemStack(ModuleBlocks.LOG_PILE);
+      }
     }
   };
 
@@ -71,6 +77,10 @@ public class ModPyrotech {
 
     if (ModPyrotechConfig.MODULES.get(ModuleStorage.MODULE_ID)) {
       this.registerModule(ModuleStorage.class);
+    }
+
+    if (ModPyrotechConfig.MODULES.get(ModuleTechBasic.MODULE_ID)) {
+      this.registerModule(ModuleTechBasic.class);
     }
 
     if (ModPyrotechConfig.MODULES.get(ModuleTechMachine.MODULE_ID)) {

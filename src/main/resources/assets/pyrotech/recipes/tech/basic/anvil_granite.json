@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "G",
+    "S"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:stone",
+      "data": 2
+    },
+    "S": {
+      "item": "minecraft:stone_slab",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:anvil_granite",
+    "count": 1,
+    "data": 0
+  }
+}

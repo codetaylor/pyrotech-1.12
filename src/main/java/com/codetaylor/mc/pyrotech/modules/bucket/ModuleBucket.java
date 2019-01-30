@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.bucket;
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.bucket.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.bucket.init.PitKilnRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.bucket.init.StoneKilnRecipesAdd;
@@ -11,6 +10,7 @@ import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketClay;
 import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketClayUnfired;
 import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketStone;
 import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketWood;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
@@ -52,7 +52,9 @@ public class ModuleBucket
 
     super.onRegisterRecipesEvent(event);
 
-    PitKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_PIT_RECIPE);
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
+      PitKilnRecipesAdd.apply(ModuleTechBasic.Registries.KILN_PIT_RECIPE);
+    }
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechMachine.class)) {
       StoneKilnRecipesAdd.apply(ModuleTechMachine.Registries.KILN_STONE_RECIPE);

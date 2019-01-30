@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "T T",
+    "P P",
+    "TST"
+  ],
+  "key": {
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "slabWood"
+    },
+    "T": {
+      "item": "minecraft:stone_slab",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:compacting_bin",
+    "count": 1,
+    "data": 0
+  }
+}

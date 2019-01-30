@@ -2,12 +2,13 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.event;
 
 import com.codetaylor.mc.pyrotech.library.util.FloodFill;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockKilnPit;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileActivePile;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileKilnPit;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTarCollector;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockKilnPit;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileKilnPit;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -84,7 +85,7 @@ public class IgnitionHandler {
       Block block = blockState.getBlock();
 
       if (facing == EnumFacing.DOWN
-          && block == ModuleBlocks.KILN_PIT) {
+          && block == ModuleTechBasic.Blocks.KILN_PIT) {
 
         if (blockState.getValue(BlockKilnPit.VARIANT) == BlockKilnPit.EnumType.WOOD) {
           world.setBlockState(offset, blockState.withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.ACTIVE));

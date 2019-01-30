@@ -3,15 +3,16 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
-import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockDryingRack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category.*;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category.JEIRecipeCategoryPitBurn;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category.JEIRecipeCategoryRefractoryBurn;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category.JEIRecipeCategoryUid;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperPitBurn;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperRefractoryBurn;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
@@ -19,25 +20,14 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
-import mezz.jei.api.recipe.IRecipeWrapper;
-import mezz.jei.api.recipe.IRecipeWrapperFactory;
-import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
-import mezz.jei.plugins.vanilla.crafting.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class PluginJEI
@@ -50,17 +40,8 @@ public class PluginJEI
     IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
     registry.addRecipeCategories(
-        new JEIRecipeCategoryKilnPit(guiHelper),
         new JEIRecipeCategoryPitBurn(guiHelper),
-        new JEIRecipeCategoryRefractoryBurn(guiHelper),
-        new JEIRecipeCategoryDryingRack(guiHelper),
-        new JEIRecipeCategoryDryingRackCrude(guiHelper),
-        new JEIRecipeCategoryChoppingBlock(guiHelper),
-        new JEIRecipeCategoryAnvil(guiHelper),
-        new JEIRecipeCategoryCompactingBin(guiHelper),
-        new JEIRecipeCategoryCampfire(guiHelper),
-        new JEIRecipeCategoryWorktable(guiHelper),
-        new JEIRecipeCategorySoakingPot(guiHelper)
+        new JEIRecipeCategoryRefractoryBurn(guiHelper)
     );
   }
 
@@ -109,133 +90,6 @@ public class PluginJEI
 
     }
 
-    // --- Worktable
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.WORKTABLE), JEIRecipeCategoryUid.WORKTABLE);
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.WORKTABLE_STONE), JEIRecipeCategoryUid.WORKTABLE);
-      registry.handleRecipes(ShapedOreRecipe.class, recipe -> new ShapedOreRecipeWrapper(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
-      registry.handleRecipes(ShapedRecipes.class, recipe -> new ShapedRecipesWrapper(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
-      registry.handleRecipes(ShapelessOreRecipe.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
-      registry.handleRecipes(ShapelessRecipes.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryUid.WORKTABLE);
-      registry.handleRecipes(WorktableRecipe.class, new WorktableRecipeHandler(jeiHelpers), JEIRecipeCategoryUid.WORKTABLE);
-      List<IRecipe> vanillaRecipes = CraftingRecipeChecker.getValidRecipes(jeiHelpers)
-          .stream()
-          .filter(recipe -> {
-            ResourceLocation resourceLocation = recipe.getRegistryName();
-
-            if (WorktableRecipe.hasWhitelist()) {
-              return WorktableRecipe.isWhitelisted(resourceLocation);
-
-            } else if (WorktableRecipe.hasBlacklist()) {
-              return !WorktableRecipe.isBlacklisted(resourceLocation);
-            }
-
-            return true;
-          })
-          .collect(Collectors.toList());
-      registry.addRecipes(vanillaRecipes, JEIRecipeCategoryUid.WORKTABLE);
-
-      ResourceLocation resourceLocation = new ResourceLocation("minecraft:tipped_arrow");
-
-      if (WorktableRecipe.hasWhitelist()) {
-
-        if (WorktableRecipe.isWhitelisted(resourceLocation)) {
-          registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
-        }
-
-      } else if (WorktableRecipe.hasBlacklist()) {
-
-        if (!WorktableRecipe.isBlacklisted(resourceLocation)) {
-          registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
-        }
-
-      } else {
-        registry.addRecipes(TippedArrowRecipeMaker.getTippedArrowRecipes(), JEIRecipeCategoryUid.WORKTABLE);
-      }
-
-      List<WorktableRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.WORKTABLE_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.WORKTABLE);
-    }
-
-    // --- Campfire
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CAMPFIRE), JEIRecipeCategoryUid.CAMPFIRE);
-      registry.handleRecipes(CampfireRecipe.class, JEIRecipeWrapperCampfire::new, JEIRecipeCategoryUid.CAMPFIRE);
-      List<JEIRecipeWrapperCampfire> furnaceRecipes = PluginJEI.getFurnaceRecipesForCampfire(input -> {
-
-        ItemStack output = FurnaceRecipes.instance().getSmeltingResult(input);
-
-        if (CampfireRecipe.hasWhitelist()) {
-          return CampfireRecipe.isWhitelisted(output);
-
-        } else if (CampfireRecipe.hasBlacklist()) {
-          return !CampfireRecipe.isBlacklisted(output);
-        }
-
-        return RecipeHelper.hasFurnaceFoodRecipe(input);
-      });
-      registry.addRecipes(furnaceRecipes, JEIRecipeCategoryUid.CAMPFIRE);
-      List<CampfireRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.CAMPFIRE_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.CAMPFIRE);
-    }
-
-    // --- Soaking Pot
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.SOAKING_POT), JEIRecipeCategoryUid.SOAKING_POT);
-      registry.handleRecipes(SoakingPotRecipe.class, JEIRecipeWrapperSoakingPot::new, JEIRecipeCategoryUid.SOAKING_POT);
-      List<SoakingPotRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.SOAKING_POT_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.SOAKING_POT);
-    }
-
-    // --- Compacting Bin
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.COMPACTING_BIN), JEIRecipeCategoryUid.COMPACTING_BIN);
-      registry.handleRecipes(CompactingBinRecipe.class, JEIRecipeWrapperCompactingBin::new, JEIRecipeCategoryUid.COMPACTING_BIN);
-      List<CompactingBinRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.COMPACTING_BIN_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.COMPACTING_BIN);
-    }
-
-    // --- Granite Anvil
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.ANVIL_GRANITE), JEIRecipeCategoryUid.ANVIL);
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.ANVIL_IRON_PLATED), JEIRecipeCategoryUid.ANVIL);
-      registry.handleRecipes(AnvilRecipe.class, JEIRecipeWrapperAnvil::new, JEIRecipeCategoryUid.ANVIL);
-      List<AnvilRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.ANVIL_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.ANVIL);
-    }
-
-    // --- Chopping Block
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.CHOPPING_BLOCK), JEIRecipeCategoryUid.CHOPPING);
-      registry.handleRecipes(ChoppingBlockRecipe.class, JEIRecipeWrapperChoppingBlock::new, JEIRecipeCategoryUid.CHOPPING);
-      List<ChoppingBlockRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.CHOPPING_BLOCK_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.CHOPPING);
-    }
-
-    // --- Crude Drying Rack
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.DRYING_RACK, 1, BlockDryingRack.EnumType.CRUDE.getMeta()), JEIRecipeCategoryUid.DRYING_CRUDE);
-      registry.handleRecipes(DryingRackCrudeRecipe.class, JEIRecipeWrapperDryingRackCrude::new, JEIRecipeCategoryUid.DRYING_CRUDE);
-      List<DryingRackCrudeRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.DRYING_RACK_CRUDE_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.DRYING_CRUDE);
-    }
-
-    // --- Drying Rack
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.DRYING_RACK, 1, BlockDryingRack.EnumType.NORMAL.getMeta()), JEIRecipeCategoryUid.DRYING);
-      registry.handleRecipes(DryingRackRecipe.class, JEIRecipeWrapperDryingRack::new, JEIRecipeCategoryUid.DRYING);
-      List<DryingRackRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.DRYING_RACK_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.DRYING);
-    }
-
-    // --- Pit Kiln
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.KILN_PIT), JEIRecipeCategoryUid.PIT_KILN);
-      registry.handleRecipes(KilnPitRecipe.class, JEIRecipeWrapperKilnPit::new, JEIRecipeCategoryUid.PIT_KILN);
-      List<KilnPitRecipe> recipeList = new ArrayList<>(ModPyrotechRegistries.KILN_PIT_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryUid.PIT_KILN);
-    }
-
     // --- Pit Burn
     {
       registry.addRecipeCatalyst(new ItemStack(Blocks.DIRT), JEIRecipeCategoryUid.PIT_BURN);
@@ -260,72 +114,4 @@ public class PluginJEI
     }
   }
 
-  private static List<JEIRecipeWrapperCampfire> getFurnaceRecipesForCampfire(Predicate<ItemStack> filter) {
-
-    FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
-    Map<ItemStack, ItemStack> smeltingMap = furnaceRecipes.getSmeltingList();
-
-    List<JEIRecipeWrapperCampfire> recipes = new ArrayList<>();
-
-    for (Map.Entry<ItemStack, ItemStack> entry : smeltingMap.entrySet()) {
-
-      ItemStack input = entry.getKey();
-
-      if (!filter.test(input)) {
-        continue;
-      }
-
-      ItemStack output = entry.getValue();
-      recipes.add(new JEIRecipeWrapperCampfire(Ingredient.fromStacks(input), output));
-    }
-
-    return recipes;
-  }
-
-  private static class WorktableRecipeHandler
-      implements IRecipeWrapperFactory<WorktableRecipe> {
-
-    private final IJeiHelpers jeiHelpers;
-
-    public WorktableRecipeHandler(IJeiHelpers jeiHelpers) {
-
-      this.jeiHelpers = jeiHelpers;
-    }
-
-    @Nonnull
-    @Override
-    public IRecipeWrapper getRecipeWrapper(@Nonnull WorktableRecipe recipe) {
-
-      IRecipe wrappedRecipe = recipe.getRecipe();
-
-      if (wrappedRecipe instanceof IShapedRecipe) {
-        return new ShapedRecipeWrapper(this.jeiHelpers, (IShapedRecipe) wrappedRecipe);
-
-      } else {
-        return new ShapelessRecipeWrapper<>(this.jeiHelpers, wrappedRecipe);
-      }
-    }
-  }
-
-  private static class ShapedRecipeWrapper
-      extends ShapelessRecipeWrapper<IShapedRecipe>
-      implements IShapedCraftingRecipeWrapper {
-
-    public ShapedRecipeWrapper(IJeiHelpers jeiHelpers, IShapedRecipe recipe) {
-
-      super(jeiHelpers, recipe);
-    }
-
-    @Override
-    public int getWidth() {
-
-      return this.recipe.getRecipeWidth();
-    }
-
-    @Override
-    public int getHeight() {
-
-      return this.recipe.getRecipeHeight();
-    }
-  }
 }

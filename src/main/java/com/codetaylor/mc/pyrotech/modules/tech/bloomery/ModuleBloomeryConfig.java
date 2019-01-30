@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery;
 
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = ModuleBloomery.MOD_ID, name = ModuleBloomery.MOD_ID + "/" + "module.Bloomery")
+@Config(modid = ModuleBloomery.MOD_ID, name = ModuleBloomery.MOD_ID + "/" + "module.tech.Bloomery")
 public class ModuleBloomeryConfig {
 
   // ---------------------------------------------------------------------------

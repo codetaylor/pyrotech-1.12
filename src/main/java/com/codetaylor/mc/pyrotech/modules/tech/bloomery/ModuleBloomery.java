@@ -7,7 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.ModPyrotechRegistries;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
@@ -130,7 +130,10 @@ public class ModuleBloomery
     super.onRegisterRecipesEvent(event);
 
     BloomeryRecipesAdd.apply(ModuleBloomery.Registries.BLOOMERY_RECIPE);
-    CompactingBinRecipesAdd.apply(ModPyrotechRegistries.COMPACTING_BIN_RECIPE);
+
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
+      CompactingBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE);
+    }
   }
 
   @Override
@@ -169,10 +172,12 @@ public class ModuleBloomery
 
     super.onPostInitializationEvent(event);
 
-    BloomeryRecipesAdd.registerBloomAnvilRecipes(
-        ModuleBloomery.Registries.BLOOMERY_RECIPE,
-        ModPyrotechRegistries.ANVIL_RECIPE
-    );
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
+      BloomeryRecipesAdd.registerBloomAnvilRecipes(
+          ModuleBloomery.Registries.BLOOMERY_RECIPE,
+          ModuleTechBasic.Registries.ANVIL_RECIPE
+      );
+    }
   }
 
   @Override

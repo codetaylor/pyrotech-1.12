@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "ST",
+    "TS"
+  ],
+  "key": {
+    "S": {
+      "item": "pyrotech:material",
+      "data": 13
+    },
+    "T": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "pyrotech:tinder",
+    "count": 1,
+    "data": 0
+  }
+}

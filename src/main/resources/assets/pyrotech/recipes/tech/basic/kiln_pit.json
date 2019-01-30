@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "pyrotech:material",
+      "data": 13
+    }
+  },
+  "result": {
+    "item": "pyrotech:kiln_pit",
+    "count": 1,
+    "data": 0
+  }
+}

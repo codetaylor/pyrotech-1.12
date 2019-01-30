@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompactingBinRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;

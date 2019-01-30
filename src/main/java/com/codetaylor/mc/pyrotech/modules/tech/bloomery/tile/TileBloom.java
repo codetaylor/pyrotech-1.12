@@ -178,7 +178,7 @@ public class TileBloom
       }
 
       // is held item hammer?
-      return ModulePyrotechConfig.ANVIL_COMMON.getHammerHitReduction(resourceLocation) > -1;
+      return ModulePyrotechConfig.HAMMERS.getHammerHarvestLevel(resourceLocation) > -1;
     }
 
     @Override
@@ -213,10 +213,7 @@ public class TileBloom
         if (tile.recipeProgress.get() < 1) {
           ItemStack heldItemMainHand = player.getHeldItemMainhand();
           Item item = heldItemMainHand.getItem();
-          int hitReduction;
-          hitReduction = ModulePyrotechConfig.ANVIL_COMMON.getHammerHitReduction(item.getRegistryName());
-
-          int hits = Math.max(1, ModuleBloomeryConfig.BLOOM.HAMMER_HITS_REQUIRED - hitReduction);
+          int hits = Math.max(1, ModuleBloomeryConfig.BLOOM.HAMMER_HITS_REQUIRED);
           float recipeProgressIncrement = (float) ((1f / hits) * BloomHelper.calculateHammerPower(tile.getPos(), player));
           tile.recipeProgress.set(tile.recipeProgress.get() + recipeProgressIncrement);
         }

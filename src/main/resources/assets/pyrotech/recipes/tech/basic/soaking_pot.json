@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "A A",
+    "BAB",
+    "BAB"
+  ],
+  "key": {
+    "A": {
+      "item": "pyrotech:material",
+      "data": 16
+    },
+    "B": {
+      "item": "pyrotech:material",
+      "data": 20
+    }
+  },
+  "result": {
+    "item": "pyrotech:soaking_pot",
+    "count": 1,
+    "data": 0
+  }
+}

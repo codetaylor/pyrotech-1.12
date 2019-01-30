@@ -15,8 +15,11 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleEntities;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModulePackets;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe.*;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.*;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe.BurnPitRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe.VanillaCraftingRecipesRemove;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe.VanillaFurnaceRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe.VanillaFurnaceRecipesRemove;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -62,16 +65,7 @@ public class ModulePyrotech
     MinecraftForge.EVENT_BUS.register(this);
 
     String[] craftTweakerPlugins = {
-        "ZenKilnPit",
-        "ZenBurn",
-        "ZenDryingRack",
-        "ZenDryingRackCrude",
-        "ZenChoppingBlock",
-        "ZenGraniteAnvil",
-        "ZenCompactingBin",
-        "ZenCampfire",
-        "ZenWorktable",
-        "ZenSoakingPot"
+        "ZenBurn"
     };
 
     for (String plugin : craftTweakerPlugins) {
@@ -93,60 +87,6 @@ public class ModulePyrotech
     new RegistryBuilder<PitBurnRecipe>()
         .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "pit_recipe"))
         .setType(PitBurnRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<KilnPitRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "kiln_pit_recipe"))
-        .setType(KilnPitRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<DryingRackRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "drying_rack_recipe"))
-        .setType(DryingRackRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<DryingRackCrudeRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "drying_rack_crude_recipe"))
-        .setType(DryingRackCrudeRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<ChoppingBlockRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "chopping_block_recipe"))
-        .setType(ChoppingBlockRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<AnvilRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "granite_anvil_recipe"))
-        .setType(AnvilRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<CompactingBinRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "compacting_bin_recipe"))
-        .setType(CompactingBinRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<CampfireRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "campfire_recipe"))
-        .setType(CampfireRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<WorktableRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "worktable_recipe"))
-        .setType(WorktableRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<SoakingPotRecipe>()
-        .setName(new ResourceLocation(ModulePyrotech.MOD_ID, "soaking_pot_recipe"))
-        .setType(SoakingPotRecipe.class)
         .allowModification()
         .create();
   }
@@ -179,13 +119,6 @@ public class ModulePyrotech
     VanillaFurnaceRecipesAdd.apply();
 
     BurnPitRecipesAdd.apply(ModPyrotechRegistries.BURN_RECIPE);
-    PitKilnRecipesAdd.apply(ModPyrotechRegistries.KILN_PIT_RECIPE);
-    DryingRackRecipesAdd.apply(ModPyrotechRegistries.DRYING_RACK_RECIPE);
-    AnvilRecipesAdd.apply(ModPyrotechRegistries.ANVIL_RECIPE);
-    ChoppingBlockRecipesAdd.apply(ModPyrotechRegistries.CHOPPING_BLOCK_RECIPE);
-    DryingRackCrudeRecipesAdd.apply(ModPyrotechRegistries.DRYING_RACK_CRUDE_RECIPE);
-    CompactingBinRecipesAdd.apply(ModPyrotechRegistries.COMPACTING_BIN_RECIPE);
-    SoakingPotRecipesAdd.apply(ModPyrotechRegistries.SOAKING_POT_RECIPE);
   }
 
   @Override
