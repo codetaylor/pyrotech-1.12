@@ -30,10 +30,10 @@ public class ModuleBloomeryConfig {
     @Config.Comment({
         "How many seconds the fire will last when a player catches fire",
         "from harvesting molten slag.",
-        "Default: " + 3
+        "Default: " + 1
     })
     @Config.RangeInt(min = 0)
-    public int HARVESTING_PLAYER_FIRE_DURATION_SECONDS = 3;
+    public int HARVESTING_PLAYER_FIRE_DURATION_SECONDS = 1;
   }
 
   // ---------------------------------------------------------------------------
