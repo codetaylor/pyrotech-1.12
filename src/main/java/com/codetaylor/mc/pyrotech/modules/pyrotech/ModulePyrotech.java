@@ -50,6 +50,11 @@ public class ModulePyrotech
     TILE_DATA_SERVICE = this.enableNetworkTileDataService(PACKET_SERVICE);
 
     MinecraftForge.EVENT_BUS.register(this);
+
+    this.registerIntegrationPlugin(
+        "jei",
+        "com.codetaylor.mc.pyrotech.modules.pyrotech.plugin.jei.PluginJEI"
+    );
   }
 
   @Override

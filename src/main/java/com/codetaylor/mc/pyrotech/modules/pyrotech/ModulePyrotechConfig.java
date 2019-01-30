@@ -168,6 +168,7 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "These items will be removed from JEI.",
+        "Note: This should only be used to remove vanilla items.",
         "String format is a resource location: (domain):(path)"
     })
     public String[] JEI_BLACKLIST = new String[]{
