@@ -1,12 +1,13 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockTarDrain;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCampfire;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -241,12 +242,12 @@ public class BlockCampfire
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
-    if (ModulePyrotechConfig.CAMPFIRE.ENTITY_WALK_BURN_DAMAGE > 0
+    if (ModuleTechBasicConfig.CAMPFIRE.ENTITY_WALK_BURN_DAMAGE > 0
         && !entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)
         && this.getActualState(world.getBlockState(pos), world, pos).getValue(VARIANT) == BlockCampfire.EnumType.LIT) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModulePyrotechConfig.CAMPFIRE.ENTITY_WALK_BURN_DAMAGE);
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleTechBasicConfig.CAMPFIRE.ENTITY_WALK_BURN_DAMAGE);
     }
 
     super.onEntityWalk(world, pos, entity);

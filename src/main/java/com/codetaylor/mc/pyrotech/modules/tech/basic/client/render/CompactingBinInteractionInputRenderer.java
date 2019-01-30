@@ -1,11 +1,11 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.client.render;
 
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.CompactingBinRecipe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileCompactingBin;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompactingBinRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCompactingBin;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -31,7 +31,7 @@ public class CompactingBinInteractionInputRenderer
       return;
     }
 
-    double max = ModulePyrotechConfig.COMPACTING_BIN.MAX_CAPACITY * currentRecipe.getAmount();
+    double max = ModuleTechBasicConfig.COMPACTING_BIN.MAX_CAPACITY * currentRecipe.getAmount();
     double currentTotal = tile.getInputStackHandler().getTotalItemCount();
     double height = (currentTotal / max) * (13.0 / 16.0) + (1.5 / 16.0);
 
@@ -79,7 +79,7 @@ public class CompactingBinInteractionInputRenderer
     CompactingBinRecipe currentRecipe = tile.getCurrentRecipe();
 
     if (currentRecipe != null) {
-      double max = ModulePyrotechConfig.COMPACTING_BIN.MAX_CAPACITY * currentRecipe.getAmount();
+      double max = ModuleTechBasicConfig.COMPACTING_BIN.MAX_CAPACITY * currentRecipe.getAmount();
       double currentTotal = tile.getInputStackHandler().getTotalItemCount();
 
       if (currentTotal == max) {

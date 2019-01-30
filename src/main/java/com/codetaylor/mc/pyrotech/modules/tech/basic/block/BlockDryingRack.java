@@ -1,12 +1,12 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRack;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileDryingRackCrude;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileDryingRackBase;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileDryingRack;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileDryingRackCrude;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileDryingRackBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

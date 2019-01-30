@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import mezz.jei.api.IGuiHelper;
@@ -29,6 +29,8 @@ import java.util.List;
 public class JEIRecipeCategoryWorktable
     implements IRecipeCategory<IRecipeWrapper> {
 
+  public static final String UID = ModulePyrotech.MOD_ID + ".worktable";
+
   private static final int CRAFT_OUTPUT_SLOT_INDEX = 0;
   private static final int CRAFT_INPUT_SLOT_INDEX = 1;
 
@@ -48,7 +50,7 @@ public class JEIRecipeCategoryWorktable
   @Override
   public String getUid() {
 
-    return JEIRecipeCategoryUid.WORKTABLE;
+    return UID;
   }
 
   @Nonnull

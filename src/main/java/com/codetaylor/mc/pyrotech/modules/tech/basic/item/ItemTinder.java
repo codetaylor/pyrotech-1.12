@@ -1,11 +1,10 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.item;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockCampfire;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -38,7 +37,7 @@ public class ItemTinder
     ItemStack heldItem = player.getHeldItem(hand);
 
     if (!heldItem.isEmpty()
-        && heldItem.getItem() == ModuleItems.TINDER) {
+        && heldItem.getItem() == ModuleTechBasic.Items.TINDER) {
 
       RayTraceResult rayTraceResult = this.rayTrace(world, player, true);
 
@@ -54,11 +53,11 @@ public class ItemTinder
 
         BlockPos offset = blockPos.offset(rayTraceResult.sideHit);
 
-        if (ModuleBlocks.CAMPFIRE.canPlaceBlockAt(world, offset)) {
+        if (ModuleTechBasic.Blocks.CAMPFIRE.canPlaceBlockAt(world, offset)) {
           this.playSound(world, player);
           world.setBlockState(
               offset,
-              ModuleBlocks.CAMPFIRE.getDefaultState()
+              ModuleTechBasic.Blocks.CAMPFIRE.getDefaultState()
                   .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.NORMAL),
               3
           );

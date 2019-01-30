@@ -1,7 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperDryingRack;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperDryingRack;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -14,6 +15,8 @@ import javax.annotation.Nonnull;
 
 public class JEIRecipeCategoryDryingRack
     implements IRecipeCategory<JEIRecipeWrapperDryingRack> {
+
+  public static final String UID = ModuleTechBasic.MOD_ID + ".drying";
 
   private final IDrawableAnimated arrow;
   private final IDrawable background;
@@ -38,7 +41,7 @@ public class JEIRecipeCategoryDryingRack
   @Override
   public String getUid() {
 
-    return JEIRecipeCategoryUid.DRYING;
+    return UID;
   }
 
   @Nonnull

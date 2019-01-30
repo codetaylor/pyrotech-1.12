@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
@@ -15,9 +15,9 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockAnvilBase;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,9 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
 
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.spi.BlockWorktableBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileWorktableStone;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockWorktableBase;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileWorktableStone;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -26,7 +26,7 @@ public class BlockWorktableStone
   @Override
   protected Block getDroppedBlock() {
 
-    return ModuleBlocks.WORKTABLE_STONE;
+    return ModuleTechBasic.Blocks.WORKTABLE_STONE;
   }
 
   // ---------------------------------------------------------------------------

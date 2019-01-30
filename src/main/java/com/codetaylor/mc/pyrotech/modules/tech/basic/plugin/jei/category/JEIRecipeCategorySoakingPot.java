@@ -1,8 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperSoakingPot;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperSoakingPot;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -16,6 +17,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategorySoakingPot
     implements IRecipeCategory<JEIRecipeWrapperSoakingPot> {
+
+  public static final String UID = ModuleTechBasic.MOD_ID + ".soaking.pot";
 
   private final IDrawableAnimated arrow;
   private final IDrawable background;
@@ -40,7 +43,7 @@ public class JEIRecipeCategorySoakingPot
   @Override
   public String getUid() {
 
-    return JEIRecipeCategoryUid.SOAKING_POT;
+    return UID;
   }
 
   @Nonnull
@@ -81,7 +84,7 @@ public class JEIRecipeCategorySoakingPot
     itemStacks.set(ingredients);
 
     IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-    int capacity = ModulePyrotechConfig.SOAKING_POT.MAX_FLUID_CAPACITY;
+    int capacity = ModuleTechBasicConfig.SOAKING_POT.MAX_FLUID_CAPACITY;
     fluidStacks.init(1, true, 1, 20, 16, 16, capacity, false, null);
     fluidStacks.set(ingredients);
   }

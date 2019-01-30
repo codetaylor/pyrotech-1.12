@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe;
 
 import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
@@ -7,7 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.KilnPitRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.KilnPitRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

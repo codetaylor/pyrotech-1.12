@@ -1,7 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperCampfire;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperCampfire;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -15,6 +16,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryCampfire
     implements IRecipeCategory<JEIRecipeWrapperCampfire> {
+
+  public static final String UID = ModuleTechBasic.MOD_ID + ".campfire";
 
   private final IDrawableAnimated animatedFlame;
   private final IDrawableAnimated arrow;
@@ -43,7 +46,7 @@ public class JEIRecipeCategoryCampfire
   @Override
   public String getUid() {
 
-    return JEIRecipeCategoryUid.CAMPFIRE;
+    return UID;
   }
 
   @Nonnull

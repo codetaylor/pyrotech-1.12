@@ -1,8 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.ChoppingBlockRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.ChoppingBlockRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -65,7 +65,7 @@ public class ChoppingBlockRecipesAdd {
       registry.register(new ChoppingBlockRecipe(
           new ItemStack(Blocks.WOODEN_SLAB, 1, i),
           Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, i)),
-          ModulePyrotechConfig.CHOPPING_BLOCK.CHOPS_REQUIRED_PER_HARVEST_LEVEL,
+          ModuleTechBasicConfig.CHOPPING_BLOCK.CHOPS_REQUIRED_PER_HARVEST_LEVEL,
           new int[]{1, 2, 2, 3}
       ).setRegistryName(ModulePyrotech.MOD_ID, slabs[i]));
     }

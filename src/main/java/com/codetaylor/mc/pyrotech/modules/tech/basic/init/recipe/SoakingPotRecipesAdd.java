@@ -1,11 +1,11 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleFluids;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.SoakingPotRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

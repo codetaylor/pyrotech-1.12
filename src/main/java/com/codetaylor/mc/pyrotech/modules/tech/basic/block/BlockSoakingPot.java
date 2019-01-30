@@ -1,12 +1,12 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileAnvilBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileSoakingPot;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileSoakingPot;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;

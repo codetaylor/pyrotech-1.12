@@ -1,12 +1,13 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileChoppingBlock;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileChoppingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -103,7 +104,7 @@ public class BlockChoppingBlock
     // Called before #breakBlock
 
     drops.add(StackHelper.createItemStackFromTileEntity(
-        ModuleBlocks.CHOPPING_BLOCK,
+        ModuleTechBasic.Blocks.CHOPPING_BLOCK,
         1,
         state.getValue(BlockChoppingBlock.DAMAGE),
         world.getTileEntity(pos)

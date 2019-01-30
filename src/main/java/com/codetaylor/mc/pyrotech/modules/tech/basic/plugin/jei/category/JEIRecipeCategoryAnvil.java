@@ -1,7 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperAnvil;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperAnvil;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -14,6 +15,8 @@ import javax.annotation.Nonnull;
 
 public class JEIRecipeCategoryAnvil
     implements IRecipeCategory<JEIRecipeWrapperAnvil> {
+
+  public static final String UID = ModuleTechBasic.MOD_ID + ".anvil";
 
   private final IDrawableAnimated arrow;
   private final IDrawable background;
@@ -38,7 +41,7 @@ public class JEIRecipeCategoryAnvil
   @Override
   public String getUid() {
 
-    return JEIRecipeCategoryUid.ANVIL;
+    return UID;
   }
 
   @Nonnull

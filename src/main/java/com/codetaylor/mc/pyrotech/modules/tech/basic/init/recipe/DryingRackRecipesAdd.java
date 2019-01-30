@@ -1,8 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.DryingRackRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

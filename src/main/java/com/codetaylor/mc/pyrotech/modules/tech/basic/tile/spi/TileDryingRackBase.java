@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
