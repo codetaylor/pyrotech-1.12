@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.client.render;
+package com.codetaylor.mc.pyrotech.modules.tech.refractory.client.render;
 
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileTarCollector;
 import net.minecraft.client.Minecraft;

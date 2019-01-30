@@ -1,8 +1,11 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.tech.refractory.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTarCollector;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentFire;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
+import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileTarCollector;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -18,6 +21,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -29,7 +33,9 @@ import java.util.stream.Stream;
 
 public class BlockTarCollector
     extends Block
-    implements IBlockVariant<BlockTarCollector.EnumType> {
+    implements IBlockVariant<BlockTarCollector.EnumType>,
+    IBlockIgnitableAdjacentFire,
+    IBlockIgnitableAdjacentIgniterBlock {
 
   public static final String NAME = "tar_collector";
 
@@ -105,6 +111,38 @@ public class BlockTarCollector
   public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
 
     return new TileTarCollector();
+  }
+
+  @Override
+  public void igniteWithAdjacentFire(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+
+    if (facing == EnumFacing.UP) {
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity instanceof TileTarCollector) {
+        FluidTank fluidTank = ((TileTarCollector) tileEntity).getFluidTank();
+
+        if (fluidTank.getFluidAmount() > 0) {
+          ((TileTarCollector) tileEntity).setBurning(true);
+        }
+      }
+    }
+  }
+
+  @Override
+  public void igniteWithAdjacentIgniterBlock(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+
+    if (Util.canSetFire(world, pos.up())) {
+
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity instanceof TileTarCollector) {
+
+        if (((TileTarCollector) tileEntity).isFlammable()) {
+          ((TileTarCollector) tileEntity).setBurning(true);
+        }
+      }
+    }
   }
 
   @Override

@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block.fluid;
+package com.codetaylor.mc.pyrotech.modules.tech.refractory.block.fluid;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

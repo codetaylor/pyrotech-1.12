@@ -5,7 +5,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public interface IBlockIgnitableIgniterBlock {
+public interface IBlockIgnitableAdjacentIgniterBlock {
 
   /**
    * Called when a block is adjacent to an active igniter block.
@@ -15,6 +15,6 @@ public interface IBlockIgnitableIgniterBlock {
    * @param blockState the blockState of the block
    * @param facing     the direction of the adjacent igniter block
    */
-  void igniteWithAdjacentFire(World world, BlockPos pos, IBlockState blockState, EnumFacing facing);
+  void igniteWithAdjacentIgniterBlock(World world, BlockPos pos, IBlockState blockState, EnumFacing facing);
 
 }

@@ -5,11 +5,16 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-/**
- * Called when a block is adjacent to fire.
- */
-public interface IBlockIgnitable {
+public interface IBlockIgnitableAdjacentFire {
 
-  void ignite(World world, BlockPos pos, IBlockState blockState, EnumFacing facing);
+  /**
+   * Called when a block is adjacent to fire.
+   *
+   * @param world      the world
+   * @param pos        the pos of the block
+   * @param blockState the blockState of the block
+   * @param facing     the direction of the adjacent fire
+   */
+  void igniteWithAdjacentFire(World world, BlockPos pos, IBlockState blockState, EnumFacing facing);
 
 }

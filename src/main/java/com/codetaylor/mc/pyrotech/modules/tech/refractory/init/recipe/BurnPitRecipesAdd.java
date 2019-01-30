@@ -1,11 +1,11 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.init.recipe;
+package com.codetaylor.mc.pyrotech.modules.tech.refractory.init.recipe;
 
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.init.FluidInitializer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -23,7 +23,7 @@ public class BurnPitRecipesAdd {
         new BlockMetaMatcher(ModuleBlocks.LOG_PILE, OreDictionary.WILDCARD_VALUE),
         10,
         12 * 60 * 20,
-        new FluidStack(FluidInitializer.WOOD_TAR, 50),
+        new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 50),
         0.33f,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack(),
@@ -39,7 +39,7 @@ public class BurnPitRecipesAdd {
         new BlockMetaMatcher(ModuleBlocks.PILE_WOOD_CHIPS, 8),
         4,
         6 * 60 * 20,
-        new FluidStack(FluidInitializer.WOOD_TAR, 50),
+        new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 50),
         0.33f,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack(),
@@ -55,7 +55,7 @@ public class BurnPitRecipesAdd {
         new BlockMetaMatcher(Blocks.COAL_BLOCK, OreDictionary.WILDCARD_VALUE),
         10,
         24 * 60 * 20,
-        new FluidStack(FluidInitializer.COAL_TAR, 50),
+        new FluidStack(ModuleTechRefractory.Fluids.COAL_TAR, 50),
         0.33f,
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack(),

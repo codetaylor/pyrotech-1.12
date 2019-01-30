@@ -1,8 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.category;
+package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.compat.jei.wrapper.JEIRecipeWrapperRefractoryBurn;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperRefractoryBurn;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -16,6 +17,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryRefractoryBurn
     implements IRecipeCategory<JEIRecipeWrapperRefractoryBurn> {
+
+  public static final String UID = ModuleTechRefractory.MOD_ID + ".refractory.burn";
 
   private final IDrawableAnimated animatedFlame;
   private final IDrawableAnimated arrow;
@@ -44,7 +47,7 @@ public class JEIRecipeCategoryRefractoryBurn
   @Override
   public String getUid() {
 
-    return JEIRecipeCategoryUid.REFRACTORY_BURN;
+    return UID;
   }
 
   @Nonnull
@@ -91,7 +94,7 @@ public class JEIRecipeCategoryRefractoryBurn
     itemStacks.set(ingredients);
 
     IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-    int capacity = ModulePyrotechConfig.REFRACTORY.ACTIVE_PILE_MAX_FLUID_CAPACITY;
+    int capacity = ModuleTechRefractoryConfig.REFRACTORY.ACTIVE_PILE_MAX_FLUID_CAPACITY;
     fluidStacks.init(2, false, 56, 42, 26, 8, capacity, true, null);
     fluidStacks.init(2, false, 57, 42 - 14, 43, 11, capacity, true, null);
 
