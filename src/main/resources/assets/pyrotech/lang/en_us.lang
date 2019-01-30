@@ -147,7 +147,7 @@ item.pyrotech.diamond.hammer.name=Diamond Hammer
 # --- Tiles
 
 tile.pyrotech.thatch.name=Straw Bale
-tile.pyrotech.coal_coke_block.name=Coal Coke Block
+tile.pyrotech.coal_coke_block.name=Block of Coal Coke
 tile.pyrotech.log_pile.name=Log Pile
 tile.pyrotech.tar_collector.stone.name=Stone Collector
 tile.pyrotech.tar_collector.brick.name=Refractory Collector
