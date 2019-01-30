@@ -677,6 +677,12 @@ public class TileBloomery
         && blockPos.getZ() == pos.getZ();
   }
 
+  @Override
+  public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
+
+    return blockState.getValue(Properties.FACING_HORIZONTAL);
+  }
+
   // --- ITEM ---
 
   /**
