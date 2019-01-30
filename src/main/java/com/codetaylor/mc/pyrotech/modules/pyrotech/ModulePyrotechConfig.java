@@ -406,15 +406,15 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "Wood chips burn time in ticks.",
-        "Default: " + (1600 / 8)
+        "Default: " + 100
     })
-    public int WOOD_CHIPS_BURN_TIME_TICKS = 1600 / 8;
+    public int WOOD_CHIPS_BURN_TIME_TICKS = 100;
 
     @Config.Comment({
         "Wood chips burn time in ticks.",
-        "Default: " + (1600 / 8)
+        "Default: " + 800
     })
-    public int PILE_WOOD_CHIPS_BURN_TIME_TICKS = 1600;
+    public int PILE_WOOD_CHIPS_BURN_TIME_TICKS = 800;
 
     @Config.Comment({
         "Tarred planks burn time in ticks.",
