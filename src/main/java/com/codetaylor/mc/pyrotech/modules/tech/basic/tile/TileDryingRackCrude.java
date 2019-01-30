@@ -6,7 +6,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockDryingRack;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackCrudeRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileDryingRackBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -114,7 +114,7 @@ public class TileDryingRackCrude
         return 1;
       }
 
-      return (DryingRackCrudeRecipe.getRecipe(player.getHeldItemMainhand()) != null) ? 0 : 1;
+      return (DryingRackRecipe.getRecipe(player.getHeldItemMainhand()) != null) ? 0 : 1;
     }
   }
 

@@ -41,7 +41,6 @@ public class PluginJEI
     registry.addRecipeCategories(
         new JEIRecipeCategoryKilnPit(guiHelper),
         new JEIRecipeCategoryDryingRack(guiHelper),
-        new JEIRecipeCategoryDryingRackCrude(guiHelper),
         new JEIRecipeCategoryChoppingBlock(guiHelper),
         new JEIRecipeCategoryAnvil(guiHelper),
         new JEIRecipeCategoryCompactingBin(guiHelper),
@@ -159,17 +158,10 @@ public class PluginJEI
       registry.addRecipes(recipeList, JEIRecipeCategoryChoppingBlock.UID);
     }
 
-    // --- Crude Drying Rack
-    {
-      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.DRYING_RACK, 1, BlockDryingRack.EnumType.CRUDE.getMeta()), JEIRecipeCategoryDryingRackCrude.UID);
-      registry.handleRecipes(DryingRackCrudeRecipe.class, JEIRecipeWrapperDryingRackCrude::new, JEIRecipeCategoryDryingRackCrude.UID);
-      List<DryingRackCrudeRecipe> recipeList = new ArrayList<>(ModuleTechBasic.Registries.DRYING_RACK_CRUDE_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryDryingRackCrude.UID);
-    }
-
     // --- Drying Rack
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.DRYING_RACK, 1, BlockDryingRack.EnumType.NORMAL.getMeta()), JEIRecipeCategoryDryingRack.UID);
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.DRYING_RACK, 1, BlockDryingRack.EnumType.CRUDE.getMeta()));
       registry.handleRecipes(DryingRackRecipe.class, JEIRecipeWrapperDryingRack::new, JEIRecipeCategoryDryingRack.UID);
       List<DryingRackRecipe> recipeList = new ArrayList<>(ModuleTechBasic.Registries.DRYING_RACK_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryDryingRack.UID);

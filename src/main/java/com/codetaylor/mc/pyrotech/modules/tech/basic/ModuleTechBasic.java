@@ -55,7 +55,6 @@ public class ModuleTechBasic
     String[] craftTweakerPlugins = {
         "ZenKilnPit",
         "ZenDryingRack",
-        "ZenDryingRackCrude",
         "ZenChoppingBlock",
         "ZenGraniteAnvil",
         "ZenCompactingBin",
@@ -89,12 +88,6 @@ public class ModuleTechBasic
     new RegistryBuilder<DryingRackRecipe>()
         .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "drying_rack_recipe"))
         .setType(DryingRackRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<DryingRackCrudeRecipe>()
-        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "drying_rack_crude_recipe"))
-        .setType(DryingRackCrudeRecipe.class)
         .allowModification()
         .create();
 
@@ -150,11 +143,6 @@ public class ModuleTechBasic
     );
     injector.inject(
         ModuleTechBasic.Registries.class,
-        "DRYING_RACK_CRUDE_RECIPE",
-        GameRegistry.findRegistry(DryingRackCrudeRecipe.class)
-    );
-    injector.inject(
-        ModuleTechBasic.Registries.class,
         "CHOPPING_BLOCK_RECIPE",
         GameRegistry.findRegistry(ChoppingBlockRecipe.class)
     );
@@ -206,7 +194,6 @@ public class ModuleTechBasic
     DryingRackRecipesAdd.apply(ModuleTechBasic.Registries.DRYING_RACK_RECIPE);
     AnvilRecipesAdd.apply(ModuleTechBasic.Registries.ANVIL_RECIPE);
     ChoppingBlockRecipesAdd.apply(ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE);
-    DryingRackCrudeRecipesAdd.apply(ModuleTechBasic.Registries.DRYING_RACK_CRUDE_RECIPE);
     CompactingBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE);
     SoakingPotRecipesAdd.apply(ModuleTechBasic.Registries.SOAKING_POT_RECIPE);
   }
@@ -288,7 +275,6 @@ public class ModuleTechBasic
 
     public static final IForgeRegistryModifiable<KilnPitRecipe> KILN_PIT_RECIPE;
     public static final IForgeRegistryModifiable<DryingRackRecipe> DRYING_RACK_RECIPE;
-    public static final IForgeRegistryModifiable<DryingRackCrudeRecipe> DRYING_RACK_CRUDE_RECIPE;
     public static final IForgeRegistryModifiable<ChoppingBlockRecipe> CHOPPING_BLOCK_RECIPE;
     public static final IForgeRegistryModifiable<AnvilRecipe> ANVIL_RECIPE;
     public static final IForgeRegistryModifiable<CompactingBinRecipe> COMPACTING_BIN_RECIPE;
@@ -299,7 +285,6 @@ public class ModuleTechBasic
     static {
       KILN_PIT_RECIPE = null;
       DRYING_RACK_RECIPE = null;
-      DRYING_RACK_CRUDE_RECIPE = null;
       CHOPPING_BLOCK_RECIPE = null;
       ANVIL_RECIPE = null;
       COMPACTING_BIN_RECIPE = null;
