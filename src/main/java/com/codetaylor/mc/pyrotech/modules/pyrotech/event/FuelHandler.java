@@ -21,6 +21,9 @@ public class FuelHandler {
   @GameRegistry.ObjectHolder(ModulePyrotech.MOD_ID + ":" + BlockCoalCokeBlock.NAME)
   private static Item ITEM_COAL_COKE_BLOCK;
 
+  @GameRegistry.ObjectHolder(ModulePyrotech.MOD_ID + ":" + BlockCharcoalBlock.NAME)
+  private static Item ITEM_CHARCOAL_BLOCK;
+
   @GameRegistry.ObjectHolder(ModulePyrotech.MOD_ID + ":" + BlockThatch.NAME)
   private static Item ITEM_THATCH_BLOCK;
 
@@ -53,6 +56,9 @@ public class FuelHandler {
 
     if (item == ITEM_COAL_COKE_BLOCK) {
       event.setBurnTime(ModulePyrotechConfig.FUEL.COAL_COKE_BLOCK_BURN_TIME_TICKS);
+
+    } else if (item == ITEM_CHARCOAL_BLOCK) {
+      event.setBurnTime(ModulePyrotechConfig.FUEL.CHARCOAL_BLOCK_BURN_TIME_TICKS);
 
     } else if (Util.isFluidBucket(itemStack, ModuleFluids.WOOD_TAR.getName())) {
       event.setBurnTime(ModulePyrotechConfig.FUEL.WOOD_TAR_BURN_TIME_TICKS);

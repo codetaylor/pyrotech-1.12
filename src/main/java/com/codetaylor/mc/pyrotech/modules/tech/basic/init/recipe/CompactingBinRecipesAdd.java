@@ -36,6 +36,15 @@ public class CompactingBinRecipesAdd {
         8
     ).setRegistryName(ModulePyrotech.MOD_ID, "dirt"));
 
+    // Charcoal Block
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(ModuleBlocks.CHARCOAL_BLOCK, 1, 0),
+        Ingredient.fromStacks(
+            new ItemStack(Items.COAL, 1, 1)
+        ),
+        9
+    ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal_block"));
+
     // Sand
     registry.register(new CompactingBinRecipe(
         new ItemStack(Blocks.SAND, 1, 0),

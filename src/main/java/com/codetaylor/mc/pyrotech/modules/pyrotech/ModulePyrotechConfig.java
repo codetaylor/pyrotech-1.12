@@ -426,6 +426,12 @@ public class ModulePyrotechConfig {
         "Default: " + 800
     })
     public int TARRED_WOOL_BURN_TIME_TICKS = 800;
+
+    @Config.Comment({
+        "Charcoal block burn time in ticks.",
+        "Default: " + 16000
+    })
+    public int CHARCOAL_BLOCK_BURN_TIME_TICKS = 16000;
   }
 
   // ---------------------------------------------------------------------------

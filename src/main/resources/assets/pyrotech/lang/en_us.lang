@@ -182,6 +182,7 @@ tile.pyrotech.soaking_pot.name=Soaking Pot
 tile.pyrotech.planks_tarred.name=Tarred Planks
 tile.pyrotech.pile_wood_chips.name=Wood Chips
 tile.pyrotech.wool_tarred.name=Tarred Wool
+tile.pyrotech.charcoal_block.name=Block of Charcoal
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock
