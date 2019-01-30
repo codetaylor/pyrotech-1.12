@@ -5,9 +5,7 @@ import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -63,7 +61,6 @@ public class SCPacketParticleLava
       double offsetY = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
       double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
       world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
-      world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
     }
 
     for (int i = 0; i < 4; i++) {
@@ -71,7 +68,6 @@ public class SCPacketParticleLava
       double offsetY = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
       double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.3;
       world.spawnParticle(EnumParticleTypes.LAVA, x + offsetX, y + offsetY, z + offsetZ, 0.0, 0.0, 0.0);
-      world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
     }
 
     return null;
