@@ -1,9 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile;
 
-import com.codetaylor.mc.pyrotech.library.fluid.FluidTankBase;
-import com.codetaylor.mc.pyrotech.library.fluid.IFluidTankUpdateListener;
-import com.codetaylor.mc.pyrotech.library.fluid.SCPacketFluidUpdate;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
+import com.codetaylor.mc.athenaeum.util.TickCounter;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -11,29 +14,37 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class TileTarTankBase
-    extends TileEntity
-    implements ITickable,
-    SCPacketFluidUpdate.IFluidUpdatePacketConsumer,
-    IFluidTankUpdateListener {
+    extends TileNetBase
+    implements ITickable {
 
-  private static final int UPDATE_DELAY_TICKS = 5;
+  private static final int COLLECT_INTERVAL_TICKS = 20;
 
-  protected FluidTankBase fluidTank;
-  protected int ticksUntilNextUpdate;
+  protected Tank fluidTank;
+  private TickCounter collectionTickCounter;
 
   public TileTarTankBase() {
 
-    this.fluidTank = new FluidTankBase(this.getTankCapacity(), this);
+    super(ModuleTechRefractory.TILE_DATA_SERVICE);
+
+    this.fluidTank = new Tank(this.getTankCapacity());
+    this.fluidTank.addObserver((tank, amount) -> {
+      this.markDirty();
+    });
+
+    this.collectionTickCounter = new TickCounter(COLLECT_INTERVAL_TICKS);
+
+    // --- Network ---
+
+    this.registerTileDataForNetwork(new ITileData[]{
+        new TileDataFluidTank<>(this.fluidTank)
+    });
   }
 
   public FluidTank getFluidTank() {
@@ -48,11 +59,7 @@ public abstract class TileTarTankBase
       return;
     }
 
-    if (this.ticksUntilNextUpdate > 0) {
-      this.ticksUntilNextUpdate -= 1;
-
-    } else {
-      this.ticksUntilNextUpdate = UPDATE_DELAY_TICKS;
+    if (this.collectionTickCounter.increment()) {
       this.collect(this.pos, this.fluidTank, this.world);
     }
   }
@@ -79,22 +86,6 @@ public abstract class TileTarTankBase
 
     if (source.getFluidAmount() > 0) {
       source.drain(target.fillInternal(source.getFluid(), true), true);
-    }
-  }
-
-  @SideOnly(Side.CLIENT)
-  @Override
-  public void onFluidUpdatePacket(SCPacketFluidUpdate packet) {
-
-    FluidStack fluidStack = packet.getFluidStack();
-    this.fluidTank.setFluid(fluidStack);
-  }
-
-  @Override
-  public void onTankContentsChanged(FluidTank fluidTank) {
-
-    if (!this.world.isRemote) {
-      ModulePyrotech.PACKET_SERVICE.sendToAllAround(new SCPacketFluidUpdate(this.pos, fluidTank.getFluid()), this);
     }
   }
 
@@ -140,4 +131,14 @@ public abstract class TileTarTankBase
 
   @Nullable
   protected abstract FluidTank getCollectionSourceFluidTank(@Nullable TileEntity tileEntity);
+
+  public static class Tank
+      extends ObservableFluidTank
+      implements ITileDataFluidTank {
+
+    /* package */ Tank(int capacity) {
+
+      super(capacity);
+    }
+  }
 }
