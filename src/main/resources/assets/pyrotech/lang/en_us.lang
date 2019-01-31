@@ -18,6 +18,19 @@ item.pyrotech.bucket.wood.empty.name=Wood Bucket
 item.pyrotech.bucket.wood.milk.name=Milk Wood Bucket
 
 #------------------------------------------------------------------------------
+# Module: Ignition
+#------------------------------------------------------------------------------
+
+item.pyrotech.bow.drill.name=Bow Drill
+item.pyrotech.flint.and.tinder.name=Flint and Tinder
+item.pyrotech.matchstick.name=Matchstick
+
+tile.pyrotech.igniter.stone.name=Stone Igniter
+tile.pyrotech.igniter.brick.name=Refractory Igniter
+tile.pyrotech.torch_fiber.name=Fiber Torch
+tile.pyrotech.torch_stone.name=Stone Torch
+
+#------------------------------------------------------------------------------
 # Module: Storage
 #------------------------------------------------------------------------------
 
@@ -27,6 +40,25 @@ tile.pyrotech.stash.name=Stash
 tile.pyrotech.stash_stone.name=Durable Stash
 tile.pyrotech.crate.name=Crate
 tile.pyrotech.crate_stone.name=Durable Crate
+tile.pyrotech.wood_rack.name=Wood Rack
+
+#------------------------------------------------------------------------------
+# Module: Tech - Basic
+#------------------------------------------------------------------------------
+
+item.pyrotech.tinder.name=Tinder
+
+tile.pyrotech.kiln_pit.name=Pit Kiln
+tile.pyrotech.campfire.name=Campfire
+tile.pyrotech.drying_rack.crude.name=Crude Drying Rack
+tile.pyrotech.drying_rack.normal.name=Drying Rack
+tile.pyrotech.chopping_block.name=Chopping Block
+tile.pyrotech.anvil_granite.name=Granite Anvil
+tile.pyrotech.anvil_iron_plated.name=Ironclad Anvil
+tile.pyrotech.worktable.name=Worktable
+tile.pyrotech.worktable_stone.name=Stone Worktable
+tile.pyrotech.compacting_bin.name=Compacting Bin
+tile.pyrotech.soaking_pot.name=Soaking Pot
 
 #------------------------------------------------------------------------------
 # Module: Tech - Bloomery
@@ -86,10 +118,29 @@ tile.pyrotech.tar_drain.stone.name=Stone Drain
 tile.pyrotech.tar_drain.brick.name=Refractory Drain
 
 #------------------------------------------------------------------------------
-# Pyrotech Module
+# Module: Tool
 #------------------------------------------------------------------------------
 
-# --- Items
+item.pyrotech.crude.axe.name=Crude Axe
+item.pyrotech.crude.hoe.name=Crude Hoe
+item.pyrotech.crude.pickaxe.name=Crude Pickaxe
+item.pyrotech.crude.shovel.name=Crude Shovel
+
+item.pyrotech.bone.axe.name=Bone Axe
+item.pyrotech.bone.hoe.name=Bone Hoe
+item.pyrotech.bone.pickaxe.name=Bone Pickaxe
+item.pyrotech.bone.shovel.name=Bone Shovel
+item.pyrotech.bone.sword.name=Bone Sword
+
+item.pyrotech.flint.axe.name=Flint Axe
+item.pyrotech.flint.hoe.name=Flint Hoe
+item.pyrotech.flint.pickaxe.name=Flint Pickaxe
+item.pyrotech.flint.shovel.name=Flint Shovel
+item.pyrotech.flint.sword.name=Flint Sword
+
+#------------------------------------------------------------------------------
+# Module: Core
+#------------------------------------------------------------------------------
 
 item.pyrotech.straw.name=Straw
 item.pyrotech.coal.coke.name=Coal Coke
@@ -104,10 +155,6 @@ item.pyrotech.pottery.shard.name=Pottery Shard
 item.pyrotech.refractory.door.name=Refractory Door
 item.pyrotech.quicklime.name=Quicklime
 item.pyrotech.slaked.lime.name=Slaked Lime
-item.pyrotech.bow.drill.name=Bow Drill
-item.pyrotech.flint.and.tinder.name=Flint and Tinder
-item.pyrotech.matchstick.name=Matchstick
-item.pyrotech.tinder.name=Tinder
 item.pyrotech.flint.shard.name=Flint Shard
 item.pyrotech.bone.shard.name=Bone Shard
 item.pyrotech.plant.fibers.name=Plant Fibers
@@ -129,23 +176,6 @@ item.pyrotech.burned.food.name=Burned Food
 
 item.pyrotech.apple.baked.name=Baked Apple
 
-item.pyrotech.crude.axe.name=Crude Axe
-item.pyrotech.crude.hoe.name=Crude Hoe
-item.pyrotech.crude.pickaxe.name=Crude Pickaxe
-item.pyrotech.crude.shovel.name=Crude Shovel
-
-item.pyrotech.bone.axe.name=Bone Axe
-item.pyrotech.bone.hoe.name=Bone Hoe
-item.pyrotech.bone.pickaxe.name=Bone Pickaxe
-item.pyrotech.bone.shovel.name=Bone Shovel
-item.pyrotech.bone.sword.name=Bone Sword
-
-item.pyrotech.flint.axe.name=Flint Axe
-item.pyrotech.flint.hoe.name=Flint Hoe
-item.pyrotech.flint.pickaxe.name=Flint Pickaxe
-item.pyrotech.flint.shovel.name=Flint Shovel
-item.pyrotech.flint.sword.name=Flint Sword
-
 item.pyrotech.crude.hammer.name=Crude Hammer
 item.pyrotech.stone.hammer.name=Stone Hammer
 item.pyrotech.flint.hammer.name=Flint Hammer
@@ -153,37 +183,19 @@ item.pyrotech.bone.hammer.name=Bone Hammer
 item.pyrotech.iron.hammer.name=Iron Hammer
 item.pyrotech.diamond.hammer.name=Diamond Hammer
 
-# --- Tiles
-
 tile.pyrotech.thatch.name=Straw Bale
 tile.pyrotech.coal_coke_block.name=Block of Coal Coke
 tile.pyrotech.log_pile.name=Log Pile
-tile.pyrotech.igniter.stone.name=Stone Igniter
-tile.pyrotech.igniter.brick.name=Refractory Igniter
 tile.pyrotech.refractory_brick_block.name=Refractory Block
-tile.pyrotech.kiln_pit.name=Pit Kiln
 tile.pyrotech.limestone.name=Limestone
 tile.pyrotech.refractory_glass.name=Refractory Glass
-tile.pyrotech.campfire.name=Campfire
-tile.pyrotech.drying_rack.crude.name=Crude Drying Rack
-tile.pyrotech.drying_rack.normal.name=Drying Rack
-tile.pyrotech.chopping_block.name=Chopping Block
-tile.pyrotech.wood_rack.name=Wood Rack
 tile.pyrotech.ore.fossil_ore.name=Fossil Ore
 tile.pyrotech.cobblestone.andesite.name=Cobbled Andesite
 tile.pyrotech.cobblestone.diorite.name=Cobbled Diorite
 tile.pyrotech.cobblestone.granite.name=Cobbled Granite
 tile.pyrotech.cobblestone.limestone.name=Cobbled Limestone
 tile.pyrotech.stone_bricks.name=Small Stone Bricks
-tile.pyrotech.anvil_granite.name=Granite Anvil
-tile.pyrotech.anvil_iron_plated.name=Ironclad Anvil
-tile.pyrotech.worktable.name=Worktable
-tile.pyrotech.worktable_stone.name=Stone Worktable
-tile.pyrotech.torch_fiber.name=Fiber Torch
-tile.pyrotech.torch_stone.name=Stone Torch
 tile.pyrotech.farmland_mulched.name=Mulched Farmland
-tile.pyrotech.compacting_bin.name=Compacting Bin
-tile.pyrotech.soaking_pot.name=Soaking Pot
 tile.pyrotech.planks_tarred.name=Tarred Planks
 tile.pyrotech.pile_wood_chips.name=Wood Chips
 tile.pyrotech.wool_tarred.name=Tarred Wool
@@ -201,7 +213,9 @@ tile.pyrotech.rock_wood_chips.name=Pile of Wood Chips
 tile.pyrotech.rock_limestone.name=Limestone Rock
 tile.pyrotech.rock_sand_red.name=Red Sand Pile
 
-# --- Waila plugin
+#------------------------------------------------------------------------------
+# Waila
+#------------------------------------------------------------------------------
 
 gui.pyrotech.waila.tank.fluid=%s: %d of %d mB
 gui.pyrotech.waila.tank.empty=Empty: %d of %d mB
@@ -220,7 +234,9 @@ gui.pyrotech.waila.anvil.recipe.type=Type: %s
 gui.pyrotech.waila.anvil.recipe.type.hammer=Hammer
 gui.pyrotech.waila.anvil.recipe.type.pickaxe=Pickaxe
 
-# --- JEI plugin
+#------------------------------------------------------------------------------
+# JEI
+#------------------------------------------------------------------------------
 
 gui.pyrotech.jei.failure=Failure: %d%%
 
