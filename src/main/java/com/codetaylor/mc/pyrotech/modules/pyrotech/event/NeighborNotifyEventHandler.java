@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class IgnitionHandler {
+public class NeighborNotifyEventHandler {
 
   @SubscribeEvent(priority = EventPriority.LOWEST)
   public static void onNeighborNotifyEvent(BlockEvent.NeighborNotifyEvent event) {

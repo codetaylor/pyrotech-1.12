@@ -9,7 +9,7 @@ import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgnit
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
+import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

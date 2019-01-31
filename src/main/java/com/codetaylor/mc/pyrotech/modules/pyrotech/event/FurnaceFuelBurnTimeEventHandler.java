@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
-public class FuelHandler {
+public class FurnaceFuelBurnTimeEventHandler {
 
   @GameRegistry.ObjectHolder(ModulePyrotech.MOD_ID + ":" + BlockCoalCokeBlock.NAME)
   private static Item ITEM_COAL_COKE_BLOCK;

@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi;
+package com.codetaylor.mc.pyrotech.library.spi.tile;
 
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;

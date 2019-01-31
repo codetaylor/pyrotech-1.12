@@ -1,5 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.ignition"]
+    }
+  ],
   "ingredients": [
     {
       "item": "minecraft:bow",

@@ -4,9 +4,11 @@ import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemExcepti
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockIgniter;
+import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
+import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockIgniter;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
@@ -59,13 +61,14 @@ public final class RegistryInitializer {
     blockMetaMatcherList.add(new BlockMetaMatcher(ModuleTechRefractory.Blocks.ACTIVE_PILE, 0));
     blockMetaMatcherList.add(new BlockMetaMatcher(ModuleTechRefractory.Blocks.PIT_ASH_BLOCK, 0));
 
-    // TODO: conditionally apply these internally based on presence of ignition module
-    blockMetaMatcherList.addAll(Arrays.asList(
-        new BlockMetaMatcher(ModuleBlocks.IGNITER, RegistryInitializer.getIgniterMeta(EnumFacing.NORTH)),
-        new BlockMetaMatcher(ModuleBlocks.IGNITER, RegistryInitializer.getIgniterMeta(EnumFacing.EAST)),
-        new BlockMetaMatcher(ModuleBlocks.IGNITER, RegistryInitializer.getIgniterMeta(EnumFacing.SOUTH)),
-        new BlockMetaMatcher(ModuleBlocks.IGNITER, RegistryInitializer.getIgniterMeta(EnumFacing.WEST))
-    ));
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleIgnition.class)) {
+      blockMetaMatcherList.addAll(Arrays.asList(
+          new BlockMetaMatcher(ModuleIgnition.Blocks.IGNITER, RegistryInitializer.getIgniterMeta(EnumFacing.NORTH)),
+          new BlockMetaMatcher(ModuleIgnition.Blocks.IGNITER, RegistryInitializer.getIgniterMeta(EnumFacing.EAST)),
+          new BlockMetaMatcher(ModuleIgnition.Blocks.IGNITER, RegistryInitializer.getIgniterMeta(EnumFacing.SOUTH)),
+          new BlockMetaMatcher(ModuleIgnition.Blocks.IGNITER, RegistryInitializer.getIgniterMeta(EnumFacing.WEST))
+      ));
+    }
 
     blockMetaMatcherList.addAll(Arrays.asList(
         new BlockMetaMatcher(ModuleBlocks.REFRACTORY_BRICK, 0),
@@ -108,8 +111,8 @@ public final class RegistryInitializer {
 
   private static int getIgniterMeta(EnumFacing facing) {
 
-    return ModuleBlocks.IGNITER.getMetaFromState(
-        ModuleBlocks.IGNITER.getDefaultState()
+    return ModuleIgnition.Blocks.IGNITER.getMetaFromState(
+        ModuleIgnition.Blocks.IGNITER.getDefaultState()
             .withProperty(BlockIgniter.VARIANT, BlockIgniter.EnumType.BRICK)
             .withProperty(Properties.FACING_HORIZONTAL, facing)
     );

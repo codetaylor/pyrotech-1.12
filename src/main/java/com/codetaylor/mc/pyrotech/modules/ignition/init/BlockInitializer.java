@@ -5,6 +5,8 @@ import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.*;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileFarmlandMulched;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorchFiber;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorchStone;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -21,6 +23,7 @@ public final class ModuleBlocks {
   public static final BlockCoalCokeBlock COAL_COKE_BLOCK = new BlockCoalCokeBlock();
   public static final BlockThatch THATCH = new BlockThatch();
   public static final BlockRefractoryBrick REFRACTORY_BRICK = new BlockRefractoryBrick();
+  public static final BlockIgniter IGNITER = new BlockIgniter();
   public static final BlockRefractoryDoor REFRACTORY_DOOR = new BlockRefractoryDoor();
   public static final BlockLimestone LIMESTONE = new BlockLimestone();
   public static final BlockRefractoryGlass REFRACTORY_GLASS = new BlockRefractoryGlass();
@@ -29,6 +32,8 @@ public final class ModuleBlocks {
   public static final BlockOre ORE = new BlockOre();
   public static final BlockCobblestone COBBLESTONE = new BlockCobblestone();
   public static final BlockStoneBricks STONE_BRICKS = new BlockStoneBricks();
+  public static final BlockTorchFiber TORCH_FIBER = new BlockTorchFiber();
+  public static final BlockTorchStone TORCH_STONE = new BlockTorchStone();
   public static final BlockFarmlandMulched FARMLAND_MULCHED = new BlockFarmlandMulched();
   public static final BlockPlanksTarred PLANKS_TARRED = new BlockPlanksTarred();
   public static final BlockPileWoodChips PILE_WOOD_CHIPS = new BlockPileWoodChips();
@@ -45,11 +50,14 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.COAL_COKE_BLOCK, BlockCoalCokeBlock.NAME);
     registry.registerBlockWithItem(ModuleBlocks.THATCH, BlockThatch.NAME);
     registry.registerBlockWithItem(ModuleBlocks.REFRACTORY_BRICK, BlockRefractoryBrick.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.IGNITER, BlockIgniter.NAME);
     registry.registerBlockWithItem(ModuleBlocks.LIMESTONE, BlockLimestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.REFRACTORY_GLASS, BlockRefractoryGlass.NAME);
     registry.registerBlockWithItem(ModuleBlocks.ORE, BlockOre.NAME);
     registry.registerBlockWithItem(ModuleBlocks.COBBLESTONE, BlockCobblestone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.STONE_BRICKS, BlockStoneBricks.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.TORCH_FIBER, BlockTorchFiber.NAME);
+    registry.registerBlockWithItem(ModuleBlocks.TORCH_STONE, BlockTorchStone.NAME);
     registry.registerBlockWithItem(ModuleBlocks.FARMLAND_MULCHED, BlockFarmlandMulched.NAME);
     registry.registerBlockWithItem(ModuleBlocks.PLANKS_TARRED, BlockPlanksTarred.NAME);
     registry.registerBlockWithItem(ModuleBlocks.PILE_WOOD_CHIPS, BlockPileWoodChips.NAME);
@@ -57,6 +65,8 @@ public final class ModuleBlocks {
     registry.registerBlockWithItem(ModuleBlocks.CHARCOAL_BLOCK, BlockCharcoalBlock.NAME);
 
     registry.registerTileEntities(
+        TileTorchFiber.class,
+        TileTorchStone.class,
         TileFarmlandMulched.class
     );
   }
@@ -74,6 +84,8 @@ public final class ModuleBlocks {
           ModuleBlocks.LIMESTONE,
           ModuleBlocks.REFRACTORY_GLASS,
           ModuleBlocks.STONE_BRICKS,
+          ModuleBlocks.TORCH_FIBER,
+          ModuleBlocks.TORCH_STONE,
           ModuleBlocks.FARMLAND_MULCHED,
           ModuleBlocks.PLANKS_TARRED,
           ModuleBlocks.PILE_WOOD_CHIPS,
@@ -85,6 +97,12 @@ public final class ModuleBlocks {
       ModelLoader.setCustomStateMapper(
           ModuleBlocks.REFRACTORY_DOOR,
           (new StateMap.Builder()).ignore(BlockDoor.POWERED).build()
+      );
+
+      // Igniter
+      ModelRegistrationHelper.registerVariantBlockItemModels(
+          ModuleBlocks.IGNITER.getDefaultState(),
+          BlockIgniter.VARIANT
       );
 
       // Rock Pieces

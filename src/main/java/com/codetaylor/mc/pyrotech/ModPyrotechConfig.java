@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech;
 
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
+import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
@@ -30,6 +31,7 @@ public class ModPyrotechConfig {
   static {
     MODULES.put(ModuleBloomery.MODULE_ID, true);
     MODULES.put(ModuleBucket.MODULE_ID, true);
+    MODULES.put(ModuleIgnition.MODULE_ID, true);
     MODULES.put(ModuleStorage.MODULE_ID, true);
     MODULES.put(ModuleTechBasic.MODULE_ID, true);
     MODULES.put(ModuleTechMachine.MODULE_ID, true);
