@@ -124,7 +124,7 @@ public class CombustionWorkerStoneItemInFluidOutProvider
 
         if (!fuel.isEmpty()) {
           tooltip.add(Util.translateFormatted(
-              "gui." + ModulePyrotech.MOD_ID + ".waila.kiln.brick.fuel", // TODO: rename this
+              "gui." + ModulePyrotech.MOD_ID + ".waila.fuel", // TODO: rename this
               fuel.getItem().getItemStackDisplayName(fuel) + " * " + fuel.getCount()
           ));
         }

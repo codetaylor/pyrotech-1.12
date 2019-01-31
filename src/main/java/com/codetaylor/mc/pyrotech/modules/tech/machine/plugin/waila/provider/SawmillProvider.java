@@ -122,7 +122,7 @@ public class SawmillProvider
       {
         if (!blade.isEmpty()) {
           tooltip.add(Util.translateFormatted(
-              "gui." + ModulePyrotech.MOD_ID + ".waila.mill.stone.blade",
+              "gui." + ModulePyrotech.MOD_ID + ".waila.sawmill.blade",
               blade.getItem().getItemStackDisplayName(blade)
           ));
         }
@@ -137,7 +137,7 @@ public class SawmillProvider
 
         if (!fuel.isEmpty()) {
           tooltip.add(Util.translateFormatted(
-              "gui." + ModulePyrotech.MOD_ID + ".waila.kiln.brick.fuel",
+              "gui." + ModulePyrotech.MOD_ID + ".waila.fuel",
               fuel.getItem().getItemStackDisplayName(fuel) + " * " + fuel.getCount()
           ));
         }

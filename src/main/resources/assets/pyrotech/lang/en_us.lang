@@ -203,11 +203,11 @@ tile.pyrotech.rock_sand_red.name=Red Sand Pile
 
 gui.pyrotech.waila.tank.fluid=%s: %d of %d mb
 gui.pyrotech.waila.tank.empty=Empty: %d of %d mB
-gui.pyrotech.waila.kiln.brick.fuel=Fuel: %s
+gui.pyrotech.waila.fuel=Fuel: %s
 gui.pyrotech.waila.campfire.fuel=Logs: %d of %d
 gui.pyrotech.waila.ash=Ash: %d of %d
 gui.pyrotech.waila.burn.time=Burn Time: %s
-gui.pyrotech.waila.mill.stone.blade=Blade: %s
+gui.pyrotech.waila.sawmill.blade=Blade: %s
 gui.pyrotech.waila.speed=Speed: %d%%
 gui.pyrotech.waila.bloom.hammered=Hammered: %d%%
 gui.pyrotech.waila.bloom.integrity=Integrity: %d%%
