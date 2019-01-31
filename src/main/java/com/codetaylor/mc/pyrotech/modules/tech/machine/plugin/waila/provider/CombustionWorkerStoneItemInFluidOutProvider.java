@@ -6,9 +6,11 @@ import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInFluidOutBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDelegateMachineTop;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInFluidOutBase;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
@@ -97,9 +99,16 @@ public class CombustionWorkerStoneItemInFluidOutProvider
 
         FluidStack fluid = outputFluidTank.getFluid();
         tooltip.add(Util.translateFormatted(
-            "%s: %d / %d mB",
+            "gui." + ModuleTechMachine.MOD_ID + ".waila.tank.fluid",
             fluid.getLocalizedName(),
             fluid.amount,
+            outputFluidTank.getCapacity()
+        ));
+
+      } else {
+        tooltip.add(Util.translateFormatted(
+            Util.translate("gui." + ModuleTechRefractory.MOD_ID + ".waila.tank.empty"),
+            0,
             outputFluidTank.getCapacity()
         ));
       }

@@ -102,7 +102,7 @@ public class ModuleTechRefractory
     FMLInterModComms.sendMessage(
         "waila",
         "register",
-        "com.codetaylor.mc.pyrotech.modules.pyrotech.plugin.waila.PluginWaila.wailaCallback"
+        "com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.waila.PluginWaila.wailaCallback"
     );
   }
 

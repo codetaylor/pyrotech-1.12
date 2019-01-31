@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.waila.provider
 
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileTarTankBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -34,17 +34,18 @@ public class TankProvider
 
       if (fluid != null) {
         tooltip.add(Util.translateFormatted(
-            "gui." + ModulePyrotech.MOD_ID + ".waila.tank.fluid",
-            fluid.getLocalizedName()
-        ));
-        tooltip.add(Util.translateFormatted(
-            "gui." + ModulePyrotech.MOD_ID + ".waila.tank.amount",
+            "gui." + ModuleTechRefractory.MOD_ID + ".waila.tank.fluid",
+            fluid.getLocalizedName(),
             fluid.amount,
             fluidTank.getCapacity()
         ));
 
       } else {
-        tooltip.add(Util.translate("gui." + ModulePyrotech.MOD_ID + ".waila.empty"));
+        tooltip.add(Util.translateFormatted(
+            Util.translate("gui." + ModuleTechRefractory.MOD_ID + ".waila.tank.empty"),
+            0,
+            fluidTank.getCapacity()
+        ));
       }
     }
 

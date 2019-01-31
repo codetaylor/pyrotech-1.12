@@ -1,34 +1,6 @@
 itemGroup.pyrotech=Pyrotech
 
 #------------------------------------------------------------------------------
-# Module: Bloomery
-#------------------------------------------------------------------------------
-
-item.pyrotech.slag.name=Slag
-item.pyrotech.slag.unique.name=%s Slag
-item.pyrotech.tongs.flint.name=Flint Tongs
-item.pyrotech.tongs.flint.full.name=Flint Tongs
-item.pyrotech.tongs.flint.full.unique.name=%s Bloom
-item.pyrotech.tongs.bone.name=Bone Tongs
-item.pyrotech.tongs.bone.full.name=Bone Tongs
-item.pyrotech.tongs.bone.full.unique.name=%s Bloom
-item.pyrotech.tongs.stone.name=Stone Tongs
-item.pyrotech.tongs.stone.full.name=Stone Tongs
-item.pyrotech.tongs.stone.full.unique.name=%s Bloom
-item.pyrotech.tongs.iron.name=Iron Tongs
-item.pyrotech.tongs.iron.full.name=Iron Tongs
-item.pyrotech.tongs.iron.full.unique.name=%s Bloom
-item.pyrotech.tongs.diamond.name=Diamond Tongs
-item.pyrotech.tongs.diamond.full.name=Diamond Tongs
-item.pyrotech.tongs.diamond.full.unique.name=%s Bloom
-
-tile.pyrotech.bloom.name=Bloom
-tile.pyrotech.bloom.unique.name=%s Bloom
-tile.pyrotech.bloomery.name=Bloomery
-tile.pyrotech.pile_slag.name=Slag Heap
-tile.pyrotech.pile_slag.unique.name=%s Slag Heap
-
-#------------------------------------------------------------------------------
 # Module: Bucket
 #------------------------------------------------------------------------------
 
@@ -57,6 +29,34 @@ tile.pyrotech.crate.name=Crate
 tile.pyrotech.crate_stone.name=Durable Crate
 
 #------------------------------------------------------------------------------
+# Module: Tech - Bloomery
+#------------------------------------------------------------------------------
+
+item.pyrotech.slag.name=Slag
+item.pyrotech.slag.unique.name=%s Slag
+item.pyrotech.tongs.flint.name=Flint Tongs
+item.pyrotech.tongs.flint.full.name=Flint Tongs
+item.pyrotech.tongs.flint.full.unique.name=%s Bloom
+item.pyrotech.tongs.bone.name=Bone Tongs
+item.pyrotech.tongs.bone.full.name=Bone Tongs
+item.pyrotech.tongs.bone.full.unique.name=%s Bloom
+item.pyrotech.tongs.stone.name=Stone Tongs
+item.pyrotech.tongs.stone.full.name=Stone Tongs
+item.pyrotech.tongs.stone.full.unique.name=%s Bloom
+item.pyrotech.tongs.iron.name=Iron Tongs
+item.pyrotech.tongs.iron.full.name=Iron Tongs
+item.pyrotech.tongs.iron.full.unique.name=%s Bloom
+item.pyrotech.tongs.diamond.name=Diamond Tongs
+item.pyrotech.tongs.diamond.full.name=Diamond Tongs
+item.pyrotech.tongs.diamond.full.unique.name=%s Bloom
+
+tile.pyrotech.bloom.name=Bloom
+tile.pyrotech.bloom.unique.name=%s Bloom
+tile.pyrotech.bloomery.name=Bloomery
+tile.pyrotech.pile_slag.name=Slag Heap
+tile.pyrotech.pile_slag.unique.name=%s Slag Heap
+
+#------------------------------------------------------------------------------
 # Module: Tech - Machine
 #------------------------------------------------------------------------------
 
@@ -72,15 +72,22 @@ tile.pyrotech.stone_sawmill.name=Stone Sawmill
 tile.pyrotech.stone_crucible.name=Stone Crucible
 
 #------------------------------------------------------------------------------
-# Pyrotech Module
+# Module: Tech - Refractory
 #------------------------------------------------------------------------------
-
-# --- Fluids
 
 fluid.wood_tar=Wood Tar
 tile.fluid.wood_tar.name=Wood Tar
 fluid.coal_tar=Coal Tar
 tile.fluid.coal_tar.name=Coal Tar
+
+tile.pyrotech.tar_collector.stone.name=Stone Collector
+tile.pyrotech.tar_collector.brick.name=Refractory Collector
+tile.pyrotech.tar_drain.stone.name=Stone Drain
+tile.pyrotech.tar_drain.brick.name=Refractory Drain
+
+#------------------------------------------------------------------------------
+# Pyrotech Module
+#------------------------------------------------------------------------------
 
 # --- Items
 
@@ -149,10 +156,6 @@ item.pyrotech.diamond.hammer.name=Diamond Hammer
 tile.pyrotech.thatch.name=Straw Bale
 tile.pyrotech.coal_coke_block.name=Block of Coal Coke
 tile.pyrotech.log_pile.name=Log Pile
-tile.pyrotech.tar_collector.stone.name=Stone Collector
-tile.pyrotech.tar_collector.brick.name=Refractory Collector
-tile.pyrotech.tar_drain.stone.name=Stone Drain
-tile.pyrotech.tar_drain.brick.name=Refractory Drain
 tile.pyrotech.igniter.stone.name=Stone Igniter
 tile.pyrotech.igniter.brick.name=Refractory Igniter
 tile.pyrotech.refractory_brick_block.name=Refractory Block
@@ -198,15 +201,14 @@ tile.pyrotech.rock_sand_red.name=Red Sand Pile
 
 # --- Waila plugin
 
-gui.pyrotech.waila.tank.fluid=Liquid: %s
-gui.pyrotech.waila.tank.amount=Amount: %d of %d mb
+gui.pyrotech.waila.tank.fluid=%s: %d of %d mb
+gui.pyrotech.waila.tank.empty=Empty: %d of %d mB
 gui.pyrotech.waila.kiln.brick.fuel=Fuel: %s
 gui.pyrotech.waila.campfire.fuel=Logs: %d of %d
 gui.pyrotech.waila.ash=Ash: %d of %d
 gui.pyrotech.waila.burn.time=Burn Time: %s
 gui.pyrotech.waila.mill.stone.blade=Blade: %s
 gui.pyrotech.waila.speed=Speed: %d%%
-gui.pyrotech.waila.empty=Empty
 gui.pyrotech.waila.bloom.hammered=Hammered: %d%%
 gui.pyrotech.waila.bloom.integrity=Integrity: %d%%
 gui.pyrotech.waila.bloom.hammer.power=Hammer Power: %d%%
