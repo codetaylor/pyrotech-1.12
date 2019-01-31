@@ -10,10 +10,10 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRec
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperKilnStone;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperMillStone;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperOvenStone;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.CrucibleStoneRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.KilnStoneRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.MillStoneRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.OvenStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInItemOutBase;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
@@ -52,45 +52,45 @@ public class PluginJEI
     // --- Stone Oven
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleTechMachine.Blocks.OVEN_STONE), JEIRecipeCategoryOvenStone.UID);
-      registry.handleRecipes(OvenStoneRecipe.class, JEIRecipeWrapperOvenStone::new, JEIRecipeCategoryOvenStone.UID);
+      registry.handleRecipes(StoneOvenRecipe.class, JEIRecipeWrapperOvenStone::new, JEIRecipeCategoryOvenStone.UID);
       List<JEIRecipeWrapperOvenStone> furnaceRecipes = PluginJEI.getFurnaceRecipesForStoneOven(input -> {
 
         ItemStack output = FurnaceRecipes.instance().getSmeltingResult(input);
 
-        if (OvenStoneRecipe.hasWhitelist()) {
-          return OvenStoneRecipe.isWhitelisted(output);
+        if (StoneOvenRecipe.hasWhitelist()) {
+          return StoneOvenRecipe.isWhitelisted(output);
 
-        } else if (OvenStoneRecipe.hasBlacklist()) {
-          return !OvenStoneRecipe.isBlacklisted(output);
+        } else if (StoneOvenRecipe.hasBlacklist()) {
+          return !StoneOvenRecipe.isBlacklisted(output);
         }
 
         return RecipeHelper.hasFurnaceFoodRecipe(input);
       });
       registry.addRecipes(furnaceRecipes, JEIRecipeCategoryOvenStone.UID);
-      List<OvenStoneRecipe> recipeList = new ArrayList<>(ModuleTechMachine.Registries.OVEN_STONE_RECIPE.getValuesCollection());
+      List<StoneOvenRecipe> recipeList = new ArrayList<>(ModuleTechMachine.Registries.OVEN_STONE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryOvenStone.UID);
     }
 
     // --- Stone Crucible
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleTechMachine.Blocks.CRUCIBLE_STONE), JEIRecipeCategoryCrucibleStone.UID);
-      registry.handleRecipes(CrucibleStoneRecipe.class, JEIRecipeWrapperCrucibleStone::new, JEIRecipeCategoryCrucibleStone.UID);
-      List<CrucibleStoneRecipe> recipeList = new ArrayList<>(ModuleTechMachine.Registries.CRUCIBLE_STONE_RECIPE.getValuesCollection());
+      registry.handleRecipes(StoneCrucibleRecipe.class, JEIRecipeWrapperCrucibleStone::new, JEIRecipeCategoryCrucibleStone.UID);
+      List<StoneCrucibleRecipe> recipeList = new ArrayList<>(ModuleTechMachine.Registries.CRUCIBLE_STONE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryCrucibleStone.UID);
     }
 
     // --- Stone Mill
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleTechMachine.Blocks.MILL_STONE), JEIRecipeCategoryMillStone.UID);
-      registry.handleRecipes(MillStoneRecipe.class, JEIRecipeWrapperMillStone::new, JEIRecipeCategoryMillStone.UID);
-      List<MillStoneRecipe> recipeList = new ArrayList<>(ModuleTechMachine.Registries.MILL_STONE_RECIPE.getValuesCollection());
+      registry.handleRecipes(StoneSawmillRecipe.class, JEIRecipeWrapperMillStone::new, JEIRecipeCategoryMillStone.UID);
+      List<StoneSawmillRecipe> recipeList = new ArrayList<>(ModuleTechMachine.Registries.MILL_STONE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryMillStone.UID);
     }
 
     // --- Stone Kiln
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleTechMachine.Blocks.KILN_STONE), JEIRecipeCategoryKilnStone.UID);
-      registry.handleRecipes(KilnStoneRecipe.class, JEIRecipeWrapperKilnStone::new, JEIRecipeCategoryKilnStone.UID);
+      registry.handleRecipes(StoneKilnRecipe.class, JEIRecipeWrapperKilnStone::new, JEIRecipeCategoryKilnStone.UID);
       List<StoneMachineRecipeItemInItemOutBase> recipeList = new ArrayList<>(ModuleTechMachine.Registries.KILN_STONE_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryKilnStone.UID);
     }

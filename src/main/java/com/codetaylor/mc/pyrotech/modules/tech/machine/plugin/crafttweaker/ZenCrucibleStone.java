@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.CrucibleStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.liquid.ILiquidStack;
@@ -62,7 +62,7 @@ public class ZenCrucibleStone {
     @Override
     public void apply() {
 
-      CrucibleStoneRecipe.removeRecipes(this.output);
+      StoneCrucibleRecipe.removeRecipes(this.output);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class ZenCrucibleStone {
     @Override
     public void apply() {
 
-      CrucibleStoneRecipe recipe = new CrucibleStoneRecipe(
+      StoneCrucibleRecipe recipe = new StoneCrucibleRecipe(
           this.output,
           this.input,
           this.burnTimeTicks

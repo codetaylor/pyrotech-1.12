@@ -4,7 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.MillStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -14,7 +14,7 @@ import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 public class StoneSawmillRecipesAdd {
 
-  public static void apply(IForgeRegistryModifiable<MillStoneRecipe> registry) {
+  public static void apply(IForgeRegistryModifiable<StoneSawmillRecipe> registry) {
 
     // --- Wood Planks ---
 
@@ -169,9 +169,9 @@ public class StoneSawmillRecipesAdd {
     );
   }
 
-  private static void registerSawmillRecipeStone(IForgeRegistryModifiable<MillStoneRecipe> registry, String name, ItemStack output, Ingredient input) {
+  private static void registerSawmillRecipeStone(IForgeRegistryModifiable<StoneSawmillRecipe> registry, String name, ItemStack output, Ingredient input) {
 
-    registry.register(new MillStoneRecipe(
+    registry.register(new StoneSawmillRecipe(
         output.copy(),
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
@@ -179,7 +179,7 @@ public class StoneSawmillRecipesAdd {
         false
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_iron"));
 
-    registry.register(new MillStoneRecipe(
+    registry.register(new StoneSawmillRecipe(
         output.copy(),
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 2 * 20,
@@ -188,12 +188,12 @@ public class StoneSawmillRecipesAdd {
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_diamond"));
   }
 
-  private static void registerSawmillRecipeWood(IForgeRegistryModifiable<MillStoneRecipe> registry, String name, ItemStack output, Ingredient input) {
+  private static void registerSawmillRecipeWood(IForgeRegistryModifiable<StoneSawmillRecipe> registry, String name, ItemStack output, Ingredient input) {
 
     output = output.copy();
     output.setCount(1);
 
-    registry.register(new MillStoneRecipe(
+    registry.register(new StoneSawmillRecipe(
         output,
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
@@ -204,7 +204,7 @@ public class StoneSawmillRecipesAdd {
     output = output.copy();
     output.setCount(2);
 
-    registry.register(new MillStoneRecipe(
+    registry.register(new StoneSawmillRecipe(
         output,
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 3 * 20,
@@ -218,7 +218,7 @@ public class StoneSawmillRecipesAdd {
     output = output.copy();
     output.setCount(3);
 
-    registry.register(new MillStoneRecipe(
+    registry.register(new StoneSawmillRecipe(
         output,
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 2 * 20,
@@ -229,7 +229,7 @@ public class StoneSawmillRecipesAdd {
     output = output.copy();
     output.setCount(4);
 
-    registry.register(new MillStoneRecipe(
+    registry.register(new StoneSawmillRecipe(
         output,
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 20,

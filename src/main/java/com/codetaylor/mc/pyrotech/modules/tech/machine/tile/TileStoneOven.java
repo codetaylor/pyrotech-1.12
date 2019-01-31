@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.OvenStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import net.minecraft.item.ItemStack;
 
@@ -9,16 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileStoneOven
-    extends TileCombustionWorkerStoneItemInItemOutBase<OvenStoneRecipe> {
+    extends TileCombustionWorkerStoneItemInItemOutBase<StoneOvenRecipe> {
 
   @Override
-  public OvenStoneRecipe getRecipe(ItemStack itemStack) {
+  public StoneOvenRecipe getRecipe(ItemStack itemStack) {
 
-    return OvenStoneRecipe.getRecipe(itemStack);
+    return StoneOvenRecipe.getRecipe(itemStack);
   }
 
   @Override
-  protected List<ItemStack> getRecipeOutput(OvenStoneRecipe recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks) {
+  protected List<ItemStack> getRecipeOutput(StoneOvenRecipe recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks) {
 
     ItemStack output = recipe.getOutput();
     ItemStack copy = output.copy();

@@ -4,7 +4,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.CrucibleFluidRenderer;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.CrucibleStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInFluidOutBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileStoneCrucible
-    extends TileCombustionWorkerStoneItemInFluidOutBase<CrucibleStoneRecipe> {
+    extends TileCombustionWorkerStoneItemInFluidOutBase<StoneCrucibleRecipe> {
 
   public TileStoneCrucible() {
 
@@ -28,9 +28,9 @@ public class TileStoneCrucible
   }
 
   @Override
-  public CrucibleStoneRecipe getRecipe(ItemStack itemStack) {
+  public StoneCrucibleRecipe getRecipe(ItemStack itemStack) {
 
-    return CrucibleStoneRecipe.getRecipe(itemStack);
+    return StoneCrucibleRecipe.getRecipe(itemStack);
   }
 
   @Override
@@ -40,7 +40,7 @@ public class TileStoneCrucible
   }
 
   @Override
-  protected FluidStack getRecipeOutput(CrucibleStoneRecipe recipe, ItemStack input) {
+  protected FluidStack getRecipeOutput(StoneCrucibleRecipe recipe, ItemStack input) {
 
     FluidStack fluidStack = recipe.getOutput();
 
@@ -82,7 +82,7 @@ public class TileStoneCrucible
   }
 
   @Override
-  public boolean allowInsertInput(ItemStack stack, CrucibleStoneRecipe recipe) {
+  public boolean allowInsertInput(ItemStack stack, StoneCrucibleRecipe recipe) {
 
     return true;
   }
@@ -91,7 +91,7 @@ public class TileStoneCrucible
   protected void reduceRecipeTime() {
 
     ItemStack input = this.getInputStackHandler().getStackInSlot(0);
-    CrucibleStoneRecipe recipe = this.getRecipe(input);
+    StoneCrucibleRecipe recipe = this.getRecipe(input);
 
     if (recipe == null) {
       return;

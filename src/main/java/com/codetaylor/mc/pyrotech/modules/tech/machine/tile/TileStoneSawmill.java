@@ -16,7 +16,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.MillInteractionBladeRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemMillBlade;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.MillStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -43,7 +43,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TileStoneSawmill
-    extends TileCombustionWorkerStoneItemInItemOutBase<MillStoneRecipe> {
+    extends TileCombustionWorkerStoneItemInItemOutBase<StoneSawmillRecipe> {
 
   private BladeStackHandler bladeStackHandler;
 
@@ -108,13 +108,13 @@ public class TileStoneSawmill
   }
 
   @Override
-  public MillStoneRecipe getRecipe(ItemStack itemStack) {
+  public StoneSawmillRecipe getRecipe(ItemStack itemStack) {
 
-    return MillStoneRecipe.getRecipe(itemStack, this.bladeStackHandler.getStackInSlot(0));
+    return StoneSawmillRecipe.getRecipe(itemStack, this.bladeStackHandler.getStackInSlot(0));
   }
 
   @Override
-  protected List<ItemStack> getRecipeOutput(MillStoneRecipe recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks) {
+  protected List<ItemStack> getRecipeOutput(StoneSawmillRecipe recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks) {
 
     ItemStack output = recipe.getOutput();
     ItemStack copy = output.copy();
@@ -152,7 +152,7 @@ public class TileStoneSawmill
     }
 
     ItemStack input = this.getInputStackHandler().getStackInSlot(0);
-    MillStoneRecipe recipe = this.getRecipe(input);
+    StoneSawmillRecipe recipe = this.getRecipe(input);
 
     if (recipe.createWoodChips()
         && Math.random() < ModuleTechMachineConfig.STONE_SAWMILL.WOOD_CHIPS_CHANCE) {

@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.KilnStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperTimed;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
@@ -23,7 +23,7 @@ public class JEIRecipeWrapperKilnStone
   private final List<List<ItemStack>> outputs;
   private final String failureChance;
 
-  public JEIRecipeWrapperKilnStone(KilnStoneRecipe recipe) {
+  public JEIRecipeWrapperKilnStone(StoneKilnRecipe recipe) {
 
     super(recipe);
 

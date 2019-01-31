@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.CompoundIngredientPublic;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.CrucibleStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -16,11 +16,11 @@ import java.util.Arrays;
 
 public class StoneCrucibleRecipesAdd {
 
-  public static void apply(IForgeRegistryModifiable<CrucibleStoneRecipe> registry) {
+  public static void apply(IForgeRegistryModifiable<StoneCrucibleRecipe> registry) {
 
     // Lava
     //noinspection unchecked
-    registry.register(new CrucibleStoneRecipe(
+    registry.register(new StoneCrucibleRecipe(
         new FluidStack(FluidRegistry.LAVA, 250),
         new CompoundIngredientPublic(Arrays.asList(new Ingredient[]{
             new OreIngredient("stone"),
@@ -30,7 +30,7 @@ public class StoneCrucibleRecipesAdd {
     ).setRegistryName(ModuleCore.MOD_ID, "lava_from_stone"));
 
     // Water from Ice
-    registry.register(new CrucibleStoneRecipe(
+    registry.register(new StoneCrucibleRecipe(
         new FluidStack(FluidRegistry.WATER, 1000),
         Ingredient.fromStacks(
             new ItemStack(Blocks.ICE, 1, 0)
@@ -39,7 +39,7 @@ public class StoneCrucibleRecipesAdd {
     ).setRegistryName(ModuleCore.MOD_ID, "water_from_ice"));
 
     // Water from Snow
-    registry.register(new CrucibleStoneRecipe(
+    registry.register(new StoneCrucibleRecipe(
         new FluidStack(FluidRegistry.WATER, 500),
         Ingredient.fromStacks(
             new ItemStack(Blocks.SNOW, 1, 0)
@@ -48,7 +48,7 @@ public class StoneCrucibleRecipesAdd {
     ).setRegistryName(ModuleCore.MOD_ID, "water_from_snow"));
 
     // Water from Snowballs
-    registry.register(new CrucibleStoneRecipe(
+    registry.register(new StoneCrucibleRecipe(
         new FluidStack(FluidRegistry.WATER, 125),
         Ingredient.fromStacks(
             new ItemStack(Items.SNOWBALL, 1, 0)
@@ -57,7 +57,7 @@ public class StoneCrucibleRecipesAdd {
     ).setRegistryName(ModuleCore.MOD_ID, "water_from_snowballs"));
 
     // Water from Packed Ice
-    registry.register(new CrucibleStoneRecipe(
+    registry.register(new StoneCrucibleRecipe(
         new FluidStack(FluidRegistry.WATER, 2000),
         Ingredient.fromStacks(
             new ItemStack(Blocks.PACKED_ICE, 1, 0)

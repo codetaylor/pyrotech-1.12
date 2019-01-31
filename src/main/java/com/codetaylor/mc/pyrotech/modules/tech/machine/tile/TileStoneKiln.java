@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.KilnStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import net.minecraft.item.ItemStack;
 
@@ -11,16 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileStoneKiln
-    extends TileCombustionWorkerStoneItemInItemOutBase<KilnStoneRecipe> {
+    extends TileCombustionWorkerStoneItemInItemOutBase<StoneKilnRecipe> {
 
   @Override
-  public KilnStoneRecipe getRecipe(ItemStack itemStack) {
+  public StoneKilnRecipe getRecipe(ItemStack itemStack) {
 
-    return KilnStoneRecipe.getRecipe(itemStack);
+    return StoneKilnRecipe.getRecipe(itemStack);
   }
 
   @Override
-  protected List<ItemStack> getRecipeOutput(KilnStoneRecipe recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks) {
+  protected List<ItemStack> getRecipeOutput(StoneKilnRecipe recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks) {
 
     ItemStack output = recipe.getOutput();
     output.setCount(1);

@@ -9,13 +9,13 @@ import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
-public class CrucibleStoneRecipe
-    extends StoneMachineRecipeItemInFluidOutBase<CrucibleStoneRecipe> {
+public class StoneCrucibleRecipe
+    extends StoneMachineRecipeItemInFluidOutBase<StoneCrucibleRecipe> {
 
   @Nullable
-  public static CrucibleStoneRecipe getRecipe(ItemStack input) {
+  public static StoneCrucibleRecipe getRecipe(ItemStack input) {
 
-    for (CrucibleStoneRecipe recipe : ModuleTechMachine.Registries.CRUCIBLE_STONE_RECIPE) {
+    for (StoneCrucibleRecipe recipe : ModuleTechMachine.Registries.CRUCIBLE_STONE_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -30,7 +30,7 @@ public class CrucibleStoneRecipe
     return RecipeHelper.removeRecipesByOutput(ModuleTechMachine.Registries.CRUCIBLE_STONE_RECIPE, output);
   }
 
-  public CrucibleStoneRecipe(
+  public StoneCrucibleRecipe(
       FluidStack output,
       Ingredient input,
       int burnTimeTicks

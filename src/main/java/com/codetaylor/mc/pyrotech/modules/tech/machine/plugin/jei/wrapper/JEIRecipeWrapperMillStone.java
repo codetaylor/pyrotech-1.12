@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper;
 
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.MillStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperTimed;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
@@ -17,7 +17,7 @@ public class JEIRecipeWrapperMillStone
   private final List<List<ItemStack>> inputs;
   private final ItemStack output;
 
-  public JEIRecipeWrapperMillStone(MillStoneRecipe recipe) {
+  public JEIRecipeWrapperMillStone(StoneSawmillRecipe recipe) {
 
     super(recipe);
 

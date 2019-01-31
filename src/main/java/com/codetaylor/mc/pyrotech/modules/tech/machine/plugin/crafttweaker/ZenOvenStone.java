@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogH
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.OvenStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
@@ -47,7 +47,7 @@ public class ZenOvenStone {
       public void apply() {
 
         for (IIngredient ingredient : output) {
-          OvenStoneRecipe.blacklistSmeltingRecipe(CraftTweakerMC.getIngredient(ingredient));
+          StoneOvenRecipe.blacklistSmeltingRecipe(CraftTweakerMC.getIngredient(ingredient));
         }
       }
 
@@ -72,7 +72,7 @@ public class ZenOvenStone {
       public void apply() {
 
         for (IIngredient ingredient : output) {
-          OvenStoneRecipe.whitelistSmeltingRecipe(CraftTweakerMC.getIngredient(ingredient));
+          StoneOvenRecipe.whitelistSmeltingRecipe(CraftTweakerMC.getIngredient(ingredient));
         }
       }
 
@@ -107,7 +107,7 @@ public class ZenOvenStone {
     @Override
     public void apply() {
 
-      OvenStoneRecipe.removeRecipes(this.output);
+      StoneOvenRecipe.removeRecipes(this.output);
     }
 
     @Override
@@ -138,7 +138,7 @@ public class ZenOvenStone {
     @Override
     public void apply() {
 
-      OvenStoneRecipe recipe = new OvenStoneRecipe(
+      StoneOvenRecipe recipe = new StoneOvenRecipe(
           this.output,
           this.input
       );

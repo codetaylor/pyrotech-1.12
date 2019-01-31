@@ -14,19 +14,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OvenStoneRecipe
-    extends StoneMachineRecipeItemInItemOutBase<OvenStoneRecipe> {
+public class StoneOvenRecipe
+    extends StoneMachineRecipeItemInItemOutBase<StoneOvenRecipe> {
 
-  private static final Map<String, OvenStoneRecipe> SMELTING_RECIPES = new HashMap<>();
+  private static final Map<String, StoneOvenRecipe> SMELTING_RECIPES = new HashMap<>();
   private static final List<Ingredient> WHITELIST = new ArrayList<>();
   private static final List<Ingredient> BLACKLIST = new ArrayList<>();
 
   @Nullable
-  public static OvenStoneRecipe getRecipe(ItemStack input) {
+  public static StoneOvenRecipe getRecipe(ItemStack input) {
 
-    String key = OvenStoneRecipe.getRecipeKey(input);
+    String key = StoneOvenRecipe.getRecipeKey(input);
 
-    OvenStoneRecipe result = SMELTING_RECIPES.get(key);
+    StoneOvenRecipe result = SMELTING_RECIPES.get(key);
 
     // If the recipe is cached, return it.
 
@@ -42,15 +42,15 @@ public class OvenStoneRecipe
       FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
       ItemStack output = furnaceRecipes.getSmeltingResult(input);
 
-      if (OvenStoneRecipe.hasWhitelist()
-          && OvenStoneRecipe.isWhitelisted(output)) {
-        result = new OvenStoneRecipe(output, Ingredient.fromStacks(input));
+      if (StoneOvenRecipe.hasWhitelist()
+          && StoneOvenRecipe.isWhitelisted(output)) {
+        result = new StoneOvenRecipe(output, Ingredient.fromStacks(input));
         SMELTING_RECIPES.put(key, result);
         return result;
 
-      } else if (OvenStoneRecipe.hasBlacklist()
-          && !OvenStoneRecipe.isBlacklisted(output)) {
-        result = new OvenStoneRecipe(output, Ingredient.fromStacks(input));
+      } else if (StoneOvenRecipe.hasBlacklist()
+          && !StoneOvenRecipe.isBlacklisted(output)) {
+        result = new StoneOvenRecipe(output, Ingredient.fromStacks(input));
         SMELTING_RECIPES.put(key, result);
         return result;
       }
@@ -58,7 +58,7 @@ public class OvenStoneRecipe
 
     // Finally, check the custom recipes.
 
-    for (OvenStoneRecipe recipe : ModuleTechMachine.Registries.OVEN_STONE_RECIPE) {
+    for (StoneOvenRecipe recipe : ModuleTechMachine.Registries.OVEN_STONE_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -122,7 +122,7 @@ public class OvenStoneRecipe
     return false;
   }
 
-  public OvenStoneRecipe(ItemStack output, Ingredient input) {
+  public StoneOvenRecipe(ItemStack output, Ingredient input) {
 
     super(input, output, ModuleTechMachineConfig.STONE_OVEN.COOK_TIME_TICKS);
   }

@@ -16,10 +16,10 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneCrucible
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneKilnRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneSawmillRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemMillBlade;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.CrucibleStoneRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.KilnStoneRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.MillStoneRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.OvenStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -83,27 +83,27 @@ public class ModuleTechMachine
   @SubscribeEvent
   public void onNewRegistryEvent(RegistryEvent.NewRegistry event) {
 
-    new RegistryBuilder<KilnStoneRecipe>()
+    new RegistryBuilder<StoneKilnRecipe>()
         .setName(new ResourceLocation(ModuleTechMachine.MOD_ID, "kiln_stone_recipe"))
-        .setType(KilnStoneRecipe.class)
+        .setType(StoneKilnRecipe.class)
         .allowModification()
         .create();
 
-    new RegistryBuilder<MillStoneRecipe>()
+    new RegistryBuilder<StoneSawmillRecipe>()
         .setName(new ResourceLocation(ModuleTechMachine.MOD_ID, "mill_stone_recipe"))
-        .setType(MillStoneRecipe.class)
+        .setType(StoneSawmillRecipe.class)
         .allowModification()
         .create();
 
-    new RegistryBuilder<CrucibleStoneRecipe>()
+    new RegistryBuilder<StoneCrucibleRecipe>()
         .setName(new ResourceLocation(ModuleTechMachine.MOD_ID, "crucible_stone_recipe"))
-        .setType(CrucibleStoneRecipe.class)
+        .setType(StoneCrucibleRecipe.class)
         .allowModification()
         .create();
 
-    new RegistryBuilder<OvenStoneRecipe>()
+    new RegistryBuilder<StoneOvenRecipe>()
         .setName(new ResourceLocation(ModuleTechMachine.MOD_ID, "oven_stone_recipe"))
-        .setType(OvenStoneRecipe.class)
+        .setType(StoneOvenRecipe.class)
         .allowModification()
         .create();
 
@@ -114,22 +114,22 @@ public class ModuleTechMachine
     injector.inject(
         ModuleTechMachine.Registries.class,
         "KILN_STONE_RECIPE",
-        GameRegistry.findRegistry(KilnStoneRecipe.class)
+        GameRegistry.findRegistry(StoneKilnRecipe.class)
     );
     injector.inject(
         ModuleTechMachine.Registries.class,
         "MILL_STONE_RECIPE",
-        GameRegistry.findRegistry(MillStoneRecipe.class)
+        GameRegistry.findRegistry(StoneSawmillRecipe.class)
     );
     injector.inject(
         ModuleTechMachine.Registries.class,
         "OVEN_STONE_RECIPE",
-        GameRegistry.findRegistry(OvenStoneRecipe.class)
+        GameRegistry.findRegistry(StoneOvenRecipe.class)
     );
     injector.inject(
         ModuleTechMachine.Registries.class,
         "CRUCIBLE_STONE_RECIPE",
-        GameRegistry.findRegistry(CrucibleStoneRecipe.class)
+        GameRegistry.findRegistry(StoneCrucibleRecipe.class)
     );
   }
 
@@ -222,10 +222,10 @@ public class ModuleTechMachine
 
   public static class Registries {
 
-    public static final IForgeRegistryModifiable<KilnStoneRecipe> KILN_STONE_RECIPE;
-    public static final IForgeRegistryModifiable<MillStoneRecipe> MILL_STONE_RECIPE;
-    public static final IForgeRegistryModifiable<OvenStoneRecipe> OVEN_STONE_RECIPE;
-    public static final IForgeRegistryModifiable<CrucibleStoneRecipe> CRUCIBLE_STONE_RECIPE;
+    public static final IForgeRegistryModifiable<StoneKilnRecipe> KILN_STONE_RECIPE;
+    public static final IForgeRegistryModifiable<StoneSawmillRecipe> MILL_STONE_RECIPE;
+    public static final IForgeRegistryModifiable<StoneOvenRecipe> OVEN_STONE_RECIPE;
+    public static final IForgeRegistryModifiable<StoneCrucibleRecipe> CRUCIBLE_STONE_RECIPE;
 
     static {
       KILN_STONE_RECIPE = null;

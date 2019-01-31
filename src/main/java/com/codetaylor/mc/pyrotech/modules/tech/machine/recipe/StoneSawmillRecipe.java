@@ -8,16 +8,16 @@ import net.minecraft.item.crafting.Ingredient;
 
 import javax.annotation.Nullable;
 
-public class MillStoneRecipe
-    extends StoneMachineRecipeItemInItemOutBase<MillStoneRecipe> {
+public class StoneSawmillRecipe
+    extends StoneMachineRecipeItemInItemOutBase<StoneSawmillRecipe> {
 
   private final Ingredient blade;
   private final boolean createWoodChips;
 
   @Nullable
-  public static MillStoneRecipe getRecipe(ItemStack input, ItemStack blade) {
+  public static StoneSawmillRecipe getRecipe(ItemStack input, ItemStack blade) {
 
-    for (MillStoneRecipe recipe : ModuleTechMachine.Registries.MILL_STONE_RECIPE) {
+    for (StoneSawmillRecipe recipe : ModuleTechMachine.Registries.MILL_STONE_RECIPE) {
 
       if (recipe.matches(input)
           && recipe.blade.apply(blade)) {
@@ -33,7 +33,7 @@ public class MillStoneRecipe
     return RecipeHelper.removeRecipesByOutput(ModuleTechMachine.Registries.MILL_STONE_RECIPE, output);
   }
 
-  public MillStoneRecipe(
+  public StoneSawmillRecipe(
       ItemStack output,
       Ingredient input,
       int timeTicks,

@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.MillStoneRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
@@ -67,7 +67,7 @@ public class ZenMillStone {
     @Override
     public void apply() {
 
-      MillStoneRecipe.removeRecipes(this.output);
+      StoneSawmillRecipe.removeRecipes(this.output);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class ZenMillStone {
     @Override
     public void apply() {
 
-      MillStoneRecipe recipe = new MillStoneRecipe(
+      StoneSawmillRecipe recipe = new StoneSawmillRecipe(
           this.output,
           this.input,
           this.burnTimeTicks,

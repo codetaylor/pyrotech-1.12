@@ -9,13 +9,13 @@ import net.minecraft.util.math.MathHelper;
 
 import javax.annotation.Nullable;
 
-public class KilnStoneRecipe
-    extends StoneMachineRecipeItemInItemOutBase<KilnStoneRecipe> {
+public class StoneKilnRecipe
+    extends StoneMachineRecipeItemInItemOutBase<StoneKilnRecipe> {
 
   @Nullable
-  public static KilnStoneRecipe getRecipe(ItemStack input) {
+  public static StoneKilnRecipe getRecipe(ItemStack input) {
 
-    for (KilnStoneRecipe recipe : ModuleTechMachine.Registries.KILN_STONE_RECIPE) {
+    for (StoneKilnRecipe recipe : ModuleTechMachine.Registries.KILN_STONE_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -33,7 +33,7 @@ public class KilnStoneRecipe
   private final float failureChance;
   private final ItemStack[] failureItems;
 
-  public KilnStoneRecipe(
+  public StoneKilnRecipe(
       ItemStack output,
       Ingredient input,
       int burnTimeTicks,
