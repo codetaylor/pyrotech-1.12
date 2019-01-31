@@ -11,23 +11,24 @@ import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.interaction.spi.*;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
+import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
-import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -89,7 +90,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     this.interactions = new IInteraction[]{
         new InteractionBucket(),
-        new InteractionUseFlintAndSteel(),
+        new InteractionUseItemToActivateWorker(Items.FLINT_AND_STEEL, new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK),
         new InteractionFuel(new ItemStackHandler[]{
             TileCombustionWorkerStoneBase.this.fuelStackHandler
         })
@@ -445,40 +446,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
       return StackHelper.isFuel(itemStack)
           && !itemStack.getItem().hasContainerItem(itemStack);
-    }
-  }
-
-  private class InteractionUseFlintAndSteel
-      extends InteractionUseItemBase<TileCombustionWorkerStoneBase> {
-
-    /* package */ InteractionUseFlintAndSteel() {
-
-      super(new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK);
-    }
-
-    @Override
-    protected boolean allowInteraction(TileCombustionWorkerStoneBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
-
-      return (player.getHeldItem(hand).getItem() == Items.FLINT_AND_STEEL);
-    }
-
-    @Override
-    protected boolean doInteraction(TileCombustionWorkerStoneBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
-
-      if (!world.isRemote) {
-        tile.workerSetActive(true);
-
-        world.playSound(
-            null,
-            hitPos,
-            SoundEvents.ITEM_FLINTANDSTEEL_USE,
-            SoundCategory.BLOCKS,
-            1.0F,
-            Util.RANDOM.nextFloat() * 0.4F + 0.8F
-        );
-      }
-
-      return true;
     }
   }
 
