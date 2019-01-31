@@ -1,9 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tool"]
+    }
+  ],
   "pattern": [
-    "RR",
-    " S",
-    " S"
+    "R",
+    "R",
+    "S"
   ],
   "key": {
     "R": {
@@ -16,7 +22,7 @@
     }
   },
   "result": {
-    "item": "pyrotech:flint_hoe",
+    "item": "pyrotech:flint_sword",
     "count": 1,
     "data": 0
   }

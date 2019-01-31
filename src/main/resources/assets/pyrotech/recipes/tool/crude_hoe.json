@@ -1,14 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tool"]
+    }
+  ],
   "pattern": [
-    "R",
-    "R",
-    "S"
+    "TR",
+    "S "
   ],
   "key": {
     "R": {
+      "type": "forge:ore_dict",
+      "ore": "rock"
+    },
+    "T": {
       "item": "pyrotech:material",
-      "data": 10
+      "data": 12
     },
     "S": {
       "type": "forge:ore_dict",
@@ -16,7 +25,7 @@
     }
   },
   "result": {
-    "item": "pyrotech:flint_sword",
+    "item": "pyrotech:crude_hoe",
     "count": 1,
     "data": 0
   }

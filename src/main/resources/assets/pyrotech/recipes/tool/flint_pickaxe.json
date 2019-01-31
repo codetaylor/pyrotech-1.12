@@ -1,5 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tool"]
+    }
+  ],
   "pattern": [
     "RRR",
     " S ",
@@ -8,7 +14,7 @@
   "key": {
     "R": {
       "item": "pyrotech:material",
-      "data": 11
+      "data": 10
     },
     "S": {
       "type": "forge:ore_dict",
@@ -16,7 +22,7 @@
     }
   },
   "result": {
-    "item": "pyrotech:bone_pickaxe",
+    "item": "pyrotech:flint_pickaxe",
     "count": 1,
     "data": 0
   }

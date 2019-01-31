@@ -1,17 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tool"]
+    }
+  ],
   "pattern": [
-    "RT",
-    "SR"
+    "R",
+    "R",
+    "S"
   ],
   "key": {
     "R": {
-      "type": "forge:ore_dict",
-      "ore": "rock"
-    },
-    "T": {
       "item": "pyrotech:material",
-      "data": 12
+      "data": 11
     },
     "S": {
       "type": "forge:ore_dict",
@@ -19,7 +22,7 @@
     }
   },
   "result": {
-    "item": "pyrotech:crude_pickaxe",
+    "item": "pyrotech:bone_sword",
     "count": 1,
     "data": 0
   }

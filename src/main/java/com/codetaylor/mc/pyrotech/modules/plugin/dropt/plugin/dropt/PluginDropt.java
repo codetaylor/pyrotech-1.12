@@ -14,7 +14,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockOre;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemCrudePickaxe;
+import com.codetaylor.mc.pyrotech.modules.tool.item.ItemCrudePickaxe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockSand;

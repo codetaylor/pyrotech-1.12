@@ -32,10 +32,6 @@ public class ModulePyrotech
 
   public static final Logger LOGGER = LogManager.getLogger(MOD_ID + "." + ModulePyrotech.class.getSimpleName());
 
-  static {
-    FluidRegistry.enableUniversalBucket();
-  }
-
   public static IPacketService PACKET_SERVICE;
   public static ITileDataService TILE_DATA_SERVICE;
 

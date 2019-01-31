@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
+import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGen;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -33,6 +34,7 @@ public class ModPyrotechConfig {
     MODULES.put(ModuleTechBasic.MODULE_ID, true);
     MODULES.put(ModuleTechMachine.MODULE_ID, true);
     MODULES.put(ModuleTechRefractory.MODULE_ID, true);
+    MODULES.put(ModuleTool.MODULE_ID, true);
     MODULES.put(ModuleWorldGen.MODULE_ID, true);
 
     MODULES.put(ModulePluginDropt.MODULE_ID, true);

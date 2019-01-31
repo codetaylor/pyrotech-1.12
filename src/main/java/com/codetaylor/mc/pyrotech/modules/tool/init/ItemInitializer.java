@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.*;
+import com.codetaylor.mc.pyrotech.modules.tool.item.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
@@ -28,6 +29,23 @@ public final class ModuleItems {
   public static final ItemAppleBaked APPLE_BAKED = new ItemAppleBaked();
   public static final ItemBurnedFood BURNED_FOOD = new ItemBurnedFood();
 
+  public static final ItemCrudeAxe CRUDE_AXE = new ItemCrudeAxe();
+  public static final ItemCrudeHoe CRUDE_HOE = new ItemCrudeHoe();
+  public static final ItemCrudePickaxe CRUDE_PICKAXE = new ItemCrudePickaxe();
+  public static final ItemCrudeShovel CRUDE_SHOVEL = new ItemCrudeShovel();
+
+  public static final ItemBoneAxe BONE_AXE = new ItemBoneAxe();
+  public static final ItemBoneHoe BONE_HOE = new ItemBoneHoe();
+  public static final ItemBonePickaxe BONE_PICKAXE = new ItemBonePickaxe();
+  public static final ItemBoneShovel BONE_SHOVEL = new ItemBoneShovel();
+  public static final ItemBoneSword BONE_SWORD = new ItemBoneSword();
+
+  public static final ItemFlintAxe FLINT_AXE = new ItemFlintAxe();
+  public static final ItemFlintHoe FLINT_HOE = new ItemFlintHoe();
+  public static final ItemFlintPickaxe FLINT_PICKAXE = new ItemFlintPickaxe();
+  public static final ItemFlintShovel FLINT_SHOVEL = new ItemFlintShovel();
+  public static final ItemFlintSword FLINT_SWORD = new ItemFlintSword();
+
   public static final ItemBoneHammer BONE_HAMMER = new ItemBoneHammer();
   public static final ItemDiamondHammer DIAMOND_HAMMER = new ItemDiamondHammer();
   public static final ItemFlintHammer FLINT_HAMMER = new ItemFlintHammer();
@@ -48,6 +66,23 @@ public final class ModuleItems {
 
     registry.registerItem(ModuleItems.APPLE_BAKED, ItemAppleBaked.NAME);
     registry.registerItem(ModuleItems.BURNED_FOOD, ItemBurnedFood.NAME);
+
+    registry.registerItem(ModuleItems.CRUDE_AXE, ItemCrudeAxe.NAME);
+    registry.registerItem(ModuleItems.CRUDE_HOE, ItemCrudeHoe.NAME);
+    registry.registerItem(ModuleItems.CRUDE_PICKAXE, ItemCrudePickaxe.NAME);
+    registry.registerItem(ModuleItems.CRUDE_SHOVEL, ItemCrudeShovel.NAME);
+
+    registry.registerItem(ModuleItems.BONE_AXE, ItemBoneAxe.NAME);
+    registry.registerItem(ModuleItems.BONE_HOE, ItemBoneHoe.NAME);
+    registry.registerItem(ModuleItems.BONE_PICKAXE, ItemBonePickaxe.NAME);
+    registry.registerItem(ModuleItems.BONE_SHOVEL, ItemBoneShovel.NAME);
+    registry.registerItem(ModuleItems.BONE_SWORD, ItemBoneSword.NAME);
+
+    registry.registerItem(ModuleItems.FLINT_AXE, ItemFlintAxe.NAME);
+    registry.registerItem(ModuleItems.FLINT_HOE, ItemFlintHoe.NAME);
+    registry.registerItem(ModuleItems.FLINT_PICKAXE, ItemFlintPickaxe.NAME);
+    registry.registerItem(ModuleItems.FLINT_SHOVEL, ItemFlintShovel.NAME);
+    registry.registerItem(ModuleItems.FLINT_SWORD, ItemFlintSword.NAME);
 
     registry.registerItem(ModuleItems.CRUDE_HAMMER, ItemCrudeHammer.NAME);
     registry.registerItem(ModuleItems.STONE_HAMMER, ItemStoneHammer.NAME);
@@ -89,6 +124,23 @@ public final class ModuleItems {
 
           ModuleItems.APPLE_BAKED,
           ModuleItems.BURNED_FOOD,
+
+          ModuleItems.CRUDE_AXE,
+          ModuleItems.CRUDE_HOE,
+          ModuleItems.CRUDE_PICKAXE,
+          ModuleItems.CRUDE_SHOVEL,
+
+          ModuleItems.BONE_AXE,
+          ModuleItems.BONE_HOE,
+          ModuleItems.BONE_PICKAXE,
+          ModuleItems.BONE_SHOVEL,
+          ModuleItems.BONE_SWORD,
+
+          ModuleItems.FLINT_AXE,
+          ModuleItems.FLINT_HOE,
+          ModuleItems.FLINT_PICKAXE,
+          ModuleItems.FLINT_SHOVEL,
+          ModuleItems.FLINT_SWORD,
 
           ModuleItems.CRUDE_HAMMER,
           ModuleItems.STONE_HAMMER,

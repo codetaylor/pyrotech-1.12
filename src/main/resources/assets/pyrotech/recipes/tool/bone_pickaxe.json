@@ -1,9 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "modules": ["module.tool"]
+    }
+  ],
   "pattern": [
-    "R",
-    "R",
-    "S"
+    "RRR",
+    " S ",
+    " S "
   ],
   "key": {
     "R": {
@@ -16,7 +22,7 @@
     }
   },
   "result": {
-    "item": "pyrotech:bone_sword",
+    "item": "pyrotech:bone_pickaxe",
     "count": 1,
     "data": 0
   }
