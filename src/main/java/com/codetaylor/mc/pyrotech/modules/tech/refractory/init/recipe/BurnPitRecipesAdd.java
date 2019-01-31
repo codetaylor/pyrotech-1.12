@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.init.recipe;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

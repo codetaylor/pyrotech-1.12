@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.category.JEIRecipeCategoryPitBurn;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.category.JEIRecipeCategoryRefractoryBurn;

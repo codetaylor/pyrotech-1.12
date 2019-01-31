@@ -7,7 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.init.PacketInitializer;
-import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockActivePile;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockPitAsh;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarCollector;

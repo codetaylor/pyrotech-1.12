@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.core.recipe;
+package com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;

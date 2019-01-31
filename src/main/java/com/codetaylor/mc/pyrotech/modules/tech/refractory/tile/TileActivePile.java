@@ -4,7 +4,7 @@ import com.codetaylor.mc.pyrotech.library.spi.tile.TileBurnableBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRefractoryDoor;
-import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import net.minecraft.block.Block;

@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.block.Block;

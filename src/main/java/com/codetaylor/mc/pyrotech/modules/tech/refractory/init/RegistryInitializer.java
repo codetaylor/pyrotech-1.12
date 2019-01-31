@@ -8,7 +8,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockIgniter;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
