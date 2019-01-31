@@ -1,10 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.init.recipe;
 
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -20,7 +19,7 @@ public class BurnPitRecipesAdd {
     // Charcoal
     registry.register(new PitBurnRecipe(
         new ItemStack(Items.COAL, 1, 1),
-        new BlockMetaMatcher(ModuleBlocks.LOG_PILE, OreDictionary.WILDCARD_VALUE),
+        new BlockMetaMatcher(ModuleCore.Blocks.LOG_PILE, OreDictionary.WILDCARD_VALUE),
         10,
         12 * 60 * 20,
         new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 50),
@@ -31,12 +30,12 @@ public class BurnPitRecipesAdd {
         },
         false,
         true
-    ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal"));
+    ).setRegistryName(ModuleCore.MOD_ID, "charcoal"));
 
     // Charcoal from Pile of Wood Chips
     registry.register(new PitBurnRecipe(
         new ItemStack(Items.COAL, 1, 1),
-        new BlockMetaMatcher(ModuleBlocks.PILE_WOOD_CHIPS, 8),
+        new BlockMetaMatcher(ModuleCore.Blocks.PILE_WOOD_CHIPS, 8),
         4,
         6 * 60 * 20,
         new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 50),
@@ -47,7 +46,7 @@ public class BurnPitRecipesAdd {
         },
         false,
         true
-    ).setRegistryName(ModulePyrotech.MOD_ID, "charcoal_from_pile_wood_chips"));
+    ).setRegistryName(ModuleCore.MOD_ID, "charcoal_from_pile_wood_chips"));
 
     // Coal Coke
     registry.register(new PitBurnRecipe(
@@ -63,6 +62,6 @@ public class BurnPitRecipesAdd {
         },
         true,
         true
-    ).setRegistryName(ModulePyrotech.MOD_ID, "coal_coke"));
+    ).setRegistryName(ModuleCore.MOD_ID, "coal_coke"));
   }
 }

@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.ICraftingGridHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -29,7 +29,7 @@ import java.util.List;
 public class JEIRecipeCategoryWorktable
     implements IRecipeCategory<IRecipeWrapper> {
 
-  public static final String UID = ModulePyrotech.MOD_ID + ".worktable";
+  public static final String UID = ModuleCore.MOD_ID + ".worktable";
 
   private static final int CRAFT_OUTPUT_SLOT_INDEX = 0;
   private static final int CRAFT_INPUT_SLOT_INDEX = 1;
@@ -42,7 +42,7 @@ public class JEIRecipeCategoryWorktable
 
     ResourceLocation location = Constants.RECIPE_GUI_VANILLA;
     background = guiHelper.createDrawable(location, 0, 60, 116, 54);
-    this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.worktable");
+    this.title = Translator.translateToLocal("gui." + ModuleCore.MOD_ID + ".jei.category.worktable");
     this.craftingGridHelper = guiHelper.createCraftingGridHelper(CRAFT_INPUT_SLOT_INDEX, CRAFT_OUTPUT_SLOT_INDEX);
   }
 
@@ -64,7 +64,7 @@ public class JEIRecipeCategoryWorktable
   @Override
   public String getModName() {
 
-    return ModulePyrotech.MOD_ID;
+    return ModuleCore.MOD_ID;
   }
 
   @Nonnull

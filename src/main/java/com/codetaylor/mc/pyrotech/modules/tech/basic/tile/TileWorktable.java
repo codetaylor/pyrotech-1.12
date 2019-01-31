@@ -16,7 +16,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
@@ -292,7 +292,7 @@ public class TileWorktable
         return false;
       }
 
-      return ModulePyrotechConfig.HAMMERS.getHammerHarvestLevel(registryName) > -1;
+      return ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(registryName) > -1;
     }
 
     @Override
@@ -447,7 +447,7 @@ public class TileWorktable
         return false;
       }
 
-      return ModulePyrotechConfig.HAMMERS.getHammerHarvestLevel(registryName) == -1;
+      return ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(registryName) == -1;
     }
 
     @Override

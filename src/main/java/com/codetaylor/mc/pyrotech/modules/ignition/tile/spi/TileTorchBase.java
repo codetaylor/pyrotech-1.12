@@ -10,7 +10,8 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchFiber;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,7 +43,7 @@ public abstract class TileTorchBase
 
   public TileTorchBase() {
 
-    super(ModulePyrotech.TILE_DATA_SERVICE);
+    super(ModuleIgnition.TILE_DATA_SERVICE);
 
     this.type = new TileDataInteger(BlockTorchFiber.EnumType.UNLIT.getMeta());
 

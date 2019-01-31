@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.util;
 
 import com.codetaylor.mc.pyrotech.library.util.FloodFill;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileActivePile;
 import net.minecraft.block.state.IBlockState;

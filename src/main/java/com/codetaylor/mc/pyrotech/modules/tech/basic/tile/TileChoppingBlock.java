@@ -15,8 +15,8 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockChoppingBlock;
@@ -270,7 +270,7 @@ public class TileChoppingBlock
 
       if (!world.isRemote) {
         tile.setSawdust(tile.getSawdust() - 1);
-        StackHelper.spawnStackOnTop(world, new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta()), hitPos, 0);
+        StackHelper.spawnStackOnTop(world, new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta()), hitPos, 0);
         heldItem.damageItem(1, player);
         world.playSound(null, hitPos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
 
@@ -374,8 +374,8 @@ public class TileChoppingBlock
             BlockHelper.forBlocksInCube(world, tile.getPos(), 1, 1, 1, (w, p, bs) -> {
 
               if (w.isAirBlock(p)
-                  && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
-                  && bs.getBlock() != ModuleBlocks.ROCK) {
+                  && ModuleCore.Blocks.ROCK.canPlaceBlockAt(w, p)
+                  && bs.getBlock() != ModuleCore.Blocks.ROCK) {
 
                 candidates.add(p);
               }
@@ -387,7 +387,7 @@ public class TileChoppingBlock
           if (candidates.size() > 0) {
             Collections.shuffle(candidates);
 
-            world.setBlockState(candidates.get(0), ModuleBlocks.ROCK.getDefaultState()
+            world.setBlockState(candidates.get(0), ModuleCore.Blocks.ROCK.getDefaultState()
                 .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
           }
         } // END: Wood Chips

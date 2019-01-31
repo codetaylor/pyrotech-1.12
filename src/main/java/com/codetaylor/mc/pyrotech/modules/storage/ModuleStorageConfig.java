@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.storage;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = ModulePyrotech.MOD_ID, name = ModulePyrotech.MOD_ID + "/" + "module.Storage")
+@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "module.Storage")
 public class ModuleStorageConfig {
 
   // ---------------------------------------------------------------------------

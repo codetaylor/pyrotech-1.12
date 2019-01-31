@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.interaction.event;
 
 import com.codetaylor.mc.pyrotech.interaction.network.CSPacketInteractionMouseWheel;
 import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.math.RayTraceResult;
@@ -42,7 +42,7 @@ public class MouseEventHandler {
     if (rayTraceResult.hitInfo instanceof InteractionRayTraceData.List) {
 
       CSPacketInteractionMouseWheel packet = new CSPacketInteractionMouseWheel(rayTraceResult.getBlockPos(), wheelDelta, rayTraceResult.sideHit, rayTraceResult.hitVec);
-      ModulePyrotech.PACKET_SERVICE.sendToServer(packet);
+      ModuleCore.PACKET_SERVICE.sendToServer(packet);
       event.setCanceled(true);
     }
   }

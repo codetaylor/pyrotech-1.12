@@ -9,13 +9,13 @@ import com.codetaylor.mc.dropt.api.reference.EnumListType;
 import com.codetaylor.mc.dropt.api.reference.EnumReplaceStrategy;
 import com.codetaylor.mc.pyrotech.ModPyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDroptConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockCobblestone;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockOre;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockOre;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.tool.item.ItemCrudePickaxe;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.BlockStone;
@@ -44,7 +44,7 @@ public class PluginDropt {
 
   private static String item(String name, int meta) {
 
-    return item(ModulePyrotech.MOD_ID, name, meta);
+    return item(ModuleCore.MOD_ID, name, meta);
   }
 
   private static String item(String modId, String name, int meta) {
@@ -777,7 +777,7 @@ public class PluginDropt {
     // - Registration
     // -------------------------------------------------------------------------
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModulePyrotech.MOD_ID, "dropt");
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "dropt");
     registerRuleList(resourceLocation, 0, list);
   }
 

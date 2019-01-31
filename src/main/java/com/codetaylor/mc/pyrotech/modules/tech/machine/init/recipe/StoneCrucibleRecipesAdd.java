@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.CompoundIngredientPublic;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.CrucibleStoneRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -27,7 +27,7 @@ public class StoneCrucibleRecipesAdd {
             new OreIngredient("cobblestone")
         })),
         2 * 60 * 20
-    ).setRegistryName(ModulePyrotech.MOD_ID, "lava_from_stone"));
+    ).setRegistryName(ModuleCore.MOD_ID, "lava_from_stone"));
 
     // Water from Ice
     registry.register(new CrucibleStoneRecipe(
@@ -36,7 +36,7 @@ public class StoneCrucibleRecipesAdd {
             new ItemStack(Blocks.ICE, 1, 0)
         ),
         60 * 20
-    ).setRegistryName(ModulePyrotech.MOD_ID, "water_from_ice"));
+    ).setRegistryName(ModuleCore.MOD_ID, "water_from_ice"));
 
     // Water from Snow
     registry.register(new CrucibleStoneRecipe(
@@ -45,7 +45,7 @@ public class StoneCrucibleRecipesAdd {
             new ItemStack(Blocks.SNOW, 1, 0)
         ),
         15 * 20
-    ).setRegistryName(ModulePyrotech.MOD_ID, "water_from_snow"));
+    ).setRegistryName(ModuleCore.MOD_ID, "water_from_snow"));
 
     // Water from Snowballs
     registry.register(new CrucibleStoneRecipe(
@@ -54,7 +54,7 @@ public class StoneCrucibleRecipesAdd {
             new ItemStack(Items.SNOWBALL, 1, 0)
         ),
         15 * 20
-    ).setRegistryName(ModulePyrotech.MOD_ID, "water_from_snowballs"));
+    ).setRegistryName(ModuleCore.MOD_ID, "water_from_snowballs"));
 
     // Water from Packed Ice
     registry.register(new CrucibleStoneRecipe(
@@ -63,6 +63,6 @@ public class StoneCrucibleRecipesAdd {
             new ItemStack(Blocks.PACKED_ICE, 1, 0)
         ),
         4 * 60 * 20
-    ).setRegistryName(ModulePyrotech.MOD_ID, "water_from_packed_ice"));
+    ).setRegistryName(ModuleCore.MOD_ID, "water_from_packed_ice"));
   }
 }

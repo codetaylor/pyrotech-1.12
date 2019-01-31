@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperTimed;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.KilnStoneRecipe;
 import mezz.jei.api.ingredients.IIngredients;
@@ -34,7 +34,7 @@ public class JEIRecipeWrapperKilnStone
     this.outputs.add(Arrays.asList(recipe.getFailureItems()));
 
     this.failureChance = Util.translateFormatted(
-        "gui." + ModulePyrotech.MOD_ID + ".jei.failure",
+        "gui." + ModuleCore.MOD_ID + ".jei.failure",
         (int) (recipe.getFailureChance() * 100)
     );
   }

@@ -1,11 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile;
 
-import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRefractoryDoor;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileBurnableBase;
+import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRefractoryDoor;
+import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import net.minecraft.block.Block;
@@ -42,7 +41,7 @@ public class TileActivePile
 
   public TileActivePile() {
 
-    super(ModulePyrotech.TILE_DATA_SERVICE);
+    super(ModuleCore.TILE_DATA_SERVICE);
     this.fluidTank = new FluidTank(this.getMaxFluidLevel());
     this.output = new ItemStackHandler(9);
   }
@@ -272,7 +271,7 @@ public class TileActivePile
 
   private boolean isValidRefractoryDoor(IBlockState blockState, EnumFacing facing) {
 
-    if (blockState.getBlock() == ModuleBlocks.REFRACTORY_DOOR) {
+    if (blockState.getBlock() == ModuleCore.Blocks.REFRACTORY_DOOR) {
 
       if (!blockState.getValue(BlockRefractoryDoor.OPEN)
           && blockState.getValue(BlockRefractoryDoor.FACING) == facing) {

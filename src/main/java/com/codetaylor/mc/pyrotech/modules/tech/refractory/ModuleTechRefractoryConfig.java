@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import net.minecraftforge.common.config.Config;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Config(modid = ModulePyrotech.MOD_ID, name = ModulePyrotech.MOD_ID + "/" + "module.tech.Refractory")
+@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "module.tech.Refractory")
 public class ModuleTechRefractoryConfig {
 
   // ---------------------------------------------------------------------------
@@ -97,4 +97,26 @@ public class ModuleTechRefractoryConfig {
     public int TAR_DRAIN_CAPACITY = 1000;
   }
 
+  // ---------------------------------------------------------------------------
+  // - Fuel
+  // ---------------------------------------------------------------------------
+
+  public static Fuel FUEL = new Fuel();
+
+  public static class Fuel {
+
+    @Config.Comment({
+        "Coal tar burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 6400
+    })
+    public int COAL_TAR_BURN_TIME_TICKS = 6400;
+
+    @Config.Comment({
+        "Wood tar burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 4800
+    })
+    public int WOOD_TAR_BURN_TIME_TICKS = 4800;
+  }
 }

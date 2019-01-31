@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperSoakingPot;
@@ -27,7 +27,7 @@ public class JEIRecipeCategorySoakingPot
 
   public JEIRecipeCategorySoakingPot(IGuiHelper guiHelper) {
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModulePyrotech.MOD_ID, "textures/gui/jei4.png");
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "textures/gui/jei4.png");
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82, 0, 24, 17);
 
@@ -36,7 +36,7 @@ public class JEIRecipeCategorySoakingPot
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 38);
 
-    this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.soaking.pot");
+    this.title = Translator.translateToLocal("gui." + ModuleCore.MOD_ID + ".jei.category.soaking.pot");
   }
 
   @Nonnull
@@ -57,7 +57,7 @@ public class JEIRecipeCategorySoakingPot
   @Override
   public String getModName() {
 
-    return ModulePyrotech.MOD_ID;
+    return ModuleCore.MOD_ID;
   }
 
   @Nonnull

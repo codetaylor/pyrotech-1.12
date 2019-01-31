@@ -3,8 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.bucket.init;
 import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucketConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.KilnStoneRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -26,7 +26,7 @@ public class StoneKilnRecipesAdd {
               ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
               ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
           }
-      ).setRegistryName(ModulePyrotech.MOD_ID, "bucket_clay"));
+      ).setRegistryName(ModuleCore.MOD_ID, "bucket_clay"));
     }
 
   }

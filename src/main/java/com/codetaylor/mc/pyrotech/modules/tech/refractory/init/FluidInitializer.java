@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.Injector;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.fluid.BlockFluidCoalTar;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.fluid.BlockFluidWoodTar;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
@@ -94,7 +94,7 @@ public final class FluidInitializer {
       Function<Fluid, T> blockFactory
   ) {
 
-    String texturePrefix = ModulePyrotech.MOD_ID + ":" + "blocks/fluid_";
+    String texturePrefix = ModuleCore.MOD_ID + ":" + "blocks/fluid_";
     final ResourceLocation still = new ResourceLocation(texturePrefix + name + "_still");
     final ResourceLocation flowing = hasFlowIcon ? new ResourceLocation(texturePrefix + name + "_flow") : still;
 
@@ -124,7 +124,7 @@ public final class FluidInitializer {
         ModelBakery.registerItemVariants(item);
 
         final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(
-            ModulePyrotech.MOD_ID + ":" + "fluid",
+            ModuleCore.MOD_ID + ":" + "fluid",
             fluidBlock.getFluid().getName()
         );
 

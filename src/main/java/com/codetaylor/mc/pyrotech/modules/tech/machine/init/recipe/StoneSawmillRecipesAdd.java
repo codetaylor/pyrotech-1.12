@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.MillStoneRecipe;
@@ -165,7 +165,7 @@ public class StoneSawmillRecipesAdd {
     // tarred board
     registerSawmillRecipeWood(registry, "board_tarred",
         ItemMaterial.EnumType.BOARD_TARRED.asStack(),
-        Ingredient.fromStacks(new ItemStack(ModuleBlocks.PLANKS_TARRED))
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.PLANKS_TARRED))
     );
   }
 

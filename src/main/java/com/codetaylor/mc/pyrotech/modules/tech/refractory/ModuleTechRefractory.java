@@ -6,8 +6,8 @@ import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModulePackets;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.core.init.PacketInitializer;
+import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockActivePile;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockPitAsh;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarCollector;
@@ -109,7 +109,7 @@ public class ModuleTechRefractory
   @Override
   public void onNetworkRegister(IPacketRegistry registry) {
 
-    ModulePackets.register(registry);
+    PacketInitializer.register(registry);
   }
 
   @Override

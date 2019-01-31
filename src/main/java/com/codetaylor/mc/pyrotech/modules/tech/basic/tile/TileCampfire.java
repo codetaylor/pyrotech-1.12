@@ -17,9 +17,9 @@ import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockCampfire;
@@ -212,7 +212,7 @@ public class TileCampfire
   @Override
   protected int combustionGetInitialBurnTimeRemaining() {
 
-    return ModulePyrotechConfig.FUEL.TINDER_BURN_TIME_TICKS;
+    return ModuleCoreConfig.FUEL.TINDER_BURN_TIME_TICKS;
   }
 
   @Override
@@ -343,10 +343,10 @@ public class TileCampfire
     if (!this.outputStackHandler.getStackInSlot(0).isEmpty()) {
       ItemStack stackInSlot = this.outputStackHandler.getStackInSlot(0);
 
-      if (stackInSlot.getItem() != ModuleItems.BURNED_FOOD) {
+      if (stackInSlot.getItem() != ModuleCore.Items.BURNED_FOOD) {
 
         if (this.burnedFoodTickCounter.increment()) {
-          this.outputStackHandler.setStackInSlot(0, new ItemStack(ModuleItems.BURNED_FOOD));
+          this.outputStackHandler.setStackInSlot(0, new ItemStack(ModuleCore.Items.BURNED_FOOD));
         }
       }
 

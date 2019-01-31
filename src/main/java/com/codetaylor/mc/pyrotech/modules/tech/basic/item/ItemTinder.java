@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.item;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockCampfire;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +27,7 @@ public class ItemTinder
   @Override
   public int getItemBurnTime(ItemStack itemStack) {
 
-    return ModulePyrotechConfig.FUEL.TINDER_BURN_TIME_TICKS;
+    return ModuleCoreConfig.FUEL.TINDER_BURN_TIME_TICKS;
   }
 
   @Nonnull

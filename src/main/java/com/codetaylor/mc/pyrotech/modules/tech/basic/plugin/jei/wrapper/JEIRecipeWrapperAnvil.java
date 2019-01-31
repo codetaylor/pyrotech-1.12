@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RenderHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import mezz.jei.api.ingredients.IIngredients;
@@ -52,7 +52,7 @@ public class JEIRecipeWrapperAnvil
     String[] toolWhitelist;
 
     if (this.type == AnvilRecipe.EnumType.HAMMER) {
-      toolWhitelist = ModulePyrotechConfig.HAMMERS.HAMMER_LIST;
+      toolWhitelist = ModuleCoreConfig.HAMMERS.HAMMER_LIST;
 
     } else if (this.type == AnvilRecipe.EnumType.PICKAXE) {
       toolWhitelist = ModuleTechBasicConfig.ANVIL_COMMON.JEI_HARVEST_LEVEL_PICKAXE;

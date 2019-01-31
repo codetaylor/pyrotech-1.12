@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.interaction.spi;
 
 import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -144,7 +144,7 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
       }
 
       if (!results.isEmpty()
-          && ModulePyrotechConfig.CLIENT.SHOW_INTERACTION_BOUNDS) {
+          && ModuleCoreConfig.CLIENT.SHOW_INTERACTION_BOUNDS) {
 
         // setup additive gl state
         {

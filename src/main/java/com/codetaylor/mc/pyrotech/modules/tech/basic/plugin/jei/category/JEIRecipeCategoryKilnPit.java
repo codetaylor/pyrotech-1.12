@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperKilnPit;
 import mezz.jei.api.IGuiHelper;
@@ -27,7 +27,7 @@ public class JEIRecipeCategoryKilnPit
 
   public JEIRecipeCategoryKilnPit(IGuiHelper guiHelper) {
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModulePyrotech.MOD_ID, "textures/gui/jei7.png");
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "textures/gui/jei7.png");
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82 + 19, 14, 24, 17);
     IDrawableStatic staticFlame = guiHelper.createDrawable(resourceLocation, 82 + 19, 0, 14, 14);
@@ -39,7 +39,7 @@ public class JEIRecipeCategoryKilnPit
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82 + 19, 54);
 
-    this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.kiln.pit");
+    this.title = Translator.translateToLocal("gui." + ModuleCore.MOD_ID + ".jei.category.kiln.pit");
   }
 
   @Nonnull
@@ -60,7 +60,7 @@ public class JEIRecipeCategoryKilnPit
   @Override
   public String getModName() {
 
-    return ModulePyrotech.MOD_ID;
+    return ModuleCore.MOD_ID;
   }
 
   @Nonnull

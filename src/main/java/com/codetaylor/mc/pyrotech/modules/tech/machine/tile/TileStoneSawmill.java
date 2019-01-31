@@ -11,8 +11,8 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.MillInteractionBladeRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemMillBlade;
@@ -161,9 +161,9 @@ public class TileStoneSawmill
       BlockHelper.forBlocksInCube(this.world, this.getPos(), 1, 1, 1, (w, p, bs) -> {
 
         if (w.isAirBlock(p)
-            && ModuleBlocks.ROCK.canPlaceBlockAt(w, p)
-            || (bs.getBlock() == ModuleBlocks.ROCK && bs.getValue(BlockRock.VARIANT) == BlockRock.EnumType.WOOD_CHIPS)
-            || bs.getBlock() == ModuleBlocks.PILE_WOOD_CHIPS) {
+            && ModuleCore.Blocks.ROCK.canPlaceBlockAt(w, p)
+            || (bs.getBlock() == ModuleCore.Blocks.ROCK && bs.getValue(BlockRock.VARIANT) == BlockRock.EnumType.WOOD_CHIPS)
+            || bs.getBlock() == ModuleCore.Blocks.PILE_WOOD_CHIPS) {
 
           candidates.add(p);
         }
@@ -179,11 +179,11 @@ public class TileStoneSawmill
         IBlockState blockState = this.world.getBlockState(pos);
         Block block = blockState.getBlock();
 
-        if (block == ModuleBlocks.ROCK
+        if (block == ModuleCore.Blocks.ROCK
             && blockState.getValue(BlockRock.VARIANT) == BlockRock.EnumType.WOOD_CHIPS) {
 
           // If wood chips already exist, start a pile.
-          this.world.setBlockState(pos, ModuleBlocks.PILE_WOOD_CHIPS.getDefaultState()
+          this.world.setBlockState(pos, ModuleCore.Blocks.PILE_WOOD_CHIPS.getDefaultState()
               .withProperty(BlockPileBase.LEVEL, 1));
 
           // Adjust entity height.
@@ -194,11 +194,11 @@ public class TileStoneSawmill
             entity.setPositionAndUpdate(entity.posX, entity.posY + (2.0 / 16.0) + 0.001D, entity.posZ);
           }
 
-        } else if (block == ModuleBlocks.PILE_WOOD_CHIPS) {
+        } else if (block == ModuleCore.Blocks.PILE_WOOD_CHIPS) {
           int level = blockState.getValue(BlockPileBase.LEVEL);
 
           if (level < 8) {
-            this.world.setBlockState(pos, ModuleBlocks.PILE_WOOD_CHIPS.getDefaultState()
+            this.world.setBlockState(pos, ModuleCore.Blocks.PILE_WOOD_CHIPS.getDefaultState()
                 .withProperty(BlockPileBase.LEVEL, level + 1));
 
             // Adjust entity height.
@@ -212,7 +212,7 @@ public class TileStoneSawmill
 
         } else {
 
-          this.world.setBlockState(pos, ModuleBlocks.ROCK.getDefaultState()
+          this.world.setBlockState(pos, ModuleCore.Blocks.ROCK.getDefaultState()
               .withProperty(BlockRock.VARIANT, BlockRock.EnumType.WOOD_CHIPS));
         }
       }

@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.category.JEIRecipeCategoryPitBurn;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.category.JEIRecipeCategoryRefractoryBurn;
@@ -66,7 +66,7 @@ public class PluginJEI
 
     // --- Refractory Burn
     {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBlocks.REFRACTORY_BRICK), JEIRecipeCategoryRefractoryBurn.UID);
+      registry.addRecipeCatalyst(new ItemStack(ModuleCore.Blocks.REFRACTORY_BRICK), JEIRecipeCategoryRefractoryBurn.UID);
       registry.handleRecipes(
           PitBurnRecipe.class,
           JEIRecipeWrapperRefractoryBurn::new,

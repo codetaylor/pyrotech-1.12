@@ -6,7 +6,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.worldgen.world.WorldGenerator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModuleWorldGen
@@ -27,10 +27,9 @@ public class ModuleWorldGen
   }
 
   @Override
-  public void onPreInitializationEvent(FMLPreInitializationEvent event) {
+  public void onInitializationEvent(FMLInitializationEvent event) {
 
-    super.onPreInitializationEvent(event);
+    super.onInitializationEvent(event);
     GameRegistry.registerWorldGenerator(new WorldGenerator(), 1);
   }
-
 }

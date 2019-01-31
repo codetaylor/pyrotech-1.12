@@ -3,10 +3,9 @@ package com.codetaylor.mc.pyrotech;
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.module.ModuleManager;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
@@ -47,7 +46,7 @@ public class ModPyrotech {
         return new ItemStack(ModuleTechBasic.Blocks.CAMPFIRE, 1, 0);
 
       } else {
-        return new ItemStack(ModuleBlocks.LOG_PILE);
+        return new ItemStack(ModuleCore.Blocks.LOG_PILE);
       }
     }
   };
@@ -65,7 +64,7 @@ public class ModPyrotech {
   public void onConstructionEvent(FMLConstructionEvent event) {
 
     this.moduleManager.registerModules(
-        ModulePyrotech.class
+        ModuleCore.class
     );
 
     // --- MODULES ---

@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperChoppingBlock;
 import mezz.jei.api.IGuiHelper;
@@ -25,7 +25,7 @@ public class JEIRecipeCategoryChoppingBlock
 
   public JEIRecipeCategoryChoppingBlock(IGuiHelper guiHelper) {
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModulePyrotech.MOD_ID, "textures/gui/jei3.png");
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "textures/gui/jei3.png");
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82, 0, 24, 17);
 
@@ -34,7 +34,7 @@ public class JEIRecipeCategoryChoppingBlock
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 40);
 
-    this.title = Translator.translateToLocal("gui." + ModulePyrotech.MOD_ID + ".jei.category.chopping");
+    this.title = Translator.translateToLocal("gui." + ModuleCore.MOD_ID + ".jei.category.chopping");
   }
 
   @Nonnull
@@ -55,7 +55,7 @@ public class JEIRecipeCategoryChoppingBlock
   @Override
   public String getModName() {
 
-    return ModulePyrotech.MOD_ID;
+    return ModuleCore.MOD_ID;
   }
 
   @Nonnull

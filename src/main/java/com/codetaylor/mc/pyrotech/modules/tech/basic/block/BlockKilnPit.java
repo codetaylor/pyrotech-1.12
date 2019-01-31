@@ -9,7 +9,7 @@ import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentFire;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileKilnPit;
 import net.minecraft.block.Block;
@@ -322,11 +322,9 @@ public class BlockKilnPit
 
     EnumType type = state.getValue(VARIANT);
 
-    if (type == BlockKilnPit.EnumType.WOOD) {
-      drops.add(new ItemStack(ModuleBlocks.THATCH, 1, 0));
-
-    } else if (type == BlockKilnPit.EnumType.THATCH) {
-      drops.add(new ItemStack(ModuleBlocks.THATCH, 1, 0));
+    if (type == BlockKilnPit.EnumType.WOOD
+        || type == BlockKilnPit.EnumType.THATCH) {
+      drops.add(new ItemStack(ModuleCore.Blocks.THATCH, 1, 0));
     }
 
     super.getDrops(drops, world, pos, state, fortune);

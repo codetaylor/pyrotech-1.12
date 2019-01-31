@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe;
 
 import com.codetaylor.mc.athenaeum.util.IngredientHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
@@ -56,7 +56,7 @@ public class BloomeryRecipesAdd {
           4,
           new ItemStack(itemSlagIron),
           new ItemStack[]{
-              new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
+              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
               new ItemStack(itemSlagIron)
           },
           null
@@ -74,7 +74,7 @@ public class BloomeryRecipesAdd {
           2,
           new ItemStack(itemSlagIron),
           new ItemStack[]{
-              new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
+              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
           },
           Blocks.IRON_ORE.getUnlocalizedName()
       ));
@@ -105,7 +105,7 @@ public class BloomeryRecipesAdd {
           4,
           new ItemStack(itemSlagGold),
           new ItemStack[]{
-              new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
+              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
               new ItemStack(itemSlagGold)
           },
           null
@@ -123,7 +123,7 @@ public class BloomeryRecipesAdd {
           2,
           new ItemStack(itemSlagGold),
           new ItemStack[]{
-              new ItemStack(ModuleBlocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
+              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
           },
           Blocks.GOLD_ORE.getUnlocalizedName()
       ));

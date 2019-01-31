@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockOre;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockOre;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -25,7 +25,7 @@ public class WorldGenerator
   public WorldGenerator() {
 
     this.worldGenFossil = new WorldGenOre(
-        ModuleBlocks.ORE.getDefaultState().withProperty(BlockOre.VARIANT, BlockOre.EnumType.FOSSIL_ORE),
+        ModuleCore.Blocks.ORE.getDefaultState().withProperty(BlockOre.VARIANT, BlockOre.EnumType.FOSSIL_ORE),
         random -> {
           int minVeinSize = ModuleWorldGenConfig.FOSSIL.MIN_VEIN_SIZE;
           int maxVeinSize = ModuleWorldGenConfig.FOSSIL.MAX_VEIN_SIZE;
@@ -34,7 +34,7 @@ public class WorldGenerator
     );
 
     this.worldGenLimestone = new WorldGenOre(
-        ModuleBlocks.LIMESTONE.getDefaultState(),
+        ModuleCore.Blocks.LIMESTONE.getDefaultState(),
         random -> {
           int minVeinSize = ModuleWorldGenConfig.LIMESTONE.MIN_VEIN_SIZE;
           int maxVeinSize = ModuleWorldGenConfig.LIMESTONE.MAX_VEIN_SIZE;
@@ -96,7 +96,7 @@ public class WorldGenerator
         BlockHelper.forBlocksInCube(world, new BlockPos(posX, posY, posZ), 4, 4, 4, (w, p, bs) -> {
 
           if (w.isAirBlock(p) && this.canSpawnOnTopOf(w, p.down(), w.getBlockState(p.down())) && random.nextFloat() < density) {
-            world.setBlockState(p, ModuleBlocks.ROCK.getDefaultState().withProperty(BlockRock.VARIANT, BlockRock.EnumType.STONE), 2 | 16);
+            world.setBlockState(p, ModuleCore.Blocks.ROCK.getDefaultState().withProperty(BlockRock.VARIANT, BlockRock.EnumType.STONE), 2 | 16);
           }
 
           return true; // keep processing

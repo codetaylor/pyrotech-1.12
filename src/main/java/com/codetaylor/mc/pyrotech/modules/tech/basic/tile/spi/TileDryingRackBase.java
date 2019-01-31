@@ -9,7 +9,7 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.TickCounter;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetWorkerBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -46,7 +46,7 @@ public abstract class TileDryingRackBase
 
   public TileDryingRackBase(int taskCount) {
 
-    super(ModulePyrotech.TILE_DATA_SERVICE, taskCount);
+    super(ModuleCore.TILE_DATA_SERVICE, taskCount);
 
     this.inputStackHandler = new InputStackHandler(this.getSlotCount());
     this.inputStackHandler.addObserver((handler, slot) -> {

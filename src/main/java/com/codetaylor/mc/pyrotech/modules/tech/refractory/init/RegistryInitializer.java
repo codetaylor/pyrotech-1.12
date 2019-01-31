@@ -7,10 +7,10 @@ import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockIgniter;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleBlocks;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarCollector;
@@ -71,13 +71,13 @@ public final class RegistryInitializer {
     }
 
     blockMetaMatcherList.addAll(Arrays.asList(
-        new BlockMetaMatcher(ModuleBlocks.REFRACTORY_BRICK, 0),
+        new BlockMetaMatcher(ModuleCore.Blocks.REFRACTORY_BRICK, 0),
+        new BlockMetaMatcher(ModuleCore.Blocks.REFRACTORY_GLASS, OreDictionary.WILDCARD_VALUE),
         new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_COLLECTOR, BlockTarCollector.EnumType.BRICK.getMeta()),
         new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.NORTH)),
         new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.EAST)),
         new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.SOUTH)),
-        new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.WEST)),
-        new BlockMetaMatcher(ModuleBlocks.REFRACTORY_GLASS, OreDictionary.WILDCARD_VALUE)
+        new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.WEST))
     ));
 
     for (String blockString : ModuleTechRefractoryConfig.REFRACTORY.REFRACTORY_BRICKS) {

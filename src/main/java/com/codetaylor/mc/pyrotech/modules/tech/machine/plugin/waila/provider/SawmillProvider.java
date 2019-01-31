@@ -5,7 +5,7 @@ import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInItemOutBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneSawmill;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneSawmillTop;
@@ -122,7 +122,7 @@ public class SawmillProvider
       {
         if (!blade.isEmpty()) {
           tooltip.add(Util.translateFormatted(
-              "gui." + ModulePyrotech.MOD_ID + ".waila.sawmill.blade",
+              "gui." + ModuleCore.MOD_ID + ".waila.sawmill.blade",
               blade.getItem().getItemStackDisplayName(blade)
           ));
         }
@@ -130,14 +130,14 @@ public class SawmillProvider
         if (tile.combustionGetBurnTimeRemaining() > 0) {
           ItemStack fuelStack = tile.getFuelStackHandler().getStackInSlot(0);
           tooltip.add(Util.translateFormatted(
-              "gui." + ModulePyrotech.MOD_ID + ".waila.burn.time",
+              "gui." + ModuleCore.MOD_ID + ".waila.burn.time",
               StringHelper.ticksToHMS(tile.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
           ));
         }
 
         if (!fuel.isEmpty()) {
           tooltip.add(Util.translateFormatted(
-              "gui." + ModulePyrotech.MOD_ID + ".waila.fuel",
+              "gui." + ModuleCore.MOD_ID + ".waila.fuel",
               fuel.getItem().getItemStackDisplayName(fuel) + " * " + fuel.getCount()
           ));
         }

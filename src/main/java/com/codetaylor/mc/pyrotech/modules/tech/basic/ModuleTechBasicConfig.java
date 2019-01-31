@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotech;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = ModulePyrotech.MOD_ID, name = ModulePyrotech.MOD_ID + "/" + "module.tech.Basic")
+@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "module.tech.Basic")
 public class ModuleTechBasicConfig {
 
   // ---------------------------------------------------------------------------
@@ -337,7 +337,7 @@ public class ModuleTechBasicConfig {
      */
     public int getHammerHitReduction(ResourceLocation resourceLocation) {
 
-      int hammerHarvestLevel = ModulePyrotechConfig.HAMMERS.getHammerHarvestLevel(resourceLocation);
+      int hammerHarvestLevel = ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(resourceLocation);
 
       if (hammerHarvestLevel > -1) {
         return ArrayHelper.getOrLast(this.HIT_REDUCTION_PER_HAMMER_HARVEST_LEVEL, hammerHarvestLevel);

@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.util;
 
 import com.codetaylor.mc.athenaeum.util.*;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemTongsEmptyBase;
@@ -25,7 +25,7 @@ public class BloomHelper {
   public static double calculateHammerPower(BlockPos pos, EntityPlayer player) {
 
     ItemStack heldItem = player.getHeldItemMainhand();
-    int hammerHarvestLevel = ModulePyrotechConfig.HAMMERS.getHammerHarvestLevel(heldItem.getItem().getRegistryName());
+    int hammerHarvestLevel = ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(heldItem.getItem().getRegistryName());
 
     if (hammerHarvestLevel == -1) {
       return 0;

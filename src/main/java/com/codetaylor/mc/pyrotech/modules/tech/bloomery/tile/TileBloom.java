@@ -10,7 +10,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
@@ -178,7 +178,7 @@ public class TileBloom
       }
 
       // is held item hammer?
-      return ModulePyrotechConfig.HAMMERS.getHammerHarvestLevel(resourceLocation) > -1;
+      return ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(resourceLocation) > -1;
     }
 
     @Override
