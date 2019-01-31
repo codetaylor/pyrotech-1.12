@@ -11,12 +11,14 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.athenaeum.util.TickCounter;
 import com.codetaylor.mc.pyrotech.interaction.InteractionUseItemToActivateWorker;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.pyrotech.init.ModuleItems;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
@@ -65,6 +67,7 @@ public class TileCampfire
 
   private int cookTime;
   private int cookTimeTotal;
+  private TickCounter burnedFoodTickCounter;
 
   /**
    * Indicates if this has been lit, affects drops.
@@ -79,6 +82,8 @@ public class TileCampfire
 
     // --- Init ---
 
+    this.burnedFoodTickCounter = new TickCounter(ModuleTechBasicConfig.CAMPFIRE.BURNED_FOOD_TICKS);
+
     this.inputStackHandler = new InputStackHandler();
     this.inputStackHandler.addObserver((handler, slot) -> {
       this.setCookTime(this.getCookTime(handler.getStackInSlot(slot)));
@@ -86,7 +91,14 @@ public class TileCampfire
     });
 
     this.outputStackHandler = new OutputStackHandler();
-    this.outputStackHandler.addObserver((handler, slot) -> this.markDirty());
+    this.outputStackHandler.addObserver((handler, slot) -> {
+
+      if (handler.getStackInSlot(slot).isEmpty()) {
+        this.burnedFoodTickCounter.reset();
+      }
+
+      this.markDirty();
+    });
 
     this.fuelStackHandler = new FuelStackHandler();
     this.fuelStackHandler.addObserver((handler, slot) -> {
@@ -326,6 +338,20 @@ public class TileCampfire
           this.outputStackHandler.insertItem(0, result, false);
         }
       }
+    }
+
+    if (!this.outputStackHandler.getStackInSlot(0).isEmpty()) {
+      ItemStack stackInSlot = this.outputStackHandler.getStackInSlot(0);
+
+      if (stackInSlot.getItem() != ModuleItems.BURNED_FOOD) {
+
+        if (this.burnedFoodTickCounter.increment()) {
+          this.outputStackHandler.setStackInSlot(0, new ItemStack(ModuleItems.BURNED_FOOD));
+        }
+      }
+
+    } else {
+      this.burnedFoodTickCounter.reset();
     }
 
     // Randomly add ash.

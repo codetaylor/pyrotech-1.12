@@ -64,17 +64,38 @@ public class ModulePyrotechConfig {
 
     @Config.Comment({
         "The amount of hunger healed by eating.",
-        "The vanilla apple restores 4 hunger.",
+        "For reference, the vanilla apple restores 4 hunger.",
         "Default: " + 8
     })
     public int BAKED_APPLE_HUNGER = 8;
 
     @Config.Comment({
         "The amount of saturation healed by eating.",
-        "The vanilla apple restores 0.3 saturation.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
         "Default: " + 0.6
     })
     public double BAKED_APPLE_SATURATION = 0.6;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 2
+    })
+    public int BURNED_FOOD_HUNGER;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.1
+    })
+    public double BURNED_FOOD_SATURATION;
+
+    @Config.Comment({
+        "Eating the burned food applies the hunger effect like zombie flesh.",
+        "Set to zero to disable",
+        "Default: " + 600
+    })
+    public int BURNED_FOOD_HUNGER_EFFECT_DURATION_TICKS = 600;
   }
 
   // ---------------------------------------------------------------------------

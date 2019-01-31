@@ -25,6 +25,7 @@ public final class ModuleItems {
   public static final ItemMulch MULCH = new ItemMulch();
 
   public static final ItemAppleBaked APPLE_BAKED = new ItemAppleBaked();
+  public static final ItemBurnedFood BURNED_FOOD = new ItemBurnedFood();
 
   public static final ItemCrudeAxe CRUDE_AXE = new ItemCrudeAxe();
   public static final ItemCrudeHoe CRUDE_HOE = new ItemCrudeHoe();
@@ -61,6 +62,7 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.MULCH, ItemMulch.NAME);
 
     registry.registerItem(ModuleItems.APPLE_BAKED, ItemAppleBaked.NAME);
+    registry.registerItem(ModuleItems.BURNED_FOOD, ItemBurnedFood.NAME);
 
     registry.registerItem(ModuleItems.CRUDE_AXE, ItemCrudeAxe.NAME);
     registry.registerItem(ModuleItems.CRUDE_HOE, ItemCrudeHoe.NAME);
@@ -117,6 +119,7 @@ public final class ModuleItems {
           ModuleItems.MULCH,
 
           ModuleItems.APPLE_BAKED,
+          ModuleItems.BURNED_FOOD,
 
           ModuleItems.CRUDE_AXE,
           ModuleItems.CRUDE_HOE,

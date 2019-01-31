@@ -644,9 +644,9 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "How many ticks to cook food on the campfire.",
-        "Default: " + (20 * 20)
+        "Default: " + (90 * 20)
     })
-    public int COOK_TIME_TICKS = 20 * 20;
+    public int COOK_TIME_TICKS = 90 * 20;
 
     @Config.Comment({
         "The amount of ticks of burn time added to the campfire",
@@ -654,6 +654,12 @@ public class ModuleTechBasicConfig {
         "Default: " + (60 * 2 * 20)
     })
     public int BURN_TIME_TICKS_PER_LOG = 60 * 2 * 20;
+
+    @Config.Comment({
+        "How many ticks does it take before the output food becomes burned food.",
+        "Default: " + (30 * 20)
+    })
+    public int BURNED_FOOD_TICKS = 30 * 20;
 
     @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",
