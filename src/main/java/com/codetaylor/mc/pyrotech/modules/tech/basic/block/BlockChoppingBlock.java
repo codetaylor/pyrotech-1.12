@@ -6,7 +6,6 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.core.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileChoppingBlock;
 import net.minecraft.block.Block;

@@ -35,7 +35,8 @@ public final class ItemInitializer {
 
     registry.registerClientModelRegistrationStrategy(() -> {
 
-      ModelRegistrationHelper.registerItemModels("tool",
+      ModelRegistrationHelper.registerItemModels(
+          "tool",
           ModuleTool.Items.CRUDE_AXE,
           ModuleTool.Items.CRUDE_HOE,
           ModuleTool.Items.CRUDE_PICKAXE,

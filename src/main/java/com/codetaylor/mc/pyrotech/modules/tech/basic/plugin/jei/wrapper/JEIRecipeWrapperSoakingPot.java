@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper;
 
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperTimed;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperTimed;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.item.ItemStack;

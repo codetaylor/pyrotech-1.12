@@ -286,8 +286,6 @@ public class ModuleCoreConfig {
     })
     public int STRAW_BALE_BURN_TIME_TICKS = 200;
 
-
-
     @Config.Comment({
         "Coal coke burn time in ticks.",
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",

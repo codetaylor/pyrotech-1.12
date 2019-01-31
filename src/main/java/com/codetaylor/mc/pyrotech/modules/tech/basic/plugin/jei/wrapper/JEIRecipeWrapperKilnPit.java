@@ -2,8 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperTimed;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.KilnPitRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperTimed;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.client.Minecraft;

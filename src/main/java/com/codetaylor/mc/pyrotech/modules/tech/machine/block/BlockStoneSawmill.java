@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneSawmill;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneSawmillTop;
 import net.minecraft.block.Block;
