@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tool.item;
 
+import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSpade;
@@ -16,6 +17,12 @@ public class ItemCrudeShovel
 
     super(ToolMaterial.STONE);
     this.setMaxDamage(ToolMaterial.STONE.getMaxUses() / 4);
+
+    Integer maxDamage = ModuleToolConfig.DURABILITY.get("crude");
+
+    if (maxDamage != null) {
+      this.setMaxDamage(maxDamage);
+    }
   }
 
   @Override
