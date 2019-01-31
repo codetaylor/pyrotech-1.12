@@ -16,6 +16,7 @@ import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemCrudePickaxe;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
+import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.BlockStone;
 import net.minecraft.util.ResourceLocation;
@@ -71,6 +72,7 @@ public class PluginDropt {
     String sand = item("minecraft", "sand");
     String sandRed = item("minecraft", "sand", BlockSand.EnumType.RED_SAND.getMetadata());
     String dirtAny = item("minecraft", "dirt", OreDictionary.WILDCARD_VALUE);
+    String dirt = item("minecraft", "dirt", BlockDirt.DirtType.DIRT.getMetadata());
     String grass = item("minecraft", "grass");
     String gravel = item("minecraft", "gravel");
     String tallGrassAny = item("minecraft", "tallgrass", OreDictionary.WILDCARD_VALUE);
@@ -208,7 +210,8 @@ public class PluginDropt {
               .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
           )
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockDirt}, range(3, 6))
+              drop().items(new String[]{rockDirt}, range(3, 6)).selector(weight(4)),
+              drop().items(new String[]{dirt})
           })
       );
     }
@@ -330,7 +333,8 @@ public class PluginDropt {
               .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
           )
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockSand}, range(3, 6))
+              drop().items(new String[]{rockSand}, range(3, 6)).selector(weight(4)),
+              drop().items(new String[]{sand})
           })
       );
     }
@@ -378,7 +382,8 @@ public class PluginDropt {
               .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
           )
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockSandRed}, range(3, 6))
+              drop().items(new String[]{rockSandRed}, range(3, 6)).selector(weight(4)),
+              drop().items(new String[]{sandRed})
           })
       );
     }
@@ -414,11 +419,13 @@ public class PluginDropt {
               .type(EnumHarvesterType.PLAYER)
               .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
           )
+          .dropCount(range(2))
+          .dropStrategy(EnumDropStrategy.UNIQUE)
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockStone}, range(2, 4)).selector(weight(2)),
-              drop().items(new String[]{rockGranite}, range(2, 4)).selector(weight(2)),
-              drop().items(new String[]{rockDiorite}, range(2, 4)).selector(weight(2)),
-              drop().items(new String[]{rockAndesite}, range(2, 4)).selector(weight(2)),
+              drop().items(new String[]{rockStone}, range(1, 2)).selector(weight(2)),
+              drop().items(new String[]{rockGranite}, range(1, 2)).selector(weight(2)),
+              drop().items(new String[]{rockDiorite}, range(1, 2)).selector(weight(2)),
+              drop().items(new String[]{rockAndesite}, range(1, 2)).selector(weight(2)),
               drop().items(new String[]{flintShard}).selector(weight(1))
           })
       );
@@ -432,11 +439,14 @@ public class PluginDropt {
               .type(EnumHarvesterType.PLAYER)
               .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
           )
+          .dropCount(range(2))
+          .dropStrategy(EnumDropStrategy.UNIQUE)
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockStone}, range(3, 6)).selector(weight(1)),
-              drop().items(new String[]{rockGranite}, range(3, 6)).selector(weight(2)),
-              drop().items(new String[]{rockDiorite}, range(3, 6)).selector(weight(2)),
-              drop().items(new String[]{rockAndesite}, range(3, 6)).selector(weight(2)),
+              drop().items(new String[]{rockStone}, range(1, 3)).selector(weight(1)),
+              drop().items(new String[]{rockGranite}, range(1, 3)).selector(weight(1)),
+              drop().items(new String[]{rockDiorite}, range(1, 3)).selector(weight(1)),
+              drop().items(new String[]{rockAndesite}, range(1, 3)).selector(weight(1)),
+              drop().items(new String[]{gravel}).selector(weight(2)),
               drop().items(new String[]{flintShard}).selector(weight(2)),
               drop().items(new String[]{flint}).selector(weight(1))
           })
