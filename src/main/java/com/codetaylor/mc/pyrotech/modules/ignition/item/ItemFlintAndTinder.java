@@ -1,6 +1,6 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
+package com.codetaylor.mc.pyrotech.modules.ignition.item;
 
-import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnitionConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,14 +14,14 @@ public class ItemFlintAndTinder
 
   public ItemFlintAndTinder() {
 
-    this.setMaxDamage(ModulePyrotechConfig.GENERAL.FLINT_AND_TINDER_DURABILITY);
+    this.setMaxDamage(ModuleIgnitionConfig.IGNITERS.FLINT_AND_TINDER_DURABILITY);
     this.setMaxStackSize(1);
   }
 
   @Override
   public int getMaxItemUseDuration(ItemStack stack) {
 
-    return ModulePyrotechConfig.GENERAL.FLINT_AND_TINDER_USE_DURATION_TICKS;
+    return ModuleIgnitionConfig.IGNITERS.FLINT_AND_TINDER_USE_DURATION_TICKS;
   }
 
   @Override

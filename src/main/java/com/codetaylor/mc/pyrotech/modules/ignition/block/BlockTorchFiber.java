@@ -1,7 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
+package com.codetaylor.mc.pyrotech.modules.ignition.block;
 
+import com.codetaylor.mc.pyrotech.modules.ignition.block.spi.BlockTorchBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.TileTorchFiber;
+import com.codetaylor.mc.pyrotech.modules.ignition.tile.TileTorchFiber;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
