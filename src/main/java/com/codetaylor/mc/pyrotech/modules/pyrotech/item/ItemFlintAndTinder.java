@@ -1,7 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.pyrotech.item;
 
 import com.codetaylor.mc.pyrotech.modules.pyrotech.ModulePyrotechConfig;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nonnull;
 
 public class ItemFlintAndTinder
     extends ItemIgniterBase {
@@ -17,7 +21,15 @@ public class ItemFlintAndTinder
   @Override
   public int getMaxItemUseDuration(ItemStack stack) {
 
-    return ModulePyrotechConfig.GENERAL.FLINT_AND_TINDER_USE_DURATION;
+    return ModulePyrotechConfig.GENERAL.FLINT_AND_TINDER_USE_DURATION_TICKS;
   }
 
+  @Override
+  protected void damageItem(@Nonnull ItemStack stack, EntityLivingBase player) {
+
+    if (player instanceof EntityPlayer
+        && !((EntityPlayer) player).isCreative()) {
+      stack.damageItem(1, player);
+    }
+  }
 }

@@ -17,8 +17,9 @@ import net.minecraftforge.oredict.OreDictionary;
 public final class ModuleItems {
 
   public static final ItemMaterial MATERIAL = new ItemMaterial();
-  public static final ItemIgniterBase BOW_DRILL = new ItemBowDrill();
-  public static final ItemIgniterBase FLINT_AND_TINDER = new ItemFlintAndTinder();
+  public static final ItemBowDrill BOW_DRILL = new ItemBowDrill();
+  public static final ItemFlintAndTinder FLINT_AND_TINDER = new ItemFlintAndTinder();
+  public static final ItemMatchstick MATCHSTICK = new ItemMatchstick();
   public static final ItemDoor REFRACTORY_DOOR = new ItemDoor(ModuleBlocks.REFRACTORY_DOOR);
   public static final ItemRock ROCK = new ItemRock(ModuleBlocks.ROCK);
   public static final ItemRockGrass ROCK_GRASS = new ItemRockGrass(ModuleBlocks.ROCK_GRASS);
@@ -56,6 +57,7 @@ public final class ModuleItems {
     registry.registerItem(ModuleItems.MATERIAL, ItemMaterial.NAME);
     registry.registerItem(ModuleItems.BOW_DRILL, ItemBowDrill.NAME);
     registry.registerItem(ModuleItems.FLINT_AND_TINDER, ItemFlintAndTinder.NAME);
+    registry.registerItem(ModuleItems.MATCHSTICK, ItemMatchstick.NAME);
     registry.registerItem(ModuleItems.REFRACTORY_DOOR, ModuleBlocks.REFRACTORY_DOOR.getRegistryName());
     registry.registerItem(ModuleItems.ROCK, BlockRock.NAME);
     registry.registerItem(ModuleItems.ROCK_GRASS, BlockRockGrass.NAME);
@@ -114,6 +116,7 @@ public final class ModuleItems {
       ModelRegistrationHelper.registerItemModels(
           ModuleItems.BOW_DRILL,
           ModuleItems.FLINT_AND_TINDER,
+          ModuleItems.MATCHSTICK,
           ModuleItems.REFRACTORY_DOOR,
           ModuleItems.ROCK_GRASS,
           ModuleItems.MULCH,

@@ -9,7 +9,6 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDelegateMachineTop;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.util.RefractoryIgnitionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -81,73 +80,94 @@ public abstract class ItemIgniterBase
 
       Vec3d hit = rayTraceResult.hitVec;
       world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, hit.x, hit.y, hit.z, 0, 0, 0);
+    }
+  }
+
+  @Nonnull
+  @Override
+  public ItemStack onItemUseFinish(@Nonnull ItemStack stack, World world, EntityLivingBase player) {
+
+    RayTraceResult rayTraceResult = this.rayTrace(world, (EntityPlayer) player, false);
+
+    // The ray trace result can be null
+    //noinspection ConstantConditions
+    if (rayTraceResult == null
+        || rayTraceResult.typeOfHit != RayTraceResult.Type.BLOCK) {
+
+      player.stopActiveHand();
+      return stack;
+    }
+
+    BlockPos pos = rayTraceResult.getBlockPos();
+    BlockPos offset = pos.offset(rayTraceResult.sideHit);
+    Block block = world.getBlockState(pos).getBlock();
+
+    if (block instanceof BlockCombustionWorkerStoneBase
+        || block == ModuleTechBasic.Blocks.CAMPFIRE
+        || block == ModuleBlocks.TORCH_FIBER
+        || block == ModuleBlocks.TORCH_STONE
+        || block == ModuleBloomery.Blocks.BLOOMERY) {
+
+      // TODO: Abstract
+
+      if (!world.isRemote) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+
+        if (tileEntity instanceof TileCampfire) {
+          ((TileCampfire) tileEntity).workerSetActive(true);
+
+        } else if (tileEntity instanceof TileCombustionWorkerBase) {
+          ((TileCombustionWorkerBase) tileEntity).workerSetActive(true);
+
+        } else if (tileEntity instanceof TileTorchBase) {
+          ((TileTorchBase) tileEntity).activate();
+
+        } else if (tileEntity instanceof TileBloomery.Top) {
+          TileEntity candidate = world.getTileEntity(pos.down());
+
+          if (candidate instanceof TileBloomery) {
+            ((TileBloomery) candidate).setActive();
+          }
+        }
+      }
+
+      world.playSound(
+          null,
+          offset,
+          SoundEvents.ITEM_FLINTANDSTEEL_USE,
+          SoundCategory.BLOCKS,
+          1.0F,
+          Util.RANDOM.nextFloat() * 0.4F + 0.8F
+      );
+
+      this.damageItem(stack, player);
+
+    } else if (Util.canSetFire(world, offset)) {
+
+      if (!world.isRemote) {
+        world.setBlockState(offset, Blocks.FIRE.getDefaultState(), 3);
+      }
+
+      world.playSound(
+          null,
+          offset,
+          SoundEvents.ITEM_FLINTANDSTEEL_USE,
+          SoundCategory.BLOCKS,
+          1.0F,
+          Util.RANDOM.nextFloat() * 0.4F + 0.8F
+      );
+
+      this.damageItem(stack, player);
 
     } else {
 
-      if (count == 1) {
-        BlockPos pos = rayTraceResult.getBlockPos();
-        BlockPos offset = pos.offset(rayTraceResult.sideHit);
-        Block block = world.getBlockState(pos).getBlock();
-
-        if (block instanceof BlockCombustionWorkerStoneBase
-            || block == ModuleTechBasic.Blocks.CAMPFIRE
-            || block == ModuleBlocks.TORCH_FIBER
-            || block == ModuleBlocks.TORCH_STONE
-            || block == ModuleBloomery.Blocks.BLOOMERY) {
-
-          // TODO: Abstract
-
-          TileEntity tileEntity = world.getTileEntity(pos);
-
-          if (tileEntity instanceof TileCampfire) {
-            ((TileCampfire) tileEntity).workerSetActive(true);
-
-          } else if (tileEntity instanceof TileCombustionWorkerBase) {
-            ((TileCombustionWorkerBase) tileEntity).workerSetActive(true);
-
-          } else if (tileEntity instanceof TileTorchBase) {
-            ((TileTorchBase) tileEntity).activate();
-
-          } else if (tileEntity instanceof TileBloomery.Top) {
-            TileEntity candidate = world.getTileEntity(pos.down());
-
-            if (candidate instanceof TileBloomery) {
-              ((TileBloomery) candidate).setActive();
-            }
-          }
-
-          world.playSound(
-              null,
-              offset,
-              SoundEvents.ITEM_FLINTANDSTEEL_USE,
-              SoundCategory.BLOCKS,
-              1.0F,
-              Util.RANDOM.nextFloat() * 0.4F + 0.8F
-          );
-
-          if (!((EntityPlayer) player).isCreative()) {
-            stack.damageItem(1, player);
-          }
-
-        } else if (Util.canSetFire(world, offset)) {
-          world.setBlockState(offset, Blocks.FIRE.getDefaultState(), 3);
-          world.playSound(
-              null,
-              offset,
-              SoundEvents.ITEM_FLINTANDSTEEL_USE,
-              SoundCategory.BLOCKS,
-              1.0F,
-              Util.RANDOM.nextFloat() * 0.4F + 0.8F
-          );
-
-          if (!((EntityPlayer) player).isCreative()) {
-            stack.damageItem(1, player);
-          }
-
-        } else {
-          RefractoryIgnitionHelper.igniteBlocks(world, pos);
-        }
+      if (!world.isRemote) {
+        RefractoryIgnitionHelper.igniteBlocks(world, pos);
       }
     }
+
+    return stack;
   }
+
+  protected abstract void damageItem(@Nonnull ItemStack stack, EntityLivingBase player);
 }

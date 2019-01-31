@@ -450,7 +450,7 @@ public class ModulePyrotechConfig {
         "Defines how many ticks it takes to start a fire while using the bow drill.",
         "Default: " + (3 * 20)
     })
-    public int BOW_DRILL_USE_DURATION = 3 * 20;
+    public int BOW_DRILL_USE_DURATION_TICKS = 3 * 20;
 
     @Config.Comment({
         "The durability of the flint and tinder.",
@@ -462,7 +462,26 @@ public class ModulePyrotechConfig {
         "Defines how many ticks it takes to start a fire while using the flint and tinder.",
         "Default: " + (5 * 20)
     })
-    public int FLINT_AND_TINDER_USE_DURATION = 5 * 20;
+    public int FLINT_AND_TINDER_USE_DURATION_TICKS = 5 * 20;
+
+    @Config.Comment({
+        "The max stack size of the matchsticks.",
+        "Default: " + 64
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int MATCHSTICK_MAX_STACK_SIZE = 64;
+
+    @Config.Comment({
+        "Defines how many ticks it takes to start a fire while using the matchsticks.",
+        "Default: " + 5
+    })
+    public int MATCHSTICK_USE_DURATION_TICKS = 5;
+
+    @Config.Comment({
+        "How many ticks the player must wait before using a matchstick again.",
+        "Default: " + (2 * 20)
+    })
+    public int MATCHSTICK_COOLDOWN_DURATION_TICKS = 2 * 20;
   }
 
 }
