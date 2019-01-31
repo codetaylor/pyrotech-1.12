@@ -8,9 +8,9 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
@@ -47,7 +47,8 @@ import java.util.stream.Stream;
 public class BlockBloomery
     extends Block
     implements IBlockInteractable,
-    IBlockIgnitableAdjacentIgniterBlock {
+    IBlockIgnitableAdjacentIgniterBlock,
+    IBlockIgnitableWithIgniterItem {
 
   public static final String NAME = "bloomery";
 
@@ -89,10 +90,28 @@ public class BlockBloomery
   public void igniteWithAdjacentIgniterBlock(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
 
     if (!this.isTop(blockState)) {
-      TileEntity tileEntity = world.getTileEntity(pos);
+      TileEntity tile = world.getTileEntity(pos);
 
-      if (tileEntity instanceof TileBloomery) {
-        ((TileBloomery) tileEntity).setActive();
+      if (tile instanceof TileBloomery) {
+        ((TileBloomery) tile).setActive();
+      }
+    }
+  }
+
+  @Override
+  public void igniteWithIgniterItem(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+
+    if (this.isTop(blockState)
+        && facing == EnumFacing.UP) {
+
+      TileEntity tile = world.getTileEntity(pos);
+
+      if (tile instanceof TileBloomery.Top) {
+        TileEntity candidate = world.getTileEntity(pos.down());
+
+        if (candidate instanceof TileBloomery) {
+          ((TileBloomery) candidate).setActive();
+        }
       }
     }
   }

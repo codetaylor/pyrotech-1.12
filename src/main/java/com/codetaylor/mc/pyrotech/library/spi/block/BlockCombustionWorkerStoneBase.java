@@ -40,7 +40,8 @@ import java.util.stream.Stream;
 public abstract class BlockCombustionWorkerStoneBase
     extends Block
     implements IBlockInteractable,
-    IBlockIgnitableAdjacentIgniterBlock {
+    IBlockIgnitableAdjacentIgniterBlock,
+    IBlockIgnitableWithIgniterItem {
 
   public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
@@ -67,8 +68,22 @@ public abstract class BlockCombustionWorkerStoneBase
 
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileCombustionWorkerBase) {
-      ((TileCombustionWorkerBase) tileEntity).workerSetActive(true);
+    if (tileEntity instanceof TileCombustionWorkerStoneBase) {
+      ((TileCombustionWorkerStoneBase) tileEntity).workerSetActive(true);
+    }
+  }
+
+  @Override
+  public void igniteWithIgniterItem(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+
+    if (!this.isTop(blockState)
+        && blockState.getValue(Properties.FACING_HORIZONTAL) == facing) {
+
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity instanceof TileCombustionWorkerStoneBase) {
+        ((TileCombustionWorkerStoneBase) tileEntity).workerSetActive(true);
+      }
     }
   }
 

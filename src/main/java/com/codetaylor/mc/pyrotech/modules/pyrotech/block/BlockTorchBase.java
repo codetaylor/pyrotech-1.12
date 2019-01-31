@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.pyrotech.block;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTorchBase;
 import net.minecraft.block.BlockTorch;
@@ -34,7 +35,8 @@ import java.util.stream.Stream;
 
 public abstract class BlockTorchBase
     extends BlockTorch
-    implements IBlockInteractable {
+    implements IBlockInteractable,
+    IBlockIgnitableWithIgniterItem {
 
   public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
@@ -66,6 +68,20 @@ public abstract class BlockTorchBase
         return TORCH_NORTH_AABB;
       default:
         return STANDING_AABB;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Ignition
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void igniteWithIgniterItem(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileTorchBase) {
+      ((TileTorchBase) tileEntity).activate();
     }
   }
 

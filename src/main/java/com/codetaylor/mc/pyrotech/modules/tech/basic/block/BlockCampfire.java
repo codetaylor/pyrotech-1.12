@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
@@ -38,7 +39,8 @@ import java.util.stream.Stream;
 
 public class BlockCampfire
     extends BlockPartialBase
-    implements IBlockInteractable {
+    implements IBlockInteractable,
+    IBlockIgnitableWithIgniterItem {
 
   public static final String NAME = "campfire";
 
@@ -60,6 +62,20 @@ public class BlockCampfire
 
     super(Material.WOOD);
     this.setHardness(0.5f);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Ignition
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void igniteWithIgniterItem(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileCampfire) {
+      ((TileCampfire) tileEntity).workerSetActive(true);
+    }
   }
 
   // ---------------------------------------------------------------------------
