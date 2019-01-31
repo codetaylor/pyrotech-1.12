@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.interaction;
+package com.codetaylor.mc.pyrotech.library;
 
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
