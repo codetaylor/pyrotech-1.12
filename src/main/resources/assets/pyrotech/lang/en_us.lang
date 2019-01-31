@@ -203,7 +203,7 @@ tile.pyrotech.rock_sand_red.name=Red Sand Pile
 
 # --- Waila plugin
 
-gui.pyrotech.waila.tank.fluid=%s: %d of %d mb
+gui.pyrotech.waila.tank.fluid=%s: %d of %d mB
 gui.pyrotech.waila.tank.empty=Empty: %d of %d mB
 gui.pyrotech.waila.fuel=Fuel: %s
 gui.pyrotech.waila.campfire.fuel=Logs: %d of %d
