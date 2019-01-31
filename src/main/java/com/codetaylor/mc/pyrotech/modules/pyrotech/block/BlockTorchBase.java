@@ -4,7 +4,6 @@ import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemIgniterBase;
-import com.codetaylor.mc.pyrotech.modules.pyrotech.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.pyrotech.tile.spi.TileTorchBase;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.properties.PropertyEnum;
@@ -12,7 +11,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -196,15 +194,11 @@ public abstract class BlockTorchBase
       super.getDrops(drops, world, pos, state, fortune);
 
     } else {
-
-      if (Math.random() > 0.5) {
-        drops.add(new ItemStack(Items.STICK));
-
-      } else {
-        drops.add(ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack());
-      }
+      this.getLitDrops(drops);
     }
   }
+
+  protected abstract void getLitDrops(NonNullList<ItemStack> drops);
 
   @Override
   public boolean removedByPlayer(@Nonnull IBlockState state, World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
