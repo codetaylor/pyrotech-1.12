@@ -259,11 +259,11 @@ public class TileActivePile
         }
       }
 
-      if (this.isValidRefractoryDoor(blockState, facing)) {
-        return true;
-      }
+      return this.isValidRefractoryDoor(blockState, facing);
+    }
 
-      return false;
+    if (this.isValidRefractoryDoor(blockState, facing)) {
+      return true;
     }
 
     return super.isValidStructureBlock(world, pos, blockState, facing);
