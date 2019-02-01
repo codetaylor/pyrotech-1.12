@@ -30,6 +30,7 @@ public class ModuleIgnitionConfig {
         "The number of ticks before the torch burns up.",
         "Default: " + (14 * 60 * 20)
     })
+    @Config.RangeInt(min = 0)
     public int DURATION = 14 * 60 * 20;
 
     @Config.Comment({
@@ -37,6 +38,7 @@ public class ModuleIgnitionConfig {
         "duration += rand[-variant, +variant]",
         "Default: " + (4 * 60 * 20)
     })
+    @Config.RangeInt(min = 0)
     public int DURATION_VARIANT = 4 * 60 * 20;
   }
 
@@ -64,6 +66,7 @@ public class ModuleIgnitionConfig {
         "The number of ticks before the torch burns up.",
         "Default: " + (14 * 60 * 20)
     })
+    @Config.RangeInt(min = 0)
     public int DURATION = 14 * 60 * 20;
 
     @Config.Comment({
@@ -71,6 +74,7 @@ public class ModuleIgnitionConfig {
         "duration += rand[-variant, +variant]",
         "Default: " + (4 * 60 * 20)
     })
+    @Config.RangeInt(min = 0)
     public int DURATION_VARIANT = 4 * 60 * 20;
   }
 
@@ -86,24 +90,28 @@ public class ModuleIgnitionConfig {
         "The durability of the bow drill.",
         "Default: " + 32
     })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int BOW_DRILL_DURABILITY = 32;
 
     @Config.Comment({
         "Defines how many ticks it takes to start a fire while using the bow drill.",
         "Default: " + (3 * 20)
     })
+    @Config.RangeInt(min = 0)
     public int BOW_DRILL_USE_DURATION_TICKS = 3 * 20;
 
     @Config.Comment({
         "The durability of the flint and tinder.",
         "Default: 8"
     })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int FLINT_AND_TINDER_DURABILITY = 8;
 
     @Config.Comment({
         "Defines how many ticks it takes to start a fire while using the flint and tinder.",
         "Default: " + (5 * 20)
     })
+    @Config.RangeInt(min = 0)
     public int FLINT_AND_TINDER_USE_DURATION_TICKS = 5 * 20;
 
     @Config.Comment({
@@ -117,12 +125,14 @@ public class ModuleIgnitionConfig {
         "Defines how many ticks it takes to start a fire while using the matchsticks.",
         "Default: " + 5
     })
+    @Config.RangeInt(min = 0)
     public int MATCHSTICK_USE_DURATION_TICKS = 5;
 
     @Config.Comment({
         "How many ticks the player must wait before using a matchstick again.",
         "Default: " + (2 * 20)
     })
+    @Config.RangeInt(min = 0)
     public int MATCHSTICK_COOLDOWN_DURATION_TICKS = 2 * 20;
   }
 
