@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -53,6 +54,12 @@ public class BloomProvider
 
       if (hammerPower > 0) {
         tooltip.add(Util.translateFormatted(
+            "gui." + ModuleCore.MOD_ID + ".waila.bloom.hammer.power",
+            hammerPower
+        ));
+
+      } else {
+        tooltip.add(TextFormatting.RED + Util.translateFormatted(
             "gui." + ModuleCore.MOD_ID + ".waila.bloom.hammer.power",
             hammerPower
         ));
