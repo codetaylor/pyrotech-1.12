@@ -35,17 +35,17 @@ public class ModuleBucketConfig {
 
     @Config.Comment({
         "Set the number of times the bucket can be drained.",
-        "Range: [1, +int]",
         "Default: " + 8
     })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int MAX_DURABILITY = 8;
 
     @Config.Comment({
         "The temperature that the bucket considers hot.",
         "The temperature of lava is 1300 and water is 300",
-        "Range: [-int, +int]",
         "Default: " + 450
     })
+    @Config.RangeInt
     public int HOT_TEMPERATURE = 450;
 
     @Config.Comment({
@@ -53,9 +53,9 @@ public class ModuleBucketConfig {
         "and is filled with a hot fluid.",
         "This controls the amount of damage done to the container per second.",
         "Set to zero to disable.",
-        "Range: [0, +int]",
         "Default: " + 8
     })
+    @Config.RangeInt(min = 0)
     public int HOT_CONTAINER_DAMAGE_PER_SECOND = 8;
 
     @Config.Comment({
@@ -63,9 +63,9 @@ public class ModuleBucketConfig {
         "and is filled with a hot fluid.",
         "This controls the amount of damage done to the player per second.",
         "Set to zero to disable.",
-        "Range: [0, +int]",
         "Default: " + 2
     })
+    @Config.RangeInt(min = 0)
     public int HOT_PLAYER_DAMAGE_PER_SECOND = 2;
 
     @Config.Comment({
@@ -73,9 +73,9 @@ public class ModuleBucketConfig {
         "and is filled.",
         "This controls the amount of damage done to the container per second.",
         "Set to zero to disable.",
-        "Range: [0, +int]",
         "Default: " + 1
     })
+    @Config.RangeInt(min = 0)
     public int FULL_CONTAINER_DAMAGE_PER_SECOND = 1;
 
     @Config.Comment({
@@ -108,17 +108,17 @@ public class ModuleBucketConfig {
 
     @Config.Comment({
         "Set the number of times the bucket can be drained.",
-        "Range: [1, +int]",
         "Default: " + 16
     })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int MAX_DURABILITY = 16;
 
     @Config.Comment({
         "The temperature that the bucket considers hot.",
         "The temperature of lava is 1300 and water is 300",
-        "Range: [-int, +int]",
         "Default: " + 450
     })
+    @Config.RangeInt
     public int HOT_TEMPERATURE = 450;
 
     @Config.Comment({
@@ -126,9 +126,9 @@ public class ModuleBucketConfig {
         "and is filled with a hot fluid.",
         "This controls the amount of damage done to the container per second.",
         "Set to zero to disable.",
-        "Range: [0, +int]",
         "Default: " + 4
     })
+    @Config.RangeInt(min = 0)
     public int HOT_CONTAINER_DAMAGE_PER_SECOND = 4;
 
     @Config.Comment({
@@ -136,9 +136,9 @@ public class ModuleBucketConfig {
         "and is filled with a hot fluid.",
         "This controls the amount of damage done to the player per second.",
         "Set to zero to disable.",
-        "Range: [0, +int]",
         "Default: " + 2
     })
+    @Config.RangeInt(min = 0)
     public int HOT_PLAYER_DAMAGE_PER_SECOND = 2;
 
     @Config.Comment({
@@ -146,9 +146,9 @@ public class ModuleBucketConfig {
         "and is filled.",
         "This controls the amount of damage done to the container per second.",
         "Set to zero to disable.",
-        "Range: [0, +int]",
         "Default: " + 0
     })
+    @Config.RangeInt(min = 0)
     public int FULL_CONTAINER_DAMAGE_PER_SECOND = 0;
 
     @Config.Comment({
@@ -181,17 +181,17 @@ public class ModuleBucketConfig {
 
     @Config.Comment({
         "Set the number of times the bucket can be drained.",
-        "Range: [1, +int]",
         "Default: " + 16
     })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int MAX_DURABILITY = 16;
 
     @Config.Comment({
         "The temperature that the bucket considers hot.",
         "The temperature of lava is 1300 and water is 300",
-        "Range: [-int, +int]",
         "Default: " + 450
     })
+    @Config.RangeInt()
     public int HOT_TEMPERATURE = 450;
 
     @Config.Comment({
@@ -199,9 +199,9 @@ public class ModuleBucketConfig {
         "and is filled with a hot fluid.",
         "This controls the amount of damage done to the container per second.",
         "Set to zero to disable.",
-        "Range: [0, +int]",
         "Default: " + 4
     })
+    @Config.RangeInt(min = 0)
     public int HOT_CONTAINER_DAMAGE_PER_SECOND = 4;
 
     @Config.Comment({
@@ -209,9 +209,9 @@ public class ModuleBucketConfig {
         "and is filled with a hot fluid.",
         "This controls the amount of damage done to the player per second.",
         "Set to zero to disable.",
-        "Range: [0, +int]",
         "Default: " + 2
     })
+    @Config.RangeInt(min = 0)
     public int HOT_PLAYER_DAMAGE_PER_SECOND = 2;
 
     @Config.Comment({
@@ -219,9 +219,9 @@ public class ModuleBucketConfig {
         "and is filled.",
         "This controls the amount of damage done to the container per second.",
         "Set to zero to disable.",
-        "Range: [0, +int]",
         "Default: " + 0
     })
+    @Config.RangeInt(min = 0)
     public int FULL_CONTAINER_DAMAGE_PER_SECOND = 0;
 
     @Config.Comment({
