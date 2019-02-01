@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreDictionary;
@@ -160,6 +161,12 @@ public class StoneSawmillRecipesAdd {
     registerSawmillRecipeWood(registry, "board",
         ItemMaterial.EnumType.BOARD.asStack(),
         new OreIngredient("slabWood")
+    );
+
+    // stick
+    registerSawmillRecipeWood(registry, "stick",
+        new ItemStack(Items.STICK),
+        Ingredient.fromStacks(ItemMaterial.EnumType.BOARD.asStack())
     );
 
     // tarred board
