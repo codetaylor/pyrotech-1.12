@@ -1,8 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
+import com.codetaylor.mc.athenaeum.inventory.LargeDynamicStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
@@ -96,7 +98,7 @@ public class TileKilnPit
     ModuleTechBasic.TILE_DATA_SERVICE.register(this, new ITileData[]{
         new TileDataItemStackHandler<>(this.stackHandler),
         new TileDataItemStackHandler<>(this.logStackHandler),
-        new TileDataItemStackHandler<>(this.outputStackHandler),
+        new TileDataLargeItemStackHandler<>(this.outputStackHandler),
         this.progress
     });
 
@@ -716,7 +718,7 @@ public class TileKilnPit
   }
 
   private class OutputStackHandler
-      extends ObservableStackHandler
+      extends LargeDynamicStackHandler
       implements ITileDataItemStackHandler {
 
     /* package */ OutputStackHandler() {
