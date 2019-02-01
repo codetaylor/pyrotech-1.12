@@ -7,6 +7,50 @@ import net.minecraftforge.common.config.Config;
 public class ModuleTechMachineConfig {
 
   // ---------------------------------------------------------------------------
+  // - Sawmill Blades
+  // ---------------------------------------------------------------------------
+
+  public static SawmillBlades SAWMILL_BLADES = new SawmillBlades();
+
+  public static class SawmillBlades {
+
+    @Config.Comment({
+        "Durability of the stone sawmill blade.",
+        "Default: " + 32
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int STONE_DURABILITY = 32;
+
+    @Config.Comment({
+        "Durability of the flint sawmill blade.",
+        "Default: " + 150
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int FLINT_DURABILITY = 150;
+
+    @Config.Comment({
+        "Durability of the bone sawmill blade.",
+        "Default: " + 150
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int BONE_DURABILITY = 150;
+
+    @Config.Comment({
+        "Durability of the iron sawmill blade.",
+        "Default: " + 500
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int IRON_DURABILITY = 500;
+
+    @Config.Comment({
+        "Durability of the diamond sawmill blade.",
+        "Default: " + 1500
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int DIAMOND_DURABILITY = 1500;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Stone Kiln
   // ---------------------------------------------------------------------------
 

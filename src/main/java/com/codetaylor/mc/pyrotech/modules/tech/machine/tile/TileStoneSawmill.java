@@ -15,7 +15,7 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.MillInteractionBladeRenderer;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemMillBlade;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemSawmillBlade;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import net.minecraft.block.Block;
@@ -311,7 +311,7 @@ public class TileStoneSawmill
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (itemStack.getItem() instanceof ItemMillBlade);
+      return (itemStack.getItem() instanceof ItemSawmillBlade);
     }
 
     public TileStoneSawmill getTile() {
@@ -359,7 +359,7 @@ public class TileStoneSawmill
 
       // Filter out non-blade items.
 
-      if (!(stack.getItem() instanceof ItemMillBlade)) {
+      if (!(stack.getItem() instanceof ItemSawmillBlade)) {
         return stack;
       }
 

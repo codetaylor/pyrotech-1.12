@@ -15,7 +15,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneCrucibleRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneKilnRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneSawmillRecipesAdd;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemMillBlade;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemSawmillBlade;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
@@ -197,19 +197,19 @@ public class ModuleTechMachine
   public static class Items {
 
     @GameRegistry.ObjectHolder("sawmill_blade_stone")
-    public static final ItemMillBlade STONE_MILL_BLADE;
+    public static final ItemSawmillBlade STONE_MILL_BLADE;
 
     @GameRegistry.ObjectHolder("sawmill_blade_flint")
-    public static final ItemMillBlade FLINT_MILL_BLADE;
+    public static final ItemSawmillBlade FLINT_MILL_BLADE;
 
     @GameRegistry.ObjectHolder("sawmill_blade_bone")
-    public static final ItemMillBlade BONE_MILL_BLADE;
+    public static final ItemSawmillBlade BONE_MILL_BLADE;
 
     @GameRegistry.ObjectHolder("sawmill_blade_iron")
-    public static final ItemMillBlade IRON_MILL_BLADE;
+    public static final ItemSawmillBlade IRON_MILL_BLADE;
 
     @GameRegistry.ObjectHolder("sawmill_blade_diamond")
-    public static final ItemMillBlade DIAMOND_MILL_BLADE;
+    public static final ItemSawmillBlade DIAMOND_MILL_BLADE;
 
     static {
       STONE_MILL_BLADE = null;

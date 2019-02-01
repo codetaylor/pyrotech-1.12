@@ -2,10 +2,10 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.item;
 
 import net.minecraft.item.Item;
 
-public class ItemMillBlade
+public class ItemSawmillBlade
     extends Item {
 
-  public ItemMillBlade(int maxUses) {
+  public ItemSawmillBlade(int maxUses) {
 
     this.setMaxStackSize(1);
     this.setMaxDamage(maxUses);
