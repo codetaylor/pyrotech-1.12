@@ -115,6 +115,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockRefractoryDoor.NAME)
     public static final BlockRefractoryDoor REFRACTORY_DOOR;
 
+    @GameRegistry.ObjectHolder(BlockStoneDoor.NAME)
+    public static final BlockStoneDoor STONE_DOOR;
+
     @GameRegistry.ObjectHolder(BlockLimestone.NAME)
     public static final BlockLimestone LIMESTONE;
 
@@ -157,6 +160,7 @@ public class ModuleCore
       THATCH = null;
       REFRACTORY_BRICK = null;
       REFRACTORY_DOOR = null;
+      STONE_DOOR = null;
       LIMESTONE = null;
       REFRACTORY_GLASS = null;
       ROCK = null;
@@ -180,6 +184,9 @@ public class ModuleCore
 
     @GameRegistry.ObjectHolder(BlockRefractoryDoor.NAME)
     public static final ItemDoor REFRACTORY_DOOR;
+
+    @GameRegistry.ObjectHolder(BlockStoneDoor.NAME)
+    public static final ItemDoor STONE_DOOR;
 
     @GameRegistry.ObjectHolder(ItemMulch.NAME)
     public static final ItemMulch MULCH;
@@ -211,6 +218,7 @@ public class ModuleCore
     static {
       MATERIAL = null;
       REFRACTORY_DOOR = null;
+      STONE_DOOR = null;
       MULCH = null;
       APPLE_BAKED = null;
       BURNED_FOOD = null;

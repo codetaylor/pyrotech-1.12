@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA",
+    "AA",
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "pyrotech:material",
+      "data": 16
+    }
+  },
+  "result": {
+    "item": "pyrotech:stone_door",
+    "count": 1,
+    "data": 0
+  }
+}

@@ -1,7 +1,7 @@
 {
-    "parent": "block/door_bottom",
-    "textures": {
-        "bottom": "pyrotech:blocks/door_refractory_lower",
-        "top": "pyrotech:blocks/door_refractory_upper"
-    }
+  "parent": "block/door_bottom",
+  "textures": {
+    "bottom": "pyrotech:blocks/door_refractory_lower",
+    "top": "pyrotech:blocks/door_refractory_upper"
+  }
 }

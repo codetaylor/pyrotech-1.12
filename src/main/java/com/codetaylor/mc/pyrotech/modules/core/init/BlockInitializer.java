@@ -33,6 +33,10 @@ public final class BlockInitializer {
     registry.registerBlock(blockRefractoryDoor, BlockRefractoryDoor.NAME);
     registry.registerItem(new ItemDoor(blockRefractoryDoor), blockRefractoryDoor.getRegistryName());
 
+    final BlockStoneDoor blockStoneDoor = new BlockStoneDoor();
+    registry.registerBlock(blockStoneDoor, BlockStoneDoor.NAME);
+    registry.registerItem(new ItemDoor(blockStoneDoor), blockStoneDoor.getRegistryName());
+
     registry.registerBlockWithItem(new BlockLogPile(), BlockLogPile.NAME);
     registry.registerBlockWithItem(new BlockCoalCokeBlock(), BlockCoalCokeBlock.NAME);
     registry.registerBlockWithItem(new BlockThatch(), BlockThatch.NAME);
@@ -75,12 +79,19 @@ public final class BlockInitializer {
       );
 
       ModelRegistrationHelper.registerItemModels(
-          ModuleCore.Items.REFRACTORY_DOOR
+          ModuleCore.Items.REFRACTORY_DOOR,
+          ModuleCore.Items.STONE_DOOR
       );
 
       // Refractory Door
       ModelLoader.setCustomStateMapper(
           ModuleCore.Blocks.REFRACTORY_DOOR,
+          (new StateMap.Builder()).ignore(BlockDoor.POWERED).build()
+      );
+
+      // Stone Door
+      ModelLoader.setCustomStateMapper(
+          ModuleCore.Blocks.STONE_DOOR,
           (new StateMap.Builder()).ignore(BlockDoor.POWERED).build()
       );
 
