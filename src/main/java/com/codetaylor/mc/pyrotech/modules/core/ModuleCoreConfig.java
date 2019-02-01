@@ -67,6 +67,7 @@ public class ModuleCoreConfig {
         "For reference, the vanilla apple restores 4 hunger.",
         "Default: " + 8
     })
+    @Config.RangeInt(min = 0)
     public int BAKED_APPLE_HUNGER = 8;
 
     @Config.Comment({
@@ -74,6 +75,7 @@ public class ModuleCoreConfig {
         "For reference, the vanilla apple restores 0.3 saturation.",
         "Default: " + 0.6
     })
+    @Config.RangeDouble(min = 0)
     public double BAKED_APPLE_SATURATION = 0.6;
 
     @Config.Comment({
@@ -81,6 +83,7 @@ public class ModuleCoreConfig {
         "For reference, the vanilla apple restores 4 hunger.",
         "Default: " + 2
     })
+    @Config.RangeInt(min = 0)
     public int BURNED_FOOD_HUNGER;
 
     @Config.Comment({
@@ -88,6 +91,7 @@ public class ModuleCoreConfig {
         "For reference, the vanilla apple restores 0.3 saturation.",
         "Default: " + 0.1
     })
+    @Config.RangeDouble(min = 0)
     public double BURNED_FOOD_SATURATION;
 
     @Config.Comment({
@@ -95,6 +99,7 @@ public class ModuleCoreConfig {
         "Set to zero to disable",
         "Default: " + 600
     })
+    @Config.RangeInt(min = 0)
     public int BURNED_FOOD_HUNGER_EFFECT_DURATION_TICKS = 600;
   }
 
@@ -216,9 +221,9 @@ public class ModuleCoreConfig {
     @Config.Comment({
         "The number of times the mulched farmland will apply bonemeal to a crop before",
         "reverting to normal moisturized farmland.",
-        "Range: [1,+int]",
         "Default: " + 6
     })
+    @Config.RangeInt(min = 1)
     public int CHARGES = 6;
 
     @Config.Comment({
@@ -249,6 +254,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 200
     })
+    @Config.RangeInt(min = 0)
     public int BOARD_BURN_TIME_TICKS = 200;
 
     @Config.Comment({
@@ -256,6 +262,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + (1600 / 8)
     })
+    @Config.RangeInt(min = 0)
     public int COAL_PIECES_BURN_TIME_TICKS = 1600 / 8;
 
     @Config.Comment({
@@ -263,6 +270,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + (1600 / 8)
     })
+    @Config.RangeInt(min = 0)
     public int CHARCOAL_FLAKES_BURN_TIME_TICKS = 1600 / 8;
 
     @Config.Comment({
@@ -270,6 +278,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 120
     })
+    @Config.RangeInt(min = 0)
     public int TINDER_BURN_TIME_TICKS = 120;
 
     @Config.Comment({
@@ -277,6 +286,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 50
     })
+    @Config.RangeInt(min = 0)
     public int STRAW_BURN_TIME_TICKS = 50;
 
     @Config.Comment({
@@ -284,6 +294,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 200
     })
+    @Config.RangeInt(min = 0)
     public int STRAW_BALE_BURN_TIME_TICKS = 200;
 
     @Config.Comment({
@@ -291,6 +302,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 3200
     })
+    @Config.RangeInt(min = 0)
     public int COAL_COKE_BURN_TIME_TICKS = 3200;
 
     @Config.Comment({
@@ -298,6 +310,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 32000
     })
+    @Config.RangeInt(min = 0)
     public int COAL_COKE_BLOCK_BURN_TIME_TICKS = 32000;
 
     @Config.Comment({
@@ -305,6 +318,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + (300 * 10)
     })
+    @Config.RangeInt(min = 0)
     public int LOG_PILE_BURN_TIME_TICKS = 300 * 10;
 
     @Config.Comment({
@@ -312,6 +326,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 100
     })
+    @Config.RangeInt(min = 0)
     public int WOOD_CHIPS_BURN_TIME_TICKS = 100;
 
     @Config.Comment({
@@ -319,6 +334,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 800
     })
+    @Config.RangeInt(min = 0)
     public int PILE_WOOD_CHIPS_BURN_TIME_TICKS = 800;
 
     @Config.Comment({
@@ -326,6 +342,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 16000
     })
+    @Config.RangeInt(min = 0)
     public int CHARCOAL_BLOCK_BURN_TIME_TICKS = 16000;
 
     @Config.Comment({
@@ -333,6 +350,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 800
     })
+    @Config.RangeInt(min = 0)
     public int TARRED_PLANKS_BURN_TIME_TICKS = 800;
 
     @Config.Comment({
@@ -340,6 +358,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 800
     })
+    @Config.RangeInt(min = 0)
     public int TARRED_WOOL_BURN_TIME_TICKS = 800;
 
     @Config.Comment({
@@ -347,6 +366,7 @@ public class ModuleCoreConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 400
     })
+    @Config.RangeInt(min = 0)
     public int TARRED_BOARD_BURN_TIME_TICKS = 400;
   }
 
