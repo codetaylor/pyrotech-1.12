@@ -16,9 +16,9 @@ public class ModuleStorageConfig {
 
     @Config.Comment({
         "The maximum number of stacks that can be stored in each slot.",
-        "Range: [1, (+int/stack_size)]",
         "Default: " + 1
     })
+    @Config.RangeInt(min = 1)
     public int MAX_STACKS = 1;
   }
 
@@ -32,9 +32,9 @@ public class ModuleStorageConfig {
 
     @Config.Comment({
         "The maximum number of items that can be stored in each slot.",
-        "Range: [1, (+int/stack_size)]",
         "Default: " + 2
     })
+    @Config.RangeInt(min = 1)
     public int MAX_STACKS = 2;
   }
 
@@ -48,9 +48,9 @@ public class ModuleStorageConfig {
 
     @Config.Comment({
         "The maximum number of stacks that can be stored in each slot.",
-        "Range: [1, (+int/stack_size)]",
         "Default: " + 1
     })
+    @Config.RangeInt(min = 1)
     public int MAX_STACKS = 1;
   }
 
@@ -64,9 +64,9 @@ public class ModuleStorageConfig {
 
     @Config.Comment({
         "The maximum number of items that can be stored in each slot.",
-        "Range: [1, (+int/stack_size)]",
         "Default: " + 2
     })
+    @Config.RangeInt(min = 1)
     public int MAX_STACKS = 2;
   }
 
@@ -80,9 +80,9 @@ public class ModuleStorageConfig {
 
     @Config.Comment({
         "The maximum number of stacks that can be stored in the stash.",
-        "Range: [1, (+int/stack_size)]",
         "Default: " + 10
     })
+    @Config.RangeInt(min = 1)
     public int MAX_STACKS = 10;
   }
 
@@ -96,9 +96,9 @@ public class ModuleStorageConfig {
 
     @Config.Comment({
         "The maximum number of stacks that can be stored in the stash.",
-        "Range: [1, (+int/stack_size)]",
         "Default: " + 20
     })
+    @Config.RangeInt(min = 1)
     public int MAX_STACKS = 20;
   }
 
