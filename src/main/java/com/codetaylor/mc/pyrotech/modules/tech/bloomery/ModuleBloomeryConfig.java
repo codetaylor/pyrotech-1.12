@@ -59,6 +59,7 @@ public class ModuleBloomeryConfig {
         "The total number of fuel items that the device can hold.",
         "Default: " + 16
     })
+    @Config.RangeInt(min = 1)
     public int FUEL_CAPACITY_ITEMS = 16;
 
     @Config.Comment({
@@ -77,7 +78,7 @@ public class ModuleBloomeryConfig {
         "to 3, the max speed is 300% and roughly 11% capacity is required for",
         "100% speed."
     })
-    @Config.RangeInt(min = 0)
+    @Config.RangeDouble(min = 0)
     public double SPEED_SCALAR = 2;
 
     @Config.Comment({
@@ -100,6 +101,7 @@ public class ModuleBloomeryConfig {
         "when it is active.",
         "Default: " + 3
     })
+    @Config.RangeDouble(min = 0)
     public double ENTITY_WALK_BURN_DAMAGE = 3;
   }
 
@@ -158,18 +160,19 @@ public class ModuleBloomeryConfig {
 
     @Config.Comment({
         "The amount of fire damage applied to a player when the bloom is in their",
-        "inventory. Set to -1 to disable.",
+        "inventory.",
+        "Set to zero to disable.",
         "Default: " + 3
     })
-    @Config.RangeDouble(min = -1)
+    @Config.RangeDouble(min = 0)
     public double FIRE_DAMAGE_PER_SECOND = 3;
 
     @Config.Comment({
         "The amount of fire damage applied to a player when the bloom is in their",
-        "inventory. Set to -1 to disable.",
+        "inventory. Set to zero to disable.",
         "Default: " + 3
     })
-    @Config.RangeDouble(min = -1)
+    @Config.RangeDouble(min = 0)
     public double ENTITY_WALK_DAMAGE = 3;
 
     @Config.Comment({
@@ -220,30 +223,35 @@ public class ModuleBloomeryConfig {
         "The durability of the stone tongs.",
         "Default: " + 4
     })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int STONE_TONGS_DURABILITY = 4;
 
     @Config.Comment({
         "The durability of the flint tongs.",
         "Default: " + 4
     })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int FLINT_TONGS_DURABILITY = 4;
 
     @Config.Comment({
         "The durability of the bone tongs.",
         "Default: " + 4
     })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int BONE_TONGS_DURABILITY = 4;
 
     @Config.Comment({
         "The durability of the iron tongs.",
         "Default: " + 16
     })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int IRON_TONGS_DURABILITY = 16;
 
     @Config.Comment({
         "The durability of the diamond tongs.",
         "Default: " + 64
     })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int DIAMOND_TONGS_DURABILITY = 64;
   }
 }
