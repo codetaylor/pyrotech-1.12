@@ -22,6 +22,7 @@ public class ModuleTechRefractoryConfig {
         "Recipe chances still apply, this is just a cap.",
         "Default: " + 0.95
     })
+    @Config.RangeDouble(min = 0, max = 1)
     public double MAX_FAILURE_CHANCE = 0.95;
 
     @Config.Comment({
@@ -29,20 +30,23 @@ public class ModuleTechRefractoryConfig {
         "Recipe chances still apply, this is just a cap.",
         "Default: " + 0.05
     })
+    @Config.RangeDouble(min = 0, max = 1)
     public double MIN_FAILURE_CHANCE = 0.05;
 
     @Config.Comment({
-        "The maximum fluid capacity of an active pile in mb.",
+        "The maximum fluid capacity of an active pile in mB.",
         "Recipes can be set to have more of a chance to fail the more fluid an",
         "active pile has inside. This encourages the use of the tar draining",
         "mechanics.",
         "Default: " + 500
     })
+    @Config.RangeInt(min = 1)
     public int ACTIVE_PILE_MAX_FLUID_CAPACITY = 500;
 
     @Config.Comment({
-        "The duration in ticks that 1 mb of fluid will burn in the Tar Collector.",
-        "Other fluids may be added here."
+        "The duration in ticks that 1 mB of fluid will burn in the Tar Collector.",
+        "Other fluids may be added here.",
+        "Range: [1,+int]"
     })
     public Map<String, Integer> FLUID_BURN_TICKS = new HashMap<String, Integer>() {{
       this.put("wood_tar", 20);
@@ -73,12 +77,14 @@ public class ModuleTechRefractoryConfig {
         "Remember, burning tar is supposed to be smokey and gross.",
         "Default: " + 10
     })
+    @Config.RangeInt(min = 0)
     public int SMOKE_PARTICLES_PER_TICK = 10;
 
     @Config.Comment({
-        "Fluid capacity of the tar collector in mb.",
+        "Fluid capacity of the tar collector in mB.",
         "Default: " + 4000
     })
+    @Config.RangeInt(min = 1)
     public int TAR_COLLECTOR_CAPACITY = 4000;
   }
 
@@ -94,6 +100,7 @@ public class ModuleTechRefractoryConfig {
         "Fluid capacity of the tar drain in mb.",
         "Default: " + 1000
     })
+    @Config.RangeInt(min = 1)
     public int TAR_DRAIN_CAPACITY = 1000;
   }
 
@@ -110,6 +117,7 @@ public class ModuleTechRefractoryConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 6400
     })
+    @Config.RangeInt(min = 1)
     public int COAL_TAR_BURN_TIME_TICKS = 6400;
 
     @Config.Comment({
@@ -117,6 +125,7 @@ public class ModuleTechRefractoryConfig {
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 4800
     })
+    @Config.RangeInt(min = 1)
     public int WOOD_TAR_BURN_TIME_TICKS = 4800;
   }
 }
