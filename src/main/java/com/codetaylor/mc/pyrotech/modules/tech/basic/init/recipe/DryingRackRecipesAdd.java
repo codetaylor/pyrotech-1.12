@@ -25,14 +25,14 @@ public class DryingRackRecipesAdd {
     registry.register(new DryingRackRecipe(
         ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack(),
         Ingredient.fromStacks(ItemMaterial.EnumType.PLANT_FIBERS.asStack()),
-        6 * 60 * 20
+        8 * 60 * 20
     ).setRegistryName(ModuleCore.MOD_ID, "plant_fibers_dried"));
 
     // Dried Plant Fibers
     registry.register(new DryingRackRecipe(
         ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack(),
         new OreIngredient("treeSapling"),
-        6 * 60 * 20
+        10 * 60 * 20
     ).setRegistryName(ModuleCore.MOD_ID, "plant_fibers_dried_from_sapling"));
 
     // Sponge
@@ -46,7 +46,7 @@ public class DryingRackRecipesAdd {
     registry.register(new DryingRackRecipe(
         new ItemStack(Items.PAPER, 1, 0),
         Ingredient.fromStacks(ItemMaterial.EnumType.PULP.asStack()),
-        4 * 60 * 20
+        5 * 60 * 20
     ).setRegistryName(ModuleCore.MOD_ID, "paper"));
   }
 }

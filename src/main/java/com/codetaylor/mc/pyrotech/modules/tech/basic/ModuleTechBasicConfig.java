@@ -597,10 +597,10 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "speed = speed * SPEED_MODIFIER",
-        "Default: " + 0.65
+        "Default: " + 1.0
     })
     @Config.RangeDouble
-    public double SPEED_MODIFIER = 0.65;
+    public double SPEED_MODIFIER = 1.0;
   }
 
   // ---------------------------------------------------------------------------
@@ -613,10 +613,10 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "speed = speed * SPEED_MODIFIER",
-        "Default: " + 1.0
+        "Default: " + 1.35
     })
     @Config.RangeDouble
-    public double SPEED_MODIFIER = 1.0;
+    public double SPEED_MODIFIER = 1.35;
   }
 
   // ---------------------------------------------------------------------------
