@@ -53,6 +53,11 @@ public class StoneOvenRecipe
         result = new StoneOvenRecipe(output, Ingredient.fromStacks(input));
         SMELTING_RECIPES.put(key, result);
         return result;
+
+      } else {
+        result = new StoneOvenRecipe(output, Ingredient.fromStacks(input));
+        SMELTING_RECIPES.put(key, result);
+        return result;
       }
     }
 
