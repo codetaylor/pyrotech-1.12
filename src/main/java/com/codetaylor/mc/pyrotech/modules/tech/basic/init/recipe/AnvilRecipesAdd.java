@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class AnvilRecipesAdd {
@@ -177,6 +178,22 @@ public class AnvilRecipesAdd {
     ).setRegistryName(ModuleCore.MOD_ID, "coal_coke_block_to_coal_coke"));
 
     // --- Hammer Recipes ------------------------------------------------------
+
+    // Iron Shard from Iron Nugget
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.IRON_SHARD.asStack(1),
+        new OreIngredient("nuggetIron"),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleCore.MOD_ID, "iron_shard_from_iron_nugget"));
+
+    // Iron Nugget from Iron Shard
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.IRON_NUGGET, 1, 0),
+        Ingredient.fromStacks(ItemMaterial.EnumType.IRON_SHARD.asStack(1)),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleCore.MOD_ID, "iron_nugget_from_iron_shard"));
 
     // Flint Shard from Flint
     registry.register(new AnvilRecipe(
