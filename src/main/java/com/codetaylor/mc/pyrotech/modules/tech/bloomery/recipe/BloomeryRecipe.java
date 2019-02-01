@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.athenaeum.util.WeightedPicker;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
@@ -167,7 +168,15 @@ public class BloomeryRecipe
       return ItemStack.EMPTY;
     }
 
-    return ArrayHelper.randomElement(this.failureItems, RandomHelper.random()).copy();
+    WeightedPicker<ItemStack> picker = new WeightedPicker<>();
+
+    for (ItemStack itemStack : this.failureItems) {
+      picker.add(itemStack.getCount(), itemStack);
+    }
+
+    ItemStack result = picker.get().copy();
+    result.setCount(1);
+    return result;
   }
 
   private String getLangKeyFrom(Ingredient input) {

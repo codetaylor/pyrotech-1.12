@@ -56,8 +56,8 @@ public class BloomeryRecipesAdd {
           4,
           new ItemStack(itemSlagIron),
           new ItemStack[]{
-              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
-              new ItemStack(itemSlagIron)
+              new ItemStack(ModuleBloomery.Items.SLAG, 1, 0),
+              new ItemStack(itemSlagIron, 2, 0)
           },
           null
       ));
@@ -74,7 +74,8 @@ public class BloomeryRecipesAdd {
           2,
           new ItemStack(itemSlagIron),
           new ItemStack[]{
-              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
+              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
+              new ItemStack(ModuleBloomery.Items.SLAG, 1, 0)
           },
           Blocks.IRON_ORE.getUnlocalizedName()
       ));
@@ -105,8 +106,8 @@ public class BloomeryRecipesAdd {
           4,
           new ItemStack(itemSlagGold),
           new ItemStack[]{
-              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
-              new ItemStack(itemSlagGold)
+              new ItemStack(ModuleBloomery.Items.SLAG, 1, 0),
+              new ItemStack(itemSlagGold, 2, 0)
           },
           null
       ));
@@ -123,7 +124,8 @@ public class BloomeryRecipesAdd {
           2,
           new ItemStack(itemSlagGold),
           new ItemStack[]{
-              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta())
+              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
+              new ItemStack(ModuleBloomery.Items.SLAG, 1, 0)
           },
           Blocks.GOLD_ORE.getUnlocalizedName()
       ));
