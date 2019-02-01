@@ -196,9 +196,7 @@ public class TileKilnPit
       KilnPitRecipe recipe = KilnPitRecipe.getRecipe(itemStack);
 
       if (recipe != null) {
-        float modifier = (float) (1.0f - this.countAdjacentRefractoryBlocks() * ModuleTechBasicConfig.PIT_KILN.REFRACTORY_BLOCK_TIME_BONUS);
-        int modifiedBurnTime = (int) (recipe.getTimeTicks() * modifier);
-        int burnTimeTicks = Math.max(1, modifiedBurnTime);
+        int burnTimeTicks = Math.max(1, recipe.getTimeTicks());
         this.setTotalBurnTimeTicks(burnTimeTicks);
       }
     }

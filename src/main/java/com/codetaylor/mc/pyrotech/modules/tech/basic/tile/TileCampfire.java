@@ -12,10 +12,10 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.TickCounter;
-import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.*;
+import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
@@ -674,7 +674,8 @@ public class TileCampfire
 
           if (!world.isRemote) {
 
-            if (Math.random() < ModuleTechBasicConfig.CAMPFIRE.PLAYER_BURN_CHANCE) {
+            if (ModuleTechBasicConfig.CAMPFIRE.PLAYER_LOG_BURN_DAMAGE > 0
+                && Math.random() < ModuleTechBasicConfig.CAMPFIRE.PLAYER_BURN_CHANCE) {
 
               if (!player.isImmuneToFire()
                   && !EnchantmentHelper.hasFrostWalkerEnchantment(player)

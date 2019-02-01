@@ -54,30 +54,30 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "The number of hammer hits required to complete a craft.",
-        "Range: [1, +int]",
         "Default: " + 4
     })
+    @Config.RangeInt(min = 1)
     public int HITS_PER_CRAFT = 4;
 
     @Config.Comment({
         "The amount of damage applied to the tool per craft.",
-        "Range: [0, +int]",
         "Default: " + 2
     })
+    @Config.RangeInt(min = 0)
     public int TOOL_DAMAGE_PER_CRAFT = 2;
 
     @Config.Comment({
         "The maximum stack size for each slot in the crafting grid.",
-        "Range: [1, 64]",
         "Default: " + 1
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int GRID_MAX_STACK_SIZE = 1;
 
     @Config.Comment({
         "The maximum stack size for each slot in the shelf.",
-        "Range: [1, 64]",
         "Default: " + 1
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int SHELF_MAX_STACK_SIZE = 1;
 
     @Config.Comment({
@@ -90,30 +90,30 @@ public class ModuleTechBasicConfig {
     @Config.Comment({
         "The number of crafts that the worktable can perform before it breaks.",
         "This is only relevant if the `USES_DURABILITY` flag is true.",
-        "Range: [1, +int]",
         "Default: " + 64
     })
+    @Config.RangeInt(min = 1)
     public int DURABILITY = 64;
 
     @Config.Comment({
         "How much exhaustion to apply per hit.",
-        "Range: [0, 40]",
         "Default: " + 1
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_HIT = 1;
 
     @Config.Comment({
         "How much exhaustion to apply per completed craft.",
-        "Range: [0, 40]",
         "Default: " + 0
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_CRAFT_COMPLETE = 0;
 
     @Config.Comment({
         "Minimum amount of hunger the player needs to use.",
-        "Range: [0, 20]",
-        "Default: 3"
+        "Default: " + 3
     })
+    @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
   }
 
@@ -127,30 +127,30 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "The number of hammer hits required to complete a craft.",
-        "Range: [1, +int]",
-        "Default: " + 1
+        "Default: " + 2
     })
+    @Config.RangeInt(min = 1)
     public int HITS_PER_CRAFT = 2;
 
     @Config.Comment({
         "The amount of damage applied to the tool per craft.",
-        "Range: [0, +int]",
         "Default: " + 1
     })
+    @Config.RangeInt(min = 0)
     public int TOOL_DAMAGE_PER_CRAFT = 1;
 
     @Config.Comment({
         "The maximum stack size for each slot in the crafting grid.",
-        "Range: [1, 64]",
         "Default: " + 1
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int GRID_MAX_STACK_SIZE = 32;
 
     @Config.Comment({
         "The maximum stack size for each slot in the shelf.",
-        "Range: [1, 64]",
         "Default: " + 64
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int SHELF_MAX_STACK_SIZE = 64;
 
     @Config.Comment({
@@ -163,30 +163,30 @@ public class ModuleTechBasicConfig {
     @Config.Comment({
         "The number of crafts that the worktable can perform before it breaks.",
         "This is only relevant if the `USES_DURABILITY` flag is true.",
-        "Range: [1, +int]",
         "Default: " + (64 * 8)
     })
+    @Config.RangeInt(min = 1)
     public int DURABILITY = 64 * 8;
 
     @Config.Comment({
         "How much exhaustion to apply per hit.",
-        "Range: [0, 40]",
         "Default: " + 0.5
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_HIT = 0.5;
 
     @Config.Comment({
         "How much exhaustion to apply per completed craft.",
-        "Range: [0, 40]",
         "Default: " + 0
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_CRAFT_COMPLETE = 0;
 
     @Config.Comment({
         "Minimum amount of hunger the player needs to use.",
-        "Range: [0, 20]",
-        "Default: 3"
+        "Default: " + 3
     })
+    @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
   }
 
@@ -220,10 +220,10 @@ public class ModuleTechBasicConfig {
     public String[] SHOVEL_BLACKLIST = new String[0];
 
     @Config.Comment({
-        "The number of output items the compacting bin can hold.",
-        "Range: [1, +int)",
-        "Default: 4"
+        "The number of output blocks the compacting bin can hold.",
+        "Default: " + 4
     })
+    @Config.RangeInt(min = 1)
     public int MAX_CAPACITY = 4;
 
     @Config.Comment({
@@ -263,23 +263,23 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "How much exhaustion to apply per hit.",
-        "Range: [0, 40]",
         "Default: " + 1
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_HIT = 1;
 
     @Config.Comment({
         "How much exhaustion to apply per completed craft.",
-        "Range: [0, 40]",
         "Default: " + 0
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_CRAFT_COMPLETE = 0;
 
     @Config.Comment({
         "Minimum amount of hunger the player needs to use.",
-        "Range: [0, 20]",
         "Default: 3"
     })
+    @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
   }
 
@@ -293,16 +293,16 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "The maximum stack size that can be placed in the pot.",
-        "Range: [1, 64]",
         "Default: " + 4
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int MAX_STACK_SIZE = 4;
 
     @Config.Comment({
         "The maximum fluid capacity in millibuckets.",
-        "Range: [1, +int]",
         "Default: " + 4000
     })
+    @Config.RangeInt(min = 1)
     public int MAX_FLUID_CAPACITY = 4000;
   }
 
@@ -391,9 +391,9 @@ public class ModuleTechBasicConfig {
         "The number of times the block can be hit before applying damage",
         "to the block. The block has a total of four damage stages. This number",
         "represents the number of hits for just one damage stage.",
-        "Range: [1, +int]",
         "Default: " + 64
     })
+    @Config.RangeInt(min = 1)
     public int HITS_PER_DAMAGE = 64;
 
     @Config.Comment({
@@ -405,23 +405,23 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "How much exhaustion to apply per hit.",
-        "Range: [0, 40]",
         "Default: " + 0.5
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_HIT = 0.5;
 
     @Config.Comment({
         "How much exhaustion to apply per completed craft.",
-        "Range: [0, 40]",
         "Default: " + 0
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_CRAFT_COMPLETE = 0;
 
     @Config.Comment({
         "Minimum amount of hunger the player needs to use.",
-        "Range: [0, 20]",
-        "Default: 3"
+        "Default: " + 3
     })
+    @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
   }
 
@@ -437,9 +437,9 @@ public class ModuleTechBasicConfig {
         "The number of times the block can be hit before applying damage",
         "to the block. The block has a total of four damage stages. This number",
         "represents the number of hits for just one damage stage.",
-        "Range: [1, +int]",
         "Default: " + 256
     })
+    @Config.RangeInt(min = 1)
     public int HITS_PER_DAMAGE = 256;
 
     @Config.Comment({
@@ -451,23 +451,23 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "How much exhaustion to apply per hit.",
-        "Range: [0, 40]",
         "Default: " + 0.5
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_HIT = 0.5;
 
     @Config.Comment({
         "How much exhaustion to apply per completed craft.",
-        "Range: [0, 40]",
         "Default: " + 0
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_CRAFT_COMPLETE = 0;
 
     @Config.Comment({
         "Minimum amount of hunger the player needs to use.",
-        "Range: [0, 20]",
-        "Default: 3"
+        "Default: " + 3
     })
+    @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
   }
 
@@ -544,46 +544,46 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "The chance that a chop will spawn wood chips nearby.",
-        "Range: [0, 1]",
         "Default: " + 0.05
     })
+    @Config.RangeDouble(min = 0, max = 1)
     public double WOOD_CHIPS_CHANCE = 0.05;
 
     @Config.Comment({
         "The number of times the block can be chopped on before applying damage",
         "to the block. The block has a total of six damage stages. This number",
         "represents the number of chops for just one damage stage.",
-        "Range: [1, +int]",
         "Default: " + 16
     })
+    @Config.RangeInt(min = 1)
     public int CHOPS_PER_DAMAGE = 16;
 
     @Config.Comment({
         "How much exhaustion to apply per axe chop.",
-        "Range: [0, 40]",
         "Default: " + 1.5
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_AXE_CHOP = 1.5;
 
     @Config.Comment({
         "How much exhaustion to apply per shovel scoop.",
-        "Range: [0, 40]",
         "Default: " + 0.5
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_SHOVEL_SCOOP = 0.5;
 
     @Config.Comment({
         "How much exhaustion to apply per completed craft.",
-        "Range: [0, 40]",
         "Default: " + 0
     })
+    @Config.RangeDouble(min = 0, max = 40)
     public double EXHAUSTION_COST_PER_CRAFT_COMPLETE = 0;
 
     @Config.Comment({
         "Minimum amount of hunger the player needs to use.",
-        "Range: [0, 20]",
-        "Default: 3"
+        "Default: " + 3
     })
+    @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
   }
 
@@ -599,6 +599,7 @@ public class ModuleTechBasicConfig {
         "speed = speed * SPEED_MODIFIER",
         "Default: " + 0.65
     })
+    @Config.RangeDouble
     public double SPEED_MODIFIER = 0.65;
   }
 
@@ -614,6 +615,7 @@ public class ModuleTechBasicConfig {
         "speed = speed * SPEED_MODIFIER",
         "Default: " + 1.0
     })
+    @Config.RangeDouble
     public double SPEED_MODIFIER = 1.0;
   }
 
@@ -624,13 +626,6 @@ public class ModuleTechBasicConfig {
   public static PitKiln PIT_KILN = new PitKiln();
 
   public static class PitKiln {
-
-    @Config.Comment({
-        "Reduce the duration of all recipes by this amount for each adjacent refractory block.",
-        "Range: [0, 0.2]",
-        "Default: " + 0.1
-    })
-    public double REFRACTORY_BLOCK_TIME_BONUS = 0.1;
 
     @Config.Comment({
         "The maximum stack size that can be placed in the pit kiln.",
@@ -652,6 +647,7 @@ public class ModuleTechBasicConfig {
         "How many ticks to cook food on the campfire.",
         "Default: " + (90 * 20)
     })
+    @Config.RangeInt(min = 1)
     public int COOK_TIME_TICKS = 90 * 20;
 
     @Config.Comment({
@@ -659,17 +655,19 @@ public class ModuleTechBasicConfig {
         "for each log consumed.",
         "Default: " + (60 * 2 * 20)
     })
+    @Config.RangeInt(min = 1)
     public int BURN_TIME_TICKS_PER_LOG = 60 * 2 * 20;
 
     @Config.Comment({
         "How many ticks does it take before the output food becomes burned food.",
         "Default: " + (30 * 20)
     })
+    @Config.RangeInt(min = 1)
     public int BURNED_FOOD_TICKS = 30 * 20;
 
     @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",
-        "Default: true"
+        "Default: " + true
     })
     public boolean EXTINGUISHED_BY_RAIN = true;
 
@@ -678,13 +676,14 @@ public class ModuleTechBasicConfig {
         "it is extinguished.",
         "Default: " + (10 * 20)
     })
+    @Config.RangeInt(min = 1)
     public int TICKS_BEFORE_EXTINGUISHED = 10 * 20;
 
     @Config.Comment({
         "The chance that the campfire will produce ash when a fuel is consumed.",
-        "Range: [0, 1]",
         "Default: " + 0.25
     })
+    @Config.RangeDouble(min = 0, max = 1)
     public double ASH_CHANCE = 0.25;
 
     @Config.Comment({
@@ -692,6 +691,7 @@ public class ModuleTechBasicConfig {
         "up a log while the campfire is lit.",
         "Default: " + 0.5
     })
+    @Config.RangeDouble(min = 0, max = 1)
     public double PLAYER_BURN_CHANCE = 0.5;
 
     @Config.Comment({
@@ -699,13 +699,15 @@ public class ModuleTechBasicConfig {
         "campfire is lit.",
         "Default: " + 1.0
     })
+    @Config.RangeDouble(min = 0)
     public double PLAYER_LOG_BURN_DAMAGE = 1.0;
 
     @Config.Comment({
         "The amount of damage done to an entity when walking on top of a lit campfire.",
-        "Set to -1 to disable.",
+        "Set to zero to disable.",
         "Default: " + 1.0
     })
+    @Config.RangeDouble(min = 0)
     public double ENTITY_WALK_BURN_DAMAGE = 1.0;
   }
 
