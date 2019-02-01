@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile;
 
+import com.codetaylor.mc.athenaeum.inventory.LargeDynamicStackHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -13,11 +14,11 @@ import javax.annotation.Nullable;
 public class TilePitAsh
     extends TileEntity {
 
-  private ItemStackHandler stackHandler;
+  private LargeDynamicStackHandler stackHandler;
 
   public TilePitAsh() {
 
-    this.stackHandler = new ItemStackHandler(9);
+    this.stackHandler = new LargeDynamicStackHandler(9);
   }
 
   public ItemStackHandler getStackHandler() {
