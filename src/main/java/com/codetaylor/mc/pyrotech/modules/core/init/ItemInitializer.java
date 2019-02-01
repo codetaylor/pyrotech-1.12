@@ -34,7 +34,6 @@ public final class ItemInitializer {
     registry.registerItemRegistrationStrategy(forgeRegistry -> {
       OreDictionary.registerOre("twine", new ItemStack(Items.STRING));
       OreDictionary.registerOre("twine", new ItemStack(itemMaterial, 1, ItemMaterial.EnumType.TWINE.getMeta()));
-      OreDictionary.registerOre("nuggetIron", new ItemStack(itemMaterial, 1, ItemMaterial.EnumType.IRON_SHARD.getMeta()));
       OreDictionary.registerOre("stickStone", new ItemStack(itemMaterial, 1, ItemMaterial.EnumType.STICK_STONE.getMeta()));
       OreDictionary.registerOre("dustLimestone", new ItemStack(itemMaterial, 1, ItemMaterial.EnumType.DUST_LIMESTONE.getMeta()));
 
