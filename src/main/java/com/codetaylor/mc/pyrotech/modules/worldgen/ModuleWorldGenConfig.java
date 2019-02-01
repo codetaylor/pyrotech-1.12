@@ -58,10 +58,10 @@ public class ModuleWorldGenConfig {
         "Must be less than or equal to MIN_VEIN_SIZE.",
         "NOTE: This worldgen is basic and does nothing to mitigate cascading",
         "world gen if the vein size is too large.",
-        "Default: " + 20
+        "Default: " + 15
     })
     @Config.RangeInt(min = 0)
-    public int MAX_VEIN_SIZE = 20;
+    public int MAX_VEIN_SIZE = 15;
   }
 
   public static WorldGenLimestone LIMESTONE = new WorldGenLimestone();
