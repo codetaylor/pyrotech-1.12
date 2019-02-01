@@ -3,7 +3,7 @@
   "conditions": [
     {
       "type": "modules_enabled",
-      "modules": ["module.bucket"]
+      "include": ["module.bucket"]
     },
     {
       "type": "bucket_enabled",

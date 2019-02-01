@@ -49,17 +49,35 @@ public class ModPyrotechConfig {
     @Override
     public BooleanSupplier parse(JsonContext context, JsonObject json) {
 
-      JsonArray modules = JsonUtils.getJsonArray(json, "modules");
+      if (json.has("include")) {
+        JsonArray include = JsonUtils.getJsonArray(json, "include");
 
-      for (JsonElement element : modules) {
-        String module = element.getAsString();
+        for (JsonElement element : include) {
+          String module = element.getAsString();
 
-        if (!MODULES.containsKey(module)) {
-          throw new JsonSyntaxException("Unknown module id: [" + module + "]");
+          if (!MODULES.containsKey(module)) {
+            throw new JsonSyntaxException("Unknown module id: [" + module + "]");
+          }
+
+          if (!MODULES.get(module)) {
+            return () -> false;
+          }
         }
+      }
 
-        if (!MODULES.get(module)) {
-          return () -> false;
+      if (json.has("exclude")) {
+        JsonArray exclude = JsonUtils.getJsonArray(json, "exclude");
+
+        for (JsonElement element : exclude) {
+          String module = element.getAsString();
+
+          if (!MODULES.containsKey(module)) {
+            throw new JsonSyntaxException("Unknown module id: [" + module + "]");
+          }
+
+          if (MODULES.get(module)) {
+            return () -> false;
+          }
         }
       }
 

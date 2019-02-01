@@ -3,7 +3,7 @@
   "conditions": [
     {
       "type": "modules_enabled",
-      "modules": ["module.tool"]
+      "include": ["module.tool"]
     }
   ],
   "pattern": [

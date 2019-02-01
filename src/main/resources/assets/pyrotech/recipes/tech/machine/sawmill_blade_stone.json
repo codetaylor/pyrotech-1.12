@@ -3,7 +3,7 @@
   "conditions": [
     {
       "type": "modules_enabled",
-      "modules": ["module.tech.machine"]
+      "include": ["module.tech.machine"]
     }
   ],
   "pattern": [
