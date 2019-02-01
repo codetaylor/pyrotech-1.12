@@ -259,19 +259,22 @@ public class TileActivePile
         }
       }
 
-      return this.isValidRefractoryDoor(blockState, facing);
-    }
+      return this.isValidDoor(blockState, facing, ModuleCore.Blocks.REFRACTORY_DOOR);
 
-    if (this.isValidRefractoryDoor(blockState, facing)) {
-      return true;
-    }
+    } else {
 
-    return super.isValidStructureBlock(world, pos, blockState, facing);
+      if (this.isValidDoor(blockState, facing, ModuleCore.Blocks.REFRACTORY_DOOR)
+          || this.isValidDoor(blockState, facing, ModuleCore.Blocks.STONE_DOOR)) {
+        return true;
+      }
+
+      return super.isValidStructureBlock(world, pos, blockState, facing);
+    }
   }
 
-  private boolean isValidRefractoryDoor(IBlockState blockState, EnumFacing facing) {
+  private boolean isValidDoor(IBlockState blockState, EnumFacing facing, BlockDoor door) {
 
-    if (blockState.getBlock() == ModuleCore.Blocks.REFRACTORY_DOOR) {
+    if (blockState.getBlock() == door) {
 
       if (!blockState.getValue(BlockRefractoryDoor.OPEN)
           && blockState.getValue(BlockRefractoryDoor.FACING) == facing) {
