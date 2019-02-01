@@ -83,8 +83,6 @@ public class BloomeryProvider
 
         // Display output items.
 
-        //tooltip.add(Util.translate("gui." + ModuleCharcoal.MOD_ID + ".waila.kiln.brick.finished"));
-
         StringBuilder renderString = new StringBuilder();
 
         for (int i = 0; i < outputStackHandler.getSlots(); i++) {
@@ -95,7 +93,6 @@ public class BloomeryProvider
           }
         }
 
-        //tooltip.add(Util.translate("gui." + ModuleCharcoal.MOD_ID + ".waila.result"));
         tooltip.add(renderString.toString());
       }
 
