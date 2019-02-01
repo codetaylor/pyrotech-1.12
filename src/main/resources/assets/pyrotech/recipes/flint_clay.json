@@ -7,8 +7,8 @@
   ],
   "key": {
     "F": {
-      "item": "minecraft:flint",
-      "data": 0
+      "item": "pyrotech:material",
+      "data": 10
     },
     "C": {
       "item": "minecraft:clay_ball",
