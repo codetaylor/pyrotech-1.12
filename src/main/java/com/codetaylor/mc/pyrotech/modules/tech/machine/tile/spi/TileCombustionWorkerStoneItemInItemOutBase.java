@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
-import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.inventory.LargeDynamicStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
@@ -38,7 +38,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
     });
 
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataItemStackHandler<>(this.outputStackHandler)
+        new TileDataLargeItemStackHandler<>(this.outputStackHandler)
     });
 
     this.addInteractions(new IInteraction[]{
@@ -244,7 +244,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Stone
   // ---------------------------------------------------------------------------
 
   private class OutputStackHandler
-      extends ObservableStackHandler
+      extends LargeDynamicStackHandler
       implements ITileDataItemStackHandler {
 
     /* package */ OutputStackHandler(int size) {
