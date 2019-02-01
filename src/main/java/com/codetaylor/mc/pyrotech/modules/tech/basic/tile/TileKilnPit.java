@@ -712,8 +712,7 @@ public class TileKilnPit
     @Override
     protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
 
-      // TODO: Config Option
-      return 8;
+      return ModuleTechBasicConfig.PIT_KILN.MAX_STACK_SIZE;
     }
   }
 

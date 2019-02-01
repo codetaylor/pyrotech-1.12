@@ -632,6 +632,12 @@ public class ModuleTechBasicConfig {
     })
     public double REFRACTORY_BLOCK_TIME_BONUS = 0.1;
 
+    @Config.Comment({
+        "The maximum stack size that can be placed in the pit kiln.",
+        "Default: " + 8
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int MAX_STACK_SIZE = 8;
   }
 
   // ---------------------------------------------------------------------------
