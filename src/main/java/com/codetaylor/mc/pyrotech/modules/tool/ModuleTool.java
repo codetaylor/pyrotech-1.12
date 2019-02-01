@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tool;
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.modules.tool.item.ItemCrudeFishingRod;
 import com.codetaylor.mc.pyrotech.modules.tool.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tool.item.*;
 import net.minecraft.creativetab.CreativeTabs;
@@ -56,6 +57,9 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemCrudeShovel.NAME)
     public static final ItemCrudeShovel CRUDE_SHOVEL;
 
+    @GameRegistry.ObjectHolder(ItemCrudeFishingRod.NAME)
+    public static final ItemCrudeFishingRod CRUDE_FISHING_ROD;
+
     @GameRegistry.ObjectHolder(ItemBoneAxe.NAME)
     public static final ItemBoneAxe BONE_AXE;
 
@@ -91,6 +95,7 @@ public class ModuleTool
       CRUDE_HOE = null;
       CRUDE_PICKAXE = null;
       CRUDE_SHOVEL = null;
+      CRUDE_FISHING_ROD = null;
       BONE_AXE = null;
       BONE_HOE = null;
       BONE_PICKAXE = null;

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tool"]
+    }
+  ],
+  "pattern": [
+    "F|",
+    "SR"
+  ],
+  "key": {
+    "F": {
+      "item": "pyrotech:material",
+      "data": 12
+    },
+    "|": {
+      "type": "forge:ore_dict",
+      "ore": "twine"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "rock"
+    }
+  },
+  "result": {
+    "item": "pyrotech:crude_fishing_rod",
+    "count": 1,
+    "data": 0
+  }
+}

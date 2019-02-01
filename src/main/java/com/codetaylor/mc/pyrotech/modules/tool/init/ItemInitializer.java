@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tool.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
+import com.codetaylor.mc.pyrotech.modules.tool.item.ItemCrudeFishingRod;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
 import com.codetaylor.mc.pyrotech.modules.tool.item.*;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,6 +17,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemCrudeHoe(), ItemCrudeHoe.NAME);
     registry.registerItem(new ItemCrudePickaxe(), ItemCrudePickaxe.NAME);
     registry.registerItem(new ItemCrudeShovel(), ItemCrudeShovel.NAME);
+    registry.registerItem(new ItemCrudeFishingRod(), ItemCrudeFishingRod.NAME);
 
     registry.registerItem(new ItemBoneAxe(), ItemBoneAxe.NAME);
     registry.registerItem(new ItemBoneHoe(), ItemBoneHoe.NAME);
@@ -28,6 +30,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemFlintPickaxe(), ItemFlintPickaxe.NAME);
     registry.registerItem(new ItemFlintShovel(), ItemFlintShovel.NAME);
     registry.registerItem(new ItemFlintSword(), ItemFlintSword.NAME);
+
   }
 
   @SideOnly(Side.CLIENT)
@@ -41,6 +44,7 @@ public final class ItemInitializer {
           ModuleTool.Items.CRUDE_HOE,
           ModuleTool.Items.CRUDE_PICKAXE,
           ModuleTool.Items.CRUDE_SHOVEL,
+          ModuleTool.Items.CRUDE_FISHING_ROD,
 
           ModuleTool.Items.BONE_AXE,
           ModuleTool.Items.BONE_HOE,
