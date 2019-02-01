@@ -56,7 +56,7 @@ public class StoneKilnRecipesAdd {
     // Quicklime
     registry.register(new StoneKilnRecipe(
         ItemMaterial.EnumType.QUICKLIME.asStack(),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
+        Ingredient.fromStacks(ItemMaterial.EnumType.DUST_LIMESTONE.asStack()),
         Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
         Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{

@@ -313,5 +313,13 @@ public class AnvilRecipesAdd {
         8,
         AnvilRecipe.EnumType.HAMMER
     ).setRegistryName(ModuleCore.MOD_ID, "cobbled_limestone_to_rocks"));
+
+    // Limestone rocks to crushed limestone
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.DUST_LIMESTONE.asStack(),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleCore.MOD_ID, "limestone_rocks_to_crushed_limestone"));
   }
 }

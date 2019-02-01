@@ -94,7 +94,8 @@ public class ItemMaterial
     UNFIRED_BRICK(24, "unfired_brick"),
     PULP(25, "pulp"),
     TWINE_DURABLE(26, "twine_durable"),
-    STICK_STONE(27, "stick_stone");
+    STICK_STONE(27, "stick_stone"),
+    DUST_LIMESTONE(28, "dust_limestone");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())
