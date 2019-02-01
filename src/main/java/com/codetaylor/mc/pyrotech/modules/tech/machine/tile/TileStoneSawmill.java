@@ -293,7 +293,7 @@ public class TileStoneSawmill
 
       if (this.tile.workerIsActive()
           && ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
-        player.attackEntityFrom(DamageSource.GENERIC, ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE);
+        player.attackEntityFrom(DamageSource.GENERIC, (float) ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE);
       }
     }
 
@@ -304,7 +304,7 @@ public class TileStoneSawmill
 
       if (this.tile.workerIsActive()
           && ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
-        player.attackEntityFrom(DamageSource.GENERIC, ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE);
+        player.attackEntityFrom(DamageSource.GENERIC, (float) ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE);
       }
     }
 

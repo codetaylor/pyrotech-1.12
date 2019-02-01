@@ -65,7 +65,7 @@ public class BlockStoneSawmill
       if (tile instanceof TileStoneSawmill
           && ((TileStoneSawmill) tile).workerIsActive()
           && ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE > 0) {
-        entity.attackEntityFrom(DamageSource.GENERIC, ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE);
+        entity.attackEntityFrom(DamageSource.GENERIC, (float) ModuleTechMachineConfig.STONE_SAWMILL.ENTITY_DAMAGE_FROM_BLADE);
       }
     }
 

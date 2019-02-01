@@ -23,16 +23,16 @@ public class ModuleTechMachineConfig {
 
     @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
-        "Range: [1, 64]",
         "Default: " + 8
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int INPUT_SLOT_SIZE = 8;
 
     @Config.Comment({
         "Controls the number of fuel items that can be inserted.",
-        "Range: [1, 64]",
         "Default: " + 16
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int FUEL_SLOT_SIZE = 16;
   }
 
@@ -55,20 +55,21 @@ public class ModuleTechMachineConfig {
         "Time to cook the entire input stack in ticks.",
         "Default: " + (80 * 20)
     })
+    @Config.RangeInt(min = 1)
     public int COOK_TIME_TICKS = 80 * 20;
 
     @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
-        "Range: [1, 64]",
         "Default: " + 8
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int INPUT_SLOT_SIZE = 8;
 
     @Config.Comment({
         "Controls the number of fuel items that can be inserted.",
-        "Range: [1, 64]",
         "Default: " + 16
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int FUEL_SLOT_SIZE = 16;
   }
 
@@ -89,23 +90,24 @@ public class ModuleTechMachineConfig {
 
     @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
-        "Range: [1, 64]",
         "Default: " + 8
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int INPUT_SLOT_SIZE = 8;
 
     @Config.Comment({
         "Controls the number of fuel items that can be inserted.",
-        "Range: [1, 64]",
         "Default: " + 16
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int FUEL_SLOT_SIZE = 16;
 
     @Config.Comment({
         "Controls how much damage a spinning blade will do to an entity.",
         "Default: " + 3
     })
-    public int ENTITY_DAMAGE_FROM_BLADE = 3;
+    @Config.RangeDouble(min = 0)
+    public double ENTITY_DAMAGE_FROM_BLADE = 3;
 
     @Config.Comment({
         "Set to false to disable damaging blades.",
@@ -117,6 +119,7 @@ public class ModuleTechMachineConfig {
         "Chance of producing wood chips per second of operation.",
         "Default: " + 0.075
     })
+    @Config.RangeDouble(min = 0, max = 1)
     public double WOOD_CHIPS_CHANCE = 0.075;
   }
 
@@ -137,23 +140,23 @@ public class ModuleTechMachineConfig {
 
     @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
-        "Range: [1, 64]",
         "Default: " + 8
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int INPUT_SLOT_SIZE = 8;
 
     @Config.Comment({
         "Controls the number of fuel items that can be inserted.",
-        "Range: [1, 64]",
         "Default: " + 16
     })
+    @Config.RangeInt(min = 1, max = 64)
     public int FUEL_SLOT_SIZE = 16;
 
     @Config.Comment({
         "Controls the size of the output tank in millibuckets.",
-        "Range: [1, +int]",
         "Default: " + 4000
     })
+    @Config.RangeInt(min = 1)
     public int OUTPUT_TANK_SIZE = 4000;
 
     @Config.Comment({
