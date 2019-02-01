@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.waila.provider
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileTarTankBase;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarTankBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;

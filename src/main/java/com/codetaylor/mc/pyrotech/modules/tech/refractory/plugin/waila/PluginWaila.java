@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.waila;
 
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.waila.providers.TankProvider;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileTarTankBase;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarTankBase;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
 public class PluginWaila {

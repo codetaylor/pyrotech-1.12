@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile;
+package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;

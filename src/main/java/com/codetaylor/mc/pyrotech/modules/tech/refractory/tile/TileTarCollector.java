@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarTankBase;
 import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.state.IBlockState;

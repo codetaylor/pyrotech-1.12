@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarTankBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
