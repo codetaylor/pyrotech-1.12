@@ -29,7 +29,7 @@ public class WorldGenerator
         random -> {
           int minVeinSize = ModuleWorldGenConfig.FOSSIL.MIN_VEIN_SIZE;
           int maxVeinSize = ModuleWorldGenConfig.FOSSIL.MAX_VEIN_SIZE;
-          return (minVeinSize + random.nextInt(maxVeinSize - minVeinSize));
+          return (minVeinSize + random.nextInt(Math.max(1, maxVeinSize - minVeinSize + 1)));
         }
     );
 
@@ -38,7 +38,7 @@ public class WorldGenerator
         random -> {
           int minVeinSize = ModuleWorldGenConfig.LIMESTONE.MIN_VEIN_SIZE;
           int maxVeinSize = ModuleWorldGenConfig.LIMESTONE.MAX_VEIN_SIZE;
-          return (minVeinSize + random.nextInt(maxVeinSize - minVeinSize));
+          return (minVeinSize + random.nextInt(Math.max(1, maxVeinSize - minVeinSize + 1)));
         }
     );
   }
@@ -57,7 +57,7 @@ public class WorldGenerator
 
       for (int i = 0; i < chancesToSpawn; i++) {
         int posX = blockXPos + random.nextInt(16);
-        int posY = minY + random.nextInt(maxY - minY);
+        int posY = minY + random.nextInt(Math.max(1, maxY - minY + 1));
         int posZ = blockZPos + random.nextInt(16);
         this.worldGenFossil.generate(world, random, new BlockPos(posX, posY, posZ));
       }
@@ -74,20 +74,20 @@ public class WorldGenerator
 
       for (int i = 0; i < chancesToSpawn; i++) {
         int posX = blockXPos + random.nextInt(16);
-        int posY = minY + random.nextInt(maxY - minY);
+        int posY = minY + random.nextInt(Math.max(1, maxY - minY + 1));
         int posZ = blockZPos + random.nextInt(16);
         this.worldGenLimestone.generate(world, random, new BlockPos(posX, posY, posZ));
       }
     }
 
     // Stone Rocks
-    {
-      final int chancesToSpawn = 4;
+    if (ModuleWorldGenConfig.ROCKS.ENABLED
+        && ModuleWorldGenConfig.ROCKS.CHANCES_TO_SPAWN > 0) {
       final int blockXPos = chunkX << 4;
       final int blockZPos = chunkZ << 4;
       final double density = ModuleWorldGenConfig.ROCKS.DENSITY;
 
-      for (int i = 0; i < chancesToSpawn; i++) {
+      for (int i = 0; i < ModuleWorldGenConfig.ROCKS.CHANCES_TO_SPAWN; i++) {
 
         int posX = blockXPos + random.nextInt(16) + 8;
         int posY = world.getHeight(blockXPos, blockZPos);
@@ -95,7 +95,9 @@ public class WorldGenerator
 
         BlockHelper.forBlocksInCube(world, new BlockPos(posX, posY, posZ), 4, 4, 4, (w, p, bs) -> {
 
-          if (w.isAirBlock(p) && this.canSpawnOnTopOf(w, p.down(), w.getBlockState(p.down())) && random.nextFloat() < density) {
+          if (w.isAirBlock(p)
+              && this.canSpawnOnTopOf(w, p.down(), w.getBlockState(p.down()))
+              && random.nextFloat() < density) {
             world.setBlockState(p, ModuleCore.Blocks.ROCK.getDefaultState().withProperty(BlockRock.VARIANT, BlockRock.EnumType.STONE), 2 | 16);
           }
 
