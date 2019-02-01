@@ -40,17 +40,6 @@ public class PitKilnRecipesAdd {
         }
     ).setRegistryName(ModuleCore.MOD_ID, "charcoal_flakes"));
 
-    // Quicklime
-    registry.register(new KilnPitRecipe(
-        ItemMaterial.EnumType.QUICKLIME.asStack(),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
-        Reference.PitKiln.DEFAULT_BURN_TIME_TICKS,
-        Reference.PitKiln.DEFAULT_FAILURE_CHANCE,
-        new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack()
-        }
-    ).setRegistryName(ModuleCore.MOD_ID, "quicklime"));
-
     // Stone Slab
     registry.register(new KilnPitRecipe(
         new ItemStack(Blocks.STONE_SLAB, 1, 0),
