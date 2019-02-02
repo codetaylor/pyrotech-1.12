@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;

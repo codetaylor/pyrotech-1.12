@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockAnvilBase;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import net.minecraft.util.ResourceLocation;
 

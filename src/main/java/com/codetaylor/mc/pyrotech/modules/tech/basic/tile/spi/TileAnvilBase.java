@@ -16,7 +16,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockAnvilBase;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

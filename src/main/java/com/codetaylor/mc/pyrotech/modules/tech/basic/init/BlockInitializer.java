@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
