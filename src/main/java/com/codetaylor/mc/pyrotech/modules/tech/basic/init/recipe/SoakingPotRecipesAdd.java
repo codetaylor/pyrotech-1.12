@@ -34,7 +34,7 @@ public class SoakingPotRecipesAdd {
           ItemMaterial.EnumType.TWINE_DURABLE.asStack(),
           Ingredient.fromStacks(ItemMaterial.EnumType.TWINE.asStack()),
           new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 250),
-          2 * 60 * 20
+          4 * 60 * 20
       ).setRegistryName(ModuleCore.MOD_ID, "twine_durable"));
     }
 
@@ -44,7 +44,7 @@ public class SoakingPotRecipesAdd {
           new ItemStack(ModuleCore.Blocks.WOOL_TARRED),
           Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE)),
           new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 250),
-          8 * 60 * 20
+          4 * 60 * 20
       ).setRegistryName(ModuleCore.MOD_ID, "wool_tarred"));
     }
 
@@ -53,7 +53,7 @@ public class SoakingPotRecipesAdd {
         ItemMaterial.EnumType.PULP.asStack(),
         Ingredient.fromStacks(new ItemStack(Items.REEDS, 1, 0)),
         new FluidStack(FluidRegistry.WATER, 125),
-        2 * 60 * 20
+        4 * 60 * 20
     ).setRegistryName(ModuleCore.MOD_ID, "pulp_from_reeds"));
 
     // Pulp from wood chips
@@ -61,7 +61,7 @@ public class SoakingPotRecipesAdd {
         ItemMaterial.EnumType.PULP.asStack(),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
         new FluidStack(FluidRegistry.WATER, 500),
-        8 * 60 * 20
+        7 * 60 * 20
     ).setRegistryName(ModuleCore.MOD_ID, "pulp_from_wood_chips"));
 
     // Tarred Planks
@@ -70,7 +70,7 @@ public class SoakingPotRecipesAdd {
           new ItemStack(ModuleCore.Blocks.PLANKS_TARRED),
           new OreIngredient("plankWood"),
           new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 125),
-          6 * 60 * 20
+          7 * 60 * 20
       ).setRegistryName(ModuleCore.MOD_ID, "planks_tarred"));
     }
 
@@ -80,7 +80,7 @@ public class SoakingPotRecipesAdd {
           ItemMaterial.EnumType.BOARD_TARRED.asStack(),
           Ingredient.fromStacks(ItemMaterial.EnumType.BOARD.asStack()),
           new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 50),
-          (6 * 60 * 20) / 4
+          (7 * 60 * 20) / 4
       ).setRegistryName(ModuleCore.MOD_ID, "board_tarred"));
     }
 
@@ -89,7 +89,7 @@ public class SoakingPotRecipesAdd {
         ItemMaterial.EnumType.SLAKED_LIME.asStack(),
         Ingredient.fromStacks(ItemMaterial.EnumType.QUICKLIME.asStack()),
         new FluidStack(FluidRegistry.WATER, 125),
-        2 * 60 * 20
+        7 * 60 * 20
     ).setRegistryName(ModuleCore.MOD_ID, "slaked_lime"));
 
     // Podzol
@@ -97,7 +97,7 @@ public class SoakingPotRecipesAdd {
         new ItemStack(Blocks.DIRT, 1, 2),
         Ingredient.fromStacks(new ItemStack(Blocks.DIRT, 1, 1)),
         new FluidStack(FluidRegistry.WATER, 250),
-        5 * 60 * 20
+        7 * 60 * 20
     ).setRegistryName(ModuleCore.MOD_ID, "podzol"));
 
     // Mossy Stone Bricks
@@ -105,7 +105,7 @@ public class SoakingPotRecipesAdd {
         new ItemStack(Blocks.STONEBRICK, 1, 1),
         Ingredient.fromStacks(new ItemStack(Blocks.STONEBRICK, 1, 0)),
         new FluidStack(FluidRegistry.WATER, 250),
-        5 * 60 * 20
+        7 * 60 * 20
     ).setRegistryName(ModuleCore.MOD_ID, "mossy_stone_bricks"));
 
     // Mossy Cobblestone
@@ -113,7 +113,7 @@ public class SoakingPotRecipesAdd {
         new ItemStack(Blocks.MOSSY_COBBLESTONE),
         Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE)),
         new FluidStack(FluidRegistry.WATER, 250),
-        5 * 60 * 20
+        7 * 60 * 20
     ).setRegistryName(ModuleCore.MOD_ID, "mossy_cobblestone"));
 
     // White Wool
@@ -121,7 +121,7 @@ public class SoakingPotRecipesAdd {
         new ItemStack(Blocks.WOOL, 1, 0),
         Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE)),
         new FluidStack(FluidRegistry.WATER, 250),
-        5 * 60 * 20
+        4 * 60 * 20
     ).setRegistryName(ModuleCore.MOD_ID, "white_wool"));
 
   }
