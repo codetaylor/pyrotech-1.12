@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.machine"]
+    }
+  ],
+  "pattern": [
+    "BBB",
+    "BEB",
+    "BBB"
+  ],
+  "key": {
+    "E": {
+      "item": "pyrotech:cog_wood",
+      "data": 0
+    },
+    "B": {
+      "item": "pyrotech:material",
+      "data": 27
+    }
+  },
+  "result": {
+    "item": "pyrotech:cog_stone",
+    "count": 1,
+    "data": 0
+  }
+}
