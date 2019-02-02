@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.ignition.tile.spi;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
@@ -201,6 +202,10 @@ public abstract class TileTorchBase
 
       if (super.doInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {
         tile.type.set(BlockTorchFiber.EnumType.DOUSED.getMeta());
+
+        if (!world.isRemote) {
+          SoundHelper.playSoundServer(world, tile.getPos(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS);
+        }
 
         // This causes the last timestamp to be reset the next time the torch is lit.
         tile.lastTimeStamp = 0;
