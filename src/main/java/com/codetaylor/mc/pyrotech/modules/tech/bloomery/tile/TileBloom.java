@@ -211,8 +211,6 @@ public class TileBloom
         BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModuleBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_RAW);
 
         if (tile.recipeProgress.get() < 1) {
-          ItemStack heldItemMainHand = player.getHeldItemMainhand();
-          Item item = heldItemMainHand.getItem();
           int hits = Math.max(1, ModuleBloomeryConfig.BLOOM.HAMMER_HITS_REQUIRED);
           float recipeProgressIncrement = (float) ((1f / hits) * BloomHelper.calculateHammerPower(tile.getPos(), player));
           tile.recipeProgress.set(tile.recipeProgress.get() + recipeProgressIncrement);
