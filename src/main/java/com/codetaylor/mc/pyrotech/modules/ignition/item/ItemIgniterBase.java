@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.ignition.item;
 
+import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.util.RefractoryIgnitionHelper;
@@ -101,16 +102,8 @@ public abstract class ItemIgniterBase
 
       if (!world.isRemote) {
         ((IBlockIgnitableWithIgniterItem) block).igniteWithIgniterItem(world, pos, blockState, facing);
+        SoundHelper.playSoundServer(world, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.PLAYERS);
       }
-
-      world.playSound(
-          null,
-          offset,
-          SoundEvents.ITEM_FLINTANDSTEEL_USE,
-          SoundCategory.BLOCKS,
-          1.0F,
-          Util.RANDOM.nextFloat() * 0.4F + 0.8F
-      );
 
       this.damageItem(stack, player);
 
@@ -118,16 +111,8 @@ public abstract class ItemIgniterBase
 
       if (!world.isRemote) {
         world.setBlockState(offset, Blocks.FIRE.getDefaultState(), 3);
+        SoundHelper.playSoundServer(world, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.PLAYERS);
       }
-
-      world.playSound(
-          null,
-          offset,
-          SoundEvents.ITEM_FLINTANDSTEEL_USE,
-          SoundCategory.BLOCKS,
-          1.0F,
-          Util.RANDOM.nextFloat() * 0.4F + 0.8F
-      );
 
       this.damageItem(stack, player);
 
@@ -135,6 +120,8 @@ public abstract class ItemIgniterBase
 
       if (!world.isRemote) {
         RefractoryIgnitionHelper.igniteBlocks(world, pos);
+        SoundHelper.playSoundServer(world, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.PLAYERS);
+        this.damageItem(stack, player);
       }
     }
 
