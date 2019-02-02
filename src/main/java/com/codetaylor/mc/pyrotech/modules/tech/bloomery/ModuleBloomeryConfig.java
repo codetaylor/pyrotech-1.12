@@ -128,9 +128,10 @@ public class ModuleBloomeryConfig {
     public double EXHAUSTION_COST_PER_HIT = 1;
 
     @Config.Comment({
-        "The number of hammer hits required to extract one item from the bloom's contents.",
-        "This will be further reduced using the hammer hit reduction number provided",
-        "for anvil hammers.",
+        "The number of hammer hits required to extract one item from the bloom's",
+        "contents.",
+        "This will be further modified using the hammer power modifiers provided",
+        "in this section.",
         "Default: " + 16
     })
     @Config.RangeInt(min = 1)
@@ -140,7 +141,7 @@ public class ModuleBloomeryConfig {
         "The number of hammer hits required to extract one item from the bloom's contents",
         "when the bloom is placed on this mod's anvil.",
         "This will be further reduced using the hammer hit reduction number provided",
-        "for anvil hammers.",
+        "for anvil hammers and the hammer power modifiers provided in this section.",
         "Default: " + 8
     })
     @Config.RangeInt(min = 1)
@@ -205,7 +206,7 @@ public class ModuleBloomeryConfig {
         "If the harvest level of the tool used exceeds the array length, the",
         "last element in the array is used.",
         "",
-        "ie. {wood, stone, iron, diamond}",
+        "ie. {wood/crude, stone/bone/flint, iron, diamond}",
         "Default: {0.7, 0.85, 1.15, 1.3}"
     })
     public double[] HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL = {0.7, 0.85, 1.15, 1.3};
