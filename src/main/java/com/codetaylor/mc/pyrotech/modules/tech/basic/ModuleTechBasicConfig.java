@@ -293,10 +293,10 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "The maximum stack size that can be placed in the pot.",
-        "Default: " + 4
+        "Default: " + 8
     })
     @Config.RangeInt(min = 1, max = 64)
-    public int MAX_STACK_SIZE = 4;
+    public int MAX_STACK_SIZE = 8;
 
     @Config.Comment({
         "The maximum fluid capacity in millibuckets.",
