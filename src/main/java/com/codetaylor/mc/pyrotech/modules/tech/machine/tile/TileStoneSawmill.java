@@ -358,6 +358,7 @@ public class TileStoneSawmill
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
       // Filter out non-blade items.
+      // TODO: config
 
       if (!(stack.getItem() instanceof ItemSawmillBlade)) {
         return stack;

@@ -1,7 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 @Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "module.tech.Machine")
 public class ModuleTechMachineConfig {
@@ -115,6 +120,53 @@ public class ModuleTechMachineConfig {
     })
     @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int DIAMOND_DURABILITY = (64 * 256);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Stone Hopper
+  // ---------------------------------------------------------------------------
+
+  public static StoneHopper STONE_HOPPER = new StoneHopper();
+
+  public static class StoneHopper {
+
+    @Config.Comment({
+        "A list of valid cogs for the hopper.",
+        "NOTE: Items provided here are assumed to have durability.",
+        "Format is (domain):(path) for the item and (amount) for the number",
+        "of items that the cog will transfer in one attempt."
+    })
+    public Map<String, Integer> COGS = new HashMap<String, Integer>() {{
+      this.put("pyrotech:cog_wood", 1);
+      this.put("pyrotech:cog_stone", 1);
+      this.put("pyrotech:cog_flint", 4);
+      this.put("pyrotech:cog_bone", 4);
+      this.put("pyrotech:cog_iron", 16);
+      this.put("pyrotech:cog_diamond", 64);
+    }};
+
+    /**
+     * Returns the cog transfer amount for the given item resource location,
+     * or -1 if it isn't in the list.
+     */
+    public int getCogTransferAmount(@Nullable ResourceLocation resourceLocation) {
+
+      if (resourceLocation != null) {
+        Integer result = this.COGS.get(resourceLocation.toString());
+
+        if (result != null) {
+          return result;
+        }
+      }
+
+      return -1;
+    }
+
+    @Config.Comment({
+        "How many ticks between transfer attempts.",
+        "Default: " + 40
+    })
+    public int TRANSFER_INTERVAL_TICKS = 40;
   }
 
   // ---------------------------------------------------------------------------

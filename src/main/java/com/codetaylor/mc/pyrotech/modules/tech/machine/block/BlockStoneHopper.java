@@ -3,6 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneHopper;
 import com.google.common.collect.ImmutableList;
@@ -11,6 +13,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -32,7 +35,8 @@ import java.util.stream.Stream;
  * https://github.com/rwtema/DietHopper/blob/master/src/main/java/com/rwtema/diethopper/BlockDietHopper.java
  */
 public class BlockStoneHopper
-    extends BlockPartialBase {
+    extends BlockPartialBase
+    implements IBlockInteractable {
 
   public static final String NAME = "stone_hopper";
 
@@ -101,7 +105,13 @@ public class BlockStoneHopper
         .stream()
         .map(bb -> rayTrace(pos, start, end, bb))
         .anyMatch(Objects::nonNull)
-        ? super.collisionRayTrace(blockState, world, pos, start, end) : null;
+        ? this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos, start, end) : null;
+  }
+
+  @Override
+  public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+    return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
   // ---------------------------------------------------------------------------
