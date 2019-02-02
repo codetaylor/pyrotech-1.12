@@ -1,11 +1,12 @@
 {
-  "ambientocclusion": false,
+  "parent": "block/block",
   "textures": {
     "top": "pyrotech:blocks/stone_hopper_top",
     "side": "pyrotech:blocks/stone_hopper_side",
     "particle": "pyrotech:blocks/stone_hopper_side",
     "inside": "pyrotech:blocks/stone_hopper_inside"
   },
+  "ambientocclusion": false,
   "elements": [
     {
       "from": [0, 10, 0],

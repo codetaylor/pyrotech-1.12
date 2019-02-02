@@ -4,10 +4,7 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockStoneCrucible;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockStoneKiln;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockStoneOven;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockStoneSawmill;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.*;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,6 +18,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockStoneOven(), BlockStoneOven.NAME);
     registry.registerBlockWithItem(new BlockStoneSawmill(), BlockStoneSawmill.NAME);
     registry.registerBlockWithItem(new BlockStoneCrucible(), BlockStoneCrucible.NAME);
+    registry.registerBlockWithItem(new BlockStoneHopper(), BlockStoneHopper.NAME);
 
     registry.registerTileEntities(
         TileStoneKiln.class,
@@ -30,7 +28,8 @@ public final class BlockInitializer {
         TileStoneSawmill.class,
         TileStoneSawmillTop.class,
         TileStoneCrucible.class,
-        TileStoneCrucibleTop.class
+        TileStoneCrucibleTop.class,
+        TileStoneHopper.class
     );
   }
 
@@ -43,7 +42,8 @@ public final class BlockInitializer {
           ModuleTechMachine.Blocks.KILN_STONE,
           ModuleTechMachine.Blocks.MILL_STONE,
           ModuleTechMachine.Blocks.OVEN_STONE,
-          ModuleTechMachine.Blocks.CRUCIBLE_STONE
+          ModuleTechMachine.Blocks.CRUCIBLE_STONE,
+          ModuleTechMachine.Blocks.STONE_HOPPER
       );
 
       // TESRs

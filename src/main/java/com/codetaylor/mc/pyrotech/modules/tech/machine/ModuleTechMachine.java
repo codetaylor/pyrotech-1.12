@@ -6,10 +6,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockStoneCrucible;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockStoneKiln;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockStoneOven;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockStoneSawmill;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneCrucibleRecipesAdd;
@@ -18,8 +15,8 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneSawmillR
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemSawmillBlade;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -185,11 +182,15 @@ public class ModuleTechMachine
     @GameRegistry.ObjectHolder(BlockStoneCrucible.NAME)
     public static final BlockStoneCrucible CRUCIBLE_STONE;
 
+    @GameRegistry.ObjectHolder(BlockStoneHopper.NAME)
+    public static final BlockStoneHopper STONE_HOPPER;
+
     static {
       KILN_STONE = null;
       OVEN_STONE = null;
       MILL_STONE = null;
       CRUCIBLE_STONE = null;
+      STONE_HOPPER = null;
     }
   }
 

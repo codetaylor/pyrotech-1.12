@@ -102,6 +102,7 @@ tile.pyrotech.stone_kiln.name=Stone Kiln
 tile.pyrotech.stone_oven.name=Stone Oven
 tile.pyrotech.stone_sawmill.name=Stone Sawmill
 tile.pyrotech.stone_crucible.name=Stone Crucible
+tile.pyrotech.stone_hopper.name=Stone Hopper
 
 #------------------------------------------------------------------------------
 # Module: Tech - Refractory
