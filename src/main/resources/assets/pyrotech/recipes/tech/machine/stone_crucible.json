@@ -3,16 +3,20 @@
   "conditions": [
     {
       "type": "modules_enabled",
-      "include": ["module.tech.machine", "module.bucket"]
+      "include": ["module.tech.machine"]
+    },
+    {
+      "type": "minecraft:item_exists",
+      "item": "pyrotech:bucket_stone"
     }
   ],
   "pattern": [
     "B-B",
-    "BEB",
+    "BUB",
     "BBB"
   ],
   "key": {
-    "E": {
+    "U": {
       "item": "pyrotech:bucket_stone",
       "data": 0
     },

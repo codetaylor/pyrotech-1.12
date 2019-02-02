@@ -3,15 +3,25 @@
   "conditions": [
     {
       "type": "modules_enabled",
-      "include": ["module.tech.machine"],
-      "exclude": ["module.bucket"]
+      "include": ["module.tech.machine"]
+    },
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "minecraft:item_exists",
+        "item": "pyrotech:bucket_stone"
+      }
     }
   ],
   "pattern": [
     "B-B",
-    "B B",
+    "BUB",
     "BBB"
   ],
+  "U": {
+    "item": "minecraft:flower_pot",
+    "data": 0
+  },
   "key": {
     "B": {
       "item": "pyrotech:stone_bricks",
