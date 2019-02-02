@@ -644,6 +644,13 @@ public class ModuleTechBasicConfig {
   public static class Campfire {
 
     @Config.Comment({
+        "The light level of the campfire when lit.",
+        "Default: " + 11
+    })
+    @Config.RangeInt(min = 0, max = 15)
+    public int LIGHT_LEVEL = 11;
+
+    @Config.Comment({
         "How many ticks to cook food on the campfire.",
         "Default: " + (90 * 20)
     })

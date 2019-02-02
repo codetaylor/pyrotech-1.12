@@ -24,10 +24,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -115,7 +112,7 @@ public class BlockCampfire
     IBlockState actualState = this.getActualState(state, world, pos);
 
     if (actualState.getValue(VARIANT) == BlockCampfire.EnumType.LIT) {
-      return 15;
+      return MathHelper.clamp(ModuleTechBasicConfig.CAMPFIRE.LIGHT_LEVEL, 0, 15);
     }
 
     return super.getLightValue(state, world, pos);
