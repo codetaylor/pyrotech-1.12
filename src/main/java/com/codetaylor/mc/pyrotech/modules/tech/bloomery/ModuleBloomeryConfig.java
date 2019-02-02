@@ -207,9 +207,9 @@ public class ModuleBloomeryConfig {
         "last element in the array is used.",
         "",
         "ie. {wood/crude, stone/bone/flint, iron, diamond}",
-        "Default: {0.7, 0.85, 1.15, 1.3}"
+        "Default: {0.70, 1.00, 1.25, 1.50}"
     })
-    public double[] HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL = {0.7, 0.85, 1.15, 1.3};
+    public double[] HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL = {0.70, 1.00, 1.25, 1.50};
   }
 
   // ---------------------------------------------------------------------------
