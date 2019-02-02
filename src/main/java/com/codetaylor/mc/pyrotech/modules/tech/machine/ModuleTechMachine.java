@@ -12,6 +12,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneCrucibleRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneKilnRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneSawmillRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemCog;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemSawmillBlade;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
@@ -212,12 +213,37 @@ public class ModuleTechMachine
     @GameRegistry.ObjectHolder("sawmill_blade_diamond")
     public static final ItemSawmillBlade DIAMOND_MILL_BLADE;
 
+    @GameRegistry.ObjectHolder("cog_wood")
+    public static final ItemCog WOOD_COG;
+
+    @GameRegistry.ObjectHolder("cog_stone")
+    public static final ItemCog STONE_COG;
+
+    @GameRegistry.ObjectHolder("cog_flint")
+    public static final ItemCog FLINT_COG;
+
+    @GameRegistry.ObjectHolder("cog_bone")
+    public static final ItemCog BONE_COG;
+
+    @GameRegistry.ObjectHolder("cog_iron")
+    public static final ItemCog IRON_COG;
+
+    @GameRegistry.ObjectHolder("cog_diamond")
+    public static final ItemCog DIAMOND_COG;
+
     static {
       STONE_MILL_BLADE = null;
       FLINT_MILL_BLADE = null;
       BONE_MILL_BLADE = null;
       IRON_MILL_BLADE = null;
       DIAMOND_MILL_BLADE = null;
+
+      WOOD_COG = null;
+      STONE_COG = null;
+      FLINT_COG = null;
+      BONE_COG = null;
+      IRON_COG = null;
+      DIAMOND_COG = null;
     }
   }
 

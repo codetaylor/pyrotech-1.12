@@ -67,6 +67,57 @@ public class ModuleTechMachineConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Cogs
+  // ---------------------------------------------------------------------------
+
+  public static Cogs COGS = new Cogs();
+
+  public static class Cogs {
+
+    @Config.Comment({
+        "Durability of the wooden cog.",
+        "Default: " + 64
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int WOOD_DURABILITY = 64;
+
+    @Config.Comment({
+        "Durability of the stone cog.",
+        "Default: " + 64 * 4
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int STONE_DURABILITY = (64 * 4);
+
+    @Config.Comment({
+        "Durability of the flint cog.",
+        "Default: " + (64 * 16)
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int FLINT_DURABILITY = (64 * 16);
+
+    @Config.Comment({
+        "Durability of the bone cog.",
+        "Default: " + (64 * 16)
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int BONE_DURABILITY = (64 * 16);
+
+    @Config.Comment({
+        "Durability of the iron cog.",
+        "Default: " + (64 * 64)
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int IRON_DURABILITY = (64 * 64);
+
+    @Config.Comment({
+        "Durability of the diamond cog.",
+        "Default: " + (64 * 256)
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int DIAMOND_DURABILITY = (64 * 256);
+  }
+
+  // ---------------------------------------------------------------------------
   // - Stone Kiln
   // ---------------------------------------------------------------------------
 

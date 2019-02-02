@@ -98,6 +98,13 @@ item.pyrotech.sawmill.blade.bone.name=Bone Sawmill Blade
 item.pyrotech.sawmill.blade.iron.name=Iron Sawmill Blade
 item.pyrotech.sawmill.blade.diamond.name=Diamond Sawmill Blade
 
+item.pyrotech.cog.wood.name=Wooden Cog
+item.pyrotech.cog.stone.name=Stone Cog
+item.pyrotech.cog.flint.name=Flint Cog
+item.pyrotech.cog.bone.name=Bone Cog
+item.pyrotech.cog.iron.name=Iron Cog
+item.pyrotech.cog.diamond.name=Diamond Cog
+
 tile.pyrotech.stone_kiln.name=Stone Kiln
 tile.pyrotech.stone_oven.name=Stone Oven
 tile.pyrotech.stone_sawmill.name=Stone Sawmill
