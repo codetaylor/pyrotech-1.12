@@ -15,6 +15,13 @@ public class ModuleIgnitionConfig {
   public static class FiberTorch {
 
     @Config.Comment({
+        "The light value of the torch when lit.",
+        "Default: " + 9
+    })
+    @Config.RangeInt(min = 0, max = 15)
+    public int LIGHT_VALUE = 9;
+
+    @Config.Comment({
         "Set to true if the torch should be extinguished in the rain.",
         "Default: " + true
     })
@@ -49,6 +56,13 @@ public class ModuleIgnitionConfig {
   public static StoneTorch STONE_TORCH = new StoneTorch();
 
   public static class StoneTorch {
+
+    @Config.Comment({
+        "The light value of the torch when lit.",
+        "Default: " + 9
+    })
+    @Config.RangeInt(min = 0, max = 15)
+    public int LIGHT_VALUE = 9;
 
     @Config.Comment({
         "Set to true if the torch should be extinguished in the rain.",

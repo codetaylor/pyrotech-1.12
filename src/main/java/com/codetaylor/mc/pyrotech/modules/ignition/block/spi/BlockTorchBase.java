@@ -96,11 +96,13 @@ public abstract class BlockTorchBase
     EnumType type = actualState.getValue(TYPE);
 
     if (type == BlockTorchBase.EnumType.LIT) {
-      return 9;
+      return this.getLightValue();
     }
 
     return super.getLightValue(state, world, pos);
   }
+
+  protected abstract int getLightValue();
 
   // ---------------------------------------------------------------------------
   // - Update
