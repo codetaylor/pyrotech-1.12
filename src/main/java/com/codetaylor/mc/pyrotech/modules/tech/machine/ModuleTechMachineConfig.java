@@ -7,6 +7,22 @@ import net.minecraftforge.common.config.Config;
 public class ModuleTechMachineConfig {
 
   // ---------------------------------------------------------------------------
+  // - General
+  // ---------------------------------------------------------------------------
+
+  public static General GENERAL = new General();
+
+  public static class General {
+
+    @Config.Comment({
+        "The light level of stone machines when lit.",
+        "Default: " + 9
+    })
+    @Config.RangeInt(min = 0, max = 15)
+    public int STONE_MACHINE_LIGHT_LEVEL = 9;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Sawmill Blades
   // ---------------------------------------------------------------------------
 

@@ -10,6 +10,7 @@ import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterIt
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -23,10 +24,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -97,7 +95,7 @@ public abstract class BlockCombustionWorkerStoneBase
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
     if (state.getValue(TYPE) == BlockCombustionWorkerStoneBase.EnumType.BottomLit) {
-      return 10;
+      return MathHelper.clamp(ModuleTechMachineConfig.GENERAL.STONE_MACHINE_LIGHT_LEVEL, 0, 15);
     }
 
     return super.getLightValue(state, world, pos);
