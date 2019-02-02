@@ -184,6 +184,8 @@ public class TileBloom
     @Override
     protected boolean doInteraction(TileBloom tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
+      BlockPos tilePos = tile.getPos();
+
       if (!world.isRemote) {
 
         // Server logic
@@ -208,11 +210,11 @@ public class TileBloom
             (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
         );
 
-        BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModuleBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_RAW);
+        BloomHelper.trySpawnFire(world, tilePos, RandomHelper.random(), ModuleBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_RAW);
 
         if (tile.recipeProgress.get() < 1) {
           int hits = Math.max(1, ModuleBloomeryConfig.BLOOM.HAMMER_HITS_REQUIRED);
-          float recipeProgressIncrement = (float) ((1f / hits) * BloomHelper.calculateHammerPower(tile.getPos(), player));
+          float recipeProgressIncrement = (float) ((1f / hits) * BloomHelper.calculateHammerPower(tilePos, player));
           tile.recipeProgress.set(tile.recipeProgress.get() + recipeProgressIncrement);
         }
 
@@ -222,7 +224,7 @@ public class TileBloom
 
           if (recipe != null) {
             ItemStack output = recipe.getRandomOutput();
-            StackHelper.spawnStackOnTop(world, output, tile.getPos(), 0);
+            StackHelper.spawnStackOnTop(world, output, tilePos, 0);
           }
 
           world.playSound(
@@ -236,13 +238,13 @@ public class TileBloom
               (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
           );
 
-          world.destroyBlock(tile.getPos(), true);
+          world.destroyBlock(tilePos, true);
 
           if (ModuleBloomeryConfig.BLOOM.BREAKS_BLOCKS) {
 
             // Check and destroy block below the bloom.
 
-            BlockPos posDown = tile.getPos().down();
+            BlockPos posDown = tilePos.down();
             IBlockState blockStateDown = world.getBlockState(posDown);
             Block blockDown = blockStateDown.getBlock();
             float blockDownHardness = blockDown.getBlockHardness(blockStateDown, world, posDown);
@@ -268,7 +270,7 @@ public class TileBloom
 
         // Client particles
         for (int i = 0; i < 8; ++i) {
-          world.spawnParticle(EnumParticleTypes.LAVA, tile.getPos().getX() + hitX, tile.getPos().getY() + hitY, tile.getPos().getZ() + hitZ, 0.0D, 0.0D, 0.0D);
+          world.spawnParticle(EnumParticleTypes.LAVA, tilePos.getX() + hitX, tilePos.getY() + hitY, tilePos.getZ() + hitZ, 0.0D, 0.0D, 0.0D);
         }
       }
 
