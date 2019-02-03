@@ -13,6 +13,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockStoneHopper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.StoneHopperInteractionCogRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemCog;
 import net.minecraft.block.state.IBlockState;
@@ -154,6 +155,12 @@ public class TileStoneHopper
       TileEntity tileSource = this.world.getTileEntity(this.pos.up());
       IBlockState blockState = this.world.getBlockState(this.pos);
       EnumFacing facing = blockState.getValue(Properties.FACING_HORIZONTAL);
+      BlockStoneHopper.EnumType type = blockState.getValue(BlockStoneHopper.TYPE);
+
+      if (type == BlockStoneHopper.EnumType.Down) {
+        facing = EnumFacing.UP;
+      }
+
       TileEntity tileTarget = this.world.getTileEntity(this.pos.offset(facing.getOpposite()));
 
       if (tileSource == null || tileTarget == null) {
