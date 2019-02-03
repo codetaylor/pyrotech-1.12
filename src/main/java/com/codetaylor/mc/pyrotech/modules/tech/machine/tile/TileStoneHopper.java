@@ -24,6 +24,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -354,9 +355,16 @@ public class TileStoneHopper
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
       // Filter out non-cog items.
-      // TODO: config
 
-      if (!(stack.getItem() instanceof ItemCog)) {
+      ResourceLocation registryName = stack.getItem().getRegistryName();
+
+      if (registryName == null) {
+        return stack;
+      }
+
+      int transferAmount = ModuleTechMachineConfig.STONE_HOPPER.getCogTransferAmount(registryName);
+
+      if (transferAmount == -1) {
         return stack;
       }
 
