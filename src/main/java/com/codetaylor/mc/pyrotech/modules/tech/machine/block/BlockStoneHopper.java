@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
@@ -112,6 +113,20 @@ public class BlockStoneHopper
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
     return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+  }
+
+  @ParametersAreNonnullByDefault
+  @Override
+  public void breakBlock(World world, BlockPos pos, IBlockState state) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileStoneHopper) {
+      TileStoneHopper.CogStackHandler handler = ((TileStoneHopper) tileEntity).getCogStackHandler();
+      StackHelper.spawnStackHandlerContentsOnTop(world, handler, pos);
+    }
+
+    super.breakBlock(world, pos, state);
   }
 
   // ---------------------------------------------------------------------------

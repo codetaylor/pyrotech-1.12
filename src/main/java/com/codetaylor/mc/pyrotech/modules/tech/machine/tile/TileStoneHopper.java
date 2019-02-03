@@ -86,6 +86,11 @@ public class TileStoneHopper
     return this.clientRenderData;
   }
 
+  public CogStackHandler getCogStackHandler() {
+
+    return this.cogStackHandler;
+  }
+
   private int getTransferAmount(ItemStack cog) {
 
     return ModuleTechMachineConfig.STONE_HOPPER.getCogTransferAmount(cog.getItem().getRegistryName());
