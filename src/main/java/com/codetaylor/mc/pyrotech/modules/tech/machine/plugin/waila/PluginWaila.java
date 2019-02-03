@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider.CombustionWorkerStoneItemInFluidOutProvider;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider.CombustionWorkerStoneItemInItemOutProvider;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider.SawmillProvider;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider.StoneHopperProvider;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.*;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
@@ -10,6 +11,11 @@ public class PluginWaila {
 
   @SuppressWarnings("unused")
   public static void wailaCallback(IWailaRegistrar registrar) {
+
+    {
+      StoneHopperProvider provider = new StoneHopperProvider();
+      registrar.registerBodyProvider(provider, TileStoneHopper.class);
+    }
 
     {
       SawmillProvider provider = new SawmillProvider();
