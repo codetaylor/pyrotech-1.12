@@ -228,10 +228,10 @@ public class ModuleTechMachineConfig {
 
     @Config.Comment({
         "Time to cook the entire input stack in ticks.",
-        "Default: " + (80 * 20)
+        "Default: " + (8 * 60 * 20)
     })
     @Config.RangeInt(min = 1)
-    public int COOK_TIME_TICKS = 80 * 20;
+    public int COOK_TIME_TICKS = 8 * 60 * 20;
 
     @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
