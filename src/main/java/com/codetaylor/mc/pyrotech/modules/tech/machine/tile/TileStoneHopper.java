@@ -45,6 +45,7 @@ public class TileStoneHopper
   private TickCounter updateTickCounter;
   private TileDataBoolean transferred;
   private IInteraction[] interactions;
+  private final TileDataItemStackHandler<CogStackHandler> tileDataItemStackHandler;
 
   @SideOnly(Side.CLIENT)
   private ClientRenderData clientRenderData = new ClientRenderData();
@@ -64,8 +65,10 @@ public class TileStoneHopper
 
     // --- Network ---
 
+    this.tileDataItemStackHandler = new TileDataItemStackHandler<>(this.cogStackHandler);
+
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataItemStackHandler<>(this.cogStackHandler),
+        tileDataItemStackHandler,
         this.transferred
     });
 
@@ -134,6 +137,11 @@ public class TileStoneHopper
       this.clientRenderData.totalAnimationTime = this.getTransferIntervalTicks();
       this.clientRenderData.remainingAnimationTime = this.clientRenderData.totalAnimationTime;
       this.clientRenderData.cogRotationStage = (this.clientRenderData.cogRotationStage + 1) % 8;
+    }
+
+    if (this.tileDataItemStackHandler.isDirty()
+        && this.cogStackHandler.getStackInSlot(0).isEmpty()) {
+      this.clientRenderData.remainingAnimationTime = -1;
     }
   }
 
