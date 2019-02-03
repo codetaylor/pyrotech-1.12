@@ -10,4 +10,10 @@ public class TileShelfStone
 
     return ModuleStorageConfig.DURABLE_SHELF.MAX_STACKS;
   }
+
+  @Override
+  protected boolean allowAutomation() {
+
+    return ModuleStorageConfig.DURABLE_SHELF.ALLOW_AUTOMATION;
+  }
 }

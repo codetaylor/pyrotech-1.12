@@ -15,6 +15,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -26,9 +27,12 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class TileWoodRack
     extends TileNetBase
@@ -92,6 +96,36 @@ public class TileWoodRack
   public StackHandler getStackHandler() {
 
     return this.stackHandler;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Capabilities
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+
+    return this.allowAutomation()
+        && (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+  }
+
+  @Nullable
+  @Override
+  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+    if (this.allowAutomation()
+        && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+
+      //noinspection unchecked
+      return (T) this.stackHandler;
+    }
+
+    return null;
+  }
+
+  protected boolean allowAutomation() {
+
+    return ModuleStorageConfig.WOOD_RACK.ALLOW_AUTOMATION;
   }
 
   // ---------------------------------------------------------------------------

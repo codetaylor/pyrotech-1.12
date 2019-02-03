@@ -10,4 +10,10 @@ public class TileCrateStone
 
     return ModuleStorageConfig.DURABLE_CRATE.MAX_STACKS;
   }
+
+  @Override
+  protected boolean allowAutomation() {
+
+    return ModuleStorageConfig.DURABLE_CRATE.ALLOW_AUTOMATION;
+  }
 }

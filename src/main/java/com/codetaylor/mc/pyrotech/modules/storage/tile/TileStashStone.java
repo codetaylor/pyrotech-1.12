@@ -10,4 +10,10 @@ public class TileStashStone
 
     return ModuleStorageConfig.DURABLE_STASH.MAX_STACKS;
   }
+
+  @Override
+  protected boolean allowAutomation() {
+
+    return ModuleStorageConfig.DURABLE_STASH.ALLOW_AUTOMATION;
+  }
 }

@@ -21,9 +21,12 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class TileStash
     extends TileNetBase
@@ -81,6 +84,36 @@ public class TileStash
   protected int getMaxStacks() {
 
     return ModuleStorageConfig.STASH.MAX_STACKS;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Capabilities
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+
+    return this.allowAutomation()
+        && (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+  }
+
+  @Nullable
+  @Override
+  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+    if (this.allowAutomation()
+        && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+
+      //noinspection unchecked
+      return (T) this.stackHandler;
+    }
+
+    return null;
+  }
+
+  protected boolean allowAutomation() {
+
+    return ModuleStorageConfig.STASH.ALLOW_AUTOMATION;
   }
 
   // ---------------------------------------------------------------------------

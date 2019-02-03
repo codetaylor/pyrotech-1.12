@@ -15,6 +15,12 @@ public class ModuleStorageConfig {
   public static class Crate {
 
     @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
         "The maximum number of stacks that can be stored in each slot.",
         "Default: " + 1
     })
@@ -29,6 +35,12 @@ public class ModuleStorageConfig {
   public static DurableCrate DURABLE_CRATE = new DurableCrate();
 
   public static class DurableCrate {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
 
     @Config.Comment({
         "The maximum number of items that can be stored in each slot.",
@@ -47,6 +59,12 @@ public class ModuleStorageConfig {
   public static class Shelf {
 
     @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
         "The maximum number of stacks that can be stored in each slot.",
         "Default: " + 1
     })
@@ -61,6 +79,12 @@ public class ModuleStorageConfig {
   public static DurableShelf DURABLE_SHELF = new DurableShelf();
 
   public static class DurableShelf {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
 
     @Config.Comment({
         "The maximum number of items that can be stored in each slot.",
@@ -79,6 +103,12 @@ public class ModuleStorageConfig {
   public static class Stash {
 
     @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
         "The maximum number of stacks that can be stored in the stash.",
         "Default: " + 10
     })
@@ -95,6 +125,12 @@ public class ModuleStorageConfig {
   public static class DurableStash {
 
     @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
         "The maximum number of stacks that can be stored in the stash.",
         "Default: " + 20
     })
@@ -102,4 +138,18 @@ public class ModuleStorageConfig {
     public int MAX_STACKS = 20;
   }
 
+  // ---------------------------------------------------------------------------
+  // - Durable Stash
+  // ---------------------------------------------------------------------------
+
+  public static WoodRack WOOD_RACK = new WoodRack();
+
+  public static class WoodRack {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+  }
 }
