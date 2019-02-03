@@ -239,8 +239,13 @@ public class TileStoneHopper
           // --- Damage Cog
 
           ItemStack actualCog = this.cogStackHandler.extractItem(0, 1, false);
+          int cogDamage = 1;
 
-          if (actualCog.attemptDamageItem(initialCount - stackSource.getCount(), RandomHelper.random(), null)
+          if (ModuleTechMachineConfig.STONE_HOPPER.COG_DAMAGE_TYPE == ModuleTechMachineConfig.StoneHopper.EnumCogDamageType.PerItem) {
+            cogDamage = (initialCount - stackSource.getCount());
+          }
+
+          if (actualCog.attemptDamageItem(cogDamage, RandomHelper.random(), null)
               || actualCog.getItemDamage() == actualCog.getMaxDamage()) {
 
             SoundHelper.playSoundServer(this.world, this.pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS);

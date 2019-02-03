@@ -145,6 +145,18 @@ public class ModuleTechMachineConfig {
       this.put("pyrotech:cog_diamond", 64);
     }};
 
+    public enum EnumCogDamageType {
+      PerItem, PerOperation
+    }
+
+    @Config.Comment({
+        "If set to PerItem, damage will be done to the cog for every item",
+        "transferred. If set to PerOperation, damage will be done to the cog",
+        "each time it makes a transfer, regardless of the size of the transfer.",
+        "Default: " + "PerItem"
+    })
+    public EnumCogDamageType COG_DAMAGE_TYPE = EnumCogDamageType.PerItem;
+
     /**
      * Returns the cog transfer amount for the given item resource location,
      * or -1 if it isn't in the list.
