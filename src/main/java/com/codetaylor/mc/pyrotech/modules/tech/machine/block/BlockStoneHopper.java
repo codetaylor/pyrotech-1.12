@@ -183,18 +183,18 @@ public class BlockStoneHopper
       EnumHand hand
   ) {
 
-    EnumFacing opposite = placer.getHorizontalFacing().getOpposite();
     EnumType type;
 
     if (facing.getHorizontalIndex() == -1) {
       type = EnumType.Down;
+      facing = placer.getHorizontalFacing().getOpposite();
 
     } else {
       type = EnumType.Side;
     }
 
     return this.getDefaultState()
-        .withProperty(Properties.FACING_HORIZONTAL, opposite)
+        .withProperty(Properties.FACING_HORIZONTAL, facing)
         .withProperty(TYPE, type);
   }
 
