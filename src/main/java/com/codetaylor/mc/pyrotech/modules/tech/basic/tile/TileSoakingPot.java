@@ -29,11 +29,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class TileSoakingPot
     extends TileNetBase
@@ -123,6 +127,53 @@ public class TileSoakingPot
   public OutputStackHandler getOutputStackHandler() {
 
     return this.outputStackHandler;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Capabilities
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+
+    if (!this.allowAutomation()) {
+      return false;
+    }
+
+    return (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+        || (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+  }
+
+  @Nullable
+  @Override
+  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+    if (this.allowAutomation()) {
+
+      if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+
+        if (facing == EnumFacing.DOWN) {
+
+          //noinspection unchecked
+          return (T) this.outputStackHandler;
+        }
+
+        //noinspection unchecked
+        return (T) this.inputStackHandler;
+
+      } else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+
+        //noinspection unchecked
+        return (T) this.inputFluidTank;
+      }
+    }
+
+    return null;
+  }
+
+  protected boolean allowAutomation() {
+
+    return ModuleTechBasicConfig.SOAKING_POT.ALLOW_AUTOMATION;
   }
 
   // ---------------------------------------------------------------------------

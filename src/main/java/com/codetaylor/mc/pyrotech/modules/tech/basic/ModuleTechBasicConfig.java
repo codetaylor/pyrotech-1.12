@@ -298,6 +298,12 @@ public class ModuleTechBasicConfig {
   public static class SoakingPot {
 
     @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
         "The maximum stack size that can be placed in the pot.",
         "Default: " + 8
     })
