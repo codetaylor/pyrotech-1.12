@@ -157,6 +157,15 @@ public class BlockCampfire
         world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + offsetX, y, z + offsetZ, 0.0, 0.0, 0.0);
         world.spawnParticle(EnumParticleTypes.FLAME, x + offsetX, y, z + offsetZ, 0.0, 0.0, 0.0);
       }
+
+      if (!((TileCampfire) tileEntity).getOutputStackHandler().getStackInSlot(0).isEmpty()) {
+
+        for (int i = 0; i < 8; i++) {
+          double offsetX = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          double offsetZ = (rand.nextDouble() * 2.0 - 1.0) * 0.2;
+          world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x + offsetX, y, z + offsetZ, 0.0, 0.0, 0.0);
+        }
+      }
     }
   }
 
