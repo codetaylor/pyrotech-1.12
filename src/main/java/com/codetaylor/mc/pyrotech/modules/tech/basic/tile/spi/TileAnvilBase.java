@@ -30,9 +30,12 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public abstract class TileAnvilBase
     extends TileNetBase
@@ -156,6 +159,33 @@ public abstract class TileAnvilBase
 
   @Nonnull
   protected abstract BlockAnvilBase getBlock();
+
+  // ---------------------------------------------------------------------------
+  // - Capabilities
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+
+    return this.allowAutomation()
+        && (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+  }
+
+  @Nullable
+  @Override
+  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+    if (this.allowAutomation()
+        && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+
+      //noinspection unchecked
+      return (T) this.stackHandler;
+    }
+
+    return null;
+  }
+
+  protected abstract boolean allowAutomation();
 
   // ---------------------------------------------------------------------------
   // - Network
@@ -470,6 +500,18 @@ public abstract class TileAnvilBase
     public int getSlotLimit(int slot) {
 
       return 1;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+
+      if (!stack.isEmpty()
+          && AnvilRecipe.getRecipe(stack) != null) {
+        return super.insertItem(slot, stack, simulate);
+      }
+
+      return stack;
     }
   }
 

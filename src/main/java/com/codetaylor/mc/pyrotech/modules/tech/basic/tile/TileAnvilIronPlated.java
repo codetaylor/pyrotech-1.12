@@ -12,6 +12,12 @@ public class TileAnvilIronPlated
     extends TileAnvilBase {
 
   @Override
+  protected boolean allowAutomation() {
+
+    return ModuleTechBasicConfig.IRON_PLATED_ANVIL.ALLOW_AUTOMATION;
+  }
+
+  @Override
   public int getBloomAnvilDamagePerHit() {
 
     return ModuleTechBasicConfig.IRON_PLATED_ANVIL.BLOOM_DAMAGE_PER_HIT;

@@ -12,6 +12,12 @@ public class TileAnvilGranite
     extends TileAnvilBase {
 
   @Override
+  protected boolean allowAutomation() {
+
+    return ModuleTechBasicConfig.GRANITE_ANVIL.ALLOW_AUTOMATION;
+  }
+
+  @Override
   public int getBloomAnvilDamagePerHit() {
 
     return ModuleTechBasicConfig.GRANITE_ANVIL.BLOOM_DAMAGE_PER_HIT;

@@ -388,6 +388,12 @@ public class ModuleTechBasicConfig {
   public static class GraniteAnvil {
 
     @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
         "The number of times the block can be hit before applying damage",
         "to the block. The block has a total of four damage stages. This number",
         "represents the number of hits for just one damage stage.",
@@ -432,6 +438,12 @@ public class ModuleTechBasicConfig {
   public static IronPlatedAnvil IRON_PLATED_ANVIL = new IronPlatedAnvil();
 
   public static class IronPlatedAnvil {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
 
     @Config.Comment({
         "The number of times the block can be hit before applying damage",
