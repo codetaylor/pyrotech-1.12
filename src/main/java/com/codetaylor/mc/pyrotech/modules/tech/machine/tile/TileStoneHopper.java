@@ -216,7 +216,9 @@ public class TileStoneHopper
 
           ItemStack actualCog = this.cogStackHandler.extractItem(0, 1, false);
 
-          if (actualCog.attemptDamageItem(initialCount - stackSource.getCount(), RandomHelper.random(), null)) {
+          if (actualCog.attemptDamageItem(initialCount - stackSource.getCount(), RandomHelper.random(), null)
+              || actualCog.getItemDamage() == actualCog.getMaxDamage()) {
+
             SoundHelper.playSoundServer(this.world, this.pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS);
 
           } else {
