@@ -492,6 +492,12 @@ public class ModuleTechBasicConfig {
   public static class ChoppingBlock {
 
     @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
         "Any item with a tool class of axe is automatically valid.",
         "Use this to add items that you want to be valid that don't have the",
         "axe tool class. Items you add are assumed to have durability.",

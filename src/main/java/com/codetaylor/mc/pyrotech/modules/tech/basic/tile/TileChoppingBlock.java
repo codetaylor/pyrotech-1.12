@@ -32,9 +32,12 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -149,6 +152,36 @@ public class TileChoppingBlock
   public ItemStackHandler getStackHandler() {
 
     return this.stackHandler;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Capabilities
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+
+    return this.allowAutomation()
+        && (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+  }
+
+  @Nullable
+  @Override
+  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+    if (this.allowAutomation()
+        && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+
+      //noinspection unchecked
+      return (T) this.stackHandler;
+    }
+
+    return null;
+  }
+
+  protected boolean allowAutomation() {
+
+    return ModuleTechBasicConfig.CHOPPING_BLOCK.ALLOW_AUTOMATION;
   }
 
   // ---------------------------------------------------------------------------
@@ -482,6 +515,18 @@ public class TileChoppingBlock
     public int getSlotLimit(int slot) {
 
       return 1;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+
+      if (stack.isEmpty()
+          || ChoppingBlockRecipe.getRecipe(stack) == null) {
+        return stack;
+      }
+
+      return super.insertItem(slot, stack, simulate);
     }
   }
 
