@@ -31,17 +31,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * Collision ray-trace code derived from RWTema's Diet Hopper code.
- * https://github.com/rwtema/DietHopper/blob/master/src/main/java/com/rwtema/diethopper/BlockDietHopper.java
- */
 public class BlockStoneHopper
     extends BlockPartialBase
     implements IBlockInteractable {
 
   public static final String NAME = "stone_hopper";
 
-  public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
+  public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class, EnumType.Down, EnumType.Side);
 
   private static final Map<EnumType, Map<EnumFacing, List<AxisAlignedBB>>> RAYTRACE_COLLISION_BOUNDS;
 
@@ -51,6 +47,10 @@ public class BlockStoneHopper
         AABBHelper.create(4, 4, 4, 12, 10, 12)
     );
 
+    /*
+      Collision ray-trace code derived from RWTema's Diet Hopper code.
+      https://github.com/rwtema/DietHopper/blob/master/src/main/java/com/rwtema/diethopper/BlockDietHopper.java
+     */
     RAYTRACE_COLLISION_BOUNDS = Stream.of(EnumType.values())
         .collect(Collectors.toMap(type -> type, type -> {
 
@@ -62,17 +62,34 @@ public class BlockStoneHopper
                 throw new IllegalStateException();
               }, () -> new EnumMap<>(EnumFacing.class)));
 
-          if (type == EnumType.Down) {
-            result.get(EnumFacing.NORTH).add(AABBHelper.create(6, 0, 6, 10, 4, 10));
-            result.get(EnumFacing.SOUTH).add(AABBHelper.create(6, 0, 6, 10, 4, 10));
-            result.get(EnumFacing.EAST).add(AABBHelper.create(6, 0, 6, 10, 4, 10));
-            result.get(EnumFacing.WEST).add(AABBHelper.create(6, 0, 6, 10, 4, 10));
+          if (type == EnumType.Down
+              || type == EnumType.DownWithCog) {
+
+            AxisAlignedBB downAABB = AABBHelper.create(6, 0, 6, 10, 4, 10);
+            result.get(EnumFacing.NORTH).add(downAABB);
+            result.get(EnumFacing.SOUTH).add(downAABB);
+            result.get(EnumFacing.EAST).add(downAABB);
+            result.get(EnumFacing.WEST).add(downAABB);
+
+            if (type == EnumType.DownWithCog) {
+              result.get(EnumFacing.NORTH).add(AABBHelper.create(2, 1, 0, 14, 13, 4));
+              result.get(EnumFacing.SOUTH).add(AABBHelper.create(2, 1, 12, 14, 13, 16));
+              result.get(EnumFacing.EAST).add(AABBHelper.create(12, 1, 2, 16, 13, 14));
+              result.get(EnumFacing.WEST).add(AABBHelper.create(0, 1, 2, 4, 13, 14));
+            }
 
           } else {
             result.get(EnumFacing.SOUTH).add(AABBHelper.create(6, 4, 0, 10, 8, 4));
             result.get(EnumFacing.NORTH).add(AABBHelper.create(6, 4, 12, 10, 8, 16));
             result.get(EnumFacing.WEST).add(AABBHelper.create(12, 4, 6, 16, 8, 10));
             result.get(EnumFacing.EAST).add(AABBHelper.create(0, 4, 6, 4, 8, 10));
+
+            if (type == EnumType.SideWithCog) {
+              result.get(EnumFacing.NORTH).add(AABBHelper.create(2, 1, 0, 14, 13, 4));
+              result.get(EnumFacing.SOUTH).add(AABBHelper.create(2, 1, 12, 14, 13, 16));
+              result.get(EnumFacing.EAST).add(AABBHelper.create(12, 1, 2, 16, 13, 14));
+              result.get(EnumFacing.WEST).add(AABBHelper.create(0, 1, 2, 4, 13, 14));
+            }
           }
 
           return result;
@@ -101,7 +118,24 @@ public class BlockStoneHopper
   @Override
   public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 
-    return RAYTRACE_COLLISION_BOUNDS.get(blockState.getValue(TYPE))
+    EnumType type = blockState.getValue(TYPE);
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileStoneHopper) {
+
+      if (!((TileStoneHopper) tileEntity).getCogStackHandler().getStackInSlot(0).isEmpty()) {
+
+        if (type == EnumType.Down) {
+          type = EnumType.DownWithCog;
+
+        } else {
+          type = EnumType.SideWithCog;
+        }
+      }
+    }
+
+    return RAYTRACE_COLLISION_BOUNDS.get(type)
         .get(blockState.getValue(Properties.FACING_HORIZONTAL))
         .stream()
         .map(bb -> rayTrace(pos, start, end, bb))
@@ -217,7 +251,9 @@ public class BlockStoneHopper
       implements IVariant {
 
     Down(0, "down"),
-    Side(1, "side");
+    Side(1, "side"),
+    DownWithCog(2, "down_with_cog"),
+    SideWithCog(3, "side_with_cog");
 
     private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
         .sorted(Comparator.comparing(EnumType::getMeta))
