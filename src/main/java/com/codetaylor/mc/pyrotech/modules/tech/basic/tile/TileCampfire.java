@@ -37,14 +37,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class TileCampfire
     extends TileCombustionWorkerBase
@@ -200,6 +203,47 @@ public class TileCampfire
   private void setDead() {
 
     this.dead.set(true);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Capabilities
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+
+    return this.allowAutomation()
+        && (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+  }
+
+  @Nullable
+  @Override
+  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+    if (this.allowAutomation()
+        && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+
+      if (facing == EnumFacing.UP) {
+        //noinspection unchecked
+        return (T) this.inputStackHandler;
+
+      } else if (facing == EnumFacing.DOWN) {
+
+        //noinspection unchecked
+        return (T) this.outputStackHandler;
+
+      } else {
+        //noinspection unchecked
+        return (T) this.fuelStackHandler;
+      }
+    }
+
+    return null;
+  }
+
+  protected boolean allowAutomation() {
+
+    return ModuleTechBasicConfig.CAMPFIRE.ALLOW_AUTOMATION;
   }
 
   // ---------------------------------------------------------------------------
@@ -798,7 +842,9 @@ public class TileCampfire
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
-      if (!TileCampfire.this.outputStackHandler.getStackInSlot(0).isEmpty()) {
+      if (stack.isEmpty()
+          || CampfireRecipe.getRecipe(stack) == null
+          || !TileCampfire.this.outputStackHandler.getStackInSlot(0).isEmpty()) {
         return stack;
       }
 
@@ -835,6 +881,17 @@ public class TileCampfire
     protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
 
       return 1;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+
+      if (!OreDictHelper.contains("logWood", stack)) {
+        return stack;
+      }
+
+      return super.insertItem(slot, stack, simulate);
     }
   }
 

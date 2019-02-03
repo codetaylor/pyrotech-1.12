@@ -656,6 +656,12 @@ public class ModuleTechBasicConfig {
   public static class Campfire {
 
     @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
         "The light level of the campfire when lit.",
         "Default: " + 11
     })
