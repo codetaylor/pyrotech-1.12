@@ -175,6 +175,7 @@ public class TileStoneHopper
       }
 
       int amount = Math.min(cog.getMaxDamage() - cog.getItemDamage(), this.getTransferAmount(cog));
+      int totalInserted = 0;
 
       for (int slotSource = 0; slotSource < handlerSource.getSlots(); slotSource++) {
 
@@ -187,7 +188,9 @@ public class TileStoneHopper
           if (stackSource != ItemStack.EMPTY) {
 
             for (int slotTarget = 0; slotTarget < handlerTarget.getSlots(); slotTarget++) {
+              int before = stackSource.getCount();
               stackSource = handlerTarget.insertItem(slotTarget, stackSource, true);
+              totalInserted += (before - stackSource.getCount());
 
               if (stackSource.isEmpty()) {
                 canTransfer = true;
@@ -204,7 +207,7 @@ public class TileStoneHopper
 
           // --- Transfer
 
-          ItemStack stackSource = handlerSource.extractItem(slotSource, amount, false);
+          ItemStack stackSource = handlerSource.extractItem(slotSource, totalInserted, false);
           int initialCount = stackSource.getCount();
 
           for (int slotTarget = 0; slotTarget < handlerTarget.getSlots(); slotTarget++) {
