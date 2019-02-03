@@ -15,8 +15,8 @@
       "data": 0
     },
     "C": {
-      "item": "minecraft:rotten_flesh",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore": "mulchNitrogen"
     }
   },
   "result": {
