@@ -33,9 +33,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class TileCompactingBin
     extends TileNetBase
@@ -75,6 +78,36 @@ public class TileCompactingBin
         new InteractionInput(this, this.inputStackHandler),
         new InteractionShovel()
     };
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Capabilities
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+
+    return this.allowAutomation()
+        && (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+  }
+
+  @Nullable
+  @Override
+  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+    if (this.allowAutomation()
+        && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+
+      //noinspection unchecked
+      return (T) this.inputStackHandler;
+    }
+
+    return null;
+  }
+
+  protected boolean allowAutomation() {
+
+    return ModuleTechBasicConfig.COMPACTING_BIN.ALLOW_AUTOMATION;
   }
 
   // ---------------------------------------------------------------------------
