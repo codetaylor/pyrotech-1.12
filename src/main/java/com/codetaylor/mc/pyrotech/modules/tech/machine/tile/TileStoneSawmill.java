@@ -76,6 +76,12 @@ public class TileStoneSawmill
     return this.bladeStackHandler;
   }
 
+  @Override
+  protected boolean allowAutomation() {
+
+    return ModuleTechMachineConfig.STONE_CRUCIBLE.ALLOW_AUTOMATION;
+  }
+
   // ---------------------------------------------------------------------------
   // - Serialization
   // ---------------------------------------------------------------------------

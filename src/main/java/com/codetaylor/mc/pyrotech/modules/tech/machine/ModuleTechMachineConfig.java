@@ -178,6 +178,12 @@ public class ModuleTechMachineConfig {
   public static class StoneKiln {
 
     @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
         "Set to true to deactivate when a recipe completes.",
         "The worker will need to be re-lit when it deactivates.",
         "Default: " + false
@@ -206,6 +212,12 @@ public class ModuleTechMachineConfig {
   public static StoneOven STONE_OVEN = new StoneOven();
 
   public static class StoneOven {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
 
     @Config.Comment({
         "Set to true to deactivate when a recipe completes.",
@@ -243,6 +255,12 @@ public class ModuleTechMachineConfig {
   public static StoneSawmill STONE_SAWMILL = new StoneSawmill();
 
   public static class StoneSawmill {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
 
     @Config.Comment({
         "Set to true to deactivate when a recipe completes.",
@@ -293,6 +311,12 @@ public class ModuleTechMachineConfig {
   public static StoneCrucible STONE_CRUCIBLE = new StoneCrucible();
 
   public static class StoneCrucible {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
 
     @Config.Comment({
         "Set to true to deactivate when a recipe completes.",

@@ -51,6 +51,12 @@ public class TileStoneKiln
   }
 
   @Override
+  protected boolean allowAutomation() {
+
+    return ModuleTechMachineConfig.STONE_CRUCIBLE.ALLOW_AUTOMATION;
+  }
+
+  @Override
   protected boolean shouldKeepHeat() {
 
     return ModuleTechMachineConfig.STONE_KILN.KEEP_HEAT;

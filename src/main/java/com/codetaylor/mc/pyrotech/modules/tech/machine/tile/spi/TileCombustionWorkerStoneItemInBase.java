@@ -47,6 +47,10 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends StoneMachine
   @Override
   public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
 
+    if (!this.allowAutomation()) {
+      return false;
+    }
+
     return (facing == EnumFacing.UP && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
         || super.hasCapability(capability, facing);
   }
@@ -54,6 +58,10 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends StoneMachine
   @Nullable
   @Override
   public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+    if (!this.allowAutomation()) {
+      return null;
+    }
 
     if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 

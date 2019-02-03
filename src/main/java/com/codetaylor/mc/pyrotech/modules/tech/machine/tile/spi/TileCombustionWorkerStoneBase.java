@@ -155,7 +155,8 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   @Override
   public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
 
-    return (facing != null
+    return (this.allowAutomation()
+        && facing != null
         && facing.getAxis().isHorizontal()
         && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
   }
@@ -164,7 +165,8 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   @Override
   public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
 
-    if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+    if (this.allowAutomation()
+        && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 
       if (facing != null && facing.getAxis().isHorizontal()) {
         //noinspection unchecked
@@ -174,6 +176,8 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
 
     return null;
   }
+
+  protected abstract boolean allowAutomation();
 
   // ---------------------------------------------------------------------------
   // - Combustion Worker

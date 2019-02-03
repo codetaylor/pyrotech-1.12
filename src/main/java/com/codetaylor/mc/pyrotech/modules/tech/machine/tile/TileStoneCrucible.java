@@ -52,6 +52,12 @@ public class TileStoneCrucible
   }
 
   @Override
+  protected boolean allowAutomation() {
+
+    return ModuleTechMachineConfig.STONE_CRUCIBLE.ALLOW_AUTOMATION;
+  }
+
+  @Override
   protected boolean processAsynchronous() {
 
     return ModuleTechMachineConfig.STONE_CRUCIBLE.ASYNCHRONOUS_OPERATION;
