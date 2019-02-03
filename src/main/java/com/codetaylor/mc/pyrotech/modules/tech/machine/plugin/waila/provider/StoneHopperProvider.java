@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider;
 
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneHopper;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -34,8 +35,9 @@ public class StoneHopperProvider
       ItemStack blade = cogStackHandler.getStackInSlot(0);
 
       if (!blade.isEmpty()) {
+        tooltip.add(WailaUtil.getStackRenderString(blade));
         tooltip.add(Util.translateFormatted(
-            "gui." + ModuleCore.MOD_ID + ".waila.sawmill.blade",
+            "gui." + ModuleCore.MOD_ID + ".waila.cog",
             blade.getItem().getItemStackDisplayName(blade)
         ));
       }

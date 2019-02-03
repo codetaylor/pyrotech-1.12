@@ -228,6 +228,7 @@ tile.pyrotech.rock_sand_red.name=Red Sand Pile
 # Waila
 #------------------------------------------------------------------------------
 
+gui.pyrotech.waila.cog=Cog: %s
 gui.pyrotech.waila.tank.fluid=%s: %d of %d mB
 gui.pyrotech.waila.tank.empty=Empty: %d of %d mB
 gui.pyrotech.waila.fuel=Fuel: %s
