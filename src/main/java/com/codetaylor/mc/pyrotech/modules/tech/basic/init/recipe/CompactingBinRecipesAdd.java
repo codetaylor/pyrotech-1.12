@@ -2,6 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompactingBinRecipe;
 import net.minecraft.block.BlockSand;
 import net.minecraft.init.Blocks;
@@ -13,6 +15,13 @@ import net.minecraftforge.registries.IForgeRegistryModifiable;
 public class CompactingBinRecipesAdd {
 
   public static void apply(IForgeRegistryModifiable<CompactingBinRecipe> registry) {
+
+    // Charcoal Block
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK),
+        Ingredient.fromStacks(ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack()),
+        72
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_block"));
 
     // Gravel
     registry.register(new CompactingBinRecipe(
