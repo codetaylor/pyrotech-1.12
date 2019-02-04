@@ -21,7 +21,7 @@ public class CompactingBinRecipesAdd {
         new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK),
         Ingredient.fromStacks(ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack()),
         72
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_block"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_block_from_flakes"));
 
     // Gravel
     registry.register(new CompactingBinRecipe(
