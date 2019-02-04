@@ -145,7 +145,7 @@ public class BlockBloomery
   @Override
   public boolean isFullBlock(IBlockState state) {
 
-    return !this.isTop(state);
+    return false;
   }
 
   @Override
