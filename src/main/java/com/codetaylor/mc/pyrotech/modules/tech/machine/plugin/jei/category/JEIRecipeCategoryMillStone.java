@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category;
 
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperMillStone;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
@@ -16,7 +15,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class JEIRecipeCategoryMillStone
     implements IRecipeCategory<JEIRecipeWrapperMillStone> {
 
-  public static final String UID = ModuleCore.MOD_ID + ".stone.mill";
+  public static final String UID = ModuleTechMachine.MOD_ID + ".stone.mill";
 
   private final IDrawableAnimated arrow;
   private final IDrawable background;
@@ -25,7 +24,7 @@ public class JEIRecipeCategoryMillStone
 
   public JEIRecipeCategoryMillStone(IGuiHelper guiHelper) {
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "textures/gui/jei4.png");
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei4.png");
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82, 0, 24, 17);
 
@@ -34,7 +33,7 @@ public class JEIRecipeCategoryMillStone
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 38);
 
-    this.title = Translator.translateToLocal("gui." + ModuleCore.MOD_ID + ".jei.category.mill.stone");
+    this.title = Translator.translateToLocal("gui." + ModuleTechMachine.MOD_ID + ".jei.category.mill.stone");
   }
 
   @Nonnull
@@ -55,7 +54,7 @@ public class JEIRecipeCategoryMillStone
   @Override
   public String getModName() {
 
-    return ModuleCore.MOD_ID;
+    return ModuleTechMachine.MOD_ID;
   }
 
   @Nonnull

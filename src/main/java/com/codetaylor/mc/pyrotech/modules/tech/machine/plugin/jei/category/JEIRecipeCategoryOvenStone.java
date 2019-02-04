@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category;
 
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperOvenStone;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
@@ -16,7 +15,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class JEIRecipeCategoryOvenStone
     implements IRecipeCategory<JEIRecipeWrapperOvenStone> {
 
-  public static final String UID = ModuleCore.MOD_ID + ".stone.oven";
+  public static final String UID = ModuleTechMachine.MOD_ID + ".stone.oven";
 
   private final IDrawableAnimated animatedFlame;
   private final IDrawableAnimated arrow;
@@ -26,7 +25,7 @@ public class JEIRecipeCategoryOvenStone
 
   public JEIRecipeCategoryOvenStone(IGuiHelper guiHelper) {
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "textures/gui/jei2.png");
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei2.png");
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82, 14, 24, 17);
     IDrawableStatic staticFlame = guiHelper.createDrawable(resourceLocation, 82, 0, 14, 14);
@@ -38,7 +37,7 @@ public class JEIRecipeCategoryOvenStone
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 33);
 
-    this.title = Translator.translateToLocal("gui." + ModuleCore.MOD_ID + ".jei.category.oven.stone");
+    this.title = Translator.translateToLocal("gui." + ModuleTechMachine.MOD_ID + ".jei.category.oven.stone");
   }
 
   @Nonnull
@@ -59,7 +58,7 @@ public class JEIRecipeCategoryOvenStone
   @Override
   public String getModName() {
 
-    return ModuleCore.MOD_ID;
+    return ModuleTechMachine.MOD_ID;
   }
 
   @Nonnull

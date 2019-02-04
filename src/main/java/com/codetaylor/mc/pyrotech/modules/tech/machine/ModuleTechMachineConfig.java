@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine;
 
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
@@ -8,7 +7,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "module.tech.Machine")
+@Config(modid = ModuleTechMachine.MOD_ID, name = ModuleTechMachine.MOD_ID + "/" + "module.tech.Machine")
 public class ModuleTechMachineConfig {
 
   // ---------------------------------------------------------------------------

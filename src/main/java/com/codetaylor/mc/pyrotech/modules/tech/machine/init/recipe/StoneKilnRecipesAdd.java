@@ -28,7 +28,7 @@ public class StoneKilnRecipesAdd {
             BlockRock.EnumType.GRANITE.asStack(6),
             BlockRock.EnumType.DIORITE.asStack(6)
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "cobblestone_from_gravel"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "cobblestone_from_gravel"));
 
     // Brick
     registry.register(new StoneKilnRecipe(
@@ -41,7 +41,7 @@ public class StoneKilnRecipesAdd {
             ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
             ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "brick"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "brick"));
 
     // Refractory Brick
     registry.register(new StoneKilnRecipe(
@@ -54,7 +54,7 @@ public class StoneKilnRecipesAdd {
             ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "refractory_brick"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "refractory_brick"));
 
     // Charcoal Flakes
     registry.register(new StoneKilnRecipe(
@@ -65,7 +65,7 @@ public class StoneKilnRecipesAdd {
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "charcoal_flakes"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "charcoal_flakes"));
 
     // Quicklime
     registry.register(new StoneKilnRecipe(
@@ -76,7 +76,7 @@ public class StoneKilnRecipesAdd {
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "quicklime"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "quicklime"));
 
     // Stone Slab
     registry.register(new StoneKilnRecipe(
@@ -88,7 +88,7 @@ public class StoneKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleCore.Blocks.ROCK, 3, 0)
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_slab"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "stone_slab"));
 
     // Stone
     registry.register(new StoneKilnRecipe(
@@ -100,7 +100,7 @@ public class StoneKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.STONE.getMeta())
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "stone"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "stone"));
 
     // Stone - Andesite
     registry.register(new StoneKilnRecipe(
@@ -112,7 +112,7 @@ public class StoneKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.ANDESITE.getMeta())
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_andesite"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "stone_andesite"));
 
     // Stone - Granite
     registry.register(new StoneKilnRecipe(
@@ -124,7 +124,7 @@ public class StoneKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.GRANITE.getMeta())
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_granite"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "stone_granite"));
 
     // Stone - Diorite
     registry.register(new StoneKilnRecipe(
@@ -136,7 +136,7 @@ public class StoneKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.DIORITE.getMeta())
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_diorite"));
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "stone_diorite"));
 
   }
 }
