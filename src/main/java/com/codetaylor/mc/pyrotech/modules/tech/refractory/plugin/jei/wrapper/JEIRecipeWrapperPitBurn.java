@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper;
 
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
@@ -54,7 +53,7 @@ public class JEIRecipeWrapperPitBurn
     this.fluidStack = fluidProduced;
 
     this.failureChance = Util.translateFormatted(
-        "gui." + ModuleCore.MOD_ID + ".jei.failure",
+        "gui." + ModuleTechRefractory.MOD_ID + ".jei.failure",
         (int) (recipe.getFailureChance() * 100)
     );
   }

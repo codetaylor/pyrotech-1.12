@@ -30,7 +30,7 @@ public class BurnPitRecipesAdd {
         },
         false,
         true
-    ).setRegistryName(ModuleCore.MOD_ID, "charcoal"));
+    ).setRegistryName(ModuleTechRefractory.MOD_ID, "charcoal"));
 
     // Charcoal from Pile of Wood Chips
     registry.register(new PitBurnRecipe(
@@ -46,7 +46,7 @@ public class BurnPitRecipesAdd {
         },
         false,
         true
-    ).setRegistryName(ModuleCore.MOD_ID, "charcoal_from_pile_wood_chips"));
+    ).setRegistryName(ModuleTechRefractory.MOD_ID, "charcoal_from_pile_wood_chips"));
 
     // Coal Coke
     registry.register(new PitBurnRecipe(
@@ -62,6 +62,6 @@ public class BurnPitRecipesAdd {
         },
         true,
         true
-    ).setRegistryName(ModuleCore.MOD_ID, "coal_coke"));
+    ).setRegistryName(ModuleTechRefractory.MOD_ID, "coal_coke"));
   }
 }

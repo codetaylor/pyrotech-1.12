@@ -1,12 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory;
 
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import net.minecraftforge.common.config.Config;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "module.tech.Refractory")
+@Config(modid = ModuleTechRefractory.MOD_ID, name = ModuleTechRefractory.MOD_ID + "/" + "module.tech.Refractory")
 public class ModuleTechRefractoryConfig {
 
   // ---------------------------------------------------------------------------

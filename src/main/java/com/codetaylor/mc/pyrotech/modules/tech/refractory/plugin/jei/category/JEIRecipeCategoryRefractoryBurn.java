@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.category;
 
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperRefractoryBurn;
@@ -28,7 +27,7 @@ public class JEIRecipeCategoryRefractoryBurn
 
   public JEIRecipeCategoryRefractoryBurn(IGuiHelper guiHelper) {
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "textures/gui/jei5.png");
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechRefractory.MOD_ID, "textures/gui/jei5.png");
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82 + 19, 14, 24, 17);
     IDrawableStatic staticFlame = guiHelper.createDrawable(resourceLocation, 82 + 19, 0, 14, 14);
@@ -40,7 +39,7 @@ public class JEIRecipeCategoryRefractoryBurn
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82 + 19, 54);
 
-    this.title = Translator.translateToLocal("gui." + ModuleCore.MOD_ID + ".jei.category.burn.refractory");
+    this.title = Translator.translateToLocal("gui." + ModuleTechRefractory.MOD_ID + ".jei.category.burn.refractory");
   }
 
   @Nonnull
@@ -61,7 +60,7 @@ public class JEIRecipeCategoryRefractoryBurn
   @Override
   public String getModName() {
 
-    return ModuleCore.MOD_ID;
+    return ModuleTechRefractory.MOD_ID;
   }
 
   @Nonnull
