@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.tool.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
-import com.codetaylor.mc.pyrotech.modules.tool.item.ItemCrudeFishingRod;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
 import com.codetaylor.mc.pyrotech.modules.tool.item.*;
 import net.minecraftforge.fml.relauncher.Side;

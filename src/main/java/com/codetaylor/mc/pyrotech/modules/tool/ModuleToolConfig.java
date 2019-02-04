@@ -1,12 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tool;
 
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import net.minecraftforge.common.config.Config;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "module.Tool")
+@Config(modid = ModuleTool.MOD_ID, name = ModuleTool.MOD_ID + "/" + "module.Tool")
 public class ModuleToolConfig {
 
   public static Map<String, Integer> DURABILITY = new HashMap<>();

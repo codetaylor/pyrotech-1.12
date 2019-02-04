@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.tool;
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.modules.tool.item.ItemCrudeFishingRod;
 import com.codetaylor.mc.pyrotech.modules.tool.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tool.item.*;
 import net.minecraft.creativetab.CreativeTabs;
