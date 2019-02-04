@@ -27,7 +27,8 @@ public final class BlockInitializer {
     registry.registerBlock(blockRock, itemRock, BlockRock.NAME);
 
     final BlockRockGrass blockRockGrass = new BlockRockGrass();
-    registry.registerBlock(blockRockGrass, new ItemRockGrass(blockRockGrass), BlockRockGrass.NAME);
+    ItemRockGrass itemRockGrass = new ItemRockGrass(blockRockGrass);
+    registry.registerBlock(blockRockGrass, itemRockGrass, BlockRockGrass.NAME);
 
     final BlockRefractoryDoor blockRefractoryDoor = new BlockRefractoryDoor();
     registry.registerBlock(blockRefractoryDoor, BlockRefractoryDoor.NAME);
@@ -74,13 +75,13 @@ public final class BlockInitializer {
           ModuleCore.Blocks.PLANKS_TARRED,
           ModuleCore.Blocks.PILE_WOOD_CHIPS,
           ModuleCore.Blocks.WOOL_TARRED,
-          ModuleCore.Blocks.CHARCOAL_BLOCK,
-          ModuleCore.Blocks.ROCK_GRASS
+          ModuleCore.Blocks.CHARCOAL_BLOCK
       );
 
       ModelRegistrationHelper.registerItemModels(
           ModuleCore.Items.REFRACTORY_DOOR,
-          ModuleCore.Items.STONE_DOOR
+          ModuleCore.Items.STONE_DOOR,
+          ModuleCore.Items.ROCK_GRASS
       );
 
       // Refractory Door
@@ -93,12 +94,6 @@ public final class BlockInitializer {
       ModelLoader.setCustomStateMapper(
           ModuleCore.Blocks.STONE_DOOR,
           (new StateMap.Builder()).ignore(BlockDoor.POWERED).build()
-      );
-
-      // Rock Pieces
-      ModelLoader.setCustomStateMapper(
-          ModuleCore.Blocks.ROCK,
-          (new StateMap.Builder()).withName(BlockRock.VARIANT).build()
       );
 
       // Cobblestone
@@ -116,6 +111,12 @@ public final class BlockInitializer {
           ModuleCore.MOD_ID,
           ModuleCore.Blocks.ORE,
           BlockOre.VARIANT
+      );
+
+      // Rock Pieces
+      ModelLoader.setCustomStateMapper(
+          ModuleCore.Blocks.ROCK,
+          (new StateMap.Builder()).withName(BlockRock.VARIANT).build()
       );
 
       // Rock

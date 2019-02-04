@@ -179,6 +179,9 @@ public class ModuleCore
   @GameRegistry.ObjectHolder(ModuleCore.MOD_ID)
   public static class Items {
 
+    @GameRegistry.ObjectHolder(BlockRockGrass.NAME)
+    public static final ItemRockGrass ROCK_GRASS;
+
     @GameRegistry.ObjectHolder(ItemMaterial.NAME)
     public static final ItemMaterial MATERIAL;
 
@@ -216,6 +219,7 @@ public class ModuleCore
     public static final ItemCrudeHammer CRUDE_HAMMER;
 
     static {
+      ROCK_GRASS = null;
       MATERIAL = null;
       REFRACTORY_DOOR = null;
       STONE_DOOR = null;
