@@ -235,11 +235,14 @@ public class TileSoakingPot
       if (this.remainingRecipeTimeTicks.get() > 0) {
         this.remainingRecipeTimeTicks.add(-1);
 
-        if (this.remainingRecipeTimeTicks.get() == 0) {
+        if (this.remainingRecipeTimeTicks.get() <= 0) {
+
           SoakingPotRecipe currentRecipe = this.currentRecipe;
           ItemStack inputItem = this.inputStackHandler.extractItem(0, this.inputStackHandler.getSlotLimit(0), false);
           this.inputFluidTank.drain(currentRecipe.getInputFluid().amount * inputItem.getCount(), true);
-          this.outputStackHandler.insertItem(0, currentRecipe.getOutput(), false);
+          ItemStack output = currentRecipe.getOutput();
+          output.setCount(inputItem.getCount());
+          this.outputStackHandler.insertItem(0, output, false);
         }
       }
     }
