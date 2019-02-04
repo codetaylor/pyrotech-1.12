@@ -8,7 +8,6 @@ import com.codetaylor.mc.dropt.api.reference.EnumHarvesterType;
 import com.codetaylor.mc.dropt.api.reference.EnumListType;
 import com.codetaylor.mc.dropt.api.reference.EnumReplaceStrategy;
 import com.codetaylor.mc.pyrotech.ModPyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockOre;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
@@ -44,7 +43,7 @@ public class PluginDropt {
 
   private static String item(String name, int meta) {
 
-    return item(ModuleCore.MOD_ID, name, meta);
+    return item(ModulePluginDropt.MOD_ID, name, meta);
   }
 
   private static String item(String modId, String name, int meta) {
@@ -777,7 +776,7 @@ public class PluginDropt {
     // - Registration
     // -------------------------------------------------------------------------
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "dropt");
+    ResourceLocation resourceLocation = new ResourceLocation(ModulePluginDropt.MOD_ID, "dropt");
     registerRuleList(resourceLocation, 0, list);
   }
 
