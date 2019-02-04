@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
-import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.athenaeum.util.WeightedPicker;
