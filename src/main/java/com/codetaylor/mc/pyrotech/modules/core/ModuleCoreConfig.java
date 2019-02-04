@@ -258,6 +258,14 @@ public class ModuleCoreConfig {
     public int BOARD_BURN_TIME_TICKS = 200;
 
     @Config.Comment({
+        "Burned food burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 200
+    })
+    @Config.RangeInt(min = 0)
+    public int BURNED_FOOD_BURN_TIME_TICKS = 200;
+
+    @Config.Comment({
         "Coal pieces burn time in ticks.",
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + (1600 / 8)
