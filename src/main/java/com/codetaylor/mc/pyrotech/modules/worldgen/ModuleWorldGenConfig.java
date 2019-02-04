@@ -1,9 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.worldgen;
 
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "module.WorldGen")
+@Config(modid = ModuleWorldGen.MOD_ID, name = ModuleWorldGen.MOD_ID + "/" + "module.WorldGen")
 public class ModuleWorldGenConfig {
 
   // ---------------------------------------------------------------------------
