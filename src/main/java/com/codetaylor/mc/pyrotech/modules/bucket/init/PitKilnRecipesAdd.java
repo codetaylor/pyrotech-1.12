@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.bucket.init;
 import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucketConfig;
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.KilnPitRecipe;
 import net.minecraft.item.ItemStack;
@@ -26,7 +25,7 @@ public class PitKilnRecipesAdd {
               ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
               ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
           }
-      ).setRegistryName(ModuleCore.MOD_ID, "bucket_clay"));
+      ).setRegistryName(ModuleBucket.MOD_ID, "bucket_clay"));
     }
   }
 }
