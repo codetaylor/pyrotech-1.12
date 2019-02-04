@@ -16,6 +16,20 @@ public class StoneKilnRecipesAdd {
 
   public static void apply(IForgeRegistry<StoneKilnRecipe> registry) {
 
+    // Cobblestone
+    registry.register(new StoneKilnRecipe(
+        new ItemStack(Blocks.COBBLESTONE),
+        Ingredient.fromStacks(new ItemStack(Blocks.GRAVEL)),
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
+        new ItemStack[]{
+            BlockRock.EnumType.STONE.asStack(6),
+            BlockRock.EnumType.ANDESITE.asStack(6),
+            BlockRock.EnumType.GRANITE.asStack(6),
+            BlockRock.EnumType.DIORITE.asStack(6)
+        }
+    ).setRegistryName(ModuleCore.MOD_ID, "cobblestone_from_gravel"));
+
     // Brick
     registry.register(new StoneKilnRecipe(
         new ItemStack(Items.BRICK),
