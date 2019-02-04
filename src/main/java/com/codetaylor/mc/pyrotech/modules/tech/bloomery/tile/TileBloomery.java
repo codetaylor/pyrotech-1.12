@@ -680,7 +680,11 @@ public class TileBloomery
   @Override
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
 
-    return blockState.getValue(Properties.FACING_HORIZONTAL);
+    if (blockState.getBlock() == ModuleBloomery.Blocks.BLOOMERY) {
+      return blockState.getValue(Properties.FACING_HORIZONTAL);
+    }
+
+    return ITileInteractable.super.getTileFacing(world, pos, blockState);
   }
 
   // --- ITEM ---

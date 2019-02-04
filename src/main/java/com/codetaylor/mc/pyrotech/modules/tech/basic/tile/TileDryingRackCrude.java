@@ -1,9 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
+import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
@@ -81,7 +83,11 @@ public class TileDryingRackCrude
   @Override
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
 
-    return blockState.getValue(BlockDryingRack.FACING);
+    if (blockState.getBlock() == ModuleTechBasic.Blocks.DRYING_RACK) {
+      return blockState.getValue(Properties.FACING_HORIZONTAL);
+    }
+
+    return ITileInteractable.super.getTileFacing(world, pos, blockState);
   }
 
   private class Interaction

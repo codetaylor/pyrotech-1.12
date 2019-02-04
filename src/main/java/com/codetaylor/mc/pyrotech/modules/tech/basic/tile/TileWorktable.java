@@ -263,7 +263,12 @@ public class TileWorktable
   @Override
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
 
-    return blockState.getValue(Properties.FACING_HORIZONTAL);
+    if (blockState.getBlock() == ModuleTechBasic.Blocks.WORKTABLE
+        || blockState.getBlock() == ModuleTechBasic.Blocks.WORKTABLE_STONE) {
+      return blockState.getValue(Properties.FACING_HORIZONTAL);
+    }
+
+    return ITileInteractable.super.getTileFacing(world, pos, blockState);
   }
 
   private class InteractionHammer

@@ -286,7 +286,11 @@ public class TileStoneHopper
   @Override
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
 
-    return blockState.getValue(Properties.FACING_HORIZONTAL);
+    if (blockState.getBlock() == ModuleTechMachine.Blocks.STONE_HOPPER) {
+      return blockState.getValue(Properties.FACING_HORIZONTAL);
+    }
+
+    return ITileInteractable.super.getTileFacing(world, pos, blockState);
   }
 
   public class InteractionCog

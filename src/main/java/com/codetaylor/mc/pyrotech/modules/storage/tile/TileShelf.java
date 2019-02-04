@@ -157,7 +157,12 @@ public class TileShelf
   @Override
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
 
-    return blockState.getValue(Properties.FACING_HORIZONTAL);
+    if (blockState.getBlock() == ModuleStorage.Blocks.SHELF
+        || blockState.getBlock() == ModuleStorage.Blocks.SHELF_STONE) {
+      return blockState.getValue(Properties.FACING_HORIZONTAL);
+    }
+
+    return ITileInteractable.super.getTileFacing(world, pos, blockState);
   }
 
   private class ShelfInteraction
