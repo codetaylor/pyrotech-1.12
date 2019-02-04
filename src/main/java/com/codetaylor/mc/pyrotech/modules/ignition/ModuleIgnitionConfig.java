@@ -1,9 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.ignition;
 
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "module.Ignition")
+@Config(modid = ModuleIgnition.MOD_ID, name = ModuleIgnition.MOD_ID + "/" + "module.Ignition")
 public class ModuleIgnitionConfig {
 
   // ---------------------------------------------------------------------------
