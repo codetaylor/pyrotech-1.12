@@ -1,12 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "module.tech.Basic")
+@Config(modid = ModuleTechBasic.MOD_ID, name = ModuleTechBasic.MOD_ID + "/" + "module.tech.Basic")
 public class ModuleTechBasicConfig {
 
   // ---------------------------------------------------------------------------

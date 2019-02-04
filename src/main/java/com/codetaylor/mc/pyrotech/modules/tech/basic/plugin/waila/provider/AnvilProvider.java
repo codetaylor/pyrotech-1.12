@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.provider;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
@@ -114,7 +113,7 @@ public class AnvilProvider
 
             } else {
               tooltip.add(TextFormatting.RED + Util.translateFormatted(
-                  "gui." + ModuleCore.MOD_ID + ".waila.bloom.hammer.power",
+                  "gui." + ModuleTechBasic.MOD_ID + ".waila.bloom.hammer.power",
                   hammerPower
               ));
             }

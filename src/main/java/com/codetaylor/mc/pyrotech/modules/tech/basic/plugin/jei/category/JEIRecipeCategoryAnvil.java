@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperAnvil;
 import mezz.jei.api.IGuiHelper;
@@ -25,7 +24,7 @@ public class JEIRecipeCategoryAnvil
 
   public JEIRecipeCategoryAnvil(IGuiHelper guiHelper) {
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "textures/gui/jei3.png");
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, "textures/gui/jei3.png");
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82, 0, 24, 17);
 
@@ -34,7 +33,7 @@ public class JEIRecipeCategoryAnvil
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 40);
 
-    this.title = Translator.translateToLocal("gui." + ModuleCore.MOD_ID + ".jei.category.anvil");
+    this.title = Translator.translateToLocal("gui." + ModuleTechBasic.MOD_ID + ".jei.category.anvil");
   }
 
   @Nonnull
@@ -55,7 +54,7 @@ public class JEIRecipeCategoryAnvil
   @Override
   public String getModName() {
 
-    return ModuleCore.MOD_ID;
+    return ModuleTechBasic.MOD_ID;
   }
 
   @Nonnull

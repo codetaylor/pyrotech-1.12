@@ -27,7 +27,7 @@ public class PitKilnRecipesAdd {
             ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
             ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "brick"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "brick"));
 
     // Charcoal Flakes
     registry.register(new KilnPitRecipe(
@@ -38,7 +38,7 @@ public class PitKilnRecipesAdd {
         new ItemStack[]{
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "charcoal_flakes"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_flakes"));
 
     // Stone Slab
     registry.register(new KilnPitRecipe(
@@ -50,7 +50,7 @@ public class PitKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleCore.Blocks.ROCK, 3, 0)
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_slab"));
 
     // Stone
     registry.register(new KilnPitRecipe(
@@ -62,7 +62,7 @@ public class PitKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.STONE.getMeta())
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "stone"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone"));
 
     // Stone - Andesite
     registry.register(new KilnPitRecipe(
@@ -74,7 +74,7 @@ public class PitKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.ANDESITE.getMeta())
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_andesite"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_andesite"));
 
     // Stone - Granite
     registry.register(new KilnPitRecipe(
@@ -86,7 +86,7 @@ public class PitKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.GRANITE.getMeta())
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_granite"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_granite"));
 
     // Stone - Diorite
     registry.register(new KilnPitRecipe(
@@ -98,7 +98,7 @@ public class PitKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.DIORITE.getMeta())
         }
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_diorite"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_diorite"));
 
   }
 }

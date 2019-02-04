@@ -27,7 +27,7 @@ public class AnvilRecipesAdd {
         ),
         4,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "brick_stone"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "brick_stone"));
 
     // Stone Sticks
     registry.register(new AnvilRecipe(
@@ -37,7 +37,7 @@ public class AnvilRecipesAdd {
         ),
         4,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "stick_stone"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stick_stone"));
 
     // Slabs
 
@@ -49,7 +49,7 @@ public class AnvilRecipesAdd {
         ),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_brick_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_brick_slab"));
 
     // Cobblestone Slab
     registry.register(new AnvilRecipe(
@@ -59,7 +59,7 @@ public class AnvilRecipesAdd {
         ),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "cobblestone_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobblestone_slab"));
 
     // Stone Slab
     registry.register(new AnvilRecipe(
@@ -69,7 +69,7 @@ public class AnvilRecipesAdd {
         ),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_slab"));
 
     // Sandstone Slab
     registry.register(new AnvilRecipe(
@@ -81,7 +81,7 @@ public class AnvilRecipesAdd {
         ),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "sandstone_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "sandstone_slab"));
 
     // Red Sandstone Slab
     registry.register(new AnvilRecipe(
@@ -93,7 +93,7 @@ public class AnvilRecipesAdd {
         ),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "red_sandstone_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "red_sandstone_slab"));
 
     // Brick Slab
     registry.register(new AnvilRecipe(
@@ -103,7 +103,7 @@ public class AnvilRecipesAdd {
         ),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "brick_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "brick_slab"));
 
     // Nether Brick Slab
     registry.register(new AnvilRecipe(
@@ -113,7 +113,7 @@ public class AnvilRecipesAdd {
         ),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "nether_brick_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "nether_brick_slab"));
 
     // Quartz Slab
     registry.register(new AnvilRecipe(
@@ -125,7 +125,7 @@ public class AnvilRecipesAdd {
         ),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "quartz_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "quartz_slab"));
 
     // Purpur Slab
     registry.register(new AnvilRecipe(
@@ -135,7 +135,7 @@ public class AnvilRecipesAdd {
         ),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "purpur_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "purpur_slab"));
 
     // Bone Shard from Block
     registry.register(new AnvilRecipe(
@@ -143,7 +143,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "bone_shard_from_block"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard_from_block"));
 
     // Iron Shard from Iron Ingot
     registry.register(new AnvilRecipe(
@@ -151,7 +151,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Items.IRON_INGOT, 1, 0)),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "iron_shard"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_shard"));
 
     // Diamond Shard from Diamond
     registry.register(new AnvilRecipe(
@@ -159,7 +159,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Items.DIAMOND, 1, 0)),
         16,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "diamond_shard"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "diamond_shard"));
 
     // Coal block to coal
     registry.register(new AnvilRecipe(
@@ -167,7 +167,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Blocks.COAL_BLOCK)),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "coal_block_to_coal"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_block_to_coal"));
 
     // Coal coke block to coal coke
     registry.register(new AnvilRecipe(
@@ -175,7 +175,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COAL_COKE_BLOCK)),
         8,
         AnvilRecipe.EnumType.PICKAXE
-    ).setRegistryName(ModuleCore.MOD_ID, "coal_coke_block_to_coal_coke"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_coke_block_to_coal_coke"));
 
     // --- Hammer Recipes ------------------------------------------------------
 
@@ -185,7 +185,7 @@ public class AnvilRecipesAdd {
         new OreIngredient("nuggetIron"),
         4,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "iron_shard_from_iron_nugget"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_shard_from_iron_nugget"));
 
     // Iron Nugget from Iron Shard
     registry.register(new AnvilRecipe(
@@ -193,7 +193,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(ItemMaterial.EnumType.IRON_SHARD.asStack(1)),
         4,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "iron_nugget_from_iron_shard"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_nugget_from_iron_shard"));
 
     // Flint Shard from Flint
     registry.register(new AnvilRecipe(
@@ -201,7 +201,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Items.FLINT, 1, 0)),
         4,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "flint_shard_from_flint"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "flint_shard_from_flint"));
 
     // Bone Shard from Bone
     registry.register(new AnvilRecipe(
@@ -209,7 +209,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
         4,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "bone_shard_from_bone"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard_from_bone"));
 
     // Charcoal Flakes from Charcoal
     registry.register(new AnvilRecipe(
@@ -217,7 +217,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 1)),
         4,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "charcoal_flakes"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_flakes"));
 
     // Coal Pieces from Coal
     registry.register(new AnvilRecipe(
@@ -225,7 +225,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 0)),
         4,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "coal_pieces"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_pieces"));
 
     // Bone Meal from Bone Shard
     registry.register(new AnvilRecipe(
@@ -233,7 +233,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(ItemMaterial.EnumType.BONE_SHARD.asStack()),
         4,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "bone_shard"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard"));
 
     // Bone Meal from Bone
     registry.register(new AnvilRecipe(
@@ -241,7 +241,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
         4,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "bone_meal_from_bone"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_meal_from_bone"));
 
     // Bone Meal from Bone Block
     registry.register(new AnvilRecipe(
@@ -249,7 +249,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "bone_meal_from_bone_block"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_meal_from_bone_block"));
 
     // Stone to cobblestone
     registry.register(new AnvilRecipe(
@@ -257,7 +257,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.STONE.getMetadata())),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "stone_to_cobbled"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_to_cobbled"));
 
     // Andesite to cobbled andesite
     registry.register(new AnvilRecipe(
@@ -265,7 +265,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.ANDESITE.getMetadata())),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "andesite_to_cobbled"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "andesite_to_cobbled"));
 
     // Diorite to cobbled diorite
     registry.register(new AnvilRecipe(
@@ -273,7 +273,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.DIORITE.getMetadata())),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "diorite_to_cobbled"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "diorite_to_cobbled"));
 
     // Granite to cobbled granite
     registry.register(new AnvilRecipe(
@@ -281,7 +281,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.GRANITE.getMetadata())),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "granite_to_cobbled"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "granite_to_cobbled"));
 
     // Limestone to cobbled limestone
     registry.register(new AnvilRecipe(
@@ -289,7 +289,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.LIMESTONE)),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "limestone_to_cobbled"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "limestone_to_cobbled"));
 
     // Cobblestone to rocks
     registry.register(new AnvilRecipe(
@@ -297,7 +297,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE)),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "cobblestone_to_rocks"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobblestone_to_rocks"));
 
     // Cobbled andesite to rocks
     registry.register(new AnvilRecipe(
@@ -305,7 +305,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "cobbled_andesite_to_rocks"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_andesite_to_rocks"));
 
     // Cobbled diorite to rocks
     registry.register(new AnvilRecipe(
@@ -313,7 +313,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "cobbled_diorite_to_rocks"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_diorite_to_rocks"));
 
     // Cobbled granite to rocks
     registry.register(new AnvilRecipe(
@@ -321,7 +321,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "cobbled_granite_to_rocks"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_granite_to_rocks"));
 
     // Cobbled limestone to rocks
     registry.register(new AnvilRecipe(
@@ -329,7 +329,7 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta())),
         8,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "cobbled_limestone_to_rocks"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_limestone_to_rocks"));
 
     // Limestone rocks to crushed limestone
     registry.register(new AnvilRecipe(
@@ -337,6 +337,6 @@ public class AnvilRecipesAdd {
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
         4,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleCore.MOD_ID, "limestone_rocks_to_crushed_limestone"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "limestone_rocks_to_crushed_limestone"));
   }
 }

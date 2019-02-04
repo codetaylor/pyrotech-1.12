@@ -33,7 +33,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.ANDESITE.getMeta())
         ),
         8
-    ).setRegistryName(ModuleCore.MOD_ID, "gravel"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "gravel"));
 
     // Dirt
     registry.register(new CompactingBinRecipe(
@@ -42,7 +42,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.DIRT.getMeta())
         ),
         8
-    ).setRegistryName(ModuleCore.MOD_ID, "dirt"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "dirt"));
 
     // Coal Block
     registry.register(new CompactingBinRecipe(
@@ -51,7 +51,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(Items.COAL, 1, 0)
         ),
         9
-    ).setRegistryName(ModuleCore.MOD_ID, "coal_block"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_block"));
 
     // Charcoal Block
     registry.register(new CompactingBinRecipe(
@@ -60,7 +60,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(Items.COAL, 1, 1)
         ),
         9
-    ).setRegistryName(ModuleCore.MOD_ID, "charcoal_block"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_block"));
 
     // Sand
     registry.register(new CompactingBinRecipe(
@@ -69,7 +69,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta())
         ),
         8
-    ).setRegistryName(ModuleCore.MOD_ID, "sand"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "sand"));
 
     // Red Sand
     registry.register(new CompactingBinRecipe(
@@ -78,7 +78,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.SAND_RED.getMeta())
         ),
         8
-    ).setRegistryName(ModuleCore.MOD_ID, "sand_red"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "sand_red"));
 
     // Grass
     registry.register(new CompactingBinRecipe(
@@ -87,7 +87,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(ModuleCore.Blocks.ROCK_GRASS, 1, 0)
         ),
         8
-    ).setRegistryName(ModuleCore.MOD_ID, "grass"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "grass"));
 
     // Clay
     registry.register(new CompactingBinRecipe(
@@ -96,7 +96,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(Items.CLAY_BALL, 1, 0)
         ),
         4
-    ).setRegistryName(ModuleCore.MOD_ID, "clay"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "clay"));
 
     // Snow
     registry.register(new CompactingBinRecipe(
@@ -105,7 +105,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(Items.SNOWBALL, 1, 0)
         ),
         4
-    ).setRegistryName(ModuleCore.MOD_ID, "snow"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "snow"));
 
     // Bone Block
     registry.register(new CompactingBinRecipe(
@@ -114,7 +114,7 @@ public class CompactingBinRecipesAdd {
             new ItemStack(Items.DYE, 1, 15)
         ),
         8
-    ).setRegistryName(ModuleCore.MOD_ID, "bone_block"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_block"));
 
     // Pile of Wood Chips
     registry.register(new CompactingBinRecipe(
@@ -123,6 +123,6 @@ public class CompactingBinRecipesAdd {
             new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())
         ),
         8
-    ).setRegistryName(ModuleCore.MOD_ID, "pile_wood_chips"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "pile_wood_chips"));
   }
 }
