@@ -13,6 +13,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockOre;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDroptConfig;
 import com.codetaylor.mc.pyrotech.modules.tool.item.ItemCrudePickaxe;
 import net.minecraft.block.BlockDirt;

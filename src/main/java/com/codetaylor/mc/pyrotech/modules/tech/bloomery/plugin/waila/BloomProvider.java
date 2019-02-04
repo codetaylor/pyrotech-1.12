@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila;
 
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -37,14 +38,14 @@ public class BloomProvider
       int integrity = (int) ((tile.getIntegrity() / (float) tile.getMaxIntegrity()) * 100);
 
       tooltip.add(Util.translateFormatted(
-          "gui." + ModuleTechBloomery.MOD_ID + ".waila.bloom.integrity",
+          "gui." + ModuleBloomery.MOD_ID + ".waila.bloom.integrity",
           integrity
       ));
 
       int recipeProgress = (int) (tile.getRecipeProgress() * 100);
 
       tooltip.add(Util.translateFormatted(
-          "gui." + ModuleTechBloomery.MOD_ID + ".waila.bloom.hammered",
+          "gui." + ModuleBloomery.MOD_ID + ".waila.bloom.hammered",
           recipeProgress
       ));
 
@@ -53,13 +54,13 @@ public class BloomProvider
 
       if (hammerPower > 0) {
         tooltip.add(Util.translateFormatted(
-            "gui." + ModuleTechBloomery.MOD_ID + ".waila.bloom.hammer.power",
+            "gui." + ModuleBloomery.MOD_ID + ".waila.bloom.hammer.power",
             hammerPower
         ));
 
       } else {
         tooltip.add(TextFormatting.RED + Util.translateFormatted(
-            "gui." + ModuleTechBloomery.MOD_ID + ".waila.bloom.hammer.power",
+            "gui." + ModuleBloomery.MOD_ID + ".waila.bloom.hammer.power",
             hammerPower
         ));
       }

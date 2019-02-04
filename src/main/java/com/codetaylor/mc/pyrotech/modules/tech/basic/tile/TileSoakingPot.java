@@ -207,7 +207,7 @@ public class TileSoakingPot
 
     if (this.currentRecipe != null) {
 
-      int maxDrain = currentRecipe.getInputFluid().amount * inputItem.getCount();
+      int maxDrain = this.currentRecipe.getInputFluid().amount * inputItem.getCount();
       FluidStack drain = this.inputFluidTank.drain(maxDrain, false);
 
       if (drain != null && drain.amount == maxDrain) {
