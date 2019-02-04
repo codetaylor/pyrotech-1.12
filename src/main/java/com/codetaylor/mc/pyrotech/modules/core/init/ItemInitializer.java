@@ -71,7 +71,8 @@ public final class ItemInitializer {
           new ItemStack(Items.FISH, 1, ItemFishFood.FishType.SALMON.getMetadata()),
           new ItemStack(Items.FISH, 1, ItemFishFood.FishType.CLOWNFISH.getMetadata()),
           new ItemStack(Items.FISH, 1, ItemFishFood.FishType.PUFFERFISH.getMetadata()),
-          new ItemStack(Items.PORKCHOP)
+          new ItemStack(Items.PORKCHOP),
+          new ItemStack(Items.DYE, 1, 15)
       );
     });
   }
