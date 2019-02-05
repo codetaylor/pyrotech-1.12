@@ -8,14 +8,10 @@
   ],
   "pattern": [
     "BBB",
-    "BEB",
+    "B B",
     "BBB"
   ],
   "key": {
-    "E": {
-      "item": "pyrotech:cog_iron",
-      "data": 0
-    },
     "B": {
       "item": "pyrotech:material",
       "data": 18

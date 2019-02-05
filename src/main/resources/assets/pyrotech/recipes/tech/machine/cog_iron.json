@@ -8,14 +8,10 @@
   ],
   "pattern": [
     "BBB",
-    "BEB",
+    "B B",
     "BBB"
   ],
   "key": {
-    "E": {
-      "item": "pyrotech:material",
-      "data": 27
-    },
     "B": {
       "item": "pyrotech:material",
       "data": 19

@@ -8,13 +8,13 @@
   ],
   "pattern": [
     "BBB",
-    "BEB",
+    "B/B",
     "BBB"
   ],
   "key": {
-    "E": {
-      "item": "pyrotech:cog_stone",
-      "data": 0
+    "/": {
+      "type": "forge:ore_dict",
+      "ore": "stickStone"
     },
     "B": {
       "item": "pyrotech:material",
