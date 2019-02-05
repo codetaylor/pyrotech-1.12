@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -18,12 +19,16 @@ public final class BlockInitializer {
 
     BlockChoppingBlock blockChoppingBlock = new BlockChoppingBlock();
     registry.registerBlock(blockChoppingBlock, new BlockChoppingBlock.ItemChoppingBlock(blockChoppingBlock), BlockChoppingBlock.NAME);
+
     BlockAnvilGranite blockAnvilGranite = new BlockAnvilGranite();
     registry.registerBlock(blockAnvilGranite, new BlockAnvilBase.ItemAnvil(blockAnvilGranite), BlockAnvilGranite.NAME);
+
     BlockAnvilIronPlated blockAnvilIronPlated = new BlockAnvilIronPlated();
     registry.registerBlock(blockAnvilIronPlated, new BlockAnvilIronPlated.ItemAnvil(blockAnvilIronPlated), BlockAnvilIronPlated.NAME);
 
-    registry.registerBlockWithItem(new BlockKilnPit(), BlockKilnPit.NAME);
+    BlockKilnPit blockKilnPit = new BlockKilnPit();
+    registry.registerBlock(blockKilnPit, new ItemBlock(blockKilnPit), BlockKilnPit.NAME);
+
     registry.registerBlockWithItem(new BlockCampfire(), BlockCampfire.NAME);
     registry.registerBlockWithItem(new BlockDryingRack(), BlockDryingRack.NAME);
     registry.registerBlockWithItem(new BlockWorktable(), BlockWorktable.NAME);
