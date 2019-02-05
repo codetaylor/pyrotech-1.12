@@ -137,9 +137,9 @@ public class ModuleTechMachineConfig {
     })
     public Map<String, Integer> COGS = new HashMap<String, Integer>() {{
       this.put("pyrotech:cog_wood", 1);
-      this.put("pyrotech:cog_stone", 1);
-      this.put("pyrotech:cog_flint", 4);
-      this.put("pyrotech:cog_bone", 4);
+      this.put("pyrotech:cog_stone", 4);
+      this.put("pyrotech:cog_flint", 8);
+      this.put("pyrotech:cog_bone", 8);
       this.put("pyrotech:cog_iron", 16);
       this.put("pyrotech:cog_diamond", 64);
     }};
