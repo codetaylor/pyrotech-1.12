@@ -58,6 +58,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   private int dormantCounter;
 
   private IInteraction[] interactions;
+  private int interactionCooldown;
 
   public TileCombustionWorkerStoneBase() {
 
@@ -204,6 +205,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
         blockState = blockState.withProperty(BlockCombustionWorkerStoneBase.TYPE, BlockCombustionWorkerStoneBase.EnumType.BottomLit);
         this.world.setBlockState(this.pos, blockState, 3);
         super.workerSetActive(true);
+        this.interactionCooldown = 5;
       }
 
     } else if (!active && super.workerIsActive()) {
@@ -211,6 +213,17 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
       this.world.setBlockState(this.pos, blockState, 3);
       super.workerSetActive(false);
     }
+  }
+
+  @Override
+  public void update() {
+
+    if (!this.world.isRemote
+        && this.interactionCooldown > 0) {
+      this.interactionCooldown -= 1;
+    }
+
+    super.update();
   }
 
   @Override
@@ -358,6 +371,12 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
   public IInteraction[] getInteractions() {
 
     return this.interactions;
+  }
+
+  @Override
+  public int getInteractionCooldown() {
+
+    return this.interactionCooldown;
   }
 
   @Override

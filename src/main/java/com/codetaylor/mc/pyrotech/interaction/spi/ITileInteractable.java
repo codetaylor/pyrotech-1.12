@@ -26,6 +26,11 @@ public interface ITileInteractable {
     return EMPTY_INTERACTION_HANDLERS;
   }
 
+  default int getInteractionCooldown() {
+
+    return 0;
+  }
+
   /**
    * Return true if the given position is a valid interaction position.
    * <p>

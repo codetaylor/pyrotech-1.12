@@ -75,6 +75,7 @@ public class TileCampfire
   private boolean extinguishedByRain;
 
   private IInteraction[] interactions;
+  private int interactionCooldown;
 
   public TileCampfire() {
 
@@ -296,6 +297,10 @@ public class TileCampfire
     }
 
     super.workerSetActive(active);
+
+    if (active) {
+      this.interactionCooldown = 5;
+    }
   }
 
   @Override
@@ -339,6 +344,17 @@ public class TileCampfire
     }
 
     return 1f - (this.cookTime / (float) this.cookTimeTotal);
+  }
+
+  @Override
+  public void update() {
+
+    if (!this.world.isRemote
+        && this.interactionCooldown > 0) {
+      this.interactionCooldown -= 1;
+    }
+
+    super.update();
   }
 
   @Override
@@ -548,6 +564,12 @@ public class TileCampfire
   public IInteraction[] getInteractions() {
 
     return this.interactions;
+  }
+
+  @Override
+  public int getInteractionCooldown() {
+
+    return this.interactionCooldown;
   }
 
   private class InteractionBucket

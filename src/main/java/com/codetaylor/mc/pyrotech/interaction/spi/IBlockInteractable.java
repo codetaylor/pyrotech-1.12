@@ -30,10 +30,14 @@ public interface IBlockInteractable {
 
     if (tileEntity instanceof ITileInteractable) {
       ITileInteractable tile = (ITileInteractable) tileEntity;
-      tile.interact(type, tile.asTileInteractable(), world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+
+      if (tile.getInteractionCooldown() <= 0) {
+        tile.interact(type, tile.asTileInteractable(), world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+        return true;
+      }
     }
 
-    return true;
+    return false;
   }
 
   default RayTraceResult interactionRayTrace(RayTraceResult result, IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
