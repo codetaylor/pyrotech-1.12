@@ -108,10 +108,10 @@ public class ModuleIgnitionConfig {
 
     @Config.Comment({
         "Defines how many ticks it takes to start a fire while using the bow drill.",
-        "Default: " + (3 * 20)
+        "Default: " + (20)
     })
     @Config.RangeInt(min = 0)
-    public int BOW_DRILL_USE_DURATION_TICKS = 3 * 20;
+    public int BOW_DRILL_USE_DURATION_TICKS = 20;
 
     @Config.Comment({
         "The durability of the flint and tinder.",
