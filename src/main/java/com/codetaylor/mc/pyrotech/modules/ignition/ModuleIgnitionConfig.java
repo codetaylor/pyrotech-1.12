@@ -122,10 +122,10 @@ public class ModuleIgnitionConfig {
 
     @Config.Comment({
         "Defines how many ticks it takes to start a fire while using the flint and tinder.",
-        "Default: " + (5 * 20)
+        "Default: " + (4 * 20)
     })
     @Config.RangeInt(min = 0)
-    public int FLINT_AND_TINDER_USE_DURATION_TICKS = 5 * 20;
+    public int FLINT_AND_TINDER_USE_DURATION_TICKS = 4 * 20;
 
     @Config.Comment({
         "The max stack size of the matchsticks.",
