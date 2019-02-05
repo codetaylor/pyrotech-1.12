@@ -18,7 +18,10 @@ import net.minecraftforge.fluids.FluidTank;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public abstract class TileTarTankBase
     extends TileNetBase
@@ -71,13 +74,26 @@ public abstract class TileTarTankBase
     }
 
     List<BlockPos> sourcePositions = this.getCollectionSourcePositions(world, pos);
+    List<FluidTank> fluidTanks = new ArrayList<>(sourcePositions.size());
 
     for (BlockPos sourcePosition : sourcePositions) {
       TileEntity tileEntity = world.getTileEntity(sourcePosition);
       FluidTank sourceFluidTank = this.getCollectionSourceFluidTank(tileEntity);
 
       if (sourceFluidTank != null) {
-        this.collect(sourceFluidTank, fluidTank);
+        fluidTanks.add(sourceFluidTank);
+      }
+    }
+
+    fluidTanks.sort(Comparator.comparingInt(FluidTank::getFluidAmount).reversed());
+
+    for (FluidTank tank : fluidTanks) {
+
+      if (fluidTank.getFluidAmount() < fluidTank.getCapacity()) {
+        this.collect(tank, fluidTank);
+
+      } else {
+        break;
       }
     }
   }
