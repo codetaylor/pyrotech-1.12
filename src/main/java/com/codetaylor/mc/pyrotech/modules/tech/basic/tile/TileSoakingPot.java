@@ -207,15 +207,6 @@ public class TileSoakingPot
     } else {
       this.currentRecipe = SoakingPotRecipe.getRecipe(inputItem, fluid);
     }
-
-    if (this.currentRecipe != null) {
-      int maxDrain = this.currentRecipe.getInputFluid().amount * inputItem.getCount();
-      FluidStack drain = this.inputFluidTank.drain(maxDrain, false);
-
-      if (drain == null || drain.amount != maxDrain) {
-        this.currentRecipe = null;
-      }
-    }
   }
 
   // ---------------------------------------------------------------------------
@@ -232,6 +223,15 @@ public class TileSoakingPot
     if (this.currentRecipe != null) {
 
       float increment = 1.0f / this.currentRecipe.getTimeTicks();
+
+      ItemStack itemStack = this.inputStackHandler.getStackInSlot(0);
+      int maxDrain = this.currentRecipe.getInputFluid().amount * itemStack.getCount();
+      FluidStack drain = this.inputFluidTank.drain(maxDrain, false);
+
+      if (drain == null || drain.amount != maxDrain) {
+        return;
+      }
+
       this.recipeProgress.add(increment);
 
       if (this.recipeProgress.get() >= 0.9999) {

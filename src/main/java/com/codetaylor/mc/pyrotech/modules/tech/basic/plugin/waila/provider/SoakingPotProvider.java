@@ -1,9 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.provider;
 
+import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileSoakingPot;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
@@ -49,28 +53,27 @@ public class SoakingPotProvider
             WailaUtil.getStackRenderString(outputStack);
         tooltip.add(renderString);
 
-      } else if (!inputStack.isEmpty()) {
+        int maxDrain = currentRecipe.getInputFluid().amount * inputStack.getCount();
+        FluidStack drain = inputFluidTank.drain(maxDrain, false);
 
-        SoakingPotRecipe recipe = SoakingPotRecipe.getRecipe(inputStack, fluid);
-
-        if (recipe != null) {
-
-          float progress = tile.getRecipeProgress();
-          ItemStack outputStack = recipe.getOutput();
-          outputStack.setCount(inputStack.getCount());
-
-          String renderString = WailaUtil.getStackRenderString(inputStack) +
-              WailaUtil.getProgressRenderString((int) (100 * progress), 100) +
-              WailaUtil.getStackRenderString(outputStack);
-          tooltip.add(renderString);
+        if (drain == null || drain.amount != maxDrain) {
 
           if (fluid != null) {
-            tooltip.add(TextFormatting.RED + "Insufficient " + fluid.getLocalizedName());
-
+            tooltip.add(TextFormatting.RED + Util.translateFormatted(
+                "gui." + ModuleTechBasic.MOD_ID + ".waila.insufficient",
+                fluid.getLocalizedName()
+            ));
           } else {
-            tooltip.add(TextFormatting.RED + "Insufficient Fluid");
+            tooltip.add(TextFormatting.RED + Util.translate(
+                "gui." + ModuleTechBasic.MOD_ID + ".waila.insufficient.fluid"
+            ));
           }
         }
+
+        tooltip.add(Util.translateFormatted(
+            "gui." + ModuleTechMachine.MOD_ID + ".waila.recipe",
+            StringHelper.ticksToHMS((int) (currentRecipe.getTimeTicks() * (1 - progress)))
+        ));
       }
 
       if (fluid != null) {
