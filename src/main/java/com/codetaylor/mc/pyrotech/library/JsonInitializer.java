@@ -85,4 +85,8 @@ public class JsonInitializer {
     return null;
   }
 
+  private JsonInitializer() {
+    //
+  }
+
 }
