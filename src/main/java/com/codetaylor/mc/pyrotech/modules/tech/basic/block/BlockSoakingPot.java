@@ -6,7 +6,6 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileSoakingPot;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -68,8 +67,9 @@ public class BlockSoakingPot
     if (!world.isRemote) {
       TileEntity tileEntity = world.getTileEntity(pos);
 
-      if (tileEntity instanceof TileAnvilBase) {
-        StackHelper.spawnStackHandlerContentsOnTop(world, ((TileAnvilBase) tileEntity).getStackHandler(), pos);
+      if (tileEntity instanceof TileSoakingPot) {
+        StackHelper.spawnStackHandlerContentsOnTop(world, ((TileSoakingPot) tileEntity).getInputStackHandler(), pos);
+        StackHelper.spawnStackHandlerContentsOnTop(world, ((TileSoakingPot) tileEntity).getOutputStackHandler(), pos);
       }
     }
 
