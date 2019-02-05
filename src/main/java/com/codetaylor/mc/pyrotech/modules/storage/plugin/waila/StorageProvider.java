@@ -5,16 +5,11 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileWorktable;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -33,7 +28,6 @@ public class StorageProvider
       IWailaConfigHandler config
   ) {
 
-    TileEntity tileEntity = accessor.getTileEntity();
     RayTraceResult rayTraceResult = Minecraft.getMinecraft().objectMouseOver;
 
     if (rayTraceResult == null) {
@@ -60,54 +54,6 @@ public class StorageProvider
           }
         }
       }
-
-    }
-
-    if (tileEntity instanceof TileWorktable) {
-
-      TileWorktable tile;
-      tile = (TileWorktable) tileEntity;
-
-      float progress = tile.getRecipeProgress();
-
-      ItemStackHandler stackHandler = tile.getInputStackHandler();
-      boolean notEmpty = false;
-
-      for (int i = 0; i < 9; i++) {
-
-        if (!stackHandler.getStackInSlot(i).isEmpty()) {
-          notEmpty = true;
-          break;
-        }
-      }
-
-      if (notEmpty) {
-
-        // Display input item and recipe output.
-
-        StringBuilder renderString = new StringBuilder();
-
-        IRecipe recipe = tile.getRecipe();
-
-        if (recipe != null) {
-          ItemStack recipeOutput = recipe.getRecipeOutput();
-
-          if (!recipeOutput.isEmpty()) {
-
-            if (this.craftingTableRenderString == null) {
-              this.craftingTableRenderString = WailaUtil.getStackRenderString(new ItemStack(Blocks.CRAFTING_TABLE));
-            }
-
-            renderString.append(this.craftingTableRenderString);
-            renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
-            renderString.append(WailaUtil.getStackRenderString(recipeOutput));
-          }
-        }
-
-        tooltip.add(renderString.toString());
-
-      }
-
     }
 
     return tooltip;
