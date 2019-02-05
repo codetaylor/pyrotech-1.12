@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
+import com.codetaylor.mc.athenaeum.inventory.IObservableStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
@@ -24,10 +25,7 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends StoneMachine
   public TileCombustionWorkerStoneItemInBase() {
 
     this.inputStackHandler = new InputStackHandler(this, 1);
-    this.inputStackHandler.addObserver((handler, slot) -> {
-      this.recalculateRemainingTime(handler.getStackInSlot(slot));
-      this.markDirty();
-    });
+    this.inputStackHandler.addObserver(new Observer(this));
 
     this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.inputStackHandler)
@@ -150,6 +148,31 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends StoneMachine
       }
 
       return super.insertItem(slot, stack, simulate);
+    }
+  }
+
+  private class Observer
+      implements IObservableStackHandler.IContentsChangedEventHandler {
+
+    private final TileCombustionWorkerStoneBase tile;
+
+    private int lastItemCount;
+
+    private Observer(TileCombustionWorkerStoneBase tile) {
+
+      this.tile = tile;
+      this.lastItemCount = -1;
+    }
+
+    @Override
+    public void onContentsChanged(ItemStackHandler handler, int slot) {
+
+      if (this.lastItemCount <= 0
+          && handler.getStackInSlot(slot).getCount() > 0) {
+        this.tile.recalculateRemainingTime(handler.getStackInSlot(slot));
+      }
+      this.tile.markDirty();
+      this.lastItemCount = handler.getStackInSlot(slot).getCount();
     }
   }
 
