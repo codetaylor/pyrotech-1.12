@@ -467,10 +467,10 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "The amount of hits to apply to the anvil damage when hitting a bloom.",
-        "Default: " + 2
+        "Default: " + 1
     })
     @Config.RangeInt(min = 0)
-    public int BLOOM_DAMAGE_PER_HIT = 2;
+    public int BLOOM_DAMAGE_PER_HIT = 1;
 
     @Config.Comment({
         "How much exhaustion to apply per hit.",
