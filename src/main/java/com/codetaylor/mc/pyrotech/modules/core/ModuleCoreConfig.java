@@ -412,6 +412,22 @@ public class ModuleCoreConfig {
     })
     @Config.RangeInt(min = 0)
     public int TARRED_BOARD_BURN_TIME_TICKS = 400;
+
+    @Config.Comment({
+        "Kindling burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 800
+    })
+    @Config.RangeInt(min = 0)
+    public int KINDLING_BURN_TIME_TICKS = 800;
+
+    @Config.Comment({
+        "Tarred kindling burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 1600
+    })
+    @Config.RangeInt(min = 0)
+    public int TARRED_KINDLING_BURN_TIME_TICKS = 1600;
   }
 
 }

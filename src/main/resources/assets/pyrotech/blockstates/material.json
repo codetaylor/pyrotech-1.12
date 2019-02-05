@@ -33,7 +33,9 @@
       "pulp": {"textures": {"layer0": "pyrotech:items/pulp"}},
       "twine_durable": {"textures": {"layer0": "pyrotech:items/twine_durable"}},
       "stick_stone": {"textures": {"layer0": "pyrotech:items/stick_stone"}},
-      "dust_limestone": {"textures": {"layer0": "pyrotech:items/dust_limestone"}}
+      "dust_limestone": {"textures": {"layer0": "pyrotech:items/dust_limestone"}},
+      "kindling": {"textures": {"layer0": "pyrotech:items/kindling"}},
+      "kindling_tarred": {"textures": {"layer0": "pyrotech:items/kindling_tarred"}}
     }
   }
 }

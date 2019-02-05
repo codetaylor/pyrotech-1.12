@@ -39,6 +39,10 @@ public class ItemMaterial
         return ModuleCoreConfig.FUEL.BOARD_BURN_TIME_TICKS;
       case BOARD_TARRED:
         return ModuleCoreConfig.FUEL.TARRED_BOARD_BURN_TIME_TICKS;
+      case KINDLING:
+        return ModuleCoreConfig.FUEL.KINDLING_BURN_TIME_TICKS;
+      case KINDLING_TARRED:
+        return ModuleCoreConfig.FUEL.TARRED_KINDLING_BURN_TIME_TICKS;
     }
 
     return 0;
@@ -95,7 +99,9 @@ public class ItemMaterial
     PULP(25, "pulp"),
     TWINE_DURABLE(26, "twine_durable"),
     STICK_STONE(27, "stick_stone"),
-    DUST_LIMESTONE(28, "dust_limestone");
+    DUST_LIMESTONE(28, "dust_limestone"),
+    KINDLING(29, "kindling"),
+    KINDLING_TARRED(30, "kindling_tarred");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())

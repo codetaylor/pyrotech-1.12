@@ -29,6 +29,16 @@ public class SoakingPotRecipesAdd {
         1
     ).setRegistryName(ModuleTechBasic.MOD_ID, "sponge"));
 
+    // Tarred Kindling
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+      registry.register(new SoakingPotRecipe(
+          ItemMaterial.EnumType.KINDLING_TARRED.asStack(),
+          Ingredient.fromStacks(ItemMaterial.EnumType.KINDLING.asStack()),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 250),
+          7 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "tarred_kindling_from_wood_tar"));
+    }
+
     // Durable Twine
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
       registry.register(new SoakingPotRecipe(
