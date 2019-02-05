@@ -2,13 +2,16 @@ package com.codetaylor.mc.pyrotech.modules.tool;
 
 import net.minecraftforge.common.config.Config;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 @Config(modid = ModuleTool.MOD_ID, name = ModuleTool.MOD_ID + "/" + "module.Tool")
 public class ModuleToolConfig {
 
-  public static Map<String, Integer> DURABILITY = new HashMap<>();
+  @Config.Comment({
+      "The durability of the vanilla type tools, excluding hammers."
+  })
+  public static Map<String, Integer> DURABILITY = new TreeMap<>();
 
   static {
     DURABILITY.put("crude", 32);
