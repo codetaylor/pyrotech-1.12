@@ -1,0 +1,9 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:wood_tar_block"
+  },
+  "variants": {
+    "normal": [{}]
+  }
+}

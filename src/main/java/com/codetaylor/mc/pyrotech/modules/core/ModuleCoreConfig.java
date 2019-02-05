@@ -428,6 +428,14 @@ public class ModuleCoreConfig {
     })
     @Config.RangeInt(min = 0)
     public int TARRED_KINDLING_BURN_TIME_TICKS = 1600;
+
+    @Config.Comment({
+        "Wood tar block burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 8000
+    })
+    @Config.RangeInt(min = 0)
+    public int WOOD_TAR_BLOCK_BURN_TIME_TICKS = 8000;
   }
 
 }

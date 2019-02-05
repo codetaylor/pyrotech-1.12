@@ -39,6 +39,16 @@ public class SoakingPotRecipesAdd {
       ).setRegistryName(ModuleTechBasic.MOD_ID, "tarred_kindling_from_wood_tar"));
     }
 
+    // Block of Wood Tar
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+      registry.register(new SoakingPotRecipe(
+          new ItemStack(ModuleCore.Blocks.WOOD_TAR_BLOCK),
+          Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.THATCH)),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 1000),
+          7 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "wood_tar_block_from_straw"));
+    }
+
     // Durable Twine
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
       registry.register(new SoakingPotRecipe(
