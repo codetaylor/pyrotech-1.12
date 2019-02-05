@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OAO",
+    "OOO",
+    "OOO"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:leather_chestplate",
+      "data": 0
+    },
+    "O": {
+      "item": "pyrotech:material",
+      "data": 8
+    }
+  },
+  "result": {
+    "item": "minecraft:leather_chestplate",
+    "count": 1,
+    "data": 0,
+    "nbt": {"ench": [{"id": 1, "lvl": 1}]}
+  }
+}

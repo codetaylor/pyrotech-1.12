@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "O O",
+    "OAO"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:leather_boots",
+      "data": 0
+    },
+    "O": {
+      "item": "pyrotech:material",
+      "data": 8
+    }
+  },
+  "result": {
+    "item": "minecraft:leather_boots",
+    "count": 1,
+    "data": 0,
+    "nbt": {"ench": [{"id": 1, "lvl": 1}]}
+  }
+}
