@@ -8,6 +8,7 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
@@ -32,10 +33,13 @@ public class SoakingPotProvider
       TileSoakingPot tile;
       tile = (TileSoakingPot) tileEntity;
       SoakingPotRecipe currentRecipe = tile.getCurrentRecipe();
+      TileSoakingPot.InputStackHandler inputStackHandler = tile.getInputStackHandler();
+      ItemStack inputStack = inputStackHandler.getStackInSlot(0);
+      TileSoakingPot.InputFluidTank inputFluidTank = tile.getInputFluidTank();
+      FluidStack fluid = inputFluidTank.getFluid();
 
       if (currentRecipe != null) {
-        TileSoakingPot.InputStackHandler inputStackHandler = tile.getInputStackHandler();
-        ItemStack inputStack = inputStackHandler.getStackInSlot(0);
+
         float progress = tile.getRecipeProgress();
         ItemStack outputStack = currentRecipe.getOutput();
         outputStack.setCount(inputStack.getCount());
@@ -44,10 +48,30 @@ public class SoakingPotProvider
             WailaUtil.getProgressRenderString((int) (100 * progress), 100) +
             WailaUtil.getStackRenderString(outputStack);
         tooltip.add(renderString);
-      }
 
-      TileSoakingPot.InputFluidTank inputFluidTank = tile.getInputFluidTank();
-      FluidStack fluid = inputFluidTank.getFluid();
+      } else if (!inputStack.isEmpty()) {
+
+        SoakingPotRecipe recipe = SoakingPotRecipe.getRecipe(inputStack, fluid);
+
+        if (recipe != null) {
+
+          float progress = tile.getRecipeProgress();
+          ItemStack outputStack = recipe.getOutput();
+          outputStack.setCount(inputStack.getCount());
+
+          String renderString = WailaUtil.getStackRenderString(inputStack) +
+              WailaUtil.getProgressRenderString((int) (100 * progress), 100) +
+              WailaUtil.getStackRenderString(outputStack);
+          tooltip.add(renderString);
+
+          if (fluid != null) {
+            tooltip.add(TextFormatting.RED + "Insufficient " + fluid.getLocalizedName());
+
+          } else {
+            tooltip.add(TextFormatting.RED + "Insufficient Fluid");
+          }
+        }
+      }
 
       if (fluid != null) {
         tooltip.add(String.format(
