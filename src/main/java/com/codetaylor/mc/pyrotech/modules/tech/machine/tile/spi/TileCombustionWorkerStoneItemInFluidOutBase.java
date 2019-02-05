@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
+import com.codetaylor.mc.athenaeum.inventory.IObservableStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
@@ -178,6 +179,19 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Ston
     }
 
     super.dropContents();
+  }
+
+  @Override
+  protected IObservableStackHandler.IContentsChangedEventHandler getInputStackHandlerObserver() {
+
+    if (this.processAsynchronous()) {
+      return super.getInputStackHandlerObserver();
+    }
+
+    return (handler, slot) -> {
+      this.recalculateRemainingTime(handler.getStackInSlot(slot));
+      this.markDirty();
+    };
   }
 
   // ---------------------------------------------------------------------------

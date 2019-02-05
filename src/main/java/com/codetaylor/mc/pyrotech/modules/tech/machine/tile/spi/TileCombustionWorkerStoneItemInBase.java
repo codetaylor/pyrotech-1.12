@@ -25,11 +25,16 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends StoneMachine
   public TileCombustionWorkerStoneItemInBase() {
 
     this.inputStackHandler = new InputStackHandler(this, 1);
-    this.inputStackHandler.addObserver(new Observer(this));
+    this.inputStackHandler.addObserver(this.getInputStackHandlerObserver());
 
     this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.inputStackHandler)
     });
+  }
+
+  protected IObservableStackHandler.IContentsChangedEventHandler getInputStackHandlerObserver() {
+
+    return new Observer(this);
   }
 
   @Override
@@ -151,7 +156,7 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends StoneMachine
     }
   }
 
-  private class Observer
+  public static class Observer
       implements IObservableStackHandler.IContentsChangedEventHandler {
 
     private final TileCombustionWorkerStoneBase tile;
