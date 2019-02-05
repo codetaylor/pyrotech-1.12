@@ -12,7 +12,8 @@ public class JsonOreDict {
       "WARNING: All changes should be made to the file with the name Custom",
       "in the title. Changes made to the Generated file will be overwritten.",
       "",
-      "This file defines the oreDict entries for this module."
+      "This file defines the oreDict entries for this module.",
+      "Item strings are in the format: (domain):(path):(meta)"
   };
 
   private Map<String, String[]> oreDict = new TreeMap<>();
