@@ -52,6 +52,7 @@ public abstract class BlockCombustionWorkerStoneBase
     super(Material.ROCK);
     this.setSoundType(SoundType.STONE);
     this.setHardness(2);
+    this.setResistance(15);
     this.setHarvestLevel("pickaxe", 0);
     this.setDefaultState(this.blockState.getBaseState()
         .withProperty(Properties.FACING_HORIZONTAL, EnumFacing.NORTH)
