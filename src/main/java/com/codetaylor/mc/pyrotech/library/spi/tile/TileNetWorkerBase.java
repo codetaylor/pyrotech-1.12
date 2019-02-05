@@ -6,7 +6,10 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagFloat;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 
@@ -138,6 +141,17 @@ public abstract class TileNetWorkerBase
     super.readFromNBT(compound);
 
     this.active.set(compound.getBoolean("active"));
+
+    NBTTagList progress = compound.getTagList("progress", Constants.NBT.TAG_FLOAT);
+
+    for (int i = 0; i < progress.tagCount(); i++) {
+
+      if (this.progress.length <= i) {
+        break;
+      }
+
+      this.progress[i].set(progress.getFloatAt(i));
+    }
   }
 
   @Nonnull
@@ -147,6 +161,14 @@ public abstract class TileNetWorkerBase
     super.writeToNBT(compound);
 
     compound.setBoolean("active", this.active.get());
+
+    NBTTagList list = new NBTTagList();
+
+    for (TileDataFloat tileDataFloat : this.progress) {
+      list.appendTag(new NBTTagFloat(tileDataFloat.get()));
+    }
+
+    compound.setTag("progress", list);
 
     return compound;
   }
