@@ -32,7 +32,7 @@ public class AnvilRecipesAdd {
 
     // Stone Sticks
     registry.register(new AnvilRecipe(
-        ItemMaterial.EnumType.STICK_STONE.asStack(2),
+        ItemMaterial.EnumType.STICK_STONE.asStack(4),
         Ingredient.fromStacks(
             ItemMaterial.EnumType.BRICK_STONE.asStack()
         ),
