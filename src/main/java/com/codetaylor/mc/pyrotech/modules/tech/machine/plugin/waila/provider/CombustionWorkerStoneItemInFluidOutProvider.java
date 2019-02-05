@@ -113,8 +113,10 @@ public class CombustionWorkerStoneItemInFluidOutProvider
       }
 
       {
-        if (tile.combustionGetBurnTimeRemaining() > 0) {
-          ItemStack fuelStack = tile.getFuelStackHandler().getStackInSlot(0);
+        ItemStack fuelStack = tile.getFuelStackHandler().getStackInSlot(0);
+
+        if (tile.combustionGetBurnTimeRemaining() > 0
+            || !fuelStack.isEmpty()) {
           tooltip.add(Util.translateFormatted(
               "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
               StringHelper.ticksToHMS(tile.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
@@ -123,7 +125,7 @@ public class CombustionWorkerStoneItemInFluidOutProvider
 
         if (!fuel.isEmpty()) {
           tooltip.add(Util.translateFormatted(
-              "gui." + ModuleTechMachine.MOD_ID + ".waila.fuel", // TODO: rename this
+              "gui." + ModuleTechMachine.MOD_ID + ".waila.fuel",
               fuel.getItem().getItemStackDisplayName(fuel) + " * " + fuel.getCount()
           ));
         }

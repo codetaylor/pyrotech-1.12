@@ -90,8 +90,6 @@ public class CombustionWorkerStoneItemInItemOutProvider
 
         // Display output items.
 
-        //tooltip.add(Util.translate("gui." + ModuleCharcoal.MOD_ID + ".waila.kiln.brick.finished"));
-
         StringBuilder renderString = new StringBuilder();
 
         for (int i = 0; i < outputStackHandler.getSlots(); i++) {
@@ -102,13 +100,14 @@ public class CombustionWorkerStoneItemInItemOutProvider
           }
         }
 
-        //tooltip.add(Util.translate("gui." + ModuleCharcoal.MOD_ID + ".waila.result"));
         tooltip.add(renderString.toString());
       }
 
       {
-        if (tile.combustionGetBurnTimeRemaining() > 0) {
-          ItemStack fuelStack = tile.getFuelStackHandler().getStackInSlot(0);
+        ItemStack fuelStack = tile.getFuelStackHandler().getStackInSlot(0);
+
+        if (tile.combustionGetBurnTimeRemaining() > 0
+            || !fuelStack.isEmpty()) {
           tooltip.add(Util.translateFormatted(
               "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
               StringHelper.ticksToHMS(tile.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
