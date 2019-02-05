@@ -39,8 +39,8 @@ public final class SlagInitializer {
 
     JsonSlagList jsonSlagList = JsonInitializer.generateAndReadCustom(
         configurationPath,
-        "module.TechBloomery.Slag.Generated.json",
-        "module.TechBloomery.Slag.Custom.json",
+        "module.tech.Bloomery.Slag-Generated.json",
+        "module.tech.Bloomery.Slag-Custom.json",
         JsonSlagList.class,
         () -> SlagInitializer.createGeneratedDataSlagList(new JsonSlagList()),
         ModuleBloomery.LOGGER
