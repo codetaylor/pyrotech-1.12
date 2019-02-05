@@ -4,22 +4,14 @@
     {
       "type": "modules_enabled",
       "include": ["module.tech.machine"]
-    },
-    {
-      "type": "minecraft:item_exists",
-      "item": "pyrotech:bucket_stone"
     }
   ],
   "pattern": [
-    "BUB",
+    "B B",
     "B-B",
     " B "
   ],
   "key": {
-    "U": {
-      "item": "pyrotech:bucket_stone",
-      "data": 0
-    },
     "B": {
       "item": "pyrotech:material",
       "data": 16
