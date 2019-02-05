@@ -20,7 +20,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemSawmillBlade(ModuleTechMachineConfig.SAWMILL_BLADES.IRON_DURABILITY), "sawmill_blade_iron");
     registry.registerItem(new ItemSawmillBlade(ModuleTechMachineConfig.SAWMILL_BLADES.DIAMOND_DURABILITY), "sawmill_blade_diamond");
 
-    registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.WOOD_DURABILITY), "cog_wood");
+    registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.WOOD_DURABILITY).setBurnTime(1100), "cog_wood");
     registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.STONE_DURABILITY), "cog_stone");
     registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.FLINT_DURABILITY), "cog_flint");
     registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.BONE_DURABILITY), "cog_bone");
