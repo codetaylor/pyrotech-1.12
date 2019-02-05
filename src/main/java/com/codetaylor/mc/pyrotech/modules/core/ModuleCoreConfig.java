@@ -52,6 +52,42 @@ public class ModuleCoreConfig {
 
       return -1;
     }
+
+    @Config.Comment({
+        "Durability of the crude hammer.",
+        "Default: " + 32
+    })
+    public int CRUDE_HAMMER_DURABILITY = 32;
+
+    @Config.Comment({
+        "Durability of the stone hammer.",
+        "Default: " + 150
+    })
+    public int STONE_HAMMER_DURABILITY = 150;
+
+    @Config.Comment({
+        "Durability of the bone hammer.",
+        "Default: " + 150
+    })
+    public int BONE_HAMMER_DURABILITY = 150;
+
+    @Config.Comment({
+        "Durability of the flint hammer.",
+        "Default: " + 150
+    })
+    public int FLINT_HAMMER_DURABILITY = 150;
+
+    @Config.Comment({
+        "Durability of the iron hammer.",
+        "Default: " + 750
+    })
+    public int IRON_HAMMER_DURABILITY = 750;
+
+    @Config.Comment({
+        "Durability of the diamond hammer.",
+        "Default: " + 4500
+    })
+    public int DIAMOND_HAMMER_DURABILITY = 4500;
   }
 
   // ---------------------------------------------------------------------------
