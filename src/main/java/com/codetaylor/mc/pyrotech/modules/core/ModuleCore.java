@@ -7,10 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
-import com.codetaylor.mc.pyrotech.modules.core.init.BlockInitializer;
-import com.codetaylor.mc.pyrotech.modules.core.init.EntityInitializer;
-import com.codetaylor.mc.pyrotech.modules.core.init.ItemInitializer;
-import com.codetaylor.mc.pyrotech.modules.core.init.PacketInitializer;
+import com.codetaylor.mc.pyrotech.modules.core.init.*;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaCraftingRecipesRemove;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesRemove;
@@ -77,6 +74,7 @@ public class ModuleCore
 
     BlockInitializer.onRegister(registry);
     ItemInitializer.onRegister(registry);
+    OreDictInitializer.onRegister(registry, this.getConfigurationDirectory());
     EntityInitializer.onRegister(registry);
   }
 
