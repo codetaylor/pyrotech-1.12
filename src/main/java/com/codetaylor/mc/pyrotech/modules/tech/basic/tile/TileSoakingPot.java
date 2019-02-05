@@ -3,8 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
@@ -49,7 +49,7 @@ public class TileSoakingPot
   private InputFluidTank inputFluidTank;
   private InputStackHandler inputStackHandler;
   private OutputStackHandler outputStackHandler;
-  private TileDataInteger remainingRecipeTimeTicks;
+  private TileDataFloat recipeProgress;
 
   private SoakingPotRecipe currentRecipe;
 
@@ -74,7 +74,7 @@ public class TileSoakingPot
       this.updateRecipe();
     });
 
-    this.remainingRecipeTimeTicks = new TileDataInteger(0, 20);
+    this.recipeProgress = new TileDataFloat(0, 20);
 
     // --- Network
 
@@ -85,7 +85,7 @@ public class TileSoakingPot
         this.tileDataFluidTank,
         this.tileDataItemStackHandler,
         new TileDataLargeItemStackHandler<>(this.outputStackHandler),
-        this.remainingRecipeTimeTicks
+        this.recipeProgress
     });
 
     // --- Interactions
@@ -111,7 +111,7 @@ public class TileSoakingPot
       return 0;
     }
 
-    return 1 - this.remainingRecipeTimeTicks.get() / (float) this.currentRecipe.getTimeTicks();
+    return this.recipeProgress.get();
   }
 
   public InputStackHandler getInputStackHandler() {
@@ -195,6 +195,9 @@ public class TileSoakingPot
 
   private void updateRecipe() {
 
+    // Note: This is called during the call to readFromNBT and the tile doesn't,
+    // have access to the world object yet. Don't use the world here.
+
     ItemStack inputItem = this.inputStackHandler.getStackInSlot(0);
     FluidStack fluid = this.inputFluidTank.getFluid();
 
@@ -206,20 +209,12 @@ public class TileSoakingPot
     }
 
     if (this.currentRecipe != null) {
-
       int maxDrain = this.currentRecipe.getInputFluid().amount * inputItem.getCount();
       FluidStack drain = this.inputFluidTank.drain(maxDrain, false);
 
-      if (drain != null && drain.amount == maxDrain) {
-        this.remainingRecipeTimeTicks.set(this.currentRecipe.getTimeTicks());
-
-      } else {
+      if (drain == null || drain.amount != maxDrain) {
         this.currentRecipe = null;
-        this.remainingRecipeTimeTicks.set(0);
       }
-
-    } else {
-      this.remainingRecipeTimeTicks.set(0);
     }
   }
 
@@ -230,21 +225,29 @@ public class TileSoakingPot
   @Override
   public void update() {
 
+    if (this.world.isRemote) {
+      return;
+    }
+
     if (this.currentRecipe != null) {
 
-      if (this.remainingRecipeTimeTicks.get() > 0) {
-        this.remainingRecipeTimeTicks.add(-1);
+      float increment = 1.0f / this.currentRecipe.getTimeTicks();
+      this.recipeProgress.add(increment);
 
-        if (this.remainingRecipeTimeTicks.get() <= 0) {
+      if (this.recipeProgress.get() >= 0.9999) {
+        SoakingPotRecipe currentRecipe = this.currentRecipe;
+        ItemStack inputItem = this.inputStackHandler.extractItem(0, this.inputStackHandler.getSlotLimit(0), false);
+        this.inputFluidTank.drain(currentRecipe.getInputFluid().amount * inputItem.getCount(), true);
+        ItemStack output = currentRecipe.getOutput();
+        output.setCount(inputItem.getCount());
+        this.outputStackHandler.insertItem(0, output, false);
 
-          SoakingPotRecipe currentRecipe = this.currentRecipe;
-          ItemStack inputItem = this.inputStackHandler.extractItem(0, this.inputStackHandler.getSlotLimit(0), false);
-          this.inputFluidTank.drain(currentRecipe.getInputFluid().amount * inputItem.getCount(), true);
-          ItemStack output = currentRecipe.getOutput();
-          output.setCount(inputItem.getCount());
-          this.outputStackHandler.insertItem(0, output, false);
-        }
+        this.recipeProgress.set(0);
+        this.updateRecipe();
       }
+
+    } else {
+      this.recipeProgress.set(0);
     }
   }
 
@@ -260,7 +263,7 @@ public class TileSoakingPot
     compound.setTag("inputStackHandler", this.inputStackHandler.serializeNBT());
     compound.setTag("outputStackHandler", this.outputStackHandler.serializeNBT());
     compound.setTag("inputFluidTank", this.inputFluidTank.writeToNBT(new NBTTagCompound()));
-    compound.setInteger("remainingRecipeTimeTicks", this.remainingRecipeTimeTicks.get());
+    compound.setFloat("recipeProgress", this.recipeProgress.get());
     return compound;
   }
 
@@ -271,7 +274,7 @@ public class TileSoakingPot
     this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
     this.outputStackHandler.deserializeNBT(compound.getCompoundTag("outputStackHandler"));
     this.inputFluidTank.readFromNBT(compound.getCompoundTag("inputFluidTank"));
-    this.remainingRecipeTimeTicks.set(compound.getInteger("remainingRecipeTimeTicks"));
+    this.recipeProgress.set(compound.getInteger("recipeProgress"));
     this.updateRecipe();
   }
 
