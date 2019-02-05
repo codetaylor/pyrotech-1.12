@@ -58,7 +58,7 @@ public class TileStoneCrucible
   }
 
   @Override
-  protected boolean processAsynchronous() {
+  public boolean processAsynchronous() {
 
     return ModuleTechMachineConfig.STONE_CRUCIBLE.ASYNCHRONOUS_OPERATION;
   }

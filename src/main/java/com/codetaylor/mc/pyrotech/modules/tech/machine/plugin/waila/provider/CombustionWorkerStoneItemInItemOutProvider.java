@@ -13,6 +13,7 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -63,6 +64,7 @@ public class CombustionWorkerStoneItemInItemOutProvider
       ItemStack input = stackHandler.getStackInSlot(0);
       boolean hasOutput = !outputStackHandler.getStackInSlot(0).isEmpty();
       ItemStack fuel = fuelStackHandler.getStackInSlot(0);
+      StoneMachineRecipeItemInItemOutBase recipe = null;
 
       if (!input.isEmpty()) {
 
@@ -75,7 +77,7 @@ public class CombustionWorkerStoneItemInItemOutProvider
           renderString.append(WailaUtil.getStackRenderString(fuel));
         }
 
-        StoneMachineRecipeItemInItemOutBase recipe = (StoneMachineRecipeItemInItemOutBase) tile.getRecipe(input);
+        recipe = (StoneMachineRecipeItemInItemOutBase) tile.getRecipe(input);
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();
@@ -85,6 +87,13 @@ public class CombustionWorkerStoneItemInItemOutProvider
         }
 
         tooltip.add(renderString.toString());
+
+        if (recipe != null) {
+          tooltip.add(Util.translateFormatted(
+              "gui." + ModuleTechMachine.MOD_ID + ".waila.recipe",
+              StringHelper.ticksToHMS((int) (recipe.getTimeTicks() * (1 - progress)))
+          ));
+        }
 
       } else if (hasOutput) {
 
@@ -108,10 +117,30 @@ public class CombustionWorkerStoneItemInItemOutProvider
 
         if (tile.combustionGetBurnTimeRemaining() > 0
             || !fuelStack.isEmpty()) {
-          tooltip.add(Util.translateFormatted(
-              "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
-              StringHelper.ticksToHMS(tile.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
-          ));
+
+          int ticks = tile.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack);
+
+          if (recipe != null) {
+
+            if (ticks < recipe.getTimeTicks() * (1 - progress)) {
+              tooltip.add(TextFormatting.RED + Util.translateFormatted(
+                  "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
+                  StringHelper.ticksToHMS(ticks)
+              ));
+
+            } else {
+              tooltip.add(TextFormatting.GREEN + Util.translateFormatted(
+                  "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
+                  StringHelper.ticksToHMS(ticks)
+              ));
+            }
+
+          } else {
+            tooltip.add(Util.translateFormatted(
+                "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
+                StringHelper.ticksToHMS(ticks)
+            ));
+          }
         }
 
         if (!fuel.isEmpty()) {

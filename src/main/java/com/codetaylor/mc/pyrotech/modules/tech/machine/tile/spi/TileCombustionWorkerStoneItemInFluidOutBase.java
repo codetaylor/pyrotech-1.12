@@ -140,7 +140,7 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Ston
 
   protected abstract FluidStack getRecipeOutput(E recipe, ItemStack input);
 
-  protected boolean processAsynchronous() {
+  public boolean processAsynchronous() {
 
     return true;
   }
