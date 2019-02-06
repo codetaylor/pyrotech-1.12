@@ -1,8 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider;
 
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.StringHelper;
-import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
@@ -13,7 +11,6 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -21,7 +18,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class CombustionWorkerStoneItemInItemOutProvider
-    extends BodyProviderAdapter {
+    extends CombustionWorkerProvider<TileCombustionWorkerStoneItemInItemOutBase, StoneMachineRecipeItemInItemOutBase> {
 
   @Nonnull
   @Override
@@ -112,48 +109,9 @@ public class CombustionWorkerStoneItemInItemOutProvider
         tooltip.add(renderString.toString());
       }
 
-      {
-        ItemStack fuelStack = tile.getFuelStackHandler().getStackInSlot(0);
-
-        if (tile.combustionGetBurnTimeRemaining() > 0
-            || !fuelStack.isEmpty()) {
-
-          int ticks = tile.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack);
-
-          if (recipe != null) {
-
-            if (ticks < recipe.getTimeTicks() * (1 - progress)) {
-              tooltip.add(TextFormatting.RED + Util.translateFormatted(
-                  "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
-                  StringHelper.ticksToHMS(ticks)
-              ));
-
-            } else {
-              tooltip.add(TextFormatting.GREEN + Util.translateFormatted(
-                  "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
-                  StringHelper.ticksToHMS(ticks)
-              ));
-            }
-
-          } else {
-            tooltip.add(Util.translateFormatted(
-                "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
-                StringHelper.ticksToHMS(ticks)
-            ));
-          }
-        }
-
-        if (!fuel.isEmpty()) {
-          tooltip.add(Util.translateFormatted(
-              "gui." + ModuleTechMachine.MOD_ID + ".waila.fuel",
-              fuel.getItem().getItemStackDisplayName(fuel) + " * " + fuel.getCount()
-          ));
-        }
-      }
-
+      this.addBurnTimeInfo(tooltip, tile, progress, input, fuel, recipe);
     }
 
     return tooltip;
   }
-
 }

@@ -1,14 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider;
 
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.StringHelper;
-import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInItemOutBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneSawmill;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneSawmillTop;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
@@ -20,7 +19,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class SawmillProvider
-    extends BodyProviderAdapter {
+    extends CombustionWorkerProvider<TileCombustionWorkerStoneItemInItemOutBase, StoneMachineRecipeItemInItemOutBase> {
 
   @Nonnull
   @Override
@@ -65,6 +64,7 @@ public class SawmillProvider
       boolean hasOutput = !outputStackHandler.getStackInSlot(0).isEmpty();
       ItemStack fuel = fuelStackHandler.getStackInSlot(0);
       ItemStack blade = bladeStackHandler.getStackInSlot(0);
+      StoneMachineRecipeItemInItemOutBase recipe = null;
 
       if (!input.isEmpty()) {
 
@@ -81,7 +81,7 @@ public class SawmillProvider
           renderString.append(WailaUtil.getStackRenderString(fuel));
         }
 
-        StoneMachineRecipeItemInItemOutBase recipe = tile.getRecipe(input);
+        recipe = tile.getRecipe(input);
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();
@@ -91,6 +91,13 @@ public class SawmillProvider
         }
 
         tooltip.add(renderString.toString());
+
+        if (recipe != null) {
+          tooltip.add(Util.translateFormatted(
+              "gui." + ModuleTechMachine.MOD_ID + ".waila.recipe",
+              StringHelper.ticksToHMS((int) (recipe.getTimeTicks() * (1 - progress)))
+          ));
+        }
 
       } else if (hasOutput) {
 
@@ -119,30 +126,14 @@ public class SawmillProvider
         }
       }
 
-      {
-        if (!blade.isEmpty()) {
-          tooltip.add(Util.translateFormatted(
-              "gui." + ModuleTechMachine.MOD_ID + ".waila.sawmill.blade",
-              blade.getItem().getItemStackDisplayName(blade)
-          ));
-        }
-
-        if (tile.combustionGetBurnTimeRemaining() > 0) {
-          ItemStack fuelStack = tile.getFuelStackHandler().getStackInSlot(0);
-          tooltip.add(Util.translateFormatted(
-              "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
-              StringHelper.ticksToHMS(tile.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack))
-          ));
-        }
-
-        if (!fuel.isEmpty()) {
-          tooltip.add(Util.translateFormatted(
-              "gui." + ModuleTechMachine.MOD_ID + ".waila.fuel",
-              fuel.getItem().getItemStackDisplayName(fuel) + " * " + fuel.getCount()
-          ));
-        }
+      if (!blade.isEmpty()) {
+        tooltip.add(Util.translateFormatted(
+            "gui." + ModuleTechMachine.MOD_ID + ".waila.sawmill.blade",
+            blade.getItem().getItemStackDisplayName(blade)
+        ));
       }
 
+      this.addBurnTimeInfo(tooltip, tile, progress, input, fuel, recipe);
     }
 
     return tooltip;

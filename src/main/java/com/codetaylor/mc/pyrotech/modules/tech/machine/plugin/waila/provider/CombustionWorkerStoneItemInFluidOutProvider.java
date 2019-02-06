@@ -1,8 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider;
 
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.StringHelper;
-import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
@@ -14,7 +12,6 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -25,7 +22,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class CombustionWorkerStoneItemInFluidOutProvider
-    extends BodyProviderAdapter {
+    extends CombustionWorkerProvider<TileCombustionWorkerStoneItemInFluidOutBase, StoneMachineRecipeItemInFluidOutBase> {
 
   @Nonnull
   @Override
@@ -135,55 +132,21 @@ public class CombustionWorkerStoneItemInFluidOutProvider
         ));
       }
 
-      {
-        ItemStack fuelStack = tile.getFuelStackHandler().getStackInSlot(0);
-
-        if (tile.combustionGetBurnTimeRemaining() > 0
-            || !fuelStack.isEmpty()) {
-
-          int ticks = tile.combustionGetBurnTimeRemaining() + fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack);
-
-          if (recipe != null) {
-            float recipeTimeTicks = recipe.getTimeTicks() * (1 - progress);
-
-            if (!tile.processAsynchronous()
-                && input.getCount() > 1) {
-
-              recipeTimeTicks += recipe.getTimeTicks() * (input.getCount() - 1);
-            }
-
-            if (ticks < recipeTimeTicks) {
-              tooltip.add(TextFormatting.RED + Util.translateFormatted(
-                  "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
-                  StringHelper.ticksToHMS(ticks)
-              ));
-
-            } else {
-              tooltip.add(TextFormatting.GREEN + Util.translateFormatted(
-                  "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
-                  StringHelper.ticksToHMS(ticks)
-              ));
-            }
-
-          } else {
-            tooltip.add(Util.translateFormatted(
-                "gui." + ModuleTechMachine.MOD_ID + ".waila.burn.time",
-                StringHelper.ticksToHMS(ticks)
-            ));
-          }
-        }
-
-        if (!fuel.isEmpty()) {
-          tooltip.add(Util.translateFormatted(
-              "gui." + ModuleTechMachine.MOD_ID + ".waila.fuel",
-              fuel.getItem().getItemStackDisplayName(fuel) + " * " + fuel.getCount()
-          ));
-        }
-      }
-
+      this.addBurnTimeInfo(tooltip, tile, progress, input, fuel, recipe);
     }
 
     return tooltip;
   }
 
+  @Override
+  protected float getModifiedRecipeTimeTicks(float recipeTimeTicks, TileCombustionWorkerStoneItemInFluidOutBase tile, ItemStack input, StoneMachineRecipeItemInFluidOutBase recipe) {
+
+    if (!tile.processAsynchronous()
+        && input.getCount() > 1) {
+
+      recipeTimeTicks += recipe.getTimeTicks() * (input.getCount() - 1);
+    }
+
+    return recipeTimeTicks;
+  }
 }
