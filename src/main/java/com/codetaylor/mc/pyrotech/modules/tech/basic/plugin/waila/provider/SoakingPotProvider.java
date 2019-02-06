@@ -1,13 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.provider;
 
-import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileSoakingPot;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
@@ -69,11 +67,6 @@ public class SoakingPotProvider
             ));
           }
         }
-
-        tooltip.add(Util.translateFormatted(
-            "gui." + ModuleTechMachine.MOD_ID + ".waila.recipe",
-            StringHelper.ticksToHMS((int) (currentRecipe.getTimeTicks() * (1 - progress)))
-        ));
       }
 
       if (fluid != null) {
