@@ -29,6 +29,14 @@ public class SoakingPotRecipesAdd {
         1
     ).setRegistryName(ModuleTechBasic.MOD_ID, "sponge"));
 
+    // Flint Clay
+    registry.register(new SoakingPotRecipe(
+        ItemMaterial.EnumType.FLINT_CLAY_BALL.asStack(),
+        Ingredient.fromStacks(ItemMaterial.EnumType.DUST_FLINT.asStack()),
+        new FluidStack(ModuleCore.Fluids.CLAY, 250),
+        5 * 60 * 20
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "flint_clay"));
+
     // Tarred Kindling
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
       registry.register(new SoakingPotRecipe(
