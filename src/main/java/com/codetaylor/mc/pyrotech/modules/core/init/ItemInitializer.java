@@ -17,6 +17,10 @@ public final class ItemInitializer {
     registry.registerItem(new ItemMulch(), ItemMulch.NAME);
 
     registry.registerItem(new ItemAppleBaked(), ItemAppleBaked.NAME);
+    registry.registerItem(new ItemCarrotRoasted(), ItemCarrotRoasted.NAME);
+    registry.registerItem(new ItemEggRoasted(), ItemEggRoasted.NAME);
+    registry.registerItem(new ItemMushroomBrownRoasted(), ItemMushroomBrownRoasted.NAME);
+    registry.registerItem(new ItemMushroomRedRoasted(), ItemMushroomRedRoasted.NAME);
     registry.registerItem(new ItemBurnedFood(), ItemBurnedFood.NAME);
 
     registry.registerItem(new ItemCrudeHammer(), ItemCrudeHammer.NAME);
@@ -36,6 +40,10 @@ public final class ItemInitializer {
           ModuleCore.Items.MULCH,
 
           ModuleCore.Items.APPLE_BAKED,
+          ModuleCore.Items.CARROT_ROASTED,
+          ModuleCore.Items.EGG_ROASTED,
+          ModuleCore.Items.MUSHROOM_BROWN_ROASTED,
+          ModuleCore.Items.MUSHROOM_RED_ROASTED,
           ModuleCore.Items.BURNED_FOOD,
 
           ModuleCore.Items.CRUDE_HAMMER,

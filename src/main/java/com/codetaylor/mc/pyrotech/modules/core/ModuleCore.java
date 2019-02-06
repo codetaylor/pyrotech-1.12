@@ -199,6 +199,18 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemAppleBaked.NAME)
     public static final ItemAppleBaked APPLE_BAKED;
 
+    @GameRegistry.ObjectHolder(ItemCarrotRoasted.NAME)
+    public static final ItemCarrotRoasted CARROT_ROASTED;
+
+    @GameRegistry.ObjectHolder(ItemEggRoasted.NAME)
+    public static final ItemEggRoasted EGG_ROASTED;
+
+    @GameRegistry.ObjectHolder(ItemMushroomBrownRoasted.NAME)
+    public static final ItemMushroomBrownRoasted MUSHROOM_BROWN_ROASTED;
+
+    @GameRegistry.ObjectHolder(ItemMushroomRedRoasted.NAME)
+    public static final ItemMushroomRedRoasted MUSHROOM_RED_ROASTED;
+
     @GameRegistry.ObjectHolder(ItemBurnedFood.NAME)
     public static final ItemBurnedFood BURNED_FOOD;
 
@@ -227,6 +239,10 @@ public class ModuleCore
       STONE_DOOR = null;
       MULCH = null;
       APPLE_BAKED = null;
+      CARROT_ROASTED = null;
+      EGG_ROASTED = null;
+      MUSHROOM_BROWN_ROASTED = null;
+      MUSHROOM_RED_ROASTED = null;
       BURNED_FOOD = null;
       BONE_HAMMER = null;
       DIAMOND_HAMMER = null;

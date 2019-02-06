@@ -48,5 +48,29 @@ public class VanillaFurnaceRecipesAdd {
         new ItemStack(ModuleCore.Items.APPLE_BAKED),
         0.1f
     );
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        new ItemStack(Items.CARROT),
+        new ItemStack(ModuleCore.Items.CARROT_ROASTED),
+        0.1f
+    );
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        new ItemStack(Items.EGG),
+        new ItemStack(ModuleCore.Items.EGG_ROASTED),
+        0.1f
+    );
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        new ItemStack(Blocks.BROWN_MUSHROOM),
+        new ItemStack(ModuleCore.Items.MUSHROOM_BROWN_ROASTED),
+        0.1f
+    );
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        new ItemStack(Blocks.RED_MUSHROOM),
+        new ItemStack(ModuleCore.Items.MUSHROOM_RED_ROASTED),
+        0.1f
+    );
   }
 }

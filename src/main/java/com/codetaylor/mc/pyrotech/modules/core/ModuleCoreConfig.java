@@ -101,10 +101,58 @@ public class ModuleCoreConfig {
     @Config.Comment({
         "The amount of hunger healed by eating.",
         "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 6
+    })
+    @Config.RangeInt(min = 0)
+    public int BAKED_APPLE_HUNGER = 6;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.45
+    })
+    @Config.RangeDouble(min = 0)
+    public double BAKED_APPLE_SATURATION = 0.45;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla carrot restores 3 hunger.",
+        "Default: " + 5
+    })
+    @Config.RangeInt(min = 0)
+    public int ROASTED_CARROT_HUNGER = 5;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla carrot restores 0.6 saturation.",
+        "Default: " + 0.9
+    })
+    @Config.RangeDouble(min = 0)
+    public double ROASTED_CARROT_SATURATION = 0.9;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
         "Default: " + 8
     })
     @Config.RangeInt(min = 0)
-    public int BAKED_APPLE_HUNGER = 8;
+    public int ROASTED_EGG_HUNGER = 8;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.9
+    })
+    @Config.RangeDouble(min = 0)
+    public double ROASTED_EGG_SATURATION = 0.9;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 5
+    })
+    @Config.RangeInt(min = 0)
+    public int ROASTED_BROWN_MUSHROOM_HUNGER = 5;
 
     @Config.Comment({
         "The amount of saturation healed by eating.",
@@ -112,7 +160,23 @@ public class ModuleCoreConfig {
         "Default: " + 0.6
     })
     @Config.RangeDouble(min = 0)
-    public double BAKED_APPLE_SATURATION = 0.6;
+    public double ROASTED_BROWN_MUSHROOM_SATURATION = 0.6;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 5
+    })
+    @Config.RangeInt(min = 0)
+    public int ROASTED_RED_MUSHROOM_HUNGER = 5;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.6
+    })
+    @Config.RangeDouble(min = 0)
+    public double ROASTED_RED_MUSHROOM_SATURATION = 0.6;
 
     @Config.Comment({
         "The amount of hunger healed by eating.",
