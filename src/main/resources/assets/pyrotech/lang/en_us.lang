@@ -189,6 +189,7 @@ item.pyrotech.burned.food.name=Burned Food
 item.pyrotech.dust.limestone.name=Crushed Limestone
 item.pyrotech.kindling.name=Kindling
 item.pyrotech.kindling.tarred.name=Tarred Kindling
+item.pyrotech.dust.flint.name=Crushed Flint
 
 item.pyrotech.apple.baked.name=Baked Apple
 item.pyrotech.carrot.roasted.name=Roasted Carrot

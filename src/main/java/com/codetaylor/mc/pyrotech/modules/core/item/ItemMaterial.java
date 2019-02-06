@@ -101,7 +101,8 @@ public class ItemMaterial
     STICK_STONE(27, "stick_stone"),
     DUST_LIMESTONE(28, "dust_limestone"),
     KINDLING(29, "kindling"),
-    KINDLING_TARRED(30, "kindling_tarred");
+    KINDLING_TARRED(30, "kindling_tarred"),
+    DUST_FLINT(31, "dust_flint");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())

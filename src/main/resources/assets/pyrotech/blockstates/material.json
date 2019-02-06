@@ -35,7 +35,8 @@
       "stick_stone": {"textures": {"layer0": "pyrotech:items/stick_stone"}},
       "dust_limestone": {"textures": {"layer0": "pyrotech:items/dust_limestone"}},
       "kindling": {"textures": {"layer0": "pyrotech:items/kindling"}},
-      "kindling_tarred": {"textures": {"layer0": "pyrotech:items/kindling_tarred"}}
+      "kindling_tarred": {"textures": {"layer0": "pyrotech:items/kindling_tarred"}},
+      "dust_flint": {"textures": {"layer0": "pyrotech:items/dust_flint"}}
     }
   }
 }
