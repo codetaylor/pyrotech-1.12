@@ -17,6 +17,7 @@ import net.minecraft.item.ItemDoor;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -72,6 +73,7 @@ public class ModuleCore
   @Override
   public void onRegister(Registry registry) {
 
+    FluidInitializer.onRegister(registry);
     BlockInitializer.onRegister(registry);
     ItemInitializer.onRegister(registry);
     OreDictInitializer.onRegister(registry, this.getConfigurationDirectory());
@@ -82,6 +84,7 @@ public class ModuleCore
   @Override
   public void onClientRegister(Registry registry) {
 
+    FluidInitializer.onClientRegister(registry);
     BlockInitializer.onClientRegister(registry);
     ItemInitializer.onClientRegister(registry);
     EntityInitializer.onClientRegister();
@@ -250,6 +253,19 @@ public class ModuleCore
       IRON_HAMMER = null;
       STONE_HAMMER = null;
       CRUDE_HAMMER = null;
+    }
+  }
+
+  public static class Fluids {
+
+    /*
+    Fluids are injected from the fluid initializer.
+     */
+
+    public static final Fluid CLAY;
+
+    static {
+      CLAY = null;
     }
   }
 }

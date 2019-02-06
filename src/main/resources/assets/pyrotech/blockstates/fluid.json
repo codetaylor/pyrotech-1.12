@@ -17,6 +17,13 @@
           "fluid": "coal_tar"
         }
       }
+    ],
+    "clay": [
+      {
+        "custom": {
+          "fluid": "clay"
+        }
+      }
     ]
   }
 }

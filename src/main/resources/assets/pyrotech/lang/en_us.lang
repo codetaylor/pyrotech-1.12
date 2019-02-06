@@ -151,6 +151,9 @@ item.pyrotech.flint.sword.name=Flint Sword
 # Module: Core
 #------------------------------------------------------------------------------
 
+fluid.clay=Liquid Clay
+tile.fluid.clay.name=Liquid Clay
+
 item.pyrotech.straw.name=Straw
 item.pyrotech.coal.coke.name=Coal Coke
 item.pyrotech.pit.ash.name=Ash
