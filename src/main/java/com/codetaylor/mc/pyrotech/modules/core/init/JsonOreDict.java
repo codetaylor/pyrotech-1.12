@@ -40,6 +40,10 @@ public class JsonOreDict {
         "pyrotech:material:28" // dust_limestone
     });
 
+    result.oreDict.put("dustFlint", new String[]{
+        "pyrotech:material:31" // dust_flint
+    });
+
     result.oreDict.put("rock", new String[]{
         "pyrotech:rock:" + BlockRock.EnumType.STONE.getMeta(),
         "pyrotech:rock:" + BlockRock.EnumType.DIORITE.getMeta(),

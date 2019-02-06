@@ -32,7 +32,7 @@ public class SoakingPotRecipesAdd {
     // Flint Clay
     registry.register(new SoakingPotRecipe(
         ItemMaterial.EnumType.FLINT_CLAY_BALL.asStack(),
-        Ingredient.fromStacks(ItemMaterial.EnumType.DUST_FLINT.asStack()),
+        new OreIngredient("dustFlint"),
         new FluidStack(ModuleCore.Fluids.CLAY, 250),
         5 * 60 * 20
     ).setRegistryName(ModuleTechBasic.MOD_ID, "flint_clay"));
