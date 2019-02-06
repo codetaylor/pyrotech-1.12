@@ -7,15 +7,20 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemTongsFullBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidBase;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -99,8 +104,27 @@ public class BloomHelper {
 
   public static void trySpawnFire(World world, BlockPos pos, Random rand, double chance) {
 
-    if (rand.nextDouble() < chance) {
-      BlockHelper.forBlocksInCubeShuffled(world, pos, 1, 1, 1, (w, p, bs) -> {
+    if (rand.nextFloat() < chance) {
+
+      if (rand.nextFloat() < 0.5) {
+        EntityPlayer closestPlayer = world.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2, false);
+
+        if (closestPlayer != null) {
+          BlockPos position = closestPlayer.getPosition();
+          IBlockState blockState = world.getBlockState(position.down());
+
+          if (!world.isAirBlock(position)
+              || !blockState.getBlock().isSideSolid(blockState, world, pos, EnumFacing.UP)) {
+            closestPlayer.setFire(1);
+
+            if (rand.nextFloat() < 0.5) {
+              closestPlayer.attackEntityFrom(DamageSource.HOT_FLOOR, 2);
+            }
+          }
+        }
+      }
+
+      BlockHelper.forBlocksInCubeShuffled(world, pos, 2, 1, 2, (w, p, bs) -> {
 
         if (w.isAirBlock(p)) {
 
@@ -115,6 +139,19 @@ public class BloomHelper {
 
         return true;
       });
+
+      if (rand.nextFloat() < 0.25) {
+        BlockHelper.forBlocksInCube(world, pos, 1, 1, 1, (w, p, bs) -> {
+
+          if (bs.getMaterial().isLiquid()
+              || bs.getBlock() instanceof BlockLiquid
+              || bs.getBlock() instanceof BlockFluidBase) {
+            w.setBlockToAir(p);
+            SoundHelper.playSoundServer(w, p, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS);
+          }
+          return true;
+        });
+      }
     }
   }
 
