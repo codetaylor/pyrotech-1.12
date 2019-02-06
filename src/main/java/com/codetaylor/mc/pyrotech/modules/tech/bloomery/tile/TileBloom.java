@@ -186,13 +186,13 @@ public class TileBloom
 
       BlockPos tilePos = tile.getPos();
 
+      if (player.getFoodStats().getFoodLevel() < ModuleBloomeryConfig.BLOOM.MINIMUM_HUNGER_TO_USE) {
+        return false;
+      }
+
       if (!world.isRemote) {
 
         // Server logic
-
-        if (player.getFoodStats().getFoodLevel() < ModuleBloomeryConfig.BLOOM.MINIMUM_HUNGER_TO_USE) {
-          return false;
-        }
 
         if (ModuleBloomeryConfig.BLOOM.EXHAUSTION_COST_PER_HIT > 0) {
           player.addExhaustion((float) ModuleBloomeryConfig.BLOOM.EXHAUSTION_COST_PER_HIT);
