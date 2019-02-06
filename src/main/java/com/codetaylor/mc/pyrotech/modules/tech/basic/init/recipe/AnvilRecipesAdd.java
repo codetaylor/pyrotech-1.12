@@ -180,6 +180,14 @@ public class AnvilRecipesAdd {
 
     // --- Hammer Recipes ------------------------------------------------------
 
+    // Crushed Flint from Flint
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.DUST_FLINT.asStack(1),
+        Ingredient.fromStacks(new ItemStack(Items.FLINT)),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "crushed_flint_from_flint"));
+
     // Iron Shard from Iron Nugget
     registry.register(new AnvilRecipe(
         ItemMaterial.EnumType.IRON_SHARD.asStack(1),
