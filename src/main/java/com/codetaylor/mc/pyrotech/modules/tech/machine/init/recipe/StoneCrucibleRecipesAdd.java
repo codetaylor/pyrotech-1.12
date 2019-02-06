@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
-import com.codetaylor.mc.athenaeum.recipe.CompoundIngredientPublic;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import net.minecraft.init.Blocks;
@@ -9,15 +8,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
-
-import java.util.Arrays;
 
 public class StoneCrucibleRecipesAdd {
 
   public static void apply(IForgeRegistryModifiable<StoneCrucibleRecipe> registry) {
 
+    /*
     // Lava
     //noinspection unchecked
     registry.register(new StoneCrucibleRecipe(
@@ -28,7 +25,8 @@ public class StoneCrucibleRecipesAdd {
         })),
         2 * 60 * 20
     ).setRegistryName(ModuleTechMachine.MOD_ID, "lava_from_stone"));
-
+*/
+    
     // Water from Ice
     registry.register(new StoneCrucibleRecipe(
         new FluidStack(FluidRegistry.WATER, 1000),
