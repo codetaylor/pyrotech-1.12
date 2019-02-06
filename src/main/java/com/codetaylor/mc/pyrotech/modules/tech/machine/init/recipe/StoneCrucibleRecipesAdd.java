@@ -1,8 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -81,5 +83,16 @@ public class StoneCrucibleRecipesAdd {
         ),
         12 * 60 * 20
     ).setRegistryName(ModuleTechMachine.MOD_ID, "liquid_clay_from_clay_block"));
+
+    // Wood Tar from Wood Tar Block
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+      registry.register(new StoneCrucibleRecipe(
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 1000),
+          Ingredient.fromStacks(
+              new ItemStack(ModuleCore.Blocks.WOOD_TAR_BLOCK, 1, 0)
+          ),
+          7 * 60 * 20
+      ).setRegistryName(ModuleTechMachine.MOD_ID, "wood_tar_from_wood_tar_block"));
+    }
   }
 }
