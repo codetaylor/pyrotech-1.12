@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper;
 
 import com.codetaylor.mc.athenaeum.util.StringHelper;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
@@ -25,12 +24,7 @@ public class JEIRecipeWrapperOvenStone
 
   public JEIRecipeWrapperOvenStone(StoneOvenRecipe recipe) {
 
-    this(recipe.getInput(), recipe.getOutput());
-  }
-
-  public JEIRecipeWrapperOvenStone(Ingredient input, ItemStack output) {
-
-    this(input, output, ModuleTechMachineConfig.STONE_OVEN.COOK_TIME_TICKS);
+    this(recipe.getInput(), recipe.getOutput(), recipe.getTimeTicks());
   }
 
   public JEIRecipeWrapperOvenStone(Ingredient input, ItemStack output, int timeTicks) {

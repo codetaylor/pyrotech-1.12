@@ -132,4 +132,9 @@ public class StoneOvenRecipe
     super(input, output, ModuleTechMachineConfig.STONE_OVEN.COOK_TIME_TICKS);
   }
 
+  public StoneOvenRecipe(ItemStack output, Ingredient input, int cookTimeTicks) {
+
+    super(input, output, cookTimeTicks);
+  }
+
 }

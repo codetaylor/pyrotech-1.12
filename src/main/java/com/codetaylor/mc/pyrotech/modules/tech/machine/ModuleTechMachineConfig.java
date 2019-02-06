@@ -257,6 +257,18 @@ public class ModuleTechMachineConfig {
     })
     @Config.RangeInt(min = 1, max = 64)
     public int FUEL_SLOT_SIZE = 16;
+
+    @Config.Comment({
+        "If true, all the drying rack recipes will also be available in the oven.",
+        "Default: " + true
+    })
+    public boolean INHERIT_DRYING_RACK_RECIPES = true;
+
+    @Config.Comment({
+        "The speed modifier for all inherited drying rack recipes.",
+        "Default: " + 0.5
+    })
+    public double INHERITED_DRYING_RACK_RECIPE_SPEED_MODIFIER = 0.5;
   }
 
   // ---------------------------------------------------------------------------

@@ -6,11 +6,13 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneCrucibleRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneKilnRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneOvenRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneSawmillRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemCog;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemSawmillBlade;
@@ -24,6 +26,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -166,6 +169,20 @@ public class ModuleTechMachine
 
     BlockInitializer.onClientRegister(registry);
     ItemInitializer.onClientRegister(registry);
+  }
+
+  @Override
+  public void onPostInitializationEvent(FMLPostInitializationEvent event) {
+
+    super.onPostInitializationEvent(event);
+
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)
+        && ModuleTechMachineConfig.STONE_OVEN.INHERIT_DRYING_RACK_RECIPES) {
+      StoneOvenRecipesAdd.registerInheritedDryingRackRecipes(
+          ModuleTechBasic.Registries.DRYING_RACK_RECIPE,
+          Registries.OVEN_STONE_RECIPE
+      );
+    }
   }
 
   @GameRegistry.ObjectHolder(ModuleTechMachine.MOD_ID)

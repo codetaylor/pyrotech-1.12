@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category.JEIRecipeCategoryCrucibleStone;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category.JEIRecipeCategoryKilnStone;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category.JEIRecipeCategoryMillStone;
@@ -112,7 +113,7 @@ public class PluginJEI
       }
 
       ItemStack output = entry.getValue();
-      recipes.add(new JEIRecipeWrapperOvenStone(Ingredient.fromStacks(input), output));
+      recipes.add(new JEIRecipeWrapperOvenStone(Ingredient.fromStacks(input), output, ModuleTechMachineConfig.STONE_OVEN.COOK_TIME_TICKS));
     }
 
     return recipes;
