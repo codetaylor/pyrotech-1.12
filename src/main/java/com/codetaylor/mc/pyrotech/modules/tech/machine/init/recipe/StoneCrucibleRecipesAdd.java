@@ -72,7 +72,7 @@ public class StoneCrucibleRecipesAdd {
         Ingredient.fromStacks(
             new ItemStack(Items.CLAY_BALL, 1, 0)
         ),
-        4 * 60 * 20
+        60 * 20
     ).setRegistryName(ModuleTechMachine.MOD_ID, "liquid_clay_from_clay_ball"));
 
     // Liquid Clay from Clay Block
@@ -81,7 +81,7 @@ public class StoneCrucibleRecipesAdd {
         Ingredient.fromStacks(
             new ItemStack(Blocks.CLAY, 1, 0)
         ),
-        12 * 60 * 20
+        3 * 60 * 20
     ).setRegistryName(ModuleTechMachine.MOD_ID, "liquid_clay_from_clay_block"));
 
     // Wood Tar from Wood Tar Block
@@ -91,7 +91,7 @@ public class StoneCrucibleRecipesAdd {
           Ingredient.fromStacks(
               new ItemStack(ModuleCore.Blocks.WOOD_TAR_BLOCK, 1, 0)
           ),
-          7 * 60 * 20
+          4 * 60 * 20
       ).setRegistryName(ModuleTechMachine.MOD_ID, "wood_tar_from_wood_tar_block"));
     }
   }
