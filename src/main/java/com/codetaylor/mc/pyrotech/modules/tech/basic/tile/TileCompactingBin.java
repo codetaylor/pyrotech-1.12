@@ -342,7 +342,6 @@ public class TileCompactingBin
         if (tile.recipeProgress.get() > 0.9999) {
           // recipe complete
           StackHelper.spawnStackOnTop(world, tile.currentRecipe.getOutput(), hitPos, 1.0);
-          world.playSound(null, hitPos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1, 1);
 
           // reduce input items
           tile.getInputStackHandler().removeItems(tile.currentRecipe.getAmount());
