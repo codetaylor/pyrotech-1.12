@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import net.minecraft.init.Blocks;
@@ -26,7 +27,7 @@ public class StoneCrucibleRecipesAdd {
         2 * 60 * 20
     ).setRegistryName(ModuleTechMachine.MOD_ID, "lava_from_stone"));
 */
-    
+
     // Water from Ice
     registry.register(new StoneCrucibleRecipe(
         new FluidStack(FluidRegistry.WATER, 1000),
@@ -62,5 +63,23 @@ public class StoneCrucibleRecipesAdd {
         ),
         4 * 60 * 20
     ).setRegistryName(ModuleTechMachine.MOD_ID, "water_from_packed_ice"));
+
+    // Liquid Clay from Clay Ball
+    registry.register(new StoneCrucibleRecipe(
+        new FluidStack(ModuleCore.Fluids.CLAY, 250),
+        Ingredient.fromStacks(
+            new ItemStack(Items.CLAY_BALL, 1, 0)
+        ),
+        4 * 60 * 20
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "liquid_clay_from_clay_ball"));
+
+    // Liquid Clay from Clay Block
+    registry.register(new StoneCrucibleRecipe(
+        new FluidStack(ModuleCore.Fluids.CLAY, 1000),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.CLAY, 1, 0)
+        ),
+        12 * 60 * 20
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "liquid_clay_from_clay_block"));
   }
 }
