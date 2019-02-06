@@ -19,10 +19,9 @@ import java.util.List;
 public class JEIRecipeWrapperOvenStone
     implements IRecipeWrapper {
 
-  private static final String TIME_STRING = StringHelper.ticksToHMS(ModuleTechMachineConfig.STONE_OVEN.COOK_TIME_TICKS);
-
   private final List<List<ItemStack>> inputs;
   private final ItemStack output;
+  private final String timeString;
 
   public JEIRecipeWrapperOvenStone(StoneOvenRecipe recipe) {
 
@@ -31,8 +30,14 @@ public class JEIRecipeWrapperOvenStone
 
   public JEIRecipeWrapperOvenStone(Ingredient input, ItemStack output) {
 
+    this(input, output, ModuleTechMachineConfig.STONE_OVEN.COOK_TIME_TICKS);
+  }
+
+  public JEIRecipeWrapperOvenStone(Ingredient input, ItemStack output, int timeTicks) {
+
     this.inputs = Collections.singletonList(Arrays.asList(input.getMatchingStacks()));
     this.output = output;
+    this.timeString = StringHelper.ticksToHMS(timeTicks);
   }
 
   @Override
@@ -45,7 +50,7 @@ public class JEIRecipeWrapperOvenStone
   @Override
   public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
-    int stringWidth = minecraft.fontRenderer.getStringWidth(TIME_STRING);
-    minecraft.fontRenderer.drawString(TIME_STRING, 36 - stringWidth / 2, 22, Color.DARK_GRAY.getRGB());
+    int stringWidth = minecraft.fontRenderer.getStringWidth(this.timeString);
+    minecraft.fontRenderer.drawString(this.timeString, 36 - stringWidth / 2, 22, Color.DARK_GRAY.getRGB());
   }
 }
