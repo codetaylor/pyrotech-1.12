@@ -8,15 +8,15 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 
-public class JEIRecipeCategoryStoneCrucible
+public class JEIRecipeCategoryBrickCrucible
     extends JEIRecipeCategoryCrucibleBase {
 
-  public static final String UID = ModuleTechMachine.MOD_ID + ".stone.crucible";
+  public static final String UID = ModuleTechMachine.MOD_ID + ".brick.crucible";
 
-  private static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei6.png");
-  private static final String TITLE_KEY = "gui." + ModuleTechMachine.MOD_ID + ".jei.category.crucible.stone";
+  private static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei10.png");
+  private static final String TITLE_KEY = "gui." + ModuleTechMachine.MOD_ID + ".jei.category.crucible.brick";
 
-  public JEIRecipeCategoryStoneCrucible(IGuiHelper guiHelper) {
+  public JEIRecipeCategoryBrickCrucible(IGuiHelper guiHelper) {
 
     super(guiHelper);
   }
@@ -43,6 +43,6 @@ public class JEIRecipeCategoryStoneCrucible
   @Override
   protected int getOutputTankCapacity() {
 
-    return ModuleTechMachineConfig.STONE_CRUCIBLE.OUTPUT_TANK_SIZE;
+    return ModuleTechMachineConfig.BRICK_CRUCIBLE.OUTPUT_TANK_SIZE;
   }
 }

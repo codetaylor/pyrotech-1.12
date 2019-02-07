@@ -12,13 +12,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class JEIRecipeWrapperStoneCrucible
+public class JEIRecipeWrapperCrucible
     extends JEIRecipeWrapperTimed {
 
   private final List<List<ItemStack>> inputs;
   private final FluidStack output;
 
-  public JEIRecipeWrapperStoneCrucible(MachineRecipeItemInFluidOutBase recipe) {
+  public JEIRecipeWrapperCrucible(MachineRecipeItemInFluidOutBase recipe) {
 
     super(recipe);
 

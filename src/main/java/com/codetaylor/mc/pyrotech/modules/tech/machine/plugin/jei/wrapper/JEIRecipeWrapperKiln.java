@@ -16,14 +16,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class JEIRecipeWrapperStoneKiln
+public class JEIRecipeWrapperKiln
     extends JEIRecipeWrapperTimed {
 
   private final List<List<ItemStack>> inputs;
   private final List<List<ItemStack>> outputs;
   private final String failureChance;
 
-  public JEIRecipeWrapperStoneKiln(MachineRecipeBaseKiln recipe) {
+  public JEIRecipeWrapperKiln(MachineRecipeBaseKiln recipe) {
 
     super(recipe);
 

@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class JEIRecipeWrapperStoneSawmill
+public class JEIRecipeWrapperSawmill
     extends JEIRecipeWrapperTimed {
 
   private final List<List<ItemStack>> inputs;
   private final ItemStack output;
 
-  public JEIRecipeWrapperStoneSawmill(MachineRecipeBaseSawmill recipe) {
+  public JEIRecipeWrapperSawmill(MachineRecipeBaseSawmill recipe) {
 
     super(recipe);
 

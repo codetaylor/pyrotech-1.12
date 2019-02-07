@@ -110,10 +110,10 @@ tile.pyrotech.stone_oven.name=Stone Oven
 tile.pyrotech.stone_sawmill.name=Stone Sawmill
 tile.pyrotech.stone_crucible.name=Stone Crucible
 
-tile.pyrotech.brick_kiln.name=Brick Kiln
-tile.pyrotech.brick_oven.name=Brick Oven
-tile.pyrotech.brick_sawmill.name=Brick Sawmill
-tile.pyrotech.brick_crucible.name=Brick Crucible
+tile.pyrotech.brick_kiln.name=Refractory Kiln
+tile.pyrotech.brick_oven.name=Refractory Oven
+tile.pyrotech.brick_sawmill.name=Refractory Sawmill
+tile.pyrotech.brick_crucible.name=Refractory Crucible
 
 tile.pyrotech.stone_hopper.name=Stone Hopper
 
@@ -273,20 +273,24 @@ gui.pyrotech.waila.anvil.recipe.type.pickaxe=Pickaxe
 
 gui.pyrotech.jei.failure=Failure: %d%%
 
-gui.pyrotech.jei.category.kiln.pit=Pit Kiln Firing
-gui.pyrotech.jei.category.kiln.brick=Brick Kiln Firing
+gui.pyrotech.jei.category.kiln.brick=Refractory Kiln
+gui.pyrotech.jei.category.crucible.brick=Refractory Crucible
+gui.pyrotech.jei.category.sawmill.brick=Refractory Sawmill
+gui.pyrotech.jei.category.oven.brick=Refractory Oven
+
 gui.pyrotech.jei.category.kiln.stone=Stone Kiln Firing
+gui.pyrotech.jei.category.crucible.stone=Stone Crucible
+gui.pyrotech.jei.category.sawmill.stone=Stone Sawmill
+gui.pyrotech.jei.category.oven.stone=Stone Oven
+
+gui.pyrotech.jei.category.kiln.pit=Pit Kiln
 gui.pyrotech.jei.category.burn.pit=Pit Burning
 gui.pyrotech.jei.category.burn.refractory=Refractory Burning
 gui.pyrotech.jei.category.drying.rack=Drying
-gui.pyrotech.jei.category.drying.rack.crude=Crude Drying
 gui.pyrotech.jei.category.chopping=Chopping
 gui.pyrotech.jei.category.anvil=Anvil
-gui.pyrotech.jei.category.mill.stone=Stone Sawmill
 gui.pyrotech.jei.category.compacting.bin=Compacting Bin
 gui.pyrotech.jei.category.campfire=Campfire
-gui.pyrotech.jei.category.oven.stone=Stone Oven
 gui.pyrotech.jei.category.worktable=Worktable
-gui.pyrotech.jei.category.crucible.stone=Stone Crucible
 gui.pyrotech.jei.category.soaking.pot=Soaking Pot
 gui.pyrotech.jei.category.bloomery=Bloomery

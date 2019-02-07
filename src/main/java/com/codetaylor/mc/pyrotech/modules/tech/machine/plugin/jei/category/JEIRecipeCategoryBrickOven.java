@@ -6,14 +6,14 @@ import mezz.jei.api.IGuiHelper;
 
 import javax.annotation.Nonnull;
 
-public class JEIRecipeCategoryStoneOven
+public class JEIRecipeCategoryBrickOven
     extends JEIRecipeCategoryOvenBase {
 
-  public static final String UID = ModuleTechMachine.MOD_ID + ".stone.oven";
+  public static final String UID = ModuleTechMachine.MOD_ID + ".brick.oven";
 
-  private static final String TITLE_KEY = "gui." + ModuleTechMachine.MOD_ID + ".jei.category.oven.stone";
+  private static final String TITLE_KEY = "gui." + ModuleTechMachine.MOD_ID + ".jei.category.oven.brick";
 
-  public JEIRecipeCategoryStoneOven(IGuiHelper guiHelper) {
+  public JEIRecipeCategoryBrickOven(IGuiHelper guiHelper) {
 
     super(guiHelper);
   }

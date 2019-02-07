@@ -6,14 +6,14 @@ import mezz.jei.api.IGuiHelper;
 
 import javax.annotation.Nonnull;
 
-public class JEIRecipeCategoryStoneKiln
+public class JEIRecipeCategoryBrickKiln
     extends JEIRecipeCategoryKilnBase {
 
-  public static final String UID = ModuleTechMachine.MOD_ID + ".stone.kiln";
+  public static final String UID = ModuleTechMachine.MOD_ID + ".brick.kiln";
 
-  private static final String TITLE_KEY = "gui." + ModuleTechMachine.MOD_ID + ".jei.category.kiln.stone";
+  private static final String TITLE_KEY = "gui." + ModuleTechMachine.MOD_ID + ".jei.category.kiln.brick";
 
-  public JEIRecipeCategoryStoneKiln(IGuiHelper guiHelper) {
+  public JEIRecipeCategoryBrickKiln(IGuiHelper guiHelper) {
 
     super(guiHelper);
   }
@@ -30,5 +30,4 @@ public class JEIRecipeCategoryStoneKiln
 
     return UID;
   }
-
 }

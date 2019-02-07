@@ -6,14 +6,14 @@ import mezz.jei.api.IGuiHelper;
 
 import javax.annotation.Nonnull;
 
-public class JEIRecipeCategoryStoneSawmill
+public class JEIRecipeCategoryBrickSawmill
     extends JEIRecipeCategorySawmillBase {
 
-  public static final String UID = ModuleTechMachine.MOD_ID + ".stone.mill";
+  public static final String UID = ModuleTechMachine.MOD_ID + ".brick.mill";
 
-  private static final String TITLE_KEY = "gui." + ModuleTechMachine.MOD_ID + ".jei.category.sawmill.stone";
+  private static final String TITLE_KEY = "gui." + ModuleTechMachine.MOD_ID + ".jei.category.sawmill.brick";
 
-  public JEIRecipeCategoryStoneSawmill(IGuiHelper guiHelper) {
+  public JEIRecipeCategoryBrickSawmill(IGuiHelper guiHelper) {
 
     super(guiHelper);
   }
