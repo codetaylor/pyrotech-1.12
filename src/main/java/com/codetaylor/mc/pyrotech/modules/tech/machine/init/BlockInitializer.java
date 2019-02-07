@@ -7,16 +7,20 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.*;
+import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+
+import static com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper.PROPERTY_STRING_MAPPER;
 
 public final class BlockInitializer {
 
@@ -78,18 +82,22 @@ public final class BlockInitializer {
 
       if (!ModuleTechMachineConfig.BRICK_KILN.USE_IRON_SKIN) {
         ModelLoader.setCustomStateMapper(ModuleTechMachine.Blocks.BRICK_KILN, new BrickMachineStateMapper());
+        BlockInitializer.registerBrickMachineItemModel(ModuleTechMachine.Blocks.BRICK_KILN);
       }
 
       if (!ModuleTechMachineConfig.BRICK_SAWMILL.USE_IRON_SKIN) {
         ModelLoader.setCustomStateMapper(ModuleTechMachine.Blocks.BRICK_SAWMILL, new BrickMachineStateMapper());
+        BlockInitializer.registerBrickMachineItemModel(ModuleTechMachine.Blocks.BRICK_SAWMILL);
       }
 
       if (!ModuleTechMachineConfig.BRICK_OVEN.USE_IRON_SKIN) {
         ModelLoader.setCustomStateMapper(ModuleTechMachine.Blocks.BRICK_OVEN, new BrickMachineStateMapper());
+        BlockInitializer.registerBrickMachineItemModel(ModuleTechMachine.Blocks.BRICK_OVEN);
       }
 
       if (!ModuleTechMachineConfig.BRICK_CRUCIBLE.USE_IRON_SKIN) {
         ModelLoader.setCustomStateMapper(ModuleTechMachine.Blocks.BRICK_CRUCIBLE, new BrickMachineStateMapper());
+        BlockInitializer.registerBrickMachineItemModel(ModuleTechMachine.Blocks.BRICK_CRUCIBLE);
       }
 
       // TESRs
@@ -105,6 +113,17 @@ public final class BlockInitializer {
 
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneHopper.class, new TESRInteractable<>());
     });
+  }
+
+  private static void registerBrickMachineItemModel(Block block) {
+
+    ModelRegistrationHelper.registerItemModel(
+        Item.getItemFromBlock(block),
+        new ModelResourceLocation(
+            Preconditions.checkNotNull(Block.REGISTRY.getNameForObject(block), "Block %s has null registry name", block) + "_brick_only",
+            PROPERTY_STRING_MAPPER.getPropertyString(block.getDefaultState().getProperties())
+        )
+    );
   }
 
   private static class BrickMachineStateMapper
