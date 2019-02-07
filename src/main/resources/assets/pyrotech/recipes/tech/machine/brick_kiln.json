@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.machine"]
+    }
+  ],
+  "pattern": [
+    "IBI",
+    "BMB",
+    "IBI"
+  ],
+  "key": {
+    "M": {
+      "item": "pyrotech:stone_kiln",
+      "data": 0
+    },
+    "B": {
+      "item": "pyrotech:refractory_brick_block",
+      "data": 0
+    },
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    }
+  },
+  "result": {
+    "item": "pyrotech:brick_kiln",
+    "count": 1,
+    "data": 0
+  }
+}
