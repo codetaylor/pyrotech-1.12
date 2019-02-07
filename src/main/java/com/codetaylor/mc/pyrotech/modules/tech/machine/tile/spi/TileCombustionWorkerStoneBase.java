@@ -190,6 +190,14 @@ public abstract class TileCombustionWorkerStoneBase<E extends StoneMachineRecipe
     return this.getFuelStackHandler().extractItem(0, 1, false);
   }
 
+  @Override
+  protected int combustionGetBurnTimeForFuel(ItemStack fuel) {
+
+    return (int) Math.max(0, super.combustionGetBurnTimeForFuel(fuel) * this.getFuelBurnTimeModifier(fuel));
+  }
+
+  protected abstract double getFuelBurnTimeModifier(ItemStack fuel);
+
   // ---------------------------------------------------------------------------
   // - Worker
   // ---------------------------------------------------------------------------

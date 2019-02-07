@@ -21,6 +21,12 @@ public class TileStoneKiln
   }
 
   @Override
+  protected double getFuelBurnTimeModifier(ItemStack fuel) {
+
+    return ModuleTechMachineConfig.STONE_KILN.FUEL_BURN_TIME_MODIFIER;
+  }
+
+  @Override
   protected boolean shouldKeepHeat() {
 
     return ModuleTechMachineConfig.STONE_KILN.KEEP_HEAT;

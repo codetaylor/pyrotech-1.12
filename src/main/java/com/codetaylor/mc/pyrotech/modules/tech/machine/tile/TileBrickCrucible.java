@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickCrucibleRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCrucibleBase;
@@ -38,6 +39,12 @@ public class TileBrickCrucible
   protected boolean allowAutomation() {
 
     return ModuleTechMachineConfig.BRICK_CRUCIBLE.ALLOW_AUTOMATION;
+  }
+
+  @Override
+  protected double getFuelBurnTimeModifier(ItemStack fuel) {
+
+    return ModuleTechMachineConfig.BRICK_CRUCIBLE.FUEL_BURN_TIME_MODIFIER;
   }
 
   @Override

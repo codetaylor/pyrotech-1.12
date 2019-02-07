@@ -19,6 +19,12 @@ public class TileStoneSawmill
   }
 
   @Override
+  protected double getFuelBurnTimeModifier(ItemStack fuel) {
+
+    return ModuleTechMachineConfig.STONE_SAWMILL.FUEL_BURN_TIME_MODIFIER;
+  }
+
+  @Override
   protected boolean shouldKeepHeat() {
 
     return ModuleTechMachineConfig.STONE_SAWMILL.KEEP_HEAT;

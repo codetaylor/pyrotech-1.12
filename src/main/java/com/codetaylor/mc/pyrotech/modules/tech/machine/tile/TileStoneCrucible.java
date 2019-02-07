@@ -41,6 +41,12 @@ public class TileStoneCrucible
   }
 
   @Override
+  protected double getFuelBurnTimeModifier(ItemStack fuel) {
+
+    return ModuleTechMachineConfig.STONE_CRUCIBLE.FUEL_BURN_TIME_MODIFIER;
+  }
+
+  @Override
   public boolean processAsynchronous() {
 
     return ModuleTechMachineConfig.STONE_CRUCIBLE.ASYNCHRONOUS_OPERATION;

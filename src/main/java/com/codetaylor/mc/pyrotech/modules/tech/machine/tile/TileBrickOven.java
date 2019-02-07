@@ -34,6 +34,12 @@ public class TileBrickOven
   }
 
   @Override
+  protected double getFuelBurnTimeModifier(ItemStack fuel) {
+
+    return ModuleTechMachineConfig.BRICK_OVEN.FUEL_BURN_TIME_MODIFIER;
+  }
+
+  @Override
   protected boolean shouldKeepHeat() {
 
     return ModuleTechMachineConfig.BRICK_OVEN.KEEP_HEAT;

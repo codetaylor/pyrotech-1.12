@@ -202,6 +202,12 @@ public class ModuleTechMachineConfig {
     public boolean KEEP_HEAT = false;
 
     @Config.Comment({
+        "Modifies the burn time values of the fuel used.",
+        "Default: " + 1.0
+    })
+    public double FUEL_BURN_TIME_MODIFIER = 1.0;
+
+    @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
         "Default: " + 8
     })
@@ -236,6 +242,12 @@ public class ModuleTechMachineConfig {
         "Default: " + true
     })
     public boolean KEEP_HEAT = true;
+
+    @Config.Comment({
+        "Modifies the burn time values of the fuel used.",
+        "Default: " + 2.0
+    })
+    public double FUEL_BURN_TIME_MODIFIER = 2.0;
 
     @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
@@ -290,6 +302,12 @@ public class ModuleTechMachineConfig {
         "Default: " + false
     })
     public boolean KEEP_HEAT = false;
+
+    @Config.Comment({
+        "Modifies the burn time values of the fuel used.",
+        "Default: " + 1.0
+    })
+    public double FUEL_BURN_TIME_MODIFIER = 1.0;
 
     @Config.Comment({
         "Time to cook the entire input stack in ticks.",
@@ -347,6 +365,12 @@ public class ModuleTechMachineConfig {
     public boolean KEEP_HEAT = true;
 
     @Config.Comment({
+        "Modifies the burn time values of the fuel used.",
+        "Default: " + 2.0
+    })
+    public double FUEL_BURN_TIME_MODIFIER = 2.0;
+
+    @Config.Comment({
         "Time to cook the entire input stack in ticks.",
         "Default: " + (2 * 60 * 20)
     })
@@ -400,6 +424,12 @@ public class ModuleTechMachineConfig {
         "Default: " + false
     })
     public boolean KEEP_HEAT = false;
+
+    @Config.Comment({
+        "Modifies the burn time values of the fuel used.",
+        "Default: " + 1.0
+    })
+    public double FUEL_BURN_TIME_MODIFIER = 1.0;
 
     @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
@@ -456,6 +486,12 @@ public class ModuleTechMachineConfig {
         "Default: " + true
     })
     public boolean KEEP_HEAT = true;
+
+    @Config.Comment({
+        "Modifies the burn time values of the fuel used.",
+        "Default: " + 2.0
+    })
+    public double FUEL_BURN_TIME_MODIFIER = 2.0;
 
     @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
@@ -526,6 +562,12 @@ public class ModuleTechMachineConfig {
     public boolean KEEP_HEAT = false;
 
     @Config.Comment({
+        "Modifies the burn time values of the fuel used.",
+        "Default: " + 1.0
+    })
+    public double FUEL_BURN_TIME_MODIFIER = 1.0;
+
+    @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
         "Default: " + 8
     })
@@ -574,6 +616,12 @@ public class ModuleTechMachineConfig {
         "Default: " + true
     })
     public boolean KEEP_HEAT = true;
+
+    @Config.Comment({
+        "Modifies the burn time values of the fuel used.",
+        "Default: " + 2.0
+    })
+    public double FUEL_BURN_TIME_MODIFIER = 2.0;
 
     @Config.Comment({
         "Controls the number of recipe items that can be inserted.",
