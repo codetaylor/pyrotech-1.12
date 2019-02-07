@@ -4,12 +4,12 @@ import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
-import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.ItemInitializer;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.init.RegistryInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneCrucibleRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneKilnRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneOvenRecipesAdd;
@@ -22,7 +22,6 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
@@ -33,7 +32,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
-import net.minecraftforge.registries.RegistryBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -84,54 +82,7 @@ public class ModuleTechMachine
   @SubscribeEvent
   public void onNewRegistryEvent(RegistryEvent.NewRegistry event) {
 
-    new RegistryBuilder<StoneKilnRecipe>()
-        .setName(new ResourceLocation(ModuleTechMachine.MOD_ID, "kiln_stone_recipe"))
-        .setType(StoneKilnRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<StoneSawmillRecipe>()
-        .setName(new ResourceLocation(ModuleTechMachine.MOD_ID, "mill_stone_recipe"))
-        .setType(StoneSawmillRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<StoneCrucibleRecipe>()
-        .setName(new ResourceLocation(ModuleTechMachine.MOD_ID, "crucible_stone_recipe"))
-        .setType(StoneCrucibleRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<StoneOvenRecipe>()
-        .setName(new ResourceLocation(ModuleTechMachine.MOD_ID, "oven_stone_recipe"))
-        .setType(StoneOvenRecipe.class)
-        .allowModification()
-        .create();
-
-    // --- Injection
-
-    Injector injector = new Injector();
-
-    injector.inject(
-        ModuleTechMachine.Registries.class,
-        "KILN_STONE_RECIPE",
-        GameRegistry.findRegistry(StoneKilnRecipe.class)
-    );
-    injector.inject(
-        ModuleTechMachine.Registries.class,
-        "MILL_STONE_RECIPE",
-        GameRegistry.findRegistry(StoneSawmillRecipe.class)
-    );
-    injector.inject(
-        ModuleTechMachine.Registries.class,
-        "OVEN_STONE_RECIPE",
-        GameRegistry.findRegistry(StoneOvenRecipe.class)
-    );
-    injector.inject(
-        ModuleTechMachine.Registries.class,
-        "CRUCIBLE_STONE_RECIPE",
-        GameRegistry.findRegistry(StoneCrucibleRecipe.class)
-    );
+    RegistryInitializer.createRegistries(event);
   }
 
   @Override
