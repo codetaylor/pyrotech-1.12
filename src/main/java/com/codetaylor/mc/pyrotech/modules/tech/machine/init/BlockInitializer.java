@@ -4,11 +4,19 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 public final class BlockInitializer {
 
@@ -68,6 +76,22 @@ public final class BlockInitializer {
           ModuleTechMachine.Blocks.STONE_HOPPER
       );
 
+      if (!ModuleTechMachineConfig.BRICK_KILN.USE_IRON_SKIN) {
+        ModelLoader.setCustomStateMapper(ModuleTechMachine.Blocks.BRICK_KILN, new BrickMachineStateMapper());
+      }
+
+      if (!ModuleTechMachineConfig.BRICK_SAWMILL.USE_IRON_SKIN) {
+        ModelLoader.setCustomStateMapper(ModuleTechMachine.Blocks.BRICK_SAWMILL, new BrickMachineStateMapper());
+      }
+
+      if (!ModuleTechMachineConfig.BRICK_OVEN.USE_IRON_SKIN) {
+        ModelLoader.setCustomStateMapper(ModuleTechMachine.Blocks.BRICK_OVEN, new BrickMachineStateMapper());
+      }
+
+      if (!ModuleTechMachineConfig.BRICK_CRUCIBLE.USE_IRON_SKIN) {
+        ModelLoader.setCustomStateMapper(ModuleTechMachine.Blocks.BRICK_CRUCIBLE, new BrickMachineStateMapper());
+      }
+
       // TESRs
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneKiln.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneOven.class, new TESRInteractable<>());
@@ -81,6 +105,17 @@ public final class BlockInitializer {
 
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneHopper.class, new TESRInteractable<>());
     });
+  }
+
+  private static class BrickMachineStateMapper
+      extends DefaultStateMapper {
+
+    @Nonnull
+    @Override
+    protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+
+      return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()) + "_brick_only", this.getPropertyString(state.getProperties()));
+    }
   }
 
   private BlockInitializer() {

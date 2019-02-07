@@ -231,6 +231,14 @@ public class ModuleTechMachineConfig {
   public static class BrickKiln {
 
     @Config.Comment({
+        "If true, the device will use a skin that looks like parts of it are made",
+        "from iron. Making the device from iron fits with the default mod progression,",
+        "but may not fit with your modpack. Disabling this will use a different",
+        "skin that looks like only the refractory bricks."
+    })
+    public boolean USE_IRON_SKIN = true;
+
+    @Config.Comment({
         "Set this to false to prevent piping contents in / out.",
         "Default: " + true
     })
@@ -350,6 +358,14 @@ public class ModuleTechMachineConfig {
   public static BrickOven BRICK_OVEN = new BrickOven();
 
   public static class BrickOven {
+
+    @Config.Comment({
+        "If true, the device will use a skin that looks like parts of it are made",
+        "from iron. Making the device from iron fits with the default mod progression,",
+        "but may not fit with your modpack. Disabling this will use a different",
+        "skin that looks like only the refractory bricks."
+    })
+    public boolean USE_IRON_SKIN = true;
 
     @Config.Comment({
         "Set this to false to prevent piping contents in / out.",
@@ -473,6 +489,14 @@ public class ModuleTechMachineConfig {
   public static BrickSawmill BRICK_SAWMILL = new BrickSawmill();
 
   public static class BrickSawmill {
+
+    @Config.Comment({
+        "If true, the device will use a skin that looks like parts of it are made",
+        "from iron. Making the device from iron fits with the default mod progression,",
+        "but may not fit with your modpack. Disabling this will use a different",
+        "skin that looks like only the refractory bricks."
+    })
+    public boolean USE_IRON_SKIN = true;
 
     @Config.Comment({
         "Set this to false to prevent piping contents in / out.",
@@ -603,6 +627,14 @@ public class ModuleTechMachineConfig {
   public static BrickCrucible BRICK_CRUCIBLE = new BrickCrucible();
 
   public static class BrickCrucible {
+
+    @Config.Comment({
+        "If true, the device will use a skin that looks like parts of it are made",
+        "from iron. Making the device from iron fits with the default mod progression,",
+        "but may not fit with your modpack. Disabling this will use a different",
+        "skin that looks like only the refractory bricks."
+    })
+    public boolean USE_IRON_SKIN = true;
 
     @Config.Comment({
         "Set this to false to prevent piping contents in / out.",

@@ -1,10 +1,10 @@
 {
   "parent": "block/block",
   "textures": {
-    "3": "pyrotech:blocks/brick_machine_front",
-    "4": "pyrotech:blocks/brick_machine_bottom",
-    "5": "pyrotech:blocks/brick_machine_side",
-    "6": "pyrotech:blocks/brick_machine_iron_dark",
+    "3": "pyrotech:blocks/brick_machine_front_brick_only",
+    "4": "pyrotech:blocks/brick_machine_bottom_brick_only",
+    "5": "pyrotech:blocks/brick_machine_side_brick_only",
+    "6": "pyrotech:blocks/brick_machine_inside",
     "7": "pyrotech:blocks/brick_machine_crucible_inside_bottom"
   },
   "elements": [
