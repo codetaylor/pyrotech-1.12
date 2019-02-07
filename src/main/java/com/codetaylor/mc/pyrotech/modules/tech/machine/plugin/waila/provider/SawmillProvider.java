@@ -4,9 +4,10 @@ import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.SawmillRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInItemOutBase;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneSawmill;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneSawmillTop;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileSawmillBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDelegateMachineTop;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -19,7 +20,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class SawmillProvider
-    extends CombustionWorkerProvider<TileCombustionWorkerStoneItemInItemOutBase, StoneMachineRecipeItemInItemOutBase> {
+    extends CombustionMachineProvider<TileCombustionWorkerStoneItemInItemOutBase, StoneMachineRecipeItemInItemOutBase> {
 
   @Nonnull
   @Override
@@ -32,20 +33,20 @@ public class SawmillProvider
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileStoneSawmill
-        || tileEntity instanceof TileStoneSawmillTop) {
+    if (tileEntity instanceof TileSawmillBase
+        || tileEntity instanceof TileCapabilityDelegateMachineTop) {
 
-      TileStoneSawmill tile = null;
+      TileSawmillBase tile = null;
 
-      if (tileEntity instanceof TileStoneSawmill) {
-        tile = (TileStoneSawmill) tileEntity;
+      if (tileEntity instanceof TileSawmillBase) {
+        tile = (TileSawmillBase) tileEntity;
 
       } else {
         World world = tileEntity.getWorld();
         TileEntity candidate = world.getTileEntity(tileEntity.getPos().down());
 
-        if (candidate instanceof TileStoneSawmill) {
-          tile = (TileStoneSawmill) candidate;
+        if (candidate instanceof TileSawmillBase) {
+          tile = (TileSawmillBase) candidate;
         }
       }
 
@@ -64,7 +65,7 @@ public class SawmillProvider
       boolean hasOutput = !outputStackHandler.getStackInSlot(0).isEmpty();
       ItemStack fuel = fuelStackHandler.getStackInSlot(0);
       ItemStack blade = bladeStackHandler.getStackInSlot(0);
-      StoneMachineRecipeItemInItemOutBase recipe = null;
+      SawmillRecipeBase recipe = null;
 
       if (!input.isEmpty()) {
 

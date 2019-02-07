@@ -142,7 +142,7 @@ public class ZenOvenStone {
           this.output,
           this.input
       );
-      ModuleTechMachine.Registries.OVEN_STONE_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModuleTechMachine.Registries.STONE_OVEN_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override

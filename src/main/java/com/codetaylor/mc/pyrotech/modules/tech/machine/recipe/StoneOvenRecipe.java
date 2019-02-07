@@ -63,7 +63,7 @@ public class StoneOvenRecipe
 
     // Finally, check the custom recipes.
 
-    for (StoneOvenRecipe recipe : ModuleTechMachine.Registries.OVEN_STONE_RECIPE) {
+    for (StoneOvenRecipe recipe : ModuleTechMachine.Registries.STONE_OVEN_RECIPES) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -80,7 +80,7 @@ public class StoneOvenRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModuleTechMachine.Registries.OVEN_STONE_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModuleTechMachine.Registries.STONE_OVEN_RECIPES, output);
   }
 
   public static void blacklistSmeltingRecipe(Ingredient output) {

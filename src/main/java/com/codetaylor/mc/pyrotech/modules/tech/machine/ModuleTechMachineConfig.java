@@ -217,6 +217,60 @@ public class ModuleTechMachineConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Brick Kiln
+  // ---------------------------------------------------------------------------
+
+  public static BrickKiln BRICK_KILN = new BrickKiln();
+
+  public static class BrickKiln {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
+        "Set to true to deactivate when a recipe completes.",
+        "The worker will need to be re-lit when it deactivates.",
+        "Default: " + true
+    })
+    public boolean KEEP_HEAT = true;
+
+    @Config.Comment({
+        "Controls the number of recipe items that can be inserted.",
+        "Default: " + 8
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int INPUT_SLOT_SIZE = 8;
+
+    @Config.Comment({
+        "Controls the number of fuel items that can be inserted.",
+        "Default: " + 32
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int FUEL_SLOT_SIZE = 32;
+
+    @Config.Comment({
+        "If true, all the stone tier recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_STONE_TIER_RECIPES = true;
+
+    @Config.Comment({
+        "The speed modifier for all inherited recipes.",
+        "Default: " + 1.0
+    })
+    public double INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "The failure chance modifier for all inherited recipes.",
+        "Default: " + 1.0
+    })
+    public double INHERITED_STONE_TIER_RECIPE_FAILURE_CHANCE_MODIFIER = 1.0;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Stone Oven
   // ---------------------------------------------------------------------------
 
@@ -269,6 +323,61 @@ public class ModuleTechMachineConfig {
         "Default: " + 0.5
     })
     public double INHERITED_DRYING_RACK_RECIPE_SPEED_MODIFIER = 0.5;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Brick Oven
+  // ---------------------------------------------------------------------------
+
+  public static BrickOven BRICK_OVEN = new BrickOven();
+
+  public static class BrickOven {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
+        "Set to true to deactivate when a recipe completes.",
+        "The worker will need to be re-lit when it deactivates.",
+        "Default: " + true
+    })
+    public boolean KEEP_HEAT = true;
+
+    @Config.Comment({
+        "Time to cook the entire input stack in ticks.",
+        "Default: " + (2 * 60 * 20)
+    })
+    @Config.RangeInt(min = 1)
+    public int COOK_TIME_TICKS = 2 * 60 * 20;
+
+    @Config.Comment({
+        "Controls the number of recipe items that can be inserted.",
+        "Default: " + 8
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int INPUT_SLOT_SIZE = 8;
+
+    @Config.Comment({
+        "Controls the number of fuel items that can be inserted.",
+        "Default: " + 32
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int FUEL_SLOT_SIZE = 32;
+
+    @Config.Comment({
+        "If true, all the stone tier recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_STONE_TIER_RECIPES = true;
+
+    @Config.Comment({
+        "The speed modifier for all inherited recipes.",
+        "Default: " + 1.0
+    })
+    public double INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER = 1.0;
   }
 
   // ---------------------------------------------------------------------------
@@ -328,6 +437,74 @@ public class ModuleTechMachineConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Brick Sawmill
+  // ---------------------------------------------------------------------------
+
+  public static BrickSawmill BRICK_SAWMILL = new BrickSawmill();
+
+  public static class BrickSawmill {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
+        "Set to true to deactivate when a recipe completes.",
+        "The worker will need to be re-lit when it deactivates.",
+        "Default: " + true
+    })
+    public boolean KEEP_HEAT = true;
+
+    @Config.Comment({
+        "Controls the number of recipe items that can be inserted.",
+        "Default: " + 8
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int INPUT_SLOT_SIZE = 8;
+
+    @Config.Comment({
+        "Controls the number of fuel items that can be inserted.",
+        "Default: " + 32
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int FUEL_SLOT_SIZE = 32;
+
+    @Config.Comment({
+        "Controls how much damage a spinning blade will do to an entity.",
+        "Default: " + 3
+    })
+    @Config.RangeDouble(min = 0)
+    public double ENTITY_DAMAGE_FROM_BLADE = 3;
+
+    @Config.Comment({
+        "Set to false to disable damaging blades.",
+        "Default: " + true
+    })
+    public boolean DAMAGE_BLADES = true;
+
+    @Config.Comment({
+        "Chance of producing wood chips per second of operation.",
+        "Default: " + 0.075
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double WOOD_CHIPS_CHANCE = 0.075;
+
+    @Config.Comment({
+        "If true, all the stone tier recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_STONE_TIER_RECIPES = true;
+
+    @Config.Comment({
+        "The speed modifier for all inherited recipes.",
+        "Default: " + 1.0
+    })
+    public double INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER = 1.0;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Stone Crucible
   // ---------------------------------------------------------------------------
 
@@ -375,6 +552,68 @@ public class ModuleTechMachineConfig {
         "Default: " + false
     })
     public boolean ASYNCHRONOUS_OPERATION = false;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Brick Crucible
+  // ---------------------------------------------------------------------------
+
+  public static BrickCrucible BRICK_CRUCIBLE = new BrickCrucible();
+
+  public static class BrickCrucible {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
+        "Set to true to deactivate when a recipe completes.",
+        "The worker will need to be re-lit when it deactivates.",
+        "Default: " + true
+    })
+    public boolean KEEP_HEAT = true;
+
+    @Config.Comment({
+        "Controls the number of recipe items that can be inserted.",
+        "Default: " + 8
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int INPUT_SLOT_SIZE = 8;
+
+    @Config.Comment({
+        "Controls the number of fuel items that can be inserted.",
+        "Default: " + 32
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int FUEL_SLOT_SIZE = 32;
+
+    @Config.Comment({
+        "Controls the size of the output tank in millibuckets.",
+        "Default: " + 8000
+    })
+    @Config.RangeInt(min = 1)
+    public int OUTPUT_TANK_SIZE = 8000;
+
+    @Config.Comment({
+        "If true, the machine will process all input items at the same time.",
+        "If false, the machine will process one recipe at a time.",
+        "Default: " + false
+    })
+    public boolean ASYNCHRONOUS_OPERATION = false;
+
+    @Config.Comment({
+        "If true, all the stone tier recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_STONE_TIER_RECIPES = true;
+
+    @Config.Comment({
+        "The speed modifier for all inherited recipes.",
+        "Default: " + 1.0
+    })
+    public double INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER = 1.0;
   }
 
 }

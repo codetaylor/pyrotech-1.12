@@ -114,7 +114,7 @@ public class ZenMillStone {
           this.blade,
           this.createWoodChips
       );
-      ModuleTechMachine.Registries.MILL_STONE_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModuleTechMachine.Registries.STONE_SAWMILL_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override

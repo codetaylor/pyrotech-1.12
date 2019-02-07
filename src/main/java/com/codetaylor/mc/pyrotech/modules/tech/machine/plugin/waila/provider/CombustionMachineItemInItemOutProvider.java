@@ -17,8 +17,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class CombustionWorkerStoneItemInItemOutProvider
-    extends CombustionWorkerProvider<TileCombustionWorkerStoneItemInItemOutBase, StoneMachineRecipeItemInItemOutBase> {
+public class CombustionMachineItemInItemOutProvider
+    extends CombustionMachineProvider<TileCombustionWorkerStoneItemInItemOutBase, StoneMachineRecipeItemInItemOutBase> {
 
   @Nonnull
   @Override

@@ -57,7 +57,7 @@ public class ModuleBucket
     }
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechMachine.class)) {
-      StoneKilnRecipesAdd.apply(ModuleTechMachine.Registries.KILN_STONE_RECIPE);
+      StoneKilnRecipesAdd.apply(ModuleTechMachine.Registries.STONE_KILN_RECIPES);
     }
   }
 

@@ -15,7 +15,7 @@ public class StoneCrucibleRecipe
   @Nullable
   public static StoneCrucibleRecipe getRecipe(ItemStack input) {
 
-    for (StoneCrucibleRecipe recipe : ModuleTechMachine.Registries.CRUCIBLE_STONE_RECIPE) {
+    for (StoneCrucibleRecipe recipe : ModuleTechMachine.Registries.STONE_CRUCIBLE_RECIPES) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -27,7 +27,7 @@ public class StoneCrucibleRecipe
 
   public static boolean removeRecipes(FluidStack output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModuleTechMachine.Registries.CRUCIBLE_STONE_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModuleTechMachine.Registries.STONE_CRUCIBLE_RECIPES, output);
   }
 
   public StoneCrucibleRecipe(

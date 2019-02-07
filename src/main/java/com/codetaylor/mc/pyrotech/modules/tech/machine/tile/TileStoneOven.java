@@ -30,7 +30,7 @@ public class TileStoneOven
   @Override
   protected boolean allowAutomation() {
 
-    return ModuleTechMachineConfig.STONE_CRUCIBLE.ALLOW_AUTOMATION;
+    return ModuleTechMachineConfig.STONE_OVEN.ALLOW_AUTOMATION;
   }
 
   @Override

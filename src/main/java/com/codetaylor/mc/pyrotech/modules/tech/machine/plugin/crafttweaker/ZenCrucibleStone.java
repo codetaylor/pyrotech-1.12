@@ -101,7 +101,7 @@ public class ZenCrucibleStone {
           this.input,
           this.burnTimeTicks
       );
-      ModuleTechMachine.Registries.CRUCIBLE_STONE_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModuleTechMachine.Registries.STONE_CRUCIBLE_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override

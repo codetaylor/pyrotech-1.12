@@ -10,16 +10,10 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.RegistryInitializer;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneCrucibleRecipesAdd;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneKilnRecipesAdd;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneOvenRecipesAdd;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneSawmillRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemCog;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemSawmillBlade;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.MinecraftForge;
@@ -102,9 +96,15 @@ public class ModuleTechMachine
 
     super.onRegisterRecipesEvent(event);
 
-    StoneKilnRecipesAdd.apply(ModuleTechMachine.Registries.KILN_STONE_RECIPE);
-    StoneSawmillRecipesAdd.apply(ModuleTechMachine.Registries.MILL_STONE_RECIPE);
-    StoneCrucibleRecipesAdd.apply(ModuleTechMachine.Registries.CRUCIBLE_STONE_RECIPE);
+    StoneKilnRecipesAdd.apply(Registries.STONE_KILN_RECIPES);
+    StoneSawmillRecipesAdd.apply(Registries.STONE_SAWMILL_RECIPES);
+    StoneCrucibleRecipesAdd.apply(Registries.STONE_CRUCIBLE_RECIPES);
+    StoneOvenRecipesAdd.apply(Registries.STONE_OVEN_RECIPES);
+
+    BrickKilnRecipesAdd.apply(Registries.BRICK_KILN_RECIPES);
+    BrickSawmillRecipesAdd.apply(Registries.BRICK_SAWMILL_RECIPES);
+    BrickCrucibleRecipesAdd.apply(Registries.BRICK_CRUCIBLE_RECIPES);
+    BrickOvenRecipesAdd.apply(Registries.BRICK_OVEN_RECIPES);
   }
 
   @Override
@@ -127,38 +127,55 @@ public class ModuleTechMachine
 
     super.onPostInitializationEvent(event);
 
-    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)
-        && ModuleTechMachineConfig.STONE_OVEN.INHERIT_DRYING_RACK_RECIPES) {
-      StoneOvenRecipesAdd.registerInheritedDryingRackRecipes(
-          ModuleTechBasic.Registries.DRYING_RACK_RECIPE,
-          Registries.OVEN_STONE_RECIPE
-      );
-    }
+    StoneOvenRecipesAdd.registerInheritedDryingRackRecipes(ModuleTechBasic.Registries.DRYING_RACK_RECIPE, Registries.STONE_OVEN_RECIPES);
+
+    BrickKilnRecipesAdd.registerInheritedRecipes(Registries.STONE_KILN_RECIPES, Registries.BRICK_KILN_RECIPES);
+    BrickOvenRecipesAdd.registerInheritedRecipes(Registries.STONE_OVEN_RECIPES, Registries.BRICK_OVEN_RECIPES);
+    BrickSawmillRecipesAdd.registerInheritedRecipes(Registries.STONE_SAWMILL_RECIPES, Registries.BRICK_SAWMILL_RECIPES);
+    BrickCrucibleRecipesAdd.registerInheritedRecipes(Registries.STONE_CRUCIBLE_RECIPES, Registries.BRICK_CRUCIBLE_RECIPES);
   }
 
   @GameRegistry.ObjectHolder(ModuleTechMachine.MOD_ID)
   public static class Blocks {
 
     @GameRegistry.ObjectHolder(BlockStoneKiln.NAME)
-    public static final BlockStoneKiln KILN_STONE;
+    public static final BlockStoneKiln STONE_KILN;
+
+    @GameRegistry.ObjectHolder(BlockBrickKiln.NAME)
+    public static final BlockBrickKiln BRICK_KILN;
 
     @GameRegistry.ObjectHolder(BlockStoneOven.NAME)
-    public static final BlockStoneOven OVEN_STONE;
+    public static final BlockStoneOven STONE_OVEN;
+
+    @GameRegistry.ObjectHolder(BlockBrickOven.NAME)
+    public static final BlockBrickOven BRICK_OVEN;
 
     @GameRegistry.ObjectHolder(BlockStoneSawmill.NAME)
-    public static final BlockStoneSawmill MILL_STONE;
+    public static final BlockStoneSawmill STONE_SAWMILL;
+
+    @GameRegistry.ObjectHolder(BlockBrickSawmill.NAME)
+    public static final BlockBrickSawmill BRICK_SAWMILL;
 
     @GameRegistry.ObjectHolder(BlockStoneCrucible.NAME)
-    public static final BlockStoneCrucible CRUCIBLE_STONE;
+    public static final BlockStoneCrucible STONE_CRUCIBLE;
+
+    @GameRegistry.ObjectHolder(BlockBrickCrucible.NAME)
+    public static final BlockBrickCrucible BRICK_CRUCIBLE;
 
     @GameRegistry.ObjectHolder(BlockStoneHopper.NAME)
     public static final BlockStoneHopper STONE_HOPPER;
 
     static {
-      KILN_STONE = null;
-      OVEN_STONE = null;
-      MILL_STONE = null;
-      CRUCIBLE_STONE = null;
+      STONE_KILN = null;
+      STONE_OVEN = null;
+      STONE_SAWMILL = null;
+      STONE_CRUCIBLE = null;
+
+      BRICK_KILN = null;
+      BRICK_OVEN = null;
+      BRICK_SAWMILL = null;
+      BRICK_CRUCIBLE = null;
+
       STONE_HOPPER = null;
     }
   }
@@ -217,16 +234,26 @@ public class ModuleTechMachine
 
   public static class Registries {
 
-    public static final IForgeRegistryModifiable<StoneKilnRecipe> KILN_STONE_RECIPE;
-    public static final IForgeRegistryModifiable<StoneSawmillRecipe> MILL_STONE_RECIPE;
-    public static final IForgeRegistryModifiable<StoneOvenRecipe> OVEN_STONE_RECIPE;
-    public static final IForgeRegistryModifiable<StoneCrucibleRecipe> CRUCIBLE_STONE_RECIPE;
+    public static final IForgeRegistryModifiable<StoneKilnRecipe> STONE_KILN_RECIPES;
+    public static final IForgeRegistryModifiable<StoneSawmillRecipe> STONE_SAWMILL_RECIPES;
+    public static final IForgeRegistryModifiable<StoneOvenRecipe> STONE_OVEN_RECIPES;
+    public static final IForgeRegistryModifiable<StoneCrucibleRecipe> STONE_CRUCIBLE_RECIPES;
+
+    public static final IForgeRegistryModifiable<BrickKilnRecipe> BRICK_KILN_RECIPES;
+    public static final IForgeRegistryModifiable<BrickSawmillRecipe> BRICK_SAWMILL_RECIPES;
+    public static final IForgeRegistryModifiable<BrickOvenRecipe> BRICK_OVEN_RECIPES;
+    public static final IForgeRegistryModifiable<BrickCrucibleRecipe> BRICK_CRUCIBLE_RECIPES;
 
     static {
-      KILN_STONE_RECIPE = null;
-      MILL_STONE_RECIPE = null;
-      OVEN_STONE_RECIPE = null;
-      CRUCIBLE_STONE_RECIPE = null;
+      STONE_KILN_RECIPES = null;
+      STONE_SAWMILL_RECIPES = null;
+      STONE_OVEN_RECIPES = null;
+      STONE_CRUCIBLE_RECIPES = null;
+
+      BRICK_KILN_RECIPES = null;
+      BRICK_SAWMILL_RECIPES = null;
+      BRICK_OVEN_RECIPES = null;
+      BRICK_CRUCIBLE_RECIPES = null;
     }
   }
 }

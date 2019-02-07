@@ -123,7 +123,7 @@ public class ZenKilnStone {
           this.failureChance,
           this.failureItems
       );
-      ModuleTechMachine.Registries.KILN_STONE_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModuleTechMachine.Registries.STONE_KILN_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override

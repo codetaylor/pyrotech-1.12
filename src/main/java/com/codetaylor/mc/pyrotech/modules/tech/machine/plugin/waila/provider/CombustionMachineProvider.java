@@ -13,7 +13,7 @@ import net.minecraft.util.text.TextFormatting;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class CombustionWorkerProvider<T extends TileCombustionWorkerStoneBase, R extends StoneMachineRecipeBase>
+public abstract class CombustionMachineProvider<T extends TileCombustionWorkerStoneBase, R extends StoneMachineRecipeBase>
     extends BodyProviderAdapter {
 
   protected void addBurnTimeInfo(List<String> tooltip, T tile, float progress, ItemStack input, ItemStack fuel, @Nullable R recipe) {

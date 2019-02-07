@@ -1,0 +1,26 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"6": "blocks/fire_layer_0",
+		"particle": "blocks/fire_layer_0"
+	},
+	"elements": [
+		{
+			"from": [2, 1, 3],
+			"to": [14, 12, 4],
+			"faces": {
+				"north": {"uv": [2, 5, 14, 16], "texture": "#6"},
+				"south": {"uv": [2, 5, 14, 16], "texture": "#6"}
+			}
+		},
+		{
+			"from": [2, 1, 12],
+			"to": [14, 12, 13],
+			"faces": {
+				"north": {"uv": [2, 5, 14, 16], "texture": "#6"},
+				"south": {"uv": [2, 5, 14, 16], "texture": "#6"}
+			}
+		}
+	]
+}

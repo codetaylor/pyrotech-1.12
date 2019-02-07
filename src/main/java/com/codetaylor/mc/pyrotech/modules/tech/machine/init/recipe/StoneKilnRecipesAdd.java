@@ -138,6 +138,5 @@ public class StoneKilnRecipesAdd {
             new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.DIORITE.getMeta())
         }
     ).setRegistryName(ModuleTechMachine.MOD_ID, "stone_diorite"));
-
   }
 }

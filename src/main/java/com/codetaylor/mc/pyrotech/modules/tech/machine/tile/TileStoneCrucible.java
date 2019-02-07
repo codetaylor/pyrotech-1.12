@@ -1,31 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.CrucibleFluidRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInFluidOutBase;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.RenderItem;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCrucibleBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileStoneCrucible
-    extends TileCombustionWorkerStoneItemInFluidOutBase<StoneCrucibleRecipe> {
-
-  public TileStoneCrucible() {
-
-    this.addInteractions(new IInteraction[]{
-        new InteractionBucket()
-    });
-  }
+    extends TileCrucibleBase<StoneCrucibleRecipe> {
 
   @Override
   public StoneCrucibleRecipe getRecipe(ItemStack itemStack) {
@@ -108,30 +91,6 @@ public class TileStoneCrucible
 
     if (this.getOutputFluidTank().fill(output, false) == output.amount) {
       super.reduceRecipeTime();
-    }
-  }
-
-  public class InteractionBucket
-      extends InteractionBucketBase<TileStoneCrucible> {
-
-    /* package */ InteractionBucket() {
-
-      super(
-          TileStoneCrucible.this.getOutputFluidTank(),
-          new EnumFacing[]{EnumFacing.UP},
-          TileStoneCrucible.this.getInputInteractionBoundsTop()
-      );
-    }
-
-    public FluidTank getFluidTank() {
-
-      return TileStoneCrucible.this.getOutputFluidTank();
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
-
-      CrucibleFluidRenderer.INSTANCE.renderSolidPass(this, world, renderItem, pos, blockState, partialTicks);
     }
   }
 

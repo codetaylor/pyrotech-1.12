@@ -1,0 +1,34 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"side": "pyrotech:blocks/kiln_stone_side",
+		"particle": "pyrotech:blocks/kiln_stone_side",
+		"dark": "pyrotech:blocks/kiln_stone_dark",
+		"misc": "pyrotech:blocks/oven_stone_misc"
+	},
+	"elements": [
+		{
+			"from": [7, 24, 9],
+			"to": [14, 32, 14],
+			"faces": {
+				"north": {"uv": [4, 0, 11, 8], "texture": "#side"},
+				"east": {"uv": [1, 0, 6, 8], "texture": "#side"},
+				"south": {"uv": [4, 0, 11, 8], "texture": "#side"},
+				"west": {"uv": [9, 0, 14, 8], "texture": "#side"},
+				"up": {"uv": [4, 1, 11, 6], "texture": "#misc"}
+			}
+		},
+		{
+			"from": [7, 8, 9],
+			"to": [14, 23, 14],
+			"faces": {
+				"north": {"uv": [4, 0, 11, 15], "texture": "#dark"},
+				"east": {"uv": [1, 0, 6, 15], "texture": "#dark"},
+				"south": {"uv": [4, 0, 11, 15], "texture": "#dark"},
+				"west": {"uv": [9, 0, 14, 15], "texture": "#dark"},
+				"down": {"uv": [4, 6, 11, 11], "texture": "#misc"}
+			}
+		}
+	]
+}

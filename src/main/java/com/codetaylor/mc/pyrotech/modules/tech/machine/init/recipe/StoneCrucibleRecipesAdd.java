@@ -17,19 +17,6 @@ public class StoneCrucibleRecipesAdd {
 
   public static void apply(IForgeRegistryModifiable<StoneCrucibleRecipe> registry) {
 
-    /*
-    // Lava
-    //noinspection unchecked
-    registry.register(new StoneCrucibleRecipe(
-        new FluidStack(FluidRegistry.LAVA, 250),
-        new CompoundIngredientPublic(Arrays.asList(new Ingredient[]{
-            new OreIngredient("stone"),
-            new OreIngredient("cobblestone")
-        })),
-        2 * 60 * 20
-    ).setRegistryName(ModuleTechMachine.MOD_ID, "lava_from_stone"));
-*/
-
     // Water from Ice
     registry.register(new StoneCrucibleRecipe(
         new FluidStack(FluidRegistry.WATER, 1000),

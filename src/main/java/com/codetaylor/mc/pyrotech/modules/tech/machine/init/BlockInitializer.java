@@ -18,6 +18,12 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockStoneOven(), BlockStoneOven.NAME);
     registry.registerBlockWithItem(new BlockStoneSawmill(), BlockStoneSawmill.NAME);
     registry.registerBlockWithItem(new BlockStoneCrucible(), BlockStoneCrucible.NAME);
+
+    registry.registerBlockWithItem(new BlockBrickKiln(), BlockBrickKiln.NAME);
+    registry.registerBlockWithItem(new BlockBrickOven(), BlockBrickOven.NAME);
+    registry.registerBlockWithItem(new BlockBrickSawmill(), BlockBrickSawmill.NAME);
+    registry.registerBlockWithItem(new BlockBrickCrucible(), BlockBrickCrucible.NAME);
+
     registry.registerBlockWithItem(new BlockStoneHopper(), BlockStoneHopper.NAME);
 
     registry.registerTileEntities(
@@ -29,6 +35,16 @@ public final class BlockInitializer {
         TileStoneSawmillTop.class,
         TileStoneCrucible.class,
         TileStoneCrucibleTop.class,
+
+        TileBrickKiln.class,
+        TileBrickKilnTop.class,
+        TileBrickOven.class,
+        TileBrickOvenTop.class,
+        TileBrickSawmill.class,
+        TileBrickSawmillTop.class,
+        TileBrickCrucible.class,
+        TileBrickCrucibleTop.class,
+
         TileStoneHopper.class
     );
   }
@@ -39,10 +55,16 @@ public final class BlockInitializer {
     registry.registerClientModelRegistrationStrategy(() -> {
 
       ModelRegistrationHelper.registerBlockItemModels(
-          ModuleTechMachine.Blocks.KILN_STONE,
-          ModuleTechMachine.Blocks.MILL_STONE,
-          ModuleTechMachine.Blocks.OVEN_STONE,
-          ModuleTechMachine.Blocks.CRUCIBLE_STONE,
+          ModuleTechMachine.Blocks.STONE_KILN,
+          ModuleTechMachine.Blocks.STONE_SAWMILL,
+          ModuleTechMachine.Blocks.STONE_OVEN,
+          ModuleTechMachine.Blocks.STONE_CRUCIBLE,
+
+          ModuleTechMachine.Blocks.BRICK_KILN,
+          ModuleTechMachine.Blocks.BRICK_SAWMILL,
+          ModuleTechMachine.Blocks.BRICK_OVEN,
+          ModuleTechMachine.Blocks.BRICK_CRUCIBLE,
+
           ModuleTechMachine.Blocks.STONE_HOPPER
       );
 
@@ -51,6 +73,12 @@ public final class BlockInitializer {
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneOven.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneSawmill.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneCrucible.class, new TESRInteractable<>());
+
+      ClientRegistry.bindTileEntitySpecialRenderer(TileBrickKiln.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileBrickOven.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileBrickSawmill.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileBrickCrucible.class, new TESRInteractable<>());
+
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneHopper.class, new TESRInteractable<>());
     });
   }
