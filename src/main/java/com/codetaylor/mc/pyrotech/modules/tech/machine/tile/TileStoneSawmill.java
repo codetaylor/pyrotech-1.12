@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileSawmillBase;
 import net.minecraft.item.ItemStack;
 
 public class TileStoneSawmill

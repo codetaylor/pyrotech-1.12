@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileKilnBase;
 import net.minecraft.item.ItemStack;
 
 public class TileBrickKiln

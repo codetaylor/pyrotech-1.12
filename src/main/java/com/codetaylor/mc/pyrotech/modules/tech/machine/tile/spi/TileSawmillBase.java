@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
+package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
@@ -16,7 +16,6 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.MillInteractionBladeRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemSawmillBlade;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.SawmillRecipeBase;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;

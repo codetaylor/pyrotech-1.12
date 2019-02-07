@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
+package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
