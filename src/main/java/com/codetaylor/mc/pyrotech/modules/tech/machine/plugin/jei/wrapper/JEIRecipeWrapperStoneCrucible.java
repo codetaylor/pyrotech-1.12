@@ -1,30 +1,28 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper;
 
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInFluidOutBase;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperTimed;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class JEIRecipeWrapperMillStone
+public class JEIRecipeWrapperStoneCrucible
     extends JEIRecipeWrapperTimed {
 
   private final List<List<ItemStack>> inputs;
-  private final ItemStack output;
+  private final FluidStack output;
 
-  public JEIRecipeWrapperMillStone(StoneSawmillRecipe recipe) {
+  public JEIRecipeWrapperStoneCrucible(MachineRecipeItemInFluidOutBase recipe) {
 
     super(recipe);
 
-    this.inputs = new ArrayList<>(2);
-    this.inputs.add(Arrays.asList(recipe.getInput().getMatchingStacks()));
-    this.inputs.add(Arrays.asList(recipe.getBlade().getMatchingStacks()));
-
+    this.inputs = Collections.singletonList(Arrays.asList(recipe.getInput().getMatchingStacks()));
     this.output = recipe.getOutput();
   }
 
@@ -32,12 +30,12 @@ public class JEIRecipeWrapperMillStone
   public void getIngredients(@Nonnull IIngredients ingredients) {
 
     ingredients.setInputLists(VanillaTypes.ITEM, this.inputs);
-    ingredients.setOutput(VanillaTypes.ITEM, this.output);
+    ingredients.setOutput(VanillaTypes.FLUID, this.output);
   }
 
   @Override
   protected int getTimeDisplayY() {
 
-    return super.getTimeDisplayY() - 2;
+    return super.getTimeDisplayY() - 8;
   }
 }

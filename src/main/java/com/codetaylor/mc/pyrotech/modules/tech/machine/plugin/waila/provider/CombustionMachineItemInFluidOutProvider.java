@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInFluidOutBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInFluidOutBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDelegateMachineTop;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInFluidOutBase;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
@@ -22,7 +22,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class CombustionMachineItemInFluidOutProvider
-    extends CombustionMachineProvider<TileCombustionWorkerStoneItemInFluidOutBase, StoneMachineRecipeItemInFluidOutBase> {
+    extends CombustionMachineProvider<TileCombustionWorkerStoneItemInFluidOutBase, MachineRecipeItemInFluidOutBase> {
 
   @Nonnull
   @Override
@@ -65,7 +65,7 @@ public class CombustionMachineItemInFluidOutProvider
       ItemStack input = stackHandler.getStackInSlot(0);
       boolean hasOutput = outputFluidTank.getFluid() != null && outputFluidTank.getFluid().amount > 0;
       ItemStack fuel = fuelStackHandler.getStackInSlot(0);
-      StoneMachineRecipeItemInFluidOutBase recipe = null;
+      MachineRecipeItemInFluidOutBase recipe = null;
 
       if (!input.isEmpty()) {
 
@@ -78,7 +78,7 @@ public class CombustionMachineItemInFluidOutProvider
           renderString.append(WailaUtil.getStackRenderString(fuel));
         }
 
-        recipe = (StoneMachineRecipeItemInFluidOutBase) tile.getRecipe(input);
+        recipe = (MachineRecipeItemInFluidOutBase) tile.getRecipe(input);
 
         if (recipe != null) {
           FluidStack output = recipe.getOutput();
@@ -139,7 +139,7 @@ public class CombustionMachineItemInFluidOutProvider
   }
 
   @Override
-  protected float getModifiedRecipeTimeTicks(float recipeTimeTicks, TileCombustionWorkerStoneItemInFluidOutBase tile, ItemStack input, StoneMachineRecipeItemInFluidOutBase recipe) {
+  protected float getModifiedRecipeTimeTicks(float recipeTimeTicks, TileCombustionWorkerStoneItemInFluidOutBase tile, ItemStack input, MachineRecipeItemInFluidOutBase recipe) {
 
     if (!tile.processAsynchronous()
         && input.getCount() > 1) {

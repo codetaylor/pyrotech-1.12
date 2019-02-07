@@ -4,8 +4,8 @@ import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.SawmillRecipeBase;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInItemOutBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBaseSawmill;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInItemOutBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileSawmillBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDelegateMachineTop;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class SawmillProvider
-    extends CombustionMachineProvider<TileCombustionWorkerStoneItemInItemOutBase, StoneMachineRecipeItemInItemOutBase> {
+    extends CombustionMachineProvider<TileCombustionWorkerStoneItemInItemOutBase, MachineRecipeItemInItemOutBase> {
 
   @Nonnull
   @Override
@@ -65,7 +65,7 @@ public class SawmillProvider
       boolean hasOutput = !outputStackHandler.getStackInSlot(0).isEmpty();
       ItemStack fuel = fuelStackHandler.getStackInSlot(0);
       ItemStack blade = bladeStackHandler.getStackInSlot(0);
-      SawmillRecipeBase recipe = null;
+      MachineRecipeBaseSawmill recipe = null;
 
       if (!input.isEmpty()) {
 

@@ -2,14 +2,14 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.recipe;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.KilnRecipeBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBaseKiln;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 
 import javax.annotation.Nullable;
 
 public class BrickKilnRecipe
-    extends KilnRecipeBase<BrickKilnRecipe> {
+    extends MachineRecipeBaseKiln<BrickKilnRecipe> {
 
   @Nullable
   public static BrickKilnRecipe getRecipe(ItemStack input) {

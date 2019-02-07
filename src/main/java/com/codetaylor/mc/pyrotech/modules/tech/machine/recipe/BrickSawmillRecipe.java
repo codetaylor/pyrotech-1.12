@@ -2,14 +2,14 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.recipe;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.SawmillRecipeBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBaseSawmill;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 
 import javax.annotation.Nullable;
 
 public class BrickSawmillRecipe
-    extends SawmillRecipeBase<BrickSawmillRecipe> {
+    extends MachineRecipeBaseSawmill<BrickSawmillRecipe> {
 
   @Nullable
   public static BrickSawmillRecipe getRecipe(ItemStack input, ItemStack blade) {

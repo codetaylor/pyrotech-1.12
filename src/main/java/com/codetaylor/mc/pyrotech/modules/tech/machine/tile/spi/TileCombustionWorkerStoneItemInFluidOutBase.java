@@ -10,7 +10,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInFluidOutBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInFluidOutBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -23,7 +23,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends StoneMachineRecipeItemInFluidOutBase<E>>
+public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends MachineRecipeItemInFluidOutBase<E>>
     extends TileCombustionWorkerStoneItemInBase<E> {
 
   private OutputFluidTank outputFluidTank;

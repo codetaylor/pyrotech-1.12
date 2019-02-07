@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperMillStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperStoneSawmill;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class JEIRecipeCategoryMillStone
-    implements IRecipeCategory<JEIRecipeWrapperMillStone> {
+public class JEIRecipeCategoryStoneSawmill
+    implements IRecipeCategory<JEIRecipeWrapperStoneSawmill> {
 
   public static final String UID = ModuleTechMachine.MOD_ID + ".stone.mill";
 
@@ -23,7 +23,7 @@ public class JEIRecipeCategoryMillStone
 
   private final String title;
 
-  public JEIRecipeCategoryMillStone(IGuiHelper guiHelper) {
+  public JEIRecipeCategoryStoneSawmill(IGuiHelper guiHelper) {
 
     ResourceLocation resourceLocation = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei4.png");
 
@@ -73,7 +73,7 @@ public class JEIRecipeCategoryMillStone
 
   @ParametersAreNonnullByDefault
   @Override
-  public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperMillStone recipeWrapper, IIngredients ingredients) {
+  public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperStoneSawmill recipeWrapper, IIngredients ingredients) {
 
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 0);

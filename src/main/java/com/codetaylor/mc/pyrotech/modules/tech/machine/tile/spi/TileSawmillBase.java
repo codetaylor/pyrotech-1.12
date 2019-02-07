@@ -15,7 +15,7 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.MillInteractionBladeRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemSawmillBlade;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.SawmillRecipeBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBaseSawmill;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class TileSawmillBase<E extends SawmillRecipeBase<E>>
+public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
     extends TileCombustionWorkerStoneItemInItemOutBase<E> {
 
   private BladeStackHandler bladeStackHandler;

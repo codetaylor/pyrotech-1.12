@@ -5,13 +5,13 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class KilnRecipeBase<T extends IForgeRegistryEntry<T>>
-    extends StoneMachineRecipeItemInItemOutBase<T> {
+public abstract class MachineRecipeBaseKiln<T extends IForgeRegistryEntry<T>>
+    extends MachineRecipeItemInItemOutBase<T> {
 
   protected final float failureChance;
   protected final ItemStack[] failureItems;
 
-  public KilnRecipeBase(Ingredient input, ItemStack output, int timeTicks, float failureChance, ItemStack[] failureItems) {
+  public MachineRecipeBaseKiln(Ingredient input, ItemStack output, int timeTicks, float failureChance, ItemStack[] failureItems) {
 
     super(input, output, timeTicks);
     this.failureChance = MathHelper.clamp(failureChance, 0, 1);

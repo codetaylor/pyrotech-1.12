@@ -8,7 +8,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInItemOutBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInItemOutBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends StoneMachineRecipeItemInItemOutBase<E>>
+public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends MachineRecipeItemInItemOutBase<E>>
     extends TileCombustionWorkerStoneItemInBase<E> {
 
   private OutputStackHandler outputStackHandler;

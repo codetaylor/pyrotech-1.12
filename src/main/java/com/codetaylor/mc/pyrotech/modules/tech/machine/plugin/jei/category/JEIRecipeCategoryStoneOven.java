@@ -1,8 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperCrucibleStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperStoneOven;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -14,10 +13,10 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class JEIRecipeCategoryCrucibleStone
-    implements IRecipeCategory<JEIRecipeWrapperCrucibleStone> {
+public class JEIRecipeCategoryStoneOven
+    implements IRecipeCategory<JEIRecipeWrapperStoneOven> {
 
-  public static final String UID = ModuleTechMachine.MOD_ID + ".stone.crucible";
+  public static final String UID = ModuleTechMachine.MOD_ID + ".stone.oven";
 
   private final IDrawableAnimated animatedFlame;
   private final IDrawableAnimated arrow;
@@ -25,9 +24,9 @@ public class JEIRecipeCategoryCrucibleStone
 
   private final String title;
 
-  public JEIRecipeCategoryCrucibleStone(IGuiHelper guiHelper) {
+  public JEIRecipeCategoryStoneOven(IGuiHelper guiHelper) {
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei6.png");
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei2.png");
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82, 14, 24, 17);
     IDrawableStatic staticFlame = guiHelper.createDrawable(resourceLocation, 82, 0, 14, 14);
@@ -39,7 +38,7 @@ public class JEIRecipeCategoryCrucibleStone
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 33);
 
-    this.title = Translator.translateToLocal("gui." + ModuleTechMachine.MOD_ID + ".jei.category.crucible.stone");
+    this.title = Translator.translateToLocal("gui." + ModuleTechMachine.MOD_ID + ".jei.category.oven.stone");
   }
 
   @Nonnull
@@ -79,15 +78,12 @@ public class JEIRecipeCategoryCrucibleStone
 
   @ParametersAreNonnullByDefault
   @Override
-  public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperCrucibleStone recipeWrapper, IIngredients ingredients) {
+  public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperStoneOven recipeWrapper, IIngredients ingredients) {
 
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 0);
-    itemStacks.set(ingredients);
+    itemStacks.init(1, false, 60, 10);
 
-    IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-    int capacity = ModuleTechMachineConfig.STONE_CRUCIBLE.OUTPUT_TANK_SIZE;
-    fluidStacks.init(1, false, 61, 11, 16, 16, capacity, true, null);
-    fluidStacks.set(ingredients);
+    itemStacks.set(ingredients);
   }
 }

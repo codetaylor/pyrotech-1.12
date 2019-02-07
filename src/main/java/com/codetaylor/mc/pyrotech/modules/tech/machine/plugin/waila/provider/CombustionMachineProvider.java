@@ -5,7 +5,7 @@ import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -13,7 +13,7 @@ import net.minecraft.util.text.TextFormatting;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class CombustionMachineProvider<T extends TileCombustionWorkerStoneBase, R extends StoneMachineRecipeBase>
+public abstract class CombustionMachineProvider<T extends TileCombustionWorkerStoneBase, R extends MachineRecipeBase>
     extends BodyProviderAdapter {
 
   protected void addBurnTimeInfo(List<String> tooltip, T tile, float progress, ItemStack input, ItemStack fuel, @Nullable R recipe) {

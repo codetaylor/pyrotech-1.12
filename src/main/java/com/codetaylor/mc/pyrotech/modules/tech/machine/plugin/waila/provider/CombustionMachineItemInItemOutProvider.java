@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInItemOutBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInItemOutBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDelegateMachineTop;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -18,7 +18,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class CombustionMachineItemInItemOutProvider
-    extends CombustionMachineProvider<TileCombustionWorkerStoneItemInItemOutBase, StoneMachineRecipeItemInItemOutBase> {
+    extends CombustionMachineProvider<TileCombustionWorkerStoneItemInItemOutBase, MachineRecipeItemInItemOutBase> {
 
   @Nonnull
   @Override
@@ -61,7 +61,7 @@ public class CombustionMachineItemInItemOutProvider
       ItemStack input = stackHandler.getStackInSlot(0);
       boolean hasOutput = !outputStackHandler.getStackInSlot(0).isEmpty();
       ItemStack fuel = fuelStackHandler.getStackInSlot(0);
-      StoneMachineRecipeItemInItemOutBase recipe = null;
+      MachineRecipeItemInItemOutBase recipe = null;
 
       if (!input.isEmpty()) {
 
@@ -74,7 +74,7 @@ public class CombustionMachineItemInItemOutProvider
           renderString.append(WailaUtil.getStackRenderString(fuel));
         }
 
-        recipe = (StoneMachineRecipeItemInItemOutBase) tile.getRecipe(input);
+        recipe = (MachineRecipeItemInItemOutBase) tile.getRecipe(input);
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();

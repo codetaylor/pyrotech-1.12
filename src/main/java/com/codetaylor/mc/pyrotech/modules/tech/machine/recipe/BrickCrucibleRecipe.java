@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.recipe;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInFluidOutBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInFluidOutBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
@@ -10,7 +10,7 @@ import net.minecraftforge.fluids.FluidStack;
 import javax.annotation.Nullable;
 
 public class BrickCrucibleRecipe
-    extends StoneMachineRecipeItemInFluidOutBase<BrickCrucibleRecipe> {
+    extends MachineRecipeItemInFluidOutBase<BrickCrucibleRecipe> {
 
   @Nullable
   public static BrickCrucibleRecipe getRecipe(ItemStack input) {

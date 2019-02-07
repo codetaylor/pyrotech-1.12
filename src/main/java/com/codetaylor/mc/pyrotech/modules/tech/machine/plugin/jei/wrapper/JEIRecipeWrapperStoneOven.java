@@ -15,19 +15,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class JEIRecipeWrapperOvenStone
+public class JEIRecipeWrapperStoneOven
     implements IRecipeWrapper {
 
   private final List<List<ItemStack>> inputs;
   private final ItemStack output;
   private final String timeString;
 
-  public JEIRecipeWrapperOvenStone(StoneOvenRecipe recipe) {
+  public JEIRecipeWrapperStoneOven(StoneOvenRecipe recipe) {
 
     this(recipe.getInput(), recipe.getOutput(), recipe.getTimeTicks());
   }
 
-  public JEIRecipeWrapperOvenStone(Ingredient input, ItemStack output, int timeTicks) {
+  public JEIRecipeWrapperStoneOven(Ingredient input, ItemStack output, int timeTicks) {
 
     this.inputs = Collections.singletonList(Arrays.asList(input.getMatchingStacks()));
     this.output = output;

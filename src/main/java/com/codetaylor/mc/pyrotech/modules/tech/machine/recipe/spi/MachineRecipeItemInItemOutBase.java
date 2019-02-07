@@ -5,13 +5,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class StoneMachineRecipeItemInItemOutBase<T extends IForgeRegistryEntry<T>>
-    extends StoneMachineRecipeItemInBase<T>
+public abstract class MachineRecipeItemInItemOutBase<T extends IForgeRegistryEntry<T>>
+    extends MachineRecipeItemInBase<T>
     implements IRecipeSingleOutput {
 
   protected final ItemStack output;
 
-  public StoneMachineRecipeItemInItemOutBase(Ingredient input, ItemStack output, int timeTicks) {
+  public MachineRecipeItemInItemOutBase(Ingredient input, ItemStack output, int timeTicks) {
 
     super(input, timeTicks);
 

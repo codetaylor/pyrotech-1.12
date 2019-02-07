@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperKilnStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperStoneKiln;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -13,8 +13,8 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class JEIRecipeCategoryKilnStone
-    implements IRecipeCategory<JEIRecipeWrapperKilnStone> {
+public class JEIRecipeCategoryStoneKiln
+    implements IRecipeCategory<JEIRecipeWrapperStoneKiln> {
 
   public static final String UID = ModuleTechMachine.MOD_ID + ".stone.kiln";
 
@@ -24,7 +24,7 @@ public class JEIRecipeCategoryKilnStone
 
   private final String title;
 
-  public JEIRecipeCategoryKilnStone(IGuiHelper guiHelper) {
+  public JEIRecipeCategoryStoneKiln(IGuiHelper guiHelper) {
 
     ResourceLocation resourceLocation = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei8.png");
 
@@ -78,7 +78,7 @@ public class JEIRecipeCategoryKilnStone
 
   @ParametersAreNonnullByDefault
   @Override
-  public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperKilnStone recipeWrapper, IIngredients ingredients) {
+  public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperStoneKiln recipeWrapper, IIngredients ingredients) {
 
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 0);

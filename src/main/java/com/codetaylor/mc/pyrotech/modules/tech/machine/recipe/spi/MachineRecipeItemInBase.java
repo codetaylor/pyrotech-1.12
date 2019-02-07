@@ -4,12 +4,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class StoneMachineRecipeItemInBase<T extends IForgeRegistryEntry<T>>
-    extends StoneMachineRecipeBase<T> {
+public abstract class MachineRecipeItemInBase<T extends IForgeRegistryEntry<T>>
+    extends MachineRecipeBase<T> {
 
   protected final Ingredient input;
 
-  public StoneMachineRecipeItemInBase(Ingredient input, int timeTicks) {
+  public MachineRecipeItemInBase(Ingredient input, int timeTicks) {
 
     super(timeTicks);
 

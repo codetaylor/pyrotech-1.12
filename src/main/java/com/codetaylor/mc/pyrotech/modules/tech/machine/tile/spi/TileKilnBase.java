@@ -2,14 +2,13 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.KilnRecipeBase;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInItemOutBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBaseKiln;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TileKilnBase<E extends KilnRecipeBase<E>>
+public abstract class TileKilnBase<E extends MachineRecipeBaseKiln<E>>
     extends TileCombustionWorkerStoneItemInItemOutBase<E> {
 
   @Override

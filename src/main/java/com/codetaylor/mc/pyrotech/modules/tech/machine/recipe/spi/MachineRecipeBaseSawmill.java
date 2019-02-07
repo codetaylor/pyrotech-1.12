@@ -4,13 +4,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class SawmillRecipeBase<T extends IForgeRegistryEntry<T>>
-    extends StoneMachineRecipeItemInItemOutBase<T> {
+public abstract class MachineRecipeBaseSawmill<T extends IForgeRegistryEntry<T>>
+    extends MachineRecipeItemInItemOutBase<T> {
 
   protected final Ingredient blade;
   protected final boolean createWoodChips;
 
-  public SawmillRecipeBase(Ingredient input, ItemStack output, int timeTicks, Ingredient blade, boolean createWoodChips) {
+  public MachineRecipeBaseSawmill(Ingredient input, ItemStack output, int timeTicks, Ingredient blade, boolean createWoodChips) {
 
     super(input, output, timeTicks);
     this.blade = blade;

@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.recipe;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.StoneMachineRecipeItemInItemOutBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInItemOutBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.Ingredient;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class StoneOvenRecipe
-    extends StoneMachineRecipeItemInItemOutBase<StoneOvenRecipe> {
+    extends MachineRecipeItemInItemOutBase<StoneOvenRecipe> {
 
   private static final Map<String, StoneOvenRecipe> SMELTING_RECIPES = new HashMap<>();
   private static final List<Ingredient> WHITELIST = new ArrayList<>();

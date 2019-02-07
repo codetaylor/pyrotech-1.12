@@ -5,13 +5,13 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public abstract class StoneMachineRecipeItemInFluidOutBase<T extends IForgeRegistryEntry<T>>
-    extends StoneMachineRecipeItemInBase<T>
+public abstract class MachineRecipeItemInFluidOutBase<T extends IForgeRegistryEntry<T>>
+    extends MachineRecipeItemInBase<T>
     implements IRecipeSingleFluidOutput {
 
   protected final FluidStack output;
 
-  public StoneMachineRecipeItemInFluidOutBase(Ingredient input, FluidStack output, int timeTicks) {
+  public MachineRecipeItemInFluidOutBase(Ingredient input, FluidStack output, int timeTicks) {
 
     super(input, timeTicks);
 
