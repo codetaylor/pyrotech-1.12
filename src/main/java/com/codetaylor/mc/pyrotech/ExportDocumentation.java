@@ -3,10 +3,7 @@ package com.codetaylor.mc.pyrotech;
 import com.codetaylor.mc.athenaeum.tools.ZenDocExporter;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker.*;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.crafttweaker.ZenBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker.ZenCrucibleStone;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker.ZenKilnStone;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker.ZenMillStone;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker.ZenOvenStone;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker.*;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.crafttweaker.ZenBurn;
 
 import java.io.IOException;
@@ -25,15 +22,19 @@ public class ExportDocumentation {
         ZenCampfire.class,
         ZenChoppingBlock.class,
         ZenCompactingBin.class,
-        ZenCrucibleStone.class,
         ZenDryingRack.class,
         ZenGraniteAnvil.class,
         ZenKilnPit.class,
-        ZenKilnStone.class,
-        ZenMillStone.class,
-        ZenOvenStone.class,
         ZenSoakingPot.class,
-        ZenWorktable.class
+        ZenWorktable.class,
+        ZenStoneCrucible.class,
+        ZenStoneKiln.class,
+        ZenStoneSawmill.class,
+        ZenStoneOven.class,
+        ZenBrickCrucible.class,
+        ZenBrickKiln.class,
+        ZenBrickSawmill.class,
+        ZenBrickOven.class
     };
 
     ZenDocExporter export = new ZenDocExporter();

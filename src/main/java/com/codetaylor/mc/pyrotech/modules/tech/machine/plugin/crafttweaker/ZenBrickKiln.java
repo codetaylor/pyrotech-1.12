@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickKilnRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
@@ -15,9 +15,9 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenDocClass("mods.pyrotech.StoneKiln")
-@ZenClass("mods.pyrotech.StoneKiln")
-public class ZenKilnStone {
+@ZenDocClass("mods.pyrotech.BrickKiln")
+@ZenClass("mods.pyrotech.BrickKiln")
+public class ZenBrickKiln {
 
   @ZenDocMethod(
       order = 1,
@@ -26,7 +26,7 @@ public class ZenKilnStone {
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int burnTimeTicks) {
 
-    ZenKilnStone.addRecipe(name, output, input, burnTimeTicks, 0, new IItemStack[0]);
+    ZenBrickKiln.addRecipe(name, output, input, burnTimeTicks, 0, new IItemStack[0]);
   }
 
   @ZenDocMethod(
@@ -76,13 +76,13 @@ public class ZenKilnStone {
     @Override
     public void apply() {
 
-      StoneKilnRecipe.removeRecipes(this.output);
+      BrickKilnRecipe.removeRecipes(this.output);
     }
 
     @Override
     public String describe() {
 
-      return "Removing stone kiln recipes for " + this.output;
+      return "Removing brick kiln recipes for " + this.output;
     }
   }
 
@@ -116,20 +116,20 @@ public class ZenKilnStone {
     @Override
     public void apply() {
 
-      StoneKilnRecipe recipe = new StoneKilnRecipe(
+      BrickKilnRecipe recipe = new BrickKilnRecipe(
           this.output,
           this.input,
           this.burnTimeTicks,
           this.failureChance,
           this.failureItems
       );
-      ModuleTechMachine.Registries.STONE_KILN_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModuleTechMachine.Registries.BRICK_KILN_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override
     public String describe() {
 
-      return "Adding stone kiln recipe for " + this.output;
+      return "Adding brick kiln recipe for " + this.output;
     }
   }
 

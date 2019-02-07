@@ -54,10 +54,14 @@ public class ModuleTechMachine
     MinecraftForge.EVENT_BUS.register(this);
 
     String[] craftTweakerPlugins = {
-        "ZenKilnStone",
-        "ZenMillStone",
-        "ZenCrucibleStone",
-        "ZenOvenStone"
+        "ZenStoneKiln",
+        "ZenStoneSawmill",
+        "ZenStoneCrucible",
+        "ZenStoneOven",
+        "ZenBrickKiln",
+        "ZenBrickSawmill",
+        "ZenBrickCrucible",
+        "ZenBrickOven"
     };
 
     for (String plugin : craftTweakerPlugins) {

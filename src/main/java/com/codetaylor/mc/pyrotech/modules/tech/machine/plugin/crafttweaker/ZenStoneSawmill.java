@@ -3,39 +3,44 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
-import crafttweaker.api.liquid.ILiquidStack;
+import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.mc1120.CraftTweaker;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidStack;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenDocClass("mods.pyrotech.StoneCrucible")
-@ZenClass("mods.pyrotech.StoneCrucible")
-public class ZenCrucibleStone {
+@ZenDocClass("mods.pyrotech.StoneSawmill")
+@ZenClass("mods.pyrotech.StoneSawmill")
+public class ZenStoneSawmill {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "input", "burnTimeTicks"}
+      args = {"name", "output", "input", "burnTimeTicks", "blade", "createWoodChips"}
   )
   @ZenMethod
   public static void addRecipe(
       String name,
-      ILiquidStack output,
+      IItemStack output,
       IIngredient input,
-      int burnTimeTicks
+      int burnTimeTicks,
+      IIngredient blade,
+      @Optional(valueBoolean = true) boolean createWoodChips
   ) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
         name,
-        CraftTweakerMC.getLiquidStack(output),
+        CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getIngredient(input),
-        burnTimeTicks
+        burnTimeTicks,
+        CraftTweakerMC.getIngredient(blade),
+        createWoodChips
     ));
   }
 
@@ -44,17 +49,17 @@ public class ZenCrucibleStone {
       args = {"output"}
   )
   @ZenMethod
-  public static void removeRecipes(ILiquidStack output) {
+  public static void removeRecipes(IIngredient output) {
 
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getLiquidStack(output)));
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
   }
 
   public static class RemoveRecipe
       implements IAction {
 
-    private final FluidStack output;
+    private final Ingredient output;
 
-    public RemoveRecipe(FluidStack output) {
+    public RemoveRecipe(Ingredient output) {
 
       this.output = output;
     }
@@ -62,7 +67,7 @@ public class ZenCrucibleStone {
     @Override
     public void apply() {
 
-      StoneCrucibleRecipe.removeRecipes(this.output);
+      StoneSawmillRecipe.removeRecipes(this.output);
     }
 
     @Override
@@ -76,38 +81,46 @@ public class ZenCrucibleStone {
       implements IAction {
 
     private final String name;
-    private final FluidStack output;
+    private final ItemStack output;
     private final Ingredient input;
     private final int burnTimeTicks;
+    private final Ingredient blade;
+    private final boolean createWoodChips;
 
     public AddRecipe(
         String name,
-        FluidStack output,
+        ItemStack output,
         Ingredient input,
-        int burnTimeTicks
+        int burnTimeTicks,
+        Ingredient blade,
+        boolean createWoodChips
     ) {
 
       this.name = name;
       this.input = input;
       this.output = output;
       this.burnTimeTicks = burnTimeTicks;
+      this.blade = blade;
+      this.createWoodChips = createWoodChips;
     }
 
     @Override
     public void apply() {
 
-      StoneCrucibleRecipe recipe = new StoneCrucibleRecipe(
+      StoneSawmillRecipe recipe = new StoneSawmillRecipe(
           this.output,
           this.input,
-          this.burnTimeTicks
+          this.burnTimeTicks,
+          this.blade,
+          this.createWoodChips
       );
-      ModuleTechMachine.Registries.STONE_CRUCIBLE_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModuleTechMachine.Registries.STONE_SAWMILL_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override
     public String describe() {
 
-      return "Adding stone crucible recipe for " + this.output;
+      return "Adding stone mill recipe for " + this.output;
     }
   }
 

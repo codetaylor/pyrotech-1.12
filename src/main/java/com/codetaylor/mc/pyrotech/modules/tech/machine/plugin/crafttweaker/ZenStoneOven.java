@@ -18,7 +18,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 @ZenDocClass("mods.pyrotech.StoneOven")
 @ZenClass("mods.pyrotech.StoneOven")
-public class ZenOvenStone {
+public class ZenStoneOven {
 
   @ZenDocMethod(
       order = 1,

@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickSawmillRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
@@ -16,9 +16,9 @@ import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenDocClass("mods.pyrotech.StoneSawmill")
-@ZenClass("mods.pyrotech.StoneSawmill")
-public class ZenMillStone {
+@ZenDocClass("mods.pyrotech.BrickSawmill")
+@ZenClass("mods.pyrotech.BrickSawmill")
+public class ZenBrickSawmill {
 
   @ZenDocMethod(
       order = 1,
@@ -67,13 +67,13 @@ public class ZenMillStone {
     @Override
     public void apply() {
 
-      StoneSawmillRecipe.removeRecipes(this.output);
+      BrickSawmillRecipe.removeRecipes(this.output);
     }
 
     @Override
     public String describe() {
 
-      return "Removing stone mill recipes for " + this.output;
+      return "Removing brick sawmill recipes for " + this.output;
     }
   }
 
@@ -107,20 +107,20 @@ public class ZenMillStone {
     @Override
     public void apply() {
 
-      StoneSawmillRecipe recipe = new StoneSawmillRecipe(
+      BrickSawmillRecipe recipe = new BrickSawmillRecipe(
           this.output,
           this.input,
           this.burnTimeTicks,
           this.blade,
           this.createWoodChips
       );
-      ModuleTechMachine.Registries.STONE_SAWMILL_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ModuleTechMachine.Registries.BRICK_SAWMILL_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
 
     @Override
     public String describe() {
 
-      return "Adding stone mill recipe for " + this.output;
+      return "Adding brick sawmill recipe for " + this.output;
     }
   }
 
