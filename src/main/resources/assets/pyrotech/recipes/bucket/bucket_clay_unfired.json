@@ -11,21 +11,13 @@
     }
   ],
   "pattern": [
-    "MFM",
-    ".M."
+    "M M",
+    " M "
   ],
   "key": {
     "M": {
       "item": "pyrotech:material",
       "data": 24
-    },
-    "F": {
-      "item": "minecraft:clay_ball",
-      "data": 0
-    },
-    ".": {
-      "item": "pyrotech:material",
-      "data": 17
     }
   },
   "result": {
