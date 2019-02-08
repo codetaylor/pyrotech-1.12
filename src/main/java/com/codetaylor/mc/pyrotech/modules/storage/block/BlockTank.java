@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankBase;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankBrick;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankStone;
 import net.minecraft.block.material.Material;
@@ -27,6 +28,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -46,6 +49,29 @@ public class BlockTank
     super(Material.ROCK);
     this.setHarvestLevel("pickaxe", 0);
     this.setHardness(2);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Light
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileTankBase) {
+      TileTankBase tile = (TileTankBase) tileEntity;
+      FluidTank fluidTank = tile.getFluidTank();
+      FluidStack fluid = fluidTank.getFluid();
+      int fluidAmount = fluidTank.getFluidAmount();
+
+      if (fluid != null && fluidAmount > 0) {
+        return fluid.getFluid().getBlock().getDefaultState().getLightValue();
+      }
+    }
+
+    return super.getLightValue(state, world, pos);
   }
 
   // ---------------------------------------------------------------------------

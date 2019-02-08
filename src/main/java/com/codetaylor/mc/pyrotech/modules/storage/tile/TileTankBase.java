@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
+import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
@@ -135,6 +136,7 @@ public abstract class TileTankBase
 
     super.readFromNBT(compound);
     this.tank.readFromNBT(compound.getCompoundTag("tank"));
+    BlockHelper.notifyBlockUpdate(this.world, this.pos);
     this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
   }
 
