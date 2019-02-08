@@ -41,6 +41,8 @@ tile.pyrotech.stash_stone.name=Durable Stash
 tile.pyrotech.crate.name=Crate
 tile.pyrotech.crate_stone.name=Durable Crate
 tile.pyrotech.wood_rack.name=Wood Rack
+tile.pyrotech.tank.stone.name=Stone Tank
+tile.pyrotech.tank.brick.name=Refractory Tank
 
 #------------------------------------------------------------------------------
 # Module: Tech - Basic

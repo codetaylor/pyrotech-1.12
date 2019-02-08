@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;
+import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRTank;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.*;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,6 +22,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockCrate(), BlockCrate.NAME);
     registry.registerBlockWithItem(new BlockCrateStone(), BlockCrateStone.NAME);
     registry.registerBlockWithItem(new BlockWoodRack(), BlockWoodRack.NAME);
+    registry.registerBlockWithItem(new BlockTank(), BlockTank.NAME);
 
     registry.registerTileEntities(
         TileShelf.class,
@@ -29,7 +31,9 @@ public final class BlockInitializer {
         TileStashStone.class,
         TileCrate.class,
         TileCrateStone.class,
-        TileWoodRack.class
+        TileWoodRack.class,
+        TileTankStone.class,
+        TileTankBrick.class
     );
   }
 
@@ -48,7 +52,15 @@ public final class BlockInitializer {
           ModuleStorage.Blocks.WOOD_RACK
       );
 
+      // Tank
+      ModelRegistrationHelper.registerVariantBlockItemModels(
+          ModuleStorage.Blocks.TANK.getDefaultState(),
+          BlockTank.TYPE
+      );
+
       // TESRs
+      ClientRegistry.bindTileEntitySpecialRenderer(TileTankBase.class, new TESRTank());
+
       ClientRegistry.bindTileEntitySpecialRenderer(TileShelf.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileStash.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCrate.class, new TESRInteractable<>());

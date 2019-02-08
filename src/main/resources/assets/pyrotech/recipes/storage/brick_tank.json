@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.storage"]
+    }
+  ],
+  "pattern": [
+    "BGB",
+    "G G",
+    "BGB"
+  ],
+  "key": {
+    "B": {
+      "item": "pyrotech:material",
+      "data": 5
+    },
+    "G": {
+      "item": "pyrotech:refractory_glass",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:tank",
+    "count": 1,
+    "data": 1
+  }
+}

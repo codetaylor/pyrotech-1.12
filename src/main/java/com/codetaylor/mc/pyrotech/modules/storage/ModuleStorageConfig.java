@@ -6,6 +6,66 @@ import net.minecraftforge.common.config.Config;
 public class ModuleStorageConfig {
 
   // ---------------------------------------------------------------------------
+  // - Stone Tank
+  // ---------------------------------------------------------------------------
+
+  public static StoneTank STONE_TANK = new StoneTank();
+
+  public static class StoneTank {
+
+    @Config.Comment({
+        "The amount of fluid this container can hold in mB.",
+        "Default: " + 4000
+    })
+    public int CAPACITY = 4000;
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the container will break when a hot fluid is placed inside,",
+        "and the fluid will spawn in the world where the tank was.",
+        "Default: " + false
+    })
+    public boolean HOLDS_HOT_FLUIDS = false;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Brick Tank
+  // ---------------------------------------------------------------------------
+
+  public static BrickTank BRICK_TANK = new BrickTank();
+
+  public static class BrickTank {
+
+    @Config.Comment({
+        "The amount of fluid this container can hold in mB.",
+        "Default: " + 8000
+    })
+    public int CAPACITY = 8000;
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the container will break when a hot fluid is placed inside,",
+        "and the fluid will spawn in the world where the tank was.",
+        "Default: " + true
+    })
+    public boolean HOLDS_HOT_FLUIDS = true;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Crate
   // ---------------------------------------------------------------------------
 
