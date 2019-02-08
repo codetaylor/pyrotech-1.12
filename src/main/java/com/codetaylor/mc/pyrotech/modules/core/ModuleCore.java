@@ -125,6 +125,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockRefractoryGlass.NAME)
     public static final BlockRefractoryGlass REFRACTORY_GLASS;
 
+    @GameRegistry.ObjectHolder(BlockSlagGlass.NAME)
+    public static final BlockSlagGlass SLAG_GLASS;
+
     @GameRegistry.ObjectHolder(BlockRock.NAME)
     public static final BlockRock ROCK;
 
@@ -170,6 +173,7 @@ public class ModuleCore
       STONE_DOOR = null;
       LIMESTONE = null;
       REFRACTORY_GLASS = null;
+      SLAG_GLASS = null;
       ROCK = null;
       ROCK_GRASS = null;
       ORE = null;

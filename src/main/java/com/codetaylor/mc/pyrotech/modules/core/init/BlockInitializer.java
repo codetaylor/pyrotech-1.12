@@ -44,6 +44,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockRefractoryBrick(), BlockRefractoryBrick.NAME);
     registry.registerBlockWithItem(new BlockLimestone(), BlockLimestone.NAME);
     registry.registerBlockWithItem(new BlockRefractoryGlass(), BlockRefractoryGlass.NAME);
+    registry.registerBlockWithItem(new BlockSlagGlass(), BlockSlagGlass.NAME);
     registry.registerBlockWithItem(new BlockOre(), BlockOre.NAME);
     registry.registerBlockWithItem(new BlockCobblestone(), BlockCobblestone.NAME);
     registry.registerBlockWithItem(new BlockStoneBricks(), BlockStoneBricks.NAME);
@@ -72,6 +73,7 @@ public final class BlockInitializer {
           ModuleCore.Blocks.REFRACTORY_BRICK,
           ModuleCore.Blocks.LIMESTONE,
           ModuleCore.Blocks.REFRACTORY_GLASS,
+          ModuleCore.Blocks.SLAG_GLASS,
           ModuleCore.Blocks.STONE_BRICKS,
           ModuleCore.Blocks.FARMLAND_MULCHED,
           ModuleCore.Blocks.PLANKS_TARRED,

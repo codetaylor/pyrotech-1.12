@@ -219,6 +219,7 @@ tile.pyrotech.log_pile.name=Log Pile
 tile.pyrotech.refractory_brick_block.name=Refractory Block
 tile.pyrotech.limestone.name=Limestone
 tile.pyrotech.refractory_glass.name=Refractory Glass
+tile.pyrotech.slag_glass.name=Slag Glass
 tile.pyrotech.ore.fossil_ore.name=Fossil Ore
 tile.pyrotech.cobblestone.andesite.name=Cobbled Andesite
 tile.pyrotech.cobblestone.diorite.name=Cobbled Diorite
