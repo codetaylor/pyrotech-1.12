@@ -1,10 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
 import net.minecraft.init.Blocks;
@@ -149,9 +151,24 @@ public class StoneKilnRecipesAdd {
         Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
         Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack(),
             ItemMaterial.EnumType.GLASS_SHARD.asStack(4)
         }
     ).setRegistryName(ModuleTechMachine.MOD_ID, "glass"));
+
+    // Slag Glass
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleBloomery.class)) {
+      registry.register(new StoneKilnRecipe(
+          new ItemStack(ModuleCore.Blocks.SLAG_GLASS, 1, 0),
+          Ingredient.fromStacks(
+              new ItemStack(ModuleBloomery.Blocks.PILE_SLAG, 1, 0)
+          ),
+          Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+          Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
+          new ItemStack[]{
+              ItemMaterial.EnumType.GLASS_SHARD.asStack(4),
+              new ItemStack(ModuleBloomery.Items.SLAG, 4, 0)
+          }
+      ).setRegistryName(ModuleTechMachine.MOD_ID, "slag_glass"));
+    }
   }
 }
