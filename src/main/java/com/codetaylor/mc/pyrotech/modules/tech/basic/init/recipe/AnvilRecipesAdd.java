@@ -188,6 +188,25 @@ public class AnvilRecipesAdd {
         AnvilRecipe.EnumType.HAMMER
     ).setRegistryName(ModuleTechBasic.MOD_ID, "crushed_flint_from_flint"));
 
+    // Sand Pile from Glass Shard
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta()),
+        Ingredient.fromStacks(ItemMaterial.EnumType.GLASS_SHARD.asStack()),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "sand_pile_from_glass_shard"));
+
+    // Sand Pile from Pottery Pieces
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta()),
+        Ingredient.fromStacks(
+            ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack(),
+            ItemMaterial.EnumType.POTTERY_SHARD.asStack()
+        ),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "sand_pile_from_pottery_pieces"));
+
     // Iron Shard from Iron Nugget
     registry.register(new AnvilRecipe(
         ItemMaterial.EnumType.IRON_SHARD.asStack(1),
