@@ -19,13 +19,13 @@ public class BrickOvenRecipesAdd {
   ) {
 
     if (ModuleTechMachineConfig.BRICK_OVEN.INHERIT_STONE_TIER_RECIPES) {
-      RecipeHelper.inherit(stoneRegistry, brickRegistry, recipe -> {
+      RecipeHelper.inherit("stone_oven", stoneRegistry, brickRegistry, recipe -> {
         int cookTimeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_OVEN.INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER);
         return new BrickOvenRecipe(
             recipe.getOutput(),
             recipe.getInput(),
             Math.max(1, cookTimeTicks)
-        ).setRegistryName("parent_stone_" + recipe.getRegistryName());
+        );
       });
     }
   }

@@ -19,7 +19,7 @@ public class BrickSawmillRecipesAdd {
   ) {
 
     if (ModuleTechMachineConfig.BRICK_SAWMILL.INHERIT_STONE_TIER_RECIPES) {
-      RecipeHelper.inherit(stoneRegistry, brickRegistry, recipe -> {
+      RecipeHelper.inherit("stone_sawmill", stoneRegistry, brickRegistry, recipe -> {
         int cookTimeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_SAWMILL.INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER);
         return new BrickSawmillRecipe(
             recipe.getOutput(),
@@ -27,7 +27,7 @@ public class BrickSawmillRecipesAdd {
             Math.max(1, cookTimeTicks),
             recipe.getBlade(),
             recipe.createWoodChips()
-        ).setRegistryName("parent_stone_" + recipe.getRegistryName());
+        );
       });
     }
   }
