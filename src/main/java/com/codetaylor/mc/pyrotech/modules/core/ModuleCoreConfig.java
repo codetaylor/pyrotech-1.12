@@ -7,6 +7,16 @@ import net.minecraftforge.common.config.Config;
 @Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + ".core")
 public class ModuleCoreConfig {
 
+  public static Tweaks TWEAKS = new Tweaks();
+
+  public static class Tweaks {
+
+    @Config.Comment({
+        "If true, vanilla sheep won't drop vanilla wool."
+    })
+    public boolean PREVENT_WOOL_ON_SHEEP_DEATH = true;
+  }
+
   public static Hammers HAMMERS = new Hammers();
 
   public static class Hammers {
