@@ -3,12 +3,13 @@
   "conditions": [
     {
       "type": "modules_enabled",
-      "include": ["module.tech.machine", "module.storage"]
+      "include": ["module.tech.machine"],
+      "exclude": ["module.storage"]
     }
   ],
   "pattern": [
     "B-B",
-    "BTB",
+    "B-B",
     "BBB"
   ],
   "key": {
@@ -19,10 +20,6 @@
     "-": {
       "item": "pyrotech:material",
       "data": 16
-    },
-    "T": {
-      "item": "pyrotech:tank",
-      "data": 0
     }
   },
   "result": {
