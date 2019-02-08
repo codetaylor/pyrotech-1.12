@@ -122,6 +122,21 @@ public abstract class ItemBucketBase
     return super.hasContainerItem(stack);
   }
 
+  @Nonnull
+  @Override
+  public ItemStack getContainerItem(@Nonnull ItemStack itemStack) {
+
+    if (!this.getEmpty().isEmpty()) {
+
+      // Create a copy such that the game can't mess with it
+      ItemStack copy = this.getEmpty().copy();
+      this.setDurability(copy, this.getDurability(itemStack));
+      return copy;
+    }
+
+    return super.getContainerItem(itemStack);
+  }
+
   @Override
   public void getSubItems(@Nullable CreativeTabs tab, @Nonnull NonNullList<ItemStack> subItems) {
 
