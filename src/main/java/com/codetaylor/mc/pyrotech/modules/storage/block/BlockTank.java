@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.storage.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
@@ -72,6 +73,42 @@ public class BlockTank
   ) {
 
     return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+  }
+
+  @Override
+  public boolean removedByPlayer(@Nonnull IBlockState state, World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
+
+    // Delay the destruction of the TE until after #getDrops is called. We need
+    // access to the TE while creating the dropped item in order to serialize it.
+    return willHarvest || super.removedByPlayer(state, world, pos, player, false);
+  }
+
+  @Override
+  public void harvestBlock(@Nonnull World world, EntityPlayer player, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+
+    super.harvestBlock(world, player, pos, state, te, stack);
+
+    if (!world.isRemote) {
+      world.setBlockToAir(pos);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Drops
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void getDrops(@Nonnull NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
+
+    // Serialize the TE into the item dropped.
+    // Called before #breakBlock
+
+    drops.add(StackHelper.createItemStackFromTileEntity(
+        this,
+        1,
+        state.getValue(BlockTank.TYPE).getMeta(),
+        world.getTileEntity(pos)
+    ));
   }
 
   // ---------------------------------------------------------------------------

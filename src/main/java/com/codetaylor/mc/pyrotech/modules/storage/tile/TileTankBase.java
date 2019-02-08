@@ -213,5 +213,40 @@ public abstract class TileTankBase
 
       return filled;
     }
+
+    // Special serialization to bypass a bug where the ItemBlock merges an
+    // empty tank with the full tank, adding the Empty tag to an otherwise
+    // full tank.
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+
+      if (this.fluid != null) {
+        this.fluid.writeToNBT(nbt);
+
+      } else {
+        nbt.setString("Empty", "");
+      }
+      return nbt;
+    }
+
+    @Override
+    public FluidTank readFromNBT(NBTTagCompound nbt) {
+
+      if (nbt.hasKey("Empty")) {
+        // We need to check if it actually is empty, because of the bug
+        // mentioned above.
+
+        if (!nbt.hasKey("Amount")
+            || nbt.getInteger("Amount") <= 0) {
+          this.setFluid(null);
+          return this;
+        }
+      }
+
+      FluidStack fluid = FluidStack.loadFluidStackFromNBT(nbt);
+      this.setFluid(fluid);
+      return this;
+    }
   }
 }
