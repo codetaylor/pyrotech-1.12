@@ -178,6 +178,14 @@ public class AnvilRecipesAdd {
         AnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_coke_block_to_coal_coke"));
 
+    // Charcoal block to charcoal
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.COAL, 9, 1),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK)),
+        8,
+        AnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_block_to_charcoal"));
+
     // --- Hammer Recipes ------------------------------------------------------
 
     // Crushed Flint from Flint
