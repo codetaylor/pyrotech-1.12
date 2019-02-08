@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DDD",
+    "DFD",
+    "DDD"
+  ],
+  "key": {
+    "D": {
+      "item": "pyrotech:rock",
+      "data": 4
+    },
+    "F": {
+      "type": "pyrotech:fluid",
+      "fluid": "water"
+    }
+  },
+  "result": {
+    "item": "minecraft:clay_ball",
+    "count": 1,
+    "data": 0
+  }
+}

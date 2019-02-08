@@ -2,5 +2,8 @@
   "conditions": {
     "modules_enabled": "com.codetaylor.mc.pyrotech.ModPyrotechConfig$ConditionConfig",
     "bucket_enabled": "com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucketConfig$ConditionConfig"
+  },
+  "ingredients": {
+    "fluid": "com.codetaylor.mc.athenaeum.recipe.IngredientFluidStack$Factory"
   }
 }
