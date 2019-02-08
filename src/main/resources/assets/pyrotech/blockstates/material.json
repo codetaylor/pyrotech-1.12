@@ -36,7 +36,8 @@
       "dust_limestone": {"textures": {"layer0": "pyrotech:items/dust_limestone"}},
       "kindling": {"textures": {"layer0": "pyrotech:items/kindling"}},
       "kindling_tarred": {"textures": {"layer0": "pyrotech:items/kindling_tarred"}},
-      "dust_flint": {"textures": {"layer0": "pyrotech:items/dust_flint"}}
+      "dust_flint": {"textures": {"layer0": "pyrotech:items/dust_flint"}},
+      "glass_shard": {"textures": {"layer0": "pyrotech:items/glass_shard"}}
     }
   }
 }
