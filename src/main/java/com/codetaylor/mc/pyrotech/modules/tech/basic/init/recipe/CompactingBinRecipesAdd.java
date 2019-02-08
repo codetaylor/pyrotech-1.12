@@ -16,6 +16,13 @@ public class CompactingBinRecipesAdd {
 
   public static void apply(IForgeRegistryModifiable<CompactingBinRecipe> registry) {
 
+    // Ash Pile
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(ModuleCore.Blocks.PILE_ASH),
+        Ingredient.fromStacks(ItemMaterial.EnumType.PIT_ASH.asStack()),
+        8
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "ash_pile"));
+
     // Charcoal Block
     registry.register(new CompactingBinRecipe(
         new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK),
