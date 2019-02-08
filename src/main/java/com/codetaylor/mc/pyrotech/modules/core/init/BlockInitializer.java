@@ -50,6 +50,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockFarmlandMulched(), BlockFarmlandMulched.NAME);
     registry.registerBlockWithItem(new BlockPlanksTarred(), BlockPlanksTarred.NAME);
     registry.registerBlockWithItem(new BlockPileWoodChips(), BlockPileWoodChips.NAME);
+    registry.registerBlockWithItem(new BlockPileAsh(), BlockPileAsh.NAME);
     registry.registerBlockWithItem(new BlockWoolTarred(), BlockWoolTarred.NAME);
     registry.registerBlockWithItem(new BlockCharcoalBlock(), BlockCharcoalBlock.NAME);
     registry.registerBlockWithItem(new BlockWoodTarBlock(), BlockWoodTarBlock.NAME);
@@ -75,6 +76,7 @@ public final class BlockInitializer {
           ModuleCore.Blocks.FARMLAND_MULCHED,
           ModuleCore.Blocks.PLANKS_TARRED,
           ModuleCore.Blocks.PILE_WOOD_CHIPS,
+          ModuleCore.Blocks.PILE_ASH,
           ModuleCore.Blocks.WOOL_TARRED,
           ModuleCore.Blocks.CHARCOAL_BLOCK,
           ModuleCore.Blocks.WOOD_TAR_BLOCK

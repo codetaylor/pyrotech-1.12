@@ -149,6 +149,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockPileWoodChips.NAME)
     public static final BlockPileWoodChips PILE_WOOD_CHIPS;
 
+    @GameRegistry.ObjectHolder(BlockPileAsh.NAME)
+    public static final BlockPileAsh PILE_ASH;
+
     @GameRegistry.ObjectHolder(BlockWoolTarred.NAME)
     public static final BlockWoolTarred WOOL_TARRED;
 
@@ -175,6 +178,7 @@ public class ModuleCore
       FARMLAND_MULCHED = null;
       PLANKS_TARRED = null;
       PILE_WOOD_CHIPS = null;
+      PILE_ASH = null;
       WOOL_TARRED = null;
       CHARCOAL_BLOCK = null;
       WOOD_TAR_BLOCK = null;
