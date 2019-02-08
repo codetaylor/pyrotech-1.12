@@ -107,10 +107,10 @@ public class ModuleBucketConfig {
 
     @Config.Comment({
         "Set the number of times the bucket can be drained.",
-        "Default: " + 16
+        "Default: " + 12
     })
     @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
-    public int MAX_DURABILITY = 16;
+    public int MAX_DURABILITY = 12;
 
     @Config.Comment({
         "The temperature that the bucket considers hot.",
