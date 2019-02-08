@@ -284,6 +284,7 @@ public class ModuleCoreConfig {
         "minecraft:paper",
         "minecraft:torch",
         "minecraft:coal_block",
+        "minecraft:coal",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
