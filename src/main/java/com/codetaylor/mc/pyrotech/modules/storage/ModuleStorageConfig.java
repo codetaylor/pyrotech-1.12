@@ -33,6 +33,12 @@ public class ModuleStorageConfig {
         "Default: " + false
     })
     public boolean HOLDS_HOT_FLUIDS = false;
+
+    @Config.Comment({
+        "True if the tank holds its contents when broken.",
+        "Default: " + true
+    })
+    public boolean HOLDS_CONTENTS_WHEN_BROKEN = true;
   }
 
   // ---------------------------------------------------------------------------
@@ -63,6 +69,12 @@ public class ModuleStorageConfig {
         "Default: " + true
     })
     public boolean HOLDS_HOT_FLUIDS = true;
+
+    @Config.Comment({
+        "True if the tank holds its contents when broken.",
+        "Default: " + true
+    })
+    public boolean HOLDS_CONTENTS_WHEN_BROKEN = true;
   }
 
   // ---------------------------------------------------------------------------

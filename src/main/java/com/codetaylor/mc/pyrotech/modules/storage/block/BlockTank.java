@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankBrick;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankStone;
 import net.minecraft.block.material.Material;
@@ -103,12 +104,31 @@ public class BlockTank
     // Serialize the TE into the item dropped.
     // Called before #breakBlock
 
-    drops.add(StackHelper.createItemStackFromTileEntity(
-        this,
-        1,
-        state.getValue(BlockTank.TYPE).getMeta(),
-        world.getTileEntity(pos)
-    ));
+    if (this.canHoldContentsWhenBroken(state)) {
+      drops.add(StackHelper.createItemStackFromTileEntity(
+          this,
+          1,
+          state.getValue(BlockTank.TYPE).getMeta(),
+          world.getTileEntity(pos)
+      ));
+
+    } else {
+      super.getDrops(drops, world, pos, state, fortune);
+    }
+  }
+
+  private boolean canHoldContentsWhenBroken(IBlockState blockState) {
+
+    EnumType type = blockState.getValue(BlockTank.TYPE);
+
+    switch (type) {
+      case STONE:
+        return ModuleStorageConfig.STONE_TANK.HOLDS_CONTENTS_WHEN_BROKEN;
+      case BRICK:
+        return ModuleStorageConfig.BRICK_TANK.HOLDS_CONTENTS_WHEN_BROKEN;
+      default:
+        throw new RuntimeException("Unknown tank type: " + type);
+    }
   }
 
   // ---------------------------------------------------------------------------
