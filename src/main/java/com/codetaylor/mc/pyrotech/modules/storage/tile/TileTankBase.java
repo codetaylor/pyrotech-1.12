@@ -136,8 +136,11 @@ public abstract class TileTankBase
 
     super.readFromNBT(compound);
     this.tank.readFromNBT(compound.getCompoundTag("tank"));
-    BlockHelper.notifyBlockUpdate(this.world, this.pos);
     this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
+
+    if (this.world.isRemote) {
+      BlockHelper.notifyBlockUpdate(this.world, this.pos);
+    }
   }
 
   // ---------------------------------------------------------------------------
