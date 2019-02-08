@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.storage.client.render;
 
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankBase;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -37,12 +36,11 @@ public class TESRTank
     if (fluidStack != null) {
 
       TextureMap textureMapBlocks = Minecraft.getMinecraft().getTextureMapBlocks();
-      BlockRendererDispatcher dispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
       TextureAtlasSprite still = textureMapBlocks.getAtlasSprite(fluidStack.getFluid().getStill(fluidStack).toString());
       TextureAtlasSprite flowing = textureMapBlocks.getAtlasSprite(fluidStack.getFluid().getFlowing(fluidStack).toString());
 
-      BlockPos blockpos = new BlockPos(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ());
-      int i = tile.getWorld().isBlockLoaded(blockpos.up()) ? tile.getWorld().getCombinedLight(blockpos.up(), 0) : 0;
+      BlockPos blockpos = new BlockPos(tile.getPos());
+      int i = tile.getWorld().isBlockLoaded(blockpos) ? tile.getWorld().getCombinedLight(blockpos, 0) : 0;
       int j = i >> 0x10 & 0xFFFF;
       int k = i & 0xFFFF;
 
