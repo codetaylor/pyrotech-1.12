@@ -138,5 +138,20 @@ public class StoneKilnRecipesAdd {
             new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.DIORITE.getMeta())
         }
     ).setRegistryName(ModuleTechMachine.MOD_ID, "stone_diorite"));
+
+    // Glass
+    registry.register(new StoneKilnRecipe(
+        new ItemStack(Blocks.GLASS, 1, 0),
+        Ingredient.fromStacks(
+            new ItemStack(Blocks.SAND, 1, 0),
+            new ItemStack(Blocks.SAND, 1, 1)
+        ),
+        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            ItemMaterial.EnumType.GLASS_SHARD.asStack(4)
+        }
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "glass"));
   }
 }
