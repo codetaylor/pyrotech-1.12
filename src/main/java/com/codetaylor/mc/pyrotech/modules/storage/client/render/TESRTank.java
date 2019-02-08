@@ -17,7 +17,7 @@ public class TESRTank
     extends FastTESR<TileTankBase> {
 
   private static final float PX = 0.0625f;
-  private static final float INSET = 2 * PX;
+  private static final float INSET = PX * 0.1f;
 
   @Override
   public void renderTileEntityFast(
