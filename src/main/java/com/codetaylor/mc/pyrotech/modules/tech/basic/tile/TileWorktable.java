@@ -563,6 +563,12 @@ public class TileWorktable
       return this.tile.inputStackHandler.getStackInSlot(index);
     }
 
+    @Override
+    public void setInventorySlotContents(int index, @Nonnull ItemStack stack) {
+
+      this.tile.inputStackHandler.setStackInSlot(index, stack);
+    }
+
     @Nonnull
     @Override
     public ItemStack getStackInRowAndColumn(int x, int y) {
