@@ -12,8 +12,6 @@ import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -27,8 +25,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -172,11 +168,6 @@ public abstract class TileTankBase
 
       return this.tank;
     }
-
-    @SideOnly(Side.CLIENT)
-    public void renderSolidPass(World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
-      // TODO?
-    }
   }
 
   // ---------------------------------------------------------------------------
@@ -204,14 +195,17 @@ public abstract class TileTankBase
         World world = this.tile.world;
         BlockPos pos = this.tile.pos;
 
-        if (resource != null
-            && !world.isRemote) {
+        if (resource != null) {
           Fluid fluid = resource.getFluid();
 
           if (fluid.getTemperature(resource) >= this.tile.getHotFluidTemperature()) {
-            world.setBlockToAir(pos);
-            SoundHelper.playSoundServer(world, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
-            FluidUtil.tryPlaceFluid(null, world, pos, this, resource);
+
+            if (!world.isRemote) {
+              world.setBlockToAir(pos);
+              SoundHelper.playSoundServer(world, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
+              FluidUtil.tryPlaceFluid(null, world, pos, this, resource);
+            }
+            world.checkLightFor(EnumSkyBlock.BLOCK, pos);
           }
         }
       }
