@@ -32,6 +32,11 @@ public class JsonOreDict {
         "pyrotech:material:" + ItemMaterial.EnumType.TWINE.getMeta()
     });
 
+    result.oreDict.put("blockGlass", new String[]{
+        "pyrotech:refractory_glass",
+        "pyrotech:slag_glass"
+    });
+
     result.oreDict.put("stickStone", new String[]{
         "pyrotech:material:27" // stick_stone
     });
