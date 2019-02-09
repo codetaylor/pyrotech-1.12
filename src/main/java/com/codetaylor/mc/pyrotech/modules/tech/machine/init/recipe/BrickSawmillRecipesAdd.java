@@ -20,7 +20,7 @@ public class BrickSawmillRecipesAdd {
 
     if (ModuleTechMachineConfig.BRICK_SAWMILL.INHERIT_STONE_TIER_RECIPES) {
       RecipeHelper.inherit("stone_sawmill", stoneRegistry, brickRegistry, recipe -> {
-        int cookTimeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_SAWMILL.INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER);
+        int cookTimeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_SAWMILL.INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER);
         return new BrickSawmillRecipe(
             recipe.getOutput(),
             recipe.getInput(),

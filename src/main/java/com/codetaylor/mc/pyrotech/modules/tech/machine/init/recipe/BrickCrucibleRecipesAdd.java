@@ -80,7 +80,7 @@ public class BrickCrucibleRecipesAdd {
 
     if (ModuleTechMachineConfig.BRICK_CRUCIBLE.INHERIT_STONE_TIER_RECIPES) {
       RecipeHelper.inherit("stone_crucible", stoneRegistry, brickRegistry, recipe -> {
-        int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_CRUCIBLE.INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER);
+        int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_CRUCIBLE.INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER);
         return new BrickCrucibleRecipe(
             recipe.getOutput(),
             recipe.getInput(),

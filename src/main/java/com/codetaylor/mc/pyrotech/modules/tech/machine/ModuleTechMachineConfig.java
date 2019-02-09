@@ -278,10 +278,10 @@ public class ModuleTechMachineConfig {
     public boolean INHERIT_STONE_TIER_RECIPES = true;
 
     @Config.Comment({
-        "The speed modifier for all inherited recipes.",
+        "The recipe duration modifier for all inherited recipes.",
         "Default: " + 1.0
     })
-    public double INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER = 1.0;
+    public double INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER = 1.0;
 
     @Config.Comment({
         "The failure chance modifier for all inherited recipes.",
@@ -345,10 +345,10 @@ public class ModuleTechMachineConfig {
     public boolean INHERIT_DRYING_RACK_RECIPES = true;
 
     @Config.Comment({
-        "The speed modifier for all inherited drying rack recipes.",
+        "The recipe duration modifier for all inherited drying rack recipes.",
         "Default: " + 0.5
     })
-    public double INHERITED_DRYING_RACK_RECIPE_SPEED_MODIFIER = 0.5;
+    public double INHERITED_DRYING_RACK_RECIPE_DURATION_MODIFIER = 0.5;
   }
 
   // ---------------------------------------------------------------------------
@@ -414,10 +414,10 @@ public class ModuleTechMachineConfig {
     public boolean INHERIT_STONE_TIER_RECIPES = true;
 
     @Config.Comment({
-        "The speed modifier for all inherited recipes.",
+        "The recipe duration modifier for all inherited recipes.",
         "Default: " + 1.0
     })
-    public double INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER = 1.0;
+    public double INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER = 1.0;
   }
 
   // ---------------------------------------------------------------------------
@@ -558,10 +558,10 @@ public class ModuleTechMachineConfig {
     public boolean INHERIT_STONE_TIER_RECIPES = true;
 
     @Config.Comment({
-        "The speed modifier for all inherited recipes.",
+        "The recipe duration modifier for all inherited recipes.",
         "Default: " + 1.0
     })
-    public double INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER = 1.0;
+    public double INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER = 1.0;
   }
 
   // ---------------------------------------------------------------------------
@@ -690,10 +690,10 @@ public class ModuleTechMachineConfig {
     public boolean INHERIT_STONE_TIER_RECIPES = true;
 
     @Config.Comment({
-        "The speed modifier for all inherited recipes.",
+        "The recipe duration modifier for all inherited recipes.",
         "Default: " + 1.0
     })
-    public double INHERITED_STONE_TIER_RECIPE_SPEED_MODIFIER = 1.0;
+    public double INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER = 1.0;
   }
 
 }

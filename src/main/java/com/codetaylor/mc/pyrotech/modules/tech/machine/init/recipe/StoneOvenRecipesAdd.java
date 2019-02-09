@@ -23,7 +23,7 @@ public class StoneOvenRecipesAdd {
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)
         && ModuleTechMachineConfig.STONE_OVEN.INHERIT_DRYING_RACK_RECIPES) {
       RecipeHelper.inherit("drying_rack", dryingRackRegistry, stoneOvenRegistry, recipe -> {
-        int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.STONE_OVEN.INHERITED_DRYING_RACK_RECIPE_SPEED_MODIFIER);
+        int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.STONE_OVEN.INHERITED_DRYING_RACK_RECIPE_DURATION_MODIFIER);
         return new StoneOvenRecipe(
             recipe.getOutput(),
             recipe.getInput(),
