@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "pyrotech:leather_fire_protection",
   "pattern": [
     "OAO",
     "OOO",
@@ -8,7 +8,7 @@
   "key": {
     "A": {
       "item": "minecraft:leather_chestplate",
-      "data": 0
+      "data": 32767
     },
     "O": {
       "item": "pyrotech:material",
