@@ -1,40 +1,26 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.KilnPitRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
-import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 public class StoneKilnRecipesAdd {
 
   public static void apply(IForgeRegistry<StoneKilnRecipe> registry) {
-
-    // Clay Shears
-    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTool.class)) {
-      registry.register(new StoneKilnRecipe(
-          new ItemStack(ModuleTool.Items.CLAY_SHEARS),
-          Ingredient.fromStacks(new ItemStack(ModuleTool.Items.UNFIRED_CLAY_SHEARS)),
-          Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
-          Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
-          new ItemStack[]{
-              ItemMaterial.EnumType.PIT_ASH.asStack(),
-              ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
-              ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
-          }
-      ).setRegistryName(ModuleTechBasic.MOD_ID, "clay_shears"));
-    }
 
     // Cobblestone
     registry.register(new StoneKilnRecipe(
@@ -50,19 +36,6 @@ public class StoneKilnRecipesAdd {
         }
     ).setRegistryName(ModuleTechMachine.MOD_ID, "cobblestone_from_gravel"));
 
-    // Brick
-    registry.register(new StoneKilnRecipe(
-        new ItemStack(Items.BRICK),
-        Ingredient.fromStacks(ItemMaterial.EnumType.UNFIRED_BRICK.asStack()),
-        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
-        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
-        new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack(),
-            ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
-            ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
-        }
-    ).setRegistryName(ModuleTechMachine.MOD_ID, "brick"));
-
     // Refractory Brick
     registry.register(new StoneKilnRecipe(
         ItemMaterial.EnumType.REFRACTORY_BRICK.asStack(),
@@ -76,17 +49,6 @@ public class StoneKilnRecipesAdd {
         }
     ).setRegistryName(ModuleTechMachine.MOD_ID, "refractory_brick"));
 
-    // Charcoal Flakes
-    registry.register(new StoneKilnRecipe(
-        ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
-        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
-        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
-        new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack()
-        }
-    ).setRegistryName(ModuleTechMachine.MOD_ID, "charcoal_flakes"));
-
     // Quicklime
     registry.register(new StoneKilnRecipe(
         ItemMaterial.EnumType.QUICKLIME.asStack(),
@@ -97,66 +59,6 @@ public class StoneKilnRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack()
         }
     ).setRegistryName(ModuleTechMachine.MOD_ID, "quicklime"));
-
-    // Stone Slab
-    registry.register(new StoneKilnRecipe(
-        new ItemStack(Blocks.STONE_SLAB, 1, 0),
-        Ingredient.fromStacks(new ItemStack(Blocks.STONE_SLAB, 1, 3)),
-        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
-        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
-        new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack(),
-            new ItemStack(ModuleCore.Blocks.ROCK, 3, 0)
-        }
-    ).setRegistryName(ModuleTechMachine.MOD_ID, "stone_slab"));
-
-    // Stone
-    registry.register(new StoneKilnRecipe(
-        new ItemStack(Blocks.STONE, 1, 0),
-        Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE, 1, 0)),
-        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
-        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
-        new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack(),
-            new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.STONE.getMeta())
-        }
-    ).setRegistryName(ModuleTechMachine.MOD_ID, "stone"));
-
-    // Stone - Andesite
-    registry.register(new StoneKilnRecipe(
-        new ItemStack(Blocks.STONE, 1, 5),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
-        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
-        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
-        new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack(),
-            new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.ANDESITE.getMeta())
-        }
-    ).setRegistryName(ModuleTechMachine.MOD_ID, "stone_andesite"));
-
-    // Stone - Granite
-    registry.register(new StoneKilnRecipe(
-        new ItemStack(Blocks.STONE, 1, 1),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
-        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
-        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
-        new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack(),
-            new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.GRANITE.getMeta())
-        }
-    ).setRegistryName(ModuleTechMachine.MOD_ID, "stone_granite"));
-
-    // Stone - Diorite
-    registry.register(new StoneKilnRecipe(
-        new ItemStack(Blocks.STONE, 1, 3),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
-        Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
-        Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
-        new ItemStack[]{
-            ItemMaterial.EnumType.PIT_ASH.asStack(),
-            new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.DIORITE.getMeta())
-        }
-    ).setRegistryName(ModuleTechMachine.MOD_ID, "stone_diorite"));
 
     // Glass
     registry.register(new StoneKilnRecipe(
@@ -186,6 +88,27 @@ public class StoneKilnRecipesAdd {
               new ItemStack(ModuleBloomery.Items.SLAG, 4, 0)
           }
       ).setRegistryName(ModuleTechMachine.MOD_ID, "slag_glass"));
+    }
+  }
+
+  public static void registerInheritedRecipes(
+      IForgeRegistryModifiable<KilnPitRecipe> pitKilnRegistry,
+      IForgeRegistryModifiable<StoneKilnRecipe> stoneKilnRegistry
+  ) {
+
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)
+        && ModuleTechMachineConfig.STONE_KILN.INHERIT_PIT_KILN_RECIPES) {
+      RecipeHelper.inherit("pit_kiln", pitKilnRegistry, stoneKilnRegistry, recipe -> {
+        int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.STONE_KILN.INHERITED_PIT_KILN_RECIPE_DURATION_MODIFIER);
+        float failureChance = (float) (recipe.getFailureChance() * ModuleTechMachineConfig.STONE_KILN.INHERITED_PIT_KILN_RECIPE_FAILURE_CHANCE_MODIFIER);
+        return new StoneKilnRecipe(
+            recipe.getOutput(),
+            recipe.getInput(),
+            Math.max(1, timeTicks),
+            failureChance,
+            recipe.getFailureItems()
+        );
+      });
     }
   }
 }

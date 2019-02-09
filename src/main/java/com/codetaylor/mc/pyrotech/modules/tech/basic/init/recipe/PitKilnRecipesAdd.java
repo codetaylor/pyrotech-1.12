@@ -36,6 +36,7 @@ public class PitKilnRecipesAdd {
           }
       ).setRegistryName(ModuleBucket.MOD_ID, "bucket_clay"));
     }
+
     // Clay Shears
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTool.class)) {
       registry.register(new KilnPitRecipe(

@@ -220,6 +220,24 @@ public class ModuleTechMachineConfig {
     })
     @Config.RangeInt(min = 1, max = 64)
     public int FUEL_SLOT_SIZE = 16;
+
+    @Config.Comment({
+        "If true, all the pit kiln recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_PIT_KILN_RECIPES = true;
+
+    @Config.Comment({
+        "The recipe duration modifier for the inherited recipes.",
+        "Default: " + 0.5
+    })
+    public double INHERITED_PIT_KILN_RECIPE_DURATION_MODIFIER = 0.5;
+
+    @Config.Comment({
+        "The failure chance modifier for the inherited recipes.",
+        "Default: " + 0.15
+    })
+    public double INHERITED_PIT_KILN_RECIPE_FAILURE_CHANCE_MODIFIER = 0.15;
   }
 
   // ---------------------------------------------------------------------------
