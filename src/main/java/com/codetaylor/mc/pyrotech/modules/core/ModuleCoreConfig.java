@@ -15,6 +15,18 @@ public class ModuleCoreConfig {
         "If true, vanilla sheep won't drop vanilla wool."
     })
     public boolean PREVENT_WOOL_ON_SHEEP_DEATH = true;
+
+    @Config.Comment({
+        "When a vanilla crafting table spawns in the world, for example in a",
+        "village, the table is removed."
+    })
+    public boolean REMOVE_VANILLA_CRAFTING_TABLE = true;
+
+    @Config.Comment({
+        "When a vanilla furnace spawns in the world, for example in a",
+        "village, the furnace is replaced with cobblestone."
+    })
+    public boolean REPLACE_VANILLA_FURNACE = true;
   }
 
   public static Hammers HAMMERS = new Hammers();
