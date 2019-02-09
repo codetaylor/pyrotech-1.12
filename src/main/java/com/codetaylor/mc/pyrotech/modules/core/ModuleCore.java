@@ -222,6 +222,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemMushroomRedRoasted.NAME)
     public static final ItemMushroomRedRoasted MUSHROOM_RED_ROASTED;
 
+    @GameRegistry.ObjectHolder(ItemBeetrootRoasted.NAME)
+    public static final ItemBeetrootRoasted BEETROOT_ROASTED;
+
     @GameRegistry.ObjectHolder(ItemBurnedFood.NAME)
     public static final ItemBurnedFood BURNED_FOOD;
 
@@ -254,6 +257,7 @@ public class ModuleCore
       EGG_ROASTED = null;
       MUSHROOM_BROWN_ROASTED = null;
       MUSHROOM_RED_ROASTED = null;
+      BEETROOT_ROASTED = null;
       BURNED_FOOD = null;
       BONE_HAMMER = null;
       DIAMOND_HAMMER = null;

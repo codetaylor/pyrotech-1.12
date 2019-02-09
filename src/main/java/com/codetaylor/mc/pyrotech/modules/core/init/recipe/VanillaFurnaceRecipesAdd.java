@@ -72,5 +72,11 @@ public class VanillaFurnaceRecipesAdd {
         new ItemStack(ModuleCore.Items.MUSHROOM_RED_ROASTED),
         0.1f
     );
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        new ItemStack(Items.BEETROOT),
+        new ItemStack(ModuleCore.Items.BEETROOT_ROASTED),
+        0.1f
+    );
   }
 }
