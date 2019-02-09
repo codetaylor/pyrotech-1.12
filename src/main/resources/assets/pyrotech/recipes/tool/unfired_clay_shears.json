@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tool"]
+    }
+  ],
+  "pattern": [
+    " M",
+    "M "
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:clay_ball",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:unfired_clay_shears",
+    "count": 1,
+    "data": 0
+  }
+}

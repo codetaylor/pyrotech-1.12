@@ -89,6 +89,24 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemFlintSword.NAME)
     public static final ItemFlintSword FLINT_SWORD;
 
+    @GameRegistry.ObjectHolder(ItemUnfiredClayShears.NAME)
+    public static final ItemUnfiredClayShears UNFIRED_CLAY_SHEARS;
+
+    @GameRegistry.ObjectHolder(ItemClayShears.NAME)
+    public static final ItemClayShears CLAY_SHEARS;
+
+    @GameRegistry.ObjectHolder(ItemStoneShears.NAME)
+    public static final ItemStoneShears STONE_SHEARS;
+
+    @GameRegistry.ObjectHolder(ItemBoneShears.NAME)
+    public static final ItemBoneShears BONE_SHEARS;
+
+    @GameRegistry.ObjectHolder(ItemFlintShears.NAME)
+    public static final ItemFlintShears FLINT_SHEARS;
+
+    @GameRegistry.ObjectHolder(ItemDiamondShears.NAME)
+    public static final ItemDiamondShears DIAMOND_SHEARS;
+
     static {
       CRUDE_AXE = null;
       CRUDE_HOE = null;
@@ -105,6 +123,12 @@ public class ModuleTool
       FLINT_PICKAXE = null;
       FLINT_SHOVEL = null;
       FLINT_SWORD = null;
+      UNFIRED_CLAY_SHEARS = null;
+      CLAY_SHEARS = null;
+      STONE_SHEARS = null;
+      BONE_SHEARS = null;
+      FLINT_SHEARS = null;
+      DIAMOND_SHEARS = null;
     }
   }
 }

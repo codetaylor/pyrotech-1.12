@@ -2,8 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.tool;
 
 import net.minecraftforge.common.config.Config;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 @Config(modid = ModuleTool.MOD_ID, name = ModuleTool.MOD_ID + "/" + "module.Tool")
 public class ModuleToolConfig {
@@ -11,12 +11,26 @@ public class ModuleToolConfig {
   @Config.Comment({
       "The durability of the vanilla type tools, excluding hammers."
   })
-  public static Map<String, Integer> DURABILITY = new TreeMap<>();
+  public static Map<String, Integer> DURABILITY = new LinkedHashMap<>();
 
   static {
     DURABILITY.put("crude", 32);
     DURABILITY.put("bone", 150);
     DURABILITY.put("flint", 150);
+  }
+
+  @Config.Comment({
+      "The durability of the shears.",
+      "For reference, the durability of the vanilla shears is 238."
+  })
+  public static Map<String, Integer> SHEARS_DURABILITY = new LinkedHashMap<>();
+
+  static {
+    SHEARS_DURABILITY.put("clay", 60);
+    SHEARS_DURABILITY.put("stone", 90);
+    SHEARS_DURABILITY.put("bone", 120);
+    SHEARS_DURABILITY.put("flint", 120);
+    SHEARS_DURABILITY.put("diamond", 952);
   }
 
   @Config.Comment({

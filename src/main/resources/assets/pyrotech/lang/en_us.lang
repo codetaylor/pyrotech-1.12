@@ -155,6 +155,13 @@ item.pyrotech.flint.pickaxe.name=Flint Pickaxe
 item.pyrotech.flint.shovel.name=Flint Shovel
 item.pyrotech.flint.sword.name=Flint Sword
 
+item.pyrotech.unfired.clay.shears.name=Unfired Clay Shears
+item.pyrotech.clay.shears.name=Clay Shears
+item.pyrotech.stone.shears.name=Stone Shears
+item.pyrotech.bone.shears.name=Bone Shears
+item.pyrotech.flint.shears.name=Flint Shears
+item.pyrotech.diamond.shears.name=Diamond Shears
+
 #------------------------------------------------------------------------------
 # Module: Core
 #------------------------------------------------------------------------------

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tool"]
+    }
+  ],
+  "pattern": [
+    "TM",
+    "M "
+  ],
+  "key": {
+    "M": {
+      "item": "pyrotech:material",
+      "data": 11
+    },
+    "T": {
+      "type": "forge:ore_dict",
+      "ore": "twine"
+    }
+  },
+  "result": {
+    "item": "pyrotech:bone_shears",
+    "count": 1,
+    "data": 0
+  }
+}
