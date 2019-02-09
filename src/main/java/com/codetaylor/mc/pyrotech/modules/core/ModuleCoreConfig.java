@@ -155,18 +155,18 @@ public class ModuleCoreConfig {
     @Config.Comment({
         "The amount of hunger healed by eating.",
         "For reference, the vanilla apple restores 4 hunger.",
-        "Default: " + 8
+        "Default: " + 6
     })
     @Config.RangeInt(min = 0)
-    public int ROASTED_EGG_HUNGER = 8;
+    public int ROASTED_EGG_HUNGER = 6;
 
     @Config.Comment({
         "The amount of saturation healed by eating.",
         "For reference, the vanilla apple restores 0.3 saturation.",
-        "Default: " + 0.9
+        "Default: " + 0.6
     })
     @Config.RangeDouble(min = 0)
-    public double ROASTED_EGG_SATURATION = 0.9;
+    public double ROASTED_EGG_SATURATION = 0.6;
 
     @Config.Comment({
         "The amount of hunger healed by eating.",
