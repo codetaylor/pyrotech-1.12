@@ -235,9 +235,9 @@ public class ModuleTechMachineConfig {
 
     @Config.Comment({
         "The failure chance modifier for the inherited recipes.",
-        "Default: " + 0.15
+        "Default: " + 0.25
     })
-    public double INHERITED_PIT_KILN_RECIPE_FAILURE_CHANCE_MODIFIER = 0.15;
+    public double INHERITED_PIT_KILN_RECIPE_FAILURE_CHANCE_MODIFIER = 0.25;
   }
 
   // ---------------------------------------------------------------------------
@@ -303,9 +303,9 @@ public class ModuleTechMachineConfig {
 
     @Config.Comment({
         "The failure chance modifier for all inherited recipes.",
-        "Default: " + 1.0
+        "Default: " + 0.25
     })
-    public double INHERITED_STONE_TIER_RECIPE_FAILURE_CHANCE_MODIFIER = 1.0;
+    public double INHERITED_STONE_TIER_RECIPE_FAILURE_CHANCE_MODIFIER = 0.25;
   }
 
   // ---------------------------------------------------------------------------
