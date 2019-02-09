@@ -26,7 +26,7 @@ import java.util.List;
 
 public class BloomeryRecipesAdd {
 
-  private static final int DEFAULT_BURN_TIME_TICKS = 12 * 60 * 20;
+  private static final int DEFAULT_BURN_TIME_TICKS = 18 * 60 * 20;
   private static final float DEFAULT_FAILURE_CHANCE = 0.25f;
 
   public static void apply(IForgeRegistry<BloomeryRecipe> registry) {
