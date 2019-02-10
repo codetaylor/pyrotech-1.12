@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
+package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
@@ -6,10 +6,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataBoolean;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.AABBHelper;
-import com.codetaylor.mc.athenaeum.util.RandomHelper;
-import com.codetaylor.mc.athenaeum.util.SoundHelper;
-import com.codetaylor.mc.athenaeum.util.TickCounter;
+import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
@@ -17,6 +14,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.InteractionCogRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemCog;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneHopper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.init.SoundEvents;
@@ -78,6 +76,11 @@ public abstract class TileCogWorkerBase
     this.interactions = new IInteraction[]{
         new InteractionCog(this, this.cogStackHandler, this.getCogInteractionBounds(), this.getCogInteractionTransform())
     };
+  }
+
+  protected void addInteractions(IInteraction[] interactions) {
+
+    this.interactions = ArrayHelper.combine(this.interactions, interactions);
   }
 
   protected Transform getCogInteractionTransform() {

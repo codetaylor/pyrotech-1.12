@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCompactingBin;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalCompactingBin;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalCompactingBinWorker;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -158,7 +159,7 @@ public class BlockMechanicalCompactingBin
       return new TileMechanicalCompactingBinWorker();
     }
 
-    return new TileCompactingBin();
+    return new TileMechanicalCompactingBin();
   }
 
   // ---------------------------------------------------------------------------

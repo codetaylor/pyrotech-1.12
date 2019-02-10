@@ -61,6 +61,7 @@ public final class BlockInitializer {
         TileBrickCrucibleTop.class,
 
         TileStoneHopper.class,
+        TileMechanicalCompactingBin.class,
         TileMechanicalCompactingBinWorker.class
     );
   }
