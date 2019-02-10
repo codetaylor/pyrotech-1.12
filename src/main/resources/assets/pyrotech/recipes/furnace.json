@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "I I",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stone"
+    },
+    "F": {
+      "item": "minecraft:fire_charge",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "minecraft:furnace",
+    "count": 1,
+    "data": 0
+  }
+}
