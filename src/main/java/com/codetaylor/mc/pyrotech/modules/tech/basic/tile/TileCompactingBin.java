@@ -57,8 +57,18 @@ public class TileCompactingBin
 
     this.inputStackHandler = new InputStackHandler(this);
     this.inputStackHandler.addObserver((handler, slot) -> {
-      this.recipeProgress.set(0);
+
       this.updateRecipe();
+
+      if (this.currentRecipe != null) {
+
+        if (this.currentRecipe.getAmount() > this.inputStackHandler.getTotalItemCount()) {
+          this.recipeProgress.set(0);
+        }
+
+      } else {
+        this.recipeProgress.set(0);
+      }
       this.markDirty();
     });
 
