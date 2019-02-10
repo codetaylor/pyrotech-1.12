@@ -72,7 +72,7 @@ public abstract class BlockPileBase
         world.setBlockToAir(pos);
 
       } else {
-        world.setBlockState(pos, state.withProperty(BlockPileBase.LEVEL, level - 1), 1 | 2);
+        world.setBlockState(pos, state.withProperty(BlockPileBase.LEVEL, level - 1), 1 | 2 | 8);
       }
     }
   }
