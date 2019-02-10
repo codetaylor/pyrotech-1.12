@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneHopper;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileCogWorkerBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -18,13 +18,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class StoneHopperInteractionCogRenderer
-    implements IInteractionRenderer<TileStoneHopper.InteractionCog> {
+public class InteractionCogRenderer
+    implements IInteractionRenderer<TileCogWorkerBase.InteractionCog> {
 
-  public static final StoneHopperInteractionCogRenderer INSTANCE = new StoneHopperInteractionCogRenderer();
+  public static final InteractionCogRenderer INSTANCE = new InteractionCogRenderer();
 
   @Override
-  public void renderSolidPass(TileStoneHopper.InteractionCog interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
+  public void renderSolidPass(TileCogWorkerBase.InteractionCog interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
 
     // If the handler is not empty, render the handler's item.
 
@@ -36,7 +36,7 @@ public class StoneHopperInteractionCogRenderer
       {
         InteractionRenderers.setupItemTransforms(transform);
 
-        TileStoneHopper.ClientRenderData data = interaction.getTile().getClientRenderData();
+        TileCogWorkerBase.ClientRenderData data = interaction.getTile().getClientRenderData();
 
         if (data.remainingAnimationTime > 0) {
           data.remainingAnimationTime -= partialTicks;
@@ -55,12 +55,12 @@ public class StoneHopperInteractionCogRenderer
   }
 
   @Override
-  public void renderSolidPassText(TileStoneHopper.InteractionCog interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
-    // TODO
+  public void renderSolidPassText(TileCogWorkerBase.InteractionCog interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
+    //
   }
 
   @Override
-  public boolean renderAdditivePass(TileStoneHopper.InteractionCog interaction, World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+  public boolean renderAdditivePass(TileCogWorkerBase.InteractionCog interaction, World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
     // If the handler is empty, render the held item.
     // Else, render the handler's item if the player's hand is empty.
@@ -99,7 +99,7 @@ public class StoneHopperInteractionCogRenderer
         {
           InteractionRenderers.setupItemTransforms(transform);
 
-          TileStoneHopper.ClientRenderData data = interaction.getTile().getClientRenderData();
+          TileCogWorkerBase.ClientRenderData data = interaction.getTile().getClientRenderData();
 
           if (data.remainingAnimationTime > 0) {
             int previousCogRotationStage = (data.cogRotationStage == 0) ? 7 : data.cogRotationStage - 1;
