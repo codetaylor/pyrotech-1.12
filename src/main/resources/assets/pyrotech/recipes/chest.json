@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "PPI",
-    "N P",
+    "PPP",
+    "PIP",
     "PPP"
   ],
   "key": {
@@ -13,10 +13,6 @@
     "P": {
       "type": "forge:ore_dict",
       "ore": "plankWood"
-    },
-    "N": {
-      "type": "forge:ore_dict",
-      "ore": "nuggetIron"
     }
   },
   "result": {
