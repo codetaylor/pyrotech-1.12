@@ -18,7 +18,201 @@ public class AnvilRecipesAdd {
 
   public static void apply(IForgeRegistry<AnvilRecipe> registry) {
 
-    // --- Pickaxe Recipes -----------------------------------------------------
+    AnvilRecipesAdd.registerPickaxeRecipes(registry);
+    AnvilRecipesAdd.registerHammerRecipes(registry);
+  }
+
+  private static void registerHammerRecipes(IForgeRegistry<AnvilRecipe> registry) {
+
+    // Crushed Flint from Flint
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.DUST_FLINT.asStack(3),
+        Ingredient.fromStacks(new ItemStack(Items.FLINT)),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "crushed_flint_from_flint"));
+
+    // Sand Pile from Glass Shard
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta()),
+        Ingredient.fromStacks(ItemMaterial.EnumType.GLASS_SHARD.asStack()),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "sand_pile_from_glass_shard"));
+
+    // Sand Pile from Pottery Pieces
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta()),
+        Ingredient.fromStacks(
+            ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack(),
+            ItemMaterial.EnumType.POTTERY_SHARD.asStack()
+        ),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "sand_pile_from_pottery_pieces"));
+
+    // Iron Shard from Iron Nugget
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.IRON_SHARD.asStack(1),
+        new OreIngredient("nuggetIron"),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_shard_from_iron_nugget"));
+
+    // Iron Nugget from Iron Shard
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.IRON_NUGGET, 1, 0),
+        Ingredient.fromStacks(ItemMaterial.EnumType.IRON_SHARD.asStack(1)),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_nugget_from_iron_shard"));
+
+    // Charcoal Flakes from Charcoal
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(8),
+        Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 1)),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_flakes"));
+
+    // Coal Pieces from Coal
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.COAL_PIECES.asStack(8),
+        Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 0)),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_pieces"));
+
+    // Bone Meal from Bone Shard
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.DYE, 1, 15),
+        Ingredient.fromStacks(ItemMaterial.EnumType.BONE_SHARD.asStack()),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard"));
+
+    // Bone Meal from Bone
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.DYE, 3, 15),
+        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_meal_from_bone"));
+
+    // Bone Meal from Bone Block
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.DYE, 8, 15),
+        Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_meal_from_bone_block"));
+
+    // Stone to cobblestone
+    registry.register(new AnvilRecipe(
+        new ItemStack(Blocks.COBBLESTONE),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.STONE.getMetadata())),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_to_cobbled"));
+
+    // Andesite to cobbled andesite
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.ANDESITE.getMetadata())),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "andesite_to_cobbled"));
+
+    // Diorite to cobbled diorite
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.DIORITE.getMetadata())),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "diorite_to_cobbled"));
+
+    // Granite to cobbled granite
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.GRANITE.getMetadata())),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "granite_to_cobbled"));
+
+    // Limestone to cobbled limestone
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.LIMESTONE)),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "limestone_to_cobbled"));
+
+    // Cobblestone to rocks
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.STONE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE)),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobblestone_to_rocks"));
+
+    // Cobbled andesite to rocks
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.ANDESITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_andesite_to_rocks"));
+
+    // Cobbled diorite to rocks
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.DIORITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_diorite_to_rocks"));
+
+    // Cobbled granite to rocks
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.GRANITE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_granite_to_rocks"));
+
+    // Cobbled limestone to rocks
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.LIMESTONE.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta())),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_limestone_to_rocks"));
+
+    // Limestone rocks to crushed limestone
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.DUST_LIMESTONE.asStack(),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "limestone_rocks_to_crushed_limestone"));
+  }
+
+  private static void registerPickaxeRecipes(IForgeRegistry<AnvilRecipe> registry) {
+
+    // Flint Shard from Flint
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.FLINT_SHARD.asStack(3),
+        Ingredient.fromStacks(new ItemStack(Items.FLINT, 1, 0)),
+        4,
+        AnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "flint_shard_from_flint"));
+
+    // Bone Shard from Bone
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.BONE_SHARD.asStack(3),
+        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
+        4,
+        AnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard_from_bone"));
 
     // Individual Stone Bricks
     registry.register(new AnvilRecipe(
@@ -185,194 +379,5 @@ public class AnvilRecipesAdd {
         8,
         AnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_block_to_charcoal"));
-
-    // --- Hammer Recipes ------------------------------------------------------
-
-    // Crushed Flint from Flint
-    registry.register(new AnvilRecipe(
-        ItemMaterial.EnumType.DUST_FLINT.asStack(1),
-        Ingredient.fromStacks(new ItemStack(Items.FLINT)),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "crushed_flint_from_flint"));
-
-    // Sand Pile from Glass Shard
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta()),
-        Ingredient.fromStacks(ItemMaterial.EnumType.GLASS_SHARD.asStack()),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "sand_pile_from_glass_shard"));
-
-    // Sand Pile from Pottery Pieces
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta()),
-        Ingredient.fromStacks(
-            ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack(),
-            ItemMaterial.EnumType.POTTERY_SHARD.asStack()
-        ),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "sand_pile_from_pottery_pieces"));
-
-    // Iron Shard from Iron Nugget
-    registry.register(new AnvilRecipe(
-        ItemMaterial.EnumType.IRON_SHARD.asStack(1),
-        new OreIngredient("nuggetIron"),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_shard_from_iron_nugget"));
-
-    // Iron Nugget from Iron Shard
-    registry.register(new AnvilRecipe(
-        new ItemStack(Items.IRON_NUGGET, 1, 0),
-        Ingredient.fromStacks(ItemMaterial.EnumType.IRON_SHARD.asStack(1)),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_nugget_from_iron_shard"));
-
-    // Flint Shard from Flint
-    registry.register(new AnvilRecipe(
-        ItemMaterial.EnumType.FLINT_SHARD.asStack(3),
-        Ingredient.fromStacks(new ItemStack(Items.FLINT, 1, 0)),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "flint_shard_from_flint"));
-
-    // Bone Shard from Bone
-    registry.register(new AnvilRecipe(
-        ItemMaterial.EnumType.BONE_SHARD.asStack(3),
-        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard_from_bone"));
-
-    // Charcoal Flakes from Charcoal
-    registry.register(new AnvilRecipe(
-        ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(8),
-        Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 1)),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_flakes"));
-
-    // Coal Pieces from Coal
-    registry.register(new AnvilRecipe(
-        ItemMaterial.EnumType.COAL_PIECES.asStack(8),
-        Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 0)),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_pieces"));
-
-    // Bone Meal from Bone Shard
-    registry.register(new AnvilRecipe(
-        new ItemStack(Items.DYE, 1, 15),
-        Ingredient.fromStacks(ItemMaterial.EnumType.BONE_SHARD.asStack()),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard"));
-
-    // Bone Meal from Bone
-    registry.register(new AnvilRecipe(
-        new ItemStack(Items.DYE, 3, 15),
-        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_meal_from_bone"));
-
-    // Bone Meal from Bone Block
-    registry.register(new AnvilRecipe(
-        new ItemStack(Items.DYE, 8, 15),
-        Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_meal_from_bone_block"));
-
-    // Stone to cobblestone
-    registry.register(new AnvilRecipe(
-        new ItemStack(Blocks.COBBLESTONE),
-        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.STONE.getMetadata())),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_to_cobbled"));
-
-    // Andesite to cobbled andesite
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta()),
-        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.ANDESITE.getMetadata())),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "andesite_to_cobbled"));
-
-    // Diorite to cobbled diorite
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta()),
-        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.DIORITE.getMetadata())),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "diorite_to_cobbled"));
-
-    // Granite to cobbled granite
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta()),
-        Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.GRANITE.getMetadata())),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "granite_to_cobbled"));
-
-    // Limestone to cobbled limestone
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta()),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.LIMESTONE)),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "limestone_to_cobbled"));
-
-    // Cobblestone to rocks
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.STONE.getMeta()),
-        Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE)),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobblestone_to_rocks"));
-
-    // Cobbled andesite to rocks
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.ANDESITE.getMeta()),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_andesite_to_rocks"));
-
-    // Cobbled diorite to rocks
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.DIORITE.getMeta()),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_diorite_to_rocks"));
-
-    // Cobbled granite to rocks
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.GRANITE.getMeta()),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_granite_to_rocks"));
-
-    // Cobbled limestone to rocks
-    registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.LIMESTONE.getMeta()),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta())),
-        8,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_limestone_to_rocks"));
-
-    // Limestone rocks to crushed limestone
-    registry.register(new AnvilRecipe(
-        ItemMaterial.EnumType.DUST_LIMESTONE.asStack(),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
-        4,
-        AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "limestone_rocks_to_crushed_limestone"));
   }
 }
