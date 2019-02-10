@@ -12,6 +12,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
@@ -47,7 +48,7 @@ public class TileCompactingBin
   private InputStackHandler inputStackHandler;
   private TileDataFloat recipeProgress;
   private TileDataItemStackHandler tileDataInputStackHandler;
-  private CompactingBinRecipe currentRecipe;
+  private CompactingBinRecipeBase currentRecipe;
   private IInteraction[] interactions;
 
   public TileCompactingBin() {
@@ -126,7 +127,7 @@ public class TileCompactingBin
     ItemStack itemStack = this.inputStackHandler.getFirstNonEmptyItemStack();
 
     if (!itemStack.isEmpty()) {
-      this.currentRecipe = CompactingBinRecipe.getRecipe(itemStack);
+      this.currentRecipe = this.getRecipe(itemStack);
 
     } else {
       this.currentRecipe = null;
@@ -135,7 +136,7 @@ public class TileCompactingBin
 
   private boolean isItemValidForInsertion(ItemStack itemStack) {
 
-    CompactingBinRecipe recipe = CompactingBinRecipe.getRecipe(itemStack);
+    CompactingBinRecipeBase recipe = this.getRecipe(itemStack);
 
     if (recipe == null) {
       return false;
@@ -152,9 +153,19 @@ public class TileCompactingBin
   // - Accessors
   // ---------------------------------------------------------------------------
 
+  public CompactingBinRecipeBase getRecipe(ItemStack itemStack) {
+
+    return CompactingBinRecipe.getRecipe(itemStack);
+  }
+
   public float getRecipeProgress() {
 
     return this.recipeProgress.get();
+  }
+
+  public float addRecipeProgress(float progress) {
+
+    return this.recipeProgress.add(progress);
   }
 
   public InputStackHandler getInputStackHandler() {
@@ -162,7 +173,7 @@ public class TileCompactingBin
     return this.inputStackHandler;
   }
 
-  public CompactingBinRecipe getCurrentRecipe() {
+  public CompactingBinRecipeBase getCurrentRecipe() {
 
     return this.currentRecipe;
   }
@@ -417,7 +428,7 @@ public class TileCompactingBin
         return stack; // item is not valid for insertion, fail
       }
 
-      CompactingBinRecipe recipe = CompactingBinRecipe.getRecipe(stack);
+      CompactingBinRecipeBase recipe = this.tile.getRecipe(stack);
 
       if (recipe == null) {
         // This should never happen because the item's recipe is checked above.

@@ -38,6 +38,9 @@ public final class BlockInitializer {
 
     registry.registerBlockWithItem(new BlockStoneHopper(), BlockStoneHopper.NAME);
 
+    BlockMechanicalCompactingBin blockMechanicalCompactingBin = new BlockMechanicalCompactingBin();
+    registry.registerBlock(blockMechanicalCompactingBin, new BlockMechanicalCompactingBin.Item(blockMechanicalCompactingBin), BlockMechanicalCompactingBin.NAME);
+
     registry.registerTileEntities(
         TileStoneKiln.class,
         TileStoneKilnTop.class,
@@ -57,7 +60,8 @@ public final class BlockInitializer {
         TileBrickCrucible.class,
         TileBrickCrucibleTop.class,
 
-        TileStoneHopper.class
+        TileStoneHopper.class,
+        TileMechanicalCompactingBinWorker.class
     );
   }
 
@@ -77,7 +81,8 @@ public final class BlockInitializer {
           ModuleTechMachine.Blocks.BRICK_OVEN,
           ModuleTechMachine.Blocks.BRICK_CRUCIBLE,
 
-          ModuleTechMachine.Blocks.STONE_HOPPER
+          ModuleTechMachine.Blocks.STONE_HOPPER,
+          ModuleTechMachine.Blocks.MECHANICAL_COMPACTING_BIN
       );
 
       if (!ModuleTechMachineConfig.BRICK_KILN.USE_IRON_SKIN) {
@@ -112,6 +117,7 @@ public final class BlockInitializer {
       ClientRegistry.bindTileEntitySpecialRenderer(TileBrickCrucible.class, new TESRInteractable<>());
 
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneHopper.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileMechanicalCompactingBinWorker.class, new TESRInteractable<>());
     });
   }
 

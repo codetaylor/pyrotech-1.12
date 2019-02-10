@@ -109,6 +109,8 @@ public class ModuleTechMachine
     BrickSawmillRecipesAdd.apply(Registries.BRICK_SAWMILL_RECIPES);
     BrickCrucibleRecipesAdd.apply(Registries.BRICK_CRUCIBLE_RECIPES);
     BrickOvenRecipesAdd.apply(Registries.BRICK_OVEN_RECIPES);
+
+    MechanicalCompactingBinRecipesAdd.apply(Registries.MECHANICAL_COMPACTING_BIN_RECIPES);
   }
 
   @Override
@@ -138,6 +140,8 @@ public class ModuleTechMachine
     BrickOvenRecipesAdd.registerInheritedRecipes(Registries.STONE_OVEN_RECIPES, Registries.BRICK_OVEN_RECIPES);
     BrickSawmillRecipesAdd.registerInheritedRecipes(Registries.STONE_SAWMILL_RECIPES, Registries.BRICK_SAWMILL_RECIPES);
     BrickCrucibleRecipesAdd.registerInheritedRecipes(Registries.STONE_CRUCIBLE_RECIPES, Registries.BRICK_CRUCIBLE_RECIPES);
+
+    MechanicalCompactingBinRecipesAdd.registerInheritedRecipes(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE, Registries.MECHANICAL_COMPACTING_BIN_RECIPES);
   }
 
   @GameRegistry.ObjectHolder(ModuleTechMachine.MOD_ID)
@@ -170,6 +174,9 @@ public class ModuleTechMachine
     @GameRegistry.ObjectHolder(BlockStoneHopper.NAME)
     public static final BlockStoneHopper STONE_HOPPER;
 
+    @GameRegistry.ObjectHolder(BlockMechanicalCompactingBin.NAME)
+    public static final BlockMechanicalCompactingBin MECHANICAL_COMPACTING_BIN;
+
     static {
       STONE_KILN = null;
       STONE_OVEN = null;
@@ -182,6 +189,7 @@ public class ModuleTechMachine
       BRICK_CRUCIBLE = null;
 
       STONE_HOPPER = null;
+      MECHANICAL_COMPACTING_BIN = null;
     }
   }
 
@@ -249,6 +257,8 @@ public class ModuleTechMachine
     public static final IForgeRegistryModifiable<BrickOvenRecipe> BRICK_OVEN_RECIPES;
     public static final IForgeRegistryModifiable<BrickCrucibleRecipe> BRICK_CRUCIBLE_RECIPES;
 
+    public static final IForgeRegistryModifiable<MechanicalCompactingBinRecipe> MECHANICAL_COMPACTING_BIN_RECIPES;
+
     static {
       STONE_KILN_RECIPES = null;
       STONE_SAWMILL_RECIPES = null;
@@ -259,6 +269,8 @@ public class ModuleTechMachine
       BRICK_SAWMILL_RECIPES = null;
       BRICK_OVEN_RECIPES = null;
       BRICK_CRUCIBLE_RECIPES = null;
+
+      MECHANICAL_COMPACTING_BIN_RECIPES = null;
     }
   }
 }

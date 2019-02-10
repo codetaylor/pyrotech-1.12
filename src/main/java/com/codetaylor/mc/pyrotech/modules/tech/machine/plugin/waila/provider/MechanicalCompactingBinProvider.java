@@ -1,9 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.provider;
+package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider;
 
 import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCompactingBin;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalCompactingBin;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class CompactingBinProvider
+public class MechanicalCompactingBinProvider
     extends BodyProviderAdapter {
 
   @Nonnull
@@ -26,10 +26,10 @@ public class CompactingBinProvider
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileCompactingBin) {
+    if (tileEntity instanceof TileMechanicalCompactingBin) {
 
-      TileCompactingBin tile;
-      tile = (TileCompactingBin) tileEntity;
+      TileMechanicalCompactingBin tile;
+      tile = (TileMechanicalCompactingBin) tileEntity;
       CompactingBinRecipeBase currentRecipe = tile.getCurrentRecipe();
 
       if (currentRecipe == null) {
@@ -37,7 +37,7 @@ public class CompactingBinProvider
       }
 
       float progress = tile.getRecipeProgress();
-      TileCompactingBin.InputStackHandler inputStackHandler = tile.getInputStackHandler();
+      TileMechanicalCompactingBin.InputStackHandler inputStackHandler = tile.getInputStackHandler();
       int totalItemCount = tile.getInputStackHandler().getTotalItemCount();
       int completeRecipeCount = totalItemCount / currentRecipe.getAmount();
 

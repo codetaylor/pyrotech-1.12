@@ -181,6 +181,21 @@ public class ModuleTechMachineConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Mechanical Compacting Bin
+  // ---------------------------------------------------------------------------
+
+  public static MechanicalCompactingBin MECHANICAL_COMPACTING_BIN = new MechanicalCompactingBin();
+
+  public static class MechanicalCompactingBin {
+
+    @Config.Comment({
+        "If true, all the compacting bin recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_COMPACTING_BIN_RECIPES = true;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Stone Kiln
   // ---------------------------------------------------------------------------
 

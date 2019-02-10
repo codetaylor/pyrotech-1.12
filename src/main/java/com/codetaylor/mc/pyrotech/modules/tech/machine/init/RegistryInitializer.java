@@ -14,6 +14,22 @@ public final class RegistryInitializer {
 
     RegistryInitializer.registerStoneMachineRecipeRegistries();
     RegistryInitializer.registerBrickMachineRecipeRegistries();
+
+    // MECHANICAL_COMPACTING_BIN_RECIPES
+    new RegistryBuilder<MechanicalCompactingBinRecipe>()
+        .setName(new ResourceLocation(ModuleTechMachine.MOD_ID, "mechanical_compacting_bin_recipe"))
+        .setType(MechanicalCompactingBinRecipe.class)
+        .allowModification()
+        .create();
+
+    Injector injector = new Injector();
+
+    injector.inject(
+        ModuleTechMachine.Registries.class,
+        "MECHANICAL_COMPACTING_BIN_RECIPES",
+        GameRegistry.findRegistry(MechanicalCompactingBinRecipe.class)
+    );
+
   }
 
   protected static void registerStoneMachineRecipeRegistries() {

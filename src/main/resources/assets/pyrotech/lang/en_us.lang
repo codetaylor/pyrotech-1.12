@@ -118,6 +118,7 @@ tile.pyrotech.brick_sawmill.name=Refractory Sawmill
 tile.pyrotech.brick_crucible.name=Refractory Crucible
 
 tile.pyrotech.stone_hopper.name=Stone Hopper
+tile.pyrotech.mechanical_compacting_bin.name=Mechanical Compacter
 
 #------------------------------------------------------------------------------
 # Module: Tech - Refractory
@@ -295,6 +296,8 @@ gui.pyrotech.jei.category.kiln.stone=Stone Kiln Firing
 gui.pyrotech.jei.category.crucible.stone=Stone Crucible
 gui.pyrotech.jei.category.sawmill.stone=Stone Sawmill
 gui.pyrotech.jei.category.oven.stone=Stone Oven
+
+gui.pyrotech.jei.category.mechanical.compacting.bin=Mechanical Compacter
 
 gui.pyrotech.jei.category.kiln.pit=Pit Kiln
 gui.pyrotech.jei.category.burn.pit=Pit Burning

@@ -4,10 +4,7 @@ import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category.*;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperCrucible;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperKiln;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperOven;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperSawmill;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInItemOutBase;
 import mezz.jei.api.IGuiHelper;
@@ -42,7 +39,9 @@ public class PluginJEI
         new JEIRecipeCategoryBrickKiln(guiHelper),
         new JEIRecipeCategoryBrickSawmill(guiHelper),
         new JEIRecipeCategoryBrickOven(guiHelper),
-        new JEIRecipeCategoryBrickCrucible(guiHelper)
+        new JEIRecipeCategoryBrickCrucible(guiHelper),
+
+        new JEIRecipeCategoryMechanicalCompactingBin(guiHelper)
     );
   }
 
@@ -91,6 +90,14 @@ public class PluginJEI
       registry.addRecipes(furnaceRecipes, JEIRecipeCategoryBrickOven.UID);
       List<BrickOvenRecipe> recipeList = new ArrayList<>(ModuleTechMachine.Registries.BRICK_OVEN_RECIPES.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryBrickOven.UID);
+    }
+
+    // --- Mechanical Compacting Bin
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechMachine.Blocks.MECHANICAL_COMPACTING_BIN), JEIRecipeCategoryMechanicalCompactingBin.UID);
+      registry.handleRecipes(MechanicalCompactingBinRecipe.class, JEIRecipeWrapperMechanicalCompactingBin::new, JEIRecipeCategoryMechanicalCompactingBin.UID);
+      List<MechanicalCompactingBinRecipe> recipeList = new ArrayList<>(ModuleTechMachine.Registries.MECHANICAL_COMPACTING_BIN_RECIPES.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryMechanicalCompactingBin.UID);
     }
 
     // --- Stone Crucible

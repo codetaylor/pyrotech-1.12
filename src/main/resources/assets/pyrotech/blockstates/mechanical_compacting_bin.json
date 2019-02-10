@@ -1,0 +1,30 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:mechanical_compacting_bin",
+    "textures": {
+      "particle": "pyrotech:blocks/mechanical_compacting_bin_side"
+    }
+  },
+  "variants": {
+    "type": {
+      "bin": {},
+      "machine": {
+        "model": "pyrotech:_empty"
+      }
+    },
+    "facing": {
+      "north": {
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    }
+  }
+}

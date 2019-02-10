@@ -1,9 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila;
 
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider.CombustionMachineItemInFluidOutProvider;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider.CombustionMachineItemInItemOutProvider;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider.SawmillProvider;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider.StoneHopperProvider;
+import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.*;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
@@ -46,6 +45,16 @@ public class PluginWaila {
 
       registrar.registerBodyProvider(provider, TileBrickCrucible.class);
       registrar.registerBodyProvider(provider, TileBrickCrucibleTop.class);
+    }
+
+    {
+      MechanicalCompactingBinWorkerProvider provider = new MechanicalCompactingBinWorkerProvider();
+      registrar.registerBodyProvider(provider, TileMechanicalCompactingBinWorker.class);
+    }
+
+    if (!ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
+      MechanicalCompactingBinProvider provider = new MechanicalCompactingBinProvider();
+      registrar.registerBodyProvider(provider, TileMechanicalCompactingBin.class);
     }
   }
 

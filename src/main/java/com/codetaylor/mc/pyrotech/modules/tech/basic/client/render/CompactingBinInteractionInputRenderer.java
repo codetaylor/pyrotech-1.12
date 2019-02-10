@@ -3,8 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.client.render;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompactingBinRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCompactingBin;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
@@ -25,7 +25,7 @@ public class CompactingBinInteractionInputRenderer
   public void renderSolidPass(TileCompactingBin.InteractionInput interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
 
     TileCompactingBin tile = interaction.getTile();
-    CompactingBinRecipe currentRecipe = tile.getCurrentRecipe();
+    CompactingBinRecipeBase currentRecipe = tile.getCurrentRecipe();
 
     if (currentRecipe == null) {
       return;
@@ -48,7 +48,7 @@ public class CompactingBinInteractionInputRenderer
   public void renderSolidPassText(TileCompactingBin.InteractionInput interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
 
     TileCompactingBin tile = interaction.getTile();
-    CompactingBinRecipe currentRecipe = tile.getCurrentRecipe();
+    CompactingBinRecipeBase currentRecipe = tile.getCurrentRecipe();
 
     if (!interaction.isEmpty()
         && currentRecipe != null
@@ -76,7 +76,7 @@ public class CompactingBinInteractionInputRenderer
   public boolean renderAdditivePass(TileCompactingBin.InteractionInput interaction, World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
     TileCompactingBin tile = interaction.getTile();
-    CompactingBinRecipe currentRecipe = tile.getCurrentRecipe();
+    CompactingBinRecipeBase currentRecipe = tile.getCurrentRecipe();
 
     if (currentRecipe != null) {
       double max = ModuleTechBasicConfig.COMPACTING_BIN.MAX_CAPACITY * currentRecipe.getAmount();
