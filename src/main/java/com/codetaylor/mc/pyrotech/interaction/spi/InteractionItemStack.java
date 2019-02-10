@@ -364,7 +364,7 @@ public class InteractionItemStack<T extends TileEntity & ITileInteractable>
     if (!result.isEmpty()) {
 
       if (!world.isRemote) {
-        StackHelper.addToInventoryOrSpawn(world, player, result, tilePos);
+        StackHelper.addToInventoryOrSpawn(world, player, result, tilePos, 1.0, false, (type == EnumType.MouseClick));
       }
 
       return true;

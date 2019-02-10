@@ -685,7 +685,7 @@ public class TileKilnPit
           ItemStack extractItem = outputStackHandler.extractItem(i, outputStackHandler.getStackInSlot(i).getCount(), false);
 
           if (!extractItem.isEmpty()) {
-            StackHelper.addToInventoryOrSpawn(world, player, extractItem, tilePos);
+            StackHelper.addToInventoryOrSpawn(world, player, extractItem, tilePos, 1.0, false, (type == EnumType.MouseClick));
           }
         }
       }

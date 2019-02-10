@@ -752,7 +752,7 @@ public class TileCampfire
               }
             }
 
-            StackHelper.addToInventoryOrSpawn(world, player, itemStack, hitPos, -0.125);
+            StackHelper.addToInventoryOrSpawn(world, player, itemStack, hitPos, -0.125, false, (type == EnumType.MouseClick));
           }
 
           return true;

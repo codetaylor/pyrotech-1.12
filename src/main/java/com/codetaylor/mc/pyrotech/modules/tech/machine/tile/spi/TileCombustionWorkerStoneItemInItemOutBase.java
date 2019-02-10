@@ -239,7 +239,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Machi
 
         if (!extractItem.isEmpty()
             && !world.isRemote) {
-          StackHelper.addToInventoryOrSpawn(world, player, extractItem, tilePos);
+          StackHelper.addToInventoryOrSpawn(world, player, extractItem, tilePos, 1.0, false, (type == EnumType.MouseClick));
         }
       }
 
