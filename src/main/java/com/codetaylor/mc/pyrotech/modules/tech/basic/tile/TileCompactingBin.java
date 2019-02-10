@@ -105,11 +105,6 @@ public class TileCompactingBin
     return null;
   }
 
-  protected boolean allowAutomation() {
-
-    return ModuleTechBasicConfig.COMPACTING_BIN.ALLOW_AUTOMATION;
-  }
-
   // ---------------------------------------------------------------------------
   // - Network
   // ---------------------------------------------------------------------------
@@ -170,6 +165,46 @@ public class TileCompactingBin
   public CompactingBinRecipe getCurrentRecipe() {
 
     return this.currentRecipe;
+  }
+
+  protected boolean allowAutomation() {
+
+    return ModuleTechBasicConfig.COMPACTING_BIN.ALLOW_AUTOMATION;
+  }
+
+  protected int getMinimumHungerToUse() {
+
+    return ModuleTechBasicConfig.COMPACTING_BIN.MINIMUM_HUNGER_TO_USE;
+  }
+
+  protected String[] getShovelBlacklist() {
+
+    return ModuleTechBasicConfig.COMPACTING_BIN.SHOVEL_BLACKLIST;
+  }
+
+  protected String[] getShovelWhitelist() {
+
+    return ModuleTechBasicConfig.COMPACTING_BIN.SHOVEL_WHITELIST;
+  }
+
+  protected double getExhaustionCostPerHit() {
+
+    return ModuleTechBasicConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_HIT;
+  }
+
+  protected int getToolDamagePerCraft() {
+
+    return ModuleTechBasicConfig.COMPACTING_BIN.TOOL_DAMAGE_PER_CRAFT;
+  }
+
+  protected double getExhaustionCostPerCraftComplete() {
+
+    return ModuleTechBasicConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_CRAFT_COMPLETE;
+  }
+
+  protected int getMaxCapacity() {
+
+    return ModuleTechBasicConfig.COMPACTING_BIN.MAX_CAPACITY;
   }
 
   // ---------------------------------------------------------------------------
@@ -291,7 +326,7 @@ public class TileCompactingBin
     @Override
     protected boolean allowInteraction(TileCompactingBin tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      if (player.getFoodStats().getFoodLevel() < ModuleTechBasicConfig.COMPACTING_BIN.MINIMUM_HUNGER_TO_USE) {
+      if (player.getFoodStats().getFoodLevel() < tile.getMinimumHungerToUse()) {
         return false;
       }
 
@@ -311,10 +346,10 @@ public class TileCompactingBin
       String registryName = resourceLocation.toString();
 
       if (heldItem.getToolClasses(heldItemStack).contains("shovel")) {
-        return !ArrayHelper.contains(ModuleTechBasicConfig.COMPACTING_BIN.SHOVEL_BLACKLIST, registryName);
+        return !ArrayHelper.contains(tile.getShovelBlacklist(), registryName);
 
       } else {
-        return ArrayHelper.contains(ModuleTechBasicConfig.COMPACTING_BIN.SHOVEL_WHITELIST, registryName);
+        return ArrayHelper.contains(tile.getShovelWhitelist(), registryName);
       }
     }
 
@@ -331,8 +366,8 @@ public class TileCompactingBin
 
       if (!world.isRemote) {
 
-        if (ModuleTechBasicConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_HIT > 0) {
-          player.addExhaustion((float) ModuleTechBasicConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_HIT);
+        if (tile.getExhaustionCostPerHit() > 0) {
+          player.addExhaustion((float) tile.getExhaustionCostPerHit());
         }
 
         int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "shovel", player, null);
@@ -347,10 +382,10 @@ public class TileCompactingBin
           tile.getInputStackHandler().removeItems(tile.currentRecipe.getAmount());
 
           // damage tool
-          heldItem.damageItem(ModuleTechBasicConfig.COMPACTING_BIN.TOOL_DAMAGE_PER_CRAFT, player);
+          heldItem.damageItem(tile.getToolDamagePerCraft(), player);
 
-          if (ModuleTechBasicConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_CRAFT_COMPLETE > 0) {
-            player.addExhaustion((float) ModuleTechBasicConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_CRAFT_COMPLETE);
+          if (tile.getExhaustionCostPerCraftComplete() > 0) {
+            player.addExhaustion((float) tile.getExhaustionCostPerCraftComplete());
           }
         }
       }
@@ -389,7 +424,7 @@ public class TileCompactingBin
         return stack; // item has no recipe, fail
       }
 
-      int max = ModuleTechBasicConfig.COMPACTING_BIN.MAX_CAPACITY * recipe.getAmount();
+      int max = this.tile.getMaxCapacity() * recipe.getAmount();
       int currentTotal = this.tile.getInputStackHandler().getTotalItemCount();
 
       if (currentTotal == max) {
