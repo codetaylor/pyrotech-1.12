@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPI",
+    "N P",
+    "PPP"
+  ],
+  "key": {
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "N": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetIron"
+    }
+  },
+  "result": {
+    "item": "minecraft:chest",
+    "count": 1,
+    "data": 0
+  }
+}

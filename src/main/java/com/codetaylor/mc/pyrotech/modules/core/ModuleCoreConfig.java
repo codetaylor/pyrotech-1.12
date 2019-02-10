@@ -313,6 +313,7 @@ public class ModuleCoreConfig {
         "minecraft:torch",
         "minecraft:coal_block",
         "minecraft:coal",
+        "minecraft:chest",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
