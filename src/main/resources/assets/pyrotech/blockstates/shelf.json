@@ -4,6 +4,12 @@
     "model": "pyrotech:shelf"
   },
   "variants": {
+    "type": {
+      "back": {},
+      "forward": {
+        "model": "pyrotech:shelf_forward"
+      }
+    },
     "facing": {
       "north": {
       },

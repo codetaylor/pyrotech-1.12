@@ -4,6 +4,12 @@
     "model": "pyrotech:shelf_stone"
   },
   "variants": {
+    "type": {
+      "back": {},
+      "forward": {
+        "model": "pyrotech:shelf_stone_forward"
+      }
+    },
     "facing": {
       "north": {
       },

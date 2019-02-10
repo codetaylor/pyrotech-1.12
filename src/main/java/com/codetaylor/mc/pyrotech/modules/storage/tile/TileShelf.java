@@ -13,6 +13,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
+import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockShelfBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -61,7 +62,7 @@ public class TileShelf
     for (int i = 0; i < 9; i++) {
       int x = i % 3;
       int y = i / 3;
-      interactionList.add(new ShelfInteraction(this.stackHandler, i, x, y));
+      interactionList.add(new ShelfInteraction(this, this.stackHandler, i, x, y));
     }
 
     this.interactions = interactionList.toArray(new IInteraction[0]);
@@ -171,7 +172,11 @@ public class TileShelf
     private static final double ONE_THIRD = 1.0 / 3.0;
     private static final double ONE_SIXTH = 1.0 / 6.0;
 
-    /* package */ ShelfInteraction(ItemStackHandler stackHandler, int slot, double x, int y) {
+    private final Transform forwardTransform;
+    private final AxisAlignedBB forwardBounds;
+    private final TileShelf tile;
+
+    /* package */ ShelfInteraction(TileShelf tile, ItemStackHandler stackHandler, int slot, double x, int y) {
 
       super(
           new ItemStackHandler[]{stackHandler},
@@ -184,6 +189,44 @@ public class TileShelf
               Transform.scale(0.20, 0.20, 0.20)
           )
       );
+
+      this.tile = tile;
+
+      this.forwardBounds = new AxisAlignedBB(x * ONE_THIRD, y * ONE_THIRD, 0, x * ONE_THIRD + ONE_THIRD, y * ONE_THIRD + ONE_THIRD, 6.0 / 16.0);
+
+      this.forwardTransform = new Transform(
+          Transform.translate(x * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025, y * (ONE_THIRD - 0.025) + ONE_SIXTH, ONE_SIXTH - 0.025),
+          Transform.rotate(0, 1, 0, 180),
+          Transform.scale(0.20, 0.20, 0.20)
+      );
+    }
+
+    @Override
+    public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack, float partialTicks) {
+
+      if (blockState.getBlock() instanceof BlockShelfBase) {
+        BlockShelfBase.EnumType type = blockState.getValue(BlockShelfBase.TYPE);
+
+        if (type == BlockShelfBase.EnumType.FORWARD) {
+          return this.forwardTransform;
+        }
+      }
+
+      return super.getTransform(world, pos, blockState, itemStack, partialTicks);
+    }
+
+    @Override
+    public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
+
+      if (blockState.getBlock() instanceof BlockShelfBase) {
+        BlockShelfBase.EnumType type = blockState.getValue(BlockShelfBase.TYPE);
+
+        if (type == BlockShelfBase.EnumType.FORWARD) {
+          return this.forwardBounds;
+        }
+      }
+
+      return super.getInteractionBounds(world, pos, blockState);
     }
   }
 
