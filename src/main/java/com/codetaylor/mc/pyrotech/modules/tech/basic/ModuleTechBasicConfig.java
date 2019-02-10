@@ -38,9 +38,7 @@ public class ModuleTechBasicConfig {
         "",
         "String format is a resource location: (domain):(path)"
     })
-    public String[] RECIPE_BLACKLIST = {
-        "minecraft:chest"
-    };
+    public String[] RECIPE_BLACKLIST = new String[0];
   }
 
   // ---------------------------------------------------------------------------
