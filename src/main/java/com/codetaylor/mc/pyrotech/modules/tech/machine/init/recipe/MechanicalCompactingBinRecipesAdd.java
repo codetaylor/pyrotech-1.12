@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
@@ -25,6 +26,13 @@ public class MechanicalCompactingBinRecipesAdd {
         72,
         ModuleTechBasicConfig.COMPACTING_BIN.TOOL_USES_REQUIRED_PER_HARVEST_LEVEL
     ).setRegistryName(ModuleTechMachine.MOD_ID, "coal_block"));
+
+    registry.register(new MechanicalCompactingBinRecipe(
+        new ItemStack(ModuleCore.Blocks.COAL_COKE_BLOCK),
+        Ingredient.fromStacks(ItemMaterial.EnumType.COAL_COKE.asStack()),
+        9,
+        ModuleTechBasicConfig.COMPACTING_BIN.TOOL_USES_REQUIRED_PER_HARVEST_LEVEL
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "coal_coke_block"));
   }
 
   public static void registerInheritedRecipes(
