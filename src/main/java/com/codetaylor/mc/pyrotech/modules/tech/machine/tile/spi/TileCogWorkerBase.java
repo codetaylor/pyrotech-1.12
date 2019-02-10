@@ -22,7 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -112,7 +111,7 @@ public abstract class TileCogWorkerBase
     return this.cogStackHandler;
   }
 
-  protected abstract boolean isValidCog(ResourceLocation registryName);
+  protected abstract boolean isValidCog(ItemStack itemStack);
 
   protected abstract int getUpdateIntervalTicks();
 
@@ -297,13 +296,7 @@ public abstract class TileCogWorkerBase
 
       // Filter out non-cog items.
 
-      ResourceLocation registryName = stack.getItem().getRegistryName();
-
-      if (registryName == null) {
-        return stack;
-      }
-
-      if (!this.tile.isValidCog(registryName)) {
+      if (!this.tile.isValidCog(stack)) {
         return stack;
       }
 

@@ -132,8 +132,8 @@ public class ModuleTechMachineConfig {
     @Config.Comment({
         "A list of valid cogs for the hopper.",
         "NOTE: Items provided here are assumed to have durability.",
-        "Format is (domain):(path) for the item and (amount) for the number",
-        "of items that the cog will transfer in one attempt."
+        "String format is (domain):(path) for the item and (integer) for the",
+        "number of items that the cog will transfer in one attempt."
     })
     public Map<String, Integer> COGS = new HashMap<String, Integer>() {{
       this.put("pyrotech:cog_wood", 1);
@@ -189,10 +189,54 @@ public class ModuleTechMachineConfig {
   public static class MechanicalCompactingBin {
 
     @Config.Comment({
+        "A list of valid cogs for the device.",
+        "NOTE: Items provided here are assumed to have durability.",
+        "String format is (domain):(path) for the item and (double) for the",
+        "amount of recipe progress added per work cycle. The range is [0,1]."
+    })
+    public Map<String, Double> COGS = new HashMap<String, Double>() {{
+      this.put("pyrotech:cog_wood", 0.10);
+      this.put("pyrotech:cog_stone", 0.20);
+      this.put("pyrotech:cog_flint", 0.25);
+      this.put("pyrotech:cog_bone", 0.25);
+      this.put("pyrotech:cog_iron", 0.35);
+      this.put("pyrotech:cog_diamond", 0.50);
+    }};
+
+    /**
+     * Returns the recipe progress for the given item resource location,
+     * or -1 if it isn't in the list.
+     */
+    public double getCogRecipeProgress(@Nullable ResourceLocation resourceLocation) {
+
+      if (resourceLocation != null) {
+        Double result = this.COGS.get(resourceLocation.toString());
+
+        if (result != null) {
+          return result;
+        }
+      }
+
+      return -1;
+    }
+
+    @Config.Comment({
         "If true, all the compacting bin recipes will also be available in this device.",
         "Default: " + true
     })
     public boolean INHERIT_COMPACTING_BIN_RECIPES = true;
+
+    @Config.Comment({
+        "How many ticks before advancing the compacting recipe.",
+        "Default: " + 40
+    })
+    public int WORK_INTERVAL_TICKS = 40;
+
+    @Config.Comment({
+        "The number of items the output slot can hold.",
+        "Default: " + 64
+    })
+    public int OUTPUT_CAPACITY = 64;
   }
 
   // ---------------------------------------------------------------------------

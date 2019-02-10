@@ -11,7 +11,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -43,9 +42,9 @@ public class TileStoneHopper
   }
 
   @Override
-  protected boolean isValidCog(ResourceLocation registryName) {
+  protected boolean isValidCog(ItemStack itemStack) {
 
-    return (ModuleTechMachineConfig.STONE_HOPPER.getCogTransferAmount(registryName) > -1);
+    return (ModuleTechMachineConfig.STONE_HOPPER.getCogTransferAmount(itemStack.getItem().getRegistryName()) > -1);
   }
 
   // ---------------------------------------------------------------------------

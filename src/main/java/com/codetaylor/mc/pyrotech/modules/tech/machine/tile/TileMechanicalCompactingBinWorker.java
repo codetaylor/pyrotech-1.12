@@ -27,6 +27,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -94,20 +95,24 @@ public class TileMechanicalCompactingBinWorker
   @Override
   protected int getUpdateIntervalTicks() {
 
-    // TODO
-    return ModuleTechMachineConfig.STONE_HOPPER.TRANSFER_INTERVAL_TICKS;
+    return ModuleTechMachineConfig.MECHANICAL_COMPACTING_BIN.WORK_INTERVAL_TICKS;
   }
 
   @Override
-  protected boolean isValidCog(ResourceLocation registryName) {
+  protected boolean isValidCog(ItemStack itemStack) {
 
-    // TODO
-    return (ModuleTechMachineConfig.STONE_HOPPER.getCogTransferAmount(registryName) > -1);
+    return (this.getCogRecipeProgress(itemStack) > -1);
+  }
+
+  protected double getCogRecipeProgress(ItemStack itemStack) {
+
+    ResourceLocation registryName = itemStack.getItem().getRegistryName();
+    return ModuleTechMachineConfig.MECHANICAL_COMPACTING_BIN.getCogRecipeProgress(registryName);
   }
 
   protected int getOutputCapacity() {
 
-    return 64; // TODO
+    return ModuleTechMachineConfig.MECHANICAL_COMPACTING_BIN.OUTPUT_CAPACITY;
   }
 
   // ---------------------------------------------------------------------------
@@ -127,11 +132,13 @@ public class TileMechanicalCompactingBinWorker
 
       if (currentRecipe != null
           && currentRecipe.getAmount() <= tile.getInputStackHandler().getTotalItemCount()
-          && this.outputStackHandler.insertItemInternal(0, currentRecipe.getOutput(), true).getCount() == 0) {
+          && this.outputStackHandler.insertItemInternal(currentRecipe.getOutput(), true).getCount() == 0) {
 
-        if (tile.addRecipeProgress(0.25f) > 0.9999) {
+        float progress = (float) MathHelper.clamp(this.getCogRecipeProgress(this.getCog()), 0, 1);
+
+        if (tile.addRecipeProgress(progress) > 0.9999) {
           // recipe complete
-          this.outputStackHandler.insertItemInternal(0, currentRecipe.getOutput(), false);
+          this.outputStackHandler.insertItemInternal(currentRecipe.getOutput(), false);
 
           // reduce input items
           tile.getInputStackHandler().removeItems(currentRecipe.getAmount());
@@ -246,9 +253,9 @@ public class TileMechanicalCompactingBinWorker
     }
 
     @Nonnull
-    public ItemStack insertItemInternal(int slot, @Nonnull ItemStack stack, boolean simulate) {
+      /* package */ ItemStack insertItemInternal(@Nonnull ItemStack stack, boolean simulate) {
 
-      return super.insertItem(slot, stack, simulate);
+      return super.insertItem(0, stack, simulate);
     }
   }
 }
