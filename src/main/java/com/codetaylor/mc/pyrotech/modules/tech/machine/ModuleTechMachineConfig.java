@@ -692,9 +692,9 @@ public class ModuleTechMachineConfig {
     @Config.Comment({
         "If true, the machine will process all input items at the same time.",
         "If false, the machine will process one recipe at a time.",
-        "Default: " + false
+        "Default: " + true
     })
-    public boolean ASYNCHRONOUS_OPERATION = false;
+    public boolean ASYNCHRONOUS_OPERATION = true;
   }
 
   // ---------------------------------------------------------------------------
@@ -756,9 +756,9 @@ public class ModuleTechMachineConfig {
     @Config.Comment({
         "If true, the machine will process all input items at the same time.",
         "If false, the machine will process one recipe at a time.",
-        "Default: " + false
+        "Default: " + true
     })
-    public boolean ASYNCHRONOUS_OPERATION = false;
+    public boolean ASYNCHRONOUS_OPERATION = true;
 
     @Config.Comment({
         "If true, all the stone tier recipes will also be available in this device.",
