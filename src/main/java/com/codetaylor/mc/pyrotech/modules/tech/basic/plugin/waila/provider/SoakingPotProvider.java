@@ -56,16 +56,14 @@ public class SoakingPotProvider
 
         if (drain == null || drain.amount != maxDrain) {
 
-          if (fluid != null) {
-            tooltip.add(TextFormatting.RED + Util.translateFormatted(
-                "gui." + ModuleTechBasic.MOD_ID + ".waila.insufficient",
-                fluid.getLocalizedName()
-            ));
-          } else {
-            tooltip.add(TextFormatting.RED + Util.translate(
-                "gui." + ModuleTechBasic.MOD_ID + ".waila.insufficient.fluid"
-            ));
-          }
+          tooltip.add(TextFormatting.RED + Util.translateFormatted(
+              "gui." + ModuleTechBasic.MOD_ID + ".waila.insufficient",
+              currentRecipe.getInputFluid().getLocalizedName()
+          ));
+          tooltip.add(TextFormatting.RED + Util.translateFormatted(
+              "gui." + ModuleTechBasic.MOD_ID + ".waila.insufficient.fluid.requires",
+              (drain == null) ? maxDrain : maxDrain - drain.amount
+          ));
         }
       }
 
