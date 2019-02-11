@@ -29,6 +29,16 @@ public class SoakingPotRecipesAdd {
         1
     ).setRegistryName(ModuleTechBasic.MOD_ID, "sponge"));
 
+    // Coal Block
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+      registry.register(new SoakingPotRecipe(
+          new ItemStack(Blocks.COAL_BLOCK),
+          Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK)),
+          new FluidStack(ModuleTechRefractory.Fluids.COAL_TAR, 1000),
+          7 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_block"));
+    }
+
     // Flint Clay
     registry.register(new SoakingPotRecipe(
         ItemMaterial.EnumType.FLINT_CLAY_BALL.asStack(),
