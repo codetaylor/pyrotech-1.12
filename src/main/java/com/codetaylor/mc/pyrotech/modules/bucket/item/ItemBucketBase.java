@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.bucket.item;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.FluidHelper;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.state.IBlockState;
@@ -758,6 +759,7 @@ public abstract class ItemBucketBase
 
       if (ItemBucketBase.this.isBroken(this.container)) {
         this.container = ItemStack.EMPTY;
+        ModPyrotech.PROXY.playSound(SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
       }
     }
 

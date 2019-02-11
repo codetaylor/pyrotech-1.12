@@ -13,6 +13,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGen;
+import com.codetaylor.mc.pyrotech.proxy.SidedProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -36,6 +37,13 @@ public class ModPyrotech {
   @SuppressWarnings("unused")
   @Mod.Instance
   public static ModPyrotech INSTANCE;
+
+  @net.minecraftforge.fml.common.SidedProxy(
+      modId = MOD_ID,
+      serverSide = "com.codetaylor.mc.pyrotech.proxy.SidedProxy",
+      clientSide = "com.codetaylor.mc.pyrotech.proxy.ClientSidedProxy"
+  )
+  public static SidedProxy PROXY;
 
   public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MOD_ID) {
 
