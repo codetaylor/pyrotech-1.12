@@ -265,6 +265,11 @@ public class TileBloomery
     return ModuleBloomeryConfig.BLOOMERY.MAX_ASH_CAPACITY;
   }
 
+  protected int getItemBurnTime(ItemStack stack) {
+
+    return (int) (StackHelper.getItemBurnTime(stack) * ModuleBloomeryConfig.BLOOMERY.getSpecialFuelBurnTimeModifier(stack));
+  }
+
   // ---------------------------------------------------------------------------
   // - Recipe
   // ---------------------------------------------------------------------------
@@ -988,7 +993,7 @@ public class TileBloomery
         return stack;
       }
 
-      int fuelBurnTimeSingle = StackHelper.getItemBurnTime(stack);
+      int fuelBurnTimeSingle = this.tile.getItemBurnTime(stack);
 
       if (fuelBurnTimeSingle <= 0) {
         return stack;
@@ -1076,7 +1081,7 @@ public class TileBloomery
           if (!simulate) {
 
             if (!this.tile.isActive()) {
-              this.tile.burnTime.add(-StackHelper.getItemBurnTime(extractItem) * extractItem.getCount());
+              this.tile.burnTime.add(-this.tile.getItemBurnTime(extractItem) * extractItem.getCount());
               this.tile.fuelCount.add(-extractItem.getCount());
             }
             super.extractItem(i, amount, false);

@@ -1,6 +1,17 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery;
 
+import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Config(modid = ModuleBloomery.MOD_ID, name = ModuleBloomery.MOD_ID + "/" + "module.tech.Bloomery")
 public class ModuleBloomeryConfig {
@@ -103,6 +114,39 @@ public class ModuleBloomeryConfig {
     })
     @Config.RangeDouble(min = 0)
     public double ENTITY_WALK_BURN_DAMAGE = 3;
+
+    public Map<String, Double> SPECIAL_FUEL_BURN_TIME_MODIFIERS = new LinkedHashMap<String, Double>() {{
+      this.put("pyrotech:coal_coke_block", 2.0);
+    }};
+
+    public double getSpecialFuelBurnTimeModifier(ItemStack stack) {
+
+      ResourceLocation registryName = stack.getItem().getRegistryName();
+      RecipeItemParser parser = new RecipeItemParser();
+
+      if (registryName != null) {
+
+        for (Map.Entry<String, Double> entry : SPECIAL_FUEL_BURN_TIME_MODIFIERS.entrySet()) {
+
+          try {
+            ParseResult parseResult = parser.parse(entry.getKey());
+            Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(parseResult.getDomain(), parseResult.getPath()));
+
+            if (stack.getItem() == item
+                && parseResult.getMeta() == OreDictionary.WILDCARD_VALUE
+                || stack.getMetadata() == parseResult.getMeta()) {
+              return entry.getValue();
+            }
+
+          } catch (MalformedRecipeItemException e) {
+            ModuleBloomery.LOGGER.error("Error parsing special fuel burn time modifier for item " + entry.getKey(), e);
+          }
+        }
+
+      }
+
+      return 1;
+    }
   }
 
   // ---------------------------------------------------------------------------
