@@ -115,6 +115,14 @@ public class ModuleBloomeryConfig {
     @Config.RangeDouble(min = 0)
     public double ENTITY_WALK_BURN_DAMAGE = 3;
 
+    @Config.Comment({
+        "By default, the bloomery uses the burn time of the items inserted as fuel",
+        "to calculate its speed. This map allows you to specify per-item modifiers",
+        "for bloomery burn time.",
+        "",
+        "The item string syntax is (domain):(path):(meta|*) where * is used as the",
+        "OreDict wildcard value. The modifier is a double in the range [0,+double)"
+    })
     public Map<String, Double> SPECIAL_FUEL_BURN_TIME_MODIFIERS = new LinkedHashMap<String, Double>() {{
       this.put("pyrotech:coal_coke_block", 2.0);
     }};
