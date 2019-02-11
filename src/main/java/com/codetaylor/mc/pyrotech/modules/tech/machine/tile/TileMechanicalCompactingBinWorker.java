@@ -142,6 +142,8 @@ public class TileMechanicalCompactingBinWorker
 
           // reduce input items
           tile.getInputStackHandler().removeItems(currentRecipe.getAmount());
+
+          tile.resetRecipeProgress();
         }
 
         SoundHelper.playSoundServer(this.world, this.pos, SoundEvents.BLOCK_PISTON_EXTEND, SoundCategory.BLOCKS, 0.5f);

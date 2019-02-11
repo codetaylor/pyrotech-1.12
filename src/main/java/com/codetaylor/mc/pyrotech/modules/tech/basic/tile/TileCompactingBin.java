@@ -178,6 +178,11 @@ public class TileCompactingBin
     return this.recipeProgress.add(progress);
   }
 
+  public void resetRecipeProgress() {
+
+    this.recipeProgress.set(0);
+  }
+
   public InputStackHandler getInputStackHandler() {
 
     return this.inputStackHandler;
@@ -408,6 +413,9 @@ public class TileCompactingBin
           if (tile.getExhaustionCostPerCraftComplete() > 0) {
             player.addExhaustion((float) tile.getExhaustionCostPerCraftComplete());
           }
+
+          // reset recipe progress
+          tile.recipeProgress.set(0);
         }
       }
 
