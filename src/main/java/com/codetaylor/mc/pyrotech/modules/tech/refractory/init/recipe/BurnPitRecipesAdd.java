@@ -21,7 +21,7 @@ public class BurnPitRecipesAdd {
         new ItemStack(Items.COAL, 1, 1),
         new BlockMetaMatcher(ModuleCore.Blocks.LOG_PILE, OreDictionary.WILDCARD_VALUE),
         10,
-        12 * 60 * 20,
+        8 * 60 * 20,
         new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 50),
         0.33f,
         new ItemStack[]{
@@ -37,7 +37,7 @@ public class BurnPitRecipesAdd {
         new ItemStack(Items.COAL, 1, 1),
         new BlockMetaMatcher(ModuleCore.Blocks.PILE_WOOD_CHIPS, 8),
         4,
-        6 * 60 * 20,
+        4 * 60 * 20,
         new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 50),
         0.33f,
         new ItemStack[]{
@@ -53,7 +53,7 @@ public class BurnPitRecipesAdd {
         ItemMaterial.EnumType.COAL_COKE.asStack(),
         new BlockMetaMatcher(Blocks.COAL_BLOCK, OreDictionary.WILDCARD_VALUE),
         10,
-        24 * 60 * 20,
+        12 * 60 * 20,
         new FluidStack(ModuleTechRefractory.Fluids.COAL_TAR, 50),
         0.15f,
         new ItemStack[]{
@@ -69,7 +69,7 @@ public class BurnPitRecipesAdd {
         new ItemStack(Items.COAL, 1, 1),
         new BlockMetaMatcher(ModuleCore.Blocks.WOOD_TAR_BLOCK, OreDictionary.WILDCARD_VALUE),
         10,
-        10 * 60 * 20,
+        5 * 60 * 20,
         null,
         0.15f,
         new ItemStack[]{
