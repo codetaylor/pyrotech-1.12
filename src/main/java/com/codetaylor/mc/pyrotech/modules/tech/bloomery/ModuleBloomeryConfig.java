@@ -125,6 +125,7 @@ public class ModuleBloomeryConfig {
     })
     public Map<String, Double> SPECIAL_FUEL_BURN_TIME_MODIFIERS = new LinkedHashMap<String, Double>() {{
       this.put("pyrotech:coal_coke_block", 2.0);
+      this.put("minecraft:coal_block", 1.5);
     }};
 
     public double getSpecialFuelBurnTimeModifier(ItemStack stack) {
