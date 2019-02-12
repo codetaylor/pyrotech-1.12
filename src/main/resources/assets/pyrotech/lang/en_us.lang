@@ -310,3 +310,9 @@ gui.pyrotech.jei.category.campfire=Campfire
 gui.pyrotech.jei.category.worktable=Worktable
 gui.pyrotech.jei.category.soaking.pot=Soaking Pot
 gui.pyrotech.jei.category.bloomery=Bloomery
+
+#------------------------------------------------------------------------------
+# Misc
+#------------------------------------------------------------------------------
+
+gui.pyrotech.disconnect.module.mismatch=The client-side modules enabled in Pyrotech's module config don't match the modules enabled on the server. The server expects: %s.
