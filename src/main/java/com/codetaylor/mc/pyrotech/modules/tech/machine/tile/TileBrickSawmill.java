@@ -1,9 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickSawmillRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileSawmillBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class TileBrickSawmill
     extends TileSawmillBase<BrickSawmillRecipe> {
@@ -58,6 +60,18 @@ public class TileBrickSawmill
   public double getEntityDamageFromBlade() {
 
     return ModuleTechMachineConfig.BRICK_SAWMILL.ENTITY_DAMAGE_FROM_BLADE;
+  }
+
+  @Override
+  protected boolean isValidSawmillBlade(ItemStack itemStack) {
+
+    ResourceLocation registryName = itemStack.getItem().getRegistryName();
+
+    if (registryName == null) {
+      return false;
+    }
+
+    return ArrayHelper.contains(ModuleTechMachineConfig.BRICK_SAWMILL.SAWMILL_BLADES, registryName.toString());
   }
 
   // ---------------------------------------------------------------------------

@@ -557,6 +557,19 @@ public class ModuleTechMachineConfig {
     })
     @Config.RangeDouble(min = 0, max = 1)
     public double WOOD_CHIPS_CHANCE = 0.075;
+
+    @Config.Comment({
+        "Valid sawmill blades.",
+        "NOTE: Items listed here are assumed to have durability.",
+        "Item string format is (domain):(path)"
+    })
+    public String[] SAWMILL_BLADES = {
+        "pyrotech:sawmill_blade_stone",
+        "pyrotech:sawmill_blade_flint",
+        "pyrotech:sawmill_blade_bone",
+        "pyrotech:sawmill_blade_iron",
+        "pyrotech:sawmill_blade_diamond"
+    };
   }
 
   // ---------------------------------------------------------------------------
@@ -639,6 +652,19 @@ public class ModuleTechMachineConfig {
         "Default: " + 1.0
     })
     public double INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Valid sawmill blades.",
+        "NOTE: Items listed here are assumed to have durability.",
+        "Item string format is (domain):(path)"
+    })
+    public String[] SAWMILL_BLADES = {
+        "pyrotech:sawmill_blade_stone",
+        "pyrotech:sawmill_blade_flint",
+        "pyrotech:sawmill_blade_bone",
+        "pyrotech:sawmill_blade_iron",
+        "pyrotech:sawmill_blade_diamond"
+    };
   }
 
   // ---------------------------------------------------------------------------

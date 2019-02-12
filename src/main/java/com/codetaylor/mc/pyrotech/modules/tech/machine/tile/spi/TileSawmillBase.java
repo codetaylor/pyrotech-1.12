@@ -47,7 +47,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
   public TileSawmillBase() {
 
-    this.bladeStackHandler = new BladeStackHandler();
+    this.bladeStackHandler = new BladeStackHandler(this);
     this.bladeStackHandler.addObserver((handler, slot) -> {
       this.markDirty();
     });
@@ -78,6 +78,8 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
     return this.bladeStackHandler.getStackInSlot(0);
   }
+
+  protected abstract boolean isValidSawmillBlade(ItemStack itemStack);
 
   protected abstract double getWoodChipsChance();
 
@@ -338,9 +340,12 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    /* package */ BladeStackHandler() {
+    private final TileSawmillBase<E> tile;
+
+    /* package */ BladeStackHandler(TileSawmillBase<E> tile) {
 
       super(1);
+      this.tile = tile;
     }
 
     @Override
@@ -354,9 +359,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
       // Filter out non-blade items.
-      // TODO: config
-
-      if (!(stack.getItem() instanceof ItemSawmillBlade)) {
+      if (!this.tile.isValidSawmillBlade(stack)) {
         return stack;
       }
 
