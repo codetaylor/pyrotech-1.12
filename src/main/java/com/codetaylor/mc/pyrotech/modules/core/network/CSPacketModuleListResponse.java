@@ -46,8 +46,10 @@ public class CSPacketModuleListResponse
   public IMessage onMessage(CSPacketModuleListResponse message, MessageContext ctx) {
 
     for (Map.Entry<String, Boolean> entry : ModPyrotechConfig.MODULES.entrySet()) {
+      Boolean clientValue = message.map.get(entry.getKey());
 
-      if (message.map.get(entry.getKey()) != entry.getValue()) {
+      if (clientValue == null
+          || clientValue != (boolean) entry.getValue()) {
         ctx.getServerHandler().disconnect(new TextComponentTranslation("gui.pyrotech.disconnect.module.mismatch", ModPyrotechConfig.MODULES.toString()));
         return null;
       }
