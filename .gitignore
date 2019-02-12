@@ -21,3 +21,5 @@ build
 /classes/
 eclipse
 run
+
+*.log
