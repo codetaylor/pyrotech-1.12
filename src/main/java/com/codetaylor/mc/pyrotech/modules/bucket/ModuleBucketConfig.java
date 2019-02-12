@@ -1,13 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.bucket;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
-import net.minecraft.util.JsonUtils;
 import net.minecraftforge.common.config.Config;
-import net.minecraftforge.common.crafting.IConditionFactory;
-import net.minecraftforge.common.crafting.JsonContext;
 
-import java.util.function.BooleanSupplier;
+import java.io.Serializable;
 
 @Config(modid = ModuleBucket.MOD_ID, name = ModuleBucket.MOD_ID + "/" + "module.Bucket")
 public class ModuleBucketConfig {
@@ -18,13 +13,8 @@ public class ModuleBucketConfig {
 
   public static BucketWood BUCKET_WOOD = new BucketWood();
 
-  public static class BucketWood {
-
-    @Config.Comment({
-        "Set to false to disable the bucket.",
-        "Default: " + true
-    })
-    public boolean ENABLED = true;
+  public static class BucketWood
+      implements Serializable {
 
     @Config.Comment({
         "Set to true to show all bucket / fluid combinations.",
@@ -91,13 +81,8 @@ public class ModuleBucketConfig {
 
   public static BucketClay BUCKET_CLAY = new BucketClay();
 
-  public static class BucketClay {
-
-    @Config.Comment({
-        "Set to false to disable the bucket.",
-        "Default: " + true
-    })
-    public boolean ENABLED = true;
+  public static class BucketClay
+      implements Serializable {
 
     @Config.Comment({
         "Set to true to show all bucket / fluid combinations.",
@@ -164,13 +149,8 @@ public class ModuleBucketConfig {
 
   public static BucketStone BUCKET_STONE = new BucketStone();
 
-  public static class BucketStone {
-
-    @Config.Comment({
-        "Set to false to disable the bucket.",
-        "Default: " + true
-    })
-    public boolean ENABLED = true;
+  public static class BucketStone
+      implements Serializable {
 
     @Config.Comment({
         "Set to true to show all bucket / fluid combinations.",
@@ -229,27 +209,5 @@ public class ModuleBucketConfig {
     })
     @Config.RangeInt(min = 1, max = 64)
     public int MAX_STACK_SIZE = 4;
-  }
-
-  @SuppressWarnings("unused")
-  public static class ConditionConfig
-      implements IConditionFactory {
-
-    @Override
-    public BooleanSupplier parse(JsonContext context, JsonObject json) {
-
-      String key = JsonUtils.getString(json, "key");
-
-      switch (key) {
-        case "wood":
-          return () -> BUCKET_WOOD.ENABLED;
-        case "clay":
-          return () -> BUCKET_CLAY.ENABLED;
-        case "stone":
-          return () -> BUCKET_STONE.ENABLED;
-        default:
-          throw new JsonSyntaxException("Unknown config key [" + key + "]");
-      }
-    }
   }
 }

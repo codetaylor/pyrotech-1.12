@@ -4,10 +4,6 @@
     {
       "type": "modules_enabled",
       "include": ["module.bucket"]
-    },
-    {
-      "type": "bucket_enabled",
-      "key": "wood"
     }
   ],
   "pattern": [
