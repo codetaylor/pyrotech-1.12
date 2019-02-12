@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
-import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucketConfig;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
@@ -22,8 +21,7 @@ public class PitKilnRecipesAdd {
   public static void apply(IForgeRegistry<KilnPitRecipe> registry) {
 
     // Clay Bucket
-    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleBucket.class)
-        && ModuleBucketConfig.BUCKET_CLAY.ENABLED) {
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleBucket.class)) {
       registry.register(new KilnPitRecipe(
           new ItemStack(ModuleBucket.Items.BUCKET_CLAY),
           Ingredient.fromStacks(new ItemStack(ModuleBucket.Items.BUCKET_CLAY_UNFIRED)),
