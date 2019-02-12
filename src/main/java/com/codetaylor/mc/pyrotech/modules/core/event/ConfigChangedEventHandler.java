@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.event;
+package com.codetaylor.mc.pyrotech.modules.core.event;
 
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import net.minecraftforge.common.config.Config;
