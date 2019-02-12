@@ -34,7 +34,8 @@ public class ExportDocumentation {
         ZenBrickCrucible.class,
         ZenBrickKiln.class,
         ZenBrickSawmill.class,
-        ZenBrickOven.class
+        ZenBrickOven.class,
+        ZenMechanicalCompactingBin.class
     };
 
     ZenDocExporter export = new ZenDocExporter();

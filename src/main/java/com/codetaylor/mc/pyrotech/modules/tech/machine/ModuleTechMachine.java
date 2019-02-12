@@ -61,7 +61,8 @@ public class ModuleTechMachine
         "ZenBrickKiln",
         "ZenBrickSawmill",
         "ZenBrickCrucible",
-        "ZenBrickOven"
+        "ZenBrickOven",
+        "ZenMechanicalCompactingBin"
     };
 
     for (String plugin : craftTweakerPlugins) {
