@@ -10,6 +10,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -45,40 +46,37 @@ public class BloomeryRecipesAdd {
         && blockSlagIron != null) {
 
       // Iron Bloom
-      registry.register(new BloomeryRecipe(
-          new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_iron_ore"),
-          new ItemStack(Items.IRON_NUGGET),
-          Ingredient.fromStacks(new ItemStack(Blocks.IRON_ORE)),
-          DEFAULT_BURN_TIME_TICKS,
-          DEFAULT_FAILURE_CHANCE,
-          8,
-          10,
-          4,
-          new ItemStack(itemSlagIron),
-          new ItemStack[]{
-              new ItemStack(ModuleBloomery.Items.SLAG, 1, 0),
-              new ItemStack(itemSlagIron, 2, 0)
-          },
-          null
-      ));
+      registry.register(
+          new BloomeryRecipeBuilder(
+              new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_iron_ore"),
+              new ItemStack(Items.IRON_NUGGET),
+              Ingredient.fromStacks(new ItemStack(Blocks.IRON_ORE))
+          )
+              .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
+              .setFailureChance(DEFAULT_FAILURE_CHANCE)
+              .setBloomYield(8, 10)
+              .setSlagItem(new ItemStack(itemSlagIron), 4)
+              .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 1)
+              .addFailureItem(new ItemStack(itemSlagIron, 1, 0), 2)
+              .create()
+      );
 
       // Iron Slag Bloom
-      registry.register(new BloomeryRecipe(
-          new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_iron_slag"),
-          new ItemStack(Items.IRON_NUGGET),
-          Ingredient.fromStacks(new ItemStack(blockSlagIron)),
-          DEFAULT_BURN_TIME_TICKS / 2,
-          DEFAULT_FAILURE_CHANCE,
-          4,
-          5,
-          2,
-          new ItemStack(itemSlagIron),
-          new ItemStack[]{
-              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
-              new ItemStack(ModuleBloomery.Items.SLAG, 1, 0)
-          },
-          Blocks.IRON_ORE.getUnlocalizedName()
-      ));
+      registry.register(
+          new BloomeryRecipeBuilder(
+              new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_iron_slag"),
+              new ItemStack(Items.IRON_NUGGET),
+              Ingredient.fromStacks(new ItemStack(blockSlagIron))
+          )
+              .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS / 2)
+              .setFailureChance(DEFAULT_FAILURE_CHANCE)
+              .setBloomYield(4, 5)
+              .setSlagItem(new ItemStack(itemSlagIron), 2)
+              .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
+              .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 2)
+              .setLangKey(Blocks.IRON_ORE.getUnlocalizedName())
+              .create()
+      );
     }
 
     Item itemSlagGold = ForgeRegistries.ITEMS.getValue(new ResourceLocation(
@@ -95,40 +93,37 @@ public class BloomeryRecipesAdd {
         && blockSlagGold != null) {
 
       // Gold Nugget
-      registry.register(new BloomeryRecipe(
-          new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_gold_ore"),
-          new ItemStack(Items.GOLD_NUGGET),
-          Ingredient.fromStacks(new ItemStack(Blocks.GOLD_ORE)),
-          DEFAULT_BURN_TIME_TICKS,
-          DEFAULT_FAILURE_CHANCE,
-          8,
-          10,
-          4,
-          new ItemStack(itemSlagGold),
-          new ItemStack[]{
-              new ItemStack(ModuleBloomery.Items.SLAG, 1, 0),
-              new ItemStack(itemSlagGold, 2, 0)
-          },
-          null
-      ));
+      registry.register(
+          new BloomeryRecipeBuilder(
+              new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_gold_ore"),
+              new ItemStack(Items.GOLD_NUGGET),
+              Ingredient.fromStacks(new ItemStack(Blocks.GOLD_ORE))
+          )
+              .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
+              .setFailureChance(DEFAULT_FAILURE_CHANCE)
+              .setBloomYield(8, 10)
+              .setSlagItem(new ItemStack(itemSlagGold), 4)
+              .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 1)
+              .addFailureItem(new ItemStack(itemSlagGold, 1, 0), 2)
+              .create()
+      );
 
       // Gold Slag Bloom
-      registry.register(new BloomeryRecipe(
-          new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_gold_slag"),
-          new ItemStack(Items.GOLD_NUGGET),
-          Ingredient.fromStacks(new ItemStack(blockSlagGold)),
-          DEFAULT_BURN_TIME_TICKS / 2,
-          DEFAULT_FAILURE_CHANCE,
-          4,
-          5,
-          2,
-          new ItemStack(itemSlagGold),
-          new ItemStack[]{
-              new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()),
-              new ItemStack(ModuleBloomery.Items.SLAG, 1, 0)
-          },
-          Blocks.GOLD_ORE.getUnlocalizedName()
-      ));
+      registry.register(
+          new BloomeryRecipeBuilder(
+              new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_gold_slag"),
+              new ItemStack(Items.GOLD_NUGGET),
+              Ingredient.fromStacks(new ItemStack(blockSlagGold))
+          )
+              .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS / 2)
+              .setFailureChance(DEFAULT_FAILURE_CHANCE)
+              .setBloomYield(4, 5)
+              .setSlagItem(new ItemStack(itemSlagGold), 2)
+              .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
+              .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 2)
+              .setLangKey(Blocks.GOLD_ORE.getUnlocalizedName())
+              .create()
+      );
     }
   }
 

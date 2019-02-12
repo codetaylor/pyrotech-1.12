@@ -46,13 +46,13 @@ public class BloomeryRecipe
   private final int bloomYieldMin;
   private final int bloomYieldMax;
   private final int slagCount;
-  private final ItemStack[] failureItems;
+  private final FailureItem[] failureItems;
   private final ItemStack slagItem;
 
   @Nullable
   private final String langKey;
 
-  public BloomeryRecipe(
+  /* package */ BloomeryRecipe(
       ResourceLocation resourceLocation,
       ItemStack output,
       Ingredient input,
@@ -62,7 +62,7 @@ public class BloomeryRecipe
       int bloomYieldMax,
       int slagCount,
       ItemStack slagItem,
-      ItemStack[] failureItems,
+      FailureItem[] failureItems,
       @Nullable String langKey
   ) {
 
@@ -136,7 +136,7 @@ public class BloomeryRecipe
     return this.failureChance;
   }
 
-  public ItemStack[] getFailureItems() {
+  public FailureItem[] getFailureItems() {
 
     return this.failureItems;
   }
@@ -169,8 +169,8 @@ public class BloomeryRecipe
 
     WeightedPicker<ItemStack> picker = new WeightedPicker<>();
 
-    for (ItemStack itemStack : this.failureItems) {
-      picker.add(itemStack.getCount(), itemStack);
+    for (FailureItem failureItem : this.failureItems) {
+      picker.add(failureItem.getWeight(), failureItem.getItemStack());
     }
 
     ItemStack result = picker.get().copy();
@@ -182,5 +182,27 @@ public class BloomeryRecipe
 
     ItemStack[] matchingStacks = input.getMatchingStacks();
     return matchingStacks[0].getUnlocalizedName();
+  }
+
+  public static class FailureItem {
+
+    private final ItemStack itemStack;
+    private final int weight;
+
+    public FailureItem(ItemStack itemStack, int weight) {
+
+      this.itemStack = itemStack;
+      this.weight = weight;
+    }
+
+    public int getWeight() {
+
+      return this.weight;
+    }
+
+    public ItemStack getItemStack() {
+
+      return this.itemStack;
+    }
   }
 }

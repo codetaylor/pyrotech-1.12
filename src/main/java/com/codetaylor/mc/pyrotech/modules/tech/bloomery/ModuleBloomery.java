@@ -68,7 +68,7 @@ public class ModuleBloomery
     MinecraftForge.EVENT_BUS.register(this);
 
     String[] craftTweakerPlugins = {
-        "ZenBloomery"
+        "ZenBloomeryBuilder"
     };
 
     for (String plugin : craftTweakerPlugins) {
