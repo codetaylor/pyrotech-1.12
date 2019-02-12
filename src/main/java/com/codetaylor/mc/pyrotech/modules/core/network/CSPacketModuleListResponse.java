@@ -29,7 +29,8 @@ public class CSPacketModuleListResponse
   public void fromBytes(ByteBuf buffer) {
 
     int size = buffer.readInt();
-    byte[] array = buffer.readBytes(size).array();
+    byte[] array = new byte[size];
+    buffer.readBytes(array);
 
     this.map = ConfigSerializer.INSTANCE.deserializeObject(array, LOGGER);
   }

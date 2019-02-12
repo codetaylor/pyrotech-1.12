@@ -45,7 +45,8 @@ public class SCPacketConfigUpdate
       for (int j = 0; j < fieldCount; j++) {
         String fieldName = PacketHelper.readString(buffer);
         int payloadLength = buffer.readInt();
-        byte[] payload = buffer.readBytes(payloadLength).array();
+        byte[] payload = new byte[payloadLength];
+        buffer.readBytes(payloadLength);
         fieldMap.put(fieldName, payload);
       }
 
