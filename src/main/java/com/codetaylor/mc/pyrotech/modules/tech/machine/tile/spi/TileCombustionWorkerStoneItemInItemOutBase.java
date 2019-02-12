@@ -115,15 +115,8 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Machi
       List<ItemStack> outputItems = this.getRecipeOutput(recipe, input, new ArrayList<>());
 
       for (ItemStack outputItem : outputItems) {
-        this.insertOutputItem(outputItem);
+        this.outputStackHandler.insertItem(outputItem, false);
       }
-    }
-  }
-
-  protected void insertOutputItem(ItemStack output) {
-
-    for (int i = 0; i < 9 && !output.isEmpty(); i++) {
-      output = this.outputStackHandler.insertItem(i, output, false);
     }
   }
 

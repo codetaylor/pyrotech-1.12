@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;
+import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRTank;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.*;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -24,6 +25,9 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockWoodRack(), BlockWoodRack.NAME);
     registry.registerBlockWithItem(new BlockTank(), BlockTank.NAME);
 
+    BlockBagSimple blockBagSimple = new BlockBagSimple();
+    registry.registerBlock(blockBagSimple, new BlockBagBase.Item(blockBagSimple), BlockBagSimple.NAME);
+
     registry.registerTileEntities(
         TileShelf.class,
         TileShelfStone.class,
@@ -33,7 +37,8 @@ public final class BlockInitializer {
         TileCrateStone.class,
         TileWoodRack.class,
         TileTankStone.class,
-        TileTankBrick.class
+        TileTankBrick.class,
+        TileBagSimple.class
     );
   }
 
@@ -49,7 +54,13 @@ public final class BlockInitializer {
           ModuleStorage.Blocks.STASH_STONE,
           ModuleStorage.Blocks.CRATE,
           ModuleStorage.Blocks.CRATE_STONE,
-          ModuleStorage.Blocks.WOOD_RACK
+          ModuleStorage.Blocks.WOOD_RACK,
+          ModuleStorage.Blocks.BAG_SIMPLE
+      );
+
+      ModelRegistrationHelper.registerBlockItemModelForMeta(
+          ModuleStorage.Blocks.BAG_SIMPLE.getDefaultState().withProperty(BlockBagBase.TYPE, BlockBagBase.EnumType.OPEN),
+          1
       );
 
       // Tank
@@ -65,6 +76,7 @@ public final class BlockInitializer {
       ClientRegistry.bindTileEntitySpecialRenderer(TileStash.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCrate.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileWoodRack.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileBagSimple.class, new TESRInteractable<>());
     });
   }
 

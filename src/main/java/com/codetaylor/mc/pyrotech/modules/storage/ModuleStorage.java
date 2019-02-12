@@ -14,6 +14,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ModuleStorage
     extends ModuleBase {
@@ -21,6 +23,8 @@ public class ModuleStorage
   public static final String MODULE_ID = "module.storage";
   public static final String MOD_ID = ModPyrotech.MOD_ID;
   public static final CreativeTabs CREATIVE_TAB = ModPyrotech.CREATIVE_TAB;
+
+  public static final Logger LOGGER = LogManager.getLogger(MOD_ID + "." + ModuleStorage.class.getSimpleName());
 
   public static IPacketService PACKET_SERVICE;
   public static ITileDataService TILE_DATA_SERVICE;
@@ -90,6 +94,9 @@ public class ModuleStorage
     @GameRegistry.ObjectHolder(BlockTank.NAME)
     public static final BlockTank TANK;
 
+    @GameRegistry.ObjectHolder(BlockBagSimple.NAME)
+    public static final BlockBagSimple BAG_SIMPLE;
+
     static {
       SHELF = null;
       STASH = null;
@@ -99,6 +106,7 @@ public class ModuleStorage
       CRATE_STONE = null;
       WOOD_RACK = null;
       TANK = null;
+      BAG_SIMPLE = null;
     }
   }
 }

@@ -1,9 +1,35 @@
 package com.codetaylor.mc.pyrotech.modules.storage;
 
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockGrass;
 import net.minecraftforge.common.config.Config;
 
 @Config(modid = ModuleStorage.MOD_ID, name = ModuleStorage.MOD_ID + "/" + "module.Storage")
 public class ModuleStorageConfig {
+
+  // ---------------------------------------------------------------------------
+  // - Simple Rock Bag
+  // ---------------------------------------------------------------------------
+
+  public static SimpleRockBag SIMPLE_ROCK_BAG = new SimpleRockBag();
+
+  public static class SimpleRockBag {
+
+    public boolean ALLOW_AUTOMATION = true;
+
+    public int MAX_ITEM_CAPACITY = 640;
+
+    public String[] ALLOWED_ITEMS = {
+        ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.STONE.getMeta(),
+        ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.GRANITE.getMeta(),
+        ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.DIORITE.getMeta(),
+        ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.ANDESITE.getMeta(),
+        ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.DIRT.getMeta(),
+        ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.SANDSTONE.getMeta(),
+        ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.LIMESTONE.getMeta(),
+        ModuleStorage.MOD_ID + ":" + BlockRockGrass.NAME + ":0"
+    };
+  }
 
   // ---------------------------------------------------------------------------
   // - Stone Tank

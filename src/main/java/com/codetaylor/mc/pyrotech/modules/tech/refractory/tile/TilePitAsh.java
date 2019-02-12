@@ -28,9 +28,7 @@ public class TilePitAsh
 
   public void insertItem(ItemStack output) {
 
-    for (int i = 0; i < 9 && !output.isEmpty(); i++) {
-      output = this.stackHandler.insertItem(i, output, false);
-    }
+    this.stackHandler.insertItem(output, false);
   }
 
   @Nonnull

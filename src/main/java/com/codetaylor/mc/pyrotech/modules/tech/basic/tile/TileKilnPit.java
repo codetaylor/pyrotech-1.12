@@ -420,9 +420,7 @@ public class TileKilnPit
 
   private void insertOutputItem(ItemStack output) {
 
-    for (int i = 0; i < 9 && !output.isEmpty(); i++) {
-      output = this.outputStackHandler.insertItem(i, output, false);
-    }
+    this.outputStackHandler.insertItem(output, false);
   }
 
   // ---------------------------------------------------------------------------
