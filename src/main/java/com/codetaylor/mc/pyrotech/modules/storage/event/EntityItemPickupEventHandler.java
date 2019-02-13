@@ -26,7 +26,7 @@ public class EntityItemPickupEventHandler {
       return;
     }
 
-    ItemStack bagItemStack = locateBag(entityPlayer);
+    ItemStack bagItemStack = EntityItemPickupEventHandler.locateBag(entityPlayer);
 
     if (!bagItemStack.isEmpty()) {
       EntityItem entityItem = event.getItem();
@@ -41,7 +41,7 @@ public class EntityItemPickupEventHandler {
           item.setCount(remainingItems.getCount());
 
           if (remainingItems.getCount() == 0) {
-            SoundHelper.playSoundServer(entityPlayer.world, entityPlayer.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS);
+            SoundHelper.playSoundServer(entityPlayer.world, entityPlayer.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.40f, SoundHelper.getPitchEntityItemPickup());
           }
         }
       }
