@@ -39,6 +39,7 @@ import net.minecraftforge.items.IItemHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.awt.*;
 import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -331,6 +332,30 @@ public abstract class BlockBagBase
     public boolean isItemValidForInsertion(ItemStack itemStack) {
 
       return this.blockBag.isItemValidForInsertion(itemStack);
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+
+      IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+
+      if (handler instanceof TileBagBase.StackHandler) {
+        return 1 - ((TileBagBase.StackHandler) handler).getTotalItemCount() / (double) this.blockBag.getItemCapacity();
+      }
+
+      return 0;
+    }
+
+    @Override
+    public boolean showDurabilityBar(ItemStack stack) {
+
+      return true;
+    }
+
+    @Override
+    public int getRGBDurabilityForDisplay(ItemStack stack) {
+
+      return Color.decode("0x70341e").getRGB();
     }
 
     @Nullable
