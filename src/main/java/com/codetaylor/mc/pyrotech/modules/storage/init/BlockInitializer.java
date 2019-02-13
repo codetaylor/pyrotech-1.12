@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
+import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockBag;
 import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRTank;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.*;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
@@ -27,7 +28,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockTank(), BlockTank.NAME);
 
     BlockBagSimple blockBagSimple = new BlockBagSimple();
-    registry.registerBlock(blockBagSimple, new BlockBagBase.Item(blockBagSimple), BlockBagSimple.NAME);
+    registry.registerBlock(blockBagSimple, new ItemBlockBag(blockBagSimple), BlockBagSimple.NAME);
 
     registry.registerTileEntities(
         TileShelf.class,

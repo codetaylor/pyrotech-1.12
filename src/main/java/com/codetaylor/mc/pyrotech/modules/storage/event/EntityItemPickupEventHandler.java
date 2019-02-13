@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.storage.event;
 
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
-import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
+import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockBag;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,7 +31,7 @@ public class EntityItemPickupEventHandler {
     if (!bagItemStack.isEmpty()) {
       EntityItem entityItem = event.getItem();
       ItemStack item = entityItem.getItem();
-      BlockBagBase.Item bagItem = (BlockBagBase.Item) bagItemStack.getItem();
+      ItemBlockBag bagItem = (ItemBlockBag) bagItemStack.getItem();
 
       if (bagItem.isItemValidForInsertion(item)) {
         TileBagBase.StackHandler handler = (TileBagBase.StackHandler) bagItemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
@@ -53,8 +53,8 @@ public class EntityItemPickupEventHandler {
     ItemStack heldItemOffhand = entityPlayer.getHeldItemOffhand();
     Item heldItemOffhandItem = heldItemOffhand.getItem();
 
-    if (heldItemOffhandItem instanceof BlockBagBase.Item
-        && ((BlockBagBase.Item) heldItemOffhandItem).isOpen(heldItemOffhand)) {
+    if (heldItemOffhandItem instanceof ItemBlockBag
+        && ((ItemBlockBag) heldItemOffhandItem).isOpen(heldItemOffhand)) {
       return heldItemOffhand;
     }
 
@@ -62,8 +62,8 @@ public class EntityItemPickupEventHandler {
       ItemStack itemStack = entityPlayer.inventory.mainInventory.get(i);
       Item item = itemStack.getItem();
 
-      if (item instanceof BlockBagBase.Item
-          && ((BlockBagBase.Item) item).isOpen(itemStack)) {
+      if (item instanceof ItemBlockBag
+          && ((ItemBlockBag) item).isOpen(itemStack)) {
         return itemStack;
       }
     }
