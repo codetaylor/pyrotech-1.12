@@ -65,7 +65,13 @@ public class ItemBlockBag
   @Override
   public boolean showDurabilityBar(ItemStack stack) {
 
-    return true;
+    IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+
+    if (handler instanceof TileBagBase.StackHandler) {
+      return ((TileBagBase.StackHandler) handler).getTotalItemCount() > 0;
+    }
+
+    return false;
   }
 
   @Override
