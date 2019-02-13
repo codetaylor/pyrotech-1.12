@@ -19,7 +19,7 @@ public class ModuleStorageConfig {
 
     public boolean ALLOW_AUTO_PICKUP_OFFHAND = true;
     public boolean ALLOW_AUTO_PICKUP_HOTBAR = true;
-    public boolean ALLOW_AUTO_PICKUP_INVENTORY = true;
+    public boolean ALLOW_AUTO_PICKUP_INVENTORY = false;
 
     public int MAX_ITEM_CAPACITY = 640;
 
