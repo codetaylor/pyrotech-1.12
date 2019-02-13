@@ -214,8 +214,9 @@ public abstract class TileBagBase
       extends InteractionItemStack<TileBagBase> {
 
     private final TileBagBase tile;
+    private final StackHandler stackHandler;
 
-    /* package */ InteractionInput(TileBagBase tile, ItemStackHandler stackHandler) {
+    /* package */ InteractionInput(TileBagBase tile, TileBagBase.StackHandler stackHandler) {
 
       super(new ItemStackHandler[]{stackHandler}, 0, new EnumFacing[]{EnumFacing.UP}, BlockBagBase.AABB_NORTH, new Transform(
           Transform.translate(0.5, 10.0 / 16.0, 0.5),
@@ -223,6 +224,7 @@ public abstract class TileBagBase
           Transform.scale(0.25, 0.25, 0.25)
       ));
       this.tile = tile;
+      this.stackHandler = stackHandler;
     }
 
     public TileBagBase getTile() {
@@ -240,6 +242,12 @@ public abstract class TileBagBase
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
       return this.tile.isItemValidForInsertion(itemStack);
+    }
+
+    @Override
+    public boolean isEmpty() {
+
+      return (this.stackHandler.getTotalItemCount() == 0);
     }
 
     @Override
@@ -319,6 +327,20 @@ public abstract class TileBagBase
       }
 
       return stack;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack extractItem(int slot, int amount, boolean simulate) {
+
+      for (int i = this.getSlots() - 1; i >= 0; i--) {
+
+        if (!this.getStackInSlot(i).isEmpty()) {
+          return super.extractItem(i, amount, simulate);
+        }
+      }
+
+      return ItemStack.EMPTY;
     }
 
     @Override
