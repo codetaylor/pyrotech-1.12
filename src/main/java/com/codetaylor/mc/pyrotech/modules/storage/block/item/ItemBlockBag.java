@@ -127,7 +127,8 @@ public class ItemBlockBag
       }
 
       // spill contents
-      if (this.trySpillContents(world, pos, facing, heldItem)) {
+      if (this.isOpen(heldItem)
+          && this.trySpillContents(world, pos, facing, heldItem)) {
 
         if (!world.isRemote) {
           this.updateCount(heldItem);
