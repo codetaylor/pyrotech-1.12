@@ -26,6 +26,27 @@ public class EntityItemPickupEventHandler {
 
   public EntityItemPickupEventHandler() {
 
+    // Mainhand
+    if (ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTO_PICKUP_MAINHAND) {
+      BAG_LOCATOR_LIST.add(new IBagLocator() {
+
+        @Nullable
+        @Override
+        public BagHandler locateBag(EntityPlayer player) {
+
+          ItemStack heldItemMainhand = player.getHeldItemMainhand();
+          Item heldItemMainhandItem = heldItemMainhand.getItem();
+
+          if (heldItemMainhandItem instanceof ItemBlockBag
+              && ((ItemBlockBag) heldItemMainhandItem).isOpen(heldItemMainhand)) {
+            return new BagHandler(heldItemMainhand);
+          }
+
+          return null;
+        }
+      });
+    }
+
     // Offhand
     if (ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTO_PICKUP_OFFHAND) {
       BAG_LOCATOR_LIST.add(new IBagLocator() {

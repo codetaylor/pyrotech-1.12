@@ -17,6 +17,7 @@ public class ModuleStorageConfig {
 
     public boolean ALLOW_AUTOMATION = true;
 
+    public boolean ALLOW_AUTO_PICKUP_MAINHAND = true;
     public boolean ALLOW_AUTO_PICKUP_OFFHAND = true;
     public boolean ALLOW_AUTO_PICKUP_HOTBAR = true;
     public boolean ALLOW_AUTO_PICKUP_INVENTORY = false;
