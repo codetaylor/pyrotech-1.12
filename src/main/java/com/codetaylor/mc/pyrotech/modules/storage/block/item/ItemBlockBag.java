@@ -99,7 +99,7 @@ public class ItemBlockBag
       if (this.tryTransferItems(world, pos, facing, heldItem)) {
 
         if (!world.isRemote) {
-          ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(-2, player.inventory.currentItem, player.inventory.getStackInSlot(0)));
+          ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(-2, player.inventory.currentItem, player.inventory.getStackInSlot(player.inventory.currentItem)));
         }
         return EnumActionResult.SUCCESS;
       }
@@ -108,7 +108,7 @@ public class ItemBlockBag
       if (this.trySpillContents(world, pos, facing, heldItem)) {
 
         if (!world.isRemote) {
-          ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(-2, player.inventory.currentItem, player.inventory.getStackInSlot(0)));
+          ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(-2, player.inventory.currentItem, player.inventory.getStackInSlot(player.inventory.currentItem)));
         }
         return EnumActionResult.SUCCESS;
       }
