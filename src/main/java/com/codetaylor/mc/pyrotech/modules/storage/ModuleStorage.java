@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;
+import com.codetaylor.mc.pyrotech.modules.storage.event.EntityItemPickupEventHandler;
 import com.codetaylor.mc.pyrotech.modules.storage.init.BlockInitializer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -52,6 +53,8 @@ public class ModuleStorage
         "register",
         "com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.PluginWaila.wailaCallback"
     );
+
+    MinecraftForge.EVENT_BUS.register(new EntityItemPickupEventHandler());
   }
 
   @Override

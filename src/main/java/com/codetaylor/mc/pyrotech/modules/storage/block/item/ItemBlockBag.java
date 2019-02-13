@@ -3,12 +3,11 @@ package com.codetaylor.mc.pyrotech.modules.storage.block.item;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.SPacketSetSlot;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -26,6 +25,7 @@ import net.minecraftforge.items.IItemHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.awt.*;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class ItemBlockBag
@@ -53,31 +53,53 @@ public class ItemBlockBag
   @Override
   public double getDurabilityForDisplay(ItemStack stack) {
 
-    IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-
-    if (handler instanceof TileBagBase.StackHandler) {
-      return 1 - ((TileBagBase.StackHandler) handler).getTotalItemCount() / (double) this.blockBag.getItemCapacity();
-    }
-
-    return 0;
+    return 1 - this.getCount(stack) / (double) this.blockBag.getItemCapacity();
   }
 
   @Override
   public boolean showDurabilityBar(ItemStack stack) {
 
-    IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-
-    if (handler instanceof TileBagBase.StackHandler) {
-      return ((TileBagBase.StackHandler) handler).getTotalItemCount() > 0;
-    }
-
-    return false;
+    return this.getCount(stack) > 0;
   }
 
   @Override
   public int getRGBDurabilityForDisplay(@Nonnull ItemStack stack) {
 
+    if (this.getCount(stack) == this.blockBag.getItemCapacity()) {
+      return Color.decode("0xFF0000").getRGB();
+    }
+
     return Color.decode("0x70341e").getRGB();
+  }
+
+  public int getCount(ItemStack itemStack) {
+
+    NBTTagCompound tagCompound = itemStack.getTagCompound();
+
+    if (tagCompound == null) {
+      return -1;
+    }
+
+    return tagCompound.getInteger("count");
+  }
+
+  public void updateCount(ItemStack itemStack) {
+
+    IItemHandler handler = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+
+    if (handler instanceof TileBagBase.StackHandler) {
+      NBTTagCompound tag = StackHelper.getTagSafe(itemStack);
+      int count = ((TileBagBase.StackHandler) handler).getTotalItemCount();
+      tag.setInteger("count", count);
+    }
+  }
+
+  @Override
+  public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+
+    super.addInformation(stack, worldIn, tooltip, flagIn);
+    int count = this.getCount(stack);
+    tooltip.add("Count: " + (count == -1 ? "MISSING" : count));
   }
 
   @Nullable
@@ -99,7 +121,7 @@ public class ItemBlockBag
       if (this.tryTransferItems(world, pos, facing, heldItem)) {
 
         if (!world.isRemote) {
-          ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(-2, player.inventory.currentItem, player.inventory.getStackInSlot(player.inventory.currentItem)));
+          this.updateCount(heldItem);
         }
         return EnumActionResult.SUCCESS;
       }
@@ -108,7 +130,7 @@ public class ItemBlockBag
       if (this.trySpillContents(world, pos, facing, heldItem)) {
 
         if (!world.isRemote) {
-          ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(-2, player.inventory.currentItem, player.inventory.getStackInSlot(player.inventory.currentItem)));
+          this.updateCount(heldItem);
         }
         return EnumActionResult.SUCCESS;
       }

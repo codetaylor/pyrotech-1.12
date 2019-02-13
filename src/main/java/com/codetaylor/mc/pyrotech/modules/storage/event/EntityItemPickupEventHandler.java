@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.storage.event;
 
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockBag;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.entity.item.EntityItem;
@@ -14,11 +15,87 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+
 @Mod.EventBusSubscriber
 public class EntityItemPickupEventHandler {
 
+  private static final List<IBagLocator> BAG_LOCATOR_LIST = new ArrayList<>(3);
+
+  public EntityItemPickupEventHandler() {
+
+    // Offhand
+    if (ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTO_PICKUP_OFFHAND) {
+      BAG_LOCATOR_LIST.add(new IBagLocator() {
+
+        @Nullable
+        @Override
+        public BagHandler locateBag(EntityPlayer player) {
+
+          ItemStack heldItemOffhand = player.getHeldItemOffhand();
+          Item heldItemOffhandItem = heldItemOffhand.getItem();
+
+          if (heldItemOffhandItem instanceof ItemBlockBag
+              && ((ItemBlockBag) heldItemOffhandItem).isOpen(heldItemOffhand)) {
+            return new BagHandler(heldItemOffhand);
+          }
+
+          return null;
+        }
+      });
+    }
+
+    // Hotbar
+    if (ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTO_PICKUP_HOTBAR) {
+      BAG_LOCATOR_LIST.add(new IBagLocator() {
+
+        @Nullable
+        @Override
+        public BagHandler locateBag(EntityPlayer player) {
+
+          for (int i = 0; i < 9; i++) {
+            ItemStack itemStack = player.inventory.mainInventory.get(i);
+            Item item = itemStack.getItem();
+
+            if (item instanceof ItemBlockBag
+                && ((ItemBlockBag) item).isOpen(itemStack)) {
+              return new BagHandler(itemStack);
+            }
+          }
+
+          return null;
+        }
+      });
+    }
+
+    // Inventory
+    if (ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTO_PICKUP_INVENTORY) {
+      BAG_LOCATOR_LIST.add(new IBagLocator() {
+
+        @Nullable
+        @Override
+        public BagHandler locateBag(EntityPlayer player) {
+
+          for (int i = 10; i < 36; i++) {
+            ItemStack itemStack = player.inventory.mainInventory.get(i);
+            Item item = itemStack.getItem();
+
+            if (item instanceof ItemBlockBag
+                && ((ItemBlockBag) item).isOpen(itemStack)) {
+              return new BagHandler(itemStack);
+            }
+          }
+
+          return null;
+        }
+      });
+    }
+  }
+
   @SubscribeEvent
-  public static void on(EntityItemPickupEvent event) {
+  public void on(EntityItemPickupEvent event) {
 
     EntityPlayer entityPlayer = event.getEntityPlayer();
 
@@ -26,49 +103,72 @@ public class EntityItemPickupEventHandler {
       return;
     }
 
-    ItemStack bagItemStack = EntityItemPickupEventHandler.locateBag(entityPlayer);
+    BagHandler handler = this.locateBag(entityPlayer);
 
-    if (!bagItemStack.isEmpty()) {
-      EntityItem entityItem = event.getItem();
-      ItemStack item = entityItem.getItem();
-      ItemBlockBag bagItem = (ItemBlockBag) bagItemStack.getItem();
-
-      if (bagItem.isItemValidForInsertion(item)) {
-        TileBagBase.StackHandler handler = (TileBagBase.StackHandler) bagItemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-
-        if (handler != null) {
-          ItemStack remainingItems = handler.insertItem(item.copy(), false);
-          item.setCount(remainingItems.getCount());
-
-          if (remainingItems.getCount() == 0) {
-            SoundHelper.playSoundServer(entityPlayer.world, entityPlayer.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.40f, SoundHelper.getPitchEntityItemPickup());
-          }
-        }
-      }
+    if (handler == null) {
+      return;
     }
+
+    EntityItem entityItem = event.getItem();
+    ItemStack itemStack = entityItem.getItem();
+    ItemStack remainingItems = handler.insert(itemStack);
+
+    if (remainingItems.getCount() != itemStack.getCount()) {
+      SoundHelper.playSoundServer(entityPlayer.world, entityPlayer.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.40f, SoundHelper.getPitchEntityItemPickup());
+    }
+
+    itemStack.setCount(remainingItems.getCount());
   }
 
-  private static ItemStack locateBag(EntityPlayer entityPlayer) {
+  private BagHandler locateBag(EntityPlayer player) {
 
-    ItemStack heldItemOffhand = entityPlayer.getHeldItemOffhand();
-    Item heldItemOffhandItem = heldItemOffhand.getItem();
+    BagHandler handler;
 
-    if (heldItemOffhandItem instanceof ItemBlockBag
-        && ((ItemBlockBag) heldItemOffhandItem).isOpen(heldItemOffhand)) {
-      return heldItemOffhand;
-    }
+    for (IBagLocator locator : BAG_LOCATOR_LIST) {
 
-    for (int i = 0; i < 9; i++) {
-      ItemStack itemStack = entityPlayer.inventory.mainInventory.get(i);
-      Item item = itemStack.getItem();
-
-      if (item instanceof ItemBlockBag
-          && ((ItemBlockBag) item).isOpen(itemStack)) {
-        return itemStack;
+      if ((handler = locator.locateBag(player)) != null) {
+        return handler;
       }
     }
 
-    return ItemStack.EMPTY;
+    return null;
+  }
+
+  private interface IBagLocator {
+
+    @Nullable
+    BagHandler locateBag(EntityPlayer player);
+  }
+
+  private static class BagHandler {
+
+    private final ItemStack bagItemStack;
+
+    /* package */ BagHandler(ItemStack bagItemStack) {
+
+      this.bagItemStack = bagItemStack;
+    }
+
+    /* package */ ItemStack insert(ItemStack itemStack) {
+
+      ItemBlockBag bagItem = (ItemBlockBag) this.bagItemStack.getItem();
+
+      if (bagItem.isItemValidForInsertion(itemStack)) {
+        TileBagBase.StackHandler handler = (TileBagBase.StackHandler) this.bagItemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+
+        if (handler != null) {
+          ItemStack remainingItems = handler.insertItem(itemStack.copy(), false);
+
+          if (itemStack.getCount() != remainingItems.getCount()) {
+            bagItem.updateCount(this.bagItemStack);
+          }
+
+          return remainingItems;
+        }
+      }
+
+      return itemStack;
+    }
   }
 
 }

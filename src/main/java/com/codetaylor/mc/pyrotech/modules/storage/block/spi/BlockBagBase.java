@@ -10,6 +10,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
+import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockBag;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -19,6 +20,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -179,6 +181,9 @@ public abstract class BlockBagBase
       for (int i = 0; i < tileStackHandler.getSlots(); i++) {
         itemStackHandler.setStackInSlot(i, tileStackHandler.getStackInSlot(i));
       }
+
+      ItemBlockBag item = (ItemBlockBag) itemStack.getItem();
+      item.updateCount(itemStack);
     }
 
     drops.add(itemStack);
