@@ -55,7 +55,13 @@ public class ModuleStorageConfig {
     })
     public int MAX_ITEM_CAPACITY = 640;
 
-    public String[] ALLOWED_ITEMS = {
+    @Config.Comment({
+        "Items that are allowed in the bag.",
+        "If the whitelist is not empty, only these items will be allowed.",
+        "The whitelist takes precedence over the blacklist.",
+        "Item string format is (domain):(path):(meta|*) where * matches any meta."
+    })
+    public String[] ITEM_WHITELIST = {
         ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.STONE.getMeta(),
         ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.GRANITE.getMeta(),
         ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.DIORITE.getMeta(),
@@ -65,6 +71,14 @@ public class ModuleStorageConfig {
         ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.LIMESTONE.getMeta(),
         ModuleStorage.MOD_ID + ":" + BlockRockGrass.NAME + ":0"
     };
+
+    @Config.Comment({
+        "Items that are not allowed in the bag.",
+        "If the whitelist is empty, these items will be disallowed.",
+        "The whitelist takes precedence over the blacklist.",
+        "Item string format is (domain):(path):(meta|*) where * matches any meta."
+    })
+    public String[] ITEM_BLACKLIST = new String[0];
   }
 
   // ---------------------------------------------------------------------------

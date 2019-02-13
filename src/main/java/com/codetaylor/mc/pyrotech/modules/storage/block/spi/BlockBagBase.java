@@ -20,7 +20,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -69,7 +68,9 @@ public abstract class BlockBagBase
 
   public abstract int getItemCapacity();
 
-  protected abstract String[] getAllowedItemStrings();
+  protected abstract String[] getItemWhitelist();
+
+  protected abstract String[] getItemBlacklist();
 
   public boolean isOpen(IBlockState blockState) {
 
@@ -84,21 +85,43 @@ public abstract class BlockBagBase
       return false;
     }
 
-    for (String itemString : this.getAllowedItemStrings()) {
+    String[] itemWhitelist = this.getItemWhitelist();
+    String[] itemBlacklist = getItemBlacklist();
 
-      try {
-        ParseResult parseResult = RecipeItemParser.INSTANCE.parse(itemString);
+    if (itemWhitelist.length > 0) {
 
-        if (parseResult.matches(itemStack, true)) {
-          return true;
+      for (String itemString : itemWhitelist) {
+
+        try {
+          ParseResult parseResult = RecipeItemParser.INSTANCE.parse(itemString);
+
+          if (parseResult.matches(itemStack, true)) {
+            return true;
+          }
+
+        } catch (MalformedRecipeItemException e) {
+          ModuleStorage.LOGGER.error("Error parsing config string for valid bag item " + itemString, e);
         }
+      }
 
-      } catch (MalformedRecipeItemException e) {
-        ModuleStorage.LOGGER.error("Error parsing config string for valid bag item " + itemString, e);
+    } else if (itemBlacklist.length > 0) {
+
+      for (String itemString : itemBlacklist) {
+
+        try {
+          ParseResult parseResult = RecipeItemParser.INSTANCE.parse(itemString);
+
+          if (parseResult.matches(itemStack, true)) {
+            return false;
+          }
+
+        } catch (MalformedRecipeItemException e) {
+          ModuleStorage.LOGGER.error("Error parsing config string for valid bag item " + itemString, e);
+        }
       }
     }
 
-    return false;
+    return true;
   }
 
   // ---------------------------------------------------------------------------

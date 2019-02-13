@@ -31,8 +31,14 @@ public class BlockBagSimple
   }
 
   @Override
-  protected String[] getAllowedItemStrings() {
+  protected String[] getItemWhitelist() {
 
-    return ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOWED_ITEMS;
+    return ModuleStorageConfig.SIMPLE_ROCK_BAG.ITEM_WHITELIST;
+  }
+
+  @Override
+  protected String[] getItemBlacklist() {
+
+    return ModuleStorageConfig.SIMPLE_ROCK_BAG.ITEM_BLACKLIST;
   }
 }
