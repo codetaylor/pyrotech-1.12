@@ -259,7 +259,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
 
       this.reduceRecipeTime();
 
-      if (this.getRemainingRecipeTimeTicks() == 0) {
+      if (this.getRemainingRecipeTimeTicks() <= 0) {
         this.onRecipeComplete();
       }
     }
