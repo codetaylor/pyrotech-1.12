@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.storage"]
+    }
+  ],
+  "pattern": [
+    "LTL",
+    "LSL",
+    "LLL"
+  ],
+  "key": {
+    "T": {
+      "type": "forge:ore_dict",
+      "ore": "twine"
+    },
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "leather"
+    },
+    "S": {
+      "item": "pyrotech:stash",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:bag_simple",
+    "count": 1,
+    "data": 0
+  }
+}
