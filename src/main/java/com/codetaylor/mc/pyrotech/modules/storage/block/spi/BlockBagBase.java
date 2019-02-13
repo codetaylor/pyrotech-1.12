@@ -13,6 +13,7 @@ import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -59,6 +60,7 @@ public abstract class BlockBagBase
 
     super(Material.CLOTH);
     this.setHardness(0.2f);
+    this.setSoundType(SoundType.CLOTH);
     this.setDefaultState(this.blockState.getBaseState()
         .withProperty(Properties.FACING_HORIZONTAL, EnumFacing.NORTH)
         .withProperty(TYPE, EnumType.CLOSED));
