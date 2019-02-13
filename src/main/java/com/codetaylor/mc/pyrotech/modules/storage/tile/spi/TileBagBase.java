@@ -221,7 +221,7 @@ public abstract class TileBagBase
       super(new ItemStackHandler[]{stackHandler}, 0, new EnumFacing[]{EnumFacing.UP}, BlockBagBase.AABB_NORTH, new Transform(
           Transform.translate(0.5, 10.0 / 16.0, 0.5),
           Transform.rotate(),
-          Transform.scale(0.25, 0.25, 0.25)
+          Transform.scale(0.5, 0.5, 0.5)
       ));
       this.tile = tile;
       this.stackHandler = stackHandler;
