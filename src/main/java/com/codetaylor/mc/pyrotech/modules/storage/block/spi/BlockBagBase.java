@@ -20,9 +20,11 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.SPacketSetSlot;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -377,11 +379,19 @@ public abstract class BlockBagBase
 
         // try inventory
         if (this.tryTransferItems(world, pos, facing, heldItem)) {
+
+          if (!world.isRemote) {
+            ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(-2, player.inventory.currentItem, player.inventory.getStackInSlot(0)));
+          }
           return EnumActionResult.SUCCESS;
         }
 
         // spill contents
         if (this.trySpillContents(world, pos, facing, heldItem)) {
+
+          if (!world.isRemote) {
+            ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(-2, player.inventory.currentItem, player.inventory.getStackInSlot(0)));
+          }
           return EnumActionResult.SUCCESS;
         }
       }
