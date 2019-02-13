@@ -4,9 +4,6 @@ import com.codetaylor.mc.athenaeum.inventory.LargeDynamicItemLimitedStackHandler
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
-import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
-import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
@@ -28,7 +25,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -39,6 +35,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.function.Predicate;
 
 public abstract class TileBagBase
     extends TileNetBase
@@ -51,7 +48,7 @@ public abstract class TileBagBase
 
     super(ModuleStorage.TILE_DATA_SERVICE);
 
-    this.stackHandler = new StackHandler(this.getItemCapacity());
+    this.stackHandler = new StackHandler(this.getItemCapacity(), this::isItemValidForInsertion);
     this.stackHandler.addObserver((handler, slot) -> this.markDirty());
 
     // --- Network ---
@@ -102,8 +99,6 @@ public abstract class TileBagBase
 
   public abstract int getItemCapacity();
 
-  protected abstract String[] getAllowedItemStrings();
-
   public void setOpen(boolean open) {
 
     if (open && !this.isOpen()) {
@@ -116,6 +111,11 @@ public abstract class TileBagBase
     }
   }
 
+  public StackHandler getStackHandler() {
+
+    return this.stackHandler;
+  }
+
   public int getItemCount() {
 
     return this.stackHandler.getTotalItemCount();
@@ -123,24 +123,11 @@ public abstract class TileBagBase
 
   protected boolean isItemValidForInsertion(ItemStack itemStack) {
 
-    ResourceLocation registryName = itemStack.getItem().getRegistryName();
+    IBlockState blockState = this.world.getBlockState(this.pos);
+    Block block = blockState.getBlock();
 
-    if (registryName == null) {
-      return false;
-    }
-
-    for (String itemString : this.getAllowedItemStrings()) {
-
-      try {
-        ParseResult parseResult = RecipeItemParser.INSTANCE.parse(itemString);
-
-        if (parseResult.matches(itemStack, true)) {
-          return true;
-        }
-
-      } catch (MalformedRecipeItemException e) {
-        ModuleStorage.LOGGER.error("Error parsing config string for valid bag item " + itemString, e);
-      }
+    if (block instanceof BlockBagBase) {
+      return ((BlockBagBase) block).isItemValidForInsertion(itemStack);
     }
 
     return false;
@@ -215,8 +202,11 @@ public abstract class TileBagBase
     @Override
     public boolean interact(EnumType type, TileBagBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      tile.setOpen(!tile.isOpen());
-      return true;
+      if (type == EnumType.MouseClick) {
+        tile.setOpen(!tile.isOpen());
+        return true;
+      }
+      return false;
     }
   }
 
@@ -295,13 +285,40 @@ public abstract class TileBagBase
   // - Stack Handler
   // ---------------------------------------------------------------------------
 
-  private class StackHandler
+  /**
+   * This is public because it is shared with the item's capability provider.
+   */
+  public static class StackHandler
       extends LargeDynamicItemLimitedStackHandler
       implements ITileDataItemStackHandler {
 
-    /* package */ StackHandler(int itemCapacity) {
+    private final Predicate<ItemStack> filter;
+
+    public StackHandler(int itemCapacity, Predicate<ItemStack> filter) {
 
       super(10, itemCapacity);
+      this.filter = filter;
+    }
+
+    @Override
+    public ItemStack insertItem(ItemStack itemStack, boolean simulate) {
+
+      if (this.filter.test(itemStack)) {
+        return super.insertItem(itemStack, simulate);
+      }
+
+      return itemStack;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+
+      if (this.filter.test(stack)) {
+        return super.insertItem(stack, simulate);
+      }
+
+      return stack;
     }
 
     @Override

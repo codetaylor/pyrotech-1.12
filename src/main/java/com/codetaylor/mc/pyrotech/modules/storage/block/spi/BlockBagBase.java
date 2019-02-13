@@ -1,5 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.storage.block.spi;
 
+import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
@@ -7,6 +10,8 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.TileBagBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -16,21 +21,26 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public abstract class BlockBagBase
@@ -57,9 +67,38 @@ public abstract class BlockBagBase
   // - Accessors
   // ---------------------------------------------------------------------------
 
+  public abstract int getItemCapacity();
+
+  protected abstract String[] getAllowedItemStrings();
+
   public boolean isOpen(IBlockState blockState) {
 
     return (blockState.getValue(TYPE) == EnumType.OPEN);
+  }
+
+  public boolean isItemValidForInsertion(ItemStack itemStack) {
+
+    ResourceLocation registryName = itemStack.getItem().getRegistryName();
+
+    if (registryName == null) {
+      return false;
+    }
+
+    for (String itemString : this.getAllowedItemStrings()) {
+
+      try {
+        ParseResult parseResult = RecipeItemParser.INSTANCE.parse(itemString);
+
+        if (parseResult.matches(itemStack, true)) {
+          return true;
+        }
+
+      } catch (MalformedRecipeItemException e) {
+        ModuleStorage.LOGGER.error("Error parsing config string for valid bag item " + itemString, e);
+      }
+    }
+
+    return false;
   }
 
   // ---------------------------------------------------------------------------
@@ -128,15 +167,23 @@ public abstract class BlockBagBase
   @Override
   public void getDrops(@Nonnull NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
 
-    // Serialize the TE into the item dropped.
     // Called before #breakBlock
+    TileEntity tileEntity = world.getTileEntity(pos);
+    ItemStack itemStack = new ItemStack(this.getBlock(), 1, this.damageDropped(state));
+    IItemHandler capability = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
-    drops.add(StackHelper.createItemStackFromTileEntity(
-        this.getBlock(),
-        1,
-        this.damageDropped(state),
-        world.getTileEntity(pos)
-    ));
+    if (capability instanceof TileBagBase.StackHandler
+        && tileEntity instanceof TileBagBase) {
+
+      TileBagBase.StackHandler tileStackHandler = ((TileBagBase) tileEntity).getStackHandler();
+      TileBagBase.StackHandler itemStackHandler = (TileBagBase.StackHandler) capability;
+
+      for (int i = 0; i < tileStackHandler.getSlots(); i++) {
+        itemStackHandler.setStackInSlot(i, tileStackHandler.getStackInSlot(i));
+      }
+    }
+
+    drops.add(itemStack);
   }
 
   protected abstract Block getBlock();
@@ -267,10 +314,186 @@ public abstract class BlockBagBase
   public static class Item
       extends ItemBlock {
 
-    public Item(Block block) {
+    private final BlockBagBase blockBag;
 
-      super(block);
+    public Item(BlockBagBase blockBag) {
+
+      super(blockBag);
+      this.blockBag = blockBag;
       this.setMaxStackSize(1);
+    }
+
+    @Nullable
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
+
+      return new CapabilityProvider(this.blockBag.getItemCapacity(), this.blockBag::isItemValidForInsertion);
+    }
+
+    @Nonnull
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World world, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+      ItemStack heldItem = player.getHeldItem(hand);
+
+      if (player.isSneaking()) {
+
+        // try inventory
+        if (this.tryTransferItems(world, pos, facing, heldItem)) {
+          return EnumActionResult.SUCCESS;
+        }
+
+        // spill contents
+        if (this.trySpillContents(world, pos, facing, heldItem)) {
+          return EnumActionResult.SUCCESS;
+        }
+      }
+
+      ItemStack copy = heldItem.copy();
+      EnumActionResult result = super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
+
+      if (result == EnumActionResult.SUCCESS) {
+        TileEntity tileEntity = world.getTileEntity(pos.offset(facing));
+
+        if (tileEntity instanceof TileBagBase) {
+          IItemHandler itemHandler = copy.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+          TileBagBase.StackHandler tileHandler = ((TileBagBase) tileEntity).getStackHandler();
+
+          if (itemHandler != null
+              && tileHandler != null) {
+            for (int i = 0; i < itemHandler.getSlots(); i++) {
+              ItemStack stackInSlot = itemHandler.getStackInSlot(i);
+              tileHandler.setStackInSlot(i, stackInSlot);
+            }
+          }
+        }
+      }
+
+      return result;
+    }
+
+    @Nonnull
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+
+      RayTraceResult rayTraceResult = this.rayTrace(world, player, false);
+      ItemStack heldItem = player.getHeldItem(hand);
+
+      if (player.isSneaking()) {
+
+        //noinspection ConstantConditions
+        if (rayTraceResult == null
+            || rayTraceResult.typeOfHit == RayTraceResult.Type.MISS) {
+          // cycle open closed
+          heldItem.setItemDamage(heldItem.getItemDamage() == 0 ? 1 : 0);
+          return new ActionResult<>(EnumActionResult.SUCCESS, heldItem);
+        }
+      }
+
+      return super.onItemRightClick(world, player, hand);
+    }
+
+    private boolean trySpillContents(World world, BlockPos pos, EnumFacing facing, ItemStack itemStack) {
+
+      if (world.isAirBlock(pos.offset(facing))) {
+        IItemHandler handler = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+
+        if (handler instanceof TileBagBase.StackHandler) {
+
+          for (int i = 0; i < handler.getSlots(); i++) {
+            StackHelper.spawnStackHandlerContentsOnTop(world, (TileBagBase.StackHandler) handler, pos.offset(facing));
+          }
+        }
+      }
+
+      return false;
+    }
+
+    private boolean tryTransferItems(World world, BlockPos pos, EnumFacing facing, ItemStack itemStack) {
+
+      IItemHandler itemHandler = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+
+      if (!(itemHandler instanceof TileBagBase.StackHandler)) {
+        return false;
+      }
+
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity == null) {
+        return false;
+      }
+
+      IItemHandler otherHandler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, facing);
+
+      if (otherHandler == null) {
+        return false;
+      }
+
+      // Go through all the items in the bag
+      for (int i = 0; i < itemHandler.getSlots(); i++) {
+        ItemStack stackInSlot = itemHandler.getStackInSlot(i);
+
+        if (stackInSlot.isEmpty()) {
+          continue;
+        }
+
+        ItemStack remainingItems = stackInSlot.copy();
+
+        // and try to put each stack into the targeted handler
+        for (int j = 0; j < otherHandler.getSlots(); j++) {
+          remainingItems = otherHandler.insertItem(j, remainingItems, false);
+
+          if (remainingItems.isEmpty()) {
+            break;
+          }
+        }
+
+        ((TileBagBase.StackHandler) itemHandler).setStackInSlot(i, remainingItems);
+      }
+
+      return true;
+    }
+
+    public static class CapabilityProvider
+        implements ICapabilityProvider,
+        INBTSerializable<NBTTagCompound> {
+
+      private TileBagBase.StackHandler stackHandler;
+
+      public CapabilityProvider(int itemCapacity, Predicate<ItemStack> filter) {
+
+        this.stackHandler = new TileBagBase.StackHandler(itemCapacity, filter);
+      }
+
+      @Override
+      public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+
+        return (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+      }
+
+      @Nullable
+      @Override
+      public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+          //noinspection unchecked
+          return (T) this.stackHandler;
+        }
+
+        return null;
+      }
+
+      @Override
+      public NBTTagCompound serializeNBT() {
+
+        return this.stackHandler.serializeNBT();
+      }
+
+      @Override
+      public void deserializeNBT(NBTTagCompound nbt) {
+
+        this.stackHandler.deserializeNBT(nbt);
+      }
     }
   }
 

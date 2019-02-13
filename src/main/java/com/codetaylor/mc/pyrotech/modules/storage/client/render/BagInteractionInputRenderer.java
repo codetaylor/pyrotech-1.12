@@ -28,6 +28,11 @@ public class BagInteractionInputRenderer
   public void renderSolidPass(TileBagBase.InteractionInput interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
 
     TileBagBase tile = interaction.getTile();
+    int itemCount = tile.getItemCount();
+
+    if (itemCount == 0) {
+      return;
+    }
 
     TextureMap textureMapBlocks = Minecraft.getMinecraft().getTextureMapBlocks();
     TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
@@ -38,7 +43,7 @@ public class BagInteractionInputRenderer
     int j = i >> 0x10 & 0xFFFF;
     int k = i & 0xFFFF;
 
-    float percent = tile.getItemCount() / (float) tile.getItemCapacity();
+    float percent = itemCount / (float) tile.getItemCapacity();
     float level = (7f / 16f) * percent + (1f / 16f);
 
     Tessellator tessellator = Tessellator.getInstance();

@@ -12,12 +12,6 @@ public class TileBagSimple
   }
 
   @Override
-  protected String[] getAllowedItemStrings() {
-
-    return ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOWED_ITEMS;
-  }
-
-  @Override
   public boolean allowAutomation() {
 
     return ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTOMATION;
