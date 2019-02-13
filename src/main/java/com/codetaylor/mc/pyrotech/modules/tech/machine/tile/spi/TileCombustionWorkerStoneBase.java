@@ -77,9 +77,10 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
       this.markDirty();
     });
 
-    // --- Network ---
-
     this.remainingRecipeTimeTicks = new TileDataInteger(0, 20);
+    this.remainingRecipeTimeTicks.addChangeObserver(data -> this.markDirty());
+
+    // --- Network ---
 
     this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.fuelStackHandler),
@@ -126,11 +127,6 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
   public void setRemainingRecipeTimeTicks(int value) {
 
     this.remainingRecipeTimeTicks.set(value);
-
-    // TODO: Pretty sure this isn't necessary anymore.
-    if (this.remainingRecipeTimeTicks.isDirty()) {
-      this.markDirty();
-    }
   }
 
   public boolean hasFuel() {
