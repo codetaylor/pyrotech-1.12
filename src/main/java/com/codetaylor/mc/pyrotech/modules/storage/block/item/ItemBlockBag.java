@@ -244,7 +244,9 @@ public class ItemBlockBag
         }
       }
 
-      ((TileBagBase.StackHandler) itemHandler).setStackInSlot(i, remainingItems);
+      if (stackInSlot.getCount() != remainingItems.getCount()) {
+        ((TileBagBase.StackHandler) itemHandler).setStackInSlot(i, remainingItems);
+      }
     }
 
     return true;
