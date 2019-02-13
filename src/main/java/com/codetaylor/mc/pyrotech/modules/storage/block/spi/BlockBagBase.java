@@ -11,7 +11,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
-import com.codetaylor.mc.pyrotech.modules.storage.tile.TileBagBase;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;

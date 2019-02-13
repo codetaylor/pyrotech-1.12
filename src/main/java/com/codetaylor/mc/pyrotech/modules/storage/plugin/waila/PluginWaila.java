@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila;
 
 import com.codetaylor.mc.pyrotech.modules.storage.tile.*;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
 public class PluginWaila {

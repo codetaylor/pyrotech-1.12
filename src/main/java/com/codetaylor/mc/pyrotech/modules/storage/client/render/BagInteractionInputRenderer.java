@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.storage.client.render;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
-import com.codetaylor.mc.pyrotech.modules.storage.tile.TileBagBase;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

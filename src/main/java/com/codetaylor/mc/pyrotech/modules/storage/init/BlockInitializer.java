@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.storage.block.*;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRTank;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.*;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila;
 
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankBase;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;

@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.storage.tile;
+package com.codetaylor.mc.pyrotech.modules.storage.tile.spi;
 
 import com.codetaylor.mc.athenaeum.inventory.LargeDynamicItemLimitedStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;

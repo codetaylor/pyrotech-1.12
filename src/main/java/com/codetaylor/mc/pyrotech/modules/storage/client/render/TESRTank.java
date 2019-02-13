@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.storage.client.render;
 
-import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankBase;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;

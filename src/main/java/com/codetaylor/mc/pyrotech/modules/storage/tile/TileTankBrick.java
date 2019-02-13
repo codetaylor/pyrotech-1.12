@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.storage.tile;
 
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
 
 public class TileTankBrick
     extends TileTankBase {
