@@ -133,7 +133,7 @@ public abstract class TileBagBase
     return false;
   }
 
-  protected boolean isOpen() {
+  public boolean isOpen() {
 
     IBlockState blockState = this.world.getBlockState(this.pos);
     Block block = blockState.getBlock();

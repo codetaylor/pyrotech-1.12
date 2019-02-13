@@ -17,8 +17,6 @@ import java.util.List;
 public class StorageProvider
     extends BodyProviderAdapter {
 
-  private String craftingTableRenderString;
-
   @Nonnull
   @Override
   public List<String> getWailaBody(

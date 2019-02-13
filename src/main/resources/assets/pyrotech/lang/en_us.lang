@@ -260,6 +260,7 @@ tile.pyrotech.rock_sand_red.name=Red Sand Pile
 # Waila
 #------------------------------------------------------------------------------
 
+gui.pyrotech.waila.capacity=Capacity: %d of %d
 gui.pyrotech.waila.insufficient=Insufficient %s
 gui.pyrotech.waila.insufficient.fluid.requires=Requires +%d mB
 gui.pyrotech.waila.recipe=Recipe: %s
