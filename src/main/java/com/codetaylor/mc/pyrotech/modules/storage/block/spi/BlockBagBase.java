@@ -323,6 +323,16 @@ public abstract class BlockBagBase
       this.setMaxStackSize(1);
     }
 
+    public boolean isOpen(ItemStack itemStack) {
+
+      return (itemStack.getMetadata() == 1);
+    }
+
+    public boolean isItemValidForInsertion(ItemStack itemStack) {
+
+      return this.blockBag.isItemValidForInsertion(itemStack);
+    }
+
     @Nullable
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
@@ -400,9 +410,13 @@ public abstract class BlockBagBase
 
         if (handler instanceof TileBagBase.StackHandler) {
 
-          for (int i = 0; i < handler.getSlots(); i++) {
-            StackHelper.spawnStackHandlerContentsOnTop(world, (TileBagBase.StackHandler) handler, pos.offset(facing));
+          if (!world.isRemote) {
+
+            for (int i = 0; i < handler.getSlots(); i++) {
+              StackHelper.spawnStackHandlerContentsOnTop(world, (TileBagBase.StackHandler) handler, pos.offset(facing), 0);
+            }
           }
+          return true;
         }
       }
 
@@ -427,6 +441,10 @@ public abstract class BlockBagBase
 
       if (otherHandler == null) {
         return false;
+      }
+
+      if (world.isRemote) {
+        return true;
       }
 
       // Go through all the items in the bag
