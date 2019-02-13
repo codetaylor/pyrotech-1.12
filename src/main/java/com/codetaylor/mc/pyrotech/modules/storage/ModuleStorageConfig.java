@@ -15,13 +15,44 @@ public class ModuleStorageConfig {
 
   public static class SimpleRockBag {
 
+    @Config.Comment({
+        "If true, the bag will allow extraction of its contents from the bottom.",
+        "Default: " + true
+    })
     public boolean ALLOW_AUTOMATION = true;
 
+    @Config.Comment({
+        "If true, the bag will auto-collect items that it can carry when they",
+        "are picked up and the bag is in the player's mainhand.",
+        "Default: " + true
+    })
     public boolean ALLOW_AUTO_PICKUP_MAINHAND = true;
+
+    @Config.Comment({
+        "If true, the bag will auto-collect items that it can carry when they",
+        "are picked up and the bag is in the player's offhand.",
+        "Default: " + true
+    })
     public boolean ALLOW_AUTO_PICKUP_OFFHAND = true;
+
+    @Config.Comment({
+        "If true, the bag will auto-collect items that it can carry when they",
+        "are picked up and the bag is in the player's hotbar.",
+        "Default: " + true
+    })
     public boolean ALLOW_AUTO_PICKUP_HOTBAR = true;
+
+    @Config.Comment({
+        "If true, the bag will auto-collect items that it can carry when they",
+        "are picked up and the bag is in the player's main inventory.",
+        "Default: " + true
+    })
     public boolean ALLOW_AUTO_PICKUP_INVENTORY = false;
 
+    @Config.Comment({
+        "The maximum number of items the bag can carry.",
+        "Default: " + 640
+    })
     public int MAX_ITEM_CAPACITY = 640;
 
     public String[] ALLOWED_ITEMS = {
