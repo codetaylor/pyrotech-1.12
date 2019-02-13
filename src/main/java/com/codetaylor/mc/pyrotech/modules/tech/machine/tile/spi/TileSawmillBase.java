@@ -127,9 +127,12 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
     ItemStack input = this.getInputStackHandler().getStackInSlot(0);
     E recipe = this.getRecipe(input);
 
-    if (recipe.createWoodChips()
-        && Math.random() < this.getWoodChipsChance()) {
-      this.trySpawnWoodChips();
+    if (recipe != null) {
+
+      if (recipe.createWoodChips()
+          && Math.random() < this.getWoodChipsChance()) {
+        this.trySpawnWoodChips();
+      }
     }
   }
 
