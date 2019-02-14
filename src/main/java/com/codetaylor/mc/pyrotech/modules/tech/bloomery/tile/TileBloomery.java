@@ -620,6 +620,7 @@ public class TileBloomery
     compound.setInteger("fuelCount", this.fuelCount.get());
     compound.setFloat("airflow", this.airflow.get());
     compound.setInteger("ashCount", this.ashCount.get());
+    compound.setInteger("remainingSlag", this.remainingSlag);
     return compound;
   }
 
@@ -637,6 +638,7 @@ public class TileBloomery
     this.fuelCount.set(compound.getInteger("fuelCount"));
     this.airflow.set(compound.getFloat("airflow"));
     this.ashCount.set(compound.getInteger("ashCount"));
+    this.remainingSlag = compound.getInteger("remainingSlag");
     this.updateRecipe();
   }
 
