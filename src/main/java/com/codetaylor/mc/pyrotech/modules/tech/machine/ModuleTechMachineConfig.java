@@ -552,13 +552,6 @@ public class ModuleTechMachineConfig {
     public boolean DAMAGE_BLADES = true;
 
     @Config.Comment({
-        "Chance of producing wood chips per second of operation.",
-        "Default: " + 0.075
-    })
-    @Config.RangeDouble(min = 0, max = 1)
-    public double WOOD_CHIPS_CHANCE = 0.075;
-
-    @Config.Comment({
         "Valid sawmill blades.",
         "NOTE: Items listed here are assumed to have durability.",
         "Item string format is (domain):(path)"
@@ -633,13 +626,6 @@ public class ModuleTechMachineConfig {
         "Default: " + true
     })
     public boolean DAMAGE_BLADES = true;
-
-    @Config.Comment({
-        "Chance of producing wood chips per second of operation.",
-        "Default: " + 0.075
-    })
-    @Config.RangeDouble(min = 0, max = 1)
-    public double WOOD_CHIPS_CHANCE = 0.075;
 
     @Config.Comment({
         "If true, all the stone tier recipes will also be available in this device.",

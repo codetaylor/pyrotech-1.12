@@ -82,8 +82,6 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
   protected abstract boolean isValidSawmillBlade(ItemStack itemStack);
 
-  protected abstract double getWoodChipsChance(); // TODO: remove
-
   protected abstract boolean shouldDamageBlades();
 
   public abstract double getEntityDamageFromBlade();

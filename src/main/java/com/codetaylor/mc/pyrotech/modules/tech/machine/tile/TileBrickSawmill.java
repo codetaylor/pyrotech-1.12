@@ -45,12 +45,6 @@ public class TileBrickSawmill
   }
 
   @Override
-  protected double getWoodChipsChance() {
-
-    return ModuleTechMachineConfig.BRICK_SAWMILL.WOOD_CHIPS_CHANCE;
-  }
-
-  @Override
   protected boolean shouldDamageBlades() {
 
     return ModuleTechMachineConfig.BRICK_SAWMILL.DAMAGE_BLADES;
