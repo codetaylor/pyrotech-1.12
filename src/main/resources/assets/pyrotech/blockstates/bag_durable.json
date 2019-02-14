@@ -1,0 +1,27 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "type": {
+      "open": {
+        "model": "pyrotech:bag_durable_open"
+      },
+      "closed": {
+        "model": "pyrotech:bag_durable"
+      }
+    },
+    "facing": {
+      "north": {
+        "y": 0
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    }
+  }
+}

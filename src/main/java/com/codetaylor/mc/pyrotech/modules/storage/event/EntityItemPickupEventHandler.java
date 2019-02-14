@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.storage.event;
 
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
-import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockBag;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.entity.item.EntityItem;
@@ -27,92 +26,92 @@ public class EntityItemPickupEventHandler {
   public EntityItemPickupEventHandler() {
 
     // Mainhand
-    if (ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTO_PICKUP_MAINHAND) {
-      BAG_LOCATOR_LIST.add(new IBagLocator() {
+    BAG_LOCATOR_LIST.add(new IBagLocator() {
 
-        @Nullable
-        @Override
-        public BagHandler locateBag(EntityPlayer player) {
+      @Nullable
+      @Override
+      public BagHandler locateBag(EntityPlayer player) {
 
-          ItemStack heldItemMainhand = player.getHeldItemMainhand();
-          Item heldItemMainhandItem = heldItemMainhand.getItem();
+        ItemStack heldItemStack = player.getHeldItemMainhand();
+        Item heldItem = heldItemStack.getItem();
 
-          if (heldItemMainhandItem instanceof ItemBlockBag
-              && ((ItemBlockBag) heldItemMainhandItem).isOpen(heldItemMainhand)) {
-            return new BagHandler(heldItemMainhand);
+        if (heldItem instanceof ItemBlockBag) {
+
+          if (((ItemBlockBag) heldItem).allowAutoPickupMainhand()) {
+            return new BagHandler(heldItemStack);
           }
-
-          return null;
         }
-      });
-    }
+
+        return null;
+      }
+    });
 
     // Offhand
-    if (ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTO_PICKUP_OFFHAND) {
-      BAG_LOCATOR_LIST.add(new IBagLocator() {
+    BAG_LOCATOR_LIST.add(new IBagLocator() {
 
-        @Nullable
-        @Override
-        public BagHandler locateBag(EntityPlayer player) {
+      @Nullable
+      @Override
+      public BagHandler locateBag(EntityPlayer player) {
 
-          ItemStack heldItemOffhand = player.getHeldItemOffhand();
-          Item heldItemOffhandItem = heldItemOffhand.getItem();
+        ItemStack heldItemStack = player.getHeldItemOffhand();
+        Item heldItem = heldItemStack.getItem();
 
-          if (heldItemOffhandItem instanceof ItemBlockBag
-              && ((ItemBlockBag) heldItemOffhandItem).isOpen(heldItemOffhand)) {
-            return new BagHandler(heldItemOffhand);
+        if (heldItem instanceof ItemBlockBag) {
+
+          if (((ItemBlockBag) heldItem).allowAutoPickupOffhand()) {
+            return new BagHandler(heldItemStack);
           }
-
-          return null;
         }
-      });
-    }
+
+        return null;
+      }
+    });
 
     // Hotbar
-    if (ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTO_PICKUP_HOTBAR) {
-      BAG_LOCATOR_LIST.add(new IBagLocator() {
+    BAG_LOCATOR_LIST.add(new IBagLocator() {
 
-        @Nullable
-        @Override
-        public BagHandler locateBag(EntityPlayer player) {
+      @Nullable
+      @Override
+      public BagHandler locateBag(EntityPlayer player) {
 
-          for (int i = 0; i < 9; i++) {
-            ItemStack itemStack = player.inventory.mainInventory.get(i);
-            Item item = itemStack.getItem();
+        for (int i = 0; i < 9; i++) {
+          ItemStack itemStack = player.inventory.mainInventory.get(i);
+          Item item = itemStack.getItem();
 
-            if (item instanceof ItemBlockBag
-                && ((ItemBlockBag) item).isOpen(itemStack)) {
+          if (item instanceof ItemBlockBag) {
+
+            if (((ItemBlockBag) item).allowAutoPickupHotbar()) {
               return new BagHandler(itemStack);
             }
           }
-
-          return null;
         }
-      });
-    }
+
+        return null;
+      }
+    });
 
     // Inventory
-    if (ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTO_PICKUP_INVENTORY) {
-      BAG_LOCATOR_LIST.add(new IBagLocator() {
+    BAG_LOCATOR_LIST.add(new IBagLocator() {
 
-        @Nullable
-        @Override
-        public BagHandler locateBag(EntityPlayer player) {
+      @Nullable
+      @Override
+      public BagHandler locateBag(EntityPlayer player) {
 
-          for (int i = 10; i < 36; i++) {
-            ItemStack itemStack = player.inventory.mainInventory.get(i);
-            Item item = itemStack.getItem();
+        for (int i = 10; i < 36; i++) {
+          ItemStack itemStack = player.inventory.mainInventory.get(i);
+          Item item = itemStack.getItem();
 
-            if (item instanceof ItemBlockBag
-                && ((ItemBlockBag) item).isOpen(itemStack)) {
+          if (item instanceof ItemBlockBag) {
+
+            if (((ItemBlockBag) item).allowAutoPickupInventory()) {
               return new BagHandler(itemStack);
             }
           }
-
-          return null;
         }
-      });
-    }
+
+        return null;
+      }
+    });
   }
 
   @SubscribeEvent

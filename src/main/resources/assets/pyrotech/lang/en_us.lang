@@ -43,7 +43,8 @@ tile.pyrotech.crate_stone.name=Durable Crate
 tile.pyrotech.wood_rack.name=Wood Rack
 tile.pyrotech.tank.stone.name=Stone Tank
 tile.pyrotech.tank.brick.name=Refractory Tank
-tile.pyrotech.bag_simple.name=Basic Rock Bag
+tile.pyrotech.bag_simple.name=Rock Bag
+tile.pyrotech.bag_durable.name=Durable Rock Bag
 
 #------------------------------------------------------------------------------
 # Module: Tech - Basic

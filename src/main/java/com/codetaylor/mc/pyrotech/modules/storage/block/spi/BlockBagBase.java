@@ -72,6 +72,14 @@ public abstract class BlockBagBase
 
   protected abstract String[] getItemBlacklist();
 
+  public abstract boolean allowAutoPickupMainhand();
+
+  public abstract boolean allowAutoPickupOffhand();
+
+  public abstract boolean allowAutoPickupHotbar();
+
+  public abstract boolean allowAutoPickupInventory();
+
   public boolean isOpen(IBlockState blockState) {
 
     return (blockState.getValue(TYPE) == EnumType.OPEN);

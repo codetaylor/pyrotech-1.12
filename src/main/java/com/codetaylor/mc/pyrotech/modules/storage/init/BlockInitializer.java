@@ -5,8 +5,8 @@ import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;
-import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockBag;
+import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRTank;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.*;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
@@ -30,6 +30,9 @@ public final class BlockInitializer {
     BlockBagSimple blockBagSimple = new BlockBagSimple();
     registry.registerBlock(blockBagSimple, new ItemBlockBag(blockBagSimple), BlockBagSimple.NAME);
 
+    BlockBagDurable blockBagDurable = new BlockBagDurable();
+    registry.registerBlock(blockBagDurable, new ItemBlockBag(blockBagDurable), BlockBagDurable.NAME);
+
     registry.registerTileEntities(
         TileShelf.class,
         TileShelfStone.class,
@@ -40,7 +43,8 @@ public final class BlockInitializer {
         TileWoodRack.class,
         TileTankStone.class,
         TileTankBrick.class,
-        TileBagSimple.class
+        TileBagSimple.class,
+        TileBagDurable.class
     );
   }
 
@@ -57,11 +61,17 @@ public final class BlockInitializer {
           ModuleStorage.Blocks.CRATE,
           ModuleStorage.Blocks.CRATE_STONE,
           ModuleStorage.Blocks.WOOD_RACK,
-          ModuleStorage.Blocks.BAG_SIMPLE
+          ModuleStorage.Blocks.BAG_SIMPLE,
+          ModuleStorage.Blocks.BAG_DURABLE
       );
 
       ModelRegistrationHelper.registerBlockItemModelForMeta(
           ModuleStorage.Blocks.BAG_SIMPLE.getDefaultState().withProperty(BlockBagBase.TYPE, BlockBagBase.EnumType.OPEN),
+          1
+      );
+
+      ModelRegistrationHelper.registerBlockItemModelForMeta(
+          ModuleStorage.Blocks.BAG_DURABLE.getDefaultState().withProperty(BlockBagBase.TYPE, BlockBagBase.EnumType.OPEN),
           1
       );
 
@@ -79,6 +89,7 @@ public final class BlockInitializer {
       ClientRegistry.bindTileEntitySpecialRenderer(TileCrate.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileWoodRack.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileBagSimple.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileBagDurable.class, new TESRInteractable<>());
     });
   }
 

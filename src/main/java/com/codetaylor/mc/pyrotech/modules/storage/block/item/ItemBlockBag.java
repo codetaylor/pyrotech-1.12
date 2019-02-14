@@ -50,6 +50,26 @@ public class ItemBlockBag
     return this.blockBag.isItemValidForInsertion(itemStack);
   }
 
+  public boolean allowAutoPickupMainhand() {
+
+    return this.blockBag.allowAutoPickupMainhand();
+  }
+
+  public boolean allowAutoPickupOffhand() {
+
+    return this.blockBag.allowAutoPickupOffhand();
+  }
+
+  public boolean allowAutoPickupHotbar() {
+
+    return this.blockBag.allowAutoPickupHotbar();
+  }
+
+  public boolean allowAutoPickupInventory() {
+
+    return this.blockBag.allowAutoPickupInventory();
+  }
+
   @Override
   public double getDurabilityForDisplay(ItemStack stack) {
 

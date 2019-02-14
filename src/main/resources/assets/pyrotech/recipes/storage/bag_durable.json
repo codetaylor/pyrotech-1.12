@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.storage"]
+    }
+  ],
+  "pattern": [
+    "LTL",
+    "LSL",
+    "LIL"
+  ],
+  "key": {
+    "T": {
+      "item": "pyrotech:material",
+      "data": 26
+    },
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "leather"
+    },
+    "S": {
+      "item": "pyrotech:stash_stone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:bag_durable",
+    "count": 1,
+    "data": 0
+  }
+}

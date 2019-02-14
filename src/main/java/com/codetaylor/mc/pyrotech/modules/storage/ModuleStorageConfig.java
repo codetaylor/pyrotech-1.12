@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.storage;
 
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockGrass;
 import net.minecraftforge.common.config.Config;
@@ -45,7 +47,7 @@ public class ModuleStorageConfig {
     @Config.Comment({
         "If true, the bag will auto-collect items that it can carry when they",
         "are picked up and the bag is in the player's main inventory.",
-        "Default: " + true
+        "Default: " + false
     })
     public boolean ALLOW_AUTO_PICKUP_INVENTORY = false;
 
@@ -71,6 +73,88 @@ public class ModuleStorageConfig {
         ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.LIMESTONE.getMeta(),
         ModuleStorage.MOD_ID + ":" + BlockRockGrass.NAME + ":0"
     };
+
+    @Config.Comment({
+        "Items that are not allowed in the bag.",
+        "If the whitelist is empty, these items will be disallowed.",
+        "The whitelist takes precedence over the blacklist.",
+        "Item string format is (domain):(path):(meta|*) where * matches any meta."
+    })
+    public String[] ITEM_BLACKLIST = new String[0];
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Durable Rock Bag
+  // ---------------------------------------------------------------------------
+
+  public static DurableRockBag DURABLE_ROCK_BAG = new DurableRockBag();
+
+  public static class DurableRockBag {
+
+    @Config.Comment({
+        "If true, the bag will allow extraction of its contents from the bottom.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
+        "If true, the bag will auto-collect items that it can carry when they",
+        "are picked up and the bag is in the player's mainhand.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTO_PICKUP_MAINHAND = true;
+
+    @Config.Comment({
+        "If true, the bag will auto-collect items that it can carry when they",
+        "are picked up and the bag is in the player's offhand.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTO_PICKUP_OFFHAND = true;
+
+    @Config.Comment({
+        "If true, the bag will auto-collect items that it can carry when they",
+        "are picked up and the bag is in the player's hotbar.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTO_PICKUP_HOTBAR = true;
+
+    @Config.Comment({
+        "If true, the bag will auto-collect items that it can carry when they",
+        "are picked up and the bag is in the player's main inventory.",
+        "Default: " + false
+    })
+    public boolean ALLOW_AUTO_PICKUP_INVENTORY = false;
+
+    @Config.Comment({
+        "The maximum number of items the bag can carry.",
+        "Default: " + 1280
+    })
+    public int MAX_ITEM_CAPACITY = 1280;
+
+    @Config.Comment({
+        "Items that are allowed in the bag.",
+        "If the whitelist is not empty, only these items will be allowed.",
+        "The whitelist takes precedence over the blacklist.",
+        "Item string format is (domain):(path):(meta|*) where * matches any meta."
+    })
+    public String[] ITEM_WHITELIST = ArrayHelper.combine(
+        ModuleStorageConfig.SIMPLE_ROCK_BAG.ITEM_WHITELIST,
+        new String[]{
+            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.STONE.getMeta(),
+            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.GRANITE.getMeta(),
+            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.DIORITE.getMeta(),
+            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.ANDESITE.getMeta(),
+            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.DIRT.getMeta(),
+            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.SANDSTONE.getMeta(),
+            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.LIMESTONE.getMeta(),
+            ModuleStorage.MOD_ID + ":" + BlockRockGrass.NAME + ":0",
+
+            "minecraft:dirt:0",
+            "minecraft:cobblestone",
+            "minecraft:gravel",
+            ModuleStorage.MOD_ID + ":" + BlockCobblestone.NAME + ":*"
+        }
+    );
 
     @Config.Comment({
         "Items that are not allowed in the bag.",

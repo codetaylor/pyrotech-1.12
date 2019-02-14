@@ -100,6 +100,9 @@ public class ModuleStorage
     @GameRegistry.ObjectHolder(BlockBagSimple.NAME)
     public static final BlockBagSimple BAG_SIMPLE;
 
+    @GameRegistry.ObjectHolder(BlockBagDurable.NAME)
+    public static final BlockBagDurable BAG_DURABLE;
+
     static {
       SHELF = null;
       STASH = null;
@@ -110,6 +113,7 @@ public class ModuleStorage
       WOOD_RACK = null;
       TANK = null;
       BAG_SIMPLE = null;
+      BAG_DURABLE = null;
     }
   }
 }
