@@ -35,10 +35,10 @@ public class StoneSawmillRecipe
       Ingredient input,
       int timeTicks,
       Ingredient blade,
-      boolean createWoodChips
+      int woodChips
   ) {
 
-    super(input, output, timeTicks, blade, createWoodChips);
+    super(input, output, timeTicks, blade, woodChips);
   }
 
 }

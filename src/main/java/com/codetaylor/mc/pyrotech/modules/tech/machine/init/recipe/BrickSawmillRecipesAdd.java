@@ -26,7 +26,7 @@ public class BrickSawmillRecipesAdd {
             recipe.getInput(),
             Math.max(1, cookTimeTicks),
             recipe.getBlade(),
-            recipe.createWoodChips()
+            recipe.getWoodChips()
         );
       });
     }

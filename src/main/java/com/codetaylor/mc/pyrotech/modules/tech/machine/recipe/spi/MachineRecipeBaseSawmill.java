@@ -8,13 +8,13 @@ public abstract class MachineRecipeBaseSawmill<T extends IForgeRegistryEntry<T>>
     extends MachineRecipeItemInItemOutBase<T> {
 
   protected final Ingredient blade;
-  protected final boolean createWoodChips;
+  protected final int woodChips;
 
-  public MachineRecipeBaseSawmill(Ingredient input, ItemStack output, int timeTicks, Ingredient blade, boolean createWoodChips) {
+  public MachineRecipeBaseSawmill(Ingredient input, ItemStack output, int timeTicks, Ingredient blade, int woodChips) {
 
     super(input, output, timeTicks);
     this.blade = blade;
-    this.createWoodChips = createWoodChips;
+    this.woodChips = woodChips;
   }
 
   public Ingredient getBlade() {
@@ -22,8 +22,8 @@ public abstract class MachineRecipeBaseSawmill<T extends IForgeRegistryEntry<T>>
     return this.blade;
   }
 
-  public boolean createWoodChips() {
+  public int getWoodChips() {
 
-    return this.createWoodChips;
+    return this.woodChips;
   }
 }

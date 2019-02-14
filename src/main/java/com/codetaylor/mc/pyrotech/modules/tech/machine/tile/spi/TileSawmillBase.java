@@ -44,6 +44,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
     extends TileCombustionWorkerStoneItemInItemOutBase<E> {
 
   private BladeStackHandler bladeStackHandler;
+  private int remainingWoodChips;
 
   public TileSawmillBase() {
 
@@ -81,7 +82,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
   protected abstract boolean isValidSawmillBlade(ItemStack itemStack);
 
-  protected abstract double getWoodChipsChance();
+  protected abstract double getWoodChipsChance(); // TODO: remove
 
   protected abstract boolean shouldDamageBlades();
 
@@ -105,6 +106,26 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
   // ---------------------------------------------------------------------------
 
   @Override
+  protected void recalculateRemainingTime(ItemStack itemStack) {
+
+    super.recalculateRemainingTime(itemStack);
+
+    if (itemStack.isEmpty()) {
+      this.remainingWoodChips = 0;
+
+    } else {
+      E recipe = this.getRecipe(itemStack);
+
+      if (recipe != null) {
+        this.remainingWoodChips = recipe.getWoodChips();
+
+      } else {
+        this.remainingWoodChips = 0;
+      }
+    }
+  }
+
+  @Override
   protected List<ItemStack> getRecipeOutput(E recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks) {
 
     ItemStack output = recipe.getOutput();
@@ -119,19 +140,19 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
     super.reduceRecipeTime();
 
-    if (this.world.getTotalWorldTime() % 20 != 0) {
-      // Only perform the wood chips check each second.
-      return;
-    }
-
     ItemStack input = this.getInputStackHandler().getStackInSlot(0);
     E recipe = this.getRecipe(input);
 
     if (recipe != null) {
+      int woodChips = recipe.getWoodChips();
 
-      if (recipe.createWoodChips()
-          && Math.random() < this.getWoodChipsChance()) {
-        this.trySpawnWoodChips();
+      if (woodChips > 0) {
+        float nextInterval = (woodChips - this.remainingWoodChips) * (1f / woodChips) + (1f / woodChips) * 0.5f;
+
+        if (this.workerGetProgress(0) >= nextInterval) {
+          this.remainingWoodChips -= 1;
+          this.trySpawnWoodChips();
+        }
       }
     }
   }
@@ -239,6 +260,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
     super.readFromNBT(compound);
     this.bladeStackHandler.deserializeNBT(compound.getCompoundTag("bladeStackHandler"));
+    this.remainingWoodChips = compound.getInteger("remainingWoodChips");
   }
 
   @Nonnull
@@ -247,6 +269,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
     super.writeToNBT(compound);
     compound.setTag("bladeStackHandler", this.bladeStackHandler.serializeNBT());
+    compound.setInteger("remainingWoodChips", this.remainingWoodChips);
     return compound;
   }
 

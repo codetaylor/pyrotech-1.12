@@ -183,7 +183,7 @@ public class StoneSawmillRecipesAdd {
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
         Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
-        false
+        0
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_iron"));
 
     registry.register(new StoneSawmillRecipe(
@@ -191,7 +191,7 @@ public class StoneSawmillRecipesAdd {
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 2 * 20,
         Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
-        false
+        0
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_diamond"));
   }
 
@@ -205,7 +205,7 @@ public class StoneSawmillRecipesAdd {
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
         Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
-        true
+        8
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_0"));
 
     output = output.copy();
@@ -219,7 +219,7 @@ public class StoneSawmillRecipesAdd {
             new ItemStack(ModuleTechMachine.Items.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
             new ItemStack(ModuleTechMachine.Items.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
         ),
-        true
+        8
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_1"));
 
     output = output.copy();
@@ -230,7 +230,7 @@ public class StoneSawmillRecipesAdd {
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 2 * 20,
         Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
-        true
+        8
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_2"));
 
     output = output.copy();
@@ -241,7 +241,7 @@ public class StoneSawmillRecipesAdd {
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 20,
         Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
-        true
+        8
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_3"));
   }
 }

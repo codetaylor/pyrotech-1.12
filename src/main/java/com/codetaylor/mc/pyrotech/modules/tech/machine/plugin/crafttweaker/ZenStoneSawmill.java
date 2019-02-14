@@ -22,7 +22,7 @@ public class ZenStoneSawmill {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "input", "burnTimeTicks", "blade", "createWoodChips"}
+      args = {"name", "output", "input", "burnTimeTicks", "blade", "woodChips"}
   )
   @ZenMethod
   public static void addRecipe(
@@ -31,7 +31,7 @@ public class ZenStoneSawmill {
       IIngredient input,
       int burnTimeTicks,
       IIngredient blade,
-      @Optional(valueBoolean = true) boolean createWoodChips
+      @Optional(valueLong = 0) int woodChips
   ) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
@@ -40,7 +40,7 @@ public class ZenStoneSawmill {
         CraftTweakerMC.getIngredient(input),
         burnTimeTicks,
         CraftTweakerMC.getIngredient(blade),
-        createWoodChips
+        woodChips
     ));
   }
 
@@ -73,7 +73,7 @@ public class ZenStoneSawmill {
     @Override
     public String describe() {
 
-      return "Removing stone mill recipes for " + this.output;
+      return "Removing stone sawmill recipes for " + this.output;
     }
   }
 
@@ -85,7 +85,7 @@ public class ZenStoneSawmill {
     private final Ingredient input;
     private final int burnTimeTicks;
     private final Ingredient blade;
-    private final boolean createWoodChips;
+    private final int woodChips;
 
     public AddRecipe(
         String name,
@@ -93,7 +93,7 @@ public class ZenStoneSawmill {
         Ingredient input,
         int burnTimeTicks,
         Ingredient blade,
-        boolean createWoodChips
+        int woodChips
     ) {
 
       this.name = name;
@@ -101,7 +101,7 @@ public class ZenStoneSawmill {
       this.output = output;
       this.burnTimeTicks = burnTimeTicks;
       this.blade = blade;
-      this.createWoodChips = createWoodChips;
+      this.woodChips = woodChips;
     }
 
     @Override
@@ -112,7 +112,7 @@ public class ZenStoneSawmill {
           this.input,
           this.burnTimeTicks,
           this.blade,
-          this.createWoodChips
+          this.woodChips
       );
       ModuleTechMachine.Registries.STONE_SAWMILL_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
@@ -120,7 +120,7 @@ public class ZenStoneSawmill {
     @Override
     public String describe() {
 
-      return "Adding stone mill recipe for " + this.output;
+      return "Adding stone sawmill recipe for " + this.output;
     }
   }
 
