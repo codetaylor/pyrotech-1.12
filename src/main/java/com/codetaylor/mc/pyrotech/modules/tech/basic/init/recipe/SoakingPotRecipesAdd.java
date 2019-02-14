@@ -39,6 +39,16 @@ public class SoakingPotRecipesAdd {
       ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_block"));
     }
 
+    // Living Tar
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+      registry.register(new SoakingPotRecipe(
+          new ItemStack(ModuleCore.Blocks.LIVING_TAR),
+          Ingredient.fromStacks(new ItemStack(Blocks.NETHERRACK)),
+          new FluidStack(ModuleTechRefractory.Fluids.COAL_TAR, 500),
+          14 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "living_tar"));
+    }
+
     // Flint Clay
     registry.register(new SoakingPotRecipe(
         ItemMaterial.EnumType.FLINT_CLAY_BALL.asStack(),

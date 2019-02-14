@@ -464,6 +464,14 @@ public class ModuleCoreConfig {
     public int COAL_COKE_BLOCK_BURN_TIME_TICKS = 32000;
 
     @Config.Comment({
+        "Living tar burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 32000
+    })
+    @Config.RangeInt(min = 0)
+    public int LIVING_TAR_BURN_TIME_TICKS = 32000;
+
+    @Config.Comment({
         "Log pile burn time in ticks.",
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + (300 * 10)

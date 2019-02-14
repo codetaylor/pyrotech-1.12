@@ -55,6 +55,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockWoolTarred(), BlockWoolTarred.NAME);
     registry.registerBlockWithItem(new BlockCharcoalBlock(), BlockCharcoalBlock.NAME);
     registry.registerBlockWithItem(new BlockWoodTarBlock(), BlockWoodTarBlock.NAME);
+    registry.registerBlockWithItem(new BlockLivingTar(), BlockLivingTar.NAME);
 
     registry.registerTileEntities(
         TileFarmlandMulched.class
@@ -81,7 +82,8 @@ public final class BlockInitializer {
           ModuleCore.Blocks.PILE_ASH,
           ModuleCore.Blocks.WOOL_TARRED,
           ModuleCore.Blocks.CHARCOAL_BLOCK,
-          ModuleCore.Blocks.WOOD_TAR_BLOCK
+          ModuleCore.Blocks.WOOD_TAR_BLOCK,
+          ModuleCore.Blocks.LIVING_TAR
       );
 
       ModelRegistrationHelper.registerItemModels(

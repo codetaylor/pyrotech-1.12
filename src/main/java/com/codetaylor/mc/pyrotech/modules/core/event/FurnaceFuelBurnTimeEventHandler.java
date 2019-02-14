@@ -51,6 +51,9 @@ public class FurnaceFuelBurnTimeEventHandler {
   @GameRegistry.ObjectHolder(ModuleCore.MOD_ID + ":" + BlockWoodTarBlock.NAME)
   private static Item ITEM_WOOD_TAR_BLOCK;
 
+  @GameRegistry.ObjectHolder(ModuleCore.MOD_ID + ":" + BlockLivingTar.NAME)
+  private static Item ITEM_LIVING_TAR;
+
   @SubscribeEvent
   public static void onFurnaceFuelBurnTimeEvent(FurnaceFuelBurnTimeEvent event) {
 
@@ -91,6 +94,9 @@ public class FurnaceFuelBurnTimeEventHandler {
 
     } else if (item == ITEM_WOOD_TAR_BLOCK) {
       event.setBurnTime(ModuleCoreConfig.FUEL.WOOD_TAR_BLOCK_BURN_TIME_TICKS);
+
+    } else if (item == ITEM_LIVING_TAR) {
+      event.setBurnTime(ModuleCoreConfig.FUEL.LIVING_TAR_BURN_TIME_TICKS);
     }
   }
 

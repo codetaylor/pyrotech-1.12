@@ -121,6 +121,7 @@ public class ModuleBloomeryConfig {
         "OreDict wildcard value. The modifier is a double in the range [0,+double)"
     })
     public Map<String, Double> SPECIAL_FUEL_BURN_TIME_MODIFIERS = new LinkedHashMap<String, Double>() {{
+      this.put("pyrotech:living_tar", 4.0);
       this.put("pyrotech:coal_coke_block", 2.0);
       this.put("minecraft:coal_block", 1.5);
     }};

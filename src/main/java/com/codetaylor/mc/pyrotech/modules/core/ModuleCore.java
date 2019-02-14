@@ -164,6 +164,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockWoodTarBlock.NAME)
     public static final BlockWoodTarBlock WOOD_TAR_BLOCK;
 
+    @GameRegistry.ObjectHolder(BlockLivingTar.NAME)
+    public static final BlockLivingTar LIVING_TAR;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -186,6 +189,7 @@ public class ModuleCore
       WOOL_TARRED = null;
       CHARCOAL_BLOCK = null;
       WOOD_TAR_BLOCK = null;
+      LIVING_TAR = null;
     }
   }
 

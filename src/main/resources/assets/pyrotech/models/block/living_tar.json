@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "pyrotech:blocks/wood_tar_block"
+    "all": "pyrotech:blocks/living_tar"
   }
 }
