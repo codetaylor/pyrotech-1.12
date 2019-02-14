@@ -16,10 +16,6 @@
       "item": "pyrotech:material",
       "data": 18
     },
-    "I": {
-      "type": "forge:ore_dict",
-      "ore": "ingotIron"
-    },
     "S": {
       "item": "pyrotech:material",
       "data": 27
