@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarCollectorBase;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarTankBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -91,8 +92,8 @@ public class TileTarDrain
   @Override
   protected FluidTank getCollectionSourceFluidTank(@Nullable TileEntity tileEntity) {
 
-    if (tileEntity instanceof TileTarCollector) {
-      return ((TileTarCollector) tileEntity).getFluidTank();
+    if (tileEntity instanceof TileTarCollectorBase) {
+      return ((TileTarCollectorBase) tileEntity).getFluidTank();
 
     } else if (tileEntity instanceof TileActivePile) {
       return ((TileActivePile) tileEntity).getFluidTank();

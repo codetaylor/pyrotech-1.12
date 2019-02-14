@@ -8,10 +8,8 @@ import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockPitAsh;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarCollector;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.client.render.TESRTarCollector;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileActivePile;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TilePitAsh;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileTarCollector;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileTarDrain;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.*;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarCollectorBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,8 +25,10 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockTarDrain(), BlockTarDrain.NAME);
 
     registry.registerTileEntities(
-        TileTarCollector.class,
-        TileTarDrain.class,
+        TileStoneTarCollector.class,
+        TileBrickTarCollector.class,
+        TileStoneTarDrain.class,
+        TileBrickTarDrain.class,
         TilePitAsh.class,
         TileActivePile.class
     );
@@ -52,7 +52,7 @@ public final class BlockInitializer {
       );
 
       // TESRs
-      ClientRegistry.bindTileEntitySpecialRenderer(TileTarCollector.class, new TESRTarCollector());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileTarCollectorBase.class, new TESRTarCollector());
     });
   }
 

@@ -2,7 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileTarDrain;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileBrickTarDrain;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileStoneTarDrain;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -116,9 +117,18 @@ public class BlockTarDrain
 
   @Nullable
   @Override
-  public TileEntity createTileEntity(World world, IBlockState state) {
+  public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
 
-    return new TileTarDrain();
+    EnumType type = state.getValue(VARIANT);
+
+    if (type == EnumType.STONE) {
+      return new TileStoneTarDrain();
+
+    } else if (type == EnumType.BRICK) {
+      return new TileBrickTarDrain();
+    }
+
+    return null;
   }
 
   @Nonnull

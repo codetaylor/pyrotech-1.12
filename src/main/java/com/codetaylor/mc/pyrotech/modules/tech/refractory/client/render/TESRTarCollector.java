@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.client.render;
 
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileTarCollector;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarCollectorBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -11,14 +11,14 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
 public class TESRTarCollector
-    extends FastTESR<TileTarCollector> {
+    extends FastTESR<TileTarCollectorBase> {
 
   private static final float PX = 0.0625f;
   private static final float INSET = 2 * PX;
 
   @Override
   public void renderTileEntityFast(
-      TileTarCollector tile,
+      TileTarCollectorBase tile,
       double x,
       double y,
       double z,

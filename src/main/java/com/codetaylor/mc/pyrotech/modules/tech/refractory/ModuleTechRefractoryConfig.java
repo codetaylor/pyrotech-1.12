@@ -64,12 +64,12 @@ public class ModuleTechRefractoryConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Tar Collector
+  // - Stone Tar Collector
   // ---------------------------------------------------------------------------
 
-  public static TarCollector TAR_COLLECTOR = new TarCollector();
+  public static StoneTarCollector STONE_TAR_COLLECTOR = new StoneTarCollector();
 
-  public static class TarCollector {
+  public static class StoneTarCollector {
 
     @Config.Comment({
         "How many smoke particles a burning collector will emit per tick.",
@@ -84,23 +84,123 @@ public class ModuleTechRefractoryConfig {
         "Default: " + 4000
     })
     @Config.RangeInt(min = 1)
-    public int TAR_COLLECTOR_CAPACITY = 4000;
+    public int CAPACITY = 4000;
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the container will break when a hot fluid is placed inside,",
+        "and the fluid will spawn in the world where the tank was.",
+        "Default: " + false
+    })
+    public boolean HOLDS_HOT_FLUIDS = false;
   }
 
   // ---------------------------------------------------------------------------
-  // - Tar Drain
+  // - Brick Tar Collector
   // ---------------------------------------------------------------------------
 
-  public static TarDrain TAR_DRAIN = new TarDrain();
+  public static BrickTarCollector BRICK_TAR_COLLECTOR = new BrickTarCollector();
 
-  public static class TarDrain {
+  public static class BrickTarCollector {
+
+    @Config.Comment({
+        "How many smoke particles a burning collector will emit per tick.",
+        "Remember, burning tar is supposed to be smokey and gross.",
+        "Default: " + 10
+    })
+    @Config.RangeInt(min = 0)
+    public int SMOKE_PARTICLES_PER_TICK = 10;
+
+    @Config.Comment({
+        "Fluid capacity of the tar collector in mB.",
+        "Default: " + 8000
+    })
+    @Config.RangeInt(min = 1)
+    public int CAPACITY = 8000;
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the container will break when a hot fluid is placed inside,",
+        "and the fluid will spawn in the world where the tank was.",
+        "Default: " + true
+    })
+    public boolean HOLDS_HOT_FLUIDS = true;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Stone Tar Drain
+  // ---------------------------------------------------------------------------
+
+  public static StoneTarDrain STONE_TAR_DRAIN = new StoneTarDrain();
+
+  public static class StoneTarDrain {
 
     @Config.Comment({
         "Fluid capacity of the tar drain in mb.",
         "Default: " + 1000
     })
     @Config.RangeInt(min = 1)
-    public int TAR_DRAIN_CAPACITY = 1000;
+    public int CAPACITY = 1000;
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the container will break when a hot fluid is placed inside,",
+        "and the fluid will spawn in the world where the tank was.",
+        "Default: " + false
+    })
+    public boolean HOLDS_HOT_FLUIDS = false;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Brick Tar Drain
+  // ---------------------------------------------------------------------------
+
+  public static BrickTarDrain BRICK_TAR_DRAIN = new BrickTarDrain();
+
+  public static class BrickTarDrain {
+
+    @Config.Comment({
+        "Fluid capacity of the tar drain in mb.",
+        "Default: " + 2000
+    })
+    @Config.RangeInt(min = 1)
+    public int CAPACITY = 2000;
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the container will break when a hot fluid is placed inside,",
+        "and the fluid will spawn in the world where the tank was.",
+        "Default: " + true
+    })
+    public boolean HOLDS_HOT_FLUIDS = true;
   }
 
   // ---------------------------------------------------------------------------

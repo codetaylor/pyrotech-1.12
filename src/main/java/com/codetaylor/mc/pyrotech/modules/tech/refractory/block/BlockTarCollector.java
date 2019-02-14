@@ -5,7 +5,9 @@ import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentFire;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileTarCollector;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileBrickTarCollector;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileStoneTarCollector;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarCollectorBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -110,7 +112,16 @@ public class BlockTarCollector
   @Override
   public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
 
-    return new TileTarCollector();
+    EnumType type = state.getValue(VARIANT);
+
+    if (type == EnumType.STONE) {
+      return new TileStoneTarCollector();
+
+    } else if (type == EnumType.BRICK) {
+      return new TileBrickTarCollector();
+    }
+
+    return null;
   }
 
   @Override
@@ -119,11 +130,11 @@ public class BlockTarCollector
     if (facing == EnumFacing.UP) {
       TileEntity tileEntity = world.getTileEntity(pos);
 
-      if (tileEntity instanceof TileTarCollector) {
-        FluidTank fluidTank = ((TileTarCollector) tileEntity).getFluidTank();
+      if (tileEntity instanceof TileTarCollectorBase) {
+        FluidTank fluidTank = ((TileTarCollectorBase) tileEntity).getFluidTank();
 
         if (fluidTank.getFluidAmount() > 0) {
-          ((TileTarCollector) tileEntity).setBurning(true);
+          ((TileTarCollectorBase) tileEntity).setBurning(true);
         }
       }
     }
@@ -136,10 +147,10 @@ public class BlockTarCollector
 
       TileEntity tileEntity = world.getTileEntity(pos);
 
-      if (tileEntity instanceof TileTarCollector) {
+      if (tileEntity instanceof TileTarCollectorBase) {
 
-        if (((TileTarCollector) tileEntity).isFlammable()) {
-          ((TileTarCollector) tileEntity).setBurning(true);
+        if (((TileTarCollectorBase) tileEntity).isFlammable()) {
+          ((TileTarCollectorBase) tileEntity).setBurning(true);
         }
       }
     }
@@ -181,9 +192,9 @@ public class BlockTarCollector
 
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileTarCollector) {
+    if (tileEntity instanceof TileTarCollectorBase) {
       return side == EnumFacing.UP
-          && ((TileTarCollector) tileEntity).isBurning();
+          && ((TileTarCollectorBase) tileEntity).isBurning();
     }
 
     return super.isFireSource(world, pos, side);

@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRefractoryDoor;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarCollectorBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.state.IBlockState;
@@ -162,8 +163,8 @@ public class TileActivePile
           TileActivePile down = (TileActivePile) tileEntity;
           this.fluidTank.drain(down.fluidTank.fillInternal(this.fluidTank.getFluid(), true), true);
 
-        } else if (tileEntity instanceof TileTarCollector) {
-          TileTarCollector down = (TileTarCollector) tileEntity;
+        } else if (tileEntity instanceof TileTarCollectorBase) {
+          TileTarCollectorBase down = (TileTarCollectorBase) tileEntity;
           this.fluidTank.drain(down.getFluidTank().fillInternal(this.fluidTank.getFluid(), true), true);
         }
 

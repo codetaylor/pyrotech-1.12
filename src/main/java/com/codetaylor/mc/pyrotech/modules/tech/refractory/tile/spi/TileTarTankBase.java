@@ -4,17 +4,24 @@ import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
+import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.athenaeum.util.TickCounter;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidUtil;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -36,7 +43,7 @@ public abstract class TileTarTankBase
 
     super(ModuleTechRefractory.TILE_DATA_SERVICE);
 
-    this.fluidTank = new Tank(this.getTankCapacity());
+    this.fluidTank = new Tank(this, this.getTankCapacity());
     this.fluidTank.addObserver((tank, amount) -> {
       this.markDirty();
     });
@@ -49,6 +56,11 @@ public abstract class TileTarTankBase
         new TileDataFluidTank<>(this.fluidTank)
     });
   }
+
+
+  protected abstract int getHotFluidTemperature();
+
+  protected abstract boolean canHoldHotFluids();
 
   public FluidTank getFluidTank() {
 
@@ -152,9 +164,39 @@ public abstract class TileTarTankBase
       extends ObservableFluidTank
       implements ITileDataFluidTank {
 
-    /* package */ Tank(int capacity) {
+    private final TileTarTankBase tile;
+
+    /* package */ Tank(TileTarTankBase tile, int capacity) {
 
       super(capacity);
+      this.tile = tile;
+    }
+
+    @Override
+    public int fillInternal(FluidStack resource, boolean doFill) {
+
+      int filled = super.fillInternal(resource, doFill);
+
+      if (!this.tile.canHoldHotFluids()) {
+        World world = this.tile.world;
+        BlockPos pos = this.tile.pos;
+
+        if (resource != null) {
+          Fluid fluid = resource.getFluid();
+
+          if (fluid.getTemperature(resource) >= this.tile.getHotFluidTemperature()) {
+
+            if (!world.isRemote) {
+              world.setBlockToAir(pos);
+              SoundHelper.playSoundServer(world, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
+              FluidUtil.tryPlaceFluid(null, world, pos, this, resource);
+            }
+            world.checkLightFor(EnumSkyBlock.BLOCK, pos);
+          }
+        }
+      }
+
+      return filled;
     }
   }
 }
