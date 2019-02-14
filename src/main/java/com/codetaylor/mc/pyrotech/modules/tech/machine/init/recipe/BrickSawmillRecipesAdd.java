@@ -5,6 +5,7 @@ import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickSawmillRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -111,7 +112,7 @@ public class BrickSawmillRecipesAdd {
   }
 
   public static void registerInheritedRecipes(
-      IForgeRegistryModifiable<BrickSawmillRecipe> stoneRegistry,
+      IForgeRegistryModifiable<StoneSawmillRecipe> stoneRegistry,
       IForgeRegistryModifiable<BrickSawmillRecipe> brickRegistry
   ) {
 
