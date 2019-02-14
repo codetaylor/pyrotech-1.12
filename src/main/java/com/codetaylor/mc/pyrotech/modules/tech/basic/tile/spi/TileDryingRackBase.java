@@ -105,7 +105,7 @@ public abstract class TileDryingRackBase
       ItemStack itemStack = this.inputStackHandler.getStackInSlot(i);
 
       if (!itemStack.isEmpty()) {
-        StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
+        StackHelper.spawnStackOnTop(this.world, itemStack, this.pos, 0.0);
       }
     }
 
@@ -113,7 +113,7 @@ public abstract class TileDryingRackBase
       ItemStack itemStack = this.outputStackHandler.getStackInSlot(i);
 
       if (!itemStack.isEmpty()) {
-        StackHelper.spawnStackOnTop(this.world, itemStack, this.pos);
+        StackHelper.spawnStackOnTop(this.world, itemStack, this.pos, 0.0);
       }
     }
   }
