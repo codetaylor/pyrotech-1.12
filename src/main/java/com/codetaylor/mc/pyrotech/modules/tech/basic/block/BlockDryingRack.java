@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileDryingRack;
@@ -45,7 +46,7 @@ public class BlockDryingRack
   public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
   public static final IProperty<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
-  private static final AxisAlignedBB AABB = new AxisAlignedBB(0f / 16f, 0f / 16f, 0f / 16f, 16f / 16f, 12f / 16f, 16f / 16f);
+  private static final AxisAlignedBB AABB = AABBHelper.create(0, 11, 0, 16, 12, 16);
   public static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(0f / 16f, 11f / 16f, 0f / 16f, 16f / 16f, 16f / 16f, 5f / 16f);
   private static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(0f / 16f, 11f / 16f, 11f / 16f, 16f / 16f, 16f / 16f, 16f / 16f);
   private static final AxisAlignedBB AABB_EAST = new AxisAlignedBB(11f / 16f, 11f / 16f, 0f / 16f, 16f / 16f, 16f / 16f, 16f / 16f);
