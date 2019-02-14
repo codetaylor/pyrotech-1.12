@@ -6,17 +6,25 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
 import com.codetaylor.mc.athenaeum.util.FluidHelper;
+import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInFluidOutBase;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -30,7 +38,7 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
 
   public TileCombustionWorkerStoneItemInFluidOutBase() {
 
-    this.outputFluidTank = new OutputFluidTank(this.getOutputFluidTankSize());
+    this.outputFluidTank = new OutputFluidTank(this, this.getOutputFluidTankSize());
     this.outputFluidTank.addObserver((handler, slot) -> {
       this.resetDormantCounter();
       this.markDirty();
@@ -50,6 +58,10 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
   // ---------------------------------------------------------------------------
   // - Accessors
   // ---------------------------------------------------------------------------
+
+  protected abstract int getHotFluidTemperature();
+
+  protected abstract boolean canHoldHotFluids();
 
   public FluidTank getOutputFluidTank() {
 
@@ -254,9 +266,40 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
       extends ObservableFluidTank
       implements ITileDataFluidTank {
 
-    /* package */ OutputFluidTank(int size) {
+    private final TileCombustionWorkerStoneItemInFluidOutBase<E> tile;
+
+    /* package */ OutputFluidTank(TileCombustionWorkerStoneItemInFluidOutBase<E> tile, int size) {
 
       super(size);
+      this.tile = tile;
+    }
+
+    @Override
+    public int fillInternal(FluidStack resource, boolean doFill) {
+
+      int filled = super.fillInternal(resource, doFill);
+
+      if (!this.tile.canHoldHotFluids()) {
+        World world = this.tile.world;
+        BlockPos pos = this.tile.pos;
+
+        if (resource != null) {
+          Fluid fluid = resource.getFluid();
+
+          if (fluid.getTemperature(resource) >= this.tile.getHotFluidTemperature()) {
+
+            if (!world.isRemote) {
+              world.setBlockToAir(pos);
+              world.setBlockToAir(pos.up());
+              SoundHelper.playSoundServer(world, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
+              FluidUtil.tryPlaceFluid(null, world, pos, this, resource);
+            }
+            world.checkLightFor(EnumSkyBlock.BLOCK, pos);
+          }
+        }
+      }
+
+      return filled;
     }
   }
 

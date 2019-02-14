@@ -721,6 +721,21 @@ public class ModuleTechMachineConfig {
         "Default: " + true
     })
     public boolean ASYNCHRONOUS_OPERATION = true;
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the container will break when a hot fluid is placed inside,",
+        "and the fluid will spawn in the world where the tank was.",
+        "Default: " + false
+    })
+    public boolean HOLDS_HOT_FLUIDS = false;
   }
 
   // ---------------------------------------------------------------------------
@@ -797,6 +812,21 @@ public class ModuleTechMachineConfig {
         "Default: " + 1.0
     })
     public double INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the container will break when a hot fluid is placed inside,",
+        "and the fluid will spawn in the world where the tank was.",
+        "Default: " + true
+    })
+    public boolean HOLDS_HOT_FLUIDS = true;
   }
 
 }

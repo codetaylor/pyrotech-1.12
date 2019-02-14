@@ -77,6 +77,18 @@ public class TileStoneCrucible
   }
 
   @Override
+  protected boolean canHoldHotFluids() {
+
+    return ModuleTechMachineConfig.STONE_CRUCIBLE.HOLDS_HOT_FLUIDS;
+  }
+
+  @Override
+  protected int getHotFluidTemperature() {
+
+    return ModuleTechMachineConfig.STONE_CRUCIBLE.HOT_TEMPERATURE;
+  }
+
+  @Override
   public boolean allowInsertInput(ItemStack stack, StoneCrucibleRecipe recipe) {
 
     return true;
