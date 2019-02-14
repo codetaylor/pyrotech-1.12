@@ -316,6 +316,8 @@ public class ModuleCoreConfig {
         "minecraft:chest",
         "minecraft:furnace",
         "minecraft:crafting_table",
+        "minecraft:redstone_block",
+        "minecraft:redstone",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
