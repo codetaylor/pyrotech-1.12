@@ -579,6 +579,22 @@ public class PluginDropt {
               drop().items(new String[]{coal}, range(1, 1)).selector(weight(1, 1))
           })
       );
+
+      // Diamond+ Pickaxe
+      list.add(rule()
+          .matchBlocks(new String[]{
+              coalOre
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "pickaxe;4;-1")
+          )
+          .replaceStrategy(EnumReplaceStrategy.ADD)
+          .addDrops(new IDroptDropBuilder[]{
+              drop().selector(weight(1)),
+              drop().items(new String[]{coal}, range(1, 1)).selector(weight(1, 1))
+          })
+      );
     }
 
     // -------------------------------------------------------------------------
