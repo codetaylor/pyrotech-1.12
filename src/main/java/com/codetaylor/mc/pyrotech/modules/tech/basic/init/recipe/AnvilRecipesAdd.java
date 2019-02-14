@@ -9,6 +9,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import net.minecraft.block.BlockStone;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreIngredient;
@@ -32,9 +33,17 @@ public class AnvilRecipesAdd {
         AnvilRecipe.EnumType.HAMMER
     ).setRegistryName(ModuleTechBasic.MOD_ID, "crushed_flint_from_flint"));
 
+    // Lapis Lazuli from Lapis Block
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.DYE, 8, EnumDyeColor.BLUE.getMetadata()),
+        Ingredient.fromStacks(new ItemStack(Blocks.LAPIS_BLOCK)),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "lapis_lazuli_from_lapis_block"));
+
     // Redstone from Redstone Block
     registry.register(new AnvilRecipe(
-        new ItemStack(Items.REDSTONE, 1, 8),
+        new ItemStack(Items.REDSTONE, 8),
         Ingredient.fromStacks(new ItemStack(Blocks.REDSTONE_BLOCK)),
         8,
         AnvilRecipe.EnumType.HAMMER
