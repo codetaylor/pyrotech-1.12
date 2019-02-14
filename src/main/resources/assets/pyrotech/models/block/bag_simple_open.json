@@ -1,5 +1,5 @@
 {
-  "parent": "block/block",
+  "parent": "pyrotech:block/bag_base",
   "textures": {
     "0": "pyrotech:blocks/bag_front_simple",
     "1": "pyrotech:blocks/bag_side",
