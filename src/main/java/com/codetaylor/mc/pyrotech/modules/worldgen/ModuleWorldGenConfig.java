@@ -91,7 +91,7 @@ public class ModuleWorldGenConfig {
     @Config.Comment({
         "The maximum world height at which this will gen.",
         "Must be less than or equal to MIN_HEIGHT.",
-        "Default: " + 120
+        "Default: " + 100
     })
     @Config.RangeInt(min = 0, max = 255)
     public int MAX_HEIGHT = 100;
@@ -129,7 +129,7 @@ public class ModuleWorldGenConfig {
 
     @Config.Comment({
         "How many times will the generator try to spawn this worldgen.",
-        "Default: " + 15
+        "Default: " + 4
     })
     @Config.RangeInt(min = 0)
     public int CHANCES_TO_SPAWN = 4;
@@ -137,7 +137,7 @@ public class ModuleWorldGenConfig {
     @Config.Comment({
         "The density of each successful spawn.",
         "Larger density means more are placed.",
-        "Default: " + 0.625
+        "Default: " + 0.0625
     })
     @Config.RangeDouble(min = 0, max = 1)
     public double DENSITY = 0.0625;
