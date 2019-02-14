@@ -27,7 +27,7 @@ import java.util.List;
 
 public class BloomeryRecipesAdd {
 
-  private static final int DEFAULT_BURN_TIME_TICKS = 18 * 60 * 20;
+  private static final int DEFAULT_BURN_TIME_TICKS = 24 * 60 * 20;
   private static final float DEFAULT_FAILURE_CHANCE = 0.25f;
 
   public static void apply(IForgeRegistry<BloomeryRecipe> registry) {
@@ -54,7 +54,7 @@ public class BloomeryRecipesAdd {
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(8, 10)
+              .setBloomYield(16, 20)
               .setSlagItem(new ItemStack(itemSlagIron), 4)
               .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 1)
               .addFailureItem(new ItemStack(itemSlagIron, 1, 0), 2)
@@ -70,7 +70,7 @@ public class BloomeryRecipesAdd {
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS / 2)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(4, 5)
+              .setBloomYield(8, 10)
               .setSlagItem(new ItemStack(itemSlagIron), 2)
               .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
               .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 2)
@@ -101,7 +101,7 @@ public class BloomeryRecipesAdd {
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(8, 10)
+              .setBloomYield(16, 20)
               .setSlagItem(new ItemStack(itemSlagGold), 4)
               .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 1)
               .addFailureItem(new ItemStack(itemSlagGold, 1, 0), 2)
@@ -117,7 +117,7 @@ public class BloomeryRecipesAdd {
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS / 2)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(4, 5)
+              .setBloomYield(8, 10)
               .setSlagItem(new ItemStack(itemSlagGold), 2)
               .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
               .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 2)
