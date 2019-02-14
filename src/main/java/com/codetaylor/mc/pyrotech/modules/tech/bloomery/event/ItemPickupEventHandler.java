@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.event;
 
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-@GameRegistry.ObjectHolder(ModuleBloomery.MOD_ID)
+@GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID)
 @Mod.EventBusSubscriber
 public class ItemPickupEventHandler {
 

@@ -5,7 +5,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItem;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.block.state.IBlockState;
@@ -81,11 +81,11 @@ public abstract class ItemTongsFullBase
     BlockPos offset = pos.offset(sideHit);
     NBTTagCompound tagCompound = heldItem.getTagCompound();
 
-    if (ModuleBloomery.Blocks.BLOOM.canPlaceBlockAt(world, offset)
+    if (ModuleTechBloomery.Blocks.BLOOM.canPlaceBlockAt(world, offset)
         && tagCompound != null) {
 
       if (!world.isRemote) {
-        world.setBlockState(offset, ModuleBloomery.Blocks.BLOOM.getDefaultState());
+        world.setBlockState(offset, ModuleTechBloomery.Blocks.BLOOM.getDefaultState());
         TileBloom tile = (TileBloom) world.getTileEntity(offset);
 
         if (tile != null) {
@@ -170,7 +170,7 @@ public abstract class ItemTongsFullBase
       }
 
       NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
-      ItemStack bloomStack = BloomHelper.createBloomAsItemStack(new ItemStack(ModuleBloomery.Blocks.BLOOM), tileTag);
+      ItemStack bloomStack = BloomHelper.createBloomAsItemStack(new ItemStack(ModuleTechBloomery.Blocks.BLOOM), tileTag);
       ((TileAnvilBase) tile).getStackHandler().insertItem(0, bloomStack, false);
       ItemStack emptyTongsStack = BloomHelper.createItemTongsEmpty(heldItem);
       heldItem.shrink(1);

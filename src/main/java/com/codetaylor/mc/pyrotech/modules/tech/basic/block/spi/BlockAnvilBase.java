@@ -5,8 +5,8 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -80,7 +80,7 @@ public abstract class BlockAnvilBase
 
   private boolean hasBloom(World world, BlockPos pos) {
 
-    if (ModuleBloomery.Items.BLOOM != null) {
+    if (ModuleTechBloomery.Items.BLOOM != null) {
 
       // If the bloom object was registered, it means that the bloomery
       // module is enabled.
@@ -91,7 +91,7 @@ public abstract class BlockAnvilBase
 
         ItemStackHandler stackHandler = ((TileAnvilBase) tileEntity).getStackHandler();
         ItemStack stackInSlot = stackHandler.getStackInSlot(0);
-        return (stackInSlot.getItem() == ModuleBloomery.Items.BLOOM);
+        return (stackInSlot.getItem() == ModuleTechBloomery.Items.BLOOM);
       }
     }
 
@@ -105,12 +105,12 @@ public abstract class BlockAnvilBase
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
-    if (ModuleBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE > 0
+    if (ModuleTechBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE > 0
         && this.hasBloom(world, pos)
         && !entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE);
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleTechBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE);
     }
 
     super.onEntityWalk(world, pos, entity);

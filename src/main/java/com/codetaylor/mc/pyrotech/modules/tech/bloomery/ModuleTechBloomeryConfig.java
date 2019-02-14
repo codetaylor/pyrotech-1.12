@@ -10,8 +10,8 @@ import net.minecraftforge.common.config.Config;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@Config(modid = ModuleBloomery.MOD_ID, name = ModuleBloomery.MOD_ID + "/" + "module.tech.Bloomery")
-public class ModuleBloomeryConfig {
+@Config(modid = ModuleTechBloomery.MOD_ID, name = ModuleTechBloomery.MOD_ID + "/" + "module.tech.Bloomery")
+public class ModuleTechBloomeryConfig {
 
   // ---------------------------------------------------------------------------
   // - Slag
@@ -142,7 +142,7 @@ public class ModuleBloomeryConfig {
             }
 
           } catch (MalformedRecipeItemException e) {
-            ModuleBloomery.LOGGER.error("Error parsing special fuel burn time modifier for item " + entry.getKey(), e);
+            ModuleTechBloomery.LOGGER.error("Error parsing special fuel burn time modifier for item " + entry.getKey(), e);
           }
         }
 

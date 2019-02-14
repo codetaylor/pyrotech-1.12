@@ -11,8 +11,8 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
@@ -44,7 +44,7 @@ public class TileBloom
 
   public TileBloom() {
 
-    super(ModuleBloomery.TILE_DATA_SERVICE);
+    super(ModuleTechBloomery.TILE_DATA_SERVICE);
 
     this.recipeProgress = new TileDataFloat(0);
     this.integrity = new TileDataInteger(0);
@@ -186,7 +186,7 @@ public class TileBloom
 
       BlockPos tilePos = tile.getPos();
 
-      if (player.getFoodStats().getFoodLevel() < ModuleBloomeryConfig.BLOOM.MINIMUM_HUNGER_TO_USE) {
+      if (player.getFoodStats().getFoodLevel() < ModuleTechBloomeryConfig.BLOOM.MINIMUM_HUNGER_TO_USE) {
         return false;
       }
 
@@ -194,8 +194,8 @@ public class TileBloom
 
         // Server logic
 
-        if (ModuleBloomeryConfig.BLOOM.EXHAUSTION_COST_PER_HIT > 0) {
-          player.addExhaustion((float) ModuleBloomeryConfig.BLOOM.EXHAUSTION_COST_PER_HIT);
+        if (ModuleTechBloomeryConfig.BLOOM.EXHAUSTION_COST_PER_HIT > 0) {
+          player.addExhaustion((float) ModuleTechBloomeryConfig.BLOOM.EXHAUSTION_COST_PER_HIT);
         }
 
         // Play sound for hit.
@@ -210,17 +210,17 @@ public class TileBloom
             (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
         );
 
-        BloomHelper.trySpawnFire(world, tilePos, RandomHelper.random(), ModuleBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_RAW);
+        BloomHelper.trySpawnFire(world, tilePos, RandomHelper.random(), ModuleTechBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_RAW);
 
         if (tile.recipeProgress.get() < 1) {
-          int hits = Math.max(1, ModuleBloomeryConfig.BLOOM.HAMMER_HITS_REQUIRED);
+          int hits = Math.max(1, ModuleTechBloomeryConfig.BLOOM.HAMMER_HITS_REQUIRED);
           float recipeProgressIncrement = (float) ((1f / hits) * BloomHelper.calculateHammerPower(tilePos, player));
           tile.recipeProgress.set(tile.recipeProgress.get() + recipeProgressIncrement);
         }
 
         if (tile.recipeProgress.get() >= 0.9999) {
           tile.integrity.add(-1);
-          BloomeryRecipe recipe = ModuleBloomery.Registries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
+          BloomeryRecipe recipe = ModuleTechBloomery.Registries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
 
           if (recipe != null) {
             ItemStack output = recipe.getRandomOutput();
@@ -240,7 +240,7 @@ public class TileBloom
 
           world.destroyBlock(tilePos, true);
 
-          if (ModuleBloomeryConfig.BLOOM.BREAKS_BLOCKS) {
+          if (ModuleTechBloomeryConfig.BLOOM.BREAKS_BLOCKS) {
 
             // Check and destroy block below the bloom.
 

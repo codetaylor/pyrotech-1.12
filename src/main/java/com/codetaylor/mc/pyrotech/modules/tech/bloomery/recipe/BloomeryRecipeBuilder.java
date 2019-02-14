@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe;
 
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -35,7 +35,7 @@ public class BloomeryRecipeBuilder {
     this.bloomYieldMin = 8;
     this.bloomYieldMax = 10;
     this.slagCount = 4;
-    this.slagItem = new ItemStack(ModuleBloomery.Items.SLAG);
+    this.slagItem = new ItemStack(ModuleTechBloomery.Items.SLAG);
     this.failureItems = new ArrayList<>(1);
   }
 

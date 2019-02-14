@@ -5,7 +5,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.block.Block;
@@ -84,11 +84,11 @@ public class BlockBloom
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
-    if (ModuleBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE > 0
+    if (ModuleTechBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE > 0
         && !entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE);
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleTechBloomeryConfig.BLOOM.ENTITY_WALK_DAMAGE);
     }
 
     super.onEntityWalk(world, pos, entity);
@@ -302,7 +302,7 @@ public class BlockBloom
       world.setBlockState(pos.down(), Blocks.FIRE.getDefaultState(), 1 | 2);
     }
 
-    BloomHelper.trySpawnFire(world, pos, rand, ModuleBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_RANDOM);
+    BloomHelper.trySpawnFire(world, pos, rand, ModuleTechBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_RANDOM);
   }
 
   private void tryCatchFire(World world, BlockPos pos, int chance, Random random, int age, EnumFacing face) {
@@ -470,7 +470,7 @@ public class BlockBloom
         return;
       }
 
-      float playerDamagePerSecond = (float) ModuleBloomeryConfig.BLOOM.FIRE_DAMAGE_PER_SECOND;
+      float playerDamagePerSecond = (float) ModuleTechBloomeryConfig.BLOOM.FIRE_DAMAGE_PER_SECOND;
 
       if (playerDamagePerSecond > 0) {
         entity.attackEntityFrom(DamageSource.IN_FIRE, playerDamagePerSecond);

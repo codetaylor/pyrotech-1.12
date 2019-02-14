@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.jei;
 
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
@@ -33,17 +33,17 @@ public class PluginJEI
     // --- Blacklist Ingredients
 
     IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleBloomery.Items.TONGS_STONE_FULL));
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleBloomery.Items.TONGS_FLINT_FULL));
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleBloomery.Items.TONGS_BONE_FULL));
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleBloomery.Items.TONGS_IRON_FULL));
-    blacklist.addIngredientToBlacklist(new ItemStack(ModuleBloomery.Items.TONGS_DIAMOND_FULL));
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_STONE_FULL));
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_FLINT_FULL));
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_BONE_FULL));
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_IRON_FULL));
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_DIAMOND_FULL));
 
     // --- Bloomery
     {
-      registry.addRecipeCatalyst(new ItemStack(ModuleBloomery.Blocks.BLOOMERY), JEIRecipeCategoryBloomery.UID);
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechBloomery.Blocks.BLOOMERY), JEIRecipeCategoryBloomery.UID);
       registry.handleRecipes(BloomeryRecipe.class, JEIRecipeWrapperBloomery::new, JEIRecipeCategoryBloomery.UID);
-      List<BloomeryRecipe> recipeList = new ArrayList<>(ModuleBloomery.Registries.BLOOMERY_RECIPE.getValuesCollection());
+      List<BloomeryRecipe> recipeList = new ArrayList<>(ModuleTechBloomery.Registries.BLOOMERY_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryBloomery.UID);
     }
   }

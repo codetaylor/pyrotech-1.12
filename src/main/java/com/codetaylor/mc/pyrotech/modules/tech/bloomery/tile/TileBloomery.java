@@ -20,8 +20,8 @@ import com.codetaylor.mc.pyrotech.library.spi.tile.TileCapabilityDelegate;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.client.render.BloomeryFuelRenderer;
@@ -96,7 +96,7 @@ public class TileBloomery
 
   public TileBloomery() {
 
-    super(ModuleBloomery.TILE_DATA_SERVICE);
+    super(ModuleTechBloomery.TILE_DATA_SERVICE);
 
     this.inputStackHandler = new InputStackHandler();
     this.inputStackHandler.addObserver((handler, slot) -> {
@@ -227,7 +227,7 @@ public class TileBloomery
 
   public int getMaxFuelCount() {
 
-    return ModuleBloomeryConfig.BLOOMERY.FUEL_CAPACITY_ITEMS;
+    return ModuleTechBloomeryConfig.BLOOMERY.FUEL_CAPACITY_ITEMS;
   }
 
   public float getSpeed() {
@@ -242,12 +242,12 @@ public class TileBloomery
 
   public int getMaxBurnTime() {
 
-    return ModuleBloomeryConfig.BLOOMERY.FUEL_CAPACITY_BURN_TIME;
+    return ModuleTechBloomeryConfig.BLOOMERY.FUEL_CAPACITY_BURN_TIME;
   }
 
   public boolean hasSpeedCap() {
 
-    return ModuleBloomeryConfig.BLOOMERY.HAS_SPEED_CAP;
+    return ModuleTechBloomeryConfig.BLOOMERY.HAS_SPEED_CAP;
   }
 
   public float getAirflow() {
@@ -262,12 +262,12 @@ public class TileBloomery
 
   public int getMaxAshCapacity() {
 
-    return ModuleBloomeryConfig.BLOOMERY.MAX_ASH_CAPACITY;
+    return ModuleTechBloomeryConfig.BLOOMERY.MAX_ASH_CAPACITY;
   }
 
   protected int getItemBurnTime(ItemStack stack) {
 
-    return (int) (StackHelper.getItemBurnTime(stack) * ModuleBloomeryConfig.BLOOMERY.getSpecialFuelBurnTimeModifier(stack));
+    return (int) (StackHelper.getItemBurnTime(stack) * ModuleTechBloomeryConfig.BLOOMERY.getSpecialFuelBurnTimeModifier(stack));
   }
 
   // ---------------------------------------------------------------------------
@@ -286,7 +286,7 @@ public class TileBloomery
   private void updateSpeed() {
 
     float linearSpeed = this.burnTime.get() / (float) this.getMaxBurnTime();
-    float speed = (float) (ModuleBloomeryConfig.BLOOMERY.SPEED_SCALAR * (float) Math.pow(linearSpeed, 0.5));
+    float speed = (float) (ModuleTechBloomeryConfig.BLOOMERY.SPEED_SCALAR * (float) Math.pow(linearSpeed, 0.5));
     speed *= this.calculateSpeedAirflowModifier();
     this.speed.set(speed);
   }
@@ -307,7 +307,7 @@ public class TileBloomery
     if (this.world.isAirBlock(offset)) {
       this.airflow.set(1);
 
-    } else if (blockState.getBlock() == ModuleBloomery.Blocks.GENERATED_PILE_SLAG) {
+    } else if (blockState.getBlock() == ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG) {
       int level = blockState.getValue(BlockPileSlag.LEVEL);
 
       if (level == 1) {
@@ -453,7 +453,7 @@ public class TileBloomery
 
         for (int i = 1; i < fuelCount; i++) {
 
-          if (random.nextFloat() < ModuleBloomeryConfig.BLOOMERY.ASH_CONVERSION_CHANCE) {
+          if (random.nextFloat() < ModuleTechBloomeryConfig.BLOOMERY.ASH_CONVERSION_CHANCE) {
             ashCount += 1;
           }
         }
@@ -490,7 +490,7 @@ public class TileBloomery
       IBlockState blockState = this.world.getBlockState(pos);
       Block block = blockState.getBlock();
 
-      if (block == ModuleBloomery.Blocks.PILE_SLAG) {
+      if (block == ModuleTechBloomery.Blocks.PILE_SLAG) {
 
         int level = blockState.getValue(BlockPileBase.LEVEL);
 
@@ -533,7 +533,7 @@ public class TileBloomery
 
       IBlockState blockState = this.world.getBlockState(pos);
 
-      if (blockState.getBlock() == ModuleBloomery.Blocks.PILE_SLAG) {
+      if (blockState.getBlock() == ModuleTechBloomery.Blocks.PILE_SLAG) {
 
         // Add to an existing pile if it isn't too big.
 
@@ -554,7 +554,7 @@ public class TileBloomery
       pos = pos.up();
 
       // Create a new pile.
-      this.world.setBlockState(pos, ModuleBloomery.Blocks.PILE_SLAG.getDefaultState()
+      this.world.setBlockState(pos, ModuleTechBloomery.Blocks.PILE_SLAG.getDefaultState()
           .withProperty(BlockPileSlag.LEVEL, 1)
           .withProperty(BlockPileSlag.MOLTEN, true));
 
@@ -685,7 +685,7 @@ public class TileBloomery
   @Override
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
 
-    if (blockState.getBlock() == ModuleBloomery.Blocks.BLOOMERY) {
+    if (blockState.getBlock() == ModuleTechBloomery.Blocks.BLOOMERY) {
       return blockState.getValue(Properties.FACING_HORIZONTAL);
     }
 

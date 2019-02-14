@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -30,17 +30,17 @@ public final class ItemInitializer {
 
     registry.registerClientModelRegistrationStrategy(
         () -> ModelRegistrationHelper.registerItemModels(
-            ModuleBloomery.Items.SLAG,
-            ModuleBloomery.Items.TONGS_STONE,
-            ModuleBloomery.Items.TONGS_STONE_FULL,
-            ModuleBloomery.Items.TONGS_FLINT,
-            ModuleBloomery.Items.TONGS_FLINT_FULL,
-            ModuleBloomery.Items.TONGS_BONE,
-            ModuleBloomery.Items.TONGS_BONE_FULL,
-            ModuleBloomery.Items.TONGS_IRON,
-            ModuleBloomery.Items.TONGS_IRON_FULL,
-            ModuleBloomery.Items.TONGS_DIAMOND,
-            ModuleBloomery.Items.TONGS_DIAMOND_FULL
+            ModuleTechBloomery.Items.SLAG,
+            ModuleTechBloomery.Items.TONGS_STONE,
+            ModuleTechBloomery.Items.TONGS_STONE_FULL,
+            ModuleTechBloomery.Items.TONGS_FLINT,
+            ModuleTechBloomery.Items.TONGS_FLINT_FULL,
+            ModuleTechBloomery.Items.TONGS_BONE,
+            ModuleTechBloomery.Items.TONGS_BONE_FULL,
+            ModuleTechBloomery.Items.TONGS_IRON,
+            ModuleTechBloomery.Items.TONGS_IRON_FULL,
+            ModuleTechBloomery.Items.TONGS_DIAMOND,
+            ModuleTechBloomery.Items.TONGS_DIAMOND_FULL
         )
     );
   }

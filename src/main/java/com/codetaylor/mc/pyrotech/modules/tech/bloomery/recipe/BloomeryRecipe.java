@@ -5,7 +5,7 @@ import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.athenaeum.util.WeightedPicker;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -23,7 +23,7 @@ public class BloomeryRecipe
   @Nullable
   public static BloomeryRecipe getRecipe(ItemStack input) {
 
-    for (BloomeryRecipe recipe : ModuleBloomery.Registries.BLOOMERY_RECIPE) {
+    for (BloomeryRecipe recipe : ModuleTechBloomery.Registries.BLOOMERY_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -35,7 +35,7 @@ public class BloomeryRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModuleBloomery.Registries.BLOOMERY_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModuleTechBloomery.Registries.BLOOMERY_RECIPE, output);
   }
 
   private final Ingredient input;

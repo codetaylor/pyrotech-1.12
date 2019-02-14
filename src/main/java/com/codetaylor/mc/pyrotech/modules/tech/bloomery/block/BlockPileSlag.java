@@ -2,8 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.block;
 
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.network.SCPacketParticleLava;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TilePileSlag;
@@ -169,11 +169,11 @@ public class BlockPileSlag
 
     if (blockState.getBlock() == this
         && blockState.getValue(BlockPileSlag.MOLTEN)
-        && ModuleBloomeryConfig.SLAG.MOLTEN_WALK_DAMAGE > 0
+        && ModuleTechBloomeryConfig.SLAG.MOLTEN_WALK_DAMAGE > 0
         && !entity.isImmuneToFire()
         && entity instanceof EntityLivingBase
         && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleBloomeryConfig.SLAG.MOLTEN_WALK_DAMAGE);
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleTechBloomeryConfig.SLAG.MOLTEN_WALK_DAMAGE);
     }
 
     super.onEntityWalk(world, pos, entity);
@@ -188,12 +188,12 @@ public class BlockPileSlag
           && state.getValue(BlockPileSlag.MOLTEN)) {
         int level = state.getValue(BlockPileBase.LEVEL);
         int dimension = world.provider.getDimension();
-        ModuleBloomery.PACKET_SERVICE.sendToAllAround(new SCPacketParticleLava(pos, level), dimension, pos);
+        ModuleTechBloomery.PACKET_SERVICE.sendToAllAround(new SCPacketParticleLava(pos, level), dimension, pos);
 
-        if (ModuleBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_DURATION_SECONDS > 0
-            && ModuleBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_CHANCE > 0
-            && RandomHelper.random().nextDouble() < ModuleBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_CHANCE) {
-          player.setFire(ModuleBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_DURATION_SECONDS);
+        if (ModuleTechBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_DURATION_SECONDS > 0
+            && ModuleTechBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_CHANCE > 0
+            && RandomHelper.random().nextDouble() < ModuleTechBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_CHANCE) {
+          player.setFire(ModuleTechBloomeryConfig.SLAG.HARVESTING_PLAYER_FIRE_DURATION_SECONDS);
         }
       }
     }
@@ -270,11 +270,11 @@ public class BlockPileSlag
     @Override
     public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, @Nonnull IBlockState newState) {
 
-      Properties properties = ModuleBloomery.Blocks.GENERATED_PILE_SLAG.get(this.getBlock());
+      Properties properties = ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.get(this.getBlock());
       ItemStack slagItem;
 
       if (properties == null) {
-        slagItem = new ItemStack(ModuleBloomery.Items.SLAG);
+        slagItem = new ItemStack(ModuleTechBloomery.Items.SLAG);
 
       } else {
         slagItem = new ItemStack(properties.slagItem);
@@ -304,7 +304,7 @@ public class BlockPileSlag
 
       if (stack.getItem() == this) {
 
-        Properties properties = ModuleBloomery.Blocks.GENERATED_PILE_SLAG.get(this.getBlock());
+        Properties properties = ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.get(this.getBlock());
 
         if (properties != null) {
 

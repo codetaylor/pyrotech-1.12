@@ -4,8 +4,8 @@ import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +36,7 @@ public class BloomAnvilRecipe
   @Override
   public boolean matches(ItemStack input) {
 
-    if (input.getItem() != ModuleBloomery.Items.BLOOM) {
+    if (input.getItem() != ModuleTechBloomery.Items.BLOOM) {
       return false;
     }
 
@@ -66,7 +66,7 @@ public class BloomAnvilRecipe
   public void applyDamage(World world, TileAnvilBase tile) {
 
     tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - tile.getBloomAnvilDamagePerHit());
-    BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModuleBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL);
+    BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModuleTechBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL);
   }
 
   @Override
@@ -106,7 +106,7 @@ public class BloomAnvilRecipe
 
     ItemStack stackInSlot = tile.getStackHandler().getStackInSlot(0);
 
-    if (stackInSlot.getItem() == ModuleBloomery.Items.BLOOM) {
+    if (stackInSlot.getItem() == ModuleTechBloomery.Items.BLOOM) {
 
       for (int i = 0; i < 8; ++i) {
         world.spawnParticle(EnumParticleTypes.LAVA, tile.getPos().getX() + hitX, tile.getPos().getY() + hitY, tile.getPos().getZ() + hitZ, 0.0D, 0.0D, 0.0D);

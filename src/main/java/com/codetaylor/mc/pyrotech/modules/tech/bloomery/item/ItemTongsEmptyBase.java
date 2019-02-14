@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.item;
 
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItem;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
@@ -49,10 +49,10 @@ public abstract class ItemTongsEmptyBase
   public boolean allowInteraction(TileEntity tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
     if (tile instanceof TileAnvilBase) {
-      return ((TileAnvilBase) tile).getStackHandler().getStackInSlot(0).getItem() == ModuleBloomery.Items.BLOOM;
+      return ((TileAnvilBase) tile).getStackHandler().getStackInSlot(0).getItem() == ModuleTechBloomery.Items.BLOOM;
 
     } else if (tile instanceof TileBloomery) {
-      return ((TileBloomery) tile).getOutputStackHandler().getStackInSlot(0).getItem() == ModuleBloomery.Items.BLOOM;
+      return ((TileBloomery) tile).getOutputStackHandler().getStackInSlot(0).getItem() == ModuleTechBloomery.Items.BLOOM;
     }
 
     return tile instanceof TileBloom;
@@ -78,7 +78,7 @@ public abstract class ItemTongsEmptyBase
 
     } else if (tile instanceof TileBloom) {
 
-      ItemStack bloomStack = BloomHelper.toItemStack((TileBloom) tile, new ItemStack(ModuleBloomery.Blocks.BLOOM));
+      ItemStack bloomStack = BloomHelper.toItemStack((TileBloom) tile, new ItemStack(ModuleTechBloomery.Blocks.BLOOM));
       ItemStack tongsFull = BloomHelper.createItemTongsFull(heldItem, bloomStack);
 
       if (!world.isRemote) {

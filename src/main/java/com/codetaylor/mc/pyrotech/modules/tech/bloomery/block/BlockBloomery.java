@@ -11,7 +11,7 @@ import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgnit
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
 import net.minecraft.block.Block;
@@ -228,7 +228,7 @@ public class BlockBloomery
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
-    if (ModuleBloomeryConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE > 0
+    if (ModuleTechBloomeryConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE > 0
         && this.isTop(world.getBlockState(pos))) {
 
       TileEntity tileEntity = world.getTileEntity(pos.down());
@@ -239,7 +239,7 @@ public class BlockBloomery
         if (!entity.isImmuneToFire()
             && entity instanceof EntityLivingBase
             && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
-          entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleBloomeryConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE);
+          entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleTechBloomeryConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE);
           entity.setFire(4);
         }
       }

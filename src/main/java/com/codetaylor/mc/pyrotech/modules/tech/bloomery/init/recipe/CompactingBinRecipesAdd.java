@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompactingBinRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
 import com.google.common.base.Preconditions;
@@ -16,7 +16,7 @@ public class CompactingBinRecipesAdd {
 
   public static void apply(IForgeRegistry<CompactingBinRecipe> registry) {
 
-    for (Map.Entry<BlockPileSlag, BlockPileSlag.Properties> entry : ModuleBloomery.Blocks.GENERATED_PILE_SLAG.entrySet()) {
+    for (Map.Entry<BlockPileSlag, BlockPileSlag.Properties> entry : ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.entrySet()) {
       BlockPileSlag slagBlock = entry.getKey();
       ItemSlag slagItem = entry.getValue().slagItem;
       ResourceLocation slagBlockRegistryName = Preconditions.checkNotNull(slagBlock.getRegistryName());
@@ -31,12 +31,12 @@ public class CompactingBinRecipesAdd {
       ).setRegistryName(prefix + "_from_" + suffix));
     }
 
-    ResourceLocation slagBlockRegistryName = Preconditions.checkNotNull(ModuleBloomery.Blocks.PILE_SLAG.getRegistryName());
-    ResourceLocation slagItemRegistryName = Preconditions.checkNotNull(ModuleBloomery.Items.SLAG.getRegistryName());
+    ResourceLocation slagBlockRegistryName = Preconditions.checkNotNull(ModuleTechBloomery.Blocks.PILE_SLAG.getRegistryName());
+    ResourceLocation slagItemRegistryName = Preconditions.checkNotNull(ModuleTechBloomery.Items.SLAG.getRegistryName());
 
     registry.register(new CompactingBinRecipe(
-        new ItemStack(ModuleBloomery.Blocks.PILE_SLAG),
-        Ingredient.fromStacks(new ItemStack(ModuleBloomery.Items.SLAG)),
+        new ItemStack(ModuleTechBloomery.Blocks.PILE_SLAG),
+        Ingredient.fromStacks(new ItemStack(ModuleTechBloomery.Items.SLAG)),
         8
     ).setRegistryName(alphanumeric(slagBlockRegistryName) + "_from_" + alphanumeric(slagItemRegistryName)));
 

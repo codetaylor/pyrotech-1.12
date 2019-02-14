@@ -8,7 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
@@ -77,8 +77,8 @@ public class ModPyrotech {
 
     // --- MODULES ---
 
-    if (ModPyrotechConfig.MODULES.get(ModuleBloomery.MODULE_ID)) {
-      this.registerModule(ModuleBloomery.class);
+    if (ModPyrotechConfig.MODULES.get(ModuleTechBloomery.MODULE_ID)) {
+      this.registerModule(ModuleTechBloomery.class);
     }
 
     if (ModPyrotechConfig.MODULES.get(ModuleBucket.MODULE_ID)) {

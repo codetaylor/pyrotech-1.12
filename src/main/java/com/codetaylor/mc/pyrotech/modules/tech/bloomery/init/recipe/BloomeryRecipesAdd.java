@@ -4,8 +4,8 @@ import com.codetaylor.mc.athenaeum.util.IngredientHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomAnvilRecipe;
@@ -33,12 +33,12 @@ public class BloomeryRecipesAdd {
   public static void apply(IForgeRegistry<BloomeryRecipe> registry) {
 
     Item itemSlagIron = ForgeRegistries.ITEMS.getValue(new ResourceLocation(
-        ModuleBloomery.MOD_ID,
+        ModuleTechBloomery.MOD_ID,
         "generated_" + ItemSlag.NAME + "_iron"
     ));
 
     Block blockSlagIron = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(
-        ModuleBloomery.MOD_ID,
+        ModuleTechBloomery.MOD_ID,
         "generated_" + BlockPileSlag.NAME + "_iron"
     ));
 
@@ -48,7 +48,7 @@ public class BloomeryRecipesAdd {
       // Iron Bloom
       registry.register(
           new BloomeryRecipeBuilder(
-              new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_iron_ore"),
+              new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_iron_ore"),
               new ItemStack(Items.IRON_NUGGET),
               Ingredient.fromStacks(new ItemStack(Blocks.IRON_ORE))
           )
@@ -56,7 +56,7 @@ public class BloomeryRecipesAdd {
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
               .setBloomYield(16, 20)
               .setSlagItem(new ItemStack(itemSlagIron), 4)
-              .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 1)
+              .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 1)
               .addFailureItem(new ItemStack(itemSlagIron, 1, 0), 2)
               .create()
       );
@@ -64,7 +64,7 @@ public class BloomeryRecipesAdd {
       // Iron Slag Bloom
       registry.register(
           new BloomeryRecipeBuilder(
-              new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_iron_slag"),
+              new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_iron_slag"),
               new ItemStack(Items.IRON_NUGGET),
               Ingredient.fromStacks(new ItemStack(blockSlagIron))
           )
@@ -73,19 +73,19 @@ public class BloomeryRecipesAdd {
               .setBloomYield(8, 10)
               .setSlagItem(new ItemStack(itemSlagIron), 2)
               .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
-              .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 2)
+              .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 2)
               .setLangKey(Blocks.IRON_ORE.getUnlocalizedName())
               .create()
       );
     }
 
     Item itemSlagGold = ForgeRegistries.ITEMS.getValue(new ResourceLocation(
-        ModuleBloomery.MOD_ID,
+        ModuleTechBloomery.MOD_ID,
         "generated_" + ItemSlag.NAME + "_gold"
     ));
 
     Block blockSlagGold = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(
-        ModuleBloomery.MOD_ID,
+        ModuleTechBloomery.MOD_ID,
         "generated_" + BlockPileSlag.NAME + "_gold"
     ));
 
@@ -95,7 +95,7 @@ public class BloomeryRecipesAdd {
       // Gold Nugget
       registry.register(
           new BloomeryRecipeBuilder(
-              new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_gold_ore"),
+              new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_gold_ore"),
               new ItemStack(Items.GOLD_NUGGET),
               Ingredient.fromStacks(new ItemStack(Blocks.GOLD_ORE))
           )
@@ -103,7 +103,7 @@ public class BloomeryRecipesAdd {
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
               .setBloomYield(16, 20)
               .setSlagItem(new ItemStack(itemSlagGold), 4)
-              .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 1)
+              .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 1)
               .addFailureItem(new ItemStack(itemSlagGold, 1, 0), 2)
               .create()
       );
@@ -111,7 +111,7 @@ public class BloomeryRecipesAdd {
       // Gold Slag Bloom
       registry.register(
           new BloomeryRecipeBuilder(
-              new ResourceLocation(ModuleBloomery.MOD_ID, "bloom_from_gold_slag"),
+              new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_gold_slag"),
               new ItemStack(Items.GOLD_NUGGET),
               Ingredient.fromStacks(new ItemStack(blockSlagGold))
           )
@@ -120,7 +120,7 @@ public class BloomeryRecipesAdd {
               .setBloomYield(8, 10)
               .setSlagItem(new ItemStack(itemSlagGold), 2)
               .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
-              .addFailureItem(new ItemStack(ModuleBloomery.Items.SLAG, 1, 0), 2)
+              .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 2)
               .setLangKey(Blocks.GOLD_ORE.getUnlocalizedName())
               .create()
       );
@@ -143,7 +143,7 @@ public class BloomeryRecipesAdd {
       registryAnvil.register(new BloomAnvilRecipe(
           bloomeryRecipe.getOutput(),
           IngredientHelper.fromStackWithNBT(bloomeryRecipe.getOutputBloom()),
-          ModuleBloomeryConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
+          ModuleTechBloomeryConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
           AnvilRecipe.EnumType.HAMMER,
           bloomeryRecipe
       ).setRegistryName(bloomeryRecipe.getRegistryName()));

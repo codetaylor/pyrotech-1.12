@@ -8,7 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.KilnPitRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
@@ -75,17 +75,17 @@ public class StoneKilnRecipesAdd {
     ).setRegistryName(ModuleTechMachine.MOD_ID, "glass"));
 
     // Slag Glass
-    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleBloomery.class)) {
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBloomery.class)) {
       registry.register(new StoneKilnRecipe(
           new ItemStack(ModuleCore.Blocks.SLAG_GLASS, 1, 0),
           Ingredient.fromStacks(
-              new ItemStack(ModuleBloomery.Blocks.PILE_SLAG, 1, 0)
+              new ItemStack(ModuleTechBloomery.Blocks.PILE_SLAG, 1, 0)
           ),
           Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
           Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
           new ItemStack[]{
               ItemMaterial.EnumType.GLASS_SHARD.asStack(4),
-              new ItemStack(ModuleBloomery.Items.SLAG, 4, 0)
+              new ItemStack(ModuleTechBloomery.Items.SLAG, 4, 0)
           }
       ).setRegistryName(ModuleTechMachine.MOD_ID, "slag_glass"));
     }

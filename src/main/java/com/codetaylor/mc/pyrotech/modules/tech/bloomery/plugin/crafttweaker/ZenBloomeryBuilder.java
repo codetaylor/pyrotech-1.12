@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.crafttweaker;
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBuilder;
 import crafttweaker.IAction;
@@ -146,6 +146,6 @@ public class ZenBloomeryBuilder {
   @ZenMethod
   public void register() {
 
-    ModuleBloomery.Registries.BLOOMERY_RECIPE.register(this.builder.create());
+    ModuleTechBloomery.Registries.BLOOMERY_RECIPE.register(this.builder.create());
   }
 }

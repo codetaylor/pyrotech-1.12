@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 import com.codetaylor.mc.athenaeum.util.CloneStateMapper;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.library.JsonInitializer;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
 import net.minecraft.block.Block;
@@ -35,7 +35,7 @@ public final class SlagInitializer {
 
   public static void initializeSlag(File configurationDirectory) {
 
-    Path configurationPath = Paths.get(configurationDirectory.toString(), ModuleBloomery.MOD_ID);
+    Path configurationPath = Paths.get(configurationDirectory.toString(), ModuleTechBloomery.MOD_ID);
 
     JsonSlagList jsonSlagList = JsonInitializer.generateAndReadCustom(
         configurationPath,
@@ -43,7 +43,7 @@ public final class SlagInitializer {
         "module.tech.Bloomery.Slag-Custom.json",
         JsonSlagList.class,
         () -> SlagInitializer.createGeneratedDataSlagList(new JsonSlagList()),
-        ModuleBloomery.LOGGER
+        ModuleTechBloomery.LOGGER
     );
 
     if (jsonSlagList == null) {
@@ -55,7 +55,7 @@ public final class SlagInitializer {
       String colorString = entry.getColor();
 
       if (colorString.length() != 6) {
-        ModuleBloomery.LOGGER.error("Malformed hex-color code: " + colorString);
+        ModuleTechBloomery.LOGGER.error("Malformed hex-color code: " + colorString);
         continue;
       }
 
@@ -65,7 +65,7 @@ public final class SlagInitializer {
         color = Integer.decode("0x" + colorString);
 
       } catch (Exception e) {
-        ModuleBloomery.LOGGER.error("Unable to decode hex-color string: " + colorString, e);
+        ModuleTechBloomery.LOGGER.error("Unable to decode hex-color string: " + colorString, e);
         continue;
       }
 
@@ -94,27 +94,27 @@ public final class SlagInitializer {
     ItemSlag slagItem = new ItemSlag();
     {
       ResourceLocation resourceLocation = new ResourceLocation(
-          ModuleBloomery.MOD_ID,
+          ModuleTechBloomery.MOD_ID,
           "generated_" + ItemSlag.NAME + "_" + registryName
       );
 
-      String unlocalizedName = ModuleBloomery.MOD_ID + "." + ItemSlag.NAME;
+      String unlocalizedName = ModuleTechBloomery.MOD_ID + "." + ItemSlag.NAME;
       registerItem(slagItem, resourceLocation, unlocalizedName);
-      ModuleBloomery.Items.GENERATED_SLAG.put(slagItem, new ItemSlag.Properties(langKey, color));
+      ModuleTechBloomery.Items.GENERATED_SLAG.put(slagItem, new ItemSlag.Properties(langKey, color));
     }
 
     BlockPileSlag slagBlock = new BlockPileSlag();
     {
       ResourceLocation resourceLocation = new ResourceLocation(
-          ModuleBloomery.MOD_ID,
+          ModuleTechBloomery.MOD_ID,
           "generated_" + BlockPileSlag.NAME + "_" + registryName
       );
 
-      String unlocalizedName = ModuleBloomery.MOD_ID + "." + BlockPileSlag.NAME;
+      String unlocalizedName = ModuleTechBloomery.MOD_ID + "." + BlockPileSlag.NAME;
       BlockPileSlag.ItemBlockPileSlag item = new BlockPileSlag.ItemBlockPileSlag(slagBlock);
       registerItem(item, resourceLocation, unlocalizedName);
       registerBlock(slagBlock, resourceLocation, unlocalizedName);
-      ModuleBloomery.Blocks.GENERATED_PILE_SLAG.put(slagBlock, new BlockPileSlag.Properties(langKey, color, slagItem));
+      ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.put(slagBlock, new BlockPileSlag.Properties(langKey, color, slagItem));
     }
 
   }
@@ -123,7 +123,7 @@ public final class SlagInitializer {
 
     item.setRegistryName(registryName);
     item.setUnlocalizedName(unlocalizedName);
-    item.setCreativeTab(ModuleBloomery.CREATIVE_TAB);
+    item.setCreativeTab(ModuleTechBloomery.CREATIVE_TAB);
     ForgeRegistries.ITEMS.register(item);
   }
 
@@ -131,29 +131,29 @@ public final class SlagInitializer {
 
     block.setRegistryName(registryName);
     block.setUnlocalizedName(unlocalizedName);
-    block.setCreativeTab(ModuleBloomery.CREATIVE_TAB);
+    block.setCreativeTab(ModuleTechBloomery.CREATIVE_TAB);
     ForgeRegistries.BLOCKS.register(block);
   }
 
   public static void initializeSlagModels() {
 
-    ModuleBloomery.Items.GENERATED_SLAG.forEach((itemSlag, properties) -> {
-      ResourceLocation resourceLocation = new ResourceLocation(ModuleBloomery.MOD_ID, ItemSlag.NAME);
+    ModuleTechBloomery.Items.GENERATED_SLAG.forEach((itemSlag, properties) -> {
+      ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBloomery.MOD_ID, ItemSlag.NAME);
       ModelResourceLocation modelResourceLocation = new ModelResourceLocation(resourceLocation, null);
       ModelRegistrationHelper.registerItemModel(itemSlag, 0, modelResourceLocation);
     });
 
-    ModuleBloomery.Blocks.GENERATED_PILE_SLAG.forEach((blockPileSlag, properties) -> {
+    ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.forEach((blockPileSlag, properties) -> {
       ModelRegistrationHelper.registerItemModel(
           Item.getItemFromBlock(blockPileSlag),
           new ModelResourceLocation(
-              new ResourceLocation(ModuleBloomery.MOD_ID, BlockPileSlag.NAME),
+              new ResourceLocation(ModuleTechBloomery.MOD_ID, BlockPileSlag.NAME),
               PROPERTY_STRING_MAPPER.getPropertyString(blockPileSlag.getDefaultState().getProperties())
           )
       );
       ModelLoader.setCustomStateMapper(
           blockPileSlag,
-          CloneStateMapper.forBlock(ModuleBloomery.Blocks.PILE_SLAG)
+          CloneStateMapper.forBlock(ModuleTechBloomery.Blocks.PILE_SLAG)
       );
     });
   }
@@ -164,11 +164,11 @@ public final class SlagInitializer {
     ItemColors itemColors = minecraft.getItemColors();
     BlockColors blockColors = minecraft.getBlockColors();
 
-    ModuleBloomery.Items.GENERATED_SLAG.forEach((itemSlag, properties) -> {
+    ModuleTechBloomery.Items.GENERATED_SLAG.forEach((itemSlag, properties) -> {
       itemColors.registerItemColorHandler(new ItemColor(properties.color, 1), itemSlag);
     });
 
-    ModuleBloomery.Blocks.GENERATED_PILE_SLAG.forEach((blockPileSlag, properties) -> {
+    ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.forEach((blockPileSlag, properties) -> {
       Item itemBlock = Item.getItemFromBlock(blockPileSlag);
       itemColors.registerItemColorHandler(new ItemColor(properties.color, 0), itemBlock);
       blockColors.registerBlockColorHandler(new BlockColor(properties.color), blockPileSlag);
@@ -179,15 +179,15 @@ public final class SlagInitializer {
     // Slag Item
     itemColors.registerItemColorHandler(
         new ItemColor(defaultColor, 1),
-        ModuleBloomery.Items.SLAG
+        ModuleTechBloomery.Items.SLAG
     );
 
     // Slag Block Item
     itemColors.registerItemColorHandler(
         new ItemColor(defaultColor, 0),
-        Item.getItemFromBlock(ModuleBloomery.Blocks.PILE_SLAG)
+        Item.getItemFromBlock(ModuleTechBloomery.Blocks.PILE_SLAG)
     );
-    blockColors.registerBlockColorHandler(new BlockColor(defaultColor), ModuleBloomery.Blocks.PILE_SLAG);
+    blockColors.registerBlockColorHandler(new BlockColor(defaultColor), ModuleTechBloomery.Blocks.PILE_SLAG);
   }
 
   private static class ItemColor

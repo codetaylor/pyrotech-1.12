@@ -2,8 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.util;
 
 import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemTongsFullBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
@@ -53,14 +53,14 @@ public class BloomHelper {
       result = 1;
     }
 
-    result *= ArrayHelper.getOrLast(ModuleBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL, hammerHarvestLevel);
+    result *= ArrayHelper.getOrLast(ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL, hammerHarvestLevel);
 
     return Math.max(0, result);
   }
 
   public static ItemStack createBloomAsItemStack(int maxIntegrity, @Nullable String recipeId, @Nullable String langKey) {
 
-    return createBloomAsItemStack(new ItemStack(ModuleBloomery.Blocks.BLOOM), maxIntegrity, maxIntegrity, recipeId, langKey);
+    return createBloomAsItemStack(new ItemStack(ModuleTechBloomery.Blocks.BLOOM), maxIntegrity, maxIntegrity, recipeId, langKey);
   }
 
   public static ItemStack createBloomAsItemStack(ItemStack itemStack, int maxIntegrity, int integrity, @Nullable String recipeId, @Nullable String langKey) {
@@ -78,7 +78,7 @@ public class BloomHelper {
 
   public static ItemStack toItemStack(TileBloom tile) {
 
-    return BloomHelper.toItemStack(tile, new ItemStack(ModuleBloomery.Blocks.BLOOM));
+    return BloomHelper.toItemStack(tile, new ItemStack(ModuleTechBloomery.Blocks.BLOOM));
   }
 
   public static ItemStack toItemStack(TileBloom tile, ItemStack itemStack) {

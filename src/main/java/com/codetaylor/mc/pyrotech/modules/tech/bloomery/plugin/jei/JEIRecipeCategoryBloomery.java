@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.jei;
 
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -15,7 +15,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class JEIRecipeCategoryBloomery
     implements IRecipeCategory<JEIRecipeWrapperBloomery> {
 
-  public static final String UID = ModuleBloomery.MOD_ID + ".bloomery";
+  public static final String UID = ModuleTechBloomery.MOD_ID + ".bloomery";
 
   private final IDrawableAnimated animatedFlame;
   private final IDrawableAnimated arrow;
@@ -25,7 +25,7 @@ public class JEIRecipeCategoryBloomery
 
   public JEIRecipeCategoryBloomery(IGuiHelper guiHelper) {
 
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleBloomery.MOD_ID, "textures/gui/jei7.png");
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBloomery.MOD_ID, "textures/gui/jei7.png");
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82 + 19, 14, 24, 17);
     IDrawableStatic staticFlame = guiHelper.createDrawable(resourceLocation, 82 + 19, 0, 14, 14);
@@ -37,7 +37,7 @@ public class JEIRecipeCategoryBloomery
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82 + 19, 40);
 
-    this.title = Translator.translateToLocal("gui." + ModuleBloomery.MOD_ID + ".jei.category.bloomery");
+    this.title = Translator.translateToLocal("gui." + ModuleTechBloomery.MOD_ID + ".jei.category.bloomery");
   }
 
   @Nonnull
@@ -58,7 +58,7 @@ public class JEIRecipeCategoryBloomery
   @Override
   public String getModName() {
 
-    return ModuleBloomery.MOD_ID;
+    return ModuleTechBloomery.MOD_ID;
   }
 
   @Nonnull

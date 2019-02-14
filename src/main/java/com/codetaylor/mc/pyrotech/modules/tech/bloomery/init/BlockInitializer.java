@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
@@ -39,9 +39,9 @@ public final class BlockInitializer {
     registry.registerClientModelRegistrationStrategy(() -> {
 
       ModelRegistrationHelper.registerBlockItemModels(
-          ModuleBloomery.Blocks.BLOOMERY,
-          ModuleBloomery.Blocks.PILE_SLAG,
-          ModuleBloomery.Blocks.BLOOM
+          ModuleTechBloomery.Blocks.BLOOMERY,
+          ModuleTechBloomery.Blocks.PILE_SLAG,
+          ModuleTechBloomery.Blocks.BLOOM
       );
 
       // TESRs

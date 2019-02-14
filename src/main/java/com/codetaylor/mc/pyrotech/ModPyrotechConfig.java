@@ -5,7 +5,7 @@ import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
@@ -29,7 +29,7 @@ public class ModPyrotechConfig {
   public static Map<String, Boolean> MODULES = new TreeMap<>();
 
   static {
-    MODULES.put(ModuleBloomery.MODULE_ID, true);
+    MODULES.put(ModuleTechBloomery.MODULE_ID, true);
     MODULES.put(ModuleBucket.MODULE_ID, true);
     MODULES.put(ModuleIgnition.MODULE_ID, true);
     MODULES.put(ModuleStorage.MODULE_ID, true);

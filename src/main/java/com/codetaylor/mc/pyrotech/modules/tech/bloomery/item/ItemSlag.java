@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.item;
 
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
@@ -20,7 +20,7 @@ public class ItemSlag
 
     if (stack.getItem() == this) {
 
-      Properties properties = ModuleBloomery.Items.GENERATED_SLAG.get(this);
+      Properties properties = ModuleTechBloomery.Items.GENERATED_SLAG.get(this);
 
       if (properties != null
           && properties.langKey != null) {

@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.item;
 
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 
 public class ItemTongsEmptyIron
     extends ItemTongsEmptyBase {
@@ -10,6 +10,6 @@ public class ItemTongsEmptyIron
 
   public ItemTongsEmptyIron() {
 
-    super(() -> ModuleBloomery.Items.TONGS_IRON_FULL, ModuleBloomeryConfig.TONGS.IRON_TONGS_DURABILITY);
+    super(() -> ModuleTechBloomery.Items.TONGS_IRON_FULL, ModuleTechBloomeryConfig.TONGS.IRON_TONGS_DURABILITY);
   }
 }
