@@ -10,6 +10,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandl
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
@@ -23,15 +24,20 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.client.render.SoakingPotFlu
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -59,7 +65,7 @@ public class TileSoakingPot
 
     super(ModuleTechBasic.TILE_DATA_SERVICE);
 
-    this.inputFluidTank = new InputFluidTank();
+    this.inputFluidTank = new InputFluidTank(this);
     this.inputFluidTank.addObserver((tank, amount) -> {
       this.markDirty();
       this.updateRecipe();
@@ -397,9 +403,49 @@ public class TileSoakingPot
       extends ObservableFluidTank
       implements ITileDataFluidTank {
 
-    /* package */ InputFluidTank() {
+    private final TileSoakingPot tile;
+
+    /* package */ InputFluidTank(TileSoakingPot tile) {
 
       super(ModuleTechBasicConfig.SOAKING_POT.MAX_FLUID_CAPACITY);
+      this.tile = tile;
     }
+
+    @Override
+    public int fillInternal(FluidStack resource, boolean doFill) {
+
+      int filled = super.fillInternal(resource, doFill);
+
+      if (!this.tile.canHoldHotFluids()) {
+        World world = this.tile.world;
+        BlockPos pos = this.tile.pos;
+
+        if (resource != null) {
+          Fluid fluid = resource.getFluid();
+
+          if (fluid.getTemperature(resource) >= this.tile.getHotFluidTemperature()) {
+
+            if (!world.isRemote) {
+              world.setBlockToAir(pos);
+              SoundHelper.playSoundServer(world, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
+              FluidUtil.tryPlaceFluid(null, world, pos, this, resource);
+            }
+            world.checkLightFor(EnumSkyBlock.BLOCK, pos);
+          }
+        }
+      }
+
+      return filled;
+    }
+  }
+
+  private int getHotFluidTemperature() {
+
+    return ModuleTechBasicConfig.SOAKING_POT.HOT_TEMPERATURE;
+  }
+
+  private boolean canHoldHotFluids() {
+
+    return ModuleTechBasicConfig.SOAKING_POT.HOLDS_HOT_FLUIDS;
   }
 }

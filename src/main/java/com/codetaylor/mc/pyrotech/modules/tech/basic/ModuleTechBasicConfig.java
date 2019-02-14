@@ -313,6 +313,21 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeInt(min = 1)
     public int MAX_FLUID_CAPACITY = 4000;
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the container will break when a hot fluid is placed inside,",
+        "and the fluid will spawn in the world where the tank was.",
+        "Default: " + true
+    })
+    public boolean HOLDS_HOT_FLUIDS = false;
   }
 
   // ---------------------------------------------------------------------------
