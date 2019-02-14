@@ -23,6 +23,13 @@ public class CompactingBinRecipesAdd {
         8
     ).setRegistryName(ModuleTechBasic.MOD_ID, "ash_pile"));
 
+    // Redstone Block
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(Blocks.REDSTONE_BLOCK),
+        Ingredient.fromStacks(new ItemStack(Items.REDSTONE)),
+        9
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "redstone_block"));
+
     // Charcoal Block
     registry.register(new CompactingBinRecipe(
         new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK),
