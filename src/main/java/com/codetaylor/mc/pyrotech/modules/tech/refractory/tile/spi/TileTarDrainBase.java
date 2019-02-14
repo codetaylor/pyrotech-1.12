@@ -1,8 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile;
+package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi;
 
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileActivePile;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarCollectorBase;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarTankBase;
 import net.minecraft.block.state.IBlockState;
@@ -20,19 +21,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TileTarDrain
+public abstract class TileTarDrainBase
     extends TileTarTankBase {
 
-  public TileTarDrain() {
+  public TileTarDrainBase() {
 
     super();
     this.fluidTank.setCanFill(false);
-  }
-
-  @Override
-  protected int getTankCapacity() {
-
-    return ModuleTechRefractoryConfig.TAR_DRAIN.TAR_DRAIN_CAPACITY;
   }
 
   @Override

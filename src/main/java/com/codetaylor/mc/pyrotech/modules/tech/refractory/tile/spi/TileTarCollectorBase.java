@@ -1,9 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile;
+package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarTankBase;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileActivePile;
 import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.state.IBlockState;
@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class TileTarCollector
+public abstract class TileTarCollectorBase
     extends TileTarTankBase {
 
   private static final int DEFAULT_TICKS_TO_EXTINGUISH = 100;
@@ -37,7 +37,7 @@ public class TileTarCollector
   private int burnTicksRemaining;
   private int extinguishTicksRemaining;
 
-  public TileTarCollector() {
+  public TileTarCollectorBase() {
 
     super();
     this.burning = false;
@@ -82,12 +82,6 @@ public class TileTarCollector
   protected List<BlockPos> getCollectionSourcePositions(World world, BlockPos origin) {
 
     return Collections.emptyList();
-  }
-
-  @Override
-  protected int getTankCapacity() {
-
-    return ModuleTechRefractoryConfig.TAR_COLLECTOR.TAR_COLLECTOR_CAPACITY;
   }
 
   @Nullable
@@ -173,6 +167,8 @@ public class TileTarCollector
         && !blockState.getBlock().isFlammable(this.world, up, EnumFacing.DOWN);
   }
 
+  protected abstract int getSmokeParticlesPerTick();
+
   @SideOnly(Side.CLIENT)
   private void spawnParticles() {
 
@@ -180,7 +176,7 @@ public class TileTarCollector
     double centerY = this.pos.getY() + 1;
     double centerZ = this.pos.getZ() + 0.5;
 
-    for (int i = 0; i < ModuleTechRefractoryConfig.TAR_COLLECTOR.SMOKE_PARTICLES_PER_TICK; i++) {
+    for (int i = 0; i < this.getSmokeParticlesPerTick(); i++) {
       this.spawnParticles(centerX, centerY, centerZ, EnumParticleTypes.SMOKE_LARGE);
     }
 
@@ -229,9 +225,9 @@ public class TileTarCollector
 
     TileEntity tileEntity = this.world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileTarCollector) {
+    if (tileEntity instanceof TileTarCollectorBase) {
 
-      TileTarCollector collector = (TileTarCollector) tileEntity;
+      TileTarCollectorBase collector = (TileTarCollectorBase) tileEntity;
       if (!collector.isBurning()
           && collector.isFlammable()) {
         collector.setBurning(true);
