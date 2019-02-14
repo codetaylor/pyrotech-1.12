@@ -8,17 +8,13 @@
   ],
   "pattern": [
     " X ",
-    "SIX",
+    "SXX",
     " S "
   ],
   "key": {
     "X": {
       "item": "pyrotech:material",
       "data": 19
-    },
-    "I": {
-      "type": "forge:ore_dict",
-      "ore": "ingotIron"
     },
     "S": {
       "item": "pyrotech:material",
