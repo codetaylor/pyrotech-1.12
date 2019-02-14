@@ -444,6 +444,13 @@ public class ModuleCoreConfig {
     public int STRAW_BURN_TIME_TICKS = 50;
 
     @Config.Comment({
+        "Dried plant fibers burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 15
+    })
+    public int DRIED_PLANT_FIBERS = 15;
+
+    @Config.Comment({
         "Straw bale burn time in ticks.",
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
         "Default: " + 200

@@ -43,6 +43,8 @@ public class ItemMaterial
         return ModuleCoreConfig.FUEL.KINDLING_BURN_TIME_TICKS;
       case KINDLING_TARRED:
         return ModuleCoreConfig.FUEL.TARRED_KINDLING_BURN_TIME_TICKS;
+      case PLANT_FIBERS_DRIED:
+        return ModuleCoreConfig.FUEL.DRIED_PLANT_FIBERS;
     }
 
     return 0;
