@@ -64,7 +64,7 @@ public class BurnPitRecipesAdd {
         true
     ).setRegistryName(ModuleTechRefractory.MOD_ID, "coal_coke"));
 
-    // Wood Tar Block
+    // Charcoal from Wood Tar Block
     registry.register(new PitBurnRecipe(
         new ItemStack(Items.COAL, 1, 1),
         new BlockMetaMatcher(ModuleCore.Blocks.WOOD_TAR_BLOCK, OreDictionary.WILDCARD_VALUE),
@@ -76,7 +76,7 @@ public class BurnPitRecipesAdd {
             ItemMaterial.EnumType.PIT_ASH.asStack(),
             ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(4)
         },
-        true,
+        false,
         false
     ).setRegistryName(ModuleTechRefractory.MOD_ID, "charcoal_from_wood_tar_block"));
   }
