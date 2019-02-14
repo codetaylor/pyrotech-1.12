@@ -104,6 +104,8 @@ public abstract class BlockBagBase
         }
       }
 
+      return false;
+
     } else if (itemBlacklist.length > 0) {
 
       for (String itemString : itemBlacklist) {
