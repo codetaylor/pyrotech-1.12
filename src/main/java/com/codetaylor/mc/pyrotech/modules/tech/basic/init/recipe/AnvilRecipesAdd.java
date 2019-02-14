@@ -32,6 +32,14 @@ public class AnvilRecipesAdd {
         AnvilRecipe.EnumType.HAMMER
     ).setRegistryName(ModuleTechBasic.MOD_ID, "crushed_flint_from_flint"));
 
+    // Redstone from Redstone Block
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.REDSTONE, 1, 8),
+        Ingredient.fromStacks(new ItemStack(Blocks.REDSTONE_BLOCK)),
+        8,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "redstone_from_redstone_block"));
+
     // Sand Pile from Glass Shard
     registry.register(new AnvilRecipe(
         new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta()),
