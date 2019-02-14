@@ -318,6 +318,8 @@ public class ModuleCoreConfig {
         "minecraft:crafting_table",
         "minecraft:redstone_block",
         "minecraft:redstone",
+        "minecraft:lapis_block",
+        "minecraft:lapis_lazuli",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
