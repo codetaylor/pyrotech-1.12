@@ -20,6 +20,20 @@ public class ModuleWorldGenConfig {
     public boolean ENABLED = true;
 
     @Config.Comment({
+        "An int array of dimension id's that this is allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_WHITELIST = {
+        0
+    };
+
+    @Config.Comment({
+        "An int array of dimension id's that this is not allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_BLACKLIST = new int[0];
+
+    @Config.Comment({
         "How many times will the generator try to spawn this worldgen.",
         "Default: " + 15
     })
@@ -72,6 +86,20 @@ public class ModuleWorldGenConfig {
         "Default: " + true
     })
     public boolean ENABLED = true;
+
+    @Config.Comment({
+        "An int array of dimension id's that this is allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_WHITELIST = {
+        0
+    };
+
+    @Config.Comment({
+        "An int array of dimension id's that this is not allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_BLACKLIST = new int[0];
 
     @Config.Comment({
         "How many times will the generator try to spawn this worldgen.",
@@ -128,6 +156,20 @@ public class ModuleWorldGenConfig {
     public boolean ENABLED = true;
 
     @Config.Comment({
+        "An int array of dimension id's that this is allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_WHITELIST = {
+        0
+    };
+
+    @Config.Comment({
+        "An int array of dimension id's that this is not allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_BLACKLIST = new int[0];
+
+    @Config.Comment({
         "The minimum world height at which this will gen.",
         "Must be larger than or equal to MAX_HEIGHT.",
         "Default: " + 0
@@ -173,6 +215,20 @@ public class ModuleWorldGenConfig {
         "Default: " + true
     })
     public boolean ENABLED = true;
+
+    @Config.Comment({
+        "An int array of dimension id's that this is allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_WHITELIST = {
+        -1
+    };
+
+    @Config.Comment({
+        "An int array of dimension id's that this is not allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_BLACKLIST = new int[0];
 
     @Config.Comment({
         "How many times will the generator try to spawn this worldgen.",
@@ -227,6 +283,20 @@ public class ModuleWorldGenConfig {
         "Default: " + true
     })
     public boolean ENABLED = true;
+
+    @Config.Comment({
+        "An int array of dimension id's that this is allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_WHITELIST = {
+        -1
+    };
+
+    @Config.Comment({
+        "An int array of dimension id's that this is not allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_BLACKLIST = new int[0];
 
     @Config.Comment({
         "How many times will the generator try to spawn this worldgen.",

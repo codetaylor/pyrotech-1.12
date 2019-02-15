@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.pyrotech.library.util.FloodFill;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
@@ -60,7 +61,8 @@ public class WorldGenerator
   public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 
     // Fossil
-    if (ModuleWorldGenConfig.FOSSIL.ENABLED
+    if (this.isAllowedDimension(world, ModuleWorldGenConfig.FOSSIL.DIMENSION_WHITELIST, ModuleWorldGenConfig.FOSSIL.DIMENSION_BLACKLIST)
+        && ModuleWorldGenConfig.FOSSIL.ENABLED
         && ModuleWorldGenConfig.FOSSIL.CHANCES_TO_SPAWN > 0) {
       final int chancesToSpawn = ModuleWorldGenConfig.FOSSIL.CHANCES_TO_SPAWN;
       final int minY = ModuleWorldGenConfig.FOSSIL.MIN_HEIGHT;
@@ -77,7 +79,8 @@ public class WorldGenerator
     }
 
     // Limestone
-    if (ModuleWorldGenConfig.LIMESTONE.ENABLED
+    if (this.isAllowedDimension(world, ModuleWorldGenConfig.LIMESTONE.DIMENSION_WHITELIST, ModuleWorldGenConfig.LIMESTONE.DIMENSION_BLACKLIST)
+        && ModuleWorldGenConfig.LIMESTONE.ENABLED
         && ModuleWorldGenConfig.LIMESTONE.CHANCES_TO_SPAWN > 0) {
       final int chancesToSpawn = ModuleWorldGenConfig.LIMESTONE.CHANCES_TO_SPAWN;
       final int minY = ModuleWorldGenConfig.LIMESTONE.MIN_HEIGHT;
@@ -94,7 +97,8 @@ public class WorldGenerator
     }
 
     // Dense Coal Ore
-    if (ModuleWorldGenConfig.DENSE_COAL_ORE.ENABLED) {
+    if (this.isAllowedDimension(world, ModuleWorldGenConfig.DENSE_COAL_ORE.DIMENSION_WHITELIST, ModuleWorldGenConfig.DENSE_COAL_ORE.DIMENSION_BLACKLIST)
+        && ModuleWorldGenConfig.DENSE_COAL_ORE.ENABLED) {
       final int minY = ModuleWorldGenConfig.DENSE_COAL_ORE.MIN_HEIGHT;
       final int maxY = ModuleWorldGenConfig.DENSE_COAL_ORE.MAX_HEIGHT;
       final int minVeinSize = MathHelper.clamp(ModuleWorldGenConfig.DENSE_COAL_ORE.MIN_VEIN_SIZE, 0, ModuleWorldGenConfig.DENSE_COAL_ORE.MAX_VEIN_SIZE);
@@ -126,7 +130,7 @@ public class WorldGenerator
     }
 
     // Dense Nether Coal Ore
-    if (world.provider.getDimension() == -1
+    if (this.isAllowedDimension(world, ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.DIMENSION_WHITELIST, ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.DIMENSION_BLACKLIST)
         && ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.ENABLED
         && ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.CHANCES_TO_SPAWN > 0) {
       final int chancesToSpawn = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.CHANCES_TO_SPAWN;
@@ -144,7 +148,8 @@ public class WorldGenerator
     }
 
     // Stone Rocks
-    if (ModuleWorldGenConfig.ROCKS.ENABLED
+    if (this.isAllowedDimension(world, ModuleWorldGenConfig.ROCKS.DIMENSION_WHITELIST, ModuleWorldGenConfig.ROCKS.DIMENSION_BLACKLIST)
+        && ModuleWorldGenConfig.ROCKS.ENABLED
         && ModuleWorldGenConfig.ROCKS.CHANCES_TO_SPAWN > 0) {
       final int blockXPos = chunkX << 4;
       final int blockZPos = chunkZ << 4;
@@ -175,6 +180,18 @@ public class WorldGenerator
 
     Block block = blockState.getBlock();
     return block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.STONE;
+  }
+
+  private boolean isAllowedDimension(World world, int[] whitelist, int[] blacklist) {
+
+    if (whitelist.length > 0) {
+      return ArrayHelper.containsInt(whitelist, world.provider.getDimension());
+
+    } else if (blacklist.length > 0) {
+      return !ArrayHelper.containsInt(blacklist, world.provider.getDimension());
+    }
+
+    return true;
   }
 
 }
