@@ -15,8 +15,8 @@
       "ore": "stickWood"
     },
     "F": {
-      "type": "forge:ore_dict",
-      "ore": "twine"
+      "item": "pyrotech:material",
+      "data": 26
     }
   },
   "result": {
