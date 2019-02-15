@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pyrotech:items/bucket_clay_unfired"
+    "layer0": "pyrotech:items/clay_bucket_unfired"
   }
 }

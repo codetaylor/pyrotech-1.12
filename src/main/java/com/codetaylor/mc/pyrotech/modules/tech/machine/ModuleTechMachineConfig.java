@@ -4,7 +4,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Config(modid = ModuleTechMachine.MOD_ID, name = ModuleTechMachine.MOD_ID + "/" + "module.tech.Machine")
@@ -68,6 +68,13 @@ public class ModuleTechMachineConfig {
     })
     @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int DIAMOND_DURABILITY = 1500;
+
+    @Config.Comment({
+        "Durability of the obsidian sawmill blade.",
+        "Default: " + 1345
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int OBSIDIAN_DURABILITY = 1345;
   }
 
   // ---------------------------------------------------------------------------
@@ -119,6 +126,13 @@ public class ModuleTechMachineConfig {
     })
     @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int DIAMOND_DURABILITY = (64 * 256);
+
+    @Config.Comment({
+        "Durability of the obsidian cog.",
+        "Default: " + (int) ((64 * 256) * 0.8968)
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int OBSIDIAN_DURABILITY = (int) ((64 * 256) * 0.8968);
   }
 
   // ---------------------------------------------------------------------------
@@ -135,12 +149,13 @@ public class ModuleTechMachineConfig {
         "String format is (domain):(path) for the item and (integer) for the",
         "number of items that the cog will transfer in one attempt."
     })
-    public Map<String, Integer> COGS = new HashMap<String, Integer>() {{
+    public Map<String, Integer> COGS = new LinkedHashMap<String, Integer>() {{
       this.put("pyrotech:cog_wood", 1);
       this.put("pyrotech:cog_stone", 4);
       this.put("pyrotech:cog_flint", 8);
       this.put("pyrotech:cog_bone", 8);
       this.put("pyrotech:cog_iron", 16);
+      this.put("pyrotech:cog_obsidian", 32);
       this.put("pyrotech:cog_diamond", 64);
     }};
 
@@ -194,12 +209,13 @@ public class ModuleTechMachineConfig {
         "String format is (domain):(path) for the item and (double) for the",
         "amount of recipe progress added per work cycle. The range is [0,1]."
     })
-    public Map<String, Double> COGS = new HashMap<String, Double>() {{
+    public Map<String, Double> COGS = new LinkedHashMap<String, Double>() {{
       this.put("pyrotech:cog_wood", 0.10);
       this.put("pyrotech:cog_stone", 0.20);
       this.put("pyrotech:cog_flint", 0.25);
       this.put("pyrotech:cog_bone", 0.25);
       this.put("pyrotech:cog_iron", 0.35);
+      this.put("pyrotech:cog_obsidian", 0.35);
       this.put("pyrotech:cog_diamond", 0.50);
     }};
 
@@ -561,7 +577,8 @@ public class ModuleTechMachineConfig {
         "pyrotech:sawmill_blade_flint",
         "pyrotech:sawmill_blade_bone",
         "pyrotech:sawmill_blade_iron",
-        "pyrotech:sawmill_blade_diamond"
+        "pyrotech:sawmill_blade_diamond",
+        "pyrotech:sawmill_blade_obsidian"
     };
   }
 
@@ -649,7 +666,8 @@ public class ModuleTechMachineConfig {
         "pyrotech:sawmill_blade_flint",
         "pyrotech:sawmill_blade_bone",
         "pyrotech:sawmill_blade_iron",
-        "pyrotech:sawmill_blade_diamond"
+        "pyrotech:sawmill_blade_diamond",
+        "pyrotech:sawmill_blade_obsidian"
     };
   }
 

@@ -1,0 +1,110 @@
+{
+  "slices": [
+    {
+      "sourceImage": "material-items.png",
+      "targetPath": "../src/main/resources/assets/pyrotech/textures/items",
+      "targetSlices": [
+        {"target": "obsidian_sword.png", "position": [0, 0]},
+        {"target": "obsidian_pickaxe.png", "position": [1, 0]},
+        {"target": "obsidian_shovel.png", "position": [2, 0]},
+        {"target": "obsidian_axe.png", "position": [3, 0]},
+        {"target": "obsidian_hoe.png", "position": [4, 0]},
+        {"target": "obsidian_hammer.png", "position": [5, 0]},
+        {"target": "obsidian_shears.png", "position": [6, 0]},
+        {"target": "obsidian_shard.png", "position": [7, 0]},
+        {"target": "obsidian_sawblade.png", "position": [8, 0]},
+        {"target": "obsidian_cog.png", "position": [9, 0]},
+        {"target": "obsidian_tongs.png", "position": [10, 0]},
+        {"target": "obsidian_tongs_full.png", "position": [11, 0]}
+      ]
+    },
+    {
+      "sourceImage": "material-items.png",
+      "targetPath": "../src/main/resources/assets/pyrotech/textures/items",
+      "targetSlices": [
+        {"target": "flint_sword.png", "position": [0, 1]},
+        {"target": "flint_pickaxe.png", "position": [1, 1]},
+        {"target": "flint_shovel.png", "position": [2, 1]},
+        {"target": "flint_axe.png", "position": [3, 1]},
+        {"target": "flint_hoe.png", "position": [4, 1]},
+        {"target": "flint_hammer.png", "position": [5, 1]},
+        {"target": "flint_shears.png", "position": [6, 1]},
+        {"target": "flint_shard.png", "position": [7, 1]},
+        {"target": "flint_sawblade.png", "position": [8, 1]},
+        {"target": "flint_cog.png", "position": [9, 1]},
+        {"target": "flint_tongs.png", "position": [10, 1]},
+        {"target": "flint_tongs_full.png", "position": [11, 1]}
+      ]
+    },
+    {
+      "sourceImage": "material-items.png",
+      "targetPath": "../src/main/resources/assets/pyrotech/textures/items",
+      "targetSlices": [
+        {"target": "bone_sword.png", "position": [0, 2]},
+        {"target": "bone_pickaxe.png", "position": [1, 2]},
+        {"target": "bone_shovel.png", "position": [2, 2]},
+        {"target": "bone_axe.png", "position": [3, 2]},
+        {"target": "bone_hoe.png", "position": [4, 2]},
+        {"target": "bone_hammer.png", "position": [5, 2]},
+        {"target": "bone_shears.png", "position": [6, 2]},
+        {"target": "bone_shard.png", "position": [7, 2]},
+        {"target": "bone_sawblade.png", "position": [8, 2]},
+        {"target": "bone_cog.png", "position": [9, 2]},
+        {"target": "bone_tongs.png", "position": [10, 2]},
+        {"target": "bone_tongs_full.png", "position": [11, 2]}
+      ]
+    },
+    {
+      "sourceImage": "material-items.png",
+      "targetPath": "../src/main/resources/assets/pyrotech/textures/items",
+      "targetSlices": [
+        {"target": "diamond_hammer.png", "position": [5, 3]},
+        {"target": "diamond_shears.png", "position": [6, 3]},
+        {"target": "diamond_shard.png", "position": [7, 3]},
+        {"target": "diamond_sawblade.png", "position": [8, 3]},
+        {"target": "diamond_cog.png", "position": [9, 3]},
+        {"target": "diamond_tongs.png", "position": [10, 3]},
+        {"target": "diamond_tongs_full.png", "position": [11, 3]}
+      ]
+    },
+    {
+      "sourceImage": "material-items.png",
+      "targetPath": "../src/main/resources/assets/pyrotech/textures/items",
+      "targetSlices": [
+        {"target": "iron_hammer.png", "position": [5, 4]},
+        {"target": "iron_shard.png", "position": [7, 4]},
+        {"target": "iron_sawblade.png", "position": [8, 4]},
+        {"target": "iron_cog.png", "position": [9, 4]},
+        {"target": "iron_tongs.png", "position": [10, 4]},
+        {"target": "iron_tongs_full.png", "position": [11, 4]}
+      ]
+    },
+    {
+      "sourceImage": "material-items.png",
+      "targetPath": "../src/main/resources/assets/pyrotech/textures/items",
+      "targetSlices": [
+        {"target": "stone_bucket_base.png", "position": [2, 5]},
+        {"target": "stone_bucket_cover.png", "position": [3, 5]},
+        {"target": "stone_stick.png", "position": [4, 5]},
+        {"target": "stone_hammer.png", "position": [5, 5]},
+        {"target": "stone_shears.png", "position": [6, 5]},
+        {"target": "stone_brick.png", "position": [7, 5]},
+        {"target": "stone_sawblade.png", "position": [8, 5]},
+        {"target": "stone_cog.png", "position": [9, 5]},
+        {"target": "stone_tongs.png", "position": [10, 5]},
+        {"target": "stone_tongs_full.png", "position": [11, 5]}
+      ]
+    },
+    {
+      "sourceImage": "material-items.png",
+      "targetPath": "../src/main/resources/assets/pyrotech/textures/items",
+      "targetSlices": [
+        {"target": "clay_bucket_base.png", "position": [2, 6]},
+        {"target": "clay_bucket_cover.png", "position": [3, 6]},
+        {"target": "clay_shears.png", "position": [6, 6]},
+        {"target": "clay_shard.png", "position": [7, 6]},
+        {"target": "clay_fragments.png", "position": [8, 6]}
+      ]
+    }
+  ]
+}

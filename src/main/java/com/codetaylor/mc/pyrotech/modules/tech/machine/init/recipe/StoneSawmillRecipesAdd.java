@@ -137,7 +137,10 @@ public class StoneSawmillRecipesAdd {
         output,
         input,
         ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
-        Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+        Ingredient.fromStacks(
+            new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
+            new ItemStack(ModuleTechMachine.Items.OBSIDIAN_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
+        ),
         woodChips
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_2"));
 

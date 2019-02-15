@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pyrotech:items/mill_blade_diamond"
+    "layer0": "pyrotech:items/diamond_sawblade"
   }
 }

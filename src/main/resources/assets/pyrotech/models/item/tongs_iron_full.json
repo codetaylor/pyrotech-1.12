@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "pyrotech:items/tongs_iron_full"
+    "layer0": "pyrotech:items/iron_tongs_full"
   }
 }

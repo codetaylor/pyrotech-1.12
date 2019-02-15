@@ -4,9 +4,9 @@
     "inventory": {
       "model": "forge:forgebucket",
       "textures": {
-        "base": "pyrotech:items/bucket_clay_base",
-        "fluid": "pyrotech:items/bucket_clay_base",
-        "cover": "pyrotech:items/bucket_clay_cover"
+        "base": "pyrotech:items/clay_bucket_base",
+        "fluid": "pyrotech:items/clay_bucket_base",
+        "cover": "pyrotech:items/clay_bucket_cover"
       },
       "transform": "forge:default-item",
       "custom": {
@@ -17,9 +17,9 @@
     "milk": {
       "model": "forge:item-layer",
       "textures": {
-        "layer0": "pyrotech:items/bucket_clay_base",
+        "layer0": "pyrotech:items/clay_bucket_base",
         "layer1": "forge:items/bucket_fluid",
-        "layer2": "pyrotech:items/bucket_clay_cover"
+        "layer2": "pyrotech:items/clay_bucket_cover"
       },
       "transform": "forge:default-item"
     }

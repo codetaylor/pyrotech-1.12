@@ -15,6 +15,8 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.BloomeryRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.CompactingBinRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.*;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi.ItemTongsEmptyBase;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi.ItemTongsFullBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.creativetab.CreativeTabs;
@@ -257,6 +259,12 @@ public class ModuleTechBloomery
     @GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID + ":" + ItemTongsFullDiamond.NAME)
     public static final ItemTongsFullBase TONGS_DIAMOND_FULL;
 
+    @GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID + ":" + ItemTongsEmptyObsidian.NAME)
+    public static final ItemTongsEmptyBase TONGS_OBSIDIAN;
+
+    @GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID + ":" + ItemTongsFullObsidian.NAME)
+    public static final ItemTongsFullBase TONGS_OBSIDIAN_FULL;
+
     static {
       SLAG = null;
       BLOOM = null;
@@ -270,6 +278,8 @@ public class ModuleTechBloomery
       TONGS_IRON_FULL = null;
       TONGS_DIAMOND = null;
       TONGS_DIAMOND_FULL = null;
+      TONGS_OBSIDIAN = null;
+      TONGS_OBSIDIAN_FULL = null;
     }
   }
 

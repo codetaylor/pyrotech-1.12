@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pyrotech:items/cog_wood"
+    "layer0": "pyrotech:items/wood_cog"
   }
 }

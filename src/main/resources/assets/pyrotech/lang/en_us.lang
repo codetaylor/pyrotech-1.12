@@ -85,6 +85,9 @@ item.pyrotech.tongs.iron.full.unique.name=%s Bloom
 item.pyrotech.tongs.diamond.name=Diamond Tongs
 item.pyrotech.tongs.diamond.full.name=Diamond Tongs
 item.pyrotech.tongs.diamond.full.unique.name=%s Bloom
+item.pyrotech.tongs.obsidian.name=Obsidian Tongs
+item.pyrotech.tongs.obsidian.full.name=Obsidian Tongs
+item.pyrotech.tongs.obsidian.full.unique.name=%s Bloom
 
 tile.pyrotech.bloom.name=Bloom
 tile.pyrotech.bloom.unique.name=%s Bloom
@@ -101,6 +104,7 @@ item.pyrotech.sawmill.blade.flint.name=Flint Sawmill Blade
 item.pyrotech.sawmill.blade.bone.name=Bone Sawmill Blade
 item.pyrotech.sawmill.blade.iron.name=Iron Sawmill Blade
 item.pyrotech.sawmill.blade.diamond.name=Diamond Sawmill Blade
+item.pyrotech.sawmill.blade.obsidian.name=Obsidian Sawmill Blade
 
 item.pyrotech.cog.wood.name=Wooden Cog
 item.pyrotech.cog.stone.name=Stone Cog
@@ -108,6 +112,7 @@ item.pyrotech.cog.flint.name=Flint Cog
 item.pyrotech.cog.bone.name=Bone Cog
 item.pyrotech.cog.iron.name=Iron Cog
 item.pyrotech.cog.diamond.name=Diamond Cog
+item.pyrotech.cog.obsidian.name=Obsidian Cog
 
 tile.pyrotech.stone_kiln.name=Stone Kiln
 tile.pyrotech.stone_oven.name=Stone Oven
