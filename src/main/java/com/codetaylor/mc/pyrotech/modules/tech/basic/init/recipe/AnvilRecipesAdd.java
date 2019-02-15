@@ -25,13 +25,13 @@ public class AnvilRecipesAdd {
 
   private static void registerHammerRecipes(IForgeRegistry<AnvilRecipe> registry) {
 
-    // Crushed Flint from Flint
+    // Crushed Flint from Flint Shard
     registry.register(new AnvilRecipe(
         ItemMaterial.EnumType.DUST_FLINT.asStack(3),
-        Ingredient.fromStacks(new ItemStack(Items.FLINT)),
-        4,
+        Ingredient.fromStacks(ItemMaterial.EnumType.FLINT_SHARD.asStack()),
+        2,
         AnvilRecipe.EnumType.HAMMER
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "crushed_flint_from_flint"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "crushed_flint_from_flint_shard"));
 
     // Lapis Lazuli from Lapis Block
     registry.register(new AnvilRecipe(
