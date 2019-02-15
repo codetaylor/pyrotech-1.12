@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe;
 import com.codetaylor.mc.athenaeum.util.IngredientHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
@@ -125,6 +126,19 @@ public class BloomeryRecipesAdd {
               .create()
       );
     }
+
+    // Obsidian Shards
+    registry.register(new BloomeryRecipeBuilder(
+        new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_obsidian"),
+        ItemMaterial.EnumType.OBSIDIAN_SHARD.asStack(),
+        Ingredient.fromStacks(new ItemStack(Blocks.OBSIDIAN))
+    )
+        .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
+        .setFailureChance(DEFAULT_FAILURE_CHANCE)
+        .setBloomYield(8, 12)
+        .setSlagItem(new ItemStack(ModuleTechBloomery.Items.SLAG), 2)
+        .setLangKey(Blocks.OBSIDIAN.getUnlocalizedName())
+        .create());
   }
 
   public static void registerBloomAnvilRecipes(

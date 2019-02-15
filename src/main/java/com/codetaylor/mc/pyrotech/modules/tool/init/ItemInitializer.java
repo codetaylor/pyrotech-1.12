@@ -30,12 +30,19 @@ public final class ItemInitializer {
     registry.registerItem(new ItemFlintShovel(), ItemFlintShovel.NAME);
     registry.registerItem(new ItemFlintSword(), ItemFlintSword.NAME);
 
+    registry.registerItem(new ItemObsidianAxe(), ItemObsidianAxe.NAME);
+    registry.registerItem(new ItemObsidianHoe(), ItemObsidianHoe.NAME);
+    registry.registerItem(new ItemObsidianPickaxe(), ItemObsidianPickaxe.NAME);
+    registry.registerItem(new ItemObsidianShovel(), ItemObsidianShovel.NAME);
+    registry.registerItem(new ItemObsidianSword(), ItemObsidianSword.NAME);
+
     registry.registerItem(new ItemUnfiredClayShears(), ItemUnfiredClayShears.NAME);
     registry.registerItem(new ItemClayShears(), ItemClayShears.NAME);
     registry.registerItem(new ItemStoneShears(), ItemStoneShears.NAME);
     registry.registerItem(new ItemBoneShears(), ItemBoneShears.NAME);
     registry.registerItem(new ItemFlintShears(), ItemFlintShears.NAME);
     registry.registerItem(new ItemDiamondShears(), ItemDiamondShears.NAME);
+    registry.registerItem(new ItemObsidianShears(), ItemObsidianShears.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -63,12 +70,19 @@ public final class ItemInitializer {
           ModuleTool.Items.FLINT_SHOVEL,
           ModuleTool.Items.FLINT_SWORD,
 
+          ModuleTool.Items.OBSIDIAN_AXE,
+          ModuleTool.Items.OBSIDIAN_HOE,
+          ModuleTool.Items.OBSIDIAN_PICKAXE,
+          ModuleTool.Items.OBSIDIAN_SHOVEL,
+          ModuleTool.Items.OBSIDIAN_SWORD,
+
           ModuleTool.Items.UNFIRED_CLAY_SHEARS,
           ModuleTool.Items.CLAY_SHEARS,
           ModuleTool.Items.STONE_SHEARS,
           ModuleTool.Items.BONE_SHEARS,
           ModuleTool.Items.FLINT_SHEARS,
-          ModuleTool.Items.DIAMOND_SHEARS
+          ModuleTool.Items.DIAMOND_SHEARS,
+          ModuleTool.Items.OBSIDIAN_SHEARS
       );
     });
   }

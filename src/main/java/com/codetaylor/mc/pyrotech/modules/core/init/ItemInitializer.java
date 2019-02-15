@@ -30,6 +30,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemFlintHammer(), ItemFlintHammer.NAME);
     registry.registerItem(new ItemIronHammer(), ItemIronHammer.NAME);
     registry.registerItem(new ItemDiamondHammer(), ItemDiamondHammer.NAME);
+    registry.registerItem(new ItemObsidianHammer(), ItemObsidianHammer.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -53,7 +54,8 @@ public final class ItemInitializer {
           ModuleCore.Items.FLINT_HAMMER,
           ModuleCore.Items.BONE_HAMMER,
           ModuleCore.Items.IRON_HAMMER,
-          ModuleCore.Items.DIAMOND_HAMMER
+          ModuleCore.Items.DIAMOND_HAMMER,
+          ModuleCore.Items.OBSIDIAN_HAMMER
       );
 
       // Material

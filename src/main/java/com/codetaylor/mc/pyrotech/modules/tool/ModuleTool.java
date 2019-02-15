@@ -89,6 +89,21 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemFlintSword.NAME)
     public static final ItemFlintSword FLINT_SWORD;
 
+    @GameRegistry.ObjectHolder(ItemObsidianAxe.NAME)
+    public static final ItemObsidianAxe OBSIDIAN_AXE;
+
+    @GameRegistry.ObjectHolder(ItemObsidianHoe.NAME)
+    public static final ItemObsidianHoe OBSIDIAN_HOE;
+
+    @GameRegistry.ObjectHolder(ItemObsidianPickaxe.NAME)
+    public static final ItemObsidianPickaxe OBSIDIAN_PICKAXE;
+
+    @GameRegistry.ObjectHolder(ItemObsidianShovel.NAME)
+    public static final ItemObsidianShovel OBSIDIAN_SHOVEL;
+
+    @GameRegistry.ObjectHolder(ItemObsidianSword.NAME)
+    public static final ItemObsidianSword OBSIDIAN_SWORD;
+
     @GameRegistry.ObjectHolder(ItemUnfiredClayShears.NAME)
     public static final ItemUnfiredClayShears UNFIRED_CLAY_SHEARS;
 
@@ -107,6 +122,9 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemDiamondShears.NAME)
     public static final ItemDiamondShears DIAMOND_SHEARS;
 
+    @GameRegistry.ObjectHolder(ItemObsidianShears.NAME)
+    public static final ItemObsidianShears OBSIDIAN_SHEARS;
+
     static {
       CRUDE_AXE = null;
       CRUDE_HOE = null;
@@ -123,12 +141,18 @@ public class ModuleTool
       FLINT_PICKAXE = null;
       FLINT_SHOVEL = null;
       FLINT_SWORD = null;
+      OBSIDIAN_AXE = null;
+      OBSIDIAN_HOE = null;
+      OBSIDIAN_PICKAXE = null;
+      OBSIDIAN_SHOVEL = null;
+      OBSIDIAN_SWORD = null;
       UNFIRED_CLAY_SHEARS = null;
       CLAY_SHEARS = null;
       STONE_SHEARS = null;
       BONE_SHEARS = null;
       FLINT_SHEARS = null;
       DIAMOND_SHEARS = null;
+      OBSIDIAN_SHEARS = null;
     }
   }
 }

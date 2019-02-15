@@ -17,6 +17,7 @@ public class ModuleToolConfig {
     DURABILITY.put("crude", 32);
     DURABILITY.put("bone", 150);
     DURABILITY.put("flint", 150);
+    DURABILITY.put("obsidian", 1400);
   }
 
   @Config.Comment({
@@ -31,6 +32,7 @@ public class ModuleToolConfig {
     SHEARS_DURABILITY.put("bone", 120);
     SHEARS_DURABILITY.put("flint", 120);
     SHEARS_DURABILITY.put("diamond", 952);
+    SHEARS_DURABILITY.put("obsidian", 852);
   }
 
   @Config.Comment({

@@ -250,6 +250,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemCrudeHammer.NAME)
     public static final ItemCrudeHammer CRUDE_HAMMER;
 
+    @GameRegistry.ObjectHolder(ItemObsidianHammer.NAME)
+    public static final ItemObsidianHammer OBSIDIAN_HAMMER;
+
     static {
       ROCK_GRASS = null;
       MATERIAL = null;
@@ -269,6 +272,7 @@ public class ModuleCore
       IRON_HAMMER = null;
       STONE_HAMMER = null;
       CRUDE_HAMMER = null;
+      OBSIDIAN_HAMMER = null;
     }
   }
 

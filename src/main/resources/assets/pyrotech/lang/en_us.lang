@@ -158,12 +158,19 @@ item.pyrotech.flint.pickaxe.name=Flint Pickaxe
 item.pyrotech.flint.shovel.name=Flint Shovel
 item.pyrotech.flint.sword.name=Flint Sword
 
+item.pyrotech.obsidian.axe.name=Obsidian Axe
+item.pyrotech.obsidian.hoe.name=Obsidian Hoe
+item.pyrotech.obsidian.pickaxe.name=Obsidian Pickaxe
+item.pyrotech.obsidian.shovel.name=Obsidian Shovel
+item.pyrotech.obsidian.sword.name=Obsidian Sword
+
 item.pyrotech.unfired.clay.shears.name=Unfired Clay Shears
 item.pyrotech.clay.shears.name=Clay Shears
 item.pyrotech.stone.shears.name=Stone Shears
 item.pyrotech.bone.shears.name=Bone Shears
 item.pyrotech.flint.shears.name=Flint Shears
 item.pyrotech.diamond.shears.name=Diamond Shears
+item.pyrotech.obsidian.shears.name=Obsidian Shears
 
 #------------------------------------------------------------------------------
 # Module: Core
@@ -209,6 +216,7 @@ item.pyrotech.kindling.name=Kindling
 item.pyrotech.kindling.tarred.name=Tarred Kindling
 item.pyrotech.dust.flint.name=Crushed Flint
 item.pyrotech.glass.shard.name=Glass Shard
+item.pyrotech.obsidian.shard.name=Obsidian Shard
 
 item.pyrotech.apple.baked.name=Baked Apple
 item.pyrotech.carrot.roasted.name=Roasted Carrot
@@ -223,6 +231,7 @@ item.pyrotech.flint.hammer.name=Flint Hammer
 item.pyrotech.bone.hammer.name=Bone Hammer
 item.pyrotech.iron.hammer.name=Iron Hammer
 item.pyrotech.diamond.hammer.name=Diamond Hammer
+item.pyrotech.obsidian.hammer.name=Obsidian Hammer
 
 tile.pyrotech.thatch.name=Straw Bale
 tile.pyrotech.coal_coke_block.name=Block of Coal Coke

@@ -49,6 +49,7 @@ public class ModuleCoreConfig {
         ModuleCore.MOD_ID + ":" + ItemBoneHammer.NAME + ";" + 1,
         ModuleCore.MOD_ID + ":" + ItemFlintHammer.NAME + ";" + 1,
         ModuleCore.MOD_ID + ":" + ItemIronHammer.NAME + ";" + 2,
+        ModuleCore.MOD_ID + ":" + ItemObsidianHammer.NAME + ";" + 2,
         ModuleCore.MOD_ID + ":" + ItemDiamondHammer.NAME + ";" + 3
     };
 
@@ -110,6 +111,12 @@ public class ModuleCoreConfig {
         "Default: " + 4500
     })
     public int DIAMOND_HAMMER_DURABILITY = 4500;
+
+    @Config.Comment({
+        "Durability of the obsidian hammer.",
+        "Default: " + 4035
+    })
+    public int OBSIDIAN_HAMMER_DURABILITY = 4035;
   }
 
   // ---------------------------------------------------------------------------
