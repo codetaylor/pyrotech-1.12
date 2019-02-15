@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.pyrotech.library.util.FloodFill;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockOre;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
@@ -9,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -21,6 +23,7 @@ public class WorldGenerator
 
   private WorldGenOre worldGenFossil;
   private WorldGenOre worldGenLimestone;
+  private WorldGenOre worldGenDenseNetherCoal;
 
   public WorldGenerator() {
 
@@ -40,6 +43,16 @@ public class WorldGenerator
           int maxVeinSize = ModuleWorldGenConfig.LIMESTONE.MAX_VEIN_SIZE;
           return (minVeinSize + random.nextInt(Math.max(1, maxVeinSize - minVeinSize + 1)));
         }
+    );
+
+    this.worldGenDenseNetherCoal = new WorldGenOre(
+        ModuleCore.Blocks.ORE.getDefaultState().withProperty(BlockOre.VARIANT, BlockOre.EnumType.DENSE_NETHER_COAL_ORE),
+        random -> {
+          int minVeinSize = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.MIN_VEIN_SIZE;
+          int maxVeinSize = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.MAX_VEIN_SIZE;
+          return (minVeinSize + random.nextInt(Math.max(1, maxVeinSize - minVeinSize + 1)));
+        },
+        new WorldGenOre.BlockPredicate(Blocks.NETHERRACK)
     );
   }
 
@@ -77,6 +90,56 @@ public class WorldGenerator
         int posY = minY + random.nextInt(Math.max(1, maxY - minY + 1));
         int posZ = blockZPos + random.nextInt(16);
         this.worldGenLimestone.generate(world, random, new BlockPos(posX, posY, posZ));
+      }
+    }
+
+    // Dense Coal Ore
+    if (ModuleWorldGenConfig.DENSE_COAL_ORE.ENABLED) {
+      final int minY = ModuleWorldGenConfig.DENSE_COAL_ORE.MIN_HEIGHT;
+      final int maxY = ModuleWorldGenConfig.DENSE_COAL_ORE.MAX_HEIGHT;
+      final int minVeinSize = MathHelper.clamp(ModuleWorldGenConfig.DENSE_COAL_ORE.MIN_VEIN_SIZE, 0, ModuleWorldGenConfig.DENSE_COAL_ORE.MAX_VEIN_SIZE);
+      final int maxVeinSize = Math.max(ModuleWorldGenConfig.DENSE_COAL_ORE.MAX_VEIN_SIZE, minVeinSize);
+      final int blockXPos = chunkX << 4;
+      final int blockZPos = chunkZ << 4;
+
+      BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+
+      for (int x = 2; x < 16; x += 4) {
+        for (int z = 2; z < 16; z += 4) {
+          for (int y = minY; y < maxY; y++) {
+            mutableBlockPos.setPos(blockXPos + x, y, blockZPos + z);
+
+            if (world.getBlockState(mutableBlockPos).getBlock() == Blocks.COAL_ORE) {
+              FloodFill.apply(
+                  world,
+                  mutableBlockPos,
+                  (w, p) -> (w.getBlockState(p).getBlock() == Blocks.COAL_ORE),
+                  (w, p) -> w.setBlockState(p, ModuleCore.Blocks.ORE.getDefaultState()
+                      .withProperty(BlockOre.VARIANT, BlockOre.EnumType.DENSE_COAL_ORE)),
+                  random.nextInt(maxVeinSize - minVeinSize + 1) + minVeinSize
+              );
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    // Dense Nether Coal Ore
+    if (world.provider.getDimension() == -1
+        && ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.ENABLED
+        && ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.CHANCES_TO_SPAWN > 0) {
+      final int chancesToSpawn = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.CHANCES_TO_SPAWN;
+      final int minY = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.MIN_HEIGHT;
+      final int maxY = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.MAX_HEIGHT;
+      final int blockXPos = chunkX << 4;
+      final int blockZPos = chunkZ << 4;
+
+      for (int i = 0; i < chancesToSpawn; i++) {
+        int posX = blockXPos + random.nextInt(16);
+        int posY = minY + random.nextInt(Math.max(1, maxY - minY + 1));
+        int posZ = blockZPos + random.nextInt(16);
+        this.worldGenDenseNetherCoal.generate(world, random, new BlockPos(posX, posY, posZ));
       }
     }
 

@@ -117,6 +117,107 @@ public class ModuleWorldGenConfig {
     public int MAX_VEIN_SIZE = 20;
   }
 
+  public static WorldGenDenseCoalOre DENSE_COAL_ORE = new WorldGenDenseCoalOre();
+
+  public static class WorldGenDenseCoalOre {
+
+    @Config.Comment({
+        "Set to false to disable this worldgen.",
+        "Default: " + true
+    })
+    public boolean ENABLED = true;
+
+    @Config.Comment({
+        "The minimum world height at which this will gen.",
+        "Must be larger than or equal to MAX_HEIGHT.",
+        "Default: " + 0
+    })
+    @Config.RangeInt(min = 0, max = 255)
+    public int MIN_HEIGHT = 0;
+
+    @Config.Comment({
+        "The maximum world height at which this will gen.",
+        "Must be less than or equal to MIN_HEIGHT.",
+        "Default: " + 32
+    })
+    @Config.RangeInt(min = 0, max = 255)
+    public int MAX_HEIGHT = 32;
+
+    @Config.Comment({
+        "The minimum size of the cluster.",
+        "Must be larger than or equal to MAX_VEIN_SIZE.",
+        "NOTE: This worldgen is basic and does nothing to mitigate cascading",
+        "world gen if the vein size is too large.",
+        "Default: " + 3
+    })
+    @Config.RangeInt(min = 1)
+    public int MIN_VEIN_SIZE = 3;
+
+    @Config.Comment({
+        "The maximum size of the cluster.",
+        "Must be less than or equal to MIN_VEIN_SIZE.",
+        "NOTE: This worldgen is basic and does nothing to mitigate cascading",
+        "world gen if the vein size is too large.",
+        "Default: " + 6
+    })
+    @Config.RangeInt(min = 0)
+    public int MAX_VEIN_SIZE = 6;
+  }
+
+  public static WorldGenDenseNetherCoalOre DENSE_NETHER_COAL_ORE = new WorldGenDenseNetherCoalOre();
+
+  public static class WorldGenDenseNetherCoalOre {
+
+    @Config.Comment({
+        "Set to false to disable this worldgen.",
+        "Default: " + true
+    })
+    public boolean ENABLED = true;
+
+    @Config.Comment({
+        "How many times will the generator try to spawn this worldgen.",
+        "Default: " + 30
+    })
+    @Config.RangeInt(min = 0)
+    public int CHANCES_TO_SPAWN = 30;
+
+    @Config.Comment({
+        "The minimum world height at which this will gen.",
+        "Must be larger than or equal to MAX_HEIGHT.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 0, max = 255)
+    public int MIN_HEIGHT = 1;
+
+    @Config.Comment({
+        "The maximum world height at which this will gen.",
+        "Must be less than or equal to MIN_HEIGHT.",
+        "Default: " + 127
+    })
+    @Config.RangeInt(min = 0, max = 255)
+    public int MAX_HEIGHT = 127;
+
+    @Config.Comment({
+        "The minimum size of the cluster.",
+        "Must be larger than or equal to MAX_VEIN_SIZE.",
+        "NOTE: This worldgen is basic and does nothing to mitigate cascading",
+        "world gen if the vein size is too large.",
+        "Default: " + 10
+    })
+    @Config.RangeInt(min = 1)
+    public int MIN_VEIN_SIZE = 10;
+
+    @Config.Comment({
+        "The maximum size of the cluster.",
+        "Must be less than or equal to MIN_VEIN_SIZE.",
+        "NOTE: This worldgen is basic and does nothing to mitigate cascading",
+        "world gen if the vein size is too large.",
+        "Default: " + 20
+    })
+    @Config.RangeInt(min = 0)
+    public int MAX_VEIN_SIZE = 20;
+  }
+
   public static WorldGenRocks ROCKS = new WorldGenRocks();
 
   public static class WorldGenRocks {

@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.google.common.base.Predicate;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -104,6 +105,23 @@ public class WorldGenOre
       } else {
         return false;
       }
+    }
+  }
+
+  public static class BlockPredicate
+      implements Predicate<IBlockState> {
+
+    private Block toReplace;
+
+    public BlockPredicate(Block toReplace) {
+
+      this.toReplace = toReplace;
+    }
+
+    public boolean apply(IBlockState blockState) {
+
+      return blockState != null
+          && blockState.getBlock() == this.toReplace;
     }
   }
 }
