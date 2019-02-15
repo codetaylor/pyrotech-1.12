@@ -1,197 +1,61 @@
 package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
-import com.codetaylor.mc.athenaeum.util.ArrayHelper;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.pyrotech.library.util.FloodFill;
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockOre;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import com.google.common.collect.Lists;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class WorldGenerator
     implements IWorldGenerator {
 
-  private WorldGenOre worldGenFossil;
-  private WorldGenOre worldGenLimestone;
-  private WorldGenOre worldGenDenseNetherCoal;
+  private List<IWorldGenFeature> featureList;
+  private Int2ObjectMap<List<IWorldGenFeature>> perDimensionFeatureList;
 
   public WorldGenerator() {
 
-    this.worldGenFossil = new WorldGenOre(
-        ModuleCore.Blocks.ORE.getDefaultState().withProperty(BlockOre.VARIANT, BlockOre.EnumType.FOSSIL_ORE),
-        random -> {
-          int minVeinSize = ModuleWorldGenConfig.FOSSIL.MIN_VEIN_SIZE;
-          int maxVeinSize = ModuleWorldGenConfig.FOSSIL.MAX_VEIN_SIZE;
-          return (minVeinSize + random.nextInt(Math.max(1, maxVeinSize - minVeinSize + 1)));
-        }
+    this.featureList = Lists.newArrayList(
+        new WorldGenFossil(),
+        new WorldGenLimestone(),
+        new WorldGenDenseCoal(),
+        new WorldGenDenseNetherCoal(),
+        new WorldGenRocks()
     );
 
-    this.worldGenLimestone = new WorldGenOre(
-        ModuleCore.Blocks.LIMESTONE.getDefaultState(),
-        random -> {
-          int minVeinSize = ModuleWorldGenConfig.LIMESTONE.MIN_VEIN_SIZE;
-          int maxVeinSize = ModuleWorldGenConfig.LIMESTONE.MAX_VEIN_SIZE;
-          return (minVeinSize + random.nextInt(Math.max(1, maxVeinSize - minVeinSize + 1)));
-        }
-    );
-
-    this.worldGenDenseNetherCoal = new WorldGenOre(
-        ModuleCore.Blocks.ORE.getDefaultState().withProperty(BlockOre.VARIANT, BlockOre.EnumType.DENSE_NETHER_COAL_ORE),
-        random -> {
-          int minVeinSize = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.MIN_VEIN_SIZE;
-          int maxVeinSize = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.MAX_VEIN_SIZE;
-          return (minVeinSize + random.nextInt(Math.max(1, maxVeinSize - minVeinSize + 1)));
-        },
-        new WorldGenOre.BlockPredicate(Blocks.NETHERRACK)
-    );
+    this.perDimensionFeatureList = new Int2ObjectOpenHashMap<>();
   }
 
   @Override
   public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 
-    // Fossil
-    if (this.isAllowedDimension(world, ModuleWorldGenConfig.FOSSIL.DIMENSION_WHITELIST, ModuleWorldGenConfig.FOSSIL.DIMENSION_BLACKLIST)
-        && ModuleWorldGenConfig.FOSSIL.ENABLED
-        && ModuleWorldGenConfig.FOSSIL.CHANCES_TO_SPAWN > 0) {
-      final int chancesToSpawn = ModuleWorldGenConfig.FOSSIL.CHANCES_TO_SPAWN;
-      final int minY = ModuleWorldGenConfig.FOSSIL.MIN_HEIGHT;
-      final int maxY = ModuleWorldGenConfig.FOSSIL.MAX_HEIGHT;
-      final int blockXPos = chunkX << 4;
-      final int blockZPos = chunkZ << 4;
+    int dimension = world.provider.getDimension();
+    List<IWorldGenFeature> features = this.perDimensionFeatureList.get(dimension);
 
-      for (int i = 0; i < chancesToSpawn; i++) {
-        int posX = blockXPos + random.nextInt(16);
-        int posY = minY + random.nextInt(Math.max(1, maxY - minY + 1));
-        int posZ = blockZPos + random.nextInt(16);
-        this.worldGenFossil.generate(world, random, new BlockPos(posX, posY, posZ));
-      }
-    }
+    if (features == null) {
+      features = new ArrayList<>();
 
-    // Limestone
-    if (this.isAllowedDimension(world, ModuleWorldGenConfig.LIMESTONE.DIMENSION_WHITELIST, ModuleWorldGenConfig.LIMESTONE.DIMENSION_BLACKLIST)
-        && ModuleWorldGenConfig.LIMESTONE.ENABLED
-        && ModuleWorldGenConfig.LIMESTONE.CHANCES_TO_SPAWN > 0) {
-      final int chancesToSpawn = ModuleWorldGenConfig.LIMESTONE.CHANCES_TO_SPAWN;
-      final int minY = ModuleWorldGenConfig.LIMESTONE.MIN_HEIGHT;
-      final int maxY = ModuleWorldGenConfig.LIMESTONE.MAX_HEIGHT;
-      final int blockXPos = chunkX << 4;
-      final int blockZPos = chunkZ << 4;
+      for (IWorldGenFeature feature : this.featureList) {
 
-      for (int i = 0; i < chancesToSpawn; i++) {
-        int posX = blockXPos + random.nextInt(16);
-        int posY = minY + random.nextInt(Math.max(1, maxY - minY + 1));
-        int posZ = blockZPos + random.nextInt(16);
-        this.worldGenLimestone.generate(world, random, new BlockPos(posX, posY, posZ));
-      }
-    }
-
-    // Dense Coal Ore
-    if (this.isAllowedDimension(world, ModuleWorldGenConfig.DENSE_COAL_ORE.DIMENSION_WHITELIST, ModuleWorldGenConfig.DENSE_COAL_ORE.DIMENSION_BLACKLIST)
-        && ModuleWorldGenConfig.DENSE_COAL_ORE.ENABLED) {
-      final int minY = ModuleWorldGenConfig.DENSE_COAL_ORE.MIN_HEIGHT;
-      final int maxY = ModuleWorldGenConfig.DENSE_COAL_ORE.MAX_HEIGHT;
-      final int minVeinSize = MathHelper.clamp(ModuleWorldGenConfig.DENSE_COAL_ORE.MIN_VEIN_SIZE, 0, ModuleWorldGenConfig.DENSE_COAL_ORE.MAX_VEIN_SIZE);
-      final int maxVeinSize = Math.max(ModuleWorldGenConfig.DENSE_COAL_ORE.MAX_VEIN_SIZE, minVeinSize);
-      final int blockXPos = chunkX << 4;
-      final int blockZPos = chunkZ << 4;
-
-      BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
-
-      for (int x = 2; x < 16; x += 4) {
-        for (int z = 2; z < 16; z += 4) {
-          for (int y = minY; y < maxY; y++) {
-            mutableBlockPos.setPos(blockXPos + x, y, blockZPos + z);
-
-            if (world.getBlockState(mutableBlockPos).getBlock() == Blocks.COAL_ORE) {
-              FloodFill.apply(
-                  world,
-                  mutableBlockPos,
-                  (w, p) -> (w.getBlockState(p).getBlock() == Blocks.COAL_ORE),
-                  (w, p) -> w.setBlockState(p, ModuleCore.Blocks.ORE.getDefaultState()
-                      .withProperty(BlockOre.VARIANT, BlockOre.EnumType.DENSE_COAL_ORE)),
-                  random.nextInt(maxVeinSize - minVeinSize + 1) + minVeinSize
-              );
-              break;
-            }
-          }
+        if (feature.isAllowed(dimension)) {
+          features.add(feature);
         }
       }
+
+      this.perDimensionFeatureList.put(dimension, features);
     }
 
-    // Dense Nether Coal Ore
-    if (this.isAllowedDimension(world, ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.DIMENSION_WHITELIST, ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.DIMENSION_BLACKLIST)
-        && ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.ENABLED
-        && ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.CHANCES_TO_SPAWN > 0) {
-      final int chancesToSpawn = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.CHANCES_TO_SPAWN;
-      final int minY = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.MIN_HEIGHT;
-      final int maxY = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.MAX_HEIGHT;
-      final int blockXPos = chunkX << 4;
-      final int blockZPos = chunkZ << 4;
+    if (!features.isEmpty()) {
 
-      for (int i = 0; i < chancesToSpawn; i++) {
-        int posX = blockXPos + random.nextInt(16);
-        int posY = minY + random.nextInt(Math.max(1, maxY - minY + 1));
-        int posZ = blockZPos + random.nextInt(16);
-        this.worldGenDenseNetherCoal.generate(world, random, new BlockPos(posX, posY, posZ));
+      for (IWorldGenFeature feature : features) {
+        feature.generate(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
       }
     }
-
-    // Stone Rocks
-    if (this.isAllowedDimension(world, ModuleWorldGenConfig.ROCKS.DIMENSION_WHITELIST, ModuleWorldGenConfig.ROCKS.DIMENSION_BLACKLIST)
-        && ModuleWorldGenConfig.ROCKS.ENABLED
-        && ModuleWorldGenConfig.ROCKS.CHANCES_TO_SPAWN > 0) {
-      final int blockXPos = chunkX << 4;
-      final int blockZPos = chunkZ << 4;
-      final double density = ModuleWorldGenConfig.ROCKS.DENSITY;
-
-      for (int i = 0; i < ModuleWorldGenConfig.ROCKS.CHANCES_TO_SPAWN; i++) {
-
-        int posX = blockXPos + random.nextInt(16) + 8;
-        int posY = world.getHeight(blockXPos, blockZPos);
-        int posZ = blockZPos + random.nextInt(16) + 8;
-
-        BlockHelper.forBlocksInCube(world, new BlockPos(posX, posY, posZ), 4, 4, 4, (w, p, bs) -> {
-
-          if (w.isAirBlock(p)
-              && this.canSpawnOnTopOf(w, p.down(), w.getBlockState(p.down()))
-              && random.nextFloat() < density) {
-            world.setBlockState(p, ModuleCore.Blocks.ROCK.getDefaultState().withProperty(BlockRock.VARIANT, BlockRock.EnumType.STONE), 2 | 16);
-          }
-
-          return true; // keep processing
-        });
-      }
-    }
-
-  }
-
-  private boolean canSpawnOnTopOf(World world, BlockPos pos, IBlockState blockState) {
-
-    Block block = blockState.getBlock();
-    return block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.STONE;
-  }
-
-  private boolean isAllowedDimension(World world, int[] whitelist, int[] blacklist) {
-
-    if (whitelist.length > 0) {
-      return ArrayHelper.containsInt(whitelist, world.provider.getDimension());
-
-    } else if (blacklist.length > 0) {
-      return !ArrayHelper.containsInt(blacklist, world.provider.getDimension());
-    }
-
-    return true;
   }
 
 }
