@@ -44,7 +44,7 @@ public class SoakingPotRecipesAdd {
       registry.register(new SoakingPotRecipe(
           new ItemStack(ModuleCore.Blocks.LIVING_TAR),
           Ingredient.fromStacks(new ItemStack(Blocks.NETHERRACK)),
-          new FluidStack(ModuleTechRefractory.Fluids.COAL_TAR, 500),
+          new FluidStack(ModuleTechRefractory.Fluids.COAL_TAR, 1000),
           14 * 60 * 20
       ).setRegistryName(ModuleTechBasic.MOD_ID, "living_tar"));
     }
