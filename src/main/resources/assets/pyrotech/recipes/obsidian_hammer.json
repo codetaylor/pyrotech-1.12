@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " RF",
+    " SR",
+    "S  "
+  ],
+  "key": {
+    "R": {
+      "item": "pyrotech:material",
+      "data": 33
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "F": {
+      "item": "pyrotech:material",
+      "data": 26
+    }
+  },
+  "result": {
+    "item": "pyrotech:obsidian_hammer",
+    "count": 1,
+    "data": 0
+  }
+}
