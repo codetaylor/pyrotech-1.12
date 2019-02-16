@@ -140,18 +140,11 @@ public class ModuleStorageConfig {
     public String[] ITEM_WHITELIST = ArrayHelper.combine(
         ModuleStorageConfig.SIMPLE_ROCK_BAG.ITEM_WHITELIST,
         new String[]{
-            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.STONE.getMeta(),
-            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.GRANITE.getMeta(),
-            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.DIORITE.getMeta(),
-            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.ANDESITE.getMeta(),
-            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.DIRT.getMeta(),
-            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.SANDSTONE.getMeta(),
-            ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.LIMESTONE.getMeta(),
-            ModuleStorage.MOD_ID + ":" + BlockRockGrass.NAME + ":0",
-
             "minecraft:dirt:0",
             "minecraft:cobblestone",
             "minecraft:gravel",
+            "minecraft:sandstone:0",
+            "minecraft:red_sandstone:0",
             ModuleStorage.MOD_ID + ":" + BlockCobblestone.NAME + ":*"
         }
     );
