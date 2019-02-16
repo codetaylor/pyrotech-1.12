@@ -13,6 +13,8 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.PlayerMainInvWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,9 +100,29 @@ public class EntityItemPickupEventHandler {
       return;
     }
 
+    EntityItem entityItem = event.getItem();
+    ItemStack itemStack = entityItem.getItem();
+
+    // Try to fill existing stacks first
+
+    IItemHandler inventory = new PlayerMainInvWrapper(entityPlayer.inventory);
+
+    for (int i = 0; i < inventory.getSlots(); i++) {
+
+      if (!inventory.getStackInSlot(i).isEmpty()) {
+        ItemStack remainingItems = inventory.insertItem(i, itemStack, false);
+
+        if (remainingItems.getCount() != itemStack.getCount()) {
+          itemStack.setCount(remainingItems.getCount());
+        }
+
+        if (remainingItems.getCount() == 0) {
+          return;
+        }
+      }
+    }
+
     for (BagHandler handler : handlers) {
-      EntityItem entityItem = event.getItem();
-      ItemStack itemStack = entityItem.getItem();
 
       ItemStack remainingItems = handler.insert(itemStack);
       int remainingItemsCount = remainingItems.getCount();
