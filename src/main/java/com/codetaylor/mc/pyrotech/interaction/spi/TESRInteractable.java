@@ -73,7 +73,8 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
 
       Minecraft minecraft = Minecraft.getMinecraft();
 
-      if (minecraft.player.isSneaking()) {
+      if (minecraft.player.isSneaking()
+          || ModuleCoreConfig.CLIENT.ALWAYS_SHOW_QUANTITIES) {
         FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
         IInteraction[] interactions = te.getInteractions();
         EnumFacing horizontalFacing = minecraft.player.getHorizontalFacing();
