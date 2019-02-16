@@ -19,6 +19,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -51,6 +53,18 @@ public class ModuleCore
     this.registerIntegrationPlugin(
         "jei",
         "com.codetaylor.mc.pyrotech.modules.core.plugin.jei.PluginJEI"
+    );
+  }
+
+  @Override
+  public void onPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onPreInitializationEvent(event);
+
+    FMLInterModComms.sendMessage(
+        "waila",
+        "register",
+        "com.codetaylor.mc.pyrotech.modules.core.plugin.waila.PluginWaila.wailaCallback"
     );
   }
 
