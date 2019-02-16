@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.bloomery"]
+    }
+  ],
+  "pattern": [
+    " X ",
+    "SXX",
+    " S "
+  ],
+  "key": {
+    "X": {
+      "item": "pyrotech:material",
+      "data": 33
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 27
+    }
+  },
+  "result": {
+    "item": "pyrotech:tongs_obsidian",
+    "count": 1,
+    "data": 0
+  }
+}
