@@ -14,102 +14,71 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Mod.EventBusSubscriber
 public class EntityItemPickupEventHandler {
 
-  private static final List<IBagLocator> BAG_LOCATOR_LIST = new ArrayList<>(3);
+  private final List<IBagLocator> bagLocatorList;
 
   public EntityItemPickupEventHandler() {
 
+    this.bagLocatorList = new ArrayList<>(4);
+
     // Mainhand
-    BAG_LOCATOR_LIST.add(new IBagLocator() {
+    this.bagLocatorList.add((player, result) -> {
 
-      @Nullable
-      @Override
-      public BagHandler locateBag(EntityPlayer player) {
+      ItemStack heldItemStack = player.getHeldItemMainhand();
+      Item heldItem = heldItemStack.getItem();
 
-        ItemStack heldItemStack = player.getHeldItemMainhand();
-        Item heldItem = heldItemStack.getItem();
-
-        if (heldItem instanceof ItemBlockBag) {
-
-          if (((ItemBlockBag) heldItem).allowAutoPickupMainhand()) {
-            return new BagHandler(heldItemStack);
-          }
-        }
-
-        return null;
+      if (heldItem instanceof ItemBlockBag
+          && ((ItemBlockBag) heldItem).allowAutoPickupMainhand()
+          && ((ItemBlockBag) heldItem).isOpen(heldItemStack)) {
+        result.add(new BagHandler(heldItemStack));
       }
     });
 
     // Offhand
-    BAG_LOCATOR_LIST.add(new IBagLocator() {
+    this.bagLocatorList.add((player, result) -> {
 
-      @Nullable
-      @Override
-      public BagHandler locateBag(EntityPlayer player) {
+      ItemStack heldItemStack = player.getHeldItemOffhand();
+      Item heldItem = heldItemStack.getItem();
 
-        ItemStack heldItemStack = player.getHeldItemOffhand();
-        Item heldItem = heldItemStack.getItem();
-
-        if (heldItem instanceof ItemBlockBag) {
-
-          if (((ItemBlockBag) heldItem).allowAutoPickupOffhand()) {
-            return new BagHandler(heldItemStack);
-          }
-        }
-
-        return null;
+      if (heldItem instanceof ItemBlockBag
+          && ((ItemBlockBag) heldItem).allowAutoPickupOffhand()
+          && ((ItemBlockBag) heldItem).isOpen(heldItemStack)) {
+        result.add(new BagHandler(heldItemStack));
       }
     });
 
     // Hotbar
-    BAG_LOCATOR_LIST.add(new IBagLocator() {
+    this.bagLocatorList.add((player, result) -> {
 
-      @Nullable
-      @Override
-      public BagHandler locateBag(EntityPlayer player) {
+      for (int i = 0; i < 9; i++) {
+        ItemStack itemStack = player.inventory.mainInventory.get(i);
+        Item item = itemStack.getItem();
 
-        for (int i = 0; i < 9; i++) {
-          ItemStack itemStack = player.inventory.mainInventory.get(i);
-          Item item = itemStack.getItem();
-
-          if (item instanceof ItemBlockBag) {
-
-            if (((ItemBlockBag) item).allowAutoPickupHotbar()) {
-              return new BagHandler(itemStack);
-            }
-          }
+        if (item instanceof ItemBlockBag
+            && ((ItemBlockBag) item).allowAutoPickupHotbar()
+            && ((ItemBlockBag) item).isOpen(itemStack)) {
+          result.add(new BagHandler(itemStack));
         }
-
-        return null;
       }
     });
 
     // Inventory
-    BAG_LOCATOR_LIST.add(new IBagLocator() {
+    this.bagLocatorList.add((player, result) -> {
 
-      @Nullable
-      @Override
-      public BagHandler locateBag(EntityPlayer player) {
+      for (int i = 10; i < 36; i++) {
+        ItemStack itemStack = player.inventory.mainInventory.get(i);
+        Item item = itemStack.getItem();
 
-        for (int i = 10; i < 36; i++) {
-          ItemStack itemStack = player.inventory.mainInventory.get(i);
-          Item item = itemStack.getItem();
-
-          if (item instanceof ItemBlockBag) {
-
-            if (((ItemBlockBag) item).allowAutoPickupInventory()) {
-              return new BagHandler(itemStack);
-            }
-          }
+        if (item instanceof ItemBlockBag
+            && ((ItemBlockBag) item).allowAutoPickupInventory()
+            && ((ItemBlockBag) item).isOpen(itemStack)) {
+          result.add(new BagHandler(itemStack));
         }
-
-        return null;
       }
     });
   }
@@ -123,41 +92,45 @@ public class EntityItemPickupEventHandler {
       return;
     }
 
-    BagHandler handler = this.locateBag(entityPlayer);
+    List<BagHandler> handlers = this.locateBags(entityPlayer);
 
-    if (handler == null) {
+    if (handlers.isEmpty()) {
       return;
     }
 
-    EntityItem entityItem = event.getItem();
-    ItemStack itemStack = entityItem.getItem();
-    ItemStack remainingItems = handler.insert(itemStack);
+    for (BagHandler handler : handlers) {
+      EntityItem entityItem = event.getItem();
+      ItemStack itemStack = entityItem.getItem();
 
-    if (remainingItems.getCount() != itemStack.getCount()) {
-      SoundHelper.playSoundServer(entityPlayer.world, entityPlayer.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.40f, SoundHelper.getPitchEntityItemPickup());
-    }
+      ItemStack remainingItems = handler.insert(itemStack);
+      int remainingItemsCount = remainingItems.getCount();
 
-    itemStack.setCount(remainingItems.getCount());
-  }
+      if (remainingItemsCount != itemStack.getCount()) {
+        SoundHelper.playSoundServer(entityPlayer.world, entityPlayer.getPosition(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.40f, SoundHelper.getPitchEntityItemPickup());
+      }
 
-  private BagHandler locateBag(EntityPlayer player) {
+      itemStack.setCount(remainingItemsCount);
 
-    BagHandler handler;
-
-    for (IBagLocator locator : BAG_LOCATOR_LIST) {
-
-      if ((handler = locator.locateBag(player)) != null) {
-        return handler;
+      if (remainingItemsCount == 0) {
+        break;
       }
     }
+  }
 
-    return null;
+  private List<BagHandler> locateBags(EntityPlayer player) {
+
+    List<BagHandler> result = new ArrayList<>(4);
+
+    for (IBagLocator locator : this.bagLocatorList) {
+      locator.locateBags(player, result);
+    }
+
+    return result;
   }
 
   private interface IBagLocator {
 
-    @Nullable
-    BagHandler locateBag(EntityPlayer player);
+    void locateBags(EntityPlayer player, List<BagHandler> result);
   }
 
   private static class BagHandler {
