@@ -333,7 +333,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (itemStack.getItem() instanceof ItemSawmillBlade);
+      return this.tile.isValidSawmillBlade(itemStack);
     }
 
     public TileSawmillBase getTile() {
