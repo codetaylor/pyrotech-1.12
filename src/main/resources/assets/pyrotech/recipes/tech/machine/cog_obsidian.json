@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.machine"]
+    }
+  ],
+  "pattern": [
+    "BBB",
+    "B B",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "pyrotech:material",
+      "data": 33
+    }
+  },
+  "result": {
+    "item": "pyrotech:cog_obsidian",
+    "count": 1,
+    "data": 0
+  }
+}
