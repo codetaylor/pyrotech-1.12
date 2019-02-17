@@ -334,6 +334,8 @@ public class ModuleCoreConfig {
         "minecraft:redstone",
         "minecraft:lapis_block",
         "minecraft:lapis_lazuli",
+        "minecraft:iron_nugget",
+        "minecraft:gold_nugget",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
