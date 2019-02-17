@@ -137,7 +137,7 @@ public abstract class ItemTongsFullBase
 
       if (I18n.canTranslate(langKey)) {
         String translatedLangKey = I18n.translateToLocal(langKey);
-        String translatedTooltip = I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".unique.name", translatedLangKey).trim();
+        String translatedTooltip = I18n.translateToLocalFormatted(ModuleTechBloomery.Blocks.BLOOM.getUnlocalizedName() + ".unique.name", translatedLangKey).trim();
 
         if (tooltip.size() > 1) {
           tooltip.add(1, TextFormatting.DARK_RED + translatedTooltip + TextFormatting.RESET);
@@ -147,6 +147,13 @@ public abstract class ItemTongsFullBase
         }
       }
     }
+  }
+
+  @Nonnull
+  @Override
+  public String getItemStackDisplayName(@Nonnull ItemStack stack) {
+
+    return this.otherTongsSupplier.get().getItemStackDisplayName(stack);
   }
 
   @Override
