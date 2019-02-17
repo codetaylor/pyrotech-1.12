@@ -9,8 +9,11 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi.ItemTongsFullBa
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 
 import javax.annotation.Nullable;
+import java.util.Map;
 import java.util.Random;
 
 public class BloomHelper {
@@ -53,7 +57,16 @@ public class BloomHelper {
       result = 1;
     }
 
-    result *= ArrayHelper.getOrLast(ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL, hammerHarvestLevel);
+    double[] modifier = ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL;
+    result *= ArrayHelper.getOrLast(modifier, hammerHarvestLevel);
+
+    Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(heldItem);
+    Integer efficiencyLevel = enchantments.get(Enchantments.EFFICIENCY);
+
+    if (efficiencyLevel != null) {
+      double[] bonus = ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_BONUS_PER_EFFICIENCY_LEVEL;
+      result += ArrayHelper.getOrLast(bonus, efficiencyLevel - 1);
+    }
 
     return Math.max(0, result);
   }
