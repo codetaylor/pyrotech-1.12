@@ -131,7 +131,7 @@ public class StoneSawmillRecipesAdd {
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_1"));
 
     output = output.copy();
-    output.setCount(3);
+    output.setCount(2);
 
     registry.register(new StoneSawmillRecipe(
         output,
@@ -145,12 +145,12 @@ public class StoneSawmillRecipesAdd {
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_2"));
 
     output = output.copy();
-    output.setCount(4);
+    output.setCount(3);
 
     registry.register(new StoneSawmillRecipe(
         output,
         input,
-        ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 2 * 20,
+        ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
         Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
         woodChips
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_3"));
