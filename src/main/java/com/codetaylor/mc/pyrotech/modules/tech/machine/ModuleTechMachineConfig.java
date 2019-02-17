@@ -677,11 +677,7 @@ public class ModuleTechMachineConfig {
     public String[] SAWMILL_BLADES = {
         "pyrotech:sawmill_blade_stone",
         "pyrotech:sawmill_blade_flint",
-        "pyrotech:sawmill_blade_bone",
-        "pyrotech:sawmill_blade_iron",
-        "pyrotech:sawmill_blade_gold",
-        "pyrotech:sawmill_blade_diamond",
-        "pyrotech:sawmill_blade_obsidian"
+        "pyrotech:sawmill_blade_bone"
     };
   }
 
