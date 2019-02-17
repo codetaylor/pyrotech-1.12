@@ -51,6 +51,6 @@ public class WorldGenDenseNetherCoal
 
     return ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.ENABLED
         && ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.CHANCES_TO_SPAWN > 0
-        && this.isAllowedDimension(dimensionId, ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.DIMENSION_WHITELIST, ModuleWorldGenConfig.FOSSIL.DIMENSION_BLACKLIST);
+        && this.isAllowedDimension(dimensionId, ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.DIMENSION_WHITELIST, ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.DIMENSION_BLACKLIST);
   }
 }

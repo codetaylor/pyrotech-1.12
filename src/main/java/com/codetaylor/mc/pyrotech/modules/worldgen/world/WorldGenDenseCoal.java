@@ -53,6 +53,6 @@ public class WorldGenDenseCoal
   public boolean isAllowed(int dimensionId) {
 
     return ModuleWorldGenConfig.DENSE_COAL_ORE.ENABLED
-        && this.isAllowedDimension(dimensionId, ModuleWorldGenConfig.DENSE_COAL_ORE.DIMENSION_WHITELIST, ModuleWorldGenConfig.FOSSIL.DIMENSION_BLACKLIST);
+        && this.isAllowedDimension(dimensionId, ModuleWorldGenConfig.DENSE_COAL_ORE.DIMENSION_WHITELIST, ModuleWorldGenConfig.DENSE_COAL_ORE.DIMENSION_BLACKLIST);
   }
 }

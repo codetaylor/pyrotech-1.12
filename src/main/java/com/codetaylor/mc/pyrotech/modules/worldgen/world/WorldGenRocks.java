@@ -49,7 +49,7 @@ public class WorldGenRocks
 
     return ModuleWorldGenConfig.ROCKS.ENABLED
         && ModuleWorldGenConfig.ROCKS.CHANCES_TO_SPAWN > 0
-        && this.isAllowedDimension(dimensionId, ModuleWorldGenConfig.ROCKS.DIMENSION_WHITELIST, ModuleWorldGenConfig.FOSSIL.DIMENSION_BLACKLIST);
+        && this.isAllowedDimension(dimensionId, ModuleWorldGenConfig.ROCKS.DIMENSION_WHITELIST, ModuleWorldGenConfig.ROCKS.DIMENSION_BLACKLIST);
   }
 
   private boolean canSpawnOnTopOf(World world, BlockPos pos, IBlockState blockState) {

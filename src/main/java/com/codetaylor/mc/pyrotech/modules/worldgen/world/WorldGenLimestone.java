@@ -48,6 +48,6 @@ public class WorldGenLimestone
 
     return ModuleWorldGenConfig.LIMESTONE.ENABLED
         && ModuleWorldGenConfig.LIMESTONE.CHANCES_TO_SPAWN > 0
-        && this.isAllowedDimension(dimensionId, ModuleWorldGenConfig.LIMESTONE.DIMENSION_WHITELIST, ModuleWorldGenConfig.FOSSIL.DIMENSION_BLACKLIST);
+        && this.isAllowedDimension(dimensionId, ModuleWorldGenConfig.LIMESTONE.DIMENSION_WHITELIST, ModuleWorldGenConfig.LIMESTONE.DIMENSION_BLACKLIST);
   }
 }
