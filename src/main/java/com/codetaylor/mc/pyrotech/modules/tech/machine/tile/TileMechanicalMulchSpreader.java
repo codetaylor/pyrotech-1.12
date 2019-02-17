@@ -251,9 +251,9 @@ public class TileMechanicalMulchSpreader
     /* package */ InteractionMulch(TileMechanicalMulchSpreader tile, ItemStackHandler stackHandler, Predicate<ItemStack> filter) {
 
       super(new ItemStackHandler[]{stackHandler}, 0, new EnumFacing[]{EnumFacing.UP}, InteractionBounds.BLOCK, new Transform(
-          Transform.translate(0.5, 16.0, 0.5),
+          Transform.translate(0.5, 1.0, 0.5),
           Transform.rotate(),
-          Transform.scale(0.75, 0.75, 0.75)
+          Transform.scale(0.5, 0.5, 0.5)
       ));
       this.tile = tile;
       this.filter = filter;
@@ -273,7 +273,7 @@ public class TileMechanicalMulchSpreader
     @Override
     public Vec3d getTextOffset(EnumFacing tileFacing, EnumFacing playerHorizontalFacing, EnumFacing sideHit) {
 
-      return new Vec3d(0, 0.5, 0);
+      return new Vec3d(0, 0.1, 0);
     }
 
     @Override
