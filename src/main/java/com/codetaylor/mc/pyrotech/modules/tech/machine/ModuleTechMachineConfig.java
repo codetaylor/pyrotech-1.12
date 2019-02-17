@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine;
 
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.config.Config;
 
 import javax.annotation.Nullable;
@@ -253,6 +254,90 @@ public class ModuleTechMachineConfig {
         "Default: " + 64
     })
     public int OUTPUT_CAPACITY = 64;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Mechanical Mulch Spreader
+  // ---------------------------------------------------------------------------
+
+  public static MechanicalMulchSpreader MECHANICAL_MULCH_SPREADER = new MechanicalMulchSpreader();
+
+  public static class MechanicalMulchSpreader {
+
+    @Config.Comment({
+        "A list of valid cogs for the device.",
+        "NOTE: Items provided here are assumed to have durability.",
+        "String format is (domain):(path) for the item (range);(attempts) for the",
+        "range of the mulch [0, 5] and the number of attempts per",
+        "work cycle [1, 121]."
+    })
+    public Map<String, String> COGS = new LinkedHashMap<String, String>() {{
+      this.put("pyrotech:cog_wood", "0;1");
+      this.put("pyrotech:cog_stone", "1;1");
+      this.put("pyrotech:cog_flint", "2;1");
+      this.put("pyrotech:cog_bone", "2;2");
+      this.put("pyrotech:cog_iron", "3;2");
+      this.put("pyrotech:cog_obsidian", "4;4");
+      this.put("pyrotech:cog_diamond", "5;8");
+    }};
+
+    /**
+     * Returns the recipe progress for the given item resource location,
+     * or -1 if it isn't in the list.
+     */
+    public int[] getCogData(@Nullable ResourceLocation resourceLocation, int[] result) {
+
+      if (resourceLocation != null) {
+        String data = this.COGS.get(resourceLocation.toString());
+
+        if (data != null) {
+
+          try {
+            String[] split = data.split(";");
+            result[0] = MathHelper.clamp(Integer.valueOf(split[0]), 0, 5);
+            result[1] = MathHelper.clamp(Integer.valueOf(split[1]), 1, 121);
+            return result;
+
+          } catch (Exception e) {
+            ModuleTechMachine.LOGGER.error("Invalid mulch spreader cog data in config", e);
+          }
+        }
+      }
+
+      result[0] = -1;
+      result[1] = -1;
+      return result;
+    }
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    public enum EnumCogDamageType {
+      PerItem, PerOperation
+    }
+
+    @Config.Comment({
+        "If set to PerItem, damage will be done to the cog for every block",
+        "mulched. If set to PerOperation, damage will be done to the cog",
+        "each time it does work, regardless of the number of blocks mulched.",
+        "Default: " + "PerItem"
+    })
+    public EnumCogDamageType COG_DAMAGE_TYPE = EnumCogDamageType.PerItem;
+
+    @Config.Comment({
+        "How many ticks before making an attempt to apply mulch.",
+        "Default: " + (10 * 20)
+    })
+    public int WORK_INTERVAL_TICKS = 10 * 20;
+
+    @Config.Comment({
+        "The number of stacks of mulch the device can hold.",
+        "Default: " + 5
+    })
+    public int CAPACITY = 5;
   }
 
   // ---------------------------------------------------------------------------

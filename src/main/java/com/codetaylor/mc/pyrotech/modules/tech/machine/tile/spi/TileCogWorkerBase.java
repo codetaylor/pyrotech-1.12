@@ -125,6 +125,12 @@ public abstract class TileCogWorkerBase
   // - Update
   // ---------------------------------------------------------------------------
 
+  /**
+   * Perform work and return cog damage.
+   *
+   * @param cog the cog
+   * @return cog damage
+   */
   protected abstract int doWork(ItemStack cog);
 
   @Override
@@ -198,7 +204,7 @@ public abstract class TileCogWorkerBase
 
     if (this.triggered.isDirty()
         && this.triggered.get()) {
-      this.clientRenderData.totalAnimationTime = this.getUpdateIntervalTicks();
+      this.clientRenderData.totalAnimationTime = Math.min(this.getUpdateIntervalTicks(), 40);
       this.clientRenderData.remainingAnimationTime = this.clientRenderData.totalAnimationTime;
       this.clientRenderData.cogRotationStage = (this.clientRenderData.cogRotationStage + 1) % 8;
     }

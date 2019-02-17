@@ -69,7 +69,8 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
 
     if (rayTraceResult != null
         && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-        && (te.getPos().equals(rayTraceResult.getBlockPos()) || te.isExtendedInteraction(world, rayTraceResult.getBlockPos(), world.getBlockState(rayTraceResult.getBlockPos())))) {
+        && (te.getPos().equals(rayTraceResult.getBlockPos())
+        || te.isExtendedInteraction(world, rayTraceResult.getBlockPos(), world.getBlockState(rayTraceResult.getBlockPos())))) {
 
       Minecraft minecraft = Minecraft.getMinecraft();
 
@@ -121,7 +122,8 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
     if (rayTraceResult != null
         && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
         && rayTraceResult.hitInfo instanceof InteractionRayTraceData.List
-        && (te.getPos().equals(rayTraceResult.getBlockPos()) || te.isExtendedInteraction(world, rayTraceResult.getBlockPos(), world.getBlockState(rayTraceResult.getBlockPos())))) {
+        && (te.getPos().equals(rayTraceResult.getBlockPos())
+        || te.isExtendedInteraction(world, rayTraceResult.getBlockPos(), world.getBlockState(rayTraceResult.getBlockPos())))) {
 
       InteractionRayTraceData.List results = (InteractionRayTraceData.List) rayTraceResult.hitInfo;
 

@@ -178,6 +178,9 @@ public class ModuleTechMachine
     @GameRegistry.ObjectHolder(BlockMechanicalCompactingBin.NAME)
     public static final BlockMechanicalCompactingBin MECHANICAL_COMPACTING_BIN;
 
+    @GameRegistry.ObjectHolder(BlockMechanicalMulchSpreader.NAME)
+    public static final BlockMechanicalMulchSpreader MECHANICAL_MULCH_SPREADER;
+
     static {
       STONE_KILN = null;
       STONE_OVEN = null;
@@ -191,6 +194,7 @@ public class ModuleTechMachine
 
       STONE_HOPPER = null;
       MECHANICAL_COMPACTING_BIN = null;
+      MECHANICAL_MULCH_SPREADER = null;
     }
   }
 

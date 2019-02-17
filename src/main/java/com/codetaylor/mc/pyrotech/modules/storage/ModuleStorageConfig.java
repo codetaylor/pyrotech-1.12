@@ -363,7 +363,7 @@ public class ModuleStorageConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Durable Stash
+  // - Wood Rack
   // ---------------------------------------------------------------------------
 
   public static WoodRack WOOD_RACK = new WoodRack();

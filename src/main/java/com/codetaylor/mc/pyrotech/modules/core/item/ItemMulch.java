@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.core.item;
 
+import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
@@ -60,8 +60,6 @@ public class ItemMulch
 
             if (!world.isRemote) {
               world.setBlockState(blockPos, ModuleCore.Blocks.FARMLAND_MULCHED.getDefaultState());
-
-            } else {
               this.playSound(world, player);
             }
 
@@ -76,15 +74,11 @@ public class ItemMulch
 
   private void playSound(World world, EntityPlayer player) {
 
-    world.playSound(
-        player,
-        player.posX,
-        player.posY,
-        player.posZ,
+    SoundHelper.playSoundServer(
+        world,
+        player.getPosition(),
         SoundEvents.BLOCK_GRASS_PLACE,
-        SoundCategory.PLAYERS,
-        1,
-        (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
+        SoundCategory.PLAYERS
     );
   }
 }

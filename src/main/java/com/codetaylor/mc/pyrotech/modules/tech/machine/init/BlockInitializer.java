@@ -41,6 +41,9 @@ public final class BlockInitializer {
     BlockMechanicalCompactingBin blockMechanicalCompactingBin = new BlockMechanicalCompactingBin();
     registry.registerBlock(blockMechanicalCompactingBin, new BlockMechanicalCompactingBin.Item(blockMechanicalCompactingBin), BlockMechanicalCompactingBin.NAME);
 
+    BlockMechanicalMulchSpreader blockMechanicalMulchSpreader = new BlockMechanicalMulchSpreader();
+    registry.registerBlock(blockMechanicalMulchSpreader, new BlockMechanicalMulchSpreader.Item(blockMechanicalMulchSpreader), BlockMechanicalMulchSpreader.NAME);
+
     registry.registerTileEntities(
         TileStoneKiln.class,
         TileStoneKilnTop.class,
@@ -62,7 +65,8 @@ public final class BlockInitializer {
 
         TileStoneHopper.class,
         TileMechanicalCompactingBin.class,
-        TileMechanicalCompactingBinWorker.class
+        TileMechanicalCompactingBinWorker.class,
+        TileMechanicalMulchSpreader.class
     );
   }
 
@@ -83,7 +87,8 @@ public final class BlockInitializer {
           ModuleTechMachine.Blocks.BRICK_CRUCIBLE,
 
           ModuleTechMachine.Blocks.STONE_HOPPER,
-          ModuleTechMachine.Blocks.MECHANICAL_COMPACTING_BIN
+          ModuleTechMachine.Blocks.MECHANICAL_COMPACTING_BIN,
+          ModuleTechMachine.Blocks.MECHANICAL_MULCH_SPREADER
       );
 
       if (!ModuleTechMachineConfig.BRICK_KILN.USE_IRON_SKIN) {
@@ -119,6 +124,7 @@ public final class BlockInitializer {
 
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneHopper.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileMechanicalCompactingBinWorker.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileMechanicalMulchSpreader.class, new TESRInteractable<>());
     });
   }
 
