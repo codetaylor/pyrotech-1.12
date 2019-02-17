@@ -289,7 +289,7 @@ public class ModuleWorldGenConfig {
         "Whitelist takes precedence over blacklist."
     })
     public int[] DIMENSION_WHITELIST = {
-        -1
+        0
     };
 
     @Config.Comment({
