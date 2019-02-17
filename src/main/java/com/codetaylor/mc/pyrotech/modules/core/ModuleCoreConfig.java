@@ -336,6 +336,8 @@ public class ModuleCoreConfig {
         "minecraft:lapis_lazuli",
         "minecraft:iron_nugget",
         "minecraft:gold_nugget",
+        "minecraft:iron_ingot_from_block",
+        "minecraft:gold_ingot_from_block",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
