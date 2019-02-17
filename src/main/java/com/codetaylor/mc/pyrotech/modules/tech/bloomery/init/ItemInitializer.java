@@ -21,6 +21,8 @@ public final class ItemInitializer {
     registry.registerItem(new ItemTongsFullBone(), ItemTongsFullBone.NAME, true);
     registry.registerItem(new ItemTongsEmptyIron(), ItemTongsEmptyIron.NAME);
     registry.registerItem(new ItemTongsFullIron(), ItemTongsFullIron.NAME, true);
+    registry.registerItem(new ItemTongsEmptyGold(), ItemTongsEmptyGold.NAME);
+    registry.registerItem(new ItemTongsFullGold(), ItemTongsFullGold.NAME, true);
     registry.registerItem(new ItemTongsEmptyDiamond(), ItemTongsEmptyDiamond.NAME);
     registry.registerItem(new ItemTongsFullDiamond(), ItemTongsFullDiamond.NAME, true);
     registry.registerItem(new ItemTongsEmptyObsidian(), ItemTongsEmptyObsidian.NAME);
@@ -41,6 +43,8 @@ public final class ItemInitializer {
             ModuleTechBloomery.Items.TONGS_BONE_FULL,
             ModuleTechBloomery.Items.TONGS_IRON,
             ModuleTechBloomery.Items.TONGS_IRON_FULL,
+            ModuleTechBloomery.Items.TONGS_GOLD,
+            ModuleTechBloomery.Items.TONGS_GOLD_FULL,
             ModuleTechBloomery.Items.TONGS_DIAMOND,
             ModuleTechBloomery.Items.TONGS_DIAMOND_FULL,
             ModuleTechBloomery.Items.TONGS_OBSIDIAN,

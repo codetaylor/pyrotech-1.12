@@ -31,6 +31,7 @@ public class ModuleToolConfig {
     SHEARS_DURABILITY.put("stone", 90);
     SHEARS_DURABILITY.put("bone", 120);
     SHEARS_DURABILITY.put("flint", 120);
+    SHEARS_DURABILITY.put("gold", 30);
     SHEARS_DURABILITY.put("diamond", 952);
     SHEARS_DURABILITY.put("obsidian", 852);
   }

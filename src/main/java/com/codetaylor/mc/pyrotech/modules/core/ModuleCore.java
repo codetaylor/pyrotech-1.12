@@ -258,6 +258,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemIronHammer.NAME)
     public static final ItemIronHammer IRON_HAMMER;
 
+    @GameRegistry.ObjectHolder(ItemGoldHammer.NAME)
+    public static final ItemGoldHammer GOLD_HAMMER;
+
     @GameRegistry.ObjectHolder(ItemStoneHammer.NAME)
     public static final ItemStoneHammer STONE_HAMMER;
 
@@ -284,6 +287,7 @@ public class ModuleCore
       DIAMOND_HAMMER = null;
       FLINT_HAMMER = null;
       IRON_HAMMER = null;
+      GOLD_HAMMER = null;
       STONE_HAMMER = null;
       CRUDE_HAMMER = null;
       OBSIDIAN_HAMMER = null;

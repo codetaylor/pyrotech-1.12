@@ -64,6 +64,13 @@ public class ModuleTechMachineConfig {
     public int IRON_DURABILITY = 500;
 
     @Config.Comment({
+        "Durability of the gold sawmill blade.",
+        "Default: " + 500
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int GOLD_DURABILITY = 32;
+
+    @Config.Comment({
         "Durability of the diamond sawmill blade.",
         "Default: " + 1500
     })
@@ -122,6 +129,13 @@ public class ModuleTechMachineConfig {
     public int IRON_DURABILITY = (64 * 64);
 
     @Config.Comment({
+        "Durability of the gold cog.",
+        "Default: " + 33
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int GOLD_DURABILITY = 33;
+
+    @Config.Comment({
         "Durability of the diamond cog.",
         "Default: " + (64 * 256)
     })
@@ -156,6 +170,7 @@ public class ModuleTechMachineConfig {
       this.put("pyrotech:cog_flint", 8);
       this.put("pyrotech:cog_bone", 8);
       this.put("pyrotech:cog_iron", 16);
+      this.put("pyrotech:cog_gold", 1);
       this.put("pyrotech:cog_obsidian", 32);
       this.put("pyrotech:cog_diamond", 64);
     }};
@@ -216,6 +231,7 @@ public class ModuleTechMachineConfig {
       this.put("pyrotech:cog_flint", 0.25);
       this.put("pyrotech:cog_bone", 0.25);
       this.put("pyrotech:cog_iron", 0.35);
+      this.put("pyrotech:cog_gold", 0.10);
       this.put("pyrotech:cog_obsidian", 0.35);
       this.put("pyrotech:cog_diamond", 0.50);
     }};
@@ -277,6 +293,7 @@ public class ModuleTechMachineConfig {
       this.put("pyrotech:cog_flint", "2;1");
       this.put("pyrotech:cog_bone", "2;2");
       this.put("pyrotech:cog_iron", "3;2");
+      this.put("pyrotech:cog_gold", "0;1");
       this.put("pyrotech:cog_obsidian", "4;4");
       this.put("pyrotech:cog_diamond", "5;8");
     }};
@@ -662,6 +679,7 @@ public class ModuleTechMachineConfig {
         "pyrotech:sawmill_blade_flint",
         "pyrotech:sawmill_blade_bone",
         "pyrotech:sawmill_blade_iron",
+        "pyrotech:sawmill_blade_gold",
         "pyrotech:sawmill_blade_diamond",
         "pyrotech:sawmill_blade_obsidian"
     };
@@ -751,6 +769,7 @@ public class ModuleTechMachineConfig {
         "pyrotech:sawmill_blade_flint",
         "pyrotech:sawmill_blade_bone",
         "pyrotech:sawmill_blade_iron",
+        "pyrotech:sawmill_blade_gold",
         "pyrotech:sawmill_blade_diamond",
         "pyrotech:sawmill_blade_obsidian"
     };

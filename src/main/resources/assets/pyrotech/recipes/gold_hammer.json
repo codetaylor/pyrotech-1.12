@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " RF",
+    " SR",
+    "S  "
+  ],
+  "key": {
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "ingotGold"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "F": {
+      "item": "pyrotech:material",
+      "data": 26
+    }
+  },
+  "result": {
+    "item": "pyrotech:gold_hammer",
+    "count": 1,
+    "data": 0
+  }
+}

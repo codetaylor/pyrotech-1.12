@@ -253,6 +253,12 @@ public class ModuleTechBloomery
     @GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID + ":" + ItemTongsFullIron.NAME)
     public static final ItemTongsFullBase TONGS_IRON_FULL;
 
+    @GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID + ":" + ItemTongsEmptyGold.NAME)
+    public static final ItemTongsEmptyBase TONGS_GOLD;
+
+    @GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID + ":" + ItemTongsFullGold.NAME)
+    public static final ItemTongsFullBase TONGS_GOLD_FULL;
+
     @GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID + ":" + ItemTongsEmptyDiamond.NAME)
     public static final ItemTongsEmptyBase TONGS_DIAMOND;
 
@@ -276,6 +282,8 @@ public class ModuleTechBloomery
       TONGS_FLINT_FULL = null;
       TONGS_IRON = null;
       TONGS_IRON_FULL = null;
+      TONGS_GOLD = null;
+      TONGS_GOLD_FULL = null;
       TONGS_DIAMOND = null;
       TONGS_DIAMOND_FULL = null;
       TONGS_OBSIDIAN = null;

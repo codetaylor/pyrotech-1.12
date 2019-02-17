@@ -119,6 +119,9 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemFlintShears.NAME)
     public static final ItemFlintShears FLINT_SHEARS;
 
+    @GameRegistry.ObjectHolder(ItemGoldShears.NAME)
+    public static final ItemGoldShears GOLD_SHEARS;
+
     @GameRegistry.ObjectHolder(ItemDiamondShears.NAME)
     public static final ItemDiamondShears DIAMOND_SHEARS;
 
@@ -153,6 +156,7 @@ public class ModuleTool
       FLINT_SHEARS = null;
       DIAMOND_SHEARS = null;
       OBSIDIAN_SHEARS = null;
+      GOLD_SHEARS = null;
     }
   }
 }

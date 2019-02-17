@@ -84,6 +84,22 @@ public class AnvilRecipesAdd {
         AnvilRecipe.EnumType.HAMMER
     ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_nugget_from_iron_shard"));
 
+    // Gold Shard from Gold Nugget
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.GOLD_SHARD.asStack(1),
+        new OreIngredient("nuggetGold"),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "gold_shard_from_gold_nugget"));
+
+    // Gold Nugget from Gold Shard
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.GOLD_NUGGET, 1, 0),
+        Ingredient.fromStacks(ItemMaterial.EnumType.GOLD_SHARD.asStack(1)),
+        4,
+        AnvilRecipe.EnumType.HAMMER
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "gold_nugget_from_gold_shard"));
+
     // Charcoal Flakes from Charcoal
     registry.register(new AnvilRecipe(
         ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(8),
@@ -364,6 +380,14 @@ public class AnvilRecipesAdd {
         8,
         AnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_shard"));
+
+    // Gold Shard from Gold Ingot
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.GOLD_SHARD.asStack(9),
+        Ingredient.fromStacks(new ItemStack(Items.GOLD_INGOT, 1, 0)),
+        8,
+        AnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "gold_shard"));
 
     // Diamond Shard from Diamond
     registry.register(new AnvilRecipe(

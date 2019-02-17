@@ -18,6 +18,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemSawmillBlade(ModuleTechMachineConfig.SAWMILL_BLADES.FLINT_DURABILITY), "sawmill_blade_flint");
     registry.registerItem(new ItemSawmillBlade(ModuleTechMachineConfig.SAWMILL_BLADES.BONE_DURABILITY), "sawmill_blade_bone");
     registry.registerItem(new ItemSawmillBlade(ModuleTechMachineConfig.SAWMILL_BLADES.IRON_DURABILITY), "sawmill_blade_iron");
+    registry.registerItem(new ItemSawmillBlade(ModuleTechMachineConfig.SAWMILL_BLADES.GOLD_DURABILITY), "sawmill_blade_gold");
     registry.registerItem(new ItemSawmillBlade(ModuleTechMachineConfig.SAWMILL_BLADES.DIAMOND_DURABILITY), "sawmill_blade_diamond");
     registry.registerItem(new ItemSawmillBlade(ModuleTechMachineConfig.SAWMILL_BLADES.OBSIDIAN_DURABILITY), "sawmill_blade_obsidian");
 
@@ -26,6 +27,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.FLINT_DURABILITY), "cog_flint");
     registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.BONE_DURABILITY), "cog_bone");
     registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.IRON_DURABILITY), "cog_iron");
+    registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.GOLD_DURABILITY), "cog_gold");
     registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.DIAMOND_DURABILITY), "cog_diamond");
     registry.registerItem(new ItemCog(ModuleTechMachineConfig.COGS.OBSIDIAN_DURABILITY), "cog_obsidian");
   }
@@ -40,6 +42,7 @@ public final class ItemInitializer {
           ModuleTechMachine.Items.FLINT_MILL_BLADE,
           ModuleTechMachine.Items.BONE_MILL_BLADE,
           ModuleTechMachine.Items.IRON_MILL_BLADE,
+          ModuleTechMachine.Items.GOLD_MILL_BLADE,
           ModuleTechMachine.Items.DIAMOND_MILL_BLADE,
           ModuleTechMachine.Items.OBSIDIAN_MILL_BLADE,
 
@@ -48,6 +51,7 @@ public final class ItemInitializer {
           ModuleTechMachine.Items.FLINT_COG,
           ModuleTechMachine.Items.BONE_COG,
           ModuleTechMachine.Items.IRON_COG,
+          ModuleTechMachine.Items.GOLD_COG,
           ModuleTechMachine.Items.DIAMOND_COG,
           ModuleTechMachine.Items.OBSIDIAN_COG
       );

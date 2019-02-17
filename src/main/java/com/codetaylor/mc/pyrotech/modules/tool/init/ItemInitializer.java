@@ -41,6 +41,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemStoneShears(), ItemStoneShears.NAME);
     registry.registerItem(new ItemBoneShears(), ItemBoneShears.NAME);
     registry.registerItem(new ItemFlintShears(), ItemFlintShears.NAME);
+    registry.registerItem(new ItemGoldShears(), ItemGoldShears.NAME);
     registry.registerItem(new ItemDiamondShears(), ItemDiamondShears.NAME);
     registry.registerItem(new ItemObsidianShears(), ItemObsidianShears.NAME);
   }
@@ -82,7 +83,8 @@ public final class ItemInitializer {
           ModuleTool.Items.BONE_SHEARS,
           ModuleTool.Items.FLINT_SHEARS,
           ModuleTool.Items.DIAMOND_SHEARS,
-          ModuleTool.Items.OBSIDIAN_SHEARS
+          ModuleTool.Items.OBSIDIAN_SHEARS,
+          ModuleTool.Items.GOLD_SHEARS
       );
     });
   }

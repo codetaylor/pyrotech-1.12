@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.machine"]
+    }
+  ],
+  "pattern": [
+    "BBB",
+    "B B",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "pyrotech:material",
+      "data": 34
+    }
+  },
+  "result": {
+    "item": "pyrotech:cog_gold",
+    "count": 1,
+    "data": 0
+  }
+}

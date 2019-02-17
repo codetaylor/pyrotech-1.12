@@ -82,6 +82,9 @@ item.pyrotech.tongs.stone.full.unique.name=%s Bloom
 item.pyrotech.tongs.iron.name=Iron Tongs
 item.pyrotech.tongs.iron.full.name=Iron Tongs
 item.pyrotech.tongs.iron.full.unique.name=%s Bloom
+item.pyrotech.tongs.gold.name=Golden Tongs
+item.pyrotech.tongs.gold.full.name=Golden Tongs
+item.pyrotech.tongs.gold.full.unique.name=%s Bloom
 item.pyrotech.tongs.diamond.name=Diamond Tongs
 item.pyrotech.tongs.diamond.full.name=Diamond Tongs
 item.pyrotech.tongs.diamond.full.unique.name=%s Bloom
@@ -103,6 +106,7 @@ item.pyrotech.sawmill.blade.stone.name=Stone Sawmill Blade
 item.pyrotech.sawmill.blade.flint.name=Flint Sawmill Blade
 item.pyrotech.sawmill.blade.bone.name=Bone Sawmill Blade
 item.pyrotech.sawmill.blade.iron.name=Iron Sawmill Blade
+item.pyrotech.sawmill.blade.gold.name=Golden Sawmill Blade
 item.pyrotech.sawmill.blade.diamond.name=Diamond Sawmill Blade
 item.pyrotech.sawmill.blade.obsidian.name=Obsidian Sawmill Blade
 
@@ -111,6 +115,7 @@ item.pyrotech.cog.stone.name=Stone Cog
 item.pyrotech.cog.flint.name=Flint Cog
 item.pyrotech.cog.bone.name=Bone Cog
 item.pyrotech.cog.iron.name=Iron Cog
+item.pyrotech.cog.gold.name=Golden Cog
 item.pyrotech.cog.diamond.name=Diamond Cog
 item.pyrotech.cog.obsidian.name=Obsidian Cog
 
@@ -175,6 +180,7 @@ item.pyrotech.clay.shears.name=Clay Shears
 item.pyrotech.stone.shears.name=Stone Shears
 item.pyrotech.bone.shears.name=Bone Shears
 item.pyrotech.flint.shears.name=Flint Shears
+item.pyrotech.gold.shears.name=Golden Shears
 item.pyrotech.diamond.shears.name=Diamond Shears
 item.pyrotech.obsidian.shears.name=Obsidian Shears
 
@@ -223,6 +229,7 @@ item.pyrotech.kindling.tarred.name=Tarred Kindling
 item.pyrotech.dust.flint.name=Crushed Flint
 item.pyrotech.glass.shard.name=Glass Shard
 item.pyrotech.obsidian.shard.name=Obsidian Shard
+item.pyrotech.gold.shard.name=Gold Shard
 
 item.pyrotech.apple.baked.name=Baked Apple
 item.pyrotech.carrot.roasted.name=Roasted Carrot
@@ -236,6 +243,7 @@ item.pyrotech.stone.hammer.name=Stone Hammer
 item.pyrotech.flint.hammer.name=Flint Hammer
 item.pyrotech.bone.hammer.name=Bone Hammer
 item.pyrotech.iron.hammer.name=Iron Hammer
+item.pyrotech.gold.hammer.name=Golden Hammer
 item.pyrotech.diamond.hammer.name=Diamond Hammer
 item.pyrotech.obsidian.hammer.name=Obsidian Hammer
 

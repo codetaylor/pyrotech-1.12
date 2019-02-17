@@ -296,6 +296,13 @@ public class ModuleTechBloomeryConfig {
     public int IRON_TONGS_DURABILITY = 16;
 
     @Config.Comment({
+        "The durability of the gold tongs.",
+        "Default: " + 2
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int GOLD_TONGS_DURABILITY = 2;
+
+    @Config.Comment({
         "The durability of the obsidian tongs.",
         "Default: " + 57
     })

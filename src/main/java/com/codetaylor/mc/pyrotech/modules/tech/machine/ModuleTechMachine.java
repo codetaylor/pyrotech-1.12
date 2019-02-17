@@ -213,6 +213,9 @@ public class ModuleTechMachine
     @GameRegistry.ObjectHolder("sawmill_blade_iron")
     public static final ItemSawmillBlade IRON_MILL_BLADE;
 
+    @GameRegistry.ObjectHolder("sawmill_blade_gold")
+    public static final ItemSawmillBlade GOLD_MILL_BLADE;
+
     @GameRegistry.ObjectHolder("sawmill_blade_diamond")
     public static final ItemSawmillBlade DIAMOND_MILL_BLADE;
 
@@ -234,6 +237,9 @@ public class ModuleTechMachine
     @GameRegistry.ObjectHolder("cog_iron")
     public static final ItemCog IRON_COG;
 
+    @GameRegistry.ObjectHolder("cog_gold")
+    public static final ItemCog GOLD_COG;
+
     @GameRegistry.ObjectHolder("cog_diamond")
     public static final ItemCog DIAMOND_COG;
 
@@ -245,6 +251,7 @@ public class ModuleTechMachine
       FLINT_MILL_BLADE = null;
       BONE_MILL_BLADE = null;
       IRON_MILL_BLADE = null;
+      GOLD_MILL_BLADE = null;
       DIAMOND_MILL_BLADE = null;
       OBSIDIAN_MILL_BLADE = null;
 
@@ -253,6 +260,7 @@ public class ModuleTechMachine
       FLINT_COG = null;
       BONE_COG = null;
       IRON_COG = null;
+      GOLD_COG = null;
       DIAMOND_COG = null;
       OBSIDIAN_COG = null;
     }

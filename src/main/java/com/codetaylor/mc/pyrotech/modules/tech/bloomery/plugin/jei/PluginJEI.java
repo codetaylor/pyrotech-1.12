@@ -37,6 +37,7 @@ public class PluginJEI
     blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_FLINT_FULL));
     blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_BONE_FULL));
     blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_IRON_FULL));
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_GOLD_FULL));
     blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_DIAMOND_FULL));
     blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBloomery.Items.TONGS_OBSIDIAN_FULL));
 

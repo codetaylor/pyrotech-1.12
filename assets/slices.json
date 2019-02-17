@@ -105,6 +105,19 @@
         {"target": "clay_shard.png", "position": [7, 6]},
         {"target": "clay_fragments.png", "position": [8, 6]}
       ]
+    },
+    {
+      "sourceImage": "material-items.png",
+      "targetPath": "../src/main/resources/assets/pyrotech/textures/items",
+      "targetSlices": [
+        {"target": "gold_hammer.png", "position": [5, 7]},
+        {"target": "gold_shears.png", "position": [6, 7]},
+        {"target": "gold_shard.png", "position": [7, 7]},
+        {"target": "gold_sawblade.png", "position": [8, 7]},
+        {"target": "gold_cog.png", "position": [9, 7]},
+        {"target": "gold_tongs.png", "position": [10, 7]},
+        {"target": "gold_tongs_full.png", "position": [11, 7]}
+      ]
     }
   ]
 }
