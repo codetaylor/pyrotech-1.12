@@ -381,6 +381,14 @@ public class AnvilRecipesAdd {
         AnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_shard"));
 
+    // Iron Ingot from Iron Block
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.IRON_INGOT, 1, 9),
+        Ingredient.fromStacks(new ItemStack(Blocks.IRON_BLOCK)),
+        8,
+        AnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_ingot"));
+
     // Gold Shard from Gold Ingot
     registry.register(new AnvilRecipe(
         ItemMaterial.EnumType.GOLD_SHARD.asStack(9),
@@ -388,6 +396,14 @@ public class AnvilRecipesAdd {
         8,
         AnvilRecipe.EnumType.PICKAXE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "gold_shard"));
+
+    // Gold Ingot from Gold Block
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.GOLD_INGOT, 1, 9),
+        Ingredient.fromStacks(new ItemStack(Blocks.GOLD_BLOCK)),
+        8,
+        AnvilRecipe.EnumType.PICKAXE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "gold_ingot"));
 
     // Diamond Shard from Diamond
     registry.register(new AnvilRecipe(
