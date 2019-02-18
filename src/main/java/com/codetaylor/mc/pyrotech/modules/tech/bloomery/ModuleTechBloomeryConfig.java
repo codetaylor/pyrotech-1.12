@@ -259,16 +259,41 @@ public class ModuleTechBloomeryConfig {
     public double[] HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL = {0.70, 1.00, 2.00, 3.00};
 
     @Config.Comment({
-        "An additive modifier for hammer power per harvest level.",
+        "A multiplicative modifier for hammer power per efficiency level.",
         "",
         "The index into the array is the efficiency level, the value at that index",
-        "is the hammer power bonus. The array can be expanded as needed.",
+        "is the hammer power modifier. The array can be expanded as needed.",
         "If the efficiency level of the tool used exceeds the array length, the",
         "last element in the array is used.",
+        "A modifier of 1.0 will do nothing.",
         "",
-        "Default: {0.25, 0.50, 0.75, 1.00, 1.25}"
+        "Default: {1.25, 1.50, 1.75, 2.00, 2.25}"
     })
-    public double[] HAMMER_POWER_BONUS_PER_EFFICIENCY_LEVEL = {0.25, 0.50, 0.75, 1.00, 1.25};
+    public double[] HAMMER_POWER_MODIFIER_PER_EFFICIENCY_LEVEL = {1.25, 1.50, 1.75, 2.00, 2.25};
+
+    @Config.Comment({
+        "A multiplicative modifier for hammer power when the player has the",
+        "strength effect active. A modifier of 1.0 will do nothing.",
+        "Default: " + 1.3
+    })
+    @Config.RangeDouble(min = 0)
+    public double HAMMER_POWER_MODIFIER_FOR_STRENGTH_EFFECT = 1.3;
+
+    @Config.Comment({
+        "A multiplicative modifier for hammer power when the player has the",
+        "weakness effect active. A modifier of 1.0 will do nothing.",
+        "Default: " + 0.7
+    })
+    @Config.RangeDouble(min = 0)
+    public double HAMMER_POWER_MODIFIER_FOR_WEAKNESS_EFFECT = 0.7;
+
+    @Config.Comment({
+        "A multiplicative modifier for hammer power when the player has the",
+        "mining fatigue effect active. A modifier of 1.0 will do nothing.",
+        "Default: " + 0.1
+    })
+    @Config.RangeDouble(min = 0)
+    public double HAMMER_POWER_MODIFIER_FOR_MINING_FATIGE_EFFECT = 0.1;
 
     @Config.Comment({
         "A multiplicative modifier for a recipe's failure chance when using a silk touch",

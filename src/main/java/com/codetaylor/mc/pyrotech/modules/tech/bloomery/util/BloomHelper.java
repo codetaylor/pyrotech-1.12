@@ -14,10 +14,12 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
@@ -84,8 +86,26 @@ public class BloomHelper {
     Integer efficiencyLevel = enchantments.get(Enchantments.EFFICIENCY);
 
     if (efficiencyLevel != null) {
-      double[] bonus = ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_BONUS_PER_EFFICIENCY_LEVEL;
-      result += ArrayHelper.getOrLast(bonus, efficiencyLevel - 1);
+      double[] bonus = ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_PER_EFFICIENCY_LEVEL;
+      result *= ArrayHelper.getOrLast(bonus, efficiencyLevel - 1);
+    }
+
+    PotionEffect effectStrength = player.getActivePotionEffect(MobEffects.STRENGTH);
+
+    if (effectStrength != null) {
+      result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_STRENGTH_EFFECT;
+    }
+
+    PotionEffect effectWeakness = player.getActivePotionEffect(MobEffects.WEAKNESS);
+
+    if (effectWeakness != null) {
+      result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_WEAKNESS_EFFECT;
+    }
+
+    PotionEffect effectMiningFatigue = player.getActivePotionEffect(MobEffects.MINING_FATIGUE);
+
+    if (effectMiningFatigue != null) {
+      result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_MINING_FATIGE_EFFECT;
     }
 
     return Math.max(0, result);
