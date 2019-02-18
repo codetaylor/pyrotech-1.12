@@ -236,7 +236,7 @@ public class ModuleCoreConfig {
         "Default: " + 2
     })
     @Config.RangeInt(min = 0)
-    public int BURNED_FOOD_HUNGER;
+    public int BURNED_FOOD_HUNGER = 2;
 
     @Config.Comment({
         "The amount of saturation healed by eating.",
@@ -244,7 +244,7 @@ public class ModuleCoreConfig {
         "Default: " + 0.1
     })
     @Config.RangeDouble(min = 0)
-    public double BURNED_FOOD_SATURATION;
+    public double BURNED_FOOD_SATURATION = 0.1;
 
     @Config.Comment({
         "Eating the burned food applies the hunger effect like zombie flesh.",
