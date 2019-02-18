@@ -3,6 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.core.init;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -71,6 +73,16 @@ public class JsonOreDict {
         "minecraft:porkchop",
         "minecraft:dye:15"
     });
+
+    {
+      List<String> list = new ArrayList<>(16);
+
+      for (int i = 0; i < 16; i++) {
+        list.add("minecraft:wool:" + i);
+      }
+
+      result.oreDict.put("blockWool", list.toArray(new String[0]));
+    }
 
     return result;
   }

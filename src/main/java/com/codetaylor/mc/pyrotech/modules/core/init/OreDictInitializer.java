@@ -39,14 +39,12 @@ public final class OreDictInitializer {
         return;
       }
 
-      RecipeItemParser parser = new RecipeItemParser();
-
       for (Map.Entry<String, String[]> entry : jsonOreDict.getOreDict().entrySet()) {
 
         for (String itemString : entry.getValue()) {
 
           try {
-            ParseResult parseResult = parser.parse(itemString);
+            ParseResult parseResult = RecipeItemParser.INSTANCE.parse(itemString);
             Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(parseResult.getDomain(), parseResult.getPath()));
 
             if (item != null) {
