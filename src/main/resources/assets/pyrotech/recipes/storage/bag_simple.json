@@ -7,9 +7,9 @@
     }
   ],
   "pattern": [
-    "LTL",
+    "WTW",
     "LSL",
-    "LLL"
+    " L "
   ],
   "key": {
     "T": {
@@ -19,6 +19,10 @@
     "L": {
       "type": "forge:ore_dict",
       "ore": "leather"
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "blockWool"
     },
     "S": {
       "item": "pyrotech:stash",
