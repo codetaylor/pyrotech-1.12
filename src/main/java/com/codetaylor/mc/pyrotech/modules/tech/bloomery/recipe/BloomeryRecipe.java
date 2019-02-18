@@ -115,6 +115,16 @@ public class BloomeryRecipe
     return this.outputBloom.copy();
   }
 
+  public int getBloomYieldMin() {
+
+    return this.bloomYieldMin;
+  }
+
+  public int getBloomYieldMax() {
+
+    return this.bloomYieldMax;
+  }
+
   public ItemStack getUniqueBloomFromOutput() {
 
     int integrity = MathHelper.getInt(RandomHelper.random(), this.bloomYieldMin, this.bloomYieldMax);

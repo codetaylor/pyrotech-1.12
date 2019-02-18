@@ -5,6 +5,8 @@ import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomAnvilRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -19,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -26,24 +29,50 @@ import java.util.List;
 public class JEIRecipeWrapperAnvil
     implements IRecipeWrapper {
 
+  /*
+  TODO: Fix special handling for anvil bloom recipes
+  I don't like how much special handling is required for anvil bloom recipes.
+  This class shouldn't even be aware of the distinction.
+   */
+
   private final List<List<ItemStack>> inputs;
-  private final ItemStack output;
+  private final List<List<ItemStack>> output;
   private final int hits;
   private final AnvilRecipe.EnumType type;
+  private final AnvilRecipe recipe;
 
   public JEIRecipeWrapperAnvil(AnvilRecipe recipe) {
 
     this.inputs = Collections.singletonList(Arrays.asList(recipe.getInput().getMatchingStacks()));
-    this.output = recipe.getOutput();
+
+    // Special handling of bloom recipe
+    if (recipe instanceof BloomAnvilRecipe) {
+      BloomeryRecipe bloomeryRecipe = ((BloomAnvilRecipe) recipe).getBloomeryRecipe();
+      BloomeryRecipe.FailureItem[] failureItems = bloomeryRecipe.getFailureItems();
+
+      List<ItemStack> result = new ArrayList<>(failureItems.length + 1);
+      result.add(recipe.getOutput());
+
+      for (BloomeryRecipe.FailureItem failureItem : failureItems) {
+        result.add(failureItem.getItemStack());
+      }
+
+      this.output = Collections.singletonList(result);
+
+    } else {
+      this.output = Collections.singletonList(Collections.singletonList(recipe.getOutput()));
+    }
+
     this.hits = recipe.getHits();
     this.type = recipe.getType();
+    this.recipe = recipe;
   }
 
   @Override
   public void getIngredients(@Nonnull IIngredients ingredients) {
 
     ingredients.setInputLists(VanillaTypes.ITEM, this.inputs);
-    ingredients.setOutput(VanillaTypes.ITEM, this.output);
+    ingredients.setOutputLists(VanillaTypes.ITEM, this.output);
   }
 
   @Override
@@ -100,6 +129,18 @@ public class JEIRecipeWrapperAnvil
     GlStateManager.pushMatrix();
     GlStateManager.translate(0, 0, 250);
     minecraft.fontRenderer.drawString("x" + hits, 18, 2, 0xFFFFFFFF, true);
+
+    // Special handling of bloom recipe
+    if (this.recipe instanceof BloomAnvilRecipe) {
+      BloomeryRecipe bloomeryRecipe = ((BloomAnvilRecipe) this.recipe).getBloomeryRecipe();
+      int bloomYieldMin = bloomeryRecipe.getBloomYieldMin();
+      int bloomYieldMax = bloomeryRecipe.getBloomYieldMax();
+      String text = bloomYieldMin + "-" + bloomYieldMax;
+      int width = minecraft.fontRenderer.getStringWidth(text);
+      GlStateManager.scale(0.5, 0.5, 1);
+      minecraft.fontRenderer.drawString(text, 160 - width, 68, 0xFFFFFFFF, true);
+    }
+
     GlStateManager.popMatrix();
   }
 }

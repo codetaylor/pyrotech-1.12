@@ -81,8 +81,7 @@ public class BloomAnvilRecipe
     float extraProgress = tile.getRecipeProgress() - 1;
 
     // Spawn in the bloomery recipe output
-    BloomeryRecipe bloomeryRecipe = recipe.getBloomeryRecipe();
-    StackHelper.spawnStackOnTop(world, bloomeryRecipe.getRandomOutput(player), tile.getPos(), 0);
+    StackHelper.spawnStackOnTop(world, this.bloomeryRecipe.getRandomOutput(player), tile.getPos(), 0);
 
     // Reduce the integrity of the bloom
     ItemStack bloom = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
