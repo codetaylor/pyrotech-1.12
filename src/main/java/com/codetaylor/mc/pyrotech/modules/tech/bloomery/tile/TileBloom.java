@@ -219,7 +219,11 @@ public class TileBloom
         }
 
         if (tile.recipeProgress.get() >= 0.9999) {
-          tile.integrity.add(-1);
+
+          if (BloomHelper.shouldReduceIntegrity(player, RandomHelper.random())) {
+            tile.integrity.add(-1);
+          }
+
           BloomeryRecipe recipe = ModuleTechBloomery.Registries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
 
           if (recipe != null) {

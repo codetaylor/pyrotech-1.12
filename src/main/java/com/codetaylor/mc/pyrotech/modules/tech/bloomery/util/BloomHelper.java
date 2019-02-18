@@ -22,6 +22,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 
@@ -30,6 +31,25 @@ import java.util.Map;
 import java.util.Random;
 
 public class BloomHelper {
+
+  public static boolean shouldReduceIntegrity(EntityPlayer player, Random random) {
+
+    ItemStack heldItemMainhand = player.getHeldItemMainhand();
+    Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(heldItemMainhand);
+    Integer fortuneLevel = enchantments.get(Enchantments.FORTUNE);
+
+    if (fortuneLevel != null) {
+
+      double[] chanceArray = ModuleTechBloomeryConfig.BLOOM.CHANCE_TO_NOT_CONSUME_BLOOM_INTEGRITY_PER_FORTUNE_LEVEL;
+      double chance = MathHelper.clamp(ArrayHelper.getOrLast(chanceArray, fortuneLevel), 0, 1);
+
+      if (random.nextFloat() < chance) {
+        return false;
+      }
+    }
+
+    return true;
+  }
 
   public static double calculateHammerPower(BlockPos pos, EntityPlayer player) {
 

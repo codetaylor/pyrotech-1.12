@@ -266,7 +266,6 @@ public class ModuleTechBloomeryConfig {
         "If the efficiency level of the tool used exceeds the array length, the",
         "last element in the array is used.",
         "",
-        "ie. {wood/crude, stone/bone/flint, iron/obsidian, diamond}",
         "Default: {0.25, 0.50, 0.75, 1.00, 1.25}"
     })
     public double[] HAMMER_POWER_BONUS_PER_EFFICIENCY_LEVEL = {0.25, 0.50, 0.75, 1.00, 1.25};
@@ -277,6 +276,19 @@ public class ModuleTechBloomeryConfig {
     })
     @Config.RangeDouble(min = 0, max = 1)
     public double SILK_TOUCH_FAILURE_MODIFIER = 0;
+
+    @Config.Comment({
+        "The chance that a fortune enchanted hammer will not consume the bloom's",
+        "integrity when a hammering cycle completes.",
+        "",
+        "The index into the array is the fortune level, the value at that index",
+        "is the chance. The array can be expanded as needed.",
+        "If the fortune level of the tool used exceeds the array length, the",
+        "last element in the array is used.",
+        "",
+        "Default: {0.15, 0.30, 0.45}"
+    })
+    public double[] CHANCE_TO_NOT_CONSUME_BLOOM_INTEGRITY_PER_FORTUNE_LEVEL = {0.15, 0.30, 0.45};
   }
 
   // ---------------------------------------------------------------------------

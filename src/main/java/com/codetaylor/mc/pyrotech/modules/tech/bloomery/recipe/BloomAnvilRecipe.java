@@ -87,7 +87,11 @@ public class BloomAnvilRecipe
     // Reduce the integrity of the bloom
     ItemStack bloom = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
     BlockBloom.ItemBlockBloom item = (BlockBloom.ItemBlockBloom) bloom.getItem();
-    int integrity = item.getIntegrity(bloom) - 1;
+    int integrity = item.getIntegrity(bloom);
+
+    if (BloomHelper.shouldReduceIntegrity(player, RandomHelper.random())) {
+      integrity -= 1;
+    }
 
     if (integrity > 0) {
       item.setIntegrity(bloom, integrity);
