@@ -150,11 +150,6 @@ public class TileBloom
 
       super(EnumFacing.VALUES, BlockBloom.AABB);
     }
-
-    @Override
-    protected void applyItemDamage(ItemStack itemStack, EntityPlayer player) {
-      // TODO: remove
-    }
   }
 
   private class InteractionHit
