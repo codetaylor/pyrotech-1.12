@@ -338,6 +338,7 @@ public class ModuleCoreConfig {
         "minecraft:gold_nugget",
         "minecraft:iron_ingot_from_block",
         "minecraft:gold_ingot_from_block",
+        "minecraft:fire_charge",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
