@@ -137,8 +137,7 @@ public class JEIRecipeWrapperAnvil
       int bloomYieldMax = bloomeryRecipe.getBloomYieldMax();
       String text = bloomYieldMin + "-" + bloomYieldMax;
       int width = minecraft.fontRenderer.getStringWidth(text);
-      GlStateManager.scale(0.5, 0.5, 1);
-      minecraft.fontRenderer.drawString(text, 160 - width, 68, 0xFFFFFFFF, true);
+      minecraft.fontRenderer.drawString(text, 82 - width, 5, 0xFFFFFFFF, true);
     }
 
     GlStateManager.popMatrix();
