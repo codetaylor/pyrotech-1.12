@@ -246,7 +246,7 @@ public class ModuleTechBloomeryConfig {
     public double FIRE_SPAWN_CHANCE_RANDOM = 0.25;
 
     @Config.Comment({
-        "A percentage modifier for hammer power per harvest level.",
+        "A multiplicative modifier for hammer power per harvest level.",
         "",
         "The index into the array is the harvest level, the value at that index",
         "is the hammer power modifier. The array can be expanded as needed.",
@@ -259,7 +259,7 @@ public class ModuleTechBloomeryConfig {
     public double[] HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL = {0.70, 1.00, 2.00, 3.00};
 
     @Config.Comment({
-        "A percentage modifier for hammer power per harvest level.",
+        "An additive modifier for hammer power per harvest level.",
         "",
         "The index into the array is the efficiency level, the value at that index",
         "is the hammer power bonus. The array can be expanded as needed.",
@@ -270,6 +270,13 @@ public class ModuleTechBloomeryConfig {
         "Default: {0.25, 0.50, 0.75, 1.00, 1.25}"
     })
     public double[] HAMMER_POWER_BONUS_PER_EFFICIENCY_LEVEL = {0.25, 0.50, 0.75, 1.00, 1.25};
+
+    @Config.Comment({
+        "A multiplicative modifier for a recipe's failure chance when using a silk touch",
+        "enchanted hammer. The smaller the number, the less chance of failure."
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double SILK_TOUCH_FAILURE_MODIFIER = 0;
   }
 
   // ---------------------------------------------------------------------------

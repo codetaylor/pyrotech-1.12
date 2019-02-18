@@ -223,7 +223,7 @@ public class TileBloom
           BloomeryRecipe recipe = ModuleTechBloomery.Registries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
 
           if (recipe != null) {
-            ItemStack output = recipe.getRandomOutput();
+            ItemStack output = recipe.getRandomOutput(player);
             StackHelper.spawnStackOnTop(world, output, tilePos, 0);
           }
 

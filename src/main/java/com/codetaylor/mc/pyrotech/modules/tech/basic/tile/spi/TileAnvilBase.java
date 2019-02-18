@@ -437,7 +437,7 @@ public abstract class TileAnvilBase
 
             if (isExtendedRecipe) {
               //noinspection unchecked
-              ((AnvilRecipe.IExtendedRecipe) recipe).onRecipeCompleted(tile, world, stackHandler, recipe);
+              ((AnvilRecipe.IExtendedRecipe) recipe).onRecipeCompleted(tile, world, stackHandler, recipe, player);
 
             } else {
               stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);

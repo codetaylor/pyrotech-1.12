@@ -88,7 +88,7 @@ public class AnvilRecipe
 
     float getModifiedRecipeProgressIncrement(float increment, TileAnvilBase tile, EntityPlayer player);
 
-    void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, T recipe);
+    void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, T recipe, EntityPlayer player);
 
     void onAnvilHitClient(World world, TileAnvilBase tile, float hitX, float hitY, float hitZ);
   }

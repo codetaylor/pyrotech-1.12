@@ -6,7 +6,12 @@ import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.athenaeum.util.WeightedPicker;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -14,6 +19,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nullable;
+import java.util.Map;
 
 public class BloomeryRecipe
     extends IForgeRegistryEntry.Impl<BloomeryRecipe>
@@ -151,9 +157,18 @@ public class BloomeryRecipe
     return this.input.apply(input);
   }
 
-  public ItemStack getRandomOutput() {
+  public ItemStack getRandomOutput(EntityPlayer player) {
 
-    if (RandomHelper.random().nextDouble() < this.failureChance) {
+    ItemStack heldItemMainhand = player.getHeldItemMainhand();
+    Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(heldItemMainhand);
+
+    double modifier = 1;
+
+    if (enchantments.containsKey(Enchantments.SILK_TOUCH)) {
+      modifier = MathHelper.clamp(ModuleTechBloomeryConfig.BLOOM.SILK_TOUCH_FAILURE_MODIFIER, 0, 1);
+    }
+
+    if (RandomHelper.random().nextDouble() < this.failureChance * modifier) {
       return this.selectRandomFailureItemStack();
 
     } else {

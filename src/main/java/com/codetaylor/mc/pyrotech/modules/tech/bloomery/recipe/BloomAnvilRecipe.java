@@ -76,13 +76,13 @@ public class BloomAnvilRecipe
   }
 
   @Override
-  public void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, BloomAnvilRecipe recipe) {
+  public void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, BloomAnvilRecipe recipe, EntityPlayer player) {
 
     float extraProgress = tile.getRecipeProgress() - 1;
 
     // Spawn in the bloomery recipe output
     BloomeryRecipe bloomeryRecipe = recipe.getBloomeryRecipe();
-    StackHelper.spawnStackOnTop(world, bloomeryRecipe.getRandomOutput(), tile.getPos(), 0);
+    StackHelper.spawnStackOnTop(world, bloomeryRecipe.getRandomOutput(player), tile.getPos(), 0);
 
     // Reduce the integrity of the bloom
     ItemStack bloom = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
