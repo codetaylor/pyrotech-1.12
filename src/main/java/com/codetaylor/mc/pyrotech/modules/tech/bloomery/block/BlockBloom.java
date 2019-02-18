@@ -448,11 +448,37 @@ public class BlockBloom
           && tagCompound.hasKey(StackHelper.BLOCK_ENTITY_TAG)) {
 
         NBTTagCompound teCompound = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
-        String langKey = teCompound.getString("langKey") + ".name";
+        String[] langKeys = teCompound.getString("langKey").split(";");
 
-        if (I18n.canTranslate(langKey)) {
-          String translatedLangKey = I18n.translateToLocal(langKey);
-          return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".unique.name", translatedLangKey).trim();
+        if (langKeys.length == 1) {
+          String langKey = langKeys[0] + ".name";
+
+          if (I18n.canTranslate(langKey)) {
+            String translatedLangKey = I18n.translateToLocal(langKey);
+            return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".unique.name", translatedLangKey).trim();
+          }
+
+        } else if (langKeys.length > 1) {
+
+          String translatedLangKey = null;
+
+          for (int i = 0; i < langKeys.length; i++) {
+            String langKey = langKeys[i] + ".name";
+
+            if (I18n.canTranslate(langKey)) {
+
+              if (translatedLangKey == null) {
+                translatedLangKey = I18n.translateToLocal(langKey);
+
+              } else {
+                translatedLangKey = I18n.translateToLocalFormatted(langKey, translatedLangKey);
+              }
+            }
+          }
+
+          if (translatedLangKey != null) {
+            return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".unique.name", translatedLangKey).trim();
+          }
         }
       }
 

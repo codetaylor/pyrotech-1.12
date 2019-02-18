@@ -75,7 +75,7 @@ public class BloomeryRecipesAdd {
               .setSlagItem(new ItemStack(itemSlagIron), 2)
               .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
               .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 2)
-              .setLangKey(Blocks.IRON_ORE.getUnlocalizedName())
+              .setLangKey(Blocks.IRON_ORE.getUnlocalizedName() + ";" + itemSlagIron.getUnlocalizedName() + ".unique")
               .create()
       );
     }
@@ -122,7 +122,7 @@ public class BloomeryRecipesAdd {
               .setSlagItem(new ItemStack(itemSlagGold), 2)
               .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
               .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 2)
-              .setLangKey(Blocks.GOLD_ORE.getUnlocalizedName())
+              .setLangKey(Blocks.GOLD_ORE.getUnlocalizedName() + ";" + itemSlagGold.getUnlocalizedName() + ".unique")
               .create()
       );
     }
