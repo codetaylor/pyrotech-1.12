@@ -4,17 +4,13 @@ import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemExcepti
 import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.registry.Registry;
-import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.pyrotech.library.JsonInitializer;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -62,34 +58,6 @@ public final class OreDictInitializer {
           }
         }
       }
-    });
-  }
-
-  @SideOnly(Side.CLIENT)
-  public static void onClientRegister(Registry registry) {
-
-    registry.registerClientModelRegistrationStrategy(() -> {
-
-      ModelRegistrationHelper.registerItemModels(
-          ModuleCore.Items.MULCH,
-
-          ModuleCore.Items.APPLE_BAKED,
-          ModuleCore.Items.BURNED_FOOD,
-
-          ModuleCore.Items.CRUDE_HAMMER,
-          ModuleCore.Items.STONE_HAMMER,
-          ModuleCore.Items.FLINT_HAMMER,
-          ModuleCore.Items.BONE_HAMMER,
-          ModuleCore.Items.IRON_HAMMER,
-          ModuleCore.Items.DIAMOND_HAMMER
-      );
-
-      // Material
-      ModelRegistrationHelper.registerVariantItemModels(
-          ModuleCore.Items.MATERIAL,
-          "variant",
-          ItemMaterial.EnumType.values()
-      );
     });
   }
 
