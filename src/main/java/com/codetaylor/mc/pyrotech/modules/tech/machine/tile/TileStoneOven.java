@@ -57,4 +57,15 @@ public class TileStoneOven
     return ModuleTechMachineConfig.STONE_OVEN.FUEL_SLOT_SIZE;
   }
 
+  @Override
+  protected double getAirflowModifier() {
+
+    return ModuleTechMachineConfig.STONE_OVEN.AIRFLOW_MODIFIER;
+  }
+
+  @Override
+  protected float getAirflowDragModifier() {
+
+    return (float) ModuleTechMachineConfig.STONE_OVEN.AIRFLOW_DRAG_MODIFIER;
+  }
 }

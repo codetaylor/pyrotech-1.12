@@ -13,6 +13,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
+import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowHandler;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
@@ -46,7 +47,8 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     extends TileCombustionWorkerBase
     implements ITickable,
     ITileInteractable,
-    ITileContainer {
+    ITileContainer,
+    ITileAirFlowHandler {
 
   private static final int DORMANT_COUNTER = 50;
   private static final AxisAlignedBB INTERACTION_BOUNDS_TOP = new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f);
@@ -54,6 +56,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
   private FuelStackHandler fuelStackHandler;
 
   private TileDataInteger remainingRecipeTimeTicks;
+  private float airflowBonus;
 
   private int dormantCounter;
 
@@ -176,6 +179,14 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
 
   protected abstract boolean allowAutomation();
 
+  @Override
+  public void pushAirFlow(float airflow) {
+
+    this.airflowBonus += airflow * this.getAirflowModifier();
+  }
+
+  protected abstract double getAirflowModifier();
+
   // ---------------------------------------------------------------------------
   // - Combustion Worker
   // ---------------------------------------------------------------------------
@@ -227,8 +238,21 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
       this.interactionCooldown -= 1;
     }
 
+    if (!this.world.isRemote) {
+
+      if (this.airflowBonus > 0) {
+        this.airflowBonus -= this.airflowBonus * this.getAirflowDragModifier();
+
+        if (this.airflowBonus < MathConstants.FLT_EPSILON) {
+          this.airflowBonus = 0;
+        }
+      }
+    }
+
     super.update();
   }
+
+  protected abstract float getAirflowDragModifier(); // 0.02f
 
   @Override
   public boolean workerDoWork() {
@@ -266,6 +290,36 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
   protected void reduceRecipeTime() {
 
     this.setRemainingRecipeTimeTicks(this.getRemainingRecipeTimeTicks() - 1);
+
+    float airflowBonus = this.airflowBonus;
+
+    while (airflowBonus >= 1) {
+      airflowBonus -= 1;
+      this.setRemainingRecipeTimeTicks(this.getRemainingRecipeTimeTicks() - 1);
+    }
+
+    if (airflowBonus > 0
+        && RandomHelper.random().nextFloat() < airflowBonus) {
+      this.setRemainingRecipeTimeTicks(this.getRemainingRecipeTimeTicks() - 1);
+    }
+  }
+
+  @Override
+  protected void reduceBurnTimeRemaining() {
+
+    super.reduceBurnTimeRemaining();
+
+    float airflowBonus = this.airflowBonus;
+
+    while (airflowBonus >= 1) {
+      airflowBonus -= 1;
+      super.reduceBurnTimeRemaining();
+    }
+
+    if (airflowBonus > 0
+        && RandomHelper.random().nextFloat() < airflowBonus) {
+      super.reduceBurnTimeRemaining();
+    }
   }
 
   public abstract boolean hasInput();
@@ -311,6 +365,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     super.writeToNBT(compound);
     compound.setTag("fuelStackHandler", this.fuelStackHandler.serializeNBT());
     compound.setInteger("remainingRecipeTimeTicks", this.remainingRecipeTimeTicks.get());
+    compound.setFloat("airflowBonus", this.airflowBonus);
     return compound;
   }
 
@@ -320,6 +375,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     super.readFromNBT(compound);
     this.fuelStackHandler.deserializeNBT(compound.getCompoundTag("fuelStackHandler"));
     this.remainingRecipeTimeTicks.set(compound.getInteger("remainingRecipeTimeTicks"));
+    this.airflowBonus = compound.getFloat("airflowBonus");
   }
 
   @Override

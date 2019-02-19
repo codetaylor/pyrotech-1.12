@@ -57,6 +57,18 @@ public class TileStoneSawmill
   }
 
   @Override
+  protected double getAirflowModifier() {
+
+    return ModuleTechMachineConfig.STONE_SAWMILL.AIRFLOW_MODIFIER;
+  }
+
+  @Override
+  protected float getAirflowDragModifier() {
+
+    return (float) ModuleTechMachineConfig.STONE_SAWMILL.AIRFLOW_DRAG_MODIFIER;
+  }
+
+  @Override
   protected boolean isValidSawmillBlade(ItemStack itemStack) {
 
     ResourceLocation registryName = itemStack.getItem().getRegistryName();

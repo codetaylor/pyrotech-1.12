@@ -57,4 +57,15 @@ public class TileBrickOven
     return ModuleTechMachineConfig.BRICK_OVEN.FUEL_SLOT_SIZE;
   }
 
+  @Override
+  protected double getAirflowModifier() {
+
+    return ModuleTechMachineConfig.BRICK_OVEN.AIRFLOW_MODIFIER;
+  }
+
+  @Override
+  protected float getAirflowDragModifier() {
+
+    return (float) ModuleTechMachineConfig.BRICK_OVEN.AIRFLOW_DRAG_MODIFIER;
+  }
 }

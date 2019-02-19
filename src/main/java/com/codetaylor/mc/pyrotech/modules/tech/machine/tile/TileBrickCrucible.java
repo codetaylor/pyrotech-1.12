@@ -35,6 +35,18 @@ public class TileBrickCrucible
   }
 
   @Override
+  protected double getAirflowModifier() {
+
+    return ModuleTechMachineConfig.BRICK_CRUCIBLE.AIRFLOW_MODIFIER;
+  }
+
+  @Override
+  protected float getAirflowDragModifier() {
+
+    return (float) ModuleTechMachineConfig.BRICK_CRUCIBLE.AIRFLOW_DRAG_MODIFIER;
+  }
+
+  @Override
   protected boolean allowAutomation() {
 
     return ModuleTechMachineConfig.BRICK_CRUCIBLE.ALLOW_AUTOMATION;

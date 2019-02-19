@@ -44,4 +44,17 @@ public class TileBrickKiln
     return ModuleTechMachineConfig.BRICK_KILN.FUEL_SLOT_SIZE;
   }
 
+  @Override
+  protected double getAirflowModifier() {
+
+    return ModuleTechMachineConfig.BRICK_KILN.AIRFLOW_MODIFIER;
+  }
+
+  @Override
+  protected float getAirflowDragModifier() {
+
+    return (float) ModuleTechMachineConfig.BRICK_KILN.AIRFLOW_DRAG_MODIFIER;
+  }
+
+
 }

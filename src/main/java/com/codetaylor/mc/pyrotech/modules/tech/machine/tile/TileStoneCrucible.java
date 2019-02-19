@@ -89,6 +89,18 @@ public class TileStoneCrucible
   }
 
   @Override
+  protected double getAirflowModifier() {
+
+    return ModuleTechMachineConfig.STONE_CRUCIBLE.AIRFLOW_MODIFIER;
+  }
+
+  @Override
+  protected float getAirflowDragModifier() {
+
+    return (float) ModuleTechMachineConfig.STONE_CRUCIBLE.AIRFLOW_DRAG_MODIFIER;
+  }
+
+  @Override
   public boolean allowInsertInput(ItemStack stack, StoneCrucibleRecipe recipe) {
 
     return true;

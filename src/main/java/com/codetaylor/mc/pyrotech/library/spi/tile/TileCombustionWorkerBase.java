@@ -127,9 +127,14 @@ public abstract class TileCombustionWorkerBase
 
     }
 
-    this.burnTimeRemaining.add(-1);
+    this.reduceBurnTimeRemaining();
 
     return true;
+  }
+
+  protected void reduceBurnTimeRemaining() {
+
+    this.burnTimeRemaining.add(-1);
   }
 
   // ---------------------------------------------------------------------------

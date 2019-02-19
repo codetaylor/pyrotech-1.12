@@ -44,4 +44,15 @@ public class TileStoneKiln
     return ModuleTechMachineConfig.STONE_KILN.FUEL_SLOT_SIZE;
   }
 
+  @Override
+  protected double getAirflowModifier() {
+
+    return ModuleTechMachineConfig.STONE_KILN.AIRFLOW_MODIFIER;
+  }
+
+  @Override
+  protected float getAirflowDragModifier() {
+
+    return (float) ModuleTechMachineConfig.STONE_KILN.AIRFLOW_DRAG_MODIFIER;
+  }
 }

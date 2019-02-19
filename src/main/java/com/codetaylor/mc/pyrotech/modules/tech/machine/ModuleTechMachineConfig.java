@@ -415,6 +415,19 @@ public class ModuleTechMachineConfig {
         "Default: " + 0.25
     })
     public double INHERITED_PIT_KILN_RECIPE_FAILURE_CHANCE_MODIFIER = 0.25;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the airflow from a block like the",
+        "bellows.",
+        "Default: " + 1.0
+    })
+    public double AIRFLOW_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Percentage of retained airflow lost per tick.",
+        "Default: " + 0.02
+    })
+    public double AIRFLOW_DRAG_MODIFIER = 0.02;
   }
 
   // ---------------------------------------------------------------------------
@@ -483,6 +496,19 @@ public class ModuleTechMachineConfig {
         "Default: " + 0.25
     })
     public double INHERITED_STONE_TIER_RECIPE_FAILURE_CHANCE_MODIFIER = 0.25;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the airflow from a block like the",
+        "bellows.",
+        "Default: " + 1.5
+    })
+    public double AIRFLOW_MODIFIER = 1.5;
+
+    @Config.Comment({
+        "Percentage of retained airflow lost per tick.",
+        "Default: " + 0.02
+    })
+    public double AIRFLOW_DRAG_MODIFIER = 0.01;
   }
 
   // ---------------------------------------------------------------------------
@@ -544,6 +570,19 @@ public class ModuleTechMachineConfig {
         "Default: " + 0.5
     })
     public double INHERITED_DRYING_RACK_RECIPE_DURATION_MODIFIER = 0.5;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the airflow from a block like the",
+        "bellows.",
+        "Default: " + 1.0
+    })
+    public double AIRFLOW_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Percentage of retained airflow lost per tick.",
+        "Default: " + 0.02
+    })
+    public double AIRFLOW_DRAG_MODIFIER = 0.02;
   }
 
   // ---------------------------------------------------------------------------
@@ -613,6 +652,19 @@ public class ModuleTechMachineConfig {
         "Default: " + 1.0
     })
     public double INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the airflow from a block like the",
+        "bellows.",
+        "Default: " + 1.5
+    })
+    public double AIRFLOW_MODIFIER = 1.5;
+
+    @Config.Comment({
+        "Percentage of retained airflow lost per tick.",
+        "Default: " + 0.02
+    })
+    public double AIRFLOW_DRAG_MODIFIER = 0.01;
   }
 
   // ---------------------------------------------------------------------------
@@ -679,6 +731,19 @@ public class ModuleTechMachineConfig {
         "pyrotech:sawmill_blade_flint",
         "pyrotech:sawmill_blade_bone"
     };
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the airflow from a block like the",
+        "bellows.",
+        "Default: " + 1.0
+    })
+    public double AIRFLOW_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Percentage of retained airflow lost per tick.",
+        "Default: " + 0.02
+    })
+    public double AIRFLOW_DRAG_MODIFIER = 0.02;
   }
 
   // ---------------------------------------------------------------------------
@@ -769,6 +834,19 @@ public class ModuleTechMachineConfig {
         "pyrotech:sawmill_blade_diamond",
         "pyrotech:sawmill_blade_obsidian"
     };
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the airflow from a block like the",
+        "bellows.",
+        "Default: " + 1.5
+    })
+    public double AIRFLOW_MODIFIER = 1.5;
+
+    @Config.Comment({
+        "Percentage of retained airflow lost per tick.",
+        "Default: " + 0.02
+    })
+    public double AIRFLOW_DRAG_MODIFIER = 0.01;
   }
 
   // ---------------------------------------------------------------------------
@@ -840,6 +918,19 @@ public class ModuleTechMachineConfig {
         "Default: " + false
     })
     public boolean HOLDS_HOT_FLUIDS = false;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the airflow from a block like the",
+        "bellows.",
+        "Default: " + 1.0
+    })
+    public double AIRFLOW_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Percentage of retained airflow lost per tick.",
+        "Default: " + 0.02
+    })
+    public double AIRFLOW_DRAG_MODIFIER = 0.02;
   }
 
   // ---------------------------------------------------------------------------
@@ -931,6 +1022,19 @@ public class ModuleTechMachineConfig {
         "Default: " + true
     })
     public boolean HOLDS_HOT_FLUIDS = true;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the airflow from a block like the",
+        "bellows.",
+        "Default: " + 1.5
+    })
+    public double AIRFLOW_MODIFIER = 1.5;
+
+    @Config.Comment({
+        "Percentage of retained airflow lost per tick.",
+        "Default: " + 0.02
+    })
+    public double AIRFLOW_DRAG_MODIFIER = 0.01;
   }
 
 }
