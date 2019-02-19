@@ -17,6 +17,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
@@ -117,6 +118,25 @@ public class BloomeryFuelRenderer
         GlStateManager.pushMatrix();
         {
           GlStateManager.translate(3.0 / 16.0, adjustedLevel, 3.0 / 16.0);
+
+          float airflow = tile.getAirflow();
+
+          if (airflow > 1) {
+            GlStateManager.pushMatrix();
+            double scaleY = 2 * ((0.25 * (airflow + 3) - 1) / (0.25 * (airflow + 3)));
+            GlStateManager.scale(0.5, MathHelper.clamp(scaleY, 0, 1), 0.5);
+            GlStateManager.translate(3.0 / 16.0, 0, 3.0 / 16.0);
+            GlStateManager.enableCull();
+
+            BlockRendererDispatcher renderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
+            IBlockState fireState = Blocks.FIRE.getDefaultState();
+            IBakedModel model = renderer.getModelForState(fireState);
+            buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
+            renderer.getBlockModelRenderer().renderModel(world, model, fireState, BlockPos.ORIGIN, buffer, true);
+            tessellator.draw();
+            GlStateManager.popMatrix();
+          }
+
           GlStateManager.scale(10.0 / 16.0, 10.0 / 16.0, 10.0 / 16.0);
           GlStateManager.enableCull();
 

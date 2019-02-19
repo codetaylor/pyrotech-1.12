@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.machine"]
+    }
+  ],
+  "pattern": [
+    "WbW",
+    "L-L",
+    "B B"
+  ],
+  "key": {
+    "W": {
+      "item": "pyrotech:material",
+      "data": 20
+    },
+    "b": {
+      "item": "pyrotech:material",
+      "data": 16
+    },
+    "-": {
+      "item": "pyrotech:material",
+      "data": 27
+    },
+    "B": {
+      "item": "pyrotech:stone_bricks",
+      "data": 0
+    },
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "leather"
+    }
+  },
+  "result": {
+    "item": "pyrotech:bellows",
+    "count": 1,
+    "data": 0
+  }
+}

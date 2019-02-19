@@ -118,6 +118,7 @@ tile.pyrotech.brick_crucible.name=Refractory Crucible
 tile.pyrotech.stone_hopper.name=Stone Hopper
 tile.pyrotech.mechanical_compacting_bin.name=Mechanical Compactor
 tile.pyrotech.mechanical_mulch_spreader.name=Mechanical Mulcher
+tile.pyrotech.bellows.name=Bellows
 
 #------------------------------------------------------------------------------
 # Module: Tech - Refractory

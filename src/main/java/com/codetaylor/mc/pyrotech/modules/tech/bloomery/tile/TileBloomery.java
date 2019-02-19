@@ -8,13 +8,11 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.athenaeum.util.RandomHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowHandler;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCapabilityDelegate;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
@@ -59,7 +57,8 @@ public class TileBloomery
     extends TileNetBase
     implements ITileInteractable,
     ITickable,
-    ITileContainer {
+    ITileContainer,
+    ITileAirFlowHandler {
 
   private static final AxisAlignedBB INTERACTION_BOUNDS_TOP = new AxisAlignedBB(2f / 16f, 1, 2f / 16f, 14f / 16f, 24f / 16f, 14f / 16f);
 
@@ -87,6 +86,7 @@ public class TileBloomery
   private TileDataInteger fuelCount;
   private TileDataInteger burnTime;
   private TileDataFloat airflow;
+  private float airflowBonus;
   private int lastBurnTime;
   private BloomeryRecipe currentRecipe;
   private int remainingSlag;
@@ -119,6 +119,7 @@ public class TileBloomery
     this.fuelCount = new TileDataInteger(0);
     this.burnTime = new TileDataInteger(0);
     this.airflow = new TileDataFloat(-1);
+    this.airflowBonus = 0;
     this.ashCount = new TileDataInteger(0);
 
     // --- Network ---
@@ -338,7 +339,16 @@ public class TileBloomery
       this.airflow.set((float) (this.airflow.get() * airflowFuelModifier));
     }
 
+    this.airflow.add(this.airflowBonus);
+
     this.updateSpeed();
+  }
+
+  @Override
+  public void pushAirFlow(float airflow) {
+
+    this.airflowBonus += airflow;
+    this.updateAirflow();
   }
 
   // ---------------------------------------------------------------------------
@@ -406,6 +416,16 @@ public class TileBloomery
       }
 
       return;
+    }
+
+    if (this.airflowBonus > 0) {
+      this.airflowBonus -= this.airflowBonus * 0.005f;
+
+      if (this.airflowBonus < MathConstants.FLT_EPSILON) {
+        this.airflowBonus = 0;
+      }
+
+      this.updateAirflow();
     }
 
     if (this.airflow.get() < 0) {

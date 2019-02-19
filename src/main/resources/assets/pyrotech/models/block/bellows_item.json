@@ -1,0 +1,69 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "0": "pyrotech:blocks/bellows_side",
+    "1": "pyrotech:blocks/bellows_top",
+    "2": "pyrotech:blocks/stone_worker_bottom",
+    "3": "pyrotech:blocks/stone_worker_side",
+    "4": "pyrotech:blocks/bellows_side_hole",
+    "5": "pyrotech:blocks/brick_machine_iron_dark",
+    "particle": "pyrotech:blocks/bellows_side"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 3, 16],
+      "faces": {
+        "north": {"uv": [0, 13, 16, 16], "texture": "#4"},
+        "east": {"uv": [0, 13, 16, 16], "texture": "#0"},
+        "south": {"uv": [0, 13, 16, 16], "texture": "#0"},
+        "west": {"uv": [0, 13, 16, 16], "texture": "#0"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#5"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#2"}
+      }
+    },
+    {
+      "from": [0, 14, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "north": {"uv": [0, 11, 16, 13], "texture": "#0"},
+        "east": {"uv": [0, 11, 16, 13], "texture": "#0"},
+        "south": {"uv": [0, 11, 16, 13], "texture": "#0"},
+        "west": {"uv": [0, 11, 16, 13], "texture": "#0"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#1"}
+      }
+    },
+    {
+      "from": [2, 6, 2],
+      "to": [14, 14, 14],
+      "faces": {
+        "north": {"uv": [2, 2, 14, 10], "texture": "#0"},
+        "east": {"uv": [2, 2, 14, 10], "texture": "#0"},
+        "south": {"uv": [2, 2, 14, 10], "texture": "#0"},
+        "west": {"uv": [2, 2, 14, 10], "texture": "#0"}
+      }
+    },
+    {
+      "from": [1, 3, 1],
+      "to": [15, 6, 15],
+      "faces": {
+        "north": {"uv": [1, 5, 15, 8], "texture": "#3"},
+        "east": {"uv": [1, 1, 15, 4], "texture": "#3"},
+        "south": {"uv": [1, 1, 15, 4], "texture": "#3"},
+        "west": {"uv": [0, 1, 14, 4], "texture": "#3"},
+        "up": {"uv": [1, 15, 15, 1], "texture": "#2"}
+      }
+    },
+    {
+      "from": [5, 3, 0],
+      "to": [11, 6, 1],
+      "faces": {
+        "north": {"uv": [5, 10, 11, 13], "texture": "#4"},
+        "east": {"uv": [5, 10, 6, 13], "texture": "#4"},
+        "west": {"uv": [10, 10, 11, 13], "texture": "#4"},
+        "up": {"uv": [5, 10, 11, 11], "texture": "#4"}
+      }
+    }
+  ]
+}
