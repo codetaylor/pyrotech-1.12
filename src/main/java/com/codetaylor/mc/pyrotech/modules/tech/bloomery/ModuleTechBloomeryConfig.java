@@ -113,6 +113,19 @@ public class ModuleTechBloomeryConfig {
     public double ENTITY_WALK_BURN_DAMAGE = 3;
 
     @Config.Comment({
+        "Multiplicative modifier applied to the airflow from a block like the",
+        "bellows.",
+        "Default: " + 1.0
+    })
+    public double AIRFLOW_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Percentage of retained airflow lost per tick.",
+        "Default: " + 0.005
+    })
+    public double AIRFLOW_DRAG_MODIFIER = 0.005;
+
+    @Config.Comment({
         "By default, the bloomery uses the burn time of the items inserted as fuel",
         "to calculate its speed. This map allows you to specify per-item modifiers",
         "for bloomery burn time.",

@@ -251,6 +251,16 @@ public class TileBloomery
     return ModuleTechBloomeryConfig.BLOOMERY.HAS_SPEED_CAP;
   }
 
+  protected float getAirflowDragModifier() {
+
+    return (float) ModuleTechBloomeryConfig.BLOOMERY.AIRFLOW_DRAG_MODIFIER;
+  }
+
+  protected float getAirflowModifier() {
+
+    return (float) ModuleTechBloomeryConfig.BLOOMERY.AIRFLOW_MODIFIER;
+  }
+
   public float getAirflow() {
 
     return this.airflow.get();
@@ -347,7 +357,7 @@ public class TileBloomery
   @Override
   public void pushAirFlow(float airflow) {
 
-    this.airflowBonus += airflow;
+    this.airflowBonus += airflow * this.getAirflowModifier();
     this.updateAirflow();
   }
 
@@ -419,7 +429,7 @@ public class TileBloomery
     }
 
     if (this.airflowBonus > 0) {
-      this.airflowBonus -= this.airflowBonus * 0.005f;
+      this.airflowBonus -= this.airflowBonus * this.getAirflowDragModifier();
 
       if (this.airflowBonus < MathConstants.FLT_EPSILON) {
         this.airflowBonus = 0;
