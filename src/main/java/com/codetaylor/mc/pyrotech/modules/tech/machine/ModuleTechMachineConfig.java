@@ -212,6 +212,35 @@ public class ModuleTechMachineConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Bellows
+  // ---------------------------------------------------------------------------
+
+  public static Bellows BELLOWS = new Bellows();
+
+  public static class Bellows {
+
+    @Config.Comment({
+        "The number of ticks that the device takes to return to the up position.",
+        "Default: " + 10
+    })
+    @Config.RangeInt(min = 1)
+    public int TRAVEL_TIME_UP_TICKS = 10;
+
+    @Config.Comment({
+        "The number of ticks that the device takes to reach the down position.",
+        "Default: " + (5 * 20)
+    })
+    @Config.RangeInt(min = 1)
+    public int TRAVEL_TIME_DOWN_TICKS = 5 * 20;
+
+    @Config.Comment({
+        "The unmodulated, base airflow pushed per tick the device is active.",
+        "Default: " + 0.1
+    })
+    public double BASE_AIRFLOW = 0.1;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Mechanical Compacting Bin
   // ---------------------------------------------------------------------------
 

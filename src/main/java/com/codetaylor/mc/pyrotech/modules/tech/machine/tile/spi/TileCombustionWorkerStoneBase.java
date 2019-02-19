@@ -180,7 +180,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
   protected abstract boolean allowAutomation();
 
   @Override
-  public void pushAirFlow(float airflow) {
+  public void pushAirflow(float airflow) {
 
     this.airflowBonus += airflow * this.getAirflowModifier();
   }

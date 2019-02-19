@@ -355,7 +355,7 @@ public class TileBloomery
   }
 
   @Override
-  public void pushAirFlow(float airflow) {
+  public void pushAirflow(float airflow) {
 
     this.airflowBonus += airflow * this.getAirflowModifier();
     this.updateAirflow();

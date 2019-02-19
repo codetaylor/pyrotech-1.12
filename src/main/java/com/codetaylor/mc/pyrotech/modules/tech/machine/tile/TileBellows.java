@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowHandler;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,7 +58,7 @@ public class TileBellows
 
   protected int getTotalTicksDown() {
 
-    return 5 * 20;
+    return ModuleTechMachineConfig.BELLOWS.TRAVEL_TIME_DOWN_TICKS;
   }
 
   protected float getProgressIncrementUp() {
@@ -67,12 +68,12 @@ public class TileBellows
 
   protected int getTotalTicksUp() {
 
-    return 10;
+    return ModuleTechMachineConfig.BELLOWS.TRAVEL_TIME_UP_TICKS;
   }
 
   protected float getAirflow() {
 
-    float baseAirflow = 0.1f;
+    float baseAirflow = (float) ModuleTechMachineConfig.BELLOWS.BASE_AIRFLOW;
     float time = MathHelper.clamp(this.time, 0, 1);
     float modulatedAirflow;
 
@@ -84,7 +85,6 @@ public class TileBellows
     }
 
     return modulatedAirflow * 2;
-    //return (float) (baseAirflow * (-Math.pow(time - 1, 2) + 1));
   }
 
   // ---------------------------------------------------------------------------
@@ -98,7 +98,7 @@ public class TileBellows
       return;
     }
 
-    if (this.isPlayerStandingOn()) {
+    if (this.shouldProgress()) {
 
       if (this.progress.get() < 1) {
         this.progress.add(this.getProgressIncrementDown());
@@ -107,8 +107,8 @@ public class TileBellows
           this.progress.set(1);
         }
 
-        for (BlockPos blockPos : this.getInfluencePositions(new ArrayList<>(3))) {
-          this.influencePosition(blockPos);
+        for (BlockPos blockPos : this.getAirflowPushPositions(new ArrayList<>(3))) {
+          this.pushAirflow(blockPos);
         }
       }
 
@@ -132,16 +132,16 @@ public class TileBellows
     }
   }
 
-  protected void influencePosition(BlockPos blockPos) {
+  protected void pushAirflow(BlockPos blockPos) {
 
     TileEntity tileEntity = this.world.getTileEntity(blockPos);
 
     if (tileEntity instanceof ITileAirFlowHandler) {
-      ((ITileAirFlowHandler) tileEntity).pushAirFlow(this.getAirflow());
+      ((ITileAirFlowHandler) tileEntity).pushAirflow(this.getAirflow());
     }
   }
 
-  protected List<BlockPos> getInfluencePositions(List<BlockPos> result) {
+  protected List<BlockPos> getAirflowPushPositions(List<BlockPos> result) {
 
     result.add(this.pos.offset(this.getFacing()));
     return result;
@@ -158,7 +158,7 @@ public class TileBellows
     return EnumFacing.NORTH;
   }
 
-  protected boolean isPlayerStandingOn() {
+  protected boolean shouldProgress() {
 
     AxisAlignedBB bounds = new AxisAlignedBB(this.pos)
         .offset(0, 1 - this.getProgress() * 0.5, 0);
