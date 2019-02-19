@@ -43,81 +43,88 @@ public class TESRBellows
     buffer.setTranslation(x, y, z);
 
     // TOP
-    buffer
-        .pos(INSET, level, INSET)
-        .color(1f, 1f, 1f, 1f)
-        .tex(top.getMinU(), top.getMinV())
-        .lightmap(j, k)
-        .endVertex();
-    buffer
-        .pos(1 - INSET, level, INSET)
-        .color(1f, 1f, 1f, 1f)
-        .tex(top.getMaxU(), top.getMinV())
-        .lightmap(j, k)
-        .endVertex();
-    buffer
-        .pos(1 - INSET, level, 1 - INSET)
-        .color(1f, 1f, 1f, 1f)
-        .tex(top.getMaxU(), top.getMaxV())
-        .lightmap(j, k)
-        .endVertex();
-    buffer
-        .pos(INSET, level, 1 - INSET)
-        .color(1f, 1f, 1f, 1f)
-        .tex(top.getMinU(), top.getMaxV())
-        .lightmap(j, k)
-        .endVertex();
+    {
+      double inset = 0;
+      buffer
+          .pos(inset, level, inset)
+          .color(1f, 1f, 1f, 1f)
+          .tex(top.getMinU(), top.getMinV())
+          .lightmap(j, k)
+          .endVertex();
+      buffer
+          .pos(1 - inset, level, inset)
+          .color(1f, 1f, 1f, 1f)
+          .tex(top.getMaxU(), top.getMinV())
+          .lightmap(j, k)
+          .endVertex();
+      buffer
+          .pos(1 - inset, level, 1 - inset)
+          .color(1f, 1f, 1f, 1f)
+          .tex(top.getMaxU(), top.getMaxV())
+          .lightmap(j, k)
+          .endVertex();
+      buffer
+          .pos(inset, level, 1 - inset)
+          .color(1f, 1f, 1f, 1f)
+          .tex(top.getMinU(), top.getMaxV())
+          .lightmap(j, k)
+          .endVertex();
+    }
 
     // BOTTOM
-    buffer
-        .pos(INSET, level - PX * 2, INSET)
-        .color(1f, 1f, 1f, 1f)
-        .tex(top.getMinU(), top.getMinV())
-        .lightmap(j, k)
-        .endVertex();
-    buffer
-        .pos(1 - INSET, level - PX * 2, INSET)
-        .color(1f, 1f, 1f, 1f)
-        .tex(top.getMaxU(), top.getMinV())
-        .lightmap(j, k)
-        .endVertex();
-    buffer
-        .pos(1 - INSET, level - PX * 2, 1 - INSET)
-        .color(1f, 1f, 1f, 1f)
-        .tex(top.getMaxU(), top.getMaxV())
-        .lightmap(j, k)
-        .endVertex();
-    buffer
-        .pos(INSET, level - PX * 2, 1 - INSET)
-        .color(1f, 1f, 1f, 1f)
-        .tex(top.getMinU(), top.getMaxV())
-        .lightmap(j, k)
-        .endVertex();
+    {
+      double inset = 0;
+      buffer
+          .pos(inset, level - PX * 2, inset)
+          .color(1f, 1f, 1f, 1f)
+          .tex(top.getMinU(), top.getMinV())
+          .lightmap(j, k)
+          .endVertex();
+      buffer
+          .pos(1 - inset, level - PX * 2, inset)
+          .color(1f, 1f, 1f, 1f)
+          .tex(top.getMaxU(), top.getMinV())
+          .lightmap(j, k)
+          .endVertex();
+      buffer
+          .pos(1 - inset, level - PX * 2, 1 - inset)
+          .color(1f, 1f, 1f, 1f)
+          .tex(top.getMaxU(), top.getMaxV())
+          .lightmap(j, k)
+          .endVertex();
+      buffer
+          .pos(inset, level - PX * 2, 1 - inset)
+          .color(1f, 1f, 1f, 1f)
+          .tex(top.getMinU(), top.getMaxV())
+          .lightmap(j, k)
+          .endVertex();
+    }
 
     // SIDE X+
     {
       float maxV = side.getInterpolatedV(13);
       float minV = side.getInterpolatedV(11);
+      double inset = 0;
       buffer
-          .pos(1 - INSET, level - PX * 2, INSET)
+          .pos(1 - inset, level - PX * 2, inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - INSET, level - PX * 2, 1 - INSET)
+          .pos(1 - inset, level - PX * 2, 1 - inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - INSET, level, 1 - INSET)
+          .pos(1 - inset, level, 1 - inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), minV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - INSET, level, INSET)
+          .pos(1 - inset, level, inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), minV)
           .lightmap(j, k)
@@ -128,26 +135,27 @@ public class TESRBellows
     {
       float maxV = side.getInterpolatedV(13);
       float minV = side.getInterpolatedV(11);
+      double inset = 0;
       buffer
-          .pos(INSET, level - PX * 2, INSET)
+          .pos(inset, level - PX * 2, inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(INSET, level - PX * 2, 1 - INSET)
+          .pos(inset, level - PX * 2, 1 - inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(INSET, level, 1 - INSET)
+          .pos(inset, level, 1 - inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), minV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(INSET, level, INSET)
+          .pos(inset, level, inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), minV)
           .lightmap(j, k)
@@ -158,26 +166,27 @@ public class TESRBellows
     {
       float maxV = side.getInterpolatedV(13);
       float minV = side.getInterpolatedV(11);
+      double inset = 0;
       buffer
-          .pos(INSET, level - PX * 2, 1 - INSET)
+          .pos(inset, level - PX * 2, 1 - inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - INSET, level - PX * 2, 1 - INSET)
+          .pos(1 - inset, level - PX * 2, 1 - inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - INSET, level, 1 - INSET)
+          .pos(1 - inset, level, 1 - inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), minV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(INSET, level, 1 - INSET)
+          .pos(inset, level, 1 - inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), minV)
           .lightmap(j, k)
@@ -188,26 +197,27 @@ public class TESRBellows
     {
       float maxV = side.getInterpolatedV(13);
       float minV = side.getInterpolatedV(11);
+      double inset = 0;
       buffer
-          .pos(INSET, level - PX * 2, INSET)
+          .pos(inset, level - PX * 2, inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - INSET, level - PX * 2, INSET)
+          .pos(1 - inset, level - PX * 2, inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - INSET, level, INSET)
+          .pos(1 - inset, level, inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), minV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(INSET, level, INSET)
+          .pos(inset, level, inset)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), minV)
           .lightmap(j, k)
