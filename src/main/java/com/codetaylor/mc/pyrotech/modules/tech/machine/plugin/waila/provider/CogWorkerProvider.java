@@ -4,7 +4,7 @@ import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneHopper;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class StoneHopperProvider
+public class CogWorkerProvider
     extends BodyProviderAdapter {
 
   @Nonnull
@@ -28,9 +28,9 @@ public class StoneHopperProvider
 
     TileEntity tileEntity = accessor.getTileEntity();
 
-    if (tileEntity instanceof TileStoneHopper) {
+    if (tileEntity instanceof TileCogWorkerBase) {
 
-      TileStoneHopper tile = (TileStoneHopper) tileEntity;
+      TileCogWorkerBase tile = (TileCogWorkerBase) tileEntity;
       ItemStackHandler cogStackHandler = tile.getCogStackHandler();
       ItemStack cog = cogStackHandler.getStackInSlot(0);
 

@@ -7,7 +7,6 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileBellows;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -21,7 +20,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
 
 public class BlockBellows
     extends BlockPartialBase {
@@ -35,25 +33,8 @@ public class BlockBellows
     this.setResistance(0.2f);
   }
 
-  @Override
-  public void addCollisionBoxToList(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {
-
-    /*TileEntity tileEntity = world.getTileEntity(pos);
-
-    if (tileEntity instanceof TileBellows) {
-      float progress = ((TileBellows) tileEntity).getProgress();
-
-      addCollisionBoxToList(pos, entityBox, collidingBoxes, AABBHelper.create(0, 0, 0, 16, 3, 16));
-      addCollisionBoxToList(pos, entityBox, collidingBoxes, AABBHelper.create(1, 3, 1, 15, 6, 15));
-
-      double offset = (-progress) * (8.0 / 16.0);
-      addCollisionBoxToList(pos, entityBox, collidingBoxes, AABBHelper.create(0, 14, 0, 16, 16, 16).offset(0, offset, 0));
-      return;
-    }*/
-
-    super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entityIn, isActualState);
-  }
-
+  @SuppressWarnings("deprecation")
+  @Nonnull
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
@@ -126,6 +107,7 @@ public class BlockBellows
     return new BlockStateContainer(this, Properties.FACING_HORIZONTAL);
   }
 
+  @SuppressWarnings("deprecation")
   @Nonnull
   @Override
   public IBlockState getStateFromMeta(int meta) {

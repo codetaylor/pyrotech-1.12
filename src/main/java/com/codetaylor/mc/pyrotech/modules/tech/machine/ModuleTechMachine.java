@@ -184,6 +184,9 @@ public class ModuleTechMachine
     @GameRegistry.ObjectHolder(BlockBellows.NAME)
     public static final BlockBellows BELLOWS;
 
+    @GameRegistry.ObjectHolder(BlockMechanicalBellows.NAME)
+    public static final BlockMechanicalBellows MECHANICAL_BELLOWS;
+
     static {
       STONE_KILN = null;
       STONE_OVEN = null;
@@ -200,6 +203,7 @@ public class ModuleTechMachine
       MECHANICAL_MULCH_SPREADER = null;
 
       BELLOWS = null;
+      MECHANICAL_BELLOWS = null;
     }
   }
 

@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine;
 
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.config.Config;
@@ -238,6 +239,68 @@ public class ModuleTechMachineConfig {
         "Default: " + 0.1
     })
     public double BASE_AIRFLOW = 0.1;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Mechanical Bellows
+  // ---------------------------------------------------------------------------
+
+  public static MechanicalBellows MECHANICAL_BELLOWS = new MechanicalBellows();
+
+  public static class MechanicalBellows {
+
+    @Config.Comment({
+        "The number of ticks that the device takes to return to the up position.",
+        "NOTE: Must be smaller than the travel time down.",
+        "Default: " + 10
+    })
+    @Config.RangeInt(min = 1)
+    public int TRAVEL_TIME_UP_TICKS = 10;
+
+    @Config.Comment({
+        "The number of ticks that the device takes to reach the down position.",
+        "NOTE: Must be larger than the travel time up.",
+        "Default: " + (5 * 20)
+    })
+    @Config.RangeInt(min = 1)
+    public int TRAVEL_TIME_DOWN_TICKS = 5 * 20;
+
+    @Config.Comment({
+        "The unmodulated, base airflow pushed per tick the device is active.",
+        "Default: " + 0.1
+    })
+    public double BASE_AIRFLOW = 0.1;
+
+    @Config.Comment({
+        "The amount of damage applied to a cog each time the machine pushes.",
+        "Default: " + 8
+    })
+    public int COG_DAMAGE = 8;
+
+    @Config.Comment({
+        "A list of valid cogs for the device.",
+        "NOTE: Items provided here are assumed to have durability.",
+        "String format is (domain):(path)"
+    })
+    public String[] COGS = {
+        "pyrotech:cog_wood",
+        "pyrotech:cog_stone",
+        "pyrotech:cog_flint",
+        "pyrotech:cog_bone",
+        "pyrotech:cog_iron",
+        "pyrotech:cog_gold",
+        "pyrotech:cog_obsidian",
+        "pyrotech:cog_diamond"
+    };
+
+    public boolean isValidCog(@Nullable ResourceLocation resourceLocation) {
+
+      if (resourceLocation != null) {
+        return ArrayHelper.contains(COGS, resourceLocation.toString());
+      }
+
+      return false;
+    }
   }
 
   // ---------------------------------------------------------------------------

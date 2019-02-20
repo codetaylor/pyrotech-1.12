@@ -53,6 +53,8 @@ public interface ITileInteractable {
    * <p>
    * NOTE: The system currently works with only horizontal facings.
    * <p>
+   * WARNING: You must check that the block is the block you expect to prevent an NPE.
+   * <p>
    * The default facing is NORTH.
    *
    * @param world      the world

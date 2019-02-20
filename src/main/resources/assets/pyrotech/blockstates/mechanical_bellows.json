@@ -1,0 +1,30 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:mechanical_bellows_base",
+    "textures": {
+      "particle": "pyrotech:blocks/mechanical_bellows_side"
+    }
+  },
+  "variants": {
+    "facing": {
+      "north": {
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "type": {
+      "top": {
+        "model": "pyrotech:_empty"
+      },
+      "bottom": {}
+    }
+  }
+}

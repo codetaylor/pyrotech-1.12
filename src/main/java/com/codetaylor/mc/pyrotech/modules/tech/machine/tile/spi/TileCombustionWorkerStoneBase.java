@@ -217,14 +217,14 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     if (active && !super.workerIsActive()) {
 
       if (this.hasFuel()) {
-        blockState = blockState.withProperty(BlockCombustionWorkerStoneBase.TYPE, BlockCombustionWorkerStoneBase.EnumType.BottomLit);
+        blockState = blockState.withProperty(BlockCombustionWorkerStoneBase.TYPE, BlockCombustionWorkerStoneBase.EnumType.BOTTOM_LIT);
         this.world.setBlockState(this.pos, blockState, 3);
         super.workerSetActive(true);
         this.interactionCooldown = 5;
       }
 
     } else if (!active && super.workerIsActive()) {
-      blockState = blockState.withProperty(BlockCombustionWorkerStoneBase.TYPE, BlockCombustionWorkerStoneBase.EnumType.Bottom);
+      blockState = blockState.withProperty(BlockCombustionWorkerStoneBase.TYPE, BlockCombustionWorkerStoneBase.EnumType.BOTTOM);
       this.world.setBlockState(this.pos, blockState, 3);
       super.workerSetActive(false);
     }

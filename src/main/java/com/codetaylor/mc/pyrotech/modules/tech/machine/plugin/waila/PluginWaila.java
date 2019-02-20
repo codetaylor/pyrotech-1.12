@@ -13,8 +13,9 @@ public class PluginWaila {
   public static void wailaCallback(IWailaRegistrar registrar) {
 
     {
-      StoneHopperProvider provider = new StoneHopperProvider();
+      CogWorkerProvider provider = new CogWorkerProvider();
       registrar.registerBodyProvider(provider, TileStoneHopper.class);
+      registrar.registerBodyProvider(provider, TileMechanicalBellowsTop.class);
     }
 
     {

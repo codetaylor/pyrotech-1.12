@@ -56,14 +56,14 @@ public class TileBellows
     return 1f / this.getTotalTicksDown();
   }
 
-  protected int getTotalTicksDown() {
-
-    return ModuleTechMachineConfig.BELLOWS.TRAVEL_TIME_DOWN_TICKS;
-  }
-
   protected float getProgressIncrementUp() {
 
     return -1f / this.getTotalTicksUp();
+  }
+
+  protected int getTotalTicksDown() {
+
+    return ModuleTechMachineConfig.BELLOWS.TRAVEL_TIME_DOWN_TICKS;
   }
 
   protected int getTotalTicksUp() {
@@ -73,7 +73,7 @@ public class TileBellows
 
   protected float getAirflow() {
 
-    float baseAirflow = (float) ModuleTechMachineConfig.BELLOWS.BASE_AIRFLOW;
+    float baseAirflow = this.getBaseAirflow();
     float time = MathHelper.clamp(this.time, 0, 1);
     float modulatedAirflow;
 
@@ -85,6 +85,11 @@ public class TileBellows
     }
 
     return modulatedAirflow * 2;
+  }
+
+  protected float getBaseAirflow() {
+
+    return (float) ModuleTechMachineConfig.BELLOWS.BASE_AIRFLOW;
   }
 
   // ---------------------------------------------------------------------------

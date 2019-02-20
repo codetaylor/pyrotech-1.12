@@ -119,6 +119,7 @@ tile.pyrotech.stone_hopper.name=Stone Hopper
 tile.pyrotech.mechanical_compacting_bin.name=Mechanical Compactor
 tile.pyrotech.mechanical_mulch_spreader.name=Mechanical Mulcher
 tile.pyrotech.bellows.name=Bellows
+tile.pyrotech.mechanical_bellows.name=Mechanical Bellows
 
 #------------------------------------------------------------------------------
 # Module: Tech - Refractory

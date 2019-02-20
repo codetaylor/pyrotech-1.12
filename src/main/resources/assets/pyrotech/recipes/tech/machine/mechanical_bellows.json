@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.machine"]
+    }
+  ],
+  "pattern": [
+    "WbW",
+    "L-L",
+    "B B"
+  ],
+  "key": {
+    "W": {
+      "item": "pyrotech:material",
+      "data": 23
+    },
+    "b": {
+      "item": "minecraft:piston",
+      "data": 0
+    },
+    "-": {
+      "item": "pyrotech:bellows",
+      "data": 0
+    },
+    "B": {
+      "item": "pyrotech:planks_tarred",
+      "data": 0
+    },
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "stickStone"
+    }
+  },
+  "result": {
+    "item": "pyrotech:mechanical_bellows",
+    "count": 1,
+    "data": 0
+  }
+}

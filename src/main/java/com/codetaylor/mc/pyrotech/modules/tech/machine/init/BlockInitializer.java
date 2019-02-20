@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.TESRBellows;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.TESRMechanicalBellows;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.*;
 import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
@@ -40,6 +41,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockStoneHopper(), BlockStoneHopper.NAME);
 
     registry.registerBlockWithItem(new BlockBellows(), BlockBellows.NAME);
+    registry.registerBlockWithItem(new BlockMechanicalBellows(), BlockMechanicalBellows.NAME);
 
     BlockMechanicalCompactingBin blockMechanicalCompactingBin = new BlockMechanicalCompactingBin();
     registry.registerBlock(blockMechanicalCompactingBin, new BlockMechanicalCompactingBin.Item(blockMechanicalCompactingBin), BlockMechanicalCompactingBin.NAME);
@@ -71,7 +73,9 @@ public final class BlockInitializer {
         TileMechanicalCompactingBinWorker.class,
         TileMechanicalMulchSpreader.class,
 
-        TileBellows.class
+        TileBellows.class,
+        TileMechanicalBellows.class,
+        TileMechanicalBellowsTop.class
     );
   }
 
@@ -99,6 +103,11 @@ public final class BlockInitializer {
       ModelRegistrationHelper.registerItemModel(
           Item.getItemFromBlock(ModuleTechMachine.Blocks.BELLOWS),
           ModuleTechMachine.MOD_ID + ":" + BlockBellows.NAME + "_item"
+      );
+
+      ModelRegistrationHelper.registerItemModel(
+          Item.getItemFromBlock(ModuleTechMachine.Blocks.MECHANICAL_BELLOWS),
+          ModuleTechMachine.MOD_ID + ":" + BlockMechanicalBellows.NAME + "_item"
       );
 
       if (!ModuleTechMachineConfig.BRICK_KILN.USE_IRON_SKIN) {
@@ -137,6 +146,8 @@ public final class BlockInitializer {
       ClientRegistry.bindTileEntitySpecialRenderer(TileMechanicalMulchSpreader.class, new TESRInteractable<>());
 
       ClientRegistry.bindTileEntitySpecialRenderer(TileBellows.class, new TESRBellows());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileMechanicalBellowsTop.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileMechanicalBellows.class, new TESRMechanicalBellows());
     });
   }
 
