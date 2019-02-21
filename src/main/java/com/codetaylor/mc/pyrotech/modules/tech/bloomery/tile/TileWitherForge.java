@@ -106,10 +106,19 @@ public class TileWitherForge
   @Override
   protected void createSlag() {
 
+    int count = this.getInputStackHandler().getStackInSlot(0).getCount();
     EnumFacing facing = this.getTileFacing(this.world, this.pos, this.world.getBlockState(this.pos));
-    this.createSlag(this.pos.offset(facing));
-    this.createSlag(this.pos.offset(FacingHelper.rotateFacingCW(facing)));
-    this.createSlag(this.pos.offset(FacingHelper.rotateFacingCW(facing, 3)));
+
+    BlockPos[] positions = {
+        this.pos.offset(facing),
+        this.pos.offset(FacingHelper.rotateFacingCW(facing)),
+        this.pos.offset(FacingHelper.rotateFacingCW(facing, 3))
+    };
+
+    for (int i = 0; i < count; i++) {
+      int index = this.world.rand.nextInt(positions.length);
+      this.createSlag(positions[index]);
+    }
   }
 
   @Override
