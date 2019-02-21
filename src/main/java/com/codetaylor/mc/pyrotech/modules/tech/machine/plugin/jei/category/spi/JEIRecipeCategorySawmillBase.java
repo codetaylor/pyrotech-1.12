@@ -16,7 +16,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public abstract class JEIRecipeCategorySawmillBase
     implements IRecipeCategory<JEIRecipeWrapperSawmill> {
 
-  private static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei4.png");
+  private static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei11.png");
 
   private final IDrawableAnimated arrow;
   private final IDrawable background;
@@ -26,12 +26,12 @@ public abstract class JEIRecipeCategorySawmillBase
 
     ResourceLocation resourceLocation = this.getBackgroundResourceLocation();
 
-    IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82, 0, 24, 17);
+    IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 101, 0, 24, 17);
 
     IDrawableAnimated.StartDirection left = IDrawableAnimated.StartDirection.LEFT;
 
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
-    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 38);
+    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 101, 38);
 
     this.title = Translator.translateToLocal(this.getTitleKey());
   }
@@ -78,6 +78,7 @@ public abstract class JEIRecipeCategorySawmillBase
     itemStacks.init(0, true, 0, 0);
     itemStacks.init(1, true, 0, 19);
     itemStacks.init(2, false, 60, 16);
+    itemStacks.init(3, false, 83, 20);
 
     itemStacks.set(ingredients);
   }
