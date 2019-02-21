@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.bloomery"]
+    }
+  ],
+  "pattern": [
+    "X X",
+    "H H",
+    "XHX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:nether_brick",
+      "data": 0
+    },
+    "H": {
+      "item": "minecraft:skull",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "pyrotech:wither_forge",
+    "count": 1,
+    "data": 0
+  }
+}
