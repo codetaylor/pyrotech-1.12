@@ -281,4 +281,11 @@ public class BloomHelper {
 
     return itemStack;
   }
+
+  public static String getCompareString(ItemStack itemStack) {
+
+    NBTTagCompound compound = StackHelper.getTagSafe(itemStack);
+    NBTTagCompound tileTag = compound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
+    return tileTag.getString("recipeId");
+  }
 }

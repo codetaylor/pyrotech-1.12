@@ -228,7 +228,7 @@ public class BlockBloomery
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
-    if (ModuleTechBloomeryConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE > 0
+    if (this.getEntityWalkBurnDamage() > 0
         && this.isTop(world.getBlockState(pos))) {
 
       TileEntity tileEntity = world.getTileEntity(pos.down());
@@ -239,13 +239,18 @@ public class BlockBloomery
         if (!entity.isImmuneToFire()
             && entity instanceof EntityLivingBase
             && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity)) {
-          entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) ModuleTechBloomeryConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE);
+          entity.attackEntityFrom(DamageSource.HOT_FLOOR, (float) this.getEntityWalkBurnDamage());
           entity.setFire(4);
         }
       }
     }
 
     super.onEntityWalk(world, pos, entity);
+  }
+
+  protected double getEntityWalkBurnDamage() {
+
+    return ModuleTechBloomeryConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE;
   }
 
   @Nullable
@@ -348,7 +353,7 @@ public class BlockBloomery
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
     if (this.getActualState(state, world, pos).getValue(TYPE) == EnumType.BottomLit) {
-      return 9;
+      return 12;
     }
 
     return super.getLightValue(state, world, pos);

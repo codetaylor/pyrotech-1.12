@@ -8,13 +8,13 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
 
-public class BloomeryRecipe
-    extends BloomeryRecipeBase<BloomeryRecipe> {
+public class WitherForgeRecipe
+    extends BloomeryRecipeBase<WitherForgeRecipe> {
 
   @Nullable
-  public static BloomeryRecipe getRecipe(ItemStack input) {
+  public static WitherForgeRecipe getRecipe(ItemStack input) {
 
-    for (BloomeryRecipe recipe : ModuleTechBloomery.Registries.BLOOMERY_RECIPE) {
+    for (WitherForgeRecipe recipe : ModuleTechBloomery.Registries.WITHER_FORGE_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -26,10 +26,10 @@ public class BloomeryRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModuleTechBloomery.Registries.BLOOMERY_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModuleTechBloomery.Registries.WITHER_FORGE_RECIPE, output);
   }
 
-  /* package */ BloomeryRecipe(
+  /* package */ WitherForgeRecipe(
       ItemStack output,
       Ingredient input,
       int burnTimeTicks,

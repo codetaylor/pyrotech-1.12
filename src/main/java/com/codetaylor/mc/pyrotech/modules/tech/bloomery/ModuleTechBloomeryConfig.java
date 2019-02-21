@@ -134,6 +134,127 @@ public class ModuleTechBloomeryConfig {
         "OreDict wildcard value. The modifier is a double in the range [0,+double)"
     })
     public Map<String, Double> SPECIAL_FUEL_BURN_TIME_MODIFIERS = new LinkedHashMap<String, Double>() {{
+      this.put("pyrotech:living_tar", 2.0);
+      this.put("pyrotech:coal_coke_block", 2.0);
+      this.put("minecraft:coal_block", 1.5);
+    }};
+
+    public double getSpecialFuelBurnTimeModifier(ItemStack stack) {
+
+      ResourceLocation registryName = stack.getItem().getRegistryName();
+
+      if (registryName != null) {
+
+        for (Map.Entry<String, Double> entry : SPECIAL_FUEL_BURN_TIME_MODIFIERS.entrySet()) {
+
+          try {
+            ParseResult parseResult = RecipeItemParser.INSTANCE.parse(entry.getKey());
+
+            if (parseResult.matches(stack, true)) {
+              return entry.getValue();
+            }
+
+          } catch (MalformedRecipeItemException e) {
+            ModuleTechBloomery.LOGGER.error("Error parsing special fuel burn time modifier for item " + entry.getKey(), e);
+          }
+        }
+
+      }
+
+      return 1;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Bloomery
+  // ---------------------------------------------------------------------------
+
+  public static WitherForge WITHER_FORGE = new WitherForge();
+
+  public static class WitherForge {
+
+    @Config.Comment({
+        "This is the total amount of fuel burn time required to operate the device",
+        "at maximum speed. More fuel will increase the speed of the device with",
+        "diminishing returns. If the speed cap flag is set to true, inserted ",
+        "fuel items that cause the total burn time of all inserted fuel items",
+        "to exceed this value will not be inserted.",
+        "Default: " + (32000 * 4)
+    })
+    @Config.RangeInt(min = 1)
+    public int FUEL_CAPACITY_BURN_TIME = 32000 * 4;
+
+    @Config.Comment({
+        "The total number of fuel items that the device can hold.",
+        "Default: " + 16
+    })
+    @Config.RangeInt(min = 1)
+    public int FUEL_CAPACITY_ITEMS = 16;
+
+    @Config.Comment({
+        "If true, inserted fuel items that cause the total burn time of all",
+        "inserted fuel items to exceed the device's capacity will not be",
+        "inserted.",
+        "Default: " + false
+    })
+    public boolean HAS_SPEED_CAP = false;
+
+    @Config.Comment({
+        "The wither forge speed is based on the quality (burn time) of the fuel",
+        "inserted: y = (scalar)(burnTime/maxBurnTime)^(1/2)",
+        "For example, if set to 2, the max speed of the wither forge is 200% and",
+        "25% of the total fuel capacity is required for a speed of 100%. If set",
+        "to 3, the max speed is 300% and roughly 11% capacity is required for",
+        "100% speed."
+    })
+    @Config.RangeDouble(min = 0)
+    public double SPEED_SCALAR = 2;
+
+    @Config.Comment({
+        "The maximum amount of ash the device can hold.",
+        "Default: " + 16
+    })
+    @Config.RangeInt(min = 1)
+    public int MAX_ASH_CAPACITY = 16;
+
+    @Config.Comment({
+        "The chance that one fuel item will convert to one ash upon recipe",
+        "completion.",
+        "Default: " + 0.35
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double ASH_CONVERSION_CHANCE = 0.35;
+
+    @Config.Comment({
+        "The amount of damage done to an entity walking on top of the device",
+        "when it is active.",
+        "Default: " + 3
+    })
+    @Config.RangeDouble(min = 0)
+    public double ENTITY_WALK_BURN_DAMAGE = 3;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the airflow from a block like the",
+        "bellows.",
+        "Default: " + 1.0
+    })
+    public double AIRFLOW_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Percentage of retained airflow lost per tick.",
+        "Default: " + 0.005
+    })
+    public double AIRFLOW_DRAG_MODIFIER = 0.005;
+
+    @Config.Comment({
+        "By default, the wither forge uses the burn time of the items inserted as fuel",
+        "to calculate its speed. This map allows you to specify per-item modifiers",
+        "for wither forge burn time.",
+        "",
+        "The item string syntax is (domain):(path):(meta|*) where * is used as the",
+        "OreDict wildcard value. The modifier is a double in the range [0,+double)"
+    })
+    public Map<String, Double> SPECIAL_FUEL_BURN_TIME_MODIFIERS = new LinkedHashMap<String, Double>() {{
       this.put("pyrotech:living_tar", 4.0);
       this.put("pyrotech:coal_coke_block", 2.0);
       this.put("minecraft:coal_block", 1.5);
@@ -163,6 +284,13 @@ public class ModuleTechBloomeryConfig {
 
       return 1;
     }
+
+    @Config.Comment({
+        "If true, all the bloomery recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_BLOOMERY_RECIPES = true;
+
   }
 
   // ---------------------------------------------------------------------------

@@ -4,7 +4,7 @@ import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -68,11 +68,10 @@ public class BloomeryProvider
         StringBuilder renderString = new StringBuilder();
         renderString.append(WailaUtil.getStackRenderString(input));
 
-        BloomeryRecipe recipe = tile.getCurrentRecipe();
+        BloomeryRecipeBase recipe = tile.getCurrentRecipe();
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutputBloom();
-          recipeOutput.setCount(input.getCount());
           renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
           renderString.append(WailaUtil.getStackRenderString(recipeOutput));
         }

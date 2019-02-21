@@ -1,0 +1,34 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "particle": "pyrotech:blocks/wither_forge_side"
+    }
+  },
+  "variants": {
+    "facing": {
+      "north": {
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    },
+    "type": {
+      "top": {
+        "model": "pyrotech:_empty"
+      },
+      "bottom": {
+        "model": "pyrotech:wither_forge_unlit"
+      },
+      "bottom_lit": {
+        "model": "pyrotech:wither_forge_lit"
+      }
+    }
+  }
+}

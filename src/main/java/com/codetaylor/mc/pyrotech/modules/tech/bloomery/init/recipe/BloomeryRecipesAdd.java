@@ -11,6 +11,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -126,19 +127,6 @@ public class BloomeryRecipesAdd {
               .create()
       );
     }
-
-    // Obsidian Shards
-    registry.register(new BloomeryRecipeBuilder(
-        new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_obsidian"),
-        ItemMaterial.EnumType.OBSIDIAN_SHARD.asStack(),
-        Ingredient.fromStacks(new ItemStack(Blocks.OBSIDIAN))
-    )
-        .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
-        .setFailureChance(DEFAULT_FAILURE_CHANCE)
-        .setBloomYield(8, 12)
-        .setSlagItem(new ItemStack(ModuleTechBloomery.Items.SLAG), 2)
-        .setLangKey(Blocks.OBSIDIAN.getUnlocalizedName())
-        .create());
   }
 
   public static void registerBloomAnvilRecipes(
@@ -149,7 +137,7 @@ public class BloomeryRecipesAdd {
     Collection<BloomeryRecipe> bloomeryRecipes = registryBloomery.getValuesCollection();
     List<BloomeryRecipe> snapshot = new ArrayList<>(bloomeryRecipes);
 
-    for (BloomeryRecipe bloomeryRecipe : snapshot) {
+    for (BloomeryRecipeBase bloomeryRecipe : snapshot) {
 
       // --- Anvil Recipes ---
 

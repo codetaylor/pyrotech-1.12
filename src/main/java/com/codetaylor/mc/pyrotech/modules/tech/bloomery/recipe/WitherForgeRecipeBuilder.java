@@ -4,18 +4,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 
-public class BloomeryRecipeBuilder
-    extends BloomeryRecipeBuilderBase<BloomeryRecipe, BloomeryRecipeBuilder> {
+public class WitherForgeRecipeBuilder
+    extends BloomeryRecipeBuilderBase<WitherForgeRecipe, WitherForgeRecipeBuilder> {
 
-  public BloomeryRecipeBuilder(ResourceLocation resourceLocation, ItemStack output, Ingredient input) {
+  public WitherForgeRecipeBuilder(ResourceLocation resourceLocation, ItemStack output, Ingredient input) {
 
     super(resourceLocation, output, input);
   }
 
   @Override
-  public BloomeryRecipe create() {
+  public WitherForgeRecipe create() {
 
-    BloomeryRecipe recipe = new BloomeryRecipe(
+    WitherForgeRecipe recipe = new WitherForgeRecipe(
         this.output,
         this.input,
         this.burnTimeTicks,

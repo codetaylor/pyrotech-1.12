@@ -11,13 +11,16 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockWitherForge;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.BloomeryRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.CompactingBinRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.WitherForgeRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.*;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi.ItemTongsFullBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.WitherForgeRecipe;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -70,7 +73,7 @@ public class ModuleTechBloomery
     MinecraftForge.EVENT_BUS.register(this);
 
     String[] craftTweakerPlugins = {
-        "ZenBloomeryBuilder"
+        "ZenBloomery"
     };
 
     for (String plugin : craftTweakerPlugins) {
@@ -97,6 +100,12 @@ public class ModuleTechBloomery
         .allowModification()
         .create();
 
+    new RegistryBuilder<WitherForgeRecipe>()
+        .setName(new ResourceLocation(ModuleTechBloomery.MOD_ID, "wither_forge_recipe"))
+        .setType(WitherForgeRecipe.class)
+        .allowModification()
+        .create();
+
     // --- Injection
 
     Injector injector = new Injector();
@@ -105,6 +114,12 @@ public class ModuleTechBloomery
         ModuleTechBloomery.Registries.class,
         "BLOOMERY_RECIPE",
         GameRegistry.findRegistry(BloomeryRecipe.class)
+    );
+
+    injector.inject(
+        ModuleTechBloomery.Registries.class,
+        "WITHER_FORGE_RECIPE",
+        GameRegistry.findRegistry(WitherForgeRecipe.class)
     );
   }
 
@@ -141,7 +156,8 @@ public class ModuleTechBloomery
 
     super.onRegisterRecipesEvent(event);
 
-    BloomeryRecipesAdd.apply(ModuleTechBloomery.Registries.BLOOMERY_RECIPE);
+    BloomeryRecipesAdd.apply(Registries.BLOOMERY_RECIPE);
+    WitherForgeRecipesAdd.apply(Registries.WITHER_FORGE_RECIPE);
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
       CompactingBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE);
@@ -184,9 +200,18 @@ public class ModuleTechBloomery
 
     super.onPostInitializationEvent(event);
 
+    WitherForgeRecipesAdd.registerInheritedRecipes(
+        Registries.BLOOMERY_RECIPE,
+        Registries.WITHER_FORGE_RECIPE
+    );
+
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
       BloomeryRecipesAdd.registerBloomAnvilRecipes(
           ModuleTechBloomery.Registries.BLOOMERY_RECIPE,
+          ModuleTechBasic.Registries.ANVIL_RECIPE
+      );
+      WitherForgeRecipesAdd.registerBloomAnvilRecipes(
+          Registries.WITHER_FORGE_RECIPE,
           ModuleTechBasic.Registries.ANVIL_RECIPE
       );
     }
@@ -209,12 +234,16 @@ public class ModuleTechBloomery
     @GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID + ":" + BlockBloomery.NAME)
     public static final BlockBloomery BLOOMERY;
 
+    @GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID + ":" + BlockWitherForge.NAME)
+    public static final BlockWitherForge WITHER_FORGE;
+
     @GameRegistry.ObjectHolder(ModuleTechBloomery.MOD_ID + ":" + BlockBloom.NAME)
     public static final BlockBloom BLOOM;
 
     static {
       PILE_SLAG = null;
       BLOOMERY = null;
+      WITHER_FORGE = null;
       BLOOM = null;
     }
   }
@@ -294,9 +323,11 @@ public class ModuleTechBloomery
   public static class Registries {
 
     public static final IForgeRegistryModifiable<BloomeryRecipe> BLOOMERY_RECIPE;
+    public static final IForgeRegistryModifiable<WitherForgeRecipe> WITHER_FORGE_RECIPE;
 
     static {
       BLOOMERY_RECIPE = null;
+      WITHER_FORGE_RECIPE = null;
     }
   }
 

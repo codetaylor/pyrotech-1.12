@@ -6,7 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomAnvilRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -47,13 +47,13 @@ public class JEIRecipeWrapperAnvil
 
     // Special handling of bloom recipe
     if (recipe instanceof BloomAnvilRecipe) {
-      BloomeryRecipe bloomeryRecipe = ((BloomAnvilRecipe) recipe).getBloomeryRecipe();
-      BloomeryRecipe.FailureItem[] failureItems = bloomeryRecipe.getFailureItems();
+      BloomeryRecipeBase bloomeryRecipe = ((BloomAnvilRecipe) recipe).getBloomeryRecipe();
+      BloomeryRecipeBase.FailureItem[] failureItems = bloomeryRecipe.getFailureItems();
 
       List<ItemStack> result = new ArrayList<>(failureItems.length + 1);
       result.add(recipe.getOutput());
 
-      for (BloomeryRecipe.FailureItem failureItem : failureItems) {
+      for (BloomeryRecipeBase.FailureItem failureItem : failureItems) {
         result.add(failureItem.getItemStack());
       }
 
@@ -132,7 +132,7 @@ public class JEIRecipeWrapperAnvil
 
     // Special handling of bloom recipe
     if (this.recipe instanceof BloomAnvilRecipe) {
-      BloomeryRecipe bloomeryRecipe = ((BloomAnvilRecipe) this.recipe).getBloomeryRecipe();
+      BloomeryRecipeBase bloomeryRecipe = ((BloomAnvilRecipe) this.recipe).getBloomeryRecipe();
       int bloomYieldMin = bloomeryRecipe.getBloomYieldMin();
       int bloomYieldMax = bloomeryRecipe.getBloomYieldMax();
       String text = bloomYieldMin + "-" + bloomYieldMax;

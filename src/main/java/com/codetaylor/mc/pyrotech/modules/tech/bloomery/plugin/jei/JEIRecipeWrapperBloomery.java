@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.jei;
 
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperTimed;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
@@ -18,7 +18,7 @@ public class JEIRecipeWrapperBloomery
   private final List<List<ItemStack>> inputs;
   private final List<List<ItemStack>> outputs;
 
-  public JEIRecipeWrapperBloomery(BloomeryRecipe recipe) {
+  public JEIRecipeWrapperBloomery(BloomeryRecipeBase recipe) {
 
     super(recipe);
 

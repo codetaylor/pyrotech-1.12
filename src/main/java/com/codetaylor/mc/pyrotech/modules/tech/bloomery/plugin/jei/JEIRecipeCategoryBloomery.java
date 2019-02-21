@@ -15,15 +15,19 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class JEIRecipeCategoryBloomery
     implements IRecipeCategory<JEIRecipeWrapperBloomery> {
 
-  public static final String UID = ModuleTechBloomery.MOD_ID + ".bloomery";
+  public static final String UID_BLOOMERY = ModuleTechBloomery.MOD_ID + ".bloomery";
+  public static final String UID_WITHER_FORGE = ModuleTechBloomery.MOD_ID + ".wither.forge";
 
   private final IDrawableAnimated animatedFlame;
   private final IDrawableAnimated arrow;
   private final IDrawable background;
 
   private final String title;
+  private final String uid;
 
-  public JEIRecipeCategoryBloomery(IGuiHelper guiHelper) {
+  public JEIRecipeCategoryBloomery(IGuiHelper guiHelper, String uid, String langKey) {
+
+    this.uid = uid;
 
     ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBloomery.MOD_ID, "textures/gui/jei7.png");
 
@@ -37,14 +41,14 @@ public class JEIRecipeCategoryBloomery
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82 + 19, 40);
 
-    this.title = Translator.translateToLocal("gui." + ModuleTechBloomery.MOD_ID + ".jei.category.bloomery");
+    this.title = Translator.translateToLocal(langKey);
   }
 
   @Nonnull
   @Override
   public String getUid() {
 
-    return UID;
+    return this.uid;
   }
 
   @Nonnull

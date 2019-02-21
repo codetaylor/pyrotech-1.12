@@ -24,6 +24,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.client.particles.ParticleBloomeryDrip;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.client.render.BloomeryFuelRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -50,6 +51,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.function.BooleanSupplier;
 
@@ -88,7 +91,7 @@ public class TileBloomery
   private TileDataFloat airflow;
   private float airflowBonus;
   private int lastBurnTime;
-  private BloomeryRecipe currentRecipe;
+  private BloomeryRecipeBase currentRecipe;
   private int remainingSlag;
   private TileDataInteger ashCount;
 
@@ -98,7 +101,7 @@ public class TileBloomery
 
     super(ModuleTechBloomery.TILE_DATA_SERVICE);
 
-    this.inputStackHandler = new InputStackHandler();
+    this.inputStackHandler = new InputStackHandler(this.getInputCapacity());
     this.inputStackHandler.addObserver((handler, slot) -> {
       this.updateRecipe();
       this.markDirty();
@@ -210,7 +213,7 @@ public class TileBloomery
     return this.fuelStackHandler;
   }
 
-  public BloomeryRecipe getCurrentRecipe() {
+  public BloomeryRecipeBase getCurrentRecipe() {
 
     return this.currentRecipe;
   }
@@ -226,11 +229,6 @@ public class TileBloomery
     return this.fuelCount.get();
   }
 
-  public int getMaxFuelCount() {
-
-    return ModuleTechBloomeryConfig.BLOOMERY.FUEL_CAPACITY_ITEMS;
-  }
-
   public float getSpeed() {
 
     return this.speed.get();
@@ -239,6 +237,21 @@ public class TileBloomery
   public int getBurnTime() {
 
     return this.burnTime.get();
+  }
+
+  public float getAirflow() {
+
+    return this.airflow.get();
+  }
+
+  public int getAshCount() {
+
+    return this.ashCount.get();
+  }
+
+  public int getMaxFuelCount() {
+
+    return ModuleTechBloomeryConfig.BLOOMERY.FUEL_CAPACITY_ITEMS;
   }
 
   public int getMaxBurnTime() {
@@ -261,14 +274,9 @@ public class TileBloomery
     return (float) ModuleTechBloomeryConfig.BLOOMERY.AIRFLOW_MODIFIER;
   }
 
-  public float getAirflow() {
+  protected double getAshConversionChance() {
 
-    return this.airflow.get();
-  }
-
-  public int getAshCount() {
-
-    return this.ashCount.get();
+    return ModuleTechBloomeryConfig.BLOOMERY.ASH_CONVERSION_CHANCE;
   }
 
   public int getMaxAshCapacity() {
@@ -276,9 +284,24 @@ public class TileBloomery
     return ModuleTechBloomeryConfig.BLOOMERY.MAX_ASH_CAPACITY;
   }
 
+  protected double getSpeedScalar() {
+
+    return ModuleTechBloomeryConfig.BLOOMERY.SPEED_SCALAR;
+  }
+
   protected int getItemBurnTime(ItemStack stack) {
 
-    return (int) (StackHelper.getItemBurnTime(stack) * ModuleTechBloomeryConfig.BLOOMERY.getSpecialFuelBurnTimeModifier(stack));
+    return (int) (StackHelper.getItemBurnTime(stack) * this.getSpecialFuelBurnTimeModifier(stack));
+  }
+
+  protected double getSpecialFuelBurnTimeModifier(ItemStack stack) {
+
+    return ModuleTechBloomeryConfig.BLOOMERY.getSpecialFuelBurnTimeModifier(stack);
+  }
+
+  protected int getInputCapacity() {
+
+    return 1;
   }
 
   // ---------------------------------------------------------------------------
@@ -287,7 +310,12 @@ public class TileBloomery
 
   private void updateRecipe() {
 
-    this.currentRecipe = BloomeryRecipe.getRecipe(this.inputStackHandler.getStackInSlot(0));
+    this.currentRecipe = this.getRecipe(this.inputStackHandler.getStackInSlot(0));
+  }
+
+  protected BloomeryRecipeBase<?> getRecipe(ItemStack stackInSlot) {
+
+    return BloomeryRecipe.getRecipe(stackInSlot);
   }
 
   // ---------------------------------------------------------------------------
@@ -297,7 +325,7 @@ public class TileBloomery
   private void updateSpeed() {
 
     float linearSpeed = this.burnTime.get() / (float) this.getMaxBurnTime();
-    float speed = (float) (ModuleTechBloomeryConfig.BLOOMERY.SPEED_SCALAR * (float) Math.pow(linearSpeed, 0.5));
+    float speed = (float) (this.getSpeedScalar() * (float) Math.pow(linearSpeed, 0.5));
     speed *= this.calculateSpeedAirflowModifier();
     this.speed.set(speed);
   }
@@ -308,37 +336,50 @@ public class TileBloomery
     return Math.pow(airflow - (airflow * 0.19), 0.5) + 0.1;
   }
 
-  public void updateAirflow() {
+  protected List<BlockPos> getAirflowCheckPositions() {
 
     IBlockState tileBlockState = this.world.getBlockState(this.pos);
     EnumFacing tileFacing = this.getTileFacing(this.world, this.pos, tileBlockState);
     BlockPos offset = this.pos.offset(tileFacing);
-    IBlockState blockState = this.world.getBlockState(offset);
+    return Collections.singletonList(offset);
+  }
 
-    if (this.world.isAirBlock(offset)) {
-      this.airflow.set(1);
+  public void updateAirflow() {
 
-    } else if (blockState.getBlock() == ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG) {
-      int level = blockState.getValue(BlockPileSlag.LEVEL);
+    IBlockState tileBlockState = this.world.getBlockState(this.pos);
+    EnumFacing tileFacing = this.getTileFacing(this.world, this.pos, tileBlockState);
+    List<BlockPos> positions = this.getAirflowCheckPositions();
 
-      if (level == 1) {
-        this.airflow.set(1);
+    this.airflow.set(0);
 
-      } else if (level == 2) {
-        this.airflow.set(0.66f);
+    for (BlockPos position : positions) {
+      IBlockState blockState = this.world.getBlockState(position);
 
-      } else if (level == 3) {
-        this.airflow.set(0.33f);
+      if (this.world.isAirBlock(position)) {
+        this.airflow.add(1);
 
-      } else if (level == 4) {
-        this.airflow.set(0);
+      } else if (blockState.getBlock() == ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG) {
+        int level = blockState.getValue(BlockPileSlag.LEVEL);
+
+        if (level == 1) {
+          this.airflow.add(1);
+
+        } else if (level == 2) {
+          this.airflow.add(0.66f);
+
+        } else if (level == 3) {
+          this.airflow.add(0.33f);
+
+        } else if (level == 4) {
+          this.airflow.add(0);
+        }
+
+      } else if (blockState.getBlock().isSideSolid(blockState, this.world, position, tileFacing.getOpposite())) {
+        this.airflow.add(0);
+
+      } else {
+        this.airflow.add(0.5f);
       }
-
-    } else if (blockState.getBlock().isSideSolid(blockState, this.world, offset, tileFacing.getOpposite())) {
-      this.airflow.set(0);
-
-    } else {
-      this.airflow.set(0.5f);
     }
 
     // Adding fuel reduces the airflow, y is modifier, x is fuel percentage.
@@ -373,56 +414,14 @@ public class TileBloomery
 
       if (this.isActive()
           && rand.nextDouble() < 0.5) {
-        IBlockState state = this.world.getBlockState(this.pos);
-
-        EnumFacing enumfacing = state.getValue(Properties.FACING_HORIZONTAL);
-        double offsetY = rand.nextDouble() * 6.0 / 16.0;
-        double x = (double) pos.getX() + 0.5;
-        double y = (double) pos.getY() + offsetY;
-        double z = (double) pos.getZ() + 0.5;
 
         if (rand.nextDouble() < 0.1) {
           world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
         }
 
-        double offset = 0.55;
-        double lavaOffset = 0.075;
-        double dripChance = 0.25;
-
-        switch (enumfacing) {
-
-          case WEST:
-            if (rand.nextFloat() < dripChance) {
-              Minecraft.getMinecraft().effectRenderer.addEffect(
-                  ParticleBloomeryDrip.createParticle(world, x - offset - lavaOffset, y - offsetY, z)
-              );
-            }
-            break;
-
-          case EAST:
-            if (rand.nextFloat() < dripChance) {
-              Minecraft.getMinecraft().effectRenderer.addEffect(
-                  ParticleBloomeryDrip.createParticle(world, x + offset + lavaOffset, y - offsetY, z)
-              );
-            }
-            break;
-
-          case NORTH:
-            if (rand.nextFloat() < dripChance) {
-              Minecraft.getMinecraft().effectRenderer.addEffect(
-                  ParticleBloomeryDrip.createParticle(world, x, y - offsetY, z - offset - lavaOffset)
-              );
-            }
-
-            break;
-
-          case SOUTH:
-            if (rand.nextFloat() < dripChance) {
-              Minecraft.getMinecraft().effectRenderer.addEffect(
-                  ParticleBloomeryDrip.createParticle(world, x, y - offsetY, z + offset + lavaOffset)
-              );
-            }
-        }
+        IBlockState state = this.world.getBlockState(this.pos);
+        EnumFacing facing = state.getValue(Properties.FACING_HORIZONTAL);
+        this.spawnDrip(rand, facing);
       }
 
       return;
@@ -462,15 +461,12 @@ public class TileBloomery
       float recipeProgress = this.recipeProgress.add(increment);
 
       {
-        IBlockState blockState = this.world.getBlockState(this.pos);
-        EnumFacing facing = this.getTileFacing(this.world, this.pos, blockState);
-
         int slag = this.currentRecipe.getSlagCount();
         float nextSlagInterval = (slag - this.remainingSlag) * (1f / slag) + (1f / slag) * 0.5f;
 
         if (recipeProgress >= nextSlagInterval) {
           this.remainingSlag -= 1;
-          this.createSlag(facing);
+          this.createSlag();
         }
       }
 
@@ -483,7 +479,7 @@ public class TileBloomery
 
         for (int i = 1; i < fuelCount; i++) {
 
-          if (random.nextFloat() < ModuleTechBloomeryConfig.BLOOMERY.ASH_CONVERSION_CHANCE) {
+          if (random.nextFloat() < this.getAshConversionChance()) {
             ashCount += 1;
           }
         }
@@ -491,11 +487,13 @@ public class TileBloomery
         ashCount = Math.min(this.getMaxAshCapacity(), ashCount);
         this.ashCount.set(ashCount);
 
+        int count = this.inputStackHandler.getStackInSlot(0).getCount();
+
         // Create the bloom itemstack with nbt
-        ItemStack output = this.currentRecipe.getUniqueBloomFromOutput();
+        ItemStack output = this.currentRecipe.getUniqueBloomFromOutput(count);
 
         // Swap the items
-        this.inputStackHandler.extractItem(0, 1, false);
+        this.inputStackHandler.extractItem(0, count, false);
         this.outputStackHandler.insertItem(0, output, false);
 
         // Reset
@@ -509,9 +507,60 @@ public class TileBloomery
     }
   }
 
-  private boolean createSlag(EnumFacing facing) {
+  protected void spawnDrip(Random rand, EnumFacing facing) {
 
-    BlockPos pos = this.pos.offset(facing);
+    double offsetY = rand.nextDouble() * 6.0 / 16.0;
+    double x = (double) pos.getX() + 0.5;
+    double y = (double) pos.getY() + offsetY;
+    double z = (double) pos.getZ() + 0.5;
+
+    double offset = 0.55;
+    double lavaOffset = 0.075;
+    double dripChance = 0.25;
+
+    switch (facing) {
+
+      case WEST:
+        if (rand.nextFloat() < dripChance) {
+          Minecraft.getMinecraft().effectRenderer.addEffect(
+              ParticleBloomeryDrip.createParticle(world, x - offset - lavaOffset, y - offsetY, z)
+          );
+        }
+        break;
+
+      case EAST:
+        if (rand.nextFloat() < dripChance) {
+          Minecraft.getMinecraft().effectRenderer.addEffect(
+              ParticleBloomeryDrip.createParticle(world, x + offset + lavaOffset, y - offsetY, z)
+          );
+        }
+        break;
+
+      case NORTH:
+        if (rand.nextFloat() < dripChance) {
+          Minecraft.getMinecraft().effectRenderer.addEffect(
+              ParticleBloomeryDrip.createParticle(world, x, y - offsetY, z - offset - lavaOffset)
+          );
+        }
+
+        break;
+
+      case SOUTH:
+        if (rand.nextFloat() < dripChance) {
+          Minecraft.getMinecraft().effectRenderer.addEffect(
+              ParticleBloomeryDrip.createParticle(world, x, y - offsetY, z + offset + lavaOffset)
+          );
+        }
+    }
+  }
+
+  protected void createSlag() {
+
+    EnumFacing facing = this.getTileFacing(this.world, this.pos, this.world.getBlockState(this.pos));
+    this.createSlag(this.pos.offset(facing));
+  }
+
+  protected void createSlag(BlockPos pos) {
 
     {
       // Add to an existing pile directly in front of the device
@@ -525,7 +574,7 @@ public class TileBloomery
         int level = blockState.getValue(BlockPileBase.LEVEL);
 
         if (level >= 4) {
-          return false;
+          return;
         }
 
         this.addSlagItemToTileEntity(pos);
@@ -533,7 +582,7 @@ public class TileBloomery
         this.world.setBlockState(pos, blockState
             .withProperty(BlockPileSlag.LEVEL, level + 1)
             .withProperty(BlockPileSlag.MOLTEN, true));
-        return true;
+        return;
       }
     }
 
@@ -577,7 +626,7 @@ public class TileBloomery
               .withProperty(BlockPileSlag.LEVEL, level + 1)
               .withProperty(BlockPileSlag.MOLTEN, true));
 
-          return true;
+          return;
         }
       }
 
@@ -589,11 +638,7 @@ public class TileBloomery
           .withProperty(BlockPileSlag.MOLTEN, true));
 
       this.addSlagItemToTileEntity(pos);
-
-      return true;
     }
-
-    return false;
   }
 
   private void addSlagItemToTileEntity(BlockPos pos) {
@@ -820,7 +865,7 @@ public class TileBloomery
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (BloomeryRecipe.getRecipe(itemStack) != null);
+      return (this.tile.getRecipe(itemStack) != null);
     }
 
     @Override
@@ -953,22 +998,25 @@ public class TileBloomery
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    public InputStackHandler() {
+    private final int capacity;
+
+    public InputStackHandler(int capacity) {
 
       super(1);
+      this.capacity = capacity;
     }
 
     @Override
     public int getSlotLimit(int slot) {
 
-      return 1;
+      return this.capacity;
     }
 
     @Nonnull
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
-      if (BloomeryRecipe.getRecipe(stack) == null
+      if (TileBloomery.this.getRecipe(stack) == null
           || !TileBloomery.this.outputStackHandler.getStackInSlot(0).isEmpty()) {
         return stack;
       }

@@ -20,15 +20,15 @@ public class BloomAnvilRecipe
     extends AnvilRecipe
     implements AnvilRecipe.IExtendedRecipe<BloomAnvilRecipe> {
 
-  private final BloomeryRecipe bloomeryRecipe;
+  private final BloomeryRecipeBase bloomeryRecipe;
 
-  public BloomAnvilRecipe(ItemStack output, Ingredient input, int hits, EnumType type, BloomeryRecipe bloomeryRecipe) {
+  public BloomAnvilRecipe(ItemStack output, Ingredient input, int hits, EnumType type, BloomeryRecipeBase bloomeryRecipe) {
 
     super(output, input, hits, type);
     this.bloomeryRecipe = bloomeryRecipe;
   }
 
-  public BloomeryRecipe getBloomeryRecipe() {
+  public BloomeryRecipeBase getBloomeryRecipe() {
 
     return this.bloomeryRecipe;
   }
