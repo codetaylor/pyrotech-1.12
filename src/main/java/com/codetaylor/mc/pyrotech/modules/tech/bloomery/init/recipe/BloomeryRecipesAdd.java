@@ -3,7 +3,6 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe;
 import com.codetaylor.mc.athenaeum.util.IngredientHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
@@ -56,7 +55,7 @@ public class BloomeryRecipesAdd {
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(16, 20)
+              .setBloomYield(12, 15)
               .setSlagItem(new ItemStack(itemSlagIron), 4)
               .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 1)
               .addFailureItem(new ItemStack(itemSlagIron, 1, 0), 2)
@@ -72,7 +71,7 @@ public class BloomeryRecipesAdd {
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS / 2)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(8, 10)
+              .setBloomYield(12, 15)
               .setSlagItem(new ItemStack(itemSlagIron), 2)
               .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
               .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 2)
@@ -103,7 +102,7 @@ public class BloomeryRecipesAdd {
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(16, 20)
+              .setBloomYield(12, 15)
               .setSlagItem(new ItemStack(itemSlagGold), 4)
               .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 1)
               .addFailureItem(new ItemStack(itemSlagGold, 1, 0), 2)
@@ -119,7 +118,7 @@ public class BloomeryRecipesAdd {
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS / 2)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(8, 10)
+              .setBloomYield(12, 15)
               .setSlagItem(new ItemStack(itemSlagGold), 2)
               .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
               .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 2)
