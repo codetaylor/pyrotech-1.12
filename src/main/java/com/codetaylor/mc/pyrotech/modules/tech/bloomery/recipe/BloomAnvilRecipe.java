@@ -80,6 +80,21 @@ public class BloomAnvilRecipe
 
     float extraProgress = tile.getRecipeProgress() - 1;
 
+    this.onRecipeCompleted(tile, world, stackHandler, player);
+
+    while (extraProgress >= 1) {
+      extraProgress -= 1;
+
+      this.onRecipeCompleted(tile, world, stackHandler, player);
+    }
+
+    if (extraProgress > 0) {
+      tile.setRecipeProgress(extraProgress);
+    }
+  }
+
+  protected void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, EntityPlayer player) {
+
     // Spawn in the bloomery recipe output
     StackHelper.spawnStackOnTop(world, this.bloomeryRecipe.getRandomOutput(player), tile.getPos(), 0);
 
@@ -95,10 +110,6 @@ public class BloomAnvilRecipe
     if (integrity > 0) {
       item.setIntegrity(bloom, integrity);
       stackHandler.insertItem(0, bloom, false);
-    }
-
-    if (extraProgress > 0) {
-      tile.setRecipeProgress(extraProgress);
     }
   }
 
