@@ -152,7 +152,7 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 7,
-      args = {"bloomYield"}
+      args = {"min", "max"}
   )
   @ZenMethod
   public ZenBloomery setBloomYield(int min, int max) {

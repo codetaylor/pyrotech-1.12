@@ -2,19 +2,23 @@
 ### Class
 
 ```java
-import mods.pyrotech.StoneSawmill
+import mods.pyrotech.MechanicalCompacter
 ```
 
 #### Methods
+
+```java
+static void addRecipe(string name, IItemStack output, IIngredient input, int amount);
+```
+
 
 ```java
 static void addRecipe(
   string name, 
   IItemStack output, 
   IIngredient input, 
-  int burnTimeTicks, 
-  IIngredient blade, 
-  int woodChips
+  int amount, 
+  int[] toolUsesRequired
 );
 ```
 

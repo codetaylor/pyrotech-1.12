@@ -2,10 +2,15 @@
 ### Class
 
 ```java
-import mods.pyrotech.StoneSawmill
+import mods.pyrotech.BrickKiln
 ```
 
 #### Methods
+
+```java
+static void addRecipe(string name, IItemStack output, IIngredient input, int burnTimeTicks);
+```
+
 
 ```java
 static void addRecipe(
@@ -13,8 +18,8 @@ static void addRecipe(
   IItemStack output, 
   IIngredient input, 
   int burnTimeTicks, 
-  IIngredient blade, 
-  int woodChips
+  float failureChance, 
+  IItemStack[] failureItems
 );
 ```
 
