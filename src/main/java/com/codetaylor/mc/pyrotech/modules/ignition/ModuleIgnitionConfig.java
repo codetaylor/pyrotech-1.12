@@ -46,6 +46,14 @@ public class ModuleIgnitionConfig {
     })
     @Config.RangeInt(min = 0)
     public int DURATION_VARIANT = 4 * 60 * 20;
+
+    @Config.Comment({
+        "The amount of fire damage done to an entity colliding with the torch.",
+        "Set to zero to disable.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 0)
+    public int FIRE_DAMAGE = 1;
   }
 
   // ---------------------------------------------------------------------------
@@ -89,6 +97,14 @@ public class ModuleIgnitionConfig {
     })
     @Config.RangeInt(min = 0)
     public int DURATION_VARIANT = 4 * 60 * 20;
+
+    @Config.Comment({
+        "The amount of fire damage done to an entity colliding with the torch.",
+        "Set to zero to disable.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 0)
+    public int FIRE_DAMAGE = 1;
   }
 
   // ---------------------------------------------------------------------------

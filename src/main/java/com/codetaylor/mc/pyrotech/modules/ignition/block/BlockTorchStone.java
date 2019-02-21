@@ -31,4 +31,10 @@ public class BlockTorchStone
 
     return MathHelper.clamp(ModuleIgnitionConfig.STONE_TORCH.LIGHT_VALUE, 0, 15);
   }
+
+  @Override
+  protected int getFireDamage() {
+
+    return MathHelper.clamp(ModuleIgnitionConfig.STONE_TORCH.FIRE_DAMAGE, 0, Integer.MAX_VALUE);
+  }
 }

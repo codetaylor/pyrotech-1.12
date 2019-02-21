@@ -14,10 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -40,11 +37,11 @@ public abstract class BlockTorchBase
 
   public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
 
-  protected static final AxisAlignedBB STANDING_AABB = new AxisAlignedBB(6.0 / 16.0, 0.0, 6.0 / 16.0, 10.0 / 16.0, 12.0 / 16.0, 10.0 / 16.0);
-  protected static final AxisAlignedBB TORCH_NORTH_AABB = new AxisAlignedBB(0.3499999940395355D, 0.20000000298023224D, 0.699999988079071D, 0.6499999761581421D, 14.0 / 16.0, 1.0D);
-  protected static final AxisAlignedBB TORCH_SOUTH_AABB = new AxisAlignedBB(0.3499999940395355D, 0.20000000298023224D, 0.0D, 0.6499999761581421D, 14.0 / 16.0, 0.30000001192092896D);
-  protected static final AxisAlignedBB TORCH_WEST_AABB = new AxisAlignedBB(0.699999988079071D, 0.20000000298023224D, 0.3499999940395355D, 1.0D, 14.0 / 16.0, 0.6499999761581421D);
-  protected static final AxisAlignedBB TORCH_EAST_AABB = new AxisAlignedBB(0.0D, 0.20000000298023224D, 0.3499999940395355D, 0.30000001192092896D, 14.0 / 16.0, 0.6499999761581421D);
+  private static final AxisAlignedBB STANDING_AABB = new AxisAlignedBB(6.0 / 16.0, 0.0, 6.0 / 16.0, 10.0 / 16.0, 12.0 / 16.0, 10.0 / 16.0);
+  private static final AxisAlignedBB TORCH_NORTH_AABB = new AxisAlignedBB(0.3499999940395355D, 0.20000000298023224D, 0.699999988079071D, 0.6499999761581421D, 14.0 / 16.0, 1.0D);
+  private static final AxisAlignedBB TORCH_SOUTH_AABB = new AxisAlignedBB(0.3499999940395355D, 0.20000000298023224D, 0.0D, 0.6499999761581421D, 14.0 / 16.0, 0.30000001192092896D);
+  private static final AxisAlignedBB TORCH_WEST_AABB = new AxisAlignedBB(0.699999988079071D, 0.20000000298023224D, 0.3499999940395355D, 1.0D, 14.0 / 16.0, 0.6499999761581421D);
+  private static final AxisAlignedBB TORCH_EAST_AABB = new AxisAlignedBB(0.0D, 0.20000000298023224D, 0.3499999940395355D, 0.30000001192092896D, 14.0 / 16.0, 0.6499999761581421D);
 
   public BlockTorchBase() {
 
@@ -55,6 +52,12 @@ public abstract class BlockTorchBase
     );
   }
 
+  // ---------------------------------------------------------------------------
+  // - Bounds
+  // ---------------------------------------------------------------------------
+
+  @Nonnull
+  @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
     switch (state.getValue(FACING)) {
@@ -177,6 +180,25 @@ public abstract class BlockTorchBase
 
     return this.getBoundingBox(blockState, world, pos);
   }
+
+  @Override
+  public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+
+    int fireDamage = this.getFireDamage();
+
+    if (fireDamage > 0) {
+
+      AxisAlignedBB torchBox = this.getCollisionBoundingBox(state, world, pos);
+      AxisAlignedBB entityBox = entity.getEntityBoundingBox();
+
+      if (torchBox != null
+          && torchBox.offset(pos).intersects(entityBox)) {
+        entity.attackEntityFrom(DamageSource.IN_FIRE, fireDamage);
+      }
+    }
+  }
+
+  protected abstract int getFireDamage();
 
   // ---------------------------------------------------------------------------
   // - Interaction
