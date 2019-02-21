@@ -162,6 +162,13 @@ public abstract class TileTorchBase
     this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
   }
 
+  @Override
+  protected void setWorldCreate(World world) {
+
+    // This is required to prevent NPE during readFromNBT.
+    this.setWorld(world);
+  }
+
   // ---------------------------------------------------------------------------
   // - Interactions
   // ---------------------------------------------------------------------------
