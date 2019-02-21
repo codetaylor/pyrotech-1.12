@@ -96,6 +96,7 @@ public class TileBloomery
   private TileDataInteger ashCount;
 
   private IInteraction[] interactions;
+  private boolean checkLight;
 
   public TileBloomery() {
 
@@ -408,6 +409,11 @@ public class TileBloomery
 
   @Override
   public void update() {
+
+    if (!this.checkLight) {
+      this.checkLight = true;
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
+    }
 
     if (this.world.isRemote) {
       Random rand = RandomHelper.random();
