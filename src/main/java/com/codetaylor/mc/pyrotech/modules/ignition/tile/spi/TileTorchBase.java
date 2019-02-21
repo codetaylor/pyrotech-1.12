@@ -24,6 +24,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -158,6 +159,7 @@ public abstract class TileTorchBase
     this.type.set(compound.getInteger("type"));
     this.duration = compound.getInteger("duration");
     this.lastTimeStamp = compound.getLong("lastTimeStamp");
+    this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
   }
 
   // ---------------------------------------------------------------------------
