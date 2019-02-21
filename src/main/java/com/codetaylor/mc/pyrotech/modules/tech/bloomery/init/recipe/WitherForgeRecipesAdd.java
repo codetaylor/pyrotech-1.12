@@ -69,14 +69,20 @@ public class WitherForgeRecipesAdd {
 
     if (ModuleTechBloomeryConfig.WITHER_FORGE.INHERIT_BLOOMERY_RECIPES) {
       RecipeHelper.inherit("bloomery", bloomeryRegistry, witherForgeRegistry, recipe -> {
+
         // the registry name can be null here because it will be set by the inherit method
-        return new WitherForgeRecipeBuilder(null, recipe.getOutput(), recipe.getInput())
+        WitherForgeRecipeBuilder builder = new WitherForgeRecipeBuilder(null, recipe.getOutput(), recipe.getInput())
             .setBurnTimeTicks(recipe.getTimeTicks())
             .setFailureChance(recipe.getFailureChance())
             .setBloomYield(recipe.getBloomYieldMin(), recipe.getBloomYieldMax())
             .setSlagItem(recipe.getSlagItemStack(), recipe.getSlagCount())
-            .setLangKey(recipe.getLangKey())
-            .create();
+            .setLangKey(recipe.getLangKey());
+
+        for (BloomeryRecipeBase.FailureItem item : recipe.getFailureItems()) {
+          builder.addFailureItem(item.getItemStack(), item.getWeight());
+        }
+
+        return builder.create();
       });
     }
   }

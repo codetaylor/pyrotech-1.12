@@ -54,7 +54,7 @@ public class JEIRecipeWrapperAnvil
       result.add(recipe.getOutput());
 
       for (BloomeryRecipeBase.FailureItem failureItem : failureItems) {
-        result.add(failureItem.getItemStack());
+        result.add(failureItem.getItemStack().copy());
       }
 
       this.output = Collections.singletonList(result);
