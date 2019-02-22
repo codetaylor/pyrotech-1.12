@@ -24,7 +24,8 @@ version = getVersionName("${project.projectDir}")
 group = "com.sudoplay.mc"
 archivesBaseName = "pyrotech"
 project.ext.athenaeum_version = "1.12.2-1.5.3"
-project.ext.dependencies = ',dependencies = "required-after:athenaeum@[' + project.ext.athenaeum_version + ',);after:crafttweaker;after:jei@[4.8.5.139,);after:gamestages;after:*"'
+project.ext.dropt_version = "1.12.2-1.12.0"
+project.ext.dependencies = ',dependencies = "required-after:dropt@[' + project.ext.dropt_version + ',);required-after:athenaeum@[' + project.ext.athenaeum_version + ',);after:crafttweaker;after:jei@[4.8.5.139,);after:gamestages;after:*"'
 
 compileJava.doFirst {
     project.sourceSets.main.java.srcDirs.each { dir ->
