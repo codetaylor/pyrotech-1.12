@@ -1,6 +1,6 @@
 Pyrotech Contributor License Agreement
 
-Version 1.0.0 March 22, 2018
+Version 1.0.0 February 21, 2019
 
 This is a reference copy of the terms of the Pyrotech Contributor License Agreement. To actually complete and submit a CLA, please go to the CLA form.
 
