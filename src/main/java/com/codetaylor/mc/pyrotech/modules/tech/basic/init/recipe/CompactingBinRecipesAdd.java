@@ -9,7 +9,6 @@ import net.minecraft.block.BlockSand;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
@@ -28,7 +27,7 @@ public class CompactingBinRecipesAdd {
     // Lapis Block
     registry.register(new CompactingBinRecipe(
         new ItemStack(Blocks.LAPIS_BLOCK),
-        Ingredient.fromStacks(new ItemStack(Items.DYE, 1, 4)),
+        Ingredient.fromStacks(new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getDyeDamage())),
         9
     ).setRegistryName(ModuleTechBasic.MOD_ID, "lapis_block"));
 
