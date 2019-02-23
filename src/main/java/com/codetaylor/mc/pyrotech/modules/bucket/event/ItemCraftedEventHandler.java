@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 @Mod.EventBusSubscriber
-public class EventHandler {
+public class ItemCraftedEventHandler {
 
   @SubscribeEvent
   public static void on(PlayerEvent.ItemCraftedEvent craftedEvent) {
@@ -28,7 +28,5 @@ public class EventHandler {
         craftedEvent.craftMatrix.setInventorySlotContents(slot, copy);
       }
     }
-
   }
-
 }
