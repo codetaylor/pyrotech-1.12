@@ -148,17 +148,17 @@ public abstract class ItemBucketBase
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 
     if (this.getDurability(stack) == this.getMaxDurability()) {
-      tooltip.add("Uses: " + (this.getDurability(stack)));
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.uses.full", this.getDurability(stack)));
 
     } else {
-      tooltip.add("Uses: " + (this.getDurability(stack)) + " / " + this.getMaxDurability());
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.uses", this.getDurability(stack), this.getMaxDurability()));
     }
 
     if (this.getHotContainerDamagePerSecond() <= 0) {
-      tooltip.add(TextFormatting.GREEN + "Can hold hot fluids.");
+      tooltip.add(TextFormatting.GREEN + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.hot.fluids.true"));
 
     } else {
-      tooltip.add(TextFormatting.RED + "Breaks with hot fluids.");
+      tooltip.add(TextFormatting.RED + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.hot.fluids.false"));
     }
   }
 
