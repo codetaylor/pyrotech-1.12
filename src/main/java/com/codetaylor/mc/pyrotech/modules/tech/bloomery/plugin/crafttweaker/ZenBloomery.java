@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.crafttweaker;
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.*;
 import crafttweaker.IAction;
@@ -30,6 +31,24 @@ public class ZenBloomery {
 
       this.name = name;
     }
+  }
+
+  @ZenDocMethod(
+      order = -1
+  )
+  @ZenMethod
+  public static void removeAllBloomeryRecipes() {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveAllRecipesAction<>(ModuleTechBloomery.Registries.BLOOMERY_RECIPE, "bloomery"));
+  }
+
+  @ZenDocMethod(
+      order = 0
+  )
+  @ZenMethod
+  public static void removeAllWitherForgeRecipes() {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveAllRecipesAction<>(ModuleTechBloomery.Registries.WITHER_FORGE_RECIPE, "wither forge"));
   }
 
   @ZenDocMethod(

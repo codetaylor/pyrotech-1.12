@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import crafttweaker.IAction;
@@ -47,6 +48,15 @@ public class ZenStoneCrucible {
   public static void removeRecipes(ILiquidStack output) {
 
     CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getLiquidStack(output)));
+  }
+
+  @ZenDocMethod(
+      order = 3
+  )
+  @ZenMethod
+  public static void removeAllRecipes() {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveAllRecipesAction<>(ModuleTechMachine.Registries.STONE_CRUCIBLE_RECIPES, "stone crucible"));
   }
 
   public static class RemoveRecipe

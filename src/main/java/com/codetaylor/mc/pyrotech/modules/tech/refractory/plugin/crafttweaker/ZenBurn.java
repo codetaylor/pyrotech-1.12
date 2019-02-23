@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemExcepti
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
@@ -80,6 +81,15 @@ public class ZenBurn {
   public static void removeRecipes(IIngredient output) {
 
     CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
+  }
+
+  @ZenDocMethod(
+      order = 3
+  )
+  @ZenMethod
+  public static void removeAllRecipes() {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveAllRecipesAction<>(ModuleTechRefractory.Registries.BURN_RECIPE, "burn"));
   }
 
   public static class RemoveRecipe

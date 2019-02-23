@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import crafttweaker.IAction;
@@ -15,9 +16,9 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenDocClass("mods.pyrotech.GraniteAnvil")
-@ZenClass("mods.pyrotech.GraniteAnvil")
-public class ZenGraniteAnvil {
+@ZenDocClass("mods.pyrotech.Anvil")
+@ZenClass("mods.pyrotech.Anvil")
+public class ZenAnvil {
 
   @ZenDocMethod(
       order = 1,
@@ -45,6 +46,15 @@ public class ZenGraniteAnvil {
     CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
   }
 
+  @ZenDocMethod(
+      order = 3
+  )
+  @ZenMethod
+  public static void removeAllRecipes() {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveAllRecipesAction<>(ModuleTechBasic.Registries.ANVIL_RECIPE, "anvil"));
+  }
+
   public static class RemoveRecipe
       implements IAction {
 
@@ -64,7 +74,7 @@ public class ZenGraniteAnvil {
     @Override
     public String describe() {
 
-      return "Removing granite anvil recipes for " + this.output;
+      return "Removing anvil recipes for " + this.output;
     }
   }
 
@@ -107,7 +117,7 @@ public class ZenGraniteAnvil {
     @Override
     public String describe() {
 
-      return "Adding granite anvil recipe for " + this.output;
+      return "Adding anvil recipe for " + this.output;
     }
   }
 
