@@ -5,8 +5,13 @@ import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
+import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.library.blockrenderer.BlockRenderer;
+import com.codetaylor.mc.pyrotech.library.blockrenderer.ModBulkRenderItemSupplier;
+import com.codetaylor.mc.pyrotech.library.blockrenderer.RenderTickEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
+import com.codetaylor.mc.pyrotech.modules.core.command.ClientCommandExport;
 import com.codetaylor.mc.pyrotech.modules.core.init.*;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaCraftingRecipesRemove;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesAdd;
@@ -15,6 +20,7 @@ import com.codetaylor.mc.pyrotech.modules.core.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
@@ -26,6 +32,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Collections;
 
 public class ModuleCore
     extends ModuleBase {
@@ -110,6 +118,21 @@ public class ModuleCore
     super.onClientInitializationEvent(event);
 
     BlockInitializer.onClientInitialization();
+
+    BlockRenderer blockRenderer = new BlockRenderer(new ModBulkRenderItemSupplier(MOD_ID));
+    MinecraftForge.EVENT_BUS.register(new RenderTickEventHandler(Collections.singletonList(blockRenderer)));
+    ClientCommandHandler.instance.registerCommand(new ClientCommandExport());
+
+    new Injector().inject(ModuleCore.Utils.class, "BLOCK_RENDERER", blockRenderer);
+  }
+
+  public static class Utils {
+
+    public static final BlockRenderer BLOCK_RENDERER;
+
+    static {
+      BLOCK_RENDERER = null;
+    }
   }
 
   @GameRegistry.ObjectHolder(ModuleCore.MOD_ID)
