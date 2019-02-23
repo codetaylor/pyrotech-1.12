@@ -4,27 +4,26 @@ import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
-import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.ItemInitializer;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.init.RegistryInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
-import net.minecraftforge.registries.RegistryBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,6 +53,7 @@ public class ModuleTechBasic
 
     String[] craftTweakerPlugins = {
         "ZenKilnPit",
+        "ZenCrudeDryingRack",
         "ZenDryingRack",
         "ZenChoppingBlock",
         "ZenGraniteAnvil",
@@ -79,98 +79,7 @@ public class ModuleTechBasic
   @SubscribeEvent
   public void onNewRegistryEvent(RegistryEvent.NewRegistry event) {
 
-    new RegistryBuilder<KilnPitRecipe>()
-        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "kiln_pit_recipe"))
-        .setType(KilnPitRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<DryingRackRecipe>()
-        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "drying_rack_recipe"))
-        .setType(DryingRackRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<ChoppingBlockRecipe>()
-        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "chopping_block_recipe"))
-        .setType(ChoppingBlockRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<AnvilRecipe>()
-        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "granite_anvil_recipe"))
-        .setType(AnvilRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<CompactingBinRecipe>()
-        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "compacting_bin_recipe"))
-        .setType(CompactingBinRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<CampfireRecipe>()
-        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "campfire_recipe"))
-        .setType(CampfireRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<WorktableRecipe>()
-        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "worktable_recipe"))
-        .setType(WorktableRecipe.class)
-        .allowModification()
-        .create();
-
-    new RegistryBuilder<SoakingPotRecipe>()
-        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "soaking_pot_recipe"))
-        .setType(SoakingPotRecipe.class)
-        .allowModification()
-        .create();
-
-    // --- Injection
-
-    Injector injector = new Injector();
-
-    injector.inject(
-        ModuleTechBasic.Registries.class,
-        "KILN_PIT_RECIPE",
-        GameRegistry.findRegistry(KilnPitRecipe.class)
-    );
-    injector.inject(
-        ModuleTechBasic.Registries.class,
-        "DRYING_RACK_RECIPE",
-        GameRegistry.findRegistry(DryingRackRecipe.class)
-    );
-    injector.inject(
-        ModuleTechBasic.Registries.class,
-        "CHOPPING_BLOCK_RECIPE",
-        GameRegistry.findRegistry(ChoppingBlockRecipe.class)
-    );
-    injector.inject(
-        ModuleTechBasic.Registries.class,
-        "ANVIL_RECIPE",
-        GameRegistry.findRegistry(AnvilRecipe.class)
-    );
-    injector.inject(
-        ModuleTechBasic.Registries.class,
-        "COMPACTING_BIN_RECIPE",
-        GameRegistry.findRegistry(CompactingBinRecipe.class)
-    );
-    injector.inject(
-        ModuleTechBasic.Registries.class,
-        "CAMPFIRE_RECIPE",
-        GameRegistry.findRegistry(CampfireRecipe.class)
-    );
-    injector.inject(
-        ModuleTechBasic.Registries.class,
-        "WORKTABLE_RECIPE",
-        GameRegistry.findRegistry(WorktableRecipe.class)
-    );
-    injector.inject(
-        ModuleTechBasic.Registries.class,
-        "SOAKING_POT_RECIPE",
-        GameRegistry.findRegistry(SoakingPotRecipe.class)
-    );
+    RegistryInitializer.createRegistries(event);
   }
 
   @Override
@@ -191,6 +100,7 @@ public class ModuleTechBasic
     super.onRegisterRecipesEvent(event);
 
     PitKilnRecipesAdd.apply(ModuleTechBasic.Registries.KILN_PIT_RECIPE);
+    CrudeDryingRackRecipesAdd.apply(ModuleTechBasic.Registries.CRUDE_DRYING_RACK_RECIPE);
     DryingRackRecipesAdd.apply(ModuleTechBasic.Registries.DRYING_RACK_RECIPE);
     AnvilRecipesAdd.apply(ModuleTechBasic.Registries.ANVIL_RECIPE);
     ChoppingBlockRecipesAdd.apply(ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE);
@@ -211,6 +121,14 @@ public class ModuleTechBasic
 
     BlockInitializer.onClientRegister(registry);
     ItemInitializer.onClientRegister(registry);
+  }
+
+  @Override
+  public void onPostInitializationEvent(FMLPostInitializationEvent event) {
+
+    super.onPostInitializationEvent(event);
+
+    DryingRackRecipesAdd.registerInheritedRecipes(Registries.CRUDE_DRYING_RACK_RECIPE, Registries.DRYING_RACK_RECIPE);
   }
 
   @GameRegistry.ObjectHolder(ModuleTechBasic.MOD_ID)
@@ -274,6 +192,7 @@ public class ModuleTechBasic
   public static class Registries {
 
     public static final IForgeRegistryModifiable<KilnPitRecipe> KILN_PIT_RECIPE;
+    public static final IForgeRegistryModifiable<CrudeDryingRackRecipe> CRUDE_DRYING_RACK_RECIPE;
     public static final IForgeRegistryModifiable<DryingRackRecipe> DRYING_RACK_RECIPE;
     public static final IForgeRegistryModifiable<ChoppingBlockRecipe> CHOPPING_BLOCK_RECIPE;
     public static final IForgeRegistryModifiable<AnvilRecipe> ANVIL_RECIPE;
@@ -284,6 +203,7 @@ public class ModuleTechBasic
 
     static {
       KILN_PIT_RECIPE = null;
+      CRUDE_DRYING_RACK_RECIPE = null;
       DRYING_RACK_RECIPE = null;
       CHOPPING_BLOCK_RECIPE = null;
       ANVIL_RECIPE = null;

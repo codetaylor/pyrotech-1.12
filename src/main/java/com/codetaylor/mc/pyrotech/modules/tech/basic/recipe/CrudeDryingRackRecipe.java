@@ -7,13 +7,13 @@ import net.minecraft.item.crafting.Ingredient;
 
 import javax.annotation.Nullable;
 
-public class DryingRackRecipe
-    extends DryingRackRecipeBase<DryingRackRecipe> {
+public class CrudeDryingRackRecipe
+    extends DryingRackRecipeBase<CrudeDryingRackRecipe> {
 
   @Nullable
-  public static DryingRackRecipe getRecipe(ItemStack input) {
+  public static CrudeDryingRackRecipe getRecipe(ItemStack input) {
 
-    for (DryingRackRecipe recipe : ModuleTechBasic.Registries.DRYING_RACK_RECIPE) {
+    for (CrudeDryingRackRecipe recipe : ModuleTechBasic.Registries.CRUDE_DRYING_RACK_RECIPE) {
 
       if (recipe.matches(input)) {
         return recipe;
@@ -25,10 +25,10 @@ public class DryingRackRecipe
 
   public static boolean removeRecipes(Ingredient output) {
 
-    return RecipeHelper.removeRecipesByOutput(ModuleTechBasic.Registries.DRYING_RACK_RECIPE, output);
+    return RecipeHelper.removeRecipesByOutput(ModuleTechBasic.Registries.CRUDE_DRYING_RACK_RECIPE, output);
   }
 
-  public DryingRackRecipe(
+  public CrudeDryingRackRecipe(
       ItemStack output,
       Ingredient input,
       int dryTimeTicks

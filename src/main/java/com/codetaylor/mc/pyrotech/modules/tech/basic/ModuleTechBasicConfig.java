@@ -659,6 +659,19 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble
     public double SPEED_MODIFIER = 1.35;
+
+    @Config.Comment({
+        "If true, all the crude drying rack recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_CRUDE_DRYING_RACK_RECIPES = true;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the duration of all inherited recipes.",
+        "Default: " + 1.0
+    })
+    @Config.RangeDouble(min = 0)
+    public double INHERITED_CRUDE_DRYING_RACK_RECIPE_DURATION_MODIFIER = 1.0;
   }
 
   // ---------------------------------------------------------------------------

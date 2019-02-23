@@ -1,52 +1,29 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe;
 
-import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CrudeDryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 public class DryingRackRecipesAdd {
 
   public static void apply(IForgeRegistry<DryingRackRecipe> registry) {
+    //
+  }
 
-    // Straw
-    registry.register(new DryingRackRecipe(
-        ItemMaterial.EnumType.STRAW.asStack(),
-        Ingredient.fromStacks(new ItemStack(Items.WHEAT)),
-        12 * 60 * 20
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "straw"));
+  public static void registerInheritedRecipes(
+      IForgeRegistryModifiable<CrudeDryingRackRecipe> fromRegistry,
+      IForgeRegistryModifiable<DryingRackRecipe> toRegistry
+  ) {
 
-    // Dried Plant Fibers
-    registry.register(new DryingRackRecipe(
-        ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack(),
-        Ingredient.fromStacks(ItemMaterial.EnumType.PLANT_FIBERS.asStack()),
-        8 * 60 * 20
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "plant_fibers_dried"));
-
-    // Dried Plant Fibers
-    registry.register(new DryingRackRecipe(
-        ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack(),
-        new OreIngredient("treeSapling"),
-        10 * 60 * 20
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "plant_fibers_dried_from_sapling"));
-
-    // Sponge
-    registry.register(new DryingRackRecipe(
-        new ItemStack(Blocks.SPONGE, 1, 0),
-        Ingredient.fromStacks(new ItemStack(Blocks.SPONGE, 1, 1)),
-        8 * 60 * 20
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "sponge"));
-
-    // Paper
-    registry.register(new DryingRackRecipe(
-        new ItemStack(Items.PAPER, 1, 0),
-        Ingredient.fromStacks(ItemMaterial.EnumType.PULP.asStack()),
-        5 * 60 * 20
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "paper"));
+    if (ModuleTechBasicConfig.DRYING_RACK.INHERIT_CRUDE_DRYING_RACK_RECIPES) {
+      RecipeHelper.inherit("crude_drying_rack", fromRegistry, toRegistry, recipe -> new DryingRackRecipe(
+          recipe.getOutput(),
+          recipe.getInput(),
+          (int) (recipe.getTimeTicks() * Math.max(0, ModuleTechBasicConfig.DRYING_RACK.INHERITED_CRUDE_DRYING_RACK_RECIPE_DURATION_MODIFIER))
+      ));
+    }
   }
 }
