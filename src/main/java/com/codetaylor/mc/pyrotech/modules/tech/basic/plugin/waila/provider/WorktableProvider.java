@@ -68,6 +68,7 @@ public class WorktableProvider
             renderString.append(WailaUtil.getStackRenderString(recipeOutput));
           }
           tooltip.add(renderString.toString());
+          tooltip.add(recipeOutput.getDisplayName());
         }
       }
     }
