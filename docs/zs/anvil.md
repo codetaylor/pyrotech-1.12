@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.GraniteAnvil
+import mods.pyrotech.Anvil
 ```
 
 #### Methods
@@ -20,5 +20,10 @@ static void addRecipe(
 
 ```java
 static void removeRecipes(IIngredient output);
+```
+
+
+```java
+static void removeAllRecipes();
 ```
 

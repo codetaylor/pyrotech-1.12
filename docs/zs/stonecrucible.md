@@ -16,3 +16,8 @@ static void addRecipe(string name, ILiquidStack output, IIngredient input, int b
 static void removeRecipes(ILiquidStack output);
 ```
 
+
+```java
+static void removeAllRecipes();
+```
+

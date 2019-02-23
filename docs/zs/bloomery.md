@@ -7,6 +7,16 @@ import mods.pyrotech.Bloomery
 #### Methods
 
 ```java
+static void removeAllBloomeryRecipes();
+```
+
+
+```java
+static void removeAllWitherForgeRecipes();
+```
+
+
+```java
 static void removeBloomeryRecipes(IIngredient output);
 ```
 

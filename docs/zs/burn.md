@@ -43,3 +43,8 @@ static void removeRecipes(IIngredient output);
 Remove all recipes with the given recipe output.
 {: .zen-description }
 
+
+```java
+static void removeAllRecipes();
+```
+

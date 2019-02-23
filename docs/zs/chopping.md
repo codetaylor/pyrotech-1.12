@@ -36,3 +36,8 @@ static void addRecipe(
 static void removeRecipes(IIngredient output);
 ```
 
+
+```java
+static void removeAllRecipes();
+```
+
