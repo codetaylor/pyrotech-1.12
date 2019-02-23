@@ -10,23 +10,27 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class ModBulkRenderItemSupplier
     implements
     IBulkRenderItemSupplier {
 
   private static final Logger LOGGER = LogManager.getLogger(ModBulkRenderItemSupplier.class);
-  private final String modId;
 
-  public ModBulkRenderItemSupplier(String modId) {
+  private final String modId;
+  private final Function<ItemStack, RenderItemData> renderItemDataFunction;
+
+  public ModBulkRenderItemSupplier(String modId, Function<ItemStack, RenderItemData> renderItemDataFunction) {
 
     this.modId = modId;
+    this.renderItemDataFunction = renderItemDataFunction;
   }
 
   @Override
-  public List<ItemStack> get() {
+  public List<RenderItemData> get() {
 
-    List<ItemStack> result = Lists.newArrayList();
+    List<RenderItemData> result = Lists.newArrayList();
 
     for (ResourceLocation resourceLocation : Item.REGISTRY.getKeys()) {
 
@@ -56,7 +60,9 @@ public class ModBulkRenderItemSupplier
           }
         }
 
-        result.addAll(results);
+        for (ItemStack itemStack : results) {
+          result.add(this.renderItemDataFunction.apply(itemStack));
+        }
       }
     }
 

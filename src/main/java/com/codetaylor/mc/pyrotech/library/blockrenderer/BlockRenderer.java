@@ -7,7 +7,6 @@ import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -19,9 +18,11 @@ import org.lwjgl.opengl.GL12;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,12 +31,12 @@ import java.util.List;
  */
 public class BlockRenderer {
 
-  protected static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
+  private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 
-  protected final IBulkRenderItemSupplier bulkRenderItemSupplier;
+  private final IBulkRenderItemSupplier bulkRenderItemSupplier;
 
-  protected boolean pendingBulkRender;
-  protected int pendingBulkRenderSize;
+  private boolean pendingBulkRender;
+  private int pendingBulkRenderSize;
 
   public BlockRenderer(IBulkRenderItemSupplier bulkRenderItemSupplier) {
 
@@ -67,7 +68,7 @@ public class BlockRenderer {
 
     Minecraft.getMinecraft().displayGuiScreen(new GuiIngameMenu());
 
-    List<ItemStack> toRender = renderItemSupplier.get();
+    List<RenderItemData> toRender = renderItemSupplier.get();
 
     File folder = new File("renders/" + DATE_FORMAT.format(new Date()) + "/");
 
@@ -83,44 +84,114 @@ public class BlockRenderer {
     }
   }
 
-  private void renderItemStacks(int size, List<ItemStack> itemStacks, File folder) {
+  private void renderItemStacks(int size, List<RenderItemData> renderItemDataList, File folder) {
 
     int rendered = 0;
     long lastUpdate = 0;
 
-    for (ItemStack itemStack : itemStacks) {
+    for (RenderItemData data : renderItemDataList) {
 
       if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
         break;
       }
 
-      this.render(itemStack, folder);
+      ItemStack itemStack = data.getItemStack();
+      List<BufferedImage> images = new ArrayList<>();
+
+      for (RenderItemData.Offset offset : data.getOffsets()) {
+        images.add(this.render(itemStack, offset));
+      }
+
+      BufferedImage image = this.combineImages(images, data.getOffsets(), size);
+
+      try {
+        this.writeImage(folder, image, itemStack.getDisplayName());
+
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
 
       rendered++;
 
       if (Minecraft.getSystemTime() - lastUpdate > 33) {
         this.tearDownRenderState();
         this.renderLoading(
-            String.format("Rendering %1$s items", itemStacks.size()),
-            String.format("(%1$s/%2$s, %3$s to go)", rendered, itemStacks.size(), (itemStacks.size() - rendered)),
+            String.format("Rendering %1$s items", renderItemDataList.size()),
+            String.format("(%1$s/%2$s, %3$s to go)", rendered, renderItemDataList.size(), (renderItemDataList.size() - rendered)),
             itemStack,
-            (float) rendered / itemStacks.size()
+            (float) rendered / renderItemDataList.size()
         );
         lastUpdate = Minecraft.getSystemTime();
         this.setUpRenderState(size);
       }
     }
 
-    if (rendered >= itemStacks.size()) {
-      this.renderLoading(String.format("Rendered %1$s items", itemStacks.size()), "", null, 1);
+    if (rendered >= renderItemDataList.size()) {
+      this.renderLoading(String.format("Rendered %1$s items", renderItemDataList.size()), "", null, 1);
 
     } else {
       this.renderLoading(
           "Rendering Cancelled",
-          String.format("(%1$s/%2$s, %3$s to go)", rendered, itemStacks.size(), (itemStacks.size() - rendered)),
-          null, (float) rendered / itemStacks.size()
+          String.format("(%1$s/%2$s, %3$s to go)", rendered, renderItemDataList.size(), (renderItemDataList.size() - rendered)),
+          null, (float) rendered / renderItemDataList.size()
       );
     }
+  }
+
+  private BufferedImage combineImages(List<BufferedImage> images, List<RenderItemData.Offset> offsets, int size) {
+
+    if (images.size() != offsets.size()) {
+      throw new RuntimeException("Images and offsets don't match!");
+    }
+
+    // find the max size of the result image
+    // write images to the new image
+
+    int xMax = Integer.MIN_VALUE;
+    int xMin = Integer.MAX_VALUE;
+
+    int yMax = Integer.MIN_VALUE;
+    int yMin = Integer.MAX_VALUE;
+
+    for (RenderItemData.Offset offset : offsets) {
+
+      int x = offset.getStitchX();
+      int y = offset.getStitchY();
+
+      if (x + 1 > xMax) {
+        xMax = x + 1;
+      }
+
+      if (x < xMin) {
+        xMin = x;
+      }
+
+      if (y + 1 > yMax) {
+        yMax = y + 1;
+      }
+
+      if (y < yMin) {
+        yMin = y;
+      }
+    }
+
+    int width = (xMax - xMin) * size;
+    int height = (yMax - yMin) * size;
+    BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+    for (int i = 0; i < images.size(); i++) {
+      BufferedImage bufferedImage = images.get(i);
+      RenderItemData.Offset offset = offsets.get(i);
+
+      for (int x = 0; x < bufferedImage.getWidth(); x++) {
+
+        for (int y = 0; y < bufferedImage.getHeight(); y++) {
+          result.setRGB(x + offset.getStitchX() * size, y + offset.getStitchY() * size, bufferedImage.getRGB(x, y));
+        }
+      }
+    }
+
+    return result;
   }
 
   private void renderLoading(String title, String subtitle, ItemStack is, float progress) {
@@ -183,14 +254,15 @@ public class BlockRenderer {
     mc.getFramebuffer().bindFramebuffer(false);
   }
 
-  private String render(ItemStack is, File folder) {
+  private BufferedImage render(ItemStack itemStack, RenderItemData.Offset offset) {
 
-    Minecraft mc = Minecraft.getMinecraft();
-    String filename = Util.sanitize(is.getDisplayName()).toLowerCase().replaceAll(" ", "_");
     GlStateManager.pushMatrix();
     GlStateManager.clearColor(0, 0, 0, 0);
     GlStateManager.clear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-    mc.getRenderItem().renderItemAndEffectIntoGUI(is, 0, 16);
+
+    Minecraft mc = Minecraft.getMinecraft();
+    mc.getRenderItem().renderItemAndEffectIntoGUI(itemStack, offset.getRenderX() * 16, offset.getRenderY() * 16);
+
     GlStateManager.popMatrix();
 
     try {
@@ -202,28 +274,33 @@ public class BlockRenderer {
        * It's easier to do this operation on the resulting image than to
        * do it with GL transforms. Not faster, just easier.
        */
-      BufferedImage img = Util.createFlipped(this.readPixels(size, size));
-
-      File f = new File(folder, filename + ".png");
-      int i = 2;
-      while (f.exists()) {
-        f = new File(folder, filename + "_" + i + ".png");
-        i++;
-      }
-
-      //noinspection UnstableApiUsage
-      Files.createParentDirs(f);
-
-      //noinspection ResultOfMethodCallIgnored
-      f.createNewFile();
-
-      ImageIO.write(img, "PNG", f);
-      return String.format("Successfully rendered to %s", f.getPath());
+      return Util.createFlipped(this.readPixels(size, size));
 
     } catch (Exception ex) {
       ex.printStackTrace();
-      return I18n.format("Rendering failed, see game output for details");
     }
+
+    return null;
+  }
+
+  private void writeImage(File folder, BufferedImage img, String displayName) throws IOException {
+
+    String filename = Util.sanitize(displayName).toLowerCase().replaceAll(" ", "_");
+    File f = new File(folder, filename + ".png");
+    int i = 2;
+
+    while (f.exists()) {
+      f = new File(folder, filename + "_" + i + ".png");
+      i++;
+    }
+
+    //noinspection UnstableApiUsage
+    Files.createParentDirs(f);
+
+    //noinspection ResultOfMethodCallIgnored
+    f.createNewFile();
+
+    ImageIO.write(img, "PNG", f);
   }
 
   private int size;

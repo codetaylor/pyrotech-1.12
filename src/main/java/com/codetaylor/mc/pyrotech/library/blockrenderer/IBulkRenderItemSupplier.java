@@ -1,13 +1,11 @@
 package com.codetaylor.mc.pyrotech.library.blockrenderer;
 
-import net.minecraft.item.ItemStack;
-
 import java.util.List;
 import java.util.function.Supplier;
 
 public interface IBulkRenderItemSupplier
-    extends Supplier<List<ItemStack>> {
+    extends Supplier<List<RenderItemData>> {
 
   @Override
-  List<ItemStack> get();
+  List<RenderItemData> get();
 }

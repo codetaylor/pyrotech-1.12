@@ -6,9 +6,9 @@ import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.Injector;
+import com.codetaylor.mc.pyrotech.BulkRenderItemSupplier;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.blockrenderer.BlockRenderer;
-import com.codetaylor.mc.pyrotech.library.blockrenderer.ModBulkRenderItemSupplier;
 import com.codetaylor.mc.pyrotech.library.blockrenderer.RenderTickEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.command.ClientCommandExport;
@@ -119,7 +119,7 @@ public class ModuleCore
 
     BlockInitializer.onClientInitialization();
 
-    BlockRenderer blockRenderer = new BlockRenderer(new ModBulkRenderItemSupplier(MOD_ID));
+    BlockRenderer blockRenderer = new BlockRenderer(new BulkRenderItemSupplier());
     MinecraftForge.EVENT_BUS.register(new RenderTickEventHandler(Collections.singletonList(blockRenderer)));
     ClientCommandHandler.instance.registerCommand(new ClientCommandExport());
 
