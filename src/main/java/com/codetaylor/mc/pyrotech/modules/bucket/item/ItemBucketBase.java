@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,6 +24,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,12 +36,15 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Stream;
 
 public abstract class ItemBucketBase
@@ -136,6 +141,25 @@ public abstract class ItemBucketBase
     }
 
     return super.getContainerItem(itemStack);
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
+
+    if (this.getDurability(stack) == this.getMaxDurability()) {
+      tooltip.add("Uses: " + (this.getDurability(stack)));
+
+    } else {
+      tooltip.add("Uses: " + (this.getDurability(stack)) + " / " + this.getMaxDurability());
+    }
+
+    if (this.getHotContainerDamagePerSecond() <= 0) {
+      tooltip.add(TextFormatting.GREEN + "Can hold hot fluids.");
+
+    } else {
+      tooltip.add(TextFormatting.RED + "Breaks with hot fluids.");
+    }
   }
 
   @Override
