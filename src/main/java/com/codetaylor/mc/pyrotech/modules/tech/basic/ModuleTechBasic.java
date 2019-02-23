@@ -56,7 +56,7 @@ public class ModuleTechBasic
         "ZenCrudeDryingRack",
         "ZenDryingRack",
         "ZenChoppingBlock",
-        "ZenGraniteAnvil",
+        "ZenAnvil",
         "ZenCompactingBin",
         "ZenCampfire",
         "ZenWorktable",
