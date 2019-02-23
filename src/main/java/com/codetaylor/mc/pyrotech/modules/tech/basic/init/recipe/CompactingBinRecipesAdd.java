@@ -28,7 +28,7 @@ public class CompactingBinRecipesAdd {
     // Lapis Block
     registry.register(new CompactingBinRecipe(
         new ItemStack(Blocks.LAPIS_BLOCK),
-        Ingredient.fromStacks(new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getMetadata())),
+        Ingredient.fromStacks(new ItemStack(Items.DYE, 1, 4)),
         9
     ).setRegistryName(ModuleTechBasic.MOD_ID, "lapis_block"));
 
