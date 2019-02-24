@@ -9,12 +9,10 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.MillInteractionBladeRenderer;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemSawmillBlade;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBaseSawmill;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -184,8 +182,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
           && blockState.getValue(BlockRock.VARIANT) == BlockRock.EnumType.WOOD_CHIPS) {
 
         // If wood chips already exist, start a pile.
-        this.world.setBlockState(pos, ModuleCore.Blocks.PILE_WOOD_CHIPS.getDefaultState()
-            .withProperty(BlockPileBase.LEVEL, 1));
+        this.world.setBlockState(pos, ModuleCore.Blocks.PILE_WOOD_CHIPS.setLevel(ModuleCore.Blocks.PILE_WOOD_CHIPS.getDefaultState(), 1));
 
         // Adjust entity height.
         AxisAlignedBB boundingBox = block.getBoundingBox(blockState, this.world, pos);
@@ -196,11 +193,10 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
         }
 
       } else if (block == ModuleCore.Blocks.PILE_WOOD_CHIPS) {
-        int level = blockState.getValue(BlockPileBase.LEVEL);
+        int level = ModuleCore.Blocks.PILE_WOOD_CHIPS.getLevel(blockState);
 
         if (level < 8) {
-          this.world.setBlockState(pos, ModuleCore.Blocks.PILE_WOOD_CHIPS.getDefaultState()
-              .withProperty(BlockPileBase.LEVEL, level + 1));
+          this.world.setBlockState(pos, ModuleCore.Blocks.PILE_WOOD_CHIPS.setLevel(ModuleCore.Blocks.PILE_WOOD_CHIPS.getDefaultState(), level + 1));
 
           // Adjust entity height.
           AxisAlignedBB boundingBox = block.getBoundingBox(blockState, this.world, pos);

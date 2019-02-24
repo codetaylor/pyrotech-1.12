@@ -24,6 +24,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -50,7 +51,7 @@ public class BlockPileSlag
     this.setTickRandomly(true);
 
     this.setDefaultState(this.blockState.getBaseState()
-        .withProperty(BlockPileBase.LEVEL, 8)
+        .withProperty(BlockPileBase.LEVEL, 0)
         .withProperty(BlockPileSlag.MOLTEN, false));
   }
 
@@ -139,7 +140,7 @@ public class BlockPileSlag
         return;
       }
 
-      int level = state.getValue(BlockPileSlag.LEVEL);
+      int level = this.getLevel(state);
 
       double x = (double) pos.getX() + 0.5;
       double y = (double) pos.getY() + ((level - 1) / 16.0) + (rand.nextDouble() * 2.0 / 16.0);
@@ -186,7 +187,7 @@ public class BlockPileSlag
 
       if (!world.isRemote
           && state.getValue(BlockPileSlag.MOLTEN)) {
-        int level = state.getValue(BlockPileBase.LEVEL);
+        int level = this.getLevel(state);
         int dimension = world.provider.getDimension();
         ModuleTechBloomery.PACKET_SERVICE.sendToAllAround(new SCPacketParticleLava(pos, level), dimension, pos);
 
@@ -240,15 +241,17 @@ public class BlockPileSlag
   @Override
   public IBlockState getStateFromMeta(int meta) {
 
+    int safeMeta = MathHelper.clamp(meta, 0, 15);
+
     return this.getDefaultState()
-        .withProperty(BlockPileBase.LEVEL, (meta & 7) + 1)
-        .withProperty(BlockPileSlag.MOLTEN, ((meta >> 3) & 1) == 1);
+        .withProperty(BlockPileBase.LEVEL, (safeMeta & 7))
+        .withProperty(BlockPileSlag.MOLTEN, ((safeMeta >> 3) & 1) == 1);
   }
 
   @Override
   public int getMetaFromState(IBlockState state) {
 
-    return (state.getValue(BlockPileBase.LEVEL) - 1)
+    return (state.getValue(BlockPileBase.LEVEL))
         | ((state.getValue(BlockPileSlag.MOLTEN) ? 1 : 0) << 3);
   }
 

@@ -14,6 +14,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -23,7 +24,7 @@ import javax.annotation.Nullable;
 public abstract class BlockPileBase
     extends BlockPartialBase {
 
-  public static final PropertyInteger LEVEL = PropertyInteger.create("level", 1, 8);
+  public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 7);
 
   private static final AxisAlignedBB[] AABB_ARRAY = new AxisAlignedBB[]{
       new AxisAlignedBB(0, 0, 0, 1, 2.0 / 16.0, 1),
@@ -39,7 +40,43 @@ public abstract class BlockPileBase
   public BlockPileBase(Material material) {
 
     super(material);
-    this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, 8));
+    this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, 0));
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Accessors
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Returns the block level in the range [1,8] with 1 being the smallest pile
+   * and 8 being a full block. Zero is returned if the given blockState does
+   * not represent this block.
+   *
+   * @param blockState the block state
+   * @return the block level
+   */
+  public int getLevel(IBlockState blockState) {
+
+    if (blockState.getBlock() instanceof BlockPileBase) {
+      return 8 - blockState.getValue(BlockPileBase.LEVEL);
+    }
+
+    return 0;
+  }
+
+  /**
+   * Sets the block level.
+   *
+   * @param blockState the blockState
+   * @param level      a value in the range [1,8]
+   */
+  public IBlockState setLevel(IBlockState blockState, int level) {
+
+    if (blockState.getBlock() instanceof BlockPileBase) {
+      return blockState.withProperty(BlockPileBase.LEVEL, 8 - MathHelper.clamp(level, 1, 8));
+    }
+
+    return blockState;
   }
 
   // ---------------------------------------------------------------------------
@@ -64,7 +101,7 @@ public abstract class BlockPileBase
     super.harvestBlock(world, player, pos, state, te, stack);
 
     if (!world.isRemote) {
-      int level = state.getValue(BlockPileBase.LEVEL);
+      int level = this.getLevel(state);
 
       StackHelper.spawnStackOnTop(world, this.getDrop(world, pos, state), pos, (level * 2) / 16.0);
 
@@ -72,7 +109,7 @@ public abstract class BlockPileBase
         world.setBlockToAir(pos);
 
       } else {
-        world.setBlockState(pos, state.withProperty(BlockPileBase.LEVEL, level - 1), 1 | 2 | 8);
+        world.setBlockState(pos, this.setLevel(state, level - 1), 1 | 2 | 8);
       }
     }
   }
@@ -96,7 +133,7 @@ public abstract class BlockPileBase
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
-    return AABB_ARRAY[state.getValue(BlockPileBase.LEVEL) - 1];
+    return AABB_ARRAY[this.getLevel(state) - 1];
   }
 
   // ---------------------------------------------------------------------------
@@ -110,7 +147,7 @@ public abstract class BlockPileBase
       return true;
     }
 
-    return (state.getValue(BlockPileBase.LEVEL) == 8);
+    return (this.getLevel(state) == 8);
   }
 
   @Override
@@ -118,7 +155,7 @@ public abstract class BlockPileBase
 
     // This is checked by fire to see if it exists. Blocks will not catch fire
     // when lit for pit burning if this returns false.
-    return (state.getValue(BlockPileBase.LEVEL) == 8);
+    return (this.getLevel(state) == 8);
   }
 
   // ---------------------------------------------------------------------------
@@ -137,7 +174,7 @@ public abstract class BlockPileBase
   public IBlockState getStateFromMeta(int meta) {
 
     return this.getDefaultState()
-        .withProperty(BlockPileBase.LEVEL, meta);
+        .withProperty(BlockPileBase.LEVEL, MathHelper.clamp(meta, 0, 7));
   }
 
   @Override
@@ -150,7 +187,6 @@ public abstract class BlockPileBase
   @Override
   public IBlockState getStateForPlacement(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ, int meta, @Nonnull EntityLivingBase placer, EnumHand hand) {
 
-    return this.getDefaultState()
-        .withProperty(BlockPileBase.LEVEL, 8);
+    return this.getDefaultState();
   }
 }

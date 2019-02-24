@@ -18,29 +18,29 @@
       }
     },
     "level": {
+      "0": {
+        "model": "pyrotech:slag_pile_block_16"
+      },
       "1": {
-        "model": "pyrotech:slag_pile_block_2"
+        "model": "pyrotech:slag_pile_block_14"
       },
       "2": {
-        "model": "pyrotech:slag_pile_block_4"
+        "model": "pyrotech:slag_pile_block_12"
       },
       "3": {
-        "model": "pyrotech:slag_pile_block_6"
+        "model": "pyrotech:slag_pile_block_10"
       },
       "4": {
         "model": "pyrotech:slag_pile_block_8"
       },
       "5": {
-        "model": "pyrotech:slag_pile_block_10"
+        "model": "pyrotech:slag_pile_block_6"
       },
       "6": {
-        "model": "pyrotech:slag_pile_block_12"
+        "model": "pyrotech:slag_pile_block_4"
       },
       "7": {
-        "model": "pyrotech:slag_pile_block_14"
-      },
-      "8": {
-        "model": "pyrotech:slag_pile_block_16"
+        "model": "pyrotech:slag_pile_block_2"
       }
     }
   }

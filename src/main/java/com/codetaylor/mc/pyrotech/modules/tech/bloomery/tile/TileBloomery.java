@@ -360,7 +360,7 @@ public class TileBloomery
         this.airflow.add(1);
 
       } else if (blockState.getBlock() == ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG) {
-        int level = blockState.getValue(BlockPileSlag.LEVEL);
+        int level = ModuleTechBloomery.Blocks.PILE_SLAG.getLevel(blockState);
 
         if (level == 1) {
           this.airflow.add(1);
@@ -577,7 +577,7 @@ public class TileBloomery
 
       if (block == ModuleTechBloomery.Blocks.PILE_SLAG) {
 
-        int level = blockState.getValue(BlockPileBase.LEVEL);
+        int level = ModuleTechBloomery.Blocks.PILE_SLAG.getLevel(blockState);
 
         if (level >= 4) {
           return;
@@ -585,8 +585,8 @@ public class TileBloomery
 
         this.addSlagItemToTileEntity(pos);
 
-        this.world.setBlockState(pos, blockState
-            .withProperty(BlockPileSlag.LEVEL, level + 1)
+        this.world.setBlockState(pos, ModuleTechBloomery.Blocks.PILE_SLAG
+            .setLevel(blockState, level + 1)
             .withProperty(BlockPileSlag.MOLTEN, true));
         return;
       }
@@ -622,14 +622,14 @@ public class TileBloomery
 
         // Add to an existing pile if it isn't too big.
 
-        int level = blockState.getValue(BlockPileBase.LEVEL);
+        int level = ModuleTechBloomery.Blocks.PILE_SLAG.getLevel(blockState);
 
         if (level < 8) {
 
           this.addSlagItemToTileEntity(pos);
 
-          this.world.setBlockState(pos, blockState
-              .withProperty(BlockPileSlag.LEVEL, level + 1)
+          this.world.setBlockState(pos, ModuleTechBloomery.Blocks.PILE_SLAG
+              .setLevel(blockState, level + 1)
               .withProperty(BlockPileSlag.MOLTEN, true));
 
           return;
@@ -639,8 +639,8 @@ public class TileBloomery
       pos = pos.up();
 
       // Create a new pile.
-      this.world.setBlockState(pos, ModuleTechBloomery.Blocks.PILE_SLAG.getDefaultState()
-          .withProperty(BlockPileSlag.LEVEL, 1)
+      this.world.setBlockState(pos, ModuleTechBloomery.Blocks.PILE_SLAG
+          .setLevel(ModuleTechBloomery.Blocks.PILE_SLAG.getDefaultState(), 1)
           .withProperty(BlockPileSlag.MOLTEN, true));
 
       this.addSlagItemToTileEntity(pos);
