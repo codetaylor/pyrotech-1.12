@@ -293,7 +293,8 @@ public class TileChoppingBlock
       ItemStack heldItemStack = player.getHeldItem(hand);
 
       return tile.getSawdust() > 0
-          && heldItemStack.getItem().getToolClasses(heldItemStack).contains("shovel");
+          && (heldItemStack.isEmpty()
+          || heldItemStack.getItem().getToolClasses(heldItemStack).contains("shovel"));
     }
 
     @Override
@@ -304,7 +305,11 @@ public class TileChoppingBlock
       if (!world.isRemote) {
         tile.setSawdust(tile.getSawdust() - 1);
         StackHelper.spawnStackOnTop(world, new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta()), hitPos, 0);
-        heldItem.damageItem(1, player);
+
+        if (!heldItem.isEmpty()) {
+          heldItem.damageItem(1, player);
+        }
+
         world.playSound(null, hitPos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
 
         if (ModuleTechBasicConfig.CHOPPING_BLOCK.EXHAUSTION_COST_PER_SHOVEL_SCOOP > 0) {
