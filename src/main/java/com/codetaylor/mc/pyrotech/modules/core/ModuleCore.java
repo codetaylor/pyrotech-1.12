@@ -12,6 +12,7 @@ import com.codetaylor.mc.pyrotech.library.blockrenderer.BlockRenderer;
 import com.codetaylor.mc.pyrotech.library.blockrenderer.RenderTickEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.command.ClientCommandExport;
+import com.codetaylor.mc.pyrotech.modules.core.event.TooltipEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.init.*;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaCraftingRecipesRemove;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesAdd;
@@ -74,6 +75,10 @@ public class ModuleCore
         "register",
         "com.codetaylor.mc.pyrotech.modules.core.plugin.waila.PluginWaila.wailaCallback"
     );
+
+    if (ModuleCoreConfig.CLIENT.SHOW_BURN_TIME_IN_TOOLTIPS) {
+      MinecraftForge.EVENT_BUS.register(new TooltipEventHandler.BurnTime());
+    }
   }
 
   @Override

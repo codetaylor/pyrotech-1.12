@@ -379,6 +379,12 @@ public class ModuleCoreConfig {
         "will always be shown, regardless of sneaking."
     })
     public boolean ALWAYS_SHOW_QUANTITIES = false;
+
+    @Config.Comment({
+        "Show an item's burn time in it's tooltip.",
+        "Default: " + true
+    })
+    public boolean SHOW_BURN_TIME_IN_TOOLTIPS = true;
   }
 
   // ---------------------------------------------------------------------------
