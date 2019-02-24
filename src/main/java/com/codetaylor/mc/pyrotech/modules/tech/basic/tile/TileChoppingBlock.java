@@ -303,11 +303,18 @@ public class TileChoppingBlock
       ItemStack heldItem = player.getHeldItemMainhand();
 
       if (!world.isRemote) {
-        tile.setSawdust(tile.getSawdust() - 1);
-        StackHelper.spawnStackOnTop(world, new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta()), hitPos, 0);
+        int sawdust = tile.getSawdust();
 
         if (!heldItem.isEmpty()) {
+          ItemStack itemStack = new ItemStack(ModuleCore.Blocks.ROCK, sawdust, BlockRock.EnumType.WOOD_CHIPS.getMeta());
+          StackHelper.spawnStackOnTop(world, itemStack, hitPos, 0);
           heldItem.damageItem(1, player);
+          tile.setSawdust(0);
+
+        } else {
+          tile.setSawdust(sawdust - 1);
+          ItemStack itemStack = new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta());
+          StackHelper.spawnStackOnTop(world, itemStack, hitPos, 0);
         }
 
         world.playSound(null, hitPos, SoundEvents.BLOCK_SAND_BREAK, SoundCategory.BLOCKS, 1, 1);
