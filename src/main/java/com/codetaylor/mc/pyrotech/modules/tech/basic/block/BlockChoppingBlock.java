@@ -83,6 +83,7 @@ public class BlockChoppingBlock
         TileChoppingBlock tile = (TileChoppingBlock) tileEntity;
         StackHelper.spawnStackHandlerContentsOnTop(world, tile.getStackHandler(), pos);
         StackHelper.spawnStackOnTop(world, new ItemStack(ModuleCore.Blocks.ROCK, tile.getSawdust(), BlockRock.EnumType.WOOD_CHIPS.getMeta()), pos);
+        tile.setSawdust(0);
       }
     }
 

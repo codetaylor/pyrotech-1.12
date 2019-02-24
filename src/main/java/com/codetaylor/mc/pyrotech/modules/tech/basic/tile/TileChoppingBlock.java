@@ -103,7 +103,7 @@ public class TileChoppingBlock
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  private void setSawdust(int sawdust) {
+  public void setSawdust(int sawdust) {
 
     // This requires a full update because it is used for actual state.
 
