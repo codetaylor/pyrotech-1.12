@@ -7,6 +7,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -92,7 +93,20 @@ public abstract class BlockPileBase
   @Override
   public boolean removedByPlayer(@Nonnull IBlockState state, World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
 
-    return willHarvest || super.removedByPlayer(state, world, pos, player, false);
+    if (!willHarvest && !world.isRemote) {
+
+      int level = this.getLevel(state);
+
+      if (level == 1) {
+        world.setBlockToAir(pos);
+
+      } else {
+        IBlockState newState = this.setLevel(state, level - 1);
+        world.setBlockState(pos, newState, 1 | 2 | 8);
+      }
+    }
+
+    return willHarvest;
   }
 
   @Override
@@ -100,17 +114,19 @@ public abstract class BlockPileBase
 
     super.harvestBlock(world, player, pos, state, te, stack);
 
+    int level = this.getLevel(state);
+
     if (!world.isRemote) {
-      int level = this.getLevel(state);
+      ItemStack drop = this.getDrop(world, pos, state);
+      StackHelper.spawnStackOnTop(world, drop, pos, (level * 2) / 16.0);
+    }
 
-      StackHelper.spawnStackOnTop(world, this.getDrop(world, pos, state), pos, (level * 2) / 16.0);
+    if (level == 1) {
+      world.setBlockState(pos, Blocks.AIR.getDefaultState(), world.isRemote ? (1 | 2 | 8) : (1 | 2));
 
-      if (level == 1) {
-        world.setBlockToAir(pos);
-
-      } else {
-        world.setBlockState(pos, this.setLevel(state, level - 1), 1 | 2 | 8);
-      }
+    } else {
+      IBlockState newState = this.setLevel(state, level - 1);
+      world.setBlockState(pos, newState, world.isRemote ? (1 | 2 | 8) : (1 | 2));
     }
   }
 
