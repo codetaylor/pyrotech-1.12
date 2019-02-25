@@ -386,6 +386,8 @@ public class TileChoppingBlock
 
           } else {
             StackHelper.spawnStackHandlerContentsOnTop(world, tile.getStackHandler(), tile.getPos());
+            ItemStack itemStack = new ItemStack(ModuleCore.Blocks.ROCK, tile.getSawdust(), BlockRock.EnumType.WOOD_CHIPS.getMeta());
+            StackHelper.spawnStackOnTop(world, itemStack, hitPos, 0);
             world.destroyBlock(tile.getPos(), false);
             return true;
           }
