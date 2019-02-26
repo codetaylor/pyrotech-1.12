@@ -170,6 +170,13 @@ public class ModuleTechRefractoryConfig {
         "Default: " + false
     })
     public boolean HOLDS_HOT_FLUIDS = false;
+
+    @Config.Comment({
+        "The range of this drain. Drains in a range equal to (RANGE * 2) + 1 out",
+        "in front of the block. The front is the side with the big hole.",
+        "Default: " + 1
+    })
+    public int RANGE = 1;
   }
 
   // ---------------------------------------------------------------------------
@@ -201,6 +208,13 @@ public class ModuleTechRefractoryConfig {
         "Default: " + true
     })
     public boolean HOLDS_HOT_FLUIDS = true;
+
+    @Config.Comment({
+        "The range of this drain. Drains in a range equal to (RANGE * 2) + 1 out",
+        "in front of the block. The front is the side with the big hole.",
+        "Default: " + 2
+    })
+    public int RANGE = 2;
   }
 
   // ---------------------------------------------------------------------------

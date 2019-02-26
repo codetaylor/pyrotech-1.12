@@ -67,18 +67,21 @@ public abstract class TileTarDrainBase
     }
 
     EnumFacing facing = blockState.getValue(BlockTarDrain.FACING).getOpposite();
-    BlockPos offset = origin.offset(facing, 2);
+    int drainRange = this.getDrainRange();
+    BlockPos offset = origin.offset(facing, 1 + drainRange);
     List<BlockPos> result = new ArrayList<>(9);
 
-    for (int x = -1; x <= 1; x++) {
+    for (int x = -drainRange; x <= drainRange; x++) {
 
-      for (int z = -1; z <= 1; z++) {
+      for (int z = -drainRange; z <= drainRange; z++) {
         result.add(offset.add(x, 0, z));
       }
     }
 
     return result;
   }
+
+  protected abstract int getDrainRange();
 
   @Nullable
   @Override

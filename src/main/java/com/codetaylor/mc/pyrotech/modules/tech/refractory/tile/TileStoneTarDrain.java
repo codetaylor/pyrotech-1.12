@@ -23,4 +23,10 @@ public class TileStoneTarDrain
 
     return ModuleTechRefractoryConfig.STONE_TAR_DRAIN.CAPACITY;
   }
+
+  @Override
+  protected int getDrainRange() {
+
+    return ModuleTechRefractoryConfig.STONE_TAR_DRAIN.RANGE;
+  }
 }
