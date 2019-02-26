@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.bucket.item;
 
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucketConfig;
+import net.minecraft.item.ItemStack;
 
 public class ItemBucketWood
     extends ItemBucketBase {
@@ -53,5 +54,11 @@ public class ItemBucketWood
   protected int getFullContainerDamagePerSecond() {
 
     return ModuleBucketConfig.BUCKET_WOOD.FULL_CONTAINER_DAMAGE_PER_SECOND;
+  }
+
+  @Override
+  public int getItemBurnTime(ItemStack stack) {
+
+    return ModuleBucketConfig.BUCKET_WOOD.BURN_TIME_TICKS;
   }
 }
