@@ -12,6 +12,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockPitAsh;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarCollector;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.event.FurnaceFuelBurnTimeEventHandler;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.event.ItemTooltipEventHandler;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.event.NeighborNotifyEventHandler;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.event.RightClickBlockEventHandler;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.init.BlockInitializer;
@@ -104,6 +105,8 @@ public class ModuleTechRefractory
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.waila.PluginWaila.wailaCallback"
     );
+
+    MinecraftForge.EVENT_BUS.register(new ItemTooltipEventHandler());
   }
 
   @Override

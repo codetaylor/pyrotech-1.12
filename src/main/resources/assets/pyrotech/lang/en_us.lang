@@ -281,6 +281,7 @@ gui.pyrotech.tooltip.uses.full=Uses: %d
 gui.pyrotech.tooltip.hot.fluids.true=Can hold hot fluids.
 gui.pyrotech.tooltip.hot.fluids.false=Breaks with hot fluids.
 gui.pyrotech.tooltip.burn.time=Burn Time: %s
+gui.pyrotech.tooltip.fluid.capacity=Capacity: %d mB
 
 #------------------------------------------------------------------------------
 # Waila
