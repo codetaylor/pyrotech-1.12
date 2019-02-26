@@ -29,7 +29,7 @@ public class BlockRefractoryGlass
   public BlockRefractoryGlass() {
 
     super(Material.GLASS);
-
+    this.setHardness(0.3f);
     this.setDefaultState(this.blockState.getBaseState()
         .withProperty(CONNECTED_DOWN, Boolean.FALSE)
         .withProperty(CONNECTED_EAST, Boolean.FALSE)
