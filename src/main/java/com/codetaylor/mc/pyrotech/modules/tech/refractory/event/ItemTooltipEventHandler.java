@@ -52,11 +52,18 @@ public class ItemTooltipEventHandler {
     if (itemStack.getMetadata() == BlockTarCollector.EnumType.STONE.getMeta()) {
       this.addCapacity(tooltip, ModuleTechRefractoryConfig.STONE_TAR_DRAIN.CAPACITY);
       this.addHotFluids(tooltip, ModuleTechRefractoryConfig.STONE_TAR_DRAIN.HOLDS_HOT_FLUIDS);
+      this.addRange(tooltip, ModuleTechRefractoryConfig.STONE_TAR_DRAIN.RANGE);
 
     } else if (itemStack.getMetadata() == BlockTarCollector.EnumType.BRICK.getMeta()) {
       this.addCapacity(tooltip, ModuleTechRefractoryConfig.BRICK_TAR_DRAIN.CAPACITY);
       this.addHotFluids(tooltip, ModuleTechRefractoryConfig.BRICK_TAR_DRAIN.HOLDS_HOT_FLUIDS);
+      this.addRange(tooltip, ModuleTechRefractoryConfig.BRICK_TAR_DRAIN.RANGE);
     }
+  }
+
+  private void addCapacity(List<String> tooltip, int capacity) {
+
+    this.addTooltip(tooltip, I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid.capacity", capacity), 1);
   }
 
   private void addHotFluids(List<String> tooltip, boolean holdsHotFluids) {
@@ -64,9 +71,9 @@ public class ItemTooltipEventHandler {
     this.addTooltip(tooltip, (holdsHotFluids ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocal("gui.pyrotech.tooltip.hot.fluids." + holdsHotFluids), 2);
   }
 
-  private void addCapacity(List<String> tooltip, int capacity) {
+  private void addRange(List<String> tooltip, int range) {
 
-    this.addTooltip(tooltip, I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid.capacity", capacity), 1);
+    this.addTooltip(tooltip, I18n.translateToLocalFormatted("gui.pyrotech.tooltip.drain", range * 2 + 1, range * 2 + 1), 3);
   }
 
   private void addTooltip(List<String> tooltip, String text, int preferredIndex) {
