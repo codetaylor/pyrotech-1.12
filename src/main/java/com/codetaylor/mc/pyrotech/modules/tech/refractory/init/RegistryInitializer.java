@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.init;
 
 import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.athenaeum.util.Properties;
@@ -8,13 +9,18 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRefractoryBrick;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRefractoryDoor;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRefractoryGlass;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockIgniter;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarCollector;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.event.ItemTooltipEventHandler;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
+import com.google.common.collect.Lists;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -68,6 +74,10 @@ public final class RegistryInitializer {
           new BlockMetaMatcher(ModuleIgnition.Blocks.IGNITER, RegistryInitializer.getIgniterMeta(EnumFacing.SOUTH)),
           new BlockMetaMatcher(ModuleIgnition.Blocks.IGNITER, RegistryInitializer.getIgniterMeta(EnumFacing.WEST))
       ));
+
+      ItemTooltipEventHandler.VALID_REFRACTORY_ITEM_BLOCKS.addAll(Lists.newArrayList(
+          new ParseResult(ModuleTechRefractory.MOD_ID, BlockIgniter.NAME, BlockIgniter.EnumType.BRICK.getMeta())
+      ));
     }
 
     blockMetaMatcherList.addAll(Arrays.asList(
@@ -80,9 +90,26 @@ public final class RegistryInitializer {
         new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.WEST))
     ));
 
+    ItemTooltipEventHandler.VALID_REFRACTORY_ITEM_BLOCKS.addAll(Lists.newArrayList(
+        new ParseResult(ModuleTechRefractory.MOD_ID, BlockRefractoryBrick.NAME, 0),
+        new ParseResult(ModuleTechRefractory.MOD_ID, BlockRefractoryGlass.NAME, 0),
+        new ParseResult(ModuleTechRefractory.MOD_ID, BlockTarDrain.NAME, BlockTarDrain.EnumType.BRICK.getMeta()),
+        new ParseResult(ModuleTechRefractory.MOD_ID, BlockTarCollector.NAME, BlockTarCollector.EnumType.BRICK.getMeta()),
+        new ParseResult(ModuleTechRefractory.MOD_ID, BlockRefractoryDoor.NAME, 0)
+    ));
+
     for (String blockString : ModuleTechRefractoryConfig.REFRACTORY.REFRACTORY_BRICKS) {
       try {
         blockMetaMatcherList.add(Util.parseBlockStringWithWildcard(blockString, parser));
+
+      } catch (MalformedRecipeItemException e) {
+        ModuleTechRefractory.LOGGER.error("", e);
+      }
+    }
+
+    for (String itemString : ModuleTechRefractoryConfig.CLIENT.VALID_REFRACTORY_TOOLTIP) {
+      try {
+        ItemTooltipEventHandler.VALID_REFRACTORY_ITEM_BLOCKS.add(RecipeItemParser.INSTANCE.parse(itemString));
 
       } catch (MalformedRecipeItemException e) {
         ModuleTechRefractory.LOGGER.error("", e);

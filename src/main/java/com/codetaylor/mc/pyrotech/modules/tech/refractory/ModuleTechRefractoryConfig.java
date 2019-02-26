@@ -9,6 +9,23 @@ import java.util.Map;
 public class ModuleTechRefractoryConfig {
 
   // ---------------------------------------------------------------------------
+  // - Client
+  // ---------------------------------------------------------------------------
+
+  public static Client CLIENT = new Client();
+
+  public static class Client {
+
+    @Config.Comment({
+        "Items listed here will have a tooltip applied indicating that they are",
+        "valid for use as refractory structural blocks.",
+        "String format: (domain):(path):(meta)",
+        "If meta is * then it will match all meta.",
+    })
+    public String[] VALID_REFRACTORY_TOOLTIP = new String[0];
+  }
+
+  // ---------------------------------------------------------------------------
   // - Refractory
   // ---------------------------------------------------------------------------
 

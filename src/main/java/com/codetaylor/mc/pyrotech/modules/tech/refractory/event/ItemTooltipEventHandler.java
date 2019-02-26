@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.event;
 
+import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarCollector;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
@@ -12,9 +13,12 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemTooltipEventHandler {
+
+  public static final List<ParseResult> VALID_REFRACTORY_ITEM_BLOCKS = new ArrayList<>();
 
   @SubscribeEvent
   public void on(ItemTooltipEvent event) {
@@ -31,6 +35,14 @@ public class ItemTooltipEventHandler {
 
       } else if (block instanceof BlockTarDrain) {
         this.addTarDrainTooltip(itemStack, tooltip);
+      }
+    }
+
+    for (ParseResult parseResult : VALID_REFRACTORY_ITEM_BLOCKS) {
+
+      if (parseResult.matches(itemStack, true)) {
+        this.addValidRefractoryBlock(tooltip);
+        break;
       }
     }
   }
@@ -59,6 +71,11 @@ public class ItemTooltipEventHandler {
       this.addHotFluids(tooltip, ModuleTechRefractoryConfig.BRICK_TAR_DRAIN.HOLDS_HOT_FLUIDS);
       this.addRange(tooltip, ModuleTechRefractoryConfig.BRICK_TAR_DRAIN.RANGE);
     }
+  }
+
+  private void addValidRefractoryBlock(List<String> tooltip) {
+
+    this.addTooltip(tooltip, I18n.translateToLocal("gui.pyrotech.tooltip.refractory.valid"), 1);
   }
 
   private void addCapacity(List<String> tooltip, int capacity) {

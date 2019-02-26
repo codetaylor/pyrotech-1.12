@@ -283,6 +283,7 @@ gui.pyrotech.tooltip.hot.fluids.false=Breaks with hot fluids.
 gui.pyrotech.tooltip.burn.time=Burn Time: %s
 gui.pyrotech.tooltip.fluid.capacity=Capacity: %d mB
 gui.pyrotech.tooltip.drain=Drains collectors in a %dx%d range in front of the block.
+gui.pyrotech.tooltip.refractory.valid=Valid for refractory structure.
 
 #------------------------------------------------------------------------------
 # Waila
