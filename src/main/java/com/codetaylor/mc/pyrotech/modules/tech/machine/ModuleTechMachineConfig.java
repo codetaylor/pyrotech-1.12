@@ -382,7 +382,7 @@ public class ModuleTechMachineConfig {
     public Map<String, String> COGS = new LinkedHashMap<String, String>() {{
       this.put("pyrotech:cog_wood", "0;1");
       this.put("pyrotech:cog_stone", "1;1");
-      this.put("pyrotech:cog_flint", "2;1");
+      this.put("pyrotech:cog_flint", "2;2");
       this.put("pyrotech:cog_bone", "2;2");
       this.put("pyrotech:cog_iron", "3;2");
       this.put("pyrotech:cog_gold", "0;1");
