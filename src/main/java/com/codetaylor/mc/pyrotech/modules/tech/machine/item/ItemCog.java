@@ -91,10 +91,10 @@ public class ItemCog
       tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.extended.shift", Reference.Tooltip.COLOR_EXTENDED_INFO, TextFormatting.GRAY));
     }
 
-    int maxDamage = this.getMaxDamage(stack);
     int damage = this.getDamage(stack);
 
     if (damage == 0) {
+      int maxDamage = this.getMaxDamage(stack);
       tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
     }
   }

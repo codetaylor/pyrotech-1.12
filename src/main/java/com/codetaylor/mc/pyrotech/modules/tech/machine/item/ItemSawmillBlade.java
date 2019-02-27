@@ -1,8 +1,16 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.item;
 
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemSawmillBlade
     extends Item {
@@ -21,5 +29,17 @@ public class ItemSawmillBlade
     }
 
     return super.getItemEnchantability(stack);
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
+
+    int damage = this.getDamage(stack);
+
+    if (damage == 0) {
+      int maxDamage = this.getMaxDamage(stack);
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
+    }
   }
 }
