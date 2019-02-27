@@ -4,7 +4,9 @@ import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentFire;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
+import com.codetaylor.mc.pyrotech.library.util.Tooltips;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileBrickTarCollector;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileStoneTarCollector;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarCollectorBase;
@@ -14,6 +16,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -31,6 +34,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class BlockTarCollector
@@ -49,6 +53,19 @@ public class BlockTarCollector
     this.setHarvestLevel("pickaxe", 0);
     this.setHardness(2);
     this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.STONE));
+  }
+
+  @Override
+  public void addInformation(ItemStack itemStack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
+
+    if (itemStack.getMetadata() == BlockTarCollector.EnumType.STONE.getMeta()) {
+      Tooltips.addCapacity(tooltip, ModuleTechRefractoryConfig.STONE_TAR_COLLECTOR.CAPACITY, 1);
+      Tooltips.addHotFluids(tooltip, ModuleTechRefractoryConfig.STONE_TAR_COLLECTOR.HOLDS_HOT_FLUIDS, 2);
+
+    } else if (itemStack.getMetadata() == BlockTarCollector.EnumType.BRICK.getMeta()) {
+      Tooltips.addCapacity(tooltip, ModuleTechRefractoryConfig.BRICK_TAR_COLLECTOR.CAPACITY, 1);
+      Tooltips.addHotFluids(tooltip, ModuleTechRefractoryConfig.BRICK_TAR_COLLECTOR.HOLDS_HOT_FLUIDS, 2);
+    }
   }
 
   @Nonnull

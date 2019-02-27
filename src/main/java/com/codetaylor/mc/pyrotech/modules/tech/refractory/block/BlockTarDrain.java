@@ -2,6 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.pyrotech.library.util.Tooltips;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileBrickTarDrain;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileStoneTarDrain;
 import net.minecraft.block.Block;
@@ -11,6 +13,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +34,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class BlockTarDrain
@@ -50,6 +54,21 @@ public class BlockTarDrain
     this.setDefaultState(this.blockState.getBaseState()
         .withProperty(VARIANT, EnumType.STONE)
         .withProperty(FACING, EnumFacing.SOUTH));
+  }
+
+  @Override
+  public void addInformation(ItemStack itemStack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
+
+    if (itemStack.getMetadata() == BlockTarCollector.EnumType.STONE.getMeta()) {
+      Tooltips.addCapacity(tooltip, ModuleTechRefractoryConfig.STONE_TAR_DRAIN.CAPACITY, 1);
+      Tooltips.addHotFluids(tooltip, ModuleTechRefractoryConfig.STONE_TAR_DRAIN.HOLDS_HOT_FLUIDS, 2);
+      Tooltips.addRange(tooltip, ModuleTechRefractoryConfig.STONE_TAR_DRAIN.RANGE, 3);
+
+    } else if (itemStack.getMetadata() == BlockTarCollector.EnumType.BRICK.getMeta()) {
+      Tooltips.addCapacity(tooltip, ModuleTechRefractoryConfig.BRICK_TAR_DRAIN.CAPACITY, 1);
+      Tooltips.addHotFluids(tooltip, ModuleTechRefractoryConfig.BRICK_TAR_DRAIN.HOLDS_HOT_FLUIDS, 2);
+      Tooltips.addRange(tooltip, ModuleTechRefractoryConfig.BRICK_TAR_DRAIN.RANGE, 3);
+    }
   }
 
   @Nonnull
