@@ -1,25 +1,28 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
+import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogHelper;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
-import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
-import crafttweaker.CraftTweakerAPI;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipeBuilder;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
-import crafttweaker.api.liquid.ILiquidStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.mc1120.CraftTweaker;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -29,51 +32,6 @@ public class ZenBurn {
 
   @ZenDocMethod(
       order = 1,
-      description = {
-          "|Parameter|Description|\n" +
-              "|---------|-----------|\n" +
-              "|name|the name of the recipe|\n" +
-              "|output|the output for each completed burn stage|\n" +
-              "|burnStages|the number of burn stages|\n" +
-              "|totalBurnTimeTicks|the total number of ticks required to complete all burn stages|\n" +
-              "|fluidProduced|the fluid produced for each completed burn stage|\n" +
-              "|failureChance|the chance a failure item will be substituted for each burn stage result|\n" +
-              "|failureItems|a list of items from which to pick a substitute for each failed burn stage result; items chosen randomly|\n" +
-              "|requiresRefractoryBlocks|true if the recipe requires using refractory blocks|\n" +
-              "|fluidLevelAffectsFailureChance|true if the build-up of fluid in burning blocks increases the failure chance of burn stages|"
-      },
-      args = {"name", "output", "blockString", "burnStages", "totalBurnTimeTicks", "fluidProduced", "failureChance", "failureItems", "requiresRefractoryBlocks", "fluidLevelAffectsFailureChance"}
-  )
-  @ZenMethod
-  public static void addRecipe(
-      String name,
-      IItemStack output,
-      String blockString,
-      int burnStages,
-      int totalBurnTimeTicks,
-      ILiquidStack fluidProduced,
-      float failureChance,
-      IItemStack[] failureItems,
-      boolean requiresRefractoryBlocks,
-      boolean fluidLevelAffectsFailureChance
-  ) {
-
-    CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
-        name,
-        CraftTweakerMC.getItemStack(output),
-        blockString,
-        burnStages,
-        totalBurnTimeTicks,
-        CraftTweakerMC.getLiquidStack(fluidProduced),
-        failureChance,
-        CraftTweakerMC.getItemStacks(failureItems),
-        requiresRefractoryBlocks,
-        fluidLevelAffectsFailureChance
-    ));
-  }
-
-  @ZenDocMethod(
-      order = 2,
       description = "Remove all recipes with the given recipe output.",
       args = {"output"}
   )
@@ -84,7 +42,7 @@ public class ZenBurn {
   }
 
   @ZenDocMethod(
-      order = 3
+      order = 2
   )
   @ZenMethod
   public static void removeAllRecipes() {
@@ -115,74 +73,126 @@ public class ZenBurn {
     }
   }
 
-  public static class AddRecipe
-      implements IAction {
+  private final String name;
+  private final PitBurnRecipeBuilder builder;
 
-    private final String name;
-    private final String blockString;
-    private final ItemStack output;
-    private final int burnStages;
-    private final int totalBurnTimeTicks;
-    private final FluidStack fluidProduced;
-    private final float failureChance;
-    private final ItemStack[] failureItems;
-    private final boolean requiresRefractoryBlocks;
-    private final boolean fluidLevelAffectsFailureChance;
+  public ZenBurn(String name, PitBurnRecipeBuilder builder) {
 
-    public AddRecipe(
-        String name,
-        ItemStack output,
-        String blockString,
-        int burnStages,
-        int totalBurnTimeTicks,
-        FluidStack fluidProduced,
-        float failureChance,
-        ItemStack[] failureItems,
-        boolean requiresRefractoryBlocks,
-        boolean fluidLevelAffectsFailureChance
-    ) {
+    this.name = name;
+    this.builder = builder;
+  }
 
-      this.name = name;
-      this.output = output;
-      this.blockString = blockString;
-      this.burnStages = burnStages;
-      this.totalBurnTimeTicks = totalBurnTimeTicks;
-      this.fluidProduced = fluidProduced;
-      this.failureChance = failureChance;
-      this.failureItems = failureItems;
-      this.requiresRefractoryBlocks = requiresRefractoryBlocks;
-      this.fluidLevelAffectsFailureChance = fluidLevelAffectsFailureChance;
-    }
+  @ZenDocMethod(
+      order = 3,
+      args = {"name", "output", "blockString"}
+  )
+  @ZenMethod
+  public static ZenBurn createBuilder(String name, IItemStack output, String blockString) {
 
-    @Override
-    public void apply() {
+    ItemStack itemStack = CTInputHelper.toStack(output);
 
-      try {
-        BlockMetaMatcher blockMetaMatcher = Util.parseBlockStringWithWildcard(this.blockString, new RecipeItemParser());
+    try {
+      ParseResult result = RecipeItemParser.INSTANCE.parse(blockString);
+      Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(result.getDomain(), result.getPath()));
 
-        PitBurnRecipe recipe = new PitBurnRecipe(
-            this.output,
-            blockMetaMatcher,
-            this.burnStages,
-            this.totalBurnTimeTicks,
-            this.fluidProduced,
-            this.failureChance,
-            this.failureItems,
-            this.requiresRefractoryBlocks,
-            this.fluidLevelAffectsFailureChance
-        );
-        ModuleTechRefractory.Registries.BURN_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
-
-      } catch (MalformedRecipeItemException e) {
-        CraftTweakerAPI.logError("", e);
+      if (block == null) {
+        CTLogHelper.logError("Unable to locate block for block-string: " + result);
+        return null;
       }
+
+      return new ZenBurn(name, new PitBurnRecipeBuilder(itemStack, new BlockMetaMatcher(block, result.getMeta())));
+
+    } catch (MalformedRecipeItemException e) {
+      CTLogHelper.logError("Unable to parse block-string: " + blockString, e);
     }
 
-    @Override
-    public String describe() {
+    return null;
+  }
 
-      return "Adding burn recipe for " + this.output;
-    }
+  @ZenDocMethod(
+      order = 4,
+      args = {"burnStages"}
+  )
+  @ZenMethod
+  public ZenBurn setBurnStages(int burnStages) {
+
+    this.builder.setBurnStages(burnStages);
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 5,
+      args = {"totalBurnTimeTicks"}
+  )
+  @ZenMethod
+  public ZenBurn setTotalBurnTimeTicks(int totalBurnTimeTicks) {
+
+    this.builder.setTotalBurnTimeTicks(totalBurnTimeTicks);
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 6,
+      args = {"fluidProduced"}
+  )
+  @ZenMethod
+  public ZenBurn setFluidProduced(FluidStack fluidProduced) {
+
+    this.builder.setFluidProduced(fluidProduced);
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 7,
+      args = {"failureChance"}
+  )
+  @ZenMethod
+  public ZenBurn setFailureChance(float failureChance) {
+
+    this.builder.setFailureChance(failureChance);
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 8,
+      args = {"failureItem"}
+  )
+  @ZenMethod
+  public ZenBurn addFailureItem(ItemStack failureItem) {
+
+    this.builder.addFailureItem(failureItem);
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 9,
+      args = {"requiresRefractoryBlocks"}
+  )
+  @ZenMethod
+  public ZenBurn setRequiresRefractoryBlocks(boolean requiresRefractoryBlocks) {
+
+    this.builder.setRequiresRefractoryBlocks(requiresRefractoryBlocks);
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 10,
+      args = {"fluidLevelAffectsFailureChance"}
+  )
+  @ZenMethod
+  public ZenBurn setFluidLevelAffectsFailureChance(boolean fluidLevelAffectsFailureChance) {
+
+    this.builder.setFluidLevelAffectsFailureChance(fluidLevelAffectsFailureChance);
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 11
+  )
+  @ZenMethod
+  public void register() {
+
+    ModuleTechRefractory.Registries.BURN_RECIPE.register(this.builder.create(new ResourceLocation("crafttweaker", this.name)));
   }
 
 }
