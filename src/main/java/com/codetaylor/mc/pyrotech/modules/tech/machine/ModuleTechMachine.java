@@ -172,8 +172,8 @@ public class ModuleTechMachine
     @GameRegistry.ObjectHolder(BlockBrickCrucible.NAME)
     public static final BlockBrickCrucible BRICK_CRUCIBLE;
 
-    @GameRegistry.ObjectHolder(BlockStoneHopper.NAME)
-    public static final BlockStoneHopper STONE_HOPPER;
+    @GameRegistry.ObjectHolder(BlockMechanicalHopper.NAME)
+    public static final BlockMechanicalHopper STONE_HOPPER;
 
     @GameRegistry.ObjectHolder(BlockMechanicalCompactingBin.NAME)
     public static final BlockMechanicalCompactingBin MECHANICAL_COMPACTING_BIN;

@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockStoneHopper;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockMechanicalHopper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.SoundEvents;
@@ -57,9 +57,9 @@ public class TileStoneHopper
     TileEntity tileSource = this.world.getTileEntity(this.pos.up());
     IBlockState blockState = this.world.getBlockState(this.pos);
     EnumFacing facing = blockState.getValue(Properties.FACING_HORIZONTAL);
-    BlockStoneHopper.EnumType type = blockState.getValue(BlockStoneHopper.TYPE);
+    BlockMechanicalHopper.EnumType type = blockState.getValue(BlockMechanicalHopper.TYPE);
 
-    if (type == BlockStoneHopper.EnumType.Down) {
+    if (type == BlockMechanicalHopper.EnumType.Down) {
       facing = EnumFacing.UP;
     }
 

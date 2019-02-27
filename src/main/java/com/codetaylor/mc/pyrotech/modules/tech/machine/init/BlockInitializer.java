@@ -38,7 +38,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockBrickSawmill(), BlockBrickSawmill.NAME);
     registry.registerBlockWithItem(new BlockBrickCrucible(), BlockBrickCrucible.NAME);
 
-    registry.registerBlockWithItem(new BlockStoneHopper(), BlockStoneHopper.NAME);
+    registry.registerBlockWithItem(new BlockMechanicalHopper(), BlockMechanicalHopper.NAME);
 
     registry.registerBlockWithItem(new BlockBellows(), BlockBellows.NAME);
     registry.registerBlockWithItem(new BlockMechanicalBellows(), BlockMechanicalBellows.NAME);

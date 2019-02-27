@@ -31,11 +31,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class BlockStoneHopper
+public class BlockMechanicalHopper
     extends BlockPartialBase
     implements IBlockInteractable {
 
-  public static final String NAME = "stone_hopper";
+  public static final String NAME = "mechanical_hopper";
 
   public static final PropertyEnum<EnumType> TYPE = PropertyEnum.create("type", EnumType.class, EnumType.Down, EnumType.Side);
 
@@ -99,7 +99,7 @@ public class BlockStoneHopper
         }, () -> new EnumMap<>(EnumType.class)));
   }
 
-  public BlockStoneHopper() {
+  public BlockMechanicalHopper() {
 
     super(Material.ROCK);
     this.setHardness(2);
