@@ -87,15 +87,15 @@ public class ItemCog
         tooltip.add(Reference.Tooltip.COLOR_EXTENDED_INFO + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.cog.spreader", localizedName, Reference.Tooltip.COLOR_EXTENDED_INFO_HIGHLIGHT, attempts, range, range));
       }
 
-      int maxDamage = this.getMaxDamage(stack);
-      int damage = this.getDamage(stack);
-
-      if (damage == 0) {
-        tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
-      }
-
     } else {
       tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.extended.shift", Reference.Tooltip.COLOR_EXTENDED_INFO, TextFormatting.GRAY));
+    }
+
+    int maxDamage = this.getMaxDamage(stack);
+    int damage = this.getDamage(stack);
+
+    if (damage == 0) {
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
     }
   }
 }
