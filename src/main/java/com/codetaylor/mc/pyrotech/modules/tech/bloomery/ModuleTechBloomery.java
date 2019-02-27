@@ -12,6 +12,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockWitherForge;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.event.ItemTooltipEventHandler;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.BloomeryRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.CompactingBinRecipesAdd;
@@ -135,6 +136,8 @@ public class ModuleTechBloomery
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.PluginWaila.wailaCallback"
     );
+
+    MinecraftForge.EVENT_BUS.register(new ItemTooltipEventHandler());
   }
 
   @SubscribeEvent

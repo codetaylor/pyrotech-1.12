@@ -293,6 +293,8 @@ gui.pyrotech.tooltip.cog.compactor=%s: %s%d%%
 gui.pyrotech.tooltip.cog.spreader=%s: %sx%d in %dx%d
 gui.pyrotech.tooltip.contents.retain.true=Keeps contents when broken.
 gui.pyrotech.tooltip.contents.retain.false=Destroys contents when broken.
+gui.pyrotech.tooltip.burn.time.efficiency=Efficiency:
+gui.pyrotech.tooltip.burn.time.modifier=%s: %s%d%%
 
 #------------------------------------------------------------------------------
 # Waila
