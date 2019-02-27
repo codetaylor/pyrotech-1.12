@@ -1,12 +1,11 @@
 {
   "parent": "block/block",
   "textures": {
-    "top": "pyrotech:blocks/stone_hopper_top",
-    "side": "pyrotech:blocks/stone_hopper_side",
-    "particle": "pyrotech:blocks/stone_hopper_side",
-    "inside": "pyrotech:blocks/stone_hopper_inside"
+    "top": "pyrotech:blocks/mechanical_hopper_top",
+    "side": "pyrotech:blocks/mechanical_hopper_side",
+    "particle": "pyrotech:blocks/mechanical_hopper_side",
+    "inside": "pyrotech:blocks/mechanical_hopper_inside"
   },
-  "ambientocclusion": false,
   "elements": [
     {
       "from": [0, 10, 0],
@@ -96,11 +95,11 @@
       "from": [7, 6, 12],
       "to": [9, 8, 13],
       "faces": {
-        "east": {"uv": [0, 0, 1, 2], "texture": "#top"},
-        "south": {"uv": [7, 7, 9, 9], "texture": "#top"},
-        "west": {"uv": [0, 0, 1, 2], "texture": "#top"},
+        "east": {"uv": [1, 3, 2, 5], "texture": "#top"},
+        "south": {"uv": [5, 12, 7, 14], "texture": "#top"},
+        "west": {"uv": [1, 3, 2, 5], "texture": "#top"},
         "up": {"uv": [0, 0, 2, 1], "rotation": 180, "texture": "#top"},
-        "down": {"uv": [0, 0, 2, 1], "rotation": 180, "texture": "#top"}
+        "down": {"uv": [2, 1, 4, 2], "rotation": 180, "texture": "#top"}
       }
     },
     {

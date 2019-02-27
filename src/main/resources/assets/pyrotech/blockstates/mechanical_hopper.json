@@ -3,10 +3,10 @@
   "variants": {
     "type": {
       "down": {
-        "model": "pyrotech:stone_hopper_down"
+        "model": "pyrotech:mechanical_hopper_down"
       },
       "side": {
-        "model": "pyrotech:stone_hopper_side"
+        "model": "pyrotech:mechanical_hopper_side"
       }
     },
     "facing": {
