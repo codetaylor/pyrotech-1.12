@@ -8,13 +8,17 @@
   ],
   "pattern": [
     "B B",
-    "B-B",
+    "P-P",
     " B "
   ],
   "key": {
     "B": {
       "item": "pyrotech:material",
       "data": 16
+    },
+    "P": {
+      "item": "pyrotech:planks_tarred",
+      "data": 0
     },
     "-": {
       "item": "pyrotech:material",
