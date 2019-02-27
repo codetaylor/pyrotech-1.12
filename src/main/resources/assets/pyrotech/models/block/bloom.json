@@ -1,5 +1,36 @@
 {
-  "parent": "block/block",
+  "display": {
+    "gui": {
+      "rotation": [30, 225, 0],
+      "translation": [0, 3, 0],
+      "scale": [1, 1, 1]
+    },
+    "ground": {
+      "rotation": [0, 0, 0],
+      "translation": [0, 3, 0],
+      "scale": [0.5, 0.5, 0.5]
+    },
+    "fixed": {
+      "rotation": [0, 0, 0],
+      "translation": [0, 0, 0],
+      "scale": [0.5, 0.5, 0.5]
+    },
+    "thirdperson_righthand": {
+      "rotation": [75, 45, 0],
+      "translation": [0, 2.5, 0],
+      "scale": [0.375, 0.375, 0.375]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, 45, 0],
+      "translation": [0, 0, 0],
+      "scale": [0.40, 0.40, 0.40]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 225, 0],
+      "translation": [0, 0, 0],
+      "scale": [0.40, 0.40, 0.40]
+    }
+  },
   "textures": {
     "all": "pyrotech:blocks/active_pile",
     "particle": "pyrotech:blocks/active_pile"
@@ -10,12 +41,24 @@
       "from": [4, 0, 4],
       "to": [12, 8, 12],
       "faces": {
-        "north": {"uv": [4, 7, 12, 15], "texture": "#all"},
-        "east": {"uv": [4, 0, 12, 8], "texture": "#all"},
-        "south": {"uv": [4, 8, 12, 16], "texture": "#all"},
-        "west": {"uv": [5, 0, 13, 8], "texture": "#all"},
-        "up": {"uv": [1, 0, 9, 8], "texture": "#all"},
-        "down": {"uv": [3, 4, 11, 12], "texture": "#all"}
+        "north": {
+          "uv": [4, 7, 12, 15], "texture": "#all"
+        },
+        "east": {
+          "uv": [4, 0, 12, 8], "texture": "#all"
+        },
+        "south": {
+          "uv": [4, 8, 12, 16], "texture": "#all"
+        },
+        "west": {
+          "uv": [5, 0, 13, 8], "texture": "#all"
+        },
+        "up": {
+          "uv": [1, 0, 9, 8], "texture": "#all"
+        },
+        "down": {
+          "uv": [3, 4, 11, 12], "texture": "#all"
+        }
       }
     }
   ]
