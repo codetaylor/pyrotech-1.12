@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.event;
 
 import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
+import com.codetaylor.mc.athenaeum.util.TooltipHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarCollector;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
@@ -75,32 +76,21 @@ public class ItemTooltipEventHandler {
 
   private void addValidRefractoryBlock(List<String> tooltip) {
 
-    this.addTooltip(tooltip, I18n.translateToLocal("gui.pyrotech.tooltip.refractory.valid"), 1);
+    TooltipHelper.addTooltip(tooltip, I18n.translateToLocal("gui.pyrotech.tooltip.refractory.valid"), 1);
   }
 
   private void addCapacity(List<String> tooltip, int capacity) {
 
-    this.addTooltip(tooltip, I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid.capacity", capacity), 1);
+    TooltipHelper.addTooltip(tooltip, I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid.capacity", capacity), 1);
   }
 
   private void addHotFluids(List<String> tooltip, boolean holdsHotFluids) {
 
-    this.addTooltip(tooltip, (holdsHotFluids ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocal("gui.pyrotech.tooltip.hot.fluids." + holdsHotFluids), 2);
+    TooltipHelper.addTooltip(tooltip, (holdsHotFluids ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocal("gui.pyrotech.tooltip.hot.fluids." + holdsHotFluids), 2);
   }
 
   private void addRange(List<String> tooltip, int range) {
 
-    this.addTooltip(tooltip, I18n.translateToLocalFormatted("gui.pyrotech.tooltip.drain", range * 2 + 1, range * 2 + 1), 3);
+    TooltipHelper.addTooltip(tooltip, I18n.translateToLocalFormatted("gui.pyrotech.tooltip.drain", range * 2 + 1, range * 2 + 1), 3);
   }
-
-  private void addTooltip(List<String> tooltip, String text, int preferredIndex) {
-
-    if (tooltip.size() > preferredIndex) {
-      tooltip.add(preferredIndex, text);
-
-    } else {
-      tooltip.add(text);
-    }
-  }
-
 }

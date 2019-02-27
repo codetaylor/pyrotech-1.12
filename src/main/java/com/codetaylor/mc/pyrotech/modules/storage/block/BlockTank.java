@@ -7,17 +7,19 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
-import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankBrick;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankStone;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -26,6 +28,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -34,6 +38,7 @@ import net.minecraftforge.fluids.FluidTank;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class BlockTank
@@ -202,6 +207,83 @@ public class BlockTank
   public BlockRenderLayer getBlockLayer() {
 
     return BlockRenderLayer.CUTOUT;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Tooltip
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void addInformation(@Nonnull ItemStack stack, @Nullable World world, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flag) {
+
+    NBTTagCompound stackTag = stack.getTagCompound();
+    EnumType type = EnumType.fromMeta(stack.getMetadata());
+
+    if (stackTag == null) {
+      this.addInformationCapacity(tooltip, type);
+
+    } else {
+
+      if (stackTag.hasKey(StackHelper.BLOCK_ENTITY_TAG)) {
+        NBTTagCompound tileTag = stackTag.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
+
+        if (tileTag.hasKey("tank")) {
+          NBTTagCompound tankTag = tileTag.getCompoundTag("tank");
+
+          if (tankTag.hasKey("Empty")
+              && (!tankTag.hasKey("Amount")
+              || tankTag.getInteger("Amount") <= 0)) {
+
+            this.addInformationCapacity(tooltip, type);
+
+          } else {
+            FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(tankTag);
+
+            if (fluidStack != null) {
+              String localizedName = fluidStack.getLocalizedName();
+              int amount = fluidStack.amount;
+
+              if (type == EnumType.STONE) {
+                int capacity = ModuleStorageConfig.STONE_TANK.CAPACITY;
+                tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid", localizedName, amount, capacity));
+
+              } else if (type == EnumType.BRICK) {
+                int capacity = ModuleStorageConfig.BRICK_TANK.CAPACITY;
+                tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid", localizedName, amount, capacity));
+              }
+            }
+          }
+        }
+      }
+    }
+
+    if (type == EnumType.STONE) {
+      boolean hotFluids = ModuleStorageConfig.STONE_TANK.HOLDS_HOT_FLUIDS;
+      tooltip.add((hotFluids ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.hot.fluids." + hotFluids));
+
+      boolean holdsContents = ModuleStorageConfig.STONE_TANK.HOLDS_CONTENTS_WHEN_BROKEN;
+      tooltip.add((holdsContents ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.contents.retain." + holdsContents));
+
+    } else if (type == EnumType.BRICK) {
+      boolean hotFluids = ModuleStorageConfig.BRICK_TANK.HOLDS_HOT_FLUIDS;
+      tooltip.add((hotFluids ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.hot.fluids." + hotFluids));
+
+      boolean holdsContents = ModuleStorageConfig.BRICK_TANK.HOLDS_CONTENTS_WHEN_BROKEN;
+      tooltip.add((holdsContents ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.contents.retain." + holdsContents));
+    }
+
+  }
+
+  private void addInformationCapacity(@Nonnull List<String> tooltip, EnumType type) {
+
+    if (type == EnumType.STONE) {
+      int capacity = ModuleStorageConfig.STONE_TANK.CAPACITY;
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid.capacity", capacity));
+
+    } else if (type == EnumType.BRICK) {
+      int capacity = ModuleStorageConfig.BRICK_TANK.CAPACITY;
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid.capacity", capacity));
+    }
   }
 
   // ---------------------------------------------------------------------------
