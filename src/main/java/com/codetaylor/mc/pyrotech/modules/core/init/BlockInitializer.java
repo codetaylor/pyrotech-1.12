@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
+import com.codetaylor.mc.pyrotech.modules.core.block.item.ItemDoorStone;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockGrass;
 import com.codetaylor.mc.pyrotech.modules.core.tile.TileFarmlandMulched;
@@ -11,7 +12,6 @@ import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.item.ItemDoor;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
@@ -32,11 +32,11 @@ public final class BlockInitializer {
 
     final BlockRefractoryDoor blockRefractoryDoor = new BlockRefractoryDoor();
     registry.registerBlock(blockRefractoryDoor, BlockRefractoryDoor.NAME);
-    registry.registerItem(new ItemDoor(blockRefractoryDoor), blockRefractoryDoor.getRegistryName());
+    registry.registerItem(new ItemDoorStone(blockRefractoryDoor), blockRefractoryDoor.getRegistryName());
 
     final BlockStoneDoor blockStoneDoor = new BlockStoneDoor();
     registry.registerBlock(blockStoneDoor, BlockStoneDoor.NAME);
-    registry.registerItem(new ItemDoor(blockStoneDoor), blockStoneDoor.getRegistryName());
+    registry.registerItem(new ItemDoorStone(blockStoneDoor), blockStoneDoor.getRegistryName());
 
     registry.registerBlockWithItem(new BlockLogPile(), BlockLogPile.NAME);
     registry.registerBlockWithItem(new BlockCoalCokeBlock(), BlockCoalCokeBlock.NAME);
