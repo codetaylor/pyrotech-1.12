@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech;
 
+import net.minecraft.util.text.TextFormatting;
+
 public class Reference {
 
   public static final String MOD_ID = "pyrotech";
@@ -18,6 +20,12 @@ public class Reference {
 
     public static final int DEFAULT_BURN_TIME_TICKS = 7 * 60 * 20;
     public static final float DEFAULT_FAILURE_CHANCE = 0.05f;
+  }
+
+  public static class Tooltip {
+
+    public static final TextFormatting COLOR_EXTENDED_INFO = TextFormatting.GOLD;
+    public static final TextFormatting COLOR_EXTENDED_INFO_HIGHLIGHT = TextFormatting.YELLOW;
   }
 
 }

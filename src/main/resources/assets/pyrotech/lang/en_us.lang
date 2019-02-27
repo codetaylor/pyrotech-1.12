@@ -276,14 +276,20 @@ tile.pyrotech.rock_sand_red.name=Red Sand Pile
 # Tooltips
 #------------------------------------------------------------------------------
 
+gui.pyrotech.tooltip.extended.shift=Hold %s<SHIFT>%s for info.
 gui.pyrotech.tooltip.uses=Uses: %d / %d
 gui.pyrotech.tooltip.uses.full=Uses: %d
+gui.pyrotech.tooltip.durability=Durability: %d / %d
+gui.pyrotech.tooltip.durability.full=Durability: %d
 gui.pyrotech.tooltip.hot.fluids.true=Can hold hot fluids.
 gui.pyrotech.tooltip.hot.fluids.false=Breaks with hot fluids.
 gui.pyrotech.tooltip.burn.time=Burn Time: %s
 gui.pyrotech.tooltip.fluid.capacity=Capacity: %d mB
 gui.pyrotech.tooltip.drain=Drains collectors in a %dx%d range in front of the block.
 gui.pyrotech.tooltip.refractory.valid=Valid for refractory structure.
+gui.pyrotech.tooltip.cog.hopper=%s: %sx%d
+gui.pyrotech.tooltip.cog.compactor=%s: %s%d%%
+gui.pyrotech.tooltip.cog.spreader=%s: %sx%d in %dx%d
 
 #------------------------------------------------------------------------------
 # Waila
