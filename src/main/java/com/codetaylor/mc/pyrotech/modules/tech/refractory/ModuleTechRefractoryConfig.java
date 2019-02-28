@@ -52,18 +52,18 @@ public class ModuleTechRefractoryConfig {
     @Config.Comment({
         "Maximum chance for a recipe item to fail conversion.",
         "Recipe chances still apply, this is just a cap.",
-        "Default: " + 0.95
+        "Default: " + 0.99
     })
     @Config.RangeDouble(min = 0, max = 1)
-    public double MAX_FAILURE_CHANCE = 0.95;
+    public double MAX_FAILURE_CHANCE = 0.99;
 
     @Config.Comment({
         "Minimum chance for a recipe item to fail conversion.",
         "Recipe chances still apply, this is just a cap.",
-        "Default: " + 0.05
+        "Default: " + 0.01
     })
     @Config.RangeDouble(min = 0, max = 1)
-    public double MIN_FAILURE_CHANCE = 0.05;
+    public double MIN_FAILURE_CHANCE = 0.01;
 
     @Config.Comment({
         "The maximum fluid capacity of an active pile in mB.",
