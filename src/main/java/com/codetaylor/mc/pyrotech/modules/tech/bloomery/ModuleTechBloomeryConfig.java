@@ -174,6 +174,26 @@ public class ModuleTechBloomeryConfig {
   public static class WitherForge {
 
     @Config.Comment({
+        "If false, the device won't play the scary sounds.",
+        "Default: " + true
+    })
+    public boolean ENABLE_SCARY_SOUNDS = true;
+
+    @Config.Comment({
+        "The interval at which to play the scary sounds.",
+        "interval + [-variance,+variance]",
+        "Default: " + (40 * 20)
+    })
+    public int SCARY_SOUND_INTERVAL_TICKS = 40 * 20;
+
+    @Config.Comment({
+        "The random variance to apply to the scary sound interval.",
+        "interval + [-variance,+variance]",
+        "Default: " + (20 * 20)
+    })
+    public int SCARY_SOUND_INTERVAL_VARIANCE_TICKS = 20 * 20;
+
+    @Config.Comment({
         "This is the total amount of fuel burn time required to operate the device",
         "at maximum speed. More fuel will increase the speed of the device with",
         "diminishing returns. If the speed cap flag is set to true, inserted ",

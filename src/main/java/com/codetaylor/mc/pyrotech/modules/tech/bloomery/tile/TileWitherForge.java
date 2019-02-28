@@ -1,15 +1,16 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile;
 
-import com.codetaylor.mc.athenaeum.util.FacingHelper;
-import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.athenaeum.util.RandomHelper;
+import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.WitherForgeRecipe;
 import com.google.common.collect.Lists;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -18,6 +19,8 @@ import java.util.Random;
 
 public class TileWitherForge
     extends TileBloomery {
+
+  private int soundTickCounter;
 
   @Override
   public int getMaxFuelCount() {
@@ -140,6 +143,43 @@ public class TileWitherForge
 
         if (rand.nextDouble() < 0.5) {
           this.spawnDrip(rand, FacingHelper.rotateFacingCW(facing, 3));
+        }
+      }
+
+    } else { // server
+
+      if (ModuleTechBloomeryConfig.WITHER_FORGE.ENABLE_SCARY_SOUNDS) {
+
+        if (this.isActive()) {
+          this.soundTickCounter -= 1;
+
+          if (this.soundTickCounter <= 0) {
+            Random random = RandomHelper.random();
+            int variance = (int) ((random.nextFloat() * 2 - 1) * ModuleTechBloomeryConfig.WITHER_FORGE.SCARY_SOUND_INTERVAL_VARIANCE_TICKS);
+            this.soundTickCounter = variance + ModuleTechBloomeryConfig.WITHER_FORGE.SCARY_SOUND_INTERVAL_TICKS;
+
+            WeightedPicker<SoundEvent> picker = new WeightedPicker<>();
+            picker.add(1, SoundEvents.ENTITY_GHAST_SCREAM);
+            picker.add(5, SoundEvents.ENTITY_GHAST_AMBIENT);
+            picker.add(5, SoundEvents.ENTITY_GHAST_WARN);
+            picker.add(5, SoundEvents.ENTITY_WITHER_SKELETON_HURT);
+            picker.add(5, SoundEvents.ENTITY_WITHER_HURT);
+            picker.add(10, SoundEvents.ENTITY_WITHER_SKELETON_AMBIENT);
+            picker.add(25, SoundEvents.ENTITY_WITHER_AMBIENT);
+            picker.add(50, SoundEvents.ENTITY_WITHER_SKELETON_STEP);
+
+            SoundHelper.playSoundServer(
+                this.world,
+                this.pos,
+                picker.get(),
+                SoundCategory.BLOCKS,
+                random.nextFloat() * 0.2f + 0.4f,
+                0.4f + random.nextFloat() * 1.0f
+            );
+          }
+
+        } else {
+          this.soundTickCounter = 0;
         }
       }
     }

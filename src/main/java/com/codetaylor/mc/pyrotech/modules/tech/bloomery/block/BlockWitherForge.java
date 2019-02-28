@@ -1,9 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.block;
 
+import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileWitherForge;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -19,6 +24,23 @@ public class BlockWitherForge
   protected double getEntityWalkBurnDamage() {
 
     return ModuleTechBloomeryConfig.WITHER_FORGE.ENTITY_WALK_BURN_DAMAGE;
+  }
+
+  @Override
+  public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+
+    super.onBlockPlacedBy(world, pos, state, placer, stack);
+
+    if (ModuleTechBloomeryConfig.WITHER_FORGE.ENABLE_SCARY_SOUNDS
+        && !world.isRemote) {
+      SoundHelper.playSoundServer(
+          world,
+          pos,
+          SoundEvents.ENTITY_WITHER_SPAWN,
+          SoundCategory.BLOCKS,
+          0.4f
+      );
+    }
   }
 
   // ---------------------------------------------------------------------------
