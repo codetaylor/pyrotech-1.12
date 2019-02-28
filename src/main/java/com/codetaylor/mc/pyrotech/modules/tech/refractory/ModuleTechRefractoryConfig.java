@@ -26,6 +26,22 @@ public class ModuleTechRefractoryConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - General
+  // ---------------------------------------------------------------------------
+
+  public static General GENERAL = new General();
+
+  public static class General {
+
+    @Config.Comment({
+        "The maximum number of blocks that can be lit in a pit burn or refractory burn.",
+        "Default: " + 27
+    })
+    @Config.RangeInt(min = 1, max = 512)
+    public int MAXIMUM_BURN_SIZE_BLOCKS = 27;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Refractory
   // ---------------------------------------------------------------------------
 

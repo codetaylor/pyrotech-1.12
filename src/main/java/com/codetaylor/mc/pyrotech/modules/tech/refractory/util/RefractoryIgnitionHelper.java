@@ -2,18 +2,18 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.util;
 
 import com.codetaylor.mc.pyrotech.library.util.FloodFill;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileActivePile;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.function.Predicate;
 
 public final class RefractoryIgnitionHelper {
-
-  private static final int BLOCK_IGNITION_LIMIT = 27;
 
   public static boolean igniteBlocks(World world, BlockPos pos) {
 
@@ -37,7 +37,7 @@ public final class RefractoryIgnitionHelper {
               ((TileActivePile) tileEntity).setRecipe(recipe);
             }
           },
-          BLOCK_IGNITION_LIMIT
+          MathHelper.clamp(ModuleTechRefractoryConfig.GENERAL.MAXIMUM_BURN_SIZE_BLOCKS, 1, 512)
       );
     }
 
