@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile;
 
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileBurnableBase;
+import com.codetaylor.mc.pyrotech.library.util.FloodFill;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRefractoryDoor;
@@ -182,6 +183,37 @@ public class TileActivePile
 
     if (recipe.doesFluidLevelAffectFailureChance()) {
       failureChance += (1 - failureChance) * (this.fluidTank.getFluidAmount() / (float) this.fluidTank.getCapacity());
+    }
+
+    if (!recipe.requiresRefractoryBlocks()) {
+      // Modify failure chance if in refractory
+
+      boolean[] isValidRefractory = {true};
+
+      FloodFill.apply(this.world, this.pos,
+          (w, p) -> w.getBlockState(p).getBlock() == ModuleTechRefractory.Blocks.ACTIVE_PILE
+              || w.getBlockState(p).getBlock() == ModuleTechRefractory.Blocks.PIT_ASH_BLOCK,
+          (w, p) -> {
+
+            for (EnumFacing facing : EnumFacing.VALUES) {
+              IBlockState blockState = w.getBlockState(p.offset(facing));
+
+              for (Predicate<IBlockState> predicate : ModuleTechRefractory.Registries.REFRACTORY_BLOCK_LIST) {
+
+                if (!predicate.test(blockState)) {
+                  isValidRefractory[0] = false;
+                  return false;
+                }
+              }
+            }
+            return true;
+          },
+          MathHelper.clamp(ModuleTechRefractoryConfig.GENERAL.MAXIMUM_BURN_SIZE_BLOCKS, 1, 512)
+      );
+
+      if (isValidRefractory[0]) {
+        failureChance *= Math.max(0, ModuleTechRefractoryConfig.REFRACTORY.REFRACTORY_FAILURE_MODIFIER);
+      }
     }
 
     failureChance = MathHelper.clamp(

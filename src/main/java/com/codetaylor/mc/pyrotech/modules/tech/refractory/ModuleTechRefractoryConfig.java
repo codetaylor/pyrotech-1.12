@@ -50,6 +50,15 @@ public class ModuleTechRefractoryConfig {
   public static class Refractory {
 
     @Config.Comment({
+        "Multiplicative modifier applied to the failure chance of recipes that",
+        "don't require a refractory (pit burning recipes) when burned in an enclosure",
+        "comprised completely of valid refractory blocks.",
+        "Default: " + 0.1
+    })
+    @Config.RangeDouble(min = 0)
+    public double REFRACTORY_FAILURE_MODIFIER = 0.1;
+
+    @Config.Comment({
         "Maximum chance for a recipe item to fail conversion.",
         "Recipe chances still apply, this is just a cap.",
         "Default: " + 0.99
@@ -90,8 +99,11 @@ public class ModuleTechRefractoryConfig {
         "String format: (domain):(path):(meta)",
         "If meta is * then it will match all meta.",
         "",
-        "Note: these strings are for in-world blocks and the meta may be different",
-        "than the itemStack version of the block."
+        "Note: These strings are for in-world blocks and the meta may be different",
+        "than the itemStack version of the block.",
+        "",
+        "Note: Don't forget to add the item stack tooltip for any blocks you add",
+        "here in the Client section."
     })
     public String[] REFRACTORY_BRICKS = new String[0];
   }
