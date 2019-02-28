@@ -15,6 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -24,12 +25,16 @@ import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
 import java.util.List;
 import java.util.function.Predicate;
 
 public class ItemBlockBag
     extends ItemBlock {
+
+  private static final int COLOR_BAG_FULL = Color.decode("0xFF0000").getRGB();
+  private static final int COLOR_BAG = Color.decode("0x70341e").getRGB();
 
   private final BlockBagBase blockBag;
 
@@ -70,10 +75,15 @@ public class ItemBlockBag
     return this.blockBag.allowAutoPickupInventory();
   }
 
+  private int getItemCapacity() {
+
+    return this.blockBag.getItemCapacity();
+  }
+
   @Override
   public double getDurabilityForDisplay(ItemStack stack) {
 
-    return 1 - this.getCount(stack) / (double) this.blockBag.getItemCapacity();
+    return 1 - this.getCount(stack) / (double) this.getItemCapacity();
   }
 
   @Override
@@ -85,11 +95,11 @@ public class ItemBlockBag
   @Override
   public int getRGBDurabilityForDisplay(@Nonnull ItemStack stack) {
 
-    if (this.getCount(stack) == this.blockBag.getItemCapacity()) {
-      return Color.decode("0xFF0000").getRGB();
+    if (this.getCount(stack) == this.getItemCapacity()) {
+      return COLOR_BAG_FULL;
     }
 
-    return Color.decode("0x70341e").getRGB();
+    return COLOR_BAG;
   }
 
   public int getCount(ItemStack itemStack) {
@@ -114,19 +124,26 @@ public class ItemBlockBag
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+  public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 
-    super.addInformation(stack, worldIn, tooltip, flagIn);
+    super.addInformation(stack, world, tooltip, flag);
     int count = this.getCount(stack);
-    tooltip.add("Count: " + (count == -1 ? "MISSING" : count));
+
+    if (count == -1) {
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.item.capacity.empty", this.getItemCapacity()));
+
+    } else {
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.item.capacity", count, this.getItemCapacity()));
+    }
   }
 
   @Nullable
   @Override
   public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
 
-    return new CapabilityProvider(this.blockBag.getItemCapacity(), this.blockBag::isItemValidForInsertion);
+    return new CapabilityProvider(this.getItemCapacity(), this.blockBag::isItemValidForInsertion);
   }
 
   @Nonnull
