@@ -251,15 +251,14 @@ public class TileActivePile
       return false;
     }
 
-    if (recipe.requiresRefractoryBlocks()) {
+    for (Predicate<IBlockState> matcher : ModuleTechRefractory.Registries.REFRACTORY_BLOCK_LIST) {
 
-      for (Predicate<IBlockState> matcher : ModuleTechRefractory.Registries.REFRACTORY_BLOCK_LIST) {
-
-        if (matcher.test(blockState)) {
-          return true;
-        }
+      if (matcher.test(blockState)) {
+        return true;
       }
+    }
 
+    if (recipe.requiresRefractoryBlocks()) {
       return this.isValidDoor(blockState, facing, ModuleCore.Blocks.REFRACTORY_DOOR);
 
     } else {
