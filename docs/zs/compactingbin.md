@@ -8,7 +8,12 @@ import mods.pyrotech.CompactingBin
 #### Methods
 
 ```java
-static void addRecipe(string name, IItemStack output, IIngredient input, int amount);
+static void addRecipe(
+  string name, 
+  IItemStack output, 
+  IIngredient input, 
+  int amount
+);
 ```
 
 
@@ -24,7 +29,9 @@ static void addRecipe(
 
 
 ```java
-static void removeRecipes(IIngredient output);
+static void removeRecipes(
+  IIngredient output
+);
 ```
 
 

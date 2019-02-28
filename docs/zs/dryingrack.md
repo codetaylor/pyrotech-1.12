@@ -8,12 +8,19 @@ import mods.pyrotech.DryingRack
 #### Methods
 
 ```java
-static void addRecipe(string name, IItemStack output, IIngredient input, int dryTimeTicks);
+static void addRecipe(
+  string name, 
+  IItemStack output, 
+  IIngredient input, 
+  int dryTimeTicks
+);
 ```
 
 
 ```java
-static void removeRecipes(IIngredient output);
+static void removeRecipes(
+  IIngredient output
+);
 ```
 
 

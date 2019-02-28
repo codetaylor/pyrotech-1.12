@@ -8,7 +8,12 @@ import mods.pyrotech.StoneKiln
 #### Methods
 
 ```java
-static void addRecipe(string name, IItemStack output, IIngredient input, int burnTimeTicks);
+static void addRecipe(
+  string name, 
+  IItemStack output, 
+  IIngredient input, 
+  int burnTimeTicks
+);
 ```
 
 
@@ -25,7 +30,9 @@ static void addRecipe(
 
 
 ```java
-static void removeRecipes(IIngredient output);
+static void removeRecipes(
+  IIngredient output
+);
 ```
 
 

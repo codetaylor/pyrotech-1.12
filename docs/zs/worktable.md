@@ -8,7 +8,12 @@ import mods.pyrotech.Worktable
 #### Methods
 
 ```java
-static void addShaped(IItemStack output, IIngredient[][] ingredients, IRecipeFunction function, IRecipeAction action);
+static void addShaped(
+  IItemStack output, 
+  IIngredient[][] ingredients, 
+  IRecipeFunction function, 
+  IRecipeAction action
+);
 ```
 
 
@@ -24,7 +29,12 @@ static void addShaped(
 
 
 ```java
-static void addShapedMirrored(IItemStack output, IIngredient[][] ingredients, IRecipeFunction function, IRecipeAction action);
+static void addShapedMirrored(
+  IItemStack output, 
+  IIngredient[][] ingredients, 
+  IRecipeFunction function, 
+  IRecipeAction action
+);
 ```
 
 
@@ -40,7 +50,12 @@ static void addShapedMirrored(
 
 
 ```java
-static void addShapeless(IItemStack output, IIngredient[] ingredients, IRecipeFunction function, IRecipeAction action);
+static void addShapeless(
+  IItemStack output, 
+  IIngredient[] ingredients, 
+  IRecipeFunction function, 
+  IRecipeAction action
+);
 ```
 
 
@@ -56,16 +71,22 @@ static void addShapeless(
 
 
 ```java
-static void blacklistVanillaRecipes(string[] resourceLocations);
+static void blacklistVanillaRecipes(
+  string[] resourceLocations
+);
 ```
 
 
 ```java
-static void whitelistVanillaRecipes(string[] resourceLocations);
+static void whitelistVanillaRecipes(
+  string[] resourceLocations
+);
 ```
 
 
 ```java
-static void removeRecipes(IIngredient output);
+static void removeRecipes(
+  IIngredient output
+);
 ```
 

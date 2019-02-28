@@ -8,7 +8,11 @@ import mods.pyrotech.Chopping
 #### Methods
 
 ```java
-static void addRecipe(string name, IItemStack output, IIngredient input);
+static void addRecipe(
+  string name, 
+  IItemStack output, 
+  IIngredient input
+);
 ```
 
 
@@ -31,7 +35,9 @@ static void addRecipe(
 |quantities|the int array provided here will override the array provided in the config file; see the config file for an explanation|
 
 ```java
-static void removeRecipes(IIngredient output);
+static void removeRecipes(
+  IIngredient output
+);
 ```
 
 

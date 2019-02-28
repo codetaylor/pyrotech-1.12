@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.BrickSawmill
+import mods.pyrotech.CrudeDryingRack
 ```
 
 #### Methods
@@ -12,9 +12,7 @@ static void addRecipe(
   string name, 
   IItemStack output, 
   IIngredient input, 
-  int burnTimeTicks, 
-  IIngredient blade, 
-  int woodChips
+  int dryTimeTicks
 );
 ```
 

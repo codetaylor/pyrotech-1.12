@@ -1,16 +1,22 @@
-site_name: Dropt
+site_name: Pyrotech
 
 pages:
 - Introduction: index.md
 - ChangeLog: changelog.md
 - ZenScript:
+  - Anvil: zs/anvil.md
+  - Bloomery: zs/bloomery.md
+  - Brick Crucible: zs/brickcrucible.md
+  - Brick Kiln: zs/brickkiln.md
+  - Brick Oven: zs/brickoven.md
+  - Brick Sawmill: zs/bricksawmill.md
   - Burn: zs/burn.md
   - Campfire: zs/campfire.md
   - Chopping Block: zs/chopping.md
   - Compacting Bin: zs/compactingbin.md
   - Crude Drying Rack: zs/crudedryingrack.md
   - Drying Rack: zs/dryingrack.md
-  - Granite Anvil: zs/graniteanvil.md
+  - Mechanical Compactor: zs/mechanicalcompactor.md
   - Pit Kiln: zs/pitkiln.md
   - Soaking Pot: zs/soakingpot.md
   - Stone Crucible: zs/stonecrucible.md
@@ -26,5 +32,3 @@ theme: readthedocs
 markdown_extensions:
 - admonition
 - attr_list
-
-extra_css: [custom.css]

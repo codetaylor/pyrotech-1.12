@@ -17,8 +17,8 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenDocClass("mods.pyrotech.MechanicalCompacter")
-@ZenClass("mods.pyrotech.MechanicalCompacter")
+@ZenDocClass("mods.pyrotech.MechanicalCompactor")
+@ZenClass("mods.pyrotech.MechanicalCompactor")
 public class ZenMechanicalCompactingBin {
 
   @ZenDocMethod(

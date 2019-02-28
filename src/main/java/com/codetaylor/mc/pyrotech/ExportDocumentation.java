@@ -22,6 +22,7 @@ public class ExportDocumentation {
         ZenCampfire.class,
         ZenChoppingBlock.class,
         ZenCompactingBin.class,
+        ZenCrudeDryingRack.class,
         ZenDryingRack.class,
         ZenAnvil.class,
         ZenKilnPit.class,

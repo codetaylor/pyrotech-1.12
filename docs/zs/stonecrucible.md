@@ -8,12 +8,19 @@ import mods.pyrotech.StoneCrucible
 #### Methods
 
 ```java
-static void addRecipe(string name, ILiquidStack output, IIngredient input, int burnTimeTicks);
+static void addRecipe(
+  string name, 
+  ILiquidStack output, 
+  IIngredient input, 
+  int burnTimeTicks
+);
 ```
 
 
 ```java
-static void removeRecipes(ILiquidStack output);
+static void removeRecipes(
+  ILiquidStack output
+);
 ```
 
 

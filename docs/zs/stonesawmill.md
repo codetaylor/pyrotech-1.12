@@ -20,7 +20,9 @@ static void addRecipe(
 
 
 ```java
-static void removeRecipes(IIngredient output);
+static void removeRecipes(
+  IIngredient output
+);
 ```
 
 
