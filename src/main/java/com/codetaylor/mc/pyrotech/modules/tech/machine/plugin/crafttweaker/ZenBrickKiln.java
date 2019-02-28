@@ -65,7 +65,7 @@ public class ZenBrickKiln {
   }
 
   @ZenDocMethod(
-      order = 3
+      order = 4
   )
   @ZenMethod
   public static void removeAllRecipes() {

@@ -29,8 +29,6 @@ static void addRecipe(
 |input|the recipe input|
 |chops|the int array provided here will override the array provided in the config file; see the config file for an explanation|
 |quantities|the int array provided here will override the array provided in the config file; see the config file for an explanation|
-{: .zen-description }
-
 
 ```java
 static void removeRecipes(IIngredient output);

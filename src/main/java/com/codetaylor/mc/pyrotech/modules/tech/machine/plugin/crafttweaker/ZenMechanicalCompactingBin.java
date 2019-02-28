@@ -64,7 +64,7 @@ public class ZenMechanicalCompactingBin {
   }
 
   @ZenDocMethod(
-      order = 3
+      order = 4
   )
   @ZenMethod
   public static void removeAllRecipes() {

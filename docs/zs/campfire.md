@@ -19,8 +19,6 @@ static void blacklistSmeltingRecipes(IIngredient[] output);
 |Parameter|Description|
 |---------|-----------|
 |output|furnace recipes that have an output that matches any of the given ingredients will be disallowed|
-{: .zen-description }
-
 
 ```java
 static void whitelistSmeltingRecipes(IIngredient[] output);
@@ -29,13 +27,9 @@ static void whitelistSmeltingRecipes(IIngredient[] output);
 |Parameter|Description|
 |---------|-----------|
 |output|only furnace recipes that have an output that matches any of the given ingredients will be allowed|
-{: .zen-description }
-
 
 ```java
 static void removeRecipes(IIngredient output);
 ```
 
 Remove all recipes with the given recipe output.
-{: .zen-description }
-
