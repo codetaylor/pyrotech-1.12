@@ -38,8 +38,11 @@ public class WorldGenDenseCoal
                 world,
                 mutableBlockPos,
                 (w, p) -> (w.getBlockState(p).getBlock() == Blocks.COAL_ORE),
-                (w, p) -> w.setBlockState(p, ModuleCore.Blocks.ORE.getDefaultState()
-                    .withProperty(BlockOre.VARIANT, BlockOre.EnumType.DENSE_COAL_ORE)),
+                (w, p) -> {
+                  w.setBlockState(p, ModuleCore.Blocks.ORE.getDefaultState()
+                      .withProperty(BlockOre.VARIANT, BlockOre.EnumType.DENSE_COAL_ORE));
+                  return true;
+                },
                 random.nextInt(maxVeinSize - minVeinSize + 1) + minVeinSize
             );
             break;

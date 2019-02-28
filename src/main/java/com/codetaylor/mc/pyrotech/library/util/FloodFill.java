@@ -18,7 +18,7 @@ public class FloodFill {
 
   public interface IAction {
 
-    void execute(World world, BlockPos pos);
+    boolean execute(World world, BlockPos pos);
   }
 
   public static boolean apply(
@@ -44,7 +44,9 @@ public class FloodFill {
         result = true;
 
         // perform action
-        action.execute(world, candidatePos);
+        if (!action.execute(world, candidatePos)) {
+          break;
+        }
 
         // reduce limit
         limit -= 1;

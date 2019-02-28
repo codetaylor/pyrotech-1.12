@@ -36,6 +36,7 @@ public final class RefractoryIgnitionHelper {
             if (tileEntity instanceof TileActivePile) {
               ((TileActivePile) tileEntity).setRecipe(recipe);
             }
+            return true;
           },
           MathHelper.clamp(ModuleTechRefractoryConfig.GENERAL.MAXIMUM_BURN_SIZE_BLOCKS, 1, 512)
       );
