@@ -24,11 +24,11 @@ static void addRecipe(
 
 
 ```java
-static void removeAllRecipes();
+static void removeRecipes(IIngredient output);
 ```
 
 
 ```java
-static void removeRecipes(IIngredient output);
+static void removeAllRecipes();
 ```
 
