@@ -1,10 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.tool.item;
 
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
-import net.minecraft.item.ItemShears;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemShearsBase;
 
 public class ItemStoneShears
-    extends ItemShears {
+    extends ItemShearsBase {
 
   public static final String NAME = "stone_shears";
 

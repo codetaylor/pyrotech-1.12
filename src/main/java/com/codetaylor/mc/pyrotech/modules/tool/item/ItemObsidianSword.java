@@ -2,11 +2,11 @@ package com.codetaylor.mc.pyrotech.modules.tool.item;
 
 import com.codetaylor.mc.athenaeum.reference.ModuleMaterials;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemSwordBase;
 import com.google.common.base.Preconditions;
-import net.minecraft.item.ItemSword;
 
 public class ItemObsidianSword
-    extends ItemSword {
+    extends ItemSwordBase {
 
   public static final String NAME = "obsidian_sword";
 

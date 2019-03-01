@@ -1,15 +1,15 @@
 package com.codetaylor.mc.pyrotech.modules.tool.item;
 
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemPickaxeBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
 
 public class ItemCrudePickaxe
-    extends ItemPickaxe {
+    extends ItemPickaxeBase {
 
   public static final String NAME = "crude_pickaxe";
 

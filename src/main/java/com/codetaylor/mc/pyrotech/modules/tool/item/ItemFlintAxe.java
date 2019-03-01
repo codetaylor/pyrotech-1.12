@@ -2,10 +2,10 @@ package com.codetaylor.mc.pyrotech.modules.tool.item;
 
 import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
-import net.minecraft.item.ItemAxe;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemAxeBase;
 
 public class ItemFlintAxe
-    extends ItemAxe {
+    extends ItemAxeBase {
 
   public static final String NAME = "flint_axe";
 

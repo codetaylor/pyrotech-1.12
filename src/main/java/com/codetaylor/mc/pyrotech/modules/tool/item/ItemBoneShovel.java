@@ -2,10 +2,10 @@ package com.codetaylor.mc.pyrotech.modules.tool.item;
 
 import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
-import net.minecraft.item.ItemSpade;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemShovelBase;
 
 public class ItemBoneShovel
-    extends ItemSpade {
+    extends ItemShovelBase {
 
   public static final String NAME = "bone_shovel";
 
@@ -19,5 +19,4 @@ public class ItemBoneShovel
       this.setMaxDamage(maxDamage);
     }
   }
-
 }

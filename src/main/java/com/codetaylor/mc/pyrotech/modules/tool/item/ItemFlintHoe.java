@@ -2,10 +2,10 @@ package com.codetaylor.mc.pyrotech.modules.tool.item;
 
 import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
-import net.minecraft.item.ItemHoe;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemHoeBase;
 
 public class ItemFlintHoe
-    extends ItemHoe {
+    extends ItemHoeBase {
 
   public static final String NAME = "flint_hoe";
 

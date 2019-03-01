@@ -2,10 +2,10 @@ package com.codetaylor.mc.pyrotech.modules.tool.item;
 
 import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
-import net.minecraft.item.ItemSpade;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemShovelBase;
 
 public class ItemFlintShovel
-    extends ItemSpade {
+    extends ItemShovelBase {
 
   public static final String NAME = "flint_shovel";
 
