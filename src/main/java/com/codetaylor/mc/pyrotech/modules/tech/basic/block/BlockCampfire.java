@@ -5,9 +5,11 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleLava;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -30,6 +32,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -274,6 +277,7 @@ public class BlockCampfire
     super.onEntityWalk(world, pos, entity);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void breakBlock(World world, BlockPos pos, IBlockState state) {
 
@@ -281,13 +285,23 @@ public class BlockCampfire
 
     if (tileEntity instanceof TileCampfire) {
       ((TileCampfire) tileEntity).dropContents();
+
+      if (!world.isRemote) {
+        EnumType type = ((TileCampfire) tileEntity).getState();
+
+        if (type == EnumType.LIT) {
+          int level = 4;
+          int dimension = world.provider.getDimension();
+          ModuleTechBloomery.PACKET_SERVICE.sendToAllAround(new SCPacketParticleLava(pos, level), dimension, pos);
+        }
+      }
     }
 
     super.breakBlock(world, pos, state);
   }
 
   @Override
-  public int quantityDropped(IBlockState state, int fortune, Random random) {
+  public int quantityDropped(IBlockState state, int fortune, @Nonnull Random random) {
 
     return 0;
   }
