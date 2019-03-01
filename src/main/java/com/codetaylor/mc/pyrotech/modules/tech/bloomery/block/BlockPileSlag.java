@@ -5,7 +5,7 @@ import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.network.SCPacketParticleLava;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleLava;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TilePileSlag;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

@@ -6,11 +6,18 @@ import com.codetaylor.mc.pyrotech.interaction.network.CSPacketInteractionMouseWh
 import com.codetaylor.mc.pyrotech.modules.core.network.CSPacketModuleListResponse;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketModuleListRequest;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleBoneMeal;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleLava;
 import net.minecraftforge.fml.relauncher.Side;
 
 public final class PacketInitializer {
 
   public static void register(IPacketRegistry registry) {
+
+    registry.register(
+        SCPacketParticleLava.class,
+        SCPacketParticleLava.class,
+        Side.CLIENT
+    );
 
     registry.register(
         SCPacketModuleListRequest.class,

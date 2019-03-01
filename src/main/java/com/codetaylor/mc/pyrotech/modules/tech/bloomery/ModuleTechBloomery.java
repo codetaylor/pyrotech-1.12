@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery;
 
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
-import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
@@ -13,7 +12,10 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockWitherForge;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.event.ItemTooltipEventHandler;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.*;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.BlockInitializer;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.EntityInitializer;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.ItemInitializer;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.SlagInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.BloomeryRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.CompactingBinRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.WitherForgeRecipesAdd;
@@ -146,12 +148,6 @@ public class ModuleTechBloomery
     TextureMap map = event.getMap();
     map.registerSprite(new ResourceLocation("pyrotech:blocks/active_pile"));
     map.registerSprite(new ResourceLocation("pyrotech:blocks/ash_block"));
-  }
-
-  @Override
-  public void onNetworkRegister(IPacketRegistry registry) {
-
-    PacketInitializer.register(registry);
   }
 
   @Override

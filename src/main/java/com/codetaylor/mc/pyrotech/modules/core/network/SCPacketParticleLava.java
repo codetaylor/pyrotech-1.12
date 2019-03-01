@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.bloomery.network;
+package com.codetaylor.mc.pyrotech.modules.core.network;
 
 import com.codetaylor.mc.athenaeum.spi.packet.PacketBlockPosBase;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
