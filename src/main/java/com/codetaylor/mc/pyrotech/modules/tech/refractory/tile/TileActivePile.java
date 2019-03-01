@@ -196,14 +196,27 @@ public class TileActivePile
           (w, p) -> {
 
             for (EnumFacing facing : EnumFacing.VALUES) {
-              IBlockState blockState = w.getBlockState(p.offset(facing));
+              BlockPos offset = p.offset(facing);
+              IBlockState blockState = w.getBlockState(offset);
+              blockState = blockState.getBlock().getActualState(blockState, w, offset);
+
+              boolean isValid = false;
 
               for (Predicate<IBlockState> predicate : ModuleTechRefractory.Registries.REFRACTORY_BLOCK_LIST) {
 
-                if (!predicate.test(blockState)) {
-                  isValidRefractory[0] = false;
-                  return false;
+                if (predicate.test(blockState)) {
+                  isValid = true;
+                  break;
                 }
+              }
+
+              if (!isValid && this.isValidDoor(blockState, facing, ModuleCore.Blocks.REFRACTORY_DOOR)) {
+                isValid = true;
+              }
+
+              if (!isValid) {
+                isValidRefractory[0] = false;
+                return false;
               }
             }
             return true;
