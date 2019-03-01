@@ -11,7 +11,7 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
-import mezz.jei.api.ingredients.IIngredientRegistry;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PluginJEI
     implements IModPlugin {
@@ -38,20 +39,33 @@ public class PluginJEI
   @Override
   public void register(IModRegistry registry) {
 
-    final IIngredientRegistry ingredientRegistry = registry.getIngredientRegistry();
-    final IJeiHelpers jeiHelpers = registry.getJeiHelpers();
-
-    // Leave as an example in case I decide to add info later.
-    /*
     {
-      List<ItemStack> outputList = Registries.BURN_RECIPE.getValuesCollection()
+      List<ItemStack> outputList = ModuleTechRefractory.Registries.BURN_RECIPE.getValuesCollection()
           .stream()
           .filter(burnRecipe -> !burnRecipe.requiresRefractoryBlocks())
           .map(PitBurnRecipe::getOutput)
           .collect(Collectors.toList());
-      registry.addIngredientInfo(outputList, ItemStack.class, "gui." + ModuleCharcoal.MOD_ID + ".jei.info.burn.pit");
+      outputList.addAll(ModuleTechRefractory.Registries.BURN_RECIPE.getValuesCollection()
+          .stream()
+          .filter(burnRecipe -> !burnRecipe.requiresRefractoryBlocks())
+          .flatMap(pitBurnRecipe -> Stream.of(pitBurnRecipe.getFailureItems()))
+          .collect(Collectors.toList()));
+      registry.addIngredientInfo(outputList, VanillaTypes.ITEM, "gui.pyrotech.jei.info.burn");
     }
-    */
+
+    {
+      List<ItemStack> outputList = ModuleTechRefractory.Registries.BURN_RECIPE.getValuesCollection()
+          .stream()
+          .filter(PitBurnRecipe::requiresRefractoryBlocks)
+          .map(PitBurnRecipe::getOutput)
+          .collect(Collectors.toList());
+      outputList.addAll(ModuleTechRefractory.Registries.BURN_RECIPE.getValuesCollection()
+          .stream()
+          .filter(PitBurnRecipe::requiresRefractoryBlocks)
+          .flatMap(pitBurnRecipe -> Stream.of(pitBurnRecipe.getFailureItems()))
+          .collect(Collectors.toList()));
+      registry.addIngredientInfo(outputList, VanillaTypes.ITEM, "gui.pyrotech.jei.info.refractory");
+    }
 
     // --- Pit Burn
     {
