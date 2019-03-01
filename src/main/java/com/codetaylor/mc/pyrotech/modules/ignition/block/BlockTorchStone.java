@@ -48,12 +48,10 @@ public class BlockTorchStone
   @Override
   public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
 
-    if (ModuleIgnitionConfig.STONE_TORCH.BURNS_UP) {
-      tooltip.add(TextFormatting.RED + I18n.translateToLocal("gui.pyrotech.tooltip.torch.burns"));
-    }
+    boolean burnsUp = ModuleIgnitionConfig.STONE_TORCH.BURNS_UP;
+    tooltip.add((burnsUp ? TextFormatting.RED : TextFormatting.GREEN) + I18n.translateToLocal("gui.pyrotech.tooltip.torch.burns." + burnsUp));
 
-    if (ModuleIgnitionConfig.STONE_TORCH.EXTINGUISHED_BY_RAIN) {
-      tooltip.add(TextFormatting.RED + I18n.translateToLocal("gui.pyrotech.tooltip.rain.extinguishes"));
-    }
+    boolean extinguishedByRain = ModuleIgnitionConfig.STONE_TORCH.EXTINGUISHED_BY_RAIN;
+    tooltip.add((extinguishedByRain ? TextFormatting.RED : TextFormatting.GREEN) + I18n.translateToLocal("gui.pyrotech.tooltip.rain.extinguishes." + extinguishedByRain));
   }
 }

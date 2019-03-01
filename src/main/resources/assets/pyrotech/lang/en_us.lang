@@ -303,8 +303,10 @@ gui.pyrotech.tooltip.contents.retain.true=Keeps contents when broken.
 gui.pyrotech.tooltip.contents.retain.false=Destroys contents when broken.
 gui.pyrotech.tooltip.burn.time.efficiency=Efficiency:
 gui.pyrotech.tooltip.burn.time.modifier=%s: %s%d%%
-gui.pyrotech.tooltip.torch.burns=Burns up over time.
-gui.pyrotech.tooltip.rain.extinguishes=Extinguished by rain.
+gui.pyrotech.tooltip.torch.burns.true=Burns up over time.
+gui.pyrotech.tooltip.torch.burns.false=Lasts forever.
+gui.pyrotech.tooltip.rain.extinguishes.true=Extinguished by rain.
+gui.pyrotech.tooltip.rain.extinguishes.false=Stays lit in the rain.
 
 #------------------------------------------------------------------------------
 # Waila
