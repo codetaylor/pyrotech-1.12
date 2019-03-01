@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.core.item;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
-import net.minecraft.item.ItemTool;
+import com.codetaylor.mc.pyrotech.modules.core.item.spi.ItemHammerBase;
 
 import java.util.Collections;
 
 public class ItemStoneHammer
-    extends ItemTool {
+    extends ItemHammerBase {
 
   public static final String NAME = "stone_hammer";
 

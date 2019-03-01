@@ -1,13 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.core.item;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.core.item.spi.ItemHammerBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 
 import java.util.Collections;
 
 public class ItemGoldHammer
-    extends ItemTool {
+    extends ItemHammerBase {
 
   public static final String NAME = "gold_hammer";
 
