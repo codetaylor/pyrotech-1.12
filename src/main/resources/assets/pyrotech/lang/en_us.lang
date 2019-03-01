@@ -276,6 +276,12 @@ tile.pyrotech.rock_sand_red.name=Red Sand Pile
 # Tooltips
 #------------------------------------------------------------------------------
 
+gui.pyrotech.tooltip.machine.input.capacity.item=Input Capacity: %s%d
+gui.pyrotech.tooltip.machine.output.capacity.fluid=Output Capacity: %s%d mB
+gui.pyrotech.tooltip.machine.fuel.capacity.item=Fuel Capacity: %s%d
+gui.pyrotech.tooltip.machine.fuel.modifier=Fuel Modifier: %s%d%%
+gui.pyrotech.tooltip.machine.fuel.keep.heat=Self-extinguishes on recipe completion.
+
 gui.pyrotech.tooltip.extended.shift=Hold %s<SHIFT>%s for info.
 gui.pyrotech.tooltip.uses=Uses: %d / %d
 gui.pyrotech.tooltip.uses.full=Uses: %d
