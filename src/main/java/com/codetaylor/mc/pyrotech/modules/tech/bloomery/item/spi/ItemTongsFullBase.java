@@ -147,6 +147,10 @@ public abstract class ItemTongsFullBase
         }
       }
     }
+
+    if (this.getDamage(stack) == 0) {
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", this.getMaxDamage(stack)));
+    }
   }
 
   @Nonnull
