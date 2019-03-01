@@ -57,6 +57,10 @@ public class PluginJEI
 
     final IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 
+    // Pit Kiln Info
+    registry.addIngredientInfo(new ItemStack(ModuleTechBasic.Blocks.KILN_PIT), ItemStack.class, "gui.pyrotech.jei.info.pit.kiln");
+
+    // Campfire Info
     registry.addIngredientInfo(new ItemStack(ModuleTechBasic.Blocks.CAMPFIRE), VanillaTypes.ITEM, "gui.pyrotech.jei.info.campfire");
 
     // --- Worktable

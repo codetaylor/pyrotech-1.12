@@ -367,7 +367,8 @@ gui.pyrotech.jei.category.soaking.pot=Soaking Pot
 gui.pyrotech.jei.category.bloomery=Bloomery
 gui.pyrotech.jei.category.wither.forge=Wither Forge
 
-gui.pyrotech.jei.info.campfire=To make a campfire, place tinder on the ground, add logs to it, and light it.
+gui.pyrotech.jei.info.campfire=To make a campfire, place tinder on the ground, add logs, and light it.
+gui.pyrotech.jei.info.pit.kiln=To use a pit kiln, first dig a hole in the ground and place the pit kiln inside. Next, place the item you want to fire on top of the pit kiln, cover it with straw, and place three logs on top. Finally, light the top of the kiln and be sure to keep it dry while it fires!
 
 #------------------------------------------------------------------------------
 # Misc
