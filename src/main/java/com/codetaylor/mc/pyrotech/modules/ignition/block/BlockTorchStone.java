@@ -4,10 +4,17 @@ import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnitionConfig;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.spi.BlockTorchBase;
 import com.codetaylor.mc.pyrotech.modules.ignition.tile.TileTorchStone;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockTorchStone
     extends BlockTorchBase {
@@ -36,5 +43,17 @@ public class BlockTorchStone
   protected int getFireDamage() {
 
     return MathHelper.clamp(ModuleIgnitionConfig.STONE_TORCH.FIRE_DAMAGE, 0, Integer.MAX_VALUE);
+  }
+
+  @Override
+  public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
+
+    if (ModuleIgnitionConfig.STONE_TORCH.BURNS_UP) {
+      tooltip.add(TextFormatting.RED + I18n.translateToLocal("gui.pyrotech.tooltip.torch.burns"));
+    }
+
+    if (ModuleIgnitionConfig.STONE_TORCH.EXTINGUISHED_BY_RAIN) {
+      tooltip.add(TextFormatting.RED + I18n.translateToLocal("gui.pyrotech.tooltip.rain.extinguishes"));
+    }
   }
 }
