@@ -363,6 +363,8 @@ gui.pyrotech.jei.category.soaking.pot=Soaking Pot
 gui.pyrotech.jei.category.bloomery=Bloomery
 gui.pyrotech.jei.category.wither.forge=Wither Forge
 
+gui.pyrotech.jei.info.campfire=To make a campfire, place tinder on the ground, add logs to it, and light it.
+
 #------------------------------------------------------------------------------
 # Misc
 #------------------------------------------------------------------------------

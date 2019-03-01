@@ -10,6 +10,7 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
@@ -55,6 +56,8 @@ public class PluginJEI
   public void register(IModRegistry registry) {
 
     final IJeiHelpers jeiHelpers = registry.getJeiHelpers();
+
+    registry.addIngredientInfo(new ItemStack(ModuleTechBasic.Blocks.CAMPFIRE), VanillaTypes.ITEM, "gui.pyrotech.jei.info.campfire");
 
     // --- Worktable
     {
