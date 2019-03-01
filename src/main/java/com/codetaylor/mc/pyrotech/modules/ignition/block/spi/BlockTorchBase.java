@@ -118,6 +118,7 @@ public abstract class BlockTorchBase
 
     if (tile instanceof TileTorchBase) {
       ((TileTorchBase) tile).update();
+      world.scheduleUpdate(pos, state.getBlock(), (10 + rand.nextInt(10)) * 20);
     }
   }
 
