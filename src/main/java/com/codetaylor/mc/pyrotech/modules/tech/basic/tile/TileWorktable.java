@@ -426,7 +426,7 @@ public class TileWorktable
           new EnumFacing[]{EnumFacing.UP},
           new AxisAlignedBB(x * ONE_THIRD, 14f / 16f, z * ONE_THIRD, x * ONE_THIRD + ONE_THIRD, 15f / 16f, z * ONE_THIRD + ONE_THIRD),
           new Transform(
-              Transform.translate(x * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025, 15f / 16f, z * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025),
+              Transform.translate(x * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025, 15f / 16f + (1f / 32f), z * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025),
               Transform.rotate(new Quaternion[]{
                   Transform.rotate(0, 1, 0, 180),
                   Transform.rotate(1, 0, 0, -90)
