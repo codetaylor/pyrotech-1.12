@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockOre;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -18,7 +17,7 @@ public class WorldGenFossil
   public WorldGenFossil() {
 
     this.worldGenOre = new WorldGenOre(
-        ModuleCore.Blocks.ORE.getDefaultState().withProperty(BlockOre.VARIANT, BlockOre.EnumType.FOSSIL_ORE),
+        ModuleCore.Blocks.ORE_FOSSIL.getDefaultState(),
         random -> {
           int minVeinSize = ModuleWorldGenConfig.FOSSIL.MIN_VEIN_SIZE;
           int maxVeinSize = ModuleWorldGenConfig.FOSSIL.MAX_VEIN_SIZE;

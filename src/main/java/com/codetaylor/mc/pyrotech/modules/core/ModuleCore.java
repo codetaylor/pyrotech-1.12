@@ -176,8 +176,14 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockRockGrass.NAME)
     public static final BlockRockGrass ROCK_GRASS;
 
-    @GameRegistry.ObjectHolder(BlockOre.NAME)
-    public static final BlockOre ORE;
+    @GameRegistry.ObjectHolder(BlockOreFossil.NAME)
+    public static final BlockOreFossil ORE_FOSSIL;
+
+    @GameRegistry.ObjectHolder(BlockOreDenseCoal.NAME)
+    public static final BlockOreDenseCoal ORE_DENSE_COAL;
+
+    @GameRegistry.ObjectHolder(BlockOreDenseNetherCoal.NAME)
+    public static final BlockOreDenseNetherCoal ORE_DENSE_NETHER_COAL;
 
     @GameRegistry.ObjectHolder(BlockCobblestone.NAME)
     public static final BlockCobblestone COBBLESTONE;
@@ -221,7 +227,9 @@ public class ModuleCore
       SLAG_GLASS = null;
       ROCK = null;
       ROCK_GRASS = null;
-      ORE = null;
+      ORE_FOSSIL = null;
+      ORE_DENSE_COAL = null;
+      ORE_DENSE_NETHER_COAL = null;
       COBBLESTONE = null;
       STONE_BRICKS = null;
       FARMLAND_MULCHED = null;

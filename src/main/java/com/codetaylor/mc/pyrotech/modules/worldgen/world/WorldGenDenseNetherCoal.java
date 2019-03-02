@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockOre;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -19,7 +18,7 @@ public class WorldGenDenseNetherCoal
   public WorldGenDenseNetherCoal() {
 
     this.worldGenOre = new WorldGenOre(
-        ModuleCore.Blocks.ORE.getDefaultState().withProperty(BlockOre.VARIANT, BlockOre.EnumType.DENSE_NETHER_COAL_ORE),
+        ModuleCore.Blocks.ORE_DENSE_NETHER_COAL.getDefaultState(),
         random -> {
           int minVeinSize = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.MIN_VEIN_SIZE;
           int maxVeinSize = ModuleWorldGenConfig.DENSE_NETHER_COAL_ORE.MAX_VEIN_SIZE;

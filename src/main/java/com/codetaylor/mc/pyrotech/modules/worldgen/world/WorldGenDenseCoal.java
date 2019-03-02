@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.codetaylor.mc.pyrotech.library.util.FloodFill;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockOre;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -39,8 +38,7 @@ public class WorldGenDenseCoal
                 mutableBlockPos,
                 (w, p) -> (w.getBlockState(p).getBlock() == Blocks.COAL_ORE),
                 (w, p) -> {
-                  w.setBlockState(p, ModuleCore.Blocks.ORE.getDefaultState()
-                      .withProperty(BlockOre.VARIANT, BlockOre.EnumType.DENSE_COAL_ORE));
+                  w.setBlockState(p, ModuleCore.Blocks.ORE_DENSE_COAL.getDefaultState());
                   return true;
                 },
                 random.nextInt(maxVeinSize - minVeinSize + 1) + minVeinSize

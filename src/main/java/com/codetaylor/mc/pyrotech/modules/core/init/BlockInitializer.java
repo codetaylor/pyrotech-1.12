@@ -45,7 +45,9 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockLimestone(), BlockLimestone.NAME);
     registry.registerBlockWithItem(new BlockRefractoryGlass(), BlockRefractoryGlass.NAME);
     registry.registerBlockWithItem(new BlockSlagGlass(), BlockSlagGlass.NAME);
-    registry.registerBlockWithItem(new BlockOre(), BlockOre.NAME);
+    registry.registerBlockWithItem(new BlockOreFossil(), BlockOreFossil.NAME);
+    registry.registerBlockWithItem(new BlockOreDenseCoal(), BlockOreDenseCoal.NAME);
+    registry.registerBlockWithItem(new BlockOreDenseNetherCoal(), BlockOreDenseNetherCoal.NAME);
     registry.registerBlockWithItem(new BlockCobblestone(), BlockCobblestone.NAME);
     registry.registerBlockWithItem(new BlockStoneBricks(), BlockStoneBricks.NAME);
     registry.registerBlockWithItem(new BlockFarmlandMulched(), BlockFarmlandMulched.NAME);
@@ -83,7 +85,10 @@ public final class BlockInitializer {
           ModuleCore.Blocks.WOOL_TARRED,
           ModuleCore.Blocks.CHARCOAL_BLOCK,
           ModuleCore.Blocks.WOOD_TAR_BLOCK,
-          ModuleCore.Blocks.LIVING_TAR
+          ModuleCore.Blocks.LIVING_TAR,
+          ModuleCore.Blocks.ORE_FOSSIL,
+          ModuleCore.Blocks.ORE_DENSE_COAL,
+          ModuleCore.Blocks.ORE_DENSE_NETHER_COAL
       );
 
       ModelRegistrationHelper.registerItemModels(
@@ -108,17 +113,6 @@ public final class BlockInitializer {
       ModelRegistrationHelper.registerVariantBlockItemModels(
           ModuleCore.Blocks.COBBLESTONE.getDefaultState(),
           BlockCobblestone.VARIANT
-      );
-
-      // Ore
-      ModelLoader.setCustomStateMapper(
-          ModuleCore.Blocks.ORE,
-          (new StateMap.Builder()).withName(BlockOre.VARIANT).build()
-      );
-      ModelRegistrationHelper.registerVariantBlockItemModelsSeparately(
-          ModuleCore.MOD_ID,
-          ModuleCore.Blocks.ORE,
-          BlockOre.VARIANT
       );
 
       // Rock Pieces

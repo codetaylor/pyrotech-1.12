@@ -9,7 +9,7 @@ import com.codetaylor.mc.dropt.api.reference.EnumListType;
 import com.codetaylor.mc.dropt.api.reference.EnumReplaceStrategy;
 import com.codetaylor.mc.pyrotech.ModPyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockOre;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockOreFossil;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockGrass;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
@@ -88,7 +88,7 @@ public class PluginDropt {
     String coal = item("minecraft", "coal", 0);
     String clayBall = item("minecraft", "clay_ball", 0);
 
-    String fossilOre = item(BlockOre.NAME, BlockOre.EnumType.FOSSIL_ORE.getMeta());
+    String fossilOre = item(BlockOreFossil.NAME, 0);
     String rockStone = item(BlockRock.NAME, BlockRock.EnumType.STONE.getMeta());
     String rockGranite = item(BlockRock.NAME, BlockRock.EnumType.GRANITE.getMeta());
     String rockDiorite = item(BlockRock.NAME, BlockRock.EnumType.DIORITE.getMeta());
