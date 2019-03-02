@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogHelper;
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
@@ -22,7 +23,11 @@ public class ZenBrickOven {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "input"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output"),
+          @ZenDocArg(arg = "input")
+      }
   )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input) {
@@ -36,7 +41,9 @@ public class ZenBrickOven {
 
   @ZenDocMethod(
       order = 2,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output")
+      }
   )
   @ZenMethod
   public static void blacklistSmeltingRecipes(IIngredient[] output) {
@@ -61,7 +68,9 @@ public class ZenBrickOven {
 
   @ZenDocMethod(
       order = 3,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output")
+      }
   )
   @ZenMethod
   public static void whitelistSmeltingRecipes(IIngredient[] output) {
@@ -86,7 +95,9 @@ public class ZenBrickOven {
 
   @ZenDocMethod(
       order = 4,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(IIngredient output) {

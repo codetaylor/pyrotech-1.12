@@ -9,20 +9,23 @@ import mods.pyrotech.Chopping
 
 ```java
 static void addRecipe(
-  string name, 
-  IItemStack output, 
-  IIngredient input
+  string name,       // unique recipe name
+  IItemStack output, // recipe output
+  IIngredient input  // recipe input
 );
 ```
 
 
+---
+
+
 ```java
 static void addRecipe(
-  string name, 
-  IItemStack output, 
-  IIngredient input, 
-  int[] chops, 
-  int[] quantities
+  string name,       // unique recipe name
+  IItemStack output, // recipe output
+  IIngredient input, // recipe input
+  int[] chops,       // overrides the default chops array in config
+  int[] quantities   // overrides the default quantities array in config
 );
 ```
 
@@ -34,14 +37,23 @@ static void addRecipe(
 |chops|the int array provided here will override the array provided in the config file; see the config file for an explanation|
 |quantities|the int array provided here will override the array provided in the config file; see the config file for an explanation|
 
+---
+
+
 ```java
 static void removeRecipes(
-  IIngredient output
+  IIngredient output // output ingredient to match
 );
 ```
+
+
+---
 
 
 ```java
 static void removeAllRecipes();
 ```
+
+
+---
 

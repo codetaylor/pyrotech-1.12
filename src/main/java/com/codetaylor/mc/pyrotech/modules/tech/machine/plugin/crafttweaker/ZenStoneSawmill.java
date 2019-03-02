@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -23,7 +24,14 @@ public class ZenStoneSawmill {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "input", "burnTimeTicks", "blade", "woodChips"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "input", info = "recipe input"),
+          @ZenDocArg(arg = "burnTimeTicks", info = "recipe duration in ticks"),
+          @ZenDocArg(arg = "blade", info = "blade(s) used"),
+          @ZenDocArg(arg = "woodChips", info = "amount of wood chips produced per recipe")
+      }
   )
   @ZenMethod
   public static void addRecipe(
@@ -47,7 +55,9 @@ public class ZenStoneSawmill {
 
   @ZenDocMethod(
       order = 2,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(IIngredient output) {

@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -24,7 +25,13 @@ public class ZenSoakingPot {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "inputFluid", "inputItem", "timeTicks"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "inputFluid", info = "input fluid"),
+          @ZenDocArg(arg = "inputItem", info = "input item"),
+          @ZenDocArg(arg = "timeTicks", info = "recipe duration in ticks")
+      }
   )
   @ZenMethod
   public static void addRecipe(
@@ -46,7 +53,9 @@ public class ZenSoakingPot {
 
   @ZenDocMethod(
       order = 2,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(IIngredient output) {

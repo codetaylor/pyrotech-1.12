@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
@@ -36,7 +37,12 @@ public class ZenWorktable {
 
   @ZenDocMethod(
       order = 1,
-      args = {"output", "ingredients", "function", "action"}
+      args = {
+          @ZenDocArg(arg = "output"),
+          @ZenDocArg(arg = "ingredients"),
+          @ZenDocArg(arg = "function"),
+          @ZenDocArg(arg = "action")
+      }
   )
   @ZenMethod
   public static void addShaped(IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
@@ -46,7 +52,13 @@ public class ZenWorktable {
 
   @ZenDocMethod(
       order = 2,
-      args = {"name", "output", "ingredients", "function", "action"}
+      args = {
+          @ZenDocArg(arg = "name"),
+          @ZenDocArg(arg = "output"),
+          @ZenDocArg(arg = "ingredients"),
+          @ZenDocArg(arg = "function"),
+          @ZenDocArg(arg = "action")
+      }
   )
   @ZenMethod
   public static void addShaped(String name, IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
@@ -56,7 +68,12 @@ public class ZenWorktable {
 
   @ZenDocMethod(
       order = 3,
-      args = {"output", "ingredients", "function", "action"}
+      args = {
+          @ZenDocArg(arg = "output"),
+          @ZenDocArg(arg = "ingredients"),
+          @ZenDocArg(arg = "function"),
+          @ZenDocArg(arg = "action")
+      }
   )
   @ZenMethod
   public static void addShapedMirrored(IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
@@ -66,7 +83,13 @@ public class ZenWorktable {
 
   @ZenDocMethod(
       order = 4,
-      args = {"name", "output", "input", "function", "action"}
+      args = {
+          @ZenDocArg(arg = "name"),
+          @ZenDocArg(arg = "output"),
+          @ZenDocArg(arg = "ingredients"),
+          @ZenDocArg(arg = "function"),
+          @ZenDocArg(arg = "action")
+      }
   )
   @ZenMethod
   public static void addShapedMirrored(String name, IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
@@ -76,7 +99,12 @@ public class ZenWorktable {
 
   @ZenDocMethod(
       order = 5,
-      args = {"output", "ingredients", "function", "action"}
+      args = {
+          @ZenDocArg(arg = "output"),
+          @ZenDocArg(arg = "ingredients"),
+          @ZenDocArg(arg = "function"),
+          @ZenDocArg(arg = "action")
+      }
   )
   @ZenMethod
   public static void addShapeless(IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
@@ -100,7 +128,13 @@ public class ZenWorktable {
 
   @ZenDocMethod(
       order = 6,
-      args = {"name", "output", "ingredients", "function", "action"}
+      args = {
+          @ZenDocArg(arg = "name"),
+          @ZenDocArg(arg = "output"),
+          @ZenDocArg(arg = "ingredients"),
+          @ZenDocArg(arg = "function"),
+          @ZenDocArg(arg = "action")
+      }
   )
   @ZenMethod
   public static void addShapeless(String name, IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
@@ -124,7 +158,9 @@ public class ZenWorktable {
 
   @ZenDocMethod(
       order = 7,
-      args = {"resourceLocations"}
+      args = {
+          @ZenDocArg(arg = "resourceLocations")
+      }
   )
   @ZenMethod
   public static void blacklistVanillaRecipes(String[] resourceLocations) {
@@ -149,7 +185,9 @@ public class ZenWorktable {
 
   @ZenDocMethod(
       order = 8,
-      args = {"resourceLocations"}
+      args = {
+          @ZenDocArg(arg = "resourceLocations")
+      }
   )
   @ZenMethod
   public static void whitelistVanillaRecipes(String[] resourceLocations) {
@@ -174,7 +212,9 @@ public class ZenWorktable {
 
   @ZenDocMethod(
       order = 9,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(IIngredient output) {

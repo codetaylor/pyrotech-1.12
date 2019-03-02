@@ -9,65 +9,83 @@ import mods.pyrotech.Worktable
 
 ```java
 static void addShaped(
-  IItemStack output, 
-  IIngredient[][] ingredients, 
-  IRecipeFunction function, 
-  IRecipeAction action
+  IItemStack output,          
+  IIngredient[][] ingredients,
+  IRecipeFunction function,   
+  IRecipeAction action        
 );
 ```
+
+
+---
 
 
 ```java
 static void addShaped(
-  string name, 
-  IItemStack output, 
-  IIngredient[][] ingredients, 
-  IRecipeFunction function, 
-  IRecipeAction action
+  string name,                
+  IItemStack output,          
+  IIngredient[][] ingredients,
+  IRecipeFunction function,   
+  IRecipeAction action        
 );
 ```
+
+
+---
 
 
 ```java
 static void addShapedMirrored(
-  IItemStack output, 
-  IIngredient[][] ingredients, 
-  IRecipeFunction function, 
-  IRecipeAction action
+  IItemStack output,          
+  IIngredient[][] ingredients,
+  IRecipeFunction function,   
+  IRecipeAction action        
 );
 ```
+
+
+---
 
 
 ```java
 static void addShapedMirrored(
-  string name, 
-  IItemStack output, 
-  IIngredient[][] input, 
-  IRecipeFunction function, 
-  IRecipeAction action
+  string name,                
+  IItemStack output,          
+  IIngredient[][] ingredients,
+  IRecipeFunction function,   
+  IRecipeAction action        
 );
 ```
+
+
+---
 
 
 ```java
 static void addShapeless(
-  IItemStack output, 
-  IIngredient[] ingredients, 
+  IItemStack output,        
+  IIngredient[] ingredients,
   IRecipeFunction function, 
-  IRecipeAction action
+  IRecipeAction action      
 );
 ```
+
+
+---
 
 
 ```java
 static void addShapeless(
-  string name, 
-  IItemStack output, 
-  IIngredient[] ingredients, 
+  string name,              
+  IItemStack output,        
+  IIngredient[] ingredients,
   IRecipeFunction function, 
-  IRecipeAction action
+  IRecipeAction action      
 );
 ```
+
+
+---
 
 
 ```java
@@ -77,6 +95,9 @@ static void blacklistVanillaRecipes(
 ```
 
 
+---
+
+
 ```java
 static void whitelistVanillaRecipes(
   string[] resourceLocations
@@ -84,9 +105,15 @@ static void whitelistVanillaRecipes(
 ```
 
 
+---
+
+
 ```java
 static void removeRecipes(
-  IIngredient output
+  IIngredient output // output ingredient to match
 );
 ```
+
+
+---
 

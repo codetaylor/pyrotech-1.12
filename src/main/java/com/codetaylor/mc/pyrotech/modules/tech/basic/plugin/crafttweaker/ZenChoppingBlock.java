@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -23,7 +24,11 @@ public class ZenChoppingBlock {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "input"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "input", info = "recipe input")
+      }
   )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input) {
@@ -48,7 +53,13 @@ public class ZenChoppingBlock {
               "|chops|the int array provided here will override the array provided in the config file; see the config file for an explanation|\n" +
               "|quantities|the int array provided here will override the array provided in the config file; see the config file for an explanation|"
       },
-      args = {"name", "output", "input", "chops", "quantities"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "input", info = "recipe input"),
+          @ZenDocArg(arg = "chops", info = "overrides the default chops array in config"),
+          @ZenDocArg(arg = "quantities", info = "overrides the default quantities array in config")
+      }
   )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int[] chops, int[] quantities) {
@@ -64,7 +75,9 @@ public class ZenChoppingBlock {
 
   @ZenDocMethod(
       order = 3,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(IIngredient output) {

@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -22,7 +23,12 @@ public class ZenBrickKiln {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "input", "burnTimeTicks"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "input", info = "recipe input"),
+          @ZenDocArg(arg = "burnTimeTicks", info = "recipe duration in ticks")
+      }
   )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int burnTimeTicks) {
@@ -32,7 +38,14 @@ public class ZenBrickKiln {
 
   @ZenDocMethod(
       order = 2,
-      args = {"name", "output", "input", "burnTimeTicks", "failureChance", "failureItems"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "input", info = "recipe input"),
+          @ZenDocArg(arg = "burnTimeTicks", info = "recipe duration in ticks"),
+          @ZenDocArg(arg = "failureChance", info = "chance for item to fail conversion"),
+          @ZenDocArg(arg = "failureItems", info = "array of randomly chosen failure items")
+      }
   )
   @ZenMethod
   public static void addRecipe(
@@ -56,7 +69,9 @@ public class ZenBrickKiln {
 
   @ZenDocMethod(
       order = 3,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(IIngredient output) {

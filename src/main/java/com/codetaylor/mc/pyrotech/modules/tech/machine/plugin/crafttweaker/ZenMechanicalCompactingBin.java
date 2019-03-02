@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -23,7 +24,12 @@ public class ZenMechanicalCompactingBin {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "input", "amount"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "input", info = "recipe input"),
+          @ZenDocArg(arg = "amount", info = "number of input items required")
+      }
   )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int amount) {
@@ -39,7 +45,13 @@ public class ZenMechanicalCompactingBin {
 
   @ZenDocMethod(
       order = 2,
-      args = {"name", "output", "input", "amount", "toolUsesRequired"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "input", info = "recipe input"),
+          @ZenDocArg(arg = "amount", info = "number of input items required"),
+          @ZenDocArg(arg = "toolUsesRequired", info = "overrides default provided in config")
+      }
   )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int amount, int[] toolUsesRequired) {
@@ -55,7 +67,9 @@ public class ZenMechanicalCompactingBin {
 
   @ZenDocMethod(
       order = 3,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(IIngredient output) {

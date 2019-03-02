@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -22,7 +23,13 @@ public class ZenAnvil {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "input", "hits", "type"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "input", info = "recipe input"),
+          @ZenDocArg(arg = "hits", info = "base number of hammer hits required"),
+          @ZenDocArg(arg = "type", info = "hammer | pickaxe"),
+      }
   )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input, int hits, String type) {
@@ -38,7 +45,9 @@ public class ZenAnvil {
 
   @ZenDocMethod(
       order = 2,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "recipe output to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(IIngredient output) {

@@ -9,30 +9,42 @@ import mods.pyrotech.Burn
 
 ```java
 static void removeRecipes(
-  IIngredient output
+  IIngredient output // output ingredient to match
 );
 ```
 
 Remove all recipes with the given recipe output.
+
+---
+
 
 ```java
 static void removeAllRecipes();
 ```
 
 
+---
+
+
 ```java
 static Burn createBuilder(
-  string name, 
-  IItemStack output, 
-  string blockString
+  string name,       // unique recipe name
+  IItemStack output, // recipe output
+  string blockString // block string to match
 );
 ```
+
+
+---
 
 ```java
 Burn setBurnStages(
   int burnStages
 );
 ```
+
+
+---
 
 
 ```java
@@ -42,11 +54,17 @@ Burn setTotalBurnTimeTicks(
 ```
 
 
+---
+
+
 ```java
 Burn setFluidProduced(
   FluidStack fluidProduced
 );
 ```
+
+
+---
 
 
 ```java
@@ -56,11 +74,17 @@ Burn setFailureChance(
 ```
 
 
+---
+
+
 ```java
 Burn addFailureItem(
   ItemStack failureItem
 );
 ```
+
+
+---
 
 
 ```java
@@ -70,6 +94,9 @@ Burn setRequiresRefractoryBlocks(
 ```
 
 
+---
+
+
 ```java
 Burn setFluidLevelAffectsFailureChance(
   boolean fluidLevelAffectsFailureChance
@@ -77,7 +104,13 @@ Burn setFluidLevelAffectsFailureChance(
 ```
 
 
+---
+
+
 ```java
 void register();
 ```
+
+
+---
 

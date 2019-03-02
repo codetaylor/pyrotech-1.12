@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogH
 import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -33,7 +34,9 @@ public class ZenBurn {
   @ZenDocMethod(
       order = 1,
       description = "Remove all recipes with the given recipe output.",
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(IIngredient output) {
@@ -84,7 +87,11 @@ public class ZenBurn {
 
   @ZenDocMethod(
       order = 3,
-      args = {"name", "output", "blockString"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "blockString", info = "block string to match")
+      }
   )
   @ZenMethod
   public static ZenBurn createBuilder(String name, IItemStack output, String blockString) {
@@ -111,7 +118,9 @@ public class ZenBurn {
 
   @ZenDocMethod(
       order = 4,
-      args = {"burnStages"}
+      args = {
+          @ZenDocArg(arg = "burnStages")
+      }
   )
   @ZenMethod
   public ZenBurn setBurnStages(int burnStages) {
@@ -122,7 +131,9 @@ public class ZenBurn {
 
   @ZenDocMethod(
       order = 5,
-      args = {"totalBurnTimeTicks"}
+      args = {
+          @ZenDocArg(arg = "totalBurnTimeTicks")
+      }
   )
   @ZenMethod
   public ZenBurn setTotalBurnTimeTicks(int totalBurnTimeTicks) {
@@ -133,7 +144,9 @@ public class ZenBurn {
 
   @ZenDocMethod(
       order = 6,
-      args = {"fluidProduced"}
+      args = {
+          @ZenDocArg(arg = "fluidProduced")
+      }
   )
   @ZenMethod
   public ZenBurn setFluidProduced(FluidStack fluidProduced) {
@@ -144,7 +157,9 @@ public class ZenBurn {
 
   @ZenDocMethod(
       order = 7,
-      args = {"failureChance"}
+      args = {
+          @ZenDocArg(arg = "failureChance")
+      }
   )
   @ZenMethod
   public ZenBurn setFailureChance(float failureChance) {
@@ -155,7 +170,9 @@ public class ZenBurn {
 
   @ZenDocMethod(
       order = 8,
-      args = {"failureItem"}
+      args = {
+          @ZenDocArg(arg = "failureItem")
+      }
   )
   @ZenMethod
   public ZenBurn addFailureItem(ItemStack failureItem) {
@@ -166,7 +183,9 @@ public class ZenBurn {
 
   @ZenDocMethod(
       order = 9,
-      args = {"requiresRefractoryBlocks"}
+      args = {
+          @ZenDocArg(arg = "requiresRefractoryBlocks")
+      }
   )
   @ZenMethod
   public ZenBurn setRequiresRefractoryBlocks(boolean requiresRefractoryBlocks) {
@@ -177,7 +196,9 @@ public class ZenBurn {
 
   @ZenDocMethod(
       order = 10,
-      args = {"fluidLevelAffectsFailureChance"}
+      args = {
+          @ZenDocArg(arg = "fluidLevelAffectsFailureChance")
+      }
   )
   @ZenMethod
   public ZenBurn setFluidLevelAffectsFailureChance(boolean fluidLevelAffectsFailureChance) {

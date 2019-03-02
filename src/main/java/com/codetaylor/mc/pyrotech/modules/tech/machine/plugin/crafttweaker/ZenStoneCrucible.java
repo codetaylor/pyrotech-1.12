@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -22,7 +23,12 @@ public class ZenStoneCrucible {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "input", "burnTimeTicks"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "input", info = "recipe input"),
+          @ZenDocArg(arg = "burnTimeTicks", info = "recipe duration in ticks")
+      }
   )
   @ZenMethod
   public static void addRecipe(
@@ -42,7 +48,9 @@ public class ZenStoneCrucible {
 
   @ZenDocMethod(
       order = 2,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(ILiquidStack output) {

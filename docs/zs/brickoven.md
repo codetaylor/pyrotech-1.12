@@ -9,11 +9,14 @@ import mods.pyrotech.BrickOven
 
 ```java
 static void addRecipe(
-  string name, 
-  IItemStack output, 
-  IIngredient input
+  string name,       // unique recipe name
+  IItemStack output,
+  IIngredient input 
 );
 ```
+
+
+---
 
 
 ```java
@@ -23,6 +26,9 @@ static void blacklistSmeltingRecipes(
 ```
 
 
+---
+
+
 ```java
 static void whitelistSmeltingRecipes(
   IIngredient[] output
@@ -30,9 +36,15 @@ static void whitelistSmeltingRecipes(
 ```
 
 
+---
+
+
 ```java
 static void removeRecipes(
-  IIngredient output
+  IIngredient output // output ingredient to match
 );
 ```
+
+
+---
 

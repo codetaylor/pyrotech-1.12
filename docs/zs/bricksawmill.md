@@ -9,24 +9,33 @@ import mods.pyrotech.BrickSawmill
 
 ```java
 static void addRecipe(
-  string name, 
-  IItemStack output, 
-  IIngredient input, 
-  int burnTimeTicks, 
-  IIngredient blade, 
-  int woodChips
+  string name,       // unique recipe name
+  IItemStack output, // recipe output
+  IIngredient input, // recipe input
+  int burnTimeTicks, // recipe duration in ticks
+  IIngredient blade, // blade(s) used
+  int woodChips      // amount of wood chips produced per recipe
 );
 ```
+
+
+---
 
 
 ```java
 static void removeRecipes(
-  IIngredient output
+  IIngredient output // output ingredient to match
 );
 ```
+
+
+---
 
 
 ```java
 static void removeAllRecipes();
 ```
+
+
+---
 

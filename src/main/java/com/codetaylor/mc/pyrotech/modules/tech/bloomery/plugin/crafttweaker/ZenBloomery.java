@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -53,7 +54,12 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 1,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "the output ingredients to match")
+      },
+      description = {
+          "Recipes that have an output that matches any of the given ingredients will be removed."
+      }
   )
   @ZenMethod
   public static void removeBloomeryRecipes(IIngredient output) {
@@ -63,7 +69,12 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 2,
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "the output ingredients to match")
+      },
+      description = {
+          "Recipes that have an output that matches any of the given ingredients will be removed."
+      }
   )
   @ZenMethod
   public static void removeWitherForgeRecipes(IIngredient output) {
@@ -73,7 +84,14 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 3,
-      args = {"name", "output", "input"}
+      args = {
+          @ZenDocArg(arg = "name", info = "the name of the recipe - should be unique"),
+          @ZenDocArg(arg = "output", info = "the output item received from the bloom"),
+          @ZenDocArg(arg = "input", info = "the recipe input")
+      },
+      description = {
+          "Creates and returns a new bloomery recipe builder."
+      }
   )
   @ZenMethod
   public static ZenBloomery createBloomeryBuilder(String name, IItemStack output, IIngredient input) {
@@ -90,7 +108,14 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 4,
-      args = {"name", "output", "input"}
+      args = {
+          @ZenDocArg(arg = "name", info = "the name of the recipe - should be unique"),
+          @ZenDocArg(arg = "output", info = "the output item received from the bloom"),
+          @ZenDocArg(arg = "input", info = "the recipe input")
+      },
+      description = {
+          "Creates and returns a new wither forge recipe builder."
+      }
   )
   @ZenMethod
   public static ZenBloomery createWitherForgeBuilder(String name, IItemStack output, IIngredient input) {
@@ -149,7 +174,12 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 5,
-      args = {"burnTimeTicks"}
+      args = {
+          @ZenDocArg(arg = "burnTimeTicks", info = "the base time in ticks to produce a bloom")
+      },
+      description = {
+          "Sets the base time in ticks that this recipe takes to produce a bloom. This value is further modified by fuel level and airflow."
+      }
   )
   @ZenMethod
   public ZenBloomery setBurnTimeTicks(int burnTimeTicks) {
@@ -160,7 +190,12 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 6,
-      args = {"failureChance"}
+      args = {
+          @ZenDocArg(arg = "failureChance", info = "the recipe's failure chance")
+      },
+      description = {
+          "Sets the recipe's chance to fail and produce an item from the recipe's failure items. This is applied to items received from hammering a bloom."
+      }
   )
   @ZenMethod
   public ZenBloomery setFailureChance(float failureChance) {
@@ -171,7 +206,13 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 7,
-      args = {"min", "max"}
+      args = {
+          @ZenDocArg(arg = "min", info = "the minimum output yield"),
+          @ZenDocArg(arg = "max", info = "the maximum output yield")
+      },
+      description = {
+          "Sets the random range for the total number of output items produced by hammering a bloom."
+      }
   )
   @ZenMethod
   public ZenBloomery setBloomYield(int min, int max) {
@@ -182,7 +223,13 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 8,
-      args = {"slagItem", "slagCount"}
+      args = {
+          @ZenDocArg(arg = "slagItem", info = "the item to use as slag"),
+          @ZenDocArg(arg = "slagCount", info = "the amount of slag produced in-world during processing")
+      },
+      description = {
+          "Sets the slag item and the amount of in-world slag produced during operation."
+      }
   )
   @ZenMethod
   public ZenBloomery setSlagItem(IItemStack slagItem, int slagCount) {
@@ -193,7 +240,13 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 9,
-      args = {"itemStack", "weight"}
+      args = {
+          @ZenDocArg(arg = "itemStack", info = "the failure item"),
+          @ZenDocArg(arg = "weight", info = "the weight")
+      },
+      description = {
+          "Adds a weighted item to the list of items chosen as a failure item."
+      }
   )
   @ZenMethod
   public ZenBloomery addFailureItem(IItemStack itemStack, int weight) {
@@ -204,7 +257,14 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 10,
-      args = {"langKey"}
+      args = {
+          @ZenDocArg(arg = "langKey", info = "the lang key")
+      },
+      description = {
+          "The lang key provided here will be used to construct the display name of the output bloom.",
+          "",
+          "**NOTE:** The '.name' suffix is added internally and should not be included here."
+      }
   )
   @ZenMethod
   public ZenBloomery setLangKey(String langKey) {
@@ -214,7 +274,10 @@ public class ZenBloomery {
   }
 
   @ZenDocMethod(
-      order = 11
+      order = 11,
+      description = {
+          "This must be called on the builder last to actually register the recipe defined in the builder."
+      }
   )
   @ZenMethod
   public void register() {

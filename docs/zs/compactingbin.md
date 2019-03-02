@@ -9,33 +9,45 @@ import mods.pyrotech.CompactingBin
 
 ```java
 static void addRecipe(
-  string name, 
-  IItemStack output, 
-  IIngredient input, 
-  int amount
+  string name,       // unique recipe name
+  IItemStack output, // recipe output
+  IIngredient input, // recipe input
+  int amount         // number of input items required
 );
 ```
+
+
+---
 
 
 ```java
 static void addRecipe(
-  string name, 
-  IItemStack output, 
-  IIngredient input, 
-  int amount, 
-  int[] toolUsesRequired
+  string name,           // unique recipe name
+  IItemStack output,     // recipe output
+  IIngredient input,     // recipe input
+  int amount,            // number of input items required
+  int[] toolUsesRequired // overrides default provided in config
 );
 ```
+
+
+---
 
 
 ```java
 static void removeRecipes(
-  IIngredient output
+  IIngredient output // output ingredient to match
 );
 ```
+
+
+---
 
 
 ```java
 static void removeAllRecipes();
 ```
+
+
+---
 

@@ -9,37 +9,43 @@ import mods.pyrotech.Campfire
 
 ```java
 static void addRecipe(
-  string name, 
-  IItemStack output, 
-  IIngredient input
+  string name,       // unique recipe name
+  IItemStack output, // recipe output
+  IIngredient input  // recipe input
 );
 ```
+
+
+---
 
 
 ```java
 static void blacklistSmeltingRecipes(
-  IIngredient[] output
+  IIngredient[] output // output ingredients to blacklist
 );
 ```
 
-|Parameter|Description|
-|---------|-----------|
-|output|furnace recipes that have an output that matches any of the given ingredients will be disallowed|
+
+---
+
 
 ```java
 static void whitelistSmeltingRecipes(
-  IIngredient[] output
+  IIngredient[] output // output ingredients to whitelist
 );
 ```
 
-|Parameter|Description|
-|---------|-----------|
-|output|only furnace recipes that have an output that matches any of the given ingredients will be allowed|
+
+---
+
 
 ```java
 static void removeRecipes(
-  IIngredient output
+  IIngredient output // output ingredient to match
 );
 ```
 
 Remove all recipes with the given recipe output.
+
+---
+

@@ -9,23 +9,32 @@ import mods.pyrotech.SoakingPot
 
 ```java
 static void addRecipe(
-  string name, 
-  IItemStack output, 
-  ILiquidStack inputFluid, 
-  IIngredient inputItem, 
-  int timeTicks
+  string name,             // unique recipe name
+  IItemStack output,       // recipe output
+  ILiquidStack inputFluid, // input fluid
+  IIngredient inputItem,   // input item
+  int timeTicks            // recipe duration in ticks
 );
 ```
+
+
+---
 
 
 ```java
 static void removeRecipes(
-  IIngredient output
+  IIngredient output // output ingredient to match
 );
 ```
+
+
+---
 
 
 ```java
 static void removeAllRecipes();
 ```
+
+
+---
 

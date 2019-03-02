@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogHelper;
+import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
@@ -22,7 +23,11 @@ public class ZenCampfire {
 
   @ZenDocMethod(
       order = 1,
-      args = {"name", "output", "input"}
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "input", info = "recipe input")
+      }
   )
   @ZenMethod
   public static void addRecipe(String name, IItemStack output, IIngredient input) {
@@ -36,12 +41,9 @@ public class ZenCampfire {
 
   @ZenDocMethod(
       order = 2,
-      description = {
-          "|Parameter|Description|\n" +
-              "|---------|-----------|\n" +
-              "|output|furnace recipes that have an output that matches any of the given ingredients will be disallowed|"
-      },
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredients to blacklist")
+      }
   )
   @ZenMethod
   public static void blacklistSmeltingRecipes(IIngredient[] output) {
@@ -66,12 +68,9 @@ public class ZenCampfire {
 
   @ZenDocMethod(
       order = 3,
-      description = {
-          "|Parameter|Description|\n" +
-              "|---------|-----------|\n" +
-              "|output|only furnace recipes that have an output that matches any of the given ingredients will be allowed|"
-      },
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredients to whitelist")
+      }
   )
   @ZenMethod
   public static void whitelistSmeltingRecipes(IIngredient[] output) {
@@ -97,7 +96,9 @@ public class ZenCampfire {
   @ZenDocMethod(
       order = 4,
       description = "Remove all recipes with the given recipe output.",
-      args = {"output"}
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      }
   )
   @ZenMethod
   public static void removeRecipes(IIngredient output) {
