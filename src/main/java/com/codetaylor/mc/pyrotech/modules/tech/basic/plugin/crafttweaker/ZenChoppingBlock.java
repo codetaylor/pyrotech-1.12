@@ -44,15 +44,6 @@ public class ZenChoppingBlock {
 
   @ZenDocMethod(
       order = 2,
-      description = {
-          "|Parameter|Description|\n" +
-              "|---------|-----------|\n" +
-              "|name|the name of the recipe|\n" +
-              "|output|the recipe output|\n" +
-              "|input|the recipe input|\n" +
-              "|chops|the int array provided here will override the array provided in the config file; see the config file for an explanation|\n" +
-              "|quantities|the int array provided here will override the array provided in the config file; see the config file for an explanation|"
-      },
       args = {
           @ZenDocArg(arg = "name", info = "unique recipe name"),
           @ZenDocArg(arg = "output", info = "recipe output"),
