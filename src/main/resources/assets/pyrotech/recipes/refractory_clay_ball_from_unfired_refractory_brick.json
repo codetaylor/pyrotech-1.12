@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pyrotech:material",
+      "data": 9
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 9
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 9
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 9
+    }
+  ],
+  "result": {
+    "item": "pyrotech:material",
+    "count": 3,
+    "data": 4
+  }
+}

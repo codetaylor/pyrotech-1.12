@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CC"
+    "CCC"
   ],
   "key": {
     "C": {
@@ -11,7 +11,7 @@
   },
   "result": {
     "item": "pyrotech:material",
-    "count": 1,
+    "count": 4,
     "data": 9
   }
 }
