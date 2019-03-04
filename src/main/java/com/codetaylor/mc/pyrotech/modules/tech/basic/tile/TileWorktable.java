@@ -90,7 +90,8 @@ public class TileWorktable
     this.registerTileDataForNetwork(new ITileData[]{
         this.inputTileDataItemStackHandler,
         new TileDataItemStackHandler<>(this.shelfStackHandler),
-        this.recipeProgress
+        this.recipeProgress,
+        this.remainingDurability
     });
 
     // --- Interactions ---
@@ -124,6 +125,11 @@ public class TileWorktable
     return this.recipeProgress.get();
   }
 
+  public int getRemainingDurability() {
+
+    return this.remainingDurability.get();
+  }
+
   public ItemStackHandler getInputStackHandler() {
 
     return this.inputStackHandler;
@@ -154,7 +160,7 @@ public class TileWorktable
     return ModuleTechBasicConfig.WORKTABLE.USES_DURABILITY;
   }
 
-  protected int getDurability() {
+  public int getDurability() {
 
     return ModuleTechBasicConfig.WORKTABLE.DURABILITY;
   }

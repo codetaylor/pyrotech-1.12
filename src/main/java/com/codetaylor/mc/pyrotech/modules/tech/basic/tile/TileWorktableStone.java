@@ -29,7 +29,7 @@ public class TileWorktableStone
     return ModuleTechBasicConfig.STONE_WORKTABLE.USES_DURABILITY;
   }
 
-  protected int getDurability() {
+  public int getDurability() {
 
     return ModuleTechBasicConfig.STONE_WORKTABLE.DURABILITY;
   }

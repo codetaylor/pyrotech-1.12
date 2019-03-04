@@ -334,6 +334,11 @@ gui.pyrotech.waila.bloomery.airflow=Airflow: %d%%
 gui.pyrotech.waila.anvil.recipe.type=Type: %s
 gui.pyrotech.waila.anvil.recipe.type.hammer=Hammer
 gui.pyrotech.waila.anvil.recipe.type.pickaxe=Pickaxe
+gui.pyrotech.waila.worktable.condition=Condition: %s%s
+gui.pyrotech.waila.worktable.condition.good=Good
+gui.pyrotech.waila.worktable.condition.fair=Fair
+gui.pyrotech.waila.worktable.condition.used=Used
+gui.pyrotech.waila.worktable.condition.fractured=Fractured
 
 #------------------------------------------------------------------------------
 # JEI

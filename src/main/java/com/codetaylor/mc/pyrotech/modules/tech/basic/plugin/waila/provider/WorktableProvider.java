@@ -9,6 +9,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -70,6 +72,28 @@ public class WorktableProvider
           tooltip.add(renderString.toString());
           tooltip.add(recipeOutput.getDisplayName());
         }
+      }
+
+      int remainingDurability = tile.getRemainingDurability();
+      int durability = tile.getDurability();
+
+      float d = remainingDurability / (float) durability;
+
+      if (d < 0.25) {
+        String condition = I18n.translateToLocal("gui.pyrotech.waila.worktable.condition.fractured");
+        tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.waila.worktable.condition", TextFormatting.RED, condition));
+
+      } else if (d < 0.50) {
+        String condition = I18n.translateToLocal("gui.pyrotech.waila.worktable.condition.used");
+        tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.waila.worktable.condition", TextFormatting.GOLD, condition));
+
+      } else if (d < 0.75) {
+        String condition = I18n.translateToLocal("gui.pyrotech.waila.worktable.condition.fair");
+        tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.waila.worktable.condition", TextFormatting.YELLOW, condition));
+
+      } else {
+        String condition = I18n.translateToLocal("gui.pyrotech.waila.worktable.condition.good");
+        tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.waila.worktable.condition", TextFormatting.GREEN, condition));
       }
     }
 
