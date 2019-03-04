@@ -126,11 +126,13 @@ public class BloomeryProvider
           tile.getMaxFuelCount()
       ));
 
+      /*
       tooltip.add(Util.translateFormatted(
           "gui." + ModuleTechBloomery.MOD_ID + ".waila.ash",
           tile.getAshCount(),
           tile.getMaxAshCapacity()
       ));
+      */
 
     }
 
