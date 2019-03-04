@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.Anvil
+import mods.pyrotech.IroncladAnvil
 ```
 
 #### Methods

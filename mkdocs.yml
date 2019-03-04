@@ -4,7 +4,6 @@ pages:
 - Introduction: index.md
 - ChangeLog: changelog.md
 - ZenScript:
-  - Anvil: zs/anvil.md
   - Bloomery: zs/bloomery.md
   - Brick Crucible: zs/brickcrucible.md
   - Brick Kiln: zs/brickkiln.md
@@ -16,6 +15,8 @@ pages:
   - Compacting Bin: zs/compactingbin.md
   - Crude Drying Rack: zs/crudedryingrack.md
   - Drying Rack: zs/dryingrack.md
+  - Granite Anvil: zs/graniteanvil.md
+  - Ironclad Anvil: zs/ironcladanvil.md
   - Mechanical Compactor: zs/mechanicalcompactor.md
   - Pit Kiln: zs/pitkiln.md
   - Soaking Pot: zs/soakingpot.md
