@@ -159,20 +159,21 @@ public class BloomHelper {
 
     if (rand.nextFloat() < chance) {
 
-      if (rand.nextFloat() < 0.5) {
-        EntityPlayer closestPlayer = world.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2, false);
+      EntityPlayer closestPlayer = world.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2, false);
 
-        if (closestPlayer != null) {
-          BlockPos position = closestPlayer.getPosition();
-          IBlockState blockState = world.getBlockState(position.down());
+      if (closestPlayer != null) {
+        BlockPos position = closestPlayer.getPosition();
+        IBlockState blockState = world.getBlockState(position.down());
 
-          if (!world.isAirBlock(position)
-              || !blockState.getBlock().isSideSolid(blockState, world, pos, EnumFacing.UP)) {
-            closestPlayer.setFire(1);
+        if (!world.isAirBlock(position)
+            || !blockState.getBlock().isSideSolid(blockState, world, pos, EnumFacing.UP)) {
 
-            if (rand.nextFloat() < 0.5) {
-              closestPlayer.attackEntityFrom(DamageSource.HOT_FLOOR, 2);
-            }
+          closestPlayer.setFire(rand.nextFloat() < 0.5 ? 1 : 2);
+
+          int damage = rand.nextInt(5);
+
+          if (damage > 0) {
+            closestPlayer.attackEntityFrom(DamageSource.HOT_FLOOR, damage);
           }
         }
       }
