@@ -36,6 +36,7 @@ public class WitherForgeRecipesAdd {
         .setFailureChance(DEFAULT_FAILURE_CHANCE)
         .setBloomYield(8, 12)
         .setSlagItem(new ItemStack(ModuleTechBloomery.Items.SLAG), 2)
+        .setAnvilTiers(new AnvilRecipe.EnumTier[]{AnvilRecipe.EnumTier.IRONCLAD})
         .setLangKey(Blocks.OBSIDIAN.getUnlocalizedName())
         .create());
   }
