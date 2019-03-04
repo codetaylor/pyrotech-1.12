@@ -183,7 +183,7 @@ public class TileShelf
           new ItemStackHandler[]{stackHandler},
           slot,
           new EnumFacing[]{EnumFacing.NORTH},
-          new AxisAlignedBB(x * ONE_THIRD, y * ONE_THIRD, 10.0 / 16.0, x * ONE_THIRD + ONE_THIRD, y * ONE_THIRD + ONE_THIRD, 1),
+          new AxisAlignedBB(x * ONE_THIRD, y * ONE_THIRD, 12.0 / 16.0, x * ONE_THIRD + ONE_THIRD, y * ONE_THIRD + ONE_THIRD, 1),
           new Transform(
               Transform.translate(x * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025, y * (ONE_THIRD - 0.025) + ONE_SIXTH, 2 * ONE_THIRD + ONE_SIXTH - 0.025),
               Transform.rotate(0, 1, 0, 180),
@@ -193,7 +193,7 @@ public class TileShelf
 
       this.tile = tile;
 
-      this.forwardBounds = new AxisAlignedBB(x * ONE_THIRD, y * ONE_THIRD, 0, x * ONE_THIRD + ONE_THIRD, y * ONE_THIRD + ONE_THIRD, 6.0 / 16.0);
+      this.forwardBounds = new AxisAlignedBB(x * ONE_THIRD, y * ONE_THIRD, 2.0 / 16.0, x * ONE_THIRD + ONE_THIRD, y * ONE_THIRD + ONE_THIRD, 6.0 / 16.0);
 
       this.forwardTransform = new Transform(
           Transform.translate(x * (ONE_THIRD - 0.025) + ONE_SIXTH + 0.025, y * (ONE_THIRD - 0.025) + ONE_SIXTH, ONE_SIXTH - 0.025),
