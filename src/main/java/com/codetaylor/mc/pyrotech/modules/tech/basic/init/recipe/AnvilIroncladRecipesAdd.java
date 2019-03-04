@@ -33,7 +33,17 @@ public class AnvilIroncladRecipesAdd {
           Math.max(1, (int) (anvilRecipe.getHits() * Math.max(0, ModuleTechBasicConfig.IRONCLAD_ANVIL.INHERITED_GRANITE_ANVIL_RECIPE_HIT_MODIFIER))),
           anvilRecipe.getType(),
           AnvilRecipe.EnumTier.IRONCLAD
-      ));
+      ), anvilRecipe -> {
+
+        // if the recipe is extended, like a bloom recipe, then defer
+        // inheritance to the recipe
+
+        if (anvilRecipe instanceof AnvilRecipe.IExtendedRecipe) {
+          return ((AnvilRecipe.IExtendedRecipe) anvilRecipe).allowInheritance();
+        }
+
+        return true;
+      });
     }
   }
 }
