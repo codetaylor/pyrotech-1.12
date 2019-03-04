@@ -41,26 +41,26 @@ public class WitherForgeRecipesAdd {
   }
 
   public static void registerBloomAnvilRecipes(
-      IForgeRegistry<WitherForgeRecipe> registryBloomery,
+      IForgeRegistry<WitherForgeRecipe> registryWitherForge,
       IForgeRegistry<AnvilRecipe> registryAnvil
   ) {
 
-    Collection<WitherForgeRecipe> bloomeryRecipes = registryBloomery.getValuesCollection();
-    List<WitherForgeRecipe> snapshot = new ArrayList<>(bloomeryRecipes);
+    Collection<WitherForgeRecipe> recipes = registryWitherForge.getValuesCollection();
+    List<WitherForgeRecipe> snapshot = new ArrayList<>(recipes);
 
-    for (BloomeryRecipeBase bloomeryRecipe : snapshot) {
+    for (BloomeryRecipeBase recipe : snapshot) {
 
       // --- Anvil Recipes ---
 
       //noinspection ConstantConditions
       registryAnvil.register(new BloomAnvilRecipe(
-          bloomeryRecipe.getOutput(),
-          IngredientHelper.fromStackWithNBT(bloomeryRecipe.getOutputBloom()),
+          recipe.getOutput(),
+          IngredientHelper.fromStackWithNBT(recipe.getOutputBloom()),
           ModuleTechBloomeryConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
           AnvilRecipe.EnumType.HAMMER,
-          Arrays.copyOf(bloomeryRecipe.getAnvilTiers(), bloomeryRecipe.getAnvilTiers().length),
-          bloomeryRecipe
-      ).setRegistryName(bloomeryRecipe.getRegistryName()));
+          Arrays.copyOf(recipe.getAnvilTiers(), recipe.getAnvilTiers().length),
+          recipe
+      ).setRegistryName(recipe.getRegistryName()));
     }
   }
 
