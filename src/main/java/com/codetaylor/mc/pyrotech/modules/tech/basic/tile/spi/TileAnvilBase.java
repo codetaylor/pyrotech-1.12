@@ -54,7 +54,7 @@ public abstract class TileAnvilBase
 
     super(ModuleTechBasic.TILE_DATA_SERVICE);
 
-    this.stackHandler = new InputStackHandler();
+    this.stackHandler = new InputStackHandler(this);
     this.stackHandler.addObserver((handler, slot) -> {
       this.recipeProgress.set(0);
       this.markDirty();
@@ -75,7 +75,7 @@ public abstract class TileAnvilBase
 
     this.interactions = new IInteraction[]{
         new InteractionItem(),
-        new Interaction(new ItemStackHandler[]{this.stackHandler}),
+        new Interaction(this, this.stackHandler),
         new InteractionHit()
     };
     this.durabilityUntilNextDamage = this.getHitsPerDamage();
@@ -156,6 +156,8 @@ public abstract class TileAnvilBase
   protected abstract String[] getPickaxeBlacklist();
 
   protected abstract int getMinimumHungerToUse();
+
+  protected abstract AnvilRecipe.EnumTier getRecipeTier();
 
   @Nonnull
   protected abstract BlockAnvilBase getBlock();
@@ -267,19 +269,22 @@ public abstract class TileAnvilBase
   private class Interaction
       extends InteractionItemStack<TileAnvilBase> {
 
-    /* package */ Interaction(ItemStackHandler[] stackHandlers) {
+    private final TileAnvilBase tile;
 
-      super(stackHandlers, 0, new EnumFacing[]{EnumFacing.UP}, BlockAnvilBase.AABB, new Transform(
+    /* package */ Interaction(TileAnvilBase tile, ItemStackHandler stackHandler) {
+
+      super(new ItemStackHandler[]{stackHandler}, 0, new EnumFacing[]{EnumFacing.UP}, BlockAnvilBase.AABB, new Transform(
           Transform.translate(0.5, 0.75, 0.5),
           Transform.rotate(),
           Transform.scale(0.75, 0.75, 0.75)
       ));
+      this.tile = tile;
     }
 
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (AnvilRecipe.getRecipe(itemStack) != null);
+      return (AnvilRecipe.getRecipe(itemStack, this.tile.getRecipeTier()) != null);
     }
 
     @Override
@@ -328,7 +333,7 @@ public abstract class TileAnvilBase
 
       ItemStackHandler stackHandler = tile.getStackHandler();
       ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
-      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack);
+      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier());
 
       if (recipe == null) {
         return false;
@@ -357,7 +362,7 @@ public abstract class TileAnvilBase
 
       ItemStackHandler stackHandler = tile.getStackHandler();
       ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
-      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack);
+      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier());
 
       boolean isExtendedRecipe = (recipe instanceof AnvilRecipe.IExtendedRecipe);
 
@@ -491,9 +496,12 @@ public abstract class TileAnvilBase
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    public InputStackHandler() {
+    private final TileAnvilBase tile;
+
+    public InputStackHandler(TileAnvilBase tile) {
 
       super(1);
+      this.tile = tile;
     }
 
     @Override
@@ -507,7 +515,7 @@ public abstract class TileAnvilBase
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
       if (!stack.isEmpty()
-          && AnvilRecipe.getRecipe(stack) != null) {
+          && AnvilRecipe.getRecipe(stack, this.tile.getRecipeTier()) != null) {
         return super.insertItem(slot, stack, simulate);
       }
 

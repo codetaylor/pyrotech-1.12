@@ -15,12 +15,12 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class AnvilRecipesAdd {
+public class AnvilGraniteRecipesAdd {
 
   public static void apply(IForgeRegistry<AnvilRecipe> registry) {
 
-    AnvilRecipesAdd.registerPickaxeRecipes(registry);
-    AnvilRecipesAdd.registerHammerRecipes(registry);
+    AnvilGraniteRecipesAdd.registerPickaxeRecipes(registry);
+    AnvilGraniteRecipesAdd.registerHammerRecipes(registry);
   }
 
   private static void registerHammerRecipes(IForgeRegistry<AnvilRecipe> registry) {
@@ -30,7 +30,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.DUST_FLINT.asStack(3),
         Ingredient.fromStacks(ItemMaterial.EnumType.FLINT_SHARD.asStack()),
         2,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "crushed_flint_from_flint_shard"));
 
     // Lapis Lazuli from Lapis Block
@@ -38,7 +39,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.DYE, 8, EnumDyeColor.BLUE.getMetadata()),
         Ingredient.fromStacks(new ItemStack(Blocks.LAPIS_BLOCK)),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "lapis_lazuli_from_lapis_block"));
 
     // Redstone from Redstone Block
@@ -46,7 +48,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.REDSTONE, 8),
         Ingredient.fromStacks(new ItemStack(Blocks.REDSTONE_BLOCK)),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "redstone_from_redstone_block"));
 
     // Sand Pile from Glass Shard
@@ -54,7 +57,8 @@ public class AnvilRecipesAdd {
         new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.SAND.getMeta()),
         Ingredient.fromStacks(ItemMaterial.EnumType.GLASS_SHARD.asStack()),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "sand_pile_from_glass_shard"));
 
     // Sand Pile from Pottery Pieces
@@ -65,7 +69,8 @@ public class AnvilRecipesAdd {
             ItemMaterial.EnumType.POTTERY_SHARD.asStack()
         ),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "sand_pile_from_pottery_pieces"));
 
     // Iron Shard from Iron Nugget
@@ -73,7 +78,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.IRON_SHARD.asStack(1),
         new OreIngredient("nuggetIron"),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_shard_from_iron_nugget"));
 
     // Iron Nugget from Iron Shard
@@ -81,7 +87,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.IRON_NUGGET, 1, 0),
         Ingredient.fromStacks(ItemMaterial.EnumType.IRON_SHARD.asStack(1)),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_nugget_from_iron_shard"));
 
     // Gold Shard from Gold Nugget
@@ -89,7 +96,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.GOLD_SHARD.asStack(1),
         new OreIngredient("nuggetGold"),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "gold_shard_from_gold_nugget"));
 
     // Gold Nugget from Gold Shard
@@ -97,7 +105,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.GOLD_NUGGET, 1, 0),
         Ingredient.fromStacks(ItemMaterial.EnumType.GOLD_SHARD.asStack(1)),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "gold_nugget_from_gold_shard"));
 
     // Charcoal Flakes from Charcoal
@@ -105,7 +114,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(8),
         Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 1)),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_flakes"));
 
     // Coal Pieces from Coal
@@ -113,7 +123,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.COAL_PIECES.asStack(8),
         Ingredient.fromStacks(new ItemStack(Items.COAL, 1, 0)),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_pieces"));
 
     // Bone Meal from Bone Shard
@@ -121,7 +132,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.DYE, 1, 15),
         Ingredient.fromStacks(ItemMaterial.EnumType.BONE_SHARD.asStack()),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard"));
 
     // Bone Meal from Bone
@@ -129,7 +141,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.DYE, 3, 15),
         Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_meal_from_bone"));
 
     // Bone Meal from Bone Block
@@ -137,7 +150,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.DYE, 8, 15),
         Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_meal_from_bone_block"));
 
     // Stone to cobblestone
@@ -145,7 +159,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Blocks.COBBLESTONE),
         Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.STONE.getMetadata())),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_to_cobbled"));
 
     // Andesite to cobbled andesite
@@ -153,7 +168,8 @@ public class AnvilRecipesAdd {
         new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta()),
         Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.ANDESITE.getMetadata())),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "andesite_to_cobbled"));
 
     // Diorite to cobbled diorite
@@ -161,7 +177,8 @@ public class AnvilRecipesAdd {
         new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta()),
         Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.DIORITE.getMetadata())),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "diorite_to_cobbled"));
 
     // Granite to cobbled granite
@@ -169,7 +186,8 @@ public class AnvilRecipesAdd {
         new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta()),
         Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.GRANITE.getMetadata())),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "granite_to_cobbled"));
 
     // Limestone to cobbled limestone
@@ -177,7 +195,8 @@ public class AnvilRecipesAdd {
         new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta()),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.LIMESTONE)),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "limestone_to_cobbled"));
 
     // Cobblestone to rocks
@@ -185,7 +204,8 @@ public class AnvilRecipesAdd {
         new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.STONE.getMeta()),
         Ingredient.fromStacks(new ItemStack(Blocks.COBBLESTONE)),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "cobblestone_to_rocks"));
 
     // Cobbled andesite to rocks
@@ -193,7 +213,8 @@ public class AnvilRecipesAdd {
         new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.ANDESITE.getMeta()),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_andesite_to_rocks"));
 
     // Cobbled diorite to rocks
@@ -201,7 +222,8 @@ public class AnvilRecipesAdd {
         new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.DIORITE.getMeta()),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_diorite_to_rocks"));
 
     // Cobbled granite to rocks
@@ -209,7 +231,8 @@ public class AnvilRecipesAdd {
         new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.GRANITE.getMeta()),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_granite_to_rocks"));
 
     // Cobbled limestone to rocks
@@ -217,7 +240,8 @@ public class AnvilRecipesAdd {
         new ItemStack(ModuleCore.Blocks.ROCK, 8, BlockRock.EnumType.LIMESTONE.getMeta()),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta())),
         8,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "cobbled_limestone_to_rocks"));
 
     // Limestone rocks to crushed limestone
@@ -225,7 +249,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.DUST_LIMESTONE.asStack(),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
         4,
-        AnvilRecipe.EnumType.HAMMER
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "limestone_rocks_to_crushed_limestone"));
   }
 
@@ -236,7 +261,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.FLINT_SHARD.asStack(3),
         Ingredient.fromStacks(new ItemStack(Items.FLINT, 1, 0)),
         4,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "flint_shard_from_flint"));
 
     // Bone Shard from Bone
@@ -244,7 +270,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.BONE_SHARD.asStack(3),
         Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
         4,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard_from_bone"));
 
     // Individual Stone Bricks
@@ -254,7 +281,8 @@ public class AnvilRecipesAdd {
             new ItemStack(Blocks.STONE_SLAB, 1, 5)
         ),
         4,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "brick_stone"));
 
     // Stone Sticks
@@ -264,7 +292,8 @@ public class AnvilRecipesAdd {
             ItemMaterial.EnumType.BRICK_STONE.asStack()
         ),
         4,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "stick_stone"));
 
     // Slabs
@@ -276,7 +305,8 @@ public class AnvilRecipesAdd {
             new ItemStack(Blocks.STONEBRICK)
         ),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_brick_slab"));
 
     // Cobblestone Slab
@@ -286,7 +316,8 @@ public class AnvilRecipesAdd {
             new ItemStack(Blocks.COBBLESTONE)
         ),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "cobblestone_slab"));
 
     // Stone Slab
@@ -296,7 +327,8 @@ public class AnvilRecipesAdd {
             new ItemStack(Blocks.STONE)
         ),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_slab"));
 
     // Sandstone Slab
@@ -308,7 +340,8 @@ public class AnvilRecipesAdd {
             new ItemStack(Blocks.SANDSTONE, 1, 2)
         ),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "sandstone_slab"));
 
     // Red Sandstone Slab
@@ -320,7 +353,8 @@ public class AnvilRecipesAdd {
             new ItemStack(Blocks.RED_SANDSTONE, 1, 2)
         ),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "red_sandstone_slab"));
 
     // Brick Slab
@@ -330,7 +364,8 @@ public class AnvilRecipesAdd {
             new ItemStack(Blocks.BRICK_BLOCK)
         ),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "brick_slab"));
 
     // Nether Brick Slab
@@ -340,7 +375,8 @@ public class AnvilRecipesAdd {
             new ItemStack(Blocks.NETHER_BRICK)
         ),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "nether_brick_slab"));
 
     // Quartz Slab
@@ -352,7 +388,8 @@ public class AnvilRecipesAdd {
             new ItemStack(Blocks.QUARTZ_BLOCK, 1, 2)
         ),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "quartz_slab"));
 
     // Purpur Slab
@@ -362,7 +399,8 @@ public class AnvilRecipesAdd {
             new ItemStack(Blocks.PURPUR_BLOCK, 1, 0)
         ),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "purpur_slab"));
 
     // Bone Shard from Block
@@ -370,7 +408,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.BONE_SHARD.asStack(8),
         Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard_from_block"));
 
     // Iron Shard from Iron Ingot
@@ -378,7 +417,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.IRON_SHARD.asStack(9),
         Ingredient.fromStacks(new ItemStack(Items.IRON_INGOT, 1, 0)),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_shard"));
 
     // Iron Ingot from Iron Block
@@ -386,7 +426,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.IRON_INGOT, 1, 9),
         Ingredient.fromStacks(new ItemStack(Blocks.IRON_BLOCK)),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "iron_ingot"));
 
     // Gold Shard from Gold Ingot
@@ -394,7 +435,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.GOLD_SHARD.asStack(9),
         Ingredient.fromStacks(new ItemStack(Items.GOLD_INGOT, 1, 0)),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "gold_shard"));
 
     // Gold Ingot from Gold Block
@@ -402,7 +444,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.GOLD_INGOT, 1, 9),
         Ingredient.fromStacks(new ItemStack(Blocks.GOLD_BLOCK)),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "gold_ingot"));
 
     // Diamond Shard from Diamond
@@ -410,7 +453,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.DIAMOND_SHARD.asStack(9),
         Ingredient.fromStacks(new ItemStack(Items.DIAMOND, 1, 0)),
         16,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "diamond_shard"));
 
     // Coal block to coal
@@ -418,7 +462,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.COAL, 9),
         Ingredient.fromStacks(new ItemStack(Blocks.COAL_BLOCK)),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_block_to_coal"));
 
     // Coal coke block to coal coke
@@ -426,7 +471,8 @@ public class AnvilRecipesAdd {
         ItemMaterial.EnumType.COAL_COKE.asStack(9),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COAL_COKE_BLOCK)),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_coke_block_to_coal_coke"));
 
     // Charcoal block to charcoal
@@ -434,7 +480,8 @@ public class AnvilRecipesAdd {
         new ItemStack(Items.COAL, 9, 1),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK)),
         8,
-        AnvilRecipe.EnumType.PICKAXE
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "charcoal_block_to_charcoal"));
   }
 }

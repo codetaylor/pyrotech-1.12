@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
@@ -17,16 +18,20 @@ public class AnvilRecipe
     extends IForgeRegistryEntry.Impl<AnvilRecipe>
     implements IRecipeSingleOutput {
 
+  public enum EnumTier {
+    GRANITE, IRONCLAD
+  }
+
   public enum EnumType {
     HAMMER, PICKAXE
   }
 
   @Nullable
-  public static AnvilRecipe getRecipe(ItemStack input) {
+  public static AnvilRecipe getRecipe(ItemStack input, EnumTier tier) {
 
     for (AnvilRecipe recipe : ModuleTechBasic.Registries.ANVIL_RECIPE) {
 
-      if (recipe.matches(input)) {
+      if (recipe.matches(input, tier)) {
         return recipe;
       }
     }
@@ -43,18 +48,38 @@ public class AnvilRecipe
   private final ItemStack output;
   private final int hits;
   private final EnumType type;
+  private final EnumTier[] tiers;
 
   public AnvilRecipe(
       ItemStack output,
       Ingredient input,
       int hits,
-      EnumType type
+      EnumType type,
+      EnumTier tier
+  ) {
+
+    this(
+        output,
+        input,
+        hits,
+        type,
+        new EnumTier[]{tier}
+    );
+  }
+
+  public AnvilRecipe(
+      ItemStack output,
+      Ingredient input,
+      int hits,
+      EnumType type,
+      EnumTier[] tiers
   ) {
 
     this.input = input;
     this.output = output;
     this.hits = hits;
     this.type = type;
+    this.tiers = tiers;
   }
 
   public Ingredient getInput() {
@@ -77,9 +102,14 @@ public class AnvilRecipe
     return this.type;
   }
 
-  public boolean matches(ItemStack input) {
+  public boolean isTier(EnumTier tier) {
 
-    return this.input.apply(input);
+    return ArrayHelper.contains(this.tiers, tier);
+  }
+
+  public boolean matches(ItemStack input, EnumTier tier) {
+
+    return this.isTier(tier) && (this.input.apply(input));
   }
 
   public interface IExtendedRecipe<T extends AnvilRecipe & IExtendedRecipe> {
@@ -91,5 +121,13 @@ public class AnvilRecipe
     void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, T recipe, EntityPlayer player);
 
     void onAnvilHitClient(World world, TileAnvilBase tile, float hitX, float hitY, float hitZ);
+
+    /**
+     * @return true to allow this recipe to be inherited by higher tier anvils
+     */
+    default boolean allowInheritance() {
+
+      return false;
+    }
   }
 }

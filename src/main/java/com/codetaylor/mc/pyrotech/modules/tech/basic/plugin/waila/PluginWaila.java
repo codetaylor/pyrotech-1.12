@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila;
 
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.provider.*;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.*;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileDryingRackBase;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
@@ -23,8 +23,15 @@ public class PluginWaila {
     ChoppingBlockProvider choppingBlockProvider = new ChoppingBlockProvider();
     registrar.registerBodyProvider(choppingBlockProvider, TileChoppingBlock.class);
 
-    AnvilProvider anvilProvider = new AnvilProvider();
-    registrar.registerBodyProvider(anvilProvider, TileAnvilBase.class);
+    {
+      AnvilProvider provider = new AnvilProvider(AnvilRecipe.EnumTier.GRANITE);
+      registrar.registerBodyProvider(provider, TileAnvilGranite.class);
+    }
+
+    {
+      AnvilProvider provider = new AnvilProvider(AnvilRecipe.EnumTier.IRONCLAD);
+      registrar.registerBodyProvider(provider, TileAnvilIronPlated.class);
+    }
 
     WorktableProvider worktableProvider = new WorktableProvider();
     registrar.registerBodyProvider(worktableProvider, TileWorktable.class);

@@ -199,21 +199,21 @@ public class ModuleTechBloomery
 
     super.onPostInitializationEvent(event);
 
-    WitherForgeRecipesAdd.registerInheritedRecipes(
-        Registries.BLOOMERY_RECIPE,
-        Registries.WITHER_FORGE_RECIPE
-    );
-
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
-      BloomeryRecipesAdd.registerBloomAnvilRecipes(
-          ModuleTechBloomery.Registries.BLOOMERY_RECIPE,
-          ModuleTechBasic.Registries.ANVIL_RECIPE
-      );
       WitherForgeRecipesAdd.registerBloomAnvilRecipes(
           Registries.WITHER_FORGE_RECIPE,
           ModuleTechBasic.Registries.ANVIL_RECIPE
       );
+      BloomeryRecipesAdd.registerBloomAnvilRecipes(
+          ModuleTechBloomery.Registries.BLOOMERY_RECIPE,
+          ModuleTechBasic.Registries.ANVIL_RECIPE
+      );
     }
+
+    WitherForgeRecipesAdd.registerInheritedRecipes(
+        Registries.BLOOMERY_RECIPE,
+        Registries.WITHER_FORGE_RECIPE
+    );
   }
 
   @Override

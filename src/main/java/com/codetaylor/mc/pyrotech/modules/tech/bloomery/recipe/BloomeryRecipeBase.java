@@ -1,9 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.WeightedPicker;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.enchantment.Enchantment;
@@ -33,10 +35,11 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
   protected final int slagCount;
   protected final FailureItem[] failureItems;
   protected final ItemStack slagItem;
+  protected final AnvilRecipe.EnumTier[] anvilTiers;
   @Nullable
   protected final String langKey;
 
-  public BloomeryRecipeBase(Ingredient input, ItemStack output, int burnTimeTicks, float failureChance, int bloomYieldMin, int bloomYieldMax, int slagCount, FailureItem[] failureItems, ItemStack slagItem, @Nullable String langKey) {
+  public BloomeryRecipeBase(Ingredient input, ItemStack output, int burnTimeTicks, float failureChance, int bloomYieldMin, int bloomYieldMax, int slagCount, FailureItem[] failureItems, ItemStack slagItem, AnvilRecipe.EnumTier[] anvilTiers, @Nullable String langKey) {
 
     this.input = input;
     this.output = output;
@@ -47,6 +50,8 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
     this.slagCount = slagCount;
     this.failureItems = failureItems;
     this.slagItem = slagItem;
+    this.anvilTiers = anvilTiers;
+
     if (langKey != null) {
       this.langKey = langKey;
 
@@ -89,6 +94,16 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
   public int getBloomYieldMax() {
 
     return this.bloomYieldMax;
+  }
+
+  public AnvilRecipe.EnumTier[] getAnvilTiers() {
+
+    return this.anvilTiers;
+  }
+
+  public boolean isAnvilTier(AnvilRecipe.EnumTier tier) {
+
+    return ArrayHelper.contains(this.anvilTiers, tier);
   }
 
   public ItemStack getUniqueBloomFromOutput(int quantity) {

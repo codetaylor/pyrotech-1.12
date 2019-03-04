@@ -456,12 +456,12 @@ public class ModuleTechBasicConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Iron Plated Anvil
+  // - Ironclad Anvil
   // ---------------------------------------------------------------------------
 
-  public static IronPlatedAnvil IRON_PLATED_ANVIL = new IronPlatedAnvil();
+  public static IroncladAnvil IRONCLAD_ANVIL = new IroncladAnvil();
 
-  public static class IronPlatedAnvil {
+  public static class IroncladAnvil {
 
     @Config.Comment({
         "Set this to false to prevent piping contents in / out.",
@@ -505,6 +505,19 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
+
+    @Config.Comment({
+        "If true, all the crude drying rack recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_GRANITE_ANVIL_RECIPES = true;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the required hits for all inherited recipes.",
+        "Default: " + 1.0
+    })
+    @Config.RangeDouble(min = 0)
+    public double INHERITED_GRANITE_ANVIL_RECIPE_HIT_MODIFIER = 1.0;
   }
 
   // ---------------------------------------------------------------------------

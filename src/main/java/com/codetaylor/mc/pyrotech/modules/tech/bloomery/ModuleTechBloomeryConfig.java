@@ -166,7 +166,7 @@ public class ModuleTechBloomeryConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Bloomery
+  // - Wither Forge
   // ---------------------------------------------------------------------------
 
   public static WitherForge WITHER_FORGE = new WitherForge();

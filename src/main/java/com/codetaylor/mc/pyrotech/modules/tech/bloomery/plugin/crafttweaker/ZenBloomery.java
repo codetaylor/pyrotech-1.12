@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.*;
 import crafttweaker.IAction;
@@ -16,6 +17,9 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @ZenDocClass("mods.pyrotech.Bloomery")
 @ZenClass("mods.pyrotech.Bloomery")
@@ -275,6 +279,29 @@ public class ZenBloomery {
 
   @ZenDocMethod(
       order = 11,
+      args = {
+          @ZenDocArg(arg = "tiers", info = "valid enums: granite, ironclad")
+      },
+      description = {
+          "Provide an array of `granite` and / or `ironclad`.",
+          "Anvil recipe inheritance does not apply to bloom recipes. That means recipes created for the granite anvil will not be inherited by the ironclad anvil. A bloom recipe's anvil tier must be set here."
+      }
+  )
+  @ZenMethod
+  public ZenBloomery setAnvilTiers(String[] tiers) {
+
+    Set<AnvilRecipe.EnumTier> set = new HashSet<>(tiers.length);
+
+    for (String tier : tiers) {
+      set.add(AnvilRecipe.EnumTier.valueOf(tier.toUpperCase()));
+    }
+
+    this.builder.setAnvilTiers(set.toArray(new AnvilRecipe.EnumTier[0]));
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 200,
       description = {
           "This must be called on the builder last to actually register the recipe defined in the builder."
       }

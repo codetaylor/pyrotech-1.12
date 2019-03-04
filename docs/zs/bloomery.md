@@ -141,6 +141,18 @@ The lang key provided here will be used to construct the display name of the out
 
 
 ```java
+Bloomery setAnvilTiers(
+  string[] tiers // valid enums: granite, ironclad
+);
+```
+
+Provide an array of `granite` and / or `ironclad`.
+Anvil recipe inheritance does not apply to bloom recipes. That means recipes created for the granite anvil will not be inherited by the ironclad anvil. A bloom recipe's anvil tier must be set here.
+
+---
+
+
+```java
 void register();
 ```
 

@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe;
 
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;
@@ -8,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class BloomeryRecipeBuilderBase<R extends BloomeryRecipeBase, B extends BloomeryRecipeBuilderBase> {
@@ -23,6 +25,7 @@ public abstract class BloomeryRecipeBuilderBase<R extends BloomeryRecipeBase, B 
   protected int slagCount;
   protected ItemStack slagItem;
   protected List<BloomeryRecipeBase.FailureItem> failureItems;
+  protected AnvilRecipe.EnumTier[] anvilTiers;
   @Nullable
   protected String langKey;
 
@@ -38,6 +41,7 @@ public abstract class BloomeryRecipeBuilderBase<R extends BloomeryRecipeBase, B 
     this.slagCount = 4;
     this.slagItem = new ItemStack(ModuleTechBloomery.Items.SLAG);
     this.failureItems = new ArrayList<>(1);
+    this.anvilTiers = AnvilRecipe.EnumTier.values();
   }
 
   public B setBurnTimeTicks(int burnTimeTicks) {
@@ -74,6 +78,13 @@ public abstract class BloomeryRecipeBuilderBase<R extends BloomeryRecipeBase, B 
   public B addFailureItem(ItemStack itemStack, int weight) {
 
     this.failureItems.add(new BloomeryRecipeBase.FailureItem(itemStack, weight));
+    //noinspection unchecked
+    return (B) this;
+  }
+
+  public B setAnvilTiers(AnvilRecipe.EnumTier[] anvilTiers) {
+
+    this.anvilTiers = Arrays.copyOf(anvilTiers, anvilTiers.length);
     //noinspection unchecked
     return (B) this;
   }

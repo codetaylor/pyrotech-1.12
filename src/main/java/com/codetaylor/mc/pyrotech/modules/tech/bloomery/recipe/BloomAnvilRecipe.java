@@ -22,9 +22,9 @@ public class BloomAnvilRecipe
 
   private final BloomeryRecipeBase bloomeryRecipe;
 
-  public BloomAnvilRecipe(ItemStack output, Ingredient input, int hits, EnumType type, BloomeryRecipeBase bloomeryRecipe) {
+  public BloomAnvilRecipe(ItemStack output, Ingredient input, int hits, EnumType type, EnumTier[] tiers, BloomeryRecipeBase bloomeryRecipe) {
 
-    super(output, input, hits, type);
+    super(output, input, hits, type, tiers);
     this.bloomeryRecipe = bloomeryRecipe;
   }
 
@@ -34,7 +34,7 @@ public class BloomAnvilRecipe
   }
 
   @Override
-  public boolean matches(ItemStack input) {
+  public boolean matches(ItemStack input, EnumTier tier) {
 
     if (input.getItem() != ModuleTechBloomery.Items.BLOOM) {
       return false;

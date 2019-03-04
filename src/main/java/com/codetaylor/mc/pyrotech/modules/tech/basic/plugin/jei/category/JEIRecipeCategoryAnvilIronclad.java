@@ -12,17 +12,17 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 
-public class JEIRecipeCategoryAnvil
+public class JEIRecipeCategoryAnvilIronclad
     implements IRecipeCategory<JEIRecipeWrapperAnvil> {
 
-  public static final String UID = ModuleTechBasic.MOD_ID + ".anvil";
+  public static final String UID = ModuleTechBasic.MOD_ID + ".anvil.ironclad";
 
   private final IDrawableAnimated arrow;
   private final IDrawable background;
 
   private final String title;
 
-  public JEIRecipeCategoryAnvil(IGuiHelper guiHelper) {
+  public JEIRecipeCategoryAnvilIronclad(IGuiHelper guiHelper) {
 
     ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, "textures/gui/jei3.png");
 
@@ -33,7 +33,7 @@ public class JEIRecipeCategoryAnvil
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
     this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 40);
 
-    this.title = Translator.translateToLocal("gui." + ModuleTechBasic.MOD_ID + ".jei.category.anvil");
+    this.title = Translator.translateToLocal("gui." + ModuleTechBasic.MOD_ID + ".jei.category.anvil.ironclad");
   }
 
   @Nonnull

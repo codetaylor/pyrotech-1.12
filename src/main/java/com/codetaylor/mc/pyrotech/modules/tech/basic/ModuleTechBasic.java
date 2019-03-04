@@ -56,7 +56,8 @@ public class ModuleTechBasic
         "ZenCrudeDryingRack",
         "ZenDryingRack",
         "ZenChoppingBlock",
-        "ZenAnvil",
+        "ZenAnvilGranite",
+        "ZenAnvilIronclad",
         "ZenCompactingBin",
         "ZenCampfire",
         "ZenWorktable",
@@ -102,7 +103,8 @@ public class ModuleTechBasic
     PitKilnRecipesAdd.apply(ModuleTechBasic.Registries.KILN_PIT_RECIPE);
     CrudeDryingRackRecipesAdd.apply(ModuleTechBasic.Registries.CRUDE_DRYING_RACK_RECIPE);
     DryingRackRecipesAdd.apply(ModuleTechBasic.Registries.DRYING_RACK_RECIPE);
-    AnvilRecipesAdd.apply(ModuleTechBasic.Registries.ANVIL_RECIPE);
+    AnvilGraniteRecipesAdd.apply(ModuleTechBasic.Registries.ANVIL_RECIPE);
+    AnvilIroncladRecipesAdd.apply(ModuleTechBasic.Registries.ANVIL_RECIPE);
     ChoppingBlockRecipesAdd.apply(ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE);
     CompactingBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE);
     SoakingPotRecipesAdd.apply(ModuleTechBasic.Registries.SOAKING_POT_RECIPE);
@@ -129,6 +131,7 @@ public class ModuleTechBasic
     super.onPostInitializationEvent(event);
 
     DryingRackRecipesAdd.registerInheritedRecipes(Registries.CRUDE_DRYING_RACK_RECIPE, Registries.DRYING_RACK_RECIPE);
+    AnvilIroncladRecipesAdd.registerInheritedRecipes(Registries.ANVIL_RECIPE);
   }
 
   @GameRegistry.ObjectHolder(ModuleTechBasic.MOD_ID)

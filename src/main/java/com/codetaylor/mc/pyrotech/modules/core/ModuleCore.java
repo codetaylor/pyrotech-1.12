@@ -26,7 +26,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -69,12 +68,6 @@ public class ModuleCore
   public void onPreInitializationEvent(FMLPreInitializationEvent event) {
 
     super.onPreInitializationEvent(event);
-
-    FMLInterModComms.sendMessage(
-        "waila",
-        "register",
-        "com.codetaylor.mc.pyrotech.modules.core.plugin.waila.PluginWaila.wailaCallback"
-    );
 
     if (ModuleCoreConfig.CLIENT.SHOW_BURN_TIME_IN_TOOLTIPS) {
       MinecraftForge.EVENT_BUS.register(new TooltipEventHandler.BurnTime());

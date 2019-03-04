@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper;
 
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipeBase;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.spi.DryingRackRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperTimed;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;

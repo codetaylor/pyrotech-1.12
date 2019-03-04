@@ -44,7 +44,8 @@ public class PluginJEI
         new JEIRecipeCategoryCrudeDryingRack(guiHelper),
         new JEIRecipeCategoryDryingRack(guiHelper),
         new JEIRecipeCategoryChoppingBlock(guiHelper),
-        new JEIRecipeCategoryAnvil(guiHelper),
+        new JEIRecipeCategoryAnvilGranite(guiHelper),
+        new JEIRecipeCategoryAnvilIronclad(guiHelper),
         new JEIRecipeCategoryCompactingBin(guiHelper),
         new JEIRecipeCategoryCampfire(guiHelper),
         new JEIRecipeCategoryWorktable(guiHelper),
@@ -149,13 +150,24 @@ public class PluginJEI
       registry.addRecipes(recipeList, JEIRecipeCategoryCompactingBin.UID);
     }
 
-    // --- Anvil
+    // --- Granite Anvil
     {
-      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.ANVIL_GRANITE), JEIRecipeCategoryAnvil.UID);
-      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.ANVIL_IRON_PLATED), JEIRecipeCategoryAnvil.UID);
-      registry.handleRecipes(AnvilRecipe.class, JEIRecipeWrapperAnvil::new, JEIRecipeCategoryAnvil.UID);
-      List<AnvilRecipe> recipeList = new ArrayList<>(ModuleTechBasic.Registries.ANVIL_RECIPE.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryAnvil.UID);
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.ANVIL_GRANITE), JEIRecipeCategoryAnvilGranite.UID);
+      registry.handleRecipes(AnvilRecipe.class, JEIRecipeWrapperAnvil::new, JEIRecipeCategoryAnvilGranite.UID);
+      List<AnvilRecipe> recipeList = ModuleTechBasic.Registries.ANVIL_RECIPE.getValuesCollection().stream()
+          .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.GRANITE))
+          .collect(Collectors.toList());
+      registry.addRecipes(recipeList, JEIRecipeCategoryAnvilGranite.UID);
+    }
+
+    // --- Ironclad Anvil
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.ANVIL_IRON_PLATED), JEIRecipeCategoryAnvilIronclad.UID);
+      registry.handleRecipes(AnvilRecipe.class, JEIRecipeWrapperAnvil::new, JEIRecipeCategoryAnvilIronclad.UID);
+      List<AnvilRecipe> recipeList = ModuleTechBasic.Registries.ANVIL_RECIPE.getValuesCollection().stream()
+          .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.IRONCLAD))
+          .collect(Collectors.toList());
+      registry.addRecipes(recipeList, JEIRecipeCategoryAnvilIronclad.UID);
     }
 
     // --- Chopping Block

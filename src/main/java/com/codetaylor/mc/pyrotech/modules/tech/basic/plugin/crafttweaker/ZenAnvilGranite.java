@@ -17,9 +17,9 @@ import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenDocClass("mods.pyrotech.Anvil")
-@ZenClass("mods.pyrotech.Anvil")
-public class ZenAnvil {
+@ZenDocClass("mods.pyrotech.GraniteAnvil")
+@ZenClass("mods.pyrotech.GraniteAnvil")
+public class ZenAnvilGranite {
 
   @ZenDocMethod(
       order = 1,
@@ -83,7 +83,7 @@ public class ZenAnvil {
     @Override
     public String describe() {
 
-      return "Removing anvil recipes for " + this.output;
+      return "Removing granite anvil recipes for " + this.output;
     }
   }
 
@@ -118,7 +118,8 @@ public class ZenAnvil {
           this.output,
           this.input,
           this.hits,
-          this.type
+          this.type,
+          AnvilRecipe.EnumTier.GRANITE
       );
       ModuleTechBasic.Registries.ANVIL_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }
@@ -126,7 +127,7 @@ public class ZenAnvil {
     @Override
     public String describe() {
 
-      return "Adding anvil recipe for " + this.output;
+      return "Adding granite anvil recipe for " + this.output;
     }
   }
 

@@ -25,6 +25,7 @@ public class WitherForgeRecipeBuilder
         this.slagCount,
         this.slagItem,
         this.failureItems.toArray(new BloomeryRecipeBase.FailureItem[0]),
+        this.anvilTiers,
         this.langKey
     );
 

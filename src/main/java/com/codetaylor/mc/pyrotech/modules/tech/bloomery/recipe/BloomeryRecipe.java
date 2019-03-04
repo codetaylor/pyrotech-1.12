@@ -1,10 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
 
@@ -39,10 +39,11 @@ public class BloomeryRecipe
       int slagCount,
       ItemStack slagItem,
       FailureItem[] failureItems,
+      AnvilRecipe.EnumTier[] anvilTiers,
       @Nullable String langKey
   ) {
 
-    super(input, output, burnTimeTicks, failureChance, bloomYieldMin, bloomYieldMax, slagCount, failureItems, slagItem, langKey);
+    super(input, output, burnTimeTicks, failureChance, bloomYieldMin, bloomYieldMax, slagCount, failureItems, slagItem, anvilTiers, langKey);
   }
 
 }

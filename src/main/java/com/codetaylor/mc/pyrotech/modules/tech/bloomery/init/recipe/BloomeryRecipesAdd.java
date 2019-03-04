@@ -23,6 +23,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -146,6 +147,7 @@ public class BloomeryRecipesAdd {
           IngredientHelper.fromStackWithNBT(bloomeryRecipe.getOutputBloom()),
           ModuleTechBloomeryConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
           AnvilRecipe.EnumType.HAMMER,
+          Arrays.copyOf(bloomeryRecipe.getAnvilTiers(), bloomeryRecipe.getAnvilTiers().length),
           bloomeryRecipe
       ).setRegistryName(bloomeryRecipe.getRegistryName()));
     }

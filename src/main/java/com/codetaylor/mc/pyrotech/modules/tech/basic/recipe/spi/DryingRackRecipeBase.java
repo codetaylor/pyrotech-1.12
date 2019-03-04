@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.basic.recipe;
+package com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.spi;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;

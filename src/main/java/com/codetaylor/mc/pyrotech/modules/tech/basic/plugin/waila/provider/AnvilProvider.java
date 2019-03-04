@@ -25,6 +25,13 @@ import java.util.List;
 public class AnvilProvider
     extends BodyProviderAdapter {
 
+  private final AnvilRecipe.EnumTier tier;
+
+  public AnvilProvider(AnvilRecipe.EnumTier tier) {
+
+    this.tier = tier;
+  }
+
   @Nonnull
   @Override
   public List<String> getWailaBody(
@@ -51,7 +58,7 @@ public class AnvilProvider
 
         // Display input item and recipe output.
 
-        AnvilRecipe recipe = AnvilRecipe.getRecipe(input);
+        AnvilRecipe recipe = AnvilRecipe.getRecipe(input, this.tier);
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();
