@@ -21,6 +21,27 @@ public class ModuleToolConfig {
   }
 
   @Config.Comment({
+      "The harvest levels of each tool material."
+  })
+  public static Map<String, Integer> HARVEST_LEVEL = new LinkedHashMap<>();
+
+  static {
+    HARVEST_LEVEL.put("crude", 0);
+    HARVEST_LEVEL.put("bone", 1);
+    HARVEST_LEVEL.put("flint", 1);
+    HARVEST_LEVEL.put("obsidian", 2);
+  }
+
+  /**
+   * @param type the type
+   * @return the harvest level or -1 if not in the map
+   */
+  public static int getHarvestLevel(String type) {
+
+    return HARVEST_LEVEL.getOrDefault(type, -1);
+  }
+
+  @Config.Comment({
       "The durability of the shears.",
       "For reference, the durability of the vanilla shears is 238."
   })

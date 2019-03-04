@@ -6,6 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class ItemCrudePickaxe
@@ -32,8 +33,13 @@ public class ItemCrudePickaxe
   }
 
   @Override
-  public int getHarvestLevel(ItemStack stack, String toolClass, @Nullable EntityPlayer player, @Nullable IBlockState blockState) {
+  public int getHarvestLevel(ItemStack stack, @Nonnull String toolClass, @Nullable EntityPlayer player, @Nullable IBlockState blockState) {
 
-    return 0;
+    if (this.getToolClasses(stack).contains(toolClass)) {
+      int harvestLevel = ModuleToolConfig.getHarvestLevel("crude");
+      return ((harvestLevel == -1) ? super.getHarvestLevel(stack, toolClass, player, blockState) : harvestLevel);
+    }
+
+    return -1;
   }
 }
