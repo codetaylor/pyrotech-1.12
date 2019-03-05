@@ -575,8 +575,8 @@ public class PluginDropt {
               .mainHand(EnumListType.BLACKLIST, "pickaxe;3;-1")
           )
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{coalPieces}, range(4, 8, 4)).selector(weight(3)),
-              drop().items(new String[]{coal}, range(1, 1)).selector(weight(1, 1))
+              drop().items(new String[]{coalPieces}, range(4, 8, 4)).selector(weight(35)),
+              drop().items(new String[]{coal}, range(1, 1)).selector(weight(65, 1))
           })
       );
 
