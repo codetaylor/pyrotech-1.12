@@ -659,9 +659,9 @@ public class ModuleTechMachineConfig {
 
     @Config.Comment({
         "The recipe duration modifier for all inherited drying rack recipes.",
-        "Default: " + 0.5
+        "Default: " + 0.25
     })
-    public double INHERITED_DRYING_RACK_RECIPE_DURATION_MODIFIER = 0.5;
+    public double INHERITED_DRYING_RACK_RECIPE_DURATION_MODIFIER = 0.25;
 
     @Config.Comment({
         "Multiplicative modifier applied to the airflow from a block like the",
