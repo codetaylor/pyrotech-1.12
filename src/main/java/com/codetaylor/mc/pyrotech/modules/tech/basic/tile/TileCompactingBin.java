@@ -228,7 +228,7 @@ public class TileCompactingBin
     return ModuleTechBasicConfig.COMPACTING_BIN.EXHAUSTION_COST_PER_CRAFT_COMPLETE;
   }
 
-  protected int getMaxCapacity() {
+  public int getInputCapacity() {
 
     return ModuleTechBasicConfig.COMPACTING_BIN.MAX_CAPACITY;
   }
@@ -453,7 +453,7 @@ public class TileCompactingBin
         return stack; // item has no recipe, fail
       }
 
-      int max = this.tile.getMaxCapacity() * recipe.getAmount();
+      int max = this.tile.getInputCapacity() * recipe.getAmount();
       int currentTotal = this.tile.getInputStackHandler().getTotalItemCount();
 
       if (currentTotal == max) {

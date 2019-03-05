@@ -4,7 +4,6 @@ import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCompactingBin;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
@@ -31,7 +30,7 @@ public class CompactingBinInteractionInputRenderer
       return;
     }
 
-    double max = ModuleTechBasicConfig.COMPACTING_BIN.MAX_CAPACITY * currentRecipe.getAmount();
+    double max = tile.getInputCapacity() * currentRecipe.getAmount();
     double currentTotal = tile.getInputStackHandler().getTotalItemCount();
     double height = (currentTotal / max) * (13.0 / 16.0) + (1.5 / 16.0);
 
@@ -79,7 +78,7 @@ public class CompactingBinInteractionInputRenderer
     CompactingBinRecipeBase currentRecipe = tile.getCurrentRecipe();
 
     if (currentRecipe != null) {
-      double max = ModuleTechBasicConfig.COMPACTING_BIN.MAX_CAPACITY * currentRecipe.getAmount();
+      double max = tile.getInputCapacity() * currentRecipe.getAmount();
       double currentTotal = tile.getInputStackHandler().getTotalItemCount();
 
       if (currentTotal == max) {

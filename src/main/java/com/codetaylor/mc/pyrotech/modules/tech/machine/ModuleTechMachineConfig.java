@@ -358,6 +358,13 @@ public class ModuleTechMachineConfig {
     public int WORK_INTERVAL_TICKS = 40;
 
     @Config.Comment({
+        "The number of output blocks the compacting bin can hold.",
+        "Default: " + 16
+    })
+    @Config.RangeInt(min = 1)
+    public int INPUT_CAPACITY = 16;
+
+    @Config.Comment({
         "The number of items the output slot can hold.",
         "Default: " + 64
     })
