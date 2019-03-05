@@ -1,14 +1,19 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.provider;
 
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;
+import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileWorktable;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.items.ItemStackHandler;
@@ -74,6 +79,8 @@ public class WorktableProvider
         }
       }
 
+      // Add condition
+
       int remainingDurability = tile.getRemainingDurability();
       int durability = tile.getDurability();
 
@@ -94,6 +101,42 @@ public class WorktableProvider
       } else {
         String condition = I18n.translateToLocal("gui.pyrotech.waila.worktable.condition.good");
         tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.waila.worktable.condition", TextFormatting.GREEN, condition));
+      }
+
+      { // Add look-at item
+        RayTraceResult rayTraceResult = Minecraft.getMinecraft().objectMouseOver;
+
+        if (rayTraceResult == null) {
+          return tooltip;
+        }
+
+        if (rayTraceResult.typeOfHit != RayTraceResult.Type.BLOCK) {
+          return tooltip;
+        }
+
+        if (rayTraceResult.hitInfo instanceof InteractionRayTraceData.List) {
+          InteractionRayTraceData.List list = (InteractionRayTraceData.List) rayTraceResult.hitInfo;
+
+          for (InteractionRayTraceData data : list) {
+            IInteraction interaction = data.getInteraction();
+
+            if (interaction.isEnabled()
+                && interaction instanceof IInteractionItemStack) {
+              ItemStack stackInSlot = ((IInteractionItemStack) interaction).getStackInSlot();
+
+              if (!stackInSlot.isEmpty()) {
+                //tooltip.add(WailaUtil.getStackRenderString(stackInSlot));
+
+                if (stackInSlot.getCount() > 1) {
+                  tooltip.add(stackInSlot.getItem().getItemStackDisplayName(stackInSlot) + ": " + stackInSlot.getCount());
+
+                } else {
+                  tooltip.add(stackInSlot.getItem().getItemStackDisplayName(stackInSlot));
+                }
+              }
+            }
+          }
+        }
       }
     }
 

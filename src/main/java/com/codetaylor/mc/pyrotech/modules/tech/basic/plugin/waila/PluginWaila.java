@@ -11,36 +11,14 @@ public class PluginWaila {
   @SuppressWarnings("unused")
   public static void wailaCallback(IWailaRegistrar registrar) {
 
-    KilnPitProvider pitKilnDataProvider = new KilnPitProvider();
-    registrar.registerBodyProvider(pitKilnDataProvider, TileKilnPit.class);
-
-    CampfireProvider campfireProvider = new CampfireProvider();
-    registrar.registerBodyProvider(campfireProvider, TileCampfire.class);
-
-    DryingRackProvider dryingRackProvider = new DryingRackProvider();
-    registrar.registerBodyProvider(dryingRackProvider, TileDryingRackBase.class);
-
-    ChoppingBlockProvider choppingBlockProvider = new ChoppingBlockProvider();
-    registrar.registerBodyProvider(choppingBlockProvider, TileChoppingBlock.class);
-
-    {
-      AnvilProvider provider = new AnvilProvider(AnvilRecipe.EnumTier.GRANITE);
-      registrar.registerBodyProvider(provider, TileAnvilGranite.class);
-    }
-
-    {
-      AnvilProvider provider = new AnvilProvider(AnvilRecipe.EnumTier.IRONCLAD);
-      registrar.registerBodyProvider(provider, TileAnvilIronPlated.class);
-    }
-
-    WorktableProvider worktableProvider = new WorktableProvider();
-    registrar.registerBodyProvider(worktableProvider, TileWorktable.class);
-
-    CompactingBinProvider compactingBinProvider = new CompactingBinProvider();
-    registrar.registerBodyProvider(compactingBinProvider, TileCompactingBin.class);
-
-    SoakingPotProvider soakingPotProvider = new SoakingPotProvider();
-    registrar.registerBodyProvider(soakingPotProvider, TileSoakingPot.class);
+    registrar.registerBodyProvider(new KilnPitProvider(), TileKilnPit.class);
+    registrar.registerBodyProvider(new CampfireProvider(), TileCampfire.class);
+    registrar.registerBodyProvider(new DryingRackProvider(), TileDryingRackBase.class);
+    registrar.registerBodyProvider(new ChoppingBlockProvider(), TileChoppingBlock.class);
+    registrar.registerBodyProvider(new AnvilProvider(AnvilRecipe.EnumTier.GRANITE), TileAnvilGranite.class);
+    registrar.registerBodyProvider(new AnvilProvider(AnvilRecipe.EnumTier.IRONCLAD), TileAnvilIronPlated.class);
+    registrar.registerBodyProvider(new WorktableProvider(), TileWorktable.class);
+    registrar.registerBodyProvider(new CompactingBinProvider(), TileCompactingBin.class);
+    registrar.registerBodyProvider(new SoakingPotProvider(), TileSoakingPot.class);
   }
-
 }
