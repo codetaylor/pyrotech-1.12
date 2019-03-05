@@ -1,12 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory;
 
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
-import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.modules.core.init.PacketInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockActivePile;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockPitAsh;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarCollector;
@@ -107,12 +105,6 @@ public class ModuleTechRefractory
     );
 
     MinecraftForge.EVENT_BUS.register(new ItemTooltipEventHandler());
-  }
-
-  @Override
-  public void onNetworkRegister(IPacketRegistry registry) {
-
-    PacketInitializer.register(registry);
   }
 
   @Override
