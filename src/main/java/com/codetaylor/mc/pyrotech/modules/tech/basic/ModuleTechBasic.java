@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic;
 
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
+import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
@@ -8,6 +9,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.ItemInitializer;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.init.PacketInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.RegistryInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
@@ -93,6 +95,12 @@ public class ModuleTechBasic
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.PluginWaila.wailaCallback"
     );
+  }
+
+  @Override
+  public void onNetworkRegister(IPacketRegistry registry) {
+
+    PacketInitializer.register(registry);
   }
 
   @Override

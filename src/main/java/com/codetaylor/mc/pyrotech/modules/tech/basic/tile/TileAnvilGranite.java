@@ -74,7 +74,7 @@ public class TileAnvilGranite
   }
 
   @Override
-  protected AnvilRecipe.EnumTier getRecipeTier() {
+  public AnvilRecipe.EnumTier getRecipeTier() {
 
     return AnvilRecipe.EnumTier.GRANITE;
   }

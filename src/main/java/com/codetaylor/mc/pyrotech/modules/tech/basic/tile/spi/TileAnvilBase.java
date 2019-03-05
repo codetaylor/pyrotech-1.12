@@ -17,15 +17,18 @@ import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockAnvilBase;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.network.SCPacketParticleAnvilHit;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
@@ -157,7 +160,7 @@ public abstract class TileAnvilBase
 
   protected abstract int getMinimumHungerToUse();
 
-  protected abstract AnvilRecipe.EnumTier getRecipeTier();
+  public abstract AnvilRecipe.EnumTier getRecipeTier();
 
   @Nonnull
   protected abstract BlockAnvilBase getBlock();
@@ -469,19 +472,8 @@ public abstract class TileAnvilBase
           }
         }
 
-      } else {
-
         // Client particles
-
-        IBlockState blockState = tile.getBlock().getDefaultState();
-
-        for (int i = 0; i < 8; ++i) {
-          world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, tile.getPos().getX() + hitX, tile.getPos().getY() + hitY, tile.getPos().getZ() + hitZ, 0.0D, 0.0D, 0.0D, Block.getStateId(blockState));
-        }
-
-        if (isExtendedRecipe) {
-          ((AnvilRecipe.IExtendedRecipe) recipe).onAnvilHitClient(world, tile, hitX, hitY, hitZ);
-        }
+        ModuleTechBasic.PACKET_SERVICE.sendToAllAround(new SCPacketParticleAnvilHit(tile.pos, hitX, hitY, hitZ), tile);
       }
 
       return true;
