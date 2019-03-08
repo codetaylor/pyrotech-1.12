@@ -1,0 +1,16 @@
+{
+  "name": "Plant Fibers",
+  "icon": "pyrotech:material:12",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:plant_fibers",
+      "recipe2": "pyrotech:plant_fibers_from_tallgrass"
+    }
+  ]
+}

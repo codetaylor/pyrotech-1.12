@@ -1,0 +1,17 @@
+{
+  "name": "Tools - Bone",
+  "icon": "pyrotech:bone_pickaxe",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/bone_pickaxe",
+      "recipe2": "pyrotech:tool/bone_axe"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/bone_hoe",
+      "recipe2": "pyrotech:tool/bone_shovel"
+    }
+  ]
+}

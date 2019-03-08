@@ -1,0 +1,11 @@
+{
+  "name": "Fishing Rod, Crude",
+  "icon": "pyrotech:crude_fishing_rod",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    }
+  ]
+}

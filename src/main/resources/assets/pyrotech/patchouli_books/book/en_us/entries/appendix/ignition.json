@@ -1,0 +1,19 @@
+{
+  "name": "Appendix A: Ignition",
+  "icon": "minecraft:book",
+  "category": "appendix",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    },
+    {
+      "type": "relations",
+      "title": "",
+      "entries": [
+        "survive/flint_and_tinder",
+        "adapt/bow_drill"
+      ]
+    }
+  ]
+}

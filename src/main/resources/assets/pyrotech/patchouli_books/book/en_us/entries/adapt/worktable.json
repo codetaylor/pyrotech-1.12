@@ -1,0 +1,11 @@
+{
+  "name": "Worktable",
+  "icon": "pyrotech:worktable",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    }
+  ]
+}

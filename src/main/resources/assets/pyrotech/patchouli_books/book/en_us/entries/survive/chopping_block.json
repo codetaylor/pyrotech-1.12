@@ -1,0 +1,11 @@
+{
+  "name": "Chopping Block",
+  "icon": "pyrotech:chopping_block",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    }
+  ]
+}

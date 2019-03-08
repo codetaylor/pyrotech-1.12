@@ -1,0 +1,75 @@
+{
+  "name": "Campfire",
+  "icon": "pyrotech:campfire",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "text",
+      "text": "  A $(item)$(bold)Campfire$() is an indispensable component to wilderness survival and, as such, the knowledge required to construct a $(item)$(bold)Campfire$() is a mandatory requirement in all VFD wilderness survival toolkits."
+    },
+    {
+      "type": "text",
+      "text": "  When huddled together in the dead of night $(italic)- a phrase here which means a time in the middle part of the night, when it is darkest and coldest -$() a $(item)$(bold)Campfire$() can be used to heighten anticipation and dread while recreationally engaging in scintillating and predictable tales of horror and misfortune. However, for a person in your predicament, heightening your anticipation and dread for recreational purposes is probably not a priority."
+    },
+    {
+      "type": "text",
+      "text": "  I imagine, for a person in your predicament, a person engaged in the horror and misfortune of wilderness survival in a very non-recreational, non-scintillating, and unpredictable way, $(bold)$(thing)a $(item)Campfire$() $(bold)$(thing)is most useful for cooking food and creating light$() - the kind of light that acts as a comfort against the anticipation and dread that is inevitably heightened in the middle part of the night, when it is darkest and coldest."
+    },
+    {
+      "type": "text",
+      "text": "  This guide, also being an indispensable component to wilderness survival and a mandatory requirement in all VFD wilderness survival toolkits, naturally contains the necessary knowledge required to construct and make use of just such a $(item)$(bold)Campfire$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:campfire",
+      "link_recipe": true,
+      "text": "  To construct a $(item)$(bold)Campfire$(), follow these four easy steps:$(li)Craft $(l:survive/tinder)Tinder$()$(li)Place $(l:survive/tinder)Tinder$()$(li)Add logs$(li)Ignite"
+    },
+    {
+      "type": "spotlight",
+      "title": "Craft Tinder",
+      "item": "pyrotech:tinder",
+      "text": "  First, you will need some $(l:survive/tinder)Tinder$() - $(italic)a word here which means a dry, flammable material, such as sticks or plant fibers, that is often used to aid in lighting a fire$() - to aid in lighting your fire."
+    },
+    {
+      "type": "image",
+      "title": "Place Tinder",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/images/campfire_00.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "Place Logs",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/images/campfire_01.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "Ignite",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/images/campfire_02.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "  Finally, use any $(l:appendix/ignition)VFD approved ignition aid$() to ignite.$(p)$(italic)~ Author's Notes:$()$(p)  I have used a $(item)$(bold)Campfire$() very similar to the one illustrated within these pages to cook food and it is because of this experience, or rather your inexperience, that I would like to tell you that the experience of cooking on an open flame is a joyous one, but I cannot."
+    },
+    {
+      "type": "text",
+      "text": "  What I can tell you, from the experience of many hungry nights, is that $(bold)$(thing)food left cooking unattended will burn$().$(p)  I can also tell you that $(bold)$(thing)a shovel is required to remove ash$() and that $(bold)$(thing)a $(item)$(bold)Campfire$() $(bold)$(thing)can be extinguished by rain or a bucket of water$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/tinder",
+        "appendix/ignition",
+        "survive/food_roasted"
+      ]
+    }
+  ]
+}

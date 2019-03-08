@@ -1,0 +1,17 @@
+{
+  "name": "Tools, Crude",
+  "icon": "pyrotech:crude_pickaxe",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/crude_pickaxe",
+      "recipe2": "pyrotech:tool/crude_axe"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/crude_axe",
+      "recipe2": "pyrotech:tool/crude_shovel"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Fossil",
+  "icon": "pyrotech:fossil_ore",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    }
+  ]
+}

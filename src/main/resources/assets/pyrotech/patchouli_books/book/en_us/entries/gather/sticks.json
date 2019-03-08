@@ -1,0 +1,16 @@
+{
+  "name": "Sticks",
+  "icon": "minecraft:stick",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "text",
+      "text": "  $(item)$(bold)Sticks$() can be found nestled deep in the leaves of a live tree or crafted from a sapling, which, I believe if given the choice, would rather be nestled deep in the leaves of its guardian, consumed by love for the sum of its parts and tucked safely away from the impending misfortune of being consumed by you for just some of its parts."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:stick",
+      "text": "  Find sticks by breaking leaves or craft them yourself by peeling the smaller, inadequate appendages from a newborn tree."
+    }
+  ]
+}

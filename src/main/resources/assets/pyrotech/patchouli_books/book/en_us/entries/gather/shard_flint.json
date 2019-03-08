@@ -1,0 +1,11 @@
+{
+  "name": "Shard - Flint",
+  "icon": "pyrotech:material:10",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    }
+  ]
+}

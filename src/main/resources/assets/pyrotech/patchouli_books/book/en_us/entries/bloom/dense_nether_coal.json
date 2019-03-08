@@ -1,0 +1,11 @@
+{
+  "name": "Dense Nether Coal Ore",
+  "icon": "pyrotech:dense_nether_coal_ore",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    }
+  ]
+}

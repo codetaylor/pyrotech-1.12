@@ -1,0 +1,11 @@
+{
+  "name": "Stone Tar Drain",
+  "icon": "pyrotech:tar_drain:0",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    }
+  ]
+}

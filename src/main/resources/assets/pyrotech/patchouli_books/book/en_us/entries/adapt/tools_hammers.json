@@ -1,0 +1,11 @@
+{
+  "name": "Tools - Hammers",
+  "icon": "pyrotech:bone_hammer",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    }
+  ]
+}

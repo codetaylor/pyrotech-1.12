@@ -1,0 +1,11 @@
+{
+  "name": "Refractory Glass",
+  "icon": "pyrotech:refractory_glass",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    }
+  ]
+}

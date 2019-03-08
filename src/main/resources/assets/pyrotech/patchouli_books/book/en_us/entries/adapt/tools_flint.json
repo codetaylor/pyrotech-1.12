@@ -1,0 +1,16 @@
+{
+  "name": "Tools - Flint",
+  "icon": "pyrotech:flint_pickaxe",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/flint_pickaxe",
+      "recipe2": "pyrotech:tool/flint_axe"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/flint_hoe",
+      "recipe2": "pyrotech:tool/flint_shovel"
+    }  ]
+}
