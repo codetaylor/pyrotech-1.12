@@ -1,11 +1,16 @@
 {
-  "name": "Fossil",
+  "name": "Fossil Ore",
   "icon": "pyrotech:fossil_ore",
   "category": "gather",
   "pages": [
     {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "$(#f00)TODO: What is fossil ore?"
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:fossil_ore",
+      "text": "$(#f00)TODO: Where do I find fossil ore?"
     }
   ]
 }

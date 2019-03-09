@@ -1,0 +1,27 @@
+{
+  "name": "Stone, Cobbled",
+  "icon": "minecraft:cobblestone",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "text",
+      "text": "This is a test entry, but it should show up!"
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/cobbled_stone_00.png"
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobbled_andesite",
+      "recipe2": "pyrotech:cobbled_diorite"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobbled_granite",
+      "recipe2": "pyrotech:cobbled_limestone"
+    }
+  ]
+}

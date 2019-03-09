@@ -5,12 +5,34 @@
   "pages": [
     {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "$(#f00)TODO: What are plant fibers?"
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:material:12",
+      "text": "$(#f00)TODO: Where do I get plant fibers?"
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:plant_fibers",
       "recipe2": "pyrotech:plant_fibers_from_tallgrass"
+    },
+    {
+      "type": "text",
+      "text": "$(#f00)TODO: Can I craft plant fibers?"
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:material:13",
+      "text": "$(#f00)TODO: Can I find dried fibers?"
+    },
+    {
+      "type": "text",
+      "text": "$(#f00)TODO: Can I craft dried fibers?"
+    },
+    {
+      "type": "text",
+      "text": "$(#f00)TODO: Related"
     }
   ]
 }

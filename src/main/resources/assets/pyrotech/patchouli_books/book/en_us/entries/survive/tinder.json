@@ -13,7 +13,6 @@
       "entries": [
         "gather/sticks",
         "gather/plant_fibers",
-        "gather/plant_fibers_dried",
         "survive/campfire"
       ]
     }

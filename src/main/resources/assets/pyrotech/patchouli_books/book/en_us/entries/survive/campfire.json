@@ -36,7 +36,7 @@
       "title": "Place Tinder",
       "border": true,
       "images": [
-        "pyrotech:textures/gui/book/images/campfire_00.png"
+        "pyrotech:textures/gui/book/photo/campfire_00.png"
       ]
     },
     {
@@ -44,7 +44,7 @@
       "title": "Place Logs",
       "border": true,
       "images": [
-        "pyrotech:textures/gui/book/images/campfire_01.png"
+        "pyrotech:textures/gui/book/photo/campfire_01.png"
       ]
     },
     {
@@ -52,12 +52,12 @@
       "title": "Ignite",
       "border": true,
       "images": [
-        "pyrotech:textures/gui/book/images/campfire_02.png"
+        "pyrotech:textures/gui/book/photo/campfire_02.png"
       ]
     },
     {
       "type": "text",
-      "text": "  Finally, use any $(l:appendix/ignition)VFD approved ignition aid$() to ignite.$(p)$(italic)~ Author's Notes:$()$(p)  I have used a $(item)$(bold)Campfire$() very similar to the one illustrated within these pages to cook food and it is because of this experience, or rather your inexperience, that I would like to tell you that the experience of cooking on an open flame is a joyous one, but I cannot."
+      "text": "  Finally, use any $(l:appendix/ignition)VFD approved ignition aid$() to ignite.$(p)$(italic)~ Author's Notes:$()$(p)  I have used a $(item)$(bold)Campfire$() very similar to the one illustrated here and it is because of this experience, or rather your inexperience, that I would like to tell you that the experience of cooking on an open flame is a joyous one, but I cannot."
     },
     {
       "type": "text",

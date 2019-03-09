@@ -1,0 +1,27 @@
+{
+  "include": [
+    {
+      "template": "include/anvil_recipe",
+      "as": "recipe1",
+      "using": {
+        "recipe": "#recipe"
+      }
+    },
+    {
+      "template": "include/anvil_recipe",
+      "as": "recipe2",
+      "using": {
+        "recipe": "#recipe2"
+      },
+      "y": 45
+    }
+  ],
+  "components": [
+    {
+      "type": "text",
+      "guard": "#text->exists",
+      "text": "#text",
+      "y": 90
+    }
+  ]
+}

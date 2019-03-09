@@ -1,0 +1,38 @@
+{
+  "name": "Rocks",
+  "icon": "pyrotech:rock:0",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/rock_00.png"
+      ]
+    },
+    {
+      "type": "anvil_recipe_rt",
+      "recipe": "pyrotech:cobblestone_to_rocks",
+      "text": "$(item)$(bold)Stone Rocks$() can be found on the ground in most areas. They can also be crafted on an $(l:adapt/anvil_granite)Anvil$() and found when mining with low tier tools.$(p)$(#f00)TODO: Flavor"
+    },
+    {
+      "type": "anvil_recipe_rrr",
+      "recipe": "pyrotech:cobbled_andesite_to_rocks",
+      "recipe2": "pyrotech:cobbled_diorite_to_rocks",
+      "recipe3": "pyrotech:cobbled_granite_to_rocks"
+    },
+    {
+      "type": "text",
+      "text": "$(#f00)TODO: Talk about other rocks, decoration, throwing"
+    },
+    {
+      "type": "anvil_recipe_rt",
+      "recipe": "pyrotech:cobbled_limestone_to_rocks",
+      "text": "$(item)$(bold)Limestone Rocks$() can be crafted on an $(l:adapt/anvil_granite)Anvil$() and found when mining $(l:gather/limestone)Limestone$() with low tier tools.$(p)$(#f00)TODO: Flavor"
+    },
+    {
+      "type": "text",
+      "text": "$(#f00)TODO: Related"
+    }
+  ]
+}

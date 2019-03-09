@@ -4,6 +4,10 @@
   "category": "survive",
   "pages": [
     {
+      "type": "text",
+      "text": "$(#f00)TODO: How do I get tools?"
+    },
+    {
       "type": "crafting",
       "recipe": "pyrotech:tool/crude_pickaxe",
       "recipe2": "pyrotech:tool/crude_axe"
@@ -12,6 +16,14 @@
       "type": "crafting",
       "recipe": "pyrotech:tool/crude_axe",
       "recipe2": "pyrotech:tool/crude_shovel"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/rocks",
+        "gather/sticks",
+        "gather/plant_fibers"
+      ]
     }
   ]
 }

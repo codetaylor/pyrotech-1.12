@@ -5,7 +5,12 @@
   "pages": [
     {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "$(#f00)TODO: Inform about torches burning up and going out in the rain."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/torch_fiber",
+      "text": "$(#f00)TODO: Can I make a fiber torch right away?"
     }
   ]
 }

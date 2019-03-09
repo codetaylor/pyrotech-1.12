@@ -5,7 +5,23 @@
   "pages": [
     {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "$(#f00)TODO: Explain steps"
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_00.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "$(#f00)TODO: Explain steps"
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_01.png"
+      ]
     }
   ]
 }

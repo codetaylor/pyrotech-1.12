@@ -1,6 +1,6 @@
 {
-  "name": "Rocks",
-  "icon": "pyrotech:rock:0",
+  "name": "Clay, Lump of",
+  "icon": "pyrotech:material:17",
   "category": "gather",
   "pages": [
     {

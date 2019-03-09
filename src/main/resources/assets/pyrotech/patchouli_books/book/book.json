@@ -3,6 +3,7 @@
   "landing_text": "Welcome to the Pyrotechnic Esoterica.",
   "version": 1,
   "show_progress": false,
-  "book_texture": "pyrotech:textures/gui/patchouli_book.png",
-  "filler_texture": "pyrotech:textures/gui/patchouli_page_filler.png"
+  "book_texture": "pyrotech:textures/gui/book/book_texture.png",
+  "filler_texture": "pyrotech:textures/gui/book/filler_texture.png",
+  "crafting_texture": "pyrotech:textures/gui/book/crafting_texture.png"
 }

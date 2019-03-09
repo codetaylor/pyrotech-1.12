@@ -1,11 +1,17 @@
 {
-  "name": "Shard - Bone",
+  "name": "Shard, Bone",
   "icon": "pyrotech:material:11",
   "category": "gather",
   "pages": [
     {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "  $(item)$(bold)Bone Shards$() can be found by mining $(l:gather/fossil)Fossil Ore$(/l) or crafted from existing bone using an $(l:adapt/anvil_granite)Anvil$(/l).$(p)$(#f00)TODO: Flavor"
+    },
+    {
+      "type": "anvil_recipe_rrt",
+      "recipe": "pyrotech:bone_shard_from_bone",
+      "recipe2": "pyrotech:bone_shard_from_block",
+      "text": "$(#f00)TODO: Can I craft bone shards?"
     }
   ]
 }
