@@ -33,7 +33,7 @@
     },
     {
       "type": "text",
-      "text": "Second, use any $(l:appendix/ignition)verified firestarting device$() and ignite the exposed ingredient.$(p)Since the $(thing)Pit Burn$() must ultimately be covered with solid, non-flammable material:$(p)$(info) It is advised that before lighting the burn, you completely cover all exposed ingredients, with the exception of one ingredient, which you will use to light the burn."
+      "text": "Second, use any $(l:appendix/ignition)verified firestarting device$() and ignite the exposed ingredient.$(p)Since the $(thing)Pit Burn$() must ultimately be covered with solid, non-flammable material:$(p)$(info) It is advised that before you light the burn, you completely cover all exposed ingredients, with the exception of one ingredient, which you will use to light the burn."
     },
     {
       "type": "image",
