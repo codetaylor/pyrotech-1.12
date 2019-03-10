@@ -5,7 +5,12 @@
   "pages": [
     {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "  $(item)Flint Shards$() can be found by digging gravel with a shovel or crafted from existing flint using an $(l:adapt/anvil_granite)Anvil$(/l).$(p)$(todo)Flavor"
+    },
+    {
+      "type": "anvil_recipe_rt",
+      "recipe": "pyrotech:flint_shard_from_flint",
+      "text": "$(todo)Can I craft flint shards?"
     }
   ]
 }

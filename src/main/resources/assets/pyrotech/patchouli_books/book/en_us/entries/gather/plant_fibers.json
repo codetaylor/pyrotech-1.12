@@ -5,12 +5,12 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(#f00)TODO: What are plant fibers?"
+      "text": "$(todo)What are plant fibers?"
     },
     {
       "type": "spotlight",
       "item": "pyrotech:material:12",
-      "text": "$(#f00)TODO: Where do I get plant fibers?"
+      "text": "Breaking tall grass is probably the most common way to find $(item)Plant Fibers$()."
     },
     {
       "type": "crafting",
@@ -19,20 +19,20 @@
     },
     {
       "type": "text",
-      "text": "$(#f00)TODO: Can I craft plant fibers?"
+      "text": "$(todo)Can I craft plant fibers?"
     },
     {
       "type": "spotlight",
       "item": "pyrotech:material:13",
-      "text": "$(#f00)TODO: Can I find dried fibers?"
+      "text": "$(todo)Can I find dried fibers?"
     },
     {
       "type": "text",
-      "text": "$(#f00)TODO: Can I craft dried fibers?"
+      "text": "$(todo)Can I craft dried fibers?"
     },
     {
       "type": "text",
-      "text": "$(#f00)TODO: Related"
+      "text": "$(todo)Related"
     }
   ]
 }

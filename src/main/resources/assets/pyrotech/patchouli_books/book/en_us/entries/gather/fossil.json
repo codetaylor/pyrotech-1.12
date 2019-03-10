@@ -4,13 +4,15 @@
   "category": "gather",
   "pages": [
     {
-      "type": "text",
-      "text": "$(#f00)TODO: What is fossil ore?"
-    },
-    {
       "type": "spotlight",
       "item": "pyrotech:fossil_ore",
-      "text": "$(#f00)TODO: Where do I find fossil ore?"
+      "text": "$(todo)Where do I find fossil ore?"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/shard_bone"
+      ]
     }
   ]
 }

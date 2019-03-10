@@ -1,0 +1,23 @@
+{
+  "name": "Test",
+  "icon": "minecraft:paper",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "test",
+      "text": "$(#490)LEFT SIDE TEXT"
+    },
+    {
+      "type": "text",
+      "text": "$(#490)RIGHT SIDE TEXT"
+    },
+    {
+      "type": "text",
+      "text": "$(#490)RIGHT SIDE TEXT"
+    },
+    {
+      "type": "test",
+      "text": "$(#490)LEFT SIDE TEXT"
+    }
+  ]
+}

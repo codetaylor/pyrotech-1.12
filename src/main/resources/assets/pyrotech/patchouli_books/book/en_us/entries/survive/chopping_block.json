@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/chopping_block",
-      "text": "$(#f00)TODO: How to use"
+      "text": "To use a $(item)Chopping Block$(), place your ingredients on top, then use an axe on the block.$(p)$(info) Chopping may cause hunger. If chopping is ineffective, you might be too hungry."
     },
     {
       "type": "image",

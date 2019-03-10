@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/tinder",
-      "text": "  $(bold)$(item)Tinder$() is a dry, flammable material, such as sticks or plant fibers, and is often used to aid in lighting a $(l:survive/campfire)Campfire$()."
+      "text": "$(info) $(item)Tinder$() is a dry, flammable material, such as $(item)Sticks$() or $(item)Plant Fibers$(), and is often used to aid in lighting a $(item)Campfire$()."
     },
     {
       "type": "relations",

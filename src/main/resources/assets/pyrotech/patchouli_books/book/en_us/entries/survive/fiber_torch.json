@@ -4,13 +4,9 @@
   "category": "survive",
   "pages": [
     {
-      "type": "text",
-      "text": "$(#f00)TODO: Inform about torches burning up and going out in the rain."
-    },
-    {
       "type": "crafting",
       "recipe": "pyrotech:ignition/torch_fiber",
-      "text": "$(#f00)TODO: Can I make a fiber torch right away?"
+      "text": "$(info) A $(item)Fiber Torch$() can be crafted from a $(item)Stick$() and $(item)Dried Plant Fibers$().$(p)$(info) A $(item)Fiber Torch$() may go out in the rain and may burn up over time."
     }
   ]
 }
