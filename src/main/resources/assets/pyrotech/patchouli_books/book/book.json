@@ -3,6 +3,7 @@
   "landing_text": "Welcome to the Pyrotechnic Esoterica.$(p)This guide to surviving in the wilderness by starting fires, rather than putting them out, is an indispensable component to wilderness survival and a cornerstone in each new volunteer's wilderness survival library.",
   "version": 1,
   "show_progress": false,
+  "model": "pyrotech:book",
   "book_texture": "pyrotech:textures/gui/book/book_texture.png",
   "filler_texture": "pyrotech:textures/gui/book/filler_texture.png",
   "crafting_texture": "pyrotech:textures/gui/book/crafting_texture.png",
