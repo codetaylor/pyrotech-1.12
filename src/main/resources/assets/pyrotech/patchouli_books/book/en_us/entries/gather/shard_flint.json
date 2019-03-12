@@ -4,13 +4,16 @@
   "category": "gather",
   "pages": [
     {
-      "type": "text",
-      "text": "  $(item)Flint Shards$() can be found by digging gravel with a shovel or crafted from existing flint using an $(l:adapt/anvil_granite)Anvil$(/l).$(p)$(todo)Flavor"
-    },
-    {
       "type": "anvil_recipe_rt",
       "recipe": "pyrotech:flint_shard_from_flint",
-      "text": "$(todo)Can I craft flint shards?"
+      "text": "$(info) $(item)Flint Shards$() can be broken from larger pieces of $(item)Flint$() on an $(item)Anvil$().$(p)$(info) $(item)Flint Shards$() can be found by using a shovel to excavate gravel."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad"
+      ]
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
   "name": "Pit Burning",
   "icon": "minecraft:dirt",
-  "category": "adapt",
+  "category": "innovate",
   "pages": [
     {
       "type": "text",
-      "text": "$(todo)What can I get from pit burning?"
+      "text": "People often bury something to keep it from being found, sometimes because they are ashamed of what they are hiding. Sometimes, however, as is the case here: people bury something to insulate it against excessive heat loss during carbonization.$(p)$(info) A $(thing)Pit Burn$() with $(item)Log Piles$() can produce a large quantity of $(item)Charcoal$()."
     },
     {
       "type": "text",
@@ -82,10 +82,8 @@
       ]
     },
     {
-      "type": "relations",
-      "entries": [
-        "adapt/log_pile"
-      ]
+      "type": "spotlight",
+      "item": "pyrotech:log_pile"
     }
   ]
 }

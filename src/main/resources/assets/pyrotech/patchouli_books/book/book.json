@@ -1,6 +1,6 @@
 {
   "name": "Pyrotechnic Esoterica",
-  "landing_text": "Welcome to the Pyrotechnic Esoterica.$(p)This guide to surviving in the wilderness by starting fires, rather than putting them out, is an indispensable component to wilderness survival and a cornerstone in each new volunteer's wilderness survival library.",
+  "landing_text": "Welcome to the Pyrotechnic Esoterica, the VFD sanctioned guide to surviving in the wilderness by starting fires, rather than putting them out. These pages will serve to instruct you on how to survive, gather, adapt, innovate, accelerate, and bloom in your new role as a wilderness survivalist.",
   "version": 1,
   "show_progress": false,
   "model": "pyrotech:book",

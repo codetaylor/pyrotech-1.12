@@ -7,7 +7,7 @@
       "type": "spotlight",
       "link_recipe": true,
       "item": "pyrotech:material:17",
-      "text": "$(item)Lumps of Clay$() can be harvested from clay found in the world or crafted from a larger $(item)Clay Ball$()."
+      "text": "$(info) $(item)Lumps of Clay$() can be harvested from clay found in the world or crafted from a larger $(item)Clay Ball$()."
     },
     {
       "type": "crafting",

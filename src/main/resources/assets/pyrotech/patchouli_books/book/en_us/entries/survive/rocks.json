@@ -23,16 +23,23 @@
     },
     {
       "type": "text",
-      "text": "If you ever find yourself under attack - $(italic)a phrase here which means subject to aggressive, violent, or harmful action$() - it would be wise to remember this:$(p)$(info) Throwing a $(item)Rock$() is also an aggressive, violent, or harmful action.$(p)$(todo)Talk about other rocks, decoration"
+      "text": "If you ever find yourself under attack - $(italic)a phrase here which means subject to aggressive, violent, or harmful action$() - it would be wise to remember this:$(p)$(info) The act of throwing a $(item)Rock$() can also be an aggressive, violent, or harmful action.$(p)$(info) Placing a $(item)Rock$() to decorate a path, however, is not an aggressive, violent, or harmful action."
     },
     {
       "type": "anvil_recipe_rt",
+      "anchor": "limestone",
       "recipe": "pyrotech:cobbled_limestone_to_rocks",
       "text": "$(info) $(item)Limestone Rocks$() can be crafted on an $(item)Anvil$() and found when mining $(item)Limestone$() with low tier tools.$(p)$(todo)Filler"
     },
     {
-      "type": "text",
-      "text": "$(todo)Related"
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "adapt/tools_hammers",
+        "bloom/anvil_ironclad",
+        "gather/stone_cobbled",
+        "gather/limestone"
+      ]
     }
   ]
 }

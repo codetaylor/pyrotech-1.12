@@ -4,12 +4,10 @@
   "category": "gather",
   "pages": [
     {
-      "type": "text",
-      "text": "This is a test entry, but it should show up!"
-    },
-    {
       "type": "spotlight",
-      "item": "pyrotech:dense_coal_ore"
+      "item": "pyrotech:dense_coal_ore",
+      "link_recipe": true,
+      "text": "$(info) $(item)Dense Coal Ore$() can usually be found deep underground, most often within $(item)Coal Ore$() deposits.$(p)$(todo) Filler$()"
     }
   ]
 }

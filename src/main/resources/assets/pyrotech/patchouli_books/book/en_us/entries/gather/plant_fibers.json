@@ -4,31 +4,23 @@
   "category": "gather",
   "pages": [
     {
-      "type": "text",
-      "text": "$(todo)What are plant fibers?"
-    },
-    {
-      "type": "spotlight",
-      "item": "pyrotech:material:12",
-      "text": "Breaking tall grass is probably the most common way to find $(item)Plant Fibers$()."
-    },
-    {
       "type": "crafting",
       "recipe": "pyrotech:plant_fibers",
       "recipe2": "pyrotech:plant_fibers_from_tallgrass"
     },
     {
-      "type": "text",
-      "text": "$(todo)Can I craft plant fibers?"
+      "type": "spotlight",
+      "item": "pyrotech:material:12",
+      "text": "$(info) $(item)Plant Fibers$() can be found by breaking tall grass.$(p)$(info) $(item)Plant Fibers$() can also be crafted."
     },
     {
       "type": "spotlight",
       "item": "pyrotech:material:13",
-      "text": "$(todo)Can I find dried fibers?"
+      "text": "$(info) $(item)Dried Plant Fibers$() Can sometimes be found by breaking tall grass."
     },
     {
       "type": "text",
-      "text": "$(todo)Can I craft dried fibers?"
+      "text": "$(todo)Drying Rack recipe"
     },
     {
       "type": "text",

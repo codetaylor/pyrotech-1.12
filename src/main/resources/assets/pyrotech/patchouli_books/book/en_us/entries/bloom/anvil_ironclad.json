@@ -1,0 +1,11 @@
+{
+  "name": "Anvil, Ironclad",
+  "icon": "pyrotech:anvil_iron_plated",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(todo)"
+    }
+  ]
+}

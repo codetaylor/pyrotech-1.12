@@ -1,7 +1,7 @@
 {
   "name": "Test",
   "icon": "minecraft:paper",
-  "category": "survive",
+  "category": "test",
   "pages": [
     {
       "type": "test",

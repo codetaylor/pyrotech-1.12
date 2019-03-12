@@ -5,13 +5,21 @@
   "pages": [
     {
       "type": "text",
-      "text": "  $(item)Bone Shards$() can be found by mining $(l:gather/fossil)Fossil Ore$(/l) or crafted from existing bone using an $(l:adapt/anvil_granite)Anvil$(/l).$(p)$(todo)Flavor"
+      "text": "$(info) $(item)Bone Shards$() can be found by mining $(item)Fossil Ore.$(p)$(todo)Filler$()"
     },
     {
       "type": "anvil_recipe_rrt",
       "recipe": "pyrotech:bone_shard_from_bone",
       "recipe2": "pyrotech:bone_shard_from_block",
-      "text": "$(todo)Can I craft bone shards?"
+      "text": "$(info) $(item)Bone Shards$() can be broken from larger pieces of bone on an $(item)Anvil$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/fossil",
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad"
+      ]
     }
   ]
 }

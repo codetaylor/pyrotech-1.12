@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:fossil_ore",
-      "text": "$(todo)Where do I find fossil ore?"
+      "text": "$(info) $(item)Fossil Ore$() can be found almost everywhere underground.$(p)$(todo) Filler$()"
     },
     {
       "type": "relations",
