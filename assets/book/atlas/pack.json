@@ -1,0 +1,18 @@
+{
+  "atlas_definitions": {
+    "atlas": {
+      "width": 256,
+      "height": 256
+    }
+  },
+  "paths": {
+    "output": "src/main/resources/assets/pyrotech/textures/gui/book/atlas",
+    "resource_path": "textures/gui/book/atlas",
+    "input": [
+      {
+        "path": "assets/book/atlas",
+        "atlas": "atlas"
+      }
+    ]
+  }
+}

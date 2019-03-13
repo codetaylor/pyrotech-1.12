@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "People often bury something to keep it from being found, sometimes because they are ashamed of what they are hiding. Sometimes, however, as is the case here: people bury something to insulate it against excessive heat loss during carbonization.$(p)$(info) A $(thing)Pit Burn$() with $(item)Log Piles$() can produce a large quantity of $(item)Charcoal$()."
+      "text": "A person might bury something to keep it from being found, sometimes because they are ashamed of what they are hiding. However, as is the case here, you might bury something to insulate it against excessive heat loss during a process called carbonization.$(p)$(info) A $(thing)Pit Burn$() with $(item)Log Piles$() can produce a large quantity of $(item)Charcoal$()."
     },
     {
       "type": "text",

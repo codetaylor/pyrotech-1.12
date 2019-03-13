@@ -18,9 +18,11 @@ import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaCraftingRecipe
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesRemove;
 import com.codetaylor.mc.pyrotech.modules.core.item.*;
+import com.codetaylor.mc.pyrotech.packer.PackAPI;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -72,6 +74,16 @@ public class ModuleCore
     if (ModuleCoreConfig.CLIENT.SHOW_BURN_TIME_IN_TOOLTIPS) {
       MinecraftForge.EVENT_BUS.register(new TooltipEventHandler.BurnTime());
     }
+  }
+
+  @Override
+  public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onClientPreInitializationEvent(event);
+
+    String resourcePath = "textures/gui/book/atlas/packed.json";
+    ResourceLocation resourceLocation = new ResourceLocation(ModPyrotech.MOD_ID, resourcePath);
+    PackAPI.register(resourceLocation);
   }
 
   @Override

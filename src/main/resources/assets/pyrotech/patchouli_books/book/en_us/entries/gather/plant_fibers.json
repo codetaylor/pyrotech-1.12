@@ -16,10 +16,11 @@
     {
       "type": "spotlight",
       "item": "pyrotech:material:13",
-      "text": "$(info) $(item)Dried Plant Fibers$() Can sometimes be found by breaking tall grass."
+      "text": "$(info) $(item)Dried Plant Fibers$() can sometimes be found by breaking tall grass."
     },
     {
-      "type": "text",
+      "type": "drying_recipe_rt",
+      "recipe": "pyrotech:crude_drying_rack/plant_fibers_dried",
       "text": "$(todo)Drying Rack recipe"
     },
     {

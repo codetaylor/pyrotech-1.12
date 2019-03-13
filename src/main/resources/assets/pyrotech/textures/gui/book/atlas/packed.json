@@ -1,0 +1,45 @@
+{
+  "atlas": {
+    "textures/gui/book/atlas/atlas_0.png": {
+      "width": 256,
+      "height": 256
+    }
+  },
+  "image": {
+    "crafting/anvil_granite": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 50,
+      "v": 0,
+      "width": 56,
+      "height": 40
+    },
+    "crafting/anvil_ironclad": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 106,
+      "v": 0,
+      "width": 56,
+      "height": 40
+    },
+    "crafting/drying_rack": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 0,
+      "v": 0,
+      "width": 50,
+      "height": 53
+    },
+    "crafting/icons#hammer": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 6,
+      "v": 53,
+      "width": 6,
+      "height": 6
+    },
+    "crafting/icons#pickaxe": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 0,
+      "v": 53,
+      "width": 6,
+      "height": 6
+    }
+  }
+}

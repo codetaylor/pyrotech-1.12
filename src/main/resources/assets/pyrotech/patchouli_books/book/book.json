@@ -11,6 +11,6 @@
     "$(info)": "$(thing)$(bold)$(t:Vital and Fundamental Details)[!]$()",
     "$(warning)": "$(#f00)$(bold)$(t:Warning!)[!]$()",
     "$(severe)": "$(#f00)$(bold)$(t:Extreme Warning!!)[!!]$()",
-    "$(todo)": "$(#f00)$(bold)TODO: $()$(#f00)"
+    "$(todo)": "$(#f00)$(bold)TODO: $()"
   }
 }
