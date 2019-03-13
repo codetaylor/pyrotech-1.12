@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
+import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePluginPatchouli;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
@@ -40,6 +41,7 @@ public class ModPyrotechConfig {
     MODULES.put(ModuleWorldGen.MODULE_ID, true);
 
     MODULES.put(ModulePluginDropt.MODULE_ID, true);
+    MODULES.put(ModulePluginPatchouli.MODULE_ID, true);
   }
 
   @SuppressWarnings("unused")

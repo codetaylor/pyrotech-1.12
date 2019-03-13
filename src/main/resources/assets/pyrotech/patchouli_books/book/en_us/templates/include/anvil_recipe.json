@@ -1,15 +1,16 @@
 {
-  "processor": "com.codetaylor.mc.pyrotech.modules.core.plugin.patchouli.AnvilRecipeComponentProcessor",
+  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.AnvilRecipeComponentProcessor",
   "components": [
     {
       "group": "header",
       "type": "header",
       "text": "#output->iname",
-      "x": -1
+      "x": -1,
+      "guard": "#header->exists"
     },
     {
       "type": "custom",
-      "class": "com.codetaylor.mc.pyrotech.modules.core.plugin.patchouli.PackedImageComponent",
+      "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
       "image": "pyrotech:crafting/anvil_granite",
       "x": 24, "y": 19,
       "scale": 0.5,
@@ -17,7 +18,7 @@
     },
     {
       "type": "custom",
-      "class": "com.codetaylor.mc.pyrotech.modules.core.plugin.patchouli.PackedImageComponent",
+      "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
       "image": "pyrotech:crafting/anvil_ironclad",
       "x": 24, "y": 19,
       "scale": 0.5,
@@ -39,7 +40,7 @@
     },
     {
       "type": "custom",
-      "class": "com.codetaylor.mc.pyrotech.modules.core.plugin.patchouli.PackedImageComponent",
+      "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
       "image": "pyrotech:crafting/icons#pickaxe",
       "x": 18, "y": 16,
       "guard": "#pickaxe->exists"
@@ -53,7 +54,7 @@
     },
     {
       "type": "custom",
-      "class": "com.codetaylor.mc.pyrotech.modules.core.plugin.patchouli.PackedImageComponent",
+      "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
       "image": "pyrotech:crafting/icons#hammer",
       "x": 18, "y": 16,
       "guard": "#hammer->exists"

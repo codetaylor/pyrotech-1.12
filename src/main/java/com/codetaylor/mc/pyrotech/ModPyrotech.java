@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
+import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePluginPatchouli;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
@@ -117,6 +118,10 @@ public class ModPyrotech {
 
     if (ModPyrotechConfig.MODULES.get(ModulePluginDropt.MODULE_ID)) {
       this.registerModule(ModulePluginDropt.class);
+    }
+
+    if (ModPyrotechConfig.MODULES.get(ModulePluginPatchouli.MODULE_ID)) {
+      this.registerModule(ModulePluginPatchouli.class);
     }
 
     this.moduleManager.onConstructionEvent();

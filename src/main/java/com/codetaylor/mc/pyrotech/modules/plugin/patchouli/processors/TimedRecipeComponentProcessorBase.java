@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.core.plugin.patchouli;
+package com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors;
 
 import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;

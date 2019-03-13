@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.core.plugin.patchouli;
+package com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components;
 
 import com.codetaylor.mc.pyrotech.packer.PackAPI;
 import com.codetaylor.mc.pyrotech.packer.PackedData;
