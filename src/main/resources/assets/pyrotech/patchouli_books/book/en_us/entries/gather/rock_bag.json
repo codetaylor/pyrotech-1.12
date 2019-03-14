@@ -1,0 +1,27 @@
+{
+  "name": "Rock Bag",
+  "icon": "pyrotech:bag_simple",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/bag_simple",
+      "text": "$(info) A $(item)Rock Bag$() can hold a large number of $(item)Rocks$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/bag_durable",
+      "text": "$(info) A $(item)Durable Rock Bag$() can hold a large number of $(item)Cobbled Stone$()."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/rock_bag_00.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "$(info) When placed in the world, rock bags can be opened and closed by clicking the right mouse button."
+    }
+  ]
+}

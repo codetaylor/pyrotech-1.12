@@ -5,11 +5,11 @@
   "pages": [
     {
       "type": "text",
-      "text": "A person might bury something to keep it from being found, sometimes because they are ashamed of what they are hiding. However, as is the case here, you might bury something to insulate it against excessive heat loss during a process called carbonization.$(p)$(info) A $(thing)Pit Burn$() with $(item)Log Piles$() can produce a large quantity of $(item)Charcoal$()."
+      "text": "A person might bury something to keep it from being found, sometimes because they are ashamed of what they are hiding. However, as is the case here, you might bury something to insulate it against excessive heat loss during carbonization."
     },
     {
       "type": "text",
-      "text": "The $(thing)Pit Burn$() process is comprised of the following steps:$(p)  $(l:adapt/pit_burn#step_1)1. Place$()$(br)  $(l:adapt/pit_burn#step_2)2. Light$()$(br)  $(l:adapt/pit_burn#step_3)3. Cover$()$(br)  $(l:adapt/pit_burn#step_4)4. Wait$()$(br)  $(l:adapt/pit_burn#step_5)5. Uncover$()$(p)The following pages serve to illustrate and expound upon the $(thing)Pit Burn$() concepts listed above."
+      "text": "The $(thing)Pit Burn$() process is comprised of the following steps:$(p)  $(l:adapt/pit_burn#step_1)1. Place$()$(br)  $(l:adapt/pit_burn#step_2)2. Ignite()$(br)  $(l:adapt/pit_burn#step_3)3. Cover$()$(br)  $(l:adapt/pit_burn#step_4)4. Wait$()$(br)  $(l:adapt/pit_burn#step_5)5. Uncover$()$(p)The following pages serve to illustrate and expound upon the $(thing)Pit Burn$() concepts listed above."
     },
     {
       "type": "image",
@@ -25,7 +25,7 @@
     },
     {
       "type": "image",
-      "title": "2. Light",
+      "title": "2. Ignite",
       "anchor": "step_2",
       "images": [
         "pyrotech:textures/gui/book/illustration/pit_burn_01.png"
@@ -72,18 +72,13 @@
       "text": "Finally, after the smoke has stopped, remove any of the material covering the $(thing)Pit Burn$() and sift through the ash for the results.$(p)$(todo)Filler / Transition"
     },
     {
+      "type": "crafting",
+      "recipe": "pyrotech:log_pile",
+      "text": "$(info) A $(thing)Pit Burn$() with $(item)Log Piles$() can produce a large quantity of $(item)Charcoal$()."
+    },
+    {
       "type": "text",
-      "text": "$(todo)How do I collect fluids from the pit burn?"
-    },
-    {
-      "type": "image",
-      "images": [
-        "pyrotech:textures/gui/book/illustration/pit_burn_collector.png"
-      ]
-    },
-    {
-      "type": "spotlight",
-      "item": "pyrotech:log_pile"
+      "text": "$(todo)Relations"
     }
   ]
 }

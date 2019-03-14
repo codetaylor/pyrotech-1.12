@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(info) $(item)Cobbled Stone$() can almost always be found by mining its stone complement with at minimum an iron pickaxe.$(p)$(info) $(item)Cobbled Stone$() may also be occasionally found by mining with at a stone, flint, or bone pickaxe.$(p)$(info) $(item)Cobbled Stone$() can also be crafted from $(item)Rocks$()."
+      "text": "$(info) $(item)Cobbled Stone$() can almost always be found by mining its stone complement with, at minimum, an iron pickaxe.$(p)$(info) $(item)Cobbled Stone$() may also be occasionally found by mining with at a stone, flint, or bone pickaxe.$(p)$(info) $(item)Cobbled Stone$() can also be crafted from $(item)Rocks$()."
     },
     {
       "type": "image",

@@ -4,12 +4,21 @@
   "category": "adapt",
   "pages": [
     {
-      "type": "text",
-      "text": "$(todo) What is mulch?$()"
+      "type": "crafting",
+      "recipe": "pyrotech:mulch",
+      "text": "$(info) $(item)Potash Mulch$() is made from $(item)Wood Chips$(), $(item)Ash$(), and an appreciable source of nitrogen, such as $(thing)meat$() or $(item)Bone Meal$()."
     },
     {
       "type": "spotlight",
-      "item": "pyrotech:farmland_mulched"
+      "item": "pyrotech:farmland_mulched",
+      "text": "$(info) $(item)Mulched Farmland$() is created by placing $(item)Potash Mulch$() on either $(item)Moisturized Farmland$() or a plant growing on top.$(p)$(info) $(item)Mulched Farmland$() is resistant to being trampled and plants growing on top will periodically receive a $(thing)bone meal effect$() for the duration of the mulch."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/wheat_00.png"
+      ]
     }
   ]
 }

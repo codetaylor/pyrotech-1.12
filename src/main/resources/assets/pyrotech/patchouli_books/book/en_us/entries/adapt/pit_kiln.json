@@ -5,13 +5,102 @@
   "pages": [
     {
       "type": "text",
-      "text": "TODO"
+      "text": "$(info) To build and operate a $(item)Pit Kiln$() you will need a $(item)Pit Kiln$(), a $(item)Straw Bale$(), three $(thing)Logs$(), and a $(l:appendix/ignition)verified firestarting device$().$(p)$(todo)Filler"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/kiln_pit",
+      "recipe2": "pyrotech:thatch"
+    },
+    {
+      "type": "text",
+      "text": "To use a $(item)Pit Kiln$(), follow these steps:$(p)  $(l:adapt/pit_kiln#step_1)1. Place Kiln$(/l)$(br)  $(l:adapt/pit_kiln#step_2)2. Add Ingredients$(/l)$(br)  $(l:adapt/pit_kiln#step_3)3. Add Straw Bale$(/l)$(br)  $(l:adapt/pit_kiln#step_4)4. Add Logs$(/l)$(br)  $(l:adapt/pit_kiln#step_5)5. Ignite$(/l)$(br)  $(l:adapt/pit_kiln#step_6)6. Wait$(/l)$(p)The facing page illustrates the construction of a $(item)Pit Kiln$() and the subsequent pages provide additional vital and fundamental details."
     },
     {
       "type": "image",
       "images": [
         "pyrotech:textures/gui/book/illustration/pit_kiln_00.png"
       ]
+    },
+    {
+      "type": "image",
+      "title": "1. Place Kiln",
+      "anchor": "step_1",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_01.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "First, dig a pit in the ground and place your $(item)Pit Kiln$() at the bottom.$(p)$(info) A $(item)Pit Kiln$() must be covered at all times on the bottom and all four sides by solid, non-flammable material; the top is left exposed."
+    },
+    {
+      "type": "image",
+      "title": "2. Add Ingredient",
+      "anchor": "step_2",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_02.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Next, add your ingredient(s) to the top of the $(item)Pit Kiln$().$(p)$(info) A $(item)Pit Kiln$() can only hold one type of item.$(p)$(warning) Please note that in the illustrations for step two, three, and four, two $(item)Grass Blocks$() on the sides of the $(item)Pit Kiln$() have been removed - they are removed in the illustration for clarity and are still required."
+    },
+    {
+      "type": "image",
+      "title": "3. Add Straw Bale",
+      "anchor": "step_3",
+      "text": " Next, add a $(item)Straw Bale$().",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_03.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "4. Add Three Logs",
+      "anchor": "step_4",
+      "text": " Next, add three $(thing)Logs$().",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_04.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "5. Ignite",
+      "anchor": "step_5",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_01.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Next, use any $(l:appendix/ignition)verified firestarting device$() to ignite.$(p)$(info) Unlike a $(thing)Pit Burn$(), the $(item)Pit Kiln$() is left uncovered on top while it burns."
+    },
+    {
+      "type": "image",
+      "title": "6. Wait",
+      "anchor": "step_6",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_05.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Finally, wait.$(p)$(info) While a $(item)Pit Kiln$() is active, it will remain on fire.$(p)$(warning) If a $(item)Pit Kiln$() is exposed to rain during its operation, the process will fail."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_06.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "When the fire on top of the $(item)Pit Kiln$() finally goes out, sift through the ash for the results.$(p)$(todo)Filler"
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Related"
     }
   ]
 }
