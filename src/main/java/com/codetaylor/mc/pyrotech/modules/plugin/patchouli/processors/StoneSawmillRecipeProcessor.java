@@ -1,20 +1,20 @@
 package com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors;
 
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import net.minecraft.util.ResourceLocation;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
 import javax.annotation.Nullable;
 
-public class StoneOvenRecipeProcessor
-    extends TimedRecipeProcessorBase<StoneOvenRecipe> {
+public class StoneSawmillRecipeProcessor
+    extends TimedRecipeProcessorBase<StoneSawmillRecipe> {
 
   @Nullable
   @Override
-  protected StoneOvenRecipe getRecipe(ResourceLocation key) {
+  protected StoneSawmillRecipe getRecipe(ResourceLocation key) {
 
-    return ModuleTechMachine.Registries.STONE_OVEN_RECIPES.getValue(key);
+    return ModuleTechMachine.Registries.STONE_SAWMILL_RECIPES.getValue(key);
   }
 
   @Override
@@ -27,6 +27,9 @@ public class StoneOvenRecipeProcessor
 
       } else if ("output".equals(key)) {
         return ItemStackUtil.serializeStack(this.recipe.getOutput());
+
+      } else if ("sawblade".equals(key)) {
+        return ItemStackUtil.serializeIngredient(this.recipe.getBlade());
       }
     }
 

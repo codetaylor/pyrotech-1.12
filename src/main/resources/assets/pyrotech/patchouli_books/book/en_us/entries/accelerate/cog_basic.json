@@ -1,11 +1,11 @@
 {
   "name": "Cog, Basic",
-  "icon": "pyrotech:mechanical_hopper",
-  "category": "innovate",
+  "icon": "pyrotech:cog_wood",
+  "category": "accelerate",
   "pages": [
     {
       "type": "text",
-      "text": ""
+      "text": "$(info) $(thing)Cogs$() activate $(thing)mechanical devices$() and wear out over time.$(p)Basic $(thing)cogs$() are made with basic materials."
     },
     {
       "type": "crafting",

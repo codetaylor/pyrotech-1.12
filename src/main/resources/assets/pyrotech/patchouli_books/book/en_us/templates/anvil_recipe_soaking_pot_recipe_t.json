@@ -4,17 +4,17 @@
       "template": "include/anvil_recipe",
       "as": "recipe1",
       "using": {
-        "recipe": "#recipe",
-        "header": "#header"
+        "recipe": "#anvil_recipe",
+        "header": "#anvil_header"
       },
       "y": -6
     },
     {
-      "template": "include/anvil_recipe",
-      "as": "recipe2",
+      "template": "include/soaking_pot_recipe",
+      "as": "recipe1",
       "using": {
-        "recipe": "#recipe2",
-        "header": "#header2"
+        "recipe": "#soaking_pot_recipe",
+        "header": "#soaking_pot_header"
       },
       "y": 38
     }
@@ -24,7 +24,7 @@
       "type": "text",
       "guard": "#text->exists",
       "text": "#text",
-      "y": 90
+      "y": 44
     }
   ]
 }

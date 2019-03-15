@@ -8,7 +8,7 @@ import vazkii.patchouli.common.util.ItemStackUtil;
 import javax.annotation.Nullable;
 
 public class SoakingPotRecipeProcessor
-    extends TimedRecipeBase<SoakingPotRecipe> {
+    extends TimedRecipeProcessorBase<SoakingPotRecipe> {
 
   @Nullable
   @Override

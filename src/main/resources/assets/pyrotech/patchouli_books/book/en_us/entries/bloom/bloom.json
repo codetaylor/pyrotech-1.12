@@ -1,0 +1,19 @@
+{
+  "name": "Bloom",
+  "icon": "pyrotech:bloom",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/bloom_00.png"
+      ]
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:bloom",
+      "text": "$(info) A $(item)Bloom$() is made by smelting ore in a $(item)Bloomery$()."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Twine, Durable",
+  "icon": "pyrotech:material:26",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "soaking_pot_recipe_rt",
+      "recipe": "pyrotech:twine_durable",
+      "text": "$(todo)Filler"
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Refractory Burning",
+  "icon": "pyrotech:refractory_brick_block",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The execution of a successful $(thing)Refractory Burn$() is identical to that of a $(thing)Pit Burn$() with the exception that the material used to surround the burning ingredients must be a valid refractory material."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_door",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_glass",
+      "text": ""
+    }
+  ]
+}

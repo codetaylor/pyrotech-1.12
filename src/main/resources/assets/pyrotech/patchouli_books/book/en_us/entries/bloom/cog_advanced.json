@@ -1,0 +1,21 @@
+{
+  "name": "Cog, Advanced",
+  "icon": "pyrotech:cog_iron",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/cog_iron",
+      "recipe2": "pyrotech:tech/machine/cog_gold"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/cog_obsidian",
+      "recipe2": "pyrotech:tech/machine/cog_diamond"
+    }
+  ]
+}

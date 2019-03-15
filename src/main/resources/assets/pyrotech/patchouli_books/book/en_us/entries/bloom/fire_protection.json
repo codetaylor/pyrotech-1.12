@@ -1,0 +1,25 @@
+{
+  "name": "Fire Protection",
+  "icon": "minecraft:leather_chestplate",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "text",
+      "text": "When working with $(item)Blooms$() and $(item)Slag$() it is common to get burned.$(p)$(info) $(thing)Leather armor$() can be coated with $(item)Slaked Lime$() to increase its $(thing)fire protection$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:leather_helmet_fireproof",
+      "recipe2": "pyrotech:leather_chestplate_fireproof"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:leather_leggings_fireproof",
+      "recipe2": "pyrotech:leather_boots_fireproof"
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

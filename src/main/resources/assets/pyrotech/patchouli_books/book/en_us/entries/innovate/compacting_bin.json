@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(info) To use, place ingredients in the top and $(use) with a shovel.$(p)$(info) Using may cause hunger. If it isn't working, you might be too hungry.$(p)$(info) Items can be inserted into the top of the $(item)Compacting Bin$() and extracted from the bottom."
+      "text": "$(info) To use, place ingredients in the top and $(use) with a shovel.$(p)$(info) Using may cause hunger. If it isn't working, you might be too hungry.$(p)$(info) Regarding automation, items can be inserted into both the top and sides and extracted from the bottom."
     },
     {
       "type": "crafting",

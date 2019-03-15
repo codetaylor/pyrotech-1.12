@@ -1,5 +1,5 @@
 {
-  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.StoneOvenRecipeProcessor",
+  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.StoneKilnRecipeProcessor",
   "components": [
     {
       "group": "header",
@@ -11,8 +11,8 @@
     {
       "type": "custom",
       "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
-      "image": "pyrotech:crafting/stone_oven",
-      "x": 24, "y": 5,
+      "image": "pyrotech:crafting/stone_kiln",
+      "x": 24, "y": 10,
       "scale": 0.5
     },
     {

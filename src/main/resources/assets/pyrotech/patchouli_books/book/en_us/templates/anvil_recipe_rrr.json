@@ -5,7 +5,8 @@
       "as": "recipe1",
       "using": {
         "recipe": "#recipe"
-      }
+      },
+      "y": -6
     },
     {
       "template": "include/anvil_recipe",
@@ -13,7 +14,7 @@
       "using": {
         "recipe": "#recipe2"
       },
-      "y": 45
+      "y": 38
     },
     {
       "template": "include/anvil_recipe",
@@ -21,7 +22,7 @@
       "using": {
         "recipe": "#recipe3"
       },
-      "y": 90
+      "y": 82
     }
   ],
   "components": [

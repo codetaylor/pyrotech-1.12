@@ -1,20 +1,20 @@
 package com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors;
 
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
 import net.minecraft.util.ResourceLocation;
 import vazkii.patchouli.common.util.ItemStackUtil;
 
 import javax.annotation.Nullable;
 
-public class StoneOvenRecipeProcessor
-    extends TimedRecipeProcessorBase<StoneOvenRecipe> {
+public class StoneKilnRecipeProcessor
+    extends TimedRecipeProcessorBase<StoneKilnRecipe> {
 
   @Nullable
   @Override
-  protected StoneOvenRecipe getRecipe(ResourceLocation key) {
+  protected StoneKilnRecipe getRecipe(ResourceLocation key) {
 
-    return ModuleTechMachine.Registries.STONE_OVEN_RECIPES.getValue(key);
+    return ModuleTechMachine.Registries.STONE_KILN_RECIPES.getValue(key);
   }
 
   @Override

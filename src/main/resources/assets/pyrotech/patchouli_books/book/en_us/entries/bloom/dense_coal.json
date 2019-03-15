@@ -1,0 +1,13 @@
+{
+  "name": "Dense Coal Ore",
+  "icon": "pyrotech:dense_coal_ore",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:dense_coal_ore",
+      "link_recipe": true,
+      "text": "$(info) $(item)Dense Coal Ore$() can usually be found deep underground, most often within $(item)Coal Ore$() deposits.$(p)$(info) It can be mined with $(thing)iron tools$().$(p)$(todo) Filler$()"
+    }
+  ]
+}

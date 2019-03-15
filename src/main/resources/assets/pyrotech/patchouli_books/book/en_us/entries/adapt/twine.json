@@ -1,0 +1,12 @@
+{
+  "name": "Twine",
+  "icon": "pyrotech:material:14",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:twine",
+      "text": "$(todo)Filler"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.StoneOvenRecipeProcessor",
+  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.StoneSawmillRecipeProcessor",
   "components": [
     {
       "group": "header",
@@ -11,9 +11,12 @@
     {
       "type": "custom",
       "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
-      "image": "pyrotech:crafting/stone_oven",
-      "x": 24, "y": 5,
+      "image": "pyrotech:crafting/stone_sawmill",
+      "x": 24, "y": 15,
       "scale": 0.5
+    },
+    {
+      "type": "item", "item": "#sawblade", "x": 6, "y": 14, "framed": true
     },
     {
       "type": "item", "item": "#input", "x": 30, "y": 14, "framed": true

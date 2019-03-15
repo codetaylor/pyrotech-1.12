@@ -1,10 +1,11 @@
 {
   "include": [
     {
-      "template": "include/drying_recipe",
+      "template": "include/stone_kiln_recipe",
       "as": "recipe1",
       "using": {
-        "recipe": "#recipe"
+        "recipe": "#recipe",
+        "header": "#header"
       },
       "y": -6
     }
@@ -14,7 +15,7 @@
       "type": "text",
       "guard": "#text->exists",
       "text": "#text",
-      "y": 44
+      "y": 48
     }
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "name": "Wood Chips",
+  "icon": "pyrotech:rock:7",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:rock:7",
+      "link_recipe": true,
+      "text": "$(info) $(item)Wood Chips$() are a byproduct of chopping on the $(item)Chopping Block$() and sawing wood in a $(thing)sawmill$()."
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

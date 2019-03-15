@@ -8,7 +8,7 @@ import vazkii.patchouli.common.util.ItemStackUtil;
 import javax.annotation.Nullable;
 
 public class CrudeDryingRackRecipeProcessor
-    extends TimedRecipeBase<CrudeDryingRackRecipe> {
+    extends TimedRecipeProcessorBase<CrudeDryingRackRecipe> {
 
   @Nullable
   @Override

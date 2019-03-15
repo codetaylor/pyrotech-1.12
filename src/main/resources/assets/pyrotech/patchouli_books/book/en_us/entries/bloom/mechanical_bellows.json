@@ -1,7 +1,7 @@
 {
-  "name": "Refractory Door",
-  "icon": "pyrotech:refractory_door",
-  "category": "accelerate",
+  "name": "Mechanical Bellows",
+  "icon": "pyrotech:mechanical_bellows",
+  "category": "bloom",
   "pages": [
     {
       "type": "text",

@@ -19,6 +19,11 @@
       "text": "$(info) A $(item)Stash$() can hold a larger number of a single item."
     },
     {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/wood_rack",
+      "text": "$(info) A $(item)Wood Rack$() can hold a small number of a $(thing)logs$().$(p)$(info) $(thing)Logs$() of the same type will settle to the bottom."
+    },
+    {
       "type": "relations",
       "entries": [
         "survive/chopping_block"

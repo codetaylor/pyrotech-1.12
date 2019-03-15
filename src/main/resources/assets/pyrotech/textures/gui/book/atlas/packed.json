@@ -8,52 +8,66 @@
   "image": {
     "crafting/anvil_granite": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 0,
-      "v": 142,
+      "u": 162,
+      "v": 0,
       "width": 56,
       "height": 40
     },
     "crafting/anvil_ironclad": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 0,
-      "v": 182,
+      "u": 56,
+      "v": 69,
       "width": 56,
       "height": 40
     },
     "crafting/crude_drying_rack": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 0,
-      "v": 222,
+      "u": 162,
+      "v": 40,
       "width": 37,
       "height": 29
     },
     "crafting/drying_rack": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 0,
-      "v": 89,
+      "u": 112,
+      "v": 0,
       "width": 50,
       "height": 53
     },
     "crafting/icons#hammer": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 43,
-      "v": 222,
+      "u": 6,
+      "v": 245,
       "width": 6,
       "height": 6
     },
     "crafting/icons#pickaxe": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 37,
-      "v": 222,
+      "u": 0,
+      "v": 245,
       "width": 6,
       "height": 6
     },
     "crafting/soaking_pot": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 56,
-      "v": 0,
+      "u": 112,
+      "v": 69,
       "width": 42,
       "height": 40
+    },
+    "crafting/stone_crucible": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 0,
+      "v": 89,
+      "width": 56,
+      "height": 78
+    },
+    "crafting/stone_kiln": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 0,
+      "v": 167,
+      "width": 56,
+      "height": 78
     },
     "crafting/stone_oven": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
@@ -61,6 +75,13 @@
       "v": 0,
       "width": 56,
       "height": 89
+    },
+    "crafting/stone_sawmill": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 56,
+      "v": 0,
+      "width": 56,
+      "height": 69
     }
   }
 }

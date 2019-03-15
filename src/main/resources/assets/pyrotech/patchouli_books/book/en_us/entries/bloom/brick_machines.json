@@ -1,0 +1,23 @@
+{
+  "name": "Brick Machines",
+  "icon": "pyrotech:brick_kiln",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_crucible"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_kiln"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_oven"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_sawmill"
+    }
+  ]
+}
