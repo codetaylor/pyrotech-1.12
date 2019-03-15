@@ -1,0 +1,12 @@
+{
+  "name": "Hammer, Bone & Flint",
+  "icon": "pyrotech:bone_hammer",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:bone_hammer",
+      "recipe2": "pyrotech:flint_hammer"
+    }
+  ]
+}

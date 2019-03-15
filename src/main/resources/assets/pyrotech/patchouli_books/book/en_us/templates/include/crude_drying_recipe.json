@@ -1,5 +1,5 @@
 {
-  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.DryingRackRecipeProcessor",
+  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.CrudeDryingRackRecipeProcessor",
   "components": [
     {
       "group": "header",
@@ -11,8 +11,8 @@
     {
       "type": "custom",
       "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
-      "image": "pyrotech:crafting/drying_rack",
-      "x": 24, "y": 19,
+      "image": "pyrotech:crafting/crude_drying_rack",
+      "x": 24, "y": 10,
       "scale": 0.5
     },
     {

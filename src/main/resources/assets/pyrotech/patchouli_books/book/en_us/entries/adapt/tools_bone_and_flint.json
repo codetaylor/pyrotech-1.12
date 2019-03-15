@@ -1,5 +1,5 @@
 {
-  "name": "Tools, Bone",
+  "name": "Tools, Bone & Flint",
   "icon": "pyrotech:bone_pickaxe",
   "category": "adapt",
   "pages": [
@@ -12,6 +12,16 @@
       "type": "crafting",
       "recipe": "pyrotech:tool/bone_hoe",
       "recipe2": "pyrotech:tool/bone_shovel"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/flint_pickaxe",
+      "recipe2": "pyrotech:tool/flint_axe"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/flint_hoe",
+      "recipe2": "pyrotech:tool/flint_shovel"
     }
   ]
 }

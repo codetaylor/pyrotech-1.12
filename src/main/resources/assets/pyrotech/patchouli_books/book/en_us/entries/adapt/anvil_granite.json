@@ -4,8 +4,19 @@
   "category": "adapt",
   "pages": [
     {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/anvil_granite",
+      "text": "$(info) A $(item)Granite Anvil$() will allow you to begin innovating with stone.$(p)$(info) To use, place the input on top and $(use) with a pickaxe or hammer."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/granite_anvil_00.png"
+      ]
+    },
+    {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "$(todo)Relations"
     }
   ]
 }

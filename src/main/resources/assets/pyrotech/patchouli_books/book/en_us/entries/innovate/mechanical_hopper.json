@@ -1,0 +1,11 @@
+{
+  "name": "Mechanical Hopper",
+  "icon": "pyrotech:mechanical_hopper",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/mechanical_hopper"
+    }
+  ]
+}

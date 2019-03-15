@@ -1,5 +1,5 @@
 {
-  "name": "Shard, Bone",
+  "name": "Shard, Bone & Flint",
   "icon": "pyrotech:material:11",
   "category": "gather",
   "pages": [
@@ -12,6 +12,18 @@
       "recipe": "pyrotech:bone_shard_from_bone",
       "recipe2": "pyrotech:bone_shard_from_block",
       "text": "$(info) $(item)Bone Shards$() can be broken from larger pieces of bone on an $(item)Anvil$()."
+    },
+    {
+      "type": "anvil_recipe_rt",
+      "recipe": "pyrotech:flint_shard_from_flint",
+      "text": "$(info) $(item)Flint Shards$() can be broken from larger pieces of $(item)Flint$() on an $(item)Anvil$().$(p)$(info) $(item)Flint Shards$() can be found by using a shovel to excavate gravel."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad"
+      ]
     },
     {
       "type": "relations",

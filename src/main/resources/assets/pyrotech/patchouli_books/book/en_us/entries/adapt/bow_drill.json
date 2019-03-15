@@ -4,8 +4,9 @@
   "category": "adapt",
   "pages": [
     {
-      "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/bow_drill",
+      "text": "$(info) The $(item)Bow Drill$() is a $(l:appendix/ignition)verified firestarting device$().$(p)$(todo)Filler"
     }
   ]
 }

@@ -8,38 +8,59 @@
   "image": {
     "crafting/anvil_granite": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 50,
-      "v": 0,
+      "u": 0,
+      "v": 142,
       "width": 56,
       "height": 40
     },
     "crafting/anvil_ironclad": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 106,
-      "v": 0,
+      "u": 0,
+      "v": 182,
       "width": 56,
       "height": 40
+    },
+    "crafting/crude_drying_rack": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 0,
+      "v": 222,
+      "width": 37,
+      "height": 29
     },
     "crafting/drying_rack": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
       "u": 0,
-      "v": 0,
+      "v": 89,
       "width": 50,
       "height": 53
     },
     "crafting/icons#hammer": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 6,
-      "v": 53,
+      "u": 43,
+      "v": 222,
       "width": 6,
       "height": 6
     },
     "crafting/icons#pickaxe": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 0,
-      "v": 53,
+      "u": 37,
+      "v": 222,
       "width": 6,
       "height": 6
+    },
+    "crafting/soaking_pot": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 56,
+      "v": 0,
+      "width": 42,
+      "height": 40
+    },
+    "crafting/stone_oven": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 0,
+      "v": 0,
+      "width": 56,
+      "height": 89
     }
   }
 }

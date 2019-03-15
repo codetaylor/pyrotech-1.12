@@ -7,26 +7,18 @@ import vazkii.patchouli.common.util.ItemStackUtil;
 
 import javax.annotation.Nullable;
 
-public class DryingRecipeComponentProcessor
-    extends TimedRecipeComponentProcessorBase<DryingRackRecipe> {
+public class DryingRackRecipeProcessor
+    extends TimedRecipeBase<DryingRackRecipe> {
 
   @Nullable
-  private DryingRackRecipe recipe;
-
   @Override
-  protected void setup(ResourceLocation key) {
+  protected DryingRackRecipe getRecipe(ResourceLocation key) {
 
-    this.recipe = ModuleTechBasic.Registries.DRYING_RACK_RECIPE.getValue(key);
+    return ModuleTechBasic.Registries.DRYING_RACK_RECIPE.getValue(key);
   }
 
   @Override
   public String process(String key) {
-
-    String result = super.process(key);
-
-    if (result != null) {
-      return result;
-    }
 
     if (this.recipe != null) {
 
@@ -38,6 +30,6 @@ public class DryingRecipeComponentProcessor
       }
     }
 
-    return null;
+    return super.process(key);
   }
 }

@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.packer;
 
 import com.google.gson.Gson;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.IResource;
+import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 public final class PackAPI {
 
@@ -58,25 +60,39 @@ public final class PackAPI {
    *
    * @param resourceLocation the location of the packed.json
    */
-  public static void register(ResourceLocation resourceLocation) {
+  public static void register(ResourceLocation resourceLocation, Supplier<Optional<InputStream>> streamSupplier) {
+
+    if (PACKED_DATA_MAP.get(resourceLocation.getResourceDomain()) != null) {
+      throw new RuntimeException("Duplicate packed.json registered for: " + resourceLocation.getResourceDomain());
+    }
+
+    Optional<InputStream> optionalInputStream = streamSupplier.get();
+
+    if (optionalInputStream.isPresent()) {
+      IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
+
+      if (resourceManager instanceof IReloadableResourceManager) {
+        ((IReloadableResourceManager) resourceManager).registerReloadListener(rm -> {
+          streamSupplier.get().ifPresent(inputStream -> PackAPI.tryLoadPackedData(resourceLocation, inputStream));
+        });
+      }
+
+      InputStream inputStream = optionalInputStream.get();
+      PackAPI.tryLoadPackedData(resourceLocation, inputStream);
+    }
+  }
+
+  private static void tryLoadPackedData(ResourceLocation resourceLocation, InputStream inputStream) {
 
     try {
-      Minecraft minecraft = Minecraft.getMinecraft();
-      IResourceManager resourceManager = minecraft.getResourceManager();
-      IResource resource = resourceManager.getResource(resourceLocation);
-      InputStream inputStream = resource.getInputStream();
       InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
       PackedData packedData = new Gson().fromJson(inputStreamReader, PackedData.class);
       inputStreamReader.close();
 
-      if (PACKED_DATA_MAP.get(resourceLocation.getResourceDomain()) != null) {
-        throw new RuntimeException("Duplicate packed.json registered for mod: " + resourceLocation.getResourceDomain());
-      }
-
       PACKED_DATA_MAP.put(resourceLocation.getResourceDomain(), packedData);
 
     } catch (Exception e) {
-      LOGGER.error("Error loading packed data for resource location: " + resourceLocation, e);
+      LOGGER.error("Error loading packed data for " + resourceLocation, e);
     }
   }
 

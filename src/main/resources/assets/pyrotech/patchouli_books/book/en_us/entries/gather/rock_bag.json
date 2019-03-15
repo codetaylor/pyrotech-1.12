@@ -6,12 +6,11 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/bag_simple",
-      "text": "$(info) A $(item)Rock Bag$() can hold a large number of $(item)Rocks$()."
+      "recipe2": "pyrotech:storage/bag_durable"
     },
     {
-      "type": "crafting",
-      "recipe": "pyrotech:storage/bag_durable",
-      "text": "$(info) A $(item)Durable Rock Bag$() can hold a large number of $(item)Cobbled Stone$()."
+      "type": "text",
+      "text": "$(info) A $(item)Rock Bag$() can hold a large quantity of $(item)Rocks$().$(p)$(info) A $(item)Durable Rock Bag$() can hold a large quantity of $(item)Cobbled Stone$().$(p)$(todo)Filler"
     },
     {
       "type": "image",
@@ -21,7 +20,21 @@
     },
     {
       "type": "text",
-      "text": "$(info) When placed in the world, rock bags can be opened and closed by clicking the right mouse button."
+      "title": "In the World",
+      "text": "$(info) When placed in the world, bags can be opened and closed with $(use).$(p)$(info) When the bag is open, items can be manually added and removed from the top.$(p)$(info) Items can be extracted from the bottom."
+    },
+    {
+      "type": "text",
+      "title": "In Your Inventory",
+      "text": "$(info) To open or close a bag while holding it, ensure you are not targeting a block and $(sneak) + $(use).$(p)$(info) If you have an open bag in your hand or hotbar, it will auto-collect items you pick up.$(p)$(info) Auto-collected items will fill existing stacks in your inventory before filling a bag."
+    },
+    {
+      "type": "text",
+      "text": "$(info) Items in a bag can be transferred to an inventory, like a chest, with $(sneak) + $(use).$(p)$(info) If you $(sneak) + $(use) an open bag on a non-inventory block, the contents of the bag will spill into the world."
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
     }
   ]
 }

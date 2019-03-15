@@ -73,8 +73,42 @@
     },
     {
       "type": "crafting",
+      "recipe": "pyrotech:stone_door",
+      "text": "$(info) A $(item)Stone Door$() can be used to seal a $(thing)Pit Burn$() if placed flush with the burning ingredients. Ignite any exposed ingredient and immediately close the door."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/pit_burn_00.png"
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/refractory/tar_collector_stone",
+      "text": "$(info) A $(item)Stone Collector$() will drain fluid out of burning ingredients in a short range directly above it."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_collector.png"
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/refractory/tar_drain_stone",
+      "text": "$(info) A $(item)Stone Drain$() will drain fluid from collectors in a range in front of it.$(p)$(info) The front of the $(item)Stone Drain$() is the side with the big hole."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_drain.png"
+      ]
+    },
+    {
+      "type": "crafting",
       "recipe": "pyrotech:log_pile",
-      "text": "$(info) A $(thing)Pit Burn$() with $(item)Log Piles$() can produce a large quantity of $(item)Charcoal$()."
+      "text": "$(info) A $(thing)Pit Burn$() with $(item)Log Piles$() can produce an appreciable quantity of $(item)Charcoal$() and $(item)Wood Tar$()."
     },
     {
       "type": "text",

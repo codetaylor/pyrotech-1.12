@@ -5,7 +5,11 @@
   "pages": [
     {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "$(info) The $(item)Stone Worktable$() allows items to stack.$(p)$(info) This table is more durable than its wooden counterpart.$(p)$(info) To use a $(item)Stone Worktable$(), place the recipe ingredients on top, and $(use) it with a hammer."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/worktable_stone"
     }
   ]
 }

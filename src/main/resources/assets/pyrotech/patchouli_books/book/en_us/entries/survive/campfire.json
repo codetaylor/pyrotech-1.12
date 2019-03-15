@@ -26,10 +26,10 @@
       "text": "To construct a $(item)Campfire$(), follow these four easy steps:$(p)  $(l:survive/campfire#craft_tinder)1. Craft Tinder$()$(br)  $(l:survive/campfire#place_tinder)2. Place Tinder$()$(br)  $(l:survive/campfire#add_logs)3. Add logs$()$(br)  $(l:survive/campfire#ignite)4. Ignite$()"
     },
     {
-      "type": "spotlight",
+      "type": "crafting",
       "title": "1. Craft Tinder",
       "anchor": "craft_tinder",
-      "item": "pyrotech:tinder",
+      "recipe": "pyrotech:tech/basic/tinder",
       "text": "First, you will need some $(item)Tinder$() - $(italic)a word here which means a dry, flammable material, such as sticks or plant fibers, that is often used to aid in lighting a fire$() - to aid in lighting your fire."
     },
     {

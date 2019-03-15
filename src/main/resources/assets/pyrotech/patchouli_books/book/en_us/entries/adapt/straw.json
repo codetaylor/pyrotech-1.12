@@ -1,0 +1,22 @@
+{
+  "name": "Straw",
+  "icon": "pyrotech:material:2",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:straw",
+      "text": "$(info) Two clumps of $(item)Dried Plant Fibers$() can be tied together to make $(item)Straw$().$(p)$(info) $(item)Straw$() can also be created by drying $(item)Wheat$()."
+    },
+    {
+      "type": "drying_recipe_all",
+      "crude_recipe": "pyrotech:straw",
+      "recipe": "pyrotech:crude_drying_rack/straw",
+      "stone_oven_recipe": "pyrotech:drying_rack/crude_drying_rack/straw"
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Related"
+    }
+  ]
+}

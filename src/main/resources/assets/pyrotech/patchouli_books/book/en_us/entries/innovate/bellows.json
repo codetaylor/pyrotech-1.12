@@ -4,8 +4,19 @@
   "category": "innovate",
   "pages": [
     {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/bellows",
+      "text": "$(info) Place a $(item)Bellows$() adjacent to a $(thing)combustion machine$() and jump on it to increase airflow and accelerate the machine."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/bellows_00.png"
+      ]
+    },
+    {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "$(todo)Relations"
     }
   ]
 }

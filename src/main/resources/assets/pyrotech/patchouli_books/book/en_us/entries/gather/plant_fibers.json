@@ -14,16 +14,6 @@
       "text": "$(info) $(item)Plant Fibers$() can be found by breaking tall grass.$(p)$(info) $(item)Plant Fibers$() can also be crafted."
     },
     {
-      "type": "spotlight",
-      "item": "pyrotech:material:13",
-      "text": "$(info) $(item)Dried Plant Fibers$() can sometimes be found by breaking tall grass."
-    },
-    {
-      "type": "drying_recipe_rt",
-      "recipe": "pyrotech:crude_drying_rack/plant_fibers_dried",
-      "text": "$(todo)Drying Rack recipe"
-    },
-    {
       "type": "text",
       "text": "$(todo)Related"
     }

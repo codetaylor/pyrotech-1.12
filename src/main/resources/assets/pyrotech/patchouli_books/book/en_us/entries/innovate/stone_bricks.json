@@ -1,0 +1,17 @@
+{
+  "name": "Stone Bricks",
+  "icon": "pyrotech:material:16",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "anvil_recipe_rrt",
+      "recipe": "pyrotech:brick_stone",
+      "recipe2": "pyrotech:stone_brick_slab",
+      "text": "The $(item)Stone Brick$() is the true cornerstone of a stonemason's craft."
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

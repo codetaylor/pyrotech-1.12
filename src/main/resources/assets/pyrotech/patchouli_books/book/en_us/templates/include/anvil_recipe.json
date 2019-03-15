@@ -1,5 +1,5 @@
 {
-  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.AnvilRecipeComponentProcessor",
+  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.AnvilRecipeProcessor",
   "components": [
     {
       "group": "header",

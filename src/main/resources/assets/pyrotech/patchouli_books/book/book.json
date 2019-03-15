@@ -12,6 +12,8 @@
     "$(info)": "$(thing)$(bold)$(t:Vital and Fundamental Details)[!]$()",
     "$(warning)": "$(#f00)$(bold)$(t:Warning!)[!]$()",
     "$(severe)": "$(#f00)$(bold)$(t:Extreme Warning!!)[!!]$()",
-    "$(todo)": "$(#f00)$(bold)TODO: $()"
+    "$(todo)": "$(#f00)$(bold)TODO: $()",
+    "$(sneak)": "$(thing)$(bold)[$(k:sneak)]$()",
+    "$(use)": "$(thing)$(bold)[$(k:use)]$()"
   }
 }

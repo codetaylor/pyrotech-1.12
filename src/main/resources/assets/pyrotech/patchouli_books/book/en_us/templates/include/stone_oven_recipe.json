@@ -1,5 +1,5 @@
 {
-  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.DryingRackRecipeProcessor",
+  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.StoneOvenRecipeProcessor",
   "components": [
     {
       "group": "header",
@@ -11,8 +11,8 @@
     {
       "type": "custom",
       "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
-      "image": "pyrotech:crafting/drying_rack",
-      "x": 24, "y": 19,
+      "image": "pyrotech:crafting/stone_oven",
+      "x": 24, "y": 10,
       "scale": 0.5
     },
     {
@@ -27,6 +27,14 @@
       "x": 56, "y": 17,
       "u": 65, "v": 27,
       "width": 9, "height": 9,
+      "texture_width": 128, "texture_height": 128
+    },
+    {
+      "type": "image",
+      "image": "pyrotech:textures/gui/book/crafting_texture.png",
+      "x": 31, "y": 35,
+      "u": 51, "v": 76,
+      "width": 15, "height": 15,
       "texture_width": 128, "texture_height": 128
     },
     {

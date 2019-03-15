@@ -9,7 +9,7 @@ import vazkii.patchouli.common.util.ItemStackUtil;
 
 import javax.annotation.Nullable;
 
-public class AnvilRecipeComponentProcessor
+public class AnvilRecipeProcessor
     implements IComponentProcessor {
 
   @Nullable

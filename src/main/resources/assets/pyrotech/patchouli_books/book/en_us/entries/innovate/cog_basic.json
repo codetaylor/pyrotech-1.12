@@ -1,0 +1,21 @@
+{
+  "name": "Cog, Basic",
+  "icon": "pyrotech:mechanical_hopper",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/cog_wood",
+      "recipe2": "pyrotech:tech/machine/cog_bone"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/cog_flint",
+      "recipe2": "pyrotech:tech/machine/cog_stone"
+    }
+  ]
+}
