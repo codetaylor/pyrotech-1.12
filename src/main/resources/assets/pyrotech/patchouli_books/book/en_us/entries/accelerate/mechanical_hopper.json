@@ -5,7 +5,26 @@
   "pages": [
     {
       "type": "crafting",
-      "recipe": "pyrotech:tech/machine/mechanical_hopper"
+      "recipe": "pyrotech:tech/machine/mechanical_hopper",
+      "text": "$(info) This device transfers items from an inventory above it to one below or to the side.$(p)$(info) Each cog moves a different number of items per work cycle."
+    },
+    {
+      "type": "mechanical_hopper_cogs",
+      "cog": "pyrotech:cog_wood",
+      "cog2": "pyrotech:cog_stone",
+      "cog3": "pyrotech:cog_bone",
+      "cog4": "pyrotech:cog_flint"
+    },
+    {
+      "type": "mechanical_hopper_cogs",
+      "cog": "pyrotech:cog_iron",
+      "cog2": "pyrotech:cog_gold",
+      "cog3": "pyrotech:cog_obsidian",
+      "cog4": "pyrotech:cog_diamond"
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
     }
   ]
 }

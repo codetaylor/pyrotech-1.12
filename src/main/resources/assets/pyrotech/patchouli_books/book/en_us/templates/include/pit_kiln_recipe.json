@@ -1,5 +1,5 @@
 {
-  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.SoakingPotRecipeProcessor",
+  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.PitKilnRecipeProcessor",
   "components": [
     {
       "group": "header",
@@ -11,29 +11,12 @@
     {
       "type": "custom",
       "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
-      "image": "pyrotech:crafting/soaking_pot",
-      "x": 28, "y": 25,
+      "image": "pyrotech:crafting/pit_kiln",
+      "x": 24, "y": 19,
       "scale": 0.5
     },
     {
-      "type": "item", "item": "#input_item", "x": 30, "y": 14, "framed": true
-    },
-    {
-      "type": "custom",
-      "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.FluidComponent",
-      "fluid": "#input_fluid",
-      "x": 30, "y": 34,
-      "height": 8
-    },
-    {
-      "type": "tooltip",
-      "tooltip": [
-        "#input_fluid_name#: #input_fluid_amount# mB"
-      ],
-      "x": 30,
-      "y": 34,
-      "height": 8,
-      "width": 16
+      "type": "item", "item": "#input", "x": 30, "y": 14, "framed": true
     },
     {
       "type": "item", "item": "#output", "x": 74, "y": 14, "framed": true, "link_recipe": true
@@ -49,7 +32,7 @@
     {
       "type": "tooltip",
       "tooltip": [
-        "Soaking Pot Recipe"
+        "Pit Kiln Recipe"
       ],
       "x": 56, "y": 17,
       "u": 65, "v": 27,

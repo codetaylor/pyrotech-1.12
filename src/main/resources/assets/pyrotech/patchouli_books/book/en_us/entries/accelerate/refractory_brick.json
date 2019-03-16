@@ -8,7 +8,7 @@
       "text": "To make $(item)Refractory Brick$(), you need $(item)Flint Clay$().$(p)$(info) First, crush $(item)Flint Shards$() to produce $(item)Crushed Flint$().$(p)$(info) Next, melt $(item)Clay$() into $(item)Liquid Clay$().$(p)$(info) Finally, soak the $(item)Crushed Flint$() in the $(item)Liquid Clay$() to obtain $(item)Flint Clay$()."
     },
     {
-      "type": "anvil_recipe_stone_crucible_recipe_soaking_pot_recipe",
+      "type": "rrr_anvil_recipe_stone_crucible_recipe_soaking_pot_recipe",
       "anvil_header": true,
       "anvil_recipe": "pyrotech:crushed_flint_from_flint_shard",
       "stone_crucible_header": true,
@@ -22,7 +22,7 @@
       "text": "Next, you need $(item)Slaked Lime$().$(p)$(info) First, crush $(item)Limestone Rocks$() to produce $(item)Crushed Limestone$().$(p)$(info) Next, fire the $(item)Crushed Limestone$() into $(item)Quicklime$().$(p)$(info) Finally, soak the $(item)Quicklime$() in $(item)Water$() to obtain $(item)Slaked Lime$()."
     },
     {
-      "type": "anvil_recipe_stone_kiln_recipe_soaking_pot_recipe",
+      "type": "rrr_anvil_recipe_stone_kiln_recipe_soaking_pot_recipe",
       "anvil_header": true,
       "anvil_recipe": "pyrotech:limestone_rocks_to_crushed_limestone",
       "stone_kiln_header": true,
@@ -36,7 +36,7 @@
       "recipe2": "pyrotech:refractory_brick_unfired"
     },
     {
-      "type": "stone_kiln_recipe_rt",
+      "type": "rt_stone_kiln_recipe",
       "recipe": "pyrotech:refractory_brick",
       "text": "$(todo)Filler"
     },

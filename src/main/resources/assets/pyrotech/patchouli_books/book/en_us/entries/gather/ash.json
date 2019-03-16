@@ -1,0 +1,17 @@
+{
+  "name": "Ash",
+  "icon": "pyrotech:material:0",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:material:0",
+      "link_recipe": true,
+      "text": "$(info) $(item)Ash$() is a byproduct of the $(item)Campfire$(), $(item)pit burning$(), and the $(item)Bloomery$()."
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

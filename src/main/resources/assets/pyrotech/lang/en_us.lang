@@ -13,9 +13,9 @@ item.pyrotech.bucket.stone.name=%s Stone Bucket
 item.pyrotech.bucket.stone.empty.name=Stone Bucket
 item.pyrotech.bucket.stone.milk.name=Milk Stone Bucket
 
-item.pyrotech.bucket.wood.name=%s Wood Bucket
-item.pyrotech.bucket.wood.empty.name=Wood Bucket
-item.pyrotech.bucket.wood.milk.name=Milk Wood Bucket
+item.pyrotech.bucket.wood.name=%s Wooden Bucket
+item.pyrotech.bucket.wood.empty.name=Wooden Bucket
+item.pyrotech.bucket.wood.milk.name=Milk Wooden Bucket
 
 #------------------------------------------------------------------------------
 # Module: Ignition

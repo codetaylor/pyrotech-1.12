@@ -4,7 +4,7 @@
   "category": "innovate",
   "pages": [
     {
-      "type": "anvil_recipe_rrt",
+      "type": "rrt_anvil_recipe",
       "header": true,
       "recipe": "pyrotech:stone_brick_slab",
       "header2": true,

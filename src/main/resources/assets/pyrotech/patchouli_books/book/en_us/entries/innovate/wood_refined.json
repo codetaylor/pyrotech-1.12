@@ -4,26 +4,26 @@
   "category": "innovate",
   "pages": [
     {
-      "type": "soaking_pot_recipe_rt",
+      "type": "rt_soaking_pot_recipe",
       "header": true,
       "recipe": "pyrotech:planks_tarred",
       "text": "$(todo)Filler"
     },
     {
-      "type": "soaking_pot_recipe_rt",
+      "type": "rt_soaking_pot_recipe",
       "header": true,
       "recipe": "pyrotech:board_tarred",
       "text": "$(todo)Filler"
     },
     {
-      "type": "stone_sawmill_recipe_rrt",
+      "type": "rrt_stone_sawmill_recipe",
       "header": true,
       "recipe": "pyrotech:board_tier_0",
       "recipe2": "pyrotech:board_tier_1",
       "text": "$(todo)Filler"
     },
     {
-      "type": "stone_sawmill_recipe_rrt",
+      "type": "rrt_stone_sawmill_recipe",
       "header": true,
       "recipe": "pyrotech:board_tier_2",
       "recipe2": "pyrotech:board_tier_3",

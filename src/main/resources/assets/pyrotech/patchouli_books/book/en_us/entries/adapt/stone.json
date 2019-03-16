@@ -1,0 +1,62 @@
+{
+  "name": "Stone",
+  "icon": "minecraft:stone",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobblestone_slab",
+      "text": "$(todo)Filler"
+    },
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:stone_slab",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/stone_slab"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobblestone",
+      "text": "$(todo)Filler"
+    },
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:stone",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/stone"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobbled_andesite",
+      "text": "$(todo)Filler"
+    },
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:stone_andesite",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/stone_andesite"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobbled_diorite",
+      "text": "$(todo)Filler"
+    },
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:stone_diorite",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/stone_diorite"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobbled_granite",
+      "text": "$(todo)Filler"
+    },
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:stone_granite",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/stone_granite"
+    }
+  ]
+}

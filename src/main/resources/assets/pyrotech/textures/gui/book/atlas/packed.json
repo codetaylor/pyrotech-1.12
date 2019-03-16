@@ -48,9 +48,16 @@
       "width": 6,
       "height": 6
     },
-    "crafting/soaking_pot": {
+    "crafting/pit_kiln": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
       "u": 112,
+      "v": 69,
+      "width": 56,
+      "height": 34
+    },
+    "crafting/soaking_pot": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 168,
       "v": 69,
       "width": 42,
       "height": 40

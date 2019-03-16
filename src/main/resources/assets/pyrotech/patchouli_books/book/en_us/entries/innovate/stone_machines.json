@@ -13,7 +13,7 @@
     },
     {
       "type": "text",
-      "text": "$(info) To use a $(thing)stone machine$(), place ingredients in the top, place fuel in the bottom, and light the bottom with a $(l:appendix/ignition)verified firestarting device$().$(p)$(info) $(thing)Stone machines$() can be doused with a bucket of water to save fuel.$(p)$(info) Regarding automation, input ingredients can be inserted into the top, or top sides, of the device, fuel into the side, and output items can be extracted from the bottom."
+      "text": "$(info) To use a $(thing)stone machine$(), place ingredients in the top, place fuel in the bottom, and light the bottom with a $(l:appendix/ignition)verified fire-starter device$().$(p)$(info) $(thing)Stone machines$() can be doused with a bucket of water to save fuel.$(p)$(info) Regarding automation, input ingredients are inserted into the top, or top sides, of the device, fuel into the bottom sides, and output items are extracted from the bottom."
     },
     {
       "type": "crafting",

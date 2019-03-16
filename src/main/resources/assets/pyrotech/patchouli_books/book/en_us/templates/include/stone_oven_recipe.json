@@ -30,6 +30,15 @@
       "texture_width": 128, "texture_height": 128
     },
     {
+      "type": "tooltip",
+      "tooltip": [
+        "Stone Oven Recipe"
+      ],
+      "x": 56, "y": 17,
+      "u": 65, "v": 27,
+      "width": 9, "height": 9
+    },
+    {
       "type": "image",
       "image": "pyrotech:textures/gui/book/crafting_texture.png",
       "x": 31, "y": 35,

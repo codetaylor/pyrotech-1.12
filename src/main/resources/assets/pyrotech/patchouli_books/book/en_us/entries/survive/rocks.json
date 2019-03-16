@@ -11,12 +11,12 @@
       ]
     },
     {
-      "type": "anvil_recipe_rt",
+      "type": "rt_anvil_recipe",
       "recipe": "pyrotech:cobblestone_to_rocks",
       "text": "$(info) $(item)Stone Rocks$() can be found on the ground in most areas.$(p)$(info) $(item)Rocks$() can be found when mining with low tier tools.$(p)$(info) They can also be crafted on an $(item)Anvil$()."
     },
     {
-      "type": "anvil_recipe_rrr",
+      "type": "rrr_anvil_recipe",
       "recipe": "pyrotech:cobbled_andesite_to_rocks",
       "recipe2": "pyrotech:cobbled_diorite_to_rocks",
       "recipe3": "pyrotech:cobbled_granite_to_rocks"
@@ -26,7 +26,7 @@
       "text": "If you ever find yourself under attack - $(italic)a phrase here which means subject to aggressive, violent, or harmful action$() - it would be wise to remember this:$(p)$(info) The act of throwing a $(item)Rock$() can also be an aggressive, violent, or harmful action.$(p)$(info) Placing a $(item)Rock$() to decorate a path, however, is not an aggressive, violent, or harmful action."
     },
     {
-      "type": "anvil_recipe_rt",
+      "type": "rt_anvil_recipe",
       "anchor": "limestone",
       "recipe": "pyrotech:cobbled_limestone_to_rocks",
       "text": "$(info) $(item)Limestone Rocks$() can be crafted on an $(item)Anvil$() and found when mining $(item)Limestone$() with low tier tools.$(p)$(todo)Filler"

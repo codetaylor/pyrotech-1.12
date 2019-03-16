@@ -1,0 +1,16 @@
+{
+  "name": "Bucket, Stone",
+  "icon": "pyrotech:bucket_stone",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:bucket/bucket_stone",
+      "text": "$(warning) The $(item)Stone Bucket$() will break with hot fluids, such as lava."
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

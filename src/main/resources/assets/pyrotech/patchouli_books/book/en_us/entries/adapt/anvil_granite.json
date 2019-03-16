@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/anvil_granite",
-      "text": "$(info) A $(item)Granite Anvil$() will allow you to begin innovating with stone.$(p)$(info) To use, place the input on top and $(use) with a pickaxe or hammer."
+      "text": "$(info) A $(item)Granite Anvil$() will allow you to work with stone.$(p)$(info) To use, place the input on top and $(use) with a pickaxe or hammer."
     },
     {
       "type": "image",

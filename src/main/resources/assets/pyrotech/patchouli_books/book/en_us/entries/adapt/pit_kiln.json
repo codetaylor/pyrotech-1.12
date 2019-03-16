@@ -5,12 +5,23 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(info) To build and operate a $(item)Pit Kiln$() you will need a $(item)Pit Kiln$(), a $(item)Straw Bale$(), three $(thing)Logs$(), and a $(l:appendix/ignition)verified firestarting device$().$(p)$(todo)Filler"
+      "text": "$(info) To build and operate a $(item)Pit Kiln$() you will need a $(item)Pit Kiln$(), four $(item)Straw$(), a $(item)Straw Bale$(), three $(thing)Logs$(), and a $(l:appendix/ignition)verified fire-starter device$().$(p)$(info) Two clumps of $(item)Dried Plant Fibers$() can be tied together to make $(item)Straw$()."
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/kiln_pit",
-      "recipe2": "pyrotech:thatch"
+      "recipe2": "pyrotech:straw"
+    },
+    {
+      "type": "rrr_crude_drying_recipe_drying_recipe_stone_oven_recipe",
+      "crude_recipe": "pyrotech:straw",
+      "recipe": "pyrotech:crude_drying_rack/straw",
+      "stone_oven_recipe": "pyrotech:drying_rack/crude_drying_rack/straw"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:thatch",
+      "text": "$(info) $(item)Straw$() can also be created by drying $(item)Wheat$()."
     },
     {
       "type": "text",
@@ -74,7 +85,7 @@
     },
     {
       "type": "text",
-      "text": "Next, use any $(l:appendix/ignition)verified firestarting device$() to ignite.$(p)$(info) Unlike a $(thing)Pit Burn$(), the $(item)Pit Kiln$() is left uncovered on top while it burns."
+      "text": "Next, use any $(l:appendix/ignition)verified fire-starter device$() to ignite.$(p)$(info) Unlike a $(thing)Pit Burn$(), the $(item)Pit Kiln$() is left uncovered on top while it burns."
     },
     {
       "type": "image",

@@ -39,6 +39,26 @@
       "texture_width": 128, "texture_height": 128
     },
     {
+      "type": "tooltip",
+      "tooltip": [
+        "Granite Anvil Recipe"
+      ],
+      "x": 56, "y": 17,
+      "u": 65, "v": 27,
+      "width": 9, "height": 9,
+      "guard": "#granite->exists"
+    },
+    {
+      "type": "tooltip",
+      "tooltip": [
+        "Ironclad Anvil Recipe"
+      ],
+      "x": 56, "y": 17,
+      "u": 65, "v": 27,
+      "width": 9, "height": 9,
+      "guard": "#ironclad->exists"
+    },
+    {
       "type": "custom",
       "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
       "image": "pyrotech:crafting/icons#pickaxe",

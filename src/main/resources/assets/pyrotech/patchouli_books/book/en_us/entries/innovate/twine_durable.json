@@ -4,7 +4,7 @@
   "category": "innovate",
   "pages": [
     {
-      "type": "soaking_pot_recipe_rt",
+      "type": "rt_soaking_pot_recipe",
       "recipe": "pyrotech:twine_durable",
       "text": "$(todo)Filler"
     },

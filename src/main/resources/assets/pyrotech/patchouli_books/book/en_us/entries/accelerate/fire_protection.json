@@ -1,7 +1,7 @@
 {
   "name": "Fire Protection",
   "icon": "minecraft:leather_chestplate",
-  "category": "bloom",
+  "category": "accelerate",
   "pages": [
     {
       "type": "text",
