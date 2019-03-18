@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(info) $(thing)Cogs$() activate $(thing)mechanical devices$() and wear out over time.$(p)Basic $(thing)cogs$() are made with basic materials."
+      "text": "$(info) $(thing)Cogs$() serve to activate $(thing)Mechanical Devices$().$(p)$(info) Each type of $(thing)Cog$() may vary in performance in different devices.$(p)Basic $(thing)Cogs$() are made with basic materials."
     },
     {
       "type": "crafting",

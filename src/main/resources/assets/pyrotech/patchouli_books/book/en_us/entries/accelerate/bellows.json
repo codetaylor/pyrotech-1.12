@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/machine/bellows",
-      "text": "$(info) Place a $(item)Bellows$() facing a $(thing)combustion machine$() or $(item)Bloomery$() and jump on it to increase airflow and accelerate the device."
+      "text": "$(info) Place a $(item)Bellows$() facing a $(thing)Combustion Machine$() or $(item)Bloomery$() and jump on it to increase airflow and accelerate the device."
     },
     {
       "type": "image",

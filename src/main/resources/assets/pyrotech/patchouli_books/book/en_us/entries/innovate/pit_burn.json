@@ -111,6 +111,11 @@
       "text": "$(info) A $(thing)Pit Burn$() with $(item)Log Piles$() can produce an appreciable quantity of $(item)Charcoal$() and $(item)Wood Tar$()."
     },
     {
+      "type": "rt_pit_burn_recipe",
+      "header": true,
+      "recipe": "pyrotech:charcoal"
+    },
+    {
       "type": "text",
       "text": "$(todo)Relations"
     }

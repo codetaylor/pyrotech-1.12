@@ -5,6 +5,7 @@
   "pages": [
     {
       "type": "rt_soaking_pot_recipe",
+      "header": true,
       "recipe": "pyrotech:twine_durable",
       "text": "$(todo)Filler"
     },

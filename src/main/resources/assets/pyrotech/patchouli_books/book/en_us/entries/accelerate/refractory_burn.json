@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "The execution of a successful $(thing)Refractory Burn$() is identical to that of a $(thing)Pit Burn$() with the exception that the material used to surround the burning ingredients must be a valid refractory material.$(p)Familiarize yourself with how a $(thing)Pit Burn$() works before attempting a $(thing)Refractory Burn$()."
+      "text": "The process of $(thing)Refractory Burning$() is identical to that of $(thing)Pit Burning$() with the exception that the material used to surround the burning ingredients must be a valid refractory material.$(p)$(info) Familiarize yourself with how a $(thing)Pit Burn$() works before attempting a $(thing)Refractory Burn$()."
     },
     {
       "type": "crafting",

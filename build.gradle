@@ -88,7 +88,7 @@ dependencies {
     compile project(":athenaeum")
     compile project(":dropt")
     deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
-    compile "vazkii.patchouli:Patchouli:1.0-17.90"
+    compile "vazkii.patchouli:Patchouli:1.0-19.94"
 }
 
 jar {

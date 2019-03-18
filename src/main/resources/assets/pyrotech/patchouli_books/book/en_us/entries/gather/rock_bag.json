@@ -10,7 +10,7 @@
     },
     {
       "type": "text",
-      "text": "$(info) A $(item)Rock Bag$() can hold a large quantity of $(item)Rocks$().$(p)$(info) A $(item)Durable Rock Bag$() can hold a large quantity of $(item)Cobbled Stone$().$(p)$(todo)Filler"
+      "text": "$(info) A $(item)Rock Bag$() can hold a large quantity of $(thing)Rocks$().$(p)$(info) A $(item)Durable Rock Bag$() can hold a large quantity of $(thing)Cobbled Stone$().$(p)$(todo)Filler"
     },
     {
       "type": "image",

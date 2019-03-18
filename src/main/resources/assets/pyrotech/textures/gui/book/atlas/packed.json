@@ -8,84 +8,105 @@
   "image": {
     "crafting/anvil_granite": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 162,
-      "v": 0,
-      "width": 56,
-      "height": 40
+      "u": 112,
+      "v": 77,
+      "width": 57,
+      "height": 42
     },
     "crafting/anvil_ironclad": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
       "u": 56,
-      "v": 69,
+      "v": 200,
       "width": 56,
       "height": 40
     },
     "crafting/crude_drying_rack": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 162,
-      "v": 40,
+      "u": 191,
+      "v": 45,
       "width": 37,
       "height": 29
     },
     "crafting/drying_rack": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 112,
+      "u": 141,
       "v": 0,
       "width": 50,
       "height": 53
     },
     "crafting/icons#hammer": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 6,
-      "v": 245,
+      "u": 91,
+      "v": 69,
       "width": 6,
       "height": 6
     },
     "crafting/icons#pickaxe": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 0,
-      "v": 245,
+      "u": 85,
+      "v": 69,
       "width": 6,
       "height": 6
     },
+    "crafting/mechanical_compactor": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 0,
+      "v": 0,
+      "width": 85,
+      "height": 77
+    },
+    "crafting/pit_burn": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 191,
+      "v": 0,
+      "width": 56,
+      "height": 45
+    },
     "crafting/pit_kiln": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 112,
-      "v": 69,
+      "u": 169,
+      "v": 77,
       "width": 56,
       "height": 34
     },
+    "crafting/refractory_burn": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 56,
+      "v": 155,
+      "width": 56,
+      "height": 45
+    },
     "crafting/soaking_pot": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 168,
-      "v": 69,
+      "u": 112,
+      "v": 119,
       "width": 42,
       "height": 40
     },
     "crafting/stone_crucible": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
       "u": 0,
-      "v": 89,
+      "v": 166,
       "width": 56,
       "height": 78
     },
     "crafting/stone_kiln": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 0,
-      "v": 167,
+      "u": 56,
+      "v": 77,
       "width": 56,
       "height": 78
     },
     "crafting/stone_oven": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
       "u": 0,
-      "v": 0,
+      "v": 77,
       "width": 56,
       "height": 89
     },
     "crafting/stone_sawmill": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 56,
+      "u": 85,
       "v": 0,
       "width": 56,
       "height": 69

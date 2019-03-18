@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/machine/mechanical_hopper",
-      "text": "$(info) This device transfers items from an inventory above it to one below or to the side.$(p)$(info) Each cog moves a different number of items per work cycle."
+      "text": "$(info) This device transfers items from an inventory above it to one below or to the side.$(p)$(info) Each cog transfers a different number of items per work cycle."
     },
     {
       "type": "mechanical_hopper_cogs",

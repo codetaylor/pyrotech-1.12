@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "When working with $(item)Blooms$() and $(item)Slag$() it is common to get burned.$(p)$(info) $(thing)Leather armor$() can be coated with $(item)Slaked Lime$() to increase its $(thing)fire protection$()."
+      "text": "When working with a $(item)Bloomery$() and $(item)Slag$() it is common to get burned.$(p)$(info) $(thing)Leather Armor$() can be coated with $(item)Slaked Lime$() to increase its $(thing)Fire Protection$()."
     },
     {
       "type": "crafting",

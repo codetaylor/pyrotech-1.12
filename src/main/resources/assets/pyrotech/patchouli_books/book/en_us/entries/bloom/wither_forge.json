@@ -6,6 +6,13 @@
     {
       "type": "text",
       "text": "This is a test entry, but it should show up!"
+    },
+    {
+      "type": "fuel_wither_forge",
+      "text": "Some fuel is more efficient when used in a $(item)Wither Forge().",
+      "fuel": "minecraft:coal_block",
+      "fuel2": "pyrotech:coal_coke_block",
+      "fuel3": "pyrotech:living_tar"
     }
   ]
 }
