@@ -1,0 +1,7 @@
+{
+  "name": "Stone",
+  "description": "Stone!",
+  "icon": "pyrotech:material:16",
+  "parent": "innovate",
+  "sortnum": 1
+}

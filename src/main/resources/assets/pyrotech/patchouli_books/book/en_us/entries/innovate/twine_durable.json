@@ -1,7 +1,7 @@
 {
   "name": "Twine, Durable",
   "icon": "pyrotech:material:26",
-  "category": "innovate",
+  "category": "innovate_soaking",
   "pages": [
     {
       "type": "rt_soaking_pot_recipe",

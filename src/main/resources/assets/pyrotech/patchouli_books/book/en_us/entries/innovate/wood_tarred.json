@@ -1,0 +1,19 @@
+{
+  "name": "Wood, Tarred",
+  "icon": "pyrotech:planks_tarred",
+  "category": "innovate_soaking",
+  "pages": [
+    {
+      "type": "rt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:planks_tarred",
+      "text": "$(todo)Filler"
+    },
+    {
+      "type": "rt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:board_tarred",
+      "text": "$(todo)Filler"
+    }
+  ]
+}

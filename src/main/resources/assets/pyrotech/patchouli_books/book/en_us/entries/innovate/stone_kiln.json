@@ -1,0 +1,16 @@
+{
+  "name": "Stone Kiln",
+  "icon": "pyrotech:stone_kiln",
+  "category": "innovate_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/stone_kiln",
+      "text": "A $(item)Stone Kiln$() performs the same tasks as a $(item)Pit Kiln$(), but faster and with fewer failures."
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

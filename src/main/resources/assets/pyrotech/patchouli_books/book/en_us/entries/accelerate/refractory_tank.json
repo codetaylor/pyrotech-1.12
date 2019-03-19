@@ -1,12 +1,12 @@
 {
-  "name": "Refractory Tank",
+  "name": "Tank, Refractory",
   "icon": "pyrotech:tank:1",
   "category": "accelerate",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/brick_tank",
-      "text": "$(info) The $(item)Refractory Tank$() will keep its contents when broken and will not break when filled with hot fluids."
+      "text": "The $(item)Refractory Tank$() will keep its contents when broken and will not break when filled with hot fluids."
     }
   ]
 }

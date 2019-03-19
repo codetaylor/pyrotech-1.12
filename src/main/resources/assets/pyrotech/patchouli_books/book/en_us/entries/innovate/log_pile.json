@@ -1,0 +1,16 @@
+{
+  "name": "Log Pile",
+  "icon": "pyrotech:log_pile",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:log_pile",
+      "text": "$(todo)Filler"
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

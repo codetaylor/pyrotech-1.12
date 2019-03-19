@@ -1,0 +1,7 @@
+{
+  "name": "Soaking",
+  "description": "Soaking!",
+  "icon": "pyrotech:soaking_pot",
+  "parent": "innovate",
+  "sortnum": 4
+}

@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(info) To build and operate a $(item)Pit Kiln$() you will need a $(item)Pit Kiln$(), four $(item)Straw$(), a $(item)Straw Bale$(), three $(thing)Logs$(), and a $(l:appendix/ignition)verified fire-starter device$().$(p)$(info) Two clumps of $(item)Dried Plant Fibers$() can be tied together to make $(item)Straw$()."
+      "text": "To build and operate a $(item)Pit Kiln$() you will need a $(item)Pit Kiln$(), four $(item)Straw$(), a $(item)Straw Bale$(), three $(thing)Logs$(), and a $(l:appendix/ignition)verified fire-starter device$().$(p)Two clumps of $(item)Dried Plant Fibers$() can be tied together to make $(item)Straw$()."
     },
     {
       "type": "crafting",

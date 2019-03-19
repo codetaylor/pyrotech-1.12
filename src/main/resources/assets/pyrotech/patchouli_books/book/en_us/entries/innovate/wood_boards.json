@@ -1,20 +1,8 @@
 {
-  "name": "Wood, Refined",
+  "name": "Wood, Boards",
   "icon": "pyrotech:material:20",
   "category": "innovate",
   "pages": [
-    {
-      "type": "rt_soaking_pot_recipe",
-      "header": true,
-      "recipe": "pyrotech:planks_tarred",
-      "text": "$(todo)Filler"
-    },
-    {
-      "type": "rt_soaking_pot_recipe",
-      "header": true,
-      "recipe": "pyrotech:board_tarred",
-      "text": "$(todo)Filler"
-    },
     {
       "type": "rrt_stone_sawmill_recipe",
       "header": true,

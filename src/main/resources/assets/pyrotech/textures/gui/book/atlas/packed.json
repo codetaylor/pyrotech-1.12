@@ -15,21 +15,28 @@
     },
     "crafting/anvil_ironclad": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 56,
-      "v": 200,
+      "u": 169,
+      "v": 77,
       "width": 56,
       "height": 40
     },
+    "crafting/compacting_bin": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 141,
+      "v": 0,
+      "width": 56,
+      "height": 62
+    },
     "crafting/crude_drying_rack": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 191,
-      "v": 45,
+      "u": 168,
+      "v": 119,
       "width": 37,
       "height": 29
     },
     "crafting/drying_rack": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 141,
+      "u": 197,
       "v": 0,
       "width": 50,
       "height": 53
@@ -57,29 +64,29 @@
     },
     "crafting/pit_burn": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 191,
-      "v": 0,
+      "u": 56,
+      "v": 155,
       "width": 56,
       "height": 45
     },
     "crafting/pit_kiln": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 169,
-      "v": 77,
+      "u": 112,
+      "v": 119,
       "width": 56,
       "height": 34
     },
     "crafting/refractory_burn": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
       "u": 56,
-      "v": 155,
+      "v": 200,
       "width": 56,
       "height": 45
     },
     "crafting/soaking_pot": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
       "u": 112,
-      "v": 119,
+      "v": 153,
       "width": 42,
       "height": 40
     },

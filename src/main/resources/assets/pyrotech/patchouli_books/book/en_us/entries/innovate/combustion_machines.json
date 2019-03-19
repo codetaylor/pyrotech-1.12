@@ -1,0 +1,32 @@
+{
+  "name": "Combustion Machines",
+  "icon": "pyrotech:stone_kiln",
+  "category": "innovate_machines",
+  "priority": true,
+  "pages": [
+    {
+      "type": "image",
+      "title": "Combustion Machines",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/stone_oven_00.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "To use a $(thing)Combustion Machine$(), place ingredients in the top, place fuel in the bottom, and light the opening in the bottom with a $(l:appendix/ignition)verified fire-starter device$().$(p)$(info) $(thing)Combustion Machines$() can be doused with a bucket of water to save fuel."
+    },
+    {
+      "type": "text",
+      "text": "$(info) Regarding automation, input ingredients are inserted into the top, or top sides, of the device, fuel is inserted into the bottom sides, and output items are extracted from the bottom."
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Illustration"
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

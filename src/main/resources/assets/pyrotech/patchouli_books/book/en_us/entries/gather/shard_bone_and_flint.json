@@ -5,18 +5,18 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(info) $(item)Bone Shards$() can be found by mining $(item)Fossil Ore.$(p)$(todo)Filler$()"
+      "text": "$(item)Bone Shards$() can be found by mining $(item)Fossil Ore.$(p)$(todo)Filler$()"
     },
     {
       "type": "rrt_anvil_recipe",
       "recipe": "pyrotech:bone_shard_from_bone",
       "recipe2": "pyrotech:bone_shard_from_block",
-      "text": "$(info) $(item)Bone Shards$() can be broken from larger pieces of bone on an $(item)Anvil$()."
+      "text": "$(item)Bone Shards$() can be broken from larger pieces of bone on an $(item)Anvil$()."
     },
     {
       "type": "rt_anvil_recipe",
       "recipe": "pyrotech:flint_shard_from_flint",
-      "text": "$(info) $(item)Flint Shards$() can be broken from larger pieces of $(item)Flint$() on an $(item)Anvil$().$(p)$(info) $(item)Flint Shards$() can be found by using a shovel to excavate gravel."
+      "text": "$(item)Flint Shards$() can be broken from larger pieces of $(item)Flint$() on an $(item)Anvil$().$(p)$(item)Flint Shards$() can be found by using a shovel to excavate gravel."
     },
     {
       "type": "relations",

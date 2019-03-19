@@ -10,12 +10,12 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/drying_rack_crude",
-      "text": "$(info) A $(item)Crude Drying Rack$() can be made by tying some $(item)Sticks$() together with $(item)Plant Fibers$().$(p)$(info) A $(item)Crude Drying Rack$() can also be used to store a single item."
+      "text": "A $(item)Crude Drying Rack$() can be made by tying some $(item)Sticks$() together with $(item)Plant Fibers$().$(p)$(info) A $(item)Crude Drying Rack$() can also be used to store a single item."
     },
     {
       "type": "crafting",
       "recipe2": "pyrotech:tech/basic/drying_rack",
-      "text": "$(info) A sturdier, less crude $(item)Drying Rack$() can be made by lashing $(item)Sticks$() together with $(item)Twine$().$(p)$(info) A $(item)Drying Rack$() can also be used to store four items."
+      "text": "A sturdier, less crude $(item)Drying Rack$() can be made by lashing $(item)Sticks$() together with $(item)Twine$().$(p)$(info) A $(item)Drying Rack$() can be used to store four items."
     },
     {
       "type": "relations",

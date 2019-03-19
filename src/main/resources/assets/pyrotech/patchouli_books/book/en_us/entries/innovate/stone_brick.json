@@ -1,7 +1,7 @@
 {
-  "name": "Stone, Refined",
+  "name": "Stone Brick",
   "icon": "pyrotech:material:16",
-  "category": "innovate",
+  "category": "innovate_stone",
   "pages": [
     {
       "type": "rrt_anvil_recipe",
@@ -10,14 +10,6 @@
       "header2": true,
       "recipe2": "pyrotech:brick_stone",
       "text": "The $(item)Stone Brick$() is the true cornerstone of a stonemason's craft."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pyrotech:stone_bricks"
-    },
-    {
-      "type": "text",
-      "text": "$(todo)Relations"
     }
   ]
 }

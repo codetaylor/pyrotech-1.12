@@ -13,7 +13,7 @@
     {
       "type": "rt_anvil_recipe",
       "recipe": "pyrotech:cobblestone_to_rocks",
-      "text": "$(info) $(item)Stone Rocks$() can be found on the ground in most areas.$(p)$(info) $(item)Rocks$() can be found when mining with low tier tools.$(p)$(info) They can also be crafted on an $(item)Anvil$()."
+      "text": "$(item)Stone Rocks$() can be found on the ground in most areas.$(p)$(item)Rocks$() can be found when mining with low tier tools.$(p)They can also be crafted on an $(item)Anvil$()."
     },
     {
       "type": "rrr_anvil_recipe",
@@ -29,7 +29,7 @@
       "type": "rt_anvil_recipe",
       "anchor": "limestone",
       "recipe": "pyrotech:cobbled_limestone_to_rocks",
-      "text": "$(info) $(item)Limestone Rocks$() can be crafted on an $(item)Anvil$() and found when mining $(item)Limestone$() with low tier tools.$(p)$(todo)Filler"
+      "text": "$(item)Limestone Rocks$() can be crafted on an $(item)Anvil$() and found when mining $(item)Limestone$() with low tier tools.$(p)$(todo)Filler"
     },
     {
       "type": "relations",

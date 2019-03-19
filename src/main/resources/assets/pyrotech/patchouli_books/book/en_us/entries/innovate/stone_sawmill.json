@@ -1,0 +1,16 @@
+{
+  "name": "Stone Sawmill",
+  "icon": "pyrotech:stone_sawmill",
+  "category": "innovate_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/stone_sawmill",
+      "text": "A $(item)Stone Sawmill$() performs the same tasks as a $(item)Chopping Block$(), but faster.$(p)$(info) $(thing)Sawmills$() produce $(item)Wood Chips$() during operation."
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

@@ -7,7 +7,7 @@
       "type": "spotlight",
       "item": "pyrotech:rock:7",
       "link_recipe": true,
-      "text": "$(info) $(item)Wood Chips$() are a byproduct of chopping on a $(item)Chopping Block$() and sawing wood in a $(thing)sawmill$()."
+      "text": "$(item)Wood Chips$() are a byproduct of chopping on a $(item)Chopping Block$() and sawing wood in a $(thing)sawmill$()."
     },
     {
       "type": "text",

@@ -7,13 +7,12 @@
       "type": "rt_pit_burn_recipe",
       "header": true,
       "recipe": "pyrotech:coal_coke",
-      "text": "$(info) $(item)Coal Coke$() is the result of carbonizing $(item)Coal Blocks$() in a $(thing)Refractory Burn$().$(p)$(info) $(item)Coal Coke$() is more efficient as a fuel than either $(item)Charcoal$() or $(item)Coal$()."
+      "text": "$(item)Coal Coke$() is the result of carbonizing $(item)Coal Blocks$() in a $(thing)Refractory Burn$().$(p)$(info) $(item)Coal Coke$() is more efficient than $(item)Charcoal$() or $(item)Coal$().$(p)$(info) $(item)Coal Coke Blocks$() have increased efficiency when used in a $(item)Bloomery$() or $(item)Wither Forge$()."
     },
     {
       "type": "fuel_coal_coke_block",
       "recipe": "pyrotech:coal_coke_block",
-      "fuel": "pyrotech:coal_coke_block",
-      "text": "$(info) $(item)Coal Coke Blocks$() have increased efficiency when used in a $(item)Bloomery$() or $(item)Wither Forge$()."
+      "fuel": "pyrotech:coal_coke_block"
     },
     {
       "type": "text",

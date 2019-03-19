@@ -5,12 +5,12 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(info) To use, place ingredients in the top and $(use) with a shovel.$(p)$(info) Using may cause hunger. If it isn't working, you might be too hungry.$(p)$(info) Regarding automation, items can be inserted into the top and sides and extracted from the bottom."
+      "text": "$(todo)What does it do?$(p)To use, place ingredients in the top and $(use) with a $(thing)Shovel$().$(p)$(warning) Using may cause hunger. If it isn't working, you might be too hungry."
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/compacting_bin",
-      "text": ""
+      "text": "$(item) Regarding automation, items can be inserted into the top and sides and extracted from the bottom."
     }
   ]
 }

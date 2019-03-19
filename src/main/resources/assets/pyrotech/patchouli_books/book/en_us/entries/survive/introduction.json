@@ -1,7 +1,8 @@
 {
-  "name": "Campfire",
+  "name": "Introduction",
   "icon": "pyrotech:campfire",
   "category": "survive",
+  "priority": true,
   "pages": [
     {
       "type": "text",
@@ -9,11 +10,11 @@
     },
     {
       "type": "text",
-      "text": "When huddled together in the dead of night $(italic)- a phrase here which means a time in the middle part of the night, when it is darkest and coldest -$() a $(item)Campfire$() can be used to heighten anticipation and dread while recreationally engaging in scintillating and predictable tales of horror and misfortune.$(br)  However, for a person in your predicament, heightening anticipation and dread for recreational enjoyment is probably not a priority."
+      "text": "When huddled together in the dead of night $(italic)- a phrase here which means a time in the middle part of the night, when it is darkest and coldest -$() a $(item)Campfire$() can be used to heighten anticipation and dread while recreationally engaging in scintillating yet predictable tales of horror and misfortune.$(br)  However, for a person in your predicament, heightening anticipation and dread for recreational enjoyment is probably not a priority."
     },
     {
       "type": "text",
-      "text": "For a person in your predicament, a person engaged in the horror and misfortune of wilderness survival in a very non-recreational, non-scintillating, and unpredictable way, $(info) a $(item)Campfire$() is most useful for cooking food and creating light$() - the kind of light that acts as a comfort against the anticipation and dread that is inevitably heightened in the middle part of the night, when it is darkest and coldest."
+      "text": "For a person in your predicament, a person engaged in the horror and misfortune of wilderness survival in a very non-recreational, non-scintillating, and unpredictable way, $(info) a $(item)Campfire$() is most useful for cooking food and creating light$() - light that will act as a comfort against the anticipation and dread that is inevitably heightened in the middle part of the night, when it is darkest and coldest."
     },
     {
       "type": "text",

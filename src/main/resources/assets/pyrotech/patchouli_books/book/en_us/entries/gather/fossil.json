@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:fossil_ore",
-      "text": "$(info) $(item)Fossil Ore$() can be found almost everywhere underground.$(p)$(info) It can be mined with $(thing)Crude Tools$(), but you will have better results with better tools.$(p)$(todo) Filler$()"
+      "text": "$(item)Fossil Ore$() can be found almost everywhere underground.$(p)$(info) It can be mined with $(thing)Crude Tools$(), but you will have better results with better tools.$(p)$(todo) Filler$()"
     },
     {
       "type": "relations",

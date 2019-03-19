@@ -6,22 +6,22 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/crate",
-      "text": "$(info) A $(item)Crate$() can hold a small number of items."
+      "text": "A $(item)Crate$() can hold a small number of items."
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/shelf",
-      "text": "$(info) A $(item)Shelf$() can hold a small number of items.$(p)$(info) A $(item)Shelf$() can be placed in either a forward or back position."
+      "text": "A $(item)Shelf$() can hold a small number of items.$(p)$(info) A $(item)Shelf$() can be placed in either a forward or back position."
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/stash",
-      "text": "$(info) A $(item)Stash$() can hold a larger number of a single item."
+      "text": "A $(item)Stash$() can hold a larger number of a single item."
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/wood_rack",
-      "text": "$(info) A $(item)Wood Rack$() can hold a small number of a $(thing)Logs$().$(p)$(info) $(thing)Logs$() of the same type will settle to the bottom."
+      "text": "A $(item)Wood Rack$() can hold a small number of a $(thing)Logs$().$(p)$(info) $(thing)Logs$() of the same type will settle to the bottom."
     },
     {
       "type": "relations",

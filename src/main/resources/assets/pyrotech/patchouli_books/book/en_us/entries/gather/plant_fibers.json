@@ -11,7 +11,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:material:12",
-      "text": "$(info) $(item)Plant Fibers$() can be found by breaking tall grass.$(p)$(info) $(item)Plant Fibers$() can also be crafted."
+      "text": "$(item)Plant Fibers$() can be found by breaking tall grass.$(p)$(item)Plant Fibers$() can also be crafted."
     },
     {
       "type": "text",

@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(info) $(item)Crude Tools$() can be crafted from $(item)Sticks$() and $(item)Rocks$()$(p)$(info) Low-tier tools, like $(item)Crude Tools$() may harvest inferior resources compared to their higher-tier counterparts."
+      "text": "$(item)Crude Tools$() can be crafted from $(item)Sticks$() and $(item)Rocks$()$(p)$(info) Low-tier tools, like $(item)Crude Tools$() may harvest inferior resources compared to their higher-tier counterparts."
     },
     {
       "type": "crafting",

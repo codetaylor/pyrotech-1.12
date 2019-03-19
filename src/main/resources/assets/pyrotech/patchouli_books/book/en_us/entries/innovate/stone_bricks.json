@@ -1,0 +1,11 @@
+{
+  "name": "Stone Bricks",
+  "icon": "pyrotech:stone_bricks",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:stone_bricks"
+    }
+  ]
+}

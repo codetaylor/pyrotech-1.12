@@ -4,13 +4,9 @@
   "category": "survive",
   "pages": [
     {
-      "type": "text",
-      "text": "Everyone knows that the spark produced by $(item)$(bold)Flint and Tinder$() does not actually come from the flint, but is, in fact, the result of a tiny piece of steel flaking off and igniting. Everyone also knows that to produce fire from just flint and tinder alone is impossible and a high-carbon tool steel is also required."
-    },
-    {
       "type": "crafting",
       "recipe": "pyrotech:ignition/flint_and_tinder",
-      "text": "We at the VFD have a vested interest in your survival, and for that reason, we are now operating under the assumption that the rocks used to make $(item)$(bold)Flint and Tinder$() have a high concentration of carbon."
+      "text": "$(item)Flint and Tinder$() is a $(l:appendix/ignition)verified fire-starter device$()."
     },
     {
       "type": "relations",

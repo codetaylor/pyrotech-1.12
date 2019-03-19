@@ -1,11 +1,14 @@
 {
   "name": "Pit Burning",
   "icon": "minecraft:dirt",
-  "category": "innovate",
+  "category": "innovate_pit_burn",
   "pages": [
     {
-      "type": "text",
-      "text": "A person might bury something to keep it from being found, sometimes because they are ashamed of what they are hiding. However, as is the case here, you might bury something to insulate it against excessive heat loss during carbonization."
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/pit_burn_01.png"
+      ]
     },
     {
       "type": "text",
@@ -45,7 +48,7 @@
     },
     {
       "type": "text",
-      "text": "Next, immediately after lighting the exposed ingredient, cover your burn with a solid, non-flammable material.$(p)$(warning) At this point, the ingredients in the pit must be completely covered on all sides by solid, non-flammable materials or the $(thing)Pit Burn$() will fail."
+      "text": "Immediately after lighting the exposed ingredient, cover your burn with a solid, non-flammable material.$(p)$(warning) At this point, the ingredients in the pit must be completely covered on all sides by solid, non-flammable materials or the $(thing)Pit Burn$() will fail.$(p)If done correctly, you will notice the burning ingredients continue to smoke."
     },
     {
       "type": "image",
@@ -57,7 +60,7 @@
     },
     {
       "type": "text",
-      "text": "Next, after covering your burn, wait for it to complete.$(p)$(info) While it is active, the burning ingredient will produce smoke.$(p)$(info) When the burn completes, the smoke will stop and only then is it safe to uncover.$(p)$(warning) During this phase, do not remove any of the material surrounding the burn until the smoke stops. If the $(thing)Pit Burn$() is disturbed, it may be reduced to ash or nothing at all."
+      "text": "After covering your burn, wait for it to complete.$(p)$(info) While the $(thing)Pit Burn$() is active, the burning ingredient will produce smoke, and, when the burn completes, the smoke will stop.$(p)$(warning) During this phase, do not remove any of the material surrounding the burn until the smoke stops. If the $(thing)Pit Burn$() is disturbed, it may be reduced to ash or nothing at all."
     },
     {
       "type": "image",
@@ -70,50 +73,6 @@
     {
       "type": "text",
       "text": "Finally, after the smoke has stopped, remove any of the material covering the $(thing)Pit Burn$() and sift through the ash for the results.$(p)$(todo)Filler / Transition"
-    },
-    {
-      "type": "crafting",
-      "recipe": "pyrotech:stone_door",
-      "text": "$(info) A $(item)Stone Door$() can be used to seal a $(thing)Pit Burn$() if placed flush with the burning ingredients. Ignite any exposed ingredient and immediately close the door."
-    },
-    {
-      "type": "image",
-      "border": true,
-      "images": [
-        "pyrotech:textures/gui/book/photo/pit_burn_00.png"
-      ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pyrotech:tech/refractory/tar_collector_stone",
-      "text": "$(info) A $(item)Stone Collector$() will drain fluid from burning ingredients in a short range directly above it."
-    },
-    {
-      "type": "image",
-      "images": [
-        "pyrotech:textures/gui/book/illustration/pit_burn_collector.png"
-      ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pyrotech:tech/refractory/tar_drain_stone",
-      "text": "$(info) A $(item)Stone Drain$() will drain fluid from collectors in a range in front of it.$(p)$(info) The front of the $(item)Stone Drain$() is the side with the big hole."
-    },
-    {
-      "type": "image",
-      "images": [
-        "pyrotech:textures/gui/book/illustration/pit_burn_drain.png"
-      ]
-    },
-    {
-      "type": "crafting",
-      "recipe": "pyrotech:log_pile",
-      "text": "$(info) A $(thing)Pit Burn$() with $(item)Log Piles$() can produce an appreciable quantity of $(item)Charcoal$() and $(item)Wood Tar$()."
-    },
-    {
-      "type": "rt_pit_burn_recipe",
-      "header": true,
-      "recipe": "pyrotech:charcoal"
     },
     {
       "type": "text",

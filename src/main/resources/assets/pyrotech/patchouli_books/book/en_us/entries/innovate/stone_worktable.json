@@ -1,11 +1,11 @@
 {
-  "name": "Stone Worktable",
+  "name": "Worktable, Stone",
   "icon": "pyrotech:worktable_stone",
   "category": "innovate",
   "pages": [
     {
       "type": "text",
-      "text": "$(info) The $(item)Stone Worktable$() allows items to stack.$(p)$(info) This table is more durable than its wooden counterpart.$(p)$(info) To use a $(item)Stone Worktable$(), place the recipe ingredients on top, and $(use) it with a hammer."
+      "text": "The $(item)Stone Worktable$() is more durable than its wooden counterpart and allows items to stack.$(p)To use a $(item)Stone Worktable$(), place the recipe ingredients on top, and $(use) it with a $(thing)Hammer$()."
     },
     {
       "type": "crafting",

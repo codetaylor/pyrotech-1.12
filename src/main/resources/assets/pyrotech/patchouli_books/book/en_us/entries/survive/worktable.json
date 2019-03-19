@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "The $(item)Worktable$() will allow you the necessary surface space to improve your crafting skills.$(p)$(info) To use a $(item)Worktable$(), place the recipe ingredients on top, and $(use) it with a hammer."
+      "text": "The $(item)Worktable$() will allow you the necessary surface space to improve your crafting skills.$(p)To use a $(item)Worktable$(), place the recipe ingredients on top, and $(use) it with a hammer."
     },
     {
       "type": "crafting",

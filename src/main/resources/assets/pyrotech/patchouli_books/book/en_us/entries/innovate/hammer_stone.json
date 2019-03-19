@@ -1,0 +1,15 @@
+{
+  "name": "Hammer, Stone",
+  "icon": "pyrotech:stone_hammer",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:stone_hammer"
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
+    }
+  ]
+}

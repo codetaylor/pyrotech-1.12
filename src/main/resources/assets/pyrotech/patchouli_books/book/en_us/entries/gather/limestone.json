@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:limestone",
-      "text": "$(info) $(item)Limestone$() can be found almost everywhere underground.$(p)$(todo) Filler$()"
+      "text": "$(item)Limestone$() can be found almost everywhere underground.$(p)$(todo) Filler$()"
     },
     {
       "type": "relations",

@@ -1,0 +1,7 @@
+{
+  "name": "Pit Burning",
+  "description": "A person might bury something to keep it from being found, sometimes because they are ashamed of what they are hiding. However, as is the case here, one might bury something to insulate it against excessive heat loss during carbonization.",
+  "icon": "minecraft:dirt",
+  "parent": "innovate",
+  "sortnum": 2
+}
