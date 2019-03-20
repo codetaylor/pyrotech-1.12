@@ -1,7 +1,7 @@
 {
   "name": "Bloom",
   "icon": "pyrotech:bloom",
-  "category": "bloom",
+  "category": "bloom_bloom",
   "pages": [
     {
       "type": "image",

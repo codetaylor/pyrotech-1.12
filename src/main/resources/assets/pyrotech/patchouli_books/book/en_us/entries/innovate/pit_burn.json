@@ -12,7 +12,7 @@
     },
     {
       "type": "text",
-      "text": "The $(thing)Pit Burn$() process is comprised of the following steps:$(p)  $(l:adapt/pit_burn#step_1)1. Place$()$(br)  $(l:adapt/pit_burn#step_2)2. Ignite$()$(br)  $(l:adapt/pit_burn#step_3)3. Cover$()$(br)  $(l:adapt/pit_burn#step_4)4. Wait$()$(br)  $(l:adapt/pit_burn#step_5)5. Uncover$()$(p)The following pages serve to illustrate and expound upon the $(thing)Pit Burn$() concepts listed above."
+      "text": "The $(thing)Pit Burn$() process is comprised of the following steps:$(p)  $(l:adapt/pit_burn#step_1)1. Place$()$(br)  $(l:adapt/pit_burn#step_2)2. Ignite$()$(br)  $(l:adapt/pit_burn#step_3)3. Cover$()$(br)  $(l:adapt/pit_burn#step_4)4. Wait$()$(br)  $(l:adapt/pit_burn#step_5)5. Uncover$()$(p)The following pages serve to illustrate and expound upon the $(thing)Pit Burn$() process."
     },
     {
       "type": "image",

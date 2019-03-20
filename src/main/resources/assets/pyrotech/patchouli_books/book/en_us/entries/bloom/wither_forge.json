@@ -1,7 +1,7 @@
 {
   "name": "Wither Forge",
   "icon": "pyrotech:wither_forge",
-  "category": "bloom",
+  "category": "bloom_bloom",
   "pages": [
     {
       "type": "text",

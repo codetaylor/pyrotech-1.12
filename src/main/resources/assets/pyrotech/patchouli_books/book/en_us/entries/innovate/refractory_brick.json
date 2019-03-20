@@ -1,7 +1,7 @@
 {
   "name": "Refractory Brick",
   "icon": "pyrotech:material:5",
-  "category": "accelerate",
+  "category": "innovate",
   "pages": [
     {
       "type": "text",
@@ -39,11 +39,6 @@
       "type": "rt_stone_kiln_recipe",
       "recipe": "pyrotech:refractory_brick",
       "text": "Combine $(item)Clay Balls$(), $(item)Flint Clay$(), $(item)Slaked Lime$(), and $(item)Ash$() to make $(item)Refractory Clay$().$(p)Fire the $(item)Unfired Refractory Bricks$() in a $(thing)Combustion Kiln$() to obtain a usable product."
-    },
-    {
-      "type": "crafting",
-      "recipe": "pyrotech:refractory_brick_block",
-      "text": "$(item)Refractory Blocks$() are used in the construction of the $(item)Bloomery$(), $(thing)Refractory Machines$(), and enclosures for $(thing)Refractory Burning$()."
     },
     {
       "type": "text",

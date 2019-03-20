@@ -1,7 +1,7 @@
 {
   "name": "Slag Glass",
   "icon": "pyrotech:slag_glass",
-  "category": "bloom",
+  "category": "bloom_bloom",
   "pages": [
     {
       "type": "text",

@@ -10,7 +10,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/compacting_bin",
-      "text": "$(item) Regarding automation, items can be inserted into the top and sides and extracted from the bottom."
+      "text": "$(info) Regarding automation, items can be inserted into the top and sides and extracted from the bottom."
     }
   ]
 }
