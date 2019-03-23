@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:obsidian_pickaxe"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.tools.obsidian"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.tools.obsidian.desc"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:wither_forge",
+  "criteria": {
+    "pickaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:obsidian_pickaxe"
+          }
+        ]
+      }
+    }
+  }
+}

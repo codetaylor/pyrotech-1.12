@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:material",
+      "data": 13
+    },
+    "title": {
+      "translate": "advancement.pyrotech.dried.plant.fibers"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.dried.plant.fibers.desc"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:root",
+  "criteria": {
+    "dried_plant_fibers": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:material",
+            "data": 13
+          }
+        ]
+      }
+    }
+  }
+}

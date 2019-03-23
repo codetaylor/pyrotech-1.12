@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:flint_and_tinder"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.flint.and.tinder"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.flint.and.tinder.desc"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:dried_plant_fibers",
+  "criteria": {
+    "campfire": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:flint_and_tinder"
+          }
+        ]
+      }
+    }
+  }
+}

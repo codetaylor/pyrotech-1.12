@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:material",
+      "data": 8
+    },
+    "title": {
+      "translate": "advancement.pyrotech.slaked.lime"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.slaked.lime.desc"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:stone_machines",
+  "criteria": {
+    "crucible": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:material",
+            "data": 8
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:apple_baked"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.roasted.food"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.roasted.food.desc"
+    },
+    "frame": "challenge",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:flint_and_tinder",
+  "criteria": {
+    "apple": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:apple_baked"
+          }
+        ]
+      }
+    },
+    "egg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:egg_roasted"
+          }
+        ]
+      }
+    },
+    "carrot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:carrot_roasted"
+          }
+        ]
+      }
+    },
+    "beetroot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:beetroot_roasted"
+          }
+        ]
+      }
+    },
+    "mushroom_brown": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:mushroom_brown_roasted"
+          }
+        ]
+      }
+    },
+    "mushroom_red": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:mushroom_red_roasted"
+          }
+        ]
+      }
+    }
+  }
+}

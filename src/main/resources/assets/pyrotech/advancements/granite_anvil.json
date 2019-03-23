@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:anvil_granite"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.anvil.granite"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.anvil.granite.desc"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:straw_bale",
+  "criteria": {
+    "anvil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:anvil_granite"
+          }
+        ]
+      }
+    }
+  }
+}

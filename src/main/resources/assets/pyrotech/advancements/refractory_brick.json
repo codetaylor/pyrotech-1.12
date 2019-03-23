@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:material",
+      "data": 5
+    },
+    "title": {
+      "translate": "advancement.pyrotech.refractory.brick"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.refractory.brick.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "pyrotech:slaked_lime",
+  "criteria": {
+    "crucible": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:material",
+            "data": 5
+          }
+        ]
+      }
+    }
+  }
+}

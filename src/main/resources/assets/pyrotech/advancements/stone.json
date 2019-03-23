@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:stone"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.stone"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.stone.desc"
+    },
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "pyrotech:cobblestone",
+  "criteria": {
+    "stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:stone"
+          }
+        ]
+      }
+    }
+  }
+}

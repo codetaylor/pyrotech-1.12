@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:thatch"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.straw"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.straw.desc"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:pit_kiln",
+  "criteria": {
+    "straw": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:thatch"
+          }
+        ]
+      }
+    }
+  }
+}

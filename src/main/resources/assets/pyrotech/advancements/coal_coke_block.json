@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:coal_coke_block"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.coal.coke.block"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.coal.coke.block.desc"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:refractory_brick",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:coal_coke_block"
+          }
+        ]
+      }
+    }
+  }
+}

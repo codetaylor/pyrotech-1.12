@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:living_tar"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.living.tar"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.living.tar.desc"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:enter_the_nether",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:living_tar"
+          }
+        ]
+      }
+    }
+  }
+}

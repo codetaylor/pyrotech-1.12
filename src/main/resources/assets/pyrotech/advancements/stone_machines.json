@@ -1,0 +1,59 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:stone_kiln"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.stone.machines"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.stone.machines.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "pyrotech:stone_brick",
+  "criteria": {
+    "crucible": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:stone_crucible"
+          }
+        ]
+      }
+    },
+    "kiln": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:stone_kiln"
+          }
+        ]
+      }
+    },
+    "oven": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:stone_oven"
+          }
+        ]
+      }
+    },
+    "sawmill": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:stone_sawmill"
+          }
+        ]
+      }
+    }
+  }
+}

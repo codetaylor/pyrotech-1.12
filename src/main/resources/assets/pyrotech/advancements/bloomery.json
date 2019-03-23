@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:bloomery"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.bloomery"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.bloomery.desc"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:refractory_brick",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:bloomery"
+          }
+        ]
+      }
+    }
+  }
+}

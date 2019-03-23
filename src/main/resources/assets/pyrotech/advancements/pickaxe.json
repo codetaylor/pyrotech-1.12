@@ -1,0 +1,44 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:bone_pickaxe"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.pickaxe"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.pickaxe.desc"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:worktable",
+  "requirements": [
+    [
+      "bone",
+      "flint"
+    ]
+  ],
+  "criteria": {
+    "bone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:bone_pickaxe"
+          }
+        ]
+      }
+    },
+    "flint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:flint_pickaxe"
+          }
+        ]
+      }
+    }
+  }
+}

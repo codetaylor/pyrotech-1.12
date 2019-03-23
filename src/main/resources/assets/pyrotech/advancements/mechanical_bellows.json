@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:mechanical_bellows"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.mechanical.bellows"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.mechanical.bellows.desc"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:bellows",
+  "criteria": {
+    "crucible": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:mechanical_bellows"
+          }
+        ]
+      }
+    }
+  }
+}

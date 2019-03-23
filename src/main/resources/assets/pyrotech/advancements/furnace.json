@@ -1,0 +1,29 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:furnace"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.furnace"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.furnace.desc"
+    },
+    "frame": "goal",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:enter_the_nether",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:furnace"
+          }
+        ]
+      }
+    }
+  }
+}

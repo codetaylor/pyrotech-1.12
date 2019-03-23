@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "pyrotech:chopping_block"
+    },
+    "title": {
+      "translate": "advancement.pyrotech.chopping.block"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.chopping.block.desc"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:tools_crude",
+  "criteria": {
+    "anvil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "pyrotech:chopping_block"
+          }
+        ]
+      }
+    }
+  }
+}
