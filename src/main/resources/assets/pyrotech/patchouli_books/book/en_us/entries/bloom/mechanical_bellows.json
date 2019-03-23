@@ -2,6 +2,7 @@
   "name": "Mechanical Bellows",
   "icon": "pyrotech:mechanical_bellows",
   "category": "bloom",
+  "advancement": "pyrotech:iron_ingot",
   "pages": [
     {
       "type": "text",

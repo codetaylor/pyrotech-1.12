@@ -2,6 +2,7 @@
   "name": "Tongs",
   "icon": "pyrotech:tongs_iron",
   "category": "bloom_bloom",
+  "advancement": "pyrotech:bloomery",
   "pages": [
     {
       "type": "text",

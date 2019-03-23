@@ -2,6 +2,7 @@
   "name": "Storage",
   "icon": "pyrotech:crate",
   "category": "gather",
+  "advancement": "pyrotech:worktable",
   "pages": [
     {
       "type": "crafting",

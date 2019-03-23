@@ -2,6 +2,7 @@
   "name": "Bellows",
   "icon": "pyrotech:bellows",
   "category": "accelerate",
+  "advancement": "pyrotech:granite_anvil",
   "pages": [
     {
       "type": "crafting",

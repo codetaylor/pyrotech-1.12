@@ -2,6 +2,7 @@
   "name": "Wood, Tarred",
   "icon": "pyrotech:planks_tarred",
   "category": "innovate_soaking",
+  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "rt_soaking_pot_recipe",

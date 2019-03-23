@@ -2,6 +2,7 @@
   "name": "Stone Door",
   "icon": "pyrotech:stone_door",
   "category": "innovate_pit_burn",
+  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "crafting",

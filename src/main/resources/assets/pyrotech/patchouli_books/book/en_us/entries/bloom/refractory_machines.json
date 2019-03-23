@@ -2,6 +2,7 @@
   "name": "Refractory Machines",
   "icon": "pyrotech:brick_kiln",
   "category": "bloom",
+  "advancement": "pyrotech:iron_ingot",
   "pages": [
     {
       "type": "crafting",

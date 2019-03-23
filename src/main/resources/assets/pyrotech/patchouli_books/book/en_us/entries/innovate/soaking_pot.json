@@ -2,6 +2,7 @@
   "name": "Soaking Pot",
   "icon": "pyrotech:soaking_pot",
   "category": "innovate_soaking",
+  "advancement": "pyrotech:granite_anvil",
   "pages": [
     {
       "type": "crafting",

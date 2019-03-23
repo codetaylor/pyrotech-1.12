@@ -2,6 +2,7 @@
   "name": "Stone",
   "icon": "minecraft:stone",
   "category": "adapt",
+  "advancement": "pyrotech:pit_kiln",
   "pages": [
     {
       "type": "crafting",

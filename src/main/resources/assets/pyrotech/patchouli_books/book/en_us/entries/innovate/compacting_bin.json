@@ -2,6 +2,7 @@
   "name": "Compacting Bin",
   "icon": "pyrotech:compacting_bin",
   "category": "innovate",
+  "advancement": "pyrotech:granite_anvil",
   "pages": [
     {
       "type": "text",

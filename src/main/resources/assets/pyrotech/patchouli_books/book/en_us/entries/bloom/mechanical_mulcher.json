@@ -2,6 +2,7 @@
   "name": "Mechanical Mulcher",
   "icon": "pyrotech:mechanical_mulch_spreader",
   "category": "bloom",
+  "advancement": "pyrotech:iron_ingot",
   "pages": [
     {
       "type": "text",

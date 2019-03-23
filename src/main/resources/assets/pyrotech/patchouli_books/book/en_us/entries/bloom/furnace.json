@@ -2,6 +2,7 @@
   "name": "Furnace",
   "icon": "minecraft:furnace",
   "category": "bloom",
+  "advancement": "pyrotech:enter_the_nether",
   "pages": [
     {
       "type": "crafting",

@@ -2,6 +2,7 @@
   "name": "Fishing Rod, Crude",
   "icon": "pyrotech:crude_fishing_rod",
   "category": "survive",
+  "advancement": "pyrotech:dried_plant_fibers",
   "pages": [
     {
       "type": "text",

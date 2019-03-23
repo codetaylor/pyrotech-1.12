@@ -2,6 +2,7 @@
   "name": "Anvil, Granite",
   "icon": "pyrotech:anvil_granite",
   "category": "adapt",
+  "advancement": "pyrotech:stone",
   "pages": [
     {
       "type": "crafting",

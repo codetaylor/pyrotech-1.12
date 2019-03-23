@@ -2,6 +2,7 @@
   "name": "Anvil, Ironclad",
   "icon": "pyrotech:anvil_iron_plated",
   "category": "bloom_bloom",
+  "advancement": "pyrotech:iron_ingot",
   "pages": [
     {
       "type": "crafting",

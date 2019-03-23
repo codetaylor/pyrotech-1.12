@@ -2,6 +2,7 @@
   "name": "Bucket, Wood & Clay",
   "icon": "pyrotech:bucket_wood",
   "category": "adapt",
+  "advancement": "pyrotech:worktable",
   "pages": [
     {
       "type": "text",

@@ -2,6 +2,7 @@
   "name": "Refractory Brick",
   "icon": "pyrotech:material:5",
   "category": "innovate",
+  "advancement": "pyrotech:granite_anvil",
   "pages": [
     {
       "type": "text",

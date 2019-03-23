@@ -2,6 +2,7 @@
   "name": "Bow Drill",
   "icon": "pyrotech:bow_drill",
   "category": "innovate",
+  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "crafting",

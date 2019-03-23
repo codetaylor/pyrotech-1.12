@@ -2,6 +2,7 @@
   "name": "Refractory Brick Block",
   "icon": "pyrotech:refractory_brick_block",
   "category": "accelerate",
+  "advancement": "pyrotech:refractory_brick",
   "pages": [
     {
       "type": "crafting",

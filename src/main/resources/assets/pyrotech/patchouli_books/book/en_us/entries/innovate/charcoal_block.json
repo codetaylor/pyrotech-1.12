@@ -2,6 +2,7 @@
   "name": "Charcoal Block",
   "icon": "pyrotech:charcoal_block",
   "category": "innovate_pit_burn",
+  "advancement": "pyrotech:granite_anvil",
   "pages": [
     {
       "type": "rrt_compacting_bin_recipe",

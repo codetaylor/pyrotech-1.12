@@ -2,6 +2,7 @@
   "name": "Mulch",
   "icon": "pyrotech:mulch",
   "category": "adapt",
+  "advancement": "pyrotech:worktable",
   "pages": [
     {
       "type": "crafting",

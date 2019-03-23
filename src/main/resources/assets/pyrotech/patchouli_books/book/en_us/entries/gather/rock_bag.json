@@ -2,6 +2,7 @@
   "name": "Rock Bag",
   "icon": "pyrotech:bag_simple",
   "category": "gather",
+  "advancement": "pyrotech:worktable",
   "pages": [
     {
       "type": "crafting",

@@ -2,6 +2,7 @@
   "name": "Mechanical Compactor",
   "icon": "pyrotech:mechanical_compacting_bin",
   "category": "bloom",
+  "advancement": "pyrotech:iron_ingot",
   "pages": [
     {
       "type": "text",

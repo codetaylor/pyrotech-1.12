@@ -2,6 +2,7 @@
   "name": "Flint and Tinder",
   "icon": "pyrotech:flint_and_tinder",
   "category": "survive",
+  "advancement": "pyrotech:tools_crude",
   "pages": [
     {
       "type": "crafting",

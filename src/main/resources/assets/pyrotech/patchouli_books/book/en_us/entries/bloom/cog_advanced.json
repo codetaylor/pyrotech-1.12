@@ -2,6 +2,7 @@
   "name": "Cog, Advanced",
   "icon": "pyrotech:cog_iron",
   "category": "bloom",
+  "advancement": "pyrotech:iron_ingot",
   "pages": [
     {
       "type": "text",

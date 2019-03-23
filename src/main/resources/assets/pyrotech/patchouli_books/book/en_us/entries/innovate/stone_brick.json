@@ -2,6 +2,7 @@
   "name": "Stone Brick",
   "icon": "pyrotech:material:16",
   "category": "innovate_stone",
+  "advancement": "pyrotech:granite_anvil",
   "pages": [
     {
       "type": "rrt_anvil_recipe",

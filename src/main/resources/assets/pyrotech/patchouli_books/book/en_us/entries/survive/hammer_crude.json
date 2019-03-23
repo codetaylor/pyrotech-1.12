@@ -2,6 +2,7 @@
   "name": "Hammer, Crude",
   "icon": "pyrotech:crude_hammer",
   "category": "survive",
+  "advancement": "pyrotech:worktable",
   "pages": [
     {
       "type": "crafting",
