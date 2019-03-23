@@ -379,6 +379,12 @@ gui.pyrotech.jei.info.burn=To perform pit burning, place the blocks to burn in a
 gui.pyrotech.jei.info.refractory=Refractory burning is similar to pit burning with the exception that the burning blocks must be fully covered with valid refractory blocks. To collect fluid from the burn, place a valid refractory collector under the blocks.
 
 #------------------------------------------------------------------------------
+# Module: Plugin - Patchouli
+#------------------------------------------------------------------------------
+
+item.pyrotech.book.name=Pyrotechnic Esoterica
+
+#------------------------------------------------------------------------------
 # Misc
 #------------------------------------------------------------------------------
 
