@@ -13,7 +13,7 @@
     "show_toast": false,
     "announce_to_chat": false
   },
-  "parent": "pyrotech:enter_the_nether",
+  "parent": "pyrotech:coal_coke_block",
   "criteria": {
     "item": {
       "trigger": "minecraft:inventory_changed",

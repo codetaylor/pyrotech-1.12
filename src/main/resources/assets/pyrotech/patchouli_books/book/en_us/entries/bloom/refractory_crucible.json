@@ -1,0 +1,12 @@
+{
+  "name": "Refractory Crucible",
+  "icon": "pyrotech:brick_crucible",
+  "category": "bloom_refractory_machines",
+  "advancement": "pyrotech:iron_ingot",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_crucible"
+    }
+  ]
+}

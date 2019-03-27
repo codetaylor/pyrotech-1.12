@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "$(item)Slag$() is a byproduct of smelting ore in a $(item)Bloomery$()"
     }
   ]
 }

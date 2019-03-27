@@ -1,0 +1,7 @@
+{
+  "name": "Cog Machines",
+  "description": "Cog Machines!",
+  "icon": "pyrotech:mechanical_mulch_spreader",
+  "sortnum": 2,
+  "parent": "bloom"
+}

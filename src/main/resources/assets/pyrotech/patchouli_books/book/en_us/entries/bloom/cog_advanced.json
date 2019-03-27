@@ -1,13 +1,9 @@
 {
   "name": "Cog, Advanced",
   "icon": "pyrotech:cog_iron",
-  "category": "bloom",
+  "category": "bloom_refractory_machines",
   "advancement": "pyrotech:iron_ingot",
   "pages": [
-    {
-      "type": "text",
-      "text": ""
-    },
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/machine/cog_iron",
@@ -17,6 +13,10 @@
       "type": "crafting",
       "recipe": "pyrotech:tech/machine/cog_obsidian",
       "recipe2": "pyrotech:tech/machine/cog_diamond"
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
     }
   ]
 }

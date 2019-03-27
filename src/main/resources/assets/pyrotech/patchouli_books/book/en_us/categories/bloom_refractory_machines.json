@@ -1,0 +1,7 @@
+{
+  "name": "Refractory Machines",
+  "description": "Refractory Machines!",
+  "icon": "pyrotech:brick_sawmill",
+  "sortnum": 3,
+  "parent": "bloom"
+}

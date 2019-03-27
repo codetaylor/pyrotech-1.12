@@ -2,7 +2,7 @@
   "name": "Fiber Torch",
   "icon": "pyrotech:torch_fiber",
   "category": "survive",
-  "advancement": "pyrotech:dried_plant_fiber",
+  "advancement": "pyrotech:dried_plant_fibers",
   "pages": [
     {
       "type": "crafting",

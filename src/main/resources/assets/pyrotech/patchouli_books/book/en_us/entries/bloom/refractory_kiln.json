@@ -1,0 +1,12 @@
+{
+  "name": "Refractory Kiln",
+  "icon": "pyrotech:brick_kiln",
+  "category": "bloom_refractory_machines",
+  "advancement": "pyrotech:iron_ingot",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_kiln"
+    }
+  ]
+}

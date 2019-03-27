@@ -1,0 +1,12 @@
+{
+  "name": "Refractory Sawmill",
+  "icon": "pyrotech:brick_sawmill",
+  "category": "bloom_refractory_machines",
+  "advancement": "pyrotech:iron_ingot",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_sawmill"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "name": "Mechanical Compactor",
   "icon": "pyrotech:mechanical_compacting_bin",
-  "category": "bloom",
+  "category": "bloom_cog_machines",
   "advancement": "pyrotech:iron_ingot",
   "pages": [
     {

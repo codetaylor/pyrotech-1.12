@@ -10,7 +10,7 @@
     },
     {
       "type": "fuel_wither_forge",
-      "text": "Some fuel is more efficient when used in a $(item)Wither Forge().",
+      "text": "Some fuel is more efficient when used in a $(item)Wither Forge$().",
       "fuel": "minecraft:coal_block",
       "fuel2": "pyrotech:coal_coke_block",
       "fuel3": "pyrotech:living_tar"
