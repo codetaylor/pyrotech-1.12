@@ -1,0 +1,34 @@
+package com.codetaylor.mc.pyrotech.modules.plugin.patchouli.event;
+
+import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePatchouliConfig;
+import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePluginPatchouli;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+
+public class PlayerJoinEventHandler {
+
+  private static final String KEY = "pyrotech.start";
+
+  public void on(PlayerEvent.PlayerLoggedInEvent event) {
+
+    if (ModulePatchouliConfig.GIVE_BOOK_ON_START) {
+      NBTTagCompound data = event.player.getEntityData();
+      NBTTagCompound persistent;
+
+      if (!data.hasKey(EntityPlayer.PERSISTED_NBT_TAG)) {
+        data.setTag(EntityPlayer.PERSISTED_NBT_TAG, (persistent = new NBTTagCompound()));
+
+      } else {
+        persistent = data.getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+      }
+
+      if (!persistent.hasKey(KEY)) {
+        persistent.setBoolean(KEY, true);
+        event.player.inventory.addItemStackToInventory(new ItemStack(ModulePluginPatchouli.Items.BOOK));
+      }
+    }
+  }
+
+}

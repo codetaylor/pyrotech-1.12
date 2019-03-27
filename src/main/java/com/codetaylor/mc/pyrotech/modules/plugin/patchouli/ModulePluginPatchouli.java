@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.plugin.patchouli;
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.event.PlayerJoinEventHandler;
 import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.init.EntityInitializer;
 import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.item.ItemBook;
@@ -12,6 +13,7 @@ import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
@@ -34,6 +36,8 @@ public class ModulePluginPatchouli
 
     this.setRegistry(new Registry(MOD_ID, CREATIVE_TAB));
     this.enableAutoRegistry();
+
+    MinecraftForge.EVENT_BUS.register(new PlayerJoinEventHandler());
   }
 
   @Override
