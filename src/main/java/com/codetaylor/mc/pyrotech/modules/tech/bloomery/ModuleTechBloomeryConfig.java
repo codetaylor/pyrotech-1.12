@@ -454,7 +454,7 @@ public class ModuleTechBloomeryConfig {
         "Default: " + 0.1
     })
     @Config.RangeDouble(min = 0)
-    public double HAMMER_POWER_MODIFIER_FOR_MINING_FATIGE_EFFECT = 0.1;
+    public double HAMMER_POWER_MODIFIER_FOR_MINING_FATIGUE_EFFECT = 0.1;
 
     @Config.Comment({
         "A multiplicative modifier for a recipe's failure chance when using a silk touch",

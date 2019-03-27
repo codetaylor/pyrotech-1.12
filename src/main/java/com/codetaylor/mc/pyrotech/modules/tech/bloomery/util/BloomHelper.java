@@ -105,7 +105,7 @@ public class BloomHelper {
     PotionEffect effectMiningFatigue = player.getActivePotionEffect(MobEffects.MINING_FATIGUE);
 
     if (effectMiningFatigue != null) {
-      result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_MINING_FATIGE_EFFECT;
+      result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_MINING_FATIGUE_EFFECT;
     }
 
     return Math.max(0, result);
