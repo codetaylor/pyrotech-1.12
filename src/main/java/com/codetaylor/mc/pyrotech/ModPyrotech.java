@@ -17,6 +17,7 @@ import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGen;
 import com.codetaylor.mc.pyrotech.proxy.SidedProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.*;
 
@@ -116,11 +117,13 @@ public class ModPyrotech {
 
     // --- PLUGINS ---
 
-    if (ModPyrotechConfig.MODULES.get(ModulePluginDropt.MODULE_ID)) {
+    if (ModPyrotechConfig.MODULES.get(ModulePluginDropt.MODULE_ID)
+        && Loader.isModLoaded("dropt")) {
       this.registerModule(ModulePluginDropt.class);
     }
 
-    if (ModPyrotechConfig.MODULES.get(ModulePluginPatchouli.MODULE_ID)) {
+    if (ModPyrotechConfig.MODULES.get(ModulePluginPatchouli.MODULE_ID)
+        && Loader.isModLoaded("patchouli")) {
       this.registerModule(ModulePluginPatchouli.class);
     }
 
