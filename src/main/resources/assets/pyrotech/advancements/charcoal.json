@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:coal",
+      "data": 1
+    },
+    "title": {
+      "translate": "advancement.pyrotech.charcoal"
+    },
+    "description": {
+      "translate": "advancement.pyrotech.charcoal.desc"
+    },
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "parent": "pyrotech:stone_brick",
+  "criteria": {
+    "crucible": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:coal",
+            "data": 1
+          }
+        ]
+      }
+    }
+  }
+}

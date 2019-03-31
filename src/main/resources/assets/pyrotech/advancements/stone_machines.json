@@ -13,7 +13,7 @@
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "pyrotech:stone_brick",
+  "parent": "pyrotech:charcoal",
   "criteria": {
     "crucible": {
       "trigger": "minecraft:inventory_changed",
