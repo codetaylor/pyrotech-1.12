@@ -5,6 +5,10 @@
   "advancement": "pyrotech:bloomery",
   "pages": [
     {
+      "type": "text",
+      "text": "$(item)Tongs$() will allow you to safely handle $(item)Blooms$().$(p)$(info) To pick up a $(item)Bloom$(), $(use) the $(item)Bloom$() with $(item)Tongs$().$(p)$(info) $(item)Tongs$() held in either hand will pick up a $(item)Bloom$() when it enters your inventory.$(p)$(info) $(item)Tongs$() can be used with the $(item)Bloomery$() and $(item)Wither Forge$()."
+    },
+    {
       "type": "crafting",
       "recipe": "pyrotech:tech/bloomery/tongs_stone",
       "recipe2": "pyrotech:tech/bloomery/tongs_bone"
@@ -22,6 +26,10 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/bloomery/tongs_obsidian"
+    },
+    {
+      "type": "text",
+      "text": "$(todo)Relations"
     }
   ]
 }

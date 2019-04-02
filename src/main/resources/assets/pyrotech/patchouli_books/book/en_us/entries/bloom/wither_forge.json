@@ -5,8 +5,9 @@
   "advancement": "pyrotech:enter_the_nether",
   "pages": [
     {
-      "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/wither_forge",
+      "text": "$(info) A $(item)Wither Forge$() can smelt up to three ores into one $(item)Bloom$()."
     },
     {
       "type": "fuel_wither_forge",

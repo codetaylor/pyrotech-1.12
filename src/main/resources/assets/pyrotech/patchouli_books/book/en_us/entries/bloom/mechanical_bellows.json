@@ -5,8 +5,15 @@
   "advancement": "pyrotech:iron_ingot",
   "pages": [
     {
-      "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/mechanical_bellows",
+      "text": "$(info) A $(item)Mechanical Bellows$() can accelerate up to three $(thing)Combustion Machines$() using a $(thing)Cog$()."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/mechanical_bellows_00.png"
+      ]
     }
   ]
 }
