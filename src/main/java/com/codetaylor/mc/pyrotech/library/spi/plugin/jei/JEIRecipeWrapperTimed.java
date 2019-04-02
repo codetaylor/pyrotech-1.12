@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper;
+package com.codetaylor.mc.pyrotech.library.spi.plugin.jei;
 
 import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.IPyrotechRecipeWrapper;
