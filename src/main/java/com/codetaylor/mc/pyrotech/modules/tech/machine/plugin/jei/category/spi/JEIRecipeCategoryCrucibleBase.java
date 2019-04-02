@@ -1,11 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category.spi;
 
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.PyrotechRecipeCategory;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperCrucible;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public abstract class JEIRecipeCategoryCrucibleBase
-    implements IRecipeCategory<JEIRecipeWrapperCrucible> {
+    extends PyrotechRecipeCategory<JEIRecipeWrapperCrucible> {
 
   private final IDrawableAnimated animatedFlame;
   private final IDrawableAnimated arrow;
@@ -76,6 +76,8 @@ public abstract class JEIRecipeCategoryCrucibleBase
   @Override
   public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperCrucible recipeWrapper, IIngredients ingredients) {
 
+    super.setRecipe(recipeLayout, recipeWrapper, ingredients);
+
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 0);
     itemStacks.set(ingredients);
@@ -84,5 +86,11 @@ public abstract class JEIRecipeCategoryCrucibleBase
     int capacity = this.getOutputTankCapacity();
     fluidStacks.init(1, false, 61, 11, 16, 16, capacity, true, null);
     fluidStacks.set(ingredients);
+  }
+
+  @Override
+  protected int getOutputSlotIndex() {
+
+    return 1;
   }
 }

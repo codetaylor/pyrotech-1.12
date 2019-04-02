@@ -10,9 +10,11 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.List;
 public class JEIRecipeWrapperPitBurn
     extends JEIRecipeWrapperTimed {
 
+  private final ResourceLocation registryName;
   private final List<List<ItemStack>> inputs;
   private final List<List<ItemStack>> outputs;
   private final FluidStack fluidStack;
@@ -30,6 +33,8 @@ public class JEIRecipeWrapperPitBurn
   public JEIRecipeWrapperPitBurn(PitBurnRecipe recipe) {
 
     super(recipe);
+
+    this.registryName = recipe.getRegistryName();
 
     BlockMetaMatcher inputMatcher = recipe.getInputMatcher();
     Block block = inputMatcher.getBlock();
@@ -82,5 +87,12 @@ public class JEIRecipeWrapperPitBurn
 
     int stringWidth = minecraft.fontRenderer.getStringWidth(this.failureChance);
     minecraft.fontRenderer.drawString(this.failureChance, recipeWidth - stringWidth, 44, Color.DARK_GRAY.getRGB());
+  }
+
+  @Nullable
+  @Override
+  public ResourceLocation getRegistryName() {
+
+    return this.registryName;
   }
 }

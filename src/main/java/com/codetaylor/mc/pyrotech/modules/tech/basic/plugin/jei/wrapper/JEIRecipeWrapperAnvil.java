@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RenderHelper;
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.IPyrotechRecipeWrapper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
@@ -9,7 +10,6 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class JEIRecipeWrapperAnvil
-    implements IRecipeWrapper {
+    implements IPyrotechRecipeWrapper {
 
   /*
   TODO: Fix special handling for anvil bloom recipes
@@ -66,6 +66,12 @@ public class JEIRecipeWrapperAnvil
     this.hits = recipe.getHits();
     this.type = recipe.getType();
     this.recipe = recipe;
+  }
+
+  @Override
+  public ResourceLocation getRegistryName() {
+
+    return this.recipe.getRegistryName();
   }
 
   @Override

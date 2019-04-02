@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.category;
 
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.PyrotechRecipeCategory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperRefractoryBurn;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryRefractoryBurn
-    implements IRecipeCategory<JEIRecipeWrapperRefractoryBurn> {
+    extends PyrotechRecipeCategory<JEIRecipeWrapperRefractoryBurn> {
 
   public static final String UID = ModuleTechRefractory.MOD_ID + ".refractory.burn";
 
@@ -100,5 +100,11 @@ public class JEIRecipeCategoryRefractoryBurn
     if (recipeWrapper.getFluidStack() != null) {
       fluidStacks.set(2, recipeWrapper.getFluidStack());
     }
+  }
+
+  @Override
+  protected int getOutputSlotIndex() {
+
+    return 1;
   }
 }

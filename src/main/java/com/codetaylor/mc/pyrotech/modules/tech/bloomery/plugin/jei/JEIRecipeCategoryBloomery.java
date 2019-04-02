@@ -1,10 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.jei;
 
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.PyrotechRecipeCategory;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryBloomery
-    implements IRecipeCategory<JEIRecipeWrapperBloomery> {
+    extends PyrotechRecipeCategory<JEIRecipeWrapperBloomery> {
 
   public static final String UID_BLOOMERY = ModuleTechBloomery.MOD_ID + ".bloomery";
   public static final String UID_WITHER_FORGE = ModuleTechBloomery.MOD_ID + ".wither.forge";
@@ -83,11 +83,19 @@ public class JEIRecipeCategoryBloomery
   @Override
   public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperBloomery recipeWrapper, IIngredients ingredients) {
 
+    super.setRecipe(recipeLayout, recipeWrapper, ingredients);
+
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 22);
     itemStacks.init(1, false, 60, 18);
     itemStacks.init(2, false, 83, 22);
 
     itemStacks.set(ingredients);
+  }
+
+  @Override
+  protected int getOutputSlotIndex() {
+
+    return 1;
   }
 }

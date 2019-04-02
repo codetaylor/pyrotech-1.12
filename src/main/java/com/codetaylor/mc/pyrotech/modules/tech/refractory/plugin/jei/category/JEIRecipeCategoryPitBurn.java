@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.category;
 
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.PyrotechRecipeCategory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEIRecipeWrapperPitBurn;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryPitBurn
-    implements IRecipeCategory<JEIRecipeWrapperPitBurn> {
+    extends PyrotechRecipeCategory<JEIRecipeWrapperPitBurn> {
 
   public static final String UID = ModuleTechRefractory.MOD_ID + ".pit.burn";
 
@@ -81,6 +81,8 @@ public class JEIRecipeCategoryPitBurn
   @Override
   public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperPitBurn recipeWrapper, IIngredients ingredients) {
 
+    super.setRecipe(recipeLayout, recipeWrapper, ingredients);
+
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 22);
     itemStacks.init(1, false, 60, 4);
@@ -95,5 +97,11 @@ public class JEIRecipeCategoryPitBurn
     if (recipeWrapper.getFluidStack() != null) {
       fluidStacks.set(2, recipeWrapper.getFluidStack());
     }
+  }
+
+  @Override
+  protected int getOutputSlotIndex() {
+
+    return 1;
   }
 }

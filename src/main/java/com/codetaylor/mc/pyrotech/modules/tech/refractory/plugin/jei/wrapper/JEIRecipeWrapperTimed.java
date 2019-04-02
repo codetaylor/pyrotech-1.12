@@ -1,14 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper;
 
 import com.codetaylor.mc.athenaeum.util.StringHelper;
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.IPyrotechRecipeWrapper;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 
 import java.awt.*;
 
 public abstract class JEIRecipeWrapperTimed
-    implements IRecipeWrapper {
+    implements IPyrotechRecipeWrapper {
 
   protected final String timeString;
 

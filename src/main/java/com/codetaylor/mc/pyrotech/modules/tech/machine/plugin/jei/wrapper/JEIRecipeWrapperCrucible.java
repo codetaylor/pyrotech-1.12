@@ -5,9 +5,11 @@ import com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper.JEI
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -15,12 +17,15 @@ import java.util.List;
 public class JEIRecipeWrapperCrucible
     extends JEIRecipeWrapperTimed {
 
+  private final ResourceLocation registryName;
   private final List<List<ItemStack>> inputs;
   private final FluidStack output;
 
   public JEIRecipeWrapperCrucible(MachineRecipeItemInFluidOutBase recipe) {
 
     super(recipe);
+
+    this.registryName = recipe.getRegistryName();
 
     this.inputs = Collections.singletonList(Arrays.asList(recipe.getInput().getMatchingStacks()));
     this.output = recipe.getOutput();
@@ -37,5 +42,12 @@ public class JEIRecipeWrapperCrucible
   protected int getTimeDisplayY() {
 
     return super.getTimeDisplayY() - 8;
+  }
+
+  @Nullable
+  @Override
+  public ResourceLocation getRegistryName() {
+
+    return this.registryName;
   }
 }

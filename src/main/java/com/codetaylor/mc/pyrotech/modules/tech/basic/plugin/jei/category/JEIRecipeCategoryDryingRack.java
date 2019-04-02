@@ -1,11 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.PyrotechRecipeCategory;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperDryingRack;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 
 public class JEIRecipeCategoryDryingRack
-    implements IRecipeCategory<JEIRecipeWrapperDryingRack> {
+    extends PyrotechRecipeCategory<JEIRecipeWrapperDryingRack> {
 
   public static final String UID = ModuleTechBasic.MOD_ID + ".drying";
 
@@ -73,10 +73,18 @@ public class JEIRecipeCategoryDryingRack
   @Override
   public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperDryingRack recipeWrapper, IIngredients ingredients) {
 
+    super.setRecipe(recipeLayout, recipeWrapper, ingredients);
+
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 17 - 14);
     itemStacks.init(1, false, 60, 18 - 14);
 
     itemStacks.set(ingredients);
+  }
+
+  @Override
+  protected int getOutputSlotIndex() {
+
+    return 1;
   }
 }

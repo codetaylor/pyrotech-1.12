@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category.spi;
 
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.PyrotechRecipeCategory;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperSawmill;
 import mezz.jei.api.IGuiHelper;
@@ -14,7 +15,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public abstract class JEIRecipeCategorySawmillBase
-    implements IRecipeCategory<JEIRecipeWrapperSawmill> {
+    extends PyrotechRecipeCategory<JEIRecipeWrapperSawmill> {
 
   private static final ResourceLocation RESOURCE_LOCATION = new ResourceLocation(ModuleTechMachine.MOD_ID, "textures/gui/jei11.png");
 
@@ -74,6 +75,8 @@ public abstract class JEIRecipeCategorySawmillBase
   @Override
   public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperSawmill recipeWrapper, IIngredients ingredients) {
 
+    super.setRecipe(recipeLayout, recipeWrapper, ingredients);
+
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 0);
     itemStacks.init(1, true, 0, 19);
@@ -81,5 +84,11 @@ public abstract class JEIRecipeCategorySawmillBase
     itemStacks.init(3, false, 83, 20);
 
     itemStacks.set(ingredients);
+  }
+
+  @Override
+  protected int getOutputSlotIndex() {
+
+    return 2;
   }
 }

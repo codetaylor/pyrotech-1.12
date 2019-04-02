@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.category;
 
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.PyrotechRecipeCategory;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.jei.wrapper.JEIRecipeWrapperMechanicalCompactingBin;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 
 public class JEIRecipeCategoryMechanicalCompactingBin
-    implements IRecipeCategory<JEIRecipeWrapperMechanicalCompactingBin> {
+    extends PyrotechRecipeCategory<JEIRecipeWrapperMechanicalCompactingBin> {
 
   public static final String UID = ModuleTechBasic.MOD_ID + ".mechanical.compacting.bin";
 
@@ -74,10 +74,18 @@ public class JEIRecipeCategoryMechanicalCompactingBin
   @Override
   public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull JEIRecipeWrapperMechanicalCompactingBin recipeWrapper, @Nonnull IIngredients ingredients) {
 
+    super.setRecipe(recipeLayout, recipeWrapper, ingredients);
+
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 17);
     itemStacks.init(1, false, 60, 18);
 
     itemStacks.set(ingredients);
+  }
+
+  @Override
+  protected int getOutputSlotIndex() {
+
+    return 1;
   }
 }

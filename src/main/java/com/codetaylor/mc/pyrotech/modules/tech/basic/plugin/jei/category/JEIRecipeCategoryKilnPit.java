@@ -1,11 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.PyrotechRecipeCategory;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperKilnPit;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class JEIRecipeCategoryKilnPit
-    implements IRecipeCategory<JEIRecipeWrapperKilnPit> {
+    extends PyrotechRecipeCategory<JEIRecipeWrapperKilnPit> {
 
   public static final String UID = ModuleTechBasic.MOD_ID + ".pit.kiln";
 
@@ -80,11 +80,19 @@ public class JEIRecipeCategoryKilnPit
   @Override
   public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperKilnPit recipeWrapper, IIngredients ingredients) {
 
+    super.setRecipe(recipeLayout, recipeWrapper, ingredients);
+
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 22);
     itemStacks.init(1, false, 60, 18);
     itemStacks.init(2, false, 83, 22);
 
     itemStacks.set(ingredients);
+  }
+
+  @Override
+  protected int getOutputSlotIndex() {
+
+    return 1;
   }
 }

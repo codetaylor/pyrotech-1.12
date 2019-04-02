@@ -8,8 +8,10 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +21,7 @@ import java.util.List;
 public class JEIRecipeWrapperKiln
     extends JEIRecipeWrapperTimed {
 
+  private final ResourceLocation registryName;
   private final List<List<ItemStack>> inputs;
   private final List<List<ItemStack>> outputs;
   private final String failureChance;
@@ -26,6 +29,8 @@ public class JEIRecipeWrapperKiln
   public JEIRecipeWrapperKiln(MachineRecipeBaseKiln recipe) {
 
     super(recipe);
+
+    this.registryName = recipe.getRegistryName();
 
     this.inputs = Collections.singletonList(Arrays.asList(recipe.getInput().getMatchingStacks()));
 
@@ -59,5 +64,12 @@ public class JEIRecipeWrapperKiln
   protected int getTimeDisplayY() {
 
     return 24;
+  }
+
+  @Nullable
+  @Override
+  public ResourceLocation getRegistryName() {
+
+    return this.registryName;
   }
 }
