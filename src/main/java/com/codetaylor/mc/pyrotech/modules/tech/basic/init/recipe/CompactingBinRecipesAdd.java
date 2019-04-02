@@ -66,15 +66,6 @@ public class CompactingBinRecipesAdd {
         8
     ).setRegistryName(ModuleTechBasic.MOD_ID, "dirt"));
 
-    // Coal Block
-    registry.register(new CompactingBinRecipe(
-        new ItemStack(Blocks.COAL_BLOCK, 1, 0),
-        Ingredient.fromStacks(
-            new ItemStack(Items.COAL, 1, 0)
-        ),
-        9
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_block"));
-
     // Charcoal Block
     registry.register(new CompactingBinRecipe(
         new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK, 1, 0),
