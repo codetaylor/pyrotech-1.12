@@ -1,7 +1,7 @@
 {
   "name": "Cog, Advanced",
   "icon": "pyrotech:cog_iron",
-  "category": "bloom_refractory_machines",
+  "category": "bloom_cog_machines",
   "advancement": "pyrotech:iron_ingot",
   "pages": [
     {

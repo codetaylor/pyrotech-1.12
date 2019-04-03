@@ -1,7 +1,7 @@
 {
   "name": "Wither Forge",
   "icon": "pyrotech:wither_forge",
-  "category": "bloom_bloom",
+  "category": "bloom",
   "advancement": "pyrotech:enter_the_nether",
   "pages": [
     {

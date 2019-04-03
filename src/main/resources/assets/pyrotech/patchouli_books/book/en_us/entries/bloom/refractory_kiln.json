@@ -6,7 +6,8 @@
   "pages": [
     {
       "type": "crafting",
-      "recipe": "pyrotech:tech/machine/brick_kiln"
+      "recipe": "pyrotech:tech/machine/brick_kiln",
+      "text": "A $(item)Refractory Kiln$() can perform the same tasks as a $(item)Stone Kiln$(), albeit with greater efficiency."
     }
   ]
 }

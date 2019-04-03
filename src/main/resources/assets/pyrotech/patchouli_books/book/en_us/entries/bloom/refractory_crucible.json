@@ -6,7 +6,8 @@
   "pages": [
     {
       "type": "crafting",
-      "recipe": "pyrotech:tech/machine/brick_crucible"
+      "recipe": "pyrotech:tech/machine/brick_crucible",
+      "text": "A $(item)Refractory Crucible$() can perform the same tasks as a $(item)Stone Crucible$(), albeit with greater efficiency.$(p)$(info) A $(item)Refractory Crucible$() can hold hot liquids."
     }
   ]
 }
