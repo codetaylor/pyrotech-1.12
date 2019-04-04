@@ -120,6 +120,9 @@ public class PluginDropt {
           .matchBlocks(new String[]{
               tallGrassAny
           })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+          )
           .replaceStrategy(EnumReplaceStrategy.ADD)
           .addDrops(new IDroptDropBuilder[]{
               drop().selector(weight(80)),
