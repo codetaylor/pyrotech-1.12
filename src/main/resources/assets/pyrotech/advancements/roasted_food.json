@@ -10,8 +10,8 @@
       "translate": "advancement.pyrotech.roasted.food.desc"
     },
     "frame": "challenge",
-    "show_toast": false,
-    "announce_to_chat": false
+    "show_toast": true,
+    "announce_to_chat": true
   },
   "parent": "pyrotech:flint_and_tinder",
   "criteria": {

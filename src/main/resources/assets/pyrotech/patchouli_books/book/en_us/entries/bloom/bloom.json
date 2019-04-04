@@ -45,6 +45,18 @@
       "text": "$(info) Swallowing a $(item)Potion of Strength$() will also increase your $(thing)Hammer Power$().$(p)$(info) Conversely, the $(thing)Weakness$() and $(thing)Mining Fatigue$() effects will decrease your $(thing)Hammer Power$()."
     },
     {
+      "type": "spotlight",
+      "title": "Fortune",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{lvl: 1, id: 35}]}",
+      "text": "$(info) Adding the $(item)Fortune$() enchantment to a $(thing)Hammer$() will increase the chance that a $(item)Bloom$() will not lose integrity when hammered."
+    },
+    {
+      "type": "spotlight",
+      "title": "Silk Touch",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{lvl: 1, id: 33}]}",
+      "text": "$(info) Adding the $(item)Silk Touch$() enchantment to a $(thing)Hammer$() will dramatically reduce the chance that hammering a $(item)Bloom$() will fail and produce slag."
+    },
+    {
       "type": "text",
       "text": "$(todo)Relations"
     }

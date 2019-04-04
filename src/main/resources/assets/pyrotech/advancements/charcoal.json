@@ -10,8 +10,8 @@
     "description": {
       "translate": "advancement.pyrotech.charcoal.desc"
     },
-    "show_toast": false,
-    "announce_to_chat": false
+    "show_toast": true,
+    "announce_to_chat": true
   },
   "parent": "pyrotech:stone_brick",
   "criteria": {

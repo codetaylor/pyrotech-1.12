@@ -1,26 +1,25 @@
 {
   "display": {
     "icon": {
-      "item": "pyrotech:wither_forge"
+      "item": "pyrotech:mechanical_hopper"
     },
     "title": {
-      "translate": "advancement.pyrotech.wither.forge"
+      "translate": "advancement.pyrotech.mechanical.hopper"
     },
     "description": {
-      "translate": "advancement.pyrotech.wither.forge.desc"
+      "translate": "advancement.pyrotech.mechanical.hopper.desc"
     },
-    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "pyrotech:enter_the_nether",
+  "parent": "pyrotech:stone_brick",
   "criteria": {
-    "item": {
+    "crucible": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "pyrotech:wither_forge"
+            "item": "pyrotech:mechanical_hopper"
           }
         ]
       }

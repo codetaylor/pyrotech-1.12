@@ -14,7 +14,7 @@
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "pyrotech:granite_anvil",
+  "parent": "pyrotech:stone",
   "criteria": {
     "crucible": {
       "trigger": "minecraft:inventory_changed",

@@ -3,7 +3,7 @@
   "icon": "pyrotech:textures/gui/book/icon/info.png",
   "category": "innovate_machines",
   "priority": true,
-  "advancement": "pyrotech:granite_anvil",
+  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "image",

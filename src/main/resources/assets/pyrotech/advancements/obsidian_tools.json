@@ -9,8 +9,8 @@
     "description": {
       "translate": "advancement.pyrotech.tools.obsidian.desc"
     },
-    "show_toast": false,
-    "announce_to_chat": false
+    "show_toast": true,
+    "announce_to_chat": true
   },
   "parent": "pyrotech:wither_forge",
   "criteria": {

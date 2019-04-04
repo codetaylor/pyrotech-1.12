@@ -9,9 +9,7 @@
     "description": {
       "translate": "advancement.pyrotech.crafting.table.desc"
     },
-    "frame": "goal",
-    "show_toast": false,
-    "announce_to_chat": false
+    "frame": "goal"
   },
   "parent": "pyrotech:iron_ingot",
   "criteria": {

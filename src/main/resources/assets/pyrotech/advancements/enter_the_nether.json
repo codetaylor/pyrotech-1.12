@@ -4,11 +4,13 @@
       "item": "minecraft:flint_and_steel"
     },
     "title": {
-      "translate": "advancements.story.enter_the_nether.title"
+      "translate": "advancements.pyrotech.nether"
     },
     "description": {
-      "translate": "advancements.story.enter_the_nether.description"
-    }
+      "translate": "advancements.pyrotech.nether.desc"
+    },
+    "show_toast": true,
+    "announce_to_chat": true
   },
   "parent": "pyrotech:crafting_table",
   "criteria": {

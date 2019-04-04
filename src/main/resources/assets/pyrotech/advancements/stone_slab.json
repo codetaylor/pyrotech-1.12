@@ -1,26 +1,25 @@
 {
   "display": {
     "icon": {
-      "item": "pyrotech:wither_forge"
+      "item": "minecraft:stone_slab"
     },
     "title": {
-      "translate": "advancement.pyrotech.wither.forge"
+      "translate": "advancement.pyrotech.stone.slab"
     },
     "description": {
-      "translate": "advancement.pyrotech.wither.forge.desc"
+      "translate": "advancement.pyrotech.stone.slab.desc"
     },
-    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "pyrotech:enter_the_nether",
+  "parent": "pyrotech:straw_bale",
   "criteria": {
-    "item": {
+    "anvil": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "pyrotech:wither_forge"
+            "item": "minecraft:stone_slab"
           }
         ]
       }

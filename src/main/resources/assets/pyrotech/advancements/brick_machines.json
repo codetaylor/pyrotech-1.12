@@ -9,9 +9,9 @@
     "description": {
       "translate": "advancement.pyrotech.brick.machines.desc"
     },
-    "frame": "task",
-    "show_toast": false,
-    "announce_to_chat": false
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
   },
   "parent": "pyrotech:crafting_table",
   "criteria": {

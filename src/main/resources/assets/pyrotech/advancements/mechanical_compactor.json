@@ -1,25 +1,25 @@
 {
   "display": {
     "icon": {
-      "item": "pyrotech:mechanical_bellows"
+      "item": "pyrotech:mechanical_compacting_bin"
     },
     "title": {
-      "translate": "advancement.pyrotech.mechanical.bellows"
+      "translate": "advancement.pyrotech.mechanical.compacting.bin"
     },
     "description": {
-      "translate": "advancement.pyrotech.mechanical.bellows.desc"
+      "translate": "advancement.pyrotech.mechanical.compacting.bin.desc"
     },
     "show_toast": true,
     "announce_to_chat": true
   },
-  "parent": "pyrotech:bellows",
+  "parent": "pyrotech:mechanical_bellows",
   "criteria": {
     "crucible": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "pyrotech:mechanical_bellows"
+            "item": "pyrotech:mechanical_compacting_bin"
           }
         ]
       }
