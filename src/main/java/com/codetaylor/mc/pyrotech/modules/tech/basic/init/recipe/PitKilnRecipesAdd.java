@@ -134,5 +134,17 @@ public class PitKilnRecipesAdd {
         }
     ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_diorite"));
 
+    // Stone - Limestone
+    registry.register(new KilnPitRecipe(
+        new ItemStack(ModuleCore.Blocks.LIMESTONE),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta())),
+        Reference.PitKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.PitKiln.DEFAULT_FAILURE_CHANCE,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            new ItemStack(ModuleCore.Blocks.ROCK, 5, BlockRock.EnumType.LIMESTONE.getMeta())
+        }
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "limestone"));
+
   }
 }
