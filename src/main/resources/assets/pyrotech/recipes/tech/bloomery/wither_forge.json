@@ -8,10 +8,14 @@
   ],
   "pattern": [
     "X X",
-    "H H",
+    "HBH",
     "XHX"
   ],
   "key": {
+    "B": {
+      "item": "pyrotech:bloomery",
+      "data": 0
+    },
     "X": {
       "item": "minecraft:nether_brick",
       "data": 0
