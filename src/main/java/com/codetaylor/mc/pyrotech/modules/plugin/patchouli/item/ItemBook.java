@@ -19,6 +19,11 @@ public class ItemBook
 
   public static final String NAME = "book";
 
+  public ItemBook() {
+
+    this.setMaxStackSize(1);
+  }
+
   @Override
   public boolean hasCustomEntity(ItemStack stack) {
 
