@@ -267,7 +267,8 @@ public class PluginDropt {
           .dropStrategy(EnumDropStrategy.UNIQUE)
           .dropCount(range(2))
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(1)),
+              drop().items(new String[]{dirt}).selector(weight(1)),
+              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(3)),
               drop().items(new String[]{rockGrass}, range(1, 3)).selector(weight(2))
           })
       );
