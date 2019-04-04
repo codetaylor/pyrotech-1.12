@@ -82,7 +82,7 @@ public class SoakingPotRecipesAdd {
       registry.register(new SoakingPotRecipe(
           ItemMaterial.EnumType.TWINE_DURABLE.asStack(),
           Ingredient.fromStacks(ItemMaterial.EnumType.TWINE.asStack()),
-          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 250),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 125),
           4 * 60 * 20
       ).setRegistryName(ModuleTechBasic.MOD_ID, "twine_durable"));
     }
