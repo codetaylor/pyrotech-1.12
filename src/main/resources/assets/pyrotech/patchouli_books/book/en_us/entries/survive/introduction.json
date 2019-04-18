@@ -6,6 +6,14 @@
   "pages": [
     {
       "type": "text",
+      "text": "When one finds oneself lost, or unable to find one's way, it can be difficult to keep a cool head - $(italic)a phrase here which means to stay calm in a difficult situation$() - and in some difficult situations, it may not only be difficult to stay calm, it may also be difficult to survive."
+    },
+    {
+      "type": "text",
+      "text": "Should you find yourself in a difficult situation, the Pyrotechnic Esoterica contains many techniques and ideas that - through the act of starting fires rather than putting them out - will serve to dramatically increase the likelihood of your survival.$(p)One such technique or idea is that of the $(item)Campfire$()."
+    },
+    {
+      "type": "text",
       "text": "A $(item)Campfire$() is an indispensable component to wilderness survival and, as such, the knowledge required to construct a $(item)Campfire$() is a cornerstone in each new volunteer's wilderness survival library."
     },
     {
@@ -24,7 +32,7 @@
       "type": "spotlight",
       "item": "pyrotech:campfire",
       "link_recipe": true,
-      "text": "To construct a $(item)Campfire$(), follow these four easy steps:$(p)  $(l:survive/campfire#craft_tinder)1. Craft Tinder$()$(br)  $(l:survive/campfire#place_tinder)2. Place Tinder$()$(br)  $(l:survive/campfire#add_logs)3. Add logs$()$(br)  $(l:survive/campfire#ignite)4. Ignite$()"
+      "text": "To construct a $(item)Campfire$(), follow these four easy steps:$(p)  $(l:survive/introduction#craft_tinder)1. Craft Tinder$()$(br)  $(l:survive/introduction#place_tinder)2. Place Tinder$()$(br)  $(l:survive/introduction#add_logs)3. Add logs$()$(br)  $(l:survive/introduction#ignite)4. Ignite$()"
     },
     {
       "type": "crafting",

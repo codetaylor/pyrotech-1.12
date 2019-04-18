@@ -4,7 +4,8 @@
       "template": "include/anvil_recipe",
       "as": "recipe1",
       "using": {
-        "recipe": "#recipe"
+        "recipe": "#recipe",
+        "header": "#header"
       },
       "y": -6
     }

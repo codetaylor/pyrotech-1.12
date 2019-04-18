@@ -1,5 +1,5 @@
 {
-  "name": "Stone Brick",
+  "name": "Masonry Brick",
   "icon": "pyrotech:material:16",
   "category": "innovate_stone",
   "advancement": "pyrotech:granite_anvil",
@@ -10,7 +10,7 @@
       "recipe": "pyrotech:stone_brick_slab",
       "header2": true,
       "recipe2": "pyrotech:brick_stone",
-      "text": "The $(item)Stone Brick$() is the true cornerstone of a stonemason's craft."
+      "text": "The $(item)Masonry Brick$() is the true cornerstone of a stonemason's craft."
     }
   ]
 }

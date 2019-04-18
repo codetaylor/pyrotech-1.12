@@ -1,0 +1,14 @@
+{
+  "name": "Stone Rod",
+  "icon": "pyrotech:material:27",
+  "category": "innovate_stone",
+  "advancement": "pyrotech:stone_brick",
+  "pages": [
+    {
+      "type": "rt_anvil_recipe",
+      "header": true,
+      "recipe": "pyrotech:stick_stone",
+      "text": "The $(item)Stone Rod$() is a basic component used to construct other items."
+    }
+  ]
+}
