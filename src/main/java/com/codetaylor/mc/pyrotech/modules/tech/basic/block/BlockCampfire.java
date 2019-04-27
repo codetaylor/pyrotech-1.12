@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleLava;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
@@ -40,7 +41,8 @@ import java.util.stream.Stream;
 public class BlockCampfire
     extends BlockPartialBase
     implements IBlockInteractable,
-    IBlockIgnitableWithIgniterItem {
+    IBlockIgnitableWithIgniterItem,
+    IBlockIgnitableAdjacentIgniterBlock {
 
   public static final String NAME = "campfire";
 
@@ -76,6 +78,12 @@ public class BlockCampfire
     if (tileEntity instanceof TileCampfire) {
       ((TileCampfire) tileEntity).workerSetActive(true);
     }
+  }
+
+  @Override
+  public void igniteWithAdjacentIgniterBlock(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
+    
+    this.igniteWithIgniterItem(world, pos, blockState, facing);
   }
 
   // ---------------------------------------------------------------------------
