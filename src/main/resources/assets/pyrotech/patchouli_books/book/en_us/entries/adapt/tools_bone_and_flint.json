@@ -16,6 +16,11 @@
     },
     {
       "type": "crafting",
+      "recipe": "pyrotech:tool/bone_shears",
+      "recipe2": "pyrotech:tool/flint_shears"
+    },
+    {
+      "type": "crafting",
       "recipe": "pyrotech:tool/flint_pickaxe",
       "recipe2": "pyrotech:tool/flint_axe"
     },

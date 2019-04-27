@@ -82,7 +82,7 @@ public class BlockCampfire
 
   @Override
   public void igniteWithAdjacentIgniterBlock(World world, BlockPos pos, IBlockState blockState, EnumFacing facing) {
-    
+
     this.igniteWithIgniterItem(world, pos, blockState, facing);
   }
 

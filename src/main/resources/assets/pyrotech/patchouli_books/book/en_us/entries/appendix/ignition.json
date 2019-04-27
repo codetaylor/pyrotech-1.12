@@ -5,14 +5,15 @@
   "pages": [
     {
       "type": "text",
-      "text": "This is a test entry, but it should show up!"
+      "text": "The following page contains a list of verified fire-starting devices."
     },
     {
       "type": "relations",
       "title": "",
       "entries": [
         "survive/flint_and_tinder",
-        "adapt/bow_drill"
+        "innovate/bow_drill",
+        "accelerate/igniters"
       ]
     }
   ]

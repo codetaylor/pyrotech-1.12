@@ -1,0 +1,19 @@
+{
+  "name": "Shears, Clay",
+  "icon": "pyrotech:clay_shears",
+  "category": "adapt",
+  "advancement": "pyrotech:pit_kiln",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/unfired_clay_shears",
+      "text": "$(todo)Filler"
+    },
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:clay_shears",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/clay_shears"
+    }
+  ]
+}

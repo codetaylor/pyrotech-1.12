@@ -1,0 +1,12 @@
+{
+  "name": "Shears, Diamond",
+  "icon": "pyrotech:diamond_shears",
+  "category": "bloom",
+  "advancement": "pyrotech:bloomery",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/diamond_shears"
+    }
+  ]
+}

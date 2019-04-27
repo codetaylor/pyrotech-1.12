@@ -1,0 +1,12 @@
+{
+  "name": "Shears, Stone",
+  "icon": "pyrotech:stone_shears",
+  "category": "innovate",
+  "advancement": "pyrotech:stone_brick",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/stone_shears"
+    }
+  ]
+}

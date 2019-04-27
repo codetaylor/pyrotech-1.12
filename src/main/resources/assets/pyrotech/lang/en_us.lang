@@ -356,7 +356,7 @@ gui.pyrotech.jei.category.crucible.stone=Stone Crucible
 gui.pyrotech.jei.category.sawmill.stone=Stone Sawmill
 gui.pyrotech.jei.category.oven.stone=Stone Oven
 
-gui.pyrotech.jei.category.mechanical.compacting.bin=Mechanical Compacter
+gui.pyrotech.jei.category.mechanical.compacting.bin=Mechanical Compactor
 
 gui.pyrotech.jei.category.kiln.pit=Pit Kiln
 gui.pyrotech.jei.category.burn.pit=Pit Burning
@@ -418,7 +418,7 @@ advancement.pyrotech.anvil.granite=Gratefully, Granite
 advancement.pyrotech.anvil.granite.desc=Craft a Granite Anvil
 advancement.pyrotech.stone.brick=Modest Masonry
 advancement.pyrotech.stone.brick.desc=Use the Granite Anvil to craft a stone brick
-advancement.pyrotech.bellows=Beneficial Bellows
+advancement.pyrotech.bellows=Blustering Bellows
 advancement.pyrotech.bellows.desc=Craft a Bellows
 advancement.pyrotech.mechanical.bellows=Automated Airflow
 advancement.pyrotech.mechanical.bellows.desc=Craft a Mechanical Bellows
