@@ -1,0 +1,14 @@
+{
+  "name": "Living Tar",
+  "icon": "pyrotech:living_tar",
+  "category": "bloom",
+  "advancement": "pyrotech:enter_the_nether",
+  "pages": [
+    {
+      "type": "fuel_living_tar",
+      "recipe": "pyrotech:living_tar",
+      "fuel": "pyrotech:living_tar",
+      "text": "$(todo)Filler"
+    }
+  ]
+}
