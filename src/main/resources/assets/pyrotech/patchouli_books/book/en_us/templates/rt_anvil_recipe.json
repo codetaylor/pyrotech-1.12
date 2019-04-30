@@ -1,7 +1,7 @@
 {
   "include": [
     {
-      "template": "include/anvil_recipe",
+      "template": "pyrotech:include/anvil_recipe",
       "as": "recipe1",
       "using": {
         "recipe": "#recipe",

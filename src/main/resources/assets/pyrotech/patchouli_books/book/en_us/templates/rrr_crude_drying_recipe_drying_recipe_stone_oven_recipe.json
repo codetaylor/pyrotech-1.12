@@ -1,7 +1,7 @@
 {
   "include": [
     {
-      "template": "include/crude_drying_recipe",
+      "template": "pyrotech:include/crude_drying_recipe",
       "as": "recipe1",
       "using": {
         "recipe": "#crude_recipe"
@@ -9,7 +9,7 @@
       "y": -6
     },
     {
-      "template": "include/drying_recipe",
+      "template": "pyrotech:include/drying_recipe",
       "as": "recipe2",
       "using": {
         "recipe": "#recipe"
@@ -17,7 +17,7 @@
       "y": 38
     },
     {
-      "template": "include/stone_oven_recipe",
+      "template": "pyrotech:include/stone_oven_recipe",
       "as": "recipe3",
       "using": {
         "recipe": "#stone_oven_recipe"

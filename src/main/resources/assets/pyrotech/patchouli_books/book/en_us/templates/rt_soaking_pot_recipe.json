@@ -1,7 +1,7 @@
 {
   "include": [
     {
-      "template": "include/soaking_pot_recipe",
+      "template": "pyrotech:include/soaking_pot_recipe",
       "as": "recipe1",
       "using": {
         "recipe": "#recipe",

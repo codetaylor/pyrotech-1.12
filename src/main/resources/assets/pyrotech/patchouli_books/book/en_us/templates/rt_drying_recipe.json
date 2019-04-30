@@ -1,7 +1,7 @@
 {
   "include": [
     {
-      "template": "include/drying_recipe",
+      "template": "pyrotech:include/drying_recipe",
       "as": "recipe1",
       "using": {
         "recipe": "#recipe",

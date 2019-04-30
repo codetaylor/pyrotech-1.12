@@ -1,7 +1,7 @@
 {
   "include": [
     {
-      "template": "include/mechanical_hopper_cog",
+      "template": "pyrotech:include/mechanical_hopper_cog",
       "as": "cog1",
       "using": {
         "cog": "#cog"
@@ -9,7 +9,7 @@
       "y": 8
     },
     {
-      "template": "include/mechanical_hopper_cog",
+      "template": "pyrotech:include/mechanical_hopper_cog",
       "as": "cog2",
       "using": {
         "cog": "#cog2"
@@ -17,7 +17,7 @@
       "y": 32
     },
     {
-      "template": "include/mechanical_hopper_cog",
+      "template": "pyrotech:include/mechanical_hopper_cog",
       "as": "cog3",
       "using": {
         "cog": "#cog3"
@@ -25,7 +25,7 @@
       "y": 56
     },
     {
-      "template": "include/mechanical_hopper_cog",
+      "template": "pyrotech:include/mechanical_hopper_cog",
       "as": "cog4",
       "using": {
         "cog": "#cog4"

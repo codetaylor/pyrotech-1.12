@@ -1,7 +1,7 @@
 {
   "include": [
     {
-      "template": "include/pit_kiln_recipe",
+      "template": "pyrotech:include/pit_kiln_recipe",
       "as": "recipe1",
       "using": {
         "recipe": "#recipe",

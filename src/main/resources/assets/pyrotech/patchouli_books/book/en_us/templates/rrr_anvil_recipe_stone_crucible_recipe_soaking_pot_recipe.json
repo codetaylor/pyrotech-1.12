@@ -1,7 +1,7 @@
 {
   "include": [
     {
-      "template": "include/anvil_recipe",
+      "template": "pyrotech:include/anvil_recipe",
       "as": "recipe1",
       "using": {
         "recipe": "#anvil_recipe",
@@ -10,7 +10,7 @@
       "y": -6
     },
     {
-      "template": "include/stone_crucible_recipe",
+      "template": "pyrotech:include/stone_crucible_recipe",
       "as": "recipe2",
       "using": {
         "recipe": "#stone_crucible_recipe",
@@ -19,7 +19,7 @@
       "y": 38
     },
     {
-      "template": "include/soaking_pot_recipe",
+      "template": "pyrotech:include/soaking_pot_recipe",
       "as": "recipe3",
       "using": {
         "recipe": "#soaking_pot_recipe",
