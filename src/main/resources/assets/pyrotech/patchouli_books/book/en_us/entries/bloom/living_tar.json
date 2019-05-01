@@ -8,7 +8,7 @@
       "type": "fuel_living_tar",
       "recipe": "pyrotech:living_tar",
       "fuel": "pyrotech:living_tar",
-      "text": "$(todo)Filler"
+      "text": "Consisting of a tarry meat substance, $(item)Living Tar$() is a strong candidate for the most loathsome of fuels."
     }
   ]
 }

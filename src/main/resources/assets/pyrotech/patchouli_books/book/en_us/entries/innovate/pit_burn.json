@@ -25,7 +25,7 @@
     },
     {
       "type": "text",
-      "text": "First, dig a pit in the ground and place your ingredient(s) into it.$(p)$(info) The pit can be larger than illustrated.$(p)$(warning) The $(thing)Pit Burn$() will fail if the pit is too large or is not completely filled with ingredients.$(p)$(todo)Exactly what is too big?"
+      "text": "First, dig a pit in the ground and place your ingredient(s) into it.$(p)$(info) The pit can be larger than illustrated.$(p)$(warning) The $(thing)Pit Burn$() will fail if the pit is too large or is not completely filled with ingredients."
     },
     {
       "type": "image",
@@ -73,7 +73,7 @@
     },
     {
       "type": "text",
-      "text": "Finally, after the smoke has stopped, remove any of the material covering the $(thing)Pit Burn$() and sift through the ash for the results.$(p)$(todo)Filler / Transition"
+      "text": "Finally, after the smoke has stopped, remove any of the material covering the $(thing)Pit Burn$() and sift through the ash for the results."
     },
     {
       "type": "text",

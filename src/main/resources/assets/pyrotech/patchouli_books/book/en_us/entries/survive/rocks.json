@@ -29,7 +29,7 @@
       "type": "rt_anvil_recipe",
       "anchor": "limestone",
       "recipe": "pyrotech:cobbled_limestone_to_rocks",
-      "text": "$(item)Limestone Rocks$() can be crafted on an $(item)Anvil$() and found when mining $(item)Limestone$() with low tier tools.$(p)$(todo)Filler"
+      "text": "$(item)Limestone Rocks$() can be crafted on an $(item)Anvil$() and found when mining $(item)Limestone$() with low tier tools."
     },
     {
       "type": "relations",

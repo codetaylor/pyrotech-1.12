@@ -5,16 +5,16 @@
   "advancement": "pyrotech:stone_brick",
   "pages": [
     {
-      "type": "rt_soaking_pot_recipe",
+      "type": "rrt_soaking_pot_recipe",
       "header": true,
       "recipe": "pyrotech:planks_tarred",
-      "text": "$(todo)Filler"
+      "header2": true,
+      "recipe2": "pyrotech:board_tarred",
+      "text": "Tarred wood is more durable and will last longer when directly exposed to water."
     },
     {
-      "type": "rt_soaking_pot_recipe",
-      "header": true,
-      "recipe": "pyrotech:board_tarred",
-      "text": "$(todo)Filler"
+      "type": "text",
+      "text": "$(todo)Relations"
     }
   ]
 }

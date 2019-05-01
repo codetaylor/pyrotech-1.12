@@ -7,7 +7,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tool/unfired_clay_shears",
-      "text": "$(todo)Filler"
+      "text": "While not the most durable of tools, $(item)Clay Shears$() will do in a pinch - $(italic)a phrase here which means in a critical situation or if absolutely necessary."
     },
     {
       "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",

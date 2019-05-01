@@ -108,7 +108,7 @@
     },
     {
       "type": "text",
-      "text": "When the fire on top of the $(item)Pit Kiln$() finally goes out, sift through the ash for the results.$(p)$(todo)Filler"
+      "text": "When the fire on top of the $(item)Pit Kiln$() finally goes out, sift through the ash for the results.$(p)$(warning) Due to the crude nature of the $(item)Pit Kiln$(), there is a chance that items will fail to fire and instead produce a failed result."
     },
     {
       "type": "text",

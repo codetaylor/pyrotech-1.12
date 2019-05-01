@@ -7,7 +7,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:twine",
-      "text": "$(todo)Filler"
+      "text": "$(item)Twine$() works well to bundle or fasten things securely."
     }
   ]
 }

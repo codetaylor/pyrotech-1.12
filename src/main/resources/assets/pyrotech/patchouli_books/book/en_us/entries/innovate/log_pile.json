@@ -7,7 +7,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:log_pile",
-      "text": "$(todo)Filler"
+      "text": "A $(item)Log Pile$() can be burned in a $(thing)Pit Burn$() to produce $(item)Charcoal$()."
     },
     {
       "type": "text",

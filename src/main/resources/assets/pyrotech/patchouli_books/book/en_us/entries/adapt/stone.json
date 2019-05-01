@@ -7,18 +7,13 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:cobblestone_slab",
-      "text": "$(todo)Filler"
+      "recipe2": "pyrotech:cobblestone"
     },
     {
       "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
       "pit_kiln_header": true,
       "pit_kiln_recipe": "pyrotech:stone_slab",
       "stone_kiln_recipe": "pyrotech:pit_kiln/stone_slab"
-    },
-    {
-      "type": "crafting",
-      "recipe": "pyrotech:cobblestone",
-      "text": "$(todo)Filler"
     },
     {
       "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",

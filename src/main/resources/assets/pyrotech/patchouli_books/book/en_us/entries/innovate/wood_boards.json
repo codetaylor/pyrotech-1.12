@@ -8,15 +8,13 @@
       "type": "rrt_stone_sawmill_recipe",
       "header": true,
       "recipe": "pyrotech:board_tier_0",
-      "recipe2": "pyrotech:board_tier_1",
-      "text": "$(todo)Filler"
+      "recipe2": "pyrotech:board_tier_1"
     },
     {
       "type": "rrt_stone_sawmill_recipe",
       "header": true,
       "recipe": "pyrotech:board_tier_2",
-      "recipe2": "pyrotech:board_tier_3",
-      "text": "$(todo)Filler"
+      "recipe2": "pyrotech:board_tier_3"
     }
   ]
 }

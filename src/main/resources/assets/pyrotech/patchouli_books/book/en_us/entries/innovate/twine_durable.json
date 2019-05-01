@@ -8,7 +8,7 @@
       "type": "rt_soaking_pot_recipe",
       "header": true,
       "recipe": "pyrotech:twine_durable",
-      "text": "$(todo)Filler"
+      "text": "Soaking $(item)Twine$() in $(item)Wood Tar$() will make it more durable."
     },
     {
       "type": "text",

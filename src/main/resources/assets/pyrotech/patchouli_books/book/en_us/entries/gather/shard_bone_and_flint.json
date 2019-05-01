@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(item)Bone Shards$() can be found by mining $(item)Fossil Ore.$(p)$(todo)Filler$()"
+      "text": "$(item)Bone Shards$() can be found by mining $(item)Fossil Ore."
     },
     {
       "type": "rrt_anvil_recipe",

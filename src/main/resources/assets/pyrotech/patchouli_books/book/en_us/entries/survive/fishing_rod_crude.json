@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(info) The chance that a $(item)Crude Fishing Rod$() will break increases as its durability wanes.$(p)$(todo)Filler"
+      "text": "$(info) The chance that a $(item)Crude Fishing Rod$() will break increases as its durability wanes."
     },
     {
       "type": "crafting",
