@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(todo)What does it do?$(p)To use, place ingredients in the top and $(use) with a $(thing)Shovel$().$(p)$(warning) Using may cause hunger. If it isn't working, you might be too hungry."
+      "text": "To use, place ingredients in the top and $(use) with a $(thing)Shovel$().$(p)$(warning) Using may cause hunger. If it isn't working, you might be too hungry."
     },
     {
       "type": "crafting",
