@@ -4,10 +4,10 @@
       "item": "minecraft:flint_and_steel"
     },
     "title": {
-      "translate": "advancements.pyrotech.nether"
+      "translate": "advancement.pyrotech.nether"
     },
     "description": {
-      "translate": "advancements.pyrotech.nether.desc"
+      "translate": "advancement.pyrotech.nether.desc"
     },
     "show_toast": true,
     "announce_to_chat": true
