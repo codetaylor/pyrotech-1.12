@@ -185,16 +185,21 @@ public abstract class BlockTorchBase
   @Override
   public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
 
-    int fireDamage = this.getFireDamage();
+    IBlockState actualState = this.getActualState(state, world, pos);
 
-    if (fireDamage > 0) {
+    if (actualState.getValue(BlockTorchBase.TYPE) == EnumType.LIT) {
 
-      AxisAlignedBB torchBox = this.getCollisionBoundingBox(state, world, pos);
-      AxisAlignedBB entityBox = entity.getEntityBoundingBox();
+      int fireDamage = this.getFireDamage();
 
-      if (torchBox != null
-          && torchBox.offset(pos).intersects(entityBox)) {
-        entity.attackEntityFrom(DamageSource.IN_FIRE, fireDamage);
+      if (fireDamage > 0) {
+
+        AxisAlignedBB torchBox = this.getCollisionBoundingBox(state, world, pos);
+        AxisAlignedBB entityBox = entity.getEntityBoundingBox();
+
+        if (torchBox != null
+            && torchBox.offset(pos).intersects(entityBox)) {
+          entity.attackEntityFrom(DamageSource.IN_FIRE, fireDamage);
+        }
       }
     }
   }
