@@ -18,61 +18,49 @@
     "apple": {
       "trigger": "minecraft:consume_item",
       "conditions": {
-        "items": [
-          {
-            "item": "pyrotech:apple_baked"
-          }
-        ]
+        "item": {
+          "item": "pyrotech:apple_baked"
+        }
       }
     },
     "egg": {
       "trigger": "minecraft:consume_item",
       "conditions": {
-        "items": [
-          {
-            "item": "pyrotech:egg_roasted"
-          }
-        ]
+        "item": {
+          "item": "pyrotech:egg_roasted"
+        }
       }
     },
     "carrot": {
       "trigger": "minecraft:consume_item",
       "conditions": {
-        "items": [
-          {
-            "item": "pyrotech:carrot_roasted"
-          }
-        ]
+        "item": {
+          "item": "pyrotech:carrot_roasted"
+        }
       }
     },
     "beetroot": {
       "trigger": "minecraft:consume_item",
       "conditions": {
-        "items": [
-          {
-            "item": "pyrotech:beetroot_roasted"
-          }
-        ]
+        "item": {
+          "item": "pyrotech:beetroot_roasted"
+        }
       }
     },
     "mushroom_brown": {
       "trigger": "minecraft:consume_item",
       "conditions": {
-        "items": [
-          {
-            "item": "pyrotech:mushroom_brown_roasted"
-          }
-        ]
+        "item": {
+          "item": "pyrotech:mushroom_brown_roasted"
+        }
       }
     },
     "mushroom_red": {
       "trigger": "minecraft:consume_item",
       "conditions": {
-        "items": [
-          {
-            "item": "pyrotech:mushroom_red_roasted"
-          }
-        ]
+        "item": {
+          "item": "pyrotech:mushroom_red_roasted"
+        }
       }
     }
   }
