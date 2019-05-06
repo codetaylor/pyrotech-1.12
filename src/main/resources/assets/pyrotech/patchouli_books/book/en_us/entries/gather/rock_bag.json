@@ -34,8 +34,15 @@
       "text": "$(info) Items in a bag can be transferred to an inventory, like a chest, with $(sneak) + $(use).$(p)$(info) If you $(sneak) + $(use) an open bag on a non-inventory block, the contents of the bag will spill into the world."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "adapt/twine",
+        "gather/storage",
+        "innovate/twine_durable",
+        "innovate/storage_durable",
+        "survive/rocks",
+        "gather/stone_cobbled"
+      ]
     }
   ]
 }

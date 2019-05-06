@@ -22,6 +22,12 @@
       "type": "crafting",
       "recipe": "pyrotech:cobbled_granite",
       "recipe2": "pyrotech:cobbled_limestone"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/rocks"
+      ]
     }
   ]
 }

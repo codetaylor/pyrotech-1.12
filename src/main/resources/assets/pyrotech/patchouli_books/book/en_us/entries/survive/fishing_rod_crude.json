@@ -5,12 +5,18 @@
   "advancement": "pyrotech:dried_plant_fibers",
   "pages": [
     {
-      "type": "text",
+      "type": "crafting",
+      "recipe": "pyrotech:tool/crude_fishing_rod",
       "text": "$(info) The chance that a $(item)Crude Fishing Rod$() will break increases as its durability wanes."
     },
     {
-      "type": "crafting",
-      "recipe": "pyrotech:tool/crude_fishing_rod"
+      "type": "relations",
+      "entries": [
+        "gather/plant_fibers",
+        "gather/sticks",
+        "adapt/twine",
+        "survive/rocks"
+      ]
     }
   ]
 }

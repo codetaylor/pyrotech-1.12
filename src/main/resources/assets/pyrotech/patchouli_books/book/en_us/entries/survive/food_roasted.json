@@ -22,13 +22,6 @@
       "type": "smelting",
       "recipe": "minecraft:brown_mushroom",
       "recipe2": "minecraft:red_mushroom"
-    },
-    {
-      "type": "relations",
-      "entries": [
-        "survive/campfire",
-        "innovate/stone_oven"
-      ]
     }
   ]
 }

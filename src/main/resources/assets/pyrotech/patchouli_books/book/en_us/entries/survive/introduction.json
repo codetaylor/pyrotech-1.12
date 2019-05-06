@@ -79,8 +79,9 @@
     {
       "type": "relations",
       "entries": [
-        "survive/tinder",
         "appendix/ignition",
+        "adapt/plant_fibers_dried",
+        "gather/sticks",
         "survive/food_roasted"
       ]
     }

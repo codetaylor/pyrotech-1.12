@@ -16,7 +16,8 @@
         "survive/worktable",
         "gather/sticks",
         "gather/plant_fibers",
-        "adapt/anvil_granite"
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad"
       ]
     }
   ]

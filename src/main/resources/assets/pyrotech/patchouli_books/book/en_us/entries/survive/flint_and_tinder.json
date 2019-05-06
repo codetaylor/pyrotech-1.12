@@ -12,9 +12,9 @@
     {
       "type": "relations",
       "entries": [
-        "pyrotech:gather/shard_flint",
-        "pyrotech:gather/plant_fibers",
-        "pyrotech:survive/rocks"
+        "gather/shard_bone_and_flint",
+        "adapt/plant_fibers_dried",
+        "survive/rocks"
       ]
     }
   ]

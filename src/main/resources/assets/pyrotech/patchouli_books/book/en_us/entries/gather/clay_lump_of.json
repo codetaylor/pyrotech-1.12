@@ -14,6 +14,15 @@
       "type": "crafting",
       "recipe": "pyrotech:clay_lump",
       "recipe2": "pyrotech:clay_ball"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick",
+        "adapt/shears_clay",
+        "adapt/bucket_wood_and_clay",
+        "innovate/bucket_stone"
+      ]
     }
   ]
 }
