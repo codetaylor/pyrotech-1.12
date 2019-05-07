@@ -28,6 +28,14 @@
       "type": "crafting",
       "recipe": "pyrotech:tool/flint_hoe",
       "recipe2": "pyrotech:tool/flint_shovel"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "gather/shard_bone_and_flint",
+        "adapt/twine"
+      ]
     }
   ]
 }

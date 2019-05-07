@@ -10,8 +10,11 @@
       "text": "A $(item)Log Pile$() can be burned in a $(thing)Pit Burn$() to produce $(item)Charcoal$()."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/pit_burn",
+        "innovate/charcoal"
+      ]
     }
   ]
 }

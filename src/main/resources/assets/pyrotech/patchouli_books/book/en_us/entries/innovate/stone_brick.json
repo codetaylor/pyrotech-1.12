@@ -11,6 +11,13 @@
       "header2": true,
       "recipe2": "pyrotech:brick_stone",
       "text": "The $(item)Masonry Brick$() is the true cornerstone of a stonemason's craft."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad"
+      ]
     }
   ]
 }

@@ -14,6 +14,15 @@
       "pit_kiln_header": true,
       "pit_kiln_recipe": "pyrotech:clay_shears",
       "stone_kiln_recipe": "pyrotech:pit_kiln/clay_shears"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/clay_lump_of",
+        "adapt/pit_kiln",
+        "innovate/stone_kiln",
+        "bloom/refractory_kiln"
+      ]
     }
   ]
 }

@@ -16,6 +16,13 @@
       "header": true,
       "recipe": "pyrotech:crude_drying_rack/paper",
       "text": "$(item)Pulp$() can then be dried to create $(item)Paper$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/soaking_pot",
+        "adapt/drying_rack"
+      ]
     }
   ]
 }

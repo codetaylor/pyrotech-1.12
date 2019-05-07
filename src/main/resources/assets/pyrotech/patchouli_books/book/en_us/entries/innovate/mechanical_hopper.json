@@ -24,8 +24,14 @@
       "cog4": "pyrotech:cog_diamond"
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "innovate/stone_rod",
+        "innovate/wood_tarred",
+        "innovate/cog_basic",
+        "bloom/cog_advanced"
+      ]
     }
   ]
 }

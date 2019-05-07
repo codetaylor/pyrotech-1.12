@@ -29,8 +29,13 @@
       ]
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/stone_crucible",
+        "innovate/stone_kiln",
+        "innovate/stone_oven",
+        "innovate/stone_sawmill"
+      ]
     }
   ]
 }

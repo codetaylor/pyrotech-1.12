@@ -16,8 +16,10 @@
       ]
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "adapt/stone"
+      ]
     }
   ]
 }

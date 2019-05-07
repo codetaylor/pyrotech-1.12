@@ -11,8 +11,11 @@
       "text": "Soaking $(item)Twine$() in $(item)Wood Tar$() will make it more durable."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "adapt/twine",
+        "innovate/soaking_pot"
+      ]
     }
   ]
 }

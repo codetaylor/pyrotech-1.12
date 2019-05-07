@@ -7,6 +7,12 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:stone_bricks"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick"
+      ]
     }
   ]
 }

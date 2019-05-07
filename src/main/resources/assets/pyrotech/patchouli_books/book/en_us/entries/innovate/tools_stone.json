@@ -19,8 +19,11 @@
       "recipe": "pyrotech:stone_sword"
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "innovate/stone_brick"
+      ]
     }
   ]
 }

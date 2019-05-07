@@ -111,8 +111,15 @@
       "text": "When the fire on top of the $(item)Pit Kiln$() finally goes out, sift through the ash for the results.$(p)$(warning) Due to the crude nature of the $(item)Pit Kiln$(), there is a chance that items will fail to fire and instead produce a failed result."
     },
     {
-      "type": "text",
-      "text": "$(todo)Related"
+      "type": "relations",
+      "entries": [
+        "adapt/plant_fibers_dried",
+        "adapt/twine",
+        "adapt/drying_rack",
+        "innovate/stone_oven",
+        "bloom/refractory_oven",
+        "appendix/ignition"
+      ]
     }
   ]
 }

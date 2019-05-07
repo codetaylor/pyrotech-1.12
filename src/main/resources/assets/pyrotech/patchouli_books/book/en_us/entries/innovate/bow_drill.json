@@ -15,8 +15,11 @@
       "recipe2": "pyrotech:bow"
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "innovate/twine_durable"
+      ]
     }
   ]
 }

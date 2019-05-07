@@ -13,8 +13,11 @@
       "text": "Tarred wood is more durable and will last longer when directly exposed to water."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/soaking_pot",
+        "innovate/wood_boards"
+      ]
     }
   ]
 }

@@ -44,6 +44,16 @@
       "pit_kiln_header": true,
       "pit_kiln_recipe": "pyrotech:limestone",
       "stone_kiln_recipe": "pyrotech:pit_kiln/limestone"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/clay_lump_of",
+        "adapt/pit_kiln",
+        "innovate/stone_kiln",
+        "bloom/refractory_kiln",
+        "gather/stone_cobbled"
+      ]
     }
   ]
 }

@@ -10,8 +10,12 @@
       "text": "A $(item)Stone Crucible$() melts solids into fluids.$(p)$(warning) Filling the $(item)Stone Crucible$() with a hot fluid, like lava, will break the machine."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "innovate/stone_bricks",
+        "innovate/stone_tank"
+      ]
     }
   ]
 }

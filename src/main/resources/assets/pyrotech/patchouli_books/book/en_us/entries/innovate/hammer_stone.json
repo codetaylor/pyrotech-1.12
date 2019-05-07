@@ -9,8 +9,12 @@
       "recipe": "pyrotech:stone_hammer"
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "gather/sticks",
+        "adapt/twine"
+      ]
     }
   ]
 }

@@ -15,6 +15,13 @@
       "header": true,
       "recipe": "pyrotech:board_tier_2",
       "recipe2": "pyrotech:board_tier_3"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_sawmill",
+        "bloom/refractory_sawmill"
+      ]
     }
   ]
 }

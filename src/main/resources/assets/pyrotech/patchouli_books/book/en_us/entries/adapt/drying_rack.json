@@ -21,7 +21,8 @@
     {
       "type": "relations",
       "entries": [
-        "survive/campfire",
+        "survive/introduction",
+        "adapt/twine",
         "gather/plant_fibers",
         "gather/sticks"
       ]

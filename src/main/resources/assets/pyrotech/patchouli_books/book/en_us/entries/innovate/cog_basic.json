@@ -17,6 +17,15 @@
       "type": "crafting",
       "recipe": "pyrotech:tech/machine/cog_flint",
       "recipe2": "pyrotech:tech/machine/cog_stone"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "gather/shard_bone_and_flint",
+        "survive/rocks",
+        "innovate/stone_rod"
+      ]
     }
   ]
 }

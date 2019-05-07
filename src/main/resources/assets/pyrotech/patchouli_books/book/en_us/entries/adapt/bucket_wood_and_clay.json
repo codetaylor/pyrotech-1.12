@@ -25,8 +25,11 @@
       "stone_kiln_recipe": "pyrotech:pit_kiln/bucket_clay"
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "gather/plant_fibers",
+        "gather/clay_lump_of"
+      ]
     }
   ]
 }

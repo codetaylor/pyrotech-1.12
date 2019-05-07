@@ -15,6 +15,13 @@
         "pyrotech:textures/gui/book/illustration/pit_burn_collector.png"
       ],
       "text": "$(warning) A $(item)Stone Collector$() will break when filled with hot fluids, such as lava."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "innovate/pit_burn"
+      ]
     }
   ]
 }

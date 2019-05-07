@@ -22,7 +22,9 @@
     {
       "type": "relations",
       "entries": [
-        "survive/chopping_block"
+        "innovate/wood_tarred",
+        "innovate/stone_brick",
+        "gather/storage"
       ]
     }
   ]

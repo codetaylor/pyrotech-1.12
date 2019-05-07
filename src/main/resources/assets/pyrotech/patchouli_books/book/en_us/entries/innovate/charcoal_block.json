@@ -12,8 +12,11 @@
       "text": "$(item)Charcoal Flakes$() and $(item)Charcoal$() can be $(thing)Compacted$() into a $(item)Block of Charcoal$()."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/charcoal",
+        "innovate/compacting_bin"
+      ]
     }
   ]
 }

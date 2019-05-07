@@ -10,8 +10,12 @@
       "text": "A $(item)Stone Sawmill$() performs the same tasks as a $(item)Chopping Block$(), but faster.$(p)$(info) $(thing)Sawmills$() produce $(item)Wood Chips$() during operation."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "innovate/stone_bricks",
+        "survive/chopping_block"
+      ]
     }
   ]
 }

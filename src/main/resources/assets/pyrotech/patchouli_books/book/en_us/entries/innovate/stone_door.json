@@ -15,6 +15,13 @@
       "images": [
         "pyrotech:textures/gui/book/photo/pit_burn_00.png"
       ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "innovate/pit_burn"
+      ]
     }
   ]
 }

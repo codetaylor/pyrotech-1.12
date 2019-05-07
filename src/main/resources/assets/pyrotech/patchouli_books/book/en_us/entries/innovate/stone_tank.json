@@ -8,6 +8,12 @@
       "type": "crafting",
       "recipe": "pyrotech:storage/stone_tank",
       "text": "Use a $(item)Stone Tank$() to store fluid.$(p)$(warning) The $(item)Stone Tank$() will keep its contents when broken, but break when filled with hot fluids."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick"
+      ]
     }
   ]
 }

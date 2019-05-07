@@ -10,8 +10,11 @@
       "text": "A $(item)Stone Bucket$() will last longer than a $(item)Wooden Bucket$() or $(item)Stone Bucket$().$(p)$(warning) A $(item)Stone Bucket$() will break with hot fluids, such as lava."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "gather/clay_lump_of"
+      ]
     }
   ]
 }

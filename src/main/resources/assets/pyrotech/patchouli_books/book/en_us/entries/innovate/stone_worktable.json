@@ -11,6 +11,15 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/worktable_stone"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "innovate/stone_bricks",
+        "survive/worktable",
+        "adapt/stone"
+      ]
     }
   ]
 }

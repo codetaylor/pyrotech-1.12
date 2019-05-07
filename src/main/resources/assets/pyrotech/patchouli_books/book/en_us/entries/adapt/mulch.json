@@ -20,6 +20,13 @@
       "images": [
         "pyrotech:textures/gui/book/photo/wheat_00.png"
       ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/ash",
+        "gather/wood_chips"
+      ]
     }
   ]
 }

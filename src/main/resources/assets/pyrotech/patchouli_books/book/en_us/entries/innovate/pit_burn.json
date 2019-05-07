@@ -76,8 +76,11 @@
       "text": "Finally, after the smoke has stopped, remove any of the material covering the $(thing)Pit Burn$() and sift through the ash for the results."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/log_pile",
+        "appendix/ignition"
+      ]
     }
   ]
 }

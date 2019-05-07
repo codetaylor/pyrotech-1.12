@@ -11,8 +11,11 @@
       "text": "A $(thing)Pit Burn$() with $(item)Log Piles$() can produce an appreciable quantity of $(item)Charcoal$() and $(item)Wood Tar$()."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/pit_burn",
+        "innovate/log_pile"
+      ]
     }
   ]
 }

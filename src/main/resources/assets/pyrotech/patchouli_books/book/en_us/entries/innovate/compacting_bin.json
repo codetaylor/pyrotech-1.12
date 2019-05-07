@@ -12,6 +12,12 @@
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/compacting_bin",
       "text": "$(info) Regarding automation, items can be inserted into the top and sides."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/stone"
+      ]
     }
   ]
 }

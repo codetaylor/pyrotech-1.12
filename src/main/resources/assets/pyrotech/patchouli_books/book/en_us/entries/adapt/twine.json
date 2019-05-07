@@ -8,6 +8,12 @@
       "type": "crafting",
       "recipe": "pyrotech:twine",
       "text": "$(item)Twine$() works well to bundle or fasten things securely."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/plant_fibers_dried"
+      ]
     }
   ]
 }
