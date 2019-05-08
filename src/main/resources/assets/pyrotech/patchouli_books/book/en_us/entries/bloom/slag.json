@@ -22,6 +22,15 @@
       "header": true,
       "recipe": "pyrotech:slag_glass",
       "text": "A $(item)Slag Heap$() that does not contain any ore can be fired to create $(item)Slag Glass$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/compacting_bin",
+        "bloom/mechanical_compactor",
+        "innovate/stone_kiln",
+        "bloom/refractory_kiln"
+      ]
     }
   ]
 }

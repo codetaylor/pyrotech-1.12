@@ -32,8 +32,13 @@
       "fuel3": "pyrotech:living_tar"
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "accelerate/refractory_brick_block",
+        "accelerate/coal",
+        "accelerate/coal_coke",
+        "bloom/living_tar"
+      ]
     }
   ]
 }

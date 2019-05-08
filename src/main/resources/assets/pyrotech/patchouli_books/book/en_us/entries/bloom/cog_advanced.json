@@ -15,8 +15,13 @@
       "recipe2": "pyrotech:tech/machine/cog_diamond"
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "bloom/mechanical_bellows",
+        "bloom/mechanical_compactor",
+        "bloom/mechanical_mulcher",
+        "innovate/mechanical_hopper"
+      ]
     }
   ]
 }

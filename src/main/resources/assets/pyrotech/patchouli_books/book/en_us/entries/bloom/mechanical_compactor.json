@@ -28,8 +28,16 @@
       "text": "$(info) Regarding automation, items can be inserted into the top and sides of the bin block and extracted from the bottom of the mechanism block."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "innovate/wood_tarred",
+        "innovate/mechanical_hopper",
+        "innovate/compacting_bin",
+        "innovate/stone_bricks",
+        "bloom/cog_advanced",
+        "innovate/cog_basic"
+      ]
     }
   ]
 }

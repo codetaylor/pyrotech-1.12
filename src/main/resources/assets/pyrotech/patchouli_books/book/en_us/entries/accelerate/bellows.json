@@ -16,8 +16,13 @@
       ]
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/wood_boards",
+        "innovate/stone_brick",
+        "innovate/stone_bricks",
+        "innovate/stone_rod"
+      ]
     }
   ]
 }

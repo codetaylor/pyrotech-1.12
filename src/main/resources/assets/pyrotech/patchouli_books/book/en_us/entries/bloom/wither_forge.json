@@ -15,6 +15,15 @@
       "fuel": "minecraft:coal_block",
       "fuel2": "pyrotech:coal_coke_block",
       "fuel3": "pyrotech:living_tar"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "accelerate/bloomery",
+        "accelerate/coal",
+        "accelerate/coal_coke",
+        "bloom/living_tar"
+      ]
     }
   ]
 }

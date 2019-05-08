@@ -16,8 +16,13 @@
       "fuel": "pyrotech:coal_coke_block"
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "accelerate/refractory_burn",
+        "bloom/mechanical_compactor",
+        "accelerate/bloomery",
+        "bloom/wither_forge"
+      ]
     }
   ]
 }

@@ -28,8 +28,12 @@
       "recipe": "pyrotech:tech/bloomery/tongs_obsidian"
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "innovate/stone_rod",
+        "gather/shard_bone_and_flint"
+      ]
     }
   ]
 }

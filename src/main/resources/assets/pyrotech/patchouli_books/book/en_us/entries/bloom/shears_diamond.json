@@ -7,6 +7,12 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tool/diamond_shears"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/twine"
+      ]
     }
   ]
 }

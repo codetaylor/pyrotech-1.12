@@ -14,6 +14,15 @@
       "images": [
         "pyrotech:textures/gui/book/illustration/mechanical_bellows_00.png"
       ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_rod",
+        "innovate/wood_tarred",
+        "bloom/cog_advanced",
+        "innovate/cog_basic"
+      ]
     }
   ]
 }

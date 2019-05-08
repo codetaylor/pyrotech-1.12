@@ -57,8 +57,11 @@
       "text": "$(info) Adding the $(item)Silk Touch$() enchantment to a $(thing)Hammer$() will dramatically reduce the chance that hammering a $(item)Bloom$() will fail and produce slag."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad"
+      ]
     }
   ]
 }

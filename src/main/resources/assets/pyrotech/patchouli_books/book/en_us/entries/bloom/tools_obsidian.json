@@ -17,6 +17,13 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tool/obsidian_shears"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/twine",
+        "gather/sticks"
+      ]
     }
   ]
 }

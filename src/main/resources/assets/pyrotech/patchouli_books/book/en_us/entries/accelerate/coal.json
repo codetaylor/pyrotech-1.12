@@ -35,6 +35,17 @@
       "item": "pyrotech:dense_coal_ore",
       "link_recipe": true,
       "text": "$(item)Dense Coal Ore$() can usually be found deep underground, most often within $(item)Coal Ore$() deposits.$(p)$(info) It can be harvested with $(thing)Iron Tools$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad",
+        "bloom/mechanical_compactor",
+        "innovate/soaking_pot",
+        "accelerate/bloomery",
+        "bloom/wither_forge"
+      ]
     }
   ]
 }

@@ -12,6 +12,13 @@
       "type": "crafting",
       "recipe": "pyrotech:ignition/igniter_stone",
       "recipe2": "pyrotech:ignition/igniter_brick"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "innovate/refractory_brick"
+      ]
     }
   ]
 }

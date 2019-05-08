@@ -28,8 +28,15 @@
       "text": "$(info) Regarding automation, mulch can be inserted into the top."
     },
     {
-      "type": "text",
-      "text": "$(todo)Relations"
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "innovate/wood_tarred",
+        "innovate/mechanical_hopper",
+        "innovate/stone_bricks",
+        "bloom/cog_advanced",
+        "innovate/cog_basic"
+      ]
     }
   ]
 }

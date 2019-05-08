@@ -13,6 +13,13 @@
       "type": "crafting",
       "recipe": "pyrotech:diamond_hammer",
       "recipe2": "pyrotech:obsidian_hammer"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "innovate/twine_durable"
+      ]
     }
   ]
 }
