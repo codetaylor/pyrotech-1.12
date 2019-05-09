@@ -1,0 +1,15 @@
+{
+  "name": "Appendix B: Thank You",
+  "icon": "minecraft:paper",
+  "category": "appendix",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(p)$(p)$(p)$(p)$(p)$(p)Thank you, Smisle - thank you for choosing to spend your time here with me and for brightening my life every day."
+    },
+    {
+      "type": "text",
+      "text": "A big thanks to everyone that participated in the Discord alpha:$(li)_MasterEnderman_$(li)Accanthea$(li)ARatfat$(li)Exopandora$(li)Kiako$(li)MineplayerHDYT$(li)Mrthomas20121$(li)Servant$(li)SpeakerHornet$(li)Yuudari"
+    }
+  ]
+}
