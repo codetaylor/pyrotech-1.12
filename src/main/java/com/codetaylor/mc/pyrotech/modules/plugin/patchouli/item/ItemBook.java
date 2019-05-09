@@ -78,12 +78,16 @@ public class ItemBook
     public EntityItemBook(World world) {
 
       super(world);
+      this.setNoDespawn();
+      this.setEntityInvulnerable(true);
+      this.isImmuneToFire = true;
     }
 
     public EntityItemBook(World world, double x, double y, double z, ItemStack stack) {
 
       super(world, x, y, z, stack);
       this.setNoDespawn();
+      this.setEntityInvulnerable(true);
       this.isImmuneToFire = true;
     }
 
