@@ -514,12 +514,16 @@ public class BlockBloom
 
         // Serialization
         super(world);
+        this.setNoDespawn();
+        this.setEntityInvulnerable(true);
+        this.isImmuneToFire = true;
       }
 
       /* package */ EntityItemBloom(World world, double x, double y, double z, ItemStack stack) {
 
         super(world, x, y, z, stack);
         this.setNoDespawn();
+        this.setEntityInvulnerable(true);
         this.isImmuneToFire = true;
       }
 
