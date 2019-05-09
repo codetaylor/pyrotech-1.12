@@ -116,6 +116,7 @@ public class ModuleTechBasic
     ChoppingBlockRecipesAdd.apply(ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE);
     CompactingBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE);
     SoakingPotRecipesAdd.apply(ModuleTechBasic.Registries.SOAKING_POT_RECIPE);
+    CampfireRecipesAdd.apply(Registries.CAMPFIRE_RECIPE);
   }
 
   @Override
