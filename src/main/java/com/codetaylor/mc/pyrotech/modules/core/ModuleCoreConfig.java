@@ -12,7 +12,7 @@ public class ModuleCoreConfig {
   public static class Tweaks {
 
     @Config.Comment({
-        "If true, vanilla sheep won't drop vanilla wool."
+        "If true, vanilla sheep won't drop wool when killed."
     })
     public boolean PREVENT_WOOL_ON_SHEEP_DEATH = true;
 
