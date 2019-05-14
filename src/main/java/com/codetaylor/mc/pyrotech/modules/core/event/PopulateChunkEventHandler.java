@@ -8,12 +8,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
 public class PopulateChunkEventHandler {
 
-  @SubscribeEvent
+  @SubscribeEvent(priority = EventPriority.LOWEST)
   public static void on(PopulateChunkEvent.Post event) {
 
     if (!ModuleCoreConfig.TWEAKS.REMOVE_VANILLA_CRAFTING_TABLE
@@ -24,8 +25,8 @@ public class PopulateChunkEventHandler {
     World world = event.getWorld();
     int chunkX = event.getChunkX();
     int chunkZ = event.getChunkZ();
-    int worldX = chunkX << 4;
-    int worldZ = chunkZ << 4;
+    int worldX = (chunkX << 4) + 8;
+    int worldZ = (chunkZ << 4) + 8;
     BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 
     // long start = System.currentTimeMillis();
