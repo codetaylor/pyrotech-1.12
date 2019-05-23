@@ -68,6 +68,16 @@ public class ZenCampfire {
 
   @ZenDocMethod(
       order = 3,
+      description = "Blacklist all smelting recipes."
+  )
+  @ZenMethod
+  public static void blacklistAllSmeltingRecipes() {
+
+    CampfireRecipe.blacklistAll();
+  }
+
+  @ZenDocMethod(
+      order = 4,
       args = {
           @ZenDocArg(arg = "output", info = "output ingredients to whitelist")
       }

@@ -21,6 +21,12 @@ public class CampfireRecipe
   private static final Map<String, CampfireRecipe> SMELTING_RECIPES = new HashMap<>();
   private static final List<Ingredient> WHITELIST = new ArrayList<>();
   private static final List<Ingredient> BLACKLIST = new ArrayList<>();
+  private static boolean BLACKLIST_ALL = false;
+
+  public static void blacklistAll() {
+
+    BLACKLIST_ALL = true;
+  }
 
   @Nullable
   public static CampfireRecipe getRecipe(ItemStack input) {
@@ -38,7 +44,8 @@ public class CampfireRecipe
     // If the recipe has a smelting output that is food, check against the
     // lists, cache the result and return it.
 
-    if (RecipeHelper.hasFurnaceFoodRecipe(input)) {
+    if (!BLACKLIST_ALL
+        && RecipeHelper.hasFurnaceFoodRecipe(input)) {
 
       FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
       ItemStack output = furnaceRecipes.getSmeltingResult(input);
