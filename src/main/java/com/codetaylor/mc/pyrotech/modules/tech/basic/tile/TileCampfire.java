@@ -29,6 +29,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
@@ -400,7 +401,8 @@ public class TileCampfire
     if (!this.outputStackHandler.getStackInSlot(0).isEmpty()) {
       ItemStack stackInSlot = this.outputStackHandler.getStackInSlot(0);
 
-      if (stackInSlot.getItem() != ModuleCore.Items.BURNED_FOOD) {
+      if (stackInSlot.getItem() != ModuleCore.Items.BURNED_FOOD
+          && stackInSlot.getItem() instanceof ItemFood) {
 
         if (this.burnedFoodTickCounter.increment()) {
           this.outputStackHandler.setStackInSlot(0, new ItemStack(ModuleCore.Items.BURNED_FOOD));
