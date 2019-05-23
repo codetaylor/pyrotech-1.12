@@ -103,19 +103,6 @@ public class ZenCampfire {
     });
   }
 
-  @ZenDocMethod(
-      order = 4,
-      description = "Remove all recipes with the given recipe output.",
-      args = {
-          @ZenDocArg(arg = "output", info = "output ingredient to match")
-      }
-  )
-  @ZenMethod
-  public static void removeRecipes(IIngredient output) {
-
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
-  }
-
   public static class RemoveRecipe
       implements IAction {
 
