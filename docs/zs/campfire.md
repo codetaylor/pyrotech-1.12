@@ -30,22 +30,20 @@ static void blacklistSmeltingRecipes(
 
 
 ```java
-static void whitelistSmeltingRecipes(
-  IIngredient[] output // output ingredients to whitelist
-);
+static void blacklistAllSmeltingRecipes();
 ```
 
+Blacklist all smelting recipes.
 
 ---
 
 
 ```java
-static void removeRecipes(
-  IIngredient output // output ingredient to match
+static void whitelistSmeltingRecipes(
+  IIngredient[] output // output ingredients to whitelist
 );
 ```
 
-Remove all recipes with the given recipe output.
 
 ---
 
