@@ -30,6 +30,7 @@ public class ParticleBloomeryDrip
     this.setParticleTextureIndex(49);
   }
 
+  @Override
   public int getBrightnessForRender(float partialTicks) {
 
     int i = super.getBrightnessForRender(partialTicks);
@@ -38,6 +39,7 @@ public class ParticleBloomeryDrip
     return j | k << 16;
   }
 
+  @Override
   public void onUpdate() {
 
     this.prevPosX = this.posX;
