@@ -42,17 +42,25 @@ public class StoneOvenRecipe
       FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
       ItemStack output = furnaceRecipes.getSmeltingResult(input);
 
-      if (StoneOvenRecipe.hasWhitelist()
-          && StoneOvenRecipe.isWhitelisted(output)) {
-        result = new StoneOvenRecipe(output, Ingredient.fromStacks(input));
-        SMELTING_RECIPES.put(key, result);
-        return result;
+      if (StoneOvenRecipe.hasWhitelist()) {
 
-      } else if (StoneOvenRecipe.hasBlacklist()
-          && !StoneOvenRecipe.isBlacklisted(output)) {
-        result = new StoneOvenRecipe(output, Ingredient.fromStacks(input));
-        SMELTING_RECIPES.put(key, result);
-        return result;
+        if (StoneOvenRecipe.isWhitelisted(output)) {
+          result = new StoneOvenRecipe(output, Ingredient.fromStacks(input));
+          SMELTING_RECIPES.put(key, result);
+          return result;
+        }
+
+        return StoneOvenRecipe.getCustomRecipe(input);
+
+      } else if (StoneOvenRecipe.hasBlacklist()) {
+
+        if (!StoneOvenRecipe.isBlacklisted(output)) {
+          result = new StoneOvenRecipe(output, Ingredient.fromStacks(input));
+          SMELTING_RECIPES.put(key, result);
+          return result;
+        }
+
+        return StoneOvenRecipe.getCustomRecipe(input);
 
       } else {
         result = new StoneOvenRecipe(output, Ingredient.fromStacks(input));
@@ -62,6 +70,11 @@ public class StoneOvenRecipe
     }
 
     // Finally, check the custom recipes.
+    return StoneOvenRecipe.getCustomRecipe(input);
+  }
+
+  @Nullable
+  private static StoneOvenRecipe getCustomRecipe(ItemStack input) {
 
     for (StoneOvenRecipe recipe : ModuleTechMachine.Registries.STONE_OVEN_RECIPES) {
 
