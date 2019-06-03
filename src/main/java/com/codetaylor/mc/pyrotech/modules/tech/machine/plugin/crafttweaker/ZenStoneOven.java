@@ -68,6 +68,16 @@ public class ZenStoneOven {
 
   @ZenDocMethod(
       order = 3,
+      description = "Blacklist all smelting recipes."
+  )
+  @ZenMethod
+  public static void blacklistAllSmeltingRecipes() {
+
+    StoneOvenRecipe.blacklistAll();
+  }
+
+  @ZenDocMethod(
+      order = 4,
       args = {
           @ZenDocArg(arg = "output")
       }
@@ -94,7 +104,7 @@ public class ZenStoneOven {
   }
 
   @ZenDocMethod(
-      order = 4,
+      order = 5,
       args = {
           @ZenDocArg(arg = "output", info = "output ingredient to match")
       }
