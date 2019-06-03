@@ -50,25 +50,39 @@ public class CampfireRecipe
       FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
       ItemStack output = furnaceRecipes.getSmeltingResult(input);
 
-      if (CampfireRecipe.hasWhitelist()
-          && CampfireRecipe.isWhitelisted(output)) {
-        result = new CampfireRecipe(output, Ingredient.fromStacks(input));
-        SMELTING_RECIPES.put(key, result);
-        return result;
+      if (CampfireRecipe.hasWhitelist()) {
 
-      } else if (CampfireRecipe.hasBlacklist()
-          && !CampfireRecipe.isBlacklisted(output)) {
+        if (CampfireRecipe.isWhitelisted(output)) {
+          result = new CampfireRecipe(output, Ingredient.fromStacks(input));
+          SMELTING_RECIPES.put(key, result);
+          return result;
+        }
+
+        return CampfireRecipe.getCustomRecipe(input);
+
+      } else if (CampfireRecipe.hasBlacklist()) {
+
+        if (!CampfireRecipe.isBlacklisted(output)) {
+          result = new CampfireRecipe(output, Ingredient.fromStacks(input));
+          SMELTING_RECIPES.put(key, result);
+          return result;
+        }
+
+        return CampfireRecipe.getCustomRecipe(input);
+
+      } else {
         result = new CampfireRecipe(output, Ingredient.fromStacks(input));
         SMELTING_RECIPES.put(key, result);
         return result;
       }
-
-      result = new CampfireRecipe(output, Ingredient.fromStacks(input));
-      SMELTING_RECIPES.put(key, result);
-      return result;
     }
 
     // Finally, check the custom campfire recipes.
+    return CampfireRecipe.getCustomRecipe(input);
+  }
+
+  @Nullable
+  private static CampfireRecipe getCustomRecipe(ItemStack input) {
 
     for (CampfireRecipe recipe : ModuleTechBasic.Registries.CAMPFIRE_RECIPE) {
 
