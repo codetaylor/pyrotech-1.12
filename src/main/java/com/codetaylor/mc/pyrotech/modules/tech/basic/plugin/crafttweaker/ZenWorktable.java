@@ -184,7 +184,10 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 8
+      order = 8,
+      description = {
+          "Blacklist all vanilla crafting recipes."
+      }
   )
   @ZenMethod
   public static void blacklistAllVanillaRecipes() {
@@ -223,6 +226,9 @@ public class ZenWorktable {
       order = 10,
       args = {
           @ZenDocArg(arg = "output", info = "output ingredient to match")
+      },
+      description = {
+          "Removes pre-existing recipes, ie. recipes added by the mod."
       }
   )
   @ZenMethod
