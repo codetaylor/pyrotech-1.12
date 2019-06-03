@@ -103,6 +103,21 @@ public class ZenCampfire {
     });
   }
 
+  @ZenDocMethod(
+      order = 5,
+      args = {
+          @ZenDocArg(arg = "output", info = "output ingredient to match")
+      },
+      description = {
+          "Removes pre-existing recipes, ie. recipes added by the mod."
+      }
+  )
+  @ZenMethod
+  public static void removeRecipes(IIngredient output) {
+
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
+  }
+
   public static class RemoveRecipe
       implements IAction {
 
