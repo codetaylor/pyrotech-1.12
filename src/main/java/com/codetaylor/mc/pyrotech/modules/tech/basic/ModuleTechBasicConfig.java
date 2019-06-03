@@ -24,7 +24,7 @@ public class ModuleTechBasicConfig {
         "",
         "The whitelist takes priority over the blacklist.",
         "",
-        "String format is a resource location: (domain):(path)"
+        "String format is a recipe resource location: (domain):(path)"
     })
     public String[] RECIPE_WHITELIST = new String[0];
 
@@ -36,7 +36,7 @@ public class ModuleTechBasicConfig {
         "",
         "The whitelist takes priority over the blacklist.",
         "",
-        "String format is a resource location: (domain):(path)"
+        "String format is a recipe resource location: (domain):(path)"
     })
     public String[] RECIPE_BLACKLIST = new String[0];
   }
