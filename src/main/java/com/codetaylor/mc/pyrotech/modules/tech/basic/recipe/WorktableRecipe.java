@@ -42,25 +42,39 @@ public class WorktableRecipe
         return cachedRecipe;
       }
 
-      if (WorktableRecipe.hasWhitelist()
-          && WorktableRecipe.isWhitelisted(resourceLocation)) {
-        WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
-        CACHE.put(resourceLocation, worktableRecipe);
-        return worktableRecipe;
+      if (WorktableRecipe.hasWhitelist()) {
 
-      } else if (WorktableRecipe.hasBlacklist()
-          && !WorktableRecipe.isBlacklisted(resourceLocation)) {
+        if (WorktableRecipe.isWhitelisted(resourceLocation)) {
+          WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
+          CACHE.put(resourceLocation, worktableRecipe);
+          return worktableRecipe;
+        }
+
+        return WorktableRecipe.getCustomRecipe(inventory, world);
+
+      } else if (WorktableRecipe.hasBlacklist()) {
+
+        if (!WorktableRecipe.isBlacklisted(resourceLocation)) {
+          WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
+          CACHE.put(resourceLocation, worktableRecipe);
+          return worktableRecipe;
+        }
+
+        return WorktableRecipe.getCustomRecipe(inventory, world);
+
+      } else {
         WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
         CACHE.put(resourceLocation, worktableRecipe);
         return worktableRecipe;
       }
-
-      WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
-      CACHE.put(resourceLocation, worktableRecipe);
-      return worktableRecipe;
     }
 
     // Finally, check the custom recipes.
+    return WorktableRecipe.getCustomRecipe(inventory, world);
+  }
+
+  @Nullable
+  private static WorktableRecipe getCustomRecipe(InventoryCrafting inventory, World world) {
 
     for (WorktableRecipe worktableRecipe : ModuleTechBasic.Registries.WORKTABLE_RECIPE) {
 
