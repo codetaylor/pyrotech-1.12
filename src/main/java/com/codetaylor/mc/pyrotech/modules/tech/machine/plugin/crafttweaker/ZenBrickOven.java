@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogH
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CampfireRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickOvenRecipe;
 import crafttweaker.IAction;
@@ -68,6 +69,16 @@ public class ZenBrickOven {
 
   @ZenDocMethod(
       order = 3,
+      description = "Blacklist all smelting recipes."
+  )
+  @ZenMethod
+  public static void blacklistAllSmeltingRecipes() {
+
+    BrickOvenRecipe.blacklistAll();
+  }
+
+  @ZenDocMethod(
+      order = 4,
       args = {
           @ZenDocArg(arg = "output")
       }
@@ -94,7 +105,7 @@ public class ZenBrickOven {
   }
 
   @ZenDocMethod(
-      order = 4,
+      order = 5,
       args = {
           @ZenDocArg(arg = "output", info = "output ingredient to match")
       }
