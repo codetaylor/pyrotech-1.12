@@ -99,6 +99,15 @@ static void blacklistVanillaRecipes(
 
 
 ```java
+static void blacklistAllVanillaRecipes();
+```
+
+Blacklist all vanilla crafting recipes.
+
+---
+
+
+```java
 static void whitelistVanillaRecipes(
   string[] resourceLocations
 );
@@ -114,6 +123,7 @@ static void removeRecipes(
 );
 ```
 
+Removes pre-existing recipes, ie. recipes added by the mod.
 
 ---
 

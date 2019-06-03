@@ -47,3 +47,14 @@ static void whitelistSmeltingRecipes(
 
 ---
 
+
+```java
+static void removeRecipes(
+  IIngredient output // output ingredient to match
+);
+```
+
+Removes pre-existing recipes, ie. recipes added by the mod.
+
+---
+

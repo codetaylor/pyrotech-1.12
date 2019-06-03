@@ -30,6 +30,15 @@ static void blacklistSmeltingRecipes(
 
 
 ```java
+static void blacklistAllSmeltingRecipes();
+```
+
+Blacklist all smelting recipes.
+
+---
+
+
+```java
 static void whitelistSmeltingRecipes(
   IIngredient[] output
 );
