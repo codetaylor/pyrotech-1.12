@@ -42,17 +42,25 @@ public class BrickOvenRecipe
       FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
       ItemStack output = furnaceRecipes.getSmeltingResult(input);
 
-      if (BrickOvenRecipe.hasWhitelist()
-          && BrickOvenRecipe.isWhitelisted(output)) {
-        result = new BrickOvenRecipe(output, Ingredient.fromStacks(input));
-        SMELTING_RECIPES.put(key, result);
-        return result;
+      if (BrickOvenRecipe.hasWhitelist()) {
 
-      } else if (BrickOvenRecipe.hasBlacklist()
-          && !BrickOvenRecipe.isBlacklisted(output)) {
-        result = new BrickOvenRecipe(output, Ingredient.fromStacks(input));
-        SMELTING_RECIPES.put(key, result);
-        return result;
+        if (BrickOvenRecipe.isWhitelisted(output)) {
+          result = new BrickOvenRecipe(output, Ingredient.fromStacks(input));
+          SMELTING_RECIPES.put(key, result);
+          return result;
+        }
+
+        return BrickOvenRecipe.getCustomRecipe(input);
+
+      } else if (BrickOvenRecipe.hasBlacklist()) {
+
+        if (!BrickOvenRecipe.isBlacklisted(output)) {
+          result = new BrickOvenRecipe(output, Ingredient.fromStacks(input));
+          SMELTING_RECIPES.put(key, result);
+          return result;
+        }
+
+        return BrickOvenRecipe.getCustomRecipe(input);
 
       } else {
         result = new BrickOvenRecipe(output, Ingredient.fromStacks(input));
@@ -62,6 +70,12 @@ public class BrickOvenRecipe
     }
 
     // Finally, check the custom recipes.
+
+    return BrickOvenRecipe.getCustomRecipe(input);
+  }
+
+  @Nullable
+  private static BrickOvenRecipe getCustomRecipe(ItemStack input) {
 
     for (BrickOvenRecipe recipe : ModuleTechMachine.Registries.BRICK_OVEN_RECIPES) {
 
