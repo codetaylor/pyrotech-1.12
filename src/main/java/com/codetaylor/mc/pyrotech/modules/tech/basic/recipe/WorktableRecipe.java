@@ -28,44 +28,52 @@ public class WorktableRecipe
   private static final Map<ResourceLocation, WorktableRecipe> CACHE = new HashMap<>();
   private static final Set<ResourceLocation> WHITELIST = new HashSet<>();
   private static final Set<ResourceLocation> BLACKLIST = new HashSet<>();
+  private static boolean BLACKLIST_ALL = false;
+
+  public static void blacklistAll() {
+
+    BLACKLIST_ALL = true;
+  }
 
   @Nullable
   public static WorktableRecipe getRecipe(InventoryCrafting inventory, World world) {
 
-    IRecipe recipe = CraftingManager.findMatchingRecipe(inventory, world);
+    if (!BLACKLIST_ALL) {
+      IRecipe recipe = CraftingManager.findMatchingRecipe(inventory, world);
 
-    if (recipe != null) {
-      ResourceLocation resourceLocation = recipe.getRegistryName();
-      WorktableRecipe cachedRecipe = CACHE.get(resourceLocation);
+      if (recipe != null) {
+        ResourceLocation resourceLocation = recipe.getRegistryName();
+        WorktableRecipe cachedRecipe = CACHE.get(resourceLocation);
 
-      if (cachedRecipe != null) {
-        return cachedRecipe;
-      }
+        if (cachedRecipe != null) {
+          return cachedRecipe;
+        }
 
-      if (WorktableRecipe.hasWhitelist()) {
+        if (WorktableRecipe.hasWhitelist()) {
 
-        if (WorktableRecipe.isWhitelisted(resourceLocation)) {
+          if (WorktableRecipe.isWhitelisted(resourceLocation)) {
+            WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
+            CACHE.put(resourceLocation, worktableRecipe);
+            return worktableRecipe;
+          }
+
+          return WorktableRecipe.getCustomRecipe(inventory, world);
+
+        } else if (WorktableRecipe.hasBlacklist()) {
+
+          if (!WorktableRecipe.isBlacklisted(resourceLocation)) {
+            WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
+            CACHE.put(resourceLocation, worktableRecipe);
+            return worktableRecipe;
+          }
+
+          return WorktableRecipe.getCustomRecipe(inventory, world);
+
+        } else {
           WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
           CACHE.put(resourceLocation, worktableRecipe);
           return worktableRecipe;
         }
-
-        return WorktableRecipe.getCustomRecipe(inventory, world);
-
-      } else if (WorktableRecipe.hasBlacklist()) {
-
-        if (!WorktableRecipe.isBlacklisted(resourceLocation)) {
-          WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
-          CACHE.put(resourceLocation, worktableRecipe);
-          return worktableRecipe;
-        }
-
-        return WorktableRecipe.getCustomRecipe(inventory, world);
-
-      } else {
-        WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
-        CACHE.put(resourceLocation, worktableRecipe);
-        return worktableRecipe;
       }
     }
 

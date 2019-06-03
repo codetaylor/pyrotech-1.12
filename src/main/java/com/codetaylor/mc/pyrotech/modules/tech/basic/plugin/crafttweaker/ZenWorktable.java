@@ -184,7 +184,16 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 8,
+      order = 8
+  )
+  @ZenMethod
+  public static void blacklistAllVanillaRecipes() {
+
+    WorktableRecipe.blacklistAll();
+  }
+
+  @ZenDocMethod(
+      order = 9,
       args = {
           @ZenDocArg(arg = "resourceLocations")
       }
@@ -211,7 +220,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 9,
+      order = 10,
       args = {
           @ZenDocArg(arg = "output", info = "output ingredient to match")
       }
