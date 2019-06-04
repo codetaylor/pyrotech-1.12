@@ -1,0 +1,65 @@
+package com.codetaylor.mc.pyrotech.patreon;
+
+import com.codetaylor.mc.pyrotech.ModPyrotech;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+
+import javax.annotation.Nullable;
+import java.util.*;
+
+@Mod.EventBusSubscriber(modid = ModPyrotech.MOD_ID)
+public class PlayerEntityTracker {
+
+  private static final ThreadLocal<List<EntityPlayer>> PLAYER_LIST = ThreadLocal.withInitial(ArrayList::new);
+  private static final ThreadLocal<Map<UUID, EntityPlayer>> PLAYER_MAP = ThreadLocal.withInitial(HashMap::new);
+
+  @Nullable
+  public static EntityPlayer getEntityForPlayer(UUID uuid) {
+
+    return PLAYER_MAP.get().get(uuid);
+  }
+
+  @SubscribeEvent
+  public static void on(EntityJoinWorldEvent event) {
+
+    if (!event.getWorld().isRemote) {
+      return;
+    }
+
+    Entity entity = event.getEntity();
+
+    if (entity instanceof EntityPlayer) {
+      List<EntityPlayer> playerList = PLAYER_LIST.get();
+      Map<UUID, EntityPlayer> playerMap = PLAYER_MAP.get();
+      EntityPlayer entityPlayer = (EntityPlayer) entity;
+
+      playerList.removeIf(p -> p.getUniqueID().equals(entity.getUniqueID()));
+      playerMap.remove(entity.getUniqueID());
+
+      playerList.add(entityPlayer);
+      playerMap.put(entityPlayer.getUniqueID(), entityPlayer);
+    }
+  }
+
+  @SubscribeEvent
+  public static void on(TickEvent.ClientTickEvent event) {
+
+    if (event.phase == TickEvent.Phase.START) {
+      Map<UUID, EntityPlayer> playerMap = PLAYER_MAP.get();
+
+      for (Iterator<EntityPlayer> it = PLAYER_LIST.get().iterator(); it.hasNext(); ) {
+        EntityPlayer entityPlayer = it.next();
+
+        if (entityPlayer.isDead) {
+          it.remove();
+          playerMap.remove(entityPlayer.getUniqueID());
+        }
+      }
+    }
+  }
+
+}
