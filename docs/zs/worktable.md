@@ -9,10 +9,10 @@ import mods.pyrotech.Worktable
 
 ```java
 static void addShaped(
-  IItemStack output,          
-  IIngredient[][] ingredients,
-  IRecipeFunction function,   
-  IRecipeAction action        
+  IItemStack output,                 
+  IIngredient[][] ingredients,       
+  @Optional IRecipeFunction function,
+  @Optional IRecipeAction action     
 );
 ```
 
@@ -22,11 +22,11 @@ static void addShaped(
 
 ```java
 static void addShaped(
-  string name,                
-  IItemStack output,          
-  IIngredient[][] ingredients,
-  IRecipeFunction function,   
-  IRecipeAction action        
+  string name,                       
+  IItemStack output,                 
+  IIngredient[][] ingredients,       
+  @Optional IRecipeFunction function,
+  @Optional IRecipeAction action     
 );
 ```
 
@@ -36,10 +36,10 @@ static void addShaped(
 
 ```java
 static void addShapedMirrored(
-  IItemStack output,          
-  IIngredient[][] ingredients,
-  IRecipeFunction function,   
-  IRecipeAction action        
+  IItemStack output,                 
+  IIngredient[][] ingredients,       
+  @Optional IRecipeFunction function,
+  @Optional IRecipeAction action     
 );
 ```
 
@@ -49,11 +49,11 @@ static void addShapedMirrored(
 
 ```java
 static void addShapedMirrored(
-  string name,                
-  IItemStack output,          
-  IIngredient[][] ingredients,
-  IRecipeFunction function,   
-  IRecipeAction action        
+  string name,                       
+  IItemStack output,                 
+  IIngredient[][] ingredients,       
+  @Optional IRecipeFunction function,
+  @Optional IRecipeAction action     
 );
 ```
 
@@ -63,10 +63,10 @@ static void addShapedMirrored(
 
 ```java
 static void addShapeless(
-  IItemStack output,        
-  IIngredient[] ingredients,
-  IRecipeFunction function, 
-  IRecipeAction action      
+  IItemStack output,                 
+  IIngredient[] ingredients,         
+  @Optional IRecipeFunction function,
+  @Optional IRecipeAction action     
 );
 ```
 
@@ -76,11 +76,11 @@ static void addShapeless(
 
 ```java
 static void addShapeless(
-  string name,              
-  IItemStack output,        
-  IIngredient[] ingredients,
-  IRecipeFunction function, 
-  IRecipeAction action      
+  string name,                       
+  IItemStack output,                 
+  IIngredient[] ingredients,         
+  @Optional IRecipeFunction function,
+  @Optional IRecipeAction action     
 );
 ```
 
