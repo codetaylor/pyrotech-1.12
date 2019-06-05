@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.patreon.data;
+package com.codetaylor.mc.pyrotech.modules.patreon.data;
 
-import com.codetaylor.mc.pyrotech.patreon.effect.EffectHotfoot;
-import com.codetaylor.mc.pyrotech.patreon.lib.data.EffectDataBase;
+import com.codetaylor.mc.pyrotech.library.patreon.data.EffectDataBase;
+import com.codetaylor.mc.pyrotech.modules.patreon.effect.EffectHotfoot;
 import com.google.gson.stream.JsonReader;
 
 import java.io.IOException;

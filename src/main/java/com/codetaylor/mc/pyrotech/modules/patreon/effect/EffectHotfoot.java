@@ -1,9 +1,9 @@
-package com.codetaylor.mc.pyrotech.patreon.effect;
+package com.codetaylor.mc.pyrotech.modules.patreon.effect;
 
 import com.codetaylor.mc.pyrotech.library.particle.ParticleEmitter;
 import com.codetaylor.mc.pyrotech.library.particle.ParticleFactoryAdapter;
-import com.codetaylor.mc.pyrotech.patreon.PlayerEntityTracker;
-import com.codetaylor.mc.pyrotech.patreon.lib.effect.EffectBase;
+import com.codetaylor.mc.pyrotech.library.patreon.effect.EffectBase;
+import com.codetaylor.mc.pyrotech.modules.patreon.PlayerEntityTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.ParticleFlame;
