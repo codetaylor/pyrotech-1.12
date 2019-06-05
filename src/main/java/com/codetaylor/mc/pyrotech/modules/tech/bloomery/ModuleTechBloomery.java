@@ -138,6 +138,13 @@ public class ModuleTechBloomery
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.PluginWaila.wailaCallback"
     );
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onClientPreInitializationEvent(event);
 
     MinecraftForge.EVENT_BUS.register(new ItemTooltipEventHandler());
   }
