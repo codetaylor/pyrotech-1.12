@@ -1,9 +1,12 @@
 package com.codetaylor.mc.pyrotech.patreon.lib.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class EffectDataList {
 
+  @SerializedName("effects")
   private List<EffectDataBase> effectDataList;
 
   public EffectDataList() {

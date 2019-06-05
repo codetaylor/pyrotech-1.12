@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
-public class EffectDataJsonAdapter
+public class EffectDataGsonAdapter
     extends TypeAdapter<EffectDataBase> {
 
   private final Map<String, IEffectDataFactory> effectDataFactoryMap;
 
-  public EffectDataJsonAdapter(Map<String, IEffectDataFactory> effectDataFactoryMap) {
+  public EffectDataGsonAdapter(Map<String, IEffectDataFactory> effectDataFactoryMap) {
 
     this.effectDataFactoryMap = effectDataFactoryMap;
   }
@@ -30,14 +30,14 @@ public class EffectDataJsonAdapter
 
     in.beginObject(); // begin effect object
 
-    EffectDataJsonAdapter.assertNext(in);
-    EffectDataJsonAdapter.assertName(in, "uuid");
+    EffectDataGsonAdapter.assertNext(in);
+    EffectDataGsonAdapter.assertName(in, "uuid");
 
     String uuidString = in.nextString();
     UUID uuid = UUID.fromString(uuidString);
 
-    EffectDataJsonAdapter.assertNext(in);
-    EffectDataJsonAdapter.assertName(in, "effect");
+    EffectDataGsonAdapter.assertNext(in);
+    EffectDataGsonAdapter.assertName(in, "effect");
 
     String effectID = in.nextString();
     IEffectDataFactory effectDataFactory = this.effectDataFactoryMap.get(effectID);
@@ -46,8 +46,8 @@ public class EffectDataJsonAdapter
       throw new IOException("No IEffectDataFactory registered for effect");
     }
 
-    EffectDataJsonAdapter.assertNext(in);
-    EffectDataJsonAdapter.assertName(in, "params");
+    EffectDataGsonAdapter.assertNext(in);
+    EffectDataGsonAdapter.assertName(in, "params");
 
     in.beginObject(); // begin params object
     EffectDataBase effectData = effectDataFactory.createEffectData(uuid);
@@ -70,7 +70,7 @@ public class EffectDataJsonAdapter
 
   public static void assertName(JsonReader in, String expected) throws IOException {
 
-    EffectDataJsonAdapter.assertName(in);
+    EffectDataGsonAdapter.assertName(in);
 
     String field = in.nextName();
 

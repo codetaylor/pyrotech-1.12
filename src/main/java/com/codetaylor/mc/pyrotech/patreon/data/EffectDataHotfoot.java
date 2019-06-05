@@ -1,34 +1,29 @@
-package com.codetaylor.mc.pyrotech.patreon;
+package com.codetaylor.mc.pyrotech.patreon.data;
 
+import com.codetaylor.mc.pyrotech.patreon.effect.EffectHotfoot;
 import com.codetaylor.mc.pyrotech.patreon.lib.data.EffectDataBase;
-import com.codetaylor.mc.pyrotech.patreon.lib.data.EffectDataJsonAdapter;
 import com.google.gson.stream.JsonReader;
 
 import java.io.IOException;
 import java.util.UUID;
 
 public class EffectDataHotfoot
-    extends EffectDataBase {
-
-  private String color;
+    extends EffectDataBase<EffectHotfoot> {
 
   public EffectDataHotfoot(UUID playerUuid) {
 
     super(playerUuid);
   }
 
-  public String getColor() {
-
-    return this.color;
-  }
-
   @Override
   public void read(JsonReader in) throws IOException {
 
-    EffectDataJsonAdapter.assertNext(in);
+    // Leaving this as an example of reading effect params
+    /*
+    EffectDataGsonAdapter.assertNext(in);
 
     while (in.hasNext()) {
-      EffectDataJsonAdapter.assertName(in);
+      EffectDataGsonAdapter.assertName(in);
       String name = in.nextName();
 
       switch (name) {
@@ -43,5 +38,12 @@ public class EffectDataHotfoot
     if (this.color == null) {
       throw new IOException("Missing parameter: color");
     }
+    */
+  }
+
+  @Override
+  public EffectHotfoot createEffect() {
+
+    return new EffectHotfoot(this.getPlayerUuid());
   }
 }

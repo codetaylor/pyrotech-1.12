@@ -7,6 +7,8 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -20,7 +22,8 @@ public class PlayerEntityTracker {
   @Nullable
   public static EntityPlayer getEntityForPlayer(UUID uuid) {
 
-    return PLAYER_MAP.get().get(uuid);
+    Map<UUID, EntityPlayer> playerMap = PLAYER_MAP.get();
+    return playerMap.get(uuid);
   }
 
   @SubscribeEvent
@@ -45,19 +48,34 @@ public class PlayerEntityTracker {
     }
   }
 
+  @SideOnly(Side.CLIENT)
   @SubscribeEvent
   public static void on(TickEvent.ClientTickEvent event) {
 
     if (event.phase == TickEvent.Phase.START) {
-      Map<UUID, EntityPlayer> playerMap = PLAYER_MAP.get();
+      PlayerEntityTracker.expireEntries();
+    }
+  }
 
-      for (Iterator<EntityPlayer> it = PLAYER_LIST.get().iterator(); it.hasNext(); ) {
-        EntityPlayer entityPlayer = it.next();
+  @SideOnly(Side.SERVER)
+  @SubscribeEvent
+  public static void on(TickEvent.ServerTickEvent event) {
 
-        if (entityPlayer.isDead) {
-          it.remove();
-          playerMap.remove(entityPlayer.getUniqueID());
-        }
+    if (event.phase == TickEvent.Phase.START) {
+      PlayerEntityTracker.expireEntries();
+    }
+  }
+
+  private static void expireEntries() {
+
+    Map<UUID, EntityPlayer> playerMap = PLAYER_MAP.get();
+
+    for (Iterator<EntityPlayer> it = PLAYER_LIST.get().iterator(); it.hasNext(); ) {
+      EntityPlayer entityPlayer = it.next();
+
+      if (entityPlayer.isDead) {
+        it.remove();
+        playerMap.remove(entityPlayer.getUniqueID());
       }
     }
   }

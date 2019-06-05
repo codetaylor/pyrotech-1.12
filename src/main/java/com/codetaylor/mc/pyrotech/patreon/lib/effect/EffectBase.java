@@ -15,4 +15,6 @@ public abstract class EffectBase {
 
     return this.uuid;
   }
+
+  public abstract boolean subscribeEvents();
 }

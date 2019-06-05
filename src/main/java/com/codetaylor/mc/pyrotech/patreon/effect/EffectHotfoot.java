@@ -1,7 +1,8 @@
-package com.codetaylor.mc.pyrotech.patreon;
+package com.codetaylor.mc.pyrotech.patreon.effect;
 
 import com.codetaylor.mc.pyrotech.library.particle.ParticleEmitter;
 import com.codetaylor.mc.pyrotech.library.particle.ParticleFactoryAdapter;
+import com.codetaylor.mc.pyrotech.patreon.PlayerEntityTracker;
 import com.codetaylor.mc.pyrotech.patreon.lib.effect.EffectBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -19,9 +20,15 @@ import java.util.UUID;
 public class EffectHotfoot
     extends EffectBase {
 
-  protected EffectHotfoot(UUID uuid) {
+  public EffectHotfoot(UUID uuid) {
 
     super(uuid);
+  }
+
+  @Override
+  public boolean subscribeEvents() {
+
+    return true;
   }
 
   @SideOnly(Side.CLIENT)

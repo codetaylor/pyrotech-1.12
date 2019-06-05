@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.module.ModuleManager;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
+import com.codetaylor.mc.pyrotech.modules.patreon.ModulePatreon;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePluginPatchouli;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
@@ -74,7 +75,8 @@ public class ModPyrotech {
   public void onConstructionEvent(FMLConstructionEvent event) {
 
     this.moduleManager.registerModules(
-        ModuleCore.class
+        ModuleCore.class,
+        ModulePatreon.class
     );
 
     // --- MODULES ---
