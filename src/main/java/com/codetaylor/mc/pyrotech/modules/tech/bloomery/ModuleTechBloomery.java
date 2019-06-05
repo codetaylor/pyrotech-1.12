@@ -142,6 +142,7 @@ public class ModuleTechBloomery
     MinecraftForge.EVENT_BUS.register(new ItemTooltipEventHandler());
   }
 
+  @SideOnly(Side.CLIENT)
   @SubscribeEvent
   public void onTextureStitchEvent(TextureStitchEvent event) {
 
