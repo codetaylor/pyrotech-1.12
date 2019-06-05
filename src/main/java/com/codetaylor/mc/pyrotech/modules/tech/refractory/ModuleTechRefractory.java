@@ -103,6 +103,13 @@ public class ModuleTechRefractory
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.waila.PluginWaila.wailaCallback"
     );
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onClientPreInitializationEvent(event);
 
     MinecraftForge.EVENT_BUS.register(new ItemTooltipEventHandler());
   }
