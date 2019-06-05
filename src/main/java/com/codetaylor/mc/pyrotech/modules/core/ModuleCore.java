@@ -64,10 +64,11 @@ public class ModuleCore
     );
   }
 
+  @SideOnly(Side.CLIENT)
   @Override
-  public void onPreInitializationEvent(FMLPreInitializationEvent event) {
+  public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
 
-    super.onPreInitializationEvent(event);
+    super.onClientPreInitializationEvent(event);
 
     if (ModuleCoreConfig.CLIENT.SHOW_BURN_TIME_IN_TOOLTIPS) {
       MinecraftForge.EVENT_BUS.register(new TooltipEventHandler.BurnTime());
