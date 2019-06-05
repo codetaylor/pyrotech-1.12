@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.patreon.lib.effect;
+package com.codetaylor.mc.pyrotech.library.patreon.effect;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.patreon.lib.data;
+package com.codetaylor.mc.pyrotech.library.patreon.data;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;

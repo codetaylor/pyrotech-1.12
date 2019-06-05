@@ -1,7 +1,7 @@
-package com.codetaylor.mc.pyrotech.patreon.lib.data;
+package com.codetaylor.mc.pyrotech.library.patreon.data;
 
-import com.codetaylor.mc.pyrotech.patreon.lib.effect.EffectBase;
-import com.codetaylor.mc.pyrotech.patreon.lib.effect.EffectContainer;
+import com.codetaylor.mc.pyrotech.library.patreon.effect.EffectBase;
+import com.codetaylor.mc.pyrotech.library.patreon.effect.EffectContainer;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.io.Reader;

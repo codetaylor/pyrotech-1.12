@@ -2,8 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.patreon;
 
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.patreon.data.EffectDataHotfoot;
-import com.codetaylor.mc.pyrotech.patreon.lib.data.*;
+import com.codetaylor.mc.pyrotech.library.patreon.data.*;
+import com.codetaylor.mc.pyrotech.modules.patreon.data.EffectDataHotfoot;
 import com.google.gson.GsonBuilder;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -33,7 +33,9 @@ public class ModulePatreon
     new EffectDataLoader(
         MOD_ID,
         //new UrlEffectDataJsonProvider("url"),
-        new StringEffectDataJsonProvider("{\"effects\":[{\"uuid\":\"46562dd7-ada9-4af8-b88c-3a0f2d3e8860\",\"effect\":\"hotfoot\",\"params\":{\"color\":\"#FFFFFF\"}}]}"),
+        new StringEffectDataJsonProvider(
+            "{\"effects\":[{\"uuid\":\"46562dd7-ada9-4af8-b88c-3a0f2d3e8860\",\"effect\":\"hotfoot\",\"params\":{}}]}"
+        ),
         new GsonEffectDataJsonAdapter(
             new GsonBuilder()
                 .registerTypeAdapter(

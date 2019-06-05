@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.patreon;
+package com.codetaylor.mc.pyrotech.modules.patreon;
 
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import net.minecraft.entity.Entity;
