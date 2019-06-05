@@ -21,6 +21,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -135,6 +137,7 @@ public final class SlagInitializer {
     ForgeRegistries.BLOCKS.register(block);
   }
 
+  @SideOnly(Side.CLIENT)
   public static void initializeSlagModels() {
 
     ModuleTechBloomery.Items.GENERATED_SLAG.forEach((itemSlag, properties) -> {
@@ -158,6 +161,7 @@ public final class SlagInitializer {
     });
   }
 
+  @SideOnly(Side.CLIENT)
   public static void initializeSlagColors() {
 
     Minecraft minecraft = Minecraft.getMinecraft();
@@ -190,6 +194,7 @@ public final class SlagInitializer {
     blockColors.registerBlockColorHandler(new BlockColor(defaultColor), ModuleTechBloomery.Blocks.PILE_SLAG);
   }
 
+  @SideOnly(Side.CLIENT)
   private static class ItemColor
       implements IItemColor {
 
@@ -214,6 +219,7 @@ public final class SlagInitializer {
 
   }
 
+  @SideOnly(Side.CLIENT)
   private static class BlockColor
       implements IBlockColor {
 

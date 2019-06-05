@@ -194,6 +194,7 @@ public class ModuleTechBloomery
     registry.registerClientModelRegistrationStrategy(SlagInitializer::initializeSlagModels);
   }
 
+  @SideOnly(Side.CLIENT)
   @Override
   public void onClientInitializationEvent(FMLInitializationEvent event) {
 
