@@ -7,8 +7,6 @@ import com.codetaylor.mc.pyrotech.modules.patreon.data.EffectDataHotfoot;
 import com.google.gson.GsonBuilder;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 
@@ -18,7 +16,7 @@ public class ModulePatreon
   public static final String MOD_ID = ModPyrotech.MOD_ID;
   public static final CreativeTabs CREATIVE_TAB = ModPyrotech.CREATIVE_TAB;
 
-  public static final Logger LOGGER = LogManager.getLogger(MOD_ID + "." + ModulePatreon.class.getSimpleName());
+  private static final String PATREON_EFFECTS_JSON_URL = "http://www.codetaylor.com/patreon/pyrotech-effects.json";
 
   public ModulePatreon() {
 
@@ -32,9 +30,8 @@ public class ModulePatreon
 
     new EffectDataLoader(
         MOD_ID,
-        //new UrlEffectDataJsonProvider("url"),
-        new StringEffectDataJsonProvider(
-            "{\"effects\":[{\"uuid\":\"46562dd7-ada9-4af8-b88c-3a0f2d3e8860\",\"effect\":\"hotfoot\",\"params\":{}}]}"
+        new UrlEffectDataJsonProvider(
+            PATREON_EFFECTS_JSON_URL
         ),
         new GsonEffectDataJsonAdapter(
             new GsonBuilder()
