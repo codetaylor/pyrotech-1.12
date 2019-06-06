@@ -3,8 +3,10 @@ package com.codetaylor.mc.pyrotech.modules.patreon.effect;
 import com.codetaylor.mc.pyrotech.library.particle.ParticleEmitter;
 import com.codetaylor.mc.pyrotech.library.particle.ParticleFactoryAdapter;
 import com.codetaylor.mc.pyrotech.library.patreon.effect.EffectBase;
+import com.codetaylor.mc.pyrotech.modules.patreon.ModulePatreonConfig;
 import com.codetaylor.mc.pyrotech.modules.patreon.PlayerEntityTracker;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.ParticleFlame;
 import net.minecraft.client.particle.ParticleSmokeNormal;
@@ -35,10 +37,25 @@ public class EffectHotfoot
   @SubscribeEvent
   public void on(TickEvent.ClientTickEvent event) {
 
+    if (ModulePatreonConfig.CLIENT.DISABLE_ALL_PATREON_EFFECTS) {
+      return;
+    }
+
     if (event.phase == TickEvent.Phase.START) {
 
       Minecraft minecraft = Minecraft.getMinecraft();
       WorldClient world = minecraft.world;
+
+      UUID uuid = this.getUuid();
+
+      if (ModulePatreonConfig.CLIENT.DISABLE_YOUR_PATREON_EFFECTS) {
+        EntityPlayerSP player = minecraft.player;
+        UUID uniqueID = player.getUniqueID();
+
+        if (uuid.equals(uniqueID)) {
+          return;
+        }
+      }
 
       if (world != null) {
 
@@ -46,7 +63,7 @@ public class EffectHotfoot
           return;
         }
 
-        EntityPlayer entity = PlayerEntityTracker.getEntityForPlayer(this.getUuid());
+        EntityPlayer entity = PlayerEntityTracker.getEntityForPlayer(uuid);
 
         if (entity == null) {
           return;
