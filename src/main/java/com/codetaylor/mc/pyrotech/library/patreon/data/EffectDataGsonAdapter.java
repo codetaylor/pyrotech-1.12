@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.library.patreon.data;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
@@ -30,14 +29,12 @@ public class EffectDataGsonAdapter
 
     in.beginObject(); // begin effect object
 
-    EffectDataGsonAdapter.assertNext(in);
-    EffectDataGsonAdapter.assertName(in, "uuid");
+    GsonHelper.assertNextName(in, "uuid");
 
     String uuidString = in.nextString();
     UUID uuid = UUID.fromString(uuidString);
 
-    EffectDataGsonAdapter.assertNext(in);
-    EffectDataGsonAdapter.assertName(in, "effect");
+    GsonHelper.assertNextName(in, "effect");
 
     String effectID = in.nextString();
     IEffectDataFactory effectDataFactory = this.effectDataFactoryMap.get(effectID);
@@ -46,8 +43,7 @@ public class EffectDataGsonAdapter
       throw new IOException("No IEffectDataFactory registered for effect");
     }
 
-    EffectDataGsonAdapter.assertNext(in);
-    EffectDataGsonAdapter.assertName(in, "params");
+    GsonHelper.assertNextName(in, "params");
 
     in.beginObject(); // begin params object
     EffectDataBase effectData = effectDataFactory.createEffectData(uuid);
@@ -59,30 +55,4 @@ public class EffectDataGsonAdapter
     return effectData;
   }
 
-  public static void assertName(JsonReader in) throws IOException {
-
-    JsonToken token = in.peek();
-
-    if (!token.equals(JsonToken.NAME)) {
-      throw new IOException("Unexpected token: Expected " + JsonToken.NAME + ", found " + token);
-    }
-  }
-
-  public static void assertName(JsonReader in, String expected) throws IOException {
-
-    EffectDataGsonAdapter.assertName(in);
-
-    String field = in.nextName();
-
-    if (!expected.equals(field)) {
-      throw new IOException("Unexpected field: Expected " + expected + ", found " + field);
-    }
-  }
-
-  public static void assertNext(JsonReader in) throws IOException {
-
-    if (!in.hasNext()) {
-      throw new IOException("Effect data missing fields");
-    }
-  }
 }
