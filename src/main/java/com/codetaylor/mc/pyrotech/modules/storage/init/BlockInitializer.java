@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.storage.init;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
+import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;
 import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockBag;
@@ -33,7 +34,8 @@ public final class BlockInitializer {
     BlockBagDurable blockBagDurable = new BlockBagDurable();
     registry.registerBlock(blockBagDurable, new ItemBlockBag(blockBagDurable), BlockBagDurable.NAME);
 
-    registry.registerTileEntities(
+    RegistryHelper.registerTileEntities(
+        registry,
         TileShelf.class,
         TileShelfStone.class,
         TileStash.class,

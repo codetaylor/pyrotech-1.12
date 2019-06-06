@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
+import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloomery;
@@ -37,7 +38,8 @@ public final class BlockInitializer {
       registry.registerItem(itemBlock, registryName, true);
     }
 
-    registry.registerTileEntities(
+    RegistryHelper.registerTileEntities(
+        registry,
         TileBloomery.class,
         TileBloomery.Top.class,
         TileWitherForge.class,

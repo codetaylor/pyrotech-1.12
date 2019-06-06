@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.ignition.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
+import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockIgniter;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchFiber;
@@ -19,7 +20,8 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockTorchFiber(), BlockTorchFiber.NAME);
     registry.registerBlockWithItem(new BlockTorchStone(), BlockTorchStone.NAME);
 
-    registry.registerTileEntities(
+    RegistryHelper.registerTileEntities(
+        registry,
         TileTorchFiber.class,
         TileTorchStone.class
     );

@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
+import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockActivePile;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockPitAsh;
@@ -24,7 +25,8 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockTarCollector(), BlockTarCollector.NAME);
     registry.registerBlockWithItem(new BlockTarDrain(), BlockTarDrain.NAME);
 
-    registry.registerTileEntities(
+    RegistryHelper.registerTileEntities(
+        registry,
         TileStoneTarCollector.class,
         TileBrickTarCollector.class,
         TileStoneTarDrain.class,

@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.init;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
+import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockAnvilBase;
@@ -36,7 +37,8 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockCompactingBin(), BlockCompactingBin.NAME);
     registry.registerBlockWithItem(new BlockSoakingPot(), BlockSoakingPot.NAME);
 
-    registry.registerTileEntities(
+    RegistryHelper.registerTileEntities(
+        registry,
         TileKilnPit.class,
         TileCampfire.class,
         TileDryingRack.class,

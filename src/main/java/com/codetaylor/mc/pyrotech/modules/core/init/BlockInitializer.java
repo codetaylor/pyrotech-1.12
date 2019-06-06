@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.core.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
+import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.block.item.ItemDoorStone;
@@ -59,7 +60,8 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockWoodTarBlock(), BlockWoodTarBlock.NAME);
     registry.registerBlockWithItem(new BlockLivingTar(), BlockLivingTar.NAME);
 
-    registry.registerTileEntities(
+    RegistryHelper.registerTileEntities(
+        registry,
         TileFarmlandMulched.class
     );
   }
