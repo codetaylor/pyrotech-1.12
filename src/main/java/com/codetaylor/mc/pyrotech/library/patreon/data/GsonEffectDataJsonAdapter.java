@@ -27,7 +27,7 @@ public class GsonEffectDataJsonAdapter
       return Optional.of(effectDataList);
 
     } catch (Exception e) {
-      LOGGER.error("", e);
+      LOGGER.error("Error reading Patreon effect json", e);
     }
 
     return Optional.empty();

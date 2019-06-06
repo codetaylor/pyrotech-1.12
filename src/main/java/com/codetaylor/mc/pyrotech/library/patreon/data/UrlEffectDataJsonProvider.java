@@ -36,7 +36,7 @@ public class UrlEffectDataJsonProvider
       return Optional.of(bufferedReader);
 
     } catch (Exception e) {
-      LOGGER.error("", e);
+      LOGGER.error("Error loading Patreon effects", e);
     }
 
     return Optional.empty();
