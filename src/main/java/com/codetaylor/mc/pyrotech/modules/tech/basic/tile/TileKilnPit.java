@@ -10,6 +10,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
@@ -408,10 +409,13 @@ public class TileKilnPit
 
   private boolean isRefractoryBlock(IBlockState blockState) {
 
-    for (Predicate<IBlockState> matcher : ModuleTechRefractory.Registries.REFRACTORY_BLOCK_LIST) {
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
 
-      if (matcher.test(blockState)) {
-        return true;
+      for (Predicate<IBlockState> matcher : ModuleTechRefractory.Registries.REFRACTORY_BLOCK_LIST) {
+
+        if (matcher.test(blockState)) {
+          return true;
+        }
       }
     }
 

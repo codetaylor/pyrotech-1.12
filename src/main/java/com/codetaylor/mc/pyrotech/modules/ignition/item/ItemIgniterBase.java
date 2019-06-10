@@ -1,8 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.ignition.item;
 
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.util.RefractoryIgnitionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -118,11 +120,13 @@ public abstract class ItemIgniterBase
 
     } else {
 
-      if (!world.isRemote) {
+      if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)
+          && !world.isRemote) {
         RefractoryIgnitionHelper.igniteBlocks(world, pos);
         SoundHelper.playSoundServer(world, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.PLAYERS);
-        this.damageItem(stack, player);
       }
+
+      this.damageItem(stack, player);
     }
 
     return stack;
