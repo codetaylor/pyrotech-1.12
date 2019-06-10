@@ -35,6 +35,32 @@ An early game mod with new primitive devices, combustion machines, smelting mech
 
 ---
 
+## Mod Compatibility
+
+* Craft Tweaker (CrT) - define custom recipes
+* Just Enough Items (JEI) - view all recipes
+* Patchouli - read about the mod
+* Waila - reveal extended information
+
+---
+
+## Dependencies
+
+### Required
+
+* Forge - [[link](https://files.minecraftforge.net/)]
+* Athenaeum - [[link](https://minecraft.curseforge.com/projects/athenaeum/files)]
+* Dropt - [[link](https://minecraft.curseforge.com/projects/dropt/files)]
+
+### Optional
+
+* Craft Tweaker (CrT) - [[link](https://minecraft.curseforge.com/projects/crafttweaker/files)]
+* Just Enough Items (JEI) - [[link](https://minecraft.curseforge.com/projects/jei/files)]
+* Patchouli - [[link](https://minecraft.curseforge.com/projects/patchouli/files)]
+* Waila (Hwyla) - [[link](https://minecraft.curseforge.com/projects/hwyla/files)]
+
+---
+
 ## Supported Versions
 
   * Features and bugfixes:
