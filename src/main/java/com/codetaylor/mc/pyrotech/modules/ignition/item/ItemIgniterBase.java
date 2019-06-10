@@ -120,13 +120,15 @@ public abstract class ItemIgniterBase
 
     } else {
 
-      if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)
-          && !world.isRemote) {
-        RefractoryIgnitionHelper.igniteBlocks(world, pos);
-        SoundHelper.playSoundServer(world, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.PLAYERS);
-      }
+      if (!world.isRemote) {
 
-      this.damageItem(stack, player);
+        if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+          RefractoryIgnitionHelper.igniteBlocks(world, pos);
+        }
+
+        SoundHelper.playSoundServer(world, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.PLAYERS);
+        this.damageItem(stack, player);
+      }
     }
 
     return stack;
