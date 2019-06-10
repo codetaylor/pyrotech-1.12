@@ -31,6 +31,7 @@
     {
       "type": "relations",
       "entries": [
+        "innovate/pit_burn",
         "innovate/refractory_brick"
       ]
     }
