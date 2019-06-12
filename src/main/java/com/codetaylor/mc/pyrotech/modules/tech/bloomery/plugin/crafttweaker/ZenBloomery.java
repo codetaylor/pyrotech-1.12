@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
+import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
@@ -22,6 +23,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @ZenDocClass("mods.pyrotech.Bloomery")
+@ZenDocAppend({"docs/include/bloomery.example.md"})
 @ZenClass("mods.pyrotech.Bloomery")
 public class ZenBloomery {
 
@@ -266,6 +268,11 @@ public class ZenBloomery {
       },
       description = {
           "The lang key provided here will be used to construct the display name of the output bloom.",
+          "If this parameter is omitted, the recipe will use the lang key of the input item.",
+          "",
+          "When more than one lang key is provided, separated by a semicolon `;`, the first lang key is resolved, then passed into the next lang key and so on.",
+          "",
+          "For example, if supplied with the parameter `tile.oreIron;item.pyrotech.slag.unique`, `tile.oreIron` will first be resolved to `Iron Ore` before being passed into `item.pyrotech.slag.unique`, resulting in `Iron Ore Slag`, which is then passed into `tile.pyrotech.bloom.unique.name` and ultimately resolved to `Iron Ore Slag Bloom`.",
           "",
           "**NOTE:** The '.name' suffix is added internally and should not be included here."
       }

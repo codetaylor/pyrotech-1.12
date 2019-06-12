@@ -134,6 +134,11 @@ Bloomery setLangKey(
 ```
 
 The lang key provided here will be used to construct the display name of the output bloom.
+If this parameter is omitted, the recipe will use the lang key of the input item.
+
+When more than one lang key is provided, separated by a semicolon `;`, the first lang key is resolved, then passed into the next lang key and so on.
+
+For example, if supplied with the parameter `tile.oreIron;item.pyrotech.slag.unique`, `tile.oreIron` will first be resolved to `Iron Ore` before being passed into `item.pyrotech.slag.unique`, resulting in `Iron Ore Slag`, which is then passed into `tile.pyrotech.bloom.unique.name` and ultimately resolved to `Iron Ore Slag Bloom`.
 
 **NOTE:** The '.name' suffix is added internally and should not be included here.
 
@@ -160,3 +165,40 @@ This must be called on the builder last to actually register the recipe defined 
 
 ---
 
+
+### Examples
+
+The following two recipes are the same recipes that Pyrotech uses for Iron Ore Blooms and Iron Ore Slag Blooms.
+
+```java
+import mods.pyrotech.Bloomery;
+
+// recipe for an iron bloom from an iron ore
+Bloomery.createBloomeryBuilder(
+        "bloom_from_iron_ore",   // recipe name
+        <minecraft:iron_nugget>, // output
+        <minecraft:iron_ore>     // input
+    )
+    .setBurnTimeTicks(28800)
+    .setFailureChance(0.25)
+    .setBloomYield(12, 15)
+    .setSlagItem(<pyrotech:generated_slag_iron>, 4)
+    .addFailureItem(<pyrotech:slag>, 1)
+    .addFailureItem(<pyrotech:generated_slag_iron>, 2)
+    .register();
+
+// recipe for an iron slag bloom from an iron slag pile
+Bloomery.createBloomeryBuilder(
+        "bloom_from_iron_slag",             // recipe name
+        <minecraft:iron_nugget>,            // output
+        <pyrotech:generated_pile_slag_iron> // input
+    )
+    .setBurnTimeTicks(14400)
+    .setFailureChance(0.25)
+    .setBloomYield(12, 15)
+    .setSlagItem(<pyrotech:generated_slag_iron>, 2)
+    .addFailureItem(<pyrotech:rock:0>, 1)
+    .addFailureItem(<pyrotech:slag>, 2)
+    .setLangKey("tile.oreIron;item.pyrotech.slag.unique")
+    .register();
+```
