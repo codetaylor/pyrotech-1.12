@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "When one finds oneself lost, or unable to find one's way, it can be difficult to keep a cool head - $(italic)a phrase here which means to stay calm in a difficult situation$() - and in some difficult situations, it may not only be difficult to stay calm, it may also be difficult to survive."
+      "text": "When one finds oneself lost, or unable to find one's way, it can be difficult to keep a cool head - $(italic)a phrase which here means to stay calm in a difficult situation$() - and in some difficult situations, it may not only be difficult to stay calm, it may also be difficult to survive."
     },
     {
       "type": "text",
@@ -18,7 +18,7 @@
     },
     {
       "type": "text",
-      "text": "When huddled together in the dead of night $(italic)- a phrase here which means a time in the middle part of the night, when it is darkest and coldest -$() a $(item)Campfire$() can be used to heighten anticipation and dread while recreationally engaging in scintillating yet predictable tales of horror and misfortune.$(br)  However, for a person in your predicament, heightening anticipation and dread for recreational enjoyment is probably not a priority."
+      "text": "When huddled together in the dead of night $(italic)- a phrase which here means a time in the middle part of the night, when it is darkest and coldest -$() a $(item)Campfire$() can be used to heighten anticipation and dread while recreationally engaging in scintillating yet predictable tales of horror and misfortune.$(br)  However, for a person in your predicament, heightening anticipation and dread for recreational enjoyment is probably not a priority."
     },
     {
       "type": "text",
@@ -39,7 +39,7 @@
       "title": "1. Craft Tinder",
       "anchor": "craft_tinder",
       "recipe": "pyrotech:tech/basic/tinder",
-      "text": "First, you will need some $(item)Tinder$() - $(italic)a word here which means a dry, flammable material, such as sticks or plant fibers, that is often used to aid in lighting a fire$() - to aid in lighting your fire."
+      "text": "First, you will need some $(item)Tinder$() - $(italic)a word which here means a dry, flammable material, such as sticks or plant fibers, that is often used to aid in lighting a fire$() - to aid in lighting your fire."
     },
     {
       "type": "image",

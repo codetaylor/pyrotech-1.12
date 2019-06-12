@@ -23,7 +23,7 @@
     },
     {
       "type": "text",
-      "text": "If you ever find yourself under attack - $(italic)a phrase here which means subject to aggressive, violent, or harmful action$() - it would be wise to remember this:$(p)$(info) The act of throwing a $(item)Rock$() can also be an aggressive, violent, or harmful action.$(p)$(info) Placing a $(item)Rock$() to decorate a path, however, is not an aggressive, violent, or harmful action."
+      "text": "If you ever find yourself under attack - $(italic)a phrase which here means subject to aggressive, violent, or harmful action$() - it would be wise to remember this:$(p)$(info) The act of throwing a $(item)Rock$() can also be an aggressive, violent, or harmful action.$(p)$(info) Placing a $(item)Rock$() to decorate a path, however, is not an aggressive, violent, or harmful action."
     },
     {
       "type": "rt_anvil_recipe",
