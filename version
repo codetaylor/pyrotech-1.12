@@ -160,7 +160,7 @@ elif [[ "${com}" == "set" ]]; then
   echo ""
   echo "   [--] File:"
   echo "          git add ${file}"
-  echo "          git commit -m \"bumped version to ${val}\""
+  echo "          git commit -m \"Bump version to ${val}\""
   $push && echo "          git push"
   echo ""
   echo "   [--] Tag Version:"
@@ -191,7 +191,7 @@ elif [[ "${com}" == "set" ]]; then
   header "File"
   git add "${file}"
   assertExitCode
-  git commit -m "bumped version to ${val}"
+  git commit -m "Bump version to ${val}"
   assertExitCode
   git push
   assertExitCode
