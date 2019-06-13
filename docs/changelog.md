@@ -1,3 +1,10 @@
+<NEXT>
+
+  * Fixed:
+    * Build filename missing MC version
+
+---
+
 1.0.2
 
   * Fixed:
