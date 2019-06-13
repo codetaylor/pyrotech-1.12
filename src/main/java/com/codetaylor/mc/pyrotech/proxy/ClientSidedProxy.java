@@ -22,6 +22,10 @@ public class ClientSidedProxy
     WorldClient world = minecraft.world;
     EntityPlayerSP player = minecraft.player;
 
+    if (world == null || player == null) {
+      return;
+    }
+
     // playSound(BlockPos pos, SoundEvent soundIn, SoundCategory category, float volume, float pitch, boolean distanceDelay)
     world.playSound(
         player.getPosition(),
