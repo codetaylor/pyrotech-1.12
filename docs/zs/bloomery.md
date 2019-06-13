@@ -179,6 +179,7 @@ Bloomery.createBloomeryBuilder(
         <minecraft:iron_nugget>, // output
         <minecraft:iron_ore>     // input
     )
+    .setAnvilTiers(["granite", "ironclad"])
     .setBurnTimeTicks(28800)
     .setFailureChance(0.25)
     .setBloomYield(12, 15)
@@ -193,6 +194,7 @@ Bloomery.createBloomeryBuilder(
         <minecraft:iron_nugget>,            // output
         <pyrotech:generated_pile_slag_iron> // input
     )
+    .setAnvilTiers(["granite", "ironclad"])
     .setBurnTimeTicks(14400)
     .setFailureChance(0.25)
     .setBloomYield(12, 15)
