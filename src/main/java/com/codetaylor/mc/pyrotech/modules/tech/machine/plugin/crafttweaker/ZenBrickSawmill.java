@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
@@ -19,6 +20,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 @ZenDocClass("mods.pyrotech.BrickSawmill")
+@ZenDocAppend({"docs/include/brick_sawmill.example.md"})
 @ZenClass("mods.pyrotech.BrickSawmill")
 public class ZenBrickSawmill {
 
