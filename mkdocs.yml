@@ -32,5 +32,5 @@ theme: readthedocs
 
 markdown_extensions:
 - admonition
-- attr_list
-- codehilite
+#- attr_list
+#- codehilite
