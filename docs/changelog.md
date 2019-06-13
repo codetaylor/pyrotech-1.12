@@ -1,3 +1,10 @@
+1.0.2
+
+  * Fixed:
+    * Error with Thermal Expansion (#8)
+
+---
+
 1.0.1
 
   * Fixed:
