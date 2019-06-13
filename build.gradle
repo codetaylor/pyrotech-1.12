@@ -20,7 +20,7 @@ def getVersionName = { String workTree ->
 
 project.ext.mcversion = "1.12.2"
 project.ext.forgeversion = "14.23.5.2784"
-version = getVersionName("${project.projectDir}")
+version = project.ext.mcversion + "-" + getVersionName("${project.projectDir}")
 group = "com.sudoplay.mc"
 archivesBaseName = "pyrotech"
 project.ext.athenaeum_version = "1.12.2-1.17.1"
