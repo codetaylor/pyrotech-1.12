@@ -20,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.vector.Quaternion;
 
 import java.awt.*;
 
@@ -174,8 +175,18 @@ public final class InteractionRenderers {
   public static void setupItemTransforms(Transform transform) {
 
     if (transform != Transform.IDENTITY) {
+
+      if (transform.lwjglRotation == null) {
+        transform.lwjglRotation = new Quaternion();
+      }
+
+      transform.lwjglRotation.x = transform.rotation.x;
+      transform.lwjglRotation.y = transform.rotation.y;
+      transform.lwjglRotation.z = transform.rotation.z;
+      transform.lwjglRotation.w = transform.rotation.w;
+
       GlStateManager.translate(transform.translation.x, transform.translation.y, transform.translation.z);
-      GlStateManager.rotate(transform.rotation);
+      GlStateManager.rotate(transform.lwjglRotation);
       GlStateManager.scale(transform.scale.x, transform.scale.y, transform.scale.z);
     }
   }

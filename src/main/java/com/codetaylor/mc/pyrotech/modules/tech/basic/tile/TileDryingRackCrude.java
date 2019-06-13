@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.pyrotech.interaction.api.Quaternion;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
@@ -19,7 +20,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
-import org.lwjgl.util.vector.Quaternion;
 
 import javax.annotation.Nonnull;
 

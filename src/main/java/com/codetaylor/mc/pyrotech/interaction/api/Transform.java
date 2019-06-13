@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.interaction.api;
 
-import com.codetaylor.mc.athenaeum.util.QuaternionHelper;
 import net.minecraft.util.math.Vec3d;
-import org.lwjgl.util.vector.Quaternion;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Transform {
 
@@ -36,7 +36,7 @@ public class Transform {
     Quaternion result = new Quaternion(rotations[0]);
 
     for (int i = 1; i < rotations.length; i++) {
-      QuaternionHelper.mult(result, rotations[i], result);
+      result.multLocal(rotations[i]);
     }
 
     return result;
@@ -44,7 +44,7 @@ public class Transform {
 
   public static Quaternion rotate(double x, double y, double z, double angle) {
 
-    return QuaternionHelper.setFromAxisAngle(new Quaternion(), (float) x, (float) y, (float) z, (float) Math.toRadians(angle));
+    return new Quaternion().setFromAxisAngle((float) x, (float) y, (float) z, (float) Math.toRadians(angle));
   }
 
   public static Vec3d scale() {
@@ -60,6 +60,9 @@ public class Transform {
   public final Vec3d translation;
   public final Quaternion rotation;
   public final Vec3d scale;
+
+  @SideOnly(Side.CLIENT)
+  public org.lwjgl.util.vector.Quaternion lwjglRotation;
 
   public Transform(Vec3d translation, Quaternion rotation, Vec3d scale) {
 
