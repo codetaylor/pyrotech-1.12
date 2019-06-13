@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.StoneOven
+import mods.pyrotech.StoneOven;
 ```
 
 #### Methods

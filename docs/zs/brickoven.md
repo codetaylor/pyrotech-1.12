@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.BrickOven
+import mods.pyrotech.BrickOven;
 ```
 
 #### Methods

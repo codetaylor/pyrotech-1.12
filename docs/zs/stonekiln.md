@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.StoneKiln
+import mods.pyrotech.StoneKiln;
 ```
 
 #### Methods

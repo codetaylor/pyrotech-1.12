@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.Campfire
+import mods.pyrotech.Campfire;
 ```
 
 #### Methods

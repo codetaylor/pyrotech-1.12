@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.StoneCrucible
+import mods.pyrotech.StoneCrucible;
 ```
 
 #### Methods

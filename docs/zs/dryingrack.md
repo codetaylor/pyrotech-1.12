@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.DryingRack
+import mods.pyrotech.DryingRack;
 ```
 
 #### Methods

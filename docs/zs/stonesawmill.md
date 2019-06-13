@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.StoneSawmill
+import mods.pyrotech.StoneSawmill;
 ```
 
 #### Methods

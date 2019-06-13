@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.MechanicalCompactor
+import mods.pyrotech.MechanicalCompactor;
 ```
 
 #### Methods

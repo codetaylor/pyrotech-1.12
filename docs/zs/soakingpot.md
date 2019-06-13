@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.SoakingPot
+import mods.pyrotech.SoakingPot;
 ```
 
 #### Methods

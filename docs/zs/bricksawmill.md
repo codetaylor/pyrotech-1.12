@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.BrickSawmill
+import mods.pyrotech.BrickSawmill;
 ```
 
 #### Methods

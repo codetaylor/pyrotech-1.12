@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.CompactingBin
+import mods.pyrotech.CompactingBin;
 ```
 
 #### Methods

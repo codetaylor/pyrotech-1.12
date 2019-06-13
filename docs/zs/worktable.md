@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.Worktable
+import mods.pyrotech.Worktable;
 ```
 
 #### Methods

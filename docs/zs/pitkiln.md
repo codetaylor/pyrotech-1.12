@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.PitKiln
+import mods.pyrotech.PitKiln;
 ```
 
 #### Methods

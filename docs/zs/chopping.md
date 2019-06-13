@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.Chopping
+import mods.pyrotech.Chopping;
 ```
 
 #### Methods

@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.GraniteAnvil
+import mods.pyrotech.GraniteAnvil;
 ```
 
 #### Methods

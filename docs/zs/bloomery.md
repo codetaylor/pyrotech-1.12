@@ -1,7 +1,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.Bloomery
+import mods.pyrotech.Bloomery;
 ```
 
 #### Methods

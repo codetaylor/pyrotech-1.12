@@ -2,7 +2,7 @@
 ### Class
 
 ```java
-import mods.pyrotech.Burn
+import mods.pyrotech.Burn;
 ```
 
 #### Methods
