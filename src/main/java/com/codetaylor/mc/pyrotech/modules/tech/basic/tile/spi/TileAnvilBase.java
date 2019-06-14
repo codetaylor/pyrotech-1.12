@@ -342,7 +342,19 @@ public abstract class TileAnvilBase
         return false;
       }
 
-      if (heldItem.getToolClasses(heldItemStack).contains("pickaxe")) {
+      /*
+        if explicitly declared in hammer config, is hammer
+        else if tool is pickaxe
+          if tool is not explicitly blacklisted as pickaxe, is pickaxe
+        else if tool is explicitly whitelisted as pickaxe, is pickaxe
+        else, is neither
+       */
+
+      if (tile.getHammerHitReduction(resourceLocation) > -1) {
+        // held item is hammer
+        return (recipe.getType() == AnvilRecipe.EnumType.HAMMER);
+
+      } else if (heldItem.getToolClasses(heldItemStack).contains("pickaxe")) {
         // held item is pickaxe
         if (!ArrayHelper.contains(tile.getPickaxeBlacklist(), resourceLocation.toString())) {
           return (recipe.getType() == AnvilRecipe.EnumType.PICKAXE);
@@ -351,10 +363,6 @@ public abstract class TileAnvilBase
       } else if (ArrayHelper.contains(tile.getPickaxeWhitelist(), resourceLocation.toString())) {
         // held item is pickaxe
         return (recipe.getType() == AnvilRecipe.EnumType.PICKAXE);
-
-      } else if (tile.getHammerHitReduction(resourceLocation) > -1) {
-        // held item is hammer
-        return (recipe.getType() == AnvilRecipe.EnumType.HAMMER);
       }
 
       return false;
