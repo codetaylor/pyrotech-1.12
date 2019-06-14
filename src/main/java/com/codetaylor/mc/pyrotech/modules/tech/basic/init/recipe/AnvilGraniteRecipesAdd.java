@@ -136,24 +136,6 @@ public class AnvilGraniteRecipesAdd {
         AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard"));
 
-    // Bone Meal from Bone
-    registry.register(new AnvilRecipe(
-        new ItemStack(Items.DYE, 3, 15),
-        Ingredient.fromStacks(new ItemStack(Items.BONE, 1, 0)),
-        4,
-        AnvilRecipe.EnumType.HAMMER,
-        AnvilRecipe.EnumTier.GRANITE
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_meal_from_bone"));
-
-    // Bone Meal from Bone Block
-    registry.register(new AnvilRecipe(
-        new ItemStack(Items.DYE, 8, 15),
-        Ingredient.fromStacks(new ItemStack(Blocks.BONE_BLOCK, 1, 0)),
-        8,
-        AnvilRecipe.EnumType.HAMMER,
-        AnvilRecipe.EnumTier.GRANITE
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_meal_from_bone_block"));
-
     // Stone to cobblestone
     registry.register(new AnvilRecipe(
         new ItemStack(Blocks.COBBLESTONE),
