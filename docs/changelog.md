@@ -1,7 +1,8 @@
-<NEXT>
+1.0.3
 
   * Fixed:
     * Build filename missing MC version
+    * Dedicated server crash (#15)
 
 ---
 

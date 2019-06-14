@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileBellows;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -13,7 +14,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -43,7 +43,7 @@ public class BlockBellows
     if (tileEntity instanceof TileBellows) {
       float progress = ((TileBellows) tileEntity).getProgress();
 
-      if (MathHelper.epsilonEquals(progress, 0)) {
+      if (Util.epsilonEquals(progress, 0)) {
         return super.getBoundingBox(state, source, pos);
       }
 

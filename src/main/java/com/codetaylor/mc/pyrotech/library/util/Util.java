@@ -101,6 +101,16 @@ public class Util {
     return fluidStack.isFluidStackIdentical(drained);
   }
 
+  public static float abs(float value) {
+
+    return value >= 0.0F ? value : -value;
+  }
+
+  public static boolean epsilonEquals(float a, float b) {
+
+    return Util.abs(b - a) < 1.0E-5F;
+  }
+
   private Util() {
     //
   }
