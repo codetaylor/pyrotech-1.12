@@ -1,3 +1,10 @@
+1.0.4
+
+  * Fixed:
+    * Removed conflicting bone meal anvil recipes (#18)
+
+---
+
 1.0.3
 
   * Fixed:
