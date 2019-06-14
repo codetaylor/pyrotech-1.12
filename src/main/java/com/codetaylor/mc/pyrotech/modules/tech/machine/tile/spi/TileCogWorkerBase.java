@@ -46,7 +46,7 @@ public abstract class TileCogWorkerBase
   private final TileDataItemStackHandler<CogStackHandler> tileDataItemStackHandler;
 
   @SideOnly(Side.CLIENT)
-  private TileStoneHopper.ClientRenderData clientRenderData = new TileStoneHopper.ClientRenderData();
+  private TileCogWorkerBase.ClientRenderData clientRenderData;
 
   public TileCogWorkerBase(ITileDataService tileDataService) {
 
@@ -102,6 +102,10 @@ public abstract class TileCogWorkerBase
 
   @SideOnly(Side.CLIENT)
   public TileStoneHopper.ClientRenderData getClientRenderData() {
+
+    if (this.clientRenderData == null) {
+      this.clientRenderData = new TileCogWorkerBase.ClientRenderData();
+    }
 
     return this.clientRenderData;
   }
@@ -202,16 +206,18 @@ public abstract class TileCogWorkerBase
   @Override
   public void onTileDataUpdate() {
 
+    ClientRenderData data = this.getClientRenderData();
+
     if (this.triggered.isDirty()
         && this.triggered.get()) {
-      this.clientRenderData.totalAnimationTime = Math.min(this.getUpdateIntervalTicks(), 40);
-      this.clientRenderData.remainingAnimationTime = this.clientRenderData.totalAnimationTime;
-      this.clientRenderData.cogRotationStage = (this.clientRenderData.cogRotationStage + 1) % 8;
+      data.totalAnimationTime = Math.min(this.getUpdateIntervalTicks(), 40);
+      data.remainingAnimationTime = data.totalAnimationTime;
+      data.cogRotationStage = (data.cogRotationStage + 1) % 8;
     }
 
     if (this.tileDataItemStackHandler.isDirty()
         && this.cogStackHandler.getStackInSlot(0).isEmpty()) {
-      this.clientRenderData.remainingAnimationTime = -1;
+      data.remainingAnimationTime = -1;
     }
   }
 
