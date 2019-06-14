@@ -1,5 +1,9 @@
-package com.codetaylor.mc.pyrotech.modules.plugin.patchouli.item;
+package com.codetaylor.mc.pyrotech.modules.core.item;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.advancement.AdvancementTriggers;
+import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePluginPatchouli;
+import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.PatchouliHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,7 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-import vazkii.patchouli.api.PatchouliAPI;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -54,14 +57,12 @@ public class ItemBook
     if (!world.isRemote) {
 
       if (player instanceof EntityPlayerMP) {
-        PatchouliAPI.instance.openBookGUI((EntityPlayerMP) player, resourceLocation);
-        SoundEvent sfx = SoundEvent.REGISTRY.getObject(new ResourceLocation("patchouli", "book_open"));
 
-        if (sfx != null) {
-          world.playSound(null, player.posX, player.posY, player.posZ, sfx, SoundCategory.PLAYERS, 1F, (float) (0.7 + Math.random() * 0.4));
+        if (ModPyrotech.INSTANCE.isModuleEnabled(ModulePluginPatchouli.class)) {
+          AdvancementTriggers.MOD_ITEM_TRIGGER.trigger((EntityPlayerMP) player);
+          PatchouliHelper.openBook(world, player, resourceLocation);
+          return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
         }
-
-        return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
       }
     }
 

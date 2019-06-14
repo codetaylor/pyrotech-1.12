@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.entity.EntityRock;
 import com.codetaylor.mc.pyrotech.modules.core.entity.EntityRockGrass;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemBook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.entity.RenderSnowball;
@@ -27,6 +28,10 @@ public final class EntityInitializer {
     registry.createEntityEntry(EntityRockGrass.NAME, EntityEntryBuilder.create()
         .entity(EntityRockGrass.class)
         .tracker(80, 1, true)
+    );
+    registry.createEntityEntry(ItemBook.EntityItemBook.NAME, EntityEntryBuilder.create()
+        .entity(ItemBook.EntityItemBook.class)
+        .tracker(80, 4, true)
     );
   }
 

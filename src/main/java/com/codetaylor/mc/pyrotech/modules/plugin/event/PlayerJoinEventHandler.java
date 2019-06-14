@@ -1,11 +1,10 @@
-package com.codetaylor.mc.pyrotech.modules.plugin.patchouli.event;
+package com.codetaylor.mc.pyrotech.modules.plugin.event;
 
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePatchouliConfig;
-import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePluginPatchouli;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
@@ -29,7 +28,7 @@ public class PlayerJoinEventHandler {
 
       if (!persistent.hasKey(KEY)) {
         persistent.setBoolean(KEY, true);
-        event.player.inventory.addItemStackToInventory(new ItemStack(ModulePluginPatchouli.Items.BOOK));
+        event.player.inventory.addItemStackToInventory(new ItemStack(ModuleCore.Items.BOOK));
       }
     }
   }

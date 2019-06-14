@@ -3,6 +3,10 @@
   * Fixed:
     * Build filename missing MC version
     * Dedicated server crash (#15)
+    * Advancements fail to load when Patchouli mod is not available (#9)
+    * Campfire book recipe should not register when Patchouli mod is not available
+
+  * Notes: Players will now receive the root Pyrotech advancement when they pick up any item from the mod or open the Patchouli book given at the start.
 
 ---
 

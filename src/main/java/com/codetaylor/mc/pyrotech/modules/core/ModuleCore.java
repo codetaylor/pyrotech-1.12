@@ -10,6 +10,7 @@ import com.codetaylor.mc.pyrotech.BulkRenderItemSupplier;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.blockrenderer.BlockRenderer;
 import com.codetaylor.mc.pyrotech.library.blockrenderer.RenderTickEventHandler;
+import com.codetaylor.mc.pyrotech.modules.core.advancement.AdvancementTriggers;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.command.ClientCommandExport;
 import com.codetaylor.mc.pyrotech.modules.core.event.TooltipEventHandler;
@@ -18,6 +19,7 @@ import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaCraftingRecipe
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesRemove;
 import com.codetaylor.mc.pyrotech.modules.core.item.*;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.crafting.IRecipe;
@@ -73,6 +75,14 @@ public class ModuleCore
     if (ModuleCoreConfig.CLIENT.SHOW_BURN_TIME_IN_TOOLTIPS) {
       MinecraftForge.EVENT_BUS.register(new TooltipEventHandler.BurnTime());
     }
+  }
+
+  @Override
+  public void onInitializationEvent(FMLInitializationEvent event) {
+
+    super.onInitializationEvent(event);
+
+    CriteriaTriggers.register(AdvancementTriggers.MOD_ITEM_TRIGGER);
   }
 
   @Override
@@ -300,6 +310,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemObsidianHammer.NAME)
     public static final ItemObsidianHammer OBSIDIAN_HAMMER;
 
+    @GameRegistry.ObjectHolder(ItemBook.NAME)
+    public static final ItemBook BOOK;
+
     static {
       ROCK_GRASS = null;
       MATERIAL = null;
@@ -321,6 +334,7 @@ public class ModuleCore
       STONE_HAMMER = null;
       CRUDE_HAMMER = null;
       OBSIDIAN_HAMMER = null;
+      BOOK = null;
     }
   }
 

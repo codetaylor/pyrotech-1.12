@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.*;
+import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePluginPatchouli;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -32,6 +33,8 @@ public final class ItemInitializer {
     registry.registerItem(new ItemGoldHammer(), ItemGoldHammer.NAME);
     registry.registerItem(new ItemDiamondHammer(), ItemDiamondHammer.NAME);
     registry.registerItem(new ItemObsidianHammer(), ItemObsidianHammer.NAME);
+
+    registry.registerItem(new ItemBook(), ItemBook.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -57,7 +60,9 @@ public final class ItemInitializer {
           ModuleCore.Items.IRON_HAMMER,
           ModuleCore.Items.GOLD_HAMMER,
           ModuleCore.Items.DIAMOND_HAMMER,
-          ModuleCore.Items.OBSIDIAN_HAMMER
+          ModuleCore.Items.OBSIDIAN_HAMMER,
+
+          ModuleCore.Items.BOOK
       );
 
       // Material

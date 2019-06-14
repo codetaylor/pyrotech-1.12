@@ -10,19 +10,12 @@
       "translate": "pyrotech.desc"
     },
     "background": "pyrotech:textures/blocks/refractory_brick.png",
-    "show_toast": false,
+    "show_toast": true,
     "announce_to_chat": false
   },
   "criteria": {
-    "rock": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "pyrotech:book"
-          }
-        ]
-      }
+    "mod_item": {
+      "trigger": "pyrotech:pickup_mod_item"
     }
   }
 }
