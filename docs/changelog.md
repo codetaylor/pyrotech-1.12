@@ -2,6 +2,8 @@
 
   * Fixed:
     * Removed conflicting bone meal anvil recipes (#18)
+    * Hammer check should occur before pickaxe check (#19)
+    * Dedicated server crash (#21)
 
 ---
 
