@@ -8,11 +8,20 @@ import mods.pyrotech.Worktable;
 #### Methods
 
 ```java
-static void addShaped(
-  IItemStack output,                 
-  IIngredient[][] ingredients,       
-  @Optional IRecipeFunction function,
-  @Optional IRecipeAction action     
+static Worktable buildShaped(
+  IItemStack output,         
+  IIngredient[][] ingredients
+);
+```
+
+
+---
+
+
+```java
+static Worktable buildShapeless(
+  IItemStack output,       
+  IIngredient[] ingredients
 );
 ```
 
@@ -25,46 +34,10 @@ static void addShaped(
   string name,                       
   IItemStack output,                 
   IIngredient[][] ingredients,       
-  @Optional IRecipeFunction function,
-  @Optional IRecipeAction action     
-);
-```
-
-
----
-
-
-```java
-static void addShapedMirrored(
-  IItemStack output,                 
-  IIngredient[][] ingredients,       
-  @Optional IRecipeFunction function,
-  @Optional IRecipeAction action     
-);
-```
-
-
----
-
-
-```java
-static void addShapedMirrored(
-  string name,                       
-  IItemStack output,                 
-  IIngredient[][] ingredients,       
-  @Optional IRecipeFunction function,
-  @Optional IRecipeAction action     
-);
-```
-
-
----
-
-
-```java
-static void addShapeless(
-  IItemStack output,                 
-  IIngredient[] ingredients,         
+  IIngredient tool,                  
+  int toolDamage,                    
+  @Optional boolean mirrored,        
+  @Optional boolean hidden,          
   @Optional IRecipeFunction function,
   @Optional IRecipeAction action     
 );
@@ -79,6 +52,9 @@ static void addShapeless(
   string name,                       
   IItemStack output,                 
   IIngredient[] ingredients,         
+  IIngredient tool,                  
+  int toolDamage,                    
+  @Optional boolean hidden,          
   @Optional IRecipeFunction function,
   @Optional IRecipeAction action     
 );
@@ -124,6 +100,66 @@ static void removeRecipes(
 ```
 
 Removes pre-existing recipes, ie. recipes added by the mod.
+
+---
+
+```java
+Worktable setName(
+  string name
+);
+```
+
+
+---
+
+
+```java
+Worktable setTool(
+  IIngredient tool,
+  int toolDamage   
+);
+```
+
+
+---
+
+
+```java
+Worktable setMirrored(
+  boolean mirrored
+);
+```
+
+
+---
+
+
+```java
+Worktable setHidden(
+  boolean hidden
+);
+```
+
+
+---
+
+
+```java
+Worktable setRecipeFunction(
+  IRecipeFunction recipeFunction
+);
+```
+
+
+---
+
+
+```java
+Worktable setRecipeAction(
+  IRecipeAction recipeAction
+);
+```
+
 
 ---
 
