@@ -58,3 +58,11 @@ Removes pre-existing recipes, ie. recipes added by the mod.
 
 ---
 
+
+### Examples
+
+```java
+import mods.pyrotech.Campfire;
+
+Campfire.addRecipe("roasted_carrot_from_carrot", <pyrotech:carrot_roasted>, <minecraft:carrot>);
+```
