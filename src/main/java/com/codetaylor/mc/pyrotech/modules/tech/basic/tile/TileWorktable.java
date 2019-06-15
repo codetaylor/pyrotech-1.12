@@ -327,7 +327,17 @@ public class TileWorktable
         return ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(registryName) > -1;
 
       } else {
-        return tool.apply(heldItemStack);
+
+        ItemStack[] matchingStacks = tool.getMatchingStacks();
+
+        for (ItemStack matchingStack : matchingStacks) {
+
+          if (item == matchingStack.getItem()) {
+            return true;
+          }
+        }
+
+        return false;
       }
     }
 
