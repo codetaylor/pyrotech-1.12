@@ -228,6 +228,12 @@ public class TileWorktable
   // ---------------------------------------------------------------------------
 
   @Override
+  protected void setWorldCreate(World world) {
+
+    this.world = world;
+  }
+
+  @Override
   public void readFromNBT(NBTTagCompound compound) {
 
     super.readFromNBT(compound);
@@ -235,6 +241,8 @@ public class TileWorktable
     this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
     this.shelfStackHandler.deserializeNBT(compound.getCompoundTag("shelfStackHandler"));
     this.remainingDurability.set(compound.getInteger("remainingDurability"));
+
+    this.updateRecipe();
   }
 
   @Nonnull
