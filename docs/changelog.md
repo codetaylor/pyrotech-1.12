@@ -1,3 +1,10 @@
+<NEXT>
+
+  * Changed:
+    * Split the guide entry for introduction into introduction and campfire entries making it easier to find the campfire instructions.
+
+---
+
 1.0.4
 
   * Fixed:
