@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
@@ -18,6 +19,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 @ZenDocClass("mods.pyrotech.GraniteAnvil")
+@ZenDocAppend({"docs/include/anvil_granite.example.md"})
 @ZenClass("mods.pyrotech.GraniteAnvil")
 public class ZenAnvilGranite {
 
