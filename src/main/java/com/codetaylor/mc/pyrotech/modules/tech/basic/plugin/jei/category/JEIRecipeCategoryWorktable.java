@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperWorktableShapeless;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.ICraftingGridHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -33,6 +34,7 @@ public class JEIRecipeCategoryWorktable
 
   private static final int CRAFT_OUTPUT_SLOT_INDEX = 0;
   private static final int CRAFT_INPUT_SLOT_INDEX = 1;
+  private static final int TOOL_SLOT_INDEX = 10;
 
   private final IDrawable background;
   private final String title;
@@ -82,6 +84,15 @@ public class JEIRecipeCategoryWorktable
 
     guiItemStacks.init(CRAFT_OUTPUT_SLOT_INDEX, false, 94, 18);
 
+    if (recipeWrapper instanceof JEIRecipeWrapperWorktableShapeless) {
+      JEIRecipeWrapperWorktableShapeless worktableRecipeWrapper = (JEIRecipeWrapperWorktableShapeless) recipeWrapper;
+      List toolList = worktableRecipeWrapper.getToolList();
+
+      if (!toolList.isEmpty()) {
+        guiItemStacks.init(TOOL_SLOT_INDEX, true, 60, 0);
+      }
+    }
+
     for (int y = 0; y < 3; ++y) {
 
       for (int x = 0; x < 3; ++x) {
@@ -109,6 +120,16 @@ public class JEIRecipeCategoryWorktable
     }
 
     guiItemStacks.set(CRAFT_OUTPUT_SLOT_INDEX, outputs.get(0));
+
+    if (recipeWrapper instanceof JEIRecipeWrapperWorktableShapeless) {
+      JEIRecipeWrapperWorktableShapeless worktableRecipeWrapper = (JEIRecipeWrapperWorktableShapeless) recipeWrapper;
+      //noinspection unchecked
+      List<ItemStack> toolList = worktableRecipeWrapper.getToolList();
+
+      if (!toolList.isEmpty()) {
+        guiItemStacks.set(TOOL_SLOT_INDEX, toolList);
+      }
+    }
 
     if (recipeWrapper instanceof ICraftingRecipeWrapper) {
       ICraftingRecipeWrapper craftingRecipeWrapper = (ICraftingRecipeWrapper) recipeWrapper;

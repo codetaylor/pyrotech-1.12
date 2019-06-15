@@ -14,7 +14,6 @@ import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
-import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 import mezz.jei.plugins.vanilla.crafting.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -72,7 +71,7 @@ public class PluginJEI
       registry.handleRecipes(ShapedRecipes.class, recipe -> new ShapedRecipesWrapper(jeiHelpers, recipe), JEIRecipeCategoryWorktable.UID);
       registry.handleRecipes(ShapelessOreRecipe.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryWorktable.UID);
       registry.handleRecipes(ShapelessRecipes.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryWorktable.UID);
-      registry.handleRecipes(WorktableRecipe.class, new WorktableRecipeHandler(jeiHelpers), JEIRecipeCategoryWorktable.UID);
+      registry.handleRecipes(WorktableRecipe.class, new WorktableRecipeFactory(jeiHelpers), JEIRecipeCategoryWorktable.UID);
       List<IRecipe> vanillaRecipes = CraftingRecipeChecker.getValidRecipes(jeiHelpers)
           .stream()
           .filter(recipe -> {
@@ -225,12 +224,12 @@ public class PluginJEI
     return recipes;
   }
 
-  private static class WorktableRecipeHandler
+  private static class WorktableRecipeFactory
       implements IRecipeWrapperFactory<WorktableRecipe> {
 
     private final IJeiHelpers jeiHelpers;
 
-    public WorktableRecipeHandler(IJeiHelpers jeiHelpers) {
+    public WorktableRecipeFactory(IJeiHelpers jeiHelpers) {
 
       this.jeiHelpers = jeiHelpers;
     }
@@ -242,33 +241,12 @@ public class PluginJEI
       IRecipe wrappedRecipe = recipe.getRecipe();
 
       if (wrappedRecipe instanceof IShapedRecipe) {
-        return new ShapedRecipeWrapper(this.jeiHelpers, (IShapedRecipe) wrappedRecipe);
+        return new JEIRecipeWrapperWorktableShaped(this.jeiHelpers, (IShapedRecipe) wrappedRecipe, recipe.getTool(), recipe.getToolDamage());
 
       } else {
-        return new ShapelessRecipeWrapper<>(this.jeiHelpers, wrappedRecipe);
+        return new JEIRecipeWrapperWorktableShapeless<>(this.jeiHelpers, wrappedRecipe, recipe.getTool(), recipe.getToolDamage());
       }
     }
   }
 
-  private static class ShapedRecipeWrapper
-      extends ShapelessRecipeWrapper<IShapedRecipe>
-      implements IShapedCraftingRecipeWrapper {
-
-    public ShapedRecipeWrapper(IJeiHelpers jeiHelpers, IShapedRecipe recipe) {
-
-      super(jeiHelpers, recipe);
-    }
-
-    @Override
-    public int getWidth() {
-
-      return this.recipe.getRecipeWidth();
-    }
-
-    @Override
-    public int getHeight() {
-
-      return this.recipe.getRecipeHeight();
-    }
-  }
 }
