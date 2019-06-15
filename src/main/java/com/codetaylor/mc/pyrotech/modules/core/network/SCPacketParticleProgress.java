@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.core.network;
 
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -55,23 +56,26 @@ public class SCPacketParticleProgress
   @Override
   public IMessage onMessage(SCPacketParticleProgress message, MessageContext ctx) {
 
-    if (message.amount == 0) {
-      message.amount = 15;
-    }
+    if (ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES) {
 
-    WorldClient world = Minecraft.getMinecraft().world;
-    Random random = RandomHelper.random();
+      if (message.amount == 0) {
+        message.amount = 15;
+      }
 
-    for (int i = 0; i < message.amount; ++i) {
-      double d0 = random.nextGaussian() * 0.02D;
-      double d1 = random.nextGaussian() * 0.02D;
-      double d2 = random.nextGaussian() * 0.02D;
-      world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY,
-          message.x + (random.nextFloat() * 2 - 1) * 0.5,
-          message.y + (random.nextFloat() * 2 - 1) * 0.15,
-          message.z + (random.nextFloat() * 2 - 1) * 0.5,
-          d0, d1, d2
-      );
+      WorldClient world = Minecraft.getMinecraft().world;
+      Random random = RandomHelper.random();
+
+      for (int i = 0; i < message.amount; ++i) {
+        double d0 = random.nextGaussian() * 0.02D;
+        double d1 = random.nextGaussian() * 0.02D;
+        double d2 = random.nextGaussian() * 0.02D;
+        world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY,
+            message.x + (random.nextFloat() * 2 - 1) * 0.5,
+            message.y + (random.nextFloat() * 2 - 1) * 0.15,
+            message.z + (random.nextFloat() * 2 - 1) * 0.5,
+            d0, d1, d2
+        );
+      }
     }
 
     return null;
