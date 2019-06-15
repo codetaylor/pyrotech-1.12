@@ -135,7 +135,7 @@ public class TileWorktable
     return this.inputStackHandler;
   }
 
-  private WorktableRecipe getWorktableRecipe() {
+  public WorktableRecipe getWorktableRecipe() {
 
     return this.recipe;
   }
