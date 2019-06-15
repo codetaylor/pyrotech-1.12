@@ -17,7 +17,9 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
@@ -358,6 +360,12 @@ public class TileWorktable
           if (tile.getExhaustionCostPerHit() > 0) {
             player.addExhaustion((float) tile.getExhaustionCostPerHit());
           }
+
+          ModuleCore.PACKET_SERVICE.sendToAllAround(
+              new SCPacketParticleProgress(hitPos.getX() + 0.5, hitPos.getY() + 1, hitPos.getZ() + 0.5, 2),
+              world.provider.getDimension(),
+              hitPos
+          );
 
           if (tile.recipeProgress.get() >= 0.9999) {
             tile.recipeProgress.set(0);
