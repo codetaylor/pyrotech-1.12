@@ -62,7 +62,7 @@ public class JEIRecipeWrapperWorktableShapeless<T extends IRecipe>
     if (this.toolList != null) {
       GlStateManager.pushMatrix();
       GlStateManager.translate(0, 0, 1000);
-      minecraft.fontRenderer.drawStringWithShadow("-" + this.toolDamage, 65, 12, Color.WHITE.getRGB());
+      minecraft.fontRenderer.drawStringWithShadow("-" + this.toolDamage, 70, 8, Color.WHITE.getRGB());
       GlStateManager.popMatrix();
     }
   }

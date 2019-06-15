@@ -89,7 +89,7 @@ public class JEIRecipeCategoryWorktable
       List toolList = worktableRecipeWrapper.getToolList();
 
       if (!toolList.isEmpty()) {
-        guiItemStacks.init(TOOL_SLOT_INDEX, true, 60, 0);
+        guiItemStacks.init(TOOL_SLOT_INDEX, true, 54, 0);
       }
     }
 
