@@ -134,18 +134,38 @@ public class WorktableRecipe
   }
 
   private final IRecipe recipe;
+  private final Ingredient tool;
+  private final int toolDamage;
 
   public WorktableRecipe(
       IRecipe recipe
   ) {
 
+    this(recipe, null, 0);
+  }
+
+  public WorktableRecipe(IRecipe recipe, Ingredient tool, int toolDamage) {
+
     this.recipe = recipe;
+    this.tool = tool;
+    this.toolDamage = toolDamage;
   }
 
   @Nonnull
   public IRecipe getRecipe() {
 
     return this.recipe;
+  }
+
+  @Nullable
+  public Ingredient getTool() {
+
+    return this.tool;
+  }
+
+  public int getToolDamage() {
+
+    return this.toolDamage;
   }
 
   @Override
