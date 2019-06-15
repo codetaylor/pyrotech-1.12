@@ -241,10 +241,10 @@ public class PluginJEI
       IRecipe wrappedRecipe = recipe.getRecipe();
 
       if (wrappedRecipe instanceof IShapedRecipe) {
-        return new JEIRecipeWrapperWorktableShaped(this.jeiHelpers, (IShapedRecipe) wrappedRecipe, recipe.getTool(), recipe.getToolDamage());
+        return new JEIRecipeWrapperWorktableShaped(this.jeiHelpers, (IShapedRecipe) wrappedRecipe, recipe.getToolList(), recipe.getToolDamage());
 
       } else {
-        return new JEIRecipeWrapperWorktableShapeless<>(this.jeiHelpers, wrappedRecipe, recipe.getTool(), recipe.getToolDamage());
+        return new JEIRecipeWrapperWorktableShapeless<>(this.jeiHelpers, wrappedRecipe, recipe.getToolList(), recipe.getToolDamage());
       }
     }
   }

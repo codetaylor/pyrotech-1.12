@@ -32,7 +32,6 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -321,23 +320,13 @@ public class TileWorktable
         return false;
       }
 
-      Ingredient tool = recipe.getTool();
+      List<Item> toolList = recipe.getToolList();
 
-      if (tool == null) {
+      if (toolList.isEmpty()) {
         return ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(registryName) > -1;
 
       } else {
-
-        ItemStack[] matchingStacks = tool.getMatchingStacks();
-
-        for (ItemStack matchingStack : matchingStacks) {
-
-          if (item == matchingStack.getItem()) {
-            return true;
-          }
-        }
-
-        return false;
+        return toolList.contains(item);
       }
     }
 
@@ -400,7 +389,7 @@ public class TileWorktable
 
             int toolDamagePerCraft = tile.getToolDamagePerCraft();
 
-            if (worktableRecipe.getTool() != null) {
+            if (!worktableRecipe.getToolList().isEmpty()) {
               toolDamagePerCraft = worktableRecipe.getToolDamage();
             }
 
@@ -496,6 +485,10 @@ public class TileWorktable
       ResourceLocation registryName = item.getRegistryName();
 
       if (registryName == null) {
+        return false;
+      }
+
+      if (WorktableRecipe.hasRecipeWithTool(item)) {
         return false;
       }
 

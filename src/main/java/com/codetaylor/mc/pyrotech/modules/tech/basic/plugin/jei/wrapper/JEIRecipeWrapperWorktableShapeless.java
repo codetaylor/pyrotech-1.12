@@ -9,15 +9,14 @@ import mezz.jei.recipes.BrokenCraftingRecipeException;
 import mezz.jei.util.ErrorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
 
-import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JEIRecipeWrapperWorktableShapeless<T extends IRecipe>
     extends ShapelessRecipeWrapper<T> {
@@ -26,17 +25,13 @@ public class JEIRecipeWrapperWorktableShapeless<T extends IRecipe>
   private final List<ItemStack> toolList;
   private final int toolDamage;
 
-  public JEIRecipeWrapperWorktableShapeless(IJeiHelpers jeiHelpers, T recipe, @Nullable Ingredient tool, int toolDamage) {
+  public JEIRecipeWrapperWorktableShapeless(IJeiHelpers jeiHelpers, T recipe, List<Item> toolList, int toolDamage) {
 
     super(jeiHelpers, recipe);
     this.jeiHelpers = jeiHelpers;
     this.toolDamage = toolDamage;
     this.toolList = new ArrayList<>();
-
-    if (tool != null) {
-      ItemStack[] matchingStacks = tool.getMatchingStacks();
-      this.toolList.addAll(Arrays.asList(matchingStacks));
-    }
+    toolList.stream().map(ItemStack::new).collect(Collectors.toCollection(() -> this.toolList));
   }
 
   public List<ItemStack> getToolList() {
