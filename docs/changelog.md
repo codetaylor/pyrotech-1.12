@@ -1,5 +1,8 @@
 <NEXT>
 
+  * Fixed:
+    * Recipe left in worktable doesn't work after logging out and back in
+
   * Changed:
     * Split the guide entry for introduction into introduction and campfire entries making it easier to find the campfire instructions.
 
