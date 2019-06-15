@@ -32,6 +32,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -59,7 +60,7 @@ public class TileWorktable
 
   private IInteraction[] interactions;
 
-  private IRecipe recipe;
+  private WorktableRecipe recipe;
 
   public TileWorktable() {
 
@@ -135,9 +136,19 @@ public class TileWorktable
     return this.inputStackHandler;
   }
 
-  public IRecipe getRecipe() {
+  private WorktableRecipe getWorktableRecipe() {
 
     return this.recipe;
+  }
+
+  public IRecipe getRecipe() {
+
+    if (this.recipe == null) {
+      return null;
+
+    } else {
+      return this.recipe.getRecipe();
+    }
   }
 
   protected int getGridMaxStackSize() {
@@ -213,14 +224,7 @@ public class TileWorktable
 
   private void updateRecipe() {
 
-    WorktableRecipe recipe = WorktableRecipe.getRecipe(this.inventoryWrapper, this.world);
-
-    if (recipe == null) {
-      this.recipe = null;
-
-    } else {
-      this.recipe = recipe.getRecipe();
-    }
+    this.recipe = WorktableRecipe.getRecipe(this.inventoryWrapper, this.world);
   }
 
   // ---------------------------------------------------------------------------
@@ -311,7 +315,15 @@ public class TileWorktable
         return false;
       }
 
-      return ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(registryName) > -1;
+      WorktableRecipe recipe = tile.getWorktableRecipe();
+      Ingredient tool = recipe.getTool();
+
+      if (tool == null) {
+        return ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(registryName) > -1;
+
+      } else {
+        return tool.apply(heldItemStack);
+      }
     }
 
     @Override
@@ -326,6 +338,7 @@ public class TileWorktable
       ItemStack heldItem = player.getHeldItemMainhand();
 
       IRecipe recipe = tile.getRecipe();
+      WorktableRecipe worktableRecipe = tile.getWorktableRecipe();
 
       if (tile.getRecipe() == null) {
         tile.updateRecipe();
@@ -371,6 +384,10 @@ public class TileWorktable
             StackHelper.spawnStackOnTop(world, result, tile.getPos(), 0.75);
 
             int toolDamagePerCraft = tile.getToolDamagePerCraft();
+
+            if (worktableRecipe.getTool() != null) {
+              toolDamagePerCraft = worktableRecipe.getToolDamage();
+            }
 
             if (toolDamagePerCraft > 0) {
               heldItem.damageItem(toolDamagePerCraft, player);
