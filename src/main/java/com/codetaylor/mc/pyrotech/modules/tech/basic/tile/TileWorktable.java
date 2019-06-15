@@ -316,6 +316,11 @@ public class TileWorktable
       }
 
       WorktableRecipe recipe = tile.getWorktableRecipe();
+
+      if (recipe == null) {
+        return false;
+      }
+
       Ingredient tool = recipe.getTool();
 
       if (tool == null) {
