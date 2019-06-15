@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
@@ -25,6 +26,7 @@ import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -35,50 +37,180 @@ public class ZenWorktable {
   private static final HashSet<String> USED_RECIPE_NAMES = new HashSet<>();
   private static final TIntSet USED_HASHES = new TIntHashSet();
 
+  // ---------------------------------------------------------------------------
+  // --- Start: Builder
+
   @ZenDocMethod(
       order = 1,
       args = {
           @ZenDocArg(arg = "output"),
-          @ZenDocArg(arg = "ingredients"),
-          @ZenDocArg(arg = "function"),
-          @ZenDocArg(arg = "action")
+          @ZenDocArg(arg = "ingredients")
       }
   )
   @ZenMethod
-  public static void addShaped(IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+  public static ZenWorktable buildShaped(IItemStack output, IIngredient[][] ingredients) {
 
-    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(output, ingredients, function, action, false, false));
+    return new ZenWorktable(output, ingredients);
   }
 
   @ZenDocMethod(
       order = 2,
       args = {
-          @ZenDocArg(arg = "name"),
           @ZenDocArg(arg = "output"),
-          @ZenDocArg(arg = "ingredients"),
-          @ZenDocArg(arg = "function"),
-          @ZenDocArg(arg = "action")
+          @ZenDocArg(arg = "ingredients")
       }
   )
   @ZenMethod
-  public static void addShaped(String name, IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+  public static ZenWorktable buildShapeless(IItemStack output, IIngredient[] ingredients) {
 
-    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(name, output, ingredients, function, action, false, false));
+    return new ZenWorktable(output, ingredients);
+  }
+
+  private String name;
+  private IItemStack output;
+  private IIngredient[][] shaped;
+  private IIngredient[] shapeless;
+  private IIngredient tool;
+  private int toolDamage;
+  private boolean mirrored;
+  private boolean hidden;
+  private IRecipeFunction recipeFunction;
+  private IRecipeAction recipeAction;
+
+  public ZenWorktable(IItemStack output, IIngredient[][] shaped) {
+
+    this.output = output;
+    this.shaped = shaped;
+  }
+
+  public ZenWorktable(IItemStack output, IIngredient[] shapeless) {
+
+    this.output = output;
+    this.shapeless = shapeless;
+  }
+
+  @ZenDocMethod(
+      order = 1,
+      args = {
+          @ZenDocArg(arg = "name")
+      }
+  )
+  @ZenMethod
+  public ZenWorktable setName(String name) {
+
+    this.name = name;
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 2,
+      args = {
+          @ZenDocArg(arg = "tool"),
+          @ZenDocArg(arg = "toolDamage")
+      }
+  )
+  @ZenMethod
+  public ZenWorktable setTool(IIngredient tool, int damage) {
+
+    this.tool = tool;
+    this.toolDamage = damage;
+    return this;
   }
 
   @ZenDocMethod(
       order = 3,
       args = {
+          @ZenDocArg(arg = "mirrored")
+      }
+  )
+  @ZenMethod
+  public ZenWorktable setMirrored(boolean mirrored) {
+
+    this.mirrored = mirrored;
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 4,
+      args = {
+          @ZenDocArg(arg = "hidden")
+      }
+  )
+  @ZenMethod
+  public ZenWorktable setHidden(boolean hidden) {
+
+    this.hidden = hidden;
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 5,
+      args = {
+          @ZenDocArg(arg = "recipeFunction")
+      }
+  )
+  @ZenMethod
+  public ZenWorktable setRecipeFunction(IRecipeFunction recipeFunction) {
+
+    this.recipeFunction = recipeFunction;
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 6,
+      args = {
+          @ZenDocArg(arg = "recipeAction")
+      }
+  )
+  @ZenMethod
+  public ZenWorktable setRecipeAction(IRecipeAction recipeAction) {
+
+    this.recipeAction = recipeAction;
+    return this;
+  }
+
+  @ZenMethod
+  public void register() {
+
+    if (this.shaped != null) {
+      ZenWorktable.addShaped(this.name, this.output, this.shaped, this.tool, this.toolDamage, this.mirrored, this.hidden, this.recipeFunction, this.recipeAction);
+
+    } else {
+      ZenWorktable.addShapeless(this.name, this.output, this.shapeless, this.tool, this.toolDamage, this.hidden, this.recipeFunction, this.recipeAction);
+    }
+  }
+
+  // --- End: Builder
+  // ---------------------------------------------------------------------------
+
+  @ZenDocMethod(
+      order = 3,
+      args = {
+          @ZenDocArg(arg = "name"),
           @ZenDocArg(arg = "output"),
           @ZenDocArg(arg = "ingredients"),
+          @ZenDocArg(arg = "tool"),
+          @ZenDocArg(arg = "toolDamage"),
+          @ZenDocArg(arg = "mirrored"),
+          @ZenDocArg(arg = "hidden"),
           @ZenDocArg(arg = "function"),
           @ZenDocArg(arg = "action")
       }
   )
   @ZenMethod
-  public static void addShapedMirrored(IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+  public static void addShaped(
+      @Nullable String name,
+      IItemStack output,
+      IIngredient[][] ingredients,
+      @Nullable IIngredient tool,
+      int toolDamage,
+      @Optional boolean mirrored,
+      @Optional boolean hidden,
+      @Optional IRecipeFunction function,
+      @Optional IRecipeAction action
+  ) {
 
-    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(output, ingredients, function, action, true, false));
+    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(name, output, ingredients, function, action, mirrored, hidden, tool, toolDamage));
   }
 
   @ZenDocMethod(
@@ -87,57 +219,24 @@ public class ZenWorktable {
           @ZenDocArg(arg = "name"),
           @ZenDocArg(arg = "output"),
           @ZenDocArg(arg = "ingredients"),
+          @ZenDocArg(arg = "tool"),
+          @ZenDocArg(arg = "toolDamage"),
+          @ZenDocArg(arg = "hidden"),
           @ZenDocArg(arg = "function"),
           @ZenDocArg(arg = "action")
       }
   )
   @ZenMethod
-  public static void addShapedMirrored(String name, IItemStack output, IIngredient[][] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
-
-    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(name, output, ingredients, function, action, true, false));
-  }
-
-  @ZenDocMethod(
-      order = 5,
-      args = {
-          @ZenDocArg(arg = "output"),
-          @ZenDocArg(arg = "ingredients"),
-          @ZenDocArg(arg = "function"),
-          @ZenDocArg(arg = "action")
-      }
-  )
-  @ZenMethod
-  public static void addShapeless(IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
-
-    boolean valid = (output != null);
-
-    for (IIngredient ingredient : ingredients) {
-
-      if (ingredient == null) {
-        valid = false;
-      }
-    }
-
-    if (!valid) {
-      CraftTweakerAPI.logError("Null not allowed in shapeless recipes! Recipe for: " + output + " not created!");
-      return;
-    }
-
-    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapelessRecipe(output, ingredients, function, action));
-  }
-
-  @ZenDocMethod(
-      order = 6,
-      args = {
-          @ZenDocArg(arg = "name"),
-          @ZenDocArg(arg = "output"),
-          @ZenDocArg(arg = "ingredients"),
-          @ZenDocArg(arg = "function"),
-          @ZenDocArg(arg = "action")
-      }
-  )
-  @ZenMethod
-  public static void addShapeless(String name, IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+  public static void addShapeless(
+      @Nullable String name,
+      IItemStack output,
+      IIngredient[] ingredients,
+      @Nullable IIngredient tool,
+      int toolDamage,
+      @Optional boolean hidden,
+      @Optional IRecipeFunction function,
+      @Optional IRecipeAction action
+  ) {
 
     boolean valid = output != null;
 
@@ -153,7 +252,7 @@ public class ZenWorktable {
       return;
     }
 
-    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapelessRecipe(name, output, ingredients, function, action, false));
+    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapelessRecipe(name, output, ingredients, function, action, hidden, tool, toolDamage));
   }
 
   @ZenDocMethod(
@@ -263,17 +362,20 @@ public class ZenWorktable {
   private static class ActionBaseAddWorktableRecipe
       implements IAction {
 
-    // this is != null only _after_ it has been applied and is actually registered
     protected MCRecipeBase recipe;
     protected IItemStack output;
     protected boolean isShaped;
     protected String name;
+    protected IIngredient tool;
+    protected int toolDamage;
 
-    private ActionBaseAddWorktableRecipe(MCRecipeBase recipe, IItemStack output, boolean isShaped) {
+    private ActionBaseAddWorktableRecipe(MCRecipeBase recipe, IItemStack output, boolean isShaped, @Nullable IIngredient tool, int toolDamage) {
 
       this.recipe = recipe;
       this.output = output;
       this.isShaped = isShaped;
+      this.tool = tool;
+      this.toolDamage = toolDamage;
 
       if (recipe.hasTransformers()) {
         MCRecipeManager.transformerRecipes.add(recipe);
@@ -301,7 +403,7 @@ public class ZenWorktable {
         String proposedName = MCRecipeManager.cleanRecipeName(name);
 
         if (USED_RECIPE_NAMES.contains(proposedName)) {
-          this.name = calculateName();
+          this.name = this.calculateName();
           CraftTweakerAPI.logWarning("Recipe name [" + name + "] has duplicate uses, defaulting to calculated hash!");
 
         } else {
@@ -309,7 +411,7 @@ public class ZenWorktable {
         }
 
       } else {
-        this.name = calculateName();
+        this.name = this.calculateName();
       }
 
       USED_RECIPE_NAMES.add(this.name);
@@ -331,7 +433,7 @@ public class ZenWorktable {
     public void apply() {
 
       ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", this.name);
-      WorktableRecipe recipe = new WorktableRecipe(this.recipe.setRegistryName(resourceLocation)).setRegistryName(resourceLocation);
+      WorktableRecipe recipe = new WorktableRecipe(this.recipe.setRegistryName(resourceLocation), CTInputHelper.toIngredient(this.tool), this.toolDamage).setRegistryName(resourceLocation);
       ModuleTechBasic.Registries.WORKTABLE_RECIPE.register(recipe);
     }
 
@@ -355,14 +457,9 @@ public class ZenWorktable {
   private static class ActionAddShapedRecipe
       extends ActionBaseAddWorktableRecipe {
 
-    public ActionAddShapedRecipe(IItemStack output, IIngredient[][] ingredients, IRecipeFunction function, IRecipeAction action, boolean mirrored, boolean hidden) {
+    public ActionAddShapedRecipe(@Nullable String name, IItemStack output, IIngredient[][] ingredients, @Nullable IRecipeFunction function, @Nullable IRecipeAction action, boolean mirrored, boolean hidden, @Nullable IIngredient tool, int toolDamage) {
 
-      this(null, output, ingredients, function, action, mirrored, hidden);
-    }
-
-    public ActionAddShapedRecipe(String name, IItemStack output, IIngredient[][] ingredients, IRecipeFunction function, IRecipeAction action, boolean mirrored, boolean hidden) {
-
-      super(new MCRecipeShaped(ingredients, output, function, action, mirrored, hidden), output, true);
+      super(new MCRecipeShaped(ingredients, output, function, action, mirrored, hidden), output, true, tool, toolDamage);
       this.setName(name);
     }
   }
@@ -370,14 +467,9 @@ public class ZenWorktable {
   private static class ActionAddShapelessRecipe
       extends ActionBaseAddWorktableRecipe {
 
-    public ActionAddShapelessRecipe(IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action) {
+    public ActionAddShapelessRecipe(@Nullable String name, IItemStack output, IIngredient[] ingredients, @Nullable IRecipeFunction function, @Nullable IRecipeAction action, boolean hidden, @Nullable IIngredient tool, int toolDamage) {
 
-      this(null, output, ingredients, function, action, false);
-    }
-
-    public ActionAddShapelessRecipe(String name, IItemStack output, IIngredient[] ingredients, @Optional IRecipeFunction function, @Optional IRecipeAction action, boolean hidden) {
-
-      super(new MCRecipeShapeless(ingredients, output, function, action, hidden), output, false);
+      super(new MCRecipeShapeless(ingredients, output, function, action, hidden), output, false, tool, toolDamage);
       this.setName(name);
     }
   }
