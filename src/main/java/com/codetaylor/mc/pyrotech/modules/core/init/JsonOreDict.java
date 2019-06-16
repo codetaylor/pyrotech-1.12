@@ -47,6 +47,10 @@ public class JsonOreDict {
         "pyrotech:material:28" // dust_limestone
     });
 
+    result.oreDict.put("stoneLimestone", new String[] {
+        "pyrotech:limestone" // limestone
+    });
+
     result.oreDict.put("dustFlint", new String[]{
         "pyrotech:material:31" // dust_flint
     });
