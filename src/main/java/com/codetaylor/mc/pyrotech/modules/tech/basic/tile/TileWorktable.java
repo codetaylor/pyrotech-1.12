@@ -379,6 +379,7 @@ public class TileWorktable
             if (tile.usesDurability()
                 && tile.remainingDurability.add(-1) == 0) {
 
+              tile.dropContents();
               world.destroyBlock(tile.pos, false);
               world.playSound(
                   null,
