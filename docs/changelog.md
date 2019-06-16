@@ -1,10 +1,14 @@
-<NEXT>
+1.0.5
 
   * Fixed:
     * Recipe left in worktable doesn't work after logging out and back in
+    * Duplicate crude axe recipe in guidebook, missing crude hoe
+    * Worktable voids items when it breaks from running out of durability (#24)
+    * Anvil recipe conflict for stone, removed stone -> cobblestone hammer recipe (#23)
 
   * Changed:
-    * Split the guide entry for introduction into introduction and campfire entries making it easier to find the campfire instructions.
+    * Split the guide entry for introduction into introduction and campfire entries making it easier to find the campfire instructions
+    * Removed advancement restriction on guidebook entries for Flint and Tinder and Bone and Flint Shards; the player should now have all required information necessary to make the campfire and flint and tinder without having to unlock any guidebook entries via advancements
 
 ---
 
