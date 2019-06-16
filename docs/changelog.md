@@ -4,7 +4,7 @@
     * Limestone block to `stoneLimestone` oredict (#29) - NOTE: Remember to refresh (delete and re-run the game) your `Custom` ore dict config file or add the changes manually, changes will only appear in the `Generated` file.
 
   * Fixed:
-    * Crash when pit burn is lit with door placed on top (door should be placed on the side anyway)
+    * Crash when pit burn is lit with door placed on top (door should be placed on the side anyway) (#28)
 
   * Changed:
     * Improved the guidebook information on excavating flint shards with a shovel
