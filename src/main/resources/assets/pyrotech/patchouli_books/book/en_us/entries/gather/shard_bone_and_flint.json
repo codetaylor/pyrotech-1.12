@@ -16,7 +16,7 @@
     {
       "type": "rt_anvil_recipe",
       "recipe": "pyrotech:flint_shard_from_flint",
-      "text": "$(item)Flint Shards$() can be broken from larger pieces of $(item)Flint$() on an $(item)Anvil$().$(p)$(item)Flint Shards$() can be found by using a shovel to excavate gravel."
+      "text": "$(item)Flint Shards$() can be broken from larger pieces of $(item)Flint$() on an $(item)Anvil$().$(p)$(item)Flint Shards$() can also be found by using a shovel to excavate $(item)Gravel$(). $(info) Higher tier shovels have a better chance of finding flint."
     },
     {
       "type": "relations",
