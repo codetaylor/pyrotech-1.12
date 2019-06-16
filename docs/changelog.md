@@ -73,6 +73,11 @@
 
 1.0.5
 
+  * Added:
+    * CrT builder for the worktable recipes
+    * Support for non-hammer tools in the CrT worktable recipes
+    * Bone meal particles to indicate recipe progress when banging on a worktable or anvil
+
   * Fixed:
     * Recipe left in worktable doesn't work after logging out and back in
     * Duplicate crude axe recipe in guidebook, missing crude hoe
