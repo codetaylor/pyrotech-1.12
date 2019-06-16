@@ -1,4 +1,9 @@
-1.0.x
+1.1.0
+
+  * Added:
+    * CrT builder for the worktable recipes
+    * Support for non-hammer tools in the CrT worktable recipes
+    * Bone meal particles to indicate recipe progress when banging on a worktable or anvil
 
   * Fixed:
     * Refractory Sawmill recipe tab no longer shows in JEI (#60)
@@ -72,11 +77,6 @@
 ---
 
 1.0.5
-
-  * Added:
-    * CrT builder for the worktable recipes
-    * Support for non-hammer tools in the CrT worktable recipes
-    * Bone meal particles to indicate recipe progress when banging on a worktable or anvil
 
   * Fixed:
     * Recipe left in worktable doesn't work after logging out and back in
