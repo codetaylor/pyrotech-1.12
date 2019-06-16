@@ -14,7 +14,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "pyrotech:tool/crude_axe",
+      "recipe": "pyrotech:tool/crude_hoe",
       "recipe2": "pyrotech:tool/crude_shovel"
     },
     {
