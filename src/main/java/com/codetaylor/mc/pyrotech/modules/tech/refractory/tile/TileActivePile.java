@@ -319,6 +319,11 @@ public class TileActivePile
 
   private boolean isValidDoor(IBlockState blockState, EnumFacing facing, BlockDoor door) {
 
+    if (facing == EnumFacing.UP
+        || facing == EnumFacing.DOWN) {
+      return false;
+    }
+
     if (blockState.getBlock() == door) {
 
       if (!blockState.getValue(BlockRefractoryDoor.OPEN)
