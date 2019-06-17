@@ -1,3 +1,20 @@
+1.0.7
+
+  * Fixed:
+    * Lapis block gives dandelion yellow in anvil (#35)
+    * NPE when hammering a bloom from the creative tab (#38)
+    * Chopping block should not sound like stone (#40)
+    * Refractory glass should not sound like stone (#41)
+    * Stash, crate, shelf should not sound like stone (#42)
+
+  * Added:
+    * zn_ch.lang (#34 Snownee)
+
+  * Removed:
+    * Bloom from creative tab, shouldn't have been in there to begin with (#38)
+
+---
+
 1.0.6
 
   * Added:
