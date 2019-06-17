@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.core.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -37,6 +38,7 @@ public class BlockRefractoryGlass
         .withProperty(CONNECTED_SOUTH, Boolean.FALSE)
         .withProperty(CONNECTED_UP, Boolean.FALSE)
         .withProperty(CONNECTED_WEST, Boolean.FALSE));
+    this.setSoundType(SoundType.GLASS);
   }
 
   @Nonnull
