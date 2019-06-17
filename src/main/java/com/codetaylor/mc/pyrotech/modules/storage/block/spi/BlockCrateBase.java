@@ -5,6 +5,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileCrate;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -32,6 +33,7 @@ public abstract class BlockCrateBase
     super(Material.WOOD);
     this.setHardness(hardness);
     this.setResistance(resistance);
+    this.setSoundType(SoundType.WOOD);
   }
 
   // ---------------------------------------------------------------------------
