@@ -1,5 +1,8 @@
 1.0.8
 
+  * Added:
+    * Config option to disable milking cows with the buckets (#48)
+
   * Fixed:
     * Duplicate advancement title (#45)
 

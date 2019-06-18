@@ -481,6 +481,10 @@ public abstract class ItemBucketBase
   @Override
   public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand) {
 
+    if (this.isCowMilkDisabled()) {
+      return false;
+    }
+
     if (this.hasFluid(stack)
         || player.capabilities.isCreativeMode) {
       return false;
@@ -507,6 +511,8 @@ public abstract class ItemBucketBase
 
     return false;
   }
+
+  protected abstract boolean isCowMilkDisabled();
 
   // ---------------------------------------------------------------------------
   // - Durability
