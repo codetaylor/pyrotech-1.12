@@ -1,10 +1,27 @@
+1.0.7
+
+  * Fixed:
+    * Lapis block gives dandelion yellow in anvil (#35)
+    * NPE when hammering a bloom from the creative tab (#38)
+    * Chopping block should not sound like stone (#40)
+    * Refractory glass should not sound like stone (#41)
+    * Stash, crate, shelf should not sound like stone (#42)
+
+  * Added:
+    * zn_ch.lang (#34 Snownee)
+
+  * Removed:
+    * Bloom from creative tab, shouldn't have been in there to begin with (#38)
+
+---
+
 1.0.6
 
   * Added:
     * Limestone block to `stoneLimestone` oredict (#29) - NOTE: Remember to refresh (delete and re-run the game) your `Custom` ore dict config file or add the changes manually, changes will only appear in the `Generated` file.
 
   * Fixed:
-    * Crash when pit burn is lit with door placed on top (door should be placed on the side anyway)
+    * Crash when pit burn is lit with door placed on top (door should be placed on the side anyway) (#28)
 
   * Changed:
     * Improved the guidebook information on excavating flint shards with a shovel

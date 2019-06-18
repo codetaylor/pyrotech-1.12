@@ -36,7 +36,7 @@ public class AnvilGraniteRecipesAdd {
 
     // Lapis Lazuli from Lapis Block
     registry.register(new AnvilRecipe(
-        new ItemStack(Items.DYE, 8, EnumDyeColor.BLUE.getMetadata()),
+        new ItemStack(Items.DYE, 8, EnumDyeColor.BLUE.getDyeDamage()),
         Ingredient.fromStacks(new ItemStack(Blocks.LAPIS_BLOCK)),
         8,
         AnvilRecipe.EnumType.HAMMER,

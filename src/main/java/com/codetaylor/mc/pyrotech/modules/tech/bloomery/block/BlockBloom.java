@@ -14,6 +14,7 @@ import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -59,6 +60,16 @@ public class BlockBloom
     this.setResistance(30.0f);
     this.setHarvestLevel("pickaxe", 1);
     this.setTickRandomly(true);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Creative Menu
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public CreativeTabs getCreativeTabToDisplayOn() {
+
+    return null;
   }
 
   // ---------------------------------------------------------------------------

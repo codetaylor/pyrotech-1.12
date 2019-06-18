@@ -9,6 +9,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileChoppingBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
@@ -46,6 +47,7 @@ public class BlockChoppingBlock
 
     super(Material.WOOD);
     this.setHardness(0.75f);
+    this.setSoundType(SoundType.WOOD);
   }
 
   // ---------------------------------------------------------------------------

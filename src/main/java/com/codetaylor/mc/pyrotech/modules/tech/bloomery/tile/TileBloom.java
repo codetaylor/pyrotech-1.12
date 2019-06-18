@@ -179,6 +179,11 @@ public class TileBloom
     @Override
     protected boolean doInteraction(TileBloom tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
+      if (tile.recipeId == null) {
+        // This is a creative bloom that has no data, it will fail everything.
+        return false;
+      }
+
       BlockPos tilePos = tile.getPos();
 
       if (player.getFoodStats().getFoodLevel() < ModuleTechBloomeryConfig.BLOOM.MINIMUM_HUNGER_TO_USE) {
