@@ -3,6 +3,9 @@
   * Fixed:
     * Duplicate advancement title (#45)
 
+  * Changed:
+    * Update chinese translation (#47 Snownee)
+
 ---
 
 1.0.7
