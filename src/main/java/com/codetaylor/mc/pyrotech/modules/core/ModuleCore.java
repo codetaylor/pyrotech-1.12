@@ -66,6 +66,14 @@ public class ModuleCore
     );
   }
 
+  @Override
+  public void onPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onPreInitializationEvent(event);
+
+    WoodCompatInitializer.onPreInitialization(this.getConfigurationDirectory().toPath());
+  }
+
   @SideOnly(Side.CLIENT)
   @Override
   public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
