@@ -103,6 +103,7 @@ public class ModuleTechMachine
 
     StoneKilnRecipesAdd.apply(Registries.STONE_KILN_RECIPES);
     StoneSawmillRecipesAdd.apply(Registries.STONE_SAWMILL_RECIPES);
+    StoneSawmillRecipesAdd.registerInheritedChoppingBlockRecipes(this.getConfigurationDirectory().toPath(), ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE, Registries.STONE_SAWMILL_RECIPES);
     StoneCrucibleRecipesAdd.apply(Registries.STONE_CRUCIBLE_RECIPES);
     StoneOvenRecipesAdd.apply(Registries.STONE_OVEN_RECIPES);
 

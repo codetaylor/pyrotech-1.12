@@ -1,87 +1,30 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.library.JsonInitializer;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.init.WoodCompatInitializer;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.ChoppingBlockRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class StoneSawmillRecipesAdd {
 
   public static void apply(IForgeRegistryModifiable<StoneSawmillRecipe> registry) {
-
-    // --- Wood Planks ---
-
-    registerSawmillRecipeWood(registry, "planks_oak",
-        new ItemStack(Blocks.PLANKS, 1, 0),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 0))
-    );
-
-    registerSawmillRecipeWood(registry, "planks_spruce",
-        new ItemStack(Blocks.PLANKS, 1, 1),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 1))
-    );
-
-    registerSawmillRecipeWood(registry, "planks_birch",
-        new ItemStack(Blocks.PLANKS, 1, 2),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 2))
-    );
-
-    registerSawmillRecipeWood(registry, "planks_jungle",
-        new ItemStack(Blocks.PLANKS, 1, 3),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG, 1, 3))
-    );
-
-    registerSawmillRecipeWood(registry, "planks_acacia",
-        new ItemStack(Blocks.PLANKS, 1, 4),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG2, 1, 0))
-    );
-
-    registerSawmillRecipeWood(registry, "planks_dark_oak",
-        new ItemStack(Blocks.PLANKS, 1, 5),
-        Ingredient.fromStacks(new ItemStack(Blocks.LOG2, 1, 1))
-    );
-
-    // --- Wood Slabs ---
-
-    registerSawmillRecipeWood(registry, "slab_oak",
-        new ItemStack(Blocks.WOODEN_SLAB, 1, 0),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 0))
-    );
-
-    registerSawmillRecipeWood(registry, "slab_spruce",
-        new ItemStack(Blocks.WOODEN_SLAB, 1, 1),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 1))
-    );
-
-    registerSawmillRecipeWood(registry, "slab_birch",
-        new ItemStack(Blocks.WOODEN_SLAB, 1, 2),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 2))
-    );
-
-    registerSawmillRecipeWood(registry, "slab_jungle",
-        new ItemStack(Blocks.WOODEN_SLAB, 1, 3),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 3))
-    );
-
-    registerSawmillRecipeWood(registry, "slab_acacia",
-        new ItemStack(Blocks.WOODEN_SLAB, 1, 4),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 4))
-    );
-
-    registerSawmillRecipeWood(registry, "slab_dark_oak",
-        new ItemStack(Blocks.WOODEN_SLAB, 1, 5),
-        Ingredient.fromStacks(new ItemStack(Blocks.PLANKS, 1, 5))
-    );
-
-    // --- Misc ---
 
     // board
     registerSawmillRecipeWood(registry, "board",
@@ -100,6 +43,46 @@ public class StoneSawmillRecipesAdd {
         ItemMaterial.EnumType.BOARD_TARRED.asStack(),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.PLANKS_TARRED))
     );
+  }
+
+  public static void registerInheritedChoppingBlockRecipes(
+      Path configurationPath,
+      IForgeRegistryModifiable<ChoppingBlockRecipe> fromRegistry,
+      IForgeRegistryModifiable<StoneSawmillRecipe> toRegistry
+  ) {
+
+    WoodCompatInitializer.WoodCompatData woodCompatData = JsonInitializer.read(
+        configurationPath.resolve(ModuleTechMachine.MOD_ID),
+        ".core.Wood-Custom.json",
+        WoodCompatInitializer.WoodCompatData.class,
+        ModuleTechMachine.LOGGER
+    );
+
+    if (woodCompatData == null) {
+      return;
+    }
+
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)
+        && ModuleTechMachineConfig.STONE_SAWMILL.INHERIT_CHOPPING_BLOCK_RECIPES) {
+
+      Collection<ChoppingBlockRecipe> valuesCollection = fromRegistry.getValuesCollection();
+      ArrayList<ChoppingBlockRecipe> snapshot = new ArrayList<>(valuesCollection);
+
+      for (ChoppingBlockRecipe recipe : snapshot) {
+        ResourceLocation registryName = recipe.getRegistryName();
+
+        if (registryName == null) {
+          continue;
+        }
+
+        StoneSawmillRecipesAdd.registerSawmillRecipeWood(
+            toRegistry,
+            "chopping_block/" + registryName.getResourcePath(),
+            recipe.getOutput(),
+            recipe.getInput()
+        );
+      }
+    }
   }
 
   private static void registerSawmillRecipeWood(IForgeRegistryModifiable<StoneSawmillRecipe> registry, String name, ItemStack output, Ingredient input) {
