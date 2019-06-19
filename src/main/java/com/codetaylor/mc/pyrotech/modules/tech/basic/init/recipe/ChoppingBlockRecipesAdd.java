@@ -36,19 +36,18 @@ public class ChoppingBlockRecipesAdd {
       return;
     }
 
-    Iterator<Map.Entry<String, WoodCompatInitializer.WoodCompatModData>> iterator = woodCompatData.mods.entrySet().iterator();
+    Iterator<Map.Entry<String, Map<String, String>>> iterator = woodCompatData.mods.entrySet().iterator();
 
     for (; iterator.hasNext(); ) {
-      Map.Entry<String, WoodCompatInitializer.WoodCompatModData> modEntry = iterator.next();
+      Map.Entry<String, Map<String, String>> modEntry = iterator.next();
       String modId = modEntry.getKey();
 
       if (!Loader.isModLoaded(modId)) {
         continue;
       }
 
-      WoodCompatInitializer.WoodCompatModData woodCompatModData = modEntry.getValue();
-      ChoppingBlockRecipesAdd.createRecipe(registry, modId, woodCompatModData.planks);
-      ChoppingBlockRecipesAdd.createRecipe(registry, modId, woodCompatModData.slabs);
+      Map<String, String> woodCompatModData = modEntry.getValue();
+      ChoppingBlockRecipesAdd.createRecipe(registry, modId, woodCompatModData);
     }
   }
 
