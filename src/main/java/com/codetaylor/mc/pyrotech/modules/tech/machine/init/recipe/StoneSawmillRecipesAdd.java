@@ -79,13 +79,19 @@ public class StoneSawmillRecipesAdd {
             toRegistry,
             "chopping_block/" + registryName.getResourcePath(),
             recipe.getOutput(),
-            recipe.getInput()
+            recipe.getInput(),
+            ModuleTechMachineConfig.STONE_SAWMILL.INHERITED_CHOPPING_BLOCK_RECIPE_DURATION_MODIFIER
         );
       }
     }
   }
 
   private static void registerSawmillRecipeWood(IForgeRegistryModifiable<StoneSawmillRecipe> registry, String name, ItemStack output, Ingredient input) {
+
+    StoneSawmillRecipesAdd.registerSawmillRecipeWood(registry, name, output, input, 1);
+  }
+
+  private static void registerSawmillRecipeWood(IForgeRegistryModifiable<StoneSawmillRecipe> registry, String name, ItemStack output, Ingredient input, double durationModifier) {
 
     int woodChips = 8;
     output = output.copy();
@@ -94,7 +100,7 @@ public class StoneSawmillRecipesAdd {
     registry.register(new StoneSawmillRecipe(
         output,
         input,
-        ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 8 * 20,
+        (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 8 * 20 * durationModifier),
         Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
         woodChips
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_0"));
@@ -105,7 +111,7 @@ public class StoneSawmillRecipesAdd {
     registry.register(new StoneSawmillRecipe(
         output,
         input,
-        ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 6 * 20,
+        (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 6 * 20 * durationModifier),
         Ingredient.fromStacks(
             new ItemStack(ModuleTechMachine.Items.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
             new ItemStack(ModuleTechMachine.Items.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
@@ -119,7 +125,7 @@ public class StoneSawmillRecipesAdd {
     registry.register(new StoneSawmillRecipe(
         output,
         input,
-        ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
+        (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20 * durationModifier),
         Ingredient.fromStacks(
             new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
             new ItemStack(ModuleTechMachine.Items.OBSIDIAN_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
@@ -133,7 +139,7 @@ public class StoneSawmillRecipesAdd {
     registry.register(new StoneSawmillRecipe(
         output,
         input,
-        ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20,
+        (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20 * durationModifier),
         Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
         woodChips
     ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_3"));
