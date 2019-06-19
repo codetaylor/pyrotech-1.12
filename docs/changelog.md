@@ -1,3 +1,10 @@
+1.0.x
+
+  * Fixed:
+    * Sawmill recipes that use a blade the machine is not configured to use should not be displayed in JEI
+
+---
+
 1.0.8
 
   * Added:
