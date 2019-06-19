@@ -129,7 +129,8 @@ public final class WoodCompatInitializer {
         "This file defines input and output pairs for auto-generating recipes",
         "for the Chopping Block.",
         "",
-        "Item strings for recipe inputs and outputs are in the format: (path):(meta)"
+        "Entries are in the format (output);(input)",
+        "Entry item strings are in the format: (path):(meta)"
     };
 
     public Map<String, Map<String, String>> mods = new TreeMap<>();
