@@ -10,6 +10,10 @@
     {
       "type": "forge:ore_dict",
       "ore": "logWood"
+    },
+    {
+      "item": "pyrotech:crude_axe",
+      "data": 0
     }
   ],
   "result": {
