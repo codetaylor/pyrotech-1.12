@@ -1,11 +1,14 @@
 1.0.x
 
   * Added:
-    * Information to the guidebook introduction to draw attention to Pyrotech's sneak + scroll inventory mechanics
+    * Information to the guidebook introduction to draw attention to Pyrotech's sneak + scroll inventory mechanics (#33)
 
   * Fixed:
     * Sawmill recipes that use a blade the machine is not configured to use should not be displayed in JEI
     * Advancement, Simply Slabs, does not check metadata (#58)
+
+  * Changed:
+    * Modified wording of the guidebook entry for Mulched Farmland to clearly state the effect is temporary (#32)
 
 ---
 

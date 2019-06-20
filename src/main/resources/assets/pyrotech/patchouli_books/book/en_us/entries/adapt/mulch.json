@@ -12,7 +12,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:farmland_mulched",
-      "text": "$(item)Mulched Farmland$() is created by placing $(item)Potash Mulch$() on either $(item)Moisturized Farmland$() or a plant growing on top.$(p)$(info) $(item)Mulched Farmland$() is resistant to being trampled and plants growing on top will periodically receive a $(thing)bone meal effect$() for the duration of the mulch."
+      "text": "$(item)Mulched Farmland$() is a temporary effect created by placing $(item)Potash Mulch$() on either $(item)Moisturized Farmland$() or a plant growing on top.$(p)$(info) $(item)Mulched Farmland$() is resistant to being trampled and plants growing on top will periodically receive a $(thing)bone meal effect$() for the duration of the mulch effect."
     },
     {
       "type": "image",
