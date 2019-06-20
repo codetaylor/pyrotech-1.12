@@ -28,7 +28,7 @@ public class JsonInitializer {
   }
 
   @Nullable
-  public static <T> T read(Path configurationPath, String customFilename, Class<T> dataClass, Logger logger) {
+  public static <T> T read(Path configurationPath, String customFilename, Class<T> dataClass, @Nullable Logger logger) {
 
     Path customPath = Paths.get(configurationPath.toString(), customFilename);
     BufferedReader reader = null;
@@ -38,7 +38,10 @@ public class JsonInitializer {
       return GSON.fromJson(reader, dataClass);
 
     } catch (IOException e) {
-      logger.error("", e);
+
+      if (logger != null) {
+        logger.error("", e);
+      }
 
     } finally {
       FileHelper.closeSilently(reader);

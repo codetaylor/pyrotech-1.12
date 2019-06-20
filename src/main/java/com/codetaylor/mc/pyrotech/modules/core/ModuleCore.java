@@ -19,6 +19,7 @@ import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaCraftingRecipe
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesRemove;
 import com.codetaylor.mc.pyrotech.modules.core.item.*;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.CrTWoodCompatDelegate;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemDoor;
@@ -27,8 +28,11 @@ import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -47,6 +51,8 @@ public class ModuleCore
 
   public static IPacketService PACKET_SERVICE;
   public static ITileDataService TILE_DATA_SERVICE;
+
+  public static boolean MISSING_WOOD_COMPAT = true;
 
   public ModuleCore() {
 
@@ -71,7 +77,15 @@ public class ModuleCore
 
     super.onPreInitializationEvent(event);
 
-    WoodCompatInitializer.onPreInitialization(this.getConfigurationDirectory().toPath());
+    WoodCompatInitializer.WoodCompatData woodCompatData = WoodCompatInitializer.read(this.getConfigurationDirectory().toPath());
+
+    if (woodCompatData != null) {
+      MISSING_WOOD_COMPAT = false;
+    }
+
+    if (Loader.isModLoaded("crafttweaker")) {
+      MinecraftForge.EVENT_BUS.register(new CrTWoodCompatDelegate(this.getConfigurationDirectory().toPath()));
+    }
   }
 
   @SideOnly(Side.CLIENT)
@@ -104,8 +118,6 @@ public class ModuleCore
 
     super.onRegisterRecipesEvent(event);
 
-    VanillaCraftingRecipesRemove.apply(event.getRegistry());
-    VanillaFurnaceRecipesRemove.apply();
     VanillaFurnaceRecipesAdd.apply();
   }
 
@@ -141,6 +153,18 @@ public class ModuleCore
     ClientCommandHandler.instance.registerCommand(new ClientCommandExport());
 
     new Injector().inject(ModuleCore.Utils.class, "BLOCK_RENDERER", blockRenderer);
+  }
+
+  @Override
+  public void onPostInitializationEvent(FMLPostInitializationEvent event) {
+
+    super.onPostInitializationEvent(event);
+
+    if (!Loader.isModLoaded("crafttweaker")) {
+      WoodCompatInitializer.create(this.getConfigurationDirectory().toPath());
+      VanillaCraftingRecipesRemove.apply(ForgeRegistries.RECIPES);
+      VanillaFurnaceRecipesRemove.apply();
+    }
   }
 
   public static class Utils {

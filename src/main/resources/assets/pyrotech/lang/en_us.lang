@@ -461,3 +461,5 @@ advancement.pyrotech.tools.obsidian.desc=Craft an Obsidian Pickaxe
 #------------------------------------------------------------------------------
 
 gui.pyrotech.disconnect.module.mismatch=The client-side modules enabled in Pyrotech's module config don't match the modules enabled on the server. The server expects: %s.
+
+gui.pyrotech.missing.wood.compat=Please restart Minecraft. Pyrotech's generated wood recipes will load the next time the game is launched.

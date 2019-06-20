@@ -51,12 +51,7 @@ public class StoneSawmillRecipesAdd {
       IForgeRegistryModifiable<StoneSawmillRecipe> toRegistry
   ) {
 
-    WoodCompatInitializer.WoodCompatData woodCompatData = JsonInitializer.read(
-        configurationPath.resolve(ModuleTechMachine.MOD_ID),
-        ".core.Wood-Custom.json",
-        WoodCompatInitializer.WoodCompatData.class,
-        ModuleTechMachine.LOGGER
-    );
+    WoodCompatInitializer.WoodCompatData woodCompatData = WoodCompatInitializer.read(configurationPath);
 
     if (woodCompatData == null) {
       return;

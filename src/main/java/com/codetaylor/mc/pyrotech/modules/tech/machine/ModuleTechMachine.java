@@ -103,7 +103,6 @@ public class ModuleTechMachine
 
     StoneKilnRecipesAdd.apply(Registries.STONE_KILN_RECIPES);
     StoneSawmillRecipesAdd.apply(Registries.STONE_SAWMILL_RECIPES);
-    StoneSawmillRecipesAdd.registerInheritedChoppingBlockRecipes(this.getConfigurationDirectory().toPath(), ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE, Registries.STONE_SAWMILL_RECIPES);
     StoneCrucibleRecipesAdd.apply(Registries.STONE_CRUCIBLE_RECIPES);
     StoneOvenRecipesAdd.apply(Registries.STONE_OVEN_RECIPES);
 
@@ -137,6 +136,7 @@ public class ModuleTechMachine
 
     StoneKilnRecipesAdd.registerInheritedRecipes(ModuleTechBasic.Registries.KILN_PIT_RECIPE, Registries.STONE_KILN_RECIPES);
     StoneOvenRecipesAdd.registerInheritedDryingRackRecipes(ModuleTechBasic.Registries.DRYING_RACK_RECIPE, Registries.STONE_OVEN_RECIPES);
+    StoneSawmillRecipesAdd.registerInheritedChoppingBlockRecipes(this.getConfigurationDirectory().toPath(), ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE, Registries.STONE_SAWMILL_RECIPES);
 
     BrickKilnRecipesAdd.registerInheritedRecipes(Registries.STONE_KILN_RECIPES, Registries.BRICK_KILN_RECIPES);
     BrickOvenRecipesAdd.registerInheritedRecipes(Registries.STONE_OVEN_RECIPES, Registries.BRICK_OVEN_RECIPES);
