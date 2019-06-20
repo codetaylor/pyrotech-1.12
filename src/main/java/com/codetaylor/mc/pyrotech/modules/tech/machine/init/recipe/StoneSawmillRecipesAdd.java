@@ -1,9 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.library.JsonInitializer;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.init.WoodCompatInitializer;
+import com.codetaylor.mc.pyrotech.modules.core.init.CompatInitializerWood;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.ChoppingBlockRecipe;
@@ -51,7 +50,7 @@ public class StoneSawmillRecipesAdd {
       IForgeRegistryModifiable<StoneSawmillRecipe> toRegistry
   ) {
 
-    WoodCompatInitializer.WoodCompatData woodCompatData = WoodCompatInitializer.read(configurationPath);
+    CompatInitializerWood.WoodCompatData woodCompatData = CompatInitializerWood.read(configurationPath);
 
     if (woodCompatData == null) {
       return;

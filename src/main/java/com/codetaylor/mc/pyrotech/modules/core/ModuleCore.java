@@ -39,6 +39,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.file.Path;
 import java.util.Collections;
 
 public class ModuleCore
@@ -53,6 +54,7 @@ public class ModuleCore
   public static ITileDataService TILE_DATA_SERVICE;
 
   public static boolean MISSING_WOOD_COMPAT = true;
+  public static boolean MISSING_ORE_COMPAT = true;
 
   public ModuleCore() {
 
@@ -77,10 +79,16 @@ public class ModuleCore
 
     super.onPreInitializationEvent(event);
 
-    WoodCompatInitializer.WoodCompatData woodCompatData = WoodCompatInitializer.read(this.getConfigurationDirectory().toPath());
+    CompatInitializerWood.WoodCompatData woodCompatData = CompatInitializerWood.read(this.getConfigurationDirectory().toPath());
 
     if (woodCompatData != null) {
       MISSING_WOOD_COMPAT = false;
+    }
+
+    CompatInitializerOre.OreCompatData oreCompatData = CompatInitializerOre.read(this.getConfigurationDirectory().toPath());
+
+    if (oreCompatData != null) {
+      MISSING_ORE_COMPAT = false;
     }
 
     if (Loader.isModLoaded("crafttweaker")) {
@@ -173,7 +181,10 @@ public class ModuleCore
    */
   public void onPostInitializationPreCrT() {
 
-    WoodCompatInitializer.create(this.getConfigurationDirectory().toPath());
+    Path configurationPath = this.getConfigurationDirectory().toPath();
+    CompatInitializerWood.create(configurationPath);
+    CompatInitializerOre.create(configurationPath);
+
     VanillaCraftingRecipesRemove.apply(ForgeRegistries.RECIPES);
     VanillaFurnaceRecipesRemove.apply();
   }

@@ -179,6 +179,7 @@ public class ModuleTechBloomery
 
     registry.registerItemRegistrationStrategy(forgeRegistry -> {
       SlagInitializer.initializeSlag(this.modConfigurationDirectory);
+      SlagInitializer.initializeSlagFromOreCompat(this.getConfigurationDirectory().toPath());
     });
 
     EntityInitializer.onRegister(registry);

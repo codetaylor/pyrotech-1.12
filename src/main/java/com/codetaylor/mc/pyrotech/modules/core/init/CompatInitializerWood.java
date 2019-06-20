@@ -17,15 +17,15 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
-public final class WoodCompatInitializer {
+public final class CompatInitializerWood {
 
   public static void create(Path configurationPath) {
 
     JsonInitializer.create(
         configurationPath.resolve(ModuleCore.MOD_ID),
-        ".core.Wood-Generated.json",
-        ".core.Wood-Custom.json",
-        () -> WoodCompatInitializer.createGeneratedData(new WoodCompatData()),
+        ".core.compat.Wood-Generated.json",
+        ".core.compat.Wood-Custom.json",
+        () -> CompatInitializerWood.createGeneratedData(new WoodCompatData()),
         ModuleCore.LOGGER
     );
   }
@@ -35,8 +35,8 @@ public final class WoodCompatInitializer {
 
     return JsonInitializer.read(
         configurationPath.resolve(ModuleTechMachine.MOD_ID),
-        ".core.Wood-Custom.json",
-        WoodCompatInitializer.WoodCompatData.class,
+        ".core.compat.Wood-Custom.json",
+        CompatInitializerWood.WoodCompatData.class,
         null // prevent logging errors
     );
   }
@@ -65,7 +65,7 @@ public final class WoodCompatInitializer {
           ItemStack output = recipe.getRecipeOutput();
 
           if (OreDictHelper.contains("plankWood", output)) {
-            WoodCompatInitializer.generateEntry(data, recipe, input, output);
+            CompatInitializerWood.generateEntry(data, recipe, input, output);
           }
 
         }
@@ -98,7 +98,7 @@ public final class WoodCompatInitializer {
         ItemStack output = recipe.getRecipeOutput();
 
         if (OreDictHelper.contains("slabWood", output)) {
-          WoodCompatInitializer.generateEntry(data, recipe, input, output);
+          CompatInitializerWood.generateEntry(data, recipe, input, output);
         }
       }
     }
@@ -154,7 +154,7 @@ public final class WoodCompatInitializer {
     public Map<String, Map<String, String>> mods = new TreeMap<>();
   }
 
-  private WoodCompatInitializer() {
+  private CompatInitializerWood() {
     //
   }
 

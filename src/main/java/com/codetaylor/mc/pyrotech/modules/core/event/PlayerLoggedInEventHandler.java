@@ -22,8 +22,17 @@ public class PlayerLoggedInEventHandler {
     // The client will respond to this packet with its module config and
     // if the response doesn't match the server, the player will be kicked.
 
+    if (ModuleCore.MISSING_WOOD_COMPAT
+        || ModuleCore.MISSING_ORE_COMPAT) {
+      player.sendMessage(new TextComponentTranslation("gui.pyrotech.restart"));
+    }
+
     if (ModuleCore.MISSING_WOOD_COMPAT) {
       player.sendMessage(new TextComponentTranslation("gui.pyrotech.missing.wood.compat"));
+    }
+
+    if (ModuleCore.MISSING_ORE_COMPAT) {
+      player.sendMessage(new TextComponentTranslation("gui.pyrotech.missing.ore.compat"));
     }
   }
 

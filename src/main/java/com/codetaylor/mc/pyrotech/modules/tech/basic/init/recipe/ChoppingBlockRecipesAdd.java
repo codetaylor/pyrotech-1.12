@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
-import com.codetaylor.mc.pyrotech.modules.core.init.WoodCompatInitializer;
+import com.codetaylor.mc.pyrotech.modules.core.init.CompatInitializerWood;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.ChoppingBlockRecipe;
 import net.minecraft.item.Item;
@@ -24,7 +24,7 @@ public class ChoppingBlockRecipesAdd {
 
   public static void applyCompatRecipes(Path configurationPath, IForgeRegistry<ChoppingBlockRecipe> registry) {
 
-    WoodCompatInitializer.WoodCompatData woodCompatData = WoodCompatInitializer.read(configurationPath);
+    CompatInitializerWood.WoodCompatData woodCompatData = CompatInitializerWood.read(configurationPath);
 
     if (woodCompatData == null) {
       return;
