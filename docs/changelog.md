@@ -4,6 +4,13 @@
     * CrT builder for the worktable recipes
     * Support for non-hammer tools in the CrT worktable recipes
     * Bone meal particles to indicate recipe progress when banging on a worktable or anvil
+    * Auto generated log -> plank and plank -> slab recipes from other mods (#5)
+
+  * Fixed:
+    * Conflict with TE causing all wood recipes to output a Chopping Block (#17)
+
+  * Changed:
+    * Recipe for Chopping Block now requires a Crude Axe, prevents conflict with TE (#17)
 
   * Fixed:
     * Refractory Sawmill recipe tab no longer shows in JEI (#60)
