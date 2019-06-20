@@ -1,5 +1,8 @@
 1.0.x
 
+  * Added:
+    * Information to the guidebook introduction to draw attention to Pyrotech's sneak + scroll inventory mechanics
+
   * Fixed:
     * Sawmill recipes that use a blade the machine is not configured to use should not be displayed in JEI
     * Advancement, Simply Slabs, does not check metadata (#58)
