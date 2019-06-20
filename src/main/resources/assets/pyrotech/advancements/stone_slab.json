@@ -1,7 +1,8 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:stone_slab"
+      "item": "minecraft:stone_slab",
+      "data": 0
     },
     "title": {
       "translate": "advancement.pyrotech.stone.slab"
@@ -19,7 +20,8 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:stone_slab"
+            "item": "minecraft:stone_slab",
+            "data": 0
           }
         ]
       }
