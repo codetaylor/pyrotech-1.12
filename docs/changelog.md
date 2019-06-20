@@ -1,7 +1,14 @@
-1.0.x
+1.0.9
+
+  * NOTE: Remember to refresh (delete and re-run the game) your `Custom` ore dict config file or add the changes manually, changes will only appear in the `Generated` file.
 
   * Added:
     * Information to the guidebook introduction to draw attention to Pyrotech's sneak + scroll inventory mechanics (#33)
+    * `cobblestone` oredict entry for Cobbled Andesite, Cobbled Diorite, Cobbled Granite, Cobbled Limestone (#51)
+    * `cobblestoneAndesite` oredict entry for Cobbled Andesite (#51)
+    * `cobblestoneDiorite` oredict entry for Cobbled Diorite (#51)
+    * `cobblestoneGranite` oredict entry for Cobbled Granite (#51)
+    * `cobblestoneLimestone` oredict entry for Cobbled Limestone (#51)
 
   * Fixed:
     * Sawmill recipes that use a blade the machine is not configured to use should not be displayed in JEI
@@ -10,6 +17,7 @@
   * Changed:
     * Modified wording of the guidebook entry for Mulched Farmland to clearly state the effect is temporary (#32)
     * Improved list of factors affecting Drying Rack performance (#31)
+    * Bloomery iron and gold ore recipes have been changed to use the oredict for input (#51)
 
 ---
 

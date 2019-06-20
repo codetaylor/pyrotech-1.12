@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class BloomeryRecipesAdd {
           new BloomeryRecipeBuilder(
               new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_iron_ore"),
               new ItemStack(Items.IRON_NUGGET),
-              Ingredient.fromStacks(new ItemStack(Blocks.IRON_ORE))
+              new OreIngredient("oreIron")
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
@@ -99,7 +100,7 @@ public class BloomeryRecipesAdd {
           new BloomeryRecipeBuilder(
               new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_gold_ore"),
               new ItemStack(Items.GOLD_NUGGET),
-              Ingredient.fromStacks(new ItemStack(Blocks.GOLD_ORE))
+              new OreIngredient("oreGold")
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)

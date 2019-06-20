@@ -4,7 +4,6 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
@@ -14,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class PitKilnRecipesAdd {
@@ -101,7 +101,7 @@ public class PitKilnRecipesAdd {
     // Stone - Andesite
     registry.register(new KilnPitRecipe(
         new ItemStack(Blocks.STONE, 1, 5),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.ANDESITE.getMeta())),
+        new OreIngredient("cobblestoneAndesite"),
         Reference.PitKiln.DEFAULT_BURN_TIME_TICKS,
         Reference.PitKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
@@ -113,7 +113,7 @@ public class PitKilnRecipesAdd {
     // Stone - Granite
     registry.register(new KilnPitRecipe(
         new ItemStack(Blocks.STONE, 1, 1),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.GRANITE.getMeta())),
+        new OreIngredient("cobblestoneGranite"),
         Reference.PitKiln.DEFAULT_BURN_TIME_TICKS,
         Reference.PitKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
@@ -125,7 +125,7 @@ public class PitKilnRecipesAdd {
     // Stone - Diorite
     registry.register(new KilnPitRecipe(
         new ItemStack(Blocks.STONE, 1, 3),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.DIORITE.getMeta())),
+        new OreIngredient("cobblestoneDiorite"),
         Reference.PitKiln.DEFAULT_BURN_TIME_TICKS,
         Reference.PitKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
@@ -137,7 +137,7 @@ public class PitKilnRecipesAdd {
     // Stone - Limestone
     registry.register(new KilnPitRecipe(
         new ItemStack(ModuleCore.Blocks.LIMESTONE),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COBBLESTONE, 1, BlockCobblestone.EnumType.LIMESTONE.getMeta())),
+        new OreIngredient("cobblestoneLimestone"),
         Reference.PitKiln.DEFAULT_BURN_TIME_TICKS,
         Reference.PitKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
