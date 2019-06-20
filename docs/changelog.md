@@ -9,6 +9,7 @@
 
   * Changed:
     * Modified wording of the guidebook entry for Mulched Farmland to clearly state the effect is temporary (#32)
+    * Improved list of factors affecting Drying Rack performance (#31)
 
 ---
 
