@@ -10,11 +10,11 @@
     },
     {
       "type": "text",
-      "text": "Should you find yourself in a difficult situation, the Pyrotechnic Esoterica contains many techniques and ideas that - through the act of starting fires rather than putting them out - will serve to dramatically increase the likelihood of your survival.$(p)One such technique or idea is that of the $(item)Campfire$()."
+      "text": "Should you find yourself in a difficult situation, the Pyrotechnic Esoterica contains many techniques and ideas that - through the act of starting fires rather than putting them out - will serve to dramatically increase the likelihood of your survival.$(p)For example, $(info) while looking at a Pyrotech inventory, $(sneak) to display item quantities; $(sneak) + scroll to insert or extract small amounts of items."
     },
     {
       "type": "text",
-      "text": "A $(item)Campfire$() is an indispensable component to wilderness survival and, as such, the knowledge required to construct a $(item)Campfire$() is a cornerstone in each new volunteer's wilderness survival library."
+      "text": "Another technique that will serve to dramatically increase the likelihood of your survival is the technique used to build a $(item)Campfire$().$(p)A $(item)Campfire$() is an indispensable component to wilderness survival and, as such, the knowledge required to construct a $(item)Campfire$() is a cornerstone in each new volunteer's wilderness survival library."
     },
     {
       "type": "text",
