@@ -19,7 +19,7 @@ import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaCraftingRecipe
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesRemove;
 import com.codetaylor.mc.pyrotech.modules.core.item.*;
-import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.CrTWoodCompatDelegate;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.CrTEventHandler;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemDoor;
@@ -84,7 +84,7 @@ public class ModuleCore
     }
 
     if (Loader.isModLoaded("crafttweaker")) {
-      MinecraftForge.EVENT_BUS.register(new CrTWoodCompatDelegate(this.getConfigurationDirectory().toPath()));
+      MinecraftForge.EVENT_BUS.register(new CrTEventHandler(this));
     }
   }
 
@@ -161,10 +161,21 @@ public class ModuleCore
     super.onPostInitializationEvent(event);
 
     if (!Loader.isModLoaded("crafttweaker")) {
-      WoodCompatInitializer.create(this.getConfigurationDirectory().toPath());
-      VanillaCraftingRecipesRemove.apply(ForgeRegistries.RECIPES);
-      VanillaFurnaceRecipesRemove.apply();
+      this.onPostInitializationPreCrT();
     }
+  }
+
+  /**
+   * If CrT is not installed, this is called in this mod's post-init.
+   * If CrT is installed, this is called during the CrT ActionApplyEvent, immediately
+   * before CrT recipe processing is done. Do not register anything to registries in
+   * this method; will cause log warning vomit.
+   */
+  public void onPostInitializationPreCrT() {
+
+    WoodCompatInitializer.create(this.getConfigurationDirectory().toPath());
+    VanillaCraftingRecipesRemove.apply(ForgeRegistries.RECIPES);
+    VanillaFurnaceRecipesRemove.apply();
   }
 
   public static class Utils {
