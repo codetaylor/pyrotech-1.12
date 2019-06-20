@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 import com.codetaylor.mc.athenaeum.util.CloneStateMapper;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.library.JsonInitializer;
+import com.codetaylor.mc.pyrotech.modules.core.init.CompatInitializerOre;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
@@ -18,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -29,7 +31,9 @@ import javax.annotation.Nullable;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper.PROPERTY_STRING_MAPPER;
 
@@ -78,15 +82,100 @@ public final class SlagInitializer {
     }
   }
 
+  public static void initializeSlagFromOreCompat(Path configurationPath) {
+
+    CompatInitializerOre.OreCompatData data = CompatInitializerOre.read(configurationPath);
+
+    if (data == null) {
+      return;
+    }
+
+    for (Map.Entry<String, CompatInitializerOre.OreCompatOreDictEntry> entry : data.oredict.entrySet()) {
+      String oreDictKey = entry.getKey();
+      CompatInitializerOre.OreCompatOreDictEntry oreDictEntry = entry.getValue();
+
+      // lang key
+
+      if (oreDictEntry.langKey == null
+          || oreDictEntry.langKey.length == 0) {
+        continue;
+      }
+
+      List<String> langKeysToTest = new ArrayList<>(oreDictEntry.langKey.length);
+
+      for (String itemString : oreDictEntry.langKey) {
+        String[] split = itemString.split(":");
+        StringBuilder langKey = new StringBuilder();
+
+        if (split.length > 2) {
+
+          for (int i = 1; i < split.length; i++) {
+            langKey.append(":").append(split[i]);
+          }
+        } else {
+          langKey.append(split[1]);
+        }
+
+        langKey.append(".name");
+        langKeysToTest.add(langKey.toString());
+      }
+
+      String langKey = SlagInitializer.getFirstValidLangKey(langKeysToTest);
+
+      if (langKey == null) {
+        ModuleTechBloomery.LOGGER.error("Missing ore compat lang key for: " + oreDictKey);
+        continue;
+      }
+
+      // slag color
+
+      String colorString = oreDictEntry.slagColor;
+
+      if (colorString.length() != 6) {
+        ModuleTechBloomery.LOGGER.error("Malformed ore compat slag hex-color code: " + colorString);
+        continue;
+      }
+
+      int color;
+
+      try {
+        color = Integer.decode("0x" + colorString);
+
+      } catch (Exception e) {
+        ModuleTechBloomery.LOGGER.error("Unable to decode ore compat slag hex-color string: " + colorString, e);
+        continue;
+      }
+
+      String registryName = oreDictKey
+          .replaceAll("ore", "")
+          .toLowerCase()
+          .replace("[^a-z0-9_]", "_");
+
+      SlagInitializer.generateSlag(registryName, langKey, color);
+    }
+  }
+
+  @Nullable
+  private static String getFirstValidLangKey(List<String> langKeysToTest) {
+
+    for (String langKey : langKeysToTest) {
+
+      if (I18n.canTranslate(langKey)) {
+
+        if (langKey.endsWith(".name")) {
+          langKey = langKey.substring(0, langKey.length() - 5);
+        }
+
+        return langKey;
+      }
+    }
+
+    return null;
+  }
+
   private static JsonSlagList createGeneratedDataSlagList(JsonSlagList jsonSlagList) {
 
-    List<JsonSlagList.JsonSlagListEntry> list = jsonSlagList.getList();
-
-    // Vanilla
-    list.add(new JsonSlagList.JsonSlagListEntry("iron", "tile.oreIron", "d8af93"));
-    list.add(new JsonSlagList.JsonSlagListEntry("gold", "tile.oreGold", "fcee4b"));
-
-    // TODO: hook for auto-generation of modded ore slag
+    // Currently empty.
 
     return jsonSlagList;
   }
@@ -118,7 +207,6 @@ public final class SlagInitializer {
       registerBlock(slagBlock, resourceLocation, unlocalizedName);
       ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.put(slagBlock, new BlockPileSlag.Properties(langKey, color, slagItem));
     }
-
   }
 
   private static void registerItem(Item item, ResourceLocation registryName, String unlocalizedName) {
