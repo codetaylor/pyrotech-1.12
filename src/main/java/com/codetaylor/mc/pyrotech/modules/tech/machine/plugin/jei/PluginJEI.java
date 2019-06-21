@@ -176,7 +176,7 @@ public class PluginJEI
           })
           .collect(Collectors.toList());
 
-      registry.addRecipes(validRecipeList, JEIRecipeCategoryStoneSawmill.UID);
+      registry.addRecipes(validRecipeList, JEIRecipeCategoryBrickSawmill.UID);
     }
 
     // --- Stone Kiln
