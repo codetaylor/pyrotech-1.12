@@ -1,3 +1,10 @@
+1.0.x
+
+  * Fixed:
+    * Refractory Sawmill recipe tab no longer shows in JEI (#60)
+
+---
+
 1.0.9
 
   * NOTE: Remember to refresh (delete and re-run the game) your `Custom` ore dict config file or add the changes manually, changes will only appear in the `Generated` file.
