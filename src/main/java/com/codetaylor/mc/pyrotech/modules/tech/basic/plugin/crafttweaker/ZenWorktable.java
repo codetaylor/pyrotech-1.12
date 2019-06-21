@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
+import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
@@ -31,6 +32,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 @ZenDocClass("mods.pyrotech.Worktable")
+@ZenDocAppend({"docs/include/worktable.example.md"})
 @ZenClass("mods.pyrotech.Worktable")
 public class ZenWorktable {
 
@@ -169,6 +171,9 @@ public class ZenWorktable {
     return this;
   }
 
+  @ZenDocMethod(
+      order = 7
+  )
   @ZenMethod
   public void register() {
 
@@ -256,7 +261,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 7,
+      order = 5,
       args = {
           @ZenDocArg(arg = "resourceLocations")
       }
@@ -283,7 +288,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 8,
+      order = 6,
       description = {
           "Blacklist all vanilla crafting recipes."
       }
@@ -295,7 +300,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 9,
+      order = 7,
       args = {
           @ZenDocArg(arg = "resourceLocations")
       }
@@ -322,7 +327,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 10,
+      order = 8,
       args = {
           @ZenDocArg(arg = "output", info = "output ingredient to match")
       },
