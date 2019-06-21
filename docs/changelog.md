@@ -19,6 +19,7 @@
     * Bone meal particles to indicate recipe progress when banging on a worktable or anvil
     * Auto generated log -> plank and plank -> slab recipes from other mods (#5)
     * Auto generated ore compat for common ores (#5)
+    * Config option to prevent buckets from placing source blocks when broken (#14)
 
   * Fixed:
     * Conflict with TE causing all wood recipes to output a Chopping Block (#17)

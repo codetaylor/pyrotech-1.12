@@ -67,4 +67,10 @@ public class ItemBucketWood
 
     return !ModuleBucketConfig.BUCKET_WOOD.ENABLE_COW_MILK;
   }
+
+  @Override
+  protected boolean dropFluidSourceOnBreak() {
+
+    return ModuleBucketConfig.BUCKET_WOOD.DROP_SOURCE_ON_BREAK;
+  }
 }

@@ -60,4 +60,10 @@ public class ItemBucketStone
 
     return !ModuleBucketConfig.BUCKET_STONE.ENABLE_COW_MILK;
   }
+
+  @Override
+  protected boolean dropFluidSourceOnBreak() {
+
+    return ModuleBucketConfig.BUCKET_STONE.DROP_SOURCE_ON_BREAK;
+  }
 }

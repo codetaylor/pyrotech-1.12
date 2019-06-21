@@ -5,7 +5,9 @@ import com.codetaylor.mc.athenaeum.util.FluidHelper;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -358,15 +360,14 @@ public abstract class ItemBucketBase
   // - Fluid Placement
   // ---------------------------------------------------------------------------
 
-  private void tryPlaceFluid(World world, EntityPlayer player, BlockPos pos, ItemStack containerStack, FluidStack fluidStack) {
+  @Nullable
+  private FluidActionResult tryPlaceFluid(World world, EntityPlayer player, BlockPos pos, ItemStack containerStack, FluidStack fluidStack) {
 
-    if (world.isRemote) {
-      return;
+    if (!world.isRemote && world.isBlockModifiable(player, pos)) {
+      return FluidUtil.tryPlaceFluid(player, world, pos, containerStack, fluidStack);
     }
 
-    if (world.isBlockModifiable(player, pos)) {
-      FluidUtil.tryPlaceFluid(player, world, pos, containerStack, fluidStack);
-    }
+    return null;
   }
 
   /**
@@ -621,7 +622,21 @@ public abstract class ItemBucketBase
 
       if (entity instanceof EntityPlayer) {
         EntityPlayer player = (EntityPlayer) entity;
-        this.tryPlaceFluid(player.getEntityWorld(), player, player.getPosition(), stack, fluidStack);
+        BlockPos pos = player.getPosition();
+        FluidActionResult fluidActionResult = this.tryPlaceFluid(player.getEntityWorld(), player, pos, stack, fluidStack);
+
+        if (this.dropFluidSourceOnBreak()
+            && fluidActionResult != null
+            && fluidActionResult.isSuccess()) {
+          IBlockState blockState = world.getBlockState(pos);
+          Block block = blockState.getBlock();
+          IBlockState defaultState = block.getDefaultState();
+
+          if (block instanceof IFluidBlock
+              || block instanceof BlockLiquid) {
+            world.setBlockState(pos, defaultState.withProperty(BlockLiquid.LEVEL, 5), 1 | 2 | 8);
+          }
+        }
       }
 
       SoundHelper.playSoundServer(world, entity.getPosition(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
@@ -630,6 +645,8 @@ public abstract class ItemBucketBase
       this.setDurability(stack, durability);
     }
   }
+
+  protected abstract boolean dropFluidSourceOnBreak();
 
   // ---------------------------------------------------------------------------
   // - Helpers
