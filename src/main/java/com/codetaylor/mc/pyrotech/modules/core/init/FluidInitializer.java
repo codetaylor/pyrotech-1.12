@@ -22,7 +22,7 @@ public final class FluidInitializer {
         ModuleCore.Fluids.class,
         "CLAY",
         REGISTRY.createFluid(
-            "clay",
+            "liquid_clay",
             true,
             fluid -> fluid.setDensity(6000).setViscosity(12000),
             BlockFluidClay::new

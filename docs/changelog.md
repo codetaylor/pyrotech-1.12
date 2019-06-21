@@ -13,6 +13,7 @@
 
   * Changed:
     * Recipe for Chopping Block now requires a Crude Axe, prevents conflict with TE (#17)
+    * Fluid `clay` has been renamed to `liquid_clay` to prevent conflict with TiC fluid `clay` (#57)
 
 ---
 

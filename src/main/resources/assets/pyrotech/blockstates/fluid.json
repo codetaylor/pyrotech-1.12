@@ -18,10 +18,10 @@
         }
       }
     ],
-    "clay": [
+    "liquid_clay": [
       {
         "custom": {
-          "fluid": "clay"
+          "fluid": "liquid_clay"
         }
       }
     ]

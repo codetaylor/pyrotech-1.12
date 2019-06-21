@@ -177,8 +177,8 @@ item.pyrotech.obsidian.shears.name=Obsidian Shears
 # Module: Core
 #------------------------------------------------------------------------------
 
-fluid.clay=Liquid Clay
-tile.fluid.clay.name=Liquid Clay
+fluid.liquid_clay=Liquid Clay
+tile.fluid.liquid_clay.name=Liquid Clay
 
 item.pyrotech.straw.name=Straw
 item.pyrotech.coal.coke.name=Coal Coke
