@@ -9,12 +9,10 @@
 
   * Fixed:
     * Conflict with TE causing all wood recipes to output a Chopping Block (#17)
+    * Refractory Sawmill recipe tab no longer shows in JEI (#60)
 
   * Changed:
     * Recipe for Chopping Block now requires a Crude Axe, prevents conflict with TE (#17)
-
-  * Fixed:
-    * Refractory Sawmill recipe tab no longer shows in JEI (#60)
 
 ---
 
