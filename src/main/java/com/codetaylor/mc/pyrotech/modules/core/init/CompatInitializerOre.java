@@ -17,6 +17,8 @@ public final class CompatInitializerOre {
 
   public static final Map<String, String> OREDICT_COLOR_MAP = new TreeMap<String, String>() {{
     this.put("oreAluminum", "e2e2e3");
+    this.put("oreArdite", "e85e17");
+    this.put("oreCobalt", "1c5bc1");
     this.put("oreCopper", "ffaa1c");
     this.put("oreGold", "fcee4b");
     this.put("oreIridium", "d5d4e7");
@@ -24,9 +26,13 @@ public final class CompatInitializerOre {
     this.put("oreLead", "95afee");
     this.put("oreMithril", "9cf9ff");
     this.put("oreNickel", "e4e5d8");
+    this.put("oreOctine", "ffaa22");
+    this.put("oreOsmium", "9babc4");
     this.put("orePlatinum", "55f3ff");
     this.put("oreSilver", "e8f6fd");
+    this.put("oreSyrmorite", "4455bb");
     this.put("oreTin", "c3e9ff");
+    this.put("oreUranium", "5c734b");
   }};
 
   public static void create(Path configurationPath) {

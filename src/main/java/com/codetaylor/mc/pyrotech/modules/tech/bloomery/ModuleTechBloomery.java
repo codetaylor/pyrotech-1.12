@@ -163,7 +163,7 @@ public class ModuleTechBloomery
 
     super.onRegisterRecipesEvent(event);
 
-    BloomeryRecipesAdd.apply(Registries.BLOOMERY_RECIPE);
+    BloomeryRecipesAdd.applyCompatRecipes(this.getConfigurationDirectory().toPath(), Registries.BLOOMERY_RECIPE);
     WitherForgeRecipesAdd.apply(Registries.WITHER_FORGE_RECIPE);
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {

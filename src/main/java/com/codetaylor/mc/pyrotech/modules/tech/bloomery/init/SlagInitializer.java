@@ -32,12 +32,17 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper.PROPERTY_STRING_MAPPER;
 
 public final class SlagInitializer {
+
+  // These are used during Bloomery recipe registration in the ore compat system.
+  public static final Map<String, ItemSlag> SLAG_BY_OREDICT = new HashMap<>();
+  public static final Map<String, BlockPileSlag> SLAG_PILE_BY_OREDICT = new HashMap<>();
 
   public static void initializeSlag(File configurationDirectory) {
 
@@ -78,7 +83,9 @@ public final class SlagInitializer {
       String registryName = entry.getRegistryName()
           .replace("[^A-Za-z0-9_]", "_");
 
-      SlagInitializer.generateSlag(registryName, entry.getLangKey(), color);
+      String langKey = entry.getLangKey();
+      ItemSlag itemSlag = SlagInitializer.generateSlagItem(registryName, langKey, color);
+      SlagInitializer.generateSlagBlock(registryName, langKey, color, itemSlag);
     }
   }
 
@@ -151,12 +158,15 @@ public final class SlagInitializer {
           .toLowerCase()
           .replace("[^a-z0-9_]", "_");
 
-      SlagInitializer.generateSlag(registryName, langKey, color);
+      ItemSlag itemSlag = SlagInitializer.generateSlagItem(registryName, langKey, color);
+      BlockPileSlag blockPileSlag = SlagInitializer.generateSlagBlock(registryName, langKey, color, itemSlag);
+      SlagInitializer.SLAG_BY_OREDICT.put(oreDictKey, itemSlag);
+      SlagInitializer.SLAG_PILE_BY_OREDICT.put(oreDictKey, blockPileSlag);
     }
   }
 
   @Nullable
-  private static String getFirstValidLangKey(List<String> langKeysToTest) {
+  public static String getFirstValidLangKey(List<String> langKeysToTest) {
 
     for (String langKey : langKeysToTest) {
 
@@ -180,33 +190,34 @@ public final class SlagInitializer {
     return jsonSlagList;
   }
 
-  private static void generateSlag(String registryName, String langKey, int color) {
+  private static ItemSlag generateSlagItem(String registryName, String langKey, int color) {
 
     ItemSlag slagItem = new ItemSlag();
-    {
-      ResourceLocation resourceLocation = new ResourceLocation(
-          ModuleTechBloomery.MOD_ID,
-          "generated_" + ItemSlag.NAME + "_" + registryName
-      );
+    ResourceLocation resourceLocation = new ResourceLocation(
+        ModuleTechBloomery.MOD_ID,
+        "generated_" + ItemSlag.NAME + "_" + registryName
+    );
 
-      String unlocalizedName = ModuleTechBloomery.MOD_ID + "." + ItemSlag.NAME;
-      registerItem(slagItem, resourceLocation, unlocalizedName);
-      ModuleTechBloomery.Items.GENERATED_SLAG.put(slagItem, new ItemSlag.Properties(langKey, color));
-    }
+    String unlocalizedName = ModuleTechBloomery.MOD_ID + "." + ItemSlag.NAME;
+    registerItem(slagItem, resourceLocation, unlocalizedName);
+    ModuleTechBloomery.Items.GENERATED_SLAG.put(slagItem, new ItemSlag.Properties(langKey, color));
+    return slagItem;
+  }
+
+  private static BlockPileSlag generateSlagBlock(String registryName, String langKey, int color, ItemSlag slagItem) {
 
     BlockPileSlag slagBlock = new BlockPileSlag();
-    {
-      ResourceLocation resourceLocation = new ResourceLocation(
-          ModuleTechBloomery.MOD_ID,
-          "generated_" + BlockPileSlag.NAME + "_" + registryName
-      );
+    ResourceLocation resourceLocation = new ResourceLocation(
+        ModuleTechBloomery.MOD_ID,
+        "generated_" + BlockPileSlag.NAME + "_" + registryName
+    );
 
-      String unlocalizedName = ModuleTechBloomery.MOD_ID + "." + BlockPileSlag.NAME;
-      BlockPileSlag.ItemBlockPileSlag item = new BlockPileSlag.ItemBlockPileSlag(slagBlock);
-      registerItem(item, resourceLocation, unlocalizedName);
-      registerBlock(slagBlock, resourceLocation, unlocalizedName);
-      ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.put(slagBlock, new BlockPileSlag.Properties(langKey, color, slagItem));
-    }
+    String unlocalizedName = ModuleTechBloomery.MOD_ID + "." + BlockPileSlag.NAME;
+    BlockPileSlag.ItemBlockPileSlag item = new BlockPileSlag.ItemBlockPileSlag(slagBlock);
+    registerItem(item, resourceLocation, unlocalizedName);
+    registerBlock(slagBlock, resourceLocation, unlocalizedName);
+    ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.put(slagBlock, new BlockPileSlag.Properties(langKey, color, slagItem));
+    return slagBlock;
   }
 
   private static void registerItem(Item item, ResourceLocation registryName, String unlocalizedName) {

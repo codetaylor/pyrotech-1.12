@@ -1,10 +1,11 @@
 1.1.0
 
   * Added:
-    * CrT builder for the worktable recipes
-    * Support for non-hammer tools in the CrT worktable recipes
+    * CrT builder for the worktable recipes (#1)
+    * Support for non-hammer tools in the CrT worktable recipes (#1)
     * Bone meal particles to indicate recipe progress when banging on a worktable or anvil
     * Auto generated log -> plank and plank -> slab recipes from other mods (#5)
+    * Auto generated ore compat for common ores (#5)
 
   * Fixed:
     * Conflict with TE causing all wood recipes to output a Chopping Block (#17)
