@@ -146,6 +146,12 @@ public class BlockRock //'n beats
     return NULL_AABB;
   }
 
+  @Override
+  public boolean isPassable(IBlockAccess world, BlockPos pos) {
+
+    return true;
+  }
+
   // ---------------------------------------------------------------------------
   // - Variants
   // ---------------------------------------------------------------------------
