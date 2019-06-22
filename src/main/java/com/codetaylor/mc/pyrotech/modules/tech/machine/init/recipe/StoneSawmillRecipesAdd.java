@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.init.CompatInitializerWood;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.ChoppingBlockRecipe;
@@ -17,7 +16,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -45,16 +43,9 @@ public class StoneSawmillRecipesAdd {
   }
 
   public static void registerInheritedChoppingBlockRecipes(
-      Path configurationPath,
       IForgeRegistryModifiable<ChoppingBlockRecipe> fromRegistry,
       IForgeRegistryModifiable<StoneSawmillRecipe> toRegistry
   ) {
-
-    CompatInitializerWood.WoodCompatData woodCompatData = CompatInitializerWood.read(configurationPath);
-
-    if (woodCompatData == null) {
-      return;
-    }
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)
         && ModuleTechMachineConfig.STONE_SAWMILL.INHERIT_CHOPPING_BLOCK_RECIPES) {
