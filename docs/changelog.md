@@ -6,6 +6,7 @@
 
   * Fixed:
     * Design oversight in the wood compat .json file (#67)
+    * Mobs spinning on rocks (#68)
 
   * Changed:
     * Format of the `config/pyrotech/.core.compat.Wood` json files (#67)
