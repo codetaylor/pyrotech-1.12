@@ -84,8 +84,8 @@ public final class SlagInitializer {
           .replace("[^A-Za-z0-9_]", "_");
 
       String langKey = entry.getLangKey();
-      ItemSlag itemSlag = SlagInitializer.generateSlagItem(registryName, langKey, color);
-      SlagInitializer.generateSlagBlock(registryName, langKey, color, itemSlag);
+      ItemSlag itemSlag = SlagInitializer.generateSlagItem(registryName + "_custom", langKey, color);
+      SlagInitializer.generateSlagBlock(registryName + "_custom", langKey, color, itemSlag);
     }
   }
 
@@ -158,8 +158,8 @@ public final class SlagInitializer {
           .toLowerCase()
           .replace("[^a-z0-9_]", "_");
 
-      ItemSlag itemSlag = SlagInitializer.generateSlagItem(registryName + "_compat", langKey, color);
-      BlockPileSlag blockPileSlag = SlagInitializer.generateSlagBlock(registryName + "_compat", langKey, color, itemSlag);
+      ItemSlag itemSlag = SlagInitializer.generateSlagItem(registryName, langKey, color);
+      BlockPileSlag blockPileSlag = SlagInitializer.generateSlagBlock(registryName, langKey, color, itemSlag);
       SlagInitializer.SLAG_BY_OREDICT.put(oreDictKey, itemSlag);
       SlagInitializer.SLAG_PILE_BY_OREDICT.put(oreDictKey, blockPileSlag);
     }
