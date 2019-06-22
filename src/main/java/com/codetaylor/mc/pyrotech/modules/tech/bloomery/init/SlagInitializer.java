@@ -158,8 +158,8 @@ public final class SlagInitializer {
           .toLowerCase()
           .replace("[^a-z0-9_]", "_");
 
-      ItemSlag itemSlag = SlagInitializer.generateSlagItem(registryName, langKey, color);
-      BlockPileSlag blockPileSlag = SlagInitializer.generateSlagBlock(registryName, langKey, color, itemSlag);
+      ItemSlag itemSlag = SlagInitializer.generateSlagItem(registryName + "_compat", langKey, color);
+      BlockPileSlag blockPileSlag = SlagInitializer.generateSlagBlock(registryName + "_compat", langKey, color, itemSlag);
       SlagInitializer.SLAG_BY_OREDICT.put(oreDictKey, itemSlag);
       SlagInitializer.SLAG_PILE_BY_OREDICT.put(oreDictKey, blockPileSlag);
     }
