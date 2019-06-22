@@ -114,8 +114,6 @@ public final class CompatInitializerWood {
       return;
     }
 
-    String modId = recipeRegistryName.getResourceDomain();
-
     ResourceLocation inputRegistryName = input.getItem().getRegistryName();
 
     if (inputRegistryName == null) {
@@ -123,6 +121,7 @@ public final class CompatInitializerWood {
     }
 
     String inputResourcePath = inputRegistryName.getResourcePath();
+    String inputResourceDomain = inputRegistryName.getResourceDomain();
 
     ResourceLocation outputRegistryName = output.getItem().getRegistryName();
 
@@ -131,10 +130,18 @@ public final class CompatInitializerWood {
     }
 
     String outputResourcePath = outputRegistryName.getResourcePath();
+    String outputResourceDomain = outputRegistryName.getResourceDomain();
 
-    data.mods.computeIfAbsent(modId, s -> new TreeMap<>()).put(
-        inputResourcePath + ":" + input.getMetadata(),
-        outputResourcePath + ":" + output.getMetadata()
+    String inputString = inputResourceDomain + ":" + inputResourcePath + ":" + input.getMetadata();
+
+    if (data.entries.containsKey(inputString)) {
+      ModuleCore.LOGGER.warn("Duplicate recipe input item found, skipping recipe: " + recipeRegistryName);
+      return;
+    }
+
+    data.entries.put(
+        inputString,
+        outputResourceDomain + ":" + outputResourcePath + ":" + output.getMetadata()
     );
   }
 
@@ -147,11 +154,11 @@ public final class CompatInitializerWood {
         "This file defines input and output pairs for auto-generating recipes",
         "for the Chopping Block.",
         "",
-        "Entries are in the format (input);(output)",
-        "Entry item strings are in the format: (path):(meta)"
+        "Entries are in the format (input): (output)",
+        "Entry item strings are in the format: (domain):(path):(meta)"
     };
 
-    public Map<String, Map<String, String>> mods = new TreeMap<>();
+    public Map<String, String> entries = new TreeMap<>();
   }
 
   private CompatInitializerWood() {

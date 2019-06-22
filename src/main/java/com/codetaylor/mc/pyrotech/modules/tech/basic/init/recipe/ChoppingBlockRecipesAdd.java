@@ -10,7 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -30,70 +29,54 @@ public class ChoppingBlockRecipesAdd {
       return;
     }
 
-    Iterator<Map.Entry<String, Map<String, String>>> iterator = woodCompatData.mods.entrySet().iterator();
+    Iterator<Map.Entry<String, String>> iterator = woodCompatData.entries.entrySet().iterator();
 
     for (; iterator.hasNext(); ) {
-      Map.Entry<String, Map<String, String>> modEntry = iterator.next();
-      String modId = modEntry.getKey();
+      Map.Entry<String, String> modEntry = iterator.next();
+      String inputString = modEntry.getKey();
+      String outputString = modEntry.getValue();
 
-      if (!Loader.isModLoaded(modId)) {
-        continue;
-      }
-
-      Map<String, String> woodCompatModData = modEntry.getValue();
-      ChoppingBlockRecipesAdd.createRecipe(registry, modId, woodCompatModData);
+      ChoppingBlockRecipesAdd.createRecipe(registry, inputString, outputString);
     }
   }
 
-  protected static void createRecipe(IForgeRegistry<ChoppingBlockRecipe> registry, String modId, Map<String, String> stringMap) {
+  protected static void createRecipe(IForgeRegistry<ChoppingBlockRecipe> registry, String recipeInput, String recipeOutput) {
 
-    Iterator<Map.Entry<String, String>> planksIterator = stringMap.entrySet().iterator();
+    ItemStack inputItemStack = ChoppingBlockRecipesAdd.getItemStack(recipeInput);
+    ItemStack outputItemStack = ChoppingBlockRecipesAdd.getItemStack(recipeOutput);
 
-    for (; planksIterator.hasNext(); ) {
-      Map.Entry<String, String> planksEntry = planksIterator.next();
-
-      ItemStack inputItemStack = ChoppingBlockRecipesAdd.getItemStack(modId, planksEntry.getKey());
-      ItemStack outputItemStack = ChoppingBlockRecipesAdd.getItemStack(modId, planksEntry.getValue());
-
-      if (inputItemStack.isEmpty()
-          || outputItemStack.isEmpty()) {
-        continue;
-      }
-
-      // create a recipe
-
-      Item outputItem = outputItemStack.getItem();
-      ResourceLocation registryName = outputItem.getRegistryName();
-
-      if (registryName == null) {
-        ModuleTechBasic.LOGGER.error("Item missing registry name: " + outputItem);
-        continue;
-      }
-
-      String recipeName = registryName.getResourceDomain() + "_" + registryName.getResourcePath() + "_" + outputItemStack.getMetadata();
-
-      registry.register(new ChoppingBlockRecipe(
-          outputItemStack,
-          Ingredient.fromStacks(inputItemStack)
-      ).setRegistryName(ModuleTechBasic.MOD_ID, recipeName));
+    if (inputItemStack.isEmpty()
+        || outputItemStack.isEmpty()) {
+      return;
     }
+
+    // create a recipe
+
+    Item outputItem = outputItemStack.getItem();
+    ResourceLocation registryName = outputItem.getRegistryName();
+
+    if (registryName == null) {
+      ModuleTechBasic.LOGGER.error("Item missing registry name: " + outputItem);
+      return;
+    }
+
+    String recipeName = registryName.getResourceDomain() + "_" + registryName.getResourcePath() + "_" + outputItemStack.getMetadata();
+
+    registry.register(new ChoppingBlockRecipe(
+        outputItemStack,
+        Ingredient.fromStacks(inputItemStack)
+    ).setRegistryName(ModuleTechBasic.MOD_ID, recipeName));
   }
 
-  protected static ItemStack getItemStack(String modId, String key) {
-
-    String inputString = key;
-
-    if (!inputString.startsWith(modId)) {
-      inputString = modId + ":" + inputString;
-    }
+  protected static ItemStack getItemStack(String itemString) {
 
     try {
-      ParseResult parse = RECIPE_ITEM_PARSER.parse(inputString);
+      ParseResult parse = RECIPE_ITEM_PARSER.parse(itemString);
 
       Item inputItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(parse.getDomain(), parse.getPath()));
 
       if (inputItem == null) {
-        ModuleTechBasic.LOGGER.error("Can't find registered item for: " + inputString);
+        ModuleTechBasic.LOGGER.warn("Can't find registered item for: " + itemString);
         return ItemStack.EMPTY;
       }
 
