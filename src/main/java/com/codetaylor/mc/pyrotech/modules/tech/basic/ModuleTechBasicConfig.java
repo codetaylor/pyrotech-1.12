@@ -656,6 +656,14 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble
     public double SPEED_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to every recipe in this device.",
+        "recipeDurationTicks = recipeDurationTicks * BASE_RECIPE_DURATION_MODIFIER",
+        "Default: " + 1
+    })
+    @Config.RangeDouble(min = 0)
+    public double BASE_RECIPE_DURATION_MODIFIER = 1;
   }
 
   // ---------------------------------------------------------------------------
@@ -685,6 +693,14 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble(min = 0)
     public double INHERITED_CRUDE_DRYING_RACK_RECIPE_DURATION_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to every recipe in this device.",
+        "recipeDurationTicks = recipeDurationTicks * BASE_RECIPE_DURATION_MODIFIER",
+        "Default: " + 1
+    })
+    @Config.RangeDouble(min = 0)
+    public double BASE_RECIPE_DURATION_MODIFIER = 1;
   }
 
   // ---------------------------------------------------------------------------

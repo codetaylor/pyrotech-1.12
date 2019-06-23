@@ -297,12 +297,15 @@ public abstract class TileDryingRackBase
       DryingRackRecipe recipe = this.getRecipe(itemStack);
 
       if (recipe != null) {
-        return recipe.getTimeTicks();
+        int durationTicks = (int) (recipe.getTimeTicks() * this.getBaseDurationModifier());
+        return (durationTicks > 0) ? durationTicks : 0;
       }
     }
 
     return -1;
   }
+
+  protected abstract double getBaseDurationModifier();
 
   // ---------------------------------------------------------------------------
   // - Miscellaneous
