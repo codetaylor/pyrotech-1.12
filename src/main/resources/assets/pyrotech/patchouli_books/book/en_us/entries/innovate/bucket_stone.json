@@ -7,7 +7,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:bucket/bucket_stone",
-      "text": "A $(item)Stone Bucket$() will last longer than a $(item)Wooden Bucket$() or $(item)Stone Bucket$().$(p)$(warning) A $(item)Stone Bucket$() will break with hot fluids, such as lava."
+      "text": "A $(item)Stone Bucket$() will last longer than a $(item)Wooden Bucket$() or $(item)Clay Bucket$().$(p)$(warning) A $(item)Stone Bucket$() will break with hot fluids, such as lava."
     },
     {
       "type": "relations",
