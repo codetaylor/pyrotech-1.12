@@ -4,7 +4,6 @@ import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
@@ -15,6 +14,7 @@ import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
@@ -31,11 +31,14 @@ import javax.annotation.Nullable;
 
 public abstract class TileTankBase
     extends TileNetBase
-    implements ITileInteractable {
+    implements ITileInteractable,
+    ITickable {
 
   private final TileDataFluidTank<Tank> tileDataFluidTank;
   private final Tank tank;
   private final IInteraction[] interactions;
+
+  private boolean firstLightCheck = false;
 
   public TileTankBase() {
 
@@ -73,6 +76,19 @@ public abstract class TileTankBase
   protected abstract boolean canHoldHotFluids();
 
   protected abstract int getHotFluidTemperature();
+
+  // ---------------------------------------------------------------------------
+  // - Update
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void update() {
+
+    if (!this.firstLightCheck) {
+      this.firstLightCheck = true;
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
+    }
+  }
 
   // ---------------------------------------------------------------------------
   // - Network
@@ -132,11 +148,6 @@ public abstract class TileTankBase
 
     super.readFromNBT(compound);
     this.tank.readFromNBT(compound.getCompoundTag("tank"));
-    this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
-
-    if (this.world.isRemote) {
-      BlockHelper.notifyBlockUpdate(this.world, this.pos);
-    }
   }
 
   // ---------------------------------------------------------------------------

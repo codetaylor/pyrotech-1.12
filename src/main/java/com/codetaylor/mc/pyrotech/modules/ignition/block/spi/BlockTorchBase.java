@@ -117,7 +117,7 @@ public abstract class BlockTorchBase
     TileEntity tile = world.getTileEntity(pos);
 
     if (tile instanceof TileTorchBase) {
-      ((TileTorchBase) tile).update();
+      ((TileTorchBase) tile).randomUpdate();
       world.scheduleUpdate(pos, state.getBlock(), (10 + rand.nextInt(10)) * 20);
     }
   }

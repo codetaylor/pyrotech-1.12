@@ -26,6 +26,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
@@ -72,7 +73,8 @@ public class BlockTank
       int fluidAmount = fluidTank.getFluidAmount();
 
       if (fluid != null && fluidAmount > 0) {
-        return fluid.getFluid().getBlock().getDefaultState().getLightValue();
+        int luminosity = fluid.getFluid().getLuminosity(fluid);
+        return MathHelper.clamp(luminosity, 0, 15);
       }
     }
 

@@ -13,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
@@ -36,6 +37,8 @@ public abstract class TileTarCollectorBase
   private boolean burning;
   private int burnTicksRemaining;
   private int extinguishTicksRemaining;
+
+  private boolean firstLightCheck;
 
   public TileTarCollectorBase() {
 
@@ -99,6 +102,11 @@ public abstract class TileTarCollectorBase
   public void update() {
 
     super.update();
+
+    if (!this.firstLightCheck) {
+      this.firstLightCheck = true;
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
+    }
 
     if (this.world.isRemote) {
 

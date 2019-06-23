@@ -21,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -34,13 +35,16 @@ import javax.annotation.Nonnull;
 
 public abstract class TileTorchBase
     extends TileNetBase
-    implements ITileInteractable {
+    implements ITileInteractable,
+    ITickable {
 
   private TileDataInteger type;
 
   private int duration;
   private long lastTimeStamp;
   private IInteraction[] interactions;
+
+  private boolean firstLightCheck;
 
   public TileTorchBase() {
 
@@ -100,15 +104,24 @@ public abstract class TileTorchBase
   // ---------------------------------------------------------------------------
 
   @Override
+  public void update() {
+
+    if (!this.firstLightCheck) {
+      this.firstLightCheck = true;
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
+    }
+  }
+
+  @Override
   public void onTileDataUpdate() {
 
     if (this.type.isDirty()) {
       BlockHelper.notifyBlockUpdate(this.world, this.pos);
-      this.world.checkLight(this.pos);
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
     }
   }
 
-  public void update() {
+  public void randomUpdate() {
 
     // This update is called from the block's random update.
     // The idea is to reduce the tick time consumed by the torches since
