@@ -52,15 +52,24 @@ public class ChoppingBlockRecipesAdd {
 
     // create a recipe
 
-    Item outputItem = outputItemStack.getItem();
-    ResourceLocation registryName = outputItem.getRegistryName();
+    Item inputItem = inputItemStack.getItem();
+    ResourceLocation inputItemRegistryName = inputItem.getRegistryName();
 
-    if (registryName == null) {
+    if (inputItemRegistryName == null) {
+      ModuleTechBasic.LOGGER.error("Item missing registry name: " + inputItem);
+      return;
+    }
+
+    Item outputItem = outputItemStack.getItem();
+    ResourceLocation outputItemRegistryName = outputItem.getRegistryName();
+
+    if (outputItemRegistryName == null) {
       ModuleTechBasic.LOGGER.error("Item missing registry name: " + outputItem);
       return;
     }
 
-    String recipeName = registryName.getResourceDomain() + "_" + registryName.getResourcePath() + "_" + outputItemStack.getMetadata();
+    String recipeName = outputItemRegistryName.getResourceDomain() + "_" + outputItemRegistryName.getResourcePath() + "_" + outputItemStack.getMetadata()
+        + "_from_" + inputItemRegistryName.getResourceDomain() + "_" + inputItemRegistryName.getResourcePath() + "_" + inputItemStack.getMetadata();
 
     registry.register(new ChoppingBlockRecipe(
         outputItemStack,
