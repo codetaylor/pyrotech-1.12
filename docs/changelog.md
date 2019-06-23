@@ -1,3 +1,11 @@
+1.1.4
+
+  * Fixed:
+    * Can't remove crude drying rack recipes (#73)
+    * Contrary to the proclamations of popular literature, a stone bucket does not last longer than a stone bucket (#74)
+
+---
+
 1.1.3
 
   * Fixed:
