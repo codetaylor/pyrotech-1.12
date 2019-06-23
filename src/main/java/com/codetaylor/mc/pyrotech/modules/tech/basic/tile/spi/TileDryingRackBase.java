@@ -298,7 +298,7 @@ public abstract class TileDryingRackBase
 
       if (recipe != null) {
         int durationTicks = (int) (recipe.getTimeTicks() * this.getBaseDurationModifier());
-        return (durationTicks > 0) ? durationTicks : 0;
+        return Math.max(1, durationTicks);
       }
     }
 
