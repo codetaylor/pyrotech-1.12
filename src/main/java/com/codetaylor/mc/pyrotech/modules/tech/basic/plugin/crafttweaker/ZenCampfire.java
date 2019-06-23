@@ -1,11 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
+import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogHelper;
 import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CampfireRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -118,6 +120,42 @@ public class ZenCampfire {
   public static void removeRecipes(IIngredient output) {
 
     CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
+  }
+
+  @ZenDocMethod(
+      order = 6,
+      args = {
+          @ZenDocArg(arg = "fuel")
+      },
+      description = {
+          "Whitelist ingredient for use as fuel in the campfire.",
+          "Note: blacklist will take precedence over whitelist.",
+          "This means you can whitelist <ore:logWood> and blacklist",
+          "<minecraft:log:0> if you wanted."
+      }
+  )
+  @ZenMethod
+  public static void whitelistFuel(IIngredient fuel) {
+
+    ModuleTechBasicConfig.CAMPFIRE_FUEL_WHITELIST.add(CTInputHelper.toIngredient(fuel));
+  }
+
+  @ZenDocMethod(
+      order = 7,
+      args = {
+          @ZenDocArg(arg = "fuel")
+      },
+      description = {
+          "Blacklist ingredient from use as fuel in the campfire.",
+          "Note: blacklist will take precedence over whitelist.",
+          "This means you can whitelist an oredict group and blacklist",
+          "a single item from it if you wanted."
+      }
+  )
+  @ZenMethod
+  public static void blacklistFuel(IIngredient fuel) {
+
+    ModuleTechBasicConfig.CAMPFIRE_FUEL_BLACKLIST.add(CTInputHelper.toIngredient(fuel));
   }
 
   public static class RemoveRecipe

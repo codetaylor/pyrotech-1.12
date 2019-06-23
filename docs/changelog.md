@@ -6,6 +6,8 @@
       * Crude / Drying Rack
       * Soaking Pot
     * ZS methods to assign Bloomery and Wither Forge fuel modifiers (#56)
+    * ZS methods to white / blacklist campfire fuels (#63)
+    * Config option to disable using any `logWood` as campfire fuel (#63)
 
 ---
 

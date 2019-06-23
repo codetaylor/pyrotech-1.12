@@ -1,12 +1,24 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
+import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Config(modid = ModuleTechBasic.MOD_ID, name = ModuleTechBasic.MOD_ID + "/" + "module.tech.Basic")
 public class ModuleTechBasicConfig {
+
+  @Config.Ignore
+  public static final List<Ingredient> CAMPFIRE_FUEL_WHITELIST = new ArrayList<>(1);
+
+  @Config.Ignore
+  public static final List<Ingredient> CAMPFIRE_FUEL_BLACKLIST = new ArrayList<>(1);
 
   // ---------------------------------------------------------------------------
   // - Worktable Common
@@ -822,6 +834,42 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble(min = 0)
     public double ENTITY_WALK_BURN_DAMAGE = 1.0;
+
+    @Config.Comment({
+        "If true, all 'logWood' items will be valid fuel for the campfire.",
+        "Default: " + true
+    })
+    public boolean USE_LOG_WOOD_OREDICT = true;
+
+    public boolean isValidFuel(ItemStack fuel) {
+
+      if (this.USE_LOG_WOOD_OREDICT) {
+        return OreDictHelper.contains("logWood", fuel)
+            && this.isNotBlacklistedFuel(fuel);
+      }
+
+      // search custom additions
+      for (Ingredient ingredient : ModuleTechBasicConfig.CAMPFIRE_FUEL_WHITELIST) {
+
+        if (ingredient.apply(fuel)) {
+          return this.isNotBlacklistedFuel(fuel);
+        }
+      }
+
+      return false;
+    }
+
+    private boolean isNotBlacklistedFuel(ItemStack fuel) {
+
+      for (Ingredient ingredient : ModuleTechBasicConfig.CAMPFIRE_FUEL_BLACKLIST) {
+
+        if (ingredient.apply(fuel)) {
+          return false;
+        }
+      }
+
+      return true;
+    }
   }
 
 }
