@@ -1,3 +1,17 @@
+1.1.2
+
+  * Note:
+    * To fix a conflict with generated wood compat recipe names, the generated recipe names have been changed. They now include both the input and output and look something like this: `pyrotech:minecraft_planks_4_from_minecraft_log2_0`.
+
+  * Fixed:
+    * CrT Burn method `setFluidProduced` should take `ILiquidStack` not `FluidStack`
+    * Wood compat generated recipe name conflicts (#67)
+
+  * Changed:
+    * Generated wood compat recipe names, see note
+
+---
+
 1.1.1
 
   * Notes:
