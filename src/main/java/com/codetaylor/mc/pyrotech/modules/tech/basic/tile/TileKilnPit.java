@@ -197,7 +197,7 @@ public class TileKilnPit
       KilnPitRecipe recipe = KilnPitRecipe.getRecipe(itemStack);
 
       if (recipe != null) {
-        int burnTimeTicks = Math.max(1, recipe.getTimeTicks());
+        int burnTimeTicks = (int) Math.max(1, recipe.getTimeTicks() * ModuleTechBasicConfig.PIT_KILN.BASE_RECIPE_DURATION_MODIFIER);
         this.setTotalBurnTimeTicks(burnTimeTicks);
       }
     }
