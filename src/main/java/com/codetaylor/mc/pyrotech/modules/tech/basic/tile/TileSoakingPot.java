@@ -236,7 +236,8 @@ public class TileSoakingPot
 
     if (this.currentRecipe != null) {
 
-      float increment = 1.0f / this.currentRecipe.getTimeTicks();
+      int timeTicks = (int) Math.max(1, this.currentRecipe.getTimeTicks() * ModuleTechBasicConfig.SOAKING_POT.BASE_RECIPE_DURATION_MODIFIER);
+      float increment = 1.0f / timeTicks;
 
       ItemStack itemStack = this.inputStackHandler.getStackInSlot(0);
       int maxDrain = this.currentRecipe.getInputFluid().amount * itemStack.getCount();
