@@ -1,3 +1,13 @@
+1.2.0
+
+  * Added:
+    * Config options to modify base recipe duration for:
+      * Pit Kiln
+      * Crude / Drying Rack
+      * Soaking Pot
+
+---
+
 1.1.7
 
   * Fixed:
