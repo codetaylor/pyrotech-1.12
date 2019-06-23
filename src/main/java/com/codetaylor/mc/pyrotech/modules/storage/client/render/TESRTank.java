@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.model.animation.FastTESR;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
@@ -35,9 +36,15 @@ public class TESRTank
 
     if (fluidStack != null) {
 
+      Fluid fluid = fluidStack.getFluid();
       TextureMap textureMapBlocks = Minecraft.getMinecraft().getTextureMapBlocks();
-      TextureAtlasSprite still = textureMapBlocks.getAtlasSprite(fluidStack.getFluid().getStill(fluidStack).toString());
-      TextureAtlasSprite flowing = textureMapBlocks.getAtlasSprite(fluidStack.getFluid().getFlowing(fluidStack).toString());
+      TextureAtlasSprite still = textureMapBlocks.getAtlasSprite(fluid.getStill(fluidStack).toString());
+      TextureAtlasSprite flowing = textureMapBlocks.getAtlasSprite(fluid.getFlowing(fluidStack).toString());
+
+      int color = fluid.getColor(fluidStack);
+      float r = ((color >> 16) & 0xFF) / 255f;
+      float g = ((color >> 8) & 0xFF) / 255f;
+      float b = ((color >> 0) & 0xFF) / 255f;
 
       BlockPos blockpos = new BlockPos(tile.getPos());
       int i = tile.getWorld().isBlockLoaded(blockpos) ? tile.getWorld().getCombinedLight(blockpos, 0) : 0;
@@ -52,25 +59,25 @@ public class TESRTank
       // TOP
       buffer
           .pos(INSET, level, INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(still.getMinU(), still.getMinV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, level, INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(still.getMaxU(), still.getMinV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, level, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(still.getMaxU(), still.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(INSET, level, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(still.getMinU(), still.getMaxV())
           .lightmap(j, k)
           .endVertex();
@@ -80,25 +87,25 @@ public class TESRTank
       // SIDE X+
       buffer
           .pos(1 - INSET, PX, INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMinU(), flowing.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, PX, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMaxU(), flowing.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, level, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMaxU(), interpolatedV)
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, level, INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMinU(), interpolatedV)
           .lightmap(j, k)
           .endVertex();
@@ -106,25 +113,25 @@ public class TESRTank
       // SIDE X-
       buffer
           .pos(INSET, PX, INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMinU(), flowing.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(INSET, PX, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMaxU(), flowing.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(INSET, level, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMaxU(), interpolatedV)
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(INSET, level, INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMinU(), interpolatedV)
           .lightmap(j, k)
           .endVertex();
@@ -132,25 +139,25 @@ public class TESRTank
       // SIDE Z-
       buffer
           .pos(INSET, PX, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMinU(), flowing.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, PX, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMaxU(), flowing.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, level, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMaxU(), interpolatedV)
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(INSET, level, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMinU(), interpolatedV)
           .lightmap(j, k)
           .endVertex();
@@ -158,25 +165,25 @@ public class TESRTank
       // SIDE Z+
       buffer
           .pos(INSET, PX, INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMinU(), flowing.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, PX, INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMaxU(), flowing.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, level, INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMaxU(), interpolatedV)
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(INSET, level, INSET)
-          .color(1f, 1f, 1f, 1f)
+          .color(r, g, b, 1f)
           .tex(flowing.getMinU(), interpolatedV)
           .lightmap(j, k)
           .endVertex();

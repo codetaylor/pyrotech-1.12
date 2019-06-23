@@ -2,11 +2,13 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.client.render;
 
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarCollectorBase;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.model.animation.FastTESR;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
@@ -33,8 +35,15 @@ public class TESRTarCollector
 
     if (fluidStack != null) {
 
-      BlockModelShapes bm = Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes();
-      TextureAtlasSprite still = bm.getTexture(fluidStack.getFluid().getBlock().getDefaultState());
+      Fluid fluid = fluidStack.getFluid();
+      ResourceLocation resourceLocation = fluid.getStill(fluidStack);
+      TextureMap textureMapBlocks = Minecraft.getMinecraft().getTextureMapBlocks();
+      TextureAtlasSprite sprite = textureMapBlocks.getAtlasSprite(resourceLocation.toString());
+
+      int color = fluid.getColor(fluidStack);
+      float r = ((color >> 16) & 0xFF) / 255f;
+      float g = ((color >> 8) & 0xFF) / 255f;
+      float b = ((color >> 0) & 0xFF) / 255f;
 
       BlockPos blockpos = new BlockPos(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ());
       int i = tile.getWorld().isBlockLoaded(blockpos.up()) ? tile.getWorld().getCombinedLight(blockpos.up(), 0) : 0;
@@ -47,26 +56,26 @@ public class TESRTarCollector
 
       buffer
           .pos(INSET, level, INSET)
-          .color(1f, 1f, 1f, 1f)
-          .tex(still.getMinU(), still.getMinV())
+          .color(r, g, b, 1f)
+          .tex(sprite.getMinU(), sprite.getMinV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, level, INSET)
-          .color(1f, 1f, 1f, 1f)
-          .tex(still.getMaxU(), still.getMinV())
+          .color(r, g, b, 1f)
+          .tex(sprite.getMaxU(), sprite.getMinV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(1 - INSET, level, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
-          .tex(still.getMaxU(), still.getMaxV())
+          .color(r, g, b, 1f)
+          .tex(sprite.getMaxU(), sprite.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(INSET, level, 1 - INSET)
-          .color(1f, 1f, 1f, 1f)
-          .tex(still.getMinU(), still.getMaxV())
+          .color(r, g, b, 1f)
+          .tex(sprite.getMinU(), sprite.getMaxV())
           .lightmap(j, k)
           .endVertex();
     }
