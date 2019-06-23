@@ -59,7 +59,7 @@ Burn setTotalBurnTimeTicks(
 
 ```java
 Burn setFluidProduced(
-  FluidStack fluidProduced
+  ILiquidStack fluidProduced
 );
 ```
 
