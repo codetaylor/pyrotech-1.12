@@ -1,10 +1,11 @@
 1.2.0
 
   * Added:
-    * Config options to modify base recipe duration for:
+    * Config options to modify base recipe duration for (#70):
       * Pit Kiln
       * Crude / Drying Rack
       * Soaking Pot
+    * ZS methods to assign Bloomery and Wither Forge fuel modifiers (#56)
 
 ---
 
