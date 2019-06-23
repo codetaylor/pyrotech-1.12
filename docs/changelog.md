@@ -3,6 +3,8 @@
   * Fixed:
     * Can't remove crude drying rack recipes (#73)
     * Contrary to the proclamations of popular literature, a stone bucket does not last longer than a stone bucket (#74)
+    * Fluid rendering crash mod conflict
+    * Light update issues when world is first loaded
 
 ---
 
