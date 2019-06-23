@@ -1,3 +1,10 @@
+1.1.3
+
+  * Fixed:
+    * CrT Burn method `addFailureItem` should take `IItemStack` not `ItemStack`
+
+---
+
 1.1.2
 
   * Note:

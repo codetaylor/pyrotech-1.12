@@ -177,9 +177,9 @@ public class ZenBurn {
       }
   )
   @ZenMethod
-  public ZenBurn addFailureItem(ItemStack failureItem) {
+  public ZenBurn addFailureItem(IItemStack failureItem) {
 
-    this.builder.addFailureItem(failureItem);
+    this.builder.addFailureItem(CTInputHelper.toStack(failureItem));
     return this;
   }
 
