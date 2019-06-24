@@ -1,3 +1,10 @@
+1.1.x
+
+  * Fixed:
+    * Snow collects on and fences connect to drying racks (#76)
+
+---
+
 1.1.4
 
   * Fixed:
