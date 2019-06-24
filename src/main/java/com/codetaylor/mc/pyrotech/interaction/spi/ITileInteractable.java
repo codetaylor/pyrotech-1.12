@@ -1,6 +1,8 @@
 package com.codetaylor.mc.pyrotech.interaction.spi;
 
 import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
+import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.gamestages.GameStages;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,6 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Loader;
+
+import javax.annotation.Nullable;
 
 /**
  * Interactable tiles must implement this interface and override the
@@ -67,6 +72,21 @@ public interface ITileInteractable {
     return EnumFacing.NORTH;
   }
 
+  default boolean allowInteractionWithPlayer(EntityPlayer player) {
+
+    if (Loader.isModLoaded("gamestages")) {
+      return GameStages.allowed(player, this.getStages());
+    }
+
+    return true;
+  }
+
+  @Nullable
+  default Stages getStages() {
+
+    return null;
+  }
+
   /**
    * Call this method from the block's {@link Block#onBlockActivated(World, BlockPos, IBlockState, EntityPlayer, EnumHand, EnumFacing, float, float, float)}
    * method and pass in the block's tile entity.
@@ -85,6 +105,10 @@ public interface ITileInteractable {
    * @param hitZ   the vec.z of the interaction
    */
   default <T extends TileEntity & ITileInteractable> void interact(IInteraction.EnumType type, T tile, World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+    if (!this.allowInteractionWithPlayer(player)) {
+      return;
+    }
 
     Vec3d posVec = new Vec3d(player.posX, player.posY + player.getEyeHeight(), player.posZ);
     int interactionDistance = 5;

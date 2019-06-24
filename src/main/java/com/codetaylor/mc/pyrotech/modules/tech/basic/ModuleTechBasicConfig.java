@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -19,6 +20,9 @@ public class ModuleTechBasicConfig {
 
   @Config.Ignore
   public static final List<Ingredient> CAMPFIRE_FUEL_BLACKLIST = new ArrayList<>(1);
+
+  @Config.Ignore
+  public static Stages STAGES_WORKTABLE = null;
 
   // ---------------------------------------------------------------------------
   // - Worktable Common

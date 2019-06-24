@@ -15,6 +15,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
@@ -44,6 +45,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -266,6 +268,13 @@ public class TileWorktable
   // ---------------------------------------------------------------------------
   // - Interactions
   // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechBasicConfig.STAGES_WORKTABLE;
+  }
 
   @Override
   public boolean shouldRenderInPass(int pass) {

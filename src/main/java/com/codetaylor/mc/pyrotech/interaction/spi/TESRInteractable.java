@@ -29,6 +29,7 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
 
     World world = te.getWorld();
     IBlockState blockState = world.getBlockState(te.getPos());
+    boolean allowInteractionWithPlayer = te.allowInteractionWithPlayer(Minecraft.getMinecraft().player);
 
     int renderPass = MinecraftForgeClient.getRenderPass();
 
@@ -62,29 +63,34 @@ public class TESRInteractable<T extends TileEntity & ITileInteractable>
       this.renderSolidPass(te, world, blockState, partialTicks);
 
     } else if (renderPass == 1) {
-      this.renderAdditivePass(te, partialTicks, world, blockState);
+
+      if (allowInteractionWithPlayer) {
+        this.renderAdditivePass(te, partialTicks, world, blockState);
+      }
     }
 
-    RayTraceResult rayTraceResult = Minecraft.getMinecraft().objectMouseOver;
+    if (allowInteractionWithPlayer) {
+      RayTraceResult rayTraceResult = Minecraft.getMinecraft().objectMouseOver;
 
-    if (rayTraceResult != null
-        && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-        && (te.getPos().equals(rayTraceResult.getBlockPos())
-        || te.isExtendedInteraction(world, rayTraceResult.getBlockPos(), world.getBlockState(rayTraceResult.getBlockPos())))) {
+      if (rayTraceResult != null
+          && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
+          && (te.getPos().equals(rayTraceResult.getBlockPos())
+          || te.isExtendedInteraction(world, rayTraceResult.getBlockPos(), world.getBlockState(rayTraceResult.getBlockPos())))) {
 
-      Minecraft minecraft = Minecraft.getMinecraft();
+        Minecraft minecraft = Minecraft.getMinecraft();
 
-      if (minecraft.player.isSneaking()
-          || ModuleCoreConfig.CLIENT.ALWAYS_SHOW_QUANTITIES) {
-        FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
-        IInteraction[] interactions = te.getInteractions();
-        EnumFacing horizontalFacing = minecraft.player.getHorizontalFacing();
+        if (minecraft.player.isSneaking()
+            || ModuleCoreConfig.CLIENT.ALWAYS_SHOW_QUANTITIES) {
+          FontRenderer fontrenderer = Minecraft.getMinecraft().fontRenderer;
+          IInteraction[] interactions = te.getInteractions();
+          EnumFacing horizontalFacing = minecraft.player.getHorizontalFacing();
 
-        for (int i = 0; i < interactions.length; i++) {
-          Vec3d textOffset = interactions[i].getTextOffset(facing, horizontalFacing, rayTraceResult.sideHit);
+          for (int i = 0; i < interactions.length; i++) {
+            Vec3d textOffset = interactions[i].getTextOffset(facing, horizontalFacing, rayTraceResult.sideHit);
 
-          if (textOffset != null) {
-            interactions[i].renderSolidPassText(world, fontrenderer, yaw, textOffset, te.getPos(), blockState, partialTicks);
+            if (textOffset != null) {
+              interactions[i].renderSolidPassText(world, fontrenderer, yaw, textOffset, te.getPos(), blockState, partialTicks);
+            }
           }
         }
       }

@@ -68,6 +68,17 @@ public class ModuleCore
 
     MinecraftForge.EVENT_BUS.register(this);
 
+    String[] craftTweakerPlugins = {
+        "ZenStages"
+    };
+
+    for (String plugin : craftTweakerPlugins) {
+      this.registerIntegrationPlugin(
+          "crafttweaker",
+          "com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker." + plugin
+      );
+    }
+
     this.registerIntegrationPlugin(
         "jei",
         "com.codetaylor.mc.pyrotech.modules.core.plugin.jei.PluginJEI"

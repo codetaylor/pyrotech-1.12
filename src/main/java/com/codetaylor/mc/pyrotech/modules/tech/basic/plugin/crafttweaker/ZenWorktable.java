@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
 import com.codetaylor.mc.athenaeum.tools.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
@@ -390,6 +391,21 @@ public class ZenWorktable {
   public static void removeRecipes(IIngredient output) {
 
     CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
+  }
+
+  @ZenDocMethod(
+      order = 9,
+      args = {
+          @ZenDocArg(arg = "stages", info = "game stages")
+      },
+      description = {
+          "Sets game stage logic required to use this device."
+      }
+  )
+  @ZenMethod
+  public static void setGameStages(ZenStages stages) {
+
+    ModuleTechBasicConfig.STAGES_WORKTABLE = stages.getStages();
   }
 
   public static class RemoveRecipe
