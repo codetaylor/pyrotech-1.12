@@ -16,6 +16,7 @@ import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
@@ -564,6 +565,13 @@ public class TileCampfire
   // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechBasicConfig.STAGES_CAMPFIRE;
+  }
 
   @Override
   public IInteraction[] getInteractions() {

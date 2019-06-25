@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CampfireRecipe;
@@ -156,6 +157,21 @@ public class ZenCampfire {
   public static void blacklistFuel(IIngredient fuel) {
 
     ModuleTechBasicConfig.CAMPFIRE_FUEL_BLACKLIST.add(CTInputHelper.toIngredient(fuel));
+  }
+
+  @ZenDocMethod(
+      order = 8,
+      args = {
+          @ZenDocArg(arg = "stages", info = "game stages")
+      },
+      description = {
+          "Sets game stage logic required to use the device."
+      }
+  )
+  @ZenMethod
+  public static void setGameStages(ZenStages stages) {
+
+    ModuleTechBasicConfig.STAGES_CAMPFIRE = stages.getStages();
   }
 
   public static class RemoveRecipe
