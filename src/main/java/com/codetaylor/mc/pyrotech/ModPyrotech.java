@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.module.ModuleManager;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCorePost;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.patreon.ModulePatreon;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
@@ -128,6 +129,10 @@ public class ModPyrotech {
         && Loader.isModLoaded("patchouli")) {
       this.registerModule(ModulePluginPatchouli.class);
     }
+
+    // --- POST ---
+
+    this.registerModule(ModuleCorePost.class);
 
     this.moduleManager.onConstructionEvent();
     this.moduleManager.routeFMLStateEvent(event);

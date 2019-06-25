@@ -146,7 +146,6 @@ public class ModuleCore
     FluidInitializer.onRegister(registry);
     BlockInitializer.onRegister(registry);
     ItemInitializer.onRegister(registry);
-    OreDictInitializer.onRegister(registry, this.getConfigurationDirectory());
     EntityInitializer.onRegister(registry);
   }
 

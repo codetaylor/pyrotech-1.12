@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "pyrotech:chopping_block",
   "conditions": [
     {
       "type": "modules_enabled",
@@ -12,8 +12,8 @@
       "ore": "logWood"
     },
     {
-      "item": "pyrotech:crude_axe",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore": "toolAxe"
     }
   ],
   "result": {

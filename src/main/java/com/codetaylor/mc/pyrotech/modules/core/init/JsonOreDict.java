@@ -53,6 +53,17 @@ public class JsonOreDict {
         "pyrotech:cobblestone:" + BlockCobblestone.EnumType.LIMESTONE.getMeta()
     });
 
+    result.oreDict.put("toolAxe", new String[]{
+        "minecraft:stone_axe:*",
+        "minecraft:iron_axe:*",
+        "minecraft:golden_axe:*",
+        "minecraft:diamond_axe:*",
+        "pyrotech:crude_axe:*",
+        "pyrotech:flint_axe:*",
+        "pyrotech:bone_axe:*",
+        "pyrotech:obsidian_axe:*"
+    });
+
     result.oreDict.put("twine", new String[]{
         "minecraft:string",
         "pyrotech:material:" + ItemMaterial.EnumType.TWINE.getMeta()

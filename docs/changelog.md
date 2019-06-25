@@ -1,5 +1,8 @@
 1.2.0
 
+  * Note:
+    * The default oredict entries have changed, please refresh your `config/pyrotech/.core.OreDict-Custom.json` file
+
   * Added:
     * Config options to modify base recipe duration for (#70):
       * Pit Kiln
@@ -8,6 +11,11 @@
     * ZS methods to assign Bloomery and Wither Forge fuel modifiers (#56)
     * ZS methods to white / blacklist campfire fuels (#63)
     * Config option to disable using any `logWood` as campfire fuel (#63)
+    * Pyrotech and Vanilla axes (sans wood) have been added to the oredict `toolAxe` with a wildcard damage value
+
+  * Changed:
+    * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry
+    * The Chopping Block recipe will now damage the input axe instead of consuming the entire axe
 
 ---
 

@@ -6,6 +6,7 @@
     "fluid": "com.codetaylor.mc.athenaeum.recipe.IngredientFluidStack$Factory"
   },
   "recipes": {
-    "leather_fire_protection": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherArmorFireProtectionRecipe$Factory"
+    "leather_fire_protection": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherArmorFireProtectionRecipe$Factory",
+    "chopping_block": "com.codetaylor.mc.pyrotech.modules.core.recipe.ChoppingBlockRecipe$Factory"
   }
 }
