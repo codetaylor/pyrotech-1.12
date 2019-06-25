@@ -48,6 +48,9 @@ public class ModuleTechBasicConfig {
   @Config.Ignore
   public static Stages STAGES_CAMPFIRE = null;
 
+  @Config.Ignore
+  public static Stages STAGES_ANVIL_IRONCLAD = null;
+
   // ---------------------------------------------------------------------------
   // - Worktable Common
   // ---------------------------------------------------------------------------
