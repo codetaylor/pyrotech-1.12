@@ -42,6 +42,9 @@ public class ModuleTechBasicConfig {
   @Config.Ignore
   public static Stages STAGES_COMPACTING_BIN = null;
 
+  @Config.Ignore
+  public static Stages STAGES_CHOPPING_BLOCK = null;
+
   // ---------------------------------------------------------------------------
   // - Worktable Common
   // ---------------------------------------------------------------------------
