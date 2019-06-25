@@ -39,6 +39,9 @@ public class ModuleTechBasicConfig {
   @Config.Ignore
   public static Stages STAGES_DRYING_RACK = null;
 
+  @Config.Ignore
+  public static Stages STAGES_COMPACTING_BIN = null;
+
   // ---------------------------------------------------------------------------
   // - Worktable Common
   // ---------------------------------------------------------------------------
