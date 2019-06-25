@@ -5,7 +5,9 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -62,6 +64,21 @@ public class ZenDryingRack {
   public static void removeAllRecipes() {
 
     CraftTweaker.LATE_ACTIONS.add(new RemoveAllRecipesAction<>(ModuleTechBasic.Registries.DRYING_RACK_RECIPE, "drying rack"));
+  }
+
+  @ZenDocMethod(
+      order = 4,
+      args = {
+          @ZenDocArg(arg = "stages", info = "game stages")
+      },
+      description = {
+          "Sets game stage logic required to use the device."
+      }
+  )
+  @ZenMethod
+  public static void setGameStages(ZenStages stages) {
+
+    ModuleTechBasicConfig.STAGES_DRYING_RACK = stages.getStages();
   }
 
   public static class RemoveRecipe

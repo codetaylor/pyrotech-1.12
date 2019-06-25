@@ -36,6 +36,9 @@ public class ModuleTechBasicConfig {
   @Config.Ignore
   public static Stages STAGES_DRYING_RACK_CRUDE = null;
 
+  @Config.Ignore
+  public static Stages STAGES_DRYING_RACK = null;
+
   // ---------------------------------------------------------------------------
   // - Worktable Common
   // ---------------------------------------------------------------------------
