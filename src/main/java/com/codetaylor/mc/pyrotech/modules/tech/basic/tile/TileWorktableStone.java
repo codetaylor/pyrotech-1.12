@@ -1,10 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+
+import javax.annotation.Nullable;
 
 public class TileWorktableStone
     extends TileWorktable {
@@ -60,5 +63,12 @@ public class TileWorktableStone
     IBlockState state = Blocks.STONE.getDefaultState()
         .withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE);
     return Block.getStateId(state);
+  }
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechBasicConfig.STAGES_WORKTABLE_STONE;
   }
 }

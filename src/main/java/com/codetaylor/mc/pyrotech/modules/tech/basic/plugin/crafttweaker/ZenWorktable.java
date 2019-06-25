@@ -399,13 +399,28 @@ public class ZenWorktable {
           @ZenDocArg(arg = "stages", info = "game stages")
       },
       description = {
-          "Sets game stage logic required to use this device."
+          "Sets game stage logic required to use the worktable."
       }
   )
   @ZenMethod
   public static void setGameStages(ZenStages stages) {
 
     ModuleTechBasicConfig.STAGES_WORKTABLE = stages.getStages();
+  }
+
+  @ZenDocMethod(
+      order = 10,
+      args = {
+          @ZenDocArg(arg = "stages", info = "game stages")
+      },
+      description = {
+          "Sets game stage logic required to use the stone worktable."
+      }
+  )
+  @ZenMethod
+  public static void setStoneGameStages(ZenStages stages) {
+
+    ModuleTechBasicConfig.STAGES_WORKTABLE_STONE = stages.getStages();
   }
 
   public static class RemoveRecipe

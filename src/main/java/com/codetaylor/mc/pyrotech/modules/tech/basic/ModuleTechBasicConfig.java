@@ -24,6 +24,9 @@ public class ModuleTechBasicConfig {
   @Config.Ignore
   public static Stages STAGES_WORKTABLE = null;
 
+  @Config.Ignore
+  public static Stages STAGES_WORKTABLE_STONE = null;
+
   // ---------------------------------------------------------------------------
   // - Worktable Common
   // ---------------------------------------------------------------------------

@@ -12,6 +12,8 @@
     * ZS methods to white / blacklist campfire fuels (#63)
     * Config option to disable using any `logWood` as campfire fuel (#63)
     * Pyrotech and Vanilla axes (sans wood) have been added to the oredict `toolAxe` with a wildcard damage value
+    * ZS methods to restrict device usage with gamestages for:
+      * Worktable / Stone Worktable
 
   * Changed:
     * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry
