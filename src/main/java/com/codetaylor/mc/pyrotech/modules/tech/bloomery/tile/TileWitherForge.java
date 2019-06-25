@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile;
 
 import com.codetaylor.mc.athenaeum.util.*;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.WitherForgeRecipe;
@@ -14,6 +15,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -195,4 +197,14 @@ public class TileWitherForge
     return WitherForgeRecipe.getRecipe(stackInSlot);
   }
 
+  // ---------------------------------------------------------------------------
+  // - Interactions
+  // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechBloomeryConfig.STAGES_WITHER_FORGE;
+  }
 }

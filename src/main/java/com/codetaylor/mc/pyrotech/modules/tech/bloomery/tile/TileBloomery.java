@@ -11,6 +11,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.*;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowHandler;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
@@ -51,6 +52,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -748,6 +750,13 @@ public class TileBloomery
   // ---------------------------------------------------------------------------
   // - Interactions
   // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechBloomeryConfig.STAGES_BLOOMERY;
+  }
 
   @Override
   public IInteraction[] getInteractions() {

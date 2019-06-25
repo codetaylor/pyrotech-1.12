@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
@@ -172,6 +173,51 @@ public class ZenBloomery {
             modifier
         )
     );
+  }
+
+  @ZenDocMethod(
+      order = 7,
+      args = {
+          @ZenDocArg(arg = "stages", info = "game stages")
+      },
+      description = {
+          "Sets game stage logic required to use the bloom."
+      }
+  )
+  @ZenMethod
+  public static void setBloomGameStages(ZenStages stages) {
+
+    ModuleTechBloomeryConfig.STAGES_BLOOM = stages.getStages();
+  }
+
+  @ZenDocMethod(
+      order = 8,
+      args = {
+          @ZenDocArg(arg = "stages", info = "game stages")
+      },
+      description = {
+          "Sets game stage logic required to use the bloomery."
+      }
+  )
+  @ZenMethod
+  public static void setBloomeryGameStages(ZenStages stages) {
+
+    ModuleTechBloomeryConfig.STAGES_BLOOMERY = stages.getStages();
+  }
+
+  @ZenDocMethod(
+      order = 9,
+      args = {
+          @ZenDocArg(arg = "stages", info = "game stages")
+      },
+      description = {
+          "Sets game stage logic required to use the wither forge."
+      }
+  )
+  @ZenMethod
+  public static void setWitherForgeGameStages(ZenStages stages) {
+
+    ModuleTechBloomeryConfig.STAGES_WITHER_FORGE = stages.getStages();
   }
 
   public static class RemoveRecipe

@@ -8,9 +8,11 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
@@ -29,6 +31,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class TileBloom
     extends TileNetBase
@@ -136,6 +139,13 @@ public class TileBloom
   // ---------------------------------------------------------------------------
   // - Interactions
   // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechBloomeryConfig.STAGES_BLOOM;
+  }
 
   @Override
   public IInteraction[] getInteractions() {
