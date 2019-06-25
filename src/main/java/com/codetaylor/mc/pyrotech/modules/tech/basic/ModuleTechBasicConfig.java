@@ -30,6 +30,9 @@ public class ModuleTechBasicConfig {
   @Config.Ignore
   public static Stages STAGES_SOAKING_POT = null;
 
+  @Config.Ignore
+  public static Stages STAGES_PIT_KILN = null;
+
   // ---------------------------------------------------------------------------
   // - Worktable Common
   // ---------------------------------------------------------------------------
