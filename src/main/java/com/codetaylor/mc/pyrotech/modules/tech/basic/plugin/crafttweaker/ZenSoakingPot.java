@@ -5,7 +5,9 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -72,6 +74,21 @@ public class ZenSoakingPot {
   public static void removeAllRecipes() {
 
     CraftTweaker.LATE_ACTIONS.add(new RemoveAllRecipesAction<>(ModuleTechBasic.Registries.SOAKING_POT_RECIPE, "soaking pot"));
+  }
+
+  @ZenDocMethod(
+      order = 4,
+      args = {
+          @ZenDocArg(arg = "stages", info = "game stages")
+      },
+      description = {
+          "Sets game stage logic required to use the device."
+      }
+  )
+  @ZenMethod
+  public static void setGameStages(ZenStages stages) {
+
+    ModuleTechBasicConfig.STAGES_SOAKING_POT = stages.getStages();
   }
 
   public static class RemoveRecipe
