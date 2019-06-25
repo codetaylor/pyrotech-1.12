@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockAnvilBase;
@@ -8,6 +9,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class TileAnvilGranite
     extends TileAnvilBase {
@@ -77,5 +79,12 @@ public class TileAnvilGranite
   public AnvilRecipe.EnumTier getRecipeTier() {
 
     return AnvilRecipe.EnumTier.GRANITE;
+  }
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechBasicConfig.STAGES_ANVIL_GRANITE;
   }
 }
