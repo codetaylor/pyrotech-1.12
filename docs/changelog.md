@@ -16,6 +16,7 @@
   * Changed:
     * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry
     * The Chopping Block recipe will now damage the input axe instead of consuming the entire axe
+    * The vanilla recipe removal has been delayed until the load complete event to allow time for other mods, such as TE, to generate recipes
 
 ---
 
