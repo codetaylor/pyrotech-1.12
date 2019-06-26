@@ -24,6 +24,7 @@
       * Granite Anvil / Ironclad Anvil
       * Bloom, Bloomery, Wither Forge
       * Stone / Refractory Machines
+      * Mechanical Hopper
 
   * Changed:
     * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry

@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockMechanicalHopper;
@@ -16,6 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+
+import javax.annotation.Nullable;
 
 public class TileStoneHopper
     extends TileCogWorkerBase {
@@ -142,6 +145,13 @@ public class TileStoneHopper
   // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechMachineConfig.STAGES_MECHANICAL_HOPPER;
+  }
 
   @Override
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {

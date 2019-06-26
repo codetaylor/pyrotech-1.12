@@ -37,6 +37,18 @@ public class ModuleTechMachineConfig {
   @Config.Ignore
   public static Stages STAGES_STONE_SAWMILL = null;
 
+  @Config.Ignore
+  public static Stages STAGES_MECHANICAL_HOPPER = null;
+
+  @Config.Ignore
+  public static Stages STAGES_MECHANICAL_MULCHER = null;
+
+  @Config.Ignore
+  public static Stages STAGES_BELLOWS = null;
+
+  @Config.Ignore
+  public static Stages STAGES_MECHANICAL_BELLOWS = null;
+
   // ---------------------------------------------------------------------------
   // - General
   // ---------------------------------------------------------------------------
