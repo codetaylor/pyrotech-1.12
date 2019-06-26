@@ -59,6 +59,45 @@ Removes pre-existing recipes, ie. recipes added by the mod.
 ---
 
 
+```java
+static void whitelistFuel(
+  IIngredient fuel
+);
+```
+
+Whitelist ingredient for use as fuel in the campfire.
+Note: blacklist will take precedence over whitelist.
+This means you can whitelist <ore:logWood> and blacklist
+<minecraft:log:0> if you wanted.
+
+---
+
+
+```java
+static void blacklistFuel(
+  IIngredient fuel
+);
+```
+
+Blacklist ingredient from use as fuel in the campfire.
+Note: blacklist will take precedence over whitelist.
+This means you can whitelist an oredict group and blacklist
+a single item from it if you wanted.
+
+---
+
+
+```java
+static void setGameStages(
+  Stages stages // game stages
+);
+```
+
+Sets game stage logic required to use the device.
+
+---
+
+
 ### Examples
 
 ```java

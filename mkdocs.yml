@@ -4,6 +4,7 @@ pages:
 - Introduction: index.md
 - ChangeLog: changelog.md
 - ZenScript:
+  - Bellows: zs/bellows.md
   - Bloomery: zs/bloomery.md
   - Brick Crucible: zs/brickcrucible.md
   - Brick Kiln: zs/brickkiln.md
@@ -17,9 +18,13 @@ pages:
   - Drying Rack: zs/dryingrack.md
   - Granite Anvil: zs/graniteanvil.md
   - Ironclad Anvil: zs/ironcladanvil.md
+  - Mechanical Bellows: zs/mechanicalbellows.md
   - Mechanical Compactor: zs/mechanicalcompactor.md
+  - Mechanical Hopper: zs/mechanicalhopper.md
+  - Mechanical Mulcher: zs/mechanicalmulcher.md
   - Pit Kiln: zs/pitkiln.md
   - Soaking Pot: zs/soakingpot.md
+  - Stages: zs/stages.md
   - Stone Crucible: zs/stonecrucible.md
   - Stone Kiln: zs/stonekiln.md
   - Stone Oven: zs/stoneoven.md

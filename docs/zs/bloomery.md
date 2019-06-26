@@ -69,6 +69,61 @@ Creates and returns a new wither forge recipe builder.
 
 ---
 
+
+```java
+static void addBloomeryFuelModifier(
+  IIngredient fuel,
+  double modifier  
+);
+```
+
+
+---
+
+
+```java
+static void addWitherForgeFuelModifier(
+  IIngredient fuel,
+  double modifier  
+);
+```
+
+
+---
+
+
+```java
+static void setBloomGameStages(
+  Stages stages // game stages
+);
+```
+
+Sets game stage logic required to use the bloom.
+
+---
+
+
+```java
+static void setBloomeryGameStages(
+  Stages stages // game stages
+);
+```
+
+Sets game stage logic required to use the bloomery.
+
+---
+
+
+```java
+static void setWitherForgeGameStages(
+  Stages stages // game stages
+);
+```
+
+Sets game stage logic required to use the wither forge.
+
+---
+
 ```java
 Bloomery setBurnTimeTicks(
   int burnTimeTicks // the base time in ticks to produce a bloom

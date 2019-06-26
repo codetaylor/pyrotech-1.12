@@ -46,7 +46,7 @@ public class ZenStages {
   @ZenDocMethod(
       order = 1,
       args = {
-          @ZenDocArg(arg = "stages")
+          @ZenDocArg(arg = "stages", info = "accepts an array of string or Stages objects")
       }
   )
   @ZenMethod
@@ -58,7 +58,7 @@ public class ZenStages {
   @ZenDocMethod(
       order = 2,
       args = {
-          @ZenDocArg(arg = "stages")
+          @ZenDocArg(arg = "stages", info = "accepts an array of string or Stages objects")
       }
   )
   @ZenMethod

@@ -137,6 +137,28 @@ Removes pre-existing recipes, ie. recipes added by the mod.
 
 ---
 
+
+```java
+static void setGameStages(
+  Stages stages // game stages
+);
+```
+
+Sets game stage logic required to use the worktable.
+
+---
+
+
+```java
+static void setStoneGameStages(
+  Stages stages // game stages
+);
+```
+
+Sets game stage logic required to use the stone worktable.
+
+---
+
 ```java
 Worktable setName(
   string name

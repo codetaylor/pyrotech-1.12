@@ -40,6 +40,17 @@ static void removeAllRecipes();
 ---
 
 
+```java
+static void setGameStages(
+  Stages stages // game stages
+);
+```
+
+Sets game stage logic required to use the device.
+
+---
+
+
 ### Examples
 
 It is important to use `:*` for the meta value of the sawblades to ensure that the blade will continue to be valid after taking damaged.
