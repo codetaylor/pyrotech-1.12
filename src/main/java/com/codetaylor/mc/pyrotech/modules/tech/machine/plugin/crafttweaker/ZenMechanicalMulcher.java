@@ -8,9 +8,9 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenDocClass("mods.pyrotech.MechanicalHopper")
-@ZenClass("mods.pyrotech.MechanicalHopper")
-public class ZenMechanicalHopper {
+@ZenDocClass("mods.pyrotech.MechanicalMulcher")
+@ZenClass("mods.pyrotech.MechanicalMulcher")
+public class ZenMechanicalMulcher {
 
   @ZenDocMethod(
       order = 1,
@@ -24,6 +24,6 @@ public class ZenMechanicalHopper {
   @ZenMethod
   public static void setGameStages(ZenStages stages) {
 
-    ModuleTechMachineConfig.STAGES_MECHANICAL_HOPPER = stages.getStages();
+    ModuleTechMachineConfig.STAGES_MECHANICAL_MULCHER = stages.getStages();
   }
 }

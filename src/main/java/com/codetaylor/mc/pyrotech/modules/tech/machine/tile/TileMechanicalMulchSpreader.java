@@ -13,6 +13,7 @@ import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileStash;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
@@ -198,6 +199,13 @@ public class TileMechanicalMulchSpreader
   // ---------------------------------------------------------------------------
   // - Interactions
   // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechMachineConfig.STAGES_MECHANICAL_MULCHER;
+  }
 
   @Override
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
