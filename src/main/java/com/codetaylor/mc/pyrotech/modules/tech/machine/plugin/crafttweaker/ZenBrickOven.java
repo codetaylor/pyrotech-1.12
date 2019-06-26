@@ -5,8 +5,10 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CampfireRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickOvenRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -116,6 +118,21 @@ public class ZenBrickOven {
   public static void removeRecipes(IIngredient output) {
 
     CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output)));
+  }
+
+  @ZenDocMethod(
+      order = 6,
+      args = {
+          @ZenDocArg(arg = "stages", info = "game stages")
+      },
+      description = {
+          "Sets game stage logic required to use the device."
+      }
+  )
+  @ZenMethod
+  public static void setGameStages(ZenStages stages) {
+
+    ModuleTechMachineConfig.STAGES_BRICK_OVEN = stages.getStages();
   }
 
   public static class RemoveRecipe

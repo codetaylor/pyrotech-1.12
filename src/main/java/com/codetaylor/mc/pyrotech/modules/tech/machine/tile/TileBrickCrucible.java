@@ -1,11 +1,15 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
+import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickCrucibleRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCrucibleBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
 
 public class TileBrickCrucible
     extends TileCrucibleBase<BrickCrucibleRecipe> {
@@ -122,5 +126,12 @@ public class TileBrickCrucible
     if (this.getOutputFluidTank().fill(output, false) == output.amount) {
       super.reduceRecipeTime();
     }
+  }
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechMachineConfig.STAGES_BRICK_CRUCIBLE;
   }
 }

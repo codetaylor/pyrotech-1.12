@@ -5,7 +5,9 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickSawmillRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -74,6 +76,21 @@ public class ZenBrickSawmill {
   public static void removeAllRecipes() {
 
     CraftTweaker.LATE_ACTIONS.add(new RemoveAllRecipesAction<>(ModuleTechMachine.Registries.BRICK_SAWMILL_RECIPES, "brick sawmill"));
+  }
+
+  @ZenDocMethod(
+      order = 4,
+      args = {
+          @ZenDocArg(arg = "stages", info = "game stages")
+      },
+      description = {
+          "Sets game stage logic required to use the device."
+      }
+  )
+  @ZenMethod
+  public static void setGameStages(ZenStages stages) {
+
+    ModuleTechMachineConfig.STAGES_BRICK_SAWMILL = stages.getStages();
   }
 
   public static class RemoveRecipe

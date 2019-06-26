@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.config.Config;
@@ -11,6 +12,30 @@ import java.util.Map;
 
 @Config(modid = ModuleTechMachine.MOD_ID, name = ModuleTechMachine.MOD_ID + "/" + "module.tech.Machine")
 public class ModuleTechMachineConfig {
+
+  @Config.Ignore
+  public static Stages STAGES_BRICK_CRUCIBLE = null;
+
+  @Config.Ignore
+  public static Stages STAGES_BRICK_KILN = null;
+
+  @Config.Ignore
+  public static Stages STAGES_BRICK_OVEN = null;
+
+  @Config.Ignore
+  public static Stages STAGES_BRICK_SAWMILL = null;
+
+  @Config.Ignore
+  public static Stages STAGES_STONE_CRUCIBLE = null;
+
+  @Config.Ignore
+  public static Stages STAGES_STONE_KILN = null;
+
+  @Config.Ignore
+  public static Stages STAGES_STONE_OVEN = null;
+
+  @Config.Ignore
+  public static Stages STAGES_STONE_SAWMILL = null;
 
   // ---------------------------------------------------------------------------
   // - General
