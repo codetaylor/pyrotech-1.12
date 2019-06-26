@@ -1,11 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCrucibleBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidStack;
+
+import javax.annotation.Nullable;
 
 public class TileStoneCrucible
     extends TileCrucibleBase<StoneCrucibleRecipe> {
@@ -124,4 +127,10 @@ public class TileStoneCrucible
     }
   }
 
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechMachineConfig.STAGES_STONE_CRUCIBLE;
+  }
 }

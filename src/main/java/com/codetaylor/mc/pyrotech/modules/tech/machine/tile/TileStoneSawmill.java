@@ -1,11 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneSawmillRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileSawmillBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nullable;
 
 public class TileStoneSawmill
     extends TileSawmillBase<StoneSawmillRecipe> {
@@ -78,6 +81,13 @@ public class TileStoneSawmill
     }
 
     return ArrayHelper.contains(ModuleTechMachineConfig.STONE_SAWMILL.SAWMILL_BLADES, registryName.toString());
+  }
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechMachineConfig.STAGES_STONE_SAWMILL;
   }
 
   // ---------------------------------------------------------------------------

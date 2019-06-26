@@ -23,7 +23,7 @@
       * Campfire
       * Granite Anvil / Ironclad Anvil
       * Bloom, Bloomery, Wither Forge
-      * Refractory Machines
+      * Stone / Refractory Machines
 
   * Changed:
     * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry

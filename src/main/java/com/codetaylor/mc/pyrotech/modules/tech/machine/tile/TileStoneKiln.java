@@ -1,9 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileKilnBase;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nullable;
 
 public class TileStoneKiln
     extends TileKilnBase<StoneKilnRecipe> {
@@ -54,5 +57,12 @@ public class TileStoneKiln
   protected float getAirflowDragModifier() {
 
     return (float) ModuleTechMachineConfig.STONE_KILN.AIRFLOW_DRAG_MODIFIER;
+  }
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechMachineConfig.STAGES_STONE_KILN;
   }
 }
