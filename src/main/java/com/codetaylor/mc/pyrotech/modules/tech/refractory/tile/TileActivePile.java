@@ -75,7 +75,12 @@ public class TileActivePile
     PitBurnRecipe recipe = ModuleTechRefractory.Registries.BURN_RECIPE.getValue(this.recipeKey);
 
     if (recipe != null) {
-      return recipe.getTimeTicks();
+      double duration = recipe.getTimeTicks() * ModuleTechRefractoryConfig.REFRACTORY.BASE_RECIPE_DURATION_MODIFIER;
+
+      if (recipe.requiresRefractoryBlocks()) {
+        duration *= ModuleTechRefractoryConfig.REFRACTORY.REFRACTORY_RECIPE_DURATION_MODIFIER;
+      }
+      return (int) Math.max(1, duration);
 
     } else {
       return DEFAULT_TOTAL_BURN_TIME_TICKS;

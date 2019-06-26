@@ -106,6 +106,22 @@ public class ModuleTechRefractoryConfig {
         "here in the Client section."
     })
     public String[] REFRACTORY_BRICKS = new String[0];
+
+    @Config.Comment({
+        "Multiplicative modifier applied to every recipe in this device.",
+        "recipeDurationTicks = recipeDurationTicks * BASE_RECIPE_DURATION_MODIFIER",
+        "Default: " + 1
+    })
+    @Config.RangeDouble(min = 0)
+    public double BASE_RECIPE_DURATION_MODIFIER = 1;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to every refractory recipe in this device.",
+        "recipeDurationTicks = recipeDurationTicks * BASE_RECIPE_DURATION_MODIFIER * REFRACTORY_RECIPE_DURATION_MODIFIER",
+        "Default: " + 1
+    })
+    @Config.RangeDouble(min = 0)
+    public double REFRACTORY_RECIPE_DURATION_MODIFIER = 1;
   }
 
   // ---------------------------------------------------------------------------
