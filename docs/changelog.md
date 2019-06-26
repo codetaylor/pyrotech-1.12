@@ -25,6 +25,9 @@
       * Bloom, Bloomery, Wither Forge
       * Stone / Refractory Machines
       * Mechanical Hopper
+      * Mechanical Bellows
+      * Mechanical Mulcher
+      * Bellows
 
   * Changed:
     * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry
