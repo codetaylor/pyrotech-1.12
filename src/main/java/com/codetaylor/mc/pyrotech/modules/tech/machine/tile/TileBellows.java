@@ -3,8 +3,10 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowHandler;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.gamestages.GameStages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import net.minecraft.block.state.IBlockState;
@@ -17,6 +19,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.common.Loader;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -181,12 +184,22 @@ public class TileBellows
 
         if (entity instanceof EntityPlayer
             && entity.posY - 0.05 < bellowsHeight) {
+
+          if (Loader.isModLoaded("gamestages")) {
+            return GameStages.allowed((EntityPlayer) entity, this.getStages());
+          }
+
           return true;
         }
       }
     }
 
     return false;
+  }
+
+  private Stages getStages() {
+
+    return ModuleTechMachineConfig.STAGES_BELLOWS;
   }
 
   // ---------------------------------------------------------------------------
