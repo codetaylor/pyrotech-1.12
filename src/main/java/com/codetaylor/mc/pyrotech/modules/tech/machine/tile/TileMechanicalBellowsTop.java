@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
 import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
@@ -13,6 +14,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class TileMechanicalBellowsTop
     extends TileCogWorkerBase {
@@ -96,6 +99,13 @@ public class TileMechanicalBellowsTop
   // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleTechMachineConfig.STAGES_MECHANICAL_BELLOWS;
+  }
 
   @Override
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {
