@@ -10,6 +10,9 @@
     * Farmland blocks should drop dirt clumps like dirt blocks
     * Mulched Farmland blocks should drop dirt clumps like dirt blocks
 
+  * Changed:
+    * Increased crude / drying rack base speed when raining in a high humidity biome from 0.0 to 0.25
+
 ---
 
 1.1.4

@@ -233,7 +233,7 @@ public abstract class TileDryingRackBase
       newSpeed = this.getRainSpeed();
 
     } else if ((canRain && this.world.isRaining()) || biome.isHighHumidity()) {
-      newSpeed = 0.0f;
+      newSpeed = 0.25f;
 
     } else if (this.world.provider.isNether()) {
       newSpeed = 2.0f;
