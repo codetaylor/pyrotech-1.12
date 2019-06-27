@@ -29,6 +29,11 @@
       * Mechanical Mulcher
       * Bellows
       * Stone / Brick Tank
+      * Wood Rack
+      * Simple / Durable Rock Bag
+      * Crate / Durable Crate
+      * Shelf / Durable Shelf
+      * Stash / Durable Stash
 
   * Changed:
     * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry
