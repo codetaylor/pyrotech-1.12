@@ -9,6 +9,7 @@ import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
@@ -160,6 +161,13 @@ public class TileStash
   // ---------------------------------------------------------------------------
   // - Interactions
   // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleStorageConfig.STAGES_STASH;
+  }
 
   @Override
   public EnumFacing getTileFacing(World world, BlockPos pos, IBlockState blockState) {

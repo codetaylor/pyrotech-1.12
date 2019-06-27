@@ -51,7 +51,9 @@ public class ModuleStorage
         "ZenCrate",
         "ZenDurableCrate",
         "ZenShelf",
-        "ZenDurableShelf"
+        "ZenDurableShelf",
+        "ZenStash",
+        "ZenDurableStash"
     };
 
     for (String plugin : craftTweakerPlugins) {

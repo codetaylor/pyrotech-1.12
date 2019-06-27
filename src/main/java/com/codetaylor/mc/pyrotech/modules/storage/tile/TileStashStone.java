@@ -1,6 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.storage.tile;
 
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
+
+import javax.annotation.Nullable;
 
 public class TileStashStone
     extends TileStash {
@@ -15,5 +18,12 @@ public class TileStashStone
   protected boolean allowAutomation() {
 
     return ModuleStorageConfig.DURABLE_STASH.ALLOW_AUTOMATION;
+  }
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleStorageConfig.STAGES_DURABLE_STASH;
   }
 }
