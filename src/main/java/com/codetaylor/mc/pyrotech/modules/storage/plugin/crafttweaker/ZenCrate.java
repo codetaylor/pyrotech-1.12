@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.storage.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
-import com.codetaylor.mc.dropt.modules.dropt.compat.crafttweaker.export.ZenDocClass;
+import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import stanhebben.zenscript.annotations.ZenClass;
