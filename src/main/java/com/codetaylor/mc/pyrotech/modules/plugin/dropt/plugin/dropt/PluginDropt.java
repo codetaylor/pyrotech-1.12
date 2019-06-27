@@ -75,9 +75,6 @@ public class PluginDropt {
     String grass = item("minecraft", "grass");
     String gravel = item("minecraft", "gravel");
     String tallGrassAny = item("minecraft", "tallgrass", OreDictionary.WILDCARD_VALUE);
-    String leaves = item("minecraft", "leaves", OreDictionary.WILDCARD_VALUE);
-    String leaves2 = item("minecraft", "leaves2", OreDictionary.WILDCARD_VALUE);
-    String stick = item("minecraft", "stick");
     String coalOre = item("minecraft", "coal_ore");
     String clay = item("minecraft", "clay");
     String cobblestone = item("minecraft", "cobblestone");
@@ -128,39 +125,6 @@ public class PluginDropt {
               drop().selector(weight(80)),
               drop().items(new String[]{plantFibers}, range(1, 2)).selector(weight(35)),
               drop().items(new String[]{plantFibersDried}, range(1, 2)).selector(weight(5))
-          })
-      );
-    }
-
-    // -------------------------------------------------------------------------
-    // - Leaves
-    // -------------------------------------------------------------------------
-
-    if (enabled("leaves")) {
-      list.add(rule()
-          .matchBlocks(new String[]{
-              leaves,
-              leaves2
-          })
-          .matchHarvester(harvester()
-              .type(EnumHarvesterType.PLAYER)
-          )
-          .replaceStrategy(EnumReplaceStrategy.ADD)
-          .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{stick}).selector(weight(1)),
-              drop().selector(weight(1))
-          })
-      );
-
-      list.add(rule()
-          .matchBlocks(new String[]{
-              leaves,
-              leaves2
-          })
-          .replaceStrategy(EnumReplaceStrategy.ADD)
-          .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{stick}).selector(weight(1)),
-              drop().selector(weight(11))
           })
       );
     }

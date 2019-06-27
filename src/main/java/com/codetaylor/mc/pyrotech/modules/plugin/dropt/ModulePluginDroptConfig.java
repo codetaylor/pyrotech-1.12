@@ -13,7 +13,6 @@ public class ModulePluginDroptConfig {
   static {
     String[] rules = {
         "grass_tall",
-        "leaves",
         "dirt",
         "grass",
         "sand",

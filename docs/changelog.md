@@ -2,6 +2,7 @@
 
   * Note:
     * The default oredict entries have changed, please refresh your `config/pyrotech/.core.OreDict-Custom.json` file
+    * It is safe to delete the `B:leaves` entry from the `config/pyrotech/plugin.Dropt.cfg` file
 
   * Added:
     * Config options to modify base recipe duration for (#70): Pit Kiln, Crude / Drying Rack, Soaking Pot, Pit / Refractory Burn
@@ -10,11 +11,13 @@
     * Config option to disable using any `logWood` as campfire fuel (#63)
     * Pyrotech and Vanilla axes (sans wood) have been added to the oredict `toolAxe` with a wildcard damage value
     * ZS methods to restrict device interaction with gamestages for (#4): Worktable / Stone Worktable, Soaking Pot, Pit Kiln, Crude Drying Rack / Drying Rack, Compacting Bin, Chopping Block, Campfire, Granite Anvil / Ironclad Anvil, Bloom, Bloomery, Wither Forge, Stone / Refractory Machines, Mechanical Hopper, Mechanical Bellows, Mechanical Mulcher, Bellows, Stone / Brick Tank, Wood Rack, Simple / Durable Rock Bag, Crate / Durable Crate, Shelf / Durable Shelf, Stash / Durable Stash
+    * Sticks will now drop from any block with an entry in the `treeLeaves` oredict
 
   * Changed:
     * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry
     * The Chopping Block recipe will now damage the input axe instead of consuming the entire axe
     * The vanilla recipe removal has been delayed until the load complete event to allow time for other mods, such as TE, to generate recipes
+    * Dropt is no longer in charge of the leaf / stick drops
 
 ---
 
