@@ -2,6 +2,7 @@
 
   * Fixed:
     * Snow collects on and fences connect to drying racks (#76)
+    * Farmland blocks should drop dirt clumps like dirt blocks
 
 ---
 

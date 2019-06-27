@@ -72,6 +72,7 @@ public class PluginDropt {
     String sand = item("minecraft", "sand");
     String sandRed = item("minecraft", "sand", BlockSand.EnumType.RED_SAND.getMetadata());
     String dirtAny = item("minecraft", "dirt", OreDictionary.WILDCARD_VALUE);
+    String farmlandAny = item("minecraft", "farmland", OreDictionary.WILDCARD_VALUE);
     String dirt = item("minecraft", "dirt", BlockDirt.DirtType.DIRT.getMetadata());
     String grass = item("minecraft", "grass");
     String gravel = item("minecraft", "gravel");
@@ -175,7 +176,8 @@ public class PluginDropt {
       // Drops dirt clumps
       list.add(rule()
           .matchBlocks(new String[]{
-              dirtAny
+              dirtAny,
+              farmlandAny
           })
           .matchHarvester(harvester()
               .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
@@ -189,7 +191,8 @@ public class PluginDropt {
       // Drops dirt clumps
       list.add(rule()
           .matchBlocks(new String[]{
-              dirtAny
+              dirtAny,
+              farmlandAny
           })
           .matchHarvester(harvester()
               .type(EnumHarvesterType.PLAYER)
@@ -206,7 +209,8 @@ public class PluginDropt {
       // Drops dirt clumps
       list.add(rule()
           .matchBlocks(new String[]{
-              dirtAny
+              dirtAny,
+              farmlandAny
           })
           .matchHarvester(harvester()
               .type(EnumHarvesterType.PLAYER)
