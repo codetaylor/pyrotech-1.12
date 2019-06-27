@@ -28,6 +28,7 @@
       * Mechanical Bellows
       * Mechanical Mulcher
       * Bellows
+      * Stone / Brick Tank
 
   * Changed:
     * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry

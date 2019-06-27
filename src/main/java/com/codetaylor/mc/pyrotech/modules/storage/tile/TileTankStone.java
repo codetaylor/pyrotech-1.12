@@ -1,7 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.storage.tile;
 
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
+
+import javax.annotation.Nullable;
 
 public class TileTankStone
     extends TileTankBase {
@@ -22,5 +25,12 @@ public class TileTankStone
   protected int getHotFluidTemperature() {
 
     return ModuleStorageConfig.STONE_TANK.HOT_TEMPERATURE;
+  }
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleStorageConfig.STAGES_STONE_TANK;
   }
 }

@@ -41,6 +41,18 @@ public class ModuleStorage
     TILE_DATA_SERVICE = this.enableNetworkTileDataService(PACKET_SERVICE);
 
     MinecraftForge.EVENT_BUS.register(this);
+
+    String[] craftTweakerPlugins = {
+        "ZenStoneTank",
+        "ZenBrickTank"
+    };
+
+    for (String plugin : craftTweakerPlugins) {
+      this.registerIntegrationPlugin(
+          "crafttweaker",
+          "com.codetaylor.mc.pyrotech.modules.storage.plugin.crafttweaker." + plugin
+      );
+    }
   }
 
   @Override
