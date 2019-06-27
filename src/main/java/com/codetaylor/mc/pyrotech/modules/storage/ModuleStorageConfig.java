@@ -16,6 +16,9 @@ public class ModuleStorageConfig {
   @Config.Ignore
   public static Stages STAGES_STONE_TANK = null;
 
+  @Config.Ignore
+  public static Stages STAGES_WOOD_RACK = null;
+
   // ---------------------------------------------------------------------------
   // - Simple Rock Bag
   // ---------------------------------------------------------------------------

@@ -44,7 +44,8 @@ public class ModuleStorage
 
     String[] craftTweakerPlugins = {
         "ZenStoneTank",
-        "ZenBrickTank"
+        "ZenBrickTank",
+        "ZenWoodRack"
     };
 
     for (String plugin : craftTweakerPlugins) {
