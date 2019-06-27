@@ -47,7 +47,9 @@ public class ModuleStorage
         "ZenSimpleRockBag",
         "ZenStoneTank",
         "ZenBrickTank",
-        "ZenWoodRack"
+        "ZenWoodRack",
+        "ZenCrate",
+        "ZenDurableCrate"
     };
 
     for (String plugin : craftTweakerPlugins) {
