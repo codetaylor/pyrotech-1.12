@@ -1,6 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.storage.tile;
 
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
+
+import javax.annotation.Nullable;
 
 public class TileShelfStone
     extends TileShelf {
@@ -15,5 +18,12 @@ public class TileShelfStone
   protected boolean allowAutomation() {
 
     return ModuleStorageConfig.DURABLE_SHELF.ALLOW_AUTOMATION;
+  }
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleStorageConfig.STAGES_DURABLE_SHELF;
   }
 }

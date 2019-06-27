@@ -31,6 +31,12 @@ public class ModuleStorageConfig {
   @Config.Ignore
   public static Stages STAGES_DURABLE_CRATE = null;
 
+  @Config.Ignore
+  public static Stages STAGES_SHELF = null;
+
+  @Config.Ignore
+  public static Stages STAGES_DURABLE_SHELF = null;
+
   // ---------------------------------------------------------------------------
   // - Simple Rock Bag
   // ---------------------------------------------------------------------------
