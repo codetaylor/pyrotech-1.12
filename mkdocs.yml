@@ -10,12 +10,18 @@ pages:
   - Brick Kiln: zs/brickkiln.md
   - Brick Oven: zs/brickoven.md
   - Brick Sawmill: zs/bricksawmill.md
+  - Brick Tank: zs/bricktank.md
   - Burn: zs/burn.md
   - Campfire: zs/campfire.md
   - Chopping Block: zs/chopping.md
   - Compacting Bin: zs/compactingbin.md
+  - Crate: zs/crate.md
   - Crude Drying Rack: zs/crudedryingrack.md
   - Drying Rack: zs/dryingrack.md
+  - Durable Crate: zs/durablecrate.md
+  - Durable Rock Bag: zs/durablerockbag.md
+  - Durable Shelf: zs/durableshelf.md
+  - Durable Stash: zs/durablestash.md
   - Granite Anvil: zs/graniteanvil.md
   - Ironclad Anvil: zs/ironcladanvil.md
   - Mechanical Bellows: zs/mechanicalbellows.md
@@ -23,12 +29,17 @@ pages:
   - Mechanical Hopper: zs/mechanicalhopper.md
   - Mechanical Mulcher: zs/mechanicalmulcher.md
   - Pit Kiln: zs/pitkiln.md
+  - Shelf: zs/shelf.md
+  - Simple Rock Bag: zs/simplerockbag.md
   - Soaking Pot: zs/soakingpot.md
   - Stages: zs/stages.md
+  - Stash: zs/stash.md
   - Stone Crucible: zs/stonecrucible.md
   - Stone Kiln: zs/stonekiln.md
   - Stone Oven: zs/stoneoven.md
   - Stone Sawmill: zs/stonesawmill.md
+  - Stone Tank: zs/stonetank.md
+  - Wood Rack: zs/woodrack.md
   - Worktable: zs/worktable.md
 - Development:
   - Contributor's License Agreement: cla.md
