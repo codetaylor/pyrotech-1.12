@@ -1,5 +1,8 @@
 1.1.x
 
+  * Added:
+    * The basic worktable zen methods `addShaped` and `addShapeless` are back
+
   * Fixed:
     * Snow collects on and fences connect to drying racks (#76)
     * Farmland blocks should drop dirt clumps like dirt blocks
