@@ -4,36 +4,12 @@
     * The default oredict entries have changed, please refresh your `config/pyrotech/.core.OreDict-Custom.json` file
 
   * Added:
-    * Config options to modify base recipe duration for (#70):
-      * Pit Kiln
-      * Crude / Drying Rack
-      * Soaking Pot
-      * Pit / Refractory Burn
+    * Config options to modify base recipe duration for (#70): Pit Kiln, Crude / Drying Rack, Soaking Pot, Pit / Refractory Burn
     * ZS methods to assign Bloomery and Wither Forge fuel modifiers (#56)
     * ZS methods to white / blacklist campfire fuels (#63)
     * Config option to disable using any `logWood` as campfire fuel (#63)
     * Pyrotech and Vanilla axes (sans wood) have been added to the oredict `toolAxe` with a wildcard damage value
-    * ZS methods to restrict device interaction with gamestages for:
-      * Worktable / Stone Worktable
-      * Soaking Pot
-      * Pit Kiln
-      * Crude Drying Rack / Drying Rack
-      * Compacting Bin
-      * Chopping Block
-      * Campfire
-      * Granite Anvil / Ironclad Anvil
-      * Bloom, Bloomery, Wither Forge
-      * Stone / Refractory Machines
-      * Mechanical Hopper
-      * Mechanical Bellows
-      * Mechanical Mulcher
-      * Bellows
-      * Stone / Brick Tank
-      * Wood Rack
-      * Simple / Durable Rock Bag
-      * Crate / Durable Crate
-      * Shelf / Durable Shelf
-      * Stash / Durable Stash
+    * ZS methods to restrict device interaction with gamestages for (#4): Worktable / Stone Worktable, Soaking Pot, Pit Kiln, Crude Drying Rack / Drying Rack, Compacting Bin, Chopping Block, Campfire, Granite Anvil / Ironclad Anvil, Bloom, Bloomery, Wither Forge, Stone / Refractory Machines, Mechanical Hopper, Mechanical Bellows, Mechanical Mulcher, Bellows, Stone / Brick Tank, Wood Rack, Simple / Durable Rock Bag, Crate / Durable Crate, Shelf / Durable Shelf, Stash / Durable Stash
 
   * Changed:
     * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry
