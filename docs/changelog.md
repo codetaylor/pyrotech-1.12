@@ -1,3 +1,11 @@
+1.1.6
+
+  * Fixed:
+    * Having an open rock bag suppresses pick-up noises of other items (#62)
+    * Mycelium blocks should drop dirt clumps when broken
+
+---
+
 1.1.5
 
   * [!] Requires Athenaeum >= 1.17.2
