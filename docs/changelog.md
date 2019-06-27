@@ -1,11 +1,14 @@
-1.1.x
+1.1.5
+
+  * [!] Requires Athenaeum >= 1.17.2
 
   * Added:
-    * The basic worktable zen methods `addShaped` and `addShapeless` are back
+    * Bare-bones worktable zen methods `addShaped` and `addShapeless`
 
   * Fixed:
     * Snow collects on and fences connect to drying racks (#76)
     * Farmland blocks should drop dirt clumps like dirt blocks
+    * Mulched Farmland blocks should drop dirt clumps like dirt blocks
 
 ---
 
