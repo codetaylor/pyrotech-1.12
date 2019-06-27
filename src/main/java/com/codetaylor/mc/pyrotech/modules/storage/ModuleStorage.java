@@ -43,6 +43,8 @@ public class ModuleStorage
     MinecraftForge.EVENT_BUS.register(this);
 
     String[] craftTweakerPlugins = {
+        "ZenDurableRockBag",
+        "ZenSimpleRockBag",
         "ZenStoneTank",
         "ZenBrickTank",
         "ZenWoodRack"

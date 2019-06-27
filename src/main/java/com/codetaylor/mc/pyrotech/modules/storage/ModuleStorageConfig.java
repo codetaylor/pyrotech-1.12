@@ -11,6 +11,12 @@ import net.minecraftforge.common.config.Config;
 public class ModuleStorageConfig {
 
   @Config.Ignore
+  public static Stages STAGES_DURABLE_ROCK_BAG = null;
+
+  @Config.Ignore
+  public static Stages STAGES_SIMPLE_ROCK_BAG = null;
+
+  @Config.Ignore
   public static Stages STAGES_BRICK_TANK = null;
 
   @Config.Ignore
