@@ -31,10 +31,23 @@ static Worktable buildShapeless(
 
 ```java
 static void addShaped(
-  string name,                       
+  @Nullable string name,     
+  IItemStack output,         
+  IIngredient[][] ingredients
+);
+```
+
+If the `name` parameter is `null`, a name will be generated.
+
+---
+
+
+```java
+static void addShaped(
+  @Nullable string name,             
   IItemStack output,                 
   IIngredient[][] ingredients,       
-  IIngredient tool,                  
+  @Nullable IIngredient tool,        
   int toolDamage,                    
   @Optional boolean mirrored,        
   @Optional boolean hidden,          
@@ -43,16 +56,33 @@ static void addShaped(
 );
 ```
 
+If the `name` parameter is `null`, a name will be generated.
+If the `tool` parameter is `null`, the recipe will default to using
+the hammers provided in the config and will ignore the `toolDamage`
+parameter.
 
 ---
 
 
 ```java
 static void addShapeless(
-  string name,                       
+  @Nullable string name,   
+  IItemStack output,       
+  IIngredient[] ingredients
+);
+```
+
+If the `name` parameter is `null`, a name will be generated.
+
+---
+
+
+```java
+static void addShapeless(
+  @Nullable string name,             
   IItemStack output,                 
   IIngredient[] ingredients,         
-  IIngredient tool,                  
+  @Nullable IIngredient tool,        
   int toolDamage,                    
   @Optional boolean hidden,          
   @Optional IRecipeFunction function,
@@ -60,6 +90,10 @@ static void addShapeless(
 );
 ```
 
+If the `name` parameter is `null`, a name will be generated.
+If the `tool` parameter is `null`, the recipe will default to using
+the hammers provided in the config and will ignore the `toolDamage`
+parameter.
 
 ---
 
@@ -177,15 +211,22 @@ void register();
 ```java
 import mods.pyrotech.Worktable;
 
+Worktable.addShaped("custom_recipe_name", <minecraft:furnace>, [
+  [<minecraft:cobblestone>, <minecraft:cobblestone>, <minecraft:cobblestone>],
+  [<minecraft:cobblestone>, null, <minecraft:cobblestone>],
+  [<minecraft:cobblestone>, <minecraft:cobblestone>, <minecraft:cobblestone>]]);
+
+// Builder examples:
+
 // bare-bones
-Worktable.buildShaped([
+Worktable.buildShaped(<minecraft:furnace>, [
   [<minecraft:cobblestone>, <minecraft:cobblestone>, <minecraft:cobblestone>],
   [<minecraft:cobblestone>, null, <minecraft:cobblestone>],
   [<minecraft:cobblestone>, <minecraft:cobblestone>, <minecraft:cobblestone>]])
   .register();
 
 // custom name, custom tools
-Worktable.buildShaped([
+Worktable.buildShaped(<minecraft:furnace>, [
   [<minecraft:cobblestone>, <minecraft:cobblestone>, <minecraft:cobblestone>],
   [<minecraft:cobblestone>, null, <minecraft:cobblestone>],
   [<minecraft:cobblestone>, <minecraft:cobblestone>, <minecraft:cobblestone>]])

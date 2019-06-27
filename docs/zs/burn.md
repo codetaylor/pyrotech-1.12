@@ -79,7 +79,7 @@ Burn setFailureChance(
 
 ```java
 Burn addFailureItem(
-  ItemStack failureItem
+  IItemStack failureItem
 );
 ```
 

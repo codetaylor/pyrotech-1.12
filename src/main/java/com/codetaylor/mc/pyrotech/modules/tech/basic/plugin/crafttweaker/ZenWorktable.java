@@ -1,10 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
-import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
-import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
-import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
-import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.tools.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
 import crafttweaker.CraftTweakerAPI;
@@ -193,6 +190,27 @@ public class ZenWorktable {
       args = {
           @ZenDocArg(arg = "name"),
           @ZenDocArg(arg = "output"),
+          @ZenDocArg(arg = "ingredients")
+      },
+      description = {
+          "If the `name` parameter is `null`, a name will be generated."
+      }
+  )
+  @ZenMethod
+  public static void addShaped(
+      @ZenDocNullable String name,
+      IItemStack output,
+      IIngredient[][] ingredients
+  ) {
+
+    ZenWorktable.addShaped(name, output, ingredients, null, 0, false, false, null, null);
+  }
+
+  @ZenDocMethod(
+      order = 4,
+      args = {
+          @ZenDocArg(arg = "name"),
+          @ZenDocArg(arg = "output"),
           @ZenDocArg(arg = "ingredients"),
           @ZenDocArg(arg = "tool"),
           @ZenDocArg(arg = "toolDamage"),
@@ -200,14 +218,20 @@ public class ZenWorktable {
           @ZenDocArg(arg = "hidden"),
           @ZenDocArg(arg = "function"),
           @ZenDocArg(arg = "action")
+      },
+      description = {
+          "If the `name` parameter is `null`, a name will be generated.",
+          "If the `tool` parameter is `null`, the recipe will default to using",
+          "the hammers provided in the config and will ignore the `toolDamage`",
+          "parameter."
       }
   )
   @ZenMethod
   public static void addShaped(
-      @Nullable String name,
+      @ZenDocNullable String name,
       IItemStack output,
       IIngredient[][] ingredients,
-      @Nullable IIngredient tool,
+      @ZenDocNullable IIngredient tool,
       int toolDamage,
       @Optional boolean mirrored,
       @Optional boolean hidden,
@@ -219,7 +243,28 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 4,
+      order = 5,
+      args = {
+          @ZenDocArg(arg = "name"),
+          @ZenDocArg(arg = "output"),
+          @ZenDocArg(arg = "ingredients")
+      },
+      description = {
+          "If the `name` parameter is `null`, a name will be generated."
+      }
+  )
+  @ZenMethod
+  public static void addShapeless(
+      @ZenDocNullable String name,
+      IItemStack output,
+      IIngredient[] ingredients
+  ) {
+
+    ZenWorktable.addShapeless(name, output, ingredients, null, 0, false, null, null);
+  }
+
+  @ZenDocMethod(
+      order = 6,
       args = {
           @ZenDocArg(arg = "name"),
           @ZenDocArg(arg = "output"),
@@ -229,14 +274,20 @@ public class ZenWorktable {
           @ZenDocArg(arg = "hidden"),
           @ZenDocArg(arg = "function"),
           @ZenDocArg(arg = "action")
+      },
+      description = {
+          "If the `name` parameter is `null`, a name will be generated.",
+          "If the `tool` parameter is `null`, the recipe will default to using",
+          "the hammers provided in the config and will ignore the `toolDamage`",
+          "parameter."
       }
   )
   @ZenMethod
   public static void addShapeless(
-      @Nullable String name,
+      @ZenDocNullable String name,
       IItemStack output,
       IIngredient[] ingredients,
-      @Nullable IIngredient tool,
+      @ZenDocNullable IIngredient tool,
       int toolDamage,
       @Optional boolean hidden,
       @Optional IRecipeFunction function,
@@ -261,7 +312,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 5,
+      order = 7,
       args = {
           @ZenDocArg(arg = "resourceLocations")
       }
@@ -288,7 +339,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 6,
+      order = 8,
       description = {
           "Blacklist all vanilla crafting recipes."
       }
@@ -300,7 +351,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 7,
+      order = 9,
       args = {
           @ZenDocArg(arg = "resourceLocations")
       }
@@ -327,7 +378,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 8,
+      order = 10,
       args = {
           @ZenDocArg(arg = "output", info = "output ingredient to match")
       },
