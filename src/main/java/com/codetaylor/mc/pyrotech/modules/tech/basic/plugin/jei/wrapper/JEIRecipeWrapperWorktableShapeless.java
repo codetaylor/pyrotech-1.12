@@ -59,7 +59,7 @@ public class JEIRecipeWrapperWorktableShapeless<T extends IRecipe>
   @Override
   public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
-    if (this.toolList != null) {
+    if (!this.toolList.isEmpty()) {
       GlStateManager.pushMatrix();
       GlStateManager.translate(0, 0, 1000);
       minecraft.fontRenderer.drawStringWithShadow("-" + this.toolDamage, 70, 8, Color.WHITE.getRGB());

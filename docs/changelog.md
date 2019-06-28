@@ -3,6 +3,7 @@
   * Fixed:
     * Having an open rock bag suppresses pick-up noises of other items (#62)
     * Mycelium blocks should drop dirt clumps when broken
+    * Worktable recipes improperly displayed in JEI
 
 ---
 
