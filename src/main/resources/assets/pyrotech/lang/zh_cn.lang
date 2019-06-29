@@ -279,7 +279,7 @@ tile.pyrotech.rock_sand_red.name=红沙堆
 gui.pyrotech.tooltip.machine.input.capacity.item=输入容量：%s%d
 gui.pyrotech.tooltip.machine.output.capacity.fluid=输出容量：%s%d mB
 gui.pyrotech.tooltip.machine.fuel.capacity.item=燃料容量：%s%d
-gui.pyrotech.tooltip.machine.fuel.modifier=燃料修正：%s%d%%
+gui.pyrotech.tooltip.machine.fuel.modifier=燃料效率：%s%d%%
 gui.pyrotech.tooltip.machine.fuel.keep.heat=配方完成后自动熄灭。
 
 gui.pyrotech.tooltip.extended.shift=按住%s<SHIFT>%s查看详情。
