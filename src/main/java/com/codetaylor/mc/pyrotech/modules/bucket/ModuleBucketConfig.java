@@ -87,6 +87,12 @@ public class ModuleBucketConfig {
         "Default: " + true
     })
     public boolean ENABLE_COW_MILK = true;
+
+    @Config.Comment({
+        "Set to false to prevent the bucket from dropping a full source block",
+        "of fluid on the ground when the bucket breaks."
+    })
+    public boolean DROP_SOURCE_ON_BREAK = true;
   }
 
   // ---------------------------------------------------------------------------
@@ -161,6 +167,12 @@ public class ModuleBucketConfig {
         "Default: " + true
     })
     public boolean ENABLE_COW_MILK = true;
+
+    @Config.Comment({
+        "Set to false to prevent the bucket from dropping a full source block",
+        "of fluid on the ground when the bucket breaks."
+    })
+    public boolean DROP_SOURCE_ON_BREAK = true;
   }
 
   // ---------------------------------------------------------------------------
@@ -235,5 +247,11 @@ public class ModuleBucketConfig {
         "Default: " + true
     })
     public boolean ENABLE_COW_MILK = true;
+
+    @Config.Comment({
+        "Set to false to prevent the bucket from dropping a full source block",
+        "of fluid on the ground when the bucket breaks."
+    })
+    public boolean DROP_SOURCE_ON_BREAK = true;
   }
 }

@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nullable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -15,9 +16,44 @@ import java.util.function.Supplier;
 
 public class JsonInitializer {
 
+  private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+
   public static <T> T generateAndReadCustom(Path configurationPath, String generatedFilename, String customFilename, Class<T> dataClass, Supplier<? extends T> generatedDataClassSupplier, Logger logger) {
 
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    if (!JsonInitializer.create(configurationPath, generatedFilename, customFilename, generatedDataClassSupplier, logger)) {
+      return null;
+    }
+
+    return JsonInitializer.read(configurationPath, customFilename, dataClass, logger);
+  }
+
+  @Nullable
+  public static <T> T read(Path configurationPath, String customFilename, Class<T> dataClass, @Nullable Logger logger) {
+
+    Path customPath = Paths.get(configurationPath.toString(), customFilename);
+    BufferedReader reader = null;
+
+    try {
+      reader = Files.newBufferedReader(customPath);
+      return GSON.fromJson(reader, dataClass);
+
+    } catch (IOException e) {
+
+      if (logger != null) {
+        logger.error("", e);
+      }
+
+    } finally {
+      FileHelper.closeSilently(reader);
+    }
+
+    return null;
+  }
+
+  public static <T> boolean create(Path configurationPath, String generatedFilename, String customFilename, Supplier<? extends T> generatedDataClassSupplier, Logger logger) {
+
+    Path generatedPath = Paths.get(configurationPath.toString(), generatedFilename);
+    Path customPath = Paths.get(configurationPath.toString(), customFilename);
 
     if (!Files.exists(configurationPath)) {
 
@@ -26,11 +62,9 @@ public class JsonInitializer {
 
       } catch (IOException e) {
         logger.error("", e);
+        return false;
       }
     }
-
-    Path generatedPath = Paths.get(configurationPath.toString(), generatedFilename);
-    Path customPath = Paths.get(configurationPath.toString(), customFilename);
 
     // Delete the generated file if it exists.
     if (Files.exists(generatedPath)) {
@@ -40,6 +74,7 @@ public class JsonInitializer {
 
       } catch (IOException e) {
         logger.error("", e);
+        return false;
       }
     }
 
@@ -48,11 +83,12 @@ public class JsonInitializer {
 
     try {
       writer = Files.newBufferedWriter(generatedPath);
-      gson.toJson(generatedDataClassSupplier.get(), writer);
+      GSON.toJson(generatedDataClassSupplier.get(), writer);
       writer.close();
 
     } catch (IOException e) {
       logger.error("", e);
+      return false;
 
     } finally {
       FileHelper.closeSilently(writer);
@@ -66,23 +102,11 @@ public class JsonInitializer {
 
       } catch (IOException e) {
         logger.error("", e);
+        return false;
       }
     }
 
-    BufferedReader reader = null;
-
-    try {
-      reader = Files.newBufferedReader(customPath);
-      return gson.fromJson(reader, dataClass);
-
-    } catch (IOException e) {
-      logger.error("", e);
-
-    } finally {
-      FileHelper.closeSilently(reader);
-    }
-
-    return null;
+    return true;
   }
 
   private JsonInitializer() {

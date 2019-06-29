@@ -8,10 +8,7 @@ import com.codetaylor.mc.dropt.api.reference.EnumHarvesterType;
 import com.codetaylor.mc.dropt.api.reference.EnumListType;
 import com.codetaylor.mc.dropt.api.reference.EnumReplaceStrategy;
 import com.codetaylor.mc.pyrotech.ModPyrotechConfig;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockOreFossil;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockGrass;
+import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDroptConfig;
@@ -72,6 +69,8 @@ public class PluginDropt {
     String sand = item("minecraft", "sand");
     String sandRed = item("minecraft", "sand", BlockSand.EnumType.RED_SAND.getMetadata());
     String dirtAny = item("minecraft", "dirt", OreDictionary.WILDCARD_VALUE);
+    String farmlandAny = item("minecraft", "farmland", OreDictionary.WILDCARD_VALUE);
+    String mycelium = item("minecraft", "mycelium");
     String dirt = item("minecraft", "dirt", BlockDirt.DirtType.DIRT.getMetadata());
     String grass = item("minecraft", "grass");
     String gravel = item("minecraft", "gravel");
@@ -101,6 +100,7 @@ public class PluginDropt {
     String cobbledDiorite = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.DIORITE.getMeta());
     String cobbledGranite = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.GRANITE.getMeta());
     String cobbledLimestone = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.LIMESTONE.getMeta());
+    String mulchedFarmland = item(BlockFarmlandMulched.NAME, 0);
 
     String flintShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.FLINT_SHARD.getMeta());
     String boneShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.BONE_SHARD.getMeta());
@@ -175,7 +175,10 @@ public class PluginDropt {
       // Drops dirt clumps
       list.add(rule()
           .matchBlocks(new String[]{
-              dirtAny
+              dirtAny,
+              farmlandAny,
+              mulchedFarmland,
+              mycelium
           })
           .matchHarvester(harvester()
               .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
@@ -189,7 +192,10 @@ public class PluginDropt {
       // Drops dirt clumps
       list.add(rule()
           .matchBlocks(new String[]{
-              dirtAny
+              dirtAny,
+              farmlandAny,
+              mulchedFarmland,
+              mycelium
           })
           .matchHarvester(harvester()
               .type(EnumHarvesterType.PLAYER)
@@ -206,7 +212,10 @@ public class PluginDropt {
       // Drops dirt clumps
       list.add(rule()
           .matchBlocks(new String[]{
-              dirtAny
+              dirtAny,
+              farmlandAny,
+              mulchedFarmland,
+              mycelium
           })
           .matchHarvester(harvester()
               .type(EnumHarvesterType.PLAYER)

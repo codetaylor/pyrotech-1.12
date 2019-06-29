@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.EnumSkyBlock;
 
 import javax.annotation.Nonnull;
 
@@ -16,6 +17,7 @@ public abstract class TileCombustionWorkerBase
   protected TileDataInteger burnTimeRemaining;
 
   private int rainTimeRemaining;
+  private boolean firstLightCheck = false;
 
   protected TileCombustionWorkerBase(ITileDataService tileDataService, int taskCount) {
 
@@ -30,6 +32,21 @@ public abstract class TileCombustionWorkerBase
     });
 
     this.rainTimeRemaining = this.combustionGetRainDeactivateTime();
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Update
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public void update() {
+
+    super.update();
+
+    if (!this.firstLightCheck) {
+      this.firstLightCheck = true;
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
+    }
   }
 
   // ---------------------------------------------------------------------------

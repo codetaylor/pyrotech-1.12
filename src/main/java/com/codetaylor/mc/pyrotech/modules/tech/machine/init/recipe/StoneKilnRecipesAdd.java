@@ -15,6 +15,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
@@ -52,7 +53,7 @@ public class StoneKilnRecipesAdd {
     // Quicklime
     registry.register(new StoneKilnRecipe(
         ItemMaterial.EnumType.QUICKLIME.asStack(),
-        Ingredient.fromStacks(ItemMaterial.EnumType.DUST_LIMESTONE.asStack()),
+        new OreIngredient("dustLimestone"),
         Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
         Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{
@@ -63,10 +64,7 @@ public class StoneKilnRecipesAdd {
     // Glass
     registry.register(new StoneKilnRecipe(
         new ItemStack(Blocks.GLASS, 1, 0),
-        Ingredient.fromStacks(
-            new ItemStack(Blocks.SAND, 1, 0),
-            new ItemStack(Blocks.SAND, 1, 1)
-        ),
+        new OreIngredient("sand"),
         Reference.StoneKiln.DEFAULT_BURN_TIME_TICKS,
         Reference.StoneKiln.DEFAULT_FAILURE_CHANCE,
         new ItemStack[]{

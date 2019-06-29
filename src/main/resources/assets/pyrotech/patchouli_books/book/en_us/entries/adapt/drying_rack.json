@@ -6,7 +6,7 @@
   "pages": [
     {
     "type": "text",
-      "text": "The $(item)Crude Drying Rack$() and $(item)Drying Rack$() can be used to dry or store items.$(p)$(info) Both racks will benefit from being placed near a $(item)Campfire$() and will be at a disadvantage when it is raining."
+      "text": "The $(item)Crude Drying Rack$() and $(item)Drying Rack$() can be used to dry or store items.$(p)$(info) The performance of a $(item)Drying Rack$() depends on several factors:$(li)proximity to a campfire$(li)exposure to sky$(li)time of day$(li)biome temp. and humidity$(li)exposure to rain$(li)rain in biome"
     },
     {
       "type": "crafting",

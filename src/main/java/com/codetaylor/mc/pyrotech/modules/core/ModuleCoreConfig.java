@@ -385,6 +385,15 @@ public class ModuleCoreConfig {
         "Default: " + true
     })
     public boolean SHOW_BURN_TIME_IN_TOOLTIPS = true;
+
+    @Config.Comment({
+        "Some interactions will give off some green particles to indicate",
+        "that the recipe / tool combination is valid and recipe progress",
+        "has incremented.",
+        "",
+        "Set to false to disable these progression particles."
+    })
+    public boolean SHOW_RECIPE_PROGRESSION_PARTICLES = true;
   }
 
   // ---------------------------------------------------------------------------

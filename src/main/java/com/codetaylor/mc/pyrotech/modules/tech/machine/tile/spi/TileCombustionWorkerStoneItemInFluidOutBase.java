@@ -42,6 +42,7 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
     this.outputFluidTank.addObserver((handler, slot) -> {
       this.resetDormantCounter();
       this.markDirty();
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
     });
 
     this.registerTileDataForNetwork(new ITileData[]{

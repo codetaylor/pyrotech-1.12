@@ -843,6 +843,18 @@ public class ModuleTechMachineConfig {
         "Default: " + 0.02
     })
     public double AIRFLOW_DRAG_MODIFIER = 0.02;
+
+    @Config.Comment({
+        "If true, all the chopping block recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_CHOPPING_BLOCK_RECIPES = true;
+
+    @Config.Comment({
+        "The recipe duration modifier for all inherited recipes.",
+        "Default: " + 1.0
+    })
+    public double INHERITED_CHOPPING_BLOCK_RECIPE_DURATION_MODIFIER = 1.0;
   }
 
   // ---------------------------------------------------------------------------

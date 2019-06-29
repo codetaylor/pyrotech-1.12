@@ -1,132 +1,123 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe;
 
+import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.util.IngredientHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.core.init.CompatInitializerOre;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.SlagInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBuilder;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.nio.file.Path;
+import java.util.*;
 
 public class BloomeryRecipesAdd {
 
   private static final int DEFAULT_BURN_TIME_TICKS = 24 * 60 * 20;
   private static final float DEFAULT_FAILURE_CHANCE = 0.25f;
 
-  public static void apply(IForgeRegistry<BloomeryRecipe> registry) {
+  private static final RecipeItemParser RECIPE_ITEM_PARSER = new RecipeItemParser();
 
-    Item itemSlagIron = ForgeRegistries.ITEMS.getValue(new ResourceLocation(
-        ModuleTechBloomery.MOD_ID,
-        "generated_" + ItemSlag.NAME + "_iron"
-    ));
+  public static void applyCompatRecipes(Path configurationPath, IForgeRegistry<BloomeryRecipe> registry) {
 
-    Block blockSlagIron = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(
-        ModuleTechBloomery.MOD_ID,
-        "generated_" + BlockPileSlag.NAME + "_iron"
-    ));
+    CompatInitializerOre.OreCompatData data = CompatInitializerOre.read(configurationPath);
 
-    if (itemSlagIron != null
-        && blockSlagIron != null) {
+    if (data == null) {
+      return;
+    }
 
-      // Iron Bloom
+    for (Map.Entry<String, CompatInitializerOre.OreCompatOreDictEntry> entry : data.oredict.entrySet()) {
+
+      String oreDictKey = entry.getKey();
+      ItemSlag itemSlag = SlagInitializer.SLAG_BY_OREDICT.get(oreDictKey);
+      BlockPileSlag blockPileSlag = SlagInitializer.SLAG_PILE_BY_OREDICT.get(oreDictKey);
+
+      if (itemSlag == null
+          || blockPileSlag == null) {
+        continue;
+      }
+
+      ItemSlag.Properties properties = ModuleTechBloomery.Items.GENERATED_SLAG.get(itemSlag);
+      String langKey = properties.langKey;
+      CompatInitializerOre.OreCompatOreDictEntry oreDictEntry = entry.getValue();
+      ItemStack outputItemStack = BloomeryRecipesAdd.getFirstValidOutput(oreDictEntry.output);
+
+      if (outputItemStack.isEmpty()) {
+        continue;
+      }
+
+      // ore bloom
       registry.register(
           new BloomeryRecipeBuilder(
-              new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_iron_ore"),
-              new ItemStack(Items.IRON_NUGGET),
-              Ingredient.fromStacks(new ItemStack(Blocks.IRON_ORE))
+              new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_" + oreDictKey.toLowerCase()),
+              outputItemStack.copy(),
+              new OreIngredient(oreDictKey)
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
               .setBloomYield(12, 15)
-              .setSlagItem(new ItemStack(itemSlagIron), 4)
-              .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 1)
-              .addFailureItem(new ItemStack(itemSlagIron, 1, 0), 2)
+              .setSlagItem(new ItemStack(itemSlag), 4)
+              .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG), 1)
+              .addFailureItem(new ItemStack(itemSlag), 2)
               .create()
       );
 
-      // Iron Slag Bloom
+      // slag bloom
       registry.register(
           new BloomeryRecipeBuilder(
-              new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_iron_slag"),
-              new ItemStack(Items.IRON_NUGGET),
-              Ingredient.fromStacks(new ItemStack(blockSlagIron))
+              new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_" + oreDictKey.toLowerCase() + "_slag"),
+              outputItemStack.copy(),
+              Ingredient.fromStacks(new ItemStack(blockPileSlag))
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS / 2)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
               .setBloomYield(12, 15)
-              .setSlagItem(new ItemStack(itemSlagIron), 2)
+              .setSlagItem(new ItemStack(itemSlag), 2)
               .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
               .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 2)
-              .setLangKey(Blocks.IRON_ORE.getUnlocalizedName() + ";" + itemSlagIron.getUnlocalizedName() + ".unique")
+              .setLangKey(langKey + ";" + itemSlag.getUnlocalizedName() + ".unique")
               .create()
       );
     }
+  }
 
-    Item itemSlagGold = ForgeRegistries.ITEMS.getValue(new ResourceLocation(
-        ModuleTechBloomery.MOD_ID,
-        "generated_" + ItemSlag.NAME + "_gold"
-    ));
+  private static ItemStack getFirstValidOutput(String[] outputs) {
 
-    Block blockSlagGold = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(
-        ModuleTechBloomery.MOD_ID,
-        "generated_" + BlockPileSlag.NAME + "_gold"
-    ));
+    for (String itemString : outputs) {
 
-    if (itemSlagGold != null
-        && blockSlagGold != null) {
+      try {
+        ParseResult parseResult = BloomeryRecipesAdd.RECIPE_ITEM_PARSER.parse(itemString);
+        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(parseResult.getDomain(), parseResult.getPath()));
 
-      // Gold Nugget
-      registry.register(
-          new BloomeryRecipeBuilder(
-              new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_gold_ore"),
-              new ItemStack(Items.GOLD_NUGGET),
-              Ingredient.fromStacks(new ItemStack(Blocks.GOLD_ORE))
-          )
-              .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
-              .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(12, 15)
-              .setSlagItem(new ItemStack(itemSlagGold), 4)
-              .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 1)
-              .addFailureItem(new ItemStack(itemSlagGold, 1, 0), 2)
-              .create()
-      );
+        if (item == null) {
+          ModuleTechBloomery.LOGGER.error("Unable to find registered item for: " + itemString);
+          continue;
+        }
 
-      // Gold Slag Bloom
-      registry.register(
-          new BloomeryRecipeBuilder(
-              new ResourceLocation(ModuleTechBloomery.MOD_ID, "bloom_from_gold_slag"),
-              new ItemStack(Items.GOLD_NUGGET),
-              Ingredient.fromStacks(new ItemStack(blockSlagGold))
-          )
-              .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS / 2)
-              .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(12, 15)
-              .setSlagItem(new ItemStack(itemSlagGold), 2)
-              .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
-              .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 2)
-              .setLangKey(Blocks.GOLD_ORE.getUnlocalizedName() + ";" + itemSlagGold.getUnlocalizedName() + ".unique")
-              .create()
-      );
+        return new ItemStack(item, 1, parseResult.getMeta());
+
+      } catch (Exception e) {
+        ModuleTechBloomery.LOGGER.error("Invalid item string: " + itemString);
+      }
     }
+
+    return ItemStack.EMPTY;
   }
 
   public static void registerBloomAnvilRecipes(

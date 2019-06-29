@@ -19,6 +19,7 @@ import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaCraftingRecipe
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesRemove;
 import com.codetaylor.mc.pyrotech.modules.core.item.*;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.CrTEventHandler;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemDoor;
@@ -27,14 +28,18 @@ import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.file.Path;
 import java.util.Collections;
 
 public class ModuleCore
@@ -47,6 +52,9 @@ public class ModuleCore
 
   public static IPacketService PACKET_SERVICE;
   public static ITileDataService TILE_DATA_SERVICE;
+
+  public static boolean MISSING_WOOD_COMPAT = true;
+  public static boolean MISSING_ORE_COMPAT = true;
 
   public ModuleCore() {
 
@@ -64,6 +72,28 @@ public class ModuleCore
         "jei",
         "com.codetaylor.mc.pyrotech.modules.core.plugin.jei.PluginJEI"
     );
+  }
+
+  @Override
+  public void onPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onPreInitializationEvent(event);
+
+    CompatInitializerWood.WoodCompatData woodCompatData = CompatInitializerWood.read(this.getConfigurationDirectory().toPath());
+
+    if (woodCompatData != null) {
+      MISSING_WOOD_COMPAT = false;
+    }
+
+    CompatInitializerOre.OreCompatData oreCompatData = CompatInitializerOre.read(this.getConfigurationDirectory().toPath());
+
+    if (oreCompatData != null) {
+      MISSING_ORE_COMPAT = false;
+    }
+
+    if (Loader.isModLoaded("crafttweaker")) {
+      MinecraftForge.EVENT_BUS.register(new CrTEventHandler(this));
+    }
   }
 
   @SideOnly(Side.CLIENT)
@@ -96,8 +126,6 @@ public class ModuleCore
 
     super.onRegisterRecipesEvent(event);
 
-    VanillaCraftingRecipesRemove.apply(event.getRegistry());
-    VanillaFurnaceRecipesRemove.apply();
     VanillaFurnaceRecipesAdd.apply();
   }
 
@@ -133,6 +161,32 @@ public class ModuleCore
     ClientCommandHandler.instance.registerCommand(new ClientCommandExport());
 
     new Injector().inject(ModuleCore.Utils.class, "BLOCK_RENDERER", blockRenderer);
+  }
+
+  @Override
+  public void onPostInitializationEvent(FMLPostInitializationEvent event) {
+
+    super.onPostInitializationEvent(event);
+
+    if (!Loader.isModLoaded("crafttweaker")) {
+      this.onPostInitializationPreCrT();
+    }
+  }
+
+  /**
+   * If CrT is not installed, this is called in this mod's post-init.
+   * If CrT is installed, this is called during the CrT ActionApplyEvent, immediately
+   * before CrT recipe processing is done. Do not register anything to registries in
+   * this method; will cause log warning vomit.
+   */
+  public void onPostInitializationPreCrT() {
+
+    Path configurationPath = this.getConfigurationDirectory().toPath();
+    CompatInitializerWood.create(configurationPath);
+    CompatInitializerOre.create(configurationPath);
+
+    VanillaCraftingRecipesRemove.apply(ForgeRegistries.RECIPES);
+    VanillaFurnaceRecipesRemove.apply();
   }
 
   public static class Utils {

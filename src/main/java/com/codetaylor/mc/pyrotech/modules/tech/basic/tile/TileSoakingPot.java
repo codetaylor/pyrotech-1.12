@@ -61,6 +61,8 @@ public class TileSoakingPot
 
   private IInteraction[] interactions;
 
+  private boolean firstLightCheck = false;
+
   public TileSoakingPot() {
 
     super(ModuleTechBasic.TILE_DATA_SERVICE);
@@ -69,6 +71,7 @@ public class TileSoakingPot
     this.inputFluidTank.addObserver((tank, amount) -> {
       this.markDirty();
       this.updateRecipe();
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
     });
 
     this.outputStackHandler = new OutputStackHandler();
@@ -221,6 +224,11 @@ public class TileSoakingPot
 
   @Override
   public void update() {
+
+    if (!this.firstLightCheck) {
+      this.firstLightCheck = true;
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
+    }
 
     if (this.world.isRemote) {
       return;

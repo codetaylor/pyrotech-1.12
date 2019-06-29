@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core.init;
 
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 
@@ -29,6 +30,29 @@ public class JsonOreDict {
 
     JsonOreDict result = new JsonOreDict();
 
+    result.oreDict.put("cobblestone", new String[]{
+        "pyrotech:cobblestone:" + BlockCobblestone.EnumType.ANDESITE.getMeta(),
+        "pyrotech:cobblestone:" + BlockCobblestone.EnumType.DIORITE.getMeta(),
+        "pyrotech:cobblestone:" + BlockCobblestone.EnumType.GRANITE.getMeta(),
+        "pyrotech:cobblestone:" + BlockCobblestone.EnumType.LIMESTONE.getMeta()
+    });
+
+    result.oreDict.put("cobblestoneAndesite", new String[]{
+        "pyrotech:cobblestone:" + BlockCobblestone.EnumType.ANDESITE.getMeta(),
+    });
+
+    result.oreDict.put("cobblestoneDiorite", new String[]{
+        "pyrotech:cobblestone:" + BlockCobblestone.EnumType.DIORITE.getMeta(),
+    });
+
+    result.oreDict.put("cobblestoneGranite", new String[]{
+        "pyrotech:cobblestone:" + BlockCobblestone.EnumType.GRANITE.getMeta(),
+    });
+
+    result.oreDict.put("cobblestoneLimestone", new String[]{
+        "pyrotech:cobblestone:" + BlockCobblestone.EnumType.LIMESTONE.getMeta()
+    });
+
     result.oreDict.put("twine", new String[]{
         "minecraft:string",
         "pyrotech:material:" + ItemMaterial.EnumType.TWINE.getMeta()
@@ -47,7 +71,7 @@ public class JsonOreDict {
         "pyrotech:material:28" // dust_limestone
     });
 
-    result.oreDict.put("stoneLimestone", new String[] {
+    result.oreDict.put("stoneLimestone", new String[]{
         "pyrotech:limestone" // limestone
     });
 

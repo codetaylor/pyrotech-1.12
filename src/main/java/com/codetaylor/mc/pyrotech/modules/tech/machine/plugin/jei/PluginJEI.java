@@ -12,14 +12,19 @@ import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PluginJEI
     implements IModPlugin {
@@ -121,7 +126,28 @@ public class PluginJEI
       registry.addRecipeCatalyst(new ItemStack(ModuleTechMachine.Blocks.STONE_SAWMILL), JEIRecipeCategoryStoneSawmill.UID);
       registry.handleRecipes(StoneSawmillRecipe.class, JEIRecipeWrapperSawmill::new, JEIRecipeCategoryStoneSawmill.UID);
       List<StoneSawmillRecipe> recipeList = new ArrayList<>(ModuleTechMachine.Registries.STONE_SAWMILL_RECIPES.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryStoneSawmill.UID);
+
+      String[] validBladeStrings = ModuleTechMachineConfig.STONE_SAWMILL.SAWMILL_BLADES;
+      List<ItemStack> validBlades = Stream.of(validBladeStrings)
+          .map(s -> {
+            ResourceLocation resourceLocation = new ResourceLocation(s);
+            Item item = ForgeRegistries.ITEMS.getValue(resourceLocation);
+            return (item == null) ? ItemStack.EMPTY : new ItemStack(item);
+          })
+          .filter(itemStack -> !itemStack.isEmpty())
+          .collect(Collectors.toList());
+      List<StoneSawmillRecipe> validRecipeList = recipeList.stream()
+          .filter(recipe -> {
+            for (ItemStack validBlade : validBlades) {
+              if (recipe.getBlade().apply(validBlade)) {
+                return true;
+              }
+            }
+            return false;
+          })
+          .collect(Collectors.toList());
+
+      registry.addRecipes(validRecipeList, JEIRecipeCategoryStoneSawmill.UID);
     }
 
     // --- Brick Sawmill
@@ -129,7 +155,28 @@ public class PluginJEI
       registry.addRecipeCatalyst(new ItemStack(ModuleTechMachine.Blocks.BRICK_SAWMILL), JEIRecipeCategoryBrickSawmill.UID);
       registry.handleRecipes(BrickSawmillRecipe.class, JEIRecipeWrapperSawmill::new, JEIRecipeCategoryBrickSawmill.UID);
       List<BrickSawmillRecipe> recipeList = new ArrayList<>(ModuleTechMachine.Registries.BRICK_SAWMILL_RECIPES.getValuesCollection());
-      registry.addRecipes(recipeList, JEIRecipeCategoryBrickSawmill.UID);
+
+      String[] validBladeStrings = ModuleTechMachineConfig.BRICK_SAWMILL.SAWMILL_BLADES;
+      List<ItemStack> validBlades = Stream.of(validBladeStrings)
+          .map(s -> {
+            ResourceLocation resourceLocation = new ResourceLocation(s);
+            Item item = ForgeRegistries.ITEMS.getValue(resourceLocation);
+            return (item == null) ? ItemStack.EMPTY : new ItemStack(item);
+          })
+          .filter(itemStack -> !itemStack.isEmpty())
+          .collect(Collectors.toList());
+      List<BrickSawmillRecipe> validRecipeList = recipeList.stream()
+          .filter(recipe -> {
+            for (ItemStack validBlade : validBlades) {
+              if (recipe.getBlade().apply(validBlade)) {
+                return true;
+              }
+            }
+            return false;
+          })
+          .collect(Collectors.toList());
+
+      registry.addRecipes(validRecipeList, JEIRecipeCategoryBrickSawmill.UID);
     }
 
     // --- Stone Kiln

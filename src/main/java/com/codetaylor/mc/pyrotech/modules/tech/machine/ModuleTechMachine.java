@@ -136,6 +136,7 @@ public class ModuleTechMachine
 
     StoneKilnRecipesAdd.registerInheritedRecipes(ModuleTechBasic.Registries.KILN_PIT_RECIPE, Registries.STONE_KILN_RECIPES);
     StoneOvenRecipesAdd.registerInheritedDryingRackRecipes(ModuleTechBasic.Registries.DRYING_RACK_RECIPE, Registries.STONE_OVEN_RECIPES);
+    StoneSawmillRecipesAdd.registerInheritedChoppingBlockRecipes(ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE, Registries.STONE_SAWMILL_RECIPES);
 
     BrickKilnRecipesAdd.registerInheritedRecipes(Registries.STONE_KILN_RECIPES, Registries.BRICK_KILN_RECIPES);
     BrickOvenRecipesAdd.registerInheritedRecipes(Registries.STONE_OVEN_RECIPES, Registries.BRICK_OVEN_RECIPES);

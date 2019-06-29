@@ -7,7 +7,6 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CrudeDryingRackRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
@@ -78,7 +77,7 @@ public class ZenCrudeDryingRack {
     @Override
     public void apply() {
 
-      DryingRackRecipe.removeRecipes(this.output);
+      CrudeDryingRackRecipe.removeRecipes(this.output);
     }
 
     @Override

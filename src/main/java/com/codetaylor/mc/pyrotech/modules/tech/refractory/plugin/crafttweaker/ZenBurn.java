@@ -17,13 +17,13 @@ import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipeBu
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
+import crafttweaker.api.liquid.ILiquidStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -151,9 +151,9 @@ public class ZenBurn {
       }
   )
   @ZenMethod
-  public ZenBurn setFluidProduced(FluidStack fluidProduced) {
+  public ZenBurn setFluidProduced(ILiquidStack fluidProduced) {
 
-    this.builder.setFluidProduced(fluidProduced);
+    this.builder.setFluidProduced(CTInputHelper.toFluid(fluidProduced));
     return this;
   }
 
@@ -177,9 +177,9 @@ public class ZenBurn {
       }
   )
   @ZenMethod
-  public ZenBurn addFailureItem(ItemStack failureItem) {
+  public ZenBurn addFailureItem(IItemStack failureItem) {
 
-    this.builder.addFailureItem(failureItem);
+    this.builder.addFailureItem(CTInputHelper.toStack(failureItem));
     return this;
   }
 

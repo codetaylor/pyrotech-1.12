@@ -177,8 +177,8 @@ item.pyrotech.obsidian.shears.name=Obsidian Shears
 # Module: Core
 #------------------------------------------------------------------------------
 
-fluid.clay=Liquid Clay
-tile.fluid.clay.name=Liquid Clay
+fluid.liquid_clay=Liquid Clay
+tile.fluid.liquid_clay.name=Liquid Clay
 
 item.pyrotech.straw.name=Straw
 item.pyrotech.coal.coke.name=Coal Coke
@@ -461,3 +461,7 @@ advancement.pyrotech.tools.obsidian.desc=Craft an Obsidian Pickaxe
 #------------------------------------------------------------------------------
 
 gui.pyrotech.disconnect.module.mismatch=The client-side modules enabled in Pyrotech's module config don't match the modules enabled on the server. The server expects: %s.
+
+gui.pyrotech.restart=[Pyrotech] Please restart the game.
+gui.pyrotech.missing.wood.compat=[Pyrotech] Generated wood recipes will load the next time the game is launched.
+gui.pyrotech.missing.ore.compat=[Pyrotech] Generated ore recipes will load the next time the game is launched.

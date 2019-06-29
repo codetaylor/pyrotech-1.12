@@ -25,7 +25,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -53,6 +56,30 @@ public class BlockTarCollector
     this.setHarvestLevel("pickaxe", 0);
     this.setHardness(2);
     this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.STONE));
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Light
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileTarCollectorBase) {
+      TileTarCollectorBase tile = (TileTarCollectorBase) tileEntity;
+      FluidTank fluidTank = tile.getFluidTank();
+      FluidStack fluid = fluidTank.getFluid();
+      int fluidAmount = fluidTank.getFluidAmount();
+
+      if (fluid != null && fluidAmount > 0) {
+        int luminosity = fluid.getFluid().getLuminosity(fluid);
+        return MathHelper.clamp(luminosity, 0, 15);
+      }
+    }
+
+    return super.getLightValue(state, world, pos);
   }
 
   @Override

@@ -28,7 +28,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Stream;
 
 public abstract class TileTarTankBase
     extends TileNetBase
@@ -46,6 +45,7 @@ public abstract class TileTarTankBase
     this.fluidTank = new Tank(this, this.getTankCapacity());
     this.fluidTank.addObserver((tank, amount) -> {
       this.markDirty();
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
     });
 
     this.collectionTickCounter = new TickCounter(COLLECT_INTERVAL_TICKS);
@@ -56,7 +56,6 @@ public abstract class TileTarTankBase
         new TileDataFluidTank<>(this.fluidTank)
     });
   }
-
 
   protected abstract int getHotFluidTemperature();
 

@@ -2,17 +2,46 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi.BlockCombustionWorkerStoneBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCrucibleBase;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 
 import java.util.Random;
 
 public abstract class BlockCrucibleBase
     extends BlockCombustionWorkerStoneBase {
+
+  // ---------------------------------------------------------------------------
+  // - Light
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileCrucibleBase) {
+      TileCrucibleBase tile = (TileCrucibleBase) tileEntity;
+      FluidTank fluidTank = tile.getOutputFluidTank();
+      FluidStack fluid = fluidTank.getFluid();
+      int fluidAmount = fluidTank.getFluidAmount();
+
+      if (fluid != null && fluidAmount > 0) {
+        int luminosity = fluid.getFluid().getLuminosity(fluid);
+        return MathHelper.clamp(luminosity, 0, 15);
+      }
+    }
+
+    return super.getLightValue(state, world, pos);
+  }
 
   @Override
   protected void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand) {

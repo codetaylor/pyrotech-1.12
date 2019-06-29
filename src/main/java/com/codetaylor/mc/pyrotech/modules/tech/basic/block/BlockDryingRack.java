@@ -5,10 +5,10 @@ import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileDryingRack;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileDryingRackCrude;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileDryingRackBase;
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -37,7 +37,7 @@ import java.util.Comparator;
 import java.util.stream.Stream;
 
 public class BlockDryingRack
-    extends Block
+    extends BlockPartialBase
     implements IBlockVariant<BlockDryingRack.EnumType>,
     IBlockInteractable {
 
@@ -130,40 +130,6 @@ public class BlockDryingRack
   public boolean canPlaceBlockAt(World world, @Nonnull BlockPos pos) {
 
     return super.canPlaceBlockAt(world, pos);
-  }
-
-  // ---------------------------------------------------------------------------
-  // - Rendering
-  // ---------------------------------------------------------------------------
-
-  @Override
-  public boolean isSideSolid(IBlockState base_state, @Nonnull IBlockAccess world, BlockPos pos, EnumFacing side) {
-
-    return false;
-  }
-
-  @Override
-  public boolean isFullBlock(IBlockState state) {
-
-    return false;
-  }
-
-  @Override
-  public boolean isFullCube(IBlockState state) {
-
-    return this.isFullBlock(state);
-  }
-
-  @Override
-  public boolean isOpaqueCube(IBlockState state) {
-
-    return this.isFullBlock(state);
-  }
-
-  @Override
-  public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
-
-    return this.isFullBlock(state);
   }
 
   // ---------------------------------------------------------------------------

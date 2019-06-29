@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -16,10 +17,9 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class WorktableRecipe
     extends IForgeRegistryEntry.Impl<WorktableRecipe>
@@ -81,6 +81,19 @@ public class WorktableRecipe
     return WorktableRecipe.getCustomRecipe(inventory, world);
   }
 
+  public static boolean hasRecipeWithTool(Item tool) {
+
+    for (WorktableRecipe worktableRecipe : ModuleTechBasic.Registries.WORKTABLE_RECIPE) {
+      List<Item> toolList = worktableRecipe.getToolList();
+
+      if (toolList.contains(tool)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   @Nullable
   private static WorktableRecipe getCustomRecipe(InventoryCrafting inventory, World world) {
 
@@ -134,18 +147,45 @@ public class WorktableRecipe
   }
 
   private final IRecipe recipe;
+  private final List<Item> toolList;
+  private final int toolDamage;
 
   public WorktableRecipe(
       IRecipe recipe
   ) {
 
+    this(recipe, null, 0);
+  }
+
+  public WorktableRecipe(IRecipe recipe, Ingredient tool, int toolDamage) {
+
     this.recipe = recipe;
+    this.toolDamage = toolDamage;
+    this.toolList = new ArrayList<>();
+
+    if (tool != null) {
+      ItemStack[] matchingStacks = tool.getMatchingStacks();
+
+      if (matchingStacks.length > 0) {
+        Stream.of(matchingStacks).map(ItemStack::getItem).collect(Collectors.toCollection(() -> this.toolList));
+      }
+    }
   }
 
   @Nonnull
   public IRecipe getRecipe() {
 
     return this.recipe;
+  }
+
+  public List<Item> getToolList() {
+
+    return this.toolList;
+  }
+
+  public int getToolDamage() {
+
+    return this.toolDamage;
   }
 
   @Override

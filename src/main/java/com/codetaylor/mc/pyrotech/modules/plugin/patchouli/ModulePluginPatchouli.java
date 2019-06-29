@@ -79,7 +79,8 @@ public class ModulePluginPatchouli
         "stone_kiln_recipe",
         "stone_oven_recipe",
         "stone_sawmill_recipe",
-        "wither_forge_fuel"
+        "wither_forge_fuel",
+        "worktable_recipe"
     );
   }
 

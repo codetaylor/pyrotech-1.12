@@ -17,7 +17,9 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
@@ -59,7 +61,7 @@ public class TileWorktable
 
   private IInteraction[] interactions;
 
-  private IRecipe recipe;
+  private WorktableRecipe recipe;
 
   public TileWorktable() {
 
@@ -135,9 +137,19 @@ public class TileWorktable
     return this.inputStackHandler;
   }
 
-  public IRecipe getRecipe() {
+  public WorktableRecipe getWorktableRecipe() {
 
     return this.recipe;
+  }
+
+  public IRecipe getRecipe() {
+
+    if (this.recipe == null) {
+      return null;
+
+    } else {
+      return this.recipe.getRecipe();
+    }
   }
 
   protected int getGridMaxStackSize() {
@@ -213,14 +225,7 @@ public class TileWorktable
 
   private void updateRecipe() {
 
-    WorktableRecipe recipe = WorktableRecipe.getRecipe(this.inventoryWrapper, this.world);
-
-    if (recipe == null) {
-      this.recipe = null;
-
-    } else {
-      this.recipe = recipe.getRecipe();
-    }
+    this.recipe = WorktableRecipe.getRecipe(this.inventoryWrapper, this.world);
   }
 
   // ---------------------------------------------------------------------------
@@ -311,7 +316,20 @@ public class TileWorktable
         return false;
       }
 
-      return ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(registryName) > -1;
+      WorktableRecipe recipe = tile.getWorktableRecipe();
+
+      if (recipe == null) {
+        return false;
+      }
+
+      List<Item> toolList = recipe.getToolList();
+
+      if (toolList.isEmpty()) {
+        return ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(registryName) > -1;
+
+      } else {
+        return toolList.contains(item);
+      }
     }
 
     @Override
@@ -326,6 +344,7 @@ public class TileWorktable
       ItemStack heldItem = player.getHeldItemMainhand();
 
       IRecipe recipe = tile.getRecipe();
+      WorktableRecipe worktableRecipe = tile.getWorktableRecipe();
 
       if (tile.getRecipe() == null) {
         tile.updateRecipe();
@@ -341,6 +360,12 @@ public class TileWorktable
           if (tile.getExhaustionCostPerHit() > 0) {
             player.addExhaustion((float) tile.getExhaustionCostPerHit());
           }
+
+          ModuleCore.PACKET_SERVICE.sendToAllAround(
+              new SCPacketParticleProgress(hitPos.getX() + 0.5, hitPos.getY() + 1, hitPos.getZ() + 0.5, 2),
+              world.provider.getDimension(),
+              hitPos
+          );
 
           if (tile.recipeProgress.get() >= 0.9999) {
             tile.recipeProgress.set(0);
@@ -371,6 +396,10 @@ public class TileWorktable
             StackHelper.spawnStackOnTop(world, result, tile.getPos(), 0.75);
 
             int toolDamagePerCraft = tile.getToolDamagePerCraft();
+
+            if (!worktableRecipe.getToolList().isEmpty()) {
+              toolDamagePerCraft = worktableRecipe.getToolDamage();
+            }
 
             if (toolDamagePerCraft > 0) {
               heldItem.damageItem(toolDamagePerCraft, player);
@@ -464,6 +493,10 @@ public class TileWorktable
       ResourceLocation registryName = item.getRegistryName();
 
       if (registryName == null) {
+        return false;
+      }
+
+      if (WorktableRecipe.hasRecipeWithTool(item)) {
         return false;
       }
 

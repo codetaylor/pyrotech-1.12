@@ -60,4 +60,10 @@ public class ItemBucketClay
 
     return !ModuleBucketConfig.BUCKET_CLAY.ENABLE_COW_MILK;
   }
+
+  @Override
+  protected boolean dropFluidSourceOnBreak() {
+
+    return ModuleBucketConfig.BUCKET_CLAY.DROP_SOURCE_ON_BREAK;
+  }
 }

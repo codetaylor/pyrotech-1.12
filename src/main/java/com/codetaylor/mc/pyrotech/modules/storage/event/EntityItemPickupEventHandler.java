@@ -103,6 +103,27 @@ public class EntityItemPickupEventHandler {
     EntityItem entityItem = event.getItem();
     ItemStack itemStack = entityItem.getItem();
 
+    // Check if the item will at least partially fit in a bag
+
+    boolean interested = false;
+
+    for (BagHandler handler : handlers) {
+
+      ItemStack remainingItems = handler.insert(itemStack, true);
+      int remainingItemsCount = remainingItems.getCount();
+
+      if (remainingItemsCount != itemStack.getCount()) {
+        // stack or partial stack will go into a bag, we're interested
+        // in this item
+        interested = true;
+        break;
+      }
+    }
+
+    if (!interested) {
+      return;
+    }
+
     // Try to fill existing stacks first
 
     IItemHandler inventory = new PlayerMainInvWrapper(entityPlayer.inventory);
@@ -124,7 +145,7 @@ public class EntityItemPickupEventHandler {
 
     for (BagHandler handler : handlers) {
 
-      ItemStack remainingItems = handler.insert(itemStack);
+      ItemStack remainingItems = handler.insert(itemStack, false);
       int remainingItemsCount = remainingItems.getCount();
 
       if (remainingItemsCount != itemStack.getCount()) {
@@ -164,7 +185,7 @@ public class EntityItemPickupEventHandler {
       this.bagItemStack = bagItemStack;
     }
 
-    /* package */ ItemStack insert(ItemStack itemStack) {
+    /* package */ ItemStack insert(ItemStack itemStack, boolean simulate) {
 
       ItemBlockBag bagItem = (ItemBlockBag) this.bagItemStack.getItem();
 
@@ -172,7 +193,7 @@ public class EntityItemPickupEventHandler {
         TileBagBase.StackHandler handler = (TileBagBase.StackHandler) this.bagItemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
         if (handler != null) {
-          ItemStack remainingItems = handler.insertItem(itemStack.copy(), false);
+          ItemStack remainingItems = handler.insertItem(itemStack.copy(), simulate);
 
           if (itemStack.getCount() != remainingItems.getCount()) {
             bagItem.updateCount(this.bagItemStack);

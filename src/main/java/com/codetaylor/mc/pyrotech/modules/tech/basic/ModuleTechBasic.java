@@ -113,7 +113,7 @@ public class ModuleTechBasic
     DryingRackRecipesAdd.apply(ModuleTechBasic.Registries.DRYING_RACK_RECIPE);
     AnvilGraniteRecipesAdd.apply(ModuleTechBasic.Registries.ANVIL_RECIPE);
     AnvilIroncladRecipesAdd.apply(ModuleTechBasic.Registries.ANVIL_RECIPE);
-    ChoppingBlockRecipesAdd.apply(ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE);
+    ChoppingBlockRecipesAdd.applyCompatRecipes(this.getConfigurationDirectory().toPath(), ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE);
     CompactingBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE);
     SoakingPotRecipesAdd.apply(ModuleTechBasic.Registries.SOAKING_POT_RECIPE);
     CampfireRecipesAdd.apply(Registries.CAMPFIRE_RECIPE);

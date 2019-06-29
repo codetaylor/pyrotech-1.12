@@ -5,11 +5,14 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileWorktable;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.tileentity.TileEntity;
@@ -19,12 +22,14 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WorktableProvider
     extends BodyProviderAdapter {
 
   private String craftingTableRenderString;
+  private List<Item> hammers;
 
   @Nonnull
   @Override
@@ -66,11 +71,44 @@ public class WorktableProvider
 
           if (!recipeOutput.isEmpty()) {
 
-            if (this.craftingTableRenderString == null) {
-              this.craftingTableRenderString = WailaUtil.getStackRenderString(new ItemStack(Blocks.CRAFTING_TABLE));
+            WorktableRecipe worktableRecipe = tile.getWorktableRecipe();
+            List<Item> toolList = null;
+
+            if (worktableRecipe != null && !worktableRecipe.getToolList().isEmpty()) {
+              toolList = worktableRecipe.getToolList();
+
+            } else {
+
+              if (this.hammers == null) {
+                this.hammers = new ArrayList<>();
+
+                for (String s : ModuleCoreConfig.HAMMERS.HAMMER_LIST) {
+                  String[] split = s.split(";");
+                  Item item = Item.getByNameOrId(split[0]);
+
+                  if (item != null) {
+                    this.hammers.add(item);
+                  }
+                }
+              }
+
+              toolList = this.hammers;
             }
 
-            renderString.append(this.craftingTableRenderString);
+            if (toolList.isEmpty()) {
+
+              if (this.craftingTableRenderString == null) {
+                this.craftingTableRenderString = WailaUtil.getStackRenderString(new ItemStack(Blocks.CRAFTING_TABLE));
+              }
+
+              renderString.append(this.craftingTableRenderString);
+
+            } else {
+              int index = (int) ((Minecraft.getMinecraft().world.getTotalWorldTime() / 29) % toolList.size());
+              Item item = toolList.get(index);
+              renderString.append(WailaUtil.getStackRenderString(new ItemStack(item)));
+            }
+
             renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
             renderString.append(WailaUtil.getStackRenderString(recipeOutput));
           }

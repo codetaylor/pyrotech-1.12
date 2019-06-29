@@ -59,7 +59,7 @@ Burn setTotalBurnTimeTicks(
 
 ```java
 Burn setFluidProduced(
-  FluidStack fluidProduced
+  ILiquidStack fluidProduced
 );
 ```
 
@@ -79,7 +79,7 @@ Burn setFailureChance(
 
 ```java
 Burn addFailureItem(
-  ItemStack failureItem
+  IItemStack failureItem
 );
 ```
 

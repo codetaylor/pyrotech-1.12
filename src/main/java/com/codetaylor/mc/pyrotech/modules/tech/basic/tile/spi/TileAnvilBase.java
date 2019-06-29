@@ -15,6 +15,8 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.network.SCPacketParticleAnvilHit;
@@ -478,10 +480,15 @@ public abstract class TileAnvilBase
             tile.markDirty();
             BlockHelper.notifyBlockUpdate(world, tile.getPos());
           }
-        }
 
-        // Client particles
-        ModuleTechBasic.PACKET_SERVICE.sendToAllAround(new SCPacketParticleAnvilHit(tile.pos, hitX, hitY, hitZ), tile);
+          // Client particles
+          ModuleCore.PACKET_SERVICE.sendToAllAround(
+              new SCPacketParticleProgress(hitPos.getX() + 0.5, hitPos.getY() + 1, hitPos.getZ() + 0.5, 2),
+              world.provider.getDimension(),
+              hitPos
+          );
+          ModuleTechBasic.PACKET_SERVICE.sendToAllAround(new SCPacketParticleAnvilHit(tile.pos, hitX, hitY, hitZ), tile);
+        }
       }
 
       return true;
