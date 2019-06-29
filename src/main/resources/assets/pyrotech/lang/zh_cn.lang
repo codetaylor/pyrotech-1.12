@@ -89,13 +89,13 @@ tile.pyrotech.pile_slag.unique.name=%s渣堆
 # Module: Tech - Machine
 #------------------------------------------------------------------------------
 
-item.pyrotech.sawmill.blade.stone.name=石锯木刀片
-item.pyrotech.sawmill.blade.flint.name=燧石锯木刀片
-item.pyrotech.sawmill.blade.bone.name=骨锯木刀片
-item.pyrotech.sawmill.blade.iron.name=铁锯木刀片
-item.pyrotech.sawmill.blade.gold.name=金锯木刀片
-item.pyrotech.sawmill.blade.diamond.name=钻石锯木刀片
-item.pyrotech.sawmill.blade.obsidian.name=黑曜石锯木刀片
+item.pyrotech.sawmill.blade.stone.name=石刀片
+item.pyrotech.sawmill.blade.flint.name=燧石刀片
+item.pyrotech.sawmill.blade.bone.name=骨刀片
+item.pyrotech.sawmill.blade.iron.name=铁刀片
+item.pyrotech.sawmill.blade.gold.name=金刀片
+item.pyrotech.sawmill.blade.diamond.name=钻石刀片
+item.pyrotech.sawmill.blade.obsidian.name=黑曜石刀片
 
 item.pyrotech.cog.wood.name=木齿轮
 item.pyrotech.cog.stone.name=石齿轮
