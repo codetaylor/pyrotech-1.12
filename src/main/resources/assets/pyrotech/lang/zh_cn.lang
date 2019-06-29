@@ -78,7 +78,7 @@ item.pyrotech.tongs.gold.name=金钳
 item.pyrotech.tongs.diamond.name=钻石钳
 item.pyrotech.tongs.obsidian.name=黑曜石钳
 
-tile.pyrotech.bloom.name=坯
+tile.pyrotech.bloom.name=铁坯
 tile.pyrotech.bloom.unique.name=%s坯
 tile.pyrotech.bloomery.name=锻造炉
 tile.pyrotech.wither_forge.name=凋零锻造炉
