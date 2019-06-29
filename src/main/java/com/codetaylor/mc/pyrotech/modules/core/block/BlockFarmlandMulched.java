@@ -5,10 +5,7 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleBoneMeal;
 import com.codetaylor.mc.pyrotech.modules.core.tile.TileFarmlandMulched;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirt;
-import net.minecraft.block.BlockFarmland;
-import net.minecraft.block.IGrowable;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -45,6 +42,7 @@ public class BlockFarmlandMulched
     this.setHardness(0.7f);
     this.setTickRandomly(true);
     this.setLightOpacity(255);
+    this.setSoundType(SoundType.GROUND);
   }
 
   @SuppressWarnings("deprecation")

@@ -1,3 +1,10 @@
+1.1.7
+
+  * Fixed:
+    * Mulched Farmland should not sound like stone (#90)
+
+---
+
 1.1.6
 
   * Fixed:
