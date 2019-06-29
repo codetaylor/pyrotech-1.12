@@ -79,8 +79,34 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
 
     FluidStack fluid = this.outputFluidTank.getFluid();
 
+    // Prevent an item from being inserted if its output fluid
+    // does not match the existing fluid.
+    if (fluid != null
+        && recipe.getOutput().getFluid() != fluid.getFluid()) {
+      return false;
+    }
+
     return fluid == null
         || fluid.amount == 0;
+  }
+
+  @Override
+  protected int getAllowedRecipeInputQuantity(ItemStack insertedItems, E recipe) {
+
+    ItemStack stackInSlot = this.getInputStackHandler().getStackInSlot(0);
+    FluidStack output = recipe.getOutput();
+    int outputAmount = output.amount;
+    int result = 0;
+
+    for (int i = 0; i < insertedItems.getCount(); i++) {
+      output.amount = outputAmount * stackInSlot.getCount() + outputAmount * (i + 1);
+
+      if (this.getOutputFluidTank().fill(output, false) == output.amount) {
+        result = i + 1;
+      }
+    }
+
+    return result;
   }
 
   // ---------------------------------------------------------------------------
@@ -232,11 +258,11 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
   // ---------------------------------------------------------------------------
 
   private class Interaction
-      extends InteractionItemStack<TileCombustionWorkerStoneBase> {
+      extends InteractionItemStack<TileCombustionWorkerStoneItemInFluidOutBase> {
 
-    private final TileCombustionWorkerStoneBase<E> tile;
+    private final TileCombustionWorkerStoneItemInFluidOutBase<E> tile;
 
-    /* package */ Interaction(TileCombustionWorkerStoneBase<E> tile, ItemStackHandler[] stackHandlers) {
+    /* package */ Interaction(TileCombustionWorkerStoneItemInFluidOutBase<E> tile, ItemStackHandler[] stackHandlers) {
 
       super(
           stackHandlers,
@@ -255,7 +281,16 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (this.tile.getRecipe(itemStack) != null);
+      E recipe = this.tile.getRecipe(itemStack);
+
+      if (recipe == null) {
+        return false;
+      }
+
+      // Check quantity
+      int quantity = this.tile.getAllowedRecipeInputQuantity(itemStack, recipe);
+
+      return (quantity > 0);
     }
   }
 

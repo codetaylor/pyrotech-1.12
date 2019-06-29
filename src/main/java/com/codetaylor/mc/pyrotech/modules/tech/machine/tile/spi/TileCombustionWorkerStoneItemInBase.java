@@ -137,23 +137,48 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends MachineRecip
       ItemStack remainingItems = super.insertItem(slot, stack, true);
 
       if (remainingItems.getCount() == stack.getCount()) {
+        // If no items can be placed in, abort
         return stack;
       }
 
       E recipe = this.tile.getRecipe(stack);
 
       if (recipe == null) {
+        // If no recipe exists for the input items, abort
         return stack;
       }
 
-      remainingItems.setCount(stack.getCount() - remainingItems.getCount());
+      ItemStack insertedItems = stack.copy();
+      insertedItems.setCount(stack.getCount() - remainingItems.getCount());
 
-      if (!this.tile.allowInsertInput(remainingItems, recipe)) {
+      if (!this.tile.allowInsertInput(insertedItems, recipe)) {
         return stack;
       }
 
-      return super.insertItem(slot, stack, simulate);
+      // Check quantity
+      int quantity = this.tile.getAllowedRecipeInputQuantity(insertedItems, recipe);
+
+      if (quantity == 0) {
+        return stack;
+
+      } else {
+
+        if (quantity < insertedItems.getCount()) {
+          insertedItems.setCount(quantity);
+        }
+
+        super.insertItem(slot, insertedItems, simulate);
+
+        ItemStack toReturn = stack.copy();
+        toReturn.setCount(stack.getCount() - insertedItems.getCount());
+        return toReturn;
+      }
     }
+  }
+
+  protected int getAllowedRecipeInputQuantity(ItemStack insertedItems, E recipe) {
+
+    return insertedItems.getCount();
   }
 
   public static class Observer
