@@ -11,13 +11,15 @@
     * Config option to disable using any `logWood` as campfire fuel (#63)
     * Pyrotech and Vanilla axes (sans wood) have been added to the oredict `toolAxe` with a wildcard damage value
     * ZS methods to restrict device interaction with gamestages for (#4): Worktable / Stone Worktable, Soaking Pot, Pit Kiln, Crude Drying Rack / Drying Rack, Compacting Bin, Chopping Block, Campfire, Granite Anvil / Ironclad Anvil, Bloom, Bloomery, Wither Forge, Stone / Refractory Machines, Mechanical Hopper, Mechanical Bellows, Mechanical Mulcher, Bellows, Stone / Brick Tank, Wood Rack, Simple / Durable Rock Bag, Crate / Durable Crate, Shelf / Durable Shelf, Stash / Durable Stash
-    * Sticks will now drop from any block with an entry in the `treeLeaves` oredict
+    * Sticks will now attempt to drop from any block with an entry in the `treeLeaves` oredict (#69 giggity)
 
   * Changed:
     * The Chopping Block recipe will now accept any axe with a `toolAxe` oredict entry
     * The Chopping Block recipe will now damage the input axe instead of consuming the entire axe
     * The vanilla recipe removal has been delayed until the load complete event to allow time for other mods, such as TE, to generate recipes
     * Dropt is no longer in charge of the leaf / stick drops
+    * The Stone / Refractory Crucible will now only accept a total number of input items for which it has the output capacity (#25)
+    * The Soaking Pot will now only accept a total number of input items for which it has fluid to process (#25)
 
 ---
 
