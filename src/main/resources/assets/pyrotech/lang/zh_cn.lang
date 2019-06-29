@@ -108,12 +108,12 @@ item.pyrotech.cog.obsidian.name=黑曜石齿轮
 
 tile.pyrotech.stone_kiln.name=石窑
 tile.pyrotech.stone_oven.name=石炉
-tile.pyrotech.stone_sawmill.name=石锯木机
+tile.pyrotech.stone_sawmill.name=石切割机
 tile.pyrotech.stone_crucible.name=石坩埚
 
 tile.pyrotech.brick_kiln.name=耐火窑
 tile.pyrotech.brick_oven.name=耐火炉
-tile.pyrotech.brick_sawmill.name=耐火锯木机
+tile.pyrotech.brick_sawmill.name=耐火切割机
 tile.pyrotech.brick_crucible.name=耐火坩埚
 
 tile.pyrotech.mechanical_hopper.name=机械漏斗
@@ -177,8 +177,8 @@ item.pyrotech.obsidian.shears.name=黑曜石剪刀
 # Module: Core
 #------------------------------------------------------------------------------
 
-fluid.clay=液态粘土
-tile.fluid.clay.name=液态粘土
+fluid.liquid_clay=液态粘土
+tile.fluid.liquid_clay.name=液态粘土
 
 item.pyrotech.straw.name=稻草
 item.pyrotech.coal.coke.name=煤焦
@@ -348,12 +348,12 @@ gui.pyrotech.jei.failure=失败率：%d%%
 
 gui.pyrotech.jei.category.kiln.brick=耐火窑
 gui.pyrotech.jei.category.crucible.brick=耐火坩埚
-gui.pyrotech.jei.category.sawmill.brick=耐火锯木机
+gui.pyrotech.jei.category.sawmill.brick=耐火切割机
 gui.pyrotech.jei.category.oven.brick=耐火炉
 
 gui.pyrotech.jei.category.kiln.stone=石窑
 gui.pyrotech.jei.category.crucible.stone=石坩埚
-gui.pyrotech.jei.category.sawmill.stone=石锯木机
+gui.pyrotech.jei.category.sawmill.stone=石切割机
 gui.pyrotech.jei.category.oven.stone=石炉
 
 gui.pyrotech.jei.category.mechanical.compacting.bin=机械挤压机
