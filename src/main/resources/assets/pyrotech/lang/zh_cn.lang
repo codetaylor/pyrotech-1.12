@@ -283,8 +283,8 @@ gui.pyrotech.tooltip.machine.fuel.modifier=燃料修正：%s%d%%
 gui.pyrotech.tooltip.machine.fuel.keep.heat=配方完成后自动熄灭。
 
 gui.pyrotech.tooltip.extended.shift=按住%s<SHIFT>%s查看详情。
-gui.pyrotech.tooltip.uses=Uses: %d / %d
-gui.pyrotech.tooltip.uses.full=Uses: %d
+gui.pyrotech.tooltip.uses=耐久：%d / %d
+gui.pyrotech.tooltip.uses.full=耐久：%d
 gui.pyrotech.tooltip.durability=耐久：%d / %d
 gui.pyrotech.tooltip.durability.full=耐久：%d
 gui.pyrotech.tooltip.hot.fluids.true=可以盛装滚烫的流体。
