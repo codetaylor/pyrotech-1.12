@@ -67,7 +67,10 @@ public abstract class ItemTongsFullBase
 
     RayTraceResult target = this.rayTrace(world, player, false);
 
-    if (target.typeOfHit != RayTraceResult.Type.BLOCK) {
+    // target can actually be null
+    //noinspection ConstantConditions
+    if (target == null
+        || target.typeOfHit != RayTraceResult.Type.BLOCK) {
       return ActionResult.newResult(EnumActionResult.FAIL, heldItem);
     }
 

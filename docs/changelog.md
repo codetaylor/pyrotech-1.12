@@ -3,6 +3,7 @@
   * Fixed:
     * Mulched Farmland should not sound like stone (#90)
     * Templates of refractory machines showing wrong machine tooltip (#89)
+    * Crash when using Tongs (#88)
 
 ---
 
