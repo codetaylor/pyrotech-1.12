@@ -239,7 +239,7 @@ item.pyrotech.obsidian.hammer.name=黑曜石锤
 tile.pyrotech.thatch.name=稻草捆
 tile.pyrotech.coal_coke_block.name=焦煤块
 tile.pyrotech.log_pile.name=柴堆
-tile.pyrotech.refractory_brick_block.name=耐火方块
+tile.pyrotech.refractory_brick_block.name=耐火砖块
 tile.pyrotech.limestone.name=石灰岩
 tile.pyrotech.refractory_glass.name=耐火玻璃
 tile.pyrotech.slag_glass.name=炉渣玻璃
@@ -376,7 +376,7 @@ gui.pyrotech.jei.category.wither.forge=凋零锻造炉
 gui.pyrotech.jei.info.campfire=要搭建篝火，需先将火绒放在地面，再添加木头，最后点燃它。
 gui.pyrotech.jei.info.pit.kiln=要使用坑窑，需先在地上挖个洞然后把坑窑放进去。接下来将想要加工的物品放在坑窑上，再放上一个稻草方块和三个木头。最后，点燃坑窑并确保燃烧时保持干燥！
 gui.pyrotech.jei.info.burn=填坑焚烧的步骤：将方块放入坑内并用完整、不可燃的方块包裹，只留上面见光。接下来点燃方块并快速盖住洞。当坑上停止冒烟时，说明焚烧已经结束。在方块下方放置收集器可以收集产生的流体。
-gui.pyrotech.jei.info.refractory=耐火砖焚烧与填坑焚烧类似，但燃烧方块必须完全被有效的耐火方块包裹。在方块下方放置有效的耐火收集器可以收集产生的流体。
+gui.pyrotech.jei.info.refractory=耐火砖焚烧与填坑焚烧类似，但燃烧方块必须完全被有效的耐火砖块包裹。在方块下方放置有效的耐火收集器可以收集产生的流体。
 
 #------------------------------------------------------------------------------
 # Module: Plugin - Patchouli
