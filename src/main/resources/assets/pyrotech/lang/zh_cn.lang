@@ -461,3 +461,7 @@ advancement.pyrotech.tools.obsidian.desc=制作黑曜石镐
 #------------------------------------------------------------------------------
 
 gui.pyrotech.disconnect.module.mismatch=于客户端启用的模块与服务端不匹配。服务端需要：%s。
+
+gui.pyrotech.restart=[火种科技] 请重启游戏。
+gui.pyrotech.missing.wood.compat=[火种科技] 生成的木头配方将在下次游戏启动生效。
+gui.pyrotech.missing.ore.compat=[火种科技] 生成的矿石配方将在下次游戏启动生效。
