@@ -81,6 +81,12 @@ public class ModuleBucketConfig {
     })
     @Config.RangeInt(min = 1, max = 64)
     public int MAX_STACK_SIZE = 1;
+
+    @Config.Comment({
+        "Set to false to disable milking a cow with the bucket.",
+        "Default: " + true
+    })
+    public boolean ENABLE_COW_MILK = true;
   }
 
   // ---------------------------------------------------------------------------
@@ -149,6 +155,12 @@ public class ModuleBucketConfig {
     })
     @Config.RangeInt(min = 1, max = 64)
     public int MAX_STACK_SIZE = 4;
+
+    @Config.Comment({
+        "Set to false to disable milking a cow with the bucket.",
+        "Default: " + true
+    })
+    public boolean ENABLE_COW_MILK = true;
   }
 
   // ---------------------------------------------------------------------------
@@ -217,5 +229,11 @@ public class ModuleBucketConfig {
     })
     @Config.RangeInt(min = 1, max = 64)
     public int MAX_STACK_SIZE = 4;
+
+    @Config.Comment({
+        "Set to false to disable milking a cow with the bucket.",
+        "Default: " + true
+    })
+    public boolean ENABLE_COW_MILK = true;
   }
 }

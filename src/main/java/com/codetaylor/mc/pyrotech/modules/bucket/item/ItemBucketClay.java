@@ -54,4 +54,10 @@ public class ItemBucketClay
 
     return ModuleBucketConfig.BUCKET_CLAY.FULL_CONTAINER_DAMAGE_PER_SECOND;
   }
+
+  @Override
+  protected boolean isCowMilkDisabled() {
+
+    return !ModuleBucketConfig.BUCKET_CLAY.ENABLE_COW_MILK;
+  }
 }
