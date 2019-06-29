@@ -12,8 +12,7 @@ import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.library.Stages;
-import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
-import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowHandler;
+import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowConsumer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCapabilityDelegate;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
@@ -63,7 +62,7 @@ public class TileBloomery
     implements ITileInteractable,
     ITickable,
     ITileContainer,
-    ITileAirFlowHandler {
+    ITileAirFlowConsumer {
 
   private static final AxisAlignedBB INTERACTION_BOUNDS_TOP = new AxisAlignedBB(2f / 16f, 1, 2f / 16f, 14f / 16f, 24f / 16f, 14f / 16f);
 
@@ -399,7 +398,7 @@ public class TileBloomery
   }
 
   @Override
-  public void pushAirflow(float airflow) {
+  public void consumeAirflow(float airflow) {
 
     this.airflowBonus += airflow * this.getAirflowModifier();
     this.updateAirflow();

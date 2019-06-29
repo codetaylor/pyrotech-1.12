@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.Stages;
-import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowHandler;
+import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowConsumer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.gamestages.GameStages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
@@ -144,8 +144,8 @@ public class TileBellows
 
     TileEntity tileEntity = this.world.getTileEntity(blockPos);
 
-    if (tileEntity instanceof ITileAirFlowHandler) {
-      ((ITileAirFlowHandler) tileEntity).pushAirflow(this.getAirflow());
+    if (tileEntity instanceof ITileAirFlowConsumer) {
+      ((ITileAirFlowConsumer) tileEntity).consumeAirflow(this.getAirflow());
     }
   }
 

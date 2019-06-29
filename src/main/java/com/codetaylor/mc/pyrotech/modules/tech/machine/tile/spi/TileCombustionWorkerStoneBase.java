@@ -13,7 +13,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
-import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowHandler;
+import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowConsumer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
@@ -48,7 +48,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     implements ITickable,
     ITileInteractable,
     ITileContainer,
-    ITileAirFlowHandler {
+    ITileAirFlowConsumer {
 
   private static final int DORMANT_COUNTER = 50;
   private static final AxisAlignedBB INTERACTION_BOUNDS_TOP = new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f);
@@ -180,7 +180,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
   protected abstract boolean allowAutomation();
 
   @Override
-  public void pushAirflow(float airflow) {
+  public void consumeAirflow(float airflow) {
 
     this.airflowBonus += airflow * this.getAirflowModifier();
   }
