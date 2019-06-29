@@ -5,6 +5,9 @@
     * Templates of refractory machines showing wrong machine tooltip (#89)
     * Crash when using Tongs (#88)
 
+  * Changed:
+    * Updated zh_cn.lang (#87 Snownee)
+
 ---
 
 1.1.6
