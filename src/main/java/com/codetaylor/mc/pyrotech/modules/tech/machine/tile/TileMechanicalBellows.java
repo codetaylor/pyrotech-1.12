@@ -65,4 +65,14 @@ public class TileMechanicalBellows
     result.add(this.pos.offset(FacingHelper.rotateFacingCW(facing, 3)));
     return result;
   }
+
+  @Override
+  protected List<EnumFacing> getAirflowPushFacings(List<EnumFacing> result) {
+
+    EnumFacing facing = this.getFacing();
+    result.add(facing);
+    result.add(FacingHelper.rotateFacingCW(facing));
+    result.add(FacingHelper.rotateFacingCW(facing, 3));
+    return result;
+  }
 }

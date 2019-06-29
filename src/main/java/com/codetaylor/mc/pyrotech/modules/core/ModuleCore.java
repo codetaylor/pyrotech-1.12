@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.pyrotech.BulkRenderItemSupplier;
+import com.codetaylor.mc.pyrotech.IAirflowConsumerCapability;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.blockrenderer.BlockRenderer;
 import com.codetaylor.mc.pyrotech.library.blockrenderer.RenderTickEventHandler;
@@ -26,6 +27,9 @@ import net.minecraft.item.ItemDoor;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Loader;
@@ -56,6 +60,13 @@ public class ModuleCore
 
   public static boolean MISSING_WOOD_COMPAT = true;
   public static boolean MISSING_ORE_COMPAT = true;
+
+  @CapabilityInject(IAirflowConsumerCapability.class)
+  public static final Capability<IAirflowConsumerCapability> CAPABILITY_AIRFLOW_CONSUMER;
+
+  static {
+    CAPABILITY_AIRFLOW_CONSUMER = null;
+  }
 
   public ModuleCore() {
 
@@ -90,6 +101,8 @@ public class ModuleCore
   public void onPreInitializationEvent(FMLPreInitializationEvent event) {
 
     super.onPreInitializationEvent(event);
+
+    CapabilityManager.INSTANCE.register(IAirflowConsumerCapability.class, new IAirflowConsumerCapability.Storage(), new IAirflowConsumerCapability.Factory());
 
     CompatInitializerWood.WoodCompatData woodCompatData = CompatInitializerWood.read(this.getConfigurationDirectory().toPath());
 

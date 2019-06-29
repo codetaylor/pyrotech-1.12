@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.*;
+import com.codetaylor.mc.pyrotech.IAirflowConsumerCapability;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
@@ -13,9 +14,9 @@ import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
-import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowConsumer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi.BlockCombustionWorkerStoneBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBase;
@@ -48,7 +49,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     implements ITickable,
     ITileInteractable,
     ITileContainer,
-    ITileAirFlowConsumer {
+    IAirflowConsumerCapability {
 
   private static final int DORMANT_COUNTER = 50;
   private static final AxisAlignedBB INTERACTION_BOUNDS_TOP = new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f);
@@ -155,6 +156,10 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
   @Override
   public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
 
+    if (capability == ModuleCore.CAPABILITY_AIRFLOW_CONSUMER) {
+      return true;
+    }
+
     return (this.allowAutomation()
         && facing != null
         && facing.getAxis().isHorizontal()
@@ -164,6 +169,11 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
   @Nullable
   @Override
   public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+    if (capability == ModuleCore.CAPABILITY_AIRFLOW_CONSUMER) {
+      //noinspection unchecked
+      return (T) this;
+    }
 
     if (this.allowAutomation()
         && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
@@ -180,9 +190,13 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
   protected abstract boolean allowAutomation();
 
   @Override
-  public void consumeAirflow(float airflow) {
+  public float consumeAirflow(float airflow, boolean simulate) {
 
-    this.airflowBonus += airflow * this.getAirflowModifier();
+    if (!simulate) {
+      this.airflowBonus += airflow * this.getAirflowModifier();
+    }
+
+    return 0;
   }
 
   protected abstract double getAirflowModifier();

@@ -4,6 +4,10 @@
     * The default oredict entries have changed, please refresh your `config/pyrotech/.core.OreDict-Custom.json` file
     * It is safe to delete the `B:leaves` entry from the `config/pyrotech/plugin.Dropt.cfg` file
 
+  * API:
+    * Added `IAirflowConsumerCapability`
+    * Bumped version to 1
+
   * Added:
     * Config options to modify base recipe duration for (#70): Pit Kiln, Crude / Drying Rack, Soaking Pot, Pit / Refractory Burn
     * ZS methods to assign Bloomery and Wither Forge fuel modifiers (#56)

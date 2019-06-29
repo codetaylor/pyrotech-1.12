@@ -9,14 +9,15 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.*;
+import com.codetaylor.mc.pyrotech.IAirflowConsumerCapability;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.library.Stages;
-import com.codetaylor.mc.pyrotech.library.spi.tile.ITileAirFlowConsumer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCapabilityDelegate;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
@@ -46,6 +47,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
@@ -62,7 +64,7 @@ public class TileBloomery
     implements ITileInteractable,
     ITickable,
     ITileContainer,
-    ITileAirFlowConsumer {
+    IAirflowConsumerCapability {
 
   private static final AxisAlignedBB INTERACTION_BOUNDS_TOP = new AxisAlignedBB(2f / 16f, 1, 2f / 16f, 14f / 16f, 24f / 16f, 14f / 16f);
 
@@ -307,6 +309,28 @@ public class TileBloomery
   }
 
   // ---------------------------------------------------------------------------
+  // - Capabilities
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+
+    return (capability == ModuleCore.CAPABILITY_AIRFLOW_CONSUMER);
+  }
+
+  @Nullable
+  @Override
+  public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+
+    if (capability == ModuleCore.CAPABILITY_AIRFLOW_CONSUMER) {
+      //noinspection unchecked
+      return (T) this;
+    }
+
+    return null;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Recipe
   // ---------------------------------------------------------------------------
 
@@ -398,10 +422,14 @@ public class TileBloomery
   }
 
   @Override
-  public void consumeAirflow(float airflow) {
+  public float consumeAirflow(float airflow, boolean simulate) {
 
-    this.airflowBonus += airflow * this.getAirflowModifier();
-    this.updateAirflow();
+    if (!simulate) {
+      this.airflowBonus += airflow * this.getAirflowModifier();
+      this.updateAirflow();
+    }
+
+    return 0;
   }
 
   // ---------------------------------------------------------------------------
