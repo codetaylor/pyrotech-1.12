@@ -341,6 +341,10 @@ public class TileSoakingPot
         return false;
       }
 
+      if (this.tile.inputStackHandler.insertItem(0, itemStack, true).getCount() == itemStack.getCount()) {
+        return false;
+      }
+
       return SoakingPotRecipe.getRecipe(itemStack, fluid) != null;
     }
   }
@@ -396,13 +400,63 @@ public class TileSoakingPot
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
-      if (!this.outputStackHandler.getStackInSlot(0).isEmpty()
-          || this.inputFluidTank.getFluid() == null
-          || this.inputFluidTank.getFluid().amount == 0) {
+      if (!this.outputStackHandler.getStackInSlot(0).isEmpty()) {
         return stack;
       }
 
-      return super.insertItem(slot, stack, simulate);
+      FluidStack fluid = this.inputFluidTank.getFluid();
+
+      if (fluid == null
+          || fluid.amount == 0) {
+        return stack;
+      }
+
+      SoakingPotRecipe recipe = SoakingPotRecipe.getRecipe(stack, fluid);
+
+      if (recipe == null) {
+        return stack;
+      }
+
+      // Don't accept more items than there is fluid required to process them.
+
+      int requiredFluidPerItem = recipe.getInputFluid().amount;
+      int existingItemCount = this.getStackInSlot(0).getCount();
+
+      if (fluid.amount < requiredFluidPerItem * existingItemCount) {
+        return stack;
+      }
+
+      ItemStack remainingItems = super.insertItem(slot, stack, true);
+
+      if (remainingItems.getCount() == stack.getCount()) {
+        return stack;
+      }
+
+      int maxInsertQuantity = stack.getCount() - remainingItems.getCount();
+      int actualInsertQuantity = 0;
+
+      for (int i = 0; i < maxInsertQuantity; i++) {
+
+        if (fluid.amount >= requiredFluidPerItem * (existingItemCount + i + 1)) {
+          actualInsertQuantity += 1;
+
+        } else {
+          break;
+        }
+      }
+
+      if (actualInsertQuantity == 0) {
+        return stack;
+
+      } else {
+        ItemStack toInsert = stack.copy();
+        toInsert.setCount(actualInsertQuantity);
+        super.insertItem(slot, toInsert, simulate);
+
+        ItemStack result = stack.copy();
+        result.setCount(stack.getCount() - actualInsertQuantity);
+        return result;
+      }
     }
   }
 

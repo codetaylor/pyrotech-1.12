@@ -103,6 +103,9 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
 
       if (this.getOutputFluidTank().fill(output, false) == output.amount) {
         result = i + 1;
+
+      } else {
+        break;
       }
     }
 
