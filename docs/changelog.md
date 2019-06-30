@@ -1,6 +1,7 @@
 1.2.0
 
   * Note:
+    * Bugs: A lot of code has been touched in this release - thank you for your continued bug reports!
     * The default oredict entries have changed, please refresh your `config/pyrotech/.core.OreDict-Custom.json` file
     * It is safe to delete the `B:leaves` entry from the `config/pyrotech/plugin.Dropt.cfg` file
 
