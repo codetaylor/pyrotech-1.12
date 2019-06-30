@@ -230,40 +230,58 @@ public abstract class TileDryingRackBase
     boolean canRain = biome.canRain();
 
     if (canRain && this.world.isRainingAt(this.pos.up())) {
+      // If the biome can rain and the device is being directly rained on,
+      // set the new speed to this device's rain speed.
+      // The crude drying rack has a rain speed of 0 because the item is covered.
+      // The drying rack has a rain speed of -1 because the item is not covered.
+      // A negative speed will reduce recipe progress.
       newSpeed = this.getRainSpeed();
 
     } else if ((canRain && this.world.isRaining()) || biome.isHighHumidity()) {
+      // If the biome can rain and it is raining somewhere, or the biome is high
+      // humidity, the new speed is set to this:
       newSpeed = 0.25f;
 
     } else if (this.world.provider.isNether()) {
+      // If the device is in the Nether, set the new speed to this:
       newSpeed = 2.0f;
 
     } else {
+      // Otherwise, set the new speed to this:
       newSpeed = 1.0f;
 
+      // And then additively modify it based on further criteria.
+
       if (BiomeDictionary.getBiomes(BiomeDictionary.Type.HOT).contains(biome)) {
+        // If the biome is hot, increase the speed:
         newSpeed += 0.2f;
       }
 
       if (BiomeDictionary.getBiomes(BiomeDictionary.Type.DRY).contains(biome)) {
+        // If the biome is dry, increase the speed:
         newSpeed += 0.2f;
       }
 
       if (BiomeDictionary.getBiomes(BiomeDictionary.Type.COLD).contains(biome)) {
+        // If the biome is cold, decrease the speed:
         newSpeed -= 0.2f;
       }
 
       if (BiomeDictionary.getBiomes(BiomeDictionary.Type.WET).contains(biome)) {
+        // If the biome is wet, decrease the speed:
         newSpeed -= 0.2f;
       }
     }
+
+    // Next, scan a 2x2x2 region around the device and look for a fire block,
+    // or a block that counts as a fire source.
 
     final float[] fireSourceBonus = new float[1];
 
     BlockHelper.forBlocksInCube(this.world, this.pos, 2, 2, 2, (w, p, bs) -> {
 
       if (this.isSpeedBonusBlock(bs, p)) {
-        // Add speed bonus for each adjacent speed bonus block.
+        // Add speed bonus for each adjacent fire or fire source block:
         fireSourceBonus[0] += 0.2f;
       }
       return true;
@@ -280,6 +298,8 @@ public abstract class TileDryingRackBase
       newSpeed += 0.2f;
     }
 
+    // Finally, apply the base modifier from the config and return the
+    // new, calculated speed.
     return this.getSpeedModified(newSpeed);
   }
 
