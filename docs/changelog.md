@@ -1,3 +1,10 @@
+1.2.1
+
+  * Fixed:
+    * Missing config option to disable stick drops from leaves: `DROP_STICKS_FROM_LEAVES` in the `TWEAKS` section of `.core.cfg`
+
+---
+
 1.2.0
 
   * Note:
