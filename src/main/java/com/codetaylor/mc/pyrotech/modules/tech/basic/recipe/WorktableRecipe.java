@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.recipe;
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import net.minecraft.inventory.InventoryCrafting;
@@ -149,19 +150,21 @@ public class WorktableRecipe
   private final IRecipe recipe;
   private final List<Item> toolList;
   private final int toolDamage;
+  private final Stages stages;
 
   public WorktableRecipe(
       IRecipe recipe
   ) {
 
-    this(recipe, null, 0);
+    this(recipe, null, 0, null);
   }
 
-  public WorktableRecipe(IRecipe recipe, Ingredient tool, int toolDamage) {
+  public WorktableRecipe(IRecipe recipe, @Nullable Ingredient tool, int toolDamage, @Nullable Stages stages) {
 
     this.recipe = recipe;
     this.toolDamage = toolDamage;
     this.toolList = new ArrayList<>();
+    this.stages = stages;
 
     if (tool != null) {
       ItemStack[] matchingStacks = tool.getMatchingStacks();
@@ -186,6 +189,11 @@ public class WorktableRecipe
   public int getToolDamage() {
 
     return this.toolDamage;
+  }
+
+  public Stages getStages() {
+
+    return this.stages;
   }
 
   @Override

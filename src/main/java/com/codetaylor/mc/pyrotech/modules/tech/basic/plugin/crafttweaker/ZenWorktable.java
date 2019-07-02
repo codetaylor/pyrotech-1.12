@@ -77,6 +77,7 @@ public class ZenWorktable {
   private boolean hidden;
   private IRecipeFunction recipeFunction;
   private IRecipeAction recipeAction;
+  private ZenStages stages;
 
   public ZenWorktable(IItemStack output, IIngredient[][] shaped) {
 
@@ -171,16 +172,29 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 7
+      order = 7,
+      args = {
+          @ZenDocArg(arg = "stages")
+      }
+  )
+  @ZenMethod
+  public ZenWorktable setRecipeGameStages(ZenStages stages) {
+
+    this.stages = stages;
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 8
   )
   @ZenMethod
   public void register() {
 
     if (this.shaped != null) {
-      ZenWorktable.addShaped(this.name, this.output, this.shaped, this.tool, this.toolDamage, this.mirrored, this.hidden, this.recipeFunction, this.recipeAction);
+      ZenWorktable.addShaped(this.name, this.output, this.shaped, this.tool, this.toolDamage, this.mirrored, this.hidden, this.recipeFunction, this.recipeAction, this.stages);
 
     } else {
-      ZenWorktable.addShapeless(this.name, this.output, this.shapeless, this.tool, this.toolDamage, this.hidden, this.recipeFunction, this.recipeAction);
+      ZenWorktable.addShapeless(this.name, this.output, this.shapeless, this.tool, this.toolDamage, this.hidden, this.recipeFunction, this.recipeAction, this.stages);
     }
   }
 
@@ -205,7 +219,7 @@ public class ZenWorktable {
       IIngredient[][] ingredients
   ) {
 
-    ZenWorktable.addShaped(name, output, ingredients, null, 0, false, false, null, null);
+    ZenWorktable.addShaped(name, output, ingredients, null, 0, false, false, null, null, null);
   }
 
   @ZenDocMethod(
@@ -219,7 +233,8 @@ public class ZenWorktable {
           @ZenDocArg(arg = "mirrored"),
           @ZenDocArg(arg = "hidden"),
           @ZenDocArg(arg = "function"),
-          @ZenDocArg(arg = "action")
+          @ZenDocArg(arg = "action"),
+          @ZenDocArg(arg = "gamestages")
       },
       description = {
           "If the `name` parameter is `null`, a name will be generated.",
@@ -238,10 +253,11 @@ public class ZenWorktable {
       @Optional boolean mirrored,
       @Optional boolean hidden,
       @Optional IRecipeFunction function,
-      @Optional IRecipeAction action
+      @Optional IRecipeAction action,
+      @Optional ZenStages gamestages
   ) {
 
-    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(name, output, ingredients, function, action, mirrored, hidden, tool, toolDamage));
+    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapedRecipe(name, output, ingredients, function, action, mirrored, hidden, tool, toolDamage, gamestages));
   }
 
   @ZenDocMethod(
@@ -262,7 +278,7 @@ public class ZenWorktable {
       IIngredient[] ingredients
   ) {
 
-    ZenWorktable.addShapeless(name, output, ingredients, null, 0, false, null, null);
+    ZenWorktable.addShapeless(name, output, ingredients, null, 0, false, null, null, null);
   }
 
   @ZenDocMethod(
@@ -275,7 +291,8 @@ public class ZenWorktable {
           @ZenDocArg(arg = "toolDamage"),
           @ZenDocArg(arg = "hidden"),
           @ZenDocArg(arg = "function"),
-          @ZenDocArg(arg = "action")
+          @ZenDocArg(arg = "action"),
+          @ZenDocArg(arg = "gamestages")
       },
       description = {
           "If the `name` parameter is `null`, a name will be generated.",
@@ -293,7 +310,8 @@ public class ZenWorktable {
       int toolDamage,
       @Optional boolean hidden,
       @Optional IRecipeFunction function,
-      @Optional IRecipeAction action
+      @Optional IRecipeAction action,
+      @Optional ZenStages gamestages
   ) {
 
     boolean valid = output != null;
@@ -310,7 +328,7 @@ public class ZenWorktable {
       return;
     }
 
-    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapelessRecipe(name, output, ingredients, function, action, hidden, tool, toolDamage));
+    CraftTweaker.LATE_ACTIONS.add(new ActionAddShapelessRecipe(name, output, ingredients, function, action, hidden, tool, toolDamage, gamestages));
   }
 
   @ZenDocMethod(
@@ -395,7 +413,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 9,
+      order = 11,
       args = {
           @ZenDocArg(arg = "stages", info = "game stages")
       },
@@ -410,7 +428,7 @@ public class ZenWorktable {
   }
 
   @ZenDocMethod(
-      order = 10,
+      order = 12,
       args = {
           @ZenDocArg(arg = "stages", info = "game stages")
       },
@@ -456,14 +474,16 @@ public class ZenWorktable {
     protected String name;
     protected IIngredient tool;
     protected int toolDamage;
+    protected ZenStages stages;
 
-    private ActionBaseAddWorktableRecipe(MCRecipeBase recipe, IItemStack output, boolean isShaped, @Nullable IIngredient tool, int toolDamage) {
+    private ActionBaseAddWorktableRecipe(MCRecipeBase recipe, IItemStack output, boolean isShaped, @Nullable IIngredient tool, int toolDamage, ZenStages stages) {
 
       this.recipe = recipe;
       this.output = output;
       this.isShaped = isShaped;
       this.tool = tool;
       this.toolDamage = toolDamage;
+      this.stages = stages;
 
       if (recipe.hasTransformers()) {
         MCRecipeManager.transformerRecipes.add(recipe);
@@ -521,7 +541,12 @@ public class ZenWorktable {
     public void apply() {
 
       ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", this.name);
-      WorktableRecipe recipe = new WorktableRecipe(this.recipe.setRegistryName(resourceLocation), CTInputHelper.toIngredient(this.tool), this.toolDamage).setRegistryName(resourceLocation);
+      WorktableRecipe recipe = new WorktableRecipe(
+          this.recipe.setRegistryName(resourceLocation),
+          CTInputHelper.toIngredient(this.tool),
+          this.toolDamage,
+          (this.stages == null) ? null : this.stages.getStages()
+      ).setRegistryName(resourceLocation);
       ModuleTechBasic.Registries.WORKTABLE_RECIPE.register(recipe);
     }
 
@@ -545,9 +570,9 @@ public class ZenWorktable {
   private static class ActionAddShapedRecipe
       extends ActionBaseAddWorktableRecipe {
 
-    public ActionAddShapedRecipe(@Nullable String name, IItemStack output, IIngredient[][] ingredients, @Nullable IRecipeFunction function, @Nullable IRecipeAction action, boolean mirrored, boolean hidden, @Nullable IIngredient tool, int toolDamage) {
+    public ActionAddShapedRecipe(@Nullable String name, IItemStack output, IIngredient[][] ingredients, @Nullable IRecipeFunction function, @Nullable IRecipeAction action, boolean mirrored, boolean hidden, @Nullable IIngredient tool, int toolDamage, ZenStages stages) {
 
-      super(new MCRecipeShaped(ingredients, output, function, action, mirrored, hidden), output, true, tool, toolDamage);
+      super(new MCRecipeShaped(ingredients, output, function, action, mirrored, hidden), output, true, tool, toolDamage, stages);
       this.setName(name);
     }
   }
@@ -555,9 +580,9 @@ public class ZenWorktable {
   private static class ActionAddShapelessRecipe
       extends ActionBaseAddWorktableRecipe {
 
-    public ActionAddShapelessRecipe(@Nullable String name, IItemStack output, IIngredient[] ingredients, @Nullable IRecipeFunction function, @Nullable IRecipeAction action, boolean hidden, @Nullable IIngredient tool, int toolDamage) {
+    public ActionAddShapelessRecipe(@Nullable String name, IItemStack output, IIngredient[] ingredients, @Nullable IRecipeFunction function, @Nullable IRecipeAction action, boolean hidden, @Nullable IIngredient tool, int toolDamage, ZenStages stages) {
 
-      super(new MCRecipeShapeless(ingredients, output, function, action, hidden), output, false, tool, toolDamage);
+      super(new MCRecipeShapeless(ingredients, output, function, action, hidden), output, false, tool, toolDamage, stages);
       this.setName(name);
     }
   }

@@ -77,6 +77,11 @@ public class ModuleTechBasic
         "jei",
         "com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.PluginJEI"
     );
+
+    this.registerIntegrationPlugin(
+        "gamestages",
+        "com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.gamestages.PluginGameStages"
+    );
   }
 
   @SubscribeEvent

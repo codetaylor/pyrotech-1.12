@@ -52,7 +52,8 @@ static void addShaped(
   @Optional boolean mirrored,        
   @Optional boolean hidden,          
   @Optional IRecipeFunction function,
-  @Optional IRecipeAction action     
+  @Optional IRecipeAction action,    
+  @Optional Stages gamestages        
 );
 ```
 
@@ -86,7 +87,8 @@ static void addShapeless(
   int toolDamage,                    
   @Optional boolean hidden,          
   @Optional IRecipeFunction function,
-  @Optional IRecipeAction action     
+  @Optional IRecipeAction action,    
+  @Optional Stages gamestages        
 );
 ```
 
@@ -221,6 +223,16 @@ Worktable setRecipeAction(
 
 
 ```java
+Worktable setRecipeGameStages(
+  Stages stages
+);
+```
+
+
+---
+
+
+```java
 void register();
 ```
 
@@ -254,5 +266,16 @@ Worktable.buildShaped(<minecraft:furnace>, [
   [<minecraft:cobblestone>, <minecraft:cobblestone>, <minecraft:cobblestone>]])
   .setName("custom_recipe_name")
   .setTool(<minecraft:iron_pickaxe> | <minecraft:diamond_pickaxe>, 10)
+  .register();
+
+// bare-bones with gamestages
+
+import mods.pyrotech.Stages;
+
+Worktable.buildShaped(<minecraft:furnace>, [
+  [<minecraft:cobblestone>, <minecraft:cobblestone>, <minecraft:cobblestone>],
+  [<minecraft:cobblestone>, null, <minecraft:cobblestone>],
+  [<minecraft:cobblestone>, <minecraft:cobblestone>, <minecraft:cobblestone>]])
+  .setRecipeGameStages(Stages.and(["a", "b"]))
   .register();
 ```

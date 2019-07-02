@@ -6,10 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.*;
-import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.IJeiHelpers;
-import mezz.jei.api.IModPlugin;
-import mezz.jei.api.IModRegistry;
+import mezz.jei.api.*;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -19,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.IShapedRecipe;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -26,11 +24,23 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class PluginJEI
     implements IModPlugin {
+
+  public static IRecipeRegistry RECIPE_REGISTRY;
+
+  @Override
+  public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
+
+    // Expose the recipe registry for use in the game stages event handler.
+    RECIPE_REGISTRY = jeiRuntime.getRecipeRegistry();
+
+    this.hideRecipes();
+  }
 
   @Override
   public void registerCategories(IRecipeCategoryRegistration registry) {
@@ -249,4 +259,28 @@ public class PluginJEI
     }
   }
 
+  private void hideRecipes() {
+
+    Set<Map.Entry<ResourceLocation, WorktableRecipe>> entries = ModuleTechBasic.Registries.WORKTABLE_RECIPE.getEntries();
+
+    for (Map.Entry<ResourceLocation, WorktableRecipe> entry : entries) {
+      WorktableRecipe recipe = entry.getValue();
+
+      if (this.shouldHideWorktableRecipe(recipe)) {
+        IRecipeWrapper recipeWrapper = RECIPE_REGISTRY.getRecipeWrapper(recipe, JEIRecipeCategoryWorktable.UID);
+
+        if (recipeWrapper != null) {
+          RECIPE_REGISTRY.hideRecipe(recipeWrapper, JEIRecipeCategoryWorktable.UID);
+        }
+      }
+    }
+  }
+
+  private boolean shouldHideWorktableRecipe(WorktableRecipe recipe) {
+
+    // If gamestages is loaded, hide all of the staged worktable recipes from JEI.
+
+    return Loader.isModLoaded("gamestages")
+        && recipe.getStages() != null;
+  }
 }

@@ -1,3 +1,10 @@
+1.3.0
+
+  * Added:
+    * GameStages support for worktable recipes (#3)
+
+---
+
 1.2.0
 
   * Note:

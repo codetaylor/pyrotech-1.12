@@ -21,6 +21,7 @@ import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.gamestages.GameStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
@@ -42,6 +43,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -331,6 +333,14 @@ public class TileWorktable
         return false;
       }
 
+      if (Loader.isModLoaded("gamestages")) {
+        Stages stages = recipe.getStages();
+
+        if (!GameStages.allowed(player, stages)) {
+          return false;
+        }
+      }
+
       List<Item> toolList = recipe.getToolList();
 
       if (toolList.isEmpty()) {
@@ -544,9 +554,9 @@ public class TileWorktable
     }
   }
 
-  // ---------------------------------------------------------------------------
-  // - Stack Handler
-  // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// - Stack Handler
+// ---------------------------------------------------------------------------
 
   private class InputStackHandler
       extends ObservableStackHandler
@@ -586,9 +596,9 @@ public class TileWorktable
     }
   }
 
-  // ---------------------------------------------------------------------------
-  // - Inventory
-  // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// - Inventory
+// ---------------------------------------------------------------------------
 
   private class InventoryWrapper
       extends InventoryCrafting {

@@ -3,9 +3,11 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.provider;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;
 import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.gamestages.GameStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileWorktable;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -19,6 +21,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -64,17 +67,28 @@ public class WorktableProvider
 
         // Display input item and recipe output.
         IRecipe recipe = tile.getRecipe();
+        WorktableRecipe worktableRecipe = tile.getWorktableRecipe();
+        boolean displayRecipe = false;
 
-        if (recipe != null) {
+        if (recipe != null && worktableRecipe != null) {
+
+          if (Loader.isModLoaded("gamestages")) {
+            Stages stages = worktableRecipe.getStages();
+            displayRecipe = GameStages.allowed(Minecraft.getMinecraft().player, stages);
+          } else {
+            displayRecipe = true;
+          }
+        }
+
+        if (displayRecipe) {
           StringBuilder renderString = new StringBuilder();
           ItemStack recipeOutput = recipe.getRecipeOutput();
 
           if (!recipeOutput.isEmpty()) {
 
-            WorktableRecipe worktableRecipe = tile.getWorktableRecipe();
             List<Item> toolList = null;
 
-            if (worktableRecipe != null && !worktableRecipe.getToolList().isEmpty()) {
+            if (!worktableRecipe.getToolList().isEmpty()) {
               toolList = worktableRecipe.getToolList();
 
             } else {
