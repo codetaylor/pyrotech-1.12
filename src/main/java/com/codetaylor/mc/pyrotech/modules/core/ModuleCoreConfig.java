@@ -4,7 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.core.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + ".core")
+@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "core")
 public class ModuleCoreConfig {
 
   public static Tweaks TWEAKS = new Tweaks();

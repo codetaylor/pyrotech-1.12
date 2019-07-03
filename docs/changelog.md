@@ -1,3 +1,16 @@
+1.2.2
+
+  * Note:
+    * Remove the leading `.` from Pyrotech's config files
+
+  * Fixed:
+    * Config files prefixed with `.` are not correctly imported by the Twitch app (#96)
+
+  * Changed:
+    * All config files that were previously prefixed with `.` have had the `.` removed
+
+---
+
 1.2.1
 
   * Fixed:

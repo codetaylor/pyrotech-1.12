@@ -23,8 +23,8 @@ public final class CompatInitializerWood {
 
     JsonInitializer.create(
         configurationPath.resolve(ModuleCore.MOD_ID),
-        ".core.compat.Wood-Generated.json",
-        ".core.compat.Wood-Custom.json",
+        "core.compat.Wood-Generated.json",
+        "core.compat.Wood-Custom.json",
         () -> CompatInitializerWood.createGeneratedData(new WoodCompatData()),
         ModuleCore.LOGGER
     );
@@ -35,7 +35,7 @@ public final class CompatInitializerWood {
 
     return JsonInitializer.read(
         configurationPath.resolve(ModuleTechMachine.MOD_ID),
-        ".core.compat.Wood-Custom.json",
+        "core.compat.Wood-Custom.json",
         CompatInitializerWood.WoodCompatData.class,
         null // prevent logging errors
     );
