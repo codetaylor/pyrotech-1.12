@@ -4,11 +4,14 @@ import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.bucket.init.ItemInitializer;
+import com.codetaylor.mc.pyrotech.modules.bucket.init.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketClay;
 import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketClayUnfired;
 import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketStone;
 import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketWood;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -39,6 +42,14 @@ public class ModuleBucket
   public void onClientRegister(Registry registry) {
 
     ItemInitializer.onClientRegister(registry);
+  }
+
+  @Override
+  public void onRegisterRecipesEvent(RegistryEvent.Register<IRecipe> event) {
+
+    super.onRegisterRecipesEvent(event);
+
+    VanillaFurnaceRecipesAdd.apply();
   }
 
   @GameRegistry.ObjectHolder(ModuleBucket.MOD_ID)

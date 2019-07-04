@@ -155,6 +155,9 @@ public class ModuleCore
 
     super.onRegisterRecipesEvent(event);
 
+    // furnace recipes must be removed before new recipes are added or we
+    // end up removing explicitly added recipes
+    VanillaFurnaceRecipesRemove.apply();
     VanillaFurnaceRecipesAdd.apply();
   }
 
@@ -214,7 +217,6 @@ public class ModuleCore
     CompatInitializerOre.create(configurationPath);
 
     VanillaCraftingRecipesRemove.apply(ForgeRegistries.RECIPES);
-    VanillaFurnaceRecipesRemove.apply();
   }
 
   public static class Utils {

@@ -4,6 +4,16 @@
     * GameStages support for worktable recipes (#3)
     * Exposed config values for both drying racks' speed calculations (#92)
     * CrT methods for the drying racks that allow overriding a biome's base speed (#92)
+    * Vanilla smelting recipe for (#82):
+        * Slag -> Slag Glass (bloomery)
+        * Unfired Clay Bucket -> Clay Bucket (bucket)
+        * Unfired Refractory Brick -> Refractory Brick (core)
+        * Crushed Limestone -> Quicklime (core)
+        * Gravel -> Cobblestone (core)
+        * Unfired Clay Shears -> Clay Shears (tool)
+
+  * Fixed:
+    * Smelting recipes added by the mod were also being removed by the mod
 
 ---
 

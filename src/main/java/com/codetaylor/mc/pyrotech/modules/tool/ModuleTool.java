@@ -4,9 +4,12 @@ import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tool.init.ItemInitializer;
+import com.codetaylor.mc.pyrotech.modules.tool.init.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tool.item.*;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -39,6 +42,14 @@ public class ModuleTool
   public void onClientRegister(Registry registry) {
 
     ItemInitializer.onClientRegister(registry);
+  }
+
+  @Override
+  public void onRegisterRecipesEvent(RegistryEvent.Register<IRecipe> event) {
+
+    super.onRegisterRecipesEvent(event);
+
+    VanillaFurnaceRecipesAdd.apply();
   }
 
   @GameRegistry.ObjectHolder(ModuleTool.MOD_ID)
