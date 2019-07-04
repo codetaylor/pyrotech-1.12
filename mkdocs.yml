@@ -4,6 +4,7 @@ pages:
 - Introduction: index.md
 - ChangeLog: changelog.md
 - Known Issues: knownissues.md
+- Commands: commands.md
 - Drying Racks: dryingracks.md
 - ZenScript:
   - Bellows: zs/bellows.md

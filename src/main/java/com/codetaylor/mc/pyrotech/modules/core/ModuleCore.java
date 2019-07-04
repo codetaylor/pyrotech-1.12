@@ -14,6 +14,7 @@ import com.codetaylor.mc.pyrotech.library.blockrenderer.RenderTickEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.advancement.AdvancementTriggers;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.command.ClientCommandExport;
+import com.codetaylor.mc.pyrotech.modules.core.command.ClientCommandLang;
 import com.codetaylor.mc.pyrotech.modules.core.event.HarvestDropsEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.event.TooltipEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.init.*;
@@ -190,6 +191,7 @@ public class ModuleCore
     BlockRenderer blockRenderer = new BlockRenderer(new BulkRenderItemSupplier());
     MinecraftForge.EVENT_BUS.register(new RenderTickEventHandler(Collections.singletonList(blockRenderer)));
     ClientCommandHandler.instance.registerCommand(new ClientCommandExport());
+    ClientCommandHandler.instance.registerCommand(new ClientCommandLang());
 
     new Injector().inject(ModuleCore.Utils.class, "BLOCK_RENDERER", blockRenderer);
   }

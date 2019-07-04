@@ -11,6 +11,7 @@
         * Crushed Limestone -> Quicklime (core)
         * Gravel -> Cobblestone (core)
         * Unfired Clay Shears -> Clay Shears (tool)
+    * Client-side command `/ptlang` to display the lang key (unlocalized name) of a held item (#94)
 
   * Fixed:
     * Smelting recipes added by the mod were also being removed by the mod
