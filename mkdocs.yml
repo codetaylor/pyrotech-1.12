@@ -4,6 +4,7 @@ pages:
 - Introduction: index.md
 - ChangeLog: changelog.md
 - Known Issues: knownissues.md
+- Drying Racks: dryingracks.md
 - ZenScript:
   - Bellows: zs/bellows.md
   - Bloomery: zs/bloomery.md
@@ -52,4 +53,4 @@ extra_css: [custom.css]
 markdown_extensions:
 - admonition
 #- attr_list
-#- codehilite
+- codehilite

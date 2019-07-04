@@ -2,3 +2,8 @@
   margin-bottom: 0px;
   margin-top: 16px;
 }
+
+div.codehilite {
+  overflow-x: auto;
+  font-size: 90%;
+}

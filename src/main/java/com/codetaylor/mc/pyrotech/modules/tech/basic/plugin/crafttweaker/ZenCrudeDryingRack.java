@@ -81,6 +81,40 @@ public class ZenCrudeDryingRack {
     ModuleTechBasicConfig.STAGES_DRYING_RACK_CRUDE = stages.getStages();
   }
 
+  @ZenDocMethod(
+      order = 5,
+      args = {
+          @ZenDocArg(arg = "speed"),
+          @ZenDocArg(arg = "biome")
+      },
+      description = {
+          "Sets the device's base speed in the given biome."
+      }
+  )
+  @ZenMethod
+  public static void setBiomeSpeed(float speed, String biome) {
+
+    ModuleTechBasicConfig.CrudeDryingRack.BIOME_MODIFIERS.put(biome, speed);
+  }
+
+  @ZenDocMethod(
+      order = 6,
+      args = {
+          @ZenDocArg(arg = "speed"),
+          @ZenDocArg(arg = "biomes")
+      },
+      description = {
+          "Sets the device's base speed in the given biomes."
+      }
+  )
+  @ZenMethod
+  public static void setBiomeSpeed(float speed, String[] biomes) {
+
+    for (String biome : biomes) {
+      ModuleTechBasicConfig.CrudeDryingRack.BIOME_MODIFIERS.put(biome, speed);
+    }
+  }
+
   public static class RemoveRecipe
       implements IAction {
 

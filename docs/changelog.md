@@ -2,6 +2,8 @@
 
   * Added:
     * GameStages support for worktable recipes (#3)
+    * Exposed config values for both drying racks' speed calculations (#92)
+    * CrT methods for the drying racks that allow overriding a biome's base speed (#92)
 
 ---
 

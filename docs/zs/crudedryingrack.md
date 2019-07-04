@@ -49,6 +49,30 @@ Sets game stage logic required to use the device.
 ---
 
 
+```java
+static void setBiomeSpeed(
+  float speed,
+  string biome
+);
+```
+
+Sets the device's base speed in the given biome.
+
+---
+
+
+```java
+static void setBiomeSpeed(
+  float speed,   
+  string[] biomes
+);
+```
+
+Sets the device's base speed in the given biomes.
+
+---
+
+
 ### Examples
 
 ```java

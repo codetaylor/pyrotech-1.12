@@ -24,6 +24,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Map;
 
 public class TileDryingRackCrude
     extends TileDryingRackBase
@@ -44,6 +45,12 @@ public class TileDryingRackCrude
   }
 
   @Override
+  protected ModuleTechBasicConfig.DryingRackConditionalModifiers getConditionalModifiers() {
+
+    return ModuleTechBasicConfig.CRUDE_DRYING_RACK.CONDITIONAL_MODIFIERS;
+  }
+
+  @Override
   protected double getBaseDurationModifier() {
 
     return ModuleTechBasicConfig.CRUDE_DRYING_RACK.BASE_RECIPE_DURATION_MODIFIER;
@@ -56,15 +63,15 @@ public class TileDryingRackCrude
   }
 
   @Override
-  protected float getSpeedModified(float speed) {
+  protected float getMultiplicativeSpeedModifier() {
 
-    return (float) (speed * ModuleTechBasicConfig.CRUDE_DRYING_RACK.SPEED_MODIFIER);
+    return (float) ModuleTechBasicConfig.CRUDE_DRYING_RACK.SPEED_MODIFIER;
   }
 
   @Override
-  protected float getRainSpeed() {
+  protected Map<String, Float> getBiomeSpeeds() {
 
-    return 0;
+    return ModuleTechBasicConfig.CrudeDryingRack.BIOME_MODIFIERS;
   }
 
   @Nonnull

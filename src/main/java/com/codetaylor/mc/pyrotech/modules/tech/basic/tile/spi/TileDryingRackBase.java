@@ -10,6 +10,7 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.TickCounter;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -17,6 +18,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -25,6 +27,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
+import java.util.Map;
 
 public abstract class TileDryingRackBase
     extends TileNetWorkerBase
@@ -204,16 +207,11 @@ public abstract class TileDryingRackBase
 
   protected abstract int getSlotCount();
 
-  protected abstract float getSpeedModified(float speed);
+  protected abstract float getMultiplicativeSpeedModifier();
 
   private DryingRackRecipe getRecipe(ItemStack itemStack) {
 
     return DryingRackRecipe.getRecipe(itemStack);
-  }
-
-  protected float getRainSpeed() {
-
-    return -1.0f;
   }
 
   private void initSlotDryTime(int slot, int dryTimeTicks) {
@@ -225,83 +223,122 @@ public abstract class TileDryingRackBase
 
   private float updateSpeed() {
 
-    float newSpeed;
     Biome biome = this.world.getBiome(this.pos);
     boolean canRain = biome.canRain();
+    ModuleTechBasicConfig.DryingRackConditionalModifiers modifiers = this.getConditionalModifiers();
 
-    if (canRain && this.world.isRainingAt(this.pos.up())) {
-      // If the biome can rain and the device is being directly rained on,
-      // set the new speed to this device's rain speed.
-      // The crude drying rack has a rain speed of 0 because the item is covered.
-      // The drying rack has a rain speed of -1 because the item is not covered.
-      // A negative speed will reduce recipe progress.
-      newSpeed = this.getRainSpeed();
+    double calculatedSpeed = 0;
 
-    } else if ((canRain && this.world.isRaining()) || biome.isHighHumidity()) {
-      // If the biome can rain and it is raining somewhere, or the biome is high
-      // humidity, the new speed is set to this:
-      newSpeed = 0.25f;
+    // -------------------------------------------------------------------------
+    // First, look for an explicit biome base speed set with CraftTweaker.
+    // -------------------------------------------------------------------------
 
-    } else if (this.world.provider.isNether()) {
-      // If the device is in the Nether, set the new speed to this:
-      newSpeed = 2.0f;
+    Map<String, Float> biomeSpeeds = this.getBiomeSpeeds();
+    ResourceLocation registryName = biome.getRegistryName();
+    boolean isExplicitBiomeSpeedSet = false;
 
-    } else {
-      // Otherwise, set the new speed to this:
-      newSpeed = 1.0f;
+    if (registryName != null) {
+      String registryNameString = registryName.toString();
+      Float explicitSpeed = biomeSpeeds.get(registryNameString);
 
-      // And then additively modify it based on further criteria.
-
-      if (BiomeDictionary.getBiomes(BiomeDictionary.Type.HOT).contains(biome)) {
-        // If the biome is hot, increase the speed:
-        newSpeed += 0.2f;
-      }
-
-      if (BiomeDictionary.getBiomes(BiomeDictionary.Type.DRY).contains(biome)) {
-        // If the biome is dry, increase the speed:
-        newSpeed += 0.2f;
-      }
-
-      if (BiomeDictionary.getBiomes(BiomeDictionary.Type.COLD).contains(biome)) {
-        // If the biome is cold, decrease the speed:
-        newSpeed -= 0.2f;
-      }
-
-      if (BiomeDictionary.getBiomes(BiomeDictionary.Type.WET).contains(biome)) {
-        // If the biome is wet, decrease the speed:
-        newSpeed -= 0.2f;
+      if (explicitSpeed != null) {
+        calculatedSpeed = explicitSpeed;
+        isExplicitBiomeSpeedSet = true;
       }
     }
 
-    // Next, scan a 2x2x2 region around the device and look for a fire block,
-    // or a block that counts as a fire source.
+    // -------------------------------------------------------------------------
+    // If an explicit speed was not found, derive the base speed of the device
+    // using conditional modifiers.
+    // -------------------------------------------------------------------------
+
+    if (!isExplicitBiomeSpeedSet) {
+
+      if (canRain && this.world.isRainingAt(this.pos.up())) {
+        // If the biome can rain and the device is being directly rained on,
+        // set the new speed to this device's rain speed.
+        // A negative speed will reduce recipe progress.
+        calculatedSpeed = modifiers.DIRECT_RAIN;
+
+      } else if ((canRain && this.world.isRaining()) || biome.isHighHumidity()) {
+        // If the biome can rain and it is raining somewhere, or the biome is high
+        // humidity, the new speed is set to this:
+        calculatedSpeed = modifiers.INDIRECT_RAIN;
+
+      } else if (this.world.provider.isNether()) {
+        // If the device is in the Nether, set the new speed to this:
+        calculatedSpeed = modifiers.NETHER;
+
+      } else {
+        // Otherwise, set the new speed and then additively modify it based
+        // on further criteria.
+
+        calculatedSpeed = modifiers.BASE_DERIVED;
+
+        if (BiomeDictionary.getBiomes(BiomeDictionary.Type.HOT).contains(biome)) {
+          // If the biome is hot, increase the speed:
+          calculatedSpeed += modifiers.DERIVED_HOT;
+        }
+
+        if (BiomeDictionary.getBiomes(BiomeDictionary.Type.DRY).contains(biome)) {
+          // If the biome is dry, increase the speed:
+          calculatedSpeed += modifiers.DERIVED_DRY;
+        }
+
+        if (BiomeDictionary.getBiomes(BiomeDictionary.Type.COLD).contains(biome)) {
+          // If the biome is cold, decrease the speed:
+          calculatedSpeed += modifiers.DERIVED_COLD;
+        }
+
+        if (BiomeDictionary.getBiomes(BiomeDictionary.Type.WET).contains(biome)) {
+          // If the biome is wet, decrease the speed:
+          calculatedSpeed += modifiers.DERIVED_WET;
+        }
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // Next, scan a region around the device and look for a fire block,
+    // or a block that counts as a fire source. Add speed bonus for each
+    // adjacent fire or fire source block.
+    // -------------------------------------------------------------------------
 
     final float[] fireSourceBonus = new float[1];
 
-    BlockHelper.forBlocksInCube(this.world, this.pos, 2, 2, 2, (w, p, bs) -> {
+    int range = modifiers.FIRE_SOURCE_BONUS_RANGE;
+
+    BlockHelper.forBlocksInCube(this.world, this.pos, range, range, range, (w, p, bs) -> {
 
       if (this.isSpeedBonusBlock(bs, p)) {
-        // Add speed bonus for each adjacent fire or fire source block:
-        fireSourceBonus[0] += 0.2f;
+        fireSourceBonus[0] += modifiers.FIRE_SOURCE_BONUS;
       }
       return true;
     });
 
-    newSpeed += fireSourceBonus[0];
+    calculatedSpeed += fireSourceBonus[0];
+
+    // -------------------------------------------------------------------------
+    // Next, add an extra speed bonus if it's not raining, the rack is
+    // under the sky, and it's daytime.
+    // -------------------------------------------------------------------------
 
     if (!this.world.isRaining()
         && this.world.canSeeSky(this.pos.up())
         && this.world.getWorldTime() % 24000 > 3000
         && this.world.getWorldTime() % 24000 < 9000) {
-      // Add extra speed bonus if the rack it's not raining, the rack is
-      // under the sky, and it's daytime.
-      newSpeed += 0.2f;
+      calculatedSpeed += modifiers.DAYTIME;
     }
 
-    // Finally, apply the base modifier from the config and return the
-    // new, calculated speed.
-    return this.getSpeedModified(newSpeed);
+    // -------------------------------------------------------------------------
+    // Finally, apply the master SPEED_MODIFIER from the device's config.
+    // -------------------------------------------------------------------------
+
+    return (float) (calculatedSpeed * this.getMultiplicativeSpeedModifier());
   }
+
+  protected abstract ModuleTechBasicConfig.DryingRackConditionalModifiers getConditionalModifiers();
+
+  protected abstract Map<String, Float> getBiomeSpeeds();
 
   private boolean isSpeedBonusBlock(IBlockState blockState, BlockPos pos) {
 

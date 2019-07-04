@@ -10,7 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Config(modid = ModuleTechBasic.MOD_ID, name = ModuleTechBasic.MOD_ID + "/" + "module.tech.Basic")
 public class ModuleTechBasicConfig {
@@ -697,12 +699,90 @@ public class ModuleTechBasicConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Drying Rack Conditional Modifiers
+  // ---------------------------------------------------------------------------
+
+  public static class DryingRackConditionalModifiers {
+
+    @Config.Comment({
+        "The base speed if the device is being directly rained on.",
+        "Default: " + (-1)
+    })
+    public double DIRECT_RAIN = -1;
+
+    @Config.Comment({
+        "The base speed if the it is raining, but not directly on the device, or",
+        "the biome has high humidity.",
+        "Default: " + 0.25
+    })
+    public double INDIRECT_RAIN = 0.25f;
+
+    @Config.Comment({
+        "The base speed if the device is in the Nether.",
+        "Default: " + 2
+    })
+    public double NETHER = 2;
+
+    @Config.Comment({
+        "The base derived speed.",
+        "Default: " + 1
+    })
+    public double BASE_DERIVED = 1;
+
+    @Config.Comment({
+        "Added to the base derived speed if the biome is hot.",
+        "Default: " + 0.2
+    })
+    public double DERIVED_HOT = 0.2f;
+
+    @Config.Comment({
+        "Added to the base derived speed if the biome is dry.",
+        "Default: " + 0.2
+    })
+    public double DERIVED_DRY = 0.2f;
+
+    @Config.Comment({
+        "Added to the base derived speed if the biome is cold.",
+        "Default: " + (-0.2)
+    })
+    public double DERIVED_COLD = -0.2f;
+
+    @Config.Comment({
+        "Added to the base derived speed if the biome is wet.",
+        "Default: " + (-0.2)
+    })
+    public double DERIVED_WET = -0.2f;
+
+    @Config.Comment({
+        "The device will gain a bonus for each fire source within this range.",
+        "Default: " + 2
+    })
+    public int FIRE_SOURCE_BONUS_RANGE = 2;
+
+    @Config.Comment({
+        "Added to the base derived speed for each fire source block in range.",
+        "Default: " + 0.2
+    })
+    public double FIRE_SOURCE_BONUS = 0.2f;
+
+    @Config.Comment({
+        "Added to the base derived speed if it isn't raining, the device has a",
+        "direct line of sight to the sky, and it's daytime.",
+        "Default: " + 0.2
+    })
+    public double DAYTIME = 0.2f;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Crude Drying Rack
   // ---------------------------------------------------------------------------
 
   public static CrudeDryingRack CRUDE_DRYING_RACK = new CrudeDryingRack();
 
   public static class CrudeDryingRack {
+
+    @Config.Ignore
+    public static final Map<String, Float> BIOME_MODIFIERS = new HashMap<>();
 
     @Config.Comment({
         "speed = speed * SPEED_MODIFIER",
@@ -718,6 +798,8 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble(min = 0)
     public double BASE_RECIPE_DURATION_MODIFIER = 1;
+
+    public DryingRackConditionalModifiers CONDITIONAL_MODIFIERS = new DryingRackConditionalModifiers();
   }
 
   // ---------------------------------------------------------------------------
@@ -727,6 +809,9 @@ public class ModuleTechBasicConfig {
   public static DryingRack DRYING_RACK = new DryingRack();
 
   public static class DryingRack {
+
+    @Config.Ignore
+    public static final Map<String, Float> BIOME_MODIFIERS = new HashMap<>();
 
     @Config.Comment({
         "speed = speed * SPEED_MODIFIER",
@@ -755,6 +840,8 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble(min = 0)
     public double BASE_RECIPE_DURATION_MODIFIER = 1;
+
+    public DryingRackConditionalModifiers CONDITIONAL_MODIFIERS = new DryingRackConditionalModifiers();
   }
 
   // ---------------------------------------------------------------------------
