@@ -2,12 +2,15 @@
 
   * Note:
     * Remove the leading `.` from Pyrotech's config files
+    * Thermal Expansion sawmill may be missing plank recipes, please read about solutions here: [https://pyrotech.readthedocs.io/en/latest/knownissues/](https://pyrotech.readthedocs.io/en/latest/knownissues/)
 
   * Fixed:
     * Config files prefixed with `.` are not correctly imported by the Twitch app (#96)
+    * Removed vanilla crafting recipes still showing up in JEI (#97)
 
   * Changed:
     * All config files that were previously prefixed with `.` have had the `.` removed
+    * Pyrotech once again removes recipes during post-init, pre-CrT
 
 ---
 

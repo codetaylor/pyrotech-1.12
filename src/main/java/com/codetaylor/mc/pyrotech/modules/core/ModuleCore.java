@@ -35,7 +35,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -213,12 +212,6 @@ public class ModuleCore
     Path configurationPath = this.getConfigurationDirectory().toPath();
     CompatInitializerWood.create(configurationPath);
     CompatInitializerOre.create(configurationPath);
-  }
-
-  @Override
-  public void onLoadCompleteEvent(FMLLoadCompleteEvent event) {
-
-    super.onLoadCompleteEvent(event);
 
     VanillaCraftingRecipesRemove.apply(ForgeRegistries.RECIPES);
     VanillaFurnaceRecipesRemove.apply();
