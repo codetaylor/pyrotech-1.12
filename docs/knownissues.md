@@ -8,15 +8,15 @@ Pyrotech removes recipes before Thermal Expansion has had a chance to run its sc
 
 Efforts were made to resolve the problem by changing when the recipes are removed, but in the long run, this caused [a number of cascading issues](https://github.com/codetaylor/pyrotech/issues/97) that grew increasingly harder and increasingly hackier to solve. These changes have since been reverted.
 
-At this time I don't see a way to cleanly resolve this, but there are a couple of solutions that might help: stop Pyrotech from removing the wood recipes or add the missing Thermal Expansion recipes.
-
 **Solutions**
 
-**Stop Pyrotech From Removing the Wood Recipes**
+At this time I don't see a way to cleanly resolve this, but there are a couple of solutions that might help: stop Pyrotech from removing the wood recipes or add the missing Thermal Expansion recipes.
+
+**Stop Pyrotech from Removing Recipes**
 
 The first solution is to go into the `config/pyrotech/core.cfg` file, locate the `recipes` section and delete the wood recipes from the list `VANILLA_CRAFTING_REMOVE`. This will stop Pyrotech from removing the wood recipes and Thermal Expansion will be able to automatically generate its wood recipes again. This also means, though, that the log to plank vanilla recipes will be available in vanilla crafting again and it will then be up to you what to do from there.
 
-**Add the Missing Thermal Expansion Recipes**
+**Add the Missing Recipes**
 
 The second solution is to use the mod [ModTweaker](https://www.curseforge.com/minecraft/mc-mods/modtweaker) and ZenScript to add the recipes back to Thermal Expansion.
 
