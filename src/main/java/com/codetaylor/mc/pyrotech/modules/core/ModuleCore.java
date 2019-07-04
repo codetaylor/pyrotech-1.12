@@ -14,6 +14,7 @@ import com.codetaylor.mc.pyrotech.library.blockrenderer.RenderTickEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.advancement.AdvancementTriggers;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.command.ClientCommandExport;
+import com.codetaylor.mc.pyrotech.modules.core.event.HarvestDropsEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.event.TooltipEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.init.*;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaCraftingRecipesRemove;
@@ -34,7 +35,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -118,6 +118,10 @@ public class ModuleCore
 
     if (Loader.isModLoaded("crafttweaker")) {
       MinecraftForge.EVENT_BUS.register(new CrTEventHandler(this));
+    }
+
+    if (ModuleCoreConfig.TWEAKS.DROP_STICKS_FROM_LEAVES) {
+      MinecraftForge.EVENT_BUS.register(new HarvestDropsEventHandler.Sticks());
     }
   }
 
@@ -208,12 +212,6 @@ public class ModuleCore
     Path configurationPath = this.getConfigurationDirectory().toPath();
     CompatInitializerWood.create(configurationPath);
     CompatInitializerOre.create(configurationPath);
-  }
-
-  @Override
-  public void onLoadCompleteEvent(FMLLoadCompleteEvent event) {
-
-    super.onLoadCompleteEvent(event);
 
     VanillaCraftingRecipesRemove.apply(ForgeRegistries.RECIPES);
     VanillaFurnaceRecipesRemove.apply();

@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.BooleanSupplier;
 
-@Config(modid = ModPyrotech.MOD_ID, name = ModPyrotech.MOD_ID + "/.modules")
+@Config(modid = ModPyrotech.MOD_ID, name = ModPyrotech.MOD_ID + "/modules")
 public class ModPyrotechConfig {
 
   public static Map<String, Boolean> MODULES = new TreeMap<>();

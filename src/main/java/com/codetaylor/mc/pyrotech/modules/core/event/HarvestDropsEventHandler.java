@@ -10,41 +10,46 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber
 public class HarvestDropsEventHandler {
 
-  @SubscribeEvent
-  public static void on(BlockEvent.HarvestDropsEvent event) {
+  public static class Sticks {
 
-    List<ItemStack> drops = event.getDrops();
-    IBlockState state = event.getState();
-    Block block = state.getBlock();
-    BlockPos pos = event.getPos();
-    World world = event.getWorld();
-    EntityPlayer harvester = event.getHarvester();
+    @SubscribeEvent
+    public void on(BlockEvent.HarvestDropsEvent event) {
 
-    ItemStack itemStack = block.getItem(world, pos, state);
+      List<ItemStack> drops = event.getDrops();
+      IBlockState state = event.getState();
+      Block block = state.getBlock();
+      BlockPos pos = event.getPos();
+      World world = event.getWorld();
+      EntityPlayer harvester = event.getHarvester();
 
-    if (OreDictHelper.contains("treeLeaves", itemStack)) {
+      ItemStack itemStack = block.getItem(world, pos, state);
 
-      if (harvester == null) {
+      if (OreDictHelper.contains("treeLeaves", itemStack)) {
 
-        // lower chance for sticks if not broken by player
-        if (RandomHelper.random().nextFloat() < 0.1) {
-          drops.add(new ItemStack(Items.STICK));
-        }
-      } else {
+        if (harvester == null) {
 
-        if (RandomHelper.random().nextFloat() < 0.5) {
-          drops.add(new ItemStack(Items.STICK));
+          // lower chance for sticks if not broken by player
+          if (RandomHelper.random().nextFloat() < 0.1) {
+            drops.add(new ItemStack(Items.STICK));
+          }
+        } else {
+
+          if (RandomHelper.random().nextFloat() < 0.5) {
+            drops.add(new ItemStack(Items.STICK));
+          }
         }
       }
-    }
 
+    }
+  }
+
+  private HarvestDropsEventHandler() {
+    //
   }
 }

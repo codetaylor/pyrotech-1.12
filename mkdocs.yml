@@ -3,6 +3,7 @@ site_name: Pyrotech
 pages:
 - Introduction: index.md
 - ChangeLog: changelog.md
+- Known Issues: knownissues.md
 - ZenScript:
   - Bellows: zs/bellows.md
   - Bloomery: zs/bloomery.md
@@ -45,6 +46,8 @@ pages:
   - Contributor's License Agreement: cla.md
 
 theme: readthedocs
+
+extra_css: [custom.css]
 
 markdown_extensions:
 - admonition

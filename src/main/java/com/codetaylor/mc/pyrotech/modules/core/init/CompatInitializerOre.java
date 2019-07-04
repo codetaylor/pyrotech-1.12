@@ -39,8 +39,8 @@ public final class CompatInitializerOre {
 
     JsonInitializer.create(
         configurationPath.resolve(ModuleCore.MOD_ID),
-        ".core.compat.Ore-Generated.json",
-        ".core.compat.Ore-Custom.json",
+        "core.compat.Ore-Generated.json",
+        "core.compat.Ore-Custom.json",
         () -> CompatInitializerOre.createGeneratedData(new OreCompatData()),
         ModuleCore.LOGGER
     );
@@ -51,7 +51,7 @@ public final class CompatInitializerOre {
 
     return JsonInitializer.read(
         configurationPath.resolve(ModuleTechMachine.MOD_ID),
-        ".core.compat.Ore-Custom.json",
+        "core.compat.Ore-Custom.json",
         OreCompatData.class,
         null // prevent logging errors
     );

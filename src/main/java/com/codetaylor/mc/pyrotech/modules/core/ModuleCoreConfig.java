@@ -4,7 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.core.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + ".core")
+@Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "core")
 public class ModuleCoreConfig {
 
   public static Tweaks TWEAKS = new Tweaks();
@@ -12,21 +12,30 @@ public class ModuleCoreConfig {
   public static class Tweaks {
 
     @Config.Comment({
-        "If true, vanilla sheep won't drop wool when killed."
+        "If true, vanilla sheep won't drop wool when killed.",
+        "Default: " + true
     })
     public boolean PREVENT_WOOL_ON_SHEEP_DEATH = true;
 
     @Config.Comment({
         "When a vanilla crafting table spawns in the world, for example in a",
-        "village, the table is removed."
+        "village, the table is removed.",
+        "Default: " + true
     })
     public boolean REMOVE_VANILLA_CRAFTING_TABLE = true;
 
     @Config.Comment({
         "When a vanilla furnace spawns in the world, for example in a",
-        "village, the furnace is replaced with cobblestone."
+        "village, the furnace is replaced with cobblestone.",
+        "Default: " + true
     })
     public boolean REPLACE_VANILLA_FURNACE = true;
+
+    @Config.Comment({
+        "Set to false to disable dropping sticks from leaves.",
+        "Default: " + true
+    })
+    public boolean DROP_STICKS_FROM_LEAVES = true;
   }
 
   public static Hammers HAMMERS = new Hammers();

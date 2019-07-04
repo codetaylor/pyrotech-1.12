@@ -28,8 +28,8 @@ public final class OreDictInitializer {
 
       JsonOreDict jsonOreDict = JsonInitializer.generateAndReadCustom(
           configurationPath,
-          ".core.OreDict-Generated.json",
-          ".core.OreDict-Custom.json",
+          "core.OreDict-Generated.json",
+          "core.OreDict-Custom.json",
           JsonOreDict.class,
           JsonOreDict::generate,
           ModuleCore.LOGGER

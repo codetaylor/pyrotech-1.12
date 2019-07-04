@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.patreon;
 
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = ModulePatreon.MOD_ID, name = ModulePatreon.MOD_ID + "/" + ".patreon")
+@Config(modid = ModulePatreon.MOD_ID, name = ModulePatreon.MOD_ID + "/" + "patreon")
 public class ModulePatreonConfig {
 
   // ---------------------------------------------------------------------------
