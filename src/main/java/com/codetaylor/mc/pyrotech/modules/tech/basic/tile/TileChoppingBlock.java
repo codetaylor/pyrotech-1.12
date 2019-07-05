@@ -18,6 +18,7 @@ import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockChoppingBlock;
@@ -460,6 +461,12 @@ public class TileChoppingBlock
         ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(itemStack);
 
         if (recipe != null) {
+
+          ModuleCore.PACKET_SERVICE.sendToAllAround(
+              new SCPacketParticleProgress(hitPos.getX() + 0.5, hitPos.getY() + 1.0, hitPos.getZ() + 0.5, 2),
+              world.provider.getDimension(),
+              hitPos
+          );
 
           if (tile.getRecipeProgress() < 1) {
 
