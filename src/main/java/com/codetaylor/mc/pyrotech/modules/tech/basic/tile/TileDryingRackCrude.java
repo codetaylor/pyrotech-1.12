@@ -7,6 +7,9 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleDrip;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockDryingRack;
@@ -83,6 +86,67 @@ public class TileDryingRackCrude
     }
 
     return this.renderBounds;
+  }
+
+  @Override
+  protected void sendParticleProgressPacket() {
+
+    if (this.getSpeed() <= 0) {
+      return;
+    }
+
+    EnumFacing tileFacing = this.getTileFacing(this.world, this.pos, this.world.getBlockState(this.pos));
+
+    switch (tileFacing) {
+
+      case NORTH:
+        ModuleCore.PACKET_SERVICE.sendToAllAround(
+            new SCPacketParticleProgress(
+                this.pos.getX() + 0.5, this.pos.getY() + 0.4, this.pos.getZ() + 0.125 + 0.125,
+                0.125, 0.125, 0.0625,
+                1
+            ),
+            this.world.provider.getDimension(),
+            this.pos
+        );
+        break;
+
+      case SOUTH:
+        ModuleCore.PACKET_SERVICE.sendToAllAround(
+            new SCPacketParticleProgress(
+                this.pos.getX() + 0.5, this.pos.getY() + 0.4, this.pos.getZ() + 0.875 - 0.125,
+                0.125, 0.125, 0.0625,
+                1
+            ),
+            this.world.provider.getDimension(),
+            this.pos
+        );
+        break;
+
+      case EAST:
+        ModuleCore.PACKET_SERVICE.sendToAllAround(
+            new SCPacketParticleProgress(
+                this.pos.getX() + 0.825 - 0.125, this.pos.getY() + 0.4, this.pos.getZ() + 0.5,
+                0.0625, 0.125, 0.125,
+                1
+            ),
+            this.world.provider.getDimension(),
+            this.pos
+        );
+        break;
+
+      case WEST:
+        ModuleCore.PACKET_SERVICE.sendToAllAround(
+            new SCPacketParticleProgress(
+                this.pos.getX() + 0.125 + 0.125, this.pos.getY() + 0.4, this.pos.getZ() + 0.5,
+                0.0625, 0.125, 0.125,
+                1
+            ),
+            this.world.provider.getDimension(),
+            this.pos
+        );
+        break;
+    }
   }
 
   // ---------------------------------------------------------------------------

@@ -20,6 +20,7 @@ public class SCPacketParticleProgress
 
   private int amount;
   private double x, y, z;
+  private double rangeX, rangeY, rangeZ;
 
   @SuppressWarnings("unused")
   public SCPacketParticleProgress() {
@@ -27,6 +28,15 @@ public class SCPacketParticleProgress
   }
 
   public SCPacketParticleProgress(double x, double y, double z, int amount) {
+
+    this(x, y, z, 0.5, 0.15, 0.5, amount);
+  }
+
+  public SCPacketParticleProgress(double x, double y, double z, double rangeX, double rangeY, double rangeZ, int amount) {
+
+    this.rangeX = rangeX;
+    this.rangeY = rangeY;
+    this.rangeZ = rangeZ;
 
     this.amount = amount;
     this.x = x;
@@ -41,6 +51,9 @@ public class SCPacketParticleProgress
     buf.writeDouble(this.x);
     buf.writeDouble(this.y);
     buf.writeDouble(this.z);
+    buf.writeDouble(this.rangeX);
+    buf.writeDouble(this.rangeY);
+    buf.writeDouble(this.rangeZ);
   }
 
   @Override
@@ -50,6 +63,9 @@ public class SCPacketParticleProgress
     this.x = buf.readDouble();
     this.y = buf.readDouble();
     this.z = buf.readDouble();
+    this.rangeX = buf.readDouble();
+    this.rangeY = buf.readDouble();
+    this.rangeZ = buf.readDouble();
   }
 
   @SideOnly(Side.CLIENT)
@@ -70,9 +86,9 @@ public class SCPacketParticleProgress
         double d1 = random.nextGaussian() * 0.02D;
         double d2 = random.nextGaussian() * 0.02D;
         world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY,
-            message.x + (random.nextFloat() * 2 - 1) * 0.5,
-            message.y + (random.nextFloat() * 2 - 1) * 0.15,
-            message.z + (random.nextFloat() * 2 - 1) * 0.5,
+            message.x + (random.nextFloat() * 2 - 1) * message.rangeX,
+            message.y + (random.nextFloat() * 2 - 1) * message.rangeY,
+            message.z + (random.nextFloat() * 2 - 1) * message.rangeZ,
             d0, d1, d2
         );
       }
