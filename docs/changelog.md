@@ -1,3 +1,10 @@
+1.2.3
+
+  * Fixed:
+      * Unfired Clay Shears should not work as shears with 238 durability [(#100)](https://github.com/codetaylor/pyrotech/issues/100)
+
+---
+
 1.2.2
 
   * Note:
