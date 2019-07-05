@@ -87,6 +87,31 @@ public class ModuleTechBasicConfig {
         "String format is a recipe resource location: (domain):(path)"
     })
     public String[] RECIPE_BLACKLIST = new String[0];
+
+    @Config.Comment({
+        "If this is true, a player will be allowed to sneak + click using an",
+        "empty hand to remove all items from the worktable's crafting grid.",
+        "The removed items will be placed into the player's inventory or on top",
+        "of the worktable if the player's inventory is full.",
+        "Default: " + false
+    })
+    public boolean ALLOW_RECIPE_CLEAR = false;
+
+    @Config.Comment({
+        "If this is true, a player will be allowed to sneak + click using a",
+        "hammer to automatically place items from their inventory into the",
+        "worktable's crafting grid that match the ingredients for the last",
+        "recipe completed. The hammer will be damaged, see RECIPE_REPEAT_TOOL_DAMAGE.",
+        "Default: " + false
+    })
+    public boolean ALLOW_RECIPE_REPEAT = false;
+
+    @Config.Comment({
+        "If ALLOW_RECIPE_REPEAT is enabled, this is the amount of damage that",
+        "will be applied to the hammer.",
+        "Default: " + 1
+    })
+    public int RECIPE_REPEAT_TOOL_DAMAGE = 1;
   }
 
   // ---------------------------------------------------------------------------

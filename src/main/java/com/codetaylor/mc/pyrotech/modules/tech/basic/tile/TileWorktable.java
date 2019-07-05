@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Quaternion;
@@ -29,6 +30,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
@@ -36,6 +38,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -66,6 +69,7 @@ public class TileWorktable
   private IInteraction[] interactions;
 
   private WorktableRecipe recipe;
+  private ResourceLocation retainedRecipe;
 
   public TileWorktable() {
 
@@ -201,6 +205,11 @@ public class TileWorktable
     return ModuleTechBasicConfig.WORKTABLE.EXHAUSTION_COST_PER_CRAFT_COMPLETE;
   }
 
+  private void setRetainedRecipe(ResourceLocation resourceLocation) {
+
+    this.retainedRecipe = resourceLocation;
+  }
+
   // ---------------------------------------------------------------------------
   // - Container
   // ---------------------------------------------------------------------------
@@ -251,6 +260,10 @@ public class TileWorktable
     this.shelfStackHandler.deserializeNBT(compound.getCompoundTag("shelfStackHandler"));
     this.remainingDurability.set(compound.getInteger("remainingDurability"));
 
+    if (compound.hasKey("retainedRecipe")) {
+      this.retainedRecipe = new ResourceLocation(compound.getString("retainedRecipe"));
+    }
+
     this.updateRecipe();
   }
 
@@ -263,6 +276,10 @@ public class TileWorktable
     compound.setTag("inputStackHandler", this.inputStackHandler.serializeNBT());
     compound.setTag("shelfStackHandler", this.shelfStackHandler.serializeNBT());
     compound.setInteger("remainingDurability", this.remainingDurability.get());
+
+    if (this.retainedRecipe != null) {
+      compound.setString("retainedRecipe", this.retainedRecipe.toString());
+    }
 
     return compound;
   }
@@ -320,6 +337,16 @@ public class TileWorktable
       }
 
       ItemStack heldItemStack = player.getHeldItem(hand);
+
+      if (heldItemStack.isEmpty()
+          && player.isSneaking()
+          && ModuleTechBasicConfig.WORKTABLE_COMMON.ALLOW_RECIPE_CLEAR) {
+        return true;
+
+      } else if (heldItemStack.isEmpty()) {
+        return false;
+      }
+
       Item item = heldItemStack.getItem();
       ResourceLocation registryName = item.getRegistryName();
 
@@ -329,9 +356,24 @@ public class TileWorktable
 
       WorktableRecipe recipe = tile.getWorktableRecipe();
 
-      if (recipe == null) {
-        return false;
+      boolean sneaking = player.isSneaking();
+
+      if (sneaking) {
+        // Player is sneaking, allow only hammers for recipe repeat.
+        return ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(registryName) > -1;
+
+      } else {
+
+        if (recipe == null) {
+          return false;
+
+        } else {
+          return this.isValidTool(player, item, registryName, recipe);
+        }
       }
+    }
+
+    private boolean isValidTool(EntityPlayer player, Item item, ResourceLocation registryName, WorktableRecipe recipe) {
 
       if (Loader.isModLoaded("gamestages")) {
         Stages stages = recipe.getStages();
@@ -362,10 +404,147 @@ public class TileWorktable
 
       ItemStack heldItem = player.getHeldItemMainhand();
 
+      if (player.isSneaking()) {
+
+        if (heldItem.isEmpty()) {
+          // The heldItem will only be empty if the recipe clear feature is
+          // enabled in the config and the player is sneaking. This is checked
+          // in the allowInteraction method.
+
+          // Remove all stuffs from crafting grid
+          this.doRecipeClear(tile, world, player);
+
+        } else if (ModuleTechBasicConfig.WORKTABLE_COMMON.ALLOW_RECIPE_REPEAT) {
+          // Repeat the last recipe
+          this.doRecipeRepeat(tile, player, heldItem);
+        }
+
+      } else {
+        // Use the tool to advance the recipe progress.
+        this.doRecipeProgress(tile, world, hitPos, player, hitX, hitY, hitZ, heldItem);
+      }
+
+      return true;
+    }
+
+    private void doRecipeClear(TileWorktable tile, World world, EntityPlayer player) {
+
+      int slots = tile.inputStackHandler.getSlots();
+
+      for (int i = 0; i < slots; i++) {
+        int slotLimit = tile.inputStackHandler.getSlotLimit(i);
+        ItemStack itemStack = tile.inputStackHandler.extractItem(i, slotLimit, false);
+        StackHelper.addToInventoryOrSpawn(world, player, itemStack, tile.getPos(), 1, false, true);
+      }
+    }
+
+    private void doRecipeRepeat(TileWorktable tile, EntityPlayer player, ItemStack heldItem) {
+
+      WorktableRecipe existingRecipe = tile.getWorktableRecipe();
+      IRecipe iRecipe;
+
+      if (existingRecipe != null) {
+        iRecipe = existingRecipe.getRecipe();
+
+      } else {
+
+        if (tile.retainedRecipe == null) {
+          return;
+        }
+
+        WorktableRecipe retainedRecipe = WorktableRecipe.getRecipe(tile.retainedRecipe);
+
+        if (retainedRecipe == null) {
+          return;
+        }
+
+        iRecipe = retainedRecipe.getRecipe();
+      }
+
+      NonNullList<Ingredient> ingredients = iRecipe.getIngredients();
+      ItemStackHandler inputStackHandler = tile.getInputStackHandler();
+      List<ItemStack> itemStackList = new ArrayList<>(ingredients.size());
+
+      // Gather ingredients from the player's inventory and hotbar.
+
+      for (Ingredient ingredient : ingredients) {
+
+        if (ingredient.apply(ItemStack.EMPTY)) {
+          itemStackList.add(ItemStack.EMPTY);
+
+        } else {
+
+          for (ItemStack itemStack : player.inventory.mainInventory) {
+
+            if (ingredient.apply(itemStack)) {
+              ItemStack copy = itemStack.copy();
+              copy.setCount(1);
+              itemStackList.add(copy);
+              itemStack.shrink(1);
+              break;
+            }
+          }
+        }
+      }
+
+      // If the player doesn't have all the items, return gathered items to the
+      // player and abort.
+
+      if (ingredients.size() != itemStackList.size()) {
+
+        for (ItemStack itemStack : itemStackList) {
+          player.addItemStackToInventory(itemStack);
+        }
+
+        return;
+      }
+
+      // Check if the table can take another recipe's worth of inputs.
+
+      boolean tableHasRoom = true;
+
+      for (int i = 0; i < itemStackList.size(); i++) {
+        ItemStack remainingItemStack = inputStackHandler.insertItem(i, itemStackList.get(i), true);
+
+        if (!remainingItemStack.isEmpty()) {
+          tableHasRoom = false;
+          break;
+        }
+      }
+
+      // If the table doesn't have room, return gathered items to the player
+      // and abort.
+
+      if (!tableHasRoom) {
+
+        for (ItemStack itemStack : itemStackList) {
+          player.addItemStackToInventory(itemStack);
+        }
+
+        return;
+      }
+
+      // Finally, insert the gathered items.
+
+      for (int i = 0; i < itemStackList.size(); i++) {
+        inputStackHandler.insertItem(i, itemStackList.get(i), false);
+      }
+
+      // Damage the held item.
+
+      int toolDamage = ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_REPEAT_TOOL_DAMAGE;
+
+      if (!tile.world.isRemote && toolDamage > 0) {
+        heldItem.attemptDamageItem(toolDamage, RandomHelper.random(), (EntityPlayerMP) player);
+      }
+    }
+
+    private void doRecipeProgress(TileWorktable tile, World world, BlockPos hitPos, EntityPlayer player, float hitX, float hitY, float hitZ, ItemStack heldItem) {
+
       IRecipe recipe = tile.getRecipe();
       WorktableRecipe worktableRecipe = tile.getWorktableRecipe();
 
-      if (tile.getRecipe() == null) {
+      if (recipe == null) {
         tile.updateRecipe();
         recipe = tile.getRecipe();
       }
@@ -388,6 +567,8 @@ public class TileWorktable
 
           if (tile.recipeProgress.get() >= 0.9999) {
             tile.recipeProgress.set(0);
+
+            tile.setRetainedRecipe(worktableRecipe.getRegistryName());
 
             ItemStack result = recipe.getRecipeOutput().copy();
             FMLCommonHandler.instance().firePlayerCraftingEvent(player, result, this.wrapper);
@@ -462,8 +643,6 @@ public class TileWorktable
           );
         }
       }
-
-      return true;
     }
   }
 

@@ -1,17 +1,18 @@
 1.3.0
 
   * Added:
-    * GameStages support for worktable recipes (#3)
-    * Exposed config values for both drying racks' speed calculations (#92)
-    * CrT methods for the drying racks that allow overriding a biome's base speed (#92)
-    * Vanilla smelting recipe for (#82):
+    * GameStages support for worktable recipes [(#3)](https://github.com/codetaylor/pyrotech/issues/3) [(doc)](zs/worktable) [(doc:stages)](zs/stages)
+    * Exposed config values for both drying racks' speed calculations [(#92)](https://github.com/codetaylor/pyrotech/issues/92) [(doc)](dryingracks)
+    * CrT methods for the drying racks that allow overriding a biome's base speed [(#92)](https://github.com/codetaylor/pyrotech/issues/92) [(doc)](dryingracks)
+    * Vanilla smelting recipe for [(#82)](https://github.com/codetaylor/pyrotech/issues/82):
         * Slag -> Slag Glass (bloomery)
         * Unfired Clay Bucket -> Clay Bucket (bucket)
         * Unfired Refractory Brick -> Refractory Brick (core)
         * Crushed Limestone -> Quicklime (core)
         * Gravel -> Cobblestone (core)
         * Unfired Clay Shears -> Clay Shears (tool)
-    * Client-side command `/ptlang` to display the lang key (unlocalized name) of a held item (#94)
+    * Client-side command `/ptlang` to display the unlocalized name of a held item [(#94)](https://github.com/codetaylor/pyrotech/issues/94) [(doc)](commands)
+    * Worktable QoL: Recipe Clear, Recipe Repeat [(#99)](https://github.com/codetaylor/pyrotech/issues/99) [(doc)](worktables)
 
   * Fixed:
     * Smelting recipes added by the mod were also being removed by the mod

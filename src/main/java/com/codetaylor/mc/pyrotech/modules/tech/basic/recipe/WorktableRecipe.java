@@ -14,6 +14,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
@@ -43,43 +44,76 @@ public class WorktableRecipe
       IRecipe recipe = CraftingManager.findMatchingRecipe(inventory, world);
 
       if (recipe != null) {
-        ResourceLocation resourceLocation = recipe.getRegistryName();
-        WorktableRecipe cachedRecipe = CACHE.get(resourceLocation);
+        WorktableRecipe result = WorktableRecipe.getWrappedRecipe(recipe);
 
-        if (cachedRecipe != null) {
-          return cachedRecipe;
+        if (result != null) {
+          return result;
         }
 
-        if (WorktableRecipe.hasWhitelist()) {
-
-          if (WorktableRecipe.isWhitelisted(resourceLocation)) {
-            WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
-            CACHE.put(resourceLocation, worktableRecipe);
-            return worktableRecipe;
-          }
-
-          return WorktableRecipe.getCustomRecipe(inventory, world);
-
-        } else if (WorktableRecipe.hasBlacklist()) {
-
-          if (!WorktableRecipe.isBlacklisted(resourceLocation)) {
-            WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
-            CACHE.put(resourceLocation, worktableRecipe);
-            return worktableRecipe;
-          }
-
-          return WorktableRecipe.getCustomRecipe(inventory, world);
-
-        } else {
-          WorktableRecipe worktableRecipe = new WorktableRecipe(recipe);
-          CACHE.put(resourceLocation, worktableRecipe);
-          return worktableRecipe;
-        }
+        return WorktableRecipe.getCustomRecipe(inventory, world);
       }
     }
 
     // Finally, check the custom recipes.
     return WorktableRecipe.getCustomRecipe(inventory, world);
+  }
+
+  @Nullable
+  public static WorktableRecipe getRecipe(ResourceLocation resourceLocation) {
+
+    // If the resource location is cached, return it.
+    WorktableRecipe cachedRecipe = CACHE.get(resourceLocation);
+
+    if (cachedRecipe != null) {
+      return cachedRecipe;
+    }
+
+    // If the resource location is a vanilla crafting recipe, wrap and return it.
+    IRecipe vanillaRecipe = ForgeRegistries.RECIPES.getValue(resourceLocation);
+
+    if (vanillaRecipe != null) {
+      return WorktableRecipe.getWrappedRecipe(vanillaRecipe);
+    }
+
+    // Finally, check the custom recipes.
+    return WorktableRecipe.getCustomRecipe(resourceLocation);
+  }
+
+  @Nullable
+  private static WorktableRecipe getWrappedRecipe(IRecipe recipe) {
+
+    ResourceLocation resourceLocation = recipe.getRegistryName();
+    WorktableRecipe cachedRecipe = CACHE.get(resourceLocation);
+
+    if (cachedRecipe != null) {
+      return cachedRecipe;
+    }
+
+    if (WorktableRecipe.hasWhitelist()) {
+
+      if (WorktableRecipe.isWhitelisted(resourceLocation)) {
+        WorktableRecipe worktableRecipe = new WorktableRecipe(recipe, resourceLocation);
+        CACHE.put(resourceLocation, worktableRecipe);
+        return worktableRecipe;
+      }
+
+      return null;
+
+    } else if (WorktableRecipe.hasBlacklist()) {
+
+      if (!WorktableRecipe.isBlacklisted(resourceLocation)) {
+        WorktableRecipe worktableRecipe = new WorktableRecipe(recipe, resourceLocation);
+        CACHE.put(resourceLocation, worktableRecipe);
+        return worktableRecipe;
+      }
+
+      return null;
+
+    } else {
+      WorktableRecipe worktableRecipe = new WorktableRecipe(recipe, resourceLocation);
+      CACHE.put(resourceLocation, worktableRecipe);
+      return worktableRecipe;
+    }
   }
 
   public static boolean hasRecipeWithTool(Item tool) {
@@ -106,6 +140,12 @@ public class WorktableRecipe
     }
 
     return null;
+  }
+
+  @Nullable
+  private static WorktableRecipe getCustomRecipe(ResourceLocation resourceLocation) {
+
+    return ModuleTechBasic.Registries.WORKTABLE_RECIPE.getValue(resourceLocation);
   }
 
   public static boolean removeRecipes(Ingredient output) {
@@ -153,10 +193,12 @@ public class WorktableRecipe
   private final Stages stages;
 
   public WorktableRecipe(
-      IRecipe recipe
+      IRecipe recipe,
+      ResourceLocation resourceLocation
   ) {
 
     this(recipe, null, 0, null);
+    this.setRegistryName(resourceLocation);
   }
 
   public WorktableRecipe(IRecipe recipe, @Nullable Ingredient tool, int toolDamage, @Nullable Stages stages) {

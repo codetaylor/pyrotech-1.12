@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.event.RecipeRepeat;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.PacketInitializer;
@@ -100,6 +101,10 @@ public class ModuleTechBasic
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.PluginWaila.wailaCallback"
     );
+
+    if (ModuleTechBasicConfig.WORKTABLE_COMMON.ALLOW_RECIPE_REPEAT) {
+      MinecraftForge.EVENT_BUS.register(new RecipeRepeat.RightClickBlockEventHandler());
+    }
   }
 
   @Override

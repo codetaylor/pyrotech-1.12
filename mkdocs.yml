@@ -6,6 +6,7 @@ pages:
 - Known Issues: knownissues.md
 - Commands: commands.md
 - Drying Racks: dryingracks.md
+- Worktables: worktables.md
 - ZenScript:
   - Bellows: zs/bellows.md
   - Bloomery: zs/bloomery.md
