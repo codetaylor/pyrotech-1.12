@@ -34,6 +34,12 @@ public final class PacketInitializer {
         Side.CLIENT
     );
 
+    /*registry.register(
+        SCPacketParticleDrip.class,
+        SCPacketParticleDrip.class,
+        Side.CLIENT
+    );*/
+
     registry.register(
         CSPacketModuleListResponse.class,
         CSPacketModuleListResponse.class,
