@@ -17,6 +17,8 @@
         * Chopping Block
         * Drying Rack, Crude Drying Rack
         * Campfire
+        * Soaking Pot
+        * Combustion Machines
 
   * Fixed:
     * Smelting recipes added by the mod were also being removed by the mod
