@@ -13,6 +13,8 @@
         * Unfired Clay Shears -> Clay Shears (tool)
     * Client-side command `/ptlang` to display the unlocalized name of a held item [(#94)](https://github.com/codetaylor/pyrotech/issues/94) [(doc)](commands)
     * Worktable QoL: Recipe Clear, Recipe Repeat [(#99)](https://github.com/codetaylor/pyrotech/issues/99) [(doc)](worktables)
+    * Add progress particles to chopping block [(#22)](https://github.com/codetaylor/pyrotech/issues/22)
+    * Add progress particles to drying racks [(#22)](https://github.com/codetaylor/pyrotech/issues/22)
 
   * Fixed:
     * Smelting recipes added by the mod were also being removed by the mod
