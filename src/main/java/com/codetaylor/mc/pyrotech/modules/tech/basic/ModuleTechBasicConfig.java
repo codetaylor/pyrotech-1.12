@@ -108,9 +108,10 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "If ALLOW_RECIPE_REPEAT is enabled, this is the amount of damage that",
-        "will be applied to the hammer.",
+        "will be applied to the hammer. Set to zero to disable.",
         "Default: " + 1
     })
+    @Config.RangeInt(min = 0)
     public int RECIPE_REPEAT_TOOL_DAMAGE = 1;
   }
 
