@@ -18,6 +18,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
 import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
+import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
@@ -360,6 +361,13 @@ public class TileCampfire
     }
 
     super.update();
+
+    if (this.world.isRemote
+        && ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES
+        && !this.getInputStackHandler().getStackInSlot(0).isEmpty()
+        && this.world.getTotalWorldTime() % 40 == 0) {
+      ParticleHelper.spawnProgressParticlesClient(1, this.pos.getX() + 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5, 0.5, 0.15, 0.5);
+    }
   }
 
   @Override
