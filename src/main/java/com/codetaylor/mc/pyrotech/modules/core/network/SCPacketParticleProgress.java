@@ -1,18 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.core.network;
 
-import com.codetaylor.mc.athenaeum.util.RandomHelper;
+import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Random;
 
 public class SCPacketParticleProgress
     implements IMessage,
@@ -78,20 +73,7 @@ public class SCPacketParticleProgress
         message.amount = 15;
       }
 
-      WorldClient world = Minecraft.getMinecraft().world;
-      Random random = RandomHelper.random();
-
-      for (int i = 0; i < message.amount; ++i) {
-        double d0 = random.nextGaussian() * 0.02D;
-        double d1 = random.nextGaussian() * 0.02D;
-        double d2 = random.nextGaussian() * 0.02D;
-        world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY,
-            message.x + (random.nextFloat() * 2 - 1) * message.rangeX,
-            message.y + (random.nextFloat() * 2 - 1) * message.rangeY,
-            message.z + (random.nextFloat() * 2 - 1) * message.rangeZ,
-            d0, d1, d2
-        );
-      }
+      ParticleHelper.spawnProgressParticlesClient(message.amount, message.x, message.y, message.z, message.rangeX, message.rangeY, message.rangeZ);
     }
 
     return null;

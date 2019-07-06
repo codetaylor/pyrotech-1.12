@@ -98,6 +98,18 @@ public abstract class TileDryingRackBase
     return this.speed.get();
   }
 
+  protected boolean hasInput() {
+
+    for (int i = 0; i < this.inputStackHandler.getSlots(); i++) {
+
+      if (!this.inputStackHandler.getStackInSlot(i).isEmpty()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   // ---------------------------------------------------------------------------
   // - Container
   // ---------------------------------------------------------------------------
@@ -158,8 +170,6 @@ public abstract class TileDryingRackBase
       this.speed.set(this.updateSpeed());
     }
 
-    boolean shouldSendParticleProgressPacket = false;
-
     for (int slotIndex = 0; slotIndex < this.inputStackHandler.getSlots(); slotIndex++) {
 
       ItemStack itemStack = this.inputStackHandler.getStackInSlot(slotIndex);
@@ -169,10 +179,6 @@ public abstract class TileDryingRackBase
       }
 
       if (this.dryTimeRemaining[slotIndex] > 0) {
-
-        if (this.world.getTotalWorldTime() % 40 == 0) {
-          shouldSendParticleProgressPacket = true;
-        }
 
         this.partialTicks[slotIndex] += this.speed.get();
 
@@ -204,14 +210,8 @@ public abstract class TileDryingRackBase
       this.markDirty();
     }
 
-    if (shouldSendParticleProgressPacket) {
-      this.sendParticleProgressPacket();
-    }
-
     return true;
   }
-
-  protected abstract void sendParticleProgressPacket();
 
   // ---------------------------------------------------------------------------
   // - Internal

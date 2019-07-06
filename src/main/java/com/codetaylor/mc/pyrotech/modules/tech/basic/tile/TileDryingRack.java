@@ -6,8 +6,8 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.Stages;
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
+import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
@@ -102,14 +102,16 @@ public class TileDryingRack
   }
 
   @Override
-  protected void sendParticleProgressPacket() {
+  public void update() {
 
-    if (this.getSpeed() > 0) {
-      ModuleCore.PACKET_SERVICE.sendToAllAround(
-          new SCPacketParticleProgress(this.pos.getX() + 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5, 1),
-          this.world.provider.getDimension(),
-          this.pos
-      );
+    super.update();
+
+    if (this.world.isRemote
+        && ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES
+        && this.getSpeed() > 0
+        && this.hasInput()
+        && this.world.getTotalWorldTime() % 40 == 0) {
+      ParticleHelper.spawnProgressParticlesClient(1, this.pos.getX() + 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5, 0.5, 0.15, 0.5);
     }
   }
 
