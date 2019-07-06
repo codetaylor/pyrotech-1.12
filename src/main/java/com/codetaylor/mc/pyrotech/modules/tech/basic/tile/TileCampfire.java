@@ -8,10 +8,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.util.SoundHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.athenaeum.util.TickCounter;
+import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.*;
@@ -362,11 +359,30 @@ public class TileCampfire
 
     super.update();
 
-    if (this.world.isRemote
-        && ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES
+    if (!this.world.isRemote) {
+      return;
+    }
+
+    if (ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES
+        && this.workerIsActive()
         && !this.getInputStackHandler().getStackInSlot(0).isEmpty()
         && this.world.getTotalWorldTime() % 40 == 0) {
-      ParticleHelper.spawnProgressParticlesClient(1, this.pos.getX() + 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5, 0.5, 0.15, 0.5);
+      ParticleHelper.spawnProgressParticlesClient(1, this.pos.getX() + 0.5, this.pos.getY() + 0.85, this.pos.getZ() + 0.5, 0.25, 0.30, 0.25);
+    }
+
+    if (this.workerIsActive()
+        && !this.getOutputStackHandler().getStackInSlot(0).isEmpty()
+        && this.world.getTotalWorldTime() % 5 == 0) {
+
+      for (int i = 0; i < 4; i++) {
+        double offsetX = (RandomHelper.random().nextDouble() * 2.0 - 1.0) * 0.4;
+        double offsetY = (RandomHelper.random().nextDouble() * 2.0 - 1.0) * 0.4;
+        double offsetZ = (RandomHelper.random().nextDouble() * 2.0 - 1.0) * 0.4;
+        double x = this.pos.getX() + 0.5 + offsetX;
+        double y = this.pos.getY() + 0.6 + offsetY;
+        double z = this.pos.getZ() + 0.5 + offsetZ;
+        this.world.spawnParticle(EnumParticleTypes.FLAME, x, y, z, 0.0, 0.0, 0.0);
+      }
     }
   }
 
