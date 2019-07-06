@@ -5,6 +5,8 @@ import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -104,6 +106,24 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends MachineRecip
 
     super.readFromNBT(compound);
     this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
+  }
+
+  @Override
+  public void update() {
+
+    super.update();
+
+    if (this.world.isRemote
+        && ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES
+        && this.workerIsActive()
+        && !this.getInputStackHandler().getStackInSlot(0).isEmpty()
+        && this.world.getTotalWorldTime() % 40 == 0) {
+      ParticleHelper.spawnProgressParticlesClient(
+          1,
+          this.pos.getX() + 0.5, this.pos.getY() + 1.625, this.pos.getZ() + 0.5,
+          0.25, 0.25, 0.25
+      );
+    }
   }
 
   // ---------------------------------------------------------------------------
