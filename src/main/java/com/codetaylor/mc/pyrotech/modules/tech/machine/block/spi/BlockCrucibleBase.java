@@ -44,7 +44,7 @@ public abstract class BlockCrucibleBase
   }
 
   @Override
-  protected void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand) {
+  protected void randomDisplayTickActiveTop(IBlockState state, World world, BlockPos pos, Random rand) {
 
     double centerX = pos.getX();
     double centerY = pos.getY() - 0.2;

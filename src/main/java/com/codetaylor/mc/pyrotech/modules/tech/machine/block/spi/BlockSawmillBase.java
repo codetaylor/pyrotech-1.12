@@ -55,7 +55,7 @@ public abstract class BlockSawmillBase
   }
 
   @Override
-  protected void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand) {
+  protected void randomDisplayTickActiveTop(IBlockState state, World world, BlockPos pos, Random rand) {
 
     double centerX = pos.getX();
     double centerY = pos.getY() - 0.2;
@@ -96,6 +96,10 @@ public abstract class BlockSawmillBase
         0.05 + (Util.RANDOM.nextFloat() * 2 - 1) * 0.05,
         0
     );
+  }
+
+  @Override
+  protected void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand) {
 
     TileEntity tileEntity = world.getTileEntity(pos.down());
 

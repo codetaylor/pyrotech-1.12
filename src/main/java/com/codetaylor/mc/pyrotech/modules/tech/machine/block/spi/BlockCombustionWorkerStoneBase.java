@@ -361,11 +361,14 @@ public abstract class BlockCombustionWorkerStoneBase
       TileEntity tileEntity = world.getTileEntity(pos.down());
 
       if (tileEntity instanceof TileCombustionWorkerStoneBase
-          && ((TileCombustionWorkerStoneBase) tileEntity).workerIsActive()
-          && ((TileCombustionWorkerStoneBase) tileEntity).hasFuel()
-          && ((TileCombustionWorkerStoneBase) tileEntity).hasInput()) {
+          && ((TileCombustionWorkerStoneBase) tileEntity).workerIsActive()) {
 
-        this.randomDisplayTickWorkingTop(state, world, pos, rand);
+        this.randomDisplayTickActiveTop(state, world, pos, rand);
+
+        if (((TileCombustionWorkerStoneBase) tileEntity).hasFuel()
+            && ((TileCombustionWorkerStoneBase) tileEntity).hasInput()) {
+          this.randomDisplayTickWorkingTop(state, world, pos, rand);
+        }
       }
 
     } else {
@@ -408,7 +411,17 @@ public abstract class BlockCombustionWorkerStoneBase
     }
   }
 
+  /**
+   * Called when working on a recipe.
+   */
   protected void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand) {
+    //
+  }
+
+  /**
+   * Called when lit.
+   */
+  protected void randomDisplayTickActiveTop(IBlockState state, World world, BlockPos pos, Random rand) {
     //
   }
 

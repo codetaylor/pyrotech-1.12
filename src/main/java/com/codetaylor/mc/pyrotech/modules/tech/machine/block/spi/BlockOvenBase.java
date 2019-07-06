@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi.BlockCombustionWorkerStoneBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
@@ -47,7 +46,7 @@ public abstract class BlockOvenBase
   }
 
   @Override
-  protected void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand) {
+  protected void randomDisplayTickActiveTop(IBlockState state, World world, BlockPos pos, Random rand) {
 
     double centerX = pos.getX();
     double centerY = pos.getY() + 1;

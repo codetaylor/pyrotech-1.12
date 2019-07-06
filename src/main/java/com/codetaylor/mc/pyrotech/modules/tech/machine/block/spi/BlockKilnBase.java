@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi;
 
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi.BlockCombustionWorkerStoneBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -13,7 +12,7 @@ public abstract class BlockKilnBase
     extends BlockCombustionWorkerStoneBase {
 
   @Override
-  protected void randomDisplayTickWorkingTop(IBlockState state, World world, BlockPos pos, Random rand) {
+  protected void randomDisplayTickActiveTop(IBlockState state, World world, BlockPos pos, Random rand) {
 
     double centerX = pos.getX() + 0.5;
     double centerY = pos.getY() + 0.25;
