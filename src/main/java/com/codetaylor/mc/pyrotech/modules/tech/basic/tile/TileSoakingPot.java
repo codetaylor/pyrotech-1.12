@@ -18,6 +18,8 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockSoakingPot;
@@ -232,6 +234,16 @@ public class TileSoakingPot
     }
 
     if (this.world.isRemote) {
+
+      if (ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES
+          && this.currentRecipe != null
+          && !this.getInputStackHandler().getStackInSlot(0).isEmpty()
+          && this.world.getTotalWorldTime() % 40 == 0) {
+        ParticleHelper.spawnProgressParticlesClient(
+            1,
+            this.pos.getX() + 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5,
+            0.25, 0.25, 0.25);
+      }
       return;
     }
 
