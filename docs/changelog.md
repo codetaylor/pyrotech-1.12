@@ -28,7 +28,7 @@
     * Smelting recipes added by the mod were also being removed by the mod
 
   * Changed:
-    * Combustion Machine smoke particles are now used to indicate that the machine is burning fuel instead of indicating that the machine is actively working on a recipe
+    * Combustion Machine smoke particles are now used to indicate that the machine is burning fuel instead of indicating that the machine is actively working on a recipe [(#22)](https://github.com/codetaylor/pyrotech/issues/22)
 
 ---
 
