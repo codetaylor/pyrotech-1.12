@@ -1,3 +1,13 @@
+1.2.4
+
+  * Note:
+      * Any Stone Igniter or Refractory Igniter currently in the world will be inert after this update. They will need to be broken and replaced in order to function.
+
+  * Fixed:
+      * Crash when using igniter blocks [(#107)](https://github.com/codetaylor/pyrotech/issues/107)
+
+---
+
 1.2.3
 
   * Fixed:

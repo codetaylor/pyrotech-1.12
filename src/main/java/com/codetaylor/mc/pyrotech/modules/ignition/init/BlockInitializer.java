@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockIgniter;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchFiber;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchStone;
+import com.codetaylor.mc.pyrotech.modules.ignition.tile.TileIgniter;
 import com.codetaylor.mc.pyrotech.modules.ignition.tile.TileTorchFiber;
 import com.codetaylor.mc.pyrotech.modules.ignition.tile.TileTorchStone;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,7 +24,8 @@ public final class BlockInitializer {
     RegistryHelper.registerTileEntities(
         registry,
         TileTorchFiber.class,
-        TileTorchStone.class
+        TileTorchStone.class,
+        TileIgniter.class
     );
   }
 
