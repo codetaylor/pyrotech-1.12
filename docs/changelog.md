@@ -13,12 +13,16 @@
         * Unfired Clay Shears -> Clay Shears (tool)
     * Client-side command `/ptlang` to display the unlocalized name of a held item [(#94)](https://github.com/codetaylor/pyrotech/issues/94) [(doc)](commands)
     * Worktable QoL: Recipe Clear, Recipe Repeat [(#99)](https://github.com/codetaylor/pyrotech/issues/99) [(doc)](worktables)
-    * Add progress particle indicators to [(#22)](https://github.com/codetaylor/pyrotech/issues/22):
+    * Progress particle indicators to [(#22)](https://github.com/codetaylor/pyrotech/issues/22):
         * Chopping Block
         * Drying Rack, Crude Drying Rack
         * Campfire
         * Soaking Pot
         * Combustion Machines
+    * Sawmill audio feedback [(#22)](https://github.com/codetaylor/pyrotech/issues/22):
+        * The sawmill will emit a whirring drone when the machine is lit and has a sawblade.
+        * The sawmill will emit a distinct cutting noise when the machine completes a recipe.
+        * Config: `module.tech.Machine.cfg`: `SAWMILL_SOUNDS`
 
   * Fixed:
     * Smelting recipes added by the mod were also being removed by the mod

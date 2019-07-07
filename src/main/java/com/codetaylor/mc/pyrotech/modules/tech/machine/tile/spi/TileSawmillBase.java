@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataBoolean;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
@@ -12,6 +13,8 @@ import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.MillInteractionBladeRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBaseSawmill;
 import net.minecraft.block.Block;
@@ -43,6 +46,8 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
   private BladeStackHandler bladeStackHandler;
   private int remainingWoodChips;
+  private TileDataBoolean recipeComplete;
+  private int counterIdleSound;
 
   public TileSawmillBase() {
 
@@ -53,8 +58,11 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
     // --- Network ---
 
+    this.recipeComplete = new TileDataBoolean(false);
+
     this.registerTileDataForNetwork(new ITileData[]{
-        new TileDataItemStackHandler<>(this.bladeStackHandler)
+        new TileDataItemStackHandler<>(this.bladeStackHandler),
+        this.recipeComplete
     });
 
     // --- Interactions ---
@@ -218,6 +226,8 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
   @Override
   protected void onRecipeComplete() {
 
+    this.recipeComplete.set(true);
+
     ItemStack input = this.getInputStackHandler().getStackInSlot(0);
 
     if (!this.shouldDamageBlades()) {
@@ -241,6 +251,64 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
       } else {
         this.bladeStackHandler.insertItem(0, blade, false);
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Update
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public boolean workerDoWork() {
+
+    this.recipeComplete.set(false);
+
+    return super.workerDoWork();
+  }
+
+  @Override
+  public void onTileDataUpdate() {
+
+    super.onTileDataUpdate();
+
+    if (ModuleTechMachineConfig.SAWMILL_SOUNDS.RECIPE_COMPLETE_SOUND_ENABLED
+        && this.recipeComplete.isDirty()
+        && this.recipeComplete.get()) {
+      double volume = ModuleTechMachineConfig.SAWMILL_SOUNDS.RECIPE_COMPLETE_SOUND_VOLUME;
+      this.world.playSound(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5,
+          ModuleTechMachine.Sounds.SAWMILL_ACTIVE, SoundCategory.BLOCKS, (float) volume, 1, false
+      );
+    }
+  }
+
+  @Override
+  public void update() {
+
+    super.update();
+
+    if (this.world.isRemote
+        && ModuleTechMachineConfig.SAWMILL_SOUNDS.IDLE_SOUND_ENABLED) {
+
+      if (this.workerIsActive()
+          && !this.getBlade().isEmpty()) {
+
+        int idleSoundLengthTicks = 40;
+
+        // is burning fuel and has a blade
+        this.counterIdleSound -= 1;
+
+        if (this.counterIdleSound <= 0) {
+          this.counterIdleSound = idleSoundLengthTicks;
+          double volume = ModuleTechMachineConfig.SAWMILL_SOUNDS.IDLE_SOUND_VOLUME;
+
+          this.world.playSound(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5,
+              ModuleTechMachine.Sounds.SAWMILL_IDLE, SoundCategory.BLOCKS, (float) volume, 1, false
+          );
+        }
+
+      } else {
+        this.counterIdleSound = 0;
       }
     }
   }

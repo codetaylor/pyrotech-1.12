@@ -66,6 +66,41 @@ public class ModuleTechMachineConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Sawmill Sounds
+  // ---------------------------------------------------------------------------
+
+  public static SawmillSounds SAWMILL_SOUNDS = new SawmillSounds();
+
+  public static class SawmillSounds {
+
+    @Config.Comment({
+        "Set to false to disable the sawmill's recipe complete sound.",
+        "Default: " + true
+    })
+    public boolean RECIPE_COMPLETE_SOUND_ENABLED = true;
+
+    @Config.Comment({
+        "Control the volume of the sawmill's recipe complete sound.",
+        "Default: " + 0.75
+    })
+    @Config.RangeInt(min = 0)
+    public double RECIPE_COMPLETE_SOUND_VOLUME = 0.75;
+
+    @Config.Comment({
+        "Set to false to disable the sawmill's idle sound.",
+        "Default: " + true
+    })
+    public boolean IDLE_SOUND_ENABLED = true;
+
+    @Config.Comment({
+        "Control the volume of the sawmill's idle sound.",
+        "Default: " + 0.50
+    })
+    @Config.RangeInt(min = 0)
+    public double IDLE_SOUND_VOLUME = 0.50;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Sawmill Blades
   // ---------------------------------------------------------------------------
 

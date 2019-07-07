@@ -1,0 +1,20 @@
+{
+  "sawmill_idle": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:sawmill/sawmill-idle",
+        "stream": false
+      }
+    ]
+  },
+  "sawmill_active": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:sawmill/sawmill-active",
+        "stream": false
+      }
+    ]
+  }
+}

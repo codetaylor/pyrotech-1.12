@@ -16,6 +16,8 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemSawmillBlade;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
@@ -25,6 +27,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -98,6 +101,14 @@ public class ModuleTechMachine
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.PluginWaila.wailaCallback"
     );
+  }
+
+  @SubscribeEvent
+  public void on(RegistryEvent.Register<SoundEvent> event) {
+
+    IForgeRegistry<SoundEvent> registry = event.getRegistry();
+    registry.register(Sounds.SAWMILL_IDLE);
+    registry.register(Sounds.SAWMILL_ACTIVE);
   }
 
   @Override
@@ -277,6 +288,20 @@ public class ModuleTechMachine
       GOLD_COG = null;
       DIAMOND_COG = null;
       OBSIDIAN_COG = null;
+    }
+  }
+
+  public static class Sounds {
+
+    public static final SoundEvent SAWMILL_IDLE;
+    public static final SoundEvent SAWMILL_ACTIVE;
+
+    static {
+      ResourceLocation sawmill_idle = new ResourceLocation(ModuleTechMachine.MOD_ID, "sawmill_idle");
+      SAWMILL_IDLE = new SoundEvent(sawmill_idle).setRegistryName(sawmill_idle);
+
+      ResourceLocation sawmill_active = new ResourceLocation(ModuleTechMachine.MOD_ID, "sawmill_active");
+      SAWMILL_ACTIVE = new SoundEvent(sawmill_active).setRegistryName(sawmill_active);
     }
   }
 
