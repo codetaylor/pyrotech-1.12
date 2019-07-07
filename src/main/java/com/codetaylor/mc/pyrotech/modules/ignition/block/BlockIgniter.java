@@ -3,9 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.ignition.block;
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
-import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.util.RefractoryIgnitionHelper;
+import com.codetaylor.mc.pyrotech.modules.ignition.tile.TileIgniter;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -14,8 +12,8 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -26,6 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
@@ -95,25 +94,27 @@ public class BlockIgniter
       return;
     }
 
-    EnumFacing selfFacing = state.getValue(Properties.FACING_HORIZONTAL);
-    EnumFacing selfFacingOpposite = selfFacing.getOpposite();
-    boolean blockPowered = world.isSidePowered(pos.offset(selfFacing), selfFacingOpposite);
+    TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (blockPowered) {
-      BlockPos offset = pos.offset(selfFacingOpposite);
-      IBlockState facingBlockState = world.getBlockState(offset);
-      Block facingBlock = facingBlockState.getBlock();
-
-      if (Util.canSetFire(world, offset)) {
-        world.setBlockState(offset, Blocks.FIRE.getDefaultState(), 3);
-
-      } else if (facingBlock instanceof IBlockIgnitableAdjacentIgniterBlock) {
-        ((IBlockIgnitableAdjacentIgniterBlock) facingBlock).igniteWithAdjacentIgniterBlock(world, offset, facingBlockState, selfFacing);
-
-      } else {
-        RefractoryIgnitionHelper.igniteBlocks(world, offset);
-      }
+    if (tileEntity instanceof TileIgniter) {
+      EnumFacing selfFacing = state.getValue(Properties.FACING_HORIZONTAL);
+      EnumFacing selfFacingOpposite = selfFacing.getOpposite();
+      boolean blockPowered = world.isSidePowered(pos.offset(selfFacing), selfFacingOpposite);
+      ((TileIgniter) tileEntity).setPowered(blockPowered);
     }
+  }
+
+  @Override
+  public boolean hasTileEntity(IBlockState state) {
+
+    return true;
+  }
+
+  @Nullable
+  @Override
+  public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+
+    return new TileIgniter();
   }
 
   @Nonnull
