@@ -102,6 +102,12 @@ public class ModuleTechBasic
         "com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.PluginWaila.wailaCallback"
     );
 
+    FMLInterModComms.sendFunctionMessage(
+        "theoneprobe",
+        "getTheOneProbe",
+        "com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.top.PluginTOP$Callback"
+    );
+
     if (ModuleTechBasicConfig.WORKTABLE_COMMON.ALLOW_RECIPE_REPEAT) {
       MinecraftForge.EVENT_BUS.register(new RecipeRepeat.RightClickBlockEventHandler());
     }
