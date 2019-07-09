@@ -5,6 +5,8 @@ import io.netty.buffer.ByteBuf;
 import mcjty.theoneprobe.api.IElement;
 import mcjty.theoneprobe.api.ITheOneProbe;
 import mcjty.theoneprobe.apiimpl.client.ElementTextRender;
+import mcjty.theoneprobe.network.NetworkTools;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.TextFormatting;
 
@@ -15,6 +17,7 @@ import java.util.function.Function;
 public class PluginTOP {
 
   private static int ELEMENT_TEXT_LOCALIZED;
+  private static int ELEMENT_ITEM_LABEL;
 
   public static class Callback
       implements Function<ITheOneProbe, Void> {
@@ -23,7 +26,105 @@ public class PluginTOP {
     public Void apply(ITheOneProbe top) {
 
       PluginTOP.ELEMENT_TEXT_LOCALIZED = top.registerElementFactory(ElementTextLocalized::new);
+      PluginTOP.ELEMENT_ITEM_LABEL = top.registerElementFactory(ElementItemLabel::new);
       return null;
+    }
+  }
+
+  public static class ElementItemLabel
+      implements IElement {
+
+    private final String textFormatting;
+    private final ItemStack itemStack;
+
+    public ElementItemLabel(@Nullable TextFormatting textFormatting, ItemStack itemStack) {
+
+      if (textFormatting == null) {
+        this.textFormatting = null;
+
+      } else {
+        this.textFormatting = textFormatting.toString();
+      }
+
+      this.itemStack = itemStack;
+    }
+
+    public ElementItemLabel(ByteBuf buf) {
+
+      int length = buf.readInt();
+
+      if (length > 0) {
+        this.textFormatting = new PacketBuffer(buf).readString(length);
+
+      } else {
+        this.textFormatting = null;
+      }
+
+      if (buf.readBoolean()) {
+        this.itemStack = NetworkTools.readItemStack(buf);
+
+      } else {
+        this.itemStack = ItemStack.EMPTY;
+      }
+    }
+
+    @Override
+    public void render(int x, int y) {
+
+      if (!this.itemStack.isEmpty()) {
+        String text = this.itemStack.getDisplayName();
+
+        if (this.textFormatting == null) {
+          ElementTextRender.render(text, x, y);
+
+        } else {
+          ElementTextRender.render(this.textFormatting + text, x, y);
+        }
+      }
+    }
+
+    @Override
+    public int getWidth() {
+
+      if (!this.itemStack.isEmpty()) {
+        String text = this.itemStack.getDisplayName();
+        return ElementTextRender.getWidth(text);
+
+      } else {
+        return 10;
+      }
+    }
+
+    @Override
+    public int getHeight() {
+
+      return 10;
+    }
+
+    @Override
+    public void toBytes(ByteBuf buf) {
+
+      if (this.textFormatting == null) {
+        buf.writeInt(0);
+
+      } else {
+        buf.writeInt(this.textFormatting.length());
+        new PacketBuffer(buf).writeString(this.textFormatting);
+      }
+
+      if (!this.itemStack.isEmpty()) {
+        buf.writeBoolean(true);
+        NetworkTools.writeItemStack(buf, this.itemStack);
+
+      } else {
+        buf.writeBoolean(false);
+      }
+    }
+
+    @Override
+    public int getID() {
+
+      return PluginTOP.ELEMENT_ITEM_LABEL;
     }
   }
 
