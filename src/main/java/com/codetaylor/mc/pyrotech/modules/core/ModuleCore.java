@@ -36,6 +36,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -124,6 +125,12 @@ public class ModuleCore
     if (ModuleCoreConfig.TWEAKS.DROP_STICKS_FROM_LEAVES) {
       MinecraftForge.EVENT_BUS.register(new HarvestDropsEventHandler.Sticks());
     }
+
+    FMLInterModComms.sendFunctionMessage(
+        "theoneprobe",
+        "getTheOneProbe",
+        "com.codetaylor.mc.pyrotech.modules.core.plugin.top.PluginTOP$Callback"
+    );
   }
 
   @SideOnly(Side.CLIENT)
