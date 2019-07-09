@@ -7,7 +7,6 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi.ItemTongsEmptyBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi.ItemTongsFullBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -15,18 +14,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.BlockFluidBase;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -193,19 +189,6 @@ public class BloomHelper {
 
         return true;
       });
-
-      if (rand.nextFloat() < 0.25) {
-        BlockHelper.forBlocksInCube(world, pos, 1, 1, 1, (w, p, bs) -> {
-
-          if (bs.getMaterial().isLiquid()
-              || bs.getBlock() instanceof BlockLiquid
-              || bs.getBlock() instanceof BlockFluidBase) {
-            w.setBlockToAir(p);
-            SoundHelper.playSoundServer(w, p, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS);
-          }
-          return true;
-        });
-      }
     }
   }
 
