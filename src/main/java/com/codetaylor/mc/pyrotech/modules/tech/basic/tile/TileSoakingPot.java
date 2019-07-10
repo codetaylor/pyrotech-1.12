@@ -11,6 +11,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
@@ -74,6 +75,7 @@ public class TileSoakingPot
     this.inputFluidTank.addObserver((tank, amount) -> {
       this.markDirty();
       this.updateRecipe();
+      this.ejectItemOverfill();
       this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
     });
 
@@ -106,6 +108,28 @@ public class TileSoakingPot
         new InteractionInputFluid(this.inputFluidTank),
         new InteractionItem(this, new ItemStackHandler[]{this.inputStackHandler, this.outputStackHandler})
     };
+  }
+
+  private void ejectItemOverfill() {
+
+    if (this.currentRecipe != null
+        && !this.world.isRemote) {
+      int requiredFluidPerItem = this.currentRecipe.getInputFluid().amount;
+      int existingItemCount = this.getInputStackHandler().getStackInSlot(0).getCount();
+      int totalFluidRequired = requiredFluidPerItem * existingItemCount;
+
+      int fluidAmount = this.getInputFluidTank().getFluidAmount();
+
+      if (totalFluidRequired > fluidAmount) {
+        int maxItemCount = fluidAmount / requiredFluidPerItem;
+
+        if (maxItemCount < existingItemCount) {
+          int toEject = existingItemCount - maxItemCount;
+          ItemStack itemStack = this.getInputStackHandler().extractItem(0, toEject, false);
+          StackHelper.spawnStackOnTop(this.world, itemStack, this.pos, 0.5);
+        }
+      }
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -242,7 +266,8 @@ public class TileSoakingPot
         ParticleHelper.spawnProgressParticlesClient(
             1,
             this.pos.getX() + 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5,
-            0.25, 0.25, 0.25);
+            0.25, 0.25, 0.25
+        );
       }
       return;
     }

@@ -31,6 +31,7 @@
 
   * Changed:
     * Combustion Machine smoke particles are now used to indicate that the machine is burning fuel instead of indicating that the machine is actively working on a recipe [(#22)](https://github.com/codetaylor/pyrotech/issues/22)
+    * The Soaking Pot will now eject any extra input items that it does not have the fluid to process when the fluid level drops below the amount needed to process all input items
 
 ---
 
