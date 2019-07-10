@@ -26,9 +26,7 @@ public class AnvilProviderDelegate {
     this.display = display;
   }
 
-  public void display(
-      TileAnvilBase tile
-  ) {
+  public void display(TileAnvilBase tile) {
 
     float progress = tile.getRecipeProgress();
     ItemStackHandler stackHandler = tile.getStackHandler();
@@ -99,7 +97,7 @@ public class AnvilProviderDelegate {
   }
 
   public interface IAnvilDisplay {
-  
+
     void setRecipeProgress(ItemStack input, ItemStack output, int progress, int maxProgress);
 
     void setRecipeType(String langKey, String typeLangKey);

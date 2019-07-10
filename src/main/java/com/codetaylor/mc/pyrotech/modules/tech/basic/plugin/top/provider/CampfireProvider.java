@@ -2,9 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.top.provider;
 
 import com.codetaylor.mc.pyrotech.modules.core.plugin.top.PluginTOP;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate.AnvilProviderDelegate;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate.CampfireProviderDelegate;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
@@ -15,22 +14,19 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-
-public class AnvilProvider
+public class CampfireProvider
     implements IProbeInfoProvider,
-    AnvilProviderDelegate.IAnvilDisplay {
+    CampfireProviderDelegate.ICampfireDisplay {
 
-  private final AnvilProviderDelegate delegate;
+  private final CampfireProviderDelegate delegate;
 
   private IProbeInfo probeInfo;
 
-  public AnvilProvider(AnvilRecipe.EnumTier tier) {
+  public CampfireProvider() {
 
-    this.delegate = new AnvilProviderDelegate(tier, this);
+    this.delegate = new CampfireProviderDelegate(this);
   }
 
   @Override
@@ -45,11 +41,17 @@ public class AnvilProvider
     BlockPos pos = data.getPos();
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileAnvilBase) {
+    if (tileEntity instanceof TileCampfire) {
       this.probeInfo = probeInfo;
-      this.delegate.display((TileAnvilBase) tileEntity);
+      this.delegate.display((TileCampfire) tileEntity);
       this.probeInfo = null;
     }
+  }
+
+  @Override
+  public void setRecipeInput(ItemStack input) {
+
+    this.probeInfo.item(input);
   }
 
   @Override
@@ -62,31 +64,26 @@ public class AnvilProvider
   }
 
   @Override
-  public void setRecipeType(String langKey, String typeLangKey) {
+  public void setRecipeOutput(ItemStack output) {
 
-    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, typeLangKey));
+    this.probeInfo.item(output);
   }
 
   @Override
-  public void setBloomName(@Nullable TextFormatting textFormatting, ItemStack input) {
+  public void setBurnTime(String langKey, String burnTime) {
 
-    this.probeInfo.element(new PluginTOP.ElementItemLabel(textFormatting, input));
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, burnTime));
   }
 
   @Override
-  public void setIntegrity(String langKey, int integrity) {
+  public void setFuelRemaining(String langKey, int fuelRemaining, int maxFuel) {
 
-    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, integrity));
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, fuelRemaining, maxFuel));
   }
 
   @Override
-  public void setHammerPower(@Nullable TextFormatting textFormatting, String langKey, int hammerPower) {
+  public void setAshLevel(String langKey, int ashLevel, int maxAshLevel) {
 
-    if (textFormatting == null) {
-      this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, hammerPower));
-
-    } else {
-      this.probeInfo.element(new PluginTOP.ElementTextLocalized(TextFormatting.RED, langKey, hammerPower));
-    }
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, ashLevel, maxAshLevel));
   }
 }
