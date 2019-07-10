@@ -143,6 +143,7 @@ public class PluginTOP {
     private static final byte DATA_TYPE_DOUBLE = 2;
     private static final byte DATA_TYPE_INT = 3;
     private static final byte DATA_TYPE_LONG = 4;
+    private static final byte DATA_TYPE_ITEM_STACK = 5;
 
     private String textFormatting;
     private String langKey;
@@ -243,6 +244,10 @@ public class PluginTOP {
             b.writeByte(DATA_TYPE_LONG);
             b.writeLong((Long) arg);
 
+          } else if (arg instanceof ItemStack) {
+            b.writeByte(DATA_TYPE_ITEM_STACK);
+            b.writeItemStack((ItemStack) arg);
+
           } else {
             throw new RuntimeException("Unknown data type: " + arg.getClass());
           }
@@ -291,6 +296,16 @@ public class PluginTOP {
 
         } else if (dataType == DATA_TYPE_LONG) {
           this.args[i] = b.readLong();
+
+        } else if (dataType == DATA_TYPE_ITEM_STACK) {
+
+          try {
+            this.args[i] = b.readItemStack().getDisplayName();
+
+          } catch (IOException e) {
+            ModuleCore.LOGGER.error("", e);
+            this.args[i] = "ERROR";
+          }
 
         } else {
           throw new RuntimeException("Unknown data type: " + dataType);
