@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate;
 
+import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
@@ -15,17 +16,18 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
 
-public class AnvilProviderDelegate {
+public class AnvilProviderDelegate
+    extends ProviderDelegateBase<AnvilProviderDelegate.IAnvilDisplay, TileAnvilBase> {
 
   private final AnvilRecipe.EnumTier tier;
-  private final IAnvilDisplay display;
 
   public AnvilProviderDelegate(AnvilRecipe.EnumTier tier, IAnvilDisplay display) {
 
+    super(display);
     this.tier = tier;
-    this.display = display;
   }
 
+  @Override
   public void display(TileAnvilBase tile) {
 
     float progress = tile.getRecipeProgress();

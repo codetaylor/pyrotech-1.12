@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate;
 
 import com.codetaylor.mc.athenaeum.util.StringHelper;
-import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
+import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CampfireRecipe;
@@ -10,15 +10,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class CampfireProviderDelegate
-    extends BodyProviderAdapter {
-
-  private final ICampfireDisplay display;
+    extends ProviderDelegateBase<CampfireProviderDelegate.ICampfireDisplay, TileCampfire> {
 
   public CampfireProviderDelegate(ICampfireDisplay display) {
 
-    this.display = display;
+    super(display);
   }
 
+  @Override
   public void display(TileCampfire tileCampfire) {
 
     float progress = tileCampfire.workerGetProgress(0);
