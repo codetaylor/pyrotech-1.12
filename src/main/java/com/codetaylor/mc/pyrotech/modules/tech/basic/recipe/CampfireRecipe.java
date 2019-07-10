@@ -96,7 +96,7 @@ public class CampfireRecipe
 
   private static String getRecipeKey(ItemStack itemStack) {
 
-    return itemStack.getItem().getUnlocalizedName() + ":" + itemStack.getItemDamage();
+    return itemStack.getItem().getRegistryName() + ":" + itemStack.getItemDamage();
   }
 
   public static boolean removeRecipes(Ingredient output) {
