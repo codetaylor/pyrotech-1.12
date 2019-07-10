@@ -4,20 +4,29 @@ import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate.SoakingPotProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileSoakingPot;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
 public class SoakingPotProvider
-    extends BodyProviderAdapter {
+    extends BodyProviderAdapter
+    implements SoakingPotProviderDelegate.ISoakingPotDisplay {
+
+  private final SoakingPotProviderDelegate delegate;
+
+  private List<String> tooltip;
+
+  public SoakingPotProvider() {
+
+    delegate = new SoakingPotProviderDelegate(this);
+  }
 
   @Nonnull
   @Override
@@ -31,59 +40,34 @@ public class SoakingPotProvider
     TileEntity tileEntity = accessor.getTileEntity();
 
     if (tileEntity instanceof TileSoakingPot) {
-
-      TileSoakingPot tile;
-      tile = (TileSoakingPot) tileEntity;
-      SoakingPotRecipe currentRecipe = tile.getCurrentRecipe();
-      TileSoakingPot.InputStackHandler inputStackHandler = tile.getInputStackHandler();
-      ItemStack inputStack = inputStackHandler.getStackInSlot(0);
-      TileSoakingPot.InputFluidTank inputFluidTank = tile.getInputFluidTank();
-      FluidStack fluid = inputFluidTank.getFluid();
-
-      if (currentRecipe != null) {
-
-        float progress = tile.getRecipeProgress();
-        ItemStack outputStack = currentRecipe.getOutput();
-        outputStack.setCount(inputStack.getCount());
-
-        String renderString = WailaUtil.getStackRenderString(inputStack) +
-            WailaUtil.getProgressRenderString((int) (100 * progress), 100) +
-            WailaUtil.getStackRenderString(outputStack);
-        tooltip.add(renderString);
-
-        int maxDrain = currentRecipe.getInputFluid().amount * inputStack.getCount();
-        FluidStack drain = inputFluidTank.drain(maxDrain, false);
-
-        if (drain == null || drain.amount != maxDrain) {
-
-          tooltip.add(TextFormatting.RED + Util.translateFormatted(
-              "gui." + ModuleTechBasic.MOD_ID + ".waila.insufficient",
-              currentRecipe.getInputFluid().getLocalizedName()
-          ));
-          tooltip.add(TextFormatting.RED + Util.translateFormatted(
-              "gui." + ModuleTechBasic.MOD_ID + ".waila.insufficient.fluid.requires",
-              (drain == null) ? maxDrain : maxDrain - drain.amount
-          ));
-        }
-      }
-
-      if (fluid != null) {
-        tooltip.add(String.format(
-            "%s: %d / %d mB",
-            fluid.getLocalizedName(),
-            fluid.amount,
-            inputFluidTank.getCapacity()
-        ));
-      }
-
-      TileSoakingPot.OutputStackHandler outputStackHandler = tile.getOutputStackHandler();
-      ItemStack outputStack = outputStackHandler.getStackInSlot(0);
-
-      if (!outputStack.isEmpty()) {
-        tooltip.add(WailaUtil.getStackRenderString(outputStack));
-      }
+      this.tooltip = tooltip;
+      this.delegate.display((TileSoakingPot) tileEntity);
+      this.tooltip = null;
     }
 
     return tooltip;
+  }
+
+  @Override
+  public void setRecipeProgress(ItemStack input, ItemStack output, int progress, int maxProgress) {
+
+    String renderString = WailaUtil.getStackRenderString(input)
+        + WailaUtil.getProgressRenderString(progress, maxProgress)
+        + WailaUtil.getStackRenderString(output);
+    this.tooltip.add(renderString);
+  }
+
+  @Override
+  public void setOutputItem(ItemStack outputStack) {
+
+    this.tooltip.add(WailaUtil.getStackRenderString(outputStack));
+  }
+
+  @Override
+  public void setFluid(FluidStack fluidStack, int capacity) {
+
+    String langKey = "gui." + ModuleTechBasic.MOD_ID + ".waila.tank.fluid";
+    String localizedFluidName = fluidStack.getLocalizedName();
+    this.tooltip.add(Util.translateFormatted(langKey, localizedFluidName, fluidStack.amount, capacity));
   }
 }

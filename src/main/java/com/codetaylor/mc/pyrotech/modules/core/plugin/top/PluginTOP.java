@@ -365,6 +365,10 @@ public class PluginTOP {
           String localizedName = this.fluidStack.getLocalizedName();
           this.renderText = this.textFormatting
               + Util.translateFormatted(LANG_KEY, localizedName, this.fluidStack.amount, this.capacity);
+
+        } else {
+          String localizedName = this.fluidStack.getLocalizedName();
+          this.renderText = Util.translateFormatted(LANG_KEY, localizedName, this.fluidStack.amount, this.capacity);
         }
       }
     }
