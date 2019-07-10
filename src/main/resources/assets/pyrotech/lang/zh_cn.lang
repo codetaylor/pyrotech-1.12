@@ -312,6 +312,7 @@ gui.pyrotech.tooltip.rain.extinguishes.false=淋雨后仍燃烧。
 # Waila
 #------------------------------------------------------------------------------
 
+gui.pyrotech.waila.quantity=%s: %d
 gui.pyrotech.waila.capacity=容量：%d / %d
 gui.pyrotech.waila.recipe=配方：%s
 gui.pyrotech.waila.recipe.synchronous=配方：%s（%s）

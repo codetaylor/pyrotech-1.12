@@ -23,6 +23,7 @@ public class PluginTOP {
       top.registerProvider(new DryingRackProvider());
       top.registerProvider(new KilnPitProvider());
       top.registerProvider(new SoakingPotProvider());
+      top.registerProvider(new WorktableProvider());
       return null;
     }
   }

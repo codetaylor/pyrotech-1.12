@@ -312,6 +312,7 @@ gui.pyrotech.tooltip.rain.extinguishes.false=Stays lit in the rain.
 # Waila
 #------------------------------------------------------------------------------
 
+gui.pyrotech.waila.quantity=%s: %d
 gui.pyrotech.waila.capacity=Capacity: %d of %d
 gui.pyrotech.waila.recipe=Recipe: %s
 gui.pyrotech.waila.recipe.synchronous=Recipe: %s (%s)
