@@ -3,8 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.provider;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate.DryingRackProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileDryingRackBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -16,7 +15,16 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class DryingRackProvider
-    extends BodyProviderAdapter {
+    extends BodyProviderAdapter
+    implements DryingRackProviderDelegate.IDryingRackDisplay {
+
+  private final DryingRackProviderDelegate delegate;
+  private List<String> tooltip;
+
+  public DryingRackProvider() {
+
+    this.delegate = new DryingRackProviderDelegate(this);
+  }
 
   @Nonnull
   @Override
@@ -30,62 +38,44 @@ public class DryingRackProvider
     TileEntity tileEntity = accessor.getTileEntity();
 
     if (tileEntity instanceof TileDryingRackBase) {
-
-      TileDryingRackBase tile = (TileDryingRackBase) tileEntity;
-
-      tooltip.add(Util.translateFormatted(
-          "gui." + ModuleTechBasic.MOD_ID + ".waila.speed",
-          (int) (tile.getSpeed() * 100)
-      ));
-
-      ItemStackHandler stackHandler = tile.getInputStackHandler();
-      ItemStackHandler outputStackHandler = tile.getOutputStackHandler();
-
-      for (int i = 0; i < stackHandler.getSlots(); i++) {
-
-        ItemStack inputStack = stackHandler.getStackInSlot(i);
-        float progress = tile.workerGetProgress(i);
-
-        if (!inputStack.isEmpty()) {
-
-          // Display input item and recipe output.
-
-          StringBuilder renderString = new StringBuilder();
-          renderString.append(WailaUtil.getStackRenderString(inputStack));
-
-          DryingRackRecipe recipe = DryingRackRecipe.getRecipe(inputStack);
-
-          if (recipe != null) {
-            ItemStack recipeOutput = recipe.getOutput();
-            recipeOutput.setCount(inputStack.getCount());
-            renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
-            renderString.append(WailaUtil.getStackRenderString(recipeOutput));
-          }
-
-          tooltip.add(renderString.toString());
-        }
-      }
-
-      StringBuilder renderString = new StringBuilder();
-
-      for (int i = 0; i < outputStackHandler.getSlots(); i++) {
-
-        // Display output items.
-
-        ItemStack outputStack = outputStackHandler.getStackInSlot(i);
-
-        if (!outputStack.isEmpty()) {
-          renderString.append(WailaUtil.getStackRenderString(outputStack));
-        }
-
-      }
-
-      if (renderString.length() > 0) {
-        tooltip.add(renderString.toString());
-      }
-
+      this.tooltip = tooltip;
+      this.delegate.display((TileDryingRackBase) tileEntity);
+      this.tooltip = null;
     }
 
     return tooltip;
+  }
+
+  @Override
+  public void setSpeed(String langKey, int speed) {
+
+    this.tooltip.add(Util.translateFormatted(langKey, speed));
+  }
+
+  @Override
+  public void setRecipeProgress(ItemStack input, ItemStack output, int progress, int maxProgress) {
+
+    String renderString = WailaUtil.getStackRenderString(input)
+        + WailaUtil.getProgressRenderString(progress, maxProgress)
+        + WailaUtil.getStackRenderString(output);
+    this.tooltip.add(renderString);
+  }
+
+  @Override
+  public void setOutputItems(ItemStackHandler outputStackHandler) {
+
+    StringBuilder builder = new StringBuilder();
+
+    for (int i = 0; i < outputStackHandler.getSlots(); i++) {
+      ItemStack stackInSlot = outputStackHandler.getStackInSlot(i);
+
+      if (!stackInSlot.isEmpty()) {
+        builder.append(WailaUtil.getStackRenderString(stackInSlot));
+      }
+    }
+
+    if (builder.length() > 0) {
+      this.tooltip.add(builder.toString());
+    }
   }
 }

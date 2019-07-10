@@ -1,9 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.top;
 
-import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.top.provider.AnvilProvider;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.top.provider.CampfireProvider;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.top.provider.ChoppingBlockProvider;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.top.provider.CompactingBinProvider;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.top.provider.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import mcjty.theoneprobe.api.ITheOneProbe;
 
@@ -23,6 +20,7 @@ public class PluginTOP {
       top.registerProvider(new CampfireProvider());
       top.registerProvider(new ChoppingBlockProvider());
       top.registerProvider(new CompactingBinProvider());
+      top.registerProvider(new DryingRackProvider());
       return null;
     }
   }
