@@ -1,21 +1,30 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.provider;
 
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockKilnPit;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.KilnPitRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate.KilnPitProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileKilnPit;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
 public class KilnPitProvider
-    implements IWailaDataProvider {
+    implements IWailaDataProvider,
+    KilnPitProviderDelegate.IPitKilnDisplay {
+
+  private final KilnPitProviderDelegate delegate;
+
+  private List<String> tooltip;
+
+  public KilnPitProvider() {
+
+    this.delegate = new KilnPitProviderDelegate(this);
+  }
 
   @Nonnull
   @Override
@@ -26,54 +35,41 @@ public class KilnPitProvider
       IWailaConfigHandler config
   ) {
 
-    if (accessor.getTileEntity() instanceof TileKilnPit) {
+    TileEntity tileEntity = accessor.getTileEntity();
 
-      IBlockState blockState = accessor.getBlockState();
-      TileKilnPit tileKiln = (TileKilnPit) accessor.getTileEntity();
-      float progress = tileKiln.getProgress();
-      ItemStackHandler stackHandler = tileKiln.getStackHandler();
-      ItemStack input = stackHandler.getStackInSlot(0);
-      KilnPitRecipe recipe = KilnPitRecipe.getRecipe(input);
-      ItemStack output = ItemStack.EMPTY;
-
-      StringBuilder renderString = new StringBuilder();
-
-      if (recipe != null) {
-        output = recipe.getOutput();
-        output.setCount(input.getCount());
-      }
-
-      if (blockState.getValue(BlockKilnPit.VARIANT) == BlockKilnPit.EnumType.COMPLETE) {
-
-        ItemStackHandler outputStackHandler = tileKiln.getOutputStackHandler();
-        StringBuilder outputString = new StringBuilder();
-        boolean hasOutput = false;
-
-        for (int i = 0; i < outputStackHandler.getSlots(); i++) {
-          ItemStack stackInSlot = outputStackHandler.getStackInSlot(i);
-
-          if (!stackInSlot.isEmpty()) {
-            outputString.append(WailaUtil.getStackRenderString(stackInSlot));
-            hasOutput = true;
-          }
-        }
-
-        if (hasOutput) {
-          renderString.append(outputString.toString());
-        }
-
-      } else {
-
-        if (!input.isEmpty()) {
-          tooltip.add(WailaUtil.getStackRenderString(input)
-              + WailaUtil.getProgressRenderString((int) (100 * progress), 100)
-              + WailaUtil.getStackRenderString(output));
-        }
-      }
-
-      tooltip.add(renderString.toString());
+    if (tileEntity instanceof TileKilnPit) {
+      this.tooltip = tooltip;
+      this.delegate.display((TileKilnPit) tileEntity);
+      this.tooltip = null;
     }
 
     return tooltip;
+  }
+
+  @Override
+  public void setOutputItems(ItemStackHandler stackHandler) {
+
+    StringBuilder builder = new StringBuilder();
+
+    for (int i = 0; i < stackHandler.getSlots(); i++) {
+      ItemStack stackInSlot = stackHandler.getStackInSlot(i);
+
+      if (!stackInSlot.isEmpty()) {
+        builder.append(WailaUtil.getStackRenderString(stackInSlot));
+      }
+    }
+
+    if (builder.length() > 0) {
+      this.tooltip.add(builder.toString());
+    }
+  }
+
+  @Override
+  public void setRecipeProgress(ItemStack input, ItemStack output, int progress, int maxProgress) {
+
+    String renderString = WailaUtil.getStackRenderString(input)
+        + WailaUtil.getProgressRenderString(progress, maxProgress)
+        + WailaUtil.getStackRenderString(output);
+    this.tooltip.add(renderString);
   }
 }

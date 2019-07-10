@@ -21,6 +21,7 @@ public class PluginTOP {
       top.registerProvider(new ChoppingBlockProvider());
       top.registerProvider(new CompactingBinProvider());
       top.registerProvider(new DryingRackProvider());
+      top.registerProvider(new KilnPitProvider());
       return null;
     }
   }
