@@ -66,7 +66,20 @@ public class JsonOreDict {
 
     result.oreDict.put("twine", new String[]{
         "minecraft:string",
-        "pyrotech:material:" + ItemMaterial.EnumType.TWINE.getMeta()
+        "pyrotech:material:" + ItemMaterial.EnumType.TWINE.getMeta(),
+        "pyrotech:material:" + ItemMaterial.EnumType.TWINE_DURABLE.getMeta()
+    });
+
+    result.oreDict.put("fuelCoke", new String[]{
+        "pyrotech:material:" + ItemMaterial.EnumType.COAL_COKE.getMeta()
+    });
+
+    result.oreDict.put("blockFuelCoke", new String[]{
+        "pyrotech:coal_coke_block"
+    });
+
+    result.oreDict.put("oreNetherCoal", new String[]{
+        "pyrotech:dense_nether_coal_ore"
     });
 
     result.oreDict.put("blockGlass", new String[]{

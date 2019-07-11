@@ -1,5 +1,8 @@
 1.3.0
 
+  * Notes:
+    * Refresh your `core.OreDict-Custom.json` file or copy the new entries from `core.OreDict-Generated.json`.
+
   * Added:
     * GameStages support for worktable recipes [(#3)](https://github.com/codetaylor/pyrotech/issues/3) [(doc)](zs/worktable) [(doc:stages)](zs/stages)
     * Exposed config values for both drying racks' speed calculations [(#92)](https://github.com/codetaylor/pyrotech/issues/92) [(doc)](dryingracks)
@@ -23,6 +26,11 @@
         * The sawmill will emit a whirring drone when the machine is lit and has a sawblade.
         * The sawmill will emit a distinct cutting noise when the machine completes a recipe.
         * Config: `module.tech.Machine.cfg`: `SAWMILL_SOUNDS`
+    * Oredict entries [(#108)](https://github.com/codetaylor/pyrotech/issues/108):
+        * Durable Twine -> `twine`
+        * Coal Coke -> `fuelCoke`
+        * Block of Coal Coke -> `blockFuelCoke`
+        * Dense Nether Coal -> `oreNetherCoal`
 
   * Fixed:
     * Smelting recipes added by the mod were also being removed by the mod
