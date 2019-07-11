@@ -75,6 +75,12 @@ public class ModuleStorage
         "com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.PluginWaila.wailaCallback"
     );
 
+    FMLInterModComms.sendFunctionMessage(
+        "theoneprobe",
+        "getTheOneProbe",
+        "com.codetaylor.mc.pyrotech.modules.storage.plugin.top.PluginTOP$Callback"
+    );
+
     MinecraftForge.EVENT_BUS.register(new EntityItemPickupEventHandler());
   }
 
