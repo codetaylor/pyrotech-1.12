@@ -105,6 +105,12 @@ public class ModuleTechRefractory
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.waila.PluginWaila.wailaCallback"
     );
+
+    FMLInterModComms.sendFunctionMessage(
+        "theoneprobe",
+        "getTheOneProbe",
+        "com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.top.PluginTOP$Callback"
+    );
   }
 
   @SideOnly(Side.CLIENT)
