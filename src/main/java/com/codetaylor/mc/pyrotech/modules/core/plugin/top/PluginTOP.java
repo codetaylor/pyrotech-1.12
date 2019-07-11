@@ -46,13 +46,12 @@ public class PluginTOP {
 
     public ElementItemLabel(@Nullable TextFormatting textFormatting, ItemStack itemStack) {
 
-      if (textFormatting == null) {
-        this.textFormatting = null;
+      this(textFormatting == null ? null : textFormatting.toString(), itemStack);
+    }
 
-      } else {
-        this.textFormatting = textFormatting.toString();
-      }
+    public ElementItemLabel(@Nullable String textFormatting, ItemStack itemStack) {
 
+      this.textFormatting = textFormatting;
       this.itemStack = itemStack;
     }
 
