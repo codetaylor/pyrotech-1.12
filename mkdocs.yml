@@ -4,6 +4,7 @@ pages:
 - Introduction: index.md
 - ChangeLog: changelog.md
 - Known Issues: knownissues.md
+- Modules: modules.md
 - Commands: commands.md
 - Drying Racks: dryingracks.md
 - Worktables: worktables.md
