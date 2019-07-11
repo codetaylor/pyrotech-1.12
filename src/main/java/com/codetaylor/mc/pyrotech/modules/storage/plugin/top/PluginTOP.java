@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.storage.plugin.top;
 import com.codetaylor.mc.pyrotech.modules.storage.plugin.top.provider.BagProvider;
 import com.codetaylor.mc.pyrotech.modules.storage.plugin.top.provider.StorageProvider;
 import com.codetaylor.mc.pyrotech.modules.storage.plugin.top.provider.TankProvider;
+import com.codetaylor.mc.pyrotech.modules.storage.plugin.top.provider.WoodRackProvider;
 import mcjty.theoneprobe.api.ITheOneProbe;
 
 import java.util.function.Function;
@@ -19,6 +20,7 @@ public class PluginTOP {
       top.registerProvider(new BagProvider());
       top.registerProvider(new StorageProvider());
       top.registerProvider(new TankProvider());
+      top.registerProvider(new WoodRackProvider());
       return null;
     }
   }
