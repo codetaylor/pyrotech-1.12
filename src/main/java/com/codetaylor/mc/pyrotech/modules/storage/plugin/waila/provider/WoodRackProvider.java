@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila;
+package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.provider;
 
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;

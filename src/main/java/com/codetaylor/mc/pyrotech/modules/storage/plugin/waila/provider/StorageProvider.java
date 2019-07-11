@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila;
+package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.provider;
 
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;

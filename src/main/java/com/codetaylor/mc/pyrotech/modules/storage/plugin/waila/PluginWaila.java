@@ -1,5 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila;
 
+import com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.provider.BagProvider;
+import com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.provider.StorageProvider;
+import com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.provider.TankProvider;
+import com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.provider.WoodRackProvider;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileCrate;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileShelf;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileStash;
