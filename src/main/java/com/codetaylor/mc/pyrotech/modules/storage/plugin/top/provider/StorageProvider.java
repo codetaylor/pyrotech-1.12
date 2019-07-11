@@ -1,10 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.storage.plugin.top.provider;
 
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.delegate.StorageProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileCrate;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileShelf;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileStash;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
@@ -32,7 +32,7 @@ public class StorageProvider
   @Override
   public String getID() {
 
-    return ModuleTechBasic.MOD_ID + ":" + this.getClass().getName();
+    return ModuleStorage.MOD_ID + ":" + this.getClass().getName();
   }
 
   @Override

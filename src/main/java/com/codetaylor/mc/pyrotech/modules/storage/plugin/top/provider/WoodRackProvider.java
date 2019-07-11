@@ -1,9 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.storage.plugin.top.provider;
 
-import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.delegate.WoodRackProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileWoodRack;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
@@ -32,7 +31,7 @@ public class WoodRackProvider
   @Override
   public String getID() {
 
-    return ModuleTechBasic.MOD_ID + ":" + this.getClass().getName();
+    return ModuleStorage.MOD_ID + ":" + this.getClass().getName();
   }
 
   @Override

@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.storage.plugin.top.provider;
 
 import com.codetaylor.mc.pyrotech.modules.core.plugin.top.PluginTOP;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.delegate.BagProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
@@ -33,7 +34,7 @@ public class BagProvider
   @Override
   public String getID() {
 
-    return ModuleTechBasic.MOD_ID + ":" + this.getClass().getName();
+    return ModuleStorage.MOD_ID + ":" + this.getClass().getName();
   }
 
   @Override
