@@ -434,6 +434,13 @@ public class ModuleCoreConfig {
         "Default: " + false
     })
     public boolean ALLOW_TRAMPLE = false;
+
+    @Config.Comment({
+        "Set to true to restrict the placement of mulch to moisturized farmland",
+        "only. If set to false, mulch can be placed on wet or dry farmland.",
+        "Default: " + false
+    })
+    public boolean RESTRICT_TO_MOISTURIZED_FARMLAND = false;
   }
 
   // ---------------------------------------------------------------------------

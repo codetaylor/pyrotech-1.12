@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.core.item;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,22 +55,33 @@ public class ItemMulch
           return new ActionResult<>(EnumActionResult.PASS, heldItem);
         }
 
-        if (blockState.getBlock() == Blocks.FARMLAND) {
+        if (ItemMulch.canMulch(blockState)) {
 
-          if (blockState.getValue(BlockFarmland.MOISTURE) > 0) {
-
-            if (!world.isRemote) {
-              world.setBlockState(blockPos, ModuleCore.Blocks.FARMLAND_MULCHED.getDefaultState());
-              this.playSound(world, player);
-            }
-
-            return new ActionResult<>(EnumActionResult.SUCCESS, StackHelper.decrease(heldItem, 1, false));
+          if (!world.isRemote) {
+            world.setBlockState(blockPos, ModuleCore.Blocks.FARMLAND_MULCHED.getDefaultState());
+            this.playSound(world, player);
           }
+
+          return new ActionResult<>(EnumActionResult.SUCCESS, StackHelper.decrease(heldItem, 1, false));
         }
       }
     }
 
     return super.onItemRightClick(world, player, hand);
+  }
+
+  public static boolean canMulch(IBlockState blockState) {
+
+    if (blockState.getBlock() == Blocks.FARMLAND) {
+
+      if (ModuleCoreConfig.MULCHED_FARMLAND.RESTRICT_TO_MOISTURIZED_FARMLAND) {
+        return blockState.getValue(BlockFarmland.MOISTURE) > 0;
+      }
+
+      return true;
+    }
+
+    return false;
   }
 
   private void playSound(World world, EntityPlayer player) {

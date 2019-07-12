@@ -15,16 +15,15 @@ import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemMulch;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileStash;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.MechanicalMulchSpreaderInteractionMulchRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
-import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -155,8 +154,7 @@ public class TileMechanicalMulchSpreader
 
     BlockHelper.forBlocksInCubeShuffled(this.world, origin, cogRange, 0, cogRange, (w, p, bs) -> {
 
-      if (bs.getBlock() == Blocks.FARMLAND
-          && bs.getValue(BlockFarmland.MOISTURE) > 0) {
+      if (ItemMulch.canMulch(bs)) {
         this.mulchStackHandler.extractItem(0, 1, false);
         w.setBlockState(p, ModuleCore.Blocks.FARMLAND_MULCHED.getDefaultState());
         SoundHelper.playSoundServer(this.world, this.pos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS);
