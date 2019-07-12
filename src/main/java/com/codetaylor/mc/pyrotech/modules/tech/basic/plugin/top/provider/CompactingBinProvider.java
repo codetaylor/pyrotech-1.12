@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.top.provider;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate.CompactingBinProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCompactingBin;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalCompactingBin;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
@@ -41,7 +42,8 @@ public class CompactingBinProvider
     BlockPos pos = data.getPos();
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileCompactingBin) {
+    if (tileEntity instanceof TileCompactingBin
+        && !(tileEntity instanceof TileMechanicalCompactingBin)) {
       this.probeInfo = probeInfo;
       this.delegate.display((TileCompactingBin) tileEntity);
       this.probeInfo = null;

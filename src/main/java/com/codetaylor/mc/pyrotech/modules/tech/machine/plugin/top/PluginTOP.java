@@ -17,7 +17,7 @@ public class PluginTOP {
       top.registerProvider(new CogWorkerProvider());
       top.registerProvider(new CombustionMachineItemInItemOutProvider());
       top.registerProvider(new CombustionMachineItemInFluidOutProvider());
-      //top.registerProvider(new MechanicalCompactingBinProvider());
+      top.registerProvider(new MechanicalCompactingBinProvider());
       top.registerProvider(new SawmillProvider());
       return null;
     }
