@@ -143,6 +143,7 @@ public class PluginTOP {
     private static final byte DATA_TYPE_INT = 3;
     private static final byte DATA_TYPE_LONG = 4;
     private static final byte DATA_TYPE_ITEM_STACK = 5;
+    private static final byte DATA_TYPE_FLUID_STACK = 6;
 
     private String textFormatting;
     private String langKey;
@@ -247,6 +248,10 @@ public class PluginTOP {
             b.writeByte(DATA_TYPE_ITEM_STACK);
             b.writeItemStack((ItemStack) arg);
 
+          } else if (arg instanceof FluidStack) {
+            b.writeByte(DATA_TYPE_FLUID_STACK);
+            b.writeCompoundTag(((FluidStack) arg).writeToNBT(new NBTTagCompound()));
+
           } else {
             throw new RuntimeException("Unknown data type: " + arg.getClass());
           }
@@ -302,6 +307,24 @@ public class PluginTOP {
             this.args[i] = b.readItemStack().getDisplayName();
 
           } catch (IOException e) {
+            ModuleCore.LOGGER.error("", e);
+            this.args[i] = "ERROR";
+          }
+
+        } else if (dataType == DATA_TYPE_FLUID_STACK) {
+
+          try {
+            NBTTagCompound compound = b.readCompoundTag();
+            FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(compound);
+
+            if (fluidStack == null) {
+              this.args[i] = "ERROR";
+
+            } else {
+              this.args[i] = fluidStack.getLocalizedName();
+            }
+
+          } catch (Exception e) {
             ModuleCore.LOGGER.error("", e);
             this.args[i] = "ERROR";
           }
