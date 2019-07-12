@@ -43,6 +43,13 @@
 
 ---
 
+1.2.5
+
+  * Fixed:
+      * ZenScript method to whitelist campfire fuel doesn't work [(#121)](https://github.com/codetaylor/pyrotech/issues/121)
+
+---
+
 1.2.4
 
   * Note:
