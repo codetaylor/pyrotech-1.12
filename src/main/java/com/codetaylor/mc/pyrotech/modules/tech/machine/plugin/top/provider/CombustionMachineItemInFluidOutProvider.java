@@ -1,33 +1,35 @@
-package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.provider;
+package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.top.provider;
 
-import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
-import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.top.PluginTOP;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.delegate.CombustionMachineItemInFluidOutProviderDelegate;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.delegate.CombustionMachineProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInFluidOutBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDelegateMachineTop;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInFluidOutBase;
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.IWailaDataAccessor;
+import mcjty.theoneprobe.api.IProbeHitData;
+import mcjty.theoneprobe.api.IProbeInfo;
+import mcjty.theoneprobe.api.IProbeInfoProvider;
+import mcjty.theoneprobe.api.ProbeMode;
+import mcjty.theoneprobe.apiimpl.styles.ProgressStyle;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class CombustionMachineItemInFluidOutProvider
-    extends BodyProviderAdapter
-    implements CombustionMachineItemInFluidOutProviderDelegate.ICombustionMachineItemInFluidOutDisplay {
+    implements IProbeInfoProvider,
+    CombustionMachineItemInFluidOutProviderDelegate.ICombustionMachineItemInFluidOutDisplay {
 
-  private final CombustionMachineProviderDelegateBase<CombustionMachineItemInFluidOutProviderDelegate.ICombustionMachineItemInFluidOutDisplay, TileCombustionWorkerStoneItemInFluidOutBase, MachineRecipeItemInFluidOutBase> delegate;
+  private final CombustionMachineItemInFluidOutProviderDelegate delegate;
 
-  private List<String> tooltip;
+  private IProbeInfo probeInfo;
 
   public CombustionMachineItemInFluidOutProvider() {
 
@@ -47,16 +49,17 @@ public class CombustionMachineItemInFluidOutProvider
     };
   }
 
-  @Nonnull
   @Override
-  public List<String> getWailaBody(
-      ItemStack itemStack,
-      List<String> tooltip,
-      IWailaDataAccessor accessor,
-      IWailaConfigHandler config
-  ) {
+  public String getID() {
 
-    TileEntity tileEntity = accessor.getTileEntity();
+    return ModuleTechBasic.MOD_ID + ":" + this.getClass().getName();
+  }
+
+  @Override
+  public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData data) {
+
+    BlockPos pos = data.getPos();
+    TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileCombustionWorkerStoneItemInFluidOutBase
         || tileEntity instanceof TileCapabilityDelegateMachineTop) {
@@ -67,7 +70,6 @@ public class CombustionMachineItemInFluidOutProvider
         tile = (TileCombustionWorkerStoneItemInFluidOutBase) tileEntity;
 
       } else {
-        World world = tileEntity.getWorld();
         TileEntity candidate = world.getTileEntity(tileEntity.getPos().down());
 
         if (candidate instanceof TileCombustionWorkerStoneItemInFluidOutBase) {
@@ -76,71 +78,70 @@ public class CombustionMachineItemInFluidOutProvider
       }
 
       if (tile == null) {
-        return tooltip;
+        return;
       }
 
-      this.tooltip = tooltip;
+      this.probeInfo = probeInfo;
       this.delegate.display(tile);
-      this.tooltip = null;
+      this.probeInfo = null;
     }
-
-    return tooltip;
-  }
-
-  @Override
-  public void setRecipeProgress(ItemStack input, ItemStack fuel, MachineRecipeItemInFluidOutBase recipe, int progress, int maxProgress) {
-
-    StringBuilder renderString = new StringBuilder();
-    renderString.append(WailaUtil.getStackRenderString(input));
-
-    if (!fuel.isEmpty()) {
-      renderString.append(WailaUtil.getStackRenderString(fuel));
-    }
-
-    if (recipe != null) {
-      FluidStack output = recipe.getOutput();
-      ItemStack filledBucket = FluidUtil.getFilledBucket(output);
-      renderString.append(WailaUtil.getProgressRenderString(progress, maxProgress));
-      renderString.append(WailaUtil.getStackRenderString(filledBucket));
-    }
-
-    this.tooltip.add(renderString.toString());
-  }
-
-  @Override
-  public void setSynchronous(String langKey, String recipeTime, String totalRecipeTime) {
-
-    this.tooltip.add(Util.translateFormatted(langKey, recipeTime, totalRecipeTime));
-  }
-
-  @Override
-  public void setAsynchronous(String langKey, String recipeTime) {
-
-    this.tooltip.add(Util.translateFormatted(langKey, recipeTime));
-  }
-
-  @Override
-  public void setFluidTank(String langKey, FluidStack fluid, int amount, int capacity) {
-
-    this.tooltip.add(Util.translateFormatted(langKey, fluid.getLocalizedName(), amount, capacity));
-  }
-
-  @Override
-  public void setFluidTankEmpty(String langKey, int capacity) {
-
-    this.tooltip.add(Util.translateFormatted(langKey, 0, capacity));
   }
 
   @Override
   public void setBurnTime(@Nullable TextFormatting formatting, String langKey, String burnTimeString) {
 
-    String formattingString = (formatting != null) ? formatting.toString() : "";
-    this.tooltip.add(formattingString + Util.translateFormatted(langKey, burnTimeString));
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(formatting, langKey, burnTimeString));
   }
 
   @Override
   public void setFuel(String langKey, ItemStack fuel, String count) {
 
-    this.tooltip.add(Util.translateFormatted(langKey, fuel.getDisplayName(), count));
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, fuel, count));
+  }
+
+  @Override
+  public void setRecipeProgress(ItemStack input, ItemStack fuel, MachineRecipeItemInFluidOutBase recipe, int progress, int maxProgress) {
+
+    if (input.isEmpty() && fuel.isEmpty()) {
+      return;
+    }
+
+    IProbeInfo horizontal = this.probeInfo.horizontal();
+    horizontal.item(input);
+
+    if (!fuel.isEmpty()) {
+      horizontal.item(fuel);
+    }
+
+    if (recipe != null) {
+      FluidStack output = recipe.getOutput();
+      ItemStack filledBucket = FluidUtil.getFilledBucket(output);
+      horizontal.progress(progress, maxProgress, new ProgressStyle().height(18).width(64).showText(false));
+      horizontal.item(filledBucket);
+    }
+  }
+
+  @Override
+  public void setSynchronous(String langKey, String recipeTime, String totalRecipeTime) {
+
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, recipeTime, totalRecipeTime));
+  }
+
+  @Override
+  public void setAsynchronous(String langKey, String recipeTime) {
+
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, recipeTime));
+  }
+
+  @Override
+  public void setFluidTank(String langKey, FluidStack fluid, int amount, int capacity) {
+
+    this.probeInfo.element(new PluginTOP.ElementTankLabel(null, fluid, capacity));
+  }
+
+  @Override
+  public void setFluidTankEmpty(String langKey, int capacity) {
+
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, 0, capacity));
   }
 }
