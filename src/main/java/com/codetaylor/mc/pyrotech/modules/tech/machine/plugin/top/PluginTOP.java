@@ -19,6 +19,7 @@ public class PluginTOP {
       top.registerProvider(new CombustionMachineItemInFluidOutProvider());
       top.registerProvider(new MechanicalCompactingBinProvider());
       top.registerProvider(new MechanicalCompactingBinWorkerProvider());
+      top.registerProvider(new MechanicalMulchSpreaderProvider());
       top.registerProvider(new SawmillProvider());
       return null;
     }

@@ -1,11 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.top.provider;
 
+import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.top.PluginTOP;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.delegate.CogWorkerProviderDelegate;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalCompactingBinWorker;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.delegate.MechanicalMulchSpreaderProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalMulchSpreader;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
@@ -14,20 +14,21 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class CogWorkerProvider
+public class MechanicalMulchSpreaderProvider
     implements IProbeInfoProvider,
-    CogWorkerProviderDelegate.ICogWorkerDisplay {
+    MechanicalMulchSpreaderProviderDelegate.IMechanicalMulchSpreaderDisplay {
 
-  private final CogWorkerProviderDelegate delegate;
+  private final MechanicalMulchSpreaderProviderDelegate delegate;
 
   private IProbeInfo probeInfo;
 
-  public CogWorkerProvider() {
+  public MechanicalMulchSpreaderProvider() {
 
-    this.delegate = new CogWorkerProviderDelegate(this);
+    this.delegate = new MechanicalMulchSpreaderProviderDelegate(this);
   }
 
   @Override
@@ -40,21 +41,42 @@ public class CogWorkerProvider
   public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData data) {
 
     BlockPos pos = data.getPos();
+
+    if (world.getBlockState(pos).getBlock() != ModuleTechMachine.Blocks.MECHANICAL_MULCH_SPREADER) {
+      return;
+    }
+
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileCogWorkerBase
-        && !(tileEntity instanceof TileMechanicalCompactingBinWorker)
-        && !(tileEntity instanceof TileMechanicalMulchSpreader)) {
+    if (tileEntity == null) {
+      EnumFacing facing = blockState.getValue(Properties.FACING_HORIZONTAL);
+      BlockPos offset = data.getPos().offset(facing);
+      tileEntity = world.getTileEntity(offset);
+    }
+
+    if (tileEntity instanceof TileMechanicalMulchSpreader) {
       this.probeInfo = probeInfo;
-      this.delegate.display((TileCogWorkerBase) tileEntity);
+      this.delegate.display((TileMechanicalMulchSpreader) tileEntity);
       this.probeInfo = null;
     }
   }
 
   @Override
-  public void setCog(ItemStack cog) {
+  public void setInput(ItemStack mulchStack, ItemStack cog) {
 
-    this.probeInfo.item(cog);
+    if (mulchStack.isEmpty() && cog.isEmpty()) {
+      return;
+    }
+
+    IProbeInfo horizontal = this.probeInfo.horizontal();
+
+    if (!mulchStack.isEmpty()) {
+      horizontal.item(mulchStack);
+    }
+
+    if (!cog.isEmpty()) {
+      horizontal.item(cog);
+    }
   }
 
   @Override

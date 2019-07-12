@@ -4,7 +4,7 @@ import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.delegate.MechanicalMulchSpreaderProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalMulchSpreader;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -13,13 +13,22 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
 public class MechanicalMulchSpreaderProvider
-    extends BodyProviderAdapter {
+    extends BodyProviderAdapter
+    implements MechanicalMulchSpreaderProviderDelegate.IMechanicalMulchSpreaderDisplay {
+
+  private final MechanicalMulchSpreaderProviderDelegate delegate;
+
+  private List<String> tooltip;
+
+  public MechanicalMulchSpreaderProvider() {
+
+    this.delegate = new MechanicalMulchSpreaderProviderDelegate(this);
+  }
 
   @Nonnull
   @Override
@@ -40,37 +49,37 @@ public class MechanicalMulchSpreaderProvider
     }
 
     if (tileEntity instanceof TileMechanicalMulchSpreader) {
-
-      TileMechanicalMulchSpreader tile = (TileMechanicalMulchSpreader) tileEntity;
-
-      StringBuilder stringBuilder = new StringBuilder();
-
-      TileMechanicalMulchSpreader.MulchStackHandler mulchStackHandler = tile.getMulchStackHandler();
-      ItemStack mulchStack = mulchStackHandler.getStackInSlot(0);
-
-      if (!mulchStack.isEmpty()) {
-        stringBuilder.append(WailaUtil.getStackRenderString(mulchStack));
-      }
-
-      ItemStackHandler cogStackHandler = tile.getCogStackHandler();
-      ItemStack cog = cogStackHandler.getStackInSlot(0);
-
-      if (!cog.isEmpty()) {
-        stringBuilder.append(WailaUtil.getStackRenderString(cog));
-      }
-
-      if (stringBuilder.length() > 0) {
-        tooltip.add(stringBuilder.toString());
-      }
-
-      if (!cog.isEmpty()) {
-        tooltip.add(Util.translateFormatted(
-            "gui." + ModuleTechMachine.MOD_ID + ".waila.cog",
-            cog.getItem().getItemStackDisplayName(cog)
-        ));
-      }
+      this.tooltip = tooltip;
+      this.delegate.display((TileMechanicalMulchSpreader) tileEntity);
+      this.tooltip = null;
     }
 
     return tooltip;
+  }
+
+  @Override
+  public void setInput(ItemStack mulchStack, ItemStack cog) {
+
+    if (mulchStack.isEmpty() && cog.isEmpty()) {
+      return;
+    }
+
+    StringBuilder stringBuilder = new StringBuilder();
+
+    if (!mulchStack.isEmpty()) {
+      stringBuilder.append(WailaUtil.getStackRenderString(mulchStack));
+    }
+
+    if (!cog.isEmpty()) {
+      stringBuilder.append(WailaUtil.getStackRenderString(cog));
+    }
+
+    this.tooltip.add(stringBuilder.toString());
+  }
+
+  @Override
+  public void setCogName(String langKey, ItemStack cog) {
+
+    this.tooltip.add(Util.translateFormatted(langKey, cog.getDisplayName()));
   }
 }
