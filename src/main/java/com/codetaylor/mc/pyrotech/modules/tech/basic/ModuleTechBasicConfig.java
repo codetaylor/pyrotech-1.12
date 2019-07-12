@@ -877,9 +877,10 @@ public class ModuleTechBasicConfig {
 
     public boolean isValidFuel(ItemStack fuel) {
 
-      if (this.USE_LOG_WOOD_OREDICT) {
-        return OreDictHelper.contains("logWood", fuel)
-            && this.isNotBlacklistedFuel(fuel);
+      if (this.USE_LOG_WOOD_OREDICT
+          && OreDictHelper.contains("logWood", fuel)
+          && this.isNotBlacklistedFuel(fuel)) {
+        return true;
       }
 
       // search custom additions
