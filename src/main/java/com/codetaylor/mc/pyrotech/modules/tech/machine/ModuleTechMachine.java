@@ -101,6 +101,12 @@ public class ModuleTechMachine
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.PluginWaila.wailaCallback"
     );
+
+    FMLInterModComms.sendFunctionMessage(
+        "theoneprobe",
+        "getTheOneProbe",
+        "com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.top.PluginTOP$Callback"
+    );
   }
 
   @SubscribeEvent
