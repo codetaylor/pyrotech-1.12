@@ -2,9 +2,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.top.provider;
 
 import com.codetaylor.mc.pyrotech.modules.core.plugin.top.PluginTOP;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.delegate.CogWorkerProviderDelegate;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.delegate.MechanicalCompactingBinWorkerProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalCompactingBinWorker;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
@@ -16,17 +15,17 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class CogWorkerProvider
+public class MechanicalCompactingBinWorkerProvider
     implements IProbeInfoProvider,
-    CogWorkerProviderDelegate.ICogWorkerDisplay {
+    MechanicalCompactingBinWorkerProviderDelegate.IMechanicalCompactingBinWorkerDisplay {
 
-  private final CogWorkerProviderDelegate delegate;
+  private final MechanicalCompactingBinWorkerProviderDelegate delegate;
 
   private IProbeInfo probeInfo;
 
-  public CogWorkerProvider() {
+  public MechanicalCompactingBinWorkerProvider() {
 
-    this.delegate = new CogWorkerProviderDelegate(this);
+    this.delegate = new MechanicalCompactingBinWorkerProviderDelegate(this);
   }
 
   @Override
@@ -41,18 +40,29 @@ public class CogWorkerProvider
     BlockPos pos = data.getPos();
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileCogWorkerBase
-        && !(tileEntity instanceof TileMechanicalCompactingBinWorker)) {
+    if (tileEntity instanceof TileMechanicalCompactingBinWorker) {
       this.probeInfo = probeInfo;
-      this.delegate.display((TileCogWorkerBase) tileEntity);
+      this.delegate.display((TileMechanicalCompactingBinWorker) tileEntity);
       this.probeInfo = null;
     }
   }
 
   @Override
-  public void setCog(ItemStack cog) {
+  public void setOutput(ItemStack cog, ItemStack output) {
 
-    this.probeInfo.item(cog);
+    if (cog.isEmpty() && output.isEmpty()) {
+      return;
+    }
+
+    IProbeInfo horizontal = this.probeInfo.horizontal();
+
+    if (!cog.isEmpty()) {
+      horizontal.item(cog);
+    }
+
+    if (!output.isEmpty()) {
+      horizontal.item(output);
+    }
   }
 
   @Override
