@@ -250,20 +250,12 @@ public class ItemBlockBag
 
       // try inventory
       if (this.tryTransferItems(world, pos, facing, heldItem)) {
-
-        if (!world.isRemote) {
-          this.setCount(heldItem, stackHandler);
-        }
         return EnumActionResult.SUCCESS;
       }
 
       // spill contents
       if (this.isOpen(heldItem)
           && this.trySpillContents(world, pos, facing, heldItem)) {
-
-        if (!world.isRemote) {
-          this.setCount(heldItem, stackHandler);
-        }
         return EnumActionResult.SUCCESS;
       }
     }
