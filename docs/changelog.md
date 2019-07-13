@@ -2,6 +2,7 @@
 
   * Notes:
     * Refresh your `core.OreDict-Custom.json` file or copy the new entries from `core.OreDict-Generated.json`.
+    * Rock bags in item form may lose their pre-existing contents and functionality: place in world and retrieve to restore function, but not pre-existing contents.
 
   * Added:
     * GameStages support for worktable recipes [(#3)](https://github.com/codetaylor/pyrotech/issues/3) [(doc)](zs/worktable) [(doc:stages)](zs/stages)
@@ -42,6 +43,8 @@
     * The Soaking Pot will now eject any extra input items that it does not have the fluid to process when the fluid level drops below the amount needed to process all input items
     * Mulch can now be placed on dry farmland as well as wet farmland [(#118)](https://github.com/codetaylor/pyrotech/issues/118)
         * See config `core.cfg` -> `MULCHED_FARMLAND` -> `RESTRICT_TO_MOISTURIZED_FARMLAND`
+    * Rock bags now bypass the item capability system in Forge in an attempt to fix [(#117)](https://github.com/codetaylor/pyrotech/issues/117)
+        * Item data is now written directly to the item's NBT
 
 ---
 

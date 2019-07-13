@@ -32,8 +32,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -203,20 +201,14 @@ public abstract class BlockBagBase
     // Called before #breakBlock
     TileEntity tileEntity = world.getTileEntity(pos);
     ItemStack itemStack = new ItemStack(this.getBlock(), 1, this.damageDropped(state));
-    IItemHandler capability = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 
-    if (capability instanceof TileBagBase.StackHandler
-        && tileEntity instanceof TileBagBase) {
+    if (tileEntity instanceof TileBagBase) {
 
       TileBagBase.StackHandler tileStackHandler = ((TileBagBase) tileEntity).getStackHandler();
-      TileBagBase.StackHandler itemStackHandler = (TileBagBase.StackHandler) capability;
 
       for (int i = 0; i < tileStackHandler.getSlots(); i++) {
-        itemStackHandler.setStackInSlot(i, tileStackHandler.getStackInSlot(i));
+        ItemBlockBag.insertItem(itemStack, tileStackHandler.getStackInSlot(i), false);
       }
-
-      ItemBlockBag item = (ItemBlockBag) itemStack.getItem();
-      item.updateCount(itemStack);
     }
 
     drops.add(itemStack);

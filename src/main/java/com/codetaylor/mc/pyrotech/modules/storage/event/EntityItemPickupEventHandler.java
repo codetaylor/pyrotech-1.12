@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.storage.event;
 
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockBag;
-import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -12,7 +11,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.PlayerMainInvWrapper;
 
@@ -190,17 +188,7 @@ public class EntityItemPickupEventHandler {
       ItemBlockBag bagItem = (ItemBlockBag) this.bagItemStack.getItem();
 
       if (bagItem.isItemValidForInsertion(itemStack)) {
-        TileBagBase.StackHandler handler = (TileBagBase.StackHandler) this.bagItemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-
-        if (handler != null) {
-          ItemStack remainingItems = handler.insertItem(itemStack.copy(), simulate);
-
-          if (itemStack.getCount() != remainingItems.getCount()) {
-            bagItem.updateCount(this.bagItemStack);
-          }
-
-          return remainingItems;
-        }
+        return ItemBlockBag.insertItem(this.bagItemStack, itemStack, simulate);
       }
 
       return itemStack;

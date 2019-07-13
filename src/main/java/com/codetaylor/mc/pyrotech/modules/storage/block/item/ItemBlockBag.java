@@ -5,6 +5,7 @@ import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,9 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
@@ -28,13 +26,14 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.awt.*;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class ItemBlockBag
     extends ItemBlock {
 
   private static final int COLOR_BAG_FULL = Color.decode("0xFF0000").getRGB();
   private static final int COLOR_BAG = Color.decode("0x70341e").getRGB();
+
+  private static final String STACK_HANDLER_TAG = "contents";
 
   private final BlockBagBase blockBag;
 
@@ -102,6 +101,57 @@ public class ItemBlockBag
     return COLOR_BAG;
   }
 
+  public static ItemStack insertItem(ItemStack bag, ItemStack itemStack, boolean simulate) {
+
+    TileBagBase.StackHandler stackHandler = ItemBlockBag.getStackHandler(bag);
+
+    if (stackHandler == null) {
+      return itemStack;
+    }
+
+    ItemStack result = stackHandler.insertItem(itemStack, simulate);
+
+    if (!simulate) {
+
+    }
+
+    return result;
+  }
+
+  private static TileBagBase.StackHandler getStackHandler(ItemStack itemStack) {
+
+    Item item = itemStack.getItem();
+
+    if (item instanceof ItemBlockBag) {
+      ItemBlockBag itemBlockBag = (ItemBlockBag) item;
+      NBTTagCompound tagCompound = StackHelper.getTagSafe(itemStack);
+      TileBagBase.StackHandler stackHandler = new TileBagBase.StackHandler(itemBlockBag.getItemCapacity(), itemBlockBag.blockBag::isItemValidForInsertion);
+      stackHandler.addObserver((handler, slot) -> {
+        itemBlockBag.setCount(itemStack, stackHandler);
+        itemBlockBag.saveStackHandler(itemStack, stackHandler);
+      });
+
+      if (!tagCompound.hasKey(STACK_HANDLER_TAG)) {
+        tagCompound.setTag(STACK_HANDLER_TAG, stackHandler.serializeNBT());
+
+      } else {
+        NBTTagCompound compound = tagCompound.getCompoundTag(STACK_HANDLER_TAG);
+        stackHandler.deserializeNBT(compound);
+      }
+
+      itemBlockBag.setCount(itemStack, stackHandler);
+      return stackHandler;
+    }
+
+    return null;
+  }
+
+  private void saveStackHandler(ItemStack itemStack, TileBagBase.StackHandler handler) {
+
+    NBTTagCompound compound = StackHelper.getTagSafe(itemStack);
+    compound.setTag(STACK_HANDLER_TAG, handler.serializeNBT());
+  }
+
   public int getCount(ItemStack itemStack) {
 
     NBTTagCompound tagCompound = itemStack.getTagCompound();
@@ -113,15 +163,11 @@ public class ItemBlockBag
     return tagCompound.getInteger("count");
   }
 
-  public void updateCount(ItemStack itemStack) {
+  private void setCount(ItemStack itemStack, TileBagBase.StackHandler handler) {
 
-    IItemHandler handler = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-
-    if (handler instanceof TileBagBase.StackHandler) {
-      NBTTagCompound tag = StackHelper.getTagSafe(itemStack);
-      int count = ((TileBagBase.StackHandler) handler).getTotalItemCount();
-      tag.setInteger("count", count);
-    }
+    NBTTagCompound tag = StackHelper.getTagSafe(itemStack);
+    int count = handler.getTotalItemCount();
+    tag.setInteger("count", count);
   }
 
   @ParametersAreNonnullByDefault
@@ -139,18 +185,16 @@ public class ItemBlockBag
     }
   }
 
-  @Nullable
-  @Override
-  public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
-
-    return new CapabilityProvider(this.getItemCapacity(), this.blockBag::isItemValidForInsertion);
-  }
-
   @Nonnull
   @Override
   public EnumActionResult onItemUse(EntityPlayer player, World world, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
 
     ItemStack heldItem = player.getHeldItem(hand);
+    TileBagBase.StackHandler stackHandler = ItemBlockBag.getStackHandler(heldItem);
+
+    if (stackHandler == null) {
+      return EnumActionResult.PASS;
+    }
 
     if (player.isSneaking()) {
 
@@ -158,7 +202,7 @@ public class ItemBlockBag
       if (this.tryTransferItems(world, pos, facing, heldItem)) {
 
         if (!world.isRemote) {
-          this.updateCount(heldItem);
+          this.setCount(heldItem, stackHandler);
         }
         return EnumActionResult.SUCCESS;
       }
@@ -168,7 +212,7 @@ public class ItemBlockBag
           && this.trySpillContents(world, pos, facing, heldItem)) {
 
         if (!world.isRemote) {
-          this.updateCount(heldItem);
+          this.setCount(heldItem, stackHandler);
         }
         return EnumActionResult.SUCCESS;
       }
@@ -181,7 +225,7 @@ public class ItemBlockBag
       TileEntity tileEntity = world.getTileEntity(pos.offset(facing));
 
       if (tileEntity instanceof TileBagBase) {
-        IItemHandler itemHandler = copy.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        IItemHandler itemHandler = ItemBlockBag.getStackHandler(copy);
         TileBagBase.StackHandler tileHandler = ((TileBagBase) tileEntity).getStackHandler();
 
         if (itemHandler != null
@@ -221,14 +265,14 @@ public class ItemBlockBag
   private boolean trySpillContents(World world, BlockPos pos, EnumFacing facing, ItemStack itemStack) {
 
     if (world.isAirBlock(pos.offset(facing))) {
-      IItemHandler handler = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+      TileBagBase.StackHandler handler = ItemBlockBag.getStackHandler(itemStack);
 
-      if (handler instanceof TileBagBase.StackHandler) {
+      if (handler != null) {
 
         if (!world.isRemote) {
 
           for (int i = 0; i < handler.getSlots(); i++) {
-            StackHelper.spawnStackHandlerContentsOnTop(world, (TileBagBase.StackHandler) handler, pos.offset(facing), 0);
+            StackHelper.spawnStackHandlerContentsOnTop(world, handler, pos.offset(facing), 0);
           }
         }
         return true;
@@ -240,9 +284,9 @@ public class ItemBlockBag
 
   private boolean tryTransferItems(World world, BlockPos pos, EnumFacing facing, ItemStack itemStack) {
 
-    IItemHandler itemHandler = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+    TileBagBase.StackHandler itemHandler = ItemBlockBag.getStackHandler(itemStack);
 
-    if (!(itemHandler instanceof TileBagBase.StackHandler)) {
+    if (itemHandler == null) {
       return false;
     }
 
@@ -282,52 +326,10 @@ public class ItemBlockBag
       }
 
       if (stackInSlot.getCount() != remainingItems.getCount()) {
-        ((TileBagBase.StackHandler) itemHandler).setStackInSlot(i, remainingItems);
+        itemHandler.setStackInSlot(i, remainingItems);
       }
     }
 
     return true;
-  }
-
-  public static class CapabilityProvider
-      implements ICapabilityProvider,
-      INBTSerializable<NBTTagCompound> {
-
-    private TileBagBase.StackHandler stackHandler;
-
-    /* package */ CapabilityProvider(int itemCapacity, Predicate<ItemStack> filter) {
-
-      this.stackHandler = new TileBagBase.StackHandler(itemCapacity, filter);
-    }
-
-    @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-
-      return (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
-    }
-
-    @Nullable
-    @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-
-      if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-        //noinspection unchecked
-        return (T) this.stackHandler;
-      }
-
-      return null;
-    }
-
-    @Override
-    public NBTTagCompound serializeNBT() {
-
-      return this.stackHandler.serializeNBT();
-    }
-
-    @Override
-    public void deserializeNBT(NBTTagCompound nbt) {
-
-      this.stackHandler.deserializeNBT(nbt);
-    }
   }
 }
