@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.storage.block.item;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.client.util.ITooltipFlag;
@@ -16,10 +17,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import org.apache.commons.lang3.StringUtils;
+import org.lwjgl.input.Keyboard;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -175,13 +179,59 @@ public class ItemBlockBag
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 
     super.addInformation(stack, world, tooltip, flag);
-    int count = this.getCount(stack);
+    int totalCount = this.getCount(stack);
 
-    if (count == -1) {
+    if (totalCount == -1) {
       tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.item.capacity.empty", this.getItemCapacity()));
+      return;
 
     } else {
-      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.item.capacity", count, this.getItemCapacity()));
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.item.capacity", totalCount, this.getItemCapacity()));
+    }
+
+    if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)
+        || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
+
+      TileBagBase.StackHandler stackHandler = ItemBlockBag.getStackHandler(stack);
+
+      if (stackHandler == null) {
+        return;
+      }
+
+      int maxDigits = 0;
+
+      for (int i = 0; i < stackHandler.getSlots(); i++) {
+        ItemStack stackInSlot = stackHandler.getStackInSlot(i);
+
+        if (!stackInSlot.isEmpty()) {
+          int count = stackInSlot.getCount();
+          int digits = String.valueOf(count).length();
+
+          if (digits > maxDigits) {
+            maxDigits = digits;
+          }
+        }
+      }
+
+      for (int i = 0; i < stackHandler.getSlots(); i++) {
+        ItemStack stackInSlot = stackHandler.getStackInSlot(i);
+
+        if (!stackInSlot.isEmpty()) {
+          String stackCount = String.valueOf(stackInSlot.getCount());
+
+          if (stackCount.length() < maxDigits) {
+            stackCount = TextFormatting.DARK_GRAY + StringUtils.repeat("0", maxDigits - stackCount.length()).concat(TextFormatting.YELLOW + stackCount);
+
+          } else {
+            stackCount = TextFormatting.YELLOW + stackCount;
+          }
+
+          tooltip.add(" " + stackCount + " " + TextFormatting.GOLD + stackInSlot.getDisplayName());
+        }
+      }
+
+    } else {
+      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.extended.shift", Reference.Tooltip.COLOR_EXTENDED_INFO, TextFormatting.GRAY));
     }
   }
 

@@ -32,6 +32,7 @@
         * Coal Coke -> `fuelCoke`
         * Block of Coal Coke -> `blockFuelCoke`
         * Dense Nether Coal -> `oreNetherCoal`
+    * Press shift to view contents of rock bags in tooltip when in item form [(#116)](https://github.com/codetaylor/pyrotech/issues/116)
 
   * Fixed:
     * Smelting recipes added by the mod were also being removed by the mod
