@@ -69,7 +69,7 @@ public class WorktableProviderDelegate
         if (Loader.isModLoaded("gamestages")) {
           Stages stages = worktableRecipe.getStages();
           displayRecipe = GameStages.allowed(player, stages);
-          
+
         } else {
           displayRecipe = true;
         }
