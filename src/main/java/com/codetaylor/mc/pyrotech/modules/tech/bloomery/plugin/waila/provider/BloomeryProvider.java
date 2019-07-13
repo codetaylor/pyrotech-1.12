@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.provider;
 
 import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
 import com.codetaylor.mc.pyrotech.library.util.Util;
