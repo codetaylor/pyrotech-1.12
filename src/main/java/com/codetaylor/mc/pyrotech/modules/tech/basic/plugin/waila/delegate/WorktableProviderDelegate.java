@@ -9,7 +9,6 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.gamestages.GameStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileWorktable;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -65,11 +64,12 @@ public class WorktableProviderDelegate
       WorktableRecipe worktableRecipe = tile.getWorktableRecipe();
       boolean displayRecipe = false;
 
-      if (recipe != null && worktableRecipe != null) {
+      if (recipe != null && worktableRecipe != null && player != null) {
 
         if (Loader.isModLoaded("gamestages")) {
           Stages stages = worktableRecipe.getStages();
-          displayRecipe = GameStages.allowed(Minecraft.getMinecraft().player, stages);
+          displayRecipe = GameStages.allowed(player, stages);
+          
         } else {
           displayRecipe = true;
         }
