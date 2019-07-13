@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.TextFormatting;
@@ -43,7 +44,7 @@ public class AnvilProvider
     if (tileEntity instanceof TileAnvilBase) {
 
       this.tooltip = tooltip;
-      this.delegate.display((TileAnvilBase) tileEntity);
+      this.delegate.display((TileAnvilBase) tileEntity, Minecraft.getMinecraft().player);
       this.tooltip = null;
     }
 

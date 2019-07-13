@@ -7,8 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomAnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -29,6 +28,11 @@ public class AnvilProviderDelegate
 
   @Override
   public void display(TileAnvilBase tile) {
+
+    throw new UnsupportedOperationException();
+  }
+
+  public void display(TileAnvilBase tile, EntityPlayer player) {
 
     float progress = tile.getRecipeProgress();
     ItemStackHandler stackHandler = tile.getStackHandler();
@@ -82,7 +86,6 @@ public class AnvilProviderDelegate
           }
 
           {
-            EntityPlayerSP player = Minecraft.getMinecraft().player;
             int hammerPower = (int) (BloomHelper.calculateHammerPower(tile.getPos(), player) * 100);
             String langKey = "gui." + ModuleTechBasic.MOD_ID + ".waila.bloom.hammer.power";
 

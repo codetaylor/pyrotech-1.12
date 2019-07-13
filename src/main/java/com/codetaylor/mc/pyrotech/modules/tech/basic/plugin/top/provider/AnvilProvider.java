@@ -47,7 +47,7 @@ public class AnvilProvider
 
     if (tileEntity instanceof TileAnvilBase) {
       this.probeInfo = probeInfo;
-      this.delegate.display((TileAnvilBase) tileEntity);
+      this.delegate.display((TileAnvilBase) tileEntity, player);
       this.probeInfo = null;
     }
   }
