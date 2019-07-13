@@ -9,10 +9,11 @@ import mods.pyrotech.CrudeDryingRack;
 
 ```java
 static void addRecipe(
-  string name,       // unique recipe name
-  IItemStack output, // recipe output
-  IIngredient input, // recipe input
-  int dryTimeTicks   // recipe duration in ticks
+  string name,                // unique recipe name
+  IItemStack output,          // recipe output
+  IIngredient input,          // recipe input
+  int dryTimeTicks,           // recipe duration in ticks
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 

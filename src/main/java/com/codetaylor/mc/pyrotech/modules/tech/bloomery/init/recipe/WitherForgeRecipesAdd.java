@@ -1,12 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe;
 
-import com.codetaylor.mc.athenaeum.util.IngredientHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.*;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.WitherForgeRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.WitherForgeRecipeBuilder;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -15,14 +17,30 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
 
 public class WitherForgeRecipesAdd {
 
   private static final int DEFAULT_BURN_TIME_TICKS = 24 * 60 * 20;
   private static final float DEFAULT_FAILURE_CHANCE = 0.25f;
+  public static final Function<BloomeryRecipe, WitherForgeRecipe> INHERIT_TRANSFORMER = recipe -> {
+
+    // the registry name can be null here because it will be set by the inherit method
+    WitherForgeRecipeBuilder builder = new WitherForgeRecipeBuilder(null, recipe.getOutput(), recipe.getInput())
+        .setBurnTimeTicks(recipe.getTimeTicks())
+        .setFailureChance(recipe.getFailureChance())
+        .setBloomYield(recipe.getBloomYieldMin(), recipe.getBloomYieldMax())
+        .setSlagItem(recipe.getSlagItemStack(), recipe.getSlagCount())
+        .setLangKey(recipe.getLangKey());
+
+    for (BloomeryRecipeBase.FailureItem item : recipe.getFailureItems()) {
+      builder.addFailureItem(item.getItemStack(), item.getWeight());
+    }
+
+    return builder.create();
+  };
 
   public static void apply(IForgeRegistry<WitherForgeRecipe> registry) {
 
@@ -50,18 +68,7 @@ public class WitherForgeRecipesAdd {
     List<WitherForgeRecipe> snapshot = new ArrayList<>(recipes);
 
     for (BloomeryRecipeBase recipe : snapshot) {
-
-      // --- Anvil Recipes ---
-
-      //noinspection ConstantConditions
-      registryAnvil.register(new BloomAnvilRecipe(
-          recipe.getOutput(),
-          IngredientHelper.fromStackWithNBT(recipe.getOutputBloom()),
-          ModuleTechBloomeryConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
-          AnvilRecipe.EnumType.HAMMER,
-          Arrays.copyOf(recipe.getAnvilTiers(), recipe.getAnvilTiers().length),
-          recipe
-      ).setRegistryName(recipe.getRegistryName()));
+      BloomeryRecipesAdd.registerBloomAnvilRecipe(registryAnvil, recipe);
     }
   }
 
@@ -71,22 +78,7 @@ public class WitherForgeRecipesAdd {
   ) {
 
     if (ModuleTechBloomeryConfig.WITHER_FORGE.INHERIT_BLOOMERY_RECIPES) {
-      RecipeHelper.inherit("bloomery", bloomeryRegistry, witherForgeRegistry, recipe -> {
-
-        // the registry name can be null here because it will be set by the inherit method
-        WitherForgeRecipeBuilder builder = new WitherForgeRecipeBuilder(null, recipe.getOutput(), recipe.getInput())
-            .setBurnTimeTicks(recipe.getTimeTicks())
-            .setFailureChance(recipe.getFailureChance())
-            .setBloomYield(recipe.getBloomYieldMin(), recipe.getBloomYieldMax())
-            .setSlagItem(recipe.getSlagItemStack(), recipe.getSlagCount())
-            .setLangKey(recipe.getLangKey());
-
-        for (BloomeryRecipeBase.FailureItem item : recipe.getFailureItems()) {
-          builder.addFailureItem(item.getItemStack(), item.getWeight());
-        }
-
-        return builder.create();
-      });
+      RecipeHelper.inherit("bloomery", bloomeryRegistry, witherForgeRegistry, INHERIT_TRANSFORMER);
     }
   }
 }

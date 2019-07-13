@@ -9,10 +9,11 @@ import mods.pyrotech.StoneCrucible;
 
 ```java
 static void addRecipe(
-  string name,         // unique recipe name
-  ILiquidStack output, // recipe output
-  IIngredient input,   // recipe input
-  int burnTimeTicks    // recipe duration in ticks
+  string name,                // unique recipe name
+  ILiquidStack output,        // recipe output
+  IIngredient input,          // recipe input
+  int burnTimeTicks,          // recipe duration in ticks
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 

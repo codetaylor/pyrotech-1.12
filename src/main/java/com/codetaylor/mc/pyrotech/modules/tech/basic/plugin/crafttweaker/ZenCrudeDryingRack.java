@@ -4,11 +4,19 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.DryingRackRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CrudeDryingRackRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.BrickOvenRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.StoneOvenRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
@@ -17,6 +25,7 @@ import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -31,17 +40,19 @@ public class ZenCrudeDryingRack {
           @ZenDocArg(arg = "name", info = "unique recipe name"),
           @ZenDocArg(arg = "output", info = "recipe output"),
           @ZenDocArg(arg = "input", info = "recipe input"),
-          @ZenDocArg(arg = "dryTimeTicks", info = "recipe duration in ticks")
+          @ZenDocArg(arg = "dryTimeTicks", info = "recipe duration in ticks"),
+          @ZenDocArg(arg = "inherited", info = "true if the recipe should be inherited")
       }
   )
   @ZenMethod
-  public static void addRecipe(String name, IItemStack output, IIngredient input, int dryTimeTicks) {
+  public static void addRecipe(String name, IItemStack output, IIngredient input, int dryTimeTicks, @Optional boolean inherited) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
         name,
         CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getIngredient(input),
-        dryTimeTicks
+        dryTimeTicks,
+        inherited
     ));
   }
 
@@ -145,18 +156,21 @@ public class ZenCrudeDryingRack {
     private final String name;
     private final Ingredient input;
     private final int timeTicks;
+    private final boolean inherited;
 
     public AddRecipe(
         String name,
         ItemStack output,
         Ingredient input,
-        int timeTicks
+        int timeTicks,
+        boolean inherited
     ) {
 
       this.name = name;
       this.input = input;
       this.output = output;
       this.timeTicks = timeTicks;
+      this.inherited = inherited;
     }
 
     @Override
@@ -167,13 +181,26 @@ public class ZenCrudeDryingRack {
           this.input,
           this.timeTicks
       );
+
       ModuleTechBasic.Registries.CRUDE_DRYING_RACK_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+
+      if (this.inherited) {
+        DryingRackRecipe dryingRackRecipe = RecipeHelper.inherit("crude_drying_rack", ModuleTechBasic.Registries.DRYING_RACK_RECIPE, DryingRackRecipesAdd.INHERIT_TRANSFORMER, recipe);
+
+        if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechMachine.class)) {
+          StoneOvenRecipe stoneOvenRecipe = RecipeHelper.inherit("drying_rack", ModuleTechMachine.Registries.STONE_OVEN_RECIPES, StoneOvenRecipesAdd.INHERIT_TRANSFORMER, dryingRackRecipe);
+
+          if (stoneOvenRecipe != null) {
+            RecipeHelper.inherit("stone_oven", ModuleTechMachine.Registries.BRICK_OVEN_RECIPES, BrickOvenRecipesAdd.INHERIT_TRANSFORMER, stoneOvenRecipe);
+          }
+        }
+      }
     }
 
     @Override
     public String describe() {
 
-      return "Adding crude drying rack recipe for " + this.output;
+      return "Adding crude drying rack recipe for " + this.output + ", inherited=" + this.inherited;
     }
   }
 

@@ -6,7 +6,17 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
+import java.util.function.Function;
+
 public class AnvilIroncladRecipesAdd {
+
+  public static final Function<AnvilRecipe, AnvilRecipe> INHERIT_TRANSFORMER = anvilRecipe -> new AnvilRecipe(
+      anvilRecipe.getOutput(),
+      anvilRecipe.getInput(),
+      Math.max(1, (int) (anvilRecipe.getHits() * Math.max(0, ModuleTechBasicConfig.IRONCLAD_ANVIL.INHERITED_GRANITE_ANVIL_RECIPE_HIT_MODIFIER))),
+      anvilRecipe.getType(),
+      AnvilRecipe.EnumTier.IRONCLAD
+  );
 
   public static void apply(IForgeRegistry<AnvilRecipe> registry) {
 
@@ -27,13 +37,7 @@ public class AnvilIroncladRecipesAdd {
   ) {
 
     if (ModuleTechBasicConfig.IRONCLAD_ANVIL.INHERIT_GRANITE_ANVIL_RECIPES) {
-      RecipeHelper.inherit("granite_anvil", anvilRegistry, anvilRegistry, anvilRecipe -> new AnvilRecipe(
-          anvilRecipe.getOutput(),
-          anvilRecipe.getInput(),
-          Math.max(1, (int) (anvilRecipe.getHits() * Math.max(0, ModuleTechBasicConfig.IRONCLAD_ANVIL.INHERITED_GRANITE_ANVIL_RECIPE_HIT_MODIFIER))),
-          anvilRecipe.getType(),
-          AnvilRecipe.EnumTier.IRONCLAD
-      ), anvilRecipe -> {
+      RecipeHelper.inherit("granite_anvil", anvilRegistry, anvilRegistry, INHERIT_TRANSFORMER, anvilRecipe -> {
 
         // if the recipe is extended, like a bloom recipe, then defer
         // inheritance to the recipe

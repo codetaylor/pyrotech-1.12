@@ -46,9 +46,10 @@ Recipes that have an output that matches any of the given ingredients will be re
 
 ```java
 static Bloomery createBloomeryBuilder(
-  string name,       // the name of the recipe - should be unique
-  IItemStack output, // the output item received from the bloom
-  IIngredient input  // the recipe input
+  string name,                // the name of the recipe - should be unique
+  IItemStack output,          // the output item received from the bloom
+  IIngredient input,          // the recipe input
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 

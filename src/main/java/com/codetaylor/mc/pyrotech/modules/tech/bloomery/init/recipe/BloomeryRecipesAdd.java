@@ -128,20 +128,27 @@ public class BloomeryRecipesAdd {
     Collection<BloomeryRecipe> bloomeryRecipes = registryBloomery.getValuesCollection();
     List<BloomeryRecipe> snapshot = new ArrayList<>(bloomeryRecipes);
 
-    for (BloomeryRecipeBase bloomeryRecipe : snapshot) {
-
-      // --- Anvil Recipes ---
-
-      //noinspection ConstantConditions
-      registryAnvil.register(new BloomAnvilRecipe(
-          bloomeryRecipe.getOutput(),
-          IngredientHelper.fromStackWithNBT(bloomeryRecipe.getOutputBloom()),
-          ModuleTechBloomeryConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
-          AnvilRecipe.EnumType.HAMMER,
-          Arrays.copyOf(bloomeryRecipe.getAnvilTiers(), bloomeryRecipe.getAnvilTiers().length),
-          bloomeryRecipe
-      ).setRegistryName(bloomeryRecipe.getRegistryName()));
+    for (BloomeryRecipeBase recipe : snapshot) {
+      BloomeryRecipesAdd.registerBloomAnvilRecipe(registryAnvil, recipe);
     }
+  }
+
+  public static void registerBloomAnvilRecipe(IForgeRegistry<AnvilRecipe> registryAnvil, BloomeryRecipeBase recipe) {
+
+    ResourceLocation registryName = recipe.getRegistryName();
+
+    if (registryName == null) {
+      return;
+    }
+
+    registryAnvil.register(new BloomAnvilRecipe(
+        recipe.getOutput(),
+        IngredientHelper.fromStackWithNBT(recipe.getOutputBloom()),
+        ModuleTechBloomeryConfig.BLOOM.HAMMER_HITS_IN_ANVIL_REQUIRED,
+        AnvilRecipe.EnumType.HAMMER,
+        Arrays.copyOf(recipe.getAnvilTiers(), recipe.getAnvilTiers().length),
+        recipe
+    ).setRegistryName(registryName));
   }
 
 }

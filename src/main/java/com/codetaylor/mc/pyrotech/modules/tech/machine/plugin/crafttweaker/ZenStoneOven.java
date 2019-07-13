@@ -5,9 +5,11 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.BrickOvenRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -17,6 +19,7 @@ import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -30,16 +33,18 @@ public class ZenStoneOven {
       args = {
           @ZenDocArg(arg = "name", info = "unique recipe name"),
           @ZenDocArg(arg = "output"),
-          @ZenDocArg(arg = "input")
+          @ZenDocArg(arg = "input"),
+          @ZenDocArg(arg = "inherited", info = "true if the recipe should be inherited")
       }
   )
   @ZenMethod
-  public static void addRecipe(String name, IItemStack output, IIngredient input) {
+  public static void addRecipe(String name, IItemStack output, IIngredient input, @Optional boolean inherited) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
         name,
         CraftTweakerMC.getItemStack(output),
-        CraftTweakerMC.getIngredient(input)
+        CraftTweakerMC.getIngredient(input),
+        inherited
     ));
   }
 
@@ -162,17 +167,20 @@ public class ZenStoneOven {
 
     private final String name;
     private final ItemStack output;
+    private final boolean inherited;
     private final Ingredient input;
 
     public AddRecipe(
         String name,
         ItemStack output,
-        Ingredient input
+        Ingredient input,
+        boolean inherited
     ) {
 
       this.name = name;
       this.input = input;
       this.output = output;
+      this.inherited = inherited;
     }
 
     @Override
@@ -182,13 +190,18 @@ public class ZenStoneOven {
           this.output,
           this.input
       );
+
       ModuleTechMachine.Registries.STONE_OVEN_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+
+      if (this.inherited) {
+        RecipeHelper.inherit("stone_oven", ModuleTechMachine.Registries.BRICK_OVEN_RECIPES, BrickOvenRecipesAdd.INHERIT_TRANSFORMER, recipe);
+      }
     }
 
     @Override
     public String describe() {
 
-      return "Adding stone oven recipe for " + this.output;
+      return "Adding stone oven recipe for " + this.output + ", inherited=" + this.inherited;
     }
   }
 

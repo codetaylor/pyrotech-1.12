@@ -21,7 +21,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -133,6 +132,17 @@ public class ModuleTechMachine
     BrickOvenRecipesAdd.apply(Registries.BRICK_OVEN_RECIPES);
 
     MechanicalCompactingBinRecipesAdd.apply(Registries.MECHANICAL_COMPACTING_BIN_RECIPES);
+
+    StoneKilnRecipesAdd.registerInheritedRecipes(ModuleTechBasic.Registries.KILN_PIT_RECIPE, Registries.STONE_KILN_RECIPES);
+    StoneOvenRecipesAdd.registerInheritedDryingRackRecipes(ModuleTechBasic.Registries.DRYING_RACK_RECIPE, Registries.STONE_OVEN_RECIPES);
+    StoneSawmillRecipesAdd.registerInheritedChoppingBlockRecipes(ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE, Registries.STONE_SAWMILL_RECIPES);
+
+    BrickKilnRecipesAdd.registerInheritedRecipes(Registries.STONE_KILN_RECIPES, Registries.BRICK_KILN_RECIPES);
+    BrickOvenRecipesAdd.registerInheritedRecipes(Registries.STONE_OVEN_RECIPES, Registries.BRICK_OVEN_RECIPES);
+    BrickSawmillRecipesAdd.registerInheritedRecipes(Registries.STONE_SAWMILL_RECIPES, Registries.BRICK_SAWMILL_RECIPES);
+    BrickCrucibleRecipesAdd.registerInheritedRecipes(Registries.STONE_CRUCIBLE_RECIPES, Registries.BRICK_CRUCIBLE_RECIPES);
+
+    MechanicalCompactingBinRecipesAdd.registerInheritedRecipes(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE, Registries.MECHANICAL_COMPACTING_BIN_RECIPES);
   }
 
   @Override
@@ -148,23 +158,6 @@ public class ModuleTechMachine
 
     BlockInitializer.onClientRegister(registry);
     ItemInitializer.onClientRegister(registry);
-  }
-
-  @Override
-  public void onPostInitializationEvent(FMLPostInitializationEvent event) {
-
-    super.onPostInitializationEvent(event);
-
-    StoneKilnRecipesAdd.registerInheritedRecipes(ModuleTechBasic.Registries.KILN_PIT_RECIPE, Registries.STONE_KILN_RECIPES);
-    StoneOvenRecipesAdd.registerInheritedDryingRackRecipes(ModuleTechBasic.Registries.DRYING_RACK_RECIPE, Registries.STONE_OVEN_RECIPES);
-    StoneSawmillRecipesAdd.registerInheritedChoppingBlockRecipes(ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE, Registries.STONE_SAWMILL_RECIPES);
-
-    BrickKilnRecipesAdd.registerInheritedRecipes(Registries.STONE_KILN_RECIPES, Registries.BRICK_KILN_RECIPES);
-    BrickOvenRecipesAdd.registerInheritedRecipes(Registries.STONE_OVEN_RECIPES, Registries.BRICK_OVEN_RECIPES);
-    BrickSawmillRecipesAdd.registerInheritedRecipes(Registries.STONE_SAWMILL_RECIPES, Registries.BRICK_SAWMILL_RECIPES);
-    BrickCrucibleRecipesAdd.registerInheritedRecipes(Registries.STONE_CRUCIBLE_RECIPES, Registries.BRICK_CRUCIBLE_RECIPES);
-
-    MechanicalCompactingBinRecipesAdd.registerInheritedRecipes(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE, Registries.MECHANICAL_COMPACTING_BIN_RECIPES);
   }
 
   @GameRegistry.ObjectHolder(ModuleTechMachine.MOD_ID)

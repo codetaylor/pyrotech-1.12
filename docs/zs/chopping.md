@@ -9,9 +9,10 @@ import mods.pyrotech.Chopping;
 
 ```java
 static void addRecipe(
-  string name,       // unique recipe name
-  IItemStack output, // recipe output
-  IIngredient input  // recipe input
+  string name,                // unique recipe name
+  IItemStack output,          // recipe output
+  IIngredient input,          // recipe input
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 
@@ -21,11 +22,12 @@ static void addRecipe(
 
 ```java
 static void addRecipe(
-  string name,       // unique recipe name
-  IItemStack output, // recipe output
-  IIngredient input, // recipe input
-  int[] chops,       // overrides the default chops array in config
-  int[] quantities   // overrides the default quantities array in config
+  string name,                // unique recipe name
+  IItemStack output,          // recipe output
+  IIngredient input,          // recipe input
+  int[] chops,                // overrides the default chops array in config
+  int[] quantities,           // overrides the default quantities array in config
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 

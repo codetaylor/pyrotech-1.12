@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
@@ -21,6 +22,8 @@ import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import static com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.BrickSawmillRecipesAdd.INHERIT_TRANSFORMER;
+
 @ZenDocClass("mods.pyrotech.StoneSawmill")
 @ZenDocAppend({"docs/include/stone_sawmill.example.md"})
 @ZenClass("mods.pyrotech.StoneSawmill")
@@ -34,7 +37,8 @@ public class ZenStoneSawmill {
           @ZenDocArg(arg = "input", info = "recipe input"),
           @ZenDocArg(arg = "burnTimeTicks", info = "recipe duration in ticks"),
           @ZenDocArg(arg = "blade", info = "blade(s) used"),
-          @ZenDocArg(arg = "woodChips", info = "amount of wood chips produced per recipe")
+          @ZenDocArg(arg = "woodChips", info = "amount of wood chips produced per recipe"),
+          @ZenDocArg(arg = "inherited", info = "true if the recipe should be inherited")
       }
   )
   @ZenMethod
@@ -44,7 +48,8 @@ public class ZenStoneSawmill {
       IIngredient input,
       int burnTimeTicks,
       IIngredient blade,
-      @Optional(valueLong = 0) int woodChips
+      @Optional(valueLong = 0) int woodChips,
+      @Optional boolean inherited
   ) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
@@ -53,7 +58,8 @@ public class ZenStoneSawmill {
         CraftTweakerMC.getIngredient(input),
         burnTimeTicks,
         CraftTweakerMC.getIngredient(blade),
-        woodChips
+        woodChips,
+        inherited
     ));
   }
 
@@ -125,6 +131,7 @@ public class ZenStoneSawmill {
     private final int burnTimeTicks;
     private final Ingredient blade;
     private final int woodChips;
+    private final boolean inherited;
 
     public AddRecipe(
         String name,
@@ -132,7 +139,8 @@ public class ZenStoneSawmill {
         Ingredient input,
         int burnTimeTicks,
         Ingredient blade,
-        int woodChips
+        int woodChips,
+        boolean inherited
     ) {
 
       this.name = name;
@@ -141,6 +149,7 @@ public class ZenStoneSawmill {
       this.burnTimeTicks = burnTimeTicks;
       this.blade = blade;
       this.woodChips = woodChips;
+      this.inherited = inherited;
     }
 
     @Override
@@ -153,13 +162,18 @@ public class ZenStoneSawmill {
           this.blade,
           this.woodChips
       );
+
       ModuleTechMachine.Registries.STONE_SAWMILL_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+
+      if (this.inherited) {
+        RecipeHelper.inherit("stone_sawmill", ModuleTechMachine.Registries.BRICK_SAWMILL_RECIPES, INHERIT_TRANSFORMER, recipe);
+      }
     }
 
     @Override
     public String describe() {
 
-      return "Adding stone sawmill recipe for " + this.output;
+      return "Adding stone sawmill recipe for " + this.output + ", inherited=" + this.inherited;
     }
   }
 

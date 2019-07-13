@@ -4,11 +4,15 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompactingBinRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.MechanicalCompactingBinRecipesAdd;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
@@ -17,6 +21,7 @@ import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -31,18 +36,20 @@ public class ZenCompactingBin {
           @ZenDocArg(arg = "name", info = "unique recipe name"),
           @ZenDocArg(arg = "output", info = "recipe output"),
           @ZenDocArg(arg = "input", info = "recipe input"),
-          @ZenDocArg(arg = "amount", info = "number of input items required")
+          @ZenDocArg(arg = "amount", info = "number of input items required"),
+          @ZenDocArg(arg = "inherited", info = "true if the recipe should be inherited")
       }
   )
   @ZenMethod
-  public static void addRecipe(String name, IItemStack output, IIngredient input, int amount) {
+  public static void addRecipe(String name, IItemStack output, IIngredient input, int amount, @Optional boolean inherited) {
 
     ZenCompactingBin.addRecipe(
         name,
         output,
         input,
         amount,
-        ModuleTechBasicConfig.COMPACTING_BIN.TOOL_USES_REQUIRED_PER_HARVEST_LEVEL
+        ModuleTechBasicConfig.COMPACTING_BIN.TOOL_USES_REQUIRED_PER_HARVEST_LEVEL,
+        inherited
     );
   }
 
@@ -53,18 +60,20 @@ public class ZenCompactingBin {
           @ZenDocArg(arg = "output", info = "recipe output"),
           @ZenDocArg(arg = "input", info = "recipe input"),
           @ZenDocArg(arg = "amount", info = "number of input items required"),
-          @ZenDocArg(arg = "toolUsesRequired", info = "overrides default provided in config")
+          @ZenDocArg(arg = "toolUsesRequired", info = "overrides default provided in config"),
+          @ZenDocArg(arg = "inherited", info = "true if the recipe should be inherited")
       }
   )
   @ZenMethod
-  public static void addRecipe(String name, IItemStack output, IIngredient input, int amount, int[] toolUsesRequired) {
+  public static void addRecipe(String name, IItemStack output, IIngredient input, int amount, int[] toolUsesRequired, @Optional boolean inherited) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
         name,
         CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getIngredient(input),
         amount,
-        toolUsesRequired
+        toolUsesRequired,
+        inherited
     ));
   }
 
@@ -135,13 +144,15 @@ public class ZenCompactingBin {
     private final Ingredient input;
     private final int amount;
     private final int[] uses;
+    private final boolean inherited;
 
     public AddRecipe(
         String name,
         ItemStack output,
         Ingredient input,
         int amount,
-        int[] uses
+        int[] uses,
+        boolean inherited
     ) {
 
       this.name = name;
@@ -149,6 +160,7 @@ public class ZenCompactingBin {
       this.output = output;
       this.amount = amount;
       this.uses = uses;
+      this.inherited = inherited;
     }
 
     @Override
@@ -160,13 +172,21 @@ public class ZenCompactingBin {
           this.amount,
           this.uses
       );
+
       ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+
+      if (this.inherited) {
+
+        if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechMachine.class)) {
+          RecipeHelper.inherit("compacting_bin", ModuleTechMachine.Registries.MECHANICAL_COMPACTING_BIN_RECIPES, MechanicalCompactingBinRecipesAdd.INHERIT_TRANSFORMER, recipe);
+        }
+      }
     }
 
     @Override
     public String describe() {
 
-      return "Adding compacting recipe for " + this.output;
+      return "Adding compacting recipe for " + this.output + ", inherited=" + this.inherited;
     }
   }
 

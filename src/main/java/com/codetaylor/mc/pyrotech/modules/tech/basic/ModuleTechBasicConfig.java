@@ -589,7 +589,7 @@ public class ModuleTechBasicConfig {
     public int MINIMUM_HUNGER_TO_USE = 3;
 
     @Config.Comment({
-        "If true, all the crude drying rack recipes will also be available in this device.",
+        "If true, all the granite anvil recipes will also be available in this device.",
         "Default: " + true
     })
     public boolean INHERIT_GRANITE_ANVIL_RECIPES = true;

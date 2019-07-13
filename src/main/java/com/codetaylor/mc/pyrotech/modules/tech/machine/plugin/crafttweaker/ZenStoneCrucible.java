@@ -4,10 +4,12 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.BrickCrucibleRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -17,6 +19,7 @@ import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -31,7 +34,8 @@ public class ZenStoneCrucible {
           @ZenDocArg(arg = "name", info = "unique recipe name"),
           @ZenDocArg(arg = "output", info = "recipe output"),
           @ZenDocArg(arg = "input", info = "recipe input"),
-          @ZenDocArg(arg = "burnTimeTicks", info = "recipe duration in ticks")
+          @ZenDocArg(arg = "burnTimeTicks", info = "recipe duration in ticks"),
+          @ZenDocArg(arg = "inherited", info = "true if the recipe should be inherited")
       }
   )
   @ZenMethod
@@ -39,14 +43,16 @@ public class ZenStoneCrucible {
       String name,
       ILiquidStack output,
       IIngredient input,
-      int burnTimeTicks
+      int burnTimeTicks,
+      @Optional boolean inherited
   ) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
         name,
         CraftTweakerMC.getLiquidStack(output),
         CraftTweakerMC.getIngredient(input),
-        burnTimeTicks
+        burnTimeTicks,
+        inherited
     ));
   }
 
@@ -116,18 +122,21 @@ public class ZenStoneCrucible {
     private final FluidStack output;
     private final Ingredient input;
     private final int burnTimeTicks;
+    private final boolean inherited;
 
     public AddRecipe(
         String name,
         FluidStack output,
         Ingredient input,
-        int burnTimeTicks
+        int burnTimeTicks,
+        boolean inherited
     ) {
 
       this.name = name;
       this.input = input;
       this.output = output;
       this.burnTimeTicks = burnTimeTicks;
+      this.inherited = inherited;
     }
 
     @Override
@@ -138,13 +147,18 @@ public class ZenStoneCrucible {
           this.input,
           this.burnTimeTicks
       );
+
       ModuleTechMachine.Registries.STONE_CRUCIBLE_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+
+      if (this.inherited) {
+        RecipeHelper.inherit("stone_crucible", ModuleTechMachine.Registries.BRICK_CRUCIBLE_RECIPES, BrickCrucibleRecipesAdd.INHERIT_TRANSFORMER, recipe);
+      }
     }
 
     @Override
     public String describe() {
 
-      return "Adding stone crucible recipe for " + this.output;
+      return "Adding stone crucible recipe for " + this.output + ", inherited=" + this.inherited;
     }
   }
 

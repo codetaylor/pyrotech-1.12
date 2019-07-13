@@ -9,10 +9,11 @@ import mods.pyrotech.StoneKiln;
 
 ```java
 static void addRecipe(
-  string name,       // unique recipe name
-  IItemStack output, // recipe output
-  IIngredient input, // recipe input
-  int burnTimeTicks  // recipe duration in ticks
+  string name,                // unique recipe name
+  IItemStack output,          // recipe output
+  IIngredient input,          // recipe input
+  int burnTimeTicks,          // recipe duration in ticks
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 
@@ -22,12 +23,13 @@ static void addRecipe(
 
 ```java
 static void addRecipe(
-  string name,              // unique recipe name
-  IItemStack output,        // recipe output
-  IIngredient input,        // recipe input
-  int burnTimeTicks,        // recipe duration in ticks
-  float failureChance,      // chance for item to fail conversion
-  IItemStack[] failureItems // array of randomly chosen failure items
+  string name,                // unique recipe name
+  IItemStack output,          // recipe output
+  IIngredient input,          // recipe input
+  int burnTimeTicks,          // recipe duration in ticks
+  float failureChance,        // chance for item to fail conversion
+  IItemStack[] failureItems,  // array of randomly chosen failure items
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 

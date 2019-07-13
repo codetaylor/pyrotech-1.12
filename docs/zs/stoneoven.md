@@ -9,9 +9,10 @@ import mods.pyrotech.StoneOven;
 
 ```java
 static void addRecipe(
-  string name,       // unique recipe name
-  IItemStack output,
-  IIngredient input 
+  string name,                // unique recipe name
+  IItemStack output,         
+  IIngredient input,         
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 

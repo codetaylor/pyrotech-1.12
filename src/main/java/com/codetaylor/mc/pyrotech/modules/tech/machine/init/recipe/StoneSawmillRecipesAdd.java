@@ -18,6 +18,7 @@ import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class StoneSawmillRecipesAdd {
 
@@ -76,57 +77,78 @@ public class StoneSawmillRecipesAdd {
     StoneSawmillRecipesAdd.registerSawmillRecipeWood(registry, name, output, input, 1);
   }
 
-  private static void registerSawmillRecipeWood(IForgeRegistryModifiable<StoneSawmillRecipe> registry, String name, ItemStack output, Ingredient input, double durationModifier) {
+  public static List<StoneSawmillRecipe> registerSawmillRecipeWood(IForgeRegistryModifiable<StoneSawmillRecipe> registry, String name, ItemStack output, Ingredient input, double durationModifier) {
+
+    List<StoneSawmillRecipe> result = new ArrayList<>();
 
     int woodChips = 8;
-    output = output.copy();
-    output.setCount(1);
 
-    registry.register(new StoneSawmillRecipe(
-        output,
-        input,
-        (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 8 * 20 * durationModifier),
-        Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
-        woodChips
-    ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_0"));
+    {
+      output = output.copy();
+      output.setCount(1);
 
-    output = output.copy();
-    output.setCount(2);
+      StoneSawmillRecipe recipe = new StoneSawmillRecipe(
+          output,
+          input,
+          (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 8 * 20 * durationModifier),
+          Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+          woodChips
+      ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_0");
+      registry.register(recipe);
+      result.add(recipe);
+    }
 
-    registry.register(new StoneSawmillRecipe(
-        output,
-        input,
-        (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 6 * 20 * durationModifier),
-        Ingredient.fromStacks(
-            new ItemStack(ModuleTechMachine.Items.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
-            new ItemStack(ModuleTechMachine.Items.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
-        ),
-        woodChips
-    ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_1"));
+    {
+      output = output.copy();
+      output.setCount(2);
 
-    output = output.copy();
-    output.setCount(2);
+      StoneSawmillRecipe recipe = new StoneSawmillRecipe(
+          output,
+          input,
+          (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 6 * 20 * durationModifier),
+          Ingredient.fromStacks(
+              new ItemStack(ModuleTechMachine.Items.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
+              new ItemStack(ModuleTechMachine.Items.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
+          ),
+          woodChips
+      ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_1");
+      registry.register(recipe);
+      result.add(recipe);
+    }
 
-    registry.register(new StoneSawmillRecipe(
-        output,
-        input,
-        (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20 * durationModifier),
-        Ingredient.fromStacks(
-            new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
-            new ItemStack(ModuleTechMachine.Items.OBSIDIAN_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
-        ),
-        woodChips
-    ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_2"));
+    {
+      output = output.copy();
+      output.setCount(2);
 
-    output = output.copy();
-    output.setCount(3);
+      StoneSawmillRecipe recipe = new StoneSawmillRecipe(
+          output,
+          input,
+          (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20 * durationModifier),
+          Ingredient.fromStacks(
+              new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
+              new ItemStack(ModuleTechMachine.Items.OBSIDIAN_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
+          ),
+          woodChips
+      ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_2");
+      registry.register(recipe);
+      result.add(recipe);
+    }
 
-    registry.register(new StoneSawmillRecipe(
-        output,
-        input,
-        (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20 * durationModifier),
-        Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
-        woodChips
-    ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_3"));
+    {
+      output = output.copy();
+      output.setCount(3);
+
+      StoneSawmillRecipe recipe = new StoneSawmillRecipe(
+          output,
+          input,
+          (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20 * durationModifier),
+          Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
+          woodChips
+      ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_3");
+      registry.register(recipe);
+      result.add(recipe);
+    }
+
+    return result;
   }
 }

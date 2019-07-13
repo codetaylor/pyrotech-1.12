@@ -9,10 +9,11 @@ import mods.pyrotech.CompactingBin;
 
 ```java
 static void addRecipe(
-  string name,       // unique recipe name
-  IItemStack output, // recipe output
-  IIngredient input, // recipe input
-  int amount         // number of input items required
+  string name,                // unique recipe name
+  IItemStack output,          // recipe output
+  IIngredient input,          // recipe input
+  int amount,                 // number of input items required
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 
@@ -22,11 +23,12 @@ static void addRecipe(
 
 ```java
 static void addRecipe(
-  string name,           // unique recipe name
-  IItemStack output,     // recipe output
-  IIngredient input,     // recipe input
-  int amount,            // number of input items required
-  int[] toolUsesRequired // overrides default provided in config
+  string name,                // unique recipe name
+  IItemStack output,          // recipe output
+  IIngredient input,          // recipe input
+  int amount,                 // number of input items required
+  int[] toolUsesRequired,     // overrides default provided in config
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 

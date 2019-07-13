@@ -133,6 +133,9 @@ public class ModuleTechBasic
     CompactingBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE);
     SoakingPotRecipesAdd.apply(ModuleTechBasic.Registries.SOAKING_POT_RECIPE);
     CampfireRecipesAdd.apply(Registries.CAMPFIRE_RECIPE);
+
+    DryingRackRecipesAdd.registerInheritedRecipes(Registries.CRUDE_DRYING_RACK_RECIPE, Registries.DRYING_RACK_RECIPE);
+    AnvilIroncladRecipesAdd.registerInheritedRecipes(Registries.ANVIL_RECIPE);
   }
 
   @Override
@@ -154,9 +157,6 @@ public class ModuleTechBasic
   public void onPostInitializationEvent(FMLPostInitializationEvent event) {
 
     super.onPostInitializationEvent(event);
-
-    DryingRackRecipesAdd.registerInheritedRecipes(Registries.CRUDE_DRYING_RACK_RECIPE, Registries.DRYING_RACK_RECIPE);
-    AnvilIroncladRecipesAdd.registerInheritedRecipes(Registries.ANVIL_RECIPE);
   }
 
   @GameRegistry.ObjectHolder(ModuleTechBasic.MOD_ID)

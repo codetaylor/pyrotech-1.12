@@ -9,7 +9,18 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
+import java.util.function.Function;
+
 public class StoneOvenRecipesAdd {
+
+  public static final Function<DryingRackRecipe, StoneOvenRecipe> INHERIT_TRANSFORMER = recipe -> {
+    int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.STONE_OVEN.INHERITED_DRYING_RACK_RECIPE_DURATION_MODIFIER);
+    return new StoneOvenRecipe(
+        recipe.getOutput(),
+        recipe.getInput(),
+        Math.max(1, timeTicks)
+    );
+  };
 
   public static void apply(IForgeRegistry<StoneOvenRecipe> registry) {
     //
@@ -22,14 +33,7 @@ public class StoneOvenRecipesAdd {
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)
         && ModuleTechMachineConfig.STONE_OVEN.INHERIT_DRYING_RACK_RECIPES) {
-      RecipeHelper.inherit("drying_rack", dryingRackRegistry, stoneOvenRegistry, recipe -> {
-        int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.STONE_OVEN.INHERITED_DRYING_RACK_RECIPE_DURATION_MODIFIER);
-        return new StoneOvenRecipe(
-            recipe.getOutput(),
-            recipe.getInput(),
-            Math.max(1, timeTicks)
-        );
-      });
+      RecipeHelper.inherit("drying_rack", dryingRackRegistry, stoneOvenRegistry, INHERIT_TRANSFORMER);
     }
   }
 }

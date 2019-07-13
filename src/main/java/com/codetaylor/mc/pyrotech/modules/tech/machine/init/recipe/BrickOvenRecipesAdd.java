@@ -7,7 +7,18 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
+import java.util.function.Function;
+
 public class BrickOvenRecipesAdd {
+
+  public static final Function<StoneOvenRecipe, BrickOvenRecipe> INHERIT_TRANSFORMER = recipe -> {
+    int cookTimeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_OVEN.INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER);
+    return new BrickOvenRecipe(
+        recipe.getOutput(),
+        recipe.getInput(),
+        Math.max(1, cookTimeTicks)
+    );
+  };
 
   public static void apply(IForgeRegistry<BrickOvenRecipe> registry) {
     //
@@ -19,14 +30,7 @@ public class BrickOvenRecipesAdd {
   ) {
 
     if (ModuleTechMachineConfig.BRICK_OVEN.INHERIT_STONE_TIER_RECIPES) {
-      RecipeHelper.inherit("stone_oven", stoneRegistry, brickRegistry, recipe -> {
-        int cookTimeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_OVEN.INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER);
-        return new BrickOvenRecipe(
-            recipe.getOutput(),
-            recipe.getInput(),
-            Math.max(1, cookTimeTicks)
-        );
-      });
+      RecipeHelper.inherit("stone_oven", stoneRegistry, brickRegistry, INHERIT_TRANSFORMER);
     }
   }
 }

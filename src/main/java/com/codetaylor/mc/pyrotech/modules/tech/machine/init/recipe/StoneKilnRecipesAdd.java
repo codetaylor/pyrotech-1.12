@@ -19,7 +19,21 @@ import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
+import java.util.function.Function;
+
 public class StoneKilnRecipesAdd {
+
+  public static final Function<KilnPitRecipe, StoneKilnRecipe> INHERIT_TRANSFORMER = recipe -> {
+    int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.STONE_KILN.INHERITED_PIT_KILN_RECIPE_DURATION_MODIFIER);
+    float failureChance = (float) (recipe.getFailureChance() * ModuleTechMachineConfig.STONE_KILN.INHERITED_PIT_KILN_RECIPE_FAILURE_CHANCE_MODIFIER);
+    return new StoneKilnRecipe(
+        recipe.getOutput(),
+        recipe.getInput(),
+        Math.max(1, timeTicks),
+        failureChance,
+        recipe.getFailureItems()
+    );
+  };
 
   public static void apply(IForgeRegistry<StoneKilnRecipe> registry) {
 
@@ -96,17 +110,7 @@ public class StoneKilnRecipesAdd {
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)
         && ModuleTechMachineConfig.STONE_KILN.INHERIT_PIT_KILN_RECIPES) {
-      RecipeHelper.inherit("pit_kiln", pitKilnRegistry, stoneKilnRegistry, recipe -> {
-        int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.STONE_KILN.INHERITED_PIT_KILN_RECIPE_DURATION_MODIFIER);
-        float failureChance = (float) (recipe.getFailureChance() * ModuleTechMachineConfig.STONE_KILN.INHERITED_PIT_KILN_RECIPE_FAILURE_CHANCE_MODIFIER);
-        return new StoneKilnRecipe(
-            recipe.getOutput(),
-            recipe.getInput(),
-            Math.max(1, timeTicks),
-            failureChance,
-            recipe.getFailureItems()
-        );
-      });
+      RecipeHelper.inherit("pit_kiln", pitKilnRegistry, stoneKilnRegistry, INHERIT_TRANSFORMER);
     }
   }
 }

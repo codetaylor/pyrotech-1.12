@@ -5,11 +5,15 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.BloomeryRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.*;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -19,11 +23,14 @@ import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.WitherForgeRecipesAdd.INHERIT_TRANSFORMER;
 
 @ZenDocClass("mods.pyrotech.Bloomery")
 @ZenDocAppend({"docs/include/bloomery.example.md"})
@@ -96,14 +103,15 @@ public class ZenBloomery {
       args = {
           @ZenDocArg(arg = "name", info = "the name of the recipe - should be unique"),
           @ZenDocArg(arg = "output", info = "the output item received from the bloom"),
-          @ZenDocArg(arg = "input", info = "the recipe input")
+          @ZenDocArg(arg = "input", info = "the recipe input"),
+          @ZenDocArg(arg = "inherited", info = "true if the recipe should be inherited")
       },
       description = {
           "Creates and returns a new bloomery recipe builder."
       }
   )
   @ZenMethod
-  public static ZenBloomery createBloomeryBuilder(String name, IItemStack output, IIngredient input) {
+  public static ZenBloomery createBloomeryBuilder(String name, IItemStack output, IIngredient input, @Optional boolean inherited) {
 
     return new ZenBloomery(
         new BloomeryRecipeBuilder(
@@ -111,7 +119,8 @@ public class ZenBloomery {
             CTInputHelper.toStack(output),
             CTInputHelper.toIngredient(input)
         ),
-        EnumRecipeType.Bloomery
+        EnumRecipeType.Bloomery,
+        inherited
     );
   }
 
@@ -135,7 +144,8 @@ public class ZenBloomery {
             CTInputHelper.toStack(output),
             CTInputHelper.toIngredient(input)
         ),
-        EnumRecipeType.WitherForge
+        EnumRecipeType.WitherForge,
+        false
     );
   }
 
@@ -255,11 +265,13 @@ public class ZenBloomery {
 
   private final BloomeryRecipeBuilderBase builder;
   private final EnumRecipeType recipeType;
+  private final boolean inherited;
 
-  private ZenBloomery(BloomeryRecipeBuilderBase builder, EnumRecipeType recipeType) {
+  private ZenBloomery(BloomeryRecipeBuilderBase builder, EnumRecipeType recipeType, boolean inherited) {
 
     this.builder = builder;
     this.recipeType = recipeType;
+    this.inherited = inherited;
   }
 
   @ZenDocMethod(
@@ -400,14 +412,60 @@ public class ZenBloomery {
   @ZenMethod
   public void register() {
 
-    if (this.recipeType == EnumRecipeType.Bloomery) {
-      ModuleTechBloomery.Registries.BLOOMERY_RECIPE.register((BloomeryRecipe) this.builder.create());
-
-    } else if (this.recipeType == EnumRecipeType.WitherForge) {
-      ModuleTechBloomery.Registries.WITHER_FORGE_RECIPE.register((WitherForgeRecipe) this.builder.create());
+    if (this.recipeType != EnumRecipeType.Bloomery
+        && this.recipeType != EnumRecipeType.WitherForge) {
+      throw new RuntimeException("Unknown recipe type: " + this.recipeType);
 
     } else {
-      throw new RuntimeException("Unknown recipe type: " + this.recipeType);
+      CraftTweaker.LATE_ACTIONS.add(new AddRecipe(this.recipeType, this.builder.create(), this.inherited));
+    }
+  }
+
+  public class AddRecipe
+      implements IAction {
+
+    private final EnumRecipeType recipeType;
+    private final BloomeryRecipeBase recipe;
+    private final boolean inherited;
+
+    public AddRecipe(EnumRecipeType recipeType, BloomeryRecipeBase recipe, boolean inherited) {
+
+      this.recipeType = recipeType;
+      this.recipe = recipe;
+      this.inherited = inherited;
+    }
+
+    @Override
+    public void apply() {
+
+      if (this.recipeType == EnumRecipeType.Bloomery) {
+        ModuleTechBloomery.Registries.BLOOMERY_RECIPE.register((BloomeryRecipe) this.recipe);
+
+        if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
+          BloomeryRecipesAdd.registerBloomAnvilRecipe(ModuleTechBasic.Registries.ANVIL_RECIPE, this.recipe);
+        }
+
+        if (this.inherited) {
+          WitherForgeRecipe witherForgeRecipe = RecipeHelper.inherit("bloomery", ModuleTechBloomery.Registries.WITHER_FORGE_RECIPE, INHERIT_TRANSFORMER, (BloomeryRecipe) this.recipe);
+
+          if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
+            BloomeryRecipesAdd.registerBloomAnvilRecipe(ModuleTechBasic.Registries.ANVIL_RECIPE, witherForgeRecipe);
+          }
+        }
+
+      } else if (this.recipeType == EnumRecipeType.WitherForge) {
+        ModuleTechBloomery.Registries.WITHER_FORGE_RECIPE.register((WitherForgeRecipe) this.recipe);
+
+        if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)) {
+          BloomeryRecipesAdd.registerBloomAnvilRecipe(ModuleTechBasic.Registries.ANVIL_RECIPE, this.recipe);
+        }
+      }
+    }
+
+    @Override
+    public String describe() {
+
+      return "Registering bloomery recipe: " + this.recipe.getRegistryName().toString();
     }
   }
 }

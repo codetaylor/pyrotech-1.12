@@ -12,7 +12,20 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
+import java.util.function.Function;
+
 public class BrickSawmillRecipesAdd {
+
+  public static final Function<StoneSawmillRecipe, BrickSawmillRecipe> INHERIT_TRANSFORMER = recipe -> {
+    int cookTimeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_SAWMILL.INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER);
+    return new BrickSawmillRecipe(
+        recipe.getOutput(),
+        recipe.getInput(),
+        Math.max(1, cookTimeTicks),
+        recipe.getBlade(),
+        recipe.getWoodChips()
+    );
+  };
 
   public static void apply(IForgeRegistryModifiable<BrickSawmillRecipe> registry) {
 
@@ -120,16 +133,7 @@ public class BrickSawmillRecipesAdd {
   ) {
 
     if (ModuleTechMachineConfig.BRICK_SAWMILL.INHERIT_STONE_TIER_RECIPES) {
-      RecipeHelper.inherit("stone_sawmill", stoneRegistry, brickRegistry, recipe -> {
-        int cookTimeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_SAWMILL.INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER);
-        return new BrickSawmillRecipe(
-            recipe.getOutput(),
-            recipe.getInput(),
-            Math.max(1, cookTimeTicks),
-            recipe.getBlade(),
-            recipe.getWoodChips()
-        );
-      });
+      RecipeHelper.inherit("stone_sawmill", stoneRegistry, brickRegistry, INHERIT_TRANSFORMER);
     }
   }
 }

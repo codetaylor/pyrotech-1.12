@@ -17,7 +17,16 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
+import java.util.function.Function;
+
 public class MechanicalCompactingBinRecipesAdd {
+
+  public static final Function<CompactingBinRecipe, MechanicalCompactingBinRecipe> INHERIT_TRANSFORMER = recipe -> new MechanicalCompactingBinRecipe(
+      recipe.getOutput(),
+      recipe.getInput(),
+      recipe.getAmount(),
+      recipe.getRequiredToolUses()
+  );
 
   public static void apply(IForgeRegistry<MechanicalCompactingBinRecipe> registry) {
 
@@ -53,13 +62,7 @@ public class MechanicalCompactingBinRecipesAdd {
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechBasic.class)
         && ModuleTechMachineConfig.MECHANICAL_COMPACTING_BIN.INHERIT_COMPACTING_BIN_RECIPES) {
-      RecipeHelper.inherit("compacting_bin", from, to, recipe -> new MechanicalCompactingBinRecipe(
-          recipe.getOutput(),
-          recipe.getInput(),
-          recipe.getAmount(),
-          recipe.getRequiredToolUses()
-      ));
+      RecipeHelper.inherit("compacting_bin", from, to, INHERIT_TRANSFORMER);
     }
-
   }
 }

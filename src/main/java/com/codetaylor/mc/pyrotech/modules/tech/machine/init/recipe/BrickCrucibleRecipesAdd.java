@@ -19,8 +19,18 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 import java.util.Arrays;
+import java.util.function.Function;
 
 public class BrickCrucibleRecipesAdd {
+
+  public static final Function<StoneCrucibleRecipe, BrickCrucibleRecipe> INHERIT_TRANSFORMER = recipe -> {
+    int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_CRUCIBLE.INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER);
+    return new BrickCrucibleRecipe(
+        recipe.getOutput(),
+        recipe.getInput(),
+        Math.max(1, timeTicks)
+    );
+  };
 
   public static void apply(IForgeRegistry<BrickCrucibleRecipe> registry) {
 
@@ -79,14 +89,7 @@ public class BrickCrucibleRecipesAdd {
   ) {
 
     if (ModuleTechMachineConfig.BRICK_CRUCIBLE.INHERIT_STONE_TIER_RECIPES) {
-      RecipeHelper.inherit("stone_crucible", stoneRegistry, brickRegistry, recipe -> {
-        int timeTicks = (int) (recipe.getTimeTicks() * ModuleTechMachineConfig.BRICK_CRUCIBLE.INHERITED_STONE_TIER_RECIPE_DURATION_MODIFIER);
-        return new BrickCrucibleRecipe(
-            recipe.getOutput(),
-            recipe.getInput(),
-            Math.max(1, timeTicks)
-        );
-      });
+      RecipeHelper.inherit("stone_crucible", stoneRegistry, brickRegistry, INHERIT_TRANSFORMER);
     }
 
   }

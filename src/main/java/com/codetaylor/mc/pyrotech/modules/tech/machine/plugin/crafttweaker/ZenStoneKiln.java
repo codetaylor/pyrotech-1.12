@@ -4,10 +4,12 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
 import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
 import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
 import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.BrickKilnRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -17,6 +19,7 @@ import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -31,13 +34,14 @@ public class ZenStoneKiln {
           @ZenDocArg(arg = "name", info = "unique recipe name"),
           @ZenDocArg(arg = "output", info = "recipe output"),
           @ZenDocArg(arg = "input", info = "recipe input"),
-          @ZenDocArg(arg = "burnTimeTicks", info = "recipe duration in ticks")
+          @ZenDocArg(arg = "burnTimeTicks", info = "recipe duration in ticks"),
+          @ZenDocArg(arg = "inherited", info = "true if the recipe should be inherited")
       }
   )
   @ZenMethod
-  public static void addRecipe(String name, IItemStack output, IIngredient input, int burnTimeTicks) {
+  public static void addRecipe(String name, IItemStack output, IIngredient input, int burnTimeTicks, @Optional boolean inherited) {
 
-    ZenStoneKiln.addRecipe(name, output, input, burnTimeTicks, 0, new IItemStack[0]);
+    ZenStoneKiln.addRecipe(name, output, input, burnTimeTicks, 0, new IItemStack[0], inherited);
   }
 
   @ZenDocMethod(
@@ -48,7 +52,8 @@ public class ZenStoneKiln {
           @ZenDocArg(arg = "input", info = "recipe input"),
           @ZenDocArg(arg = "burnTimeTicks", info = "recipe duration in ticks"),
           @ZenDocArg(arg = "failureChance", info = "chance for item to fail conversion"),
-          @ZenDocArg(arg = "failureItems", info = "array of randomly chosen failure items")
+          @ZenDocArg(arg = "failureItems", info = "array of randomly chosen failure items"),
+          @ZenDocArg(arg = "inherited", info = "true if the recipe should be inherited")
       }
   )
   @ZenMethod
@@ -58,7 +63,8 @@ public class ZenStoneKiln {
       IIngredient input,
       int burnTimeTicks,
       float failureChance,
-      IItemStack[] failureItems
+      IItemStack[] failureItems,
+      @Optional boolean inherited
   ) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
@@ -67,7 +73,8 @@ public class ZenStoneKiln {
         CraftTweakerMC.getIngredient(input),
         burnTimeTicks,
         failureChance,
-        CraftTweakerMC.getItemStacks(failureItems)
+        CraftTweakerMC.getItemStacks(failureItems),
+        inherited
     ));
   }
 
@@ -139,6 +146,7 @@ public class ZenStoneKiln {
     private final int burnTimeTicks;
     private final float failureChance;
     private final ItemStack[] failureItems;
+    private final boolean inherited;
 
     public AddRecipe(
         String name,
@@ -146,7 +154,8 @@ public class ZenStoneKiln {
         Ingredient input,
         int burnTimeTicks,
         float failureChance,
-        ItemStack[] failureItems
+        ItemStack[] failureItems,
+        boolean inherited
     ) {
 
       this.name = name;
@@ -155,6 +164,7 @@ public class ZenStoneKiln {
       this.burnTimeTicks = burnTimeTicks;
       this.failureChance = failureChance;
       this.failureItems = failureItems;
+      this.inherited = inherited;
     }
 
     @Override
@@ -167,13 +177,18 @@ public class ZenStoneKiln {
           this.failureChance,
           this.failureItems
       );
+
       ModuleTechMachine.Registries.STONE_KILN_RECIPES.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+
+      if (this.inherited) {
+        RecipeHelper.inherit("stone_kiln", ModuleTechMachine.Registries.BRICK_KILN_RECIPES, BrickKilnRecipesAdd.INHERIT_TRANSFORMER, recipe);
+      }
     }
 
     @Override
     public String describe() {
 
-      return "Adding stone kiln recipe for " + this.output;
+      return "Adding stone kiln recipe for " + this.output + ", inherited=" + this.inherited;
     }
   }
 

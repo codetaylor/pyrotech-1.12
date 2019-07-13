@@ -7,7 +7,15 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
+import java.util.function.Function;
+
 public class DryingRackRecipesAdd {
+
+  public static final Function<CrudeDryingRackRecipe, DryingRackRecipe> INHERIT_TRANSFORMER = recipe -> new DryingRackRecipe(
+      recipe.getOutput(),
+      recipe.getInput(),
+      (int) (recipe.getTimeTicks() * Math.max(0, ModuleTechBasicConfig.DRYING_RACK.INHERITED_CRUDE_DRYING_RACK_RECIPE_DURATION_MODIFIER))
+  );
 
   public static void apply(IForgeRegistry<DryingRackRecipe> registry) {
     //
@@ -19,11 +27,7 @@ public class DryingRackRecipesAdd {
   ) {
 
     if (ModuleTechBasicConfig.DRYING_RACK.INHERIT_CRUDE_DRYING_RACK_RECIPES) {
-      RecipeHelper.inherit("crude_drying_rack", fromRegistry, toRegistry, recipe -> new DryingRackRecipe(
-          recipe.getOutput(),
-          recipe.getInput(),
-          (int) (recipe.getTimeTicks() * Math.max(0, ModuleTechBasicConfig.DRYING_RACK.INHERITED_CRUDE_DRYING_RACK_RECIPE_DURATION_MODIFIER))
-      ));
+      RecipeHelper.inherit("crude_drying_rack", fromRegistry, toRegistry, INHERIT_TRANSFORMER);
     }
   }
 }

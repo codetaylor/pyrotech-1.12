@@ -3,11 +3,12 @@
   * Notes:
     * Refresh your `core.OreDict-Custom.json` file or copy the new entries from `core.OreDict-Generated.json`.
     * Rock bags in item form may lose their pre-existing contents and functionality: place in world and retrieve to restore function, but not pre-existing contents.
+    * Recipes made with CraftTweaker are no longer automatically inherited. [(DOC)](inherited) [(#110)](https://github.com/codetaylor/pyrotech/issues/110)
 
   * Added:
-    * GameStages support for worktable recipes [(#3)](https://github.com/codetaylor/pyrotech/issues/3) [(doc)](zs/worktable) [(doc:stages)](zs/stages)
-    * Exposed config values for both drying racks' speed calculations [(#92)](https://github.com/codetaylor/pyrotech/issues/92) [(doc)](dryingracks)
-    * CrT methods for the drying racks that allow overriding a biome's base speed [(#92)](https://github.com/codetaylor/pyrotech/issues/92) [(doc)](dryingracks)
+    * GameStages support for worktable recipes [(#3)](https://github.com/codetaylor/pyrotech/issues/3) [(DOC)](zs/worktable) [(DOC)](zs/stages)
+    * Exposed config values for both drying racks' speed calculations [(#92)](https://github.com/codetaylor/pyrotech/issues/92) [(DOC)](dryingracks)
+    * CrT methods for the drying racks that allow overriding a biome's base speed [(#92)](https://github.com/codetaylor/pyrotech/issues/92) [(DOC)](dryingracks)
     * Vanilla smelting recipe for [(#82)](https://github.com/codetaylor/pyrotech/issues/82):
         * Slag -> Slag Glass (bloomery)
         * Unfired Clay Bucket -> Clay Bucket (bucket)
@@ -15,8 +16,8 @@
         * Crushed Limestone -> Quicklime (core)
         * Gravel -> Cobblestone (core)
         * Unfired Clay Shears -> Clay Shears (tool)
-    * Client-side command `/ptlang` to display the unlocalized name of a held item [(#94)](https://github.com/codetaylor/pyrotech/issues/94) [(doc)](commands)
-    * Worktable QoL: Recipe Clear, Recipe Repeat [(#99)](https://github.com/codetaylor/pyrotech/issues/99) [(doc)](worktables)
+    * Client-side command `/ptlang` to display the unlocalized name of a held item [(#94)](https://github.com/codetaylor/pyrotech/issues/94) [(DOC)](commands)
+    * Worktable QoL: Recipe Clear, Recipe Repeat [(#99)](https://github.com/codetaylor/pyrotech/issues/99) [(DOC)](worktables)
     * Progress particle indicators to [(#22)](https://github.com/codetaylor/pyrotech/issues/22):
         * Chopping Block
         * Drying Rack, Crude Drying Rack
@@ -33,11 +34,13 @@
         * Block of Coal Coke -> `blockFuelCoke`
         * Dense Nether Coal -> `oreNetherCoal`
     * Press shift to view contents of rock bags in tooltip when in item form [(#116)](https://github.com/codetaylor/pyrotech/issues/116)
+    * Optional ZenScript method parameter for recipe inheritance [(DOC)](inherited) [(#110)](https://github.com/codetaylor/pyrotech/issues/110)
 
   * Fixed:
     * Smelting recipes added by the mod were also being removed by the mod
     * Hammering the bloom sometimes destroys nearby water sources [(#113)](https://github.com/codetaylor/pyrotech/issues/113)
     * Can put Cooked Fish back into the Campfire to produce Cooked Fish [(#114)](https://github.com/codetaylor/pyrotech/issues/114)
+    * Some recipes can't be removed [(#110)](https://github.com/codetaylor/pyrotech/issues/110)
 
   * Changed:
     * Combustion Machine smoke particles are now used to indicate that the machine is burning fuel instead of indicating that the machine is actively working on a recipe [(#22)](https://github.com/codetaylor/pyrotech/issues/22)
