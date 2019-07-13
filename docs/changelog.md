@@ -35,6 +35,7 @@
         * Dense Nether Coal -> `oreNetherCoal`
     * Press shift to view contents of rock bags in tooltip when in item form [(#116)](https://github.com/codetaylor/pyrotech/issues/116)
     * Optional ZenScript method parameter for recipe inheritance [(DOC)](inherited) [(#110)](https://github.com/codetaylor/pyrotech/issues/110)
+    * Support for The One Probe [(#6)](https://github.com/codetaylor/pyrotech/issues/6)
 
   * Fixed:
     * Smelting recipes added by the mod were also being removed by the mod
