@@ -42,7 +42,7 @@ public class BloomProvider
 
     if (tileEntity instanceof TileBloom) {
       this.probeInfo = probeInfo;
-      this.delegate.display((TileBloom) tileEntity);
+      this.delegate.display((TileBloom) tileEntity, player);
       this.probeInfo = null;
     }
   }

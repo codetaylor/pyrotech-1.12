@@ -6,6 +6,9 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.delegate.Bl
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.TextFormatting;
@@ -39,7 +42,8 @@ public class BloomProvider
 
     if (tileEntity instanceof TileBloom) {
       this.tooltip = tooltip;
-      this.delegate.display((TileBloom) tileEntity);
+      EntityPlayer player = Minecraft.getMinecraft().player;
+      this.delegate.display((TileBloom) tileEntity, player);
       this.tooltip = null;
     }
 

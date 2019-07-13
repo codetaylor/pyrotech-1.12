@@ -4,8 +4,7 @@ import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextFormatting;
 
 public class BloomProviderDelegate
@@ -19,13 +18,17 @@ public class BloomProviderDelegate
   @Override
   public void display(TileBloom tile) {
 
+    throw new UnsupportedOperationException();
+  }
+
+  public void display(TileBloom tile, EntityPlayer player) {
+
     int integrity = (int) ((tile.getIntegrity() / (float) tile.getMaxIntegrity()) * 100);
     this.display.setIntegrity("gui." + ModuleTechBloomery.MOD_ID + ".waila.bloom.integrity", integrity);
 
     int recipeProgress = (int) (tile.getRecipeProgress() * 100);
     this.display.setHammered("gui." + ModuleTechBloomery.MOD_ID + ".waila.bloom.hammered", recipeProgress);
 
-    EntityPlayerSP player = Minecraft.getMinecraft().player;
     int hammerPower = (int) (BloomHelper.calculateHammerPower(tile.getPos(), player) * 100);
 
     if (hammerPower > 0) {
