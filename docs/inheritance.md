@@ -1,4 +1,4 @@
-# Recipe Inheritance
+# What is Recipe Inheritance?
 
 Many of Pyrotech's devices allow for their more advanced counterparts to inherit recipes.
 

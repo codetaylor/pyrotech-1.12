@@ -7,9 +7,11 @@ pages:
 - Modules: modules.md
 - Commands: commands.md
 - Dropt Rules: droptrules.md
-- Recipe Inheritance: inheritance.md
-- Drying Racks: dryingracks.md
-- Worktables: worktables.md
+- Devices:
+  - Recipe Inheritance: inheritance.md
+  - Drying Racks: dryingracks.md
+  - Worktables: worktables.md
+  - Refractory Machines: refractorymachines.md
 - ZenScript:
   - Bellows: zs/bellows.md
   - Bloomery: zs/bloomery.md

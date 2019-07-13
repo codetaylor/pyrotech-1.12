@@ -5,6 +5,15 @@
     * Rock bags in item form may lose their pre-existing contents and functionality: place in world and retrieve to restore function, but not pre-existing contents.
     * Recipes made with CraftTweaker are no longer automatically inherited. [(DOC)](inherited) [(#110)](https://github.com/codetaylor/pyrotech/issues/110)
 
+  * Docs:
+    * Documentation for the alternate Refractory Machine textures [(DOC)](refractorymachines)
+    * Documentation for recipe inheritance [(DOC)](inheritance)
+    * Documentation for modules [(DOC)](modules)
+    * Documentation for commands [(DOC)](commands)
+    * Documentation for worktable QoL [(DOC)](worktables)
+    * Documentation for drying rack speed modification [(DOC)](dryingracks)
+    * Documentation for Dropt rules [(DOC)](droptrules)
+
   * Added:
     * GameStages support for worktable recipes [(#3)](https://github.com/codetaylor/pyrotech/issues/3) [(DOC)](zs/worktable) [(DOC)](zs/stages)
     * Exposed config values for both drying racks' speed calculations [(#92)](https://github.com/codetaylor/pyrotech/issues/92) [(DOC)](dryingracks)
