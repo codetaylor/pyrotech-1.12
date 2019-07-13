@@ -1,43 +1,44 @@
-package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.provider;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.top.provider;
 
-import com.codetaylor.mc.pyrotech.library.spi.plugin.waila.BodyProviderAdapter;
-import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
+import com.codetaylor.mc.pyrotech.modules.core.plugin.top.PluginTOP;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.delegate.BloomeryProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloomery;
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.IWailaDataAccessor;
+import mcjty.theoneprobe.api.IProbeHitData;
+import mcjty.theoneprobe.api.IProbeInfo;
+import mcjty.theoneprobe.api.IProbeInfoProvider;
+import mcjty.theoneprobe.api.ProbeMode;
+import mcjty.theoneprobe.apiimpl.styles.ProgressStyle;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-
 public class BloomeryProvider
-    extends BodyProviderAdapter
-    implements BloomeryProviderDelegate.IBloomeryDisplay {
+    implements IProbeInfoProvider,
+    BloomeryProviderDelegate.IBloomeryDisplay {
 
   private final BloomeryProviderDelegate delegate;
 
-  private List<String> tooltip;
+  private IProbeInfo probeInfo;
 
   public BloomeryProvider() {
 
     this.delegate = new BloomeryProviderDelegate(this);
   }
 
-  @Nonnull
   @Override
-  public List<String> getWailaBody(
-      ItemStack itemStack,
-      List<String> tooltip,
-      IWailaDataAccessor accessor,
-      IWailaConfigHandler config
-  ) {
+  public String getID() {
 
-    TileEntity tileEntity = accessor.getTileEntity();
+    return ModuleTechBasic.MOD_ID + ":" + this.getClass().getName();
+  }
+
+  @Override
+  public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData data) {
+
+    TileEntity tileEntity = world.getTileEntity(data.getPos());
 
     if (tileEntity instanceof TileBloomery
         || tileEntity instanceof TileBloomery.Top) {
@@ -48,7 +49,6 @@ public class BloomeryProvider
         tile = (TileBloomery) tileEntity;
 
       } else {
-        World world = tileEntity.getWorld();
         TileEntity candidate = world.getTileEntity(tileEntity.getPos().down());
 
         if (candidate instanceof TileBloomery) {
@@ -57,79 +57,73 @@ public class BloomeryProvider
       }
 
       if (tile == null) {
-        return tooltip;
+        return;
       }
 
-      this.tooltip = tooltip;
+      this.probeInfo = probeInfo;
       this.delegate.display(tile);
-      this.tooltip = null;
+      this.probeInfo = null;
     }
-
-    return tooltip;
   }
 
   @Override
   public void setRecipeProgress(ItemStack input, ItemStack output, int progress, int maxProgress) {
 
-    String renderString = WailaUtil.getStackRenderString(input) +
-        WailaUtil.getProgressRenderString(progress, maxProgress) +
-        WailaUtil.getStackRenderString(output);
-    this.tooltip.add(renderString);
+    this.probeInfo.horizontal()
+        .item(input)
+        .progress(progress, maxProgress, new ProgressStyle().height(18).width(64).showText(false))
+        .item(output);
   }
 
   @Override
   public void setInput(ItemStack input) {
 
-    this.tooltip.add(WailaUtil.getStackRenderString(input));
+    this.probeInfo.item(input);
   }
 
   @Override
   public void setOutputItems(ItemStackHandler stackHandler) {
 
-    StringBuilder renderString = new StringBuilder();
+    IProbeInfo horizontal = this.probeInfo.horizontal();
 
     for (int i = 0; i < stackHandler.getSlots(); i++) {
       ItemStack stackInSlot = stackHandler.getStackInSlot(i);
 
       if (!stackInSlot.isEmpty()) {
-        renderString.append(WailaUtil.getStackRenderString(stackInSlot));
+        horizontal.item(stackInSlot);
       }
     }
-
-    this.tooltip.add(renderString.toString());
   }
 
   @Override
   public void setFuelItems(ItemStackHandler stackHandler) {
 
-    StringBuilder renderString = new StringBuilder();
+    IProbeInfo horizontal = this.probeInfo.horizontal();
 
     for (int i = 0; i < stackHandler.getSlots(); i++) {
       ItemStack stackInSlot = stackHandler.getStackInSlot(i);
 
       if (!stackInSlot.isEmpty()) {
-        renderString.append(WailaUtil.getStackRenderString(stackInSlot));
+        horizontal.item(stackInSlot);
       }
     }
-
-    this.tooltip.add(renderString.toString());
   }
 
   @Override
   public void setSpeed(String langKey, int speed) {
 
-    this.tooltip.add(Util.translateFormatted(langKey, speed));
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, speed));
   }
 
   @Override
   public void setAirflow(String langKey, int airflow) {
 
-    this.tooltip.add(Util.translateFormatted(langKey, airflow));
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, airflow));
   }
 
   @Override
   public void setFuelCount(String langKey, int fuelCount, int maxFuelCount) {
 
-    this.tooltip.add(Util.translateFormatted(langKey, fuelCount, maxFuelCount));
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, fuelCount, maxFuelCount));
   }
 }

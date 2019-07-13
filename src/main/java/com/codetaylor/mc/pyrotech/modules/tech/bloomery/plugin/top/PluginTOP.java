@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.top;
 
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.top.provider.BloomProvider;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.top.provider.BloomeryProvider;
 import mcjty.theoneprobe.api.ITheOneProbe;
 
 import java.util.function.Function;
@@ -15,6 +16,7 @@ public class PluginTOP {
     public Void apply(ITheOneProbe top) {
 
       top.registerProvider(new BloomProvider());
+      top.registerProvider(new BloomeryProvider());
       return null;
     }
   }
