@@ -62,6 +62,13 @@
 
 ---
 
+1.2.6
+
+  * Fixed:
+      * ArrayIndexOutOfBoundsException when using a whitelisted non-axe tool with the chopping block [(#124)](https://github.com/codetaylor/pyrotech/issues/124)
+
+---
+
 1.2.5
 
   * Fixed:
