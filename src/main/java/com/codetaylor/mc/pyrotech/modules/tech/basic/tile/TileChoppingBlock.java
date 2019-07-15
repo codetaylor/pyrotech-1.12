@@ -455,6 +455,10 @@ public class TileChoppingBlock
         ItemStack heldItem = player.getHeldItem(hand);
         int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "axe", player, null);
 
+        if (harvestLevel < 0) {
+          harvestLevel = 0;
+        }
+
         ItemStackHandler stackHandler = tile.getStackHandler();
         ItemStack itemStack = stackHandler.getStackInSlot(0);
         ChoppingBlockRecipe recipe = ChoppingBlockRecipe.getRecipe(itemStack);
