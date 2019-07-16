@@ -125,13 +125,13 @@ public class WorktableRecipe
   public static boolean hasBlacklist() {
 
     return !BLACKLIST.isEmpty()
-        && ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_BLACKLIST.length > 0;
+        || ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_BLACKLIST.length > 0;
   }
 
   public static boolean hasWhitelist() {
 
     return !WHITELIST.isEmpty()
-        && ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_WHITELIST.length > 0;
+        || ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_WHITELIST.length > 0;
   }
 
   public static boolean isBlacklisted(ResourceLocation resourceLocation) {

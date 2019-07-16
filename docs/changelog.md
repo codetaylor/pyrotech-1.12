@@ -1,3 +1,10 @@
+1.2.7
+
+  * Fixed:
+      * Worktable whitelist / blacklist doesn't work [(#125)](https://github.com/codetaylor/pyrotech/issues/125)
+
+---
+
 1.2.6
 
   * Fixed:
