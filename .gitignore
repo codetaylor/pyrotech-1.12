@@ -22,6 +22,7 @@ build
 eclipse
 run
 /test/
+/site/
 
 *.log
 cloc-1.80.exe
