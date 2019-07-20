@@ -1,0 +1,18 @@
+{
+  "name": "砌砖",
+  "icon": "pyrotech:stone_bricks",
+  "category": "innovate_stone",
+  "advancement": "pyrotech:stone_brick",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:stone_bricks"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick"
+      ]
+    }
+  ]
+}

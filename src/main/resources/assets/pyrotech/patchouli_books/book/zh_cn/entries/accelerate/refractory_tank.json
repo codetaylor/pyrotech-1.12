@@ -1,0 +1,20 @@
+{
+  "name": "耐火缸",
+  "icon": "pyrotech:tank:1",
+  "category": "accelerate",
+  "advancement": "pyrotech:refractory_brick",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/brick_tank",
+      "text": "$(item)耐火缸$()的掉落物能继续保持内部液体，并且能够储存热液体。"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick",
+        "accelerate/refractory_burn"
+      ]
+    }
+  ]
+}

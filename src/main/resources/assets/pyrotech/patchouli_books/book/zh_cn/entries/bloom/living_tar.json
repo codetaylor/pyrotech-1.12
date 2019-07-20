@@ -1,0 +1,22 @@
+{
+  "name": "活焦油",
+  "icon": "pyrotech:living_tar",
+  "category": "bloom",
+  "advancement": "pyrotech:enter_the_nether",
+  "pages": [
+    {
+      "type": "fuel_living_tar",
+      "recipe": "pyrotech:living_tar",
+      "fuel": "pyrotech:living_tar",
+      "text": "一些油腻腻的肉做成油, $(item)活焦油$()是世界上最恶心的燃料候选人之一。"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/soaking_pot",
+        "accelerate/bloomery",
+        "bloom/wither_forge"
+      ]
+    }
+  ]
+}
