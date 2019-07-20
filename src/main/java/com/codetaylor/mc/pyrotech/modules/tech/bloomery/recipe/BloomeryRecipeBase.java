@@ -198,6 +198,11 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
   protected String getLangKeyFrom(Ingredient input) {
 
     ItemStack[] matchingStacks = input.getMatchingStacks();
+
+    if (matchingStacks.length == 0) {
+      return "error.missing.lang.key";
+    }
+
     return matchingStacks[0].getUnlocalizedName();
   }
 

@@ -62,6 +62,11 @@ public class BloomeryRecipesAdd {
         continue;
       }
 
+      // 2019-07-20: (#133) We have to set the lang key for the ore bloom recipe
+      // because items may be missing from the oredict during recipe registration.
+      // If an oredict entry is empty, the bloomery recipe will not correctly
+      // deduce the lang key from the input.
+
       // ore bloom
       registry.register(
           new BloomeryRecipeBuilder(
@@ -75,6 +80,7 @@ public class BloomeryRecipesAdd {
               .setSlagItem(new ItemStack(itemSlag), 4)
               .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG), 1)
               .addFailureItem(new ItemStack(itemSlag), 2)
+              .setLangKey(langKey)
               .create()
       );
 
