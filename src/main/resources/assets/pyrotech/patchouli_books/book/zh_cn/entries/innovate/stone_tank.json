@@ -1,0 +1,19 @@
+{
+  "name": "石缸",
+  "icon": "pyrotech:tank:0",
+  "category": "innovate_soaking",
+  "advancement": "pyrotech:stone_brick",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/stone_tank",
+      "text": "使用$(item)石缸$()来储存液体。$(p)$(warning_cn) $(item)石缸$()掉落物能继续保持内部液体，但是受热会坏掉，比如岩浆。"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick"
+      ]
+    }
+  ]
+}

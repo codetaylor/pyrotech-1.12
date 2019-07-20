@@ -1,0 +1,19 @@
+{
+  "name": "石剪刀",
+  "icon": "pyrotech:stone_shears",
+  "category": "innovate",
+  "advancement": "pyrotech:stone_brick",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/stone_shears"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "adapt/twine"
+      ]
+    }
+  ]
+}

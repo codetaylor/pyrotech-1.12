@@ -1,0 +1,18 @@
+{
+  "name": "钻石剪刀",
+  "icon": "pyrotech:diamond_shears",
+  "category": "bloom",
+  "advancement": "pyrotech:bloomery",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/diamond_shears"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/twine"
+      ]
+    }
+  ]
+}

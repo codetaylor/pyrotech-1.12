@@ -1,0 +1,19 @@
+{
+  "name": "石灰岩",
+  "icon": "pyrotech:limestone",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:limestone",
+      "text": "$(item)石灰岩$()几乎能在任何地底找到。"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/stone_cobbled",
+        "survive/rocks"
+      ]
+    }
+  ]
+}
