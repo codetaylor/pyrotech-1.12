@@ -1,0 +1,13 @@
+{
+  "name": "熔炉",
+  "icon": "minecraft:furnace",
+  "category": "bloom",
+  "advancement": "pyrotech:enter_the_nether",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:furnace",
+      "text": ""
+    }
+  ]
+}

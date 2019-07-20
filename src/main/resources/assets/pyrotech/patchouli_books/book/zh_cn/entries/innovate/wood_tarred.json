@@ -1,0 +1,23 @@
+{
+  "name": "浸焦油的木板",
+  "icon": "pyrotech:planks_tarred",
+  "category": "innovate_soaking",
+  "advancement": "pyrotech:stone_brick",
+  "pages": [
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:planks_tarred",
+      "header2": true,
+      "recipe2": "pyrotech:board_tarred",
+      "text": "浸焦油的木板比普通的木板更加耐用，在暴露在水中能持续更久。"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/soaking_pot",
+        "innovate/wood_boards"
+      ]
+    }
+  ]
+}

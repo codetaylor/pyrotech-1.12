@@ -201,7 +201,7 @@ item.pyrotech.plant.fibers.dried.name=干燥的植物纤维
 item.pyrotech.twine.name=麻线
 item.pyrotech.charcoal.flakes.name=木炭片
 item.pyrotech.brick.stone.name=砌砖
-item.pyrotech.clay.lump.name=粘土块
+item.pyrotech.clay.lump.name=粘土粒
 item.pyrotech.iron.shard.name=铁碎片
 item.pyrotech.diamond.shard.name=钻石碎片
 item.pyrotech.board.name=木板
@@ -383,6 +383,8 @@ gui.pyrotech.jei.info.refractory=耐火砖焚烧与填坑焚烧类似，但燃�
 #------------------------------------------------------------------------------
 
 item.pyrotech.book.name=烟火秘闻
+gui.pyrotech.book.landing_text=欢迎来到由消防署批准的官方指南！这本书将从生存、采集、适应、创新、发展等方面教会你如何使用火生存下来，而不是将其扑灭。$(p)享受你作为消防员的全新旅程吧！
+gui.pyrotech.book.subtitle=生命之火不熄！
 
 #------------------------------------------------------------------------------
 # Advancements
