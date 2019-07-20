@@ -165,7 +165,7 @@ elif [[ "${com}" == "set" ]]; then
   echo ""
   echo "   [--] Tag Version:"
   echo "          git tag -a ${val} -m \"version ${val}\""
-  $push && echo "          git push origin refs/tags/${val}"
+  $push && echo "          git push public refs/tags/${val}"
   echo ""
 
   read -p "   [??] Does this look right to you [y/N]? " -n 1 -r
@@ -199,7 +199,7 @@ elif [[ "${com}" == "set" ]]; then
   header "Tag Version"
   git tag -a "${val}" -m "version ${val}"
   assertExitCode
-  git push origin refs/tags/"${val}"
+  git push public refs/tags/"${val}"
   assertExitCode
 fi
 
