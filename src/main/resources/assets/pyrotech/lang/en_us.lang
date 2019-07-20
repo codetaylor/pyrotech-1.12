@@ -383,6 +383,8 @@ gui.pyrotech.jei.info.refractory=Refractory burning is similar to pit burning wi
 #------------------------------------------------------------------------------
 
 item.pyrotech.book.name=Pyrotechnic Esoterica
+gui.pyrotech.book.landing_text=Welcome to the official, VFD sanctioned guide to surviving in the wilderness by starting fires, rather than putting them out.$(p)These pages will instruct you on how to survive, gather, adapt, innovate, accelerate, and bloom in your new role as a volunteer.
+gui.pyrotech.book.subtitle=Survival by Fire
 
 #------------------------------------------------------------------------------
 # Advancements

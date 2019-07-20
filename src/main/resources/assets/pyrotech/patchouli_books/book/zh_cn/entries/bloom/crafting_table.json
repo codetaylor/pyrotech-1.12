@@ -1,0 +1,13 @@
+{
+  "name": "工作台",
+  "icon": "minecraft:crafting_table",
+  "category": "bloom",
+  "advancement": "pyrotech:iron_ingot",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:crafting_table",
+      "text": ""
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "石锤",
+  "icon": "pyrotech:stone_hammer",
+  "category": "innovate_stone",
+  "advancement": "pyrotech:granite_anvil",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:stone_hammer"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_brick",
+        "gather/sticks",
+        "adapt/twine"
+      ]
+    }
+  ]
+}
