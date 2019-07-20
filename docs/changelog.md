@@ -4,7 +4,7 @@
       * CrT Bloomery recipes with an oredict as input may fail to deduce the lang key from the input if the oredict is empty during script execution. To solve this, simply supply a lang key with the recipe builder. This issue has been resolved in-dev as a part of the inheritance overhaul for `1.3.0`.
 
   * Added:
-      * Chinese translation for guidebook! Thank you Snownee & nitu2003! [(#135 Snownee & nitu2003)](https://github.com/codetaylor/pyrotech/pull/135)
+      * Chinese translation for guidebook! Thank you Snownee and Taskeren! [(#135 Snownee, Taskeren)](https://github.com/codetaylor/pyrotech/pull/135)
 
   * Fixed:
       * Crash on startup | ArrayIndexOutOfBoundsException [(#133)](https://github.com/codetaylor/pyrotech/issues/133)
