@@ -62,6 +62,13 @@
 
 ---
 
+1.2.9
+
+  * Fixed:
+      * Crash when other mods throw an exception during a call to their block's `Block#getItem` method [(#139)](https://github.com/codetaylor/pyrotech/issues/139)
+
+---
+
 1.2.8
 
   * Notes:
