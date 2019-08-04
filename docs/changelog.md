@@ -51,6 +51,7 @@
     * Hammering the bloom sometimes destroys nearby water sources [(#113)](https://github.com/codetaylor/pyrotech/issues/113)
     * Can put Cooked Fish back into the Campfire to produce Cooked Fish [(#114)](https://github.com/codetaylor/pyrotech/issues/114)
     * Some recipes can't be removed [(#110)](https://github.com/codetaylor/pyrotech/issues/110)
+    * Pit Burn remove method removing recipes added by CrT also [(#141)](https://github.com/codetaylor/pyrotech/issues/141)
 
   * Changed:
     * Combustion Machine smoke particles are now used to indicate that the machine is burning fuel instead of indicating that the machine is actively working on a recipe [(#22)](https://github.com/codetaylor/pyrotech/issues/22)

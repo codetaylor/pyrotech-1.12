@@ -55,29 +55,6 @@ public class ZenBurn {
     CraftTweaker.LATE_ACTIONS.add(new RemoveAllRecipesAction<>(ModuleTechRefractory.Registries.BURN_RECIPE, "burn"));
   }
 
-  public static class RemoveRecipe
-      implements IAction {
-
-    private final Ingredient output;
-
-    public RemoveRecipe(Ingredient output) {
-
-      this.output = output;
-    }
-
-    @Override
-    public void apply() {
-
-      PitBurnRecipe.removeRecipes(this.output);
-    }
-
-    @Override
-    public String describe() {
-
-      return "Removing pit burn recipes for " + this.output;
-    }
-  }
-
   private final String name;
   private final PitBurnRecipeBuilder builder;
 
@@ -215,7 +192,54 @@ public class ZenBurn {
   @ZenMethod
   public void register() {
 
-    ModuleTechRefractory.Registries.BURN_RECIPE.register(this.builder.create(new ResourceLocation("crafttweaker", this.name)));
+    PitBurnRecipe recipe = this.builder.create(new ResourceLocation("crafttweaker", this.name));
+    CraftTweaker.LATE_ACTIONS.add(new AddRecipe(recipe));
+  }
+
+  public static class RemoveRecipe
+      implements IAction {
+
+    private final Ingredient output;
+
+    public RemoveRecipe(Ingredient output) {
+
+      this.output = output;
+    }
+
+    @Override
+    public void apply() {
+
+      PitBurnRecipe.removeRecipes(this.output);
+    }
+
+    @Override
+    public String describe() {
+
+      return "Removing pit burn recipes for " + this.output;
+    }
+  }
+
+  public static class AddRecipe
+      implements IAction {
+
+    private final PitBurnRecipe recipe;
+
+    public AddRecipe(PitBurnRecipe recipe) {
+
+      this.recipe = recipe;
+    }
+
+    @Override
+    public void apply() {
+
+      ModuleTechRefractory.Registries.BURN_RECIPE.register(this.recipe);
+    }
+
+    @Override
+    public String describe() {
+
+      return "Adding pit burn recipe for " + this.recipe.getOutput();
+    }
   }
 
 }
