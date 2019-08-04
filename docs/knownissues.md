@@ -1,3 +1,13 @@
+### Shoulder Surfing Reloaded
+
+**Issue: Crash**
+
+Affected MC versions: `1.12.2`
+
+Pyrotech is currently incompatible with Shoulder Surfing Reloaded.
+
+For more information, see [this issue](https://github.com/codetaylor/pyrotech/issues/2).
+
 ### Thermal Expansion
 
 **Issue: Missing Recipes**
