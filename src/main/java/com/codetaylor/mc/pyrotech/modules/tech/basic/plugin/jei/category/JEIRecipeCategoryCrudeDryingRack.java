@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category;
 
 import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.PyrotechRecipeCategory;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperDryingRack;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.JEIRecipeWrapperCrudeDryingRack;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 
 public class JEIRecipeCategoryCrudeDryingRack
-    extends PyrotechRecipeCategory<JEIRecipeWrapperDryingRack> {
+    extends PyrotechRecipeCategory<JEIRecipeWrapperCrudeDryingRack> {
 
   public static final String UID = ModuleTechBasic.MOD_ID + ".crude.drying";
 
@@ -71,7 +71,7 @@ public class JEIRecipeCategoryCrudeDryingRack
   }
 
   @Override
-  public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperDryingRack recipeWrapper, IIngredients ingredients) {
+  public void setRecipe(IRecipeLayout recipeLayout, JEIRecipeWrapperCrudeDryingRack recipeWrapper, IIngredients ingredients) {
 
     super.setRecipe(recipeLayout, recipeWrapper, ingredients);
 

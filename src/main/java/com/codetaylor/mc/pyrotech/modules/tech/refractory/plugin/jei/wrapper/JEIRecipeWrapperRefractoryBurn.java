@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.jei.wrapper;
 
 import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.JEIRecipeWrapperTimed;
+import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
@@ -103,5 +104,11 @@ public class JEIRecipeWrapperRefractoryBurn
   public ResourceLocation getRegistryName() {
 
     return this.registryName;
+  }
+
+  @Override
+  protected int getRecipeTime(IRecipeTimed recipe) {
+
+    return (int) (super.getRecipeTime(recipe) * ModuleTechRefractoryConfig.REFRACTORY.BASE_RECIPE_DURATION_MODIFIER);
   }
 }

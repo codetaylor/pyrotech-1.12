@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.library.spi.plugin.jei;
 
 import com.codetaylor.mc.athenaeum.util.StringHelper;
-import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.IPyrotechRecipeWrapper;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import net.minecraft.client.Minecraft;
 
@@ -14,7 +13,12 @@ public abstract class JEIRecipeWrapperTimed
 
   public JEIRecipeWrapperTimed(IRecipeTimed recipe) {
 
-    this.timeString = StringHelper.ticksToHMS(recipe.getTimeTicks());
+    this.timeString = StringHelper.ticksToHMS(this.getRecipeTime(recipe));
+  }
+
+  protected int getRecipeTime(IRecipeTimed recipe) {
+
+    return recipe.getTimeTicks();
   }
 
   @Override
