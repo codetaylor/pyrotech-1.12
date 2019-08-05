@@ -7,10 +7,13 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.IClientCommand;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 
 public class ClientCommandLang
     extends CommandBase
@@ -46,7 +49,12 @@ public class ClientCommandLang
 
     if (!heldItemMainhand.isEmpty()) {
       String unlocalizedName = heldItemMainhand.getUnlocalizedName();
-      sender.sendMessage(new TextComponentTranslation(unlocalizedName));
+      sender.sendMessage(new TextComponentString(unlocalizedName));
+
+      StringSelection contents = new StringSelection(unlocalizedName);
+      Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
+      Clipboard systemClipboard = defaultToolkit.getSystemClipboard();
+      systemClipboard.setContents(contents, null);
     }
   }
 }

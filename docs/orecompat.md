@@ -56,7 +56,7 @@ The `slagColor` is a hexidecimal string without the `#`. This defines the color 
 The `langKey` entries are strings in the format `(domain):(key)`. The domain is added by the generator and is useful for determining which mod a lang key came from. The domain is purely optional if you're adding entries manually. Entries in the format `(key)` will work just fine. The first valid lang key found in the list will be the lang key used for the generated content.
 
 !!! hint
-    Use the command, `/ptlang`, to reveal the lang key for a held item.
+    Use the command, `/ptlang`, to copy the lang key for a held item to the clipboard.
 
 The `output` list defines a recipe output for the generated recipes. These strings are in the familiar item string format `(domain):(path):(meta)`. Again, like the lang key list, the first item from the list that is valid will be used for the output of generated recipes. You can select which item you want to use by moving it to the top of the list or deleting all other entries.
 

@@ -1,3 +1,13 @@
+1.3.1
+
+  * Added:
+    * `/ptlang` command will now copy the lang key to the clipboard
+
+  * Fixed:
+    * `/ptlang` command uses the wrong text component
+
+---
+
 1.3.0
 
   * Notes:

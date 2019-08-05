@@ -4,4 +4,4 @@ Export all isometric block and item renders from this mod to a subfolder of your
 
 ### /ptlang
 
-Display the lang key (unlocalized name) of a held item.
+Display the lang key (unlocalized name) of a held item and copy it to the clipboard.
