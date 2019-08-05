@@ -7,6 +7,8 @@ pages:
 - Modules: modules.md
 - Commands: commands.md
 - Dropt Rules: droptrules.md
+- Ore Compat: orecompat.md
+- Wood Compat: woodcompat.md
 - Devices:
   - Recipe Inheritance: inheritance.md
   - Drying Racks: dryingracks.md
