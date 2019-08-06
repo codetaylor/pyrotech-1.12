@@ -2,19 +2,19 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
 import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneKilnRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickKilnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileKilnBase;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
 
 public class TileBrickKiln
-    extends TileKilnBase<StoneKilnRecipe> {
+    extends TileKilnBase<BrickKilnRecipe> {
 
   @Override
-  public StoneKilnRecipe getRecipe(ItemStack itemStack) {
+  public BrickKilnRecipe getRecipe(ItemStack itemStack) {
 
-    return StoneKilnRecipe.getRecipe(itemStack);
+    return BrickKilnRecipe.getRecipe(itemStack);
   }
 
   @Override

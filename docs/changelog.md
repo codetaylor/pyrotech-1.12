@@ -6,6 +6,7 @@
   * Fixed:
     * `/ptlang` command uses the wrong text component
     * Base duration modifier for Pit Kiln, Crude / Drying Rack, Soaking Pot, Pit / Refractory Burn not reflected in JEI [(#144)](https://github.com/codetaylor/pyrotech/issues/144)
+    * Refractory Kiln uses Stone Kiln recipes instead of its own recipes [(#144)](https://github.com/codetaylor/pyrotech/issues/144)
 
 ---
 
