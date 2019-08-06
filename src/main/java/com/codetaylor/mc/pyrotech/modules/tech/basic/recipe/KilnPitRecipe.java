@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.math.MathHelper;
@@ -68,7 +69,7 @@ public class KilnPitRecipe
   @Override
   public int getTimeTicks() {
 
-    return this.burnTimeTicks;
+    return (int) Math.max(1, this.burnTimeTicks * ModuleTechBasicConfig.PIT_KILN.BASE_RECIPE_DURATION_MODIFIER);
   }
 
   public float getFailureChance() {

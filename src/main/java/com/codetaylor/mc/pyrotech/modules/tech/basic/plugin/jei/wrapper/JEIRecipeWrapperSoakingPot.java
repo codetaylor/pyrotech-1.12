@@ -57,10 +57,4 @@ public class JEIRecipeWrapperSoakingPot
 
     return this.registryName;
   }
-
-  @Override
-  protected int getRecipeTime(IRecipeTimed recipe) {
-
-    return (int) (super.getRecipeTime(recipe) * ModuleTechBasicConfig.SOAKING_POT.BASE_RECIPE_DURATION_MODIFIER);
-  }
 }

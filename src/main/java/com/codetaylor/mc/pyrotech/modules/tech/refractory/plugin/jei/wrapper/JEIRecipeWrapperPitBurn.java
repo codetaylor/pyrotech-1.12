@@ -98,10 +98,4 @@ public class JEIRecipeWrapperPitBurn
 
     return this.registryName;
   }
-
-  @Override
-  protected int getRecipeTime(IRecipeTimed recipe) {
-
-    return (int) (super.getRecipeTime(recipe) * ModuleTechRefractoryConfig.REFRACTORY.BASE_RECIPE_DURATION_MODIFIER);
-  }
 }

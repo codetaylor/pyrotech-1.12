@@ -274,7 +274,7 @@ public class TileSoakingPot
 
     if (this.currentRecipe != null) {
 
-      int timeTicks = (int) Math.max(1, this.currentRecipe.getTimeTicks() * ModuleTechBasicConfig.SOAKING_POT.BASE_RECIPE_DURATION_MODIFIER);
+      int timeTicks = Math.max(1, this.currentRecipe.getTimeTicks());
       float increment = 1.0f / timeTicks;
 
       ItemStack itemStack = this.inputStackHandler.getStackInSlot(0);

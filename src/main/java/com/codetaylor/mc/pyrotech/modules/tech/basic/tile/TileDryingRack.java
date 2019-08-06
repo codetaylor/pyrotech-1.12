@@ -62,12 +62,6 @@ public class TileDryingRack
   }
 
   @Override
-  protected double getBaseDurationModifier() {
-
-    return ModuleTechBasicConfig.DRYING_RACK.BASE_RECIPE_DURATION_MODIFIER;
-  }
-
-  @Override
   protected int getSlotCount() {
 
     return 4;

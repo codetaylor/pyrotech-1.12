@@ -1,8 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper;
 
 import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.JEIRecipeWrapperTimed;
-import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.spi.DryingRackRecipeBase;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
@@ -49,11 +47,5 @@ public class JEIRecipeWrapperDryingRack
   public ResourceLocation getRegistryName() {
 
     return this.registryName;
-  }
-
-  @Override
-  protected int getRecipeTime(IRecipeTimed recipe) {
-
-    return (int) (super.getRecipeTime(recipe) * ModuleTechBasicConfig.DRYING_RACK.BASE_RECIPE_DURATION_MODIFIER);
   }
 }

@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
@@ -70,7 +71,7 @@ public class SoakingPotRecipe
   @Override
   public int getTimeTicks() {
 
-    return this.timeTicks;
+    return (int) Math.max(1, this.timeTicks * ModuleTechBasicConfig.SOAKING_POT.BASE_RECIPE_DURATION_MODIFIER);
   }
 
   public boolean matches(ItemStack inputItem, FluidStack inputFluid) {

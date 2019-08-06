@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
+import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -87,7 +88,7 @@ public class PitBurnRecipe
   @Override
   public int getTimeTicks() {
 
-    return this.totalBurnTimeTicks;
+    return (int) Math.max(1, this.totalBurnTimeTicks * ModuleTechRefractoryConfig.REFRACTORY.BASE_RECIPE_DURATION_MODIFIER);
   }
 
   @Nullable

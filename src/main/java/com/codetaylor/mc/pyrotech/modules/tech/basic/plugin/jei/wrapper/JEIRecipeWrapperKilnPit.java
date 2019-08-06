@@ -1,11 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper;
 
-import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
+import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.JEIRecipeWrapperTimed;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.KilnPitRecipe;
-import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.JEIRecipeWrapperTimed;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.client.Minecraft;
@@ -67,11 +65,5 @@ public class JEIRecipeWrapperKilnPit
   public ResourceLocation getRegistryName() {
 
     return this.registryName;
-  }
-
-  @Override
-  protected int getRecipeTime(IRecipeTimed recipe) {
-
-    return (int) (super.getRecipeTime(recipe) * ModuleTechBasicConfig.PIT_KILN.BASE_RECIPE_DURATION_MODIFIER);
   }
 }
