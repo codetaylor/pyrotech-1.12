@@ -1,3 +1,10 @@
+1.3.2
+
+  * Fixed:
+    * Grass Path block should drop dirt and grass clumps [(#146)](https://github.com/codetaylor/pyrotech/issues/146)
+
+---
+
 1.3.1
 
   * Added:

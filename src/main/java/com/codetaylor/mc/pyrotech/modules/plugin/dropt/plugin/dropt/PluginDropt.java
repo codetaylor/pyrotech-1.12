@@ -73,6 +73,7 @@ public class PluginDropt {
     String mycelium = item("minecraft", "mycelium");
     String dirt = item("minecraft", "dirt", BlockDirt.DirtType.DIRT.getMetadata());
     String grass = item("minecraft", "grass");
+    String grassPath = item("minecraft", "grass_path");
     String gravel = item("minecraft", "gravel");
     String tallGrassAny = item("minecraft", "tallgrass", OreDictionary.WILDCARD_VALUE);
     String coalOre = item("minecraft", "coal_ore");
@@ -202,7 +203,8 @@ public class PluginDropt {
       // Drops dirt clumps
       list.add(rule()
           .matchBlocks(new String[]{
-              grass
+              grass,
+              grassPath
           })
           .matchHarvester(harvester()
               .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
@@ -216,7 +218,8 @@ public class PluginDropt {
       // Drops dirt clumps and grass clumps
       list.add(rule()
           .matchBlocks(new String[]{
-              grass
+              grass,
+              grassPath
           })
           .matchHarvester(harvester()
               .type(EnumHarvesterType.PLAYER)
@@ -234,7 +237,8 @@ public class PluginDropt {
       // Drops dirt clumps and grass clumps
       list.add(rule()
           .matchBlocks(new String[]{
-              grass
+              grass,
+              grassPath
           })
           .matchHarvester(harvester()
               .type(EnumHarvesterType.PLAYER)
@@ -253,7 +257,8 @@ public class PluginDropt {
       // Adds grass clumps to drops
       list.add(rule()
           .matchBlocks(new String[]{
-              grass
+              grass,
+              grassPath
           })
           .matchHarvester(harvester()
               .type(EnumHarvesterType.PLAYER)
