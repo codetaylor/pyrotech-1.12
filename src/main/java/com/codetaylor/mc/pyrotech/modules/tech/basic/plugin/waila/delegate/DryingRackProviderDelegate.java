@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate;
 import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.spi.DryingRackRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileDryingRackBase;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
@@ -36,7 +37,7 @@ public class DryingRackProviderDelegate
 
         // Display input item and recipe output.
 
-        DryingRackRecipe recipe = DryingRackRecipe.getRecipe(inputStack);
+        DryingRackRecipeBase recipe = tile.getRecipe(inputStack);
 
         if (recipe != null) {
           ItemStack recipeOutput = recipe.getOutput();

@@ -12,10 +12,12 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockDryingRack;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CrudeDryingRackRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.spi.DryingRackRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileDryingRackBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -44,6 +46,12 @@ public class TileDryingRackCrude
             new ItemStackHandler[]{this.inputStackHandler, this.outputStackHandler}
         )
     };
+  }
+
+  @Override
+  public DryingRackRecipeBase getRecipe(ItemStack itemStack) {
+
+    return CrudeDryingRackRecipe.getRecipe(itemStack);
   }
 
   @Override
@@ -192,7 +200,7 @@ public class TileDryingRackCrude
         return 1;
       }
 
-      return (DryingRackRecipe.getRecipe(player.getHeldItemMainhand()) != null) ? 0 : 1;
+      return (CrudeDryingRackRecipe.getRecipe(player.getHeldItemMainhand()) != null) ? 0 : 1;
     }
   }
 

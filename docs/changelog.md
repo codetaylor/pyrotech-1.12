@@ -1,3 +1,10 @@
+1.3.3
+
+  * Fixed:
+    * Custom CrT drying recipes don't work [(#153)](https://github.com/codetaylor/pyrotech/issues/153)
+
+---
+
 1.3.2
 
   * Fixed:

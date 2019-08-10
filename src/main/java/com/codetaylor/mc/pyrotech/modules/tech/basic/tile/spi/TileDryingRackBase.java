@@ -11,7 +11,7 @@ import com.codetaylor.mc.athenaeum.util.TickCounter;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.spi.DryingRackRecipeBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -197,7 +197,7 @@ public abstract class TileDryingRackBase
       if (this.dryTimeRemaining[slotIndex] == 0) {
         this.initSlotDryTime(slotIndex, -1);
         this.inputStackHandler.extractItem(slotIndex, 64, false);
-        DryingRackRecipe recipe = this.getRecipe(itemStack);
+        DryingRackRecipeBase recipe = this.getRecipe(itemStack);
 
         if (recipe != null) {
           this.outputStackHandler.insertItem(slotIndex, recipe.getOutput(), false);
@@ -221,10 +221,7 @@ public abstract class TileDryingRackBase
 
   protected abstract float getMultiplicativeSpeedModifier();
 
-  private DryingRackRecipe getRecipe(ItemStack itemStack) {
-
-    return DryingRackRecipe.getRecipe(itemStack);
-  }
+  public abstract DryingRackRecipeBase getRecipe(ItemStack itemStack);
 
   private void initSlotDryTime(int slot, int dryTimeTicks) {
 
@@ -363,7 +360,7 @@ public abstract class TileDryingRackBase
   private int getDryTimeTicks(ItemStack itemStack) {
 
     if (!itemStack.isEmpty()) {
-      DryingRackRecipe recipe = this.getRecipe(itemStack);
+      DryingRackRecipeBase recipe = this.getRecipe(itemStack);
 
       if (recipe != null) {
         int durationTicks = recipe.getTimeTicks();
