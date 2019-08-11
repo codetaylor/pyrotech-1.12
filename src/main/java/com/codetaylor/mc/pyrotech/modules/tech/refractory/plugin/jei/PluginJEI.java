@@ -50,7 +50,10 @@ public class PluginJEI
           .filter(burnRecipe -> !burnRecipe.requiresRefractoryBlocks())
           .flatMap(pitBurnRecipe -> Stream.of(pitBurnRecipe.getFailureItems()))
           .collect(Collectors.toList()));
-      registry.addIngredientInfo(outputList, VanillaTypes.ITEM, "gui.pyrotech.jei.info.burn");
+
+      if (!outputList.isEmpty()) {
+        registry.addIngredientInfo(outputList, VanillaTypes.ITEM, "gui.pyrotech.jei.info.burn");
+      }
     }
 
     {
@@ -64,7 +67,10 @@ public class PluginJEI
           .filter(PitBurnRecipe::requiresRefractoryBlocks)
           .flatMap(pitBurnRecipe -> Stream.of(pitBurnRecipe.getFailureItems()))
           .collect(Collectors.toList()));
-      registry.addIngredientInfo(outputList, VanillaTypes.ITEM, "gui.pyrotech.jei.info.refractory");
+
+      if (!outputList.isEmpty()) {
+        registry.addIngredientInfo(outputList, VanillaTypes.ITEM, "gui.pyrotech.jei.info.refractory");
+      }
     }
 
     // --- Pit Burn

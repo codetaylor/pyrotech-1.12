@@ -1,3 +1,10 @@
+1.3.4
+
+  * Fixed:
+    * JEI plugin for Refractory module will fail to load under certain conditions [(#154)](https://github.com/codetaylor/pyrotech/issues/154)
+
+---
+
 1.3.3
 
   * Fixed:
