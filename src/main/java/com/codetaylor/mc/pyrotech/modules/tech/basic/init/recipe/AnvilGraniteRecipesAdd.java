@@ -408,7 +408,7 @@ public class AnvilGraniteRecipesAdd {
 
     // Iron Ingot from Iron Block
     registry.register(new AnvilRecipe(
-        new ItemStack(Items.IRON_INGOT),
+        new ItemStack(Items.IRON_INGOT, 9),
         Ingredient.fromStacks(new ItemStack(Blocks.IRON_BLOCK)),
         8,
         AnvilRecipe.EnumType.PICKAXE,
@@ -426,7 +426,7 @@ public class AnvilGraniteRecipesAdd {
 
     // Gold Ingot from Gold Block
     registry.register(new AnvilRecipe(
-        new ItemStack(Items.GOLD_INGOT),
+        new ItemStack(Items.GOLD_INGOT, 9),
         Ingredient.fromStacks(new ItemStack(Blocks.GOLD_BLOCK)),
         8,
         AnvilRecipe.EnumType.PICKAXE,

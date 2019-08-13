@@ -1,3 +1,10 @@
+1.3.5
+
+  * Fixed:
+    * Block of iron and gold only give 1 ingot when broken on an anvil [(#158)](https://github.com/codetaylor/pyrotech/issues/158)
+
+---
+
 1.3.4
 
   * Fixed:
