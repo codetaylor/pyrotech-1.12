@@ -43,7 +43,7 @@ public class BurnPitRecipesAdd {
     registry.register(
         new PitBurnRecipeBuilder(
             new ItemStack(Items.COAL, 1, 1),
-            new BlockMetaMatcher(ModuleCore.Blocks.PILE_WOOD_CHIPS, 8)
+            new BlockMetaMatcher(ModuleCore.Blocks.PILE_WOOD_CHIPS, 0)
         )
             .setBurnStages(4)
             .setTotalBurnTimeTicks(4 * 60 * 20)

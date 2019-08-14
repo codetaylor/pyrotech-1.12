@@ -1,3 +1,10 @@
+1.3.6
+
+  * Fixed:
+    * Wood chip pile doesn't work in a pit burn [(#161)](https://github.com/codetaylor/pyrotech/issues/161)
+
+---
+
 1.3.5
 
   * Fixed:
