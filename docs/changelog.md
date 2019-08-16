@@ -1,3 +1,10 @@
+1.3.7
+
+  * Fixed:
+    * No Cog sound for Mechanical Mulcher [(#162)](https://github.com/codetaylor/pyrotech/issues/162)
+
+---
+
 1.3.6
 
   * Fixed:

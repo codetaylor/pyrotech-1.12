@@ -4,10 +4,7 @@ import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.AABBHelper;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.athenaeum.util.SoundHelper;
+import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
@@ -142,6 +139,8 @@ public class TileMechanicalMulchSpreader
     if (mulchStack.isEmpty()) {
       return 0;
     }
+
+    SoundHelper.playSoundServer(this.world, this.pos, SoundEvents.BLOCK_PISTON_EXTEND, SoundCategory.BLOCKS, 0.5f, RandomHelper.random().nextFloat() * 0.2f + 0.8f);
 
     int[] cogData = this.getCogData(cog);
     int cogRange = cogData[0];
