@@ -2,6 +2,7 @@
 
   * Fixed:
     * No Cog sound for Mechanical Mulcher [(#162)](https://github.com/codetaylor/pyrotech/issues/162)
+    * Worktable.blacklistAllVanillaRecipes() does not remove blacklisted recipes from JEI [(#165)](https://github.com/codetaylor/pyrotech/issues/165)
 
 ---
 

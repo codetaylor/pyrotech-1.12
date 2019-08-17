@@ -165,7 +165,8 @@ public class WorktableRecipe
 
   public static boolean hasBlacklist() {
 
-    return !BLACKLIST.isEmpty()
+    return BLACKLIST_ALL
+        || !BLACKLIST.isEmpty()
         || ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_BLACKLIST.length > 0;
   }
 
@@ -177,7 +178,8 @@ public class WorktableRecipe
 
   public static boolean isBlacklisted(ResourceLocation resourceLocation) {
 
-    return BLACKLIST.contains(resourceLocation)
+    return (BLACKLIST_ALL && !"crafttweaker".equals(resourceLocation.getResourceDomain()))
+        || BLACKLIST.contains(resourceLocation)
         || ArrayHelper.contains(ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_BLACKLIST, resourceLocation.toString());
   }
 
