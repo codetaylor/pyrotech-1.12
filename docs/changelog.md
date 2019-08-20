@@ -1,3 +1,10 @@
+1.3.8
+
+  * Fixed:
+    * Slag glass furnace recipe should be in the bloomery module and not the refractory module
+
+---
+
 1.3.7
 
   * Fixed:

@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tech.refractory.init.recipe;
+package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;

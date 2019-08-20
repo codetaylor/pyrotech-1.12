@@ -18,6 +18,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.SlagInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.BloomeryRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.CompactingBinRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.WitherForgeRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.*;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi.ItemTongsEmptyBase;
@@ -168,6 +169,7 @@ public class ModuleTechBloomery
 
     super.onRegisterRecipesEvent(event);
 
+    VanillaFurnaceRecipesAdd.apply();
     BloomeryRecipesAdd.applyCompatRecipes(this.getConfigurationDirectory().toPath(), Registries.BLOOMERY_RECIPE);
     WitherForgeRecipesAdd.apply(Registries.WITHER_FORGE_RECIPE);
 

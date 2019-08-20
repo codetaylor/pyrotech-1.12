@@ -5,7 +5,6 @@ import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaFurnaceRecipesRemove;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockActivePile;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockPitAsh;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarCollector;
@@ -18,7 +17,6 @@ import com.codetaylor.mc.pyrotech.modules.tech.refractory.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.init.FluidInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.init.RegistryInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.init.recipe.BurnPitRecipesAdd;
-import com.codetaylor.mc.pyrotech.modules.tech.refractory.init.recipe.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -128,7 +126,6 @@ public class ModuleTechRefractory
     super.onRegisterRecipesEvent(event);
 
     BurnPitRecipesAdd.apply(ModuleTechRefractory.Registries.BURN_RECIPE);
-    VanillaFurnaceRecipesAdd.apply();
   }
 
   @Override
