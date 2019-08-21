@@ -11,6 +11,8 @@
         * Config value: `module.tech.Machine.cfg` -> `SAWMILL_BLADES` -> `INDESTRUCTIBLE_SAWBLADES`
     * Config option to set Cogs as indestructible [(#98)](https://github.com/codetaylor/pyrotech/issues/98)
         * Config value: `module.tech.Machine.cfg` -> `COGS` -> `INDESTRUCTIBLE_COGS`
+    * Config option to set Chopping Block as indestructible [(#98)](https://github.com/codetaylor/pyrotech/issues/98)
+        * Config value: `module.tech.Basic.cfg` -> `CHOPPING_BLOCK` -> `USES_DURABILITY`
 
 ---
 

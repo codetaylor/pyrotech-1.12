@@ -386,7 +386,8 @@ public class TileChoppingBlock
         // remaining until next damage. If the damage reaches the threshold,
         // destroy the block and drop its contents.
 
-        if (tile.getDurabilityUntilNextDamage() <= 1) {
+        if (ModuleTechBasicConfig.CHOPPING_BLOCK.USES_DURABILITY
+            && tile.getDurabilityUntilNextDamage() <= 1) {
 
           tile.setDurabilityUntilNextDamage(ModuleTechBasicConfig.CHOPPING_BLOCK.CHOPS_PER_DAMAGE);
 
@@ -451,7 +452,9 @@ public class TileChoppingBlock
         // Decrement the durability until next damage and progress or
         // complete the recipe.
 
-        tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);
+        if (ModuleTechBasicConfig.CHOPPING_BLOCK.USES_DURABILITY) {
+          tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);
+        }
 
         ItemStack heldItem = player.getHeldItem(hand);
         int harvestLevel = heldItem.getItem().getHarvestLevel(heldItem, "axe", player, null);

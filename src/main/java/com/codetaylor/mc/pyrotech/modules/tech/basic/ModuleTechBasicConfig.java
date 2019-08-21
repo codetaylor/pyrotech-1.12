@@ -722,6 +722,12 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
+
+    @Config.Comment({
+        "Set to false to prevent the device from wearing out.",
+        "Default: " + true
+    })
+    public boolean USES_DURABILITY = true;
   }
 
   // ---------------------------------------------------------------------------
