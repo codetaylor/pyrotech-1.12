@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.pyrotech.library.Stages;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.config.Config;
@@ -156,6 +157,23 @@ public class ModuleTechMachineConfig {
     })
     @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int OBSIDIAN_DURABILITY = 1345;
+
+    @Config.Comment({
+        "Sawblade items listed here will not be damaged by the Sawmills",
+        "String format is (domain):(path)"
+    })
+    public String[] INDESTRUCTIBLE_SAWBLADES = new String[0];
+  }
+
+  public static boolean isSawbladeIndestructible(Item item) {
+
+    ResourceLocation resourceLocation = item.getRegistryName();
+
+    if (resourceLocation == null) {
+      return false;
+    }
+
+    return ArrayHelper.contains(SAWMILL_BLADES.INDESTRUCTIBLE_SAWBLADES, resourceLocation.toString());
   }
 
   // ---------------------------------------------------------------------------

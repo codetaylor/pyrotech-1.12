@@ -1,8 +1,14 @@
 1.4.0
 
+  * Translators:
+    * The following lang keys were added to all lang files with en_us values:
+        * gui.pyrotech.tooltip.durability.indestructible
+
   * Added:
     * Cooldown to thrown rocks / clumps [(#157)](https://github.com/codetaylor/pyrotech/issues/157)
         * Config value: `core.cfg` -> `ROCKS` -> `THROW_COOLDOWN_TICKS`
+    * Config option to set Sawmill blades as indestructible [(#98)](https://github.com/codetaylor/pyrotech/issues/98)
+        * Config value: `module.tech.Machine.cfg` -> `SAWMILL_BLADES` -> `INDESTRUCTIBLE_SAWBLADES`
 
 ---
 

@@ -239,7 +239,8 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
       ItemStack blade = this.bladeStackHandler.extractItem(0, 1, false);
 
-      if (blade.attemptDamageItem(input.getCount(), this.world.rand, null)) {
+      if (!ModuleTechMachineConfig.isSawbladeIndestructible(blade.getItem())
+          && blade.attemptDamageItem(input.getCount(), this.world.rand, null)) {
         this.world.playSound(
             null,
             this.pos,

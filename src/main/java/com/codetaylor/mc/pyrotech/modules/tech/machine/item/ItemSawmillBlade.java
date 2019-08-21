@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.item;
 
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,11 +36,16 @@ public class ItemSawmillBlade
   @Override
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 
-    int damage = this.getDamage(stack);
+    if (ModuleTechMachineConfig.isSawbladeIndestructible(stack.getItem())) {
+      tooltip.add(I18n.translateToLocal("gui.pyrotech.tooltip.durability.indestructible"));
 
-    if (damage == 0) {
-      int maxDamage = this.getMaxDamage(stack);
-      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
+    } else {
+      int damage = this.getDamage(stack);
+
+      if (damage == 0) {
+        int maxDamage = this.getMaxDamage(stack);
+        tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
+      }
     }
   }
 }
