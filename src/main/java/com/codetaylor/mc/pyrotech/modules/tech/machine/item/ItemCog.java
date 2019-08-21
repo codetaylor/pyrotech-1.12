@@ -91,11 +91,16 @@ public class ItemCog
       tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.extended.shift", Reference.Tooltip.COLOR_EXTENDED_INFO, TextFormatting.GRAY));
     }
 
-    int damage = this.getDamage(stack);
+    if (ModuleTechMachineConfig.isCogIndestructible(stack.getItem())) {
+      tooltip.add(I18n.translateToLocal("gui.pyrotech.tooltip.durability.indestructible"));
 
-    if (damage == 0) {
-      int maxDamage = this.getMaxDamage(stack);
-      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
+    } else {
+      int damage = this.getDamage(stack);
+
+      if (damage == 0) {
+        int maxDamage = this.getMaxDamage(stack);
+        tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
+      }
     }
   }
 }

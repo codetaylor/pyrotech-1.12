@@ -12,6 +12,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.InteractionCogRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemCog;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneHopper;
@@ -161,8 +162,9 @@ public abstract class TileCogWorkerBase
 
         ItemStack actualCog = this.cogStackHandler.extractItem(0, 1, false);
 
-        if (actualCog.attemptDamageItem(cogDamage, RandomHelper.random(), null)
-            || actualCog.getItemDamage() == actualCog.getMaxDamage()) {
+        if (!ModuleTechMachineConfig.isCogIndestructible(actualCog.getItem())
+            && (actualCog.attemptDamageItem(cogDamage, RandomHelper.random(), null)
+            || actualCog.getItemDamage() == actualCog.getMaxDamage())) {
 
           SoundHelper.playSoundServer(this.world, this.pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS);
 

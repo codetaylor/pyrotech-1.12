@@ -239,6 +239,23 @@ public class ModuleTechMachineConfig {
     })
     @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
     public int OBSIDIAN_DURABILITY = (int) ((64 * 256) * 0.8968);
+
+    @Config.Comment({
+        "Sawblade items listed here will not be damaged by the Sawmills",
+        "String format is (domain):(path)"
+    })
+    public String[] INDESTRUCTIBLE_COGS = new String[0];
+  }
+
+  public static boolean isCogIndestructible(Item item) {
+
+    ResourceLocation resourceLocation = item.getRegistryName();
+
+    if (resourceLocation == null) {
+      return false;
+    }
+
+    return ArrayHelper.contains(COGS.INDESTRUCTIBLE_COGS, resourceLocation.toString());
   }
 
   // ---------------------------------------------------------------------------

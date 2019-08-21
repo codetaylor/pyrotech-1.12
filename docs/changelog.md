@@ -9,6 +9,8 @@
         * Config value: `core.cfg` -> `ROCKS` -> `THROW_COOLDOWN_TICKS`
     * Config option to set Sawmill blades as indestructible [(#98)](https://github.com/codetaylor/pyrotech/issues/98)
         * Config value: `module.tech.Machine.cfg` -> `SAWMILL_BLADES` -> `INDESTRUCTIBLE_SAWBLADES`
+    * Config option to set Cogs as indestructible [(#98)](https://github.com/codetaylor/pyrotech/issues/98)
+        * Config value: `module.tech.Machine.cfg` -> `COGS` -> `INDESTRUCTIBLE_COGS`
 
 ---
 
