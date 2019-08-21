@@ -1,3 +1,11 @@
+1.4.0
+
+  * Added:
+    * Cooldown to thrown rocks / clumps [(#157)](https://github.com/codetaylor/pyrotech/issues/157)
+        * Config value: `core.cfg` -> `ROCKS` -> `THROW_COOLDOWN_TICKS`
+
+---
+
 1.3.8
 
   * Fixed:

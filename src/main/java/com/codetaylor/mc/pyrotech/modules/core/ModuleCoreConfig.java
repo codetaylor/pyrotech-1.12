@@ -136,6 +136,21 @@ public class ModuleCoreConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Rocks
+  // ---------------------------------------------------------------------------
+
+  public static Rocks ROCKS = new Rocks();
+
+  public static class Rocks {
+
+    @Config.Comment({
+        "Defines the number of ticks a player must wait between throwing rocks / clumps.",
+        "Default: " + 10
+    })
+    public int THROW_COOLDOWN_TICKS = 10;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Food
   // ---------------------------------------------------------------------------
 

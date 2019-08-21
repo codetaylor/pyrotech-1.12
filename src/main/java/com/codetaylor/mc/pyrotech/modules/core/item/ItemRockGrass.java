@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.core.item;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.entity.EntityRockGrass;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,6 +42,11 @@ public class ItemRockGrass
     }
 
     world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+
+    if (ModuleCoreConfig.ROCKS.THROW_COOLDOWN_TICKS > 0) {
+      player.getCooldownTracker().setCooldown(this, ModuleCoreConfig.ROCKS.THROW_COOLDOWN_TICKS);
+      player.getCooldownTracker().setCooldown(ModuleCore.Items.ROCK, ModuleCoreConfig.ROCKS.THROW_COOLDOWN_TICKS);
+    }
 
     if (!world.isRemote) {
       EntityRockGrass entity = new EntityRockGrass(world, player, itemstack.getMetadata());

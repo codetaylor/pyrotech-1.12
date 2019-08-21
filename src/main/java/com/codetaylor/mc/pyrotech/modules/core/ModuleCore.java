@@ -343,6 +343,9 @@ public class ModuleCore
   @GameRegistry.ObjectHolder(ModuleCore.MOD_ID)
   public static class Items {
 
+    @GameRegistry.ObjectHolder(BlockRock.NAME)
+    public static final ItemRock ROCK;
+
     @GameRegistry.ObjectHolder(BlockRockGrass.NAME)
     public static final ItemRockGrass ROCK_GRASS;
 
@@ -407,6 +410,7 @@ public class ModuleCore
     public static final ItemBook BOOK;
 
     static {
+      ROCK = null;
       ROCK_GRASS = null;
       MATERIAL = null;
       REFRACTORY_DOOR = null;
