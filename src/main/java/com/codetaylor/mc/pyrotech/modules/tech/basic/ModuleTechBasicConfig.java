@@ -535,6 +535,12 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
+
+    @Config.Comment({
+        "Set to false to prevent the device from wearing out.",
+        "Default: " + true
+    })
+    public boolean USE_DURABILITY = true;
   }
 
   // ---------------------------------------------------------------------------
@@ -600,6 +606,12 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble(min = 0)
     public double INHERITED_GRANITE_ANVIL_RECIPE_HIT_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Set to false to prevent the device from wearing out.",
+        "Default: " + true
+    })
+    public boolean USE_DURABILITY = true;
   }
 
   // ---------------------------------------------------------------------------

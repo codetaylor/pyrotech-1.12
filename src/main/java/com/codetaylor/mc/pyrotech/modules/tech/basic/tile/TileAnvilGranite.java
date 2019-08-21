@@ -68,6 +68,12 @@ public class TileAnvilGranite
     return ModuleTechBasicConfig.GRANITE_ANVIL.MINIMUM_HUNGER_TO_USE;
   }
 
+  @Override
+  public boolean useDurability() {
+
+    return ModuleTechBasicConfig.GRANITE_ANVIL.USE_DURABILITY;
+  }
+
   @Nonnull
   @Override
   protected BlockAnvilBase getBlock() {

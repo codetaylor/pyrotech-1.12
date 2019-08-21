@@ -65,7 +65,9 @@ public class BloomAnvilRecipe
   @Override
   public void applyDamage(World world, TileAnvilBase tile) {
 
-    tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - tile.getBloomAnvilDamagePerHit());
+    if (tile.useDurability()) {
+      tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - tile.getBloomAnvilDamagePerHit());
+    }
     BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModuleTechBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL);
   }
 

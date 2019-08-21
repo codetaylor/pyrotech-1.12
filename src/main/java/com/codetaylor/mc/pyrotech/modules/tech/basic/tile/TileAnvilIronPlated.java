@@ -68,6 +68,12 @@ public class TileAnvilIronPlated
     return ModuleTechBasicConfig.IRONCLAD_ANVIL.MINIMUM_HUNGER_TO_USE;
   }
 
+  @Override
+  public boolean useDurability() {
+
+    return ModuleTechBasicConfig.IRONCLAD_ANVIL.USE_DURABILITY;
+  }
+
   @Nonnull
   @Override
   protected BlockAnvilBase getBlock() {

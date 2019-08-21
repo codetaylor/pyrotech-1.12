@@ -164,6 +164,8 @@ public abstract class TileAnvilBase
 
   public abstract AnvilRecipe.EnumTier getRecipeTier();
 
+  public abstract boolean useDurability();
+
   @Nonnull
   protected abstract BlockAnvilBase getBlock();
 
@@ -391,7 +393,8 @@ public abstract class TileAnvilBase
         // remaining until next damage. If the damage reaches the threshold,
         // destroy the block and drop its contents.
 
-        if (tile.getDurabilityUntilNextDamage() <= 1) {
+        if (tile.useDurability()
+            && tile.getDurabilityUntilNextDamage() <= 1) {
 
           tile.setDurabilityUntilNextDamage(tile.getHitsPerDamage());
 
@@ -425,7 +428,7 @@ public abstract class TileAnvilBase
           if (isExtendedRecipe) {
             ((AnvilRecipe.IExtendedRecipe) recipe).applyDamage(world, tile);
 
-          } else {
+          } else if (tile.useDurability()) {
             tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);
           }
 

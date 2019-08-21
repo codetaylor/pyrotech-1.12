@@ -13,6 +13,9 @@
         * Config value: `module.tech.Machine.cfg` -> `COGS` -> `INDESTRUCTIBLE_COGS`
     * Config option to set Chopping Block as indestructible [(#98)](https://github.com/codetaylor/pyrotech/issues/98)
         * Config value: `module.tech.Basic.cfg` -> `CHOPPING_BLOCK` -> `USES_DURABILITY`
+    * Config option to set anvils as indestructible [(#98)](https://github.com/codetaylor/pyrotech/issues/98)
+        * Config value: `module.tech.Basic.cfg` -> `GRANITE_ANVIL` -> `USES_DURABILITY`
+        * Config value: `module.tech.Basic.cfg` -> `IRONCLAD_ANVIL` -> `USES_DURABILITY`
 
 ---
 
