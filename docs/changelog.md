@@ -16,6 +16,8 @@
     * Config option to set anvils as indestructible [(#98)](https://github.com/codetaylor/pyrotech/issues/98)
         * Config value: `module.tech.Basic.cfg` -> `GRANITE_ANVIL` -> `USES_DURABILITY`
         * Config value: `module.tech.Basic.cfg` -> `IRONCLAD_ANVIL` -> `USES_DURABILITY`
+    * Pyrotech will now scan loot tables and replace `Iron Ingot` with `Iron Ore` [(#102)](https://github.com/codetaylor/pyrotech/issues/102)
+        * Config value: `core.cfg` -> `TWEAKS` -> `REPLACE_IRON_INGOTS_WITH_IRON_ORE`
 
 ---
 

@@ -36,6 +36,14 @@ public class ModuleCoreConfig {
         "Default: " + true
     })
     public boolean DROP_STICKS_FROM_LEAVES = true;
+
+    @Config.Comment({
+        "Pyrotech will swap iron ingots for iron ore in loot tables.",
+        "This feature may not play well with mods designed to modify loot tables.",
+        "Set to false to disable.",
+        "Default: " + true
+    })
+    public boolean REPLACE_IRON_INGOTS_WITH_IRON_ORE = true;
   }
 
   public static Hammers HAMMERS = new Hammers();
