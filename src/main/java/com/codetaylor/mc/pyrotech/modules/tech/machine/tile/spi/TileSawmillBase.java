@@ -190,7 +190,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
           && blockState.getValue(BlockRock.VARIANT) == BlockRock.EnumType.WOOD_CHIPS) {
 
         // If wood chips already exist, start a pile.
-        this.world.setBlockState(pos, ModuleCore.Blocks.PILE_WOOD_CHIPS.setLevel(ModuleCore.Blocks.PILE_WOOD_CHIPS.getDefaultState(), 1));
+        this.world.setBlockState(pos, ModuleCore.Blocks.PILE_WOOD_CHIPS.setLevel(ModuleCore.Blocks.PILE_WOOD_CHIPS.getDefaultState(), 2));
 
         // Adjust entity height.
         AxisAlignedBB boundingBox = block.getBoundingBox(blockState, this.world, pos);
