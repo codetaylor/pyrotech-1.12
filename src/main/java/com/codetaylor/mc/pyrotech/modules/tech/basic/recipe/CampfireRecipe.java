@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.recipe;
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.Ingredient;
@@ -53,7 +54,7 @@ public class CampfireRecipe
       if (CampfireRecipe.hasWhitelist()) {
 
         if (CampfireRecipe.isWhitelisted(output)) {
-          result = new CampfireRecipe(output, Ingredient.fromStacks(input));
+          result = new CampfireRecipe(output, Ingredient.fromStacks(input), ModuleTechBasicConfig.CAMPFIRE.COOK_TIME_TICKS);
           SMELTING_RECIPES.put(key, result);
           return result;
         }
@@ -63,7 +64,7 @@ public class CampfireRecipe
       } else if (CampfireRecipe.hasBlacklist()) {
 
         if (!CampfireRecipe.isBlacklisted(output)) {
-          result = new CampfireRecipe(output, Ingredient.fromStacks(input));
+          result = new CampfireRecipe(output, Ingredient.fromStacks(input), ModuleTechBasicConfig.CAMPFIRE.COOK_TIME_TICKS);
           SMELTING_RECIPES.put(key, result);
           return result;
         }
@@ -71,7 +72,7 @@ public class CampfireRecipe
         return CampfireRecipe.getCustomRecipe(input);
 
       } else {
-        result = new CampfireRecipe(output, Ingredient.fromStacks(input));
+        result = new CampfireRecipe(output, Ingredient.fromStacks(input), ModuleTechBasicConfig.CAMPFIRE.COOK_TIME_TICKS);
         SMELTING_RECIPES.put(key, result);
         return result;
       }
@@ -150,14 +151,17 @@ public class CampfireRecipe
 
   private final Ingredient input;
   private final ItemStack output;
+  private final int ticks;
 
   public CampfireRecipe(
       ItemStack output,
-      Ingredient input
+      Ingredient input,
+      int ticks
   ) {
 
     this.input = input;
     this.output = output;
+    this.ticks = ticks;
   }
 
   public Ingredient getInput() {
@@ -168,6 +172,11 @@ public class CampfireRecipe
   public ItemStack getOutput() {
 
     return this.output.copy();
+  }
+
+  public int getTicks() {
+
+    return this.ticks;
   }
 
   public boolean matches(ItemStack input) {

@@ -18,6 +18,7 @@ import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -31,16 +32,18 @@ public class ZenCampfire {
       args = {
           @ZenDocArg(arg = "name", info = "unique recipe name"),
           @ZenDocArg(arg = "output", info = "recipe output"),
-          @ZenDocArg(arg = "input", info = "recipe input")
+          @ZenDocArg(arg = "input", info = "recipe input"),
+          @ZenDocArg(arg = "ticks", info = "recipe duration in ticks, defaults to config value")
       }
   )
   @ZenMethod
-  public static void addRecipe(String name, IItemStack output, IIngredient input) {
+  public static void addRecipe(String name, IItemStack output, IIngredient input, @Optional(valueLong = -1) int ticks) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
         name,
         CraftTweakerMC.getItemStack(output),
-        CraftTweakerMC.getIngredient(input)
+        CraftTweakerMC.getIngredient(input),
+        Math.max(1, (ticks == -1) ? ModuleTechBasicConfig.CAMPFIRE.COOK_TIME_TICKS : ticks)
     ));
   }
 
@@ -203,16 +206,19 @@ public class ZenCampfire {
     private final String name;
     private final ItemStack output;
     private final Ingredient input;
+    private final int ticks;
 
     public AddRecipe(
         String name,
         ItemStack output,
-        Ingredient input
+        Ingredient input,
+        int ticks
     ) {
 
       this.name = name;
       this.input = input;
       this.output = output;
+      this.ticks = ticks;
     }
 
     @Override
@@ -220,7 +226,8 @@ public class ZenCampfire {
 
       CampfireRecipe recipe = new CampfireRecipe(
           this.output,
-          this.input
+          this.input,
+          this.ticks
       );
       ModuleTechBasic.Registries.CAMPFIRE_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
     }

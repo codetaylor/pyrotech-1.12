@@ -27,6 +27,8 @@
     * Patchouli is now a required dependency [(#169)](https://github.com/codetaylor/pyrotech/issues/169)
     * Pit Kiln is now configured to take less time when it has fewer items [(#119)](https://github.com/codetaylor/pyrotech/issues/119)
         * Config value: `module.tech.Basic.cfg` -> `PIT_KILN` -> `VARIABLE_SPEED_MODIFIER`
+    * ZS method for Campfire recipes now has an optional duration parameter [(#138)](https://github.com/codetaylor/pyrotech/issues/138)
+        * If omitted, defaults to config value: `module.tech.Basic.cfg` -> `CAMPFIRE` -> `COOK_TIME_TICKS`
 
 ---
 

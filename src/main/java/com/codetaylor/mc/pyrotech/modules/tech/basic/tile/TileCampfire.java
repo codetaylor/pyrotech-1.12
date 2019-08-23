@@ -175,7 +175,8 @@ public class TileCampfire
 
   private int getCookTime(ItemStack stack) {
 
-    return (stack.isEmpty()) ? -1 : ModuleTechBasicConfig.CAMPFIRE.COOK_TIME_TICKS;
+    CampfireRecipe recipe = CampfireRecipe.getRecipe(stack);
+    return (recipe == null) ? -1 : recipe.getTicks();
   }
 
   public BlockCampfire.EnumType getState() {

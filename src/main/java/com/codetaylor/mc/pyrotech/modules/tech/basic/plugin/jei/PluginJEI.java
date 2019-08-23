@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.*;
@@ -228,7 +229,7 @@ public class PluginJEI
       }
 
       ItemStack output = entry.getValue();
-      recipes.add(new JEIRecipeWrapperCampfire(Ingredient.fromStacks(input), output));
+      recipes.add(new JEIRecipeWrapperCampfire(Ingredient.fromStacks(input), output, ModuleTechBasicConfig.CAMPFIRE.COOK_TIME_TICKS));
     }
 
     return recipes;

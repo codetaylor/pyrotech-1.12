@@ -4,6 +4,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePluginPatchouli;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CampfireRecipe;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -17,7 +18,8 @@ public class CampfireRecipesAdd {
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModulePluginPatchouli.class)) {
       registry.register(new CampfireRecipe(
           new ItemStack(ModuleCore.Items.BOOK),
-          Ingredient.fromStacks(new ItemStack(Items.BOOK))
+          Ingredient.fromStacks(new ItemStack(Items.BOOK)),
+          ModuleTechBasicConfig.CAMPFIRE.COOK_TIME_TICKS
       ).setRegistryName(ModuleTechBasic.MOD_ID, "book"));
     }
   }
