@@ -621,6 +621,10 @@ public class TileKilnPit
     @Override
     protected void onInsert(EnumType type, ItemStack itemStack, World world, EntityPlayer player, BlockPos pos) {
 
+      if (!world.isRemote) {
+        world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
+      }
+
       ItemStackHandler stackHandler = this.stackHandlers[0];
 
       if (!stackHandler.getStackInSlot(0).isEmpty()
@@ -630,7 +634,6 @@ public class TileKilnPit
         if (!world.isRemote) {
           world.setBlockState(pos, ModuleTechBasic.Blocks.KILN_PIT.getDefaultState()
               .withProperty(BlockKilnPit.VARIANT, BlockKilnPit.EnumType.WOOD));
-          world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1, 1);
         }
       }
     }

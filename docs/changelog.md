@@ -19,6 +19,9 @@
     * Pyrotech will now scan loot tables and replace `Iron Ingot` with `Iron Ore` [(#102)](https://github.com/codetaylor/pyrotech/issues/102)
         * Config value: `core.cfg` -> `TWEAKS` -> `REPLACE_IRON_INGOTS_WITH_IRON_ORE`
 
+  * Fixed:
+    * Pit Kiln only plays wood placement sound for the last log placed
+
   * Changed:
     * Patchouli is now a required dependency [(#169)](https://github.com/codetaylor/pyrotech/issues/169)
     * Pit Kiln is now configured to take less time when it has fewer items [(#119)](https://github.com/codetaylor/pyrotech/issues/119)
