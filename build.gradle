@@ -33,10 +33,10 @@ project.ext.modVersion = getVersionName("${project.projectDir}")
 project.ext.dependencies = ',dependencies = "' +
         'required-after:dropt@[' + config.droptVersion + ',);' +
         'required-after:athenaeum@[' + config.athenaeumVersion + ',);' +
+        'required-after:patchouli;' +
         'after:crafttweaker;' +
         'after:jei;' +
         'after:gamestages;' +
-        'after:patchouli;' +
         'after:thermalexpansion;' +
         '"'
 
