@@ -7,7 +7,17 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle.forge'
+
+ext.configFile = file "build.properties"
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    ext.config = new ConfigSlurper().parse prop
+}
+
+// ----------------------------------------------------------------------------
 
 def getVersionName = { String workTree ->
     def stdout = new ByteArrayOutputStream()
@@ -18,14 +28,21 @@ def getVersionName = { String workTree ->
     return stdout.toString().trim()
 }
 
-project.ext.mcversion = "1.12.2"
-project.ext.forgeversion = "14.23.5.2838"
-version = project.ext.mcversion + "-" + getVersionName("${project.projectDir}")
-group = "com.sudoplay.mc"
-archivesBaseName = "pyrotech"
-project.ext.athenaeum_version = "1.12.2-1.17.3"
-project.ext.dropt_version = "1.12.2-1.12.0"
-project.ext.dependencies = ',dependencies = "required-after:dropt@[' + project.ext.dropt_version + ',);required-after:athenaeum@[' + project.ext.athenaeum_version + ',);after:crafttweaker;after:jei;after:gamestages;after:patchouli;after:thermalexpansion"'
+project.ext.modVersion = getVersionName("${project.projectDir}")
+
+project.ext.dependencies = ',dependencies = "' +
+        'required-after:dropt@[' + config.droptVersion + ',);' +
+        'required-after:athenaeum@[' + config.athenaeumVersion + ',);' +
+        'after:crafttweaker;' +
+        'after:jei;' +
+        'after:gamestages;' +
+        'after:patchouli;' +
+        'after:thermalexpansion;' +
+        '"'
+
+version = "${config.minecraftVersion}-${project.ext.modVersion}"
+group = config.packageGroup
+archivesBaseName = config.modId
 
 compileJava.doFirst {
     project.sourceSets.main.java.srcDirs.each { dir ->
@@ -59,16 +76,9 @@ compileJava {
 }
 
 minecraft {
-    version = project.ext.mcversion + "-" + project.ext.forgeversion
+    version = "${config.minecraftVersion}-${config.forgeVersion}"
     runDir = "run"
-
-    // the mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   snapshot are built nightly.
-    // stable_#            stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not allways work.
-    // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20171003"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    mappings = config.mappings
 }
 
 repositories {
@@ -92,9 +102,9 @@ repositories {
 dependencies {
     compile project(":athenaeum")
     compile project(":dropt")
-    deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
-    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.28-17"
-    compile "vazkii.patchouli:Patchouli:1.0-19.94"
+    deobfCompile "mcp.mobius.waila:Hwyla:${config.hwylaVersion}"
+    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:${config.topVersion}"
+    compile "vazkii.patchouli:Patchouli:${config.patchouliVersion}"
 }
 
 jar {
