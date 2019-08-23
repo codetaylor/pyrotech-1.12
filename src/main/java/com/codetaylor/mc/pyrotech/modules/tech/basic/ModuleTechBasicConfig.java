@@ -910,6 +910,19 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble(min = 0)
     public double BASE_RECIPE_DURATION_MODIFIER = 1;
+
+    @Config.Comment({
+        "SPEED_SCALAR=(1-VARIABLE_SPEED_MODIFIER)PERCENTAGE_FULL+VARIABLE_SPEED_MODIFIER",
+        "",
+        "If set to 0.5, the Pit Kiln will complete 1 item in 50% of the time.",
+        "For each item added after the first, the duration increases linearly",
+        "until it is 100% when full.",
+        "Setting the value to 0 is not recommended as it will cause one",
+        "item to complete instantly.",
+        "Default: " + 0.5
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double VARIABLE_SPEED_MODIFIER = 0.5;
   }
 
   // ---------------------------------------------------------------------------

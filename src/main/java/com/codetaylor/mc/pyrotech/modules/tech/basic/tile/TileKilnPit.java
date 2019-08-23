@@ -199,7 +199,14 @@ public class TileKilnPit
 
       if (recipe != null) {
         int burnTimeTicks = Math.max(1, recipe.getTimeTicks());
-        this.setTotalBurnTimeTicks(burnTimeTicks);
+
+        // y = (1-n)x + n
+
+        double n = ModuleTechBasicConfig.PIT_KILN.VARIABLE_SPEED_MODIFIER;
+        double x = (itemStack.getCount() == 1) ? 0 : (itemStack.getCount() - 1) / ((double) ModuleTechBasicConfig.PIT_KILN.MAX_STACK_SIZE - 1);
+        double scalar = (1 - n) * x + n;
+
+        this.setTotalBurnTimeTicks((int) (burnTimeTicks * scalar));
       }
     }
   }
