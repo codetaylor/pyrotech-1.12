@@ -10,6 +10,7 @@ import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleCombust;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
@@ -215,6 +216,7 @@ public abstract class TileTankBase
               world.setBlockToAir(pos);
               SoundHelper.playSoundServer(world, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
               FluidUtil.tryPlaceFluid(null, world, pos, this, resource);
+              ModuleStorage.PACKET_SERVICE.sendToAllAround(new SCPacketParticleCombust(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0.5, 0.5, 0.5), this.tile);
             }
             world.checkLightFor(EnumSkyBlock.BLOCK, pos);
           }

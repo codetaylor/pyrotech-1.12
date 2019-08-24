@@ -21,6 +21,8 @@ import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleCombust;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockSoakingPot;
@@ -537,6 +539,7 @@ public class TileSoakingPot
               world.setBlockToAir(pos);
               SoundHelper.playSoundServer(world, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
               FluidUtil.tryPlaceFluid(null, world, pos, this, resource);
+              ModuleStorage.PACKET_SERVICE.sendToAllAround(new SCPacketParticleCombust(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5, 0.2, 0.2, 0.2), this.tile);
             }
             world.checkLightFor(EnumSkyBlock.BLOCK, pos);
           }

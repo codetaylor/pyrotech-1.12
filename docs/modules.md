@@ -29,6 +29,7 @@ Contains items and blocks used to store items and liquids.
 * Crates
 * Wood Rack
 * Tanks
+* Faucets
 * Rock Bags
 
 ### Tech: Basic Module

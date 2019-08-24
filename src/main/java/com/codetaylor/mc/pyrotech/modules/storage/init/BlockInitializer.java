@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;
 import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockBag;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
+import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRFaucet;
 import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRTank;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.*;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
@@ -27,6 +28,8 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockCrateStone(), BlockCrateStone.NAME);
     registry.registerBlockWithItem(new BlockWoodRack(), BlockWoodRack.NAME);
     registry.registerBlockWithItem(new BlockTank(), BlockTank.NAME);
+    registry.registerBlockWithItem(new BlockFaucetStone(), BlockFaucetStone.NAME);
+    registry.registerBlockWithItem(new BlockFaucetBrick(), BlockFaucetBrick.NAME);
 
     BlockBagSimple blockBagSimple = new BlockBagSimple();
     registry.registerBlock(blockBagSimple, new ItemBlockBag(blockBagSimple), BlockBagSimple.NAME);
@@ -46,7 +49,9 @@ public final class BlockInitializer {
         TileTankStone.class,
         TileTankBrick.class,
         TileBagSimple.class,
-        TileBagDurable.class
+        TileBagDurable.class,
+        TileFaucetStone.class,
+        TileFaucetBrick.class
     );
   }
 
@@ -64,7 +69,9 @@ public final class BlockInitializer {
           ModuleStorage.Blocks.CRATE_STONE,
           ModuleStorage.Blocks.WOOD_RACK,
           ModuleStorage.Blocks.BAG_SIMPLE,
-          ModuleStorage.Blocks.BAG_DURABLE
+          ModuleStorage.Blocks.BAG_DURABLE,
+          ModuleStorage.Blocks.FAUCET_STONE,
+          ModuleStorage.Blocks.FAUCET_BRICK
       );
 
       ModelRegistrationHelper.registerBlockItemModelForMeta(
@@ -85,6 +92,7 @@ public final class BlockInitializer {
 
       // TESRs
       ClientRegistry.bindTileEntitySpecialRenderer(TileTankBase.class, new TESRTank());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileFaucetBase.class, new TESRFaucet());
 
       ClientRegistry.bindTileEntitySpecialRenderer(TileShelf.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileStash.class, new TESRInteractable<>());

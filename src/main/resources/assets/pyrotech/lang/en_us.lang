@@ -45,6 +45,8 @@ tile.pyrotech.tank.stone.name=Stone Tank
 tile.pyrotech.tank.brick.name=Refractory Tank
 tile.pyrotech.bag_simple.name=Rock Bag
 tile.pyrotech.bag_durable.name=Durable Rock Bag
+tile.pyrotech.faucet_stone.name=Stone Faucet
+tile.pyrotech.faucet_brick.name=Refractory Faucet
 
 #------------------------------------------------------------------------------
 # Module: Tech - Basic
@@ -293,6 +295,8 @@ gui.pyrotech.tooltip.hot.fluids.false=Breaks with hot fluids.
 gui.pyrotech.tooltip.burn.time=Burn Time: %s
 gui.pyrotech.tooltip.fluid.capacity=Capacity: %d mB
 gui.pyrotech.tooltip.fluid=%s: %d / %d
+gui.pyrotech.tooltip.fluid.transfer.rate=Rate: %d mB/t
+gui.pyrotech.tooltip.fluid.transfer.limit=Shutoff: %d mB
 gui.pyrotech.tooltip.item.capacity.empty=Capacity: %d items
 gui.pyrotech.tooltip.item.capacity=Capacity: %d / %d items
 gui.pyrotech.tooltip.drain=Drains collectors in a %dx%d range in front of the block.

@@ -193,6 +193,79 @@ public class ModuleStorageConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Stone Faucet
+  // ---------------------------------------------------------------------------
+
+  public static StoneFaucet STONE_FAUCET = new StoneFaucet();
+
+  public static class StoneFaucet {
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the faucet will break when a hot fluid is transferred.",
+        "Default: " + false
+    })
+    public boolean TRANSFERS_HOT_FLUIDS = false;
+
+    @Config.Comment({
+        "The amount of fluid in mB that this faucet can transfer before shutting off.",
+        "Set to -1 to disable transfer limit.",
+        "Default: " + 1000
+    })
+    @Config.RangeInt(min = -1)
+    public int TRANSFER_LIMIT = 1000;
+
+    @Config.Comment({
+        "The amount of fluid in mB that is transferred per tick.",
+        "Default: " + 10
+    })
+    public int TRANSFER_AMOUNT_PER_TICK = 10;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Brick Faucet
+  // ---------------------------------------------------------------------------
+
+  public static BrickFaucet BRICK_FAUCET = new BrickFaucet();
+
+  public static class BrickFaucet {
+
+    @Config.Comment({
+        "The temperature that the container considers hot.",
+        "The temperature of lava is 1300 and water is 300",
+        "Default: " + 450
+    })
+    @Config.RangeInt
+    public int HOT_TEMPERATURE = 450;
+
+    @Config.Comment({
+        "If false, the faucet will break when a hot fluid is transferred.",
+        "Default: " + true
+    })
+    public boolean TRANSFERS_HOT_FLUIDS = true;
+
+    @Config.Comment({
+        "The amount of fluid in mB that this faucet can transfer before shutting off.",
+        "Set to -1 to disable transfer limit.",
+        "Default: " + -1
+    })
+    public int TRANSFER_LIMIT = -1;
+
+    @Config.Comment({
+        "The amount of fluid in mB that is transferred per tick.",
+        "Default: " + 20
+    })
+    public int TRANSFER_AMOUNT_PER_TICK = 20;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Stone Tank
   // ---------------------------------------------------------------------------
 

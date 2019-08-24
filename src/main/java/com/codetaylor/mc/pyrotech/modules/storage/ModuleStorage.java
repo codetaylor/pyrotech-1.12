@@ -130,6 +130,12 @@ public class ModuleStorage
     @GameRegistry.ObjectHolder(BlockBagDurable.NAME)
     public static final BlockBagDurable BAG_DURABLE;
 
+    @GameRegistry.ObjectHolder(BlockFaucetStone.NAME)
+    public static final BlockFaucetStone FAUCET_STONE;
+
+    @GameRegistry.ObjectHolder(BlockFaucetBrick.NAME)
+    public static final BlockFaucetBrick FAUCET_BRICK;
+
     static {
       SHELF = null;
       STASH = null;
@@ -141,6 +147,8 @@ public class ModuleStorage
       TANK = null;
       BAG_SIMPLE = null;
       BAG_DURABLE = null;
+      FAUCET_STONE = null;
+      FAUCET_BRICK = null;
     }
   }
 }

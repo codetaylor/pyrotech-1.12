@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.storage"]
+    }
+  ],
+  "pattern": [
+    "S S",
+    "CSC"
+  ],
+  "key": {
+    "S": {
+      "item": "pyrotech:material",
+      "data": 5
+    },
+    "C": {
+      "item": "pyrotech:material",
+      "data": 4
+    }
+  },
+  "result": {
+    "item": "pyrotech:faucet_brick",
+    "count": 1,
+    "data": 0
+  }
+}

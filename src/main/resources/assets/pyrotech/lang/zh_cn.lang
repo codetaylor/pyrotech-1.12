@@ -45,6 +45,8 @@ tile.pyrotech.tank.stone.name=石缸
 tile.pyrotech.tank.brick.name=耐火缸
 tile.pyrotech.bag_simple.name=采石包
 tile.pyrotech.bag_durable.name=耐用采石包
+tile.pyrotech.faucet_stone.name=Stone Faucet
+tile.pyrotech.faucet_brick.name=Refractory Faucet
 
 #------------------------------------------------------------------------------
 # Module: Tech - Basic
@@ -293,6 +295,8 @@ gui.pyrotech.tooltip.hot.fluids.false=不能盛装滚烫的流体。
 gui.pyrotech.tooltip.burn.time=燃烧时间：%s
 gui.pyrotech.tooltip.fluid.capacity=容量：%d mB
 gui.pyrotech.tooltip.fluid=%s: %d / %d
+gui.pyrotech.tooltip.fluid.transfer.rate=Rate: %d mB/t
+gui.pyrotech.tooltip.fluid.transfer.limit=Shutoff: %d mB
 gui.pyrotech.tooltip.item.capacity.empty=容量：%d个物品
 gui.pyrotech.tooltip.item.capacity=容量：%d / %d个物品
 gui.pyrotech.tooltip.drain=以取方块前方%dx%d范围内的收集器。

@@ -1,0 +1,25 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:faucet",
+    "textures": {
+      "texture": "pyrotech:blocks/faucet_stone",
+      "particle": "pyrotech:blocks/faucet_stone"
+    }
+  },
+  "variants": {
+    "facing": {
+      "north": {
+      },
+      "east": {
+        "y": 90
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      }
+    }
+  }
+}

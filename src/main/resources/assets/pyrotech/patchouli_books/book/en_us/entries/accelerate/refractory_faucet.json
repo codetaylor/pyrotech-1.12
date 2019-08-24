@@ -1,0 +1,19 @@
+{
+  "name": "Faucet, Refractory",
+  "icon": "pyrotech:faucet_brick",
+  "category": "accelerate",
+  "advancement": "pyrotech:refractory_brick",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/brick_faucet",
+      "text": "Use a $(item)Refractory Faucet$() to transfer fluid from the side of a device to the device below."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}

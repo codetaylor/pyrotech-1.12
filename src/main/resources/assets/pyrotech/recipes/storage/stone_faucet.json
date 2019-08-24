@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.storage"]
+    }
+  ],
+  "pattern": [
+    "S S",
+    "CSC"
+  ],
+  "key": {
+    "S": {
+      "item": "pyrotech:material",
+      "data": 16
+    },
+    "C": {
+      "item": "minecraft:clay_ball",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:faucet_stone",
+    "count": 1,
+    "data": 0
+  }
+}

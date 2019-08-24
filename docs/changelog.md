@@ -1,8 +1,15 @@
 1.4.0
 
   * Translators:
-    * The following lang keys were added to all lang files with en_us values:
+    * New lang keys:
         * gui.pyrotech.tooltip.durability.indestructible
+        * gui.pyrotech.tooltip.fluid.transfer.rate
+        * gui.pyrotech.tooltip.fluid.transfer.limit
+        * tile.pyrotech.faucet_stone.name
+        * tile.pyrotech.faucet_brick.name
+    * New book entries:
+        * entries/accelerate/refractory_faucet.json
+        * entries/innovate/stone_faucet.json
 
   * Added:
     * Cooldown to thrown rocks / clumps [(#157)](https://github.com/codetaylor/pyrotech/issues/157)
@@ -18,7 +25,15 @@
         * Config value: `module.tech.Basic.cfg` -> `IRONCLAD_ANVIL` -> `USES_DURABILITY`
     * Pyrotech will now scan loot tables and replace `Iron Ingot` with `Iron Ore` [(#102)](https://github.com/codetaylor/pyrotech/issues/102)
         * Config value: `core.cfg` -> `TWEAKS` -> `REPLACE_IRON_INGOTS_WITH_IRON_ORE`
-
+    * New Stone / Refractory Faucet [(#132)](https://github.com/codetaylor/pyrotech/issues/132)
+        * Transfers fluid from attached fluid handler to fluid handler below
+        * Can break with hot fluids (optional)
+        * Can shutoff after transfer limit reached (optional)
+        * Configs: `module.Storage.cfg` -> `STONE_FAUCET`, `BRICK_FAUCET`
+            * `I:HOT_TEMPERATURE`
+            * `B:TRANSFERS_HOT_FLUIDS`
+            * `I:TRANSFER_AMOUNT_PER_TICK`
+            * `I:TRANSFER_LIMIT`
   * Fixed:
     * Pit Kiln only plays wood placement sound for the last log placed
     * Piles of wood chips yield unexpected quantities when broken [(#143)](https://github.com/codetaylor/pyrotech/issues/143)
