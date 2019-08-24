@@ -50,6 +50,11 @@ public class EffectHotfoot
 
       if (ModulePatreonConfig.CLIENT.DISABLE_YOUR_PATREON_EFFECTS) {
         EntityPlayerSP player = minecraft.player;
+
+        if (player == null) {
+          return;
+        }
+
         UUID uniqueID = player.getUniqueID();
 
         if (uuid.equals(uniqueID)) {

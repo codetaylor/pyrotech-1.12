@@ -1,3 +1,10 @@
+1.3.9
+
+  * Fixed:
+    * Startup crash caused by setting `DISABLE_YOUR_PATREON_EFFECTS` to `true`
+
+---
+
 1.3.8
 
   * Fixed:
