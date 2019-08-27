@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
@@ -45,7 +46,6 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
     extends TileCombustionWorkerStoneItemInItemOutBase<E> {
 
   private BladeStackHandler bladeStackHandler;
-  private int remainingWoodChips;
   private TileDataBoolean recipeComplete;
   private int counterIdleSound;
 
@@ -110,55 +110,12 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
   // ---------------------------------------------------------------------------
 
   @Override
-  protected void recalculateRemainingTime(ItemStack itemStack) {
-
-    super.recalculateRemainingTime(itemStack);
-
-    if (itemStack.isEmpty()) {
-      this.remainingWoodChips = 0;
-
-    } else {
-      E recipe = this.getRecipe(itemStack);
-
-      if (recipe != null) {
-        this.remainingWoodChips = recipe.getWoodChips();
-
-      } else {
-        this.remainingWoodChips = 0;
-      }
-    }
-  }
-
-  @Override
   protected List<ItemStack> getRecipeOutput(E recipe, ItemStack input, ArrayList<ItemStack> outputItemStacks) {
 
     ItemStack output = recipe.getOutput();
     ItemStack copy = output.copy();
-    copy.setCount(copy.getCount() * input.getCount());
     outputItemStacks.add(copy);
     return outputItemStacks;
-  }
-
-  @Override
-  protected void reduceRecipeTime() {
-
-    super.reduceRecipeTime();
-
-    ItemStack input = this.getInputStackHandler().getStackInSlot(0);
-    E recipe = this.getRecipe(input);
-
-    if (recipe != null) {
-      int woodChips = recipe.getWoodChips();
-
-      if (woodChips > 0) {
-        float nextInterval = (woodChips - this.remainingWoodChips) * (1f / woodChips) + (1f / woodChips) * 0.5f;
-
-        if (this.workerGetProgress(0) >= nextInterval) {
-          this.remainingWoodChips -= 1;
-          this.trySpawnWoodChips();
-        }
-      }
-    }
   }
 
   private void trySpawnWoodChips() {
@@ -230,17 +187,14 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
     ItemStack input = this.getInputStackHandler().getStackInSlot(0);
 
-    if (!this.shouldDamageBlades()) {
-      super.onRecipeComplete();
+    this.onRecipeComplete(input);
+    this.recalculateRemainingTime(input);
 
-    } else {
-
-      super.onRecipeComplete();
-
+    if (this.shouldDamageBlades()) {
       ItemStack blade = this.bladeStackHandler.extractItem(0, 1, false);
 
       if (!ModuleTechMachineConfig.isSawbladeIndestructible(blade.getItem())
-          && blade.attemptDamageItem(input.getCount(), this.world.rand, null)) {
+          && blade.attemptDamageItem(1, this.world.rand, null)) {
         this.world.playSound(
             null,
             this.pos,
@@ -252,6 +206,32 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
       } else {
         this.bladeStackHandler.insertItem(0, blade, false);
+      }
+    }
+  }
+
+  private void onRecipeComplete(ItemStack input) {
+
+    E recipe = this.getRecipe(input);
+
+    if (recipe != null) {
+      ItemStack copy = input.copy();
+      copy.setCount(copy.getCount() - 1);
+      this.getInputStackHandler().setStackInSlot(0, copy);
+
+      List<ItemStack> outputItems = this.getRecipeOutput(recipe, input, new ArrayList<>());
+
+      for (ItemStack outputItem : outputItems) {
+        this.getOutputStackHandler().insertItem(outputItem, false);
+      }
+
+      int woodChips = recipe.getWoodChips();
+
+      if (woodChips > 0) {
+
+        for (int i = 0; i < woodChips; i++) {
+          this.trySpawnWoodChips();
+        }
       }
     }
   }
@@ -276,10 +256,26 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
     if (ModuleTechMachineConfig.SAWMILL_SOUNDS.RECIPE_COMPLETE_SOUND_ENABLED
         && this.recipeComplete.isDirty()
         && this.recipeComplete.get()) {
+
       double volume = ModuleTechMachineConfig.SAWMILL_SOUNDS.RECIPE_COMPLETE_SOUND_VOLUME;
-      this.world.playSound(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5,
-          ModuleTechMachine.Sounds.SAWMILL_ACTIVE, SoundCategory.BLOCKS, (float) volume, 1, false
-      );
+      double pitch = (RandomHelper.random().nextDouble() * 2 - 1) * 0.05;
+      double select = RandomHelper.random().nextDouble();
+
+      if (this.getInputStackHandler().getStackInSlot(0).isEmpty()) {
+        this.world.playSound(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5,
+            ModuleTechMachine.Sounds.SAWMILL_ACTIVE, SoundCategory.BLOCKS, (float) volume, (float) (1 + pitch), false
+        );
+
+      } else if (select < 0.49) {
+        this.world.playSound(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5,
+            ModuleTechMachine.Sounds.SAWMILL_ACTIVE_SHORT_A, SoundCategory.BLOCKS, (float) volume, (float) (1 + pitch), false
+        );
+
+      } else if (select < 0.98) {
+        this.world.playSound(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5,
+            ModuleTechMachine.Sounds.SAWMILL_ACTIVE_SHORT_B, SoundCategory.BLOCKS, (float) volume, (float) (1 + pitch), false
+        );
+      }
     }
   }
 
@@ -323,7 +319,6 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
     super.readFromNBT(compound);
     this.bladeStackHandler.deserializeNBT(compound.getCompoundTag("bladeStackHandler"));
-    this.remainingWoodChips = compound.getInteger("remainingWoodChips");
   }
 
   @Nonnull
@@ -332,7 +327,6 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
     super.writeToNBT(compound);
     compound.setTag("bladeStackHandler", this.bladeStackHandler.serializeNBT());
-    compound.setInteger("remainingWoodChips", this.remainingWoodChips);
     return compound;
   }
 

@@ -16,5 +16,23 @@
         "stream": false
       }
     ]
+  },
+  "sawmill_active_short_a": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:sawmill/sawmill-active-short-a",
+        "stream": false
+      }
+    ]
+  },
+  "sawmill_active_short_b": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:sawmill/sawmill-active-short-b",
+        "stream": false
+      }
+    ]
   }
 }

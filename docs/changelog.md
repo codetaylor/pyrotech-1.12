@@ -44,6 +44,17 @@
         * Config value: `module.tech.Basic.cfg` -> `PIT_KILN` -> `VARIABLE_SPEED_MODIFIER`
     * ZS method for Campfire recipes now has an optional duration parameter [(#138)](https://github.com/codetaylor/pyrotech/issues/138)
         * If omitted, defaults to config value: `module.tech.Basic.cfg` -> `CAMPFIRE` -> `COOK_TIME_TICKS`
+    * Sawmill function has been redesigned [(#140)](https://github.com/codetaylor/pyrotech/issues/140):
+        * The sawmill will now process one item at a time
+        * Recipe time value is now per item, not per batch
+        * Recipe wood chips value is now per item, not per batch
+        * Wood chips are now produced on the ground each time an item completes
+        * Input items can't be inserted while the machine contains output items
+        * Input items must be extracted by hand before output items can be extracted by hand
+        * Output items can still be removed via the bottom at any time
+        * The Sawmill's recipe complete sounds now play after each item is processed
+        * The Sawmill's recipe complete sounds have been shortened and varied
+        * The original, longer recipe complete sound plays when the last item is processed
 
 ---
 

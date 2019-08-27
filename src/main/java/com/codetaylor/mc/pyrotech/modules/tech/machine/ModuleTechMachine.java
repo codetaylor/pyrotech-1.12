@@ -114,6 +114,8 @@ public class ModuleTechMachine
     IForgeRegistry<SoundEvent> registry = event.getRegistry();
     registry.register(Sounds.SAWMILL_IDLE);
     registry.register(Sounds.SAWMILL_ACTIVE);
+    registry.register(Sounds.SAWMILL_ACTIVE_SHORT_A);
+    registry.register(Sounds.SAWMILL_ACTIVE_SHORT_B);
   }
 
   @Override
@@ -294,6 +296,8 @@ public class ModuleTechMachine
 
     public static final SoundEvent SAWMILL_IDLE;
     public static final SoundEvent SAWMILL_ACTIVE;
+    public static final SoundEvent SAWMILL_ACTIVE_SHORT_A;
+    public static final SoundEvent SAWMILL_ACTIVE_SHORT_B;
 
     static {
       ResourceLocation sawmill_idle = new ResourceLocation(ModuleTechMachine.MOD_ID, "sawmill_idle");
@@ -301,6 +305,12 @@ public class ModuleTechMachine
 
       ResourceLocation sawmill_active = new ResourceLocation(ModuleTechMachine.MOD_ID, "sawmill_active");
       SAWMILL_ACTIVE = new SoundEvent(sawmill_active).setRegistryName(sawmill_active);
+
+      ResourceLocation sawmill_active_short_a = new ResourceLocation(ModuleTechMachine.MOD_ID, "sawmill_active_short_a");
+      SAWMILL_ACTIVE_SHORT_A = new SoundEvent(sawmill_active_short_a).setRegistryName(sawmill_active_short_a);
+
+      ResourceLocation sawmill_active_short_b = new ResourceLocation(ModuleTechMachine.MOD_ID, "sawmill_active_short_b");
+      SAWMILL_ACTIVE_SHORT_B = new SoundEvent(sawmill_active_short_b).setRegistryName(sawmill_active_short_b);
     }
   }
 

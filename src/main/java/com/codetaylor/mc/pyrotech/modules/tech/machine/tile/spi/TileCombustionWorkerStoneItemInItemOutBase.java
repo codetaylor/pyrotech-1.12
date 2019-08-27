@@ -53,7 +53,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Machi
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  public ItemStackHandler getOutputStackHandler() {
+  public OutputStackHandler getOutputStackHandler() {
 
     return this.outputStackHandler;
   }
@@ -244,7 +244,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Machi
   // - Stack Handlers
   // ---------------------------------------------------------------------------
 
-  private class OutputStackHandler
+  public class OutputStackHandler
       extends LargeDynamicStackHandler
       implements ITileDataItemStackHandler {
 

@@ -81,7 +81,7 @@ public class StoneSawmillRecipesAdd {
 
     List<StoneSawmillRecipe> result = new ArrayList<>();
 
-    int woodChips = 8;
+    int woodChips = 1;
 
     {
       output = output.copy();
@@ -90,7 +90,7 @@ public class StoneSawmillRecipesAdd {
       StoneSawmillRecipe recipe = new StoneSawmillRecipe(
           output,
           input,
-          (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 8 * 20 * durationModifier),
+          (int) (12 * 20 * durationModifier),
           Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
           woodChips
       ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_0");
@@ -105,7 +105,7 @@ public class StoneSawmillRecipesAdd {
       StoneSawmillRecipe recipe = new StoneSawmillRecipe(
           output,
           input,
-          (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 6 * 20 * durationModifier),
+          (int) (8 * 20 * durationModifier),
           Ingredient.fromStacks(
               new ItemStack(ModuleTechMachine.Items.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
               new ItemStack(ModuleTechMachine.Items.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
@@ -123,7 +123,7 @@ public class StoneSawmillRecipesAdd {
       StoneSawmillRecipe recipe = new StoneSawmillRecipe(
           output,
           input,
-          (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20 * durationModifier),
+          (int) (6 * 20 * durationModifier),
           Ingredient.fromStacks(
               new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
               new ItemStack(ModuleTechMachine.Items.OBSIDIAN_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
@@ -141,7 +141,7 @@ public class StoneSawmillRecipesAdd {
       StoneSawmillRecipe recipe = new StoneSawmillRecipe(
           output,
           input,
-          (int) (ModuleTechMachineConfig.STONE_SAWMILL.INPUT_SLOT_SIZE * 4 * 20 * durationModifier),
+          (int) (4 * 20 * durationModifier),
           Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
           woodChips
       ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_3");
