@@ -1,3 +1,10 @@
+1.3.10
+
+  * Fixed:
+    * Snow accumulates on top of machines [(#172)](https://github.com/codetaylor/pyrotech/issues/172)
+
+---
+
 1.3.9
 
   * Fixed:
