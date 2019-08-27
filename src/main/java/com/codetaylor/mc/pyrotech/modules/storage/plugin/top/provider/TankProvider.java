@@ -50,12 +50,12 @@ public class TankProvider
   @Override
   public void setFluid(String langKey, FluidStack fluid, int capacity) {
 
-    this.probeInfo.element(new PluginTOP.ElementTankLabel(null, fluid, capacity));
+     this.probeInfo.element(new PluginTOP.ElementTankLabel(null, fluid, capacity));
   }
 
   @Override
   public void setFluidEmpty(String langKey, int capacity) {
 
-    this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, 0, capacity));
+     this.probeInfo.element(new PluginTOP.ElementTextLocalized(langKey, 0, capacity));
   }
 }

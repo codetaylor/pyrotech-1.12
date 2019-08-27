@@ -47,6 +47,15 @@
 
 ---
 
+1.3.10
+
+  * Fixed:
+    * Snow accumulates on top of machines [(#172)](https://github.com/codetaylor/pyrotech/issues/172)
+    * Duplicate line in TOP display for tanks [(#173)](https://github.com/codetaylor/pyrotech/issues/173)
+    * Drains and Collectors missing TOP display
+
+---
+
 1.3.9
 
   * Fixed:
