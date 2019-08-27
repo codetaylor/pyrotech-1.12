@@ -477,10 +477,10 @@ public class ModuleCoreConfig {
     @Config.Comment({
         "Board burn time in ticks.",
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
-        "Default: " + 200
+        "Default: " + 75
     })
     @Config.RangeInt(min = 0)
-    public int BOARD_BURN_TIME_TICKS = 200;
+    public int BOARD_BURN_TIME_TICKS = 75;
 
     @Config.Comment({
         "Burned food burn time in ticks.",
@@ -572,10 +572,10 @@ public class ModuleCoreConfig {
     @Config.Comment({
         "Wood chips burn time in ticks.",
         "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
-        "Default: " + 100
+        "Default: " + 50
     })
     @Config.RangeInt(min = 0)
-    public int WOOD_CHIPS_BURN_TIME_TICKS = 100;
+    public int WOOD_CHIPS_BURN_TIME_TICKS = 50;
 
     @Config.Comment({
         "Wood chips burn time in ticks.",

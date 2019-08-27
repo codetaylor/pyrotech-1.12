@@ -55,7 +55,8 @@
         * The Sawmill's recipe complete sounds now play after each item is processed
         * The Sawmill's recipe complete sounds have been shortened and varied
         * The original, longer recipe complete sound plays when the last item is processed
-
+    * Reduced Wood Chips burn time from 100 to 50 [(#140)](https://github.com/codetaylor/pyrotech/issues/140)
+    * Reduced Board burn time from 200 to 75 [(#140)](https://github.com/codetaylor/pyrotech/issues/140)
 ---
 
 1.3.10
