@@ -42,12 +42,12 @@ public class BurnPitRecipesAdd {
     // Charcoal from Pile of Wood Chips
     registry.register(
         new PitBurnRecipeBuilder(
-            new ItemStack(Items.COAL, 1, 1),
+            ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(),
             new BlockMetaMatcher(ModuleCore.Blocks.PILE_WOOD_CHIPS, 0)
         )
-            .setBurnStages(4)
-            .setTotalBurnTimeTicks(4 * 60 * 20)
-            .setFluidProduced(new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 50))
+            .setBurnStages(8)
+            .setTotalBurnTimeTicks(6 * 60 * 20)
+            .setFluidProduced(new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 25))
             .setFailureChance(0.33f)
             .addFailureItem(ItemMaterial.EnumType.PIT_ASH.asStack())
             .addFailureItem(ItemMaterial.EnumType.PIT_ASH.asStack(2))

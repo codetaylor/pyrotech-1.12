@@ -81,8 +81,6 @@ public class StoneSawmillRecipesAdd {
 
     List<StoneSawmillRecipe> result = new ArrayList<>();
 
-    int woodChips = 1;
-
     {
       output = output.copy();
       output.setCount(1);
@@ -92,7 +90,7 @@ public class StoneSawmillRecipesAdd {
           input,
           (int) (12 * 20 * durationModifier),
           Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.STONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
-          woodChips
+          4
       ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_0");
       registry.register(recipe);
       result.add(recipe);
@@ -110,7 +108,7 @@ public class StoneSawmillRecipesAdd {
               new ItemStack(ModuleTechMachine.Items.FLINT_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
               new ItemStack(ModuleTechMachine.Items.BONE_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
           ),
-          woodChips
+          2
       ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_1");
       registry.register(recipe);
       result.add(recipe);
@@ -128,7 +126,7 @@ public class StoneSawmillRecipesAdd {
               new ItemStack(ModuleTechMachine.Items.IRON_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE),
               new ItemStack(ModuleTechMachine.Items.OBSIDIAN_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)
           ),
-          woodChips
+          1
       ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_2");
       registry.register(recipe);
       result.add(recipe);
@@ -141,9 +139,9 @@ public class StoneSawmillRecipesAdd {
       StoneSawmillRecipe recipe = new StoneSawmillRecipe(
           output,
           input,
-          (int) (4 * 20 * durationModifier),
+          (int) (8 * 20 * durationModifier),
           Ingredient.fromStacks(new ItemStack(ModuleTechMachine.Items.DIAMOND_MILL_BLADE, 1, OreDictionary.WILDCARD_VALUE)),
-          woodChips
+          1
       ).setRegistryName(ModuleTechMachine.MOD_ID, name + "_tier_3");
       registry.register(recipe);
       result.add(recipe);

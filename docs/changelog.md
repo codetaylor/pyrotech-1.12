@@ -44,19 +44,31 @@
         * Config value: `module.tech.Basic.cfg` -> `PIT_KILN` -> `VARIABLE_SPEED_MODIFIER`
     * ZS method for Campfire recipes now has an optional duration parameter [(#138)](https://github.com/codetaylor/pyrotech/issues/138)
         * If omitted, defaults to config value: `module.tech.Basic.cfg` -> `CAMPFIRE` -> `COOK_TIME_TICKS`
-    * Sawmill function has been redesigned [(#140)](https://github.com/codetaylor/pyrotech/issues/140):
+    * The Sawmill has been redesigned and rebalanced [(#140)](https://github.com/codetaylor/pyrotech/issues/140)
         * The sawmill will now process one item at a time
-        * Recipe time value is now per item, not per batch
-        * Recipe wood chips value is now per item, not per batch
-        * Wood chips are now produced on the ground each time an item completes
-        * Input items can't be inserted while the machine contains output items
-        * Input items must be extracted by hand before output items can be extracted by hand
-        * Output items can still be removed via the bottom at any time
-        * The Sawmill's recipe complete sounds now play after each item is processed
-        * The Sawmill's recipe complete sounds have been shortened and varied
-        * The original, longer recipe complete sound plays when the last item is processed
-    * Reduced Wood Chips burn time from 100 to 50 [(#140)](https://github.com/codetaylor/pyrotech/issues/140)
-    * Reduced Board burn time from 200 to 75 [(#140)](https://github.com/codetaylor/pyrotech/issues/140)
+        * Recipe:
+            * Recipe time value is now per item, not per batch
+            * Recipe wood chips value is now per item, not per batch
+        * Wood Chip production:
+            * Wood chips are now produced on the ground each time an item completes
+            * Stone Sawblade recipes will produce 4 wood chips per item processed
+            * Flint / Bone Sawblade recipes will produce 2 wood chips per item processed
+            * Iron / Obsidian / Diamond Sawblade recipes will produce 1 wood chip per item processed
+        * Input / output:
+            * Input items can't be inserted while the machine contains output items
+            * Input items must be extracted by hand before output items can be extracted by hand
+            * Output items can still be removed via the bottom at any time
+        * Sound:
+            * The Sawmill's recipe complete sounds now play after each item is processed
+            * The Sawmill's recipe complete sounds have been shortened and varied
+            * The original, longer recipe complete sound plays when the last item is processed
+        * Burn time:
+            * Reduced Pile of Wood Chips burn time from 100 to 50
+            * Reduced Board burn time from 200 to 75
+        * Pit Burn:
+            * Wood Chips block in a Pit Burn will now produce 8 Charcoal Flakes instead of 4 Charcoal
+            * Wood Chips block Pit Burn recipe duration increased
+
 ---
 
 1.3.10
