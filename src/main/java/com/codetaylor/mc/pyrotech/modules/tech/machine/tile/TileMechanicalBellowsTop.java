@@ -96,6 +96,13 @@ public class TileMechanicalBellowsTop
     return ModuleTechMachineConfig.MECHANICAL_BELLOWS.COG_DAMAGE;
   }
 
+  @Override
+  protected boolean isPowered() {
+
+    return this.world.isBlockPowered(this.pos)
+        || this.world.isBlockPowered(this.pos.down());
+  }
+
   // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------

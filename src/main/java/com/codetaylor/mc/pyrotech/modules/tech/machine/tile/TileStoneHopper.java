@@ -142,6 +142,12 @@ public class TileStoneHopper
     return -1;
   }
 
+  @Override
+  protected boolean isPowered() {
+
+    return this.world.isBlockPowered(this.pos);
+  }
+
   // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------

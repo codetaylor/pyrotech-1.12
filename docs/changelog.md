@@ -34,6 +34,7 @@
             * `B:TRANSFERS_HOT_FLUIDS`
             * `I:TRANSFER_AMOUNT_PER_TICK`
             * `I:TRANSFER_LIMIT`
+    * Cog Machines can now be disabled with a redstone signal [(#145)](https://github.com/codetaylor/pyrotech/issues/145)
   * Fixed:
     * Pit Kiln only plays wood placement sound for the last log placed
     * Piles of wood chips yield unexpected quantities when broken [(#143)](https://github.com/codetaylor/pyrotech/issues/143)

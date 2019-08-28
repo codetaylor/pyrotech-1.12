@@ -155,6 +155,18 @@ public class TileMechanicalCompactingBinWorker
     return -1;
   }
 
+  @Override
+  protected boolean isPowered() {
+
+    if (this.world.isBlockPowered(this.pos)) {
+      return true;
+    }
+
+    IBlockState blockState = this.world.getBlockState(this.pos);
+    EnumFacing facing = blockState.getValue(Properties.FACING_HORIZONTAL);
+    return this.world.isBlockPowered(this.pos.offset(facing));
+  }
+
   // ---------------------------------------------------------------------------
   // - Serialization
   // ---------------------------------------------------------------------------

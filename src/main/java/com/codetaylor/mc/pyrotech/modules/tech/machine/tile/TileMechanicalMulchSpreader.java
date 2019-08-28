@@ -173,6 +173,12 @@ public class TileMechanicalMulchSpreader
     }
   }
 
+  @Override
+  protected boolean isPowered() {
+
+    return this.world.isBlockPowered(this.pos);
+  }
+
   // ---------------------------------------------------------------------------
   // - Serialization
   // ---------------------------------------------------------------------------

@@ -45,6 +45,7 @@ public abstract class TileCogWorkerBase
   private TileDataBoolean triggered;
   private IInteraction[] interactions;
   private final TileDataItemStackHandler<CogStackHandler> tileDataItemStackHandler;
+  private boolean ready;
 
   @SideOnly(Side.CLIENT)
   private TileCogWorkerBase.ClientRenderData clientRenderData;
@@ -138,6 +139,8 @@ public abstract class TileCogWorkerBase
    */
   protected abstract int doWork(ItemStack cog);
 
+  protected abstract boolean isPowered();
+
   @Override
   public void update() {
 
@@ -153,7 +156,16 @@ public abstract class TileCogWorkerBase
 
     if (this.updateTickCounter != null
         && this.updateTickCounter.increment()) {
+      this.ready = true;
+    }
 
+    if (this.isPowered()) {
+      return;
+    }
+
+    if (this.ready) {
+      this.updateTickCounter.reset();
+      this.ready = false;
       int cogDamage = this.doWork(cog);
 
       if (cogDamage >= 0) {
