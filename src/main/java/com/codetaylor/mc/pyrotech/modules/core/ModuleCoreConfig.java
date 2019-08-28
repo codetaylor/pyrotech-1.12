@@ -44,6 +44,16 @@ public class ModuleCoreConfig {
         "Default: " + true
     })
     public boolean REPLACE_IRON_INGOTS_WITH_IRON_ORE = true;
+
+    @Config.Comment({
+        "Set to false to allow all wood chips to be collected with any held item.",
+        "Affects: ",
+        "  - Pile of Wood Chips harvest tool",
+        "  - Block of Wood Chips harvest tool",
+        "  - Chopping Block Pile of Wood Chips harvest tool",
+        "Default: " + true
+    })
+    public boolean REQUIRE_SHOVEL_TO_PICKUP_WOOD_CHIPS = true;
   }
 
   public static Hammers HAMMERS = new Hammers();

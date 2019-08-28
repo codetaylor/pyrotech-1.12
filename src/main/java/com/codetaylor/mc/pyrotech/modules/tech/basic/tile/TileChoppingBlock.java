@@ -17,6 +17,7 @@ import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
@@ -314,11 +315,15 @@ public class TileChoppingBlock
       if (!world.isRemote) {
         int sawdust = tile.getSawdust();
 
-        if (!heldItem.isEmpty()) {
-          ItemStack itemStack = new ItemStack(ModuleCore.Blocks.ROCK, sawdust, BlockRock.EnumType.WOOD_CHIPS.getMeta());
-          StackHelper.spawnStackOnTop(world, itemStack, hitPos, 0);
-          heldItem.damageItem(1, player);
-          tile.setSawdust(0);
+        if (ModuleCoreConfig.TWEAKS.REQUIRE_SHOVEL_TO_PICKUP_WOOD_CHIPS) {
+
+          if (!heldItem.isEmpty()) {
+            ItemStack itemStack = new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta());
+            StackHelper.spawnStackOnTop(world, itemStack, hitPos, 0);
+            heldItem.damageItem(1, player);
+          }
+
+          tile.setSawdust(sawdust - 1);
 
         } else {
           tile.setSawdust(sawdust - 1);

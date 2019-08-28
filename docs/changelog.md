@@ -35,6 +35,7 @@
             * `I:TRANSFER_AMOUNT_PER_TICK`
             * `I:TRANSFER_LIMIT`
     * Cog Machines can now be disabled with a redstone signal [(#145)](https://github.com/codetaylor/pyrotech/issues/145)
+
   * Fixed:
     * Pit Kiln only plays wood placement sound for the last log placed
     * Piles of wood chips yield unexpected quantities when broken [(#143)](https://github.com/codetaylor/pyrotech/issues/143)
@@ -69,6 +70,8 @@
         * Pit Burn:
             * Wood Chips block in a Pit Burn will now produce 8 Charcoal Flakes instead of 4 Charcoal
             * Wood Chips block Pit Burn recipe duration increased
+    * All wood chips now require a shovel to gather [(#137)](https://github.com/codetaylor/pyrotech/issues/137)
+        * Config: `core.cfg` -> `TWEAKS` -> `REQUIRE_SHOVEL_TO_PICKUP_WOOD_CHIPS`
 
 ---
 

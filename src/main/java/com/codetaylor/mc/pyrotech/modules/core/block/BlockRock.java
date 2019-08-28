@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.core.block;
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -13,6 +14,8 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
@@ -60,6 +63,43 @@ public class BlockRock //'n beats
     } else {
       return SoundType.STONE;
     }
+  }
+
+  @Override
+  public boolean canHarvestBlock(IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player) {
+
+    if (ModuleCoreConfig.TWEAKS.REQUIRE_SHOVEL_TO_PICKUP_WOOD_CHIPS) {
+      ItemStack itemMainhand = player.getHeldItemMainhand();
+      Item item = itemMainhand.getItem();
+      return item.getToolClasses(itemMainhand).contains("shovel");
+    }
+
+    return super.canHarvestBlock(world, pos, player);
+  }
+
+  @Nullable
+  @Override
+  public String getHarvestTool(@Nonnull IBlockState state) {
+
+    if (ModuleCoreConfig.TWEAKS.REQUIRE_SHOVEL_TO_PICKUP_WOOD_CHIPS
+        && state.getBlock() instanceof BlockRock
+        && state.getValue(VARIANT) == EnumType.WOOD_CHIPS) {
+      return "shovel";
+    }
+
+    return super.getHarvestTool(state);
+  }
+
+  @Override
+  public int getHarvestLevel(IBlockState state) {
+
+    if (ModuleCoreConfig.TWEAKS.REQUIRE_SHOVEL_TO_PICKUP_WOOD_CHIPS
+        && state.getBlock() instanceof BlockRock
+        && state.getValue(VARIANT) == EnumType.WOOD_CHIPS) {
+      return 0;
+    }
+
+    return super.getHarvestLevel(state);
   }
 
   // ---------------------------------------------------------------------------
