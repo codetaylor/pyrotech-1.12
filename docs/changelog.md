@@ -1,7 +1,7 @@
 1.3.12
 
   * **Fixed:**
-    * Crash with SpongeForge mod Grief Prevention [(#176)](https://github.com/codetaylor/pyrotech/issues/176)
+    * Crash with SpongeForge plugin Grief Prevention [(#176)](https://github.com/codetaylor/pyrotech/issues/176)
 
   * **Changed:**
     * When an active pile in a pit burn fails, it will change to fire instead of air [(#176)](https://github.com/codetaylor/pyrotech/issues/176)
