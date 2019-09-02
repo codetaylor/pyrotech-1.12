@@ -288,7 +288,7 @@ public class TileActivePile
   @Override
   protected void onInvalidDelayExpired() {
 
-    this.world.setBlockToAir(this.pos);
+    this.world.setBlockState(this.pos, Blocks.FIRE.getDefaultState());
   }
 
   @Override
