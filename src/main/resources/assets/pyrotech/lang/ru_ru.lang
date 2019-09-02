@@ -1,4 +1,3 @@
-
 itemGroup.pyrotech=Pyrotech
 
 #------------------------------------------------------------------------------
@@ -46,6 +45,8 @@ tile.pyrotech.tank.stone.name=Каменный резервуар
 tile.pyrotech.tank.brick.name=Прочный резервуар
 tile.pyrotech.bag_simple.name=Сумка для камней
 tile.pyrotech.bag_durable.name=Прочная сумка для камней
+tile.pyrotech.faucet_stone.name=Stone Faucet
+tile.pyrotech.faucet_brick.name=Refractory Faucet
 
 #------------------------------------------------------------------------------
 # Module: Tech - Basic
@@ -116,6 +117,7 @@ tile.pyrotech.brick_kiln.name=Огнеупорная печь для обжиг�
 tile.pyrotech.brick_oven.name=Огнеупорная духовка
 tile.pyrotech.brick_sawmill.name=Огнеупорная лесопилка
 tile.pyrotech.brick_crucible.name=Огнеупорный тигель
+
 tile.pyrotech.mechanical_hopper.name=Механическая воронка
 tile.pyrotech.mechanical_compacting_bin.name=Механический уплотнитель
 tile.pyrotech.mechanical_mulch_spreader.name=Механический мульчер
@@ -287,11 +289,14 @@ gui.pyrotech.tooltip.uses=Использований: %d / %d
 gui.pyrotech.tooltip.uses.full=Использований: %d
 gui.pyrotech.tooltip.durability=Прочности: %d / %d
 gui.pyrotech.tooltip.durability.full=Прочности: %d
+gui.pyrotech.tooltip.durability.indestructible=Indestructible
 gui.pyrotech.tooltip.hot.fluids.true=Может держать горячие жидкости
 gui.pyrotech.tooltip.hot.fluids.false=Перерывы с горячими жидкостями
 gui.pyrotech.tooltip.burn.time=Время горения: %s
 gui.pyrotech.tooltip.fluid.capacity=Ёмкость: %d mB
 gui.pyrotech.tooltip.fluid=%s: %d / %d
+gui.pyrotech.tooltip.fluid.transfer.rate=Rate: %d mB/t
+gui.pyrotech.tooltip.fluid.transfer.limit=Shutoff: %d mB
 gui.pyrotech.tooltip.item.capacity.empty=Ёмкость: %d предметов
 gui.pyrotech.tooltip.item.capacity=Ёмкость: %d / %d предметов
 gui.pyrotech.tooltip.drain=Водостоки коллектора в диапазоне %dx%d с передней части блока
