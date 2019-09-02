@@ -1,6 +1,6 @@
 1.4.0
 
-  * Translators:
+  * **Translators:**
     * New lang keys:
         * gui.pyrotech.tooltip.durability.indestructible
         * gui.pyrotech.tooltip.fluid.transfer.rate
@@ -11,7 +11,7 @@
         * entries/accelerate/refractory_faucet.json
         * entries/innovate/stone_faucet.json
 
-  * Added:
+  * **Added:**
     * Cooldown to thrown rocks / clumps [(#157)](https://github.com/codetaylor/pyrotech/issues/157)
         * Config value: `core.cfg` -> `ROCKS` -> `THROW_COOLDOWN_TICKS`
     * Config option to set Sawmill blades as indestructible [(#98)](https://github.com/codetaylor/pyrotech/issues/98)
@@ -36,11 +36,11 @@
             * `I:TRANSFER_LIMIT`
     * Cog Machines can now be disabled with a redstone signal [(#145)](https://github.com/codetaylor/pyrotech/issues/145)
 
-  * Fixed:
+  * **Fixed:**
     * Pit Kiln only plays wood placement sound for the last log placed
     * Piles of wood chips yield unexpected quantities when broken [(#143)](https://github.com/codetaylor/pyrotech/issues/143)
 
-  * Changed:
+  * **Changed:**
     * Patchouli is now a required dependency [(#169)](https://github.com/codetaylor/pyrotech/issues/169)
     * Pit Kiln is now configured to take less time when it has fewer items [(#119)](https://github.com/codetaylor/pyrotech/issues/119)
         * Config value: `module.tech.Basic.cfg` -> `PIT_KILN` -> `VARIABLE_SPEED_MODIFIER`
