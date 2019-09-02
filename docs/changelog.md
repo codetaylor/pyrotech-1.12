@@ -75,6 +75,13 @@
 
 ---
 
+1.3.11
+
+  * Added:
+    * `ru_ru.lang` [(#178, SSKirillSS)](https://github.com/codetaylor/pyrotech/pull/178)
+
+---
+
 1.3.10
 
   * Fixed:
