@@ -6,11 +6,14 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;
+import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRFaucet;
+import com.codetaylor.mc.pyrotech.modules.storage.event.ConfigChangedEventHandler;
 import com.codetaylor.mc.pyrotech.modules.storage.event.EntityItemPickupEventHandler;
 import com.codetaylor.mc.pyrotech.modules.storage.init.BlockInitializer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -82,6 +85,15 @@ public class ModuleStorage
     );
 
     MinecraftForge.EVENT_BUS.register(new EntityItemPickupEventHandler());
+    MinecraftForge.EVENT_BUS.register(new ConfigChangedEventHandler());
+  }
+
+  @Override
+  @SideOnly(Side.CLIENT)
+  public void onClientPostInitializationEvent(FMLPostInitializationEvent event) {
+
+    super.onClientPostInitializationEvent(event);
+    TESRFaucet.updateBlockMatchersFromConfig();
   }
 
   @Override

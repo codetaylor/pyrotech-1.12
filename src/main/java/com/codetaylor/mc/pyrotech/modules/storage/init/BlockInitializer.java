@@ -11,6 +11,7 @@ import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRFaucet;
 import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRTank;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.*;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileFaucetBase;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;

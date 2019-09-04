@@ -7,6 +7,9 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockGrass;
 import net.minecraftforge.common.config.Config;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 @Config(modid = ModuleStorage.MOD_ID, name = ModuleStorage.MOD_ID + "/" + "module.Storage")
 public class ModuleStorageConfig {
 
@@ -190,6 +193,31 @@ public class ModuleStorageConfig {
         "Item string format is (domain):(path):(meta|*) where * matches any meta."
     })
     public String[] ITEM_BLACKLIST = new String[0];
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Faucet Common
+  // ---------------------------------------------------------------------------
+
+  public static FaucetCommon FAUCET_COMMON = new FaucetCommon();
+
+  public static class FaucetCommon {
+
+    @Config.Comment({
+        "This allows control over how far down the faucet's fluid renders into",
+        "the block below.",
+        "",
+        "The default is 15.",
+        "To go all the way down into the block below, set to 16.",
+        "To not go into the block below at all, set to 0.",
+        "The valid range is [0,16] inclusive",
+        "",
+        "If you have some that you'd like to see added to the defaults here,",
+        "make a ticket."
+    })
+    public Map<String, Integer> FLUID_RENDER_CUTOFF = new TreeMap<String, Integer>() {{
+      put("tconstruct:casting:0", 1);
+    }};
   }
 
   // ---------------------------------------------------------------------------

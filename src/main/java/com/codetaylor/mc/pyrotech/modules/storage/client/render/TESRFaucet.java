@@ -1,9 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.storage.client.render;
 
+import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
+import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
+import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockFaucetBase;
-import com.codetaylor.mc.pyrotech.modules.storage.tile.TileFaucetBase;
-import net.minecraft.block.Block;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileFaucetBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -15,15 +20,37 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class TESRFaucet
     extends TileEntitySpecialRenderer<TileFaucetBase> {
+
+  public static void updateBlockMatchersFromConfig() {
+
+    BLOCK_META_MATCHERS.clear();
+
+    Map<String, Integer> map = ModuleStorageConfig.FAUCET_COMMON.FLUID_RENDER_CUTOFF;
+
+    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+
+      try {
+        BlockMetaMatcher blockMetaMatcher = Util.parseBlockStringWithWildcard(entry.getKey(), RecipeItemParser.INSTANCE);
+        BLOCK_META_MATCHERS.put(blockMetaMatcher, Math.max(0, Math.min(16, entry.getValue())));
+
+      } catch (MalformedRecipeItemException e) {
+        ModuleStorage.LOGGER.error("Error parsing block string: " + entry.getKey(), e);
+      }
+    }
+  }
+
+  private static final Map<BlockMetaMatcher, Integer> BLOCK_META_MATCHERS = new LinkedHashMap<>();
 
   private static final float PX = 0.0625f;
 
@@ -109,9 +136,16 @@ public class TESRFaucet
     World world = tile.getWorld();
     BlockPos downPos = tile.getPos().down();
     IBlockState downState = world.getBlockState(downPos);
-    Block downBlock = downState.getBlock();
-    AxisAlignedBB boundingBox = downBlock.getCollisionBoundingBox(downState, world, downPos);
-    double maxHeight = (boundingBox == null) ? -1 : Math.max(-1, boundingBox.maxY - 1);
+    double maxHeight = PX - 1; // (1 - 16) / 16
+
+    // TODO: cache this maybe?
+    for (Map.Entry<BlockMetaMatcher, Integer> entry : BLOCK_META_MATCHERS.entrySet()) {
+
+      if (entry.getKey().test(downState)) {
+        maxHeight = -entry.getValue() / 16f;
+        break;
+      }
+    }
 
     Fluid fluid = fluidStack.getFluid();
     TextureMap textureMapBlocks = Minecraft.getMinecraft().getTextureMapBlocks();
@@ -201,13 +235,13 @@ public class TESRFaucet
       buffer
           .pos(10 * PX, maxHeight, 8 * PX)
           .color(r, g, b, 1f)
-          .tex(flowing.getInterpolatedU(0), flowing.getInterpolatedV(5 + (-maxHeight) * 16))
+          .tex(flowing.getInterpolatedU(0), flowing.getInterpolatedV(5 + (-maxHeight) * 8))
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(10 * PX, maxHeight, 10 * PX)
           .color(r, g, b, 1f)
-          .tex(flowing.getInterpolatedU(1), flowing.getInterpolatedV(5 + (-maxHeight) * 16))
+          .tex(flowing.getInterpolatedU(1), flowing.getInterpolatedV(5 + (-maxHeight) * 8))
           .lightmap(j, k)
           .endVertex();
     }
@@ -229,13 +263,13 @@ public class TESRFaucet
       buffer
           .pos(6 * PX, maxHeight, 8 * PX)
           .color(r, g, b, 1f)
-          .tex(flowing.getInterpolatedU(0), flowing.getInterpolatedV(5 + (-maxHeight) * 16))
+          .tex(flowing.getInterpolatedU(0), flowing.getInterpolatedV(5 + (-maxHeight) * 8))
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(6 * PX, maxHeight, 10 * PX)
           .color(r, g, b, 1f)
-          .tex(flowing.getInterpolatedU(1), flowing.getInterpolatedV(5 + (-maxHeight) * 16))
+          .tex(flowing.getInterpolatedU(1), flowing.getInterpolatedV(5 + (-maxHeight) * 8))
           .lightmap(j, k)
           .endVertex();
     }
@@ -257,13 +291,13 @@ public class TESRFaucet
       buffer
           .pos(6 * PX, maxHeight, 8 * PX)
           .color(r, g, b, 1f)
-          .tex(flowing.getInterpolatedU(0), flowing.getInterpolatedV(5 + (-maxHeight) * 16))
+          .tex(flowing.getInterpolatedU(0), flowing.getInterpolatedV(5 + (-maxHeight) * 8))
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(10 * PX, maxHeight, 8 * PX)
           .color(r, g, b, 1f)
-          .tex(flowing.getInterpolatedU(2), flowing.getInterpolatedV(5 + (-maxHeight) * 16))
+          .tex(flowing.getInterpolatedU(2), flowing.getInterpolatedV(5 + (-maxHeight) * 8))
           .lightmap(j, k)
           .endVertex();
     }
@@ -285,13 +319,13 @@ public class TESRFaucet
       buffer
           .pos(6 * PX, maxHeight, 10 * PX)
           .color(r, g, b, 1f)
-          .tex(flowing.getInterpolatedU(0), flowing.getInterpolatedV(2 + (-maxHeight) * 16))
+          .tex(flowing.getInterpolatedU(0), flowing.getInterpolatedV(2 + (-maxHeight) * 8))
           .lightmap(j, k)
           .endVertex();
       buffer
           .pos(10 * PX, maxHeight, 10 * PX)
           .color(r, g, b, 1f)
-          .tex(flowing.getInterpolatedU(2), flowing.getInterpolatedV(2 + (-maxHeight) * 16))
+          .tex(flowing.getInterpolatedU(2), flowing.getInterpolatedV(2 + (-maxHeight) * 8))
           .lightmap(j, k)
           .endVertex();
     }
