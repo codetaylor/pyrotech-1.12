@@ -187,6 +187,7 @@ item.pyrotech.coal.coke.name=煤焦
 item.pyrotech.pit.ash.name=灰烬
 item.pyrotech.flint.clay.ball.name=燧石粘土
 item.pyrotech.refractory.clay.ball.name=耐火粘土
+item.pyrotech.refractory.clay.lump.name=Lump of Refractory Clay
 item.pyrotech.unfired.refractory.brick.name=未烧制的耐火砖
 item.pyrotech.unfired.brick.name=未烧制的粘土砖
 item.pyrotech.refractory.brick.name=耐火砖

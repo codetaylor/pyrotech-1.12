@@ -25,7 +25,7 @@
         * Config value: `module.tech.Basic.cfg` -> `IRONCLAD_ANVIL` -> `USES_DURABILITY`
     * Pyrotech will now scan loot tables and replace `Iron Ingot` with `Iron Ore` [(#102)](https://github.com/codetaylor/pyrotech/issues/102)
         * Config value: `core.cfg` -> `TWEAKS` -> `REPLACE_IRON_INGOTS_WITH_IRON_ORE`
-    * New Stone / Refractory Faucet [(#132)](https://github.com/codetaylor/pyrotech/issues/132)
+    * New Block: Stone / Refractory Faucet [(#132)](https://github.com/codetaylor/pyrotech/issues/132)
         * Transfers fluid from attached fluid handler to fluid handler below
         * Can break with hot fluids (optional)
         * Can shutoff after transfer limit reached (optional)
@@ -35,6 +35,7 @@
             * `I:TRANSFER_AMOUNT_PER_TICK`
             * `I:TRANSFER_LIMIT`
     * Cog Machines can now be disabled with a redstone signal [(#145)](https://github.com/codetaylor/pyrotech/issues/145)
+    * New Item: Lump of Refractory Clay <pyrotech:material:35>
 
   * **Fixed:**
     * Pit Kiln only plays wood placement sound for the last log placed
@@ -72,6 +73,7 @@
             * Wood Chips block Pit Burn recipe duration increased
     * All wood chips now require a shovel to gather [(#137)](https://github.com/codetaylor/pyrotech/issues/137)
         * Config: `core.cfg` -> `TWEAKS` -> `REQUIRE_SHOVEL_TO_PICKUP_WOOD_CHIPS`
+    * Refractory Brick cost changed to 2x Lump of Refractory Clay
 
 ---
 

@@ -10,6 +10,7 @@
       "straw": {"textures": {"layer0": "pyrotech:items/straw"}},
       "flint_clay_ball": {"textures": {"layer0": "pyrotech:items/flint_clay_ball"}},
       "refractory_clay_ball": {"textures": {"layer0": "pyrotech:items/refractory_clay_ball"}},
+      "refractory_clay_lump": {"textures": {"layer0": "pyrotech:items/refractory_clay_lump"}},
       "pottery_fragments": {"textures": {"layer0": "pyrotech:items/clay_fragments"}},
       "pottery_shard": {"textures": {"layer0": "pyrotech:items/clay_shard"}},
       "slaked_lime": {"textures": {"layer0": "pyrotech:items/slaked_lime"}},

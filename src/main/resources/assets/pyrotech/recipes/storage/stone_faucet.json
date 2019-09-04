@@ -16,8 +16,8 @@
       "data": 16
     },
     "C": {
-      "item": "minecraft:clay_ball",
-      "data": 0
+      "item": "pyrotech:material",
+      "data": 17
     }
   },
   "result": {

@@ -107,7 +107,8 @@ public class ItemMaterial
     DUST_FLINT(31, "dust_flint"),
     GLASS_SHARD(32, "glass_shard"),
     OBSIDIAN_SHARD(33, "obsidian_shard"),
-    GOLD_SHARD(34, "gold_shard");
+    GOLD_SHARD(34, "gold_shard"),
+    REFRACTORY_CLAY_LUMP(35, "refractory_clay_lump");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())

@@ -187,6 +187,7 @@ item.pyrotech.coal.coke.name=Coal Coke
 item.pyrotech.pit.ash.name=Ash
 item.pyrotech.flint.clay.ball.name=Flint Clay
 item.pyrotech.refractory.clay.ball.name=Refractory Clay
+item.pyrotech.refractory.clay.lump.name=Lump of Refractory Clay
 item.pyrotech.unfired.refractory.brick.name=Unfired Refractory Brick
 item.pyrotech.unfired.brick.name=Unfired Clay Brick
 item.pyrotech.refractory.brick.name=Refractory Brick

@@ -187,6 +187,7 @@ item.pyrotech.coal.coke.name=Коксовый уголь
 item.pyrotech.pit.ash.name=Пепел
 item.pyrotech.flint.clay.ball.name=Кремневая глина
 item.pyrotech.refractory.clay.ball.name=Огнеупорная глина
+item.pyrotech.refractory.clay.lump.name=Lump of Refractory Clay
 item.pyrotech.unfired.refractory.brick.name=Необожжённый огнеупорный кирпич
 item.pyrotech.unfired.brick.name=Необожжённый глиняный кирпич
 item.pyrotech.refractory.brick.name=Огнеупорный кирпич
