@@ -1,6 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.storage.tile;
 
+import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
+import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileFaucetBase;
+
+import javax.annotation.Nullable;
 
 public class TileFaucetBrick
     extends TileFaucetBase {
@@ -27,5 +31,12 @@ public class TileFaucetBrick
   protected int getFluidTransferLimit() {
 
     return ModuleStorageConfig.BRICK_FAUCET.TRANSFER_LIMIT;
+  }
+
+  @Nullable
+  @Override
+  public Stages getStages() {
+
+    return ModuleStorageConfig.STAGES_FAUCET_BRICK;
   }
 }

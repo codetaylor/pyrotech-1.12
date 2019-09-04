@@ -46,6 +46,12 @@ public class ModuleStorageConfig {
   @Config.Ignore
   public static Stages STAGES_DURABLE_STASH = null;
 
+  @Config.Ignore
+  public static Stages STAGES_FAUCET_STONE = null;
+
+  @Config.Ignore
+  public static Stages STAGES_FAUCET_BRICK = null;
+
   // ---------------------------------------------------------------------------
   // - Simple Rock Bag
   // ---------------------------------------------------------------------------
