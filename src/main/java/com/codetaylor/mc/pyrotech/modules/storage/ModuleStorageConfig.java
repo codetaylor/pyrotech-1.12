@@ -213,13 +213,17 @@ public class ModuleStorageConfig {
         "This allows control over how far down the faucet's fluid renders into",
         "the block below.",
         "",
-        "The default is 15.",
+        "Block strings are in the format (domain):(path):(meta) and refer not to",
+        "an item, but an in-world blockState. Use F3 to find the blockState of",
+        "the block you're looking at. The asterisk * is a valid wildcard for meta.",
+        "",
         "To go all the way down into the block below, set to 16.",
         "To not go into the block below at all, set to 0.",
         "The valid range is [0,16] inclusive",
+        "The default is 15.",
         "",
         "If you have some that you'd like to see added to the defaults here,",
-        "make a ticket."
+        "mention it on the Discord or make a ticket."
     })
     public Map<String, Integer> FLUID_RENDER_CUTOFF = new TreeMap<String, Integer>() {{
       put("tconstruct:casting:0", 1);
