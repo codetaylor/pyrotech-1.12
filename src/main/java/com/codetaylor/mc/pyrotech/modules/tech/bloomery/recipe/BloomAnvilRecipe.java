@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe;
 
+import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
@@ -7,12 +8,14 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -136,4 +139,41 @@ public class BloomAnvilRecipe
     }
   }
 
+  @Override
+  public void onAnvilDurabilityExpired(World world, TileAnvilBase tile, float hitX, float hitY, float hitZ) {
+
+    ItemStack bloomStack = tile.getStackHandler().getStackInSlot(0).copy();
+    boolean isBloom = (bloomStack.getItem() instanceof BlockBloom.ItemBlockBloom);
+    BlockPos pos = tile.getPos();
+
+    world.destroyBlock(pos, false);
+
+    if (isBloom) {
+      NBTTagCompound tagCompound = bloomStack.getTagCompound();
+
+      if (tagCompound != null) {
+
+        if (ModuleTechBloomery.Blocks.BLOOM.canPlaceBlockAt(world, pos)) {
+
+          if (!world.isRemote) {
+            world.setBlockState(pos, ModuleTechBloomery.Blocks.BLOOM.getDefaultState());
+            TileBloom tileBloom = (TileBloom) world.getTileEntity(pos);
+
+            if (tileBloom != null) {
+              tileBloom.readFromNBT(tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG));
+              tileBloom.setPos(pos);
+              BlockHelper.notifyBlockUpdate(world, pos);
+            }
+          }
+
+        } else {
+          StackHelper.spawnStackOnTop(world, bloomStack, pos);
+        }
+      }
+
+    } else {
+      StackHelper.spawnStackOnTop(world, bloomStack, pos);
+    }
+
+  }
 }

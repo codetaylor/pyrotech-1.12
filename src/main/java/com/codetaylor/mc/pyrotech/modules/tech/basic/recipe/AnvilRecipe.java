@@ -122,6 +122,8 @@ public class AnvilRecipe
 
     void onAnvilHitClient(World world, TileAnvilBase tile, float hitX, float hitY, float hitZ);
 
+    void onAnvilDurabilityExpired(World world, TileAnvilBase tile, float hitX, float hitY, float hitZ);
+
     /**
      * @return true to allow this recipe to be inherited by higher tier anvils
      */

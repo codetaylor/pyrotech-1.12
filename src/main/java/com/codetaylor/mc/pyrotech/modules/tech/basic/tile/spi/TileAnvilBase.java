@@ -404,8 +404,14 @@ public abstract class TileAnvilBase
             tile.setDamage(tile.getDamage() + 1);
 
           } else {
-            StackHelper.spawnStackHandlerContentsOnTop(world, tile.getStackHandler(), tile.getPos());
-            world.destroyBlock(tile.getPos(), false);
+
+            if (isExtendedRecipe) {
+              ((AnvilRecipe.IExtendedRecipe) recipe).onAnvilDurabilityExpired(world, tile, hitX, hitY, hitZ);
+
+            } else {
+              StackHelper.spawnStackHandlerContentsOnTop(world, tile.getStackHandler(), tile.getPos());
+              world.destroyBlock(tile.getPos(), false);
+            }
             return true;
           }
         }
