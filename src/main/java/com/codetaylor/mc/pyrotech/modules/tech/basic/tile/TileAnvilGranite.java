@@ -21,9 +21,15 @@ public class TileAnvilGranite
   }
 
   @Override
-  public int getBloomAnvilDamagePerHit() {
+  public int getBloomAnvilExtraDamagePerHit() {
 
-    return ModuleTechBasicConfig.GRANITE_ANVIL.BLOOM_DAMAGE_PER_HIT;
+    return ModuleTechBasicConfig.GRANITE_ANVIL.BLOOM_EXTRA_DAMAGE_PER_HIT;
+  }
+
+  @Override
+  public double getBloomAnvilExtraDamageChance() {
+
+    return ModuleTechBasicConfig.GRANITE_ANVIL.BLOOM_EXTRA_DAMAGE_CHANCE;
   }
 
   @Override

@@ -66,7 +66,13 @@ public class BloomAnvilRecipe
   public void applyDamage(World world, TileAnvilBase tile) {
 
     if (tile.useDurability()) {
-      tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - tile.getBloomAnvilDamagePerHit());
+      int durabilityUntilNextDamage = tile.getDurabilityUntilNextDamage() - 1;
+
+      if (RandomHelper.random().nextFloat() < tile.getBloomAnvilExtraDamageChance()) {
+        durabilityUntilNextDamage -= tile.getBloomAnvilExtraDamagePerHit();
+      }
+
+      tile.setDurabilityUntilNextDamage(durabilityUntilNextDamage);
     }
     BloomHelper.trySpawnFire(world, tile.getPos(), RandomHelper.random(), ModuleTechBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_IN_ANVIL);
   }

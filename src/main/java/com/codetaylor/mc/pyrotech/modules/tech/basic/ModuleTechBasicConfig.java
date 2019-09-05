@@ -509,11 +509,18 @@ public class ModuleTechBasicConfig {
     public int HITS_PER_DAMAGE = 64;
 
     @Config.Comment({
-        "The amount of hits to apply to the anvil damage when hitting a bloom.",
-        "Default: " + 3
+        "The amount of extra damage to apply to the anvil damage when hitting a bloom.",
+        "Default: " + 1
     })
     @Config.RangeInt(min = 0)
-    public int BLOOM_DAMAGE_PER_HIT = 3;
+    public int BLOOM_EXTRA_DAMAGE_PER_HIT = 1;
+
+    @Config.Comment({
+        "The chance that extra damage will be applied when hitting a bloom.",
+        "Default: " + 0.5
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double BLOOM_EXTRA_DAMAGE_CHANCE = 0.5;
 
     @Config.Comment({
         "How much exhaustion to apply per hit.",
@@ -567,11 +574,18 @@ public class ModuleTechBasicConfig {
     public int HITS_PER_DAMAGE = 256;
 
     @Config.Comment({
-        "The amount of hits to apply to the anvil damage when hitting a bloom.",
+        "The amount of extra damage to apply to the anvil damage when hitting a bloom.",
         "Default: " + 1
     })
     @Config.RangeInt(min = 0)
-    public int BLOOM_DAMAGE_PER_HIT = 1;
+    public int BLOOM_EXTRA_DAMAGE_PER_HIT = 1;
+
+    @Config.Comment({
+        "The chance that extra damage will be applied when hitting a bloom.",
+        "Default: " + 0.05
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double BLOOM_EXTRA_DAMAGE_CHANCE = 0.05;
 
     @Config.Comment({
         "How much exhaustion to apply per hit.",

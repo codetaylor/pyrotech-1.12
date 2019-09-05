@@ -21,9 +21,15 @@ public class TileAnvilIronPlated
   }
 
   @Override
-  public int getBloomAnvilDamagePerHit() {
+  public int getBloomAnvilExtraDamagePerHit() {
 
-    return ModuleTechBasicConfig.IRONCLAD_ANVIL.BLOOM_DAMAGE_PER_HIT;
+    return ModuleTechBasicConfig.IRONCLAD_ANVIL.BLOOM_EXTRA_DAMAGE_PER_HIT;
+  }
+
+  @Override
+  public double getBloomAnvilExtraDamageChance() {
+
+    return ModuleTechBasicConfig.GRANITE_ANVIL.BLOOM_EXTRA_DAMAGE_CHANCE;
   }
 
   @Override

@@ -146,7 +146,9 @@ public abstract class TileAnvilBase
   // - Subclass
   // ---------------------------------------------------------------------------
 
-  public abstract int getBloomAnvilDamagePerHit();
+  public abstract int getBloomAnvilExtraDamagePerHit();
+
+  public abstract double getBloomAnvilExtraDamageChance();
 
   protected abstract int getHitsPerDamage();
 

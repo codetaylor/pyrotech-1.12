@@ -76,6 +76,15 @@
     * All wood chips now require a shovel to gather [(#137)](https://github.com/codetaylor/pyrotech/issues/137)
         * Config: `core.cfg` -> `TWEAKS` -> `REQUIRE_SHOVEL_TO_PICKUP_WOOD_CHIPS`
     * Refractory Brick cost changed to 2x Lump of Refractory Clay
+    * With respect to [(#130)](https://github.com/codetaylor/pyrotech/issues/130):
+        * Reduced default damage to Granite Anvil from hammering a bloom by half
+        * Renamed config value `module.tech.Basic.cfg` -> `GRANITE_ANVIL` -> `BLOOM_DAMAGE_PER_HIT`:
+            * New name: `BLOOM_EXTRA_DAMAGE_PER_HIT`
+        * Renamed config value `module.tech.Basic.cfg` -> `IRONCLAD_ANVIL` -> `BLOOM_DAMAGE_PER_HIT`:
+            * New name: `BLOOM_EXTRA_DAMAGE_PER_HIT`
+        * Config option to control chance of extra anvil damage when hammering a bloom
+            * Config value: `module.tech.Basic.cfg` -> `GRANITE_ANVIL` -> `BLOOM_EXTRA_DAMAGE_CHANCE`
+            * Config value: `module.tech.Basic.cfg` -> `IRONCLAD_ANVIL` -> `BLOOM_EXTRA_DAMAGE_CHANCE`
 
 ---
 
