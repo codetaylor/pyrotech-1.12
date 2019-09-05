@@ -16,6 +16,9 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PitKilnRecipesAdd {
 
   public static void apply(IForgeRegistry<KilnPitRecipe> registry) {
@@ -146,5 +149,52 @@ public class PitKilnRecipesAdd {
         }
     ).setRegistryName(ModuleTechBasic.MOD_ID, "limestone"));
 
+    // Terracotta
+    registry.register(new KilnPitRecipe(
+        new ItemStack(Blocks.HARDENED_CLAY),
+        Ingredient.fromStacks(new ItemStack(Blocks.CLAY)),
+        Reference.PitKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.PitKiln.DEFAULT_FAILURE_CHANCE,
+        new ItemStack[]{
+            ItemMaterial.EnumType.PIT_ASH.asStack(),
+            ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
+            ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
+        }
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "hardened_clay"));
+
+    List<ItemStack> glazedTerracotta = new ArrayList<>();
+    glazedTerracotta.add(new ItemStack(Blocks.WHITE_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.ORANGE_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.MAGENTA_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.LIGHT_BLUE_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.YELLOW_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.LIME_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.PINK_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.GRAY_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.SILVER_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.CYAN_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.PURPLE_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.BLUE_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.BROWN_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.GREEN_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.RED_GLAZED_TERRACOTTA));
+    glazedTerracotta.add(new ItemStack(Blocks.BLACK_GLAZED_TERRACOTTA));
+
+    for (int i = 0; i < glazedTerracotta.size(); i++) {
+      ItemStack output = glazedTerracotta.get(i);
+
+      // Terracotta
+      registry.register(new KilnPitRecipe(
+          output.copy(),
+          Ingredient.fromStacks(new ItemStack(Blocks.STAINED_HARDENED_CLAY, 1, i)),
+          Reference.PitKiln.DEFAULT_BURN_TIME_TICKS,
+          Reference.PitKiln.DEFAULT_FAILURE_CHANCE,
+          new ItemStack[]{
+              ItemMaterial.EnumType.PIT_ASH.asStack(),
+              ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
+              ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
+          }
+      ).setRegistryName(ModuleTechBasic.MOD_ID, output.getItem().getRegistryName().getResourcePath()));
+    }
   }
 }

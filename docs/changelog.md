@@ -36,6 +36,7 @@
             * `I:TRANSFER_LIMIT`
     * Cog Machines can now be disabled with a redstone signal [(#145)](https://github.com/codetaylor/pyrotech/issues/145)
     * New Item: Lump of Refractory Clay <pyrotech:material:35>
+    * Terracotta and Glazed Terracotta recipes have been added to the Pit Kiln, Stone Kiln, and Refractory Kiln [(#134)](https://github.com/codetaylor/pyrotech/issues/134)
 
   * **Fixed:**
     * Pit Kiln only plays wood placement sound for the last log placed
