@@ -99,7 +99,7 @@ public abstract class ItemTongsFullBase
         }
       }
 
-      ItemStack itemStack = BloomHelper.createItemTongsEmpty(heldItem);
+      ItemStack itemStack = BloomHelper.createItemTongsEmpty(heldItem, !player.isCreative());
 
       if (itemStack.isEmpty()) {
 
@@ -186,7 +186,7 @@ public abstract class ItemTongsFullBase
       NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
       ItemStack bloomStack = BloomHelper.createBloomAsItemStack(new ItemStack(ModuleTechBloomery.Blocks.BLOOM), tileTag);
       ((TileAnvilBase) tile).getStackHandler().insertItem(0, bloomStack, false);
-      ItemStack emptyTongsStack = BloomHelper.createItemTongsEmpty(heldItem);
+      ItemStack emptyTongsStack = BloomHelper.createItemTongsEmpty(heldItem, !player.isCreative());
       heldItem.shrink(1);
 
       if (!emptyTongsStack.isEmpty()) {

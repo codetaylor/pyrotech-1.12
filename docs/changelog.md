@@ -41,6 +41,7 @@
   * **Fixed:**
     * Pit Kiln only plays wood placement sound for the last log placed
     * Piles of wood chips yield unexpected quantities when broken [(#143)](https://github.com/codetaylor/pyrotech/issues/143)
+    * Tongs should not take damage when a player is in creative mode
 
   * **Changed:**
     * Patchouli is now a required dependency [(#169)](https://github.com/codetaylor/pyrotech/issues/169)

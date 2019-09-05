@@ -239,7 +239,7 @@ public class BloomHelper {
    * @param toEmpty the full tongs itemstack
    * @return the empty version of the full tongs passed in
    */
-  public static ItemStack createItemTongsEmpty(ItemStack toEmpty) {
+  public static ItemStack createItemTongsEmpty(ItemStack toEmpty, boolean applyDamage) {
 
     NBTTagCompound tagCompound = toEmpty.getTagCompound();
 
@@ -253,7 +253,7 @@ public class BloomHelper {
       return toEmpty;
     }
 
-    if (toEmpty.attemptDamageItem(1, RandomHelper.random(), null)) {
+    if (applyDamage && toEmpty.attemptDamageItem(1, RandomHelper.random(), null)) {
       return ItemStack.EMPTY;
     }
 
