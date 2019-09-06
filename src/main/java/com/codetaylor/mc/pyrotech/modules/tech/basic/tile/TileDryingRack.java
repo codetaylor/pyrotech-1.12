@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
+import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.interaction.api.Transform;
 import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
@@ -10,6 +11,7 @@ import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.spi.DryingRackRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileDryingRackBase;
@@ -24,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 
 public class TileDryingRack
@@ -108,12 +111,56 @@ public class TileDryingRack
 
     super.update();
 
+    if (ModuleTechBasicConfig.DRYING_RACK.USE_AS_LADDER) {
+      IBlockState blockState = this.world.getBlockState(this.pos);
+      IBlockState blockStateUp = this.world.getBlockState(this.pos.up());
+      IBlockState blockStateDown = this.world.getBlockState(this.pos.down());
+
+      if (blockState.getValue(BlockDryingRack.VARIANT) == BlockDryingRack.EnumType.NORMAL
+          && ((blockStateUp.getBlock() == ModuleTechBasic.Blocks.DRYING_RACK
+          && blockStateUp.getValue(BlockDryingRack.VARIANT) == BlockDryingRack.EnumType.NORMAL)
+          || (blockStateDown.getBlock() == ModuleTechBasic.Blocks.DRYING_RACK
+          && blockStateDown.getValue(BlockDryingRack.VARIANT) == BlockDryingRack.EnumType.NORMAL))) {
+        this.tryClimb();
+      }
+    }
+
     if (this.world.isRemote
         && ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES
         && this.getSpeed() > 0
         && this.hasInput()
         && this.world.getTotalWorldTime() % 40 == 0) {
       ParticleHelper.spawnProgressParticlesClient(1, this.pos.getX() + 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5, 0.5, 0.15, 0.5);
+    }
+  }
+
+  private void tryClimb() {
+
+    List<EntityPlayer> playerList = this.world
+        .getEntitiesWithinAABB(EntityPlayer.class, AABBHelper.create(0, 0, 0, 0, 0, 0)
+            .offset(0.5, 0.5, 0.5)
+            .offset(this.pos)
+            .grow(0.6, 0.2, 0.6));
+
+    if (!playerList.isEmpty()) {
+      double climbSpeed = ModuleTechBasicConfig.DRYING_RACK.CLIMB_SPEED;
+
+      for (EntityPlayer player : playerList) {
+
+        if (player.isSneaking()) {
+          player.motionY = 0.0D;
+
+        } else if (player.collidedHorizontally) {
+
+          if (player.moveForward > 0.0F && player.motionY < climbSpeed) {
+            player.motionY = climbSpeed;
+          }
+        } else if (player.motionY < -climbSpeed) {
+          player.motionY = -climbSpeed;
+        }
+
+        player.fallDistance = 0;
+      }
     }
   }
 

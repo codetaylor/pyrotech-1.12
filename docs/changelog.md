@@ -40,6 +40,10 @@
     * Config options to change the input capacity of the Bloomery and Wither Forge [(#79)](https://github.com/codetaylor/pyrotech/issues/79)
         * `module.tech.Bloomery.cfg` -> `BLOOMERY` -> `CAPACITY`
         * `module.tech.Bloomery.cfg` -> `WITHER_FORGE` -> `CAPACITY`
+    * Drying Racks are now climbable when stacked vertically
+        * Config values:
+            * `module.tech.Basic.cfg` -> `DRYING_RACK` -> `CLIMB_SPEED`
+            * `module.tech.Basic.cfg` -> `DRYING_RACK` -> `USE_AS_LADDER`
 
   * **Fixed:**
     * Pit Kiln only plays wood placement sound for the last log placed

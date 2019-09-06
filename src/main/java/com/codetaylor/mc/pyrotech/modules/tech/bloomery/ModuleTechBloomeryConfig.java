@@ -76,7 +76,8 @@ public class ModuleTechBloomeryConfig {
         "How many items can the bloomery process at one time.",
         "",
         "Note: the amount of slag produced is proportional to the number of",
-        "input items."
+        "input items.",
+        "Default: " + 1
     })
     @Config.RangeInt(min = 1, max = 64)
     public int CAPACITY = 1;
@@ -218,7 +219,8 @@ public class ModuleTechBloomeryConfig {
         "How many items can the bloomery process at one time.",
         "",
         "Note: the amount of slag produced is proportional to the number of",
-        "input items."
+        "input items.",
+        "Default: " + 3
     })
     @Config.RangeInt(min = 1, max = 64)
     public int CAPACITY = 3;

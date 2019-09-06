@@ -899,6 +899,18 @@ public class ModuleTechBasicConfig {
     @Config.RangeDouble(min = 0)
     public double BASE_RECIPE_DURATION_MODIFIER = 1;
 
+    @Config.Comment({
+        "Set to true to allow the player to climb the sides of drying racks.",
+        "Default: " + true
+    })
+    public boolean USE_AS_LADDER = true;
+
+    @Config.Comment({
+        "Set the up / down movement speed for climbing.",
+        "Default: " + 0.1
+    })
+    public double CLIMB_SPEED = 0.1;
+
     public DryingRackConditionalModifiers CONDITIONAL_MODIFIERS = new DryingRackConditionalModifiers();
   }
 
