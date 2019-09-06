@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tool.item.spi;
 
+import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
@@ -9,12 +10,25 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class ItemPickaxeBase
+public class ItemPickaxeBase
     extends ItemPickaxe {
 
-  public ItemPickaxeBase(ToolMaterial material) {
+  public static final String NAME_BONE = "bone_pickaxe";
+  public static final String NAME_FLINT = "flint_pickaxe";
+  public static final String NAME_OBSIDIAN = "obsidian_pickaxe";
+
+  public ItemPickaxeBase(ToolMaterial material, String toolTierName) {
 
     super(material);
+
+    Integer maxDamage = ModuleToolConfig.DURABILITY.get(toolTierName);
+
+    if (maxDamage != null) {
+      this.setMaxDamage(maxDamage);
+    }
+
+    int harvestLevel = ModuleToolConfig.getHarvestLevel(toolTierName);
+    this.setHarvestLevel("pickaxe", harvestLevel);
   }
 
   @Override

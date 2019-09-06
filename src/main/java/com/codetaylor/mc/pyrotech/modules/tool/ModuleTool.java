@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tool.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tool.init.VanillaFurnaceRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tool.item.*;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.MinecraftForge;
@@ -70,74 +71,74 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemCrudeFishingRod.NAME)
     public static final ItemCrudeFishingRod CRUDE_FISHING_ROD;
 
-    @GameRegistry.ObjectHolder(ItemBoneAxe.NAME)
-    public static final ItemBoneAxe BONE_AXE;
+    @GameRegistry.ObjectHolder(ItemAxeBase.NAME_BONE)
+    public static final ItemAxeBase BONE_AXE;
 
-    @GameRegistry.ObjectHolder(ItemBoneHoe.NAME)
-    public static final ItemBoneHoe BONE_HOE;
+    @GameRegistry.ObjectHolder(ItemHoeBase.NAME_BONE)
+    public static final ItemHoeBase BONE_HOE;
 
-    @GameRegistry.ObjectHolder(ItemBonePickaxe.NAME)
-    public static final ItemBonePickaxe BONE_PICKAXE;
+    @GameRegistry.ObjectHolder(ItemPickaxeBase.NAME_BONE)
+    public static final ItemPickaxeBase BONE_PICKAXE;
 
-    @GameRegistry.ObjectHolder(ItemBoneShovel.NAME)
-    public static final ItemBoneShovel BONE_SHOVEL;
+    @GameRegistry.ObjectHolder(ItemShovelBase.NAME_BONE)
+    public static final ItemShovelBase BONE_SHOVEL;
 
-    @GameRegistry.ObjectHolder(ItemBoneSword.NAME)
-    public static final ItemBoneSword BONE_SWORD;
+    @GameRegistry.ObjectHolder(ItemSwordBase.NAME_BONE)
+    public static final ItemSwordBase BONE_SWORD;
 
-    @GameRegistry.ObjectHolder(ItemFlintAxe.NAME)
-    public static final ItemFlintAxe FLINT_AXE;
+    @GameRegistry.ObjectHolder(ItemAxeBase.NAME_FLINT)
+    public static final ItemAxeBase FLINT_AXE;
 
-    @GameRegistry.ObjectHolder(ItemFlintHoe.NAME)
-    public static final ItemFlintHoe FLINT_HOE;
+    @GameRegistry.ObjectHolder(ItemHoeBase.NAME_FLINT)
+    public static final ItemHoeBase FLINT_HOE;
 
-    @GameRegistry.ObjectHolder(ItemFlintPickaxe.NAME)
-    public static final ItemFlintPickaxe FLINT_PICKAXE;
+    @GameRegistry.ObjectHolder(ItemPickaxeBase.NAME_FLINT)
+    public static final ItemPickaxeBase FLINT_PICKAXE;
 
-    @GameRegistry.ObjectHolder(ItemFlintShovel.NAME)
-    public static final ItemFlintShovel FLINT_SHOVEL;
+    @GameRegistry.ObjectHolder(ItemShovelBase.NAME_FLINT)
+    public static final ItemShovelBase FLINT_SHOVEL;
 
-    @GameRegistry.ObjectHolder(ItemFlintSword.NAME)
-    public static final ItemFlintSword FLINT_SWORD;
+    @GameRegistry.ObjectHolder(ItemSwordBase.NAME_FLINT)
+    public static final ItemSwordBase FLINT_SWORD;
 
-    @GameRegistry.ObjectHolder(ItemObsidianAxe.NAME)
-    public static final ItemObsidianAxe OBSIDIAN_AXE;
+    @GameRegistry.ObjectHolder(ItemAxeBase.NAME_OBSIDIAN)
+    public static final ItemAxeBase OBSIDIAN_AXE;
 
-    @GameRegistry.ObjectHolder(ItemObsidianHoe.NAME)
-    public static final ItemObsidianHoe OBSIDIAN_HOE;
+    @GameRegistry.ObjectHolder(ItemHoeBase.NAME_OBSIDIAN)
+    public static final ItemHoeBase OBSIDIAN_HOE;
 
-    @GameRegistry.ObjectHolder(ItemObsidianPickaxe.NAME)
-    public static final ItemObsidianPickaxe OBSIDIAN_PICKAXE;
+    @GameRegistry.ObjectHolder(ItemPickaxeBase.NAME_OBSIDIAN)
+    public static final ItemPickaxeBase OBSIDIAN_PICKAXE;
 
-    @GameRegistry.ObjectHolder(ItemObsidianShovel.NAME)
-    public static final ItemObsidianShovel OBSIDIAN_SHOVEL;
+    @GameRegistry.ObjectHolder(ItemShovelBase.NAME_OBSIDIAN)
+    public static final ItemShovelBase OBSIDIAN_SHOVEL;
 
-    @GameRegistry.ObjectHolder(ItemObsidianSword.NAME)
-    public static final ItemObsidianSword OBSIDIAN_SWORD;
+    @GameRegistry.ObjectHolder(ItemSwordBase.NAME_OBSIDIAN)
+    public static final ItemSwordBase OBSIDIAN_SWORD;
 
     @GameRegistry.ObjectHolder(ItemUnfiredClayShears.NAME)
     public static final ItemUnfiredClayShears UNFIRED_CLAY_SHEARS;
 
-    @GameRegistry.ObjectHolder(ItemClayShears.NAME)
-    public static final ItemClayShears CLAY_SHEARS;
+    @GameRegistry.ObjectHolder(ItemShearsBase.NAME_CLAY)
+    public static final ItemShearsBase CLAY_SHEARS;
 
-    @GameRegistry.ObjectHolder(ItemStoneShears.NAME)
-    public static final ItemStoneShears STONE_SHEARS;
+    @GameRegistry.ObjectHolder(ItemShearsBase.NAME_STONE)
+    public static final ItemShearsBase STONE_SHEARS;
 
-    @GameRegistry.ObjectHolder(ItemBoneShears.NAME)
-    public static final ItemBoneShears BONE_SHEARS;
+    @GameRegistry.ObjectHolder(ItemShearsBase.NAME_BONE)
+    public static final ItemShearsBase BONE_SHEARS;
 
-    @GameRegistry.ObjectHolder(ItemFlintShears.NAME)
-    public static final ItemFlintShears FLINT_SHEARS;
+    @GameRegistry.ObjectHolder(ItemShearsBase.NAME_FLINT)
+    public static final ItemShearsBase FLINT_SHEARS;
 
     @GameRegistry.ObjectHolder(ItemGoldShears.NAME)
     public static final ItemGoldShears GOLD_SHEARS;
 
-    @GameRegistry.ObjectHolder(ItemDiamondShears.NAME)
-    public static final ItemDiamondShears DIAMOND_SHEARS;
+    @GameRegistry.ObjectHolder(ItemShearsBase.NAME_DIAMOND)
+    public static final ItemShearsBase DIAMOND_SHEARS;
 
-    @GameRegistry.ObjectHolder(ItemObsidianShears.NAME)
-    public static final ItemObsidianShears OBSIDIAN_SHEARS;
+    @GameRegistry.ObjectHolder(ItemShearsBase.NAME_OBSIDIAN)
+    public static final ItemShearsBase OBSIDIAN_SHEARS;
 
     static {
       CRUDE_AXE = null;

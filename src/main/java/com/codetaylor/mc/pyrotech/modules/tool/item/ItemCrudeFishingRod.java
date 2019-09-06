@@ -9,6 +9,7 @@ import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -89,7 +90,11 @@ public class ItemCrudeFishingRod
       }
 
       player.swingArm(hand);
-      player.addStat(StatList.getObjectUseStats(this));
+      StatBase stat = StatList.getObjectUseStats(this);
+
+      if (stat != null) {
+        player.addStat(stat);
+      }
     }
 
     return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);

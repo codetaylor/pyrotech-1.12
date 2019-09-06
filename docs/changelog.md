@@ -42,6 +42,7 @@
     * Pit Kiln only plays wood placement sound for the last log placed
     * Piles of wood chips yield unexpected quantities when broken [(#143)](https://github.com/codetaylor/pyrotech/issues/143)
     * Tongs should not take damage when a player is in creative mode
+    * Can't set harvest level of Pyrotech tools with Tool Progression mod [(#164)](https://github.com/codetaylor/pyrotech/issues/164)
 
   * **Changed:**
     * Patchouli is now a required dependency [(#169)](https://github.com/codetaylor/pyrotech/issues/169)
@@ -86,6 +87,7 @@
             * Config value: `module.tech.Basic.cfg` -> `GRANITE_ANVIL` -> `BLOOM_EXTRA_DAMAGE_CHANCE`
             * Config value: `module.tech.Basic.cfg` -> `IRONCLAD_ANVIL` -> `BLOOM_EXTRA_DAMAGE_CHANCE`
     * When an anvil breaks with a bloom on it, the bloom will be placed in the world where the anvil was [(#129)](https://github.com/codetaylor/pyrotech/issues/129)
+
 ---
 
 1.3.12

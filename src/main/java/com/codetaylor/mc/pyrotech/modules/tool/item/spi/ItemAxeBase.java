@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tool.item.spi;
 
+import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
@@ -9,17 +10,35 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class ItemAxeBase
+public class ItemAxeBase
     extends ItemAxe {
 
-  public ItemAxeBase(ToolMaterial material) {
+  public static final String NAME_BONE = "bone_axe";
+  public static final String NAME_FLINT = "flint_axe";
+  public static final String NAME_OBSIDIAN = "obsidian_axe";
+
+  public ItemAxeBase(ToolMaterial material, String toolTierName) {
 
     super(material);
+    this.init(toolTierName);
   }
 
-  public ItemAxeBase(ToolMaterial material, float damage, float speed) {
+  public ItemAxeBase(ToolMaterial material, float damage, float speed, String toolTierName) {
 
     super(material, damage, speed);
+    this.init(toolTierName);
+  }
+
+  protected void init(String toolTierName) {
+
+    Integer maxDamage = ModuleToolConfig.DURABILITY.get(toolTierName);
+
+    if (maxDamage != null) {
+      this.setMaxDamage(maxDamage);
+    }
+
+    int harvestLevel = ModuleToolConfig.getHarvestLevel(toolTierName);
+    this.setHarvestLevel("axe", harvestLevel);
   }
 
   @Override

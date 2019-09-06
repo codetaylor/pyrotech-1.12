@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.tool.item;
 
-import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemShearsBase;
 import net.minecraft.item.ItemStack;
 
@@ -11,7 +10,7 @@ public class ItemGoldShears
 
   public ItemGoldShears() {
 
-    this.setMaxDamage(ModuleToolConfig.SHEARS_DURABILITY.get("gold"));
+    super("gold");
   }
 
   @Override

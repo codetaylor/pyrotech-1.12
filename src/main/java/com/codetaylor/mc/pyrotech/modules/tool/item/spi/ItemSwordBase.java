@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tool.item.spi;
 
+import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -9,12 +10,22 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class ItemSwordBase
+public class ItemSwordBase
     extends ItemSword {
 
-  public ItemSwordBase(ToolMaterial material) {
+  public static final String NAME_BONE = "bone_sword";
+  public static final String NAME_FLINT = "flint_sword";
+  public static final String NAME_OBSIDIAN = "obsidian_sword";
+
+  public ItemSwordBase(ToolMaterial material, String toolTierName) {
 
     super(material);
+
+    Integer maxDamage = ModuleToolConfig.DURABILITY.get(toolTierName);
+
+    if (maxDamage != null) {
+      this.setMaxDamage(maxDamage);
+    }
   }
 
   @Override
