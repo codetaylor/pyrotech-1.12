@@ -7,6 +7,12 @@
       },
       "normal": {
         "model": "pyrotech:drying_rack"
+      },
+      "stacked": {
+        "model": "pyrotech:drying_rack",
+        "submodel": {
+          "stacked": {"model": "pyrotech:drying_rack_stacked"}
+        }
       }
     },
     "facing": {

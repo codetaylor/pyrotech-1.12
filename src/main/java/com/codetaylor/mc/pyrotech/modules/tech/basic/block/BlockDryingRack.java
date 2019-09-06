@@ -192,6 +192,23 @@ public class BlockDryingRack
   // - Variants
   // ---------------------------------------------------------------------------
 
+  @Nonnull
+  @Override
+  public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    if (state.getBlock() == this
+        && state.getValue(VARIANT) == EnumType.NORMAL) {
+      IBlockState blockStateUp = world.getBlockState(pos.up());
+
+      if (blockStateUp.getBlock() == this
+          && state.getValue(VARIANT) == EnumType.NORMAL) {
+        return state.withProperty(VARIANT, EnumType.STACKED);
+      }
+    }
+
+    return super.getActualState(state, world, pos);
+  }
+
   @Override
   public void getSubBlocks(
       CreativeTabs itemIn,
@@ -199,7 +216,10 @@ public class BlockDryingRack
   ) {
 
     for (EnumType type : BlockDryingRack.EnumType.values()) {
-      list.add(new ItemStack(this, 1, type.getMeta()));
+
+      if (type != EnumType.STACKED) { // stacked is a visual state only
+        list.add(new ItemStack(this, 1, type.getMeta()));
+      }
     }
   }
 
@@ -252,7 +272,8 @@ public class BlockDryingRack
       implements IVariant {
 
     CRUDE(0, "crude"),
-    NORMAL(1, "normal");
+    NORMAL(1, "normal"),
+    STACKED(2, "stacked");
 
     private static final EnumType[] META_LOOKUP = Stream.of(BlockDryingRack.EnumType.values())
         .sorted(Comparator.comparing(BlockDryingRack.EnumType::getMeta))
