@@ -73,6 +73,15 @@ public class ModuleTechBloomeryConfig {
   public static class Bloomery {
 
     @Config.Comment({
+        "How many items can the bloomery process at one time.",
+        "",
+        "Note: the amount of slag produced is proportional to the number of",
+        "input items."
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int CAPACITY = 1;
+
+    @Config.Comment({
         "This is the total amount of fuel burn time required to operate the device",
         "at maximum speed. More fuel will increase the speed of the device with",
         "diminishing returns. If the speed cap flag is set to true, inserted ",
@@ -204,6 +213,15 @@ public class ModuleTechBloomeryConfig {
   public static WitherForge WITHER_FORGE = new WitherForge();
 
   public static class WitherForge {
+
+    @Config.Comment({
+        "How many items can the bloomery process at one time.",
+        "",
+        "Note: the amount of slag produced is proportional to the number of",
+        "input items."
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int CAPACITY = 3;
 
     @Config.Comment({
         "If false, the device won't play the scary sounds.",

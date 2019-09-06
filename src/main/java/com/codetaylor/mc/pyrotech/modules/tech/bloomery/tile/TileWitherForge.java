@@ -81,7 +81,7 @@ public class TileWitherForge
   @Override
   protected int getInputCapacity() {
 
-    return 3;
+    return Math.min(64, Math.max(0, ModuleTechBloomeryConfig.WITHER_FORGE.CAPACITY));
   }
 
   @Override

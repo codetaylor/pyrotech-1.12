@@ -188,7 +188,7 @@ public class TileBloomery
         && this.currentRecipe != null) {
       this.active.set(true);
       this.fuelStackHandler.clearStacks();
-      this.remainingSlag = this.currentRecipe.getSlagCount();
+      this.remainingSlag = this.currentRecipe.getSlagCount() * this.getInputCapacity();
     }
   }
 
@@ -305,7 +305,7 @@ public class TileBloomery
 
   protected int getInputCapacity() {
 
-    return 1;
+    return Math.min(64, Math.max(0, ModuleTechBloomeryConfig.BLOOMERY.CAPACITY));
   }
 
   // ---------------------------------------------------------------------------
@@ -496,7 +496,7 @@ public class TileBloomery
       float recipeProgress = this.recipeProgress.add(increment);
 
       {
-        int slag = this.currentRecipe.getSlagCount();
+        int slag = this.currentRecipe.getSlagCount() * this.getInputCapacity();
         float nextSlagInterval = (slag - this.remainingSlag) * (1f / slag) + (1f / slag) * 0.5f;
 
         if (recipeProgress >= nextSlagInterval) {
