@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
-import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
@@ -179,14 +178,49 @@ public class WorktableRecipe
   public static boolean isBlacklisted(ResourceLocation resourceLocation) {
 
     return (BLACKLIST_ALL && !"crafttweaker".equals(resourceLocation.getResourceDomain()))
-        || BLACKLIST.contains(resourceLocation)
-        || ArrayHelper.contains(ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_BLACKLIST, resourceLocation.toString());
+        || WorktableRecipe.matchesResourceLocation(resourceLocation, BLACKLIST)
+        || WorktableRecipe.matchesResourceLocation(resourceLocation, ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_BLACKLIST);
   }
 
   public static boolean isWhitelisted(ResourceLocation resourceLocation) {
 
-    return WHITELIST.contains(resourceLocation)
-        || ArrayHelper.contains(ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_WHITELIST, resourceLocation.toString());
+    return WorktableRecipe.matchesResourceLocation(resourceLocation, WHITELIST)
+        || WorktableRecipe.matchesResourceLocation(resourceLocation, ModuleTechBasicConfig.WORKTABLE_COMMON.RECIPE_WHITELIST);
+  }
+
+  private static boolean matchesResourceLocation(ResourceLocation resourceLocation, String[] list) {
+
+    String resourceLocationString = resourceLocation.toString();
+
+    for (String configString : list) {
+
+      if (configString.endsWith("*")) {
+        String[] split = configString.split(":");
+
+        if (split[0].equals(resourceLocation.getResourceDomain())) {
+          return true;
+        }
+
+      } else if (configString.equals(resourceLocationString)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private static boolean matchesResourceLocation(ResourceLocation resourceLocation, Set<ResourceLocation> set) {
+
+    for (ResourceLocation blacklistLocation : set) {
+
+      if ("*".equals(blacklistLocation.getResourcePath())
+          && resourceLocation.getResourceDomain().equals(blacklistLocation.getResourceDomain())) {
+        return true;
+
+      } else if (resourceLocation.equals(blacklistLocation)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   private final IRecipe recipe;

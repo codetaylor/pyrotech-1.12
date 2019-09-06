@@ -87,6 +87,7 @@
             * Config value: `module.tech.Basic.cfg` -> `GRANITE_ANVIL` -> `BLOOM_EXTRA_DAMAGE_CHANCE`
             * Config value: `module.tech.Basic.cfg` -> `IRONCLAD_ANVIL` -> `BLOOM_EXTRA_DAMAGE_CHANCE`
     * When an anvil breaks with a bloom on it, the bloom will be placed in the world where the anvil was [(#129)](https://github.com/codetaylor/pyrotech/issues/129)
+    * Worktable recipe whitelist / blacklist now accepts `*` as a valid path wildcard [(#179)](https://github.com/codetaylor/pyrotech/issues/179)
 
 ---
 

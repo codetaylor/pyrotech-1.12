@@ -9,9 +9,10 @@ import mods.pyrotech.Campfire;
 
 ```java
 static void addRecipe(
-  string name,       // unique recipe name
-  IItemStack output, // recipe output
-  IIngredient input  // recipe input
+  string name,        // unique recipe name
+  IItemStack output,  // recipe output
+  IIngredient input,  // recipe input
+  @Optional int ticks // recipe duration in ticks, defaults to config value
 );
 ```
 

@@ -18,6 +18,7 @@ pages:
   - Bellows: zs/bellows.md
   - Bloomery: zs/bloomery.md
   - Brick Crucible: zs/brickcrucible.md
+  - Brick Faucet: zs/faucetbrick.md
   - Brick Kiln: zs/brickkiln.md
   - Brick Oven: zs/brickoven.md
   - Brick Sawmill: zs/bricksawmill.md
@@ -46,6 +47,7 @@ pages:
   - Stages: zs/stages.md
   - Stash: zs/stash.md
   - Stone Crucible: zs/stonecrucible.md
+  - Stone Faucet: zs/faucetstone.md
   - Stone Kiln: zs/stonekiln.md
   - Stone Oven: zs/stoneoven.md
   - Stone Sawmill: zs/stonesawmill.md

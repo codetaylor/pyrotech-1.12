@@ -361,7 +361,7 @@ public class ZenWorktable {
   @ZenDocMethod(
       order = 8,
       description = {
-          "Blacklist all vanilla crafting recipes."
+          "Blacklist all crafting recipes except recipes added with CraftTweaker."
       }
   )
   @ZenMethod

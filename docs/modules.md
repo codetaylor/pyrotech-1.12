@@ -65,7 +65,7 @@ Contains combustion and cog machines.
 * Stone / Brick Sawmill
 * Stone / Brick Oven
 * Mechanical Hopper
-* Mecnahical Compactor
+* Mechanical Compactor
 * Mechanical Mulcher
 * Bellows
 * Mechanical Bellows
