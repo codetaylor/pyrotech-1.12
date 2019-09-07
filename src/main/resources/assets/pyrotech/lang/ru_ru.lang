@@ -1,4 +1,3 @@
-
 itemGroup.pyrotech=Pyrotech
 
 #------------------------------------------------------------------------------
@@ -70,21 +69,21 @@ tile.pyrotech.soaking_pot.name=Горшок для замачивания
 #------------------------------------------------------------------------------
 
 item.pyrotech.slag.name=Шлак
-item.pyrotech.slag.unique.name=%s Шлак
+item.pyrotech.slag.unique.name=Шлак: %s
 item.pyrotech.tongs.flint.name=Кремниевые клещи
 item.pyrotech.tongs.bone.name=Костяные клещи
 item.pyrotech.tongs.stone.name=Каменные клещи
 item.pyrotech.tongs.iron.name=Железные клещи
 item.pyrotech.tongs.gold.name=Золотые клещи
 item.pyrotech.tongs.diamond.name=Алмазные клещи
-item.pyrotech.tongs.obsidian.name=обсидиановые клещи
+item.pyrotech.tongs.obsidian.name=Обсидиановые клещи
 
 tile.pyrotech.bloom.name=Сырьё
 tile.pyrotech.bloom.unique.name=%s сырья
 tile.pyrotech.bloomery.name=Сыродутная печь
 tile.pyrotech.wither_forge.name=Адская печь
 tile.pyrotech.pile_slag.name=Куча шлака
-tile.pyrotech.pile_slag.unique.name=%s Куча шлака
+tile.pyrotech.pile_slag.unique.name=Куча шлака: %s
 
 #------------------------------------------------------------------------------
 # Module: Tech - Machine
@@ -217,7 +216,7 @@ item.pyrotech.kindling.name=Хворост
 item.pyrotech.kindling.tarred.name=Пропитанный хворост
 item.pyrotech.dust.flint.name=Измельчённый кремень
 item.pyrotech.glass.shard.name=Стеклянный осколок
-item.pyrotech.obsidian.shard.name=обсидиановый осколок
+item.pyrotech.obsidian.shard.name=Обсидиановый осколок
 item.pyrotech.gold.shard.name=Золотой осколок
 
 item.pyrotech.apple.baked.name=Запечённое яблоко
@@ -276,36 +275,36 @@ tile.pyrotech.rock_sand_red.name=Куча красного песка
 # Tooltips
 #------------------------------------------------------------------------------
 
-gui.pyrotech.tooltip.machine.input.capacity.item=Ёмкость выхода: %s%d
-gui.pyrotech.tooltip.machine.output.capacity.fluid=Ёмкость входа: %s%d mB
-gui.pyrotech.tooltip.machine.fuel.capacity.item=Ёмкость топлива: %s%d
+gui.pyrotech.tooltip.machine.input.capacity.item=Емкость выхода: %s%d
+gui.pyrotech.tooltip.machine.output.capacity.fluid=Емкость входа: %s%d mB
+gui.pyrotech.tooltip.machine.fuel.capacity.item=Емкость топлива: %s%d
 gui.pyrotech.tooltip.machine.fuel.modifier=Модификатор топлива: %s%d%%
-gui.pyrotech.tooltip.machine.fuel.keep.heat=Самостоятельно затухает при завершении
+gui.pyrotech.tooltip.machine.fuel.keep.heat=Затухает при завершении
 
 gui.pyrotech.tooltip.extended.shift=Нажмите %s<SHIFT>%s для информации
 gui.pyrotech.tooltip.uses=Использований: %d / %d
 gui.pyrotech.tooltip.uses.full=Использований: %d
-gui.pyrotech.tooltip.durability=Прочности: %d / %d
-gui.pyrotech.tooltip.durability.full=Прочности: %d
+gui.pyrotech.tooltip.durability=Прочность: %d / %d
+gui.pyrotech.tooltip.durability.full=Прочность: %d
 gui.pyrotech.tooltip.hot.fluids.true=Может держать горячие жидкости
-gui.pyrotech.tooltip.hot.fluids.false=Перерывы с горячими жидкостями
+gui.pyrotech.tooltip.hot.fluids.false=Не выдерживает горячие жидкости
 gui.pyrotech.tooltip.burn.time=Время горения: %s
-gui.pyrotech.tooltip.fluid.capacity=Ёмкость: %d mB
+gui.pyrotech.tooltip.fluid.capacity=Емкость: %d mB
 gui.pyrotech.tooltip.fluid=%s: %d / %d
-gui.pyrotech.tooltip.item.capacity.empty=Ёмкость: %d предметов
-gui.pyrotech.tooltip.item.capacity=Ёмкость: %d / %d предметов
+gui.pyrotech.tooltip.item.capacity.empty=Емкость: %d предметов
+gui.pyrotech.tooltip.item.capacity=Емкость: %d / %d предметов
 gui.pyrotech.tooltip.drain=Водостоки коллектора в диапазоне %dx%d с передней части блока
 gui.pyrotech.tooltip.refractory.valid=Допустимо для огнеупорной структуры
 gui.pyrotech.tooltip.cog.hopper=%s: %sx%d
 gui.pyrotech.tooltip.cog.compactor=%s: %s%d%%
 gui.pyrotech.tooltip.cog.spreader=%s: %sx%d в %dx%d
-gui.pyrotech.tooltip.contents.retain.true=Сохраняет содержимое при поломке
-gui.pyrotech.tooltip.contents.retain.false=Уничтожает содержимое при поломке
+gui.pyrotech.tooltip.contents.retain.true=Сохраняет содержимое при разрушении
+gui.pyrotech.tooltip.contents.retain.false=Уничтожает содержимое при разрушении
 gui.pyrotech.tooltip.burn.time.efficiency=Эффективность:
 gui.pyrotech.tooltip.burn.time.modifier=%s: %s%d%%
 gui.pyrotech.tooltip.torch.burns.true=Сгорает со временем
 gui.pyrotech.tooltip.torch.burns.false=Длиться вечно
-gui.pyrotech.tooltip.rain.extinguishes.true=Потушен дождем
+gui.pyrotech.tooltip.rain.extinguishes.true=Тухнет под дождём
 gui.pyrotech.tooltip.rain.extinguishes.false=Остается гореть под дождем
 
 #------------------------------------------------------------------------------
@@ -313,7 +312,7 @@ gui.pyrotech.tooltip.rain.extinguishes.false=Остается гореть по�
 #------------------------------------------------------------------------------
 
 gui.pyrotech.waila.quantity=%s: %d
-gui.pyrotech.waila.capacity=Ёмкость: %d из %d
+gui.pyrotech.waila.capacity=Емкость: %d из %d
 gui.pyrotech.waila.recipe=Рецепт: %s
 gui.pyrotech.waila.recipe.synchronous=Рецепт: %s (%s)
 gui.pyrotech.waila.cog=Шестерёнка: %s
@@ -357,7 +356,7 @@ gui.pyrotech.jei.category.oven.stone=Каменная духовка
 
 gui.pyrotech.jei.category.mechanical.compacting.bin=Механический уплотнитель
 
-gui.pyrotech.jei.category.kiln.pit=Грунтовая печь
+gui.pyrotech.jei.category.kiln.pit=Грунтовый настил
 gui.pyrotech.jei.category.burn.pit=Горение
 gui.pyrotech.jei.category.burn.refractory=Огнеупорное горение
 gui.pyrotech.jei.category.drying.rack=Сушка
@@ -381,7 +380,7 @@ gui.pyrotech.jei.info.refractory=Огнеупорное горение подо�
 # Module: Plugin - Patchouli
 #------------------------------------------------------------------------------
 
-item.pyrotech.book.name=Пиротехническая Эзотерика
+item.pyrotech.book.name=Пиротехническая эзотерика
 gui.pyrotech.book.landing_text=Добро пожаловать в официальное, санкционированное руководство по выживанию в пустыне, начиная пожары, а не потушить их.$(p)на этих страницах вы узнаете, как выжить, собраться, адаптироваться, внедрять инновации, ускоряться и расцветать в своей новой роли добровольца.
 gui.pyrotech.book.subtitle=Выживание при пожаре
 
