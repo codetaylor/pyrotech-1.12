@@ -99,6 +99,16 @@
 
 ---
 
+1.3.13
+
+  * **Fixed:**
+    * Crash when breaking a lit campfire with the bloomery module disabled [(#189)](https://github.com/codetaylor/pyrotech/issues/189)
+
+  * **Changed:**
+    * Updated `ru_ru.lang` [(#188, SSKirillSS)](https://github.com/codetaylor/pyrotech/pull/188)
+
+---
+
 1.3.12
 
   * **Fixed:**

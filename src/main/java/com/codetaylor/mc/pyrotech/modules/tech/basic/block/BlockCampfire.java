@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgnit
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleLava;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
@@ -300,7 +301,7 @@ public class BlockCampfire
         if (type == EnumType.LIT) {
           int level = 4;
           int dimension = world.provider.getDimension();
-          ModuleTechBloomery.PACKET_SERVICE.sendToAllAround(new SCPacketParticleLava(pos, level), dimension, pos);
+          ModuleTechBasic.PACKET_SERVICE.sendToAllAround(new SCPacketParticleLava(pos, level), dimension, pos);
         }
       }
     }
