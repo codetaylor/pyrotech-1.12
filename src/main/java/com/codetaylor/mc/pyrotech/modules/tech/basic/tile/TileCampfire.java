@@ -179,18 +179,6 @@ public class TileCampfire
     return (recipe == null) ? -1 : recipe.getTicks();
   }
 
-  public BlockCampfire.EnumType getState() {
-
-    if (this.workerIsActive()) {
-      return BlockCampfire.EnumType.LIT;
-
-    } else if (this.isDead()) {
-      return BlockCampfire.EnumType.ASH;
-    }
-
-    return BlockCampfire.EnumType.NORMAL;
-  }
-
   public int getFuelRemaining() {
 
     // 0 is no wood
@@ -208,6 +196,8 @@ public class TileCampfire
   private void setDead() {
 
     this.dead.set(true);
+    this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
+        .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.ASH));
   }
 
   // ---------------------------------------------------------------------------
@@ -298,6 +288,15 @@ public class TileCampfire
 
     if (this.isDead()) {
       return;
+    }
+
+    if (this.workerIsActive() && !active) {
+      this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
+          .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.NORMAL));
+
+    } else if (!this.workerIsActive() && active) {
+      this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
+          .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.LIT));
     }
 
     super.workerSetActive(active);
@@ -500,11 +499,11 @@ public class TileCampfire
 
   public void dropContents() {
 
-    if (this.getState() == BlockCampfire.EnumType.ASH) {
+    if (this.isDead()) {
       StackHelper.spawnStackOnTop(this.world, ItemMaterial.EnumType.PIT_ASH.asStack(1), this.pos, -0.125);
 
     } else if (!this.extinguishedByRain
-        && this.getState() == BlockCampfire.EnumType.NORMAL) {
+        && !this.workerIsActive()) {
       StackHelper.spawnStackOnTop(this.world, new ItemStack(ModuleTechBasic.Items.TINDER), this.pos, -0.125);
     }
 

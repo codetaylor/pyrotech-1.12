@@ -11,7 +11,6 @@ import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -294,16 +293,15 @@ public class BlockCampfire
 
     if (tileEntity instanceof TileCampfire) {
       ((TileCampfire) tileEntity).dropContents();
+    }
 
-      if (!world.isRemote) {
-        EnumType type = ((TileCampfire) tileEntity).getState();
+    IBlockState blockState = world.getBlockState(pos);
 
-        if (type == EnumType.LIT) {
-          int level = 4;
-          int dimension = world.provider.getDimension();
-          ModuleTechBasic.PACKET_SERVICE.sendToAllAround(new SCPacketParticleLava(pos, level), dimension, pos);
-        }
-      }
+    if (blockState.getBlock() == this
+        && blockState.getValue(VARIANT) == EnumType.LIT) {
+      int level = 4;
+      int dimension = world.provider.getDimension();
+      ModuleTechBasic.PACKET_SERVICE.sendToAllAround(new SCPacketParticleLava(pos, level), dimension, pos);
     }
 
     super.breakBlock(world, pos, state);
@@ -370,13 +368,13 @@ public class BlockCampfire
   @Override
   public IBlockState getStateFromMeta(int meta) {
 
-    return this.getDefaultState();
+    return this.getDefaultState().withProperty(VARIANT, EnumType.fromMeta(meta));
   }
 
   @Override
   public int getMetaFromState(IBlockState state) {
 
-    return 0;
+    return state.getValue(VARIANT).getMeta();
   }
 
   @Nonnull
@@ -386,14 +384,9 @@ public class BlockCampfire
     TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileCampfire) {
-
       TileCampfire tileCampfire = (TileCampfire) tileEntity;
-      EnumType type = tileCampfire.getState();
       int ashLevel = tileCampfire.getAshLevel();
-
-      return state
-          .withProperty(VARIANT, type)
-          .withProperty(ASH, ashLevel);
+      return state.withProperty(ASH, ashLevel);
     }
 
     return super.getActualState(state, world, pos);

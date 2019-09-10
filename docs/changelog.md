@@ -96,6 +96,7 @@
     * When an anvil breaks with a bloom on it, the bloom will be placed in the world where the anvil was [(#129)](https://github.com/codetaylor/pyrotech/issues/129)
     * Worktable recipe whitelist / blacklist now accepts `*` as a valid path wildcard [(#179)](https://github.com/codetaylor/pyrotech/issues/179)
     * Drying Racks now connect visually when stacked vertically [(#109)](https://github.com/codetaylor/pyrotech/issues/109)
+    * Campfire state changes are no longer only visual [(#123)](https://github.com/codetaylor/pyrotech/issues/123)
 
 ---
 
