@@ -24,6 +24,7 @@ run
 /test/
 /site/
 /logs/
+/libs/
 
 *.log
 cloc-1.80.exe
