@@ -25,6 +25,7 @@ run
 /site/
 /logs/
 /libs/
+/libs-disabled/
 
 *.log
 cloc-1.80.exe
