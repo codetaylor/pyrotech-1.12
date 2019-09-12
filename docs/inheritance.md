@@ -37,6 +37,7 @@ Creating an inherited CraftTweaker recipe for any of the devices that are not th
 * Crude Drying Rack -> Drying Rack -> Stone Oven -> Refractory Oven
 * Pit Kiln -> Stone Kiln -> Refractory Kiln
 * Chopping Block -> Stone Sawmill -> Refractory Sawmill
+* Granite Anvil -> Ironclad Anvil
 * Stone Crucible -> Refractory Crucible
 * Compacting Bin -> Mechanical Compactor
 * Bloomery -> Wither Forge
