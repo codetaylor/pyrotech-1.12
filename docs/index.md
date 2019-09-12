@@ -32,6 +32,7 @@ An early game mod with new primitive devices, combustion machines, smelting mech
 * Bellows
 * Mechanical Hopper, Compactor, Mulcher, and Bellows
 * Bloomery and Wither Forge
+* Faucets
 
 ---
 
@@ -41,6 +42,7 @@ An early game mod with new primitive devices, combustion machines, smelting mech
 * Just Enough Items (JEI) - view all recipes
 * Patchouli - read about the mod
 * Waila - reveal extended information
+* The One Probe - reveal extended information
 
 ---
 
@@ -49,15 +51,16 @@ An early game mod with new primitive devices, combustion machines, smelting mech
 ### Required
 
 * Forge - [[link](https://files.minecraftforge.net/)]
-* Athenaeum - [[link](https://minecraft.curseforge.com/projects/athenaeum/files)]
-* Dropt - [[link](https://minecraft.curseforge.com/projects/dropt/files)]
+* Athenaeum - [[link](https://www.curseforge.com/minecraft/mc-mods/athenaeum)]
+* Dropt - [[link](https://www.curseforge.com/minecraft/mc-mods/dropt)]
+* Patchouli - [[link](https://www.curseforge.com/minecraft/mc-mods/patchouli)]
 
 ### Optional
 
-* Craft Tweaker (CrT) - [[link](https://minecraft.curseforge.com/projects/crafttweaker/files)]
-* Just Enough Items (JEI) - [[link](https://minecraft.curseforge.com/projects/jei/files)]
-* Patchouli - [[link](https://minecraft.curseforge.com/projects/patchouli/files)]
-* Waila (Hwyla) - [[link](https://minecraft.curseforge.com/projects/hwyla/files)]
+* Craft Tweaker (CrT) - [[link](https://www.curseforge.com/minecraft/mc-mods/crafttweaker)]
+* Just Enough Items (JEI) - [[link](https://www.curseforge.com/minecraft/mc-mods/jei)]
+* Waila (Hwyla) - [[link](https://www.curseforge.com/minecraft/mc-mods/hwyla)]
+* The One Probe - [[link](https://www.curseforge.com/minecraft/mc-mods/the-one-probe)]
 
 ---
 
