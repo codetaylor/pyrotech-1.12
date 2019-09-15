@@ -2,7 +2,6 @@
   "name": "炭窑",
   "icon": "minecraft:dirt",
   "category": "innovate_pit_burn",
-  "advancement": "pyrotech:flint_and_tinder",
   "pages": [
     {
       "type": "image",

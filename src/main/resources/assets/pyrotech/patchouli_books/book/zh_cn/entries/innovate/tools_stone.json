@@ -2,7 +2,6 @@
   "name": "石制工具",
   "icon": "minecraft:stone_pickaxe",
   "category": "innovate_stone",
-  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "crafting",

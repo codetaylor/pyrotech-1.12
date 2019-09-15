@@ -2,7 +2,6 @@
   "name": "石排液口",
   "icon": "pyrotech:tar_drain",
   "category": "innovate_pit_burn",
-  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "crafting",

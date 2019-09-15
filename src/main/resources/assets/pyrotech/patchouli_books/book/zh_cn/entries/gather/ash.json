@@ -2,7 +2,6 @@
   "name": "灰烬",
   "icon": "pyrotech:material:0",
   "category": "gather",
-  "advancement": "pyrotech:flint_and_tinder",
   "pages": [
     {
       "type": "spotlight",

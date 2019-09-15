@@ -2,7 +2,6 @@
   "name": "挤压桶",
   "icon": "pyrotech:compacting_bin",
   "category": "innovate",
-  "advancement": "pyrotech:pit_kiln",
   "pages": [
     {
       "type": "text",

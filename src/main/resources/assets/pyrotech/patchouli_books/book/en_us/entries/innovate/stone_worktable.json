@@ -2,7 +2,6 @@
   "name": "Worktable, Stone",
   "icon": "pyrotech:worktable_stone",
   "category": "innovate",
-  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "text",

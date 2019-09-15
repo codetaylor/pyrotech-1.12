@@ -2,7 +2,6 @@
   "name": "石缸",
   "icon": "pyrotech:tank:0",
   "category": "innovate_soaking",
-  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "crafting",

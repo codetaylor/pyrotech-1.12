@@ -2,7 +2,6 @@
   "name": "Stone Sawmill",
   "icon": "pyrotech:stone_sawmill",
   "category": "innovate_machines",
-  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "crafting",

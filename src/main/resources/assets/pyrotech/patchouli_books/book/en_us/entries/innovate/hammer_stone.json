@@ -2,7 +2,6 @@
   "name": "Hammer, Stone",
   "icon": "pyrotech:stone_hammer",
   "category": "innovate_stone",
-  "advancement": "pyrotech:granite_anvil",
   "pages": [
     {
       "type": "crafting",

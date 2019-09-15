@@ -2,7 +2,6 @@
   "name": "机械漏斗",
   "icon": "pyrotech:mechanical_hopper",
   "category": "innovate",
-  "advancement": "pyrotech:granite_anvil",
   "pages": [
     {
       "type": "crafting",

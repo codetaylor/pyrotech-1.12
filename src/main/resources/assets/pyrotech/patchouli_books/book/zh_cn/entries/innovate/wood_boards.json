@@ -2,7 +2,6 @@
   "name": "木板",
   "icon": "pyrotech:material:20",
   "category": "innovate",
-  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "rrt_stone_sawmill_recipe",

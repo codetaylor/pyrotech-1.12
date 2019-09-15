@@ -2,7 +2,6 @@
   "name": "粘土粒",
   "icon": "pyrotech:material:17",
   "category": "gather",
-  "advancement": "pyrotech:tools_crude",
   "pages": [
     {
       "type": "spotlight",

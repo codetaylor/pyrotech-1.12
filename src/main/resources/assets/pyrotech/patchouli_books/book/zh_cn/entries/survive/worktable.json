@@ -2,7 +2,6 @@
   "name": "工作桌",
   "icon": "pyrotech:worktable",
   "category": "survive",
-  "advancement": "pyrotech:chopping_block",
   "pages": [
     {
       "type": "text",

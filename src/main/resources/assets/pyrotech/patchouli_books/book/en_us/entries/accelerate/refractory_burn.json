@@ -2,7 +2,6 @@
   "name": "Refractory Burning",
   "icon": "pyrotech:refractory_brick_block",
   "category": "accelerate",
-  "advancement": "pyrotech:refractory_brick",
   "pages": [
     {
       "type": "text",

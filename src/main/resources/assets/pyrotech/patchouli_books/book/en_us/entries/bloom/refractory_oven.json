@@ -2,7 +2,6 @@
   "name": "Refractory Oven",
   "icon": "pyrotech:brick_oven",
   "category": "bloom_refractory_machines",
-  "advancement": "pyrotech:iron_ingot",
   "pages": [
     {
       "type": "crafting",

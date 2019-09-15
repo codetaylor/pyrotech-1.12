@@ -2,7 +2,6 @@
   "name": "防火",
   "icon": "minecraft:leather_chestplate",
   "category": "accelerate",
-  "advancement": "pyrotech:slaked_lime",
   "pages": [
     {
       "type": "text",

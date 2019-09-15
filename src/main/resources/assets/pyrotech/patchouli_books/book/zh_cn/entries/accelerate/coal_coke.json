@@ -2,7 +2,6 @@
   "name": "煤焦",
   "icon": "pyrotech:material:1",
   "category": "accelerate",
-  "advancement": "pyrotech:refractory_brick",
   "pages": [
     {
       "type": "rt_pit_burn_recipe",

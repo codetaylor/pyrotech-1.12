@@ -2,7 +2,6 @@
   "name": "锻造炉",
   "icon": "pyrotech:bloomery",
   "category": "accelerate",
-  "advancement": "pyrotech:refractory_brick",
   "pages": [
     {
       "type": "text",
