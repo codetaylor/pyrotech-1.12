@@ -2,7 +2,6 @@
   "name": "耐火坩埚",
   "icon": "pyrotech:brick_crucible",
   "category": "bloom_refractory_machines",
-  "advancement": "pyrotech:iron_ingot",
   "pages": [
     {
       "type": "crafting",

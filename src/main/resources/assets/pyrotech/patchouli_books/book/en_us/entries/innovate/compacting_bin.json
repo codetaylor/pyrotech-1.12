@@ -2,7 +2,6 @@
   "name": "Compacting Bin",
   "icon": "pyrotech:compacting_bin",
   "category": "innovate",
-  "advancement": "pyrotech:pit_kiln",
   "pages": [
     {
       "type": "text",

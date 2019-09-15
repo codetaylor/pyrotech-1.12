@@ -2,7 +2,6 @@
   "name": "Stone Collector",
   "icon": "pyrotech:tar_collector",
   "category": "innovate_pit_burn",
-  "advancement": "pyrotech:stone_brick",
   "pages": [
     {
       "type": "crafting",

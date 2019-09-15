@@ -2,7 +2,6 @@
   "name": "Cog, Basic",
   "icon": "pyrotech:cog_wood",
   "category": "innovate",
-  "advancement": "pyrotech:granite_anvil",
   "pages": [
     {
       "type": "text",

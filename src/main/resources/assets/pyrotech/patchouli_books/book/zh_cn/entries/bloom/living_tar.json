@@ -2,7 +2,6 @@
   "name": "活焦油",
   "icon": "pyrotech:living_tar",
   "category": "bloom",
-  "advancement": "pyrotech:enter_the_nether",
   "pages": [
     {
       "type": "fuel_living_tar",

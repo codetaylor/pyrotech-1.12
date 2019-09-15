@@ -2,7 +2,6 @@
   "name": "Bellows",
   "icon": "pyrotech:bellows",
   "category": "accelerate",
-  "advancement": "pyrotech:stone_machines",
   "pages": [
     {
       "type": "crafting",

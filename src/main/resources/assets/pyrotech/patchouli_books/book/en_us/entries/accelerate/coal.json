@@ -2,7 +2,6 @@
   "name": "Coal",
   "icon": "minecraft:coal",
   "category": "accelerate",
-  "advancement": "pyrotech:refractory_brick",
   "pages": [
     {
       "type": "rrt_anvil_recipe",

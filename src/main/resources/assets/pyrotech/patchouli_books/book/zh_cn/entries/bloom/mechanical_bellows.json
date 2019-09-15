@@ -2,7 +2,6 @@
   "name": "机械风箱",
   "icon": "pyrotech:mechanical_bellows",
   "category": "bloom_cog_machines",
-  "advancement": "pyrotech:iron_ingot",
   "pages": [
     {
       "type": "crafting",

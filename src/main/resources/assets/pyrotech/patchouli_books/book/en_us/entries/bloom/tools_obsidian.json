@@ -2,7 +2,6 @@
   "name": "Tools, Obsidian",
   "icon": "pyrotech:obsidian_pickaxe",
   "category": "bloom",
-  "advancement": "pyrotech:enter_the_nether",
   "pages": [
     {
       "type": "crafting",

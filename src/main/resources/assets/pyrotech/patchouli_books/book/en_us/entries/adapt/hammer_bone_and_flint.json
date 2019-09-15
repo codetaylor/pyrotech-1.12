@@ -2,7 +2,6 @@
   "name": "Hammer, Bone & Flint",
   "icon": "pyrotech:bone_hammer",
   "category": "adapt",
-  "advancement": "pyrotech:worktable",
   "pages": [
     {
       "type": "crafting",

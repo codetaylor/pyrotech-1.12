@@ -2,7 +2,6 @@
   "name": "花岗岩砧",
   "icon": "pyrotech:anvil_granite",
   "category": "adapt",
-  "advancement": "pyrotech:stone",
   "pages": [
     {
       "type": "crafting",

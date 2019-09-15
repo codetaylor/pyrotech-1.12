@@ -2,7 +2,6 @@
   "name": "粘土剪刀",
   "icon": "pyrotech:clay_shears",
   "category": "adapt",
-  "advancement": "pyrotech:pit_kiln",
   "pages": [
     {
       "type": "crafting",

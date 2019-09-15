@@ -2,7 +2,6 @@
   "name": "Wood Chips",
   "icon": "pyrotech:rock:7",
   "category": "gather",
-  "advancement": "pyrotech:chopping_block",
   "pages": [
     {
       "type": "spotlight",

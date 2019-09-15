@@ -2,7 +2,6 @@
   "name": "Worktable",
   "icon": "pyrotech:worktable",
   "category": "survive",
-  "advancement": "pyrotech:chopping_block",
   "pages": [
     {
       "type": "text",

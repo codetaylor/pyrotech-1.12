@@ -2,7 +2,6 @@
   "name": "Food, Roasted",
   "icon": "pyrotech:apple_baked",
   "category": "survive",
-  "advancement": "pyrotech:flint_and_tinder",
   "pages": [
     {
       "type": "text",

@@ -2,7 +2,6 @@
   "name": "Ore, Dense Nether Coal",
   "icon": "pyrotech:dense_nether_coal_ore",
   "category": "bloom",
-  "advancement": "pyrotech:enter_the_nether",
   "pages": [
     {
       "type": "spotlight",

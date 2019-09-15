@@ -2,7 +2,6 @@
   "name": "晾干架",
   "icon": "pyrotech:drying_rack:1",
   "category": "adapt",
-  "advancement": "pyrotech:worktable",
   "pages": [
     {
     "type": "text",

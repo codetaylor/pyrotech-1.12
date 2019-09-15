@@ -2,7 +2,6 @@
   "name": "铁坯",
   "icon": "pyrotech:bloom",
   "category": "bloom_bloom",
-  "advancement": "pyrotech:bloomery",
   "pages": [
     {
       "type": "image",

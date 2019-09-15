@@ -2,7 +2,6 @@
   "name": "高级锤子",
   "icon": "pyrotech:diamond_hammer",
   "category": "bloom",
-  "advancement": "pyrotech:bloomery",
   "pages": [
     {
       "type": "crafting",

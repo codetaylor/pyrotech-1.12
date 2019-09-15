@@ -2,7 +2,6 @@
   "name": "Charcoal",
   "icon": "minecraft:coal:1",
   "category": "innovate_pit_burn",
-  "advancement": "pyrotech:flint_and_tinder",
   "pages": [
     {
       "type": "rt_pit_burn_recipe",

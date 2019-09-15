@@ -2,7 +2,6 @@
   "name": "Tank, Refractory",
   "icon": "pyrotech:tank:1",
   "category": "accelerate",
-  "advancement": "pyrotech:refractory_brick",
   "pages": [
     {
       "type": "crafting",

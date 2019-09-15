@@ -2,7 +2,6 @@
   "name": "Bloomery",
   "icon": "pyrotech:bloomery",
   "category": "accelerate",
-  "advancement": "pyrotech:refractory_brick",
   "pages": [
     {
       "type": "text",

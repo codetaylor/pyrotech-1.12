@@ -2,7 +2,6 @@
   "name": "Paper",
   "icon": "minecraft:paper",
   "category": "innovate_soaking",
-  "advancement": "pyrotech:stone_machines",
   "pages": [
     {
       "type": "rrt_soaking_pot_recipe",

@@ -2,7 +2,6 @@
   "name": "Mechanical Hopper",
   "icon": "pyrotech:mechanical_hopper",
   "category": "innovate",
-  "advancement": "pyrotech:granite_anvil",
   "pages": [
     {
       "type": "crafting",

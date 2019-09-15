@@ -2,7 +2,6 @@
   "name": "木桶&粘土桶",
   "icon": "pyrotech:bucket_wood",
   "category": "adapt",
-  "advancement": "pyrotech:worktable",
   "pages": [
     {
       "type": "text",
