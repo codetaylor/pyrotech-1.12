@@ -1,4 +1,4 @@
-1.4.0
+# 1.4.0
 
   * **Translators:**
     * New lang keys:
@@ -35,7 +35,7 @@
             * `I:TRANSFER_AMOUNT_PER_TICK`
             * `I:TRANSFER_LIMIT`
     * Cog Machines can now be disabled with a redstone signal [(#145)](https://github.com/codetaylor/pyrotech/issues/145)
-    * New Item: Lump of Refractory Clay <pyrotech:material:35>
+    * New Item: Lump of Refractory Clay `<pyrotech:material:35>`
     * Terracotta and Glazed Terracotta recipes have been added to the Pit Kiln, Stone Kiln, and Refractory Kiln [(#134)](https://github.com/codetaylor/pyrotech/issues/134)
     * Config options to change the input capacity of the Bloomery and Wither Forge [(#79)](https://github.com/codetaylor/pyrotech/issues/79)
         * `module.tech.Bloomery.cfg` -> `BLOOMERY` -> `CAPACITY`
