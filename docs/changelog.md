@@ -97,6 +97,7 @@
     * Worktable recipe whitelist / blacklist now accepts `*` as a valid path wildcard [(#179)](https://github.com/codetaylor/pyrotech/issues/179)
     * Drying Racks now connect visually when stacked vertically [(#109)](https://github.com/codetaylor/pyrotech/issues/109)
     * Campfire state changes are no longer only visual [(#123)](https://github.com/codetaylor/pyrotech/issues/123)
+    * Removed all entry locking from the guidebook [(#75)](https://github.com/codetaylor/pyrotech/issues/75), [(#115)](https://github.com/codetaylor/pyrotech/issues/115), [(#128)](https://github.com/codetaylor/pyrotech/issues/128)
 
 ---
 
