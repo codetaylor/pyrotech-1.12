@@ -69,9 +69,14 @@ public class BlockRock //'n beats
   public boolean canHarvestBlock(IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player) {
 
     if (ModuleCoreConfig.TWEAKS.REQUIRE_SHOVEL_TO_PICKUP_WOOD_CHIPS) {
-      ItemStack itemMainhand = player.getHeldItemMainhand();
-      Item item = itemMainhand.getItem();
-      return item.getToolClasses(itemMainhand).contains("shovel");
+      IBlockState state = world.getBlockState(pos);
+
+      if (state.getBlock() instanceof BlockRock
+          && state.getValue(VARIANT) == EnumType.WOOD_CHIPS) {
+        ItemStack itemMainhand = player.getHeldItemMainhand();
+        Item item = itemMainhand.getItem();
+        return item.getToolClasses(itemMainhand).contains("shovel");
+      }
     }
 
     return super.canHarvestBlock(world, pos, player);

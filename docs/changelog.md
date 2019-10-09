@@ -1,3 +1,10 @@
+**1.4.1**
+
+  * **Fixed:**
+    * Rocks don't drop when broken [(#208)](https://github.com/codetaylor/pyrotech/issues/208)
+
+---
+
 # 1.4.0
 
   * **Translators:**
