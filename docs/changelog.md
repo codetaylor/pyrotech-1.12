@@ -1,3 +1,10 @@
+**1.4.2**
+
+  * **Fixed:**
+    * Pyrotechnic Esoterica doesn't open on server [(#211)](https://github.com/codetaylor/pyrotech/issues/211)
+
+---
+
 **1.4.1**
 
   * **Fixed:**
