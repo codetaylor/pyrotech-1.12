@@ -3,10 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.plugin.dropt.plugin.dropt;
 import com.codetaylor.mc.dropt.api.api.IDroptDropBuilder;
 import com.codetaylor.mc.dropt.api.api.IDroptRuleBuilder;
 import com.codetaylor.mc.dropt.api.event.DroptLoadRulesEvent;
-import com.codetaylor.mc.dropt.api.reference.EnumDropStrategy;
-import com.codetaylor.mc.dropt.api.reference.EnumHarvesterType;
-import com.codetaylor.mc.dropt.api.reference.EnumListType;
-import com.codetaylor.mc.dropt.api.reference.EnumReplaceStrategy;
+import com.codetaylor.mc.dropt.api.reference.*;
 import com.codetaylor.mc.pyrotech.ModPyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
@@ -267,7 +264,7 @@ public class PluginDropt {
           .replaceStrategy(EnumReplaceStrategy.ADD)
           .dropCount(range(0, 1))
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockGrass}, range(1, 3))
+              drop().items(new String[]{rockGrass}, range(1, 3)).selector(weight(1), EnumSilktouch.EXCLUDED)
           })
       );
     }
@@ -574,7 +571,7 @@ public class PluginDropt {
           .replaceStrategy(EnumReplaceStrategy.ADD)
           .addDrops(new IDroptDropBuilder[]{
               drop().selector(weight(1)),
-              drop().items(new String[]{coal}, range(1, 1)).selector(weight(1, 1))
+              drop().items(new String[]{coal}, range(1, 1)).selector(weight(1, 1), EnumSilktouch.EXCLUDED)
           })
       );
     }
@@ -645,8 +642,8 @@ public class PluginDropt {
           })
           .replaceStrategy(EnumReplaceStrategy.ADD)
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{cobblestone, rockStone}, range(3, 6)).selector(weight(4)),
-              drop().items(new String[]{boneShard}, range(2, 4)).selector(weight(5))
+              drop().items(new String[]{cobblestone, rockStone}, range(3, 6)).selector(weight(4), EnumSilktouch.EXCLUDED),
+              drop().items(new String[]{boneShard}, range(2, 4)).selector(weight(5), EnumSilktouch.EXCLUDED)
           })
       );
     }

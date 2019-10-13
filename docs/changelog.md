@@ -1,3 +1,12 @@
+**1.4.3**
+
+  * **Fixed:**
+    * Fossil Ore -> Bone Shard silk touch dupe [(#212)](https://github.com/codetaylor/pyrotech/issues/212)
+    * Grass -> Grass Clump silk touch dupe
+    * Coal Ore -> Coal silk touch dupe
+
+---
+
 **1.4.2**
 
   * **Fixed:**
