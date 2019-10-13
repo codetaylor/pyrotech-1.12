@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.plugin.patchouli;
 
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.modules.plugin.event.PlayerJoinEventHandler;
+import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.event.PlayerJoinEventHandler;
 import com.codetaylor.mc.pyrotech.packer.PackAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;

@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.plugin.event;
+package com.codetaylor.mc.pyrotech.modules.plugin.patchouli.event;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePatchouliConfig;
