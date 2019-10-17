@@ -36,7 +36,7 @@ public class AnvilGraniteRecipesAdd {
 
     // Lapis Lazuli from Lapis Block
     registry.register(new AnvilRecipe(
-        new ItemStack(Items.DYE, 8, EnumDyeColor.BLUE.getDyeDamage()),
+        new ItemStack(Items.DYE, 9, EnumDyeColor.BLUE.getDyeDamage()),
         Ingredient.fromStacks(new ItemStack(Blocks.LAPIS_BLOCK)),
         8,
         AnvilRecipe.EnumType.HAMMER,
@@ -45,7 +45,7 @@ public class AnvilGraniteRecipesAdd {
 
     // Redstone from Redstone Block
     registry.register(new AnvilRecipe(
-        new ItemStack(Items.REDSTONE, 8),
+        new ItemStack(Items.REDSTONE, 9),
         Ingredient.fromStacks(new ItemStack(Blocks.REDSTONE_BLOCK)),
         8,
         AnvilRecipe.EnumType.HAMMER,

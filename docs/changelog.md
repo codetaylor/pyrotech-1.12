@@ -1,3 +1,10 @@
+**1.4.4**
+
+  * **Fixed:**
+    * Lapis and redstone anvil recipes don't give correct output amount [(#217)](https://github.com/codetaylor/pyrotech/issues/217)
+
+---
+
 **1.4.3**
 
   * **Fixed:**
