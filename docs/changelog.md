@@ -1,3 +1,10 @@
+**1.4.5**
+
+  * **Fixed:**
+    * Dependency load order with Waila and ToP
+
+---
+
 **1.4.4**
 
   * **Fixed:**

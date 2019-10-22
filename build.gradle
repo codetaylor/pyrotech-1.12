@@ -38,6 +38,8 @@ project.ext.dependencies = ',dependencies = "' +
         'after:jei;' +
         'after:gamestages;' +
         'after:thermalexpansion;' +
+        'after:theoneprobe;' +
+        'after:waila;' +
         '"'
 
 version = "${config.minecraftVersion}-${project.ext.modVersion}"
