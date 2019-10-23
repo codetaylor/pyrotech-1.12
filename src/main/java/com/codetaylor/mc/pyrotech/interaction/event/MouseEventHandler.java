@@ -9,10 +9,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber
 public class MouseEventHandler {
 
+  @SideOnly(Side.CLIENT)
   @SubscribeEvent
   public static void on(MouseEvent event) {
 
