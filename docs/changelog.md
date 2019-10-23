@@ -3,6 +3,7 @@
   * **Fixed:**
     * Dependency load order with Waila and ToP
     * Mouse event handler shouldn't load on the server
+    * Waila plugins should not load on the server
 
 ---
 

@@ -95,16 +95,23 @@ public class ModuleTechMachine
 
     super.onPreInitializationEvent(event);
 
-    FMLInterModComms.sendMessage(
-        "waila",
-        "register",
-        "com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.PluginWaila.wailaCallback"
-    );
-
     FMLInterModComms.sendFunctionMessage(
         "theoneprobe",
         "getTheOneProbe",
         "com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.top.PluginTOP$Callback"
+    );
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onClientPreInitializationEvent(event);
+
+    FMLInterModComms.sendMessage(
+        "waila",
+        "register",
+        "com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.PluginWaila.wailaCallback"
     );
   }
 

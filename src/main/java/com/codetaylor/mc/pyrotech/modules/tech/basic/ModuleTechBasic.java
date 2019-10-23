@@ -96,12 +96,6 @@ public class ModuleTechBasic
 
     super.onPreInitializationEvent(event);
 
-    FMLInterModComms.sendMessage(
-        "waila",
-        "register",
-        "com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.PluginWaila.wailaCallback"
-    );
-
     FMLInterModComms.sendFunctionMessage(
         "theoneprobe",
         "getTheOneProbe",
@@ -111,6 +105,19 @@ public class ModuleTechBasic
     if (ModuleTechBasicConfig.WORKTABLE_COMMON.ALLOW_RECIPE_REPEAT) {
       MinecraftForge.EVENT_BUS.register(new RecipeRepeat.RightClickBlockEventHandler());
     }
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onClientPreInitializationEvent(event);
+
+    FMLInterModComms.sendMessage(
+        "waila",
+        "register",
+        "com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.PluginWaila.wailaCallback"
+    );
   }
 
   @Override

@@ -98,12 +98,6 @@ public class ModuleTechRefractory
 
     super.onPreInitializationEvent(event);
 
-    FMLInterModComms.sendMessage(
-        "waila",
-        "register",
-        "com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.waila.PluginWaila.wailaCallback"
-    );
-
     FMLInterModComms.sendFunctionMessage(
         "theoneprobe",
         "getTheOneProbe",
@@ -116,6 +110,12 @@ public class ModuleTechRefractory
   public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
 
     super.onClientPreInitializationEvent(event);
+
+    FMLInterModComms.sendMessage(
+        "waila",
+        "register",
+        "com.codetaylor.mc.pyrotech.modules.tech.refractory.plugin.waila.PluginWaila.wailaCallback"
+    );
 
     MinecraftForge.EVENT_BUS.register(new ItemTooltipEventHandler());
   }

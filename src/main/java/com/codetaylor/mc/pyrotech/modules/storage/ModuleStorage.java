@@ -74,12 +74,6 @@ public class ModuleStorage
 
     super.onPreInitializationEvent(event);
 
-    FMLInterModComms.sendMessage(
-        "waila",
-        "register",
-        "com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.PluginWaila.wailaCallback"
-    );
-
     FMLInterModComms.sendFunctionMessage(
         "theoneprobe",
         "getTheOneProbe",
@@ -88,6 +82,19 @@ public class ModuleStorage
 
     MinecraftForge.EVENT_BUS.register(new EntityItemPickupEventHandler());
     MinecraftForge.EVENT_BUS.register(new ConfigChangedEventHandler());
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onClientPreInitializationEvent(event);
+
+    FMLInterModComms.sendMessage(
+        "waila",
+        "register",
+        "com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.PluginWaila.wailaCallback"
+    );
   }
 
   @Override

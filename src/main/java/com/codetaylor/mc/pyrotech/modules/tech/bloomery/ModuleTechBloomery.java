@@ -133,12 +133,6 @@ public class ModuleTechBloomery
 
     super.onPreInitializationEvent(event);
 
-    FMLInterModComms.sendMessage(
-        "waila",
-        "register",
-        "com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.PluginWaila.wailaCallback"
-    );
-
     FMLInterModComms.sendFunctionMessage(
         "theoneprobe",
         "getTheOneProbe",
@@ -151,6 +145,12 @@ public class ModuleTechBloomery
   public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
 
     super.onClientPreInitializationEvent(event);
+
+    FMLInterModComms.sendMessage(
+        "waila",
+        "register",
+        "com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.PluginWaila.wailaCallback"
+    );
 
     MinecraftForge.EVENT_BUS.register(new ItemTooltipEventHandler());
   }
