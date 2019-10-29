@@ -49,7 +49,8 @@ public class PopulateChunkEventHandler {
 
           if (ModuleCoreConfig.TWEAKS.REPLACE_VANILLA_FURNACE) {
 
-            if (block == Blocks.FURNACE) {
+            if (block == Blocks.FURNACE
+                || block == Blocks.LIT_FURNACE) {
               world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState());
             }
           }

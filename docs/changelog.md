@@ -1,3 +1,10 @@
+**1.4.6**
+
+  * **Fixed:**
+    * Mod does not replace lit furnaces [(#227)](https://github.com/codetaylor/pyrotech/issues/227)
+
+---
+
 **1.4.5**
 
   * **Fixed:**
