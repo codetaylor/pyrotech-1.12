@@ -291,12 +291,18 @@ public class TileCampfire
     }
 
     if (this.workerIsActive() && !active) {
-      this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
-          .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.NORMAL));
+
+      if (this.world.getBlockState(this.pos).getBlock() == ModuleTechBasic.Blocks.CAMPFIRE) {
+        this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
+            .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.NORMAL));
+      }
 
     } else if (!this.workerIsActive() && active) {
-      this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
-          .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.LIT));
+
+      if (this.world.getBlockState(this.pos).getBlock() == ModuleTechBasic.Blocks.CAMPFIRE) {
+        this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
+            .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.LIT));
+      }
     }
 
     super.workerSetActive(active);

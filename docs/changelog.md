@@ -1,3 +1,10 @@
+**1.4.7**
+
+  * **Fixed:**
+    * Crash when a lit campfire burns the block below [(#231)](https://github.com/codetaylor/pyrotech/issues/231)
+
+---
+
 **1.4.6**
 
   * **Fixed:**
