@@ -1,3 +1,10 @@
+**1.4.8**
+
+  * **Fixed:**
+    * Campfire output stack size should not be limited to one [(#235)](https://github.com/codetaylor/pyrotech/issues/235)
+
+---
+
 **1.4.7**
 
   * **Fixed:**

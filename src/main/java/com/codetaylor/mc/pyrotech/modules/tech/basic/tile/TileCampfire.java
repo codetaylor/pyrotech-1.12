@@ -925,12 +925,6 @@ public class TileCampfire
 
       super(1);
     }
-
-    @Override
-    protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
-
-      return 1;
-    }
   }
 
   private class FuelStackHandler
