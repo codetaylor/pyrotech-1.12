@@ -7,6 +7,9 @@
     * Config option to prevent lit Bloomery / Wither Forge from dropping slag when broken
         * `module.tech.Bloomery.cfg` -> `BLOOMERY` -> `DROP_SLAG_WHEN_BROKEN`
         * `module.tech.Bloomery.cfg` -> `WITHER_FORGE` -> `DROP_SLAG_WHEN_BROKEN`
+        
+  * **Changed:**
+    * Bloomery / Wither Forge will now drop slag items when broken after activation instead of dropping the input ore 
     
 ---
 
