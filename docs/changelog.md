@@ -1,3 +1,15 @@
+**1.4.9**
+
+  * **Fixed:**
+    * Bloomery / Wither Forge slag exploit [(#237)](https://github.com/codetaylor/pyrotech/issues/237)
+    
+  * **Added:**
+    * Config option to prevent lit Bloomery / Wither Forge from dropping slag when broken
+        * `module.tech.Bloomery.cfg` -> `BLOOMERY` -> `DROP_SLAG_WHEN_BROKEN`
+        * `module.tech.Bloomery.cfg` -> `WITHER_FORGE` -> `DROP_SLAG_WHEN_BROKEN`
+    
+---
+
 **1.4.8**
 
   * **Fixed:**

@@ -205,6 +205,12 @@ public class ModuleTechBloomeryConfig {
 
       return 1;
     }
+
+    @Config.Comment({
+        "If set to false, the device will not drop slag when broken after activation.",
+        "Default: " + true
+    })
+    public boolean DROP_SLAG_WHEN_BROKEN = true;
   }
 
   // ---------------------------------------------------------------------------
@@ -375,6 +381,11 @@ public class ModuleTechBloomeryConfig {
     })
     public boolean INHERIT_BLOOMERY_RECIPES = true;
 
+    @Config.Comment({
+        "If set to false, the device will not drop slag when broken after activation.",
+        "Default: " + true
+    })
+    public boolean DROP_SLAG_WHEN_BROKEN = true;
   }
 
   // ---------------------------------------------------------------------------

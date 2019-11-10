@@ -85,6 +85,12 @@ public class TileWitherForge
   }
 
   @Override
+  protected boolean dropSlagWhenBroken() {
+
+    return ModuleTechBloomeryConfig.WITHER_FORGE.DROP_SLAG_WHEN_BROKEN;
+  }
+
+  @Override
   protected List<BlockPos> getAirflowCheckPositions() {
 
     IBlockState tileBlockState = this.world.getBlockState(this.pos);

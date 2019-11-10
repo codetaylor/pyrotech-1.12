@@ -308,6 +308,11 @@ public class TileBloomery
     return Math.min(64, Math.max(0, ModuleTechBloomeryConfig.BLOOMERY.CAPACITY));
   }
 
+  protected boolean dropSlagWhenBroken() {
+
+    return ModuleTechBloomeryConfig.BLOOMERY.DROP_SLAG_WHEN_BROKEN;
+  }
+
   // ---------------------------------------------------------------------------
   // - Capabilities
   // ---------------------------------------------------------------------------
@@ -769,7 +774,22 @@ public class TileBloomery
   @Override
   public void dropContents() {
 
-    StackHelper.spawnStackHandlerSlotContentsOnTop(this.world, this.inputStackHandler, 0, this.pos);
+    if (!this.isActive()) {
+      StackHelper.spawnStackHandlerSlotContentsOnTop(this.world, this.inputStackHandler, 0, this.pos);
+
+    } else {
+      // drop slag
+      if (this.currentRecipe != null
+          && this.dropSlagWhenBroken()) {
+        ItemStack stackInSlot = this.inputStackHandler.getStackInSlot(0);
+
+        if (!stackInSlot.isEmpty()) {
+          ItemStack slagItemStack = this.currentRecipe.getSlagItemStack().copy();
+          slagItemStack.setCount(this.remainingSlag);
+          StackHelper.spawnStackOnTop(this.world, slagItemStack, this.pos);
+        }
+      }
+    }
     StackHelper.spawnStackHandlerSlotContentsOnTop(this.world, this.outputStackHandler, 0, this.pos);
     StackHelper.spawnStackHandlerContentsOnTop(this.world, this.fuelStackHandler, this.pos);
   }
