@@ -3,6 +3,11 @@
   * **Fixed:**
     * Silk touch on iron+ tier pickaxes should not drop cobbled versions of andesite, diorite, granite, and limestone [(#238)](https://github.com/codetaylor/pyrotech/issues/238)
     * Faucets can't be used with crucibles [(#234)](https://github.com/codetaylor/pyrotech/issues/234)
+    
+  * **Added:**
+    * Config option to reduce block drops from explosions
+        * `plugin.Dropt.cfg` -> `REDUCE_EXPLOSION_DROPS`
+        * Blocks affected: dirt, grass, sand, red sand, gravel, limestone, stone, cobblestone, diorite, smooth diorite, cobbled diorite, andesite, smooth andesite, cobbled andesite, granite, smooth granite, and cobbled granite
 
 ---
 

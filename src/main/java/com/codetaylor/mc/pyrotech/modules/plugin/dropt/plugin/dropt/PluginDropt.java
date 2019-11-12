@@ -133,6 +133,26 @@ public class PluginDropt {
 
     if (enabled("dirt")) {
 
+      if (ModulePluginDroptConfig.REDUCE_EXPLOSION_DROPS) {
+        // Explosion
+        // Drops dirt clumps
+        list.add(rule()
+            .matchBlocks(new String[]{
+                dirtAny,
+                farmlandAny,
+                mulchedFarmland,
+                mycelium
+            })
+            .matchHarvester(harvester()
+                .type(EnumHarvesterType.EXPLOSION)
+            )
+            .addDrops(new IDroptDropBuilder[]{
+                drop().selector(weight(9)),
+                drop().items(new String[]{rockDirt}, range(1))
+            })
+        );
+      }
+
       // Not a shovel
       // Drops dirt clumps
       list.add(rule()
@@ -195,6 +215,24 @@ public class PluginDropt {
     // -------------------------------------------------------------------------
 
     if (enabled("grass")) {
+
+      if (ModulePluginDroptConfig.REDUCE_EXPLOSION_DROPS) {
+        // Explosion
+        // Drops dirt clumps
+        list.add(rule()
+            .matchBlocks(new String[]{
+                grass,
+                grassPath
+            })
+            .matchHarvester(harvester()
+                .type(EnumHarvesterType.EXPLOSION)
+            )
+            .addDrops(new IDroptDropBuilder[]{
+                drop().selector(weight(9)),
+                drop().items(new String[]{rockDirt}, range(1))
+            })
+        );
+      }
 
       // Not a shovel
       // Drops dirt clumps
@@ -275,6 +313,22 @@ public class PluginDropt {
 
     if (enabled("sand")) {
 
+      if (ModulePluginDroptConfig.REDUCE_EXPLOSION_DROPS) {
+        // Explosion
+        list.add(rule()
+            .matchBlocks(new String[]{
+                sand
+            })
+            .matchHarvester(harvester()
+                .type(EnumHarvesterType.EXPLOSION)
+            )
+            .addDrops(new IDroptDropBuilder[]{
+                drop().selector(weight(9)),
+                drop().items(new String[]{rockSand}, range(1))
+            })
+        );
+      }
+
       // Not a shovel
       list.add(rule()
           .matchBlocks(new String[]{
@@ -324,6 +378,22 @@ public class PluginDropt {
 
     if (enabled("sand_red")) {
 
+      if (ModulePluginDroptConfig.REDUCE_EXPLOSION_DROPS) {
+        // Explosion
+        list.add(rule()
+            .matchBlocks(new String[]{
+                sandRed
+            })
+            .matchHarvester(harvester()
+                .type(EnumHarvesterType.EXPLOSION)
+            )
+            .addDrops(new IDroptDropBuilder[]{
+                drop().selector(weight(9)),
+                drop().items(new String[]{rockSandRed}, range(1))
+            })
+        );
+      }
+
       // Not a shovel
       list.add(rule()
           .matchBlocks(new String[]{
@@ -372,6 +442,25 @@ public class PluginDropt {
     // -------------------------------------------------------------------------
 
     if (enabled("gravel")) {
+
+      if (ModulePluginDroptConfig.REDUCE_EXPLOSION_DROPS) {
+        // Explosion
+        list.add(rule()
+            .matchBlocks(new String[]{
+                gravel
+            })
+            .matchHarvester(harvester()
+                .type(EnumHarvesterType.EXPLOSION)
+            )
+            .addDrops(new IDroptDropBuilder[]{
+                drop().selector(weight(360)),
+                drop().items(new String[]{rockStone}, range(1)).selector(weight(10)),
+                drop().items(new String[]{rockGranite}, range(1)).selector(weight(10)),
+                drop().items(new String[]{rockDiorite}, range(1)).selector(weight(10)),
+                drop().items(new String[]{rockAndesite}, range(1)).selector(weight(10))
+            })
+        );
+      }
 
       // Not a shovel
       list.add(rule()
@@ -795,6 +884,22 @@ public class PluginDropt {
   }
 
   private void addRockDrops(String matchBlock, String rock, @Nullable String replaceBlock, List<IDroptRuleBuilder> list) {
+
+    if (ModulePluginDroptConfig.REDUCE_EXPLOSION_DROPS) {
+      // Explosion
+      list.add(rule()
+          .matchBlocks(new String[]{
+              matchBlock
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.EXPLOSION)
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().selector(weight(9)),
+              drop().items(new String[]{rock}, range(1))
+          })
+      );
+    }
 
     // Non-Player
     list.add(rule()

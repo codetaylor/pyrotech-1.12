@@ -42,4 +42,14 @@ public class ModulePluginDroptConfig {
     }
   }
 
+  @Config.Comment({
+      "Set to true to significantly reduce the number of block drops from explosions.",
+      "Can assist with lag during wither fights.",
+      "",
+      "Blocks affected: dirt, grass, sand, red sand, gravel, limestone, stone,",
+      "cobblestone, diorite, smooth diorite, cobbled diorite, andesite, smooth",
+      "andesite, cobbled andesite, granite, smooth granite, and cobbled granite."
+  })
+  public static boolean REDUCE_EXPLOSION_DROPS = false;
+
 }
