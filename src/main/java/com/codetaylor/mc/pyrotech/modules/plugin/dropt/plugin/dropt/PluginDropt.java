@@ -782,8 +782,9 @@ public class PluginDropt {
         .matchBlocks(new String[]{
             matchBlock
         })
+        .replaceStrategy(EnumReplaceStrategy.REPLACE_ALL_IF_SELECTED)
         .addDrops(new IDroptDropBuilder[]{
-            drop().items(new String[]{replaceBlock})
+            drop().items(new String[]{replaceBlock}).selector(weight(1), EnumSilktouch.EXCLUDED)
         })
     );
   }

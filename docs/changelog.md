@@ -1,3 +1,10 @@
+**1.4.10**
+
+  * **Fixed:**
+    * Silk touch on iron+ tier pickaxes should not drop cobbled versions of andesite, diorite, granite, and limestone [(#238)](https://github.com/codetaylor/pyrotech/issues/238)
+
+---
+
 **1.4.9**
 
   * **Fixed:**
