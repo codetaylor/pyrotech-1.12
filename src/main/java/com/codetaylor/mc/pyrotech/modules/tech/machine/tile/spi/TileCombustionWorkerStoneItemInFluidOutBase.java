@@ -123,7 +123,7 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
       return false;
     }
 
-    return (facing == EnumFacing.DOWN && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+    return (facing != EnumFacing.UP && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
         || super.hasCapability(capability, facing);
   }
 
@@ -135,12 +135,10 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
       return null;
     }
 
-    if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+    if (facing != EnumFacing.UP && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 
-      if (facing == EnumFacing.DOWN) {
-        //noinspection unchecked
-        return (T) this.outputFluidTank;
-      }
+      //noinspection unchecked
+      return (T) this.outputFluidTank;
     }
 
     return super.getCapability(capability, facing);

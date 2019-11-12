@@ -2,6 +2,7 @@
 
   * **Fixed:**
     * Silk touch on iron+ tier pickaxes should not drop cobbled versions of andesite, diorite, granite, and limestone [(#238)](https://github.com/codetaylor/pyrotech/issues/238)
+    * Faucets can't be used with crucibles [(#234)](https://github.com/codetaylor/pyrotech/issues/234)
 
 ---
 
