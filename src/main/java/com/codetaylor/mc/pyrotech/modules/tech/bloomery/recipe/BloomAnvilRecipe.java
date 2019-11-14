@@ -93,7 +93,8 @@ public class BloomAnvilRecipe
 
     this.onRecipeCompleted(tile, world, stackHandler, player);
 
-    while (extraProgress >= 1) {
+    while (extraProgress >= 1
+        && !stackHandler.getStackInSlot(0).isEmpty()) {
       extraProgress -= 1;
 
       this.onRecipeCompleted(tile, world, stackHandler, player);

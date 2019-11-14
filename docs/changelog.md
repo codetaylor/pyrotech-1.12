@@ -1,3 +1,10 @@
+**1.4.11**
+
+  * **Fixed:**
+    * Class cast exception when hammering a bloom [(#242)](https://github.com/codetaylor/pyrotech/issues/242)
+    
+---
+
 **1.4.10**
 
   * **Fixed:**
