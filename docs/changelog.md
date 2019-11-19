@@ -1,3 +1,10 @@
+**1.4.12**
+
+  * **Fixed:**
+    * Class cast exception when holding use button and moving between two different devices [(#246)](https://github.com/codetaylor/pyrotech/issues/246)
+
+---
+
 **1.4.11**
 
   * **Fixed:**

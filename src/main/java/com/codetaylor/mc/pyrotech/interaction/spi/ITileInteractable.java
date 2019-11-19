@@ -117,6 +117,10 @@ public interface ITileInteractable {
     if (rayTraceResult != null
         && rayTraceResult.hitInfo instanceof InteractionRayTraceData.List) {
 
+      if (!rayTraceResult.getBlockPos().equals(pos)) {
+        return;
+      }
+
       InteractionRayTraceData.List results = (InteractionRayTraceData.List) rayTraceResult.hitInfo;
 
       for (int i = 0; i < results.size(); i++) {
