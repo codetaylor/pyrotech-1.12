@@ -1,3 +1,10 @@
+**1.4.13**
+
+  * **Fixed:**
+    * Two-tall machine interactions don't work
+
+---
+
 **1.4.12**
 
   * **Fixed:**

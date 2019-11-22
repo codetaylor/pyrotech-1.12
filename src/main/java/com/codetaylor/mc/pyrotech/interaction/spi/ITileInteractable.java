@@ -117,7 +117,8 @@ public interface ITileInteractable {
     if (rayTraceResult != null
         && rayTraceResult.hitInfo instanceof InteractionRayTraceData.List) {
 
-      if (!rayTraceResult.getBlockPos().equals(pos)) {
+      if (!rayTraceResult.getBlockPos().equals(pos)
+          && !tile.isExtendedInteraction(world, rayTraceResult.getBlockPos(), state)) {
         return;
       }
 
