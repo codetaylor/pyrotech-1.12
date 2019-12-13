@@ -130,11 +130,16 @@ public class PluginJEI
 
         ItemStack output = FurnaceRecipes.instance().getSmeltingResult(input);
 
+        if (output.isEmpty()) {
+          return false;
+        }
+
         if (CampfireRecipe.hasWhitelist()) {
           return CampfireRecipe.isWhitelisted(output);
 
         } else if (CampfireRecipe.hasBlacklist()) {
-          return !CampfireRecipe.isBlacklisted(output);
+          return !CampfireRecipe.isBlacklisted(output)
+              && RecipeHelper.hasFurnaceFoodRecipe(input);
         }
 
         return RecipeHelper.hasFurnaceFoodRecipe(input);

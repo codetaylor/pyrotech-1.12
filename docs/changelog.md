@@ -1,3 +1,10 @@
+**1.4.14**
+
+  * **Fixed:**
+    * Blacklisting Smelting Recipes for Campfire visually enables all non-blacklisted Furnace recipes in JEI [(#257)](https://github.com/codetaylor/pyrotech/issues/257)
+
+---
+
 **1.4.13**
 
   * **Fixed:**
