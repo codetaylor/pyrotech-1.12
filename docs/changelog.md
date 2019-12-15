@@ -1,3 +1,10 @@
+**1.4.15**
+
+  * **Fixed:**
+    * ToP error when viewing filled Bloomery [(#258)](https://github.com/codetaylor/pyrotech/issues/258)
+
+---
+
 **1.4.14**
 
   * **Fixed:**

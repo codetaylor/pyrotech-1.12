@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.waila.delegate;
 
-import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
@@ -46,16 +45,6 @@ public class BloomeryProviderDelegate
     } else if (hasOutput) {
 
       // Display output items.
-
-      StringBuilder renderString = new StringBuilder();
-
-      for (int i = 0; i < outputStackHandler.getSlots(); i++) {
-        ItemStack stackInSlot = outputStackHandler.getStackInSlot(i);
-
-        if (!stackInSlot.isEmpty()) {
-          renderString.append(WailaUtil.getStackRenderString(stackInSlot));
-        }
-      }
 
       this.display.setOutputItems(outputStackHandler);
     }
