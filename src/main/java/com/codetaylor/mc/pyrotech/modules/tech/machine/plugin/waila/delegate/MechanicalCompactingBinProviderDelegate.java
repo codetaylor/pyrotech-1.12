@@ -1,10 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.delegate;
 
 import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
-import com.codetaylor.mc.pyrotech.library.util.plugin.waila.WailaUtil;
 import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalCompactingBin;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class MechanicalCompactingBinProviderDelegate
@@ -30,23 +28,6 @@ public class MechanicalCompactingBinProviderDelegate
     int completeRecipeCount = totalItemCount / currentRecipe.getAmount();
 
     if (totalItemCount > 0) {
-      StringBuilder renderString = new StringBuilder();
-
-      for (int i = 0; i < inputStackHandler.getSlots(); i++) {
-        ItemStack stackInSlot = inputStackHandler.getStackInSlot(i);
-
-        if (!stackInSlot.isEmpty()) {
-          renderString.append(WailaUtil.getStackRenderString(stackInSlot));
-        }
-      }
-
-      if (completeRecipeCount > 0) {
-        renderString.append(WailaUtil.getProgressRenderString((int) (100 * progress), 100));
-        ItemStack output = currentRecipe.getOutput();
-        output.setCount(completeRecipeCount);
-        renderString.append(WailaUtil.getStackRenderString(output));
-      }
-
       this.display.setRecipeProgress(inputStackHandler, currentRecipe, completeRecipeCount, (int) (100 * progress), 100);
     }
   }
