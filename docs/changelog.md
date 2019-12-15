@@ -2,6 +2,7 @@
 
   * **Fixed:**
     * ToP error when viewing filled Mechanical Compactor [(#260)](https://github.com/codetaylor/pyrotech/issues/260)
+    * Duplicate Ash item in creative tabs
 
 ---
 

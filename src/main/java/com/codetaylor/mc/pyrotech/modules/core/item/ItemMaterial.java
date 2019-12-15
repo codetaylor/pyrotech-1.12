@@ -59,7 +59,6 @@ public class ItemMaterial
         items.add(new ItemStack(this, 1, type.getMeta()));
       }
     }
-    super.getSubItems(tab, items);
   }
 
   @Nonnull
