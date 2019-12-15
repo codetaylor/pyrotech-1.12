@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -67,5 +68,21 @@ public class BlockPitAsh
     }
 
     super.breakBlock(worldIn, pos, state);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Creative Menu
+  // ---------------------------------------------------------------------------
+
+  @Override
+  public CreativeTabs getCreativeTabToDisplayOn() {
+
+    return null;
+  }
+
+  @Override
+  public String getUnlocalizedName() {
+
+    return "tile.pyrotech.pile_ash";
   }
 }

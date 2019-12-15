@@ -3,6 +3,7 @@
   * **Fixed:**
     * ToP error when viewing filled Mechanical Compactor [(#260)](https://github.com/codetaylor/pyrotech/issues/260)
     * Duplicate Ash item in creative tabs
+    * Looking at pit ash doesn't display with Waila and has a broken name with ToP [(#259)](https://github.com/codetaylor/pyrotech/issues/259)
 
 ---
 

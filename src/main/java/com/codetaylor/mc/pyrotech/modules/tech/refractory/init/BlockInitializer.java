@@ -11,6 +11,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.client.render.TESRTarCollector;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.*;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarCollectorBase;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,7 +21,10 @@ public final class BlockInitializer {
   public static void onRegister(Registry registry) {
 
     registry.registerBlock(new BlockActivePile(), BlockActivePile.NAME);
-    registry.registerBlock(new BlockPitAsh(), BlockPitAsh.NAME);
+
+    BlockPitAsh blockPitAsh = new BlockPitAsh();
+    registry.registerBlock(blockPitAsh, BlockPitAsh.NAME);
+    registry.registerItem(new ItemBlock(blockPitAsh), BlockPitAsh.NAME, true);
 
     registry.registerBlockWithItem(new BlockTarCollector(), BlockTarCollector.NAME);
     registry.registerBlockWithItem(new BlockTarDrain(), BlockTarDrain.NAME);
@@ -40,6 +44,10 @@ public final class BlockInitializer {
   public static void onClientRegister(Registry registry) {
 
     registry.registerClientModelRegistrationStrategy(() -> {
+
+      ModelRegistrationHelper.registerBlockItemModels(
+          ModuleTechRefractory.Blocks.PIT_ASH_BLOCK
+      );
 
       // Tar Collector
       ModelRegistrationHelper.registerVariantBlockItemModels(

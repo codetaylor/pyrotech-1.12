@@ -1,21 +1,9 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "pyrotech:ash_block"
+    "model": "pyrotech:pit_ash_block"
   },
   "variants": {
-    "normal": [
-      {
-      },
-      {
-        "y": 90
-      },
-      {
-        "y": 180
-      },
-      {
-        "y": 270
-      }
-    ]
+    "normal": [{}]
   }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "pyrotech:blocks/ash_block",
+    "particle": "pyrotech:blocks/ash_block"
+  }
+}

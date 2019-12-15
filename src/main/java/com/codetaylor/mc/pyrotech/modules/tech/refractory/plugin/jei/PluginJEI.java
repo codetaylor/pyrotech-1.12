@@ -11,6 +11,7 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
+import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.init.Blocks;
@@ -38,6 +39,9 @@ public class PluginJEI
 
   @Override
   public void register(IModRegistry registry) {
+
+    IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleTechRefractory.Blocks.PIT_ASH_BLOCK));
 
     {
       List<ItemStack> outputList = ModuleTechRefractory.Registries.BURN_RECIPE.getValuesCollection()
