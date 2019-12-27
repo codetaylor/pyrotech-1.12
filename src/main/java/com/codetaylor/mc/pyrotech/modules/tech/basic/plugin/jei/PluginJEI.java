@@ -7,11 +7,16 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockDryingRack;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.wrapper.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.*;
+import crafttweaker.mc1120.recipes.MCRecipeBase;
+import crafttweaker.mc1120.recipes.MCRecipeShaped;
+import crafttweaker.mc1120.recipes.MCRecipeShapeless;
 import mezz.jei.api.*;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
+import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 import mezz.jei.plugins.vanilla.crafting.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -22,10 +27,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import javax.annotation.Nullable;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -83,10 +86,23 @@ public class PluginJEI
       registry.handleRecipes(ShapelessOreRecipe.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryWorktable.UID);
       registry.handleRecipes(ShapelessRecipes.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryWorktable.UID);
       registry.handleRecipes(WorktableRecipe.class, new WorktableRecipeFactory(jeiHelpers), JEIRecipeCategoryWorktable.UID);
+
+      registry.handleRecipes(MCRecipeShapeless.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryWorktable.UID);
+      registry.handleRecipes(MCRecipeShaped.class, CraftingRecipeWrapperShaped::new, JEIRecipeCategoryWorktable.UID);
+
       List<IRecipe> vanillaRecipes = CraftingRecipeChecker.getValidRecipes(jeiHelpers)
           .stream()
           .filter(recipe -> {
             ResourceLocation resourceLocation = recipe.getRegistryName();
+
+            if (recipe instanceof MCRecipeBase) {
+
+              if (!((MCRecipeBase) recipe).isVisible()) {
+                return false;
+              }
+
+              ((MCRecipeBase) recipe).update();
+            }
 
             if (WorktableRecipe.hasWhitelist()) {
               return WorktableRecipe.isWhitelisted(resourceLocation);
@@ -288,5 +304,42 @@ public class PluginJEI
 
     return Loader.isModLoaded("gamestages")
         && recipe.getStages() != null;
+  }
+
+  public static class CraftingRecipeWrapperShaped
+      implements IShapedCraftingRecipeWrapper {
+
+    private final MCRecipeShaped recipe;
+
+    public CraftingRecipeWrapperShaped(MCRecipeShaped recipe) {
+
+      this.recipe = recipe;
+    }
+
+    @Override
+    public void getIngredients(IIngredients ingredients) {
+
+      ingredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
+      ingredients.setInputLists(VanillaTypes.ITEM, recipe.getIngredients().stream().map(Ingredient::getMatchingStacks).map(Arrays::asList).collect(Collectors.toList()));
+    }
+
+    @Override
+    public int getWidth() {
+
+      return recipe.getRecipeWidth();
+    }
+
+    @Override
+    public int getHeight() {
+
+      return recipe.getRecipeHeight();
+    }
+
+    @Nullable
+    @Override
+    public ResourceLocation getRegistryName() {
+
+      return recipe.getRegistryName();
+    }
   }
 }

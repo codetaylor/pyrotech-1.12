@@ -1,3 +1,10 @@
+**1.4.17**
+
+  * **Fixed:**
+    * Normal custom recipes added via CrT not shown in JEI worktable category [(#142)](https://github.com/codetaylor/pyrotech/issues/142)
+
+---
+
 **1.4.16**
 
   * **Fixed:**
