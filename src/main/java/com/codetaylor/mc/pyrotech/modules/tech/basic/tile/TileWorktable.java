@@ -373,7 +373,8 @@ public class TileWorktable
           return false;
 
         } else {
-          return this.isValidTool(player, item, registryName, recipe);
+          return !recipe.getRecipe().getCraftingResult(this.wrapper).isEmpty()
+              && this.isValidTool(player, item, registryName, recipe);
         }
       }
     }
