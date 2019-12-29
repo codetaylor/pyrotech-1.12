@@ -111,9 +111,9 @@ public class WorktableProviderDelegate
             Item item = toolList.get(index);
             this.display.setRecipeProgress(new ItemStack(item), recipeOutput, (int) (100 * progress), 100);
           }
-        }
 
-        this.display.setRecipeOutputName(recipeOutput);
+          this.display.setRecipeOutputName(recipeOutput);
+        }
       }
     }
 
