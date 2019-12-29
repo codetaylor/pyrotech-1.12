@@ -210,6 +210,11 @@ public class TileWorktable
     this.retainedRecipe = resourceLocation;
   }
 
+  public InventoryWrapper getInventoryWrapper() {
+
+    return this.inventoryWrapper;
+  }
+
   // ---------------------------------------------------------------------------
   // - Container
   // ---------------------------------------------------------------------------
@@ -570,7 +575,7 @@ public class TileWorktable
 
             tile.setRetainedRecipe(worktableRecipe.getRegistryName());
 
-            ItemStack result = recipe.getRecipeOutput().copy();
+            ItemStack result = recipe.getCraftingResult(this.wrapper).copy();
             FMLCommonHandler.instance().firePlayerCraftingEvent(player, result, this.wrapper);
             NonNullList<ItemStack> remainingItems = recipe.getRemainingItems(this.wrapper);
 

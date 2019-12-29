@@ -76,7 +76,7 @@ public class WorktableProviderDelegate
       }
 
       if (displayRecipe) {
-        ItemStack recipeOutput = recipe.getRecipeOutput();
+        ItemStack recipeOutput = recipe.getCraftingResult(tile.getInventoryWrapper());
 
         if (!recipeOutput.isEmpty()) {
 
