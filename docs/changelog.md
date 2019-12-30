@@ -1,3 +1,11 @@
+**1.4.18**
+
+  * **Fixed:**
+    * Combining items doesn't make an outcome (worktable) [(#252)](https://github.com/codetaylor/pyrotech/issues/252)
+    * Worktable deleting Silent's Gear items [(#262)](https://github.com/codetaylor/pyrotech/issues/262)
+
+---
+
 **1.4.17**
 
   * **Fixed:**
