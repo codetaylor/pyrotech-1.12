@@ -1,3 +1,10 @@
+**1.4.19**
+
+  * **Fixed:**
+    * Snow accumulates on top of Bloomery, Wither Forge, Stone Collector, Refractory Collector [(#172)](https://github.com/codetaylor/pyrotech/issues/172)
+
+---
+
 **1.4.18**
 
   * **Fixed:**
