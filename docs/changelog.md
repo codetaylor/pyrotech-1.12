@@ -1,3 +1,13 @@
+**1.4.20**
+
+  * **Fixed:**
+    * Broken guidebook links [(#270)](https://github.com/codetaylor/pyrotech/issues/270)
+  
+  * **Changed:**
+    * In the guidebook, renamed `verified fire-starter device` to `verified fire-starting device`
+
+---
+
 **1.4.19**
 
   * **Fixed:**
