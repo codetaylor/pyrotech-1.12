@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:ignition/bow_drill",
-      "text": "The $(item)Bow Drill$() is a $(l:appendix/ignition)verified fire-starter device$().$(p)A $(item)Bow$() can be crafted using $(item)String$() or $(item)Durable Twine$()."
+      "text": "The $(item)Bow Drill$() is a $(l:appendix/ignition)verified fire-starting device$().$(p)A $(item)Bow$() can be crafted using $(item)String$() or $(item)Durable Twine$()."
     },
     {
       "type": "crafting",

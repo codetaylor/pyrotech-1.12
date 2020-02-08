@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "To build and operate a $(item)Pit Kiln$() you will need a $(item)Pit Kiln$(), four $(item)Straw$(), a $(item)Straw Bale$(), three $(thing)Logs$(), and a $(l:appendix/ignition)verified fire-starter device$().$(p)Two clumps of $(item)Dried Plant Fibers$() can be tied together to make $(item)Straw$()."
+      "text": "To build and operate a $(item)Pit Kiln$() you will need a $(item)Pit Kiln$(), four $(item)Straw$(), a $(item)Straw Bale$(), three $(thing)Logs$(), and a $(l:appendix/ignition)verified fire-starting device$().$(p)Two clumps of $(item)Dried Plant Fibers$() can be tied together to make $(item)Straw$()."
     },
     {
       "type": "crafting",
@@ -85,7 +85,7 @@
     },
     {
       "type": "text",
-      "text": "Next, use any $(l:appendix/ignition)verified fire-starter device$() to ignite.$(p)$(info) Unlike a $(thing)Pit Burn$(), the $(item)Pit Kiln$() is left uncovered on top while it burns."
+      "text": "Next, use any $(l:appendix/ignition)verified fire-starting device$() to ignite.$(p)$(info) Unlike a $(thing)Pit Burn$(), the $(item)Pit Kiln$() is left uncovered on top while it burns."
     },
     {
       "type": "image",

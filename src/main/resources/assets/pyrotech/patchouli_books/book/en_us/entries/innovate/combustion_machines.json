@@ -14,7 +14,7 @@
     {
       "type": "text",
       "title": "Usage",
-      "text": "To use a $(thing)Combustion Machine$(), place ingredients in the top, place fuel in the bottom, and light the opening in the bottom with a $(l:appendix/ignition)verified fire-starter device$().$(p)$(info) $(thing)Combustion Machines$() can be doused with a bucket of water to save fuel."
+      "text": "To use a $(thing)Combustion Machine$(), place ingredients in the top, place fuel in the bottom, and light the opening in the bottom with a $(l:appendix/ignition)verified fire-starting device$().$(p)$(info) $(thing)Combustion Machines$() can be doused with a bucket of water to save fuel."
     },
     {
       "type": "text",

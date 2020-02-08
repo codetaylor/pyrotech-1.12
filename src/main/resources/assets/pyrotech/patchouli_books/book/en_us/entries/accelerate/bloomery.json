@@ -21,7 +21,7 @@
     },
     {
       "type": "text",
-      "text": "To use, place ore and fuel in the top of the $(item)Bloomery$(), then ignite the top with a $(l:appendix/ignition)verified fire-starter device$().$(p)When the fire on top goes out, you can remove the $(item)Ash$() and $(item)Bloom$().$(p)$(info) To remove $(item)Ash$(), $(use) the top of the $(item)Bloomery$() with a shovel.$(p)$(warning) Remember, $(item)Blooms$() are hot - handling them can be dangerous."
+      "text": "To use, place ore and fuel in the top of the $(item)Bloomery$(), then ignite the top with a $(l:appendix/ignition)verified fire-starting device$().$(p)When the fire on top goes out, you can remove the $(item)Ash$() and $(item)Bloom$().$(p)$(info) To remove $(item)Ash$(), $(use) the top of the $(item)Bloomery$() with a shovel.$(p)$(warning) Remember, $(item)Blooms$() are hot - handling them can be dangerous."
     },
     {
       "type": "fuel_bloomery",
