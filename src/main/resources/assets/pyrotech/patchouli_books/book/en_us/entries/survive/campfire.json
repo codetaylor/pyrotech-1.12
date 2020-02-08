@@ -7,7 +7,7 @@
       "type": "spotlight",
       "item": "pyrotech:campfire",
       "link_recipe": true,
-      "text": "To construct a $(item)Campfire$(), follow these four easy steps:$(p)  $(l:survive/introduction#craft_tinder)1. Craft Tinder$()$(br)  $(l:survive/introduction#place_tinder)2. Place Tinder$()$(br)  $(l:survive/introduction#add_logs)3. Add logs$()$(br)  $(l:survive/introduction#ignite)4. Ignite$()"
+      "text": "To construct a $(item)Campfire$(), follow these four easy steps:$(p)  $(l:survive/campfire#craft_tinder)1. Craft Tinder$()$(br)  $(l:survive/campfire#place_tinder)2. Place Tinder$()$(br)  $(l:survive/campfire#add_logs)3. Add logs$()$(br)  $(l:survive/campfire#ignite)4. Ignite$()"
     },
     {
       "type": "crafting",
