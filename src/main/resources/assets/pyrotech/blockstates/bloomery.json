@@ -3,6 +3,8 @@
   "defaults": {
     "model": "pyrotech:bloomery",
     "textures": {
+      "fire0": "minecraft:blocks/fire_layer_0",
+      "fire1": "minecraft:blocks/fire_layer_1",
       "particle": "pyrotech:blocks/bloomery_side"
     }
   },
