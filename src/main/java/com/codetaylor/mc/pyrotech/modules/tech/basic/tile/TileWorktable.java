@@ -592,7 +592,7 @@ public class TileWorktable
                     StackHelper.spawnStackOnTop(world, remainingItemStack, tile.getPos(), 0.75);
                     StackHelper.decreaseStackInSlot(tile.inputStackHandler, slot, 1, true);
 
-                  } else {ch
+                  } else {
                     tile.inputStackHandler.setStackInSlot(slot, remainingItemStack);
                   }
 
