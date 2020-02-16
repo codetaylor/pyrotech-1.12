@@ -1,3 +1,10 @@
+**1.4.21**
+
+  * **Fixed:**
+    * Worktable eats Silent Gear crafts [(#262)](https://github.com/codetaylor/pyrotech/issues/262)
+  
+---
+
 **1.4.20**
 
   * **Fixed:**

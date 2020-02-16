@@ -580,22 +580,25 @@ public class TileWorktable
             FMLCommonHandler.instance().firePlayerCraftingEvent(player, result, this.wrapper);
             NonNullList<ItemStack> remainingItems = recipe.getRemainingItems(this.wrapper);
 
-            for (int slot = 0; slot < 9; slot++) {
-              ItemStack remainingItemStack = remainingItems.get(slot);
-              ItemStack stackInSlot = tile.inputStackHandler.getStackInSlot(slot);
+            if (!remainingItems.isEmpty()) {
 
-              if (!remainingItemStack.isEmpty()) {
+              for (int slot = 0; slot < 9; slot++) {
+                ItemStack remainingItemStack = remainingItems.get(slot);
+                ItemStack stackInSlot = tile.inputStackHandler.getStackInSlot(slot);
 
-                if (remainingItemStack.getItem() != stackInSlot.getItem()) {
-                  StackHelper.spawnStackOnTop(world, remainingItemStack, tile.getPos(), 0.75);
-                  StackHelper.decreaseStackInSlot(tile.inputStackHandler, slot, 1, true);
+                if (!remainingItemStack.isEmpty()) {
+
+                  if (remainingItemStack.getItem() != stackInSlot.getItem()) {
+                    StackHelper.spawnStackOnTop(world, remainingItemStack, tile.getPos(), 0.75);
+                    StackHelper.decreaseStackInSlot(tile.inputStackHandler, slot, 1, true);
+
+                  } else {ch
+                    tile.inputStackHandler.setStackInSlot(slot, remainingItemStack);
+                  }
 
                 } else {
-                  tile.inputStackHandler.setStackInSlot(slot, remainingItemStack);
+                  StackHelper.decreaseStackInSlot(tile.inputStackHandler, slot, 1, true);
                 }
-
-              } else {
-                StackHelper.decreaseStackInSlot(tile.inputStackHandler, slot, 1, true);
               }
             }
 
