@@ -25,7 +25,7 @@ public class RightClickBlockEventHandler {
 
     Item item = itemStack.getItem();
 
-    if (item == Items.FLINT_AND_STEEL) {
+    if (item == Items.FLINT_AND_STEEL || item == Items.FIRE_CHARGE) {
 
       if (RefractoryIgnitionHelper.igniteBlocks(world, pos)) {
         world.playSound(

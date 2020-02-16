@@ -152,7 +152,7 @@ public class TileBloomery
         new InteractionItem(
             this.getInputInteractionBoundsTop()
         ),
-        new InteractionUseFlintAndSteel(
+        new InteractionIgnite(
             this.getInputInteractionBoundsTop()
         ),
         new InteractionShovel(
@@ -847,10 +847,10 @@ public class TileBloomery
 
   // --- FLINT AND STEEL ---
 
-  private class InteractionUseFlintAndSteel
+  private class InteractionIgnite
       extends InteractionUseItemBase<TileBloomery> {
 
-    /* package */ InteractionUseFlintAndSteel(AxisAlignedBB interactionBounds) {
+    /* package */ InteractionIgnite(AxisAlignedBB interactionBounds) {
 
       super(new EnumFacing[]{EnumFacing.UP}, interactionBounds);
     }
@@ -858,7 +858,8 @@ public class TileBloomery
     @Override
     protected boolean allowInteraction(TileBloomery tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      return (player.getHeldItem(hand).getItem() == Items.FLINT_AND_STEEL)
+      return (player.getHeldItem(hand).getItem() == Items.FLINT_AND_STEEL
+          || player.getHeldItem(hand).getItem() == Items.FIRE_CHARGE)
           && (!tile.isActive());
     }
 
@@ -868,6 +869,10 @@ public class TileBloomery
       if (!world.isRemote) {
 
         tile.setActive();
+
+        if (player.getHeldItem(hand).getItem() == Items.FIRE_CHARGE) {
+          player.getHeldItem(hand).shrink(1);
+        }
 
         world.playSound(
             null,

@@ -139,6 +139,7 @@ public class TileCampfire
         }),
         new TileCampfire.InteractionShovel(),
         new InteractionUseItemToActivateWorker(Items.FLINT_AND_STEEL, EnumFacing.VALUES, BlockCampfire.AABB_FULL),
+        new InteractionUseItemToActivateWorker(Items.FIRE_CHARGE, EnumFacing.VALUES, BlockCampfire.AABB_FULL, true),
         new TileCampfire.InteractionLog(this)
     };
   }

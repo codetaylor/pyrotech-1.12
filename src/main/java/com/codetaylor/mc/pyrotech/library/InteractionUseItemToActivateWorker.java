@@ -20,11 +20,18 @@ public class InteractionUseItemToActivateWorker<T extends TileEntity & ITileInte
     extends InteractionUseItemBase<T> {
 
   private final Item item;
+  private final boolean consumeItem;
 
   public InteractionUseItemToActivateWorker(Item item, EnumFacing[] sides, AxisAlignedBB bounds) {
 
+    this(item, sides, bounds, false);
+  }
+
+  public InteractionUseItemToActivateWorker(Item item, EnumFacing[] sides, AxisAlignedBB bounds, boolean consumeItem) {
+
     super(sides, bounds);
     this.item = item;
+    this.consumeItem = consumeItem;
   }
 
   @Override
@@ -38,6 +45,10 @@ public class InteractionUseItemToActivateWorker<T extends TileEntity & ITileInte
 
     if (!world.isRemote) {
       tile.workerSetActive(true);
+
+      if (this.consumeItem) {
+        player.getHeldItem(hand).shrink(1);
+      }
 
       world.playSound(
           null,

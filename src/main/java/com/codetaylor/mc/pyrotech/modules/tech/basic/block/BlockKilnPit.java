@@ -257,7 +257,8 @@ public class BlockKilnPit
     Item item = heldItem.getItem();
 
     if (item instanceof ItemIgniterBase
-        || item == Items.FLINT_AND_STEEL) {
+        || item == Items.FLINT_AND_STEEL
+        || item == Items.FIRE_CHARGE) {
       return false;
     }
 

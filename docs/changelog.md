@@ -2,6 +2,12 @@
 
   * **Fixed:**
     * Worktable eats Silent Gear crafts [(#262)](https://github.com/codetaylor/pyrotech/issues/262)
+    * Item Fire Charge should ignite:
+        * Campfire
+        * Pit Kiln
+        * Bloomery / Wither Forge
+        * Stone / Brick Machines
+        * Pit / Refractory Burn
   
 ---
 
