@@ -1,3 +1,10 @@
+**1.4.22**
+
+  * **Fixed:**
+    * Improved config documentation
+    
+---
+
 **1.4.21**
 
   * **Fixed:**

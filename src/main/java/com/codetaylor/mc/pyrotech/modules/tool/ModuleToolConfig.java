@@ -9,7 +9,8 @@ import java.util.Map;
 public class ModuleToolConfig {
 
   @Config.Comment({
-      "The durability of the vanilla type tools, excluding hammers."
+      "The durability of the vanilla type tools, excluding hammers.",
+      "To change the durability of hammers, see the hammers section in core.cfg."
   })
   public static Map<String, Integer> DURABILITY = new LinkedHashMap<>();
 
@@ -21,7 +22,8 @@ public class ModuleToolConfig {
   }
 
   @Config.Comment({
-      "The harvest levels of each tool material."
+      "The harvest levels of each tool material, excluding hammers.",
+      "To change the harvest level of hammers, see the hammers section in core.cfg."
   })
   public static Map<String, Integer> HARVEST_LEVEL = new LinkedHashMap<>();
 
