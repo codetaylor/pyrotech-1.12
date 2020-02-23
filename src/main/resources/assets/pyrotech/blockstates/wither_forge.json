@@ -2,6 +2,8 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
+      "fire0": "minecraft:blocks/fire_layer_0",
+      "fire1": "minecraft:blocks/fire_layer_1",
       "particle": "pyrotech:blocks/wither_forge_side"
     }
   },
