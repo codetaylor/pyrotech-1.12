@@ -1,7 +1,7 @@
 **1.4.22**
 
   * **Fixed:**
-    * Improved config documentation
+    * Improved config documentation [(#280)](https://github.com/codetaylor/pyrotech/issues/280)
     * Wither Forge fire does not animate with VanillaFix installed [(#282)](https://github.com/codetaylor/pyrotech/issues/282)
     
 ---
