@@ -1,3 +1,21 @@
+### Incorrect Block Drops
+
+Affected MC versions: `1.12.2`
+
+Pyrotech uses Dropt under the hood to manage its block drops based on tool type and harvest level. Some mods don't properly implement the right methods on their tools to return the proper tool type or harvest level. In this case, Dropt can't determine what type of tool or harvest level the player is using and the tool doesn't match causing incorrect block drops.
+
+Here is a list of the known, affected mod items:
+
+* EnderIO Dark Pick w/ Spoon Upgrade
+* Erebus Jade Paxel
+* GTCE Pickaxe and Shovel
+* Mekanism Atomic Dissasembler
+
+For more information, see the following issues:
+
+* https://github.com/codetaylor/pyrotech/issues/274
+* https://github.com/codetaylor/pyrotech/issues/279
+
 ### Shoulder Surfing Reloaded
 
 **Issue: Crash**
