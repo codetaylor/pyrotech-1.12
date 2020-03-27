@@ -13,8 +13,8 @@ Here is a list of the known, affected mod items:
 
 For more information, see the following issues:
 
-* https://github.com/codetaylor/pyrotech/issues/274
-* https://github.com/codetaylor/pyrotech/issues/279
+* [pyrotech/issues/274](https://github.com/codetaylor/pyrotech/issues/274)
+* [pyrotech/issues/279](https://github.com/codetaylor/pyrotech/issues/279)
 
 ### Shoulder Surfing Reloaded
 
