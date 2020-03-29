@@ -95,7 +95,7 @@ public class ZenBloomery {
   @ZenMethod
   public static void removeWitherForgeRecipes(IIngredient output) {
 
-    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output), EnumRecipeType.Bloomery));
+    CraftTweaker.LATE_ACTIONS.add(new RemoveRecipe(CraftTweakerMC.getIngredient(output), EnumRecipeType.WitherForge));
   }
 
   @ZenDocMethod(

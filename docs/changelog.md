@@ -2,6 +2,7 @@
 
   * **Fixed:**
     * Missing all JEI recipes when CraftTweaker isn't installed [(#285)](https://github.com/codetaylor/pyrotech/issues/285)
+    * ZS method removeWitherForgeRecipes does not work [(#286)](https://github.com/codetaylor/pyrotech/issues/286)
 
 ---
 
