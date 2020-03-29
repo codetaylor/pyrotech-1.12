@@ -87,15 +87,17 @@ public class PluginJEI
       registry.handleRecipes(ShapelessRecipes.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryWorktable.UID);
       registry.handleRecipes(WorktableRecipe.class, new WorktableRecipeFactory(jeiHelpers), JEIRecipeCategoryWorktable.UID);
 
-      registry.handleRecipes(MCRecipeShapeless.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryWorktable.UID);
-      registry.handleRecipes(MCRecipeShaped.class, CraftingRecipeWrapperShaped::new, JEIRecipeCategoryWorktable.UID);
+      if (Loader.isModLoaded("crafttweaker")) {
+        registry.handleRecipes(MCRecipeShapeless.class, recipe -> new ShapelessRecipeWrapper<>(jeiHelpers, recipe), JEIRecipeCategoryWorktable.UID);
+        registry.handleRecipes(MCRecipeShaped.class, CraftingRecipeWrapperShaped::new, JEIRecipeCategoryWorktable.UID);
+      }
 
       List<IRecipe> vanillaRecipes = CraftingRecipeChecker.getValidRecipes(jeiHelpers)
           .stream()
           .filter(recipe -> {
             ResourceLocation resourceLocation = recipe.getRegistryName();
 
-            if (recipe instanceof MCRecipeBase) {
+            if (Loader.isModLoaded("crafttweaker") && recipe instanceof MCRecipeBase) {
 
               if (!((MCRecipeBase) recipe).isVisible()) {
                 return false;

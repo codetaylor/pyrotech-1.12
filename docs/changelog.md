@@ -1,3 +1,10 @@
+**1.4.23**
+
+  * **Fixed:**
+    * Missing all JEI recipes when CraftTweaker isn't installed [(#285)](https://github.com/codetaylor/pyrotech/issues/285)
+
+---
+
 **1.4.22**
 
   * **Fixed:**
