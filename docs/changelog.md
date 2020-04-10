@@ -1,3 +1,10 @@
+**1.4.24**
+
+  * **Fixed:**
+    * Self-replicating, infinite lag when pit burn recipe fails to locate the given block [(#291)](https://github.com/codetaylor/pyrotech/issues/291)
+
+---
+
 **1.4.23**
 
   * **Fixed:**

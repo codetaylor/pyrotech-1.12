@@ -21,6 +21,7 @@ import crafttweaker.api.liquid.ILiquidStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -81,7 +82,7 @@ public class ZenBurn {
       ParseResult result = RecipeItemParser.INSTANCE.parse(blockString);
       Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(result.getDomain(), result.getPath()));
 
-      if (block == null) {
+      if (block == null || block == Blocks.AIR) {
         CTLogHelper.logError("Unable to locate block for block-string: " + result);
         return null;
       }
