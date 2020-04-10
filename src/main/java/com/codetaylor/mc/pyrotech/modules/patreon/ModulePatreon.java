@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.patreon.data.*;
 import com.codetaylor.mc.pyrotech.modules.patreon.data.EffectDataHotfoot;
+import com.codetaylor.mc.pyrotech.modules.patreon.data.EffectDataHothead;
 import com.google.gson.GsonBuilder;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -28,23 +29,32 @@ public class ModulePatreon
 
     super.onInitializationEvent(event);
 
-    new EffectDataLoader(
-        MOD_ID,
-        new UrlEffectDataJsonProvider(
-            PATREON_EFFECTS_JSON_URL
-        ),
-        new GsonEffectDataJsonAdapter(
-            new GsonBuilder()
-                .registerTypeAdapter(
-                    EffectDataBase.class,
-                    new EffectDataGsonAdapter(
-                        new HashMap<String, IEffectDataFactory>() {{
-                          this.put("hotfoot", EffectDataHotfoot::new);
-                        }}
-                    )
-                )
-                .create()
-        )
-    ).loadEffects();
+    try {
+      new EffectDataLoader(
+          MOD_ID,
+          new UrlEffectDataJsonProvider(
+              PATREON_EFFECTS_JSON_URL
+          ),
+//          new StringEffectDataJsonProvider(
+//              new String(Files.readAllBytes(Paths.get("patreon-test.json")))
+//          ),
+          new GsonEffectDataJsonAdapter(
+              new GsonBuilder()
+                  .registerTypeAdapter(
+                      EffectDataBase.class,
+                      new EffectDataGsonAdapter(
+                          new HashMap<String, IEffectDataFactory>() {{
+                            this.put("hotfoot", EffectDataHotfoot::new);
+                            this.put("hothead", EffectDataHothead::new);
+                          }}
+                      )
+                  )
+                  .create()
+          )
+      ).loadEffects();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }
