@@ -1,3 +1,11 @@
+**1.4.25**
+
+  * **Fixed:**
+    * Hothead cosmetic effect should only work for patrons [(#292)](https://github.com/codetaylor/pyrotech/issues/292)
+    * Improved performance of Hothead effect
+    
+---
+
 **1.4.24**
 
   * **Fixed:**
