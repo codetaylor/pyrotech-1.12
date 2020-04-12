@@ -36,6 +36,7 @@ import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.relauncher.Side;
@@ -732,7 +733,11 @@ public abstract class ItemBucketBase
     FluidStack fluidStack = null;
 
     if (fluidHandler != null) {
-      fluidStack = fluidHandler.getTankProperties()[0].getContents();
+      IFluidTankProperties[] tankProperties = fluidHandler.getTankProperties();
+
+      if (tankProperties != null && tankProperties.length > 0) {
+        fluidStack = tankProperties[0].getContents();
+      }
     }
 
     EntityPlayer entityPlayer = event.getEntityPlayer();

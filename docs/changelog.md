@@ -1,3 +1,10 @@
+**1.4.26**
+
+  * **Fixed:**
+    * Pyrotech bucket crash with Agricraft water tank [(#294)](https://github.com/codetaylor/pyrotech/issues/294)
+
+---
+
 **1.4.25**
 
   * **Fixed:**
