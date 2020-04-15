@@ -1,10 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
-import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
-import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
-import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
-import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.tools.*;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -33,6 +30,7 @@ import java.util.Set;
 import static com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.WitherForgeRecipesAdd.INHERIT_TRANSFORMER;
 
 @ZenDocClass("mods.pyrotech.Bloomery")
+@ZenDocPrepend({"docs/include/header.md"})
 @ZenDocAppend({"docs/include/bloomery.example.md"})
 @ZenClass("mods.pyrotech.Bloomery")
 public class ZenBloomery {

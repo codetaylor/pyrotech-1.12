@@ -1,9 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
-import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
-import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
-import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
-import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.tools.*;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -26,6 +23,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 @ZenDocClass("mods.pyrotech.CompactingBin")
+@ZenDocPrepend({"docs/include/header.md"})
 @ZenDocAppend({"docs/include/compacting_bin.example.md"})
 @ZenClass("mods.pyrotech.CompactingBin")
 public class ZenCompactingBin {

@@ -5,10 +5,7 @@ import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogH
 import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
-import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
-import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
-import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
-import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.tools.*;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.library.util.BlockMetaMatcher;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
@@ -30,6 +27,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 @ZenDocClass("mods.pyrotech.Burn")
+@ZenDocPrepend({"docs/include/header.md"})
 @ZenDocAppend({"docs/include/burn.example.md"})
 @ZenClass("mods.pyrotech.Burn")
 public class ZenBurn {

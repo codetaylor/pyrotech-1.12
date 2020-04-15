@@ -1,9 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
-import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
-import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
-import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
-import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.tools.*;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
@@ -32,6 +29,7 @@ import java.util.List;
 import static com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.BrickSawmillRecipesAdd.INHERIT_TRANSFORMER;
 
 @ZenDocClass("mods.pyrotech.Chopping")
+@ZenDocPrepend({"docs/include/header.md"})
 @ZenDocAppend({"docs/include/chopping.example.md"})
 @ZenClass("mods.pyrotech.Chopping")
 public class ZenChoppingBlock {

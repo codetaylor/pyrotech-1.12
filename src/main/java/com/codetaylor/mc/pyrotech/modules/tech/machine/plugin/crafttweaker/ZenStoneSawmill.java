@@ -1,9 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.crafttweaker;
 
-import com.codetaylor.mc.athenaeum.tools.ZenDocAppend;
-import com.codetaylor.mc.athenaeum.tools.ZenDocArg;
-import com.codetaylor.mc.athenaeum.tools.ZenDocClass;
-import com.codetaylor.mc.athenaeum.tools.ZenDocMethod;
+import com.codetaylor.mc.athenaeum.tools.*;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
@@ -25,6 +22,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 import static com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe.BrickSawmillRecipesAdd.INHERIT_TRANSFORMER;
 
 @ZenDocClass("mods.pyrotech.StoneSawmill")
+@ZenDocPrepend({"docs/include/header.md"})
 @ZenDocAppend({"docs/include/stone_sawmill.example.md"})
 @ZenClass("mods.pyrotech.StoneSawmill")
 public class ZenStoneSawmill {

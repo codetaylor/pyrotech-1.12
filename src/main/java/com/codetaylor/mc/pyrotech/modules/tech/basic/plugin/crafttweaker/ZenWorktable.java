@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 @ZenDocClass("mods.pyrotech.Worktable")
+@ZenDocPrepend({"docs/include/header.md"})
 @ZenDocAppend({"docs/include/worktable.example.md"})
 @ZenClass("mods.pyrotech.Worktable")
 public class ZenWorktable {
