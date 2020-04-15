@@ -22,7 +22,7 @@ Any recipes that Pyrotech adds can be disabled using CraftTweaker, including inh
 
 ## CraftTweaker Recipes
 
-Many devices' CraftTweaker recipe methods allow passing an optional boolean parameter, `inherited`.
+Many devices' CraftTweaker recipe methods allow passing an optional boolean parameter, `inherited`. By default, if this parameter isn't provided, recipes added by CraftTweaker do not automatically inherit.
 
 Passing true for this parameter will signal that the recipe being registered is intended to be inherited by devices in the inheritance chain, while applying the same recipe transform values found in the configs.
 
