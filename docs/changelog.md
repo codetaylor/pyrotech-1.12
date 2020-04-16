@@ -1,6 +1,16 @@
 !!! note "Pyrotech in 1.14.4 and beyond!"
     Hi, I'm Codetaylor, the creator of Pyrotech and I would love to work on moving the mod to more recent versions of Minecraft. If you'd like to see Pyrotech move beyond 1.12.2, [click here to read more about my campaign to make that happen](https://bit.ly/2KaxA3Hd)!
 
+**1.5.0**
+
+  * **Changed:**
+    * Campfire light level now depends on how much fuel it has
+        * Removed campfire `LIGHT_LEVEL` config value
+        * Added campfire `MAXIMUM_LIGHT_LEVEL` config value
+        * Added campfire `MINIMUM_LIGHT_LEVEL` config value
+
+---
+
 **1.4.26**
 
   * **Fixed:**

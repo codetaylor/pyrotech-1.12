@@ -65,6 +65,7 @@ public class TileCampfire
 
   private TileDataInteger ashLevel;
   private TileDataBoolean dead;
+  private TileDataItemStackHandler<FuelStackHandler> fuelStackHandlerData;
 
   // --- Server ---
 
@@ -121,10 +122,12 @@ public class TileCampfire
 
     // --- Network ---
 
+    this.fuelStackHandlerData = new TileDataItemStackHandler<>(this.fuelStackHandler);
+
     this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.inputStackHandler),
         new TileDataItemStackHandler<>(this.outputStackHandler),
-        new TileDataItemStackHandler<>(this.fuelStackHandler),
+        this.fuelStackHandlerData,
         this.ashLevel,
         this.dead
     });
@@ -554,6 +557,7 @@ public class TileCampfire
   // - Network
   // ---------------------------------------------------------------------------
 
+  @SideOnly(Side.CLIENT)
   @Override
   public void onTileDataUpdate() {
 
@@ -564,12 +568,15 @@ public class TileCampfire
       BlockHelper.notifyBlockUpdate(this.world, this.pos);
     }
 
-    if (this.active.isDirty()) {
+    if (this.fuelStackHandlerData.isDirty()) {
       BlockHelper.notifyBlockUpdate(this.world, this.pos);
       this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
-    }
 
-    if (this.dead.isDirty() && this.dead.get()) {
+    } else if (this.active.isDirty()) {
+      BlockHelper.notifyBlockUpdate(this.world, this.pos);
+      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
+
+    } else if (this.dead.isDirty() && this.dead.get()) {
       BlockHelper.notifyBlockUpdate(this.world, this.pos);
       this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
     }

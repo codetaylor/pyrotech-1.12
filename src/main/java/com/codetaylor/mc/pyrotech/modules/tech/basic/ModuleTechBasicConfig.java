@@ -966,11 +966,18 @@ public class ModuleTechBasicConfig {
     public boolean ALLOW_AUTOMATION = true;
 
     @Config.Comment({
-        "The light level of the campfire when lit.",
-        "Default: " + 11
+        "The light level of the campfire when lit with max fuel.",
+        "Default: " + 15
     })
     @Config.RangeInt(min = 0, max = 15)
-    public int LIGHT_LEVEL = 11;
+    public int MAXIMUM_LIGHT_LEVEL = 11;
+
+    @Config.Comment({
+        "The light level of the campfire when lit with no fuel.",
+        "Default: " + 3
+    })
+    @Config.RangeInt(min = 0, max = 15)
+    public int MINIMUM_LIGHT_LEVEL = 3;
 
     @Config.Comment({
         "How many ticks to cook food on the campfire.",

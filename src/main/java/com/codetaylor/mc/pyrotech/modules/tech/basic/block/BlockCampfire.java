@@ -123,7 +123,20 @@ public class BlockCampfire
     IBlockState actualState = this.getActualState(state, world, pos);
 
     if (actualState.getValue(VARIANT) == BlockCampfire.EnumType.LIT) {
-      return MathHelper.clamp(ModuleTechBasicConfig.CAMPFIRE.LIGHT_LEVEL, 0, 15);
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity instanceof TileCampfire) {
+        int fuelRemaining = ((TileCampfire) tileEntity).getFuelRemaining();
+
+        if (fuelRemaining == 0) {
+          return 0;
+        }
+
+        float lightPercentage = fuelRemaining / 8f;
+        int max = Math.min(15, Math.max(ModuleTechBasicConfig.CAMPFIRE.MAXIMUM_LIGHT_LEVEL, ModuleTechBasicConfig.CAMPFIRE.MINIMUM_LIGHT_LEVEL));
+        int min = Math.max(0, Math.min(ModuleTechBasicConfig.CAMPFIRE.MAXIMUM_LIGHT_LEVEL, ModuleTechBasicConfig.CAMPFIRE.MINIMUM_LIGHT_LEVEL));
+        return (int) MathHelper.clamp((max - min) * lightPercentage + min, 0, 15);
+      }
     }
 
     return super.getLightValue(state, world, pos);
