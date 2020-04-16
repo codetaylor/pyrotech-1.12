@@ -37,6 +37,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
@@ -87,11 +88,15 @@ public class TileCampfire
 
     // --- Init ---
 
-    this.burnedFoodTickCounter = new TickCounter(ModuleTechBasicConfig.CAMPFIRE.BURNED_FOOD_TICKS);
+    {
+      int modifier = MathHelper.clamp(ModuleTechBasicConfig.CAMPFIRE.FUEL_LEVEL_FOR_FULL_COOK_SPEED, 1, 8);
+      this.burnedFoodTickCounter = new TickCounter(ModuleTechBasicConfig.CAMPFIRE.BURNED_FOOD_TICKS * modifier);
+    }
 
     this.inputStackHandler = new InputStackHandler();
     this.inputStackHandler.addObserver((handler, slot) -> {
-      this.setCookTime(this.getCookTime(handler.getStackInSlot(slot)));
+      int modifier = MathHelper.clamp(ModuleTechBasicConfig.CAMPFIRE.FUEL_LEVEL_FOR_FULL_COOK_SPEED, 1, 8);
+      this.setCookTime(this.getCookTime(handler.getStackInSlot(slot)) * modifier);
       this.markDirty();
     });
 
@@ -420,10 +425,10 @@ public class TileCampfire
     // Decrement the cook time and check for recipe completion.
     // Update worker progress.
     if (this.cookTime > 0) {
-      this.cookTime -= 1;
+      this.cookTime -= this.getFuelRemaining();
     }
 
-    if (this.cookTime == 0) {
+    if (this.cookTime <= 0) {
       ItemStack itemStack = this.inputStackHandler.extractItem(0, 1, false);
 
       if (!itemStack.isEmpty()) {
@@ -442,7 +447,7 @@ public class TileCampfire
       if (stackInSlot.getItem() != ModuleCore.Items.BURNED_FOOD
           && stackInSlot.getItem() instanceof ItemFood) {
 
-        if (this.burnedFoodTickCounter.increment()) {
+        if (this.burnedFoodTickCounter.increment(this.getFuelRemaining())) {
           this.outputStackHandler.setStackInSlot(0, new ItemStack(ModuleCore.Items.BURNED_FOOD));
         }
       }

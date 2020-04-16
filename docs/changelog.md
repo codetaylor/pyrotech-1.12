@@ -8,6 +8,9 @@
         * Removed campfire `LIGHT_LEVEL` config value
         * Added campfire `MAXIMUM_LIGHT_LEVEL` config value
         * Added campfire `MINIMUM_LIGHT_LEVEL` config value
+    * Campfire will now cook faster based on how much fuel it has
+        * Added campfire `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
+    * Campfire will now burn food faster or slower depending on the `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
 
 ---
 

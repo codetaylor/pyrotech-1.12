@@ -1002,6 +1002,17 @@ public class ModuleTechBasicConfig {
     public int BURNED_FOOD_TICKS = 30 * 20;
 
     @Config.Comment({
+        "By default, the campfire will cook at a rate of 100% of the recipe's",
+        "specified value with 4 logs, a rate of 200% with 8 logs, and a rate of",
+        "0% with 0 logs.",
+        "Keep in mind that an accelerated cooking speed will also reduce the",
+        "time required for your food to burn.",
+        "Default: " + 4
+    })
+    @Config.RangeInt(min = 1, max = 8)
+    public int FUEL_LEVEL_FOR_FULL_COOK_SPEED = 4;
+
+    @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",
         "Default: " + true
     })
