@@ -1013,6 +1013,16 @@ public class ModuleTechBasicConfig {
     public int FUEL_LEVEL_FOR_FULL_COOK_SPEED = 4;
 
     @Config.Comment({
+        "When a player is within the range of the campfire, they will",
+        "get the regen buff for this many ticks. Set to zero to disable.",
+        "Range is dependent on the light level with a maximum range of 6 blocks",
+        "and a minimum range of 2 blocks.",
+        "Default: " + (5 * 20)
+    })
+    @Config.RangeInt(min = 0)
+    public int REGEN_DURATION = 5 * 20;
+
+    @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",
         "Default: " + true
     })

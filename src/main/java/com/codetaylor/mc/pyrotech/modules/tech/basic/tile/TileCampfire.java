@@ -30,10 +30,12 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -52,6 +54,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class TileCampfire
     extends TileCombustionWorkerBase
@@ -81,6 +84,7 @@ public class TileCampfire
 
   private IInteraction[] interactions;
   private int interactionCooldown;
+  private AxisAlignedBB regenSearchBounds;
 
   public TileCampfire() {
 
@@ -420,6 +424,31 @@ public class TileCampfire
         && this.world.getBlockState(this.pos.down()).getBlock().isFlammable(this.world, this.pos.down(), EnumFacing.UP)) {
       this.world.setBlockState(this.pos.down(), Blocks.FIRE.getDefaultState(), 3);
       return false; // Deactivate the worker
+    }
+
+    // Apply the regen buff
+    if (this.world.getWorldTime() >= 13000
+        && this.world.getWorldTime() <= 23000
+        && ModuleTechBasicConfig.CAMPFIRE.REGEN_DURATION > 0
+        && this.world.getTotalWorldTime() % 10 == 0) {
+
+      float lightPercentage = this.getFuelRemaining() / 8f;
+      int max = Math.min(6, Math.max(ModuleTechBasicConfig.CAMPFIRE.MAXIMUM_LIGHT_LEVEL, ModuleTechBasicConfig.CAMPFIRE.MINIMUM_LIGHT_LEVEL));
+      int min = Math.max(1, Math.min(ModuleTechBasicConfig.CAMPFIRE.MAXIMUM_LIGHT_LEVEL, ModuleTechBasicConfig.CAMPFIRE.MINIMUM_LIGHT_LEVEL));
+      int effectRadius = (int) MathHelper.clamp((max - min) * lightPercentage + min, 0, 15);
+      int effectRadiusSq = effectRadius * effectRadius;
+
+      if (this.regenSearchBounds == null) {
+        this.regenSearchBounds = new AxisAlignedBB(this.pos).grow(15);
+      }
+
+      List<EntityPlayer> players = this.world.getEntitiesWithinAABB(
+          EntityPlayer.class,
+          this.regenSearchBounds,
+          player -> player != null && player.getDistanceSq(this.pos) <= effectRadiusSq
+      );
+
+      players.forEach(player -> player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ModuleTechBasicConfig.CAMPFIRE.REGEN_DURATION + 10)));
     }
 
     // Decrement the cook time and check for recipe completion.

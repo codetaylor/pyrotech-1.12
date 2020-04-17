@@ -11,6 +11,10 @@
     * Campfire will now cook faster based on how much fuel it has
         * Added campfire `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
     * Campfire will now burn food faster or slower depending on the `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
+    * Campfire will now add regen effect at night if player is within range
+        * Added campfire `REGEN_DURATION` config value, set to zero to disable
+        * Only works at night, between 13000 and 23000 or 19:00 and 5:00
+        * Range depends on light level with a maximum range of 6 blocks and a minimum range of 1 block
 
 ---
 
