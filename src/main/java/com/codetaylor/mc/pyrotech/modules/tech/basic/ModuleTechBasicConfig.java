@@ -1014,31 +1014,31 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "When a player is within the range of the campfire, they will",
-        "get the regen buff for this many ticks. Set to zero to disable.",
+        "get the comfort buff for this many ticks. Set to zero to disable.",
         "Range is dependent on the light level with a maximum range of 6 blocks",
         "and a minimum range of 2 blocks.",
         "Default: " + (5 * 20)
     })
     @Config.RangeInt(min = 0)
-    public int REGEN_DURATION = 5 * 20;
+    public int COMFORT_DURATION = 5 * 20;
 
     @Config.Comment({
-        "The time of day that the regen effect should start working.",
+        "The time of day that the comfort effect should start working.",
         "If the current world time is larger than this value and less than",
         "the stop value, the effect will work.",
         "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day"
     })
     @Config.RangeInt(min = 0, max = 24000)
-    public int REGEN_START_TIME = 13000;
+    public int COMFORT_START_TIME = 13000;
 
     @Config.Comment({
-        "The time of day that the regen effect should stop working.",
+        "The time of day that the comfort effect should stop working.",
         "If the current world time is less than this value and larger than",
         "the start value, the effect will work.",
         "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day"
     })
     @Config.RangeInt(min = 0, max = 24000)
-    public int REGEN_STOP_TIME = 23000;
+    public int COMFORT_STOP_TIME = 23000;
 
     @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",

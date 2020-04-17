@@ -30,7 +30,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -427,9 +426,9 @@ public class TileCampfire
     }
 
     // Apply the regen buff
-    if (this.world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE.REGEN_START_TIME
-        && this.world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE.REGEN_STOP_TIME
-        && ModuleTechBasicConfig.CAMPFIRE.REGEN_DURATION > 0
+    if (this.world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE.COMFORT_START_TIME
+        && this.world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE.COMFORT_STOP_TIME
+        && ModuleTechBasicConfig.CAMPFIRE.COMFORT_DURATION > 0
         && this.world.getTotalWorldTime() % 10 == 0) {
 
       float lightPercentage = this.getFuelRemaining() / 8f;
@@ -448,7 +447,7 @@ public class TileCampfire
           player -> player != null && player.getDistanceSq(this.pos) <= effectRadiusSq
       );
 
-      players.forEach(player -> player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, ModuleTechBasicConfig.CAMPFIRE.REGEN_DURATION + 10)));
+      players.forEach(player -> player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, ModuleTechBasicConfig.CAMPFIRE.COMFORT_DURATION + 10)));
     }
 
     // Decrement the cook time and check for recipe completion.

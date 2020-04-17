@@ -66,6 +66,8 @@ tile.pyrotech.worktable_stone.name=Каменный рабочий стол
 tile.pyrotech.compacting_bin.name=Уплотнительный закром
 tile.pyrotech.soaking_pot.name=Горшок для замачивания
 
+pyrotech.effect.comfort=Comfort
+
 #------------------------------------------------------------------------------
 # Module: Tech - Bloomery
 #------------------------------------------------------------------------------

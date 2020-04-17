@@ -8,12 +8,10 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.RecipeRepeat;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.init.BlockInitializer;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.init.ItemInitializer;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.init.PacketInitializer;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.init.RegistryInitializer;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionComfort;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
@@ -150,6 +148,7 @@ public class ModuleTechBasic
 
     BlockInitializer.onRegister(registry);
     ItemInitializer.onRegister(registry);
+    PotionInitializer.onRegister(registry);
   }
 
   @SideOnly(Side.CLIENT)
@@ -164,6 +163,17 @@ public class ModuleTechBasic
   public void onPostInitializationEvent(FMLPostInitializationEvent event) {
 
     super.onPostInitializationEvent(event);
+  }
+
+  @GameRegistry.ObjectHolder(ModuleTechBasic.MOD_ID)
+  public static class Potions {
+
+    @GameRegistry.ObjectHolder(PotionComfort.NAME)
+    public static final PotionComfort COMFORT;
+
+    static {
+      COMFORT = null;
+    }
   }
 
   @GameRegistry.ObjectHolder(ModuleTechBasic.MOD_ID)

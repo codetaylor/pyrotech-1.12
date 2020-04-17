@@ -66,6 +66,8 @@ tile.pyrotech.worktable_stone.name=Stone Worktable
 tile.pyrotech.compacting_bin.name=Compacting Bin
 tile.pyrotech.soaking_pot.name=Soaking Pot
 
+pyrotech.effect.comfort=Comfort
+
 #------------------------------------------------------------------------------
 # Module: Tech - Bloomery
 #------------------------------------------------------------------------------

@@ -3,11 +3,20 @@
 
 **1.5.0**
 
+  * **Translators:**
+    * **New Lang Keys:**
+        * `pyrotech.effect.comfort`
+
   * **Added:**
-    * Campfire will now add regen effect at night if player is within range
-        * Added campfire `REGEN_DURATION` config value, set to zero to disable
-        * Only works at night, between 13000 and 23000 or 19:00 and 5:00
+    * Comfort effect
+        * Regenerates health exactly like the Regeneration effect
+    * Campfire will now add comfort effect at night if player is within range
+        * Only works at night, by default between 13000 and 23000 or 19:00 and 5:00
         * Range depends on light level with a maximum range of 6 blocks and a minimum range of 1 block
+        * Added campfire config values:
+            * `COMFORT_DURATION`
+            * `COMFORT_START_TIME`
+            * `COMFORT_STOP_TIME`
 
   * **Changed:**
     * Campfire light level now depends on how much fuel it has
