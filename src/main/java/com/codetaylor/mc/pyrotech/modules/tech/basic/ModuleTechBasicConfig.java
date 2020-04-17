@@ -1026,7 +1026,8 @@ public class ModuleTechBasicConfig {
         "The time of day that the comfort effect should start working.",
         "If the current world time is larger than this value and less than",
         "the stop value, the effect will work.",
-        "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day"
+        "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day",
+        "Default: " + 13000
     })
     @Config.RangeInt(min = 0, max = 24000)
     public int COMFORT_START_TIME = 13000;
@@ -1035,7 +1036,8 @@ public class ModuleTechBasicConfig {
         "The time of day that the comfort effect should stop working.",
         "If the current world time is less than this value and larger than",
         "the start value, the effect will work.",
-        "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day"
+        "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day",
+        "Default: " + 23000
     })
     @Config.RangeInt(min = 0, max = 24000)
     public int COMFORT_STOP_TIME = 23000;
@@ -1043,7 +1045,8 @@ public class ModuleTechBasicConfig {
     @Config.Comment({
         "A percentile modifier for the amount of additional saturation restored",
         "when a player eats food with the comfort effect.",
-        "Saturation restored = food saturation + food saturation * modifier"
+        "Saturation restored = food saturation + food saturation * modifier",
+        "Default: " + 0.5
     })
     @Config.RangeDouble(min = 0)
     public double COMFORT_SATURATION_MODIFIER = 0.5;
@@ -1051,7 +1054,8 @@ public class ModuleTechBasicConfig {
     @Config.Comment({
         "A percentile modifier for the amount of additional hunger restored",
         "when a player eats food with the comfort effect.",
-        "Hunger restored = food hunger + food hunger * modifier"
+        "Hunger restored = food hunger + food hunger * modifier",
+        "Default: " + 0.5
     })
     @Config.RangeDouble(min = 0)
     public double COMFORT_HUNGER_MODIFIER = 0.5;
