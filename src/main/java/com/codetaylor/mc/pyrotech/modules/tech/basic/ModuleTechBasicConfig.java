@@ -1023,6 +1023,22 @@ public class ModuleTechBasicConfig {
     public int REGEN_DURATION = 5 * 20;
 
     @Config.Comment({
+        "The time of day that the regen effect should start working.",
+        "If the current world time is larger than this value and less than",
+        "the stop value, the effect will work."
+    })
+    @Config.RangeInt(min = 0, max = 24000)
+    public int REGEN_START_TIME = 13000;
+
+    @Config.Comment({
+        "The time of day that the regen effect should stop working.",
+        "If the current world time is less than this value and larger than",
+        "the start value, the effect will work."
+    })
+    @Config.RangeInt(min = 0, max = 24000)
+    public int REGEN_STOP_TIME = 6000;
+
+    @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",
         "Default: " + true
     })
