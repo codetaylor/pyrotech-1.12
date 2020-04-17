@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.event.ComfortEffectFoodBonus;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.RecipeRepeat;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
@@ -103,6 +104,8 @@ public class ModuleTechBasic
     if (ModuleTechBasicConfig.WORKTABLE_COMMON.ALLOW_RECIPE_REPEAT) {
       MinecraftForge.EVENT_BUS.register(new RecipeRepeat.RightClickBlockEventHandler());
     }
+
+    MinecraftForge.EVENT_BUS.register(new ComfortEffectFoodBonus.LivingEntityUseItemEventHandler());
   }
 
   @SideOnly(Side.CLIENT)

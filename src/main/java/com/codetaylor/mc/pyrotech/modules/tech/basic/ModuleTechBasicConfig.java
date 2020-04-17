@@ -1041,6 +1041,22 @@ public class ModuleTechBasicConfig {
     public int COMFORT_STOP_TIME = 23000;
 
     @Config.Comment({
+        "A percentile modifier for the amount of additional saturation restored",
+        "when a player eats food with the comfort effect.",
+        "Saturation restored = food saturation + food saturation * modifier"
+    })
+    @Config.RangeDouble(min = 0)
+    public double COMFORT_SATURATION_MODIFIER = 0.5;
+
+    @Config.Comment({
+        "A percentile modifier for the amount of additional hunger restored",
+        "when a player eats food with the comfort effect.",
+        "Hunger restored = food hunger + food hunger * modifier"
+    })
+    @Config.RangeDouble(min = 0)
+    public double COMFORT_HUNGER_MODIFIER = 0.5;
+
+    @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",
         "Default: " + true
     })
