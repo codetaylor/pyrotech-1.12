@@ -447,7 +447,11 @@ public class TileCampfire
           player -> player != null && player.getDistanceSq(this.pos) <= effectRadiusSq
       );
 
-      players.forEach(player -> player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, ModuleTechBasicConfig.CAMPFIRE.COMFORT_DURATION + 10)));
+      players.forEach(player -> {
+        if (player.getActivePotionEffect(ModuleTechBasic.Potions.COMFORT) == null) {
+          player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, ModuleTechBasicConfig.CAMPFIRE.COMFORT_DURATION + 10));
+        }
+      });
     }
 
     // Decrement the cook time and check for recipe completion.
