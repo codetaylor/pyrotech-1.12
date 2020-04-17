@@ -11,7 +11,10 @@
     * Comfort effect
         * Regenerates health exactly like the Regeneration effect
         * Increases hunger and saturation restored from eating
-        * Added config values `COMFORT_HUNGER_MODIFIER` and `COMFORT_SATURATION_MODIFIER`
+        * Added config values:
+            * `COMFORT_HUNGER_MODIFIER`
+            * `COMFORT_SATURATION_MODIFIER`
+            * `COMFORT_REGEN_INTERVAL_TICKS`
     * Campfire will now add comfort effect at night if player is within range
         * Only works at night, by default between 13000 and 23000 or 19:00 and 5:00
         * Range depends on light level with a maximum range of 6 blocks and a minimum range of 1 block

@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.potion;
 
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.Entity;
@@ -63,13 +64,7 @@ public class PotionComfort
   @Override
   public boolean isReady(int duration, int amplifier) {
 
-    int rate = 50 >> amplifier;
-
-    if (rate > 0) {
-      return duration % rate == 0;
-
-    } else {
-      return true;
-    }
+    int rate = Math.max(1, ModuleTechBasicConfig.CAMPFIRE.COMFORT_REGEN_INTERVAL_TICKS);
+    return duration % rate == 0;
   }
 }

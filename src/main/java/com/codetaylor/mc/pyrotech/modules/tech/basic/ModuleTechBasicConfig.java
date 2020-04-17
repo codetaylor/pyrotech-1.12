@@ -1057,6 +1057,15 @@ public class ModuleTechBasicConfig {
     public double COMFORT_HUNGER_MODIFIER = 0.5;
 
     @Config.Comment({
+        "The number of ticks between the comfort effect's health regen.",
+        "This should not be any larger than the duration or it won't work.",
+        "For reference, the vanilla regen effect has an interval of 50 ticks.",
+        "Default: " + 75
+    })
+    @Config.RangeInt(min = 1)
+    public int COMFORT_REGEN_INTERVAL_TICKS = 75;
+
+    @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",
         "Default: " + true
     })
