@@ -1014,9 +1014,10 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "When a player is within the range of the campfire, they will",
-        "get the comfort buff for this many ticks. Set to zero to disable.",
-        "Range is dependent on the light level with a maximum range of 6 blocks",
-        "and a minimum range of 2 blocks.",
+        "get the comfort buff for this many ticks. Range is dependent on",
+        "the light level with a maximum range of 6 blocks and a minimum",
+        "range of 2 blocks.",
+        "Set to zero to disable.",
         "Default: " + (5 * 20)
     })
     @Config.RangeInt(min = 0)
@@ -1068,6 +1069,15 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeInt(min = 1)
     public int COMFORT_REGEN_INTERVAL_TICKS = 75;
+
+    @Config.Comment({
+        "The number of half-hearts regenerated per interval. For reference,",
+        "the vanilla regen effect will restore 1 half-heart.",
+        "Set to zero to disable.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 0)
+    public int COMFORT_REGEN_HALF_HEARTS = 1;
 
     @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",

@@ -51,7 +51,11 @@ public class PotionComfort
   public void performEffect(EntityLivingBase entity, int amplifier) {
 
     if (entity.getHealth() < entity.getMaxHealth()) {
-      entity.heal(1.0F);
+      int amount = Math.max(0, ModuleTechBasicConfig.CAMPFIRE.COMFORT_REGEN_HALF_HEARTS);
+
+      if (amount > 0) {
+        entity.heal(amount);
+      }
     }
   }
 
