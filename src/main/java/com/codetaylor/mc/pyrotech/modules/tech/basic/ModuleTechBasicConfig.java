@@ -1025,7 +1025,8 @@ public class ModuleTechBasicConfig {
     @Config.Comment({
         "The time of day that the regen effect should start working.",
         "If the current world time is larger than this value and less than",
-        "the stop value, the effect will work."
+        "the stop value, the effect will work.",
+        "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day"
     })
     @Config.RangeInt(min = 0, max = 24000)
     public int REGEN_START_TIME = 13000;
@@ -1033,10 +1034,11 @@ public class ModuleTechBasicConfig {
     @Config.Comment({
         "The time of day that the regen effect should stop working.",
         "If the current world time is less than this value and larger than",
-        "the start value, the effect will work."
+        "the start value, the effect will work.",
+        "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day"
     })
     @Config.RangeInt(min = 0, max = 24000)
-    public int REGEN_STOP_TIME = 6000;
+    public int REGEN_STOP_TIME = 23000;
 
     @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",
