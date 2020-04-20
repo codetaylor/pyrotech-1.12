@@ -1013,73 +1013,6 @@ public class ModuleTechBasicConfig {
     public int FUEL_LEVEL_FOR_FULL_COOK_SPEED = 4;
 
     @Config.Comment({
-        "When a player is within the range of the campfire, they will",
-        "get the comfort buff for this many ticks. Range is dependent on",
-        "the light level with a maximum range of 6 blocks and a minimum",
-        "range of 2 blocks.",
-        "Set to zero to disable.",
-        "Default: " + (5 * 20)
-    })
-    @Config.RangeInt(min = 0)
-    public int COMFORT_DURATION = 5 * 20;
-
-    @Config.Comment({
-        "The time of day that the comfort effect should start working.",
-        "If the current world time is larger than this value and less than",
-        "the stop value, the effect will work.",
-        "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day",
-        "Default: " + 13000
-    })
-    @Config.RangeInt(min = 0, max = 24000)
-    public int COMFORT_START_TIME = 13000;
-
-    @Config.Comment({
-        "The time of day that the comfort effect should stop working.",
-        "If the current world time is less than this value and larger than",
-        "the start value, the effect will work.",
-        "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day",
-        "Default: " + 23000
-    })
-    @Config.RangeInt(min = 0, max = 24000)
-    public int COMFORT_STOP_TIME = 23000;
-
-    @Config.Comment({
-        "A percentile modifier for the amount of additional saturation restored",
-        "when a player eats food with the comfort effect.",
-        "Saturation restored = food saturation + food saturation * modifier",
-        "Default: " + 0.5
-    })
-    @Config.RangeDouble(min = 0)
-    public double COMFORT_SATURATION_MODIFIER = 0.5;
-
-    @Config.Comment({
-        "A percentile modifier for the amount of additional hunger restored",
-        "when a player eats food with the comfort effect.",
-        "Hunger restored = food hunger + food hunger * modifier",
-        "Default: " + 0.5
-    })
-    @Config.RangeDouble(min = 0)
-    public double COMFORT_HUNGER_MODIFIER = 0.5;
-
-    @Config.Comment({
-        "The number of ticks between the comfort effect's health regen.",
-        "This should not be any larger than the duration or it won't work.",
-        "For reference, the vanilla regen effect has an interval of 50 ticks.",
-        "Default: " + 75
-    })
-    @Config.RangeInt(min = 1)
-    public int COMFORT_REGEN_INTERVAL_TICKS = 75;
-
-    @Config.Comment({
-        "The number of half-hearts regenerated per interval. For reference,",
-        "the vanilla regen effect will restore 1 half-heart.",
-        "Set to zero to disable.",
-        "Default: " + 1
-    })
-    @Config.RangeInt(min = 0)
-    public int COMFORT_REGEN_HALF_HEARTS = 1;
-
-    @Config.Comment({
         "Set to true if the campfire should be extinguished by rain.",
         "Default: " + true
     })
@@ -1162,4 +1095,80 @@ public class ModuleTechBasicConfig {
     }
   }
 
+  // ---------------------------------------------------------------------------
+  // - Campfire
+  // ---------------------------------------------------------------------------
+
+  public static CampfireEffects CAMPFIRE_EFFECTS = new CampfireEffects();
+
+  public static class CampfireEffects {
+
+    @Config.Comment({
+        "The time of day that the campfire effects should start working.",
+        "If the current world time is larger than this value and less than",
+        "the stop value, the effects will work.",
+        "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day",
+        "Default: " + 13000
+    })
+    @Config.RangeInt(min = 0, max = 24000)
+    public int EFFECTS_START_TIME = 13000;
+
+    @Config.Comment({
+        "The time of day that the campfire effects should stop working.",
+        "If the current world time is less than this value and larger than",
+        "the start value, the effect will work.",
+        "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day",
+        "Default: " + 23000
+    })
+    @Config.RangeInt(min = 0, max = 24000)
+    public int EFFECTS_STOP_TIME = 23000;
+
+    @Config.Comment({
+        "When a player is within the range of the campfire, they will",
+        "get the comfort buff for this many ticks. Range is dependent on",
+        "the light level with a maximum range of 6 blocks and a minimum",
+        "range of 2 blocks.",
+        "Set to zero to disable.",
+        "Default: " + (5 * 20)
+    })
+    @Config.RangeInt(min = 0)
+    public int COMFORT_DURATION = 5 * 20;
+
+    @Config.Comment({
+        "A percentile modifier for the amount of additional saturation restored",
+        "when a player eats food with the comfort effect.",
+        "Saturation restored = food saturation + food saturation * modifier",
+        "Default: " + 0.5
+    })
+    @Config.RangeDouble(min = 0)
+    public double COMFORT_SATURATION_MODIFIER = 0.5;
+
+    @Config.Comment({
+        "A percentile modifier for the amount of additional hunger restored",
+        "when a player eats food with the comfort effect.",
+        "Hunger restored = food hunger + food hunger * modifier",
+        "Default: " + 0.5
+    })
+    @Config.RangeDouble(min = 0)
+    public double COMFORT_HUNGER_MODIFIER = 0.5;
+
+    @Config.Comment({
+        "The number of ticks between the comfort effect's health regen.",
+        "This should not be any larger than the duration or it won't work.",
+        "For reference, the vanilla regen effect has an interval of 50 ticks.",
+        "Default: " + 75
+    })
+    @Config.RangeInt(min = 1)
+    public int COMFORT_REGEN_INTERVAL_TICKS = 75;
+
+    @Config.Comment({
+        "The number of half-hearts regenerated per interval. For reference,",
+        "the vanilla regen effect will restore 1 half-heart.",
+        "Set to zero to disable.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 0)
+    public int COMFORT_REGEN_HALF_HEARTS = 1;
+
+  }
 }

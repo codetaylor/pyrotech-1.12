@@ -179,8 +179,8 @@ public final class ComfortEffectEventHandler {
 
       if (item instanceof ItemFood) {
         ItemFood itemFood = (ItemFood) item;
-        int healAmount = (int) Math.max(0, itemFood.getHealAmount(itemStack) * ModuleTechBasicConfig.CAMPFIRE.COMFORT_HUNGER_MODIFIER);
-        float saturationModifier = (float) Math.max(0, itemFood.getSaturationModifier(itemStack) * ModuleTechBasicConfig.CAMPFIRE.COMFORT_SATURATION_MODIFIER);
+        int healAmount = (int) Math.max(0, itemFood.getHealAmount(itemStack) * ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_HUNGER_MODIFIER);
+        float saturationModifier = (float) Math.max(0, itemFood.getSaturationModifier(itemStack) * ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_SATURATION_MODIFIER);
         FoodStats foodStats = ((EntityPlayer) entityLiving).getFoodStats();
         foodStats.addStats(healAmount, saturationModifier);
       }

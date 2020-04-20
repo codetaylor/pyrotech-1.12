@@ -426,9 +426,9 @@ public class TileCampfire
     }
 
     // Apply the regen buff
-    if (this.world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE.EFFECTS_START_TIME
-        && this.world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE.EFFECTS_STOP_TIME
-        && ModuleTechBasicConfig.CAMPFIRE.COMFORT_DURATION > 0
+    if (this.world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_START_TIME
+        && this.world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_STOP_TIME
+        && ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_DURATION > 0
         && this.world.getTotalWorldTime() % 10 == 0) {
 
       float lightPercentage = this.getFuelRemaining() / 8f;
@@ -449,7 +449,7 @@ public class TileCampfire
 
       players.forEach(player -> {
         if (player.getActivePotionEffect(ModuleTechBasic.Potions.COMFORT) == null) {
-          player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, ModuleTechBasicConfig.CAMPFIRE.COMFORT_DURATION + 10));
+          player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_DURATION + 10));
         }
       });
     }
