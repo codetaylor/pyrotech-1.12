@@ -426,8 +426,8 @@ public class TileCampfire
     }
 
     // Apply the regen buff
-    if (this.world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE.COMFORT_START_TIME
-        && this.world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE.COMFORT_STOP_TIME
+    if (this.world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE.EFFECTS_START_TIME
+        && this.world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE.EFFECTS_STOP_TIME
         && ModuleTechBasicConfig.CAMPFIRE.COMFORT_DURATION > 0
         && this.world.getTotalWorldTime() % 10 == 0) {
 
