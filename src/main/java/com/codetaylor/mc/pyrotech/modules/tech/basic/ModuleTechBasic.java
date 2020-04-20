@@ -9,6 +9,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.ComfortEffectEventHandler;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.RecipeRepeat;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.event.TestExhaustion;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
@@ -106,6 +107,7 @@ public class ModuleTechBasic
     }
 
     MinecraftForge.EVENT_BUS.register(new ComfortEffectEventHandler());
+    MinecraftForge.EVENT_BUS.register(new TestExhaustion());
   }
 
   @SideOnly(Side.CLIENT)
