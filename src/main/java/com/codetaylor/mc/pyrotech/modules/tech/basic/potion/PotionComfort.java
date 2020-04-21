@@ -2,21 +2,14 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.potion;
 
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 import java.awt.*;
 
 public class PotionComfort
-    extends Potion {
+    extends PotionCampfireBase {
 
   public static final String NAME = "comfort";
 
@@ -29,26 +22,14 @@ public class PotionComfort
     super(false, Color.BLACK.getRGB());
   }
 
-  @SideOnly(Side.CLIENT)
   @Override
-  public void renderInventoryEffect(int x, int y, PotionEffect effect, Minecraft mc) {
+  protected ResourceLocation getTexture() {
 
-    if (mc.currentScreen != null) {
-      mc.getTextureManager().bindTexture(TEXTURE);
-      Gui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 18, 18, 18, 18);
-    }
-  }
-
-  @SideOnly(Side.CLIENT)
-  @Override
-  public void renderHUDEffect(int x, int y, PotionEffect effect, Minecraft mc, float alpha) {
-
-    mc.getTextureManager().bindTexture(TEXTURE);
-    Gui.drawModalRectWithCustomSizedTexture(x + 3, y + 3, 0, 0, 18, 18, 18, 18);
+    return TEXTURE;
   }
 
   @Override
-  public void performEffect(EntityLivingBase entity, int amplifier) {
+  public void performEffect(@Nonnull EntityLivingBase entity, int amplifier) {
 
     if (entity.getHealth() < entity.getMaxHealth()) {
       int amount = Math.max(0, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_REGEN_HALF_HEARTS);
@@ -57,12 +38,6 @@ public class PotionComfort
         entity.heal(amount);
       }
     }
-  }
-
-  @Override
-  public void affectEntity(@Nullable Entity source, @Nullable Entity indirectSource, EntityLivingBase entityLivingBaseIn, int amplifier, double health) {
-
-    //
   }
 
   @Override
