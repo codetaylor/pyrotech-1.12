@@ -7,13 +7,12 @@ Comfort:
   ✔ duration: infinite @done(20-04-20 20:08)
   applied when:
     ✔ player is within range of a campfire @done(20-04-20 20:08)
-    ☐ campfire is not within range of a hostile mob
-    ☐ player is not within range of a hostile mob
+    ✔ player is not within range of a hostile mob @done(20-04-21 10:57)
     ✔ is nighttime @done(20-04-20 20:08)
   removed when:
     ✔ player is outside range of campfire @done(20-04-20 20:08)
-    ☐ player is within range of a hostile mob
-    ☐ is daytime
+    ✔ player is within range of a hostile mob @done(20-04-21 10:57)
+    ✔ is daytime @done(20-04-21 10:57)
   effects:
     ✔ increases the haunches and saturation restored from eating by 50% @done(20-04-20 20:09)
     ✔ allows eating even with full haunches @done(20-04-20 20:09)
@@ -36,13 +35,12 @@ Resting:
   ✔ duration: infinite @done(20-04-20 20:09)
   applied when:
     ✔ player is within range of a campfire @done(20-04-20 20:09)
-    ☐ campfire is not within range of a hostile mob
-    ☐ player is not within range of a hostile mob
+    ✔ player is not within range of a hostile mob @done(20-04-21 10:57)
     ✔ is nighttime @done(20-04-20 20:09)
   removed when:
     ✔ player is outside range of campfire @done(20-04-20 20:09)
-    ☐ player is within range of a hostile mob
-    ☐ is daytime
+    ✔ player is within range of a hostile mob @done(20-04-21 10:57)
+    ✔ is daytime @done(20-04-21 10:57)
   increases level when:
     ☐ every N seconds
     ☐ level is less than III

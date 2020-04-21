@@ -442,21 +442,24 @@ public class TileCampfire
           this.effectBounds = new AxisAlignedBB(this.pos).grow(15);
         }
 
-        List<EntityMob> mobs = this.world.getEntitiesWithinAABB(
-            EntityMob.class,
+        List<EntityPlayer> players = this.world.getEntitiesWithinAABB(
+            EntityPlayer.class,
             this.effectBounds,
-            mob -> mob != null && this.isEntityInEffectRange(mob, this.pos)
+            player -> player != null && this.isEntityInEffectRange(player, this.pos)
         );
 
-        if (mobs.isEmpty()) {
+        players.forEach(player -> {
 
-          List<EntityPlayer> players = this.world.getEntitiesWithinAABB(
-              EntityPlayer.class,
+          List<EntityMob> mobs = this.world.getEntitiesWithinAABB(
+              EntityMob.class,
               this.effectBounds,
-              player -> player != null && this.isEntityInEffectRange(player, this.pos)
+              mob -> mob != null && mob.getDistanceSq(player.getPosition()) < 15 * 15
           );
 
-          players.forEach(player -> {
+          if (mobs.isEmpty()) {
+
+            // Only apply the effects if there aren't any mobs within range
+            // of the player.
 
             if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT) {
 
@@ -474,9 +477,18 @@ public class TileCampfire
 
             CampfireEffectTracker.TRACKING_CAMPFIRES
                 .computeIfAbsent(player.getUniqueID(), uuid -> new HashSet<>())
-                .add(this.getPos().toImmutable());
-          });
-        }
+                .add(this.getPos());
+
+          } else {
+
+            // If there are mobs within range, remove this campfire and player
+            // from the tracked campfires.
+
+            CampfireEffectTracker.TRACKING_CAMPFIRES
+                .computeIfAbsent(player.getUniqueID(), uuid -> new HashSet<>())
+                .remove(this.getPos());
+          }
+        });
       }
     }
 

@@ -3,10 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.event;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -57,18 +55,11 @@ public final class CampfireEffectTracker {
       }
     }
 
-    // Check for nearby mobs.
-    List<EntityMob> nearbyMobList = world.getEntitiesWithinAABB(
-        EntityMob.class,
-        new AxisAlignedBB(entity.getPosition()).grow(15),
-        mob -> (mob != null) && entity.getDistanceSqToCenter(mob.getPosition()) < 15 * 15
-    );
-
     // Check the time.
     boolean effectsActive = world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_START_TIME
         && world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_STOP_TIME;
 
-    if (trackingCampfires.isEmpty() || !nearbyMobList.isEmpty() || !effectsActive) {
+    if (trackingCampfires.isEmpty() || !effectsActive) {
       entity.removePotionEffect(ModuleTechBasic.Potions.COMFORT);
       entity.removePotionEffect(ModuleTechBasic.Potions.RESTING);
     }
