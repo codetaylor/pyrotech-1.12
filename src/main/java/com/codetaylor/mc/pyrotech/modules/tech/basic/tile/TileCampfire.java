@@ -24,6 +24,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.client.render.CampfireInteractionLogRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.CampfireEffectTracker;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionResting;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CampfireRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
@@ -43,6 +44,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -464,14 +466,26 @@ public class TileCampfire
             if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT) {
 
               if (player.getActivePotionEffect(ModuleTechBasic.Potions.COMFORT) == null) {
-                player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, Integer.MAX_VALUE, 0, true, true));
+                player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, Short.MAX_VALUE, 0, true, true));
+
+                if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
+                  String message = "Campfire at " + this.pos + " added comfort effect";
+                  ModuleCore.LOGGER.debug(message);
+                  player.sendMessage(new TextComponentString(message));
+                }
               }
             }
 
             if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT) {
 
               if (player.getActivePotionEffect(ModuleTechBasic.Potions.RESTING) == null) {
-                player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.RESTING, Integer.MAX_VALUE, 0, true, true));
+                PotionResting.addEffect(player);
+
+                if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
+                  String message = "Campfire at " + this.pos + " added resting effect";
+                  ModuleCore.LOGGER.debug(message);
+                  player.sendMessage(new TextComponentString(message));
+                }
               }
             }
 

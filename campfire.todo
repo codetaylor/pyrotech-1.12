@@ -2,6 +2,15 @@ All values subject to change during balancing.
 
 Elements marked with (?) need to be verified technically feasible.
 
+Bugs:
+  ☐ Comfort / Resting doesn't always remove when out of range of a campfire
+  Pausing the game with ESC and returning will trigger the removal.
+  ☐ Comfort / Resting doesn't remove effects when the campfire dies
+  Maybe we need an active check in the removal handler.
+
+Enhancements:
+  ☐ Use item durability bar colors for the Resting effect bar?
+
 Comfort:
   ✔ icon: campfire + haunch @done(20-04-20 20:08)
   ✔ duration: infinite @done(20-04-20 20:08)
@@ -42,14 +51,14 @@ Resting:
     ✔ player is within range of a hostile mob @done(20-04-21 10:57)
     ✔ is daytime @done(20-04-21 10:57)
   increases level when:
-    ☐ every N seconds
-    ☐ level is less than III
-    ☐ player has stood still for 2 seconds
+    ✔ after N ticks @done(20-04-21 15:18)
+    ✔ level is less than III @done(20-04-21 15:18)
   reduced to level I when:
-    ☐ player deals damage
-    ☐ player takes damage
+    ✔ player deals damage @done(20-04-21 15:18)
+    ✔ player takes damage @done(20-04-21 15:18)
+    ✔ player moves @done(20-04-21 15:18)
   effects:
-    ✔ regens health slower than vanilla regen effect @done(20-04-20 20:09)
+    ✔ regens health slower than vanilla regen effect @done(20-04-20 20:09)  
 
 Well Rested:
   ☐ icon: campfire + yellow heart

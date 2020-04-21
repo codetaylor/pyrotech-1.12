@@ -1104,6 +1104,12 @@ public class ModuleTechBasicConfig {
   public static class CampfireEffects {
 
     @Config.Comment({
+        "Set to true to enable debug messages.",
+        "Default: " + false
+    })
+    public boolean DEBUG = true;
+
+    @Config.Comment({
         "The time of day that the campfire effects should start working.",
         "If the current world time is larger than this value and less than",
         "the stop value, the effects will work.",
@@ -1158,8 +1164,7 @@ public class ModuleTechBasicConfig {
     public boolean RESTING_EFFECT = true;
 
     @Config.Comment({
-        "The number of ticks between the comfort effect's health regen.",
-        "This should not be any larger than the duration or it won't work.",
+        "The number of ticks between the resting effect's health regen.",
         "For reference, the vanilla regen effect has an interval of 50 ticks.",
         "Default: " + 100
     })
@@ -1168,12 +1173,20 @@ public class ModuleTechBasicConfig {
 
     @Config.Comment({
         "The number of half-hearts regenerated per interval. For reference,",
-        "the vanilla regen effect will restore 1 half-heart.",
+        "the vanilla regen effect will restore 1 half-heart every 50 ticks.",
         "Set to zero to disable.",
         "Default: " + 1
     })
     @Config.RangeInt(min = 0)
     public int RESTING_REGEN_HALF_HEARTS = 1;
+
+    @Config.Comment({
+        "The number of ticks before the resting effect levels up. The player",
+        "must stand still for the level up to occur.",
+        "Default: " + 200
+    })
+    @Config.RangeInt(min = 1)
+    public int RESTING_LEVEL_UP_INTERVAL_TICKS = 200;
 
   }
 }

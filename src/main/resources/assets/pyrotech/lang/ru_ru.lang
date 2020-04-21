@@ -68,6 +68,8 @@ tile.pyrotech.soaking_pot.name=Горшок для замачивания
 
 pyrotech.effect.comfort=Comfort
 pyrotech.effect.resting=Resting
+pyrotech.effect.resting.2=Resting II
+pyrotech.effect.resting.3=Resting III
 
 #------------------------------------------------------------------------------
 # Module: Tech - Bloomery

@@ -23,7 +23,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 
-public final class ComfortEffectEventHandler {
+public final class CampfireComfortEffectEventHandler {
 
   private static MethodHandle itemFood$alwaysEdibleGetter;
 

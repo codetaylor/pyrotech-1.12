@@ -7,10 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.event.CampfireEffectTracker;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.event.ComfortEffectEventHandler;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.event.RecipeRepeat;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.event.TestExhaustion;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.event.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
@@ -108,9 +105,10 @@ public class ModuleTechBasic
       MinecraftForge.EVENT_BUS.register(new RecipeRepeat.RightClickBlockEventHandler());
     }
 
-    MinecraftForge.EVENT_BUS.register(new ComfortEffectEventHandler());
-    MinecraftForge.EVENT_BUS.register(new TestExhaustion());
     MinecraftForge.EVENT_BUS.register(new CampfireEffectTracker());
+    MinecraftForge.EVENT_BUS.register(new CampfireComfortEffectEventHandler());
+    MinecraftForge.EVENT_BUS.register(new CampfireRestingEffectEventHandler());
+    MinecraftForge.EVENT_BUS.register(new TestExhaustion());
   }
 
   @SideOnly(Side.CLIENT)
