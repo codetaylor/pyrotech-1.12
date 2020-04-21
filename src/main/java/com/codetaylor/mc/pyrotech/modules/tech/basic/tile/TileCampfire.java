@@ -87,7 +87,7 @@ public class TileCampfire
 
   private IInteraction[] interactions;
   private int interactionCooldown;
-  private AxisAlignedBB regenSearchBounds;
+  private AxisAlignedBB effectBounds;
 
   public TileCampfire() {
 
@@ -437,16 +437,14 @@ public class TileCampfire
       if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT
           || ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT) {
 
-        if (this.regenSearchBounds == null) {
-          this.regenSearchBounds = new AxisAlignedBB(this.pos).grow(15);
+        if (this.effectBounds == null) {
+          this.effectBounds = new AxisAlignedBB(this.pos).grow(15);
         }
-
-        BlockPos offsetBlockPos = this.pos.add(0.5, 0, 0.5);
 
         List<EntityPlayer> players = this.world.getEntitiesWithinAABB(
             EntityPlayer.class,
-            this.regenSearchBounds,
-            player -> player != null && this.isEntityInEffectRange(player, offsetBlockPos)
+            this.effectBounds,
+            player -> player != null && this.isEntityInEffectRange(player, this.pos)
         );
 
         players.forEach(player -> {
@@ -520,14 +518,14 @@ public class TileCampfire
 
   public boolean isEntityInEffectRange(EntityLivingBase entity) {
 
-    return this.isEntityInEffectRange(entity, this.pos.add(0.5, 0, 0.5));
+    return this.isEntityInEffectRange(entity, this.pos);
   }
 
   public boolean isEntityInEffectRange(EntityLivingBase entity, BlockPos blockPos) {
 
     int effectRadius = this.getEffectRadius();
     int effectRadiusSq = effectRadius * effectRadius;
-    return entity.getDistanceSq(blockPos) <= effectRadiusSq;
+    return entity.getDistanceSqToCenter(blockPos) <= effectRadiusSq;
   }
 
   public int getEffectRadius() {
