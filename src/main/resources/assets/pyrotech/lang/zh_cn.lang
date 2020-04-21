@@ -67,6 +67,7 @@ tile.pyrotech.compacting_bin.name=挤压桶
 tile.pyrotech.soaking_pot.name=浸泡壶
 
 pyrotech.effect.comfort=Comfort
+pyrotech.effect.resting=Resting
 
 #------------------------------------------------------------------------------
 # Module: Tech - Bloomery

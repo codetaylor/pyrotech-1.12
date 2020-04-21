@@ -1124,15 +1124,12 @@ public class ModuleTechBasicConfig {
     public int EFFECTS_STOP_TIME = 23000;
 
     @Config.Comment({
-        "When a player is within the range of the campfire, they will",
-        "get the comfort buff for this many ticks. Range is dependent on",
-        "the light level with a maximum range of 6 blocks and a minimum",
-        "range of 2 blocks.",
-        "Set to zero to disable.",
-        "Default: " + (5 * 20)
+        "When a player is within range of a campfire, they will",
+        "get the comfort effect.",
+        "Set to false to disable.",
+        "Default: " + true
     })
-    @Config.RangeInt(min = 0)
-    public int COMFORT_DURATION = 5 * 20;
+    public boolean COMFORT_EFFECT = true;
 
     @Config.Comment({
         "A percentile modifier for the amount of additional saturation restored",
@@ -1153,13 +1150,21 @@ public class ModuleTechBasicConfig {
     public double COMFORT_HUNGER_MODIFIER = 0.5;
 
     @Config.Comment({
+        "When a player is within range of a campfire, they will",
+        "get the resting effect.",
+        "Set to false to disable.",
+        "Default: " + true
+    })
+    public boolean RESTING_EFFECT = true;
+
+    @Config.Comment({
         "The number of ticks between the comfort effect's health regen.",
         "This should not be any larger than the duration or it won't work.",
         "For reference, the vanilla regen effect has an interval of 50 ticks.",
         "Default: " + 75
     })
     @Config.RangeInt(min = 1)
-    public int COMFORT_REGEN_INTERVAL_TICKS = 75;
+    public int RESTING_REGEN_INTERVAL_TICKS = 75;
 
     @Config.Comment({
         "The number of half-hearts regenerated per interval. For reference,",
@@ -1168,7 +1173,7 @@ public class ModuleTechBasicConfig {
         "Default: " + 1
     })
     @Config.RangeInt(min = 0)
-    public int COMFORT_REGEN_HALF_HEARTS = 1;
+    public int RESTING_REGEN_HALF_HEARTS = 1;
 
   }
 }

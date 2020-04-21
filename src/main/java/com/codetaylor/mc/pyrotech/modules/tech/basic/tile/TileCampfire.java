@@ -23,10 +23,12 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockCampfire;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.client.render.CampfireInteractionLogRenderer;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.event.CampfireEffectTracker;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CampfireRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -53,6 +55,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.HashSet;
 import java.util.List;
 
 public class TileCampfire
@@ -75,6 +78,7 @@ public class TileCampfire
   private int cookTime;
   private int cookTimeTotal;
   private TickCounter burnedFoodTickCounter;
+  private int[] effectRadii;
 
   /**
    * Indicates if this has been lit, affects drops.
@@ -425,33 +429,47 @@ public class TileCampfire
       return false; // Deactivate the worker
     }
 
-    // Apply the regen buff
-    if (this.world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_START_TIME
-        && this.world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_STOP_TIME
-        && ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_DURATION > 0
-        && this.world.getTotalWorldTime() % 10 == 0) {
+    // Apply the tier 1 campfire effects
+    if (this.world.getTotalWorldTime() % 20 == 0
+        && this.world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_START_TIME
+        && this.world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_STOP_TIME) {
 
-      float lightPercentage = this.getFuelRemaining() / 8f;
-      int max = Math.min(6, Math.max(ModuleTechBasicConfig.CAMPFIRE.MAXIMUM_LIGHT_LEVEL, ModuleTechBasicConfig.CAMPFIRE.MINIMUM_LIGHT_LEVEL));
-      int min = Math.max(1, Math.min(ModuleTechBasicConfig.CAMPFIRE.MAXIMUM_LIGHT_LEVEL, ModuleTechBasicConfig.CAMPFIRE.MINIMUM_LIGHT_LEVEL));
-      int effectRadius = (int) MathHelper.clamp((max - min) * lightPercentage + min, 0, 15);
-      int effectRadiusSq = effectRadius * effectRadius;
+      if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT
+          || ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT) {
 
-      if (this.regenSearchBounds == null) {
-        this.regenSearchBounds = new AxisAlignedBB(this.pos).grow(15);
-      }
-
-      List<EntityPlayer> players = this.world.getEntitiesWithinAABB(
-          EntityPlayer.class,
-          this.regenSearchBounds,
-          player -> player != null && player.getDistanceSq(this.pos) <= effectRadiusSq
-      );
-
-      players.forEach(player -> {
-        if (player.getActivePotionEffect(ModuleTechBasic.Potions.COMFORT) == null) {
-          player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_DURATION + 10));
+        if (this.regenSearchBounds == null) {
+          this.regenSearchBounds = new AxisAlignedBB(this.pos).grow(15);
         }
-      });
+
+        BlockPos offsetBlockPos = this.pos.add(0.5, 0, 0.5);
+
+        List<EntityPlayer> players = this.world.getEntitiesWithinAABB(
+            EntityPlayer.class,
+            this.regenSearchBounds,
+            player -> player != null && this.isEntityInEffectRange(player, offsetBlockPos)
+        );
+
+        players.forEach(player -> {
+
+          if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT) {
+
+            if (player.getActivePotionEffect(ModuleTechBasic.Potions.COMFORT) == null) {
+              player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, Integer.MAX_VALUE, 0, true, true));
+            }
+          }
+
+          if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT) {
+
+            if (player.getActivePotionEffect(ModuleTechBasic.Potions.RESTING) == null) {
+              player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.RESTING, Integer.MAX_VALUE, 0, true, true));
+            }
+          }
+
+          CampfireEffectTracker.TRACKING_CAMPFIRES
+              .computeIfAbsent(player.getUniqueID(), uuid -> new HashSet<>())
+              .add(this.getPos().toImmutable());
+        });
+      }
     }
 
     // Decrement the cook time and check for recipe completion.
@@ -498,6 +516,35 @@ public class TileCampfire
     }
 
     return true;
+  }
+
+  public boolean isEntityInEffectRange(EntityLivingBase entity) {
+
+    return this.isEntityInEffectRange(entity, this.pos.add(0.5, 0, 0.5));
+  }
+
+  public boolean isEntityInEffectRange(EntityLivingBase entity, BlockPos blockPos) {
+
+    int effectRadius = this.getEffectRadius();
+    int effectRadiusSq = effectRadius * effectRadius;
+    return entity.getDistanceSq(blockPos) <= effectRadiusSq;
+  }
+
+  public int getEffectRadius() {
+
+    if (this.effectRadii == null) {
+      // Precalculate the effect radius
+      this.effectRadii = new int[9];
+
+      for (int i = 0; i < 9; i++) {
+        float lightPercentage = i / 8f;
+        int max = Math.min(6, Math.max(ModuleTechBasicConfig.CAMPFIRE.MAXIMUM_LIGHT_LEVEL, ModuleTechBasicConfig.CAMPFIRE.MINIMUM_LIGHT_LEVEL));
+        int min = Math.max(1, Math.min(ModuleTechBasicConfig.CAMPFIRE.MAXIMUM_LIGHT_LEVEL, ModuleTechBasicConfig.CAMPFIRE.MINIMUM_LIGHT_LEVEL));
+        this.effectRadii[i] = (int) MathHelper.clamp((max - min) * lightPercentage + min, 0, 15);
+      }
+    }
+
+    return this.effectRadii[this.getFuelRemaining()];
   }
 
   // ---------------------------------------------------------------------------

@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.event.CampfireEffectTracker;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.ComfortEffectEventHandler;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.RecipeRepeat;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.TestExhaustion;
@@ -14,6 +15,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionComfort;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionResting;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
@@ -108,6 +110,7 @@ public class ModuleTechBasic
 
     MinecraftForge.EVENT_BUS.register(new ComfortEffectEventHandler());
     MinecraftForge.EVENT_BUS.register(new TestExhaustion());
+    MinecraftForge.EVENT_BUS.register(new CampfireEffectTracker());
   }
 
   @SideOnly(Side.CLIENT)
@@ -176,8 +179,12 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(PotionComfort.NAME)
     public static final PotionComfort COMFORT;
 
+    @GameRegistry.ObjectHolder(PotionResting.NAME)
+    public static final PotionResting RESTING;
+
     static {
       COMFORT = null;
+      RESTING = null;
     }
   }
 

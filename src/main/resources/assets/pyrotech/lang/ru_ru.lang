@@ -67,6 +67,7 @@ tile.pyrotech.compacting_bin.name=Уплотнительный закром
 tile.pyrotech.soaking_pot.name=Горшок для замачивания
 
 pyrotech.effect.comfort=Comfort
+pyrotech.effect.resting=Resting
 
 #------------------------------------------------------------------------------
 # Module: Tech - Bloomery
