@@ -1161,10 +1161,10 @@ public class ModuleTechBasicConfig {
         "The number of ticks between the comfort effect's health regen.",
         "This should not be any larger than the duration or it won't work.",
         "For reference, the vanilla regen effect has an interval of 50 ticks.",
-        "Default: " + 75
+        "Default: " + 100
     })
     @Config.RangeInt(min = 1)
-    public int RESTING_REGEN_INTERVAL_TICKS = 75;
+    public int RESTING_REGEN_INTERVAL_TICKS = 100;
 
     @Config.Comment({
         "The number of half-hearts regenerated per interval. For reference,",
