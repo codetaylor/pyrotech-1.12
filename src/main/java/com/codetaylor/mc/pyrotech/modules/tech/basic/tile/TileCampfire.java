@@ -29,6 +29,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -441,32 +442,41 @@ public class TileCampfire
           this.effectBounds = new AxisAlignedBB(this.pos).grow(15);
         }
 
-        List<EntityPlayer> players = this.world.getEntitiesWithinAABB(
-            EntityPlayer.class,
+        List<EntityMob> mobs = this.world.getEntitiesWithinAABB(
+            EntityMob.class,
             this.effectBounds,
-            player -> player != null && this.isEntityInEffectRange(player, this.pos)
+            mob -> mob != null && this.isEntityInEffectRange(mob, this.pos)
         );
 
-        players.forEach(player -> {
+        if (mobs.isEmpty()) {
 
-          if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT) {
+          List<EntityPlayer> players = this.world.getEntitiesWithinAABB(
+              EntityPlayer.class,
+              this.effectBounds,
+              player -> player != null && this.isEntityInEffectRange(player, this.pos)
+          );
 
-            if (player.getActivePotionEffect(ModuleTechBasic.Potions.COMFORT) == null) {
-              player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, Integer.MAX_VALUE, 0, true, true));
+          players.forEach(player -> {
+
+            if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT) {
+
+              if (player.getActivePotionEffect(ModuleTechBasic.Potions.COMFORT) == null) {
+                player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, Integer.MAX_VALUE, 0, true, true));
+              }
             }
-          }
 
-          if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT) {
+            if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT) {
 
-            if (player.getActivePotionEffect(ModuleTechBasic.Potions.RESTING) == null) {
-              player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.RESTING, Integer.MAX_VALUE, 0, true, true));
+              if (player.getActivePotionEffect(ModuleTechBasic.Potions.RESTING) == null) {
+                player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.RESTING, Integer.MAX_VALUE, 0, true, true));
+              }
             }
-          }
 
-          CampfireEffectTracker.TRACKING_CAMPFIRES
-              .computeIfAbsent(player.getUniqueID(), uuid -> new HashSet<>())
-              .add(this.getPos().toImmutable());
-        });
+            CampfireEffectTracker.TRACKING_CAMPFIRES
+                .computeIfAbsent(player.getUniqueID(), uuid -> new HashSet<>())
+                .add(this.getPos().toImmutable());
+          });
+        }
       }
     }
 
