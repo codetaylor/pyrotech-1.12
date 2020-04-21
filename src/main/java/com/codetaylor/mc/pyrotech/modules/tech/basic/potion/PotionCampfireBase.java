@@ -28,19 +28,22 @@ public abstract class PotionCampfireBase
 
   @SideOnly(Side.CLIENT)
   @Override
-  public void renderInventoryEffect(int x, int y, PotionEffect effect, Minecraft mc) {
+  public void renderInventoryEffect(@Nonnull PotionEffect effect, net.minecraft.client.gui.Gui gui, int x, int y, float z) {
 
-    if (mc.currentScreen != null) {
-      mc.getTextureManager().bindTexture(this.getTexture());
+    Minecraft minecraft = Minecraft.getMinecraft();
+
+    if (minecraft.currentScreen != null) {
+      minecraft.getTextureManager().bindTexture(this.getTexture());
       Gui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 18, 18, 18, 18);
     }
   }
 
   @SideOnly(Side.CLIENT)
   @Override
-  public void renderHUDEffect(int x, int y, PotionEffect effect, Minecraft mc, float alpha) {
+  public void renderHUDEffect(@Nonnull PotionEffect effect, Gui gui, int x, int y, float z, float alpha) {
 
-    mc.getTextureManager().bindTexture(this.getTexture());
+    Minecraft minecraft = Minecraft.getMinecraft();
+    minecraft.getTextureManager().bindTexture(this.getTexture());
     Gui.drawModalRectWithCustomSizedTexture(x + 3, y + 3, 0, 0, 18, 18, 18, 18);
   }
 
