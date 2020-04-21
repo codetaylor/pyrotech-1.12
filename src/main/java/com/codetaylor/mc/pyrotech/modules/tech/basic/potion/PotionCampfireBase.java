@@ -28,7 +28,7 @@ public abstract class PotionCampfireBase
 
   @SideOnly(Side.CLIENT)
   @Override
-  public void renderInventoryEffect(@Nonnull PotionEffect effect, net.minecraft.client.gui.Gui gui, int x, int y, float z) {
+  public void renderInventoryEffect(@Nonnull PotionEffect effect, Gui gui, int x, int y, float z) {
 
     Minecraft minecraft = Minecraft.getMinecraft();
 
