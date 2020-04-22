@@ -1208,5 +1208,28 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble(min = 0, max = 1)
     public double WELL_FED_EXHAUSTION_MODIFIER = 0.5;
+
+    @Config.Comment({
+        "When a stands still long enough with the Resting III effect,",
+        "they will gain the Well Rested effect. Set to false to disable.",
+        "Default: " + true
+    })
+    public boolean WELL_RESTED_EFFECT_ENABLED = true;
+
+    @Config.Comment({
+        "The duration of the Well Rested effect in ticks.",
+        "Default: " + (5 * 60 * 20)
+    })
+    @Config.RangeInt(min = 0)
+    public int WELL_RESTED_DURATION_TICKS = 5 * 60 * 20;
+
+    @Config.Comment({
+        "The number of half-hearts of absorption given. For reference,",
+        "the vanilla absorption effect grants 4 half-hearts.",
+        "Set to zero to disable.",
+        "Default: " + 4
+    })
+    @Config.RangeInt(min = 0)
+    public int WELL_RESTED_ABSORPTION_HALF_HEARTS = 4;
   }
 }

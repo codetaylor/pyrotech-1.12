@@ -8,6 +8,7 @@
         * `pyrotech.effect.comfort`
         * `pyrotech.effect.well.fed`
         * `pyrotech.effect.resting`
+        * `pyrotech.effect.well.rested`
 
   * **Added:**
     * Campfire effects:
@@ -24,6 +25,7 @@
                 * `COMFORT_HUNGER_MODIFIER`
                 * `COMFORT_SATURATION_MODIFIER`
         * Well Fed effect:
+            * Applied by eating while max saturation with the Comfort effect
             * Reduces a player's exhaustion for the effect's duration
             * Added config values:
                 * `WELL_FED_EFFECT_ENABLED`
@@ -38,6 +40,12 @@
                 * `RESTING_REGEN_INTERVAL_TICKS`
                 * `RESTING_REGEN_HALF_HEARTS`
                 * `RESTING_LEVEL_UP_INTERVAL_TICKS`
+        * Well Rested effect:
+            * Adds absorption hearts to the player
+            * Added config values:
+                * `WELL_RESTED_EFFECT_ENABLED`
+                * `WELL_RESTED_DURATION_TICKS`
+                * `WELL_RESTED_ABSORPTION_HALF_HEARTS`
 
   * **Changed:**
     * Campfire light level now depends on how much fuel it has

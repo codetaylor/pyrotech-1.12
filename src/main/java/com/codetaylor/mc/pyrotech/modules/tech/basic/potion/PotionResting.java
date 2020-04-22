@@ -71,13 +71,31 @@ public class PotionResting
         int duration = potionEffect.getDuration();
         this.doHeal(entity, regenRate, duration);
 
-        if (potionEffect.getAmplifier() < 2 && ((Short.MAX_VALUE - duration + 1) % levelUpRate == 0)) {
-          PotionResting.addEffect((EntityPlayer) entity, potionEffect.getAmplifier() + 1);
+        if ((Short.MAX_VALUE - duration + 1) % levelUpRate == 0) {
 
-          if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
-            String message = "Upgraded resting effect to level " + (potionEffect.getAmplifier() + 1) + " after " + (Short.MAX_VALUE - duration + 1) + " ticks";
-            ModuleCore.LOGGER.debug(message);
-            entity.sendMessage(new TextComponentString(message));
+          if (potionEffect.getAmplifier() < 2) {
+            PotionResting.addEffect((EntityPlayer) entity, potionEffect.getAmplifier() + 1);
+
+            if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
+              String message = "Upgraded resting effect to level " + (potionEffect.getAmplifier() + 1) + " after " + (Short.MAX_VALUE - duration + 1) + " ticks";
+              ModuleCore.LOGGER.debug(message);
+              entity.sendMessage(new TextComponentString(message));
+            }
+
+          } else if (potionEffect.getAmplifier() == 2
+              && ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_RESTED_EFFECT_ENABLED
+            /*&& !entity.getActivePotionMap().containsKey(ModuleTechBasic.Potions.WELL_RESTED)*/) {
+            int wellRestedDuration = Math.max(0, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_RESTED_DURATION_TICKS);
+
+            if (wellRestedDuration > 0) {
+              entity.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.WELL_RESTED, wellRestedDuration, 0, false, true));
+
+              if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
+                String message = "Upgraded Resting effect to Well Rested after " + (Short.MAX_VALUE - duration + 1) + " ticks";
+                ModuleCore.LOGGER.debug(message);
+                entity.sendMessage(new TextComponentString(message));
+              }
+            }
           }
         }
       }
@@ -130,7 +148,7 @@ public class PotionResting
 
       Gui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 18, 18, 18, 18);
 
-      if (effect.getAmplifier() < 2) {
+      if (this.shouldRenderProgressBar(effect)) {
         {
           int left = x + 6;
           int top = y + 8 + 17;
@@ -169,7 +187,7 @@ public class PotionResting
 
     Gui.drawModalRectWithCustomSizedTexture(x + 3, y + 3, 0, 0, 18, 18, 18, 18);
 
-    if (effect.getAmplifier() < 2) {
+    if (this.shouldRenderProgressBar(effect)) {
       {
         int left = x + 3;
         int top = y + 20;
@@ -188,6 +206,14 @@ public class PotionResting
         Gui.drawRect(left, top, right, bottom, Color.GREEN.getRGB());
       }
     }
+  }
+
+  @SideOnly(Side.CLIENT)
+  private boolean shouldRenderProgressBar(@Nonnull PotionEffect effect) {
+
+//    EntityPlayerSP player = Minecraft.getMinecraft().player;
+//    return effect.getAmplifier() < 2 || !player.getActivePotionMap().containsKey(ModuleTechBasic.Potions.WELL_RESTED);
+    return true;
   }
 
   @Nonnull

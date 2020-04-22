@@ -69,6 +69,7 @@ tile.pyrotech.soaking_pot.name=浸泡壶
 pyrotech.effect.comfort=Comfort
 pyrotech.effect.well.fed=Well Fed
 pyrotech.effect.resting=Resting
+pyrotech.effect.well.rested=Well Rested
 
 #------------------------------------------------------------------------------
 # Module: Tech - Bloomery

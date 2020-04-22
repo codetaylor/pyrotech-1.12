@@ -42,10 +42,28 @@ public final class CampfireRestingEffectEventHandler {
 
     Entity entity = event.getEntity();
 
-    if (!entity.world.isRemote && this.resetRestingEffect(entity) && ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
-      String message = "Reset resting effect due to damage taken";
-      ModuleCore.LOGGER.debug(message);
-      entity.sendMessage(new TextComponentString(message));
+    if (!entity.world.isRemote) {
+
+      if (this.resetRestingEffect(entity) && ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
+        String message = "Reset resting effect due to damage taken";
+        ModuleCore.LOGGER.debug(message);
+        entity.sendMessage(new TextComponentString(message));
+      }
+
+      if (entity instanceof EntityPlayer) {
+        EntityPlayer player = (EntityPlayer) entity;
+
+        if (player.getAbsorptionAmount() == 0
+            && player.getActivePotionMap().containsKey(ModuleTechBasic.Potions.WELL_RESTED)) {
+          event.getEntityLiving().removePotionEffect(ModuleTechBasic.Potions.WELL_RESTED);
+
+          if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
+            String message = "Removed Well Rested effect due to loss of absorption hearts";
+            ModuleCore.LOGGER.debug(message);
+            entity.sendMessage(new TextComponentString(message));
+          }
+        }
+      }
     }
   }
 

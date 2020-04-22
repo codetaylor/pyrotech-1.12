@@ -7,6 +7,10 @@ Bugs:
   Seems fixed. Wasn't able to reliably reproduce. Fixed the campfire effect player tracking event handler to not run on both the client and the server thread simultaneously -- should only run on the server thread.
   ✔ Comfort / Resting doesn't remove effects when the campfire dies @done(20-04-21 18:43)
   Maybe we need an active check in the removal handler.
+  ☐ Standing in range of a campfire long enough will cause the Comfort effect duration to tick down far enough that it is displayed in the GUI.
+  This will likely occur with the Resting III effect as well. Maybe we can periodically refresh the duration of both ambient effects.
+  ☐ Encountered a desync with the resting bar and when it actually applies the effect.
+  I encountered this once before and it was solved by using a max value short as the duration instead of a max value integer because during serialization across the network, the duration value is clamped to a short.
 
 Enhancements:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)
@@ -66,16 +70,17 @@ Resting:
     ✔ regens health slower than vanilla regen effect @done(20-04-20 20:09)  
 
 Well Rested:
-  ☐ icon: campfire + yellow heart
-  ☐ duration: 2m 30s
+  ✔ icon: campfire + yellow heart @done(20-04-22 14:13)
+  ✔ duration: 2m 30s @done(20-04-22 14:31)
   applied when:
-    ☐ player has Resting III
-    ☐ player does not have Well Rested effect
-    ☐ player has stood still for 2 seconds
+    ✔ player has Resting III @done(20-04-22 14:31)
+    ✘ player does not have Well Rested effect @cancelled(20-04-22 14:31)
+    I don't think there's any harm in letting the player continue to stand still to refresh the absorption hearts.
+    ✔ player has stood still for N seconds @done(20-04-22 14:31)
   removed when:
-    ☐ duration expires
+    ✔ duration expires @done(20-04-22 14:31)
   effects:
-    ☐ absorption, 2 hearts
+    ✔ absorption, 2 hearts @done(20-04-22 14:13)
 
 Focused:
   ☐ icon: campfire + experience
