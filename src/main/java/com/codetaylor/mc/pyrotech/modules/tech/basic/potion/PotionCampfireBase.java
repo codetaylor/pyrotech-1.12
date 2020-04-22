@@ -58,11 +58,4 @@ public abstract class PotionCampfireBase
 
     //
   }
-
-  @Nonnull
-  @Override
-  public List<ItemStack> getCurativeItems() {
-
-    return Collections.emptyList();
-  }
 }

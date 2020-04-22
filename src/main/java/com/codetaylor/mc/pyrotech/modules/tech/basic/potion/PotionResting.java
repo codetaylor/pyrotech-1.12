@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
@@ -15,6 +16,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
+import java.util.Collections;
+import java.util.List;
 
 public class PotionResting
     extends PotionCampfireBase {
@@ -185,5 +188,12 @@ public class PotionResting
         Gui.drawRect(left, top, right, bottom, Color.GREEN.getRGB());
       }
     }
+  }
+
+  @Nonnull
+  @Override
+  public List<ItemStack> getCurativeItems() {
+
+    return Collections.emptyList();
   }
 }
