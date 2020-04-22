@@ -3,8 +3,8 @@ All values subject to change during balancing.
 Elements marked with (?) need to be verified technically feasible.
 
 Bugs:
-  ☐ Comfort / Resting doesn't always remove when out of range of a campfire
-  Pausing the game with ESC and returning will trigger the removal.
+  ✔ Comfort / Resting doesn't always remove when out of range of a campfire @done(20-04-21 18:27)
+  Seems fixed. Wasn't able to reliably reproduce. Fixed the campfire effect player tracking event handler to not run on both the client and the server thread simultaneously -- should only run on the server thread.
   ☐ Comfort / Resting doesn't remove effects when the campfire dies
   Maybe we need an active check in the removal handler.
 

@@ -26,7 +26,13 @@ public final class CampfireEffectTracker {
   @SubscribeEvent
   public void on(TickEvent.PlayerTickEvent event) {
 
-    if (event.phase == TickEvent.Phase.END && ++this.intervalCounter >= 10) {
+    if (event.player.world.isRemote || event.phase != TickEvent.Phase.START) {
+      return;
+    }
+
+    this.intervalCounter += 1;
+
+    if (this.intervalCounter >= 10) {
       this.intervalCounter = 0;
       this.updateTracking(event.player);
     }
