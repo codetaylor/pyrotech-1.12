@@ -58,9 +58,16 @@ public final class CampfireEffectTracker {
         BlockPos blockPos = it.next();
         TileEntity tileEntity = world.getTileEntity(blockPos);
 
-        if (!(tileEntity instanceof TileCampfire)
-            || !((TileCampfire) tileEntity).isEntityInEffectRange(entity)) {
+        if (!(tileEntity instanceof TileCampfire)) {
           it.remove();
+
+        } else {
+          TileCampfire tileCampfire = (TileCampfire) tileEntity;
+
+          if (!tileCampfire.workerIsActive()
+              || !tileCampfire.isEntityInEffectRange(entity)) {
+            it.remove();
+          }
         }
       }
     }
