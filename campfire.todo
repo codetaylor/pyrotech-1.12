@@ -11,7 +11,8 @@ Bugs:
 Enhancements:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)
   Using the red / orange / yellow / green color shift would probably indicate that the lower the bar, the worse something is. That's not really the case with the Resting effect as any progress on the bar should be good news to the player. Maybe shift it to green and use the red to green colors with the Focused effect.
-  ☐ Focused effect should use the red / orange / yellow / green colors that the item durability bars use because less is worse.
+  ✘ Focused effect should use the red / orange / yellow / green colors that the item durability bars use because less is worse. @cancelled(20-04-21 19:15)
+  Nope. Any experience bonus that the player has is a good thing. If the player gains a little bit of experience bonus, it's a good thing and shouldn't be rendered red. Red indicates that something you don't want to happen is going to happen. Sure you don't want to run out of experience bonus, but it isn't a bad thing like a tool breaking.
   ✔ Resting effect should use green for the effect bar to indicate that it's a good thing. @done(20-04-21 18:35)
 
 Comfort:
