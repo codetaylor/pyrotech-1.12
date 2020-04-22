@@ -142,7 +142,7 @@ public class PotionResting
           float percentage = ((Short.MAX_VALUE - effect.getDuration()) % levelUpRate) / (float) levelUpRate;
           int right = (int) Math.max(1, left + (108 * percentage));
           int bottom = top + 1;
-          Gui.drawRect(left, top, right, bottom, Color.YELLOW.getRGB());
+          Gui.drawRect(left, top, right, bottom, Color.GREEN.getRGB());
         }
       }
     }
@@ -182,7 +182,7 @@ public class PotionResting
         int right = (int) Math.max(1, left + (18 * percentage));
         int bottom = top + 1;
 
-        Gui.drawRect(left, top, right, bottom, Color.YELLOW.getRGB());
+        Gui.drawRect(left, top, right, bottom, Color.GREEN.getRGB());
       }
     }
   }
