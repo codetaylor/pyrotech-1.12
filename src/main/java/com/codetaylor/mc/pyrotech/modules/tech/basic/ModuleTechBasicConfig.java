@@ -1135,7 +1135,7 @@ public class ModuleTechBasicConfig {
         "Set to false to disable.",
         "Default: " + true
     })
-    public boolean COMFORT_EFFECT = true;
+    public boolean COMFORT_EFFECT_ENABLED = true;
 
     @Config.Comment({
         "A percentile modifier for the amount of additional saturation restored",
@@ -1161,7 +1161,7 @@ public class ModuleTechBasicConfig {
         "Set to false to disable.",
         "Default: " + true
     })
-    public boolean RESTING_EFFECT = true;
+    public boolean RESTING_EFFECT_ENABLED = true;
 
     @Config.Comment({
         "The number of ticks between the resting effect's health regen.",
@@ -1188,5 +1188,25 @@ public class ModuleTechBasicConfig {
     @Config.RangeInt(min = 1)
     public int RESTING_LEVEL_UP_INTERVAL_TICKS = 200;
 
+    @Config.Comment({
+        "When a player eats with full saturation while under the Comfort effect,",
+        "they will gain the Well Fed effect. Set to false to disable.",
+        "Default: " + true
+    })
+    public boolean WELL_FED_EFFECT_ENABLED = true;
+
+    @Config.Comment({
+        "The duration of the Well Fed effect in ticks.",
+        "Default: " + (5 * 60 * 20)
+    })
+    @Config.RangeInt(min = 0)
+    public int WELL_FED_DURATION_TICKS = 5 * 60 * 20;
+
+    @Config.Comment({
+        "Percentile exhaustion modifier for the Well Fed effect.",
+        "Default: " + 0.5
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double WELL_FED_EXHAUSTION_MODIFIER = 0.5;
   }
 }

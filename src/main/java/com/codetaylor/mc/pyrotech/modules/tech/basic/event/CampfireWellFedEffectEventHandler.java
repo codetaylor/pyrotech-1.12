@@ -1,14 +1,20 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.event;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import it.unimi.dsi.fastutil.objects.Object2FloatMap;
 import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemFood;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.FoodStats;
+import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -16,7 +22,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public final class TestExhaustion {
+public final class CampfireWellFedEffectEventHandler {
 
   private static MethodHandle foodStats$foodExhaustionLevelGetter;
   private static MethodHandle foodStats$foodExhaustionLevelSetter;
@@ -55,17 +61,44 @@ public final class TestExhaustion {
   private Object2FloatMap<UUID> playerExhaustionMap;
   private Set<UUID> failedSet;
 
-  public TestExhaustion() {
+  public CampfireWellFedEffectEventHandler() {
 
     this.playerExhaustionMap = new Object2FloatOpenHashMap<>();
     this.failedSet = new HashSet<>();
   }
 
   @SubscribeEvent
+  public void on(LivingEntityUseItemEvent.Finish event) {
+
+    EntityLivingBase entityLiving = event.getEntityLiving();
+
+    if (!ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_FED_EFFECT_ENABLED
+        || entityLiving.world.isRemote
+        || !(event.getItem().getItem() instanceof ItemFood)) {
+      return;
+    }
+
+    if (entityLiving instanceof EntityPlayer) {
+      FoodStats foodStats = ((EntityPlayer) entityLiving).getFoodStats();
+      float saturationLevel = foodStats.getSaturationLevel();
+      int duration = Math.max(0, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_FED_DURATION_TICKS);
+
+      if (duration > 0 && MathHelper.epsilonEquals(saturationLevel, 20)) {
+        entityLiving.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.WELL_FED, duration, 0, false, true));
+      }
+    }
+  }
+
+  @SubscribeEvent
   public void on(TickEvent.PlayerTickEvent event) {
 
-    if (event.phase != TickEvent.Phase.START
-        || event.side == Side.CLIENT) {
+    if (!ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_FED_EFFECT_ENABLED
+        || event.phase != TickEvent.Phase.START
+        || event.player.world.isRemote) {
+      return;
+    }
+
+    if (!event.player.getActivePotionMap().containsKey(ModuleTechBasic.Potions.WELL_FED)) {
       return;
     }
 
@@ -85,7 +118,7 @@ public final class TestExhaustion {
       if (previousExhaustionLevel < currentExhaustionLevel) {
         // Player has gained exhaustion, reduce the gain by half
         float delta = currentExhaustionLevel - previousExhaustionLevel;
-        float newExhaustionLevel = currentExhaustionLevel - delta * 0.5f;
+        float newExhaustionLevel = (float) (currentExhaustionLevel - delta * MathHelper.clamp(ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_FED_EXHAUSTION_MODIFIER, 0, 1));
         this.setPlayerExhaustionLevel(event.player, newExhaustionLevel);
         this.playerExhaustionMap.put(uuid, newExhaustionLevel);
 

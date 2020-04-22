@@ -13,6 +13,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionComfort;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionResting;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionWellFed;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
@@ -108,7 +109,7 @@ public class ModuleTechBasic
     MinecraftForge.EVENT_BUS.register(new CampfireEffectTracker());
     MinecraftForge.EVENT_BUS.register(new CampfireComfortEffectEventHandler());
     MinecraftForge.EVENT_BUS.register(new CampfireRestingEffectEventHandler());
-    MinecraftForge.EVENT_BUS.register(new TestExhaustion());
+    MinecraftForge.EVENT_BUS.register(new CampfireWellFedEffectEventHandler());
   }
 
   @SideOnly(Side.CLIENT)
@@ -180,9 +181,13 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(PotionResting.NAME)
     public static final PotionResting RESTING;
 
+    @GameRegistry.ObjectHolder(PotionWellFed.NAME)
+    public static final PotionWellFed WELL_FED;
+
     static {
       COMFORT = null;
       RESTING = null;
+      WELL_FED = null;
     }
   }
 

@@ -31,16 +31,17 @@ Comfort:
     ✔ allows eating even with full haunches @done(20-04-20 20:09)
 
 Well Fed:
-  ☐ icon: campfire + golden haunch
-  ☐ duration: 2m 30s
+  ✔ icon: campfire + golden haunch @done(20-04-22 09:50)
+  ✔ duration: 5m @done(20-04-22 09:50)
   applied when:
-    ☐ player has Comfort effect
-    ☐ player does not have Well Fed effect
-    ☐ player eats with full saturation
+    ✔ player has Comfort effect @done(20-04-22 09:50)
+    ✘ player does not have Well Fed effect @cancelled(20-04-22 09:33)
+    I don't think there's any harm in letting the player keep eating to refresh the duration of the buff.
+    ✔ player eats with full saturation @done(20-04-22 09:50)
   removed when:
-    ☐ duration expires
+    ✔ duration expires @done(20-04-22 09:52)
   effects:
-    ☐ 50% reduced exhaustion
+    ✔ 50% reduced exhaustion @done(20-04-22 09:52)
     This has been verified technically feasible with a prototype implementation of the solution.
 
 Resting:

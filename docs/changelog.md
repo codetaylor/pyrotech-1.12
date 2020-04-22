@@ -6,25 +6,38 @@
   * **Translators:**
     * **New Lang Keys:**
         * `pyrotech.effect.comfort`
+        * `pyrotech.effect.well.fed`
         * `pyrotech.effect.resting`
 
   * **Added:**
-    * Comfort effect:
-        * Increases hunger and saturation restored from eating
-        * Added config values:
-            * `COMFORT_HUNGER_MODIFIER`
-            * `COMFORT_SATURATION_MODIFIER`
-    * Resting effect:
-        * Regenerates health exactly like the Regeneration effect
-        * Added config values:
-            * `RESTING_REGEN_INTERVAL_TICKS`
-            * `RESTING_REGEN_HALF_HEARTS`
-    * Campfire will now add comfort and resting effect at night if player is within range
-        * Only works at night, by default between 13000 and 23000 or 19:00 and 5:00
-        * Range depends on light level with a maximum range of 6 blocks and a minimum range of 1 block
+    * Campfire effects:
+        * Only in range, depends on fuel level
+        * Only at night between 19:00 and 5:00
         * Added campfire config values:
-            * `COMFORT_START_TIME`
-            * `COMFORT_STOP_TIME`
+            * `EFFECTS_START_TIME`
+            * `EFFECTS_STOP_TIME`
+        * Comfort effect:
+            * Increases hunger and saturation restored from eating
+            * Allows player to always eat, regardless of hunger level
+            * Added config values:
+                * `COMFORT_EFFECT_ENABLED`
+                * `COMFORT_HUNGER_MODIFIER`
+                * `COMFORT_SATURATION_MODIFIER`
+        * Well Fed effect:
+            * Reduces a player's exhaustion for the effect's duration
+            * Added config values:
+                * `WELL_FED_EFFECT_ENABLED`
+                * `WELL_FED_DURATION_TICKS`
+                * `WELL_FED_EXHAUSTION_MODIFIER`
+        * Resting effect:
+            * Regenerates health slower than the Regeneration effect
+            * Increases to Resting II and III by standing still
+            * Increases from Resting III to Well Rested by standing still
+            * Added config values:
+                * `RESTING_EFFECT_ENABLED`
+                * `RESTING_REGEN_INTERVAL_TICKS`
+                * `RESTING_REGEN_HALF_HEARTS`
+                * `RESTING_LEVEL_UP_INTERVAL_TICKS`
 
   * **Changed:**
     * Campfire light level now depends on how much fuel it has

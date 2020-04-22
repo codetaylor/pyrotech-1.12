@@ -437,8 +437,8 @@ public class TileCampfire
         && this.world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_START_TIME
         && this.world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_STOP_TIME) {
 
-      if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT
-          || ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT) {
+      if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT_ENABLED
+          || ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT_ENABLED) {
 
         if (this.effectBounds == null) {
           this.effectBounds = new AxisAlignedBB(this.pos).grow(15);
@@ -463,7 +463,7 @@ public class TileCampfire
             // Only apply the effects if there aren't any mobs within range
             // of the player.
 
-            if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT) {
+            if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT_ENABLED) {
 
               if (player.getActivePotionEffect(ModuleTechBasic.Potions.COMFORT) == null) {
                 player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, Short.MAX_VALUE, 0, true, true));
@@ -476,7 +476,7 @@ public class TileCampfire
               }
             }
 
-            if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT) {
+            if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT_ENABLED) {
 
               if (player.getActivePotionEffect(ModuleTechBasic.Potions.RESTING) == null) {
                 PotionResting.addEffect(player);
