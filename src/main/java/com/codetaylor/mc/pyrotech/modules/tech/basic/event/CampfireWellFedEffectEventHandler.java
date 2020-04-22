@@ -73,8 +73,10 @@ public final class CampfireWellFedEffectEventHandler {
     EntityLivingBase entityLiving = event.getEntityLiving();
 
     if (!ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_FED_EFFECT_ENABLED
+        || !ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT_ENABLED
         || entityLiving.world.isRemote
-        || !(event.getItem().getItem() instanceof ItemFood)) {
+        || !(event.getItem().getItem() instanceof ItemFood)
+        || !entityLiving.getActivePotionMap().containsKey(ModuleTechBasic.Potions.COMFORT)) {
       return;
     }
 
