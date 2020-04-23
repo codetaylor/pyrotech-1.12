@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.event;
 
 import com.codetaylor.mc.athenaeum.util.EnchantmentHelper;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.capability.CapabilityFocused;
@@ -14,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.FakePlayer;
@@ -26,7 +28,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class CampfireFocusEffectEventHandler {
+public final class CampfireFocusEffectEventHandler {
 
   @SubscribeEvent(priority = EventPriority.HIGHEST)
   public void on(PlayerPickupXpEvent event) {
@@ -68,7 +70,9 @@ public class CampfireFocusEffectEventHandler {
     }
 
     if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
-
+      String message = "Gained additional XP from bonus: " + additionalXP;
+      ModuleCore.LOGGER.debug(message);
+      player.sendMessage(new TextComponentString(message));
     }
   }
 
