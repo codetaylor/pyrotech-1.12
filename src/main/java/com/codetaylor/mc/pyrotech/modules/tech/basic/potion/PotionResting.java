@@ -83,8 +83,7 @@ public class PotionResting
             }
 
           } else if (potionEffect.getAmplifier() == 2
-              && ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_RESTED_EFFECT_ENABLED
-            /*&& !entity.getActivePotionMap().containsKey(ModuleTechBasic.Potions.WELL_RESTED)*/) {
+              && ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_RESTED_EFFECT_ENABLED) {
             int wellRestedDuration = Math.max(0, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_RESTED_DURATION_TICKS);
 
             if (wellRestedDuration > 0) {
@@ -95,6 +94,14 @@ public class PotionResting
                 ModuleCore.LOGGER.debug(message);
                 entity.sendMessage(new TextComponentString(message));
               }
+            }
+
+            PotionResting.addEffect((EntityPlayer) entity, potionEffect.getAmplifier());
+
+            if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
+              String message = "Refreshed Resting effect after " + (Short.MAX_VALUE - duration + 1) + " ticks";
+              ModuleCore.LOGGER.debug(message);
+              entity.sendMessage(new TextComponentString(message));
             }
           }
         }
@@ -148,23 +155,21 @@ public class PotionResting
 
       Gui.drawModalRectWithCustomSizedTexture(x + 6, y + 7, 0, 0, 18, 18, 18, 18);
 
-      if (this.shouldRenderProgressBar(effect)) {
-        {
-          int left = x + 6;
-          int top = y + 8 + 17;
-          int right = left + 108;
-          int bottom = top + 2;
-          Gui.drawRect(left, top, right, bottom, Color.BLACK.getRGB());
-        }
-        {
-          int left = x + 6;
-          int top = y + 8 + 17;
-          int levelUpRate = Math.max(1, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_LEVEL_UP_INTERVAL_TICKS);
-          float percentage = ((Short.MAX_VALUE - effect.getDuration()) % levelUpRate) / (float) levelUpRate;
-          int right = (int) Math.max(1, left + (108 * percentage));
-          int bottom = top + 1;
-          Gui.drawRect(left, top, right, bottom, Color.GREEN.getRGB());
-        }
+      {
+        int left = x + 6;
+        int top = y + 8 + 17;
+        int right = left + 108;
+        int bottom = top + 2;
+        Gui.drawRect(left, top, right, bottom, Color.BLACK.getRGB());
+      }
+      {
+        int left = x + 6;
+        int top = y + 8 + 17;
+        int levelUpRate = Math.max(1, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_LEVEL_UP_INTERVAL_TICKS);
+        float percentage = ((Short.MAX_VALUE - effect.getDuration()) % levelUpRate) / (float) levelUpRate;
+        int right = (int) Math.max(1, left + (108 * percentage));
+        int bottom = top + 1;
+        Gui.drawRect(left, top, right, bottom, Color.GREEN.getRGB());
       }
     }
   }
@@ -187,33 +192,23 @@ public class PotionResting
 
     Gui.drawModalRectWithCustomSizedTexture(x + 3, y + 3, 0, 0, 18, 18, 18, 18);
 
-    if (this.shouldRenderProgressBar(effect)) {
-      {
-        int left = x + 3;
-        int top = y + 20;
-        int right = left + 18;
-        int bottom = top + 2;
-        Gui.drawRect(left, top, right, bottom, Color.BLACK.getRGB());
-      }
-      {
-        int left = x + 3;
-        int top = y + 20;
-        int levelUpRate = Math.max(1, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_LEVEL_UP_INTERVAL_TICKS);
-        float percentage = ((Short.MAX_VALUE - effect.getDuration()) % levelUpRate) / (float) levelUpRate;
-        int right = (int) Math.max(1, left + (18 * percentage));
-        int bottom = top + 1;
-
-        Gui.drawRect(left, top, right, bottom, Color.GREEN.getRGB());
-      }
+    {
+      int left = x + 3;
+      int top = y + 20;
+      int right = left + 18;
+      int bottom = top + 2;
+      Gui.drawRect(left, top, right, bottom, Color.BLACK.getRGB());
     }
-  }
+    {
+      int left = x + 3;
+      int top = y + 20;
+      int levelUpRate = Math.max(1, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_LEVEL_UP_INTERVAL_TICKS);
+      float percentage = ((Short.MAX_VALUE - effect.getDuration()) % levelUpRate) / (float) levelUpRate;
+      int right = (int) Math.max(1, left + (18 * percentage));
+      int bottom = top + 1;
 
-  @SideOnly(Side.CLIENT)
-  private boolean shouldRenderProgressBar(@Nonnull PotionEffect effect) {
-
-//    EntityPlayerSP player = Minecraft.getMinecraft().player;
-//    return effect.getAmplifier() < 2 || !player.getActivePotionMap().containsKey(ModuleTechBasic.Potions.WELL_RESTED);
-    return true;
+      Gui.drawRect(left, top, right, bottom, Color.GREEN.getRGB());
+    }
   }
 
   @Nonnull

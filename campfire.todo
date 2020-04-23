@@ -7,10 +7,12 @@ Bugs:
   Seems fixed. Wasn't able to reliably reproduce. Fixed the campfire effect player tracking event handler to not run on both the client and the server thread simultaneously -- should only run on the server thread.
   ✔ Comfort / Resting doesn't remove effects when the campfire dies @done(20-04-21 18:43)
   Maybe we need an active check in the removal handler.
-  ☐ Standing in range of a campfire long enough will cause the Comfort effect duration to tick down far enough that it is displayed in the GUI.
+  ✔ Standing in range of a campfire long enough will cause the Comfort effect duration to tick down far enough that it is displayed in the GUI. @done(20-04-23 09:08)
   This will likely occur with the Resting III effect as well. Maybe we can periodically refresh the duration of both ambient effects.
-  ☐ Encountered a desync with the resting bar and when it actually applies the effect.
+  Solved by refreshing the comfort effect every 10 seconds.
+  ✔ Encountered a desync with the resting bar and when it actually applies the effect. @done(20-04-23 09:08)
   I encountered this once before and it was solved by using a max value short as the duration instead of a max value integer because during serialization across the network, the duration value is clamped to a short.
+  Solved by refreshing the Resting III each time the bar fills while the player already has Resting III.
 
 Enhancements:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)

@@ -465,7 +465,8 @@ public class TileCampfire
 
             if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT_ENABLED) {
 
-              if (player.getActivePotionEffect(ModuleTechBasic.Potions.COMFORT) == null) {
+              if (player.getActivePotionEffect(ModuleTechBasic.Potions.COMFORT) == null
+                  || this.world.getTotalWorldTime() % 200 == 0) {
                 player.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.COMFORT, Short.MAX_VALUE, 0, true, true));
 
                 if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
