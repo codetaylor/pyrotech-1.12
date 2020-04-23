@@ -86,18 +86,16 @@ Well Rested:
     ✔ absorption, 2 hearts @done(20-04-22 14:13)
 
 Focused:
-  ☐ icon: campfire + experience
-  ☐ duration: custom
-  ☐ duration is used to record remaining XP bonus
-  ☐ uses custom duration string to display remaining XP bonus
+  ✔ icon: campfire + experience @done(20-04-23 15:07)
+  ✔ duration: custom @done(20-04-23 15:07)
   applied when:
-    ☐ player is within range of a campfire
-    ☐ player has stood still for 2 seconds
-    ☐ player has Comfort effect
-    ☐ player has Well Fed effect
-    ☐ player has Resting III effect
-    ☐ player has Well Rested effect
+    ✔ player is within range of a campfire @done(20-04-23 15:07)
+    ✔ player has stood still for N seconds @done(20-04-23 15:07)
+    ✔ player has Comfort effect @done(20-04-23 15:07)
+    ✔ player has Well Fed effect @done(20-04-23 15:07)
+    ✔ player has Resting III effect @done(20-04-23 15:07)
+    ✔ player has Well Rested effect @done(20-04-23 15:07)
   when reapplied:
-    ☐ XP bonus (duration) increases by 5% of the total XP required for the player's current level, up to 150%
+    ✔ XP bonus (duration) increases by 5% of the total XP required for the player's current level, up to 150% @done(20-04-23 15:07)
   effects:
-    ☐ grants 100% more XP when player picks up XP
+    ✔ grants 100% more XP when player picks up XP @done(20-04-23 15:07)

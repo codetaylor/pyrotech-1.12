@@ -114,6 +114,7 @@ public class ModuleTechBasic
     MinecraftForge.EVENT_BUS.register(new CampfireRestingEffectEventHandler());
     MinecraftForge.EVENT_BUS.register(new CampfireWellFedEffectEventHandler());
     MinecraftForge.EVENT_BUS.register(new CampfireFocusEffectEventHandler());
+    MinecraftForge.EVENT_BUS.register(new CampfireEffectDurationFix());
   }
 
   @SideOnly(Side.CLIENT)
