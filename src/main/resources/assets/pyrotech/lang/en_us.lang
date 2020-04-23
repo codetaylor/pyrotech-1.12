@@ -66,10 +66,11 @@ tile.pyrotech.worktable_stone.name=Stone Worktable
 tile.pyrotech.compacting_bin.name=Compacting Bin
 tile.pyrotech.soaking_pot.name=Soaking Pot
 
-pyrotech.effect.comfort=Comfort
+pyrotech.effect.comfort=Comfortable
 pyrotech.effect.well.fed=Well Fed
 pyrotech.effect.resting=Resting
 pyrotech.effect.well.rested=Well Rested
+pyrotech.effect.focused=Focused
 
 #------------------------------------------------------------------------------
 # Module: Tech - Bloomery

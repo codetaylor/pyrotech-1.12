@@ -1210,7 +1210,7 @@ public class ModuleTechBasicConfig {
     public double WELL_FED_EXHAUSTION_MODIFIER = 0.5;
 
     @Config.Comment({
-        "When a stands still long enough with the Resting III effect,",
+        "When a player stands still long enough with the Resting III effect,",
         "they will gain the Well Rested effect. Set to false to disable.",
         "Default: " + true
     })
@@ -1231,5 +1231,36 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeInt(min = 0)
     public int WELL_RESTED_ABSORPTION_HALF_HEARTS = 4;
+
+    @Config.Comment({
+        "When a player stands still long enough with the Resting III effect,",
+        "the Well Rested effect, the Comfort effect, and the Well Fed effect,",
+        "they will gain the Focused effect. Set to false to disable.",
+        "Default: " + true
+    })
+    public boolean FOCUSED_EFFECT_ENABLED = true;
+
+    @Config.Comment({
+        "Maximum XP bonus that a player can accumulate.",
+        "Default: " + 1.5
+    })
+    @Config.RangeDouble(min = 0)
+    public double FOCUSED_MAXIMUM_ACCUMULATED_BONUS = 1.5;
+
+    @Config.Comment({
+        "This defines how much XP bonus is accumulated per cycle. This effect",
+        "cycles at the same rate as the Resting III effect.",
+        "Default: " + 0.05
+    })
+    @Config.RangeDouble(min = 0)
+    public double FOCUSED_ACCUMULATED_BONUS = 0.05;
+
+    @Config.Comment({
+        "Additional XP granted by the XP bonus on collection. The default is",
+        "100% additional XP, so effectively double the XP collected.",
+        "Default: " + 1
+    })
+    @Config.RangeDouble(min = 0)
+    public double FOCUSED_BONUS = 1;
   }
 }

@@ -50,6 +50,8 @@ public final class CampfireRestingEffectEventHandler {
         entity.sendMessage(new TextComponentString(message));
       }
 
+      // Remove the Well Rested effect from the player if they no longer have
+      // any absorption hearts left.
       if (entity instanceof EntityPlayer) {
         EntityPlayer player = (EntityPlayer) entity;
 

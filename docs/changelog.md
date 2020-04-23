@@ -9,15 +9,16 @@
         * `pyrotech.effect.well.fed`
         * `pyrotech.effect.resting`
         * `pyrotech.effect.well.rested`
+        * `pyrotech.effect.focused`
 
   * **Added:**
     * Campfire effects:
-        * Only in range, depends on fuel level
-        * Only at night between 19:00 and 5:00
-        * Added campfire config values:
+        * Added config values:
             * `EFFECTS_START_TIME`
             * `EFFECTS_STOP_TIME`
         * Comfort effect:
+            * Applied when in range of a Campfire
+            * Applied at night between 19:00 and 5:00
             * Increases hunger and saturation restored from eating
             * Allows player to always eat, regardless of hunger level
             * Added config values:
@@ -26,26 +27,36 @@
                 * `COMFORT_SATURATION_MODIFIER`
         * Well Fed effect:
             * Applied by eating while max saturation with the Comfort effect
+            * Applied at night between 19:00 and 5:00
             * Reduces a player's exhaustion for the effect's duration
             * Added config values:
                 * `WELL_FED_EFFECT_ENABLED`
                 * `WELL_FED_DURATION_TICKS`
                 * `WELL_FED_EXHAUSTION_MODIFIER`
         * Resting effect:
+            * Applied when in range of a Campfire
             * Regenerates health slower than the Regeneration effect
             * Increases to Resting II and III by standing still
-            * Increases from Resting III to Well Rested by standing still
             * Added config values:
                 * `RESTING_EFFECT_ENABLED`
                 * `RESTING_REGEN_INTERVAL_TICKS`
                 * `RESTING_REGEN_HALF_HEARTS`
                 * `RESTING_LEVEL_UP_INTERVAL_TICKS`
         * Well Rested effect:
+            * Applied when standing still with Resting III
             * Adds absorption hearts to the player
             * Added config values:
                 * `WELL_RESTED_EFFECT_ENABLED`
                 * `WELL_RESTED_DURATION_TICKS`
                 * `WELL_RESTED_ABSORPTION_HALF_HEARTS`
+        * Focused effect:
+            * Applied when standing still with Comfort, Well Fed, Resting III, and Well Rested
+            * Player gains additional XP while the effect is active
+            * Added config values:
+                * `FOCUSED_EFFECT_ENABLED`
+                * `FOCUSED_MAXIMUM_ACCUMULATED_BONUS`
+                * `FOCUSED_ACCUMULATED_BONUS`
+                * `FOCUSED_BONUS`
 
   * **Changed:**
     * Campfire light level now depends on how much fuel it has

@@ -7,18 +7,18 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.capability.FocusedPlayerData;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.capability.IFocusedPlayerData;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionComfort;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionResting;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionWellFed;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.PotionWellRested;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -107,10 +107,13 @@ public class ModuleTechBasic
       MinecraftForge.EVENT_BUS.register(new RecipeRepeat.RightClickBlockEventHandler());
     }
 
+    CapabilityManager.INSTANCE.register(IFocusedPlayerData.class, new FocusedPlayerData(), FocusedPlayerData::new);
+
     MinecraftForge.EVENT_BUS.register(new CampfireEffectTracker());
     MinecraftForge.EVENT_BUS.register(new CampfireComfortEffectEventHandler());
     MinecraftForge.EVENT_BUS.register(new CampfireRestingEffectEventHandler());
     MinecraftForge.EVENT_BUS.register(new CampfireWellFedEffectEventHandler());
+    MinecraftForge.EVENT_BUS.register(new CampfireFocusEffectEventHandler());
   }
 
   @SideOnly(Side.CLIENT)
@@ -188,11 +191,15 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(PotionWellRested.NAME)
     public static final PotionWellRested WELL_RESTED;
 
+    @GameRegistry.ObjectHolder(PotionFocused.NAME)
+    public static final PotionFocused FOCUSED;
+
     static {
       COMFORT = null;
       RESTING = null;
       WELL_FED = null;
       WELL_RESTED = null;
+      FOCUSED = null;
     }
   }
 

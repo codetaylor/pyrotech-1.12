@@ -3,6 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.potion;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.capability.CapabilityFocused;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.capability.IFocusedPlayerData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.EntityLivingBase;
@@ -103,6 +105,23 @@ public class PotionResting
               ModuleCore.LOGGER.debug(message);
               entity.sendMessage(new TextComponentString(message));
             }
+
+            if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.FOCUSED_EFFECT_ENABLED
+                && entity.getActivePotionMap().containsKey(ModuleTechBasic.Potions.COMFORT)
+                && entity.getActivePotionMap().containsKey(ModuleTechBasic.Potions.WELL_RESTED)
+                && entity.getActivePotionMap().containsKey(ModuleTechBasic.Potions.WELL_FED)) {
+
+              entity.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.FOCUSED, Short.MAX_VALUE, 0, false, true));
+              IFocusedPlayerData focusedCapability = CapabilityFocused.get((EntityPlayer) entity);
+              double toAdd = Math.max(0, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.FOCUSED_ACCUMULATED_BONUS);
+              focusedCapability.setRemainingBonus(focusedCapability.getRemainingBonus() + toAdd);
+
+              if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.DEBUG) {
+                String message = "Added XP bonus: " + toAdd;
+                ModuleCore.LOGGER.debug(message);
+                entity.sendMessage(new TextComponentString(message));
+              }
+            }
           }
         }
       }
@@ -167,7 +186,7 @@ public class PotionResting
         int top = y + 8 + 17;
         int levelUpRate = Math.max(1, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_LEVEL_UP_INTERVAL_TICKS);
         float percentage = ((Short.MAX_VALUE - effect.getDuration()) % levelUpRate) / (float) levelUpRate;
-        int right = (int) Math.max(1, left + (108 * percentage));
+        int right = (int) Math.max(left + 1, left + (108 * percentage));
         int bottom = top + 1;
         Gui.drawRect(left, top, right, bottom, Color.GREEN.getRGB());
       }
@@ -204,7 +223,7 @@ public class PotionResting
       int top = y + 20;
       int levelUpRate = Math.max(1, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_LEVEL_UP_INTERVAL_TICKS);
       float percentage = ((Short.MAX_VALUE - effect.getDuration()) % levelUpRate) / (float) levelUpRate;
-      int right = (int) Math.max(1, left + (18 * percentage));
+      int right = (int) Math.max(left + 1, left + (18 * percentage));
       int bottom = top + 1;
 
       Gui.drawRect(left, top, right, bottom, Color.GREEN.getRGB());
