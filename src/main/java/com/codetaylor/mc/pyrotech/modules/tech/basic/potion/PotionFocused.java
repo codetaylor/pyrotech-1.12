@@ -8,6 +8,8 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -44,6 +46,7 @@ public class PotionFocused
     return duration % 20 == 0;
   }
 
+  @SideOnly(Side.CLIENT)
   @Override
   public void renderInventoryEffect(@Nonnull PotionEffect effect, Gui gui, int x, int y, float z) {
 
@@ -66,6 +69,7 @@ public class PotionFocused
     }
   }
 
+  @SideOnly(Side.CLIENT)
   @Override
   public void renderHUDEffect(@Nonnull PotionEffect effect, Gui gui, int x, int y, float z, float alpha) {
 
