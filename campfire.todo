@@ -21,6 +21,10 @@ Enhancements:
   ✘ Focused effect should use the red / orange / yellow / green colors that the item durability bars use because less is worse. @cancelled(20-04-21 19:15)
   Nope. Any experience bonus that the player has is a good thing. If the player gains a little bit of experience bonus, it's a good thing and shouldn't be rendered red. Red indicates that something you don't want to happen is going to happen. Sure you don't want to run out of experience bonus, but it isn't a bad thing like a tool breaking.
   ✔ Resting effect should use green for the effect bar to indicate that it's a good thing. @done(20-04-21 18:35)
+  ☐ Book info
+  ☐ Docs info
+  ☐ Campfire effect achievement
+  ✔ Test on server @done(20-04-24 12:54)
 
 Comfort:
   ✔ icon: campfire + haunch @done(20-04-20 20:08)
