@@ -1107,7 +1107,7 @@ public class ModuleTechBasicConfig {
         "Set to true to enable debug messages.",
         "Default: " + false
     })
-    public boolean DEBUG = true;
+    public boolean DEBUG = false;
 
     @Config.Comment({
         "The time of day that the campfire effects should start working.",
