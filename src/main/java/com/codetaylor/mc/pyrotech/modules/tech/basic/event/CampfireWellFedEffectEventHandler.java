@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.event;
 
+import com.codetaylor.mc.athenaeum.util.MathConstants;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
@@ -85,7 +86,7 @@ public final class CampfireWellFedEffectEventHandler {
       float saturationLevel = foodStats.getSaturationLevel();
       int duration = Math.max(0, ModuleTechBasicConfig.CAMPFIRE_EFFECTS.WELL_FED_DURATION_TICKS);
 
-      if (duration > 0 && MathHelper.epsilonEquals(saturationLevel, 20)) {
+      if (duration > 0 && Math.abs(saturationLevel - 20) < MathConstants.FLT_EPSILON) {
         entityLiving.addPotionEffect(new PotionEffect(ModuleTechBasic.Potions.WELL_FED, duration, 0, false, true));
       }
     }
