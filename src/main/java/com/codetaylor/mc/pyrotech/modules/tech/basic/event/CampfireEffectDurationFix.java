@@ -7,14 +7,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public final class CampfireEffectDurationFix {
 
-  private boolean applied = false;
-
   @SubscribeEvent
   public void on(TickEvent.PlayerTickEvent event) {
-
-    if (this.applied) {
-      return;
-    }
 
     if (event.player.world.isRemote) {
 
@@ -41,8 +35,6 @@ public final class CampfireEffectDurationFix {
           effect.setPotionDurationMax(true);
         }
       }
-
-      this.applied = true;
     }
   }
 }
