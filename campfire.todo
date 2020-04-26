@@ -13,7 +13,7 @@ Bugs:
   ✔ Encountered a desync with the resting bar and when it actually applies the effect. @done(20-04-23 09:08)
   I encountered this once before and it was solved by using a max value short as the duration instead of a max value integer because during serialization across the network, the duration value is clamped to a short.
   Solved by refreshing the Resting III each time the bar fills while the player already has Resting III.
-  ☐ Loading into a world with a pre-existing max duration effects will show the duration in the inventory screen.
+  ✔ Loading into a world with a pre-existing max duration effects will show the duration in the inventory screen. @done(20-04-24 13:10)
 
 Enhancements:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)
