@@ -16,13 +16,13 @@
       "item": "minecraft:sugar"
     },
     "M": {
-      "type": "pyrotech:fluid",
-      "fluid": "milk"
+      "type": "forge:ore_dict",
+      "ore": "milk"
     }
   },
   "result": {
     "item": "pyrotech:marshmallow",
-    "count": 1,
+    "count": 8,
     "data": 0
   }
 }
