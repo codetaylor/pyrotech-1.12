@@ -136,6 +136,13 @@ public class JsonOreDict {
       result.oreDict.put("blockWool", list.toArray(new String[0]));
     }
 
+    result.oreDict.put("milk", new String[]{
+        "minecraft:milk_bucket",
+        "pyrotech:bucket_wood:1",
+        "pyrotech:bucket_clay:1",
+        "pyrotech:bucket_stone:1"
+    });
+
     return result;
   }
 

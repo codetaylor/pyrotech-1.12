@@ -13,6 +13,8 @@
         * `item.pyrotech.marshmallow.name`
 
   * **Added:**
+    * Oredict:
+        * `milk` now contains `minecraft:milk` and the three milk buckets from Pyrotech
     * Campfire effects:
         * Added config values:
             * `EFFECTS_START_TIME`
