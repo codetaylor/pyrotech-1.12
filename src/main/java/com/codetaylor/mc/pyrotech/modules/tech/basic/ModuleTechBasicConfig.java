@@ -1095,8 +1095,29 @@ public class ModuleTechBasicConfig {
     }
   }
 
+  public static CampfireMarshmallows CAMPFIRE_MARSHMALLOWS = new CampfireMarshmallows();
+
+  public static class CampfireMarshmallows {
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 0)
+    public int MARSHMALLOW_HUNGER = 1;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.05
+    })
+    @Config.RangeDouble(min = 0)
+    public double MARSHMALLOW_SATURATION = 0.05;
+  }
+
   // ---------------------------------------------------------------------------
-  // - Campfire
+  // - Campfire Effects
   // ---------------------------------------------------------------------------
 
   public static CampfireEffects CAMPFIRE_EFFECTS = new CampfireEffects();

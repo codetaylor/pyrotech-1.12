@@ -15,16 +15,102 @@ Bugs:
   Solved by refreshing the Resting III each time the bar fills while the player already has Resting III.
   ✔ Loading into a world with a pre-existing max duration effects will show the duration in the inventory screen. @done(20-04-24 13:10)
 
-Enhancements:
+Tasks:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)
   Using the red / orange / yellow / green color shift would probably indicate that the lower the bar, the worse something is. That's not really the case with the Resting effect as any progress on the bar should be good news to the player. Maybe shift it to green and use the red to green colors with the Focused effect.
   ✘ Focused effect should use the red / orange / yellow / green colors that the item durability bars use because less is worse. @cancelled(20-04-21 19:15)
   Nope. Any experience bonus that the player has is a good thing. If the player gains a little bit of experience bonus, it's a good thing and shouldn't be rendered red. Red indicates that something you don't want to happen is going to happen. Sure you don't want to run out of experience bonus, but it isn't a bad thing like a tool breaking.
   ✔ Resting effect should use green for the effect bar to indicate that it's a good thing. @done(20-04-21 18:35)
-  ☐ Book info
-  ☐ Docs info
-  ☐ Campfire effect achievement
-  ✔ Test on server @done(20-04-24 12:54)
+  ✔ Test campfire effects on server @done(20-04-24 12:54)
+  ☐ Campfire effects book info
+  ☐ Campfire effects docs info
+  ☐ Campfire effects advancement, hidden, have all effects active
+  ☐ Marshmallow book info
+
+Marshmallow:
+  ☐ Art
+  ☐ Lang
+  ☐ Recipe - shapeless: 1 milk and 8 sugar = 8 marshmallows
+  Item:
+    ☐ Edible, always
+    ☐ Short speed boost
+    ☐ Stackable
+  Config:
+    ☐ Hunger / saturation
+    ☐ Speed boost duration
+
+Roasted Marshmallow:
+  ☐ Art
+  ☐ Lang
+  Item:
+    ☐ Edible, always
+    ☐ Speed boost
+    ☐ Tooltip displaying potency
+    ☐ Don't stack due to NBT timestamp
+    NBT:
+      ☐ Cooldown timestamp
+      After the timestamp, the roasted marshmallow loses potency.
+  Config:
+    ☐ Hunger / saturation
+    ☐ Speed boost duration
+    ☐ Cooldown duration
+
+Burned Marshmallow:  
+  ☐ Art
+  ☐ Lang
+  Item:
+    ☐ Edible, always
+    ☐ No hunger / saturation
+    ☐ Very short slow effect
+    ☐ Broadcast message "[player] ate a burned marshmallow, gross!"
+    ☐ Stackable
+  Config:
+    ☐ Slow effect duration
+    ☐ Enable / disable broadcast message
+    ☐ Edit broadcast message
+
+Marshmallow Stick:
+  ☐ Lang
+  ☐ Recipe - ore:stickWood and Flint Shard = Emtpy Marshmallow Stick
+  Art:
+    ☐ Empty
+    ☐ Normal
+    ☐ Roasted
+    ☐ Burned
+  Item:
+    ☐ Durability
+    ☐ Custom model that changes with NBT state
+    ☐ Tooltip displaying potency for roasted state
+    ☐ Don't stack due to NBT and durability
+    Use:
+      ☐ Only roast in range of campfire
+      ☐ Only roast while looking at campfire
+      Only a normal marshmallow on a stick can be used on the campfire. Once roasted or burned, the item will switch to the eat behavior.
+      ☐ Roast / burn speed influenced by the campfire's fuel count
+      ☐ Progress reset when the player stops using
+      ☐ Broadcast message "[player] burned a marshmallow!"
+      ☐ Edible, always - if roasted or burned state
+    NBT:
+      ☐ Three states
+      ☐ Roast and burn timestamps
+      Precalculate the roast timestamps and store them when the player starts using the item. Clear them when the player stops.
+      ☐ Cooldown timestamp
+      After the timestamp, the roasted marshmallow loses potency. Uses the same duration config as the roasted marshmallow.
+  Advancements:
+    ☐ Roast a marshmallow
+    ☐ Hidden: Burn a marshmallow
+    ☐ Hidden: Eat a burned marshmallow
+  Config:
+    ☐ Ticks to roast
+    ☐ Ticks to roast variance +/- random
+    ☐ Ticks to burn from roasted
+    ☐ Ticks to burn from roasted variance +/- random
+    ☐ Enable / disable broadcast message
+    ☐ Edit broadcast message
+    ☐ Stick durability
+    ☐ Stick durability lost per roast
+    ☐ Stick durability lost per burn
+    ☐ Stick durability lost per eat
 
 Comfort:
   ✔ icon: campfire + haunch @done(20-04-20 20:08)

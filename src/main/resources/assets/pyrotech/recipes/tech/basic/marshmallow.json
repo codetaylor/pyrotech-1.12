@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "SSS",
+    "SMS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "M": {
+      "type": "pyrotech:fluid",
+      "fluid": "milk"
+    }
+  },
+  "result": {
+    "item": "pyrotech:marshmallow",
+    "count": 1,
+    "data": 0
+  }
+}

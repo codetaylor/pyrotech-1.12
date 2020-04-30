@@ -12,6 +12,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.capability.IFocusedPlayerDa
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallow;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.*;
@@ -257,8 +258,12 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(ItemTinder.NAME)
     public static final ItemTinder TINDER;
 
+    @GameRegistry.ObjectHolder(ItemMarshmallow.NAME)
+    public static final ItemMarshmallow MARSHMALLOW;
+
     static {
       TINDER = null;
+      MARSHMALLOW = null;
     }
   }
 

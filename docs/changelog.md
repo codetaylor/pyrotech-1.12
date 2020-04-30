@@ -1,7 +1,7 @@
 !!! note "Pyrotech in 1.14.4 and beyond!"
     Hi, I'm Codetaylor, the creator of Pyrotech and I would love to work on moving the mod to more recent versions of Minecraft. If you'd like to see Pyrotech move beyond 1.12.2, [click here to read more about my campaign to make that happen](https://bit.ly/2KaxA3Hd)!
 
-**1.5.0**
+# 1.5.0
 
   * **Translators:**
     * **New Lang Keys:**
@@ -10,6 +10,7 @@
         * `pyrotech.effect.resting`
         * `pyrotech.effect.well.rested`
         * `pyrotech.effect.focused`
+        * `item.pyrotech.marshmallow.name`
 
   * **Added:**
     * Campfire effects:

@@ -53,6 +53,7 @@ tile.pyrotech.faucet_brick.name=Refractory Faucet
 #------------------------------------------------------------------------------
 
 item.pyrotech.tinder.name=Tinder
+item.pyrotech.marshmallow.name=Marshmallow
 
 tile.pyrotech.kiln_pit.name=Pit Kiln
 tile.pyrotech.campfire.name=Campfire
