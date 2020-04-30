@@ -15,6 +15,8 @@
   * **Added:**
     * Oredict:
         * `milk` now contains `minecraft:milk` and the three milk buckets from Pyrotech
+    * Marshmallows:
+        * Short speed effect when eaten, default 1 hunger and 0.05 saturation
     * Campfire effects:
         * Added config values:
             * `EFFECTS_START_TIME`

@@ -1114,6 +1114,13 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble(min = 0)
     public double MARSHMALLOW_SATURATION = 0.05;
+
+    @Config.Comment({
+        "The duration of the marshmallow's speed effect in ticks.",
+        "Set to zero to disable.",
+        "Default: " + (5 * 20)
+    })
+    public int MARSHMALLOW_SPEED_DURATION_TICKS = 5 * 20;
   }
 
   // ---------------------------------------------------------------------------
