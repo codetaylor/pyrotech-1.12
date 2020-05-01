@@ -11,12 +11,16 @@
         * `pyrotech.effect.well.rested`
         * `pyrotech.effect.focused`
         * `item.pyrotech.marshmallow.name`
+        * `item.pyrotech.marshmallow.stick.name`
 
   * **Added:**
     * Oredict:
         * `milk` now contains `minecraft:milk` and the three milk buckets from Pyrotech
+        * `toolSharp` contains swords and axes
     * Marshmallows:
         * Short speed effect when eaten, default 1 hunger and 0.05 saturation
+    * Marshmallow Stick:
+        * Sharpen a stick with a `ore:shard` or `ore:toolSharp`
     * Campfire effects:
         * Added config values:
             * `EFFECTS_START_TIME`

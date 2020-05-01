@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.init;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallow;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallowStick;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -12,11 +13,13 @@ public final class ItemInitializer {
 
   public static final ItemTinder TINDER = new ItemTinder();
   public static final ItemMarshmallow MARSHMALLOW = new ItemMarshmallow();
+  public static final ItemMarshmallowStick MARSHMALLOW_STICK = new ItemMarshmallowStick();
 
   public static void onRegister(Registry registry) {
 
     registry.registerItem(TINDER, ItemTinder.NAME);
     registry.registerItem(MARSHMALLOW, ItemMarshmallow.NAME);
+    registry.registerItem(MARSHMALLOW_STICK, ItemMarshmallowStick.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -26,7 +29,8 @@ public final class ItemInitializer {
 
       ModelRegistrationHelper.registerItemModels(
           ItemInitializer.TINDER,
-          ItemInitializer.MARSHMALLOW
+          ItemInitializer.MARSHMALLOW,
+          ItemInitializer.MARSHMALLOW_STICK
       );
     });
   }

@@ -64,6 +64,24 @@ public class JsonOreDict {
         "pyrotech:obsidian_axe:*"
     });
 
+    result.oreDict.put("toolSharp", new String[]{
+        "minecraft:stone_axe:*",
+        "minecraft:iron_axe:*",
+        "minecraft:golden_axe:*",
+        "minecraft:diamond_axe:*",
+        "pyrotech:crude_axe:*",
+        "pyrotech:flint_axe:*",
+        "pyrotech:bone_axe:*",
+        "pyrotech:obsidian_axe:*",
+        "minecraft:stone_sword:*",
+        "minecraft:iron_sword:*",
+        "minecraft:golden_sword:*",
+        "minecraft:diamond_sword:*",
+        "pyrotech:flint_sword:*",
+        "pyrotech:bone_sword:*",
+        "pyrotech:obsidian_sword:*"
+    });
+
     result.oreDict.put("twine", new String[]{
         "minecraft:string",
         "pyrotech:material:" + ItemMaterial.EnumType.TWINE.getMeta(),

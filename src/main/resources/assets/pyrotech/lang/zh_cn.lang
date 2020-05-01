@@ -54,6 +54,7 @@ tile.pyrotech.faucet_brick.name=Refractory Faucet
 
 item.pyrotech.tinder.name=火绒
 item.pyrotech.marshmallow.name=Marshmallow
+item.pyrotech.marshmallow.stick.name=Marshmallow Stick
 
 tile.pyrotech.kiln_pit.name=坑窑
 tile.pyrotech.campfire.name=篝火

@@ -1,0 +1,22 @@
+{
+  "type": "pyrotech:marshmallow_stick",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.basic"]
+    }
+  ],
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "toolSharp"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  ],
+  "result": {
+    "item": "pyrotech:marshmallow_stick"
+  }
+}
