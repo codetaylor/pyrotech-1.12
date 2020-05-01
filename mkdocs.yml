@@ -14,6 +14,9 @@ pages:
   - Drying Racks: dryingracks.md
   - Worktables: worktables.md
   - Refractory Machines: refractorymachines.md
+- Community Scripts:
+  - Community Scripts: communityscripts.md
+  - Wood:  scripts/wood.md
 - ZenScript:
   - Bellows: zs/bellows.md
   - Bloomery: zs/bloomery.md
