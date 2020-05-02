@@ -13,6 +13,8 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.event.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallow;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallowStick;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallowStickEdible;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.*;
@@ -261,9 +263,17 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(ItemMarshmallow.NAME)
     public static final ItemMarshmallow MARSHMALLOW;
 
+    @GameRegistry.ObjectHolder(ItemMarshmallowStick.NAME)
+    public static final ItemMarshmallowStick MARSHMALLOW_STICK;
+
+    @GameRegistry.ObjectHolder(ItemMarshmallowStickEdible.NAME)
+    public static final ItemMarshmallowStickEdible MARSHMALLOW_STICK_EDIBLE;
+
     static {
       TINDER = null;
       MARSHMALLOW = null;
+      MARSHMALLOW_STICK = null;
+      MARSHMALLOW_STICK_EDIBLE = null;
     }
   }
 

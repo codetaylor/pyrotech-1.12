@@ -1,0 +1,9 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "pyrotech:items/marshmallow_stick"
+  },
+  "overrides": [
+    {"predicate": {"pyrotech:marshmallow_type": 0}, "model": "pyrotech:item/marshmallow_on_stick"}
+  ]
+}
