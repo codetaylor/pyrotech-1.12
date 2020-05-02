@@ -1,5 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.core;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.PyrotechAPI;
 import com.codetaylor.mc.pyrotech.modules.core.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
@@ -97,7 +99,16 @@ public class ModuleCoreConfig {
         String toMatch = split[0];
 
         if (resourceLocationString.equals(toMatch)) {
-          return (split.length > 1) ? Integer.valueOf(split[1]) : 0;
+          return (split.length > 1) ? Integer.parseInt(split[1]) : 0;
+        }
+      }
+
+      for (String entry : ModPyrotech.API_INTERNAL.HAMMERS) {
+        String[] split = entry.split(";");
+        String toMatch = split[0];
+
+        if (resourceLocationString.equals(toMatch)) {
+          return (split.length > 1) ? Integer.parseInt(split[1]) : 0;
         }
       }
 

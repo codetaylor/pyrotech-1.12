@@ -79,6 +79,17 @@
 
 ---
 
+**1.4.27**
+
+  * **API**
+    * Bumped version to 2
+    * Added `PyrotechAPI.registerHammer(Item, int)`
+    
+  * **Fixed:**
+    * Ghost Image of the Reinforced Shelf model shows missing textures on the side [(#300)](https://github.com/codetaylor/pyrotech/issues/300)
+
+---
+
 **1.4.26**
 
   * **Fixed:**

@@ -2,6 +2,8 @@ package com.codetaylor.mc.pyrotech;
 
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.module.ModuleManager;
+import com.codetaylor.mc.athenaeum.util.Injector;
+import com.codetaylor.mc.pyrotech.api.PyrotechAPI_Internal;
 import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCorePost;
@@ -38,6 +40,8 @@ public class ModPyrotech {
   public static final String VERSION = Reference.VERSION;
   public static final String NAME = Reference.NAME;
 
+  public static final PyrotechAPI_Internal API_INTERNAL = new PyrotechAPI_Internal();
+
   @SuppressWarnings("unused")
   @Mod.Instance
   public static ModPyrotech INSTANCE;
@@ -70,6 +74,9 @@ public class ModPyrotech {
   public ModPyrotech() {
 
     this.moduleManager = new ModuleManager(MOD_ID);
+
+    Injector injector = new Injector();
+    injector.inject(PyrotechAPI.class, "API", API_INTERNAL);
   }
 
   @Mod.EventHandler
