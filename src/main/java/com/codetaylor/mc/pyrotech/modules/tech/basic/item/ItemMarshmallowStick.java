@@ -128,11 +128,13 @@ public class ItemMarshmallowStick
 
           case MARSHMALLOW_ROASTED:
             player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_ROASTED));
+            ItemMarshmallowStick.setType(EnumType.EMPTY, itemMainHand);
             this.setCooldownOnMarshmallows(player);
             return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
 
           case MARSHMALLOW:
             player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW));
+            ItemMarshmallowStick.setType(EnumType.EMPTY, itemMainHand);
             this.setCooldownOnMarshmallows(player);
             return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
 
