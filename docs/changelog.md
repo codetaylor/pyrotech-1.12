@@ -12,6 +12,7 @@
         * `pyrotech.effect.focused`
         * `item.pyrotech.marshmallow.name`
         * `item.pyrotech.marshmallow.stick.name`
+        * `item.pyrotech.marshmallow.on.stick.name`
 
   * **Added:**
     * Oredict:
