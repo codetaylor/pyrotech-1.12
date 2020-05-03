@@ -1121,6 +1121,44 @@ public class ModuleTechBasicConfig {
         "Default: " + (5 * 20)
     })
     public int MARSHMALLOW_SPEED_DURATION_TICKS = 5 * 20;
+
+    @Config.Comment({
+        "The max duration of the marshmallow's stacked speed effect in ticks.",
+        "Set to zero to disable.",
+        "Default: " + (5 * 20)
+    })
+    public int MAX_MARSHMALLOW_SPEED_DURATION_TICKS = 5 * 20;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 2
+    })
+    @Config.RangeInt(min = 0)
+    public int ROASTED_MARSHMALLOW_HUNGER = 2;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.1
+    })
+    @Config.RangeDouble(min = 0)
+    public double ROASTED_MARSHMALLOW_SATURATION = 0.1;
+
+    @Config.Comment({
+        "The duration of the marshmallow's speed effect in ticks.",
+        "Set to zero to disable.",
+        "Default: " + (25 * 20)
+    })
+    public int ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS = 25 * 20;
+
+
+    @Config.Comment({
+        "The max duration of the marshmallow's stacked speed effect in ticks.",
+        "Set to zero to disable.",
+        "Default: " + (5 * 60 * 20)
+    })
+    public int MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS = 5 * 60 * 20;
   }
 
   // ---------------------------------------------------------------------------

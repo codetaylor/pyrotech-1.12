@@ -107,16 +107,14 @@ public class ItemMarshmallowStick
             if (itemOffhand.getCount() < itemOffhand.getMaxStackSize()) {
               player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW, itemOffhand.getCount() + 1));
               ItemMarshmallowStick.setType(EnumType.EMPTY, itemMainHand);
-              player.getCooldownTracker().setCooldown(this, 10);
-              player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW, 10);
+              this.setCooldownOnMarshmallows(player);
               return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
             }
 
           case EMPTY:
             itemOffhand.shrink(1);
             ItemMarshmallowStick.setType(ItemMarshmallowStick.EnumType.MARSHMALLOW, itemMainHand);
-            player.getCooldownTracker().setCooldown(this, 10);
-            player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW, 10);
+            this.setCooldownOnMarshmallows(player);
             return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
 
           default:
@@ -129,12 +127,13 @@ public class ItemMarshmallowStick
             // TODO: remove burned marshmallow
 
           case MARSHMALLOW_ROASTED:
-            // TODO: remove roasted marshmallow
+            player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_ROASTED));
+            this.setCooldownOnMarshmallows(player);
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
 
           case MARSHMALLOW:
-            player.getCooldownTracker().setCooldown(this, 10);
-            player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW, 10);
             player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW));
+            this.setCooldownOnMarshmallows(player);
             return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
 
           case EMPTY:
@@ -144,5 +143,12 @@ public class ItemMarshmallowStick
     }
 
     return super.onItemRightClick(world, player, hand);
+  }
+
+  private void setCooldownOnMarshmallows(EntityPlayer player) {
+
+    player.getCooldownTracker().setCooldown(this, 10);
+    player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW, 10);
+    player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW_ROASTED, 10);
   }
 }

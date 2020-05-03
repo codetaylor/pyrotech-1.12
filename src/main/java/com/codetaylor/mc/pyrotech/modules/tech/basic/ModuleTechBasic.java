@@ -262,6 +262,9 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(ItemMarshmallow.NAME)
     public static final ItemMarshmallow MARSHMALLOW;
 
+    @GameRegistry.ObjectHolder(ItemMarshmallow.NAME_ROASTED)
+    public static final ItemMarshmallow MARSHMALLOW_ROASTED;
+
     @GameRegistry.ObjectHolder(ItemMarshmallowStick.NAME)
     public static final ItemMarshmallowStick MARSHMALLOW_STICK;
 
@@ -269,6 +272,7 @@ public class ModuleTechBasic
       TINDER = null;
       MARSHMALLOW = null;
       MARSHMALLOW_STICK = null;
+      MARSHMALLOW_ROASTED = null;
     }
   }
 

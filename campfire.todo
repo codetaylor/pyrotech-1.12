@@ -70,8 +70,9 @@ Burned Marshmallow:
     ☐ Edit broadcast message
 
 Marshmallow Stick:
-  ☐ Langr
-  ☐ Recipe - ore:stickWood and Flint Shard = Emtpy Marshmallow Stick
+  ☐ Lang
+  ✔ Recipe - ore:stickWood and Flint Shard = Emtpy Marshmallow Stick @done(20-05-03 10:38)
+  Changed to use the oredict `toolSharp` instead damaging the tool used.
   Art:
     ✔ Empty @done(20-05-03 09:30)
     ✔ Normal @done(20-05-03 09:30)
@@ -80,6 +81,7 @@ Marshmallow Stick:
   Item:
     ☐ Durability
     ☐ Custom model that changes with NBT state
+    This can be done with item property overrides.
     ☐ Tooltip displaying potency for roasted state
     ☐ Don't stack due to NBT and durability
     Use:
