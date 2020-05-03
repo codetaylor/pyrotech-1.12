@@ -28,9 +28,9 @@ Tasks:
   ☐ Marshmallow book info
 
 Marshmallow:
-  ☐ Art
-  ☐ Lang
-  ☐ Recipe - shapeless: 1 milk and 8 sugar = 8 marshmallows
+  ✔ Art @done(20-05-03 09:10)
+  ✔ Lang @done(20-05-03 09:10)
+  ✔ Recipe - shapeless: 1 milk and 8 sugar = 8 marshmallows @done(20-05-03 09:10)
   Item:
     ☐ Edible, always
     ☐ Short speed boost
@@ -70,11 +70,11 @@ Burned Marshmallow:
     ☐ Edit broadcast message
 
 Marshmallow Stick:
-  ☐ Lang
+  ☐ Langr
   ☐ Recipe - ore:stickWood and Flint Shard = Emtpy Marshmallow Stick
   Art:
-    ☐ Empty
-    ☐ Normal
+    ✔ Empty @done(20-05-03 09:30)
+    ✔ Normal @done(20-05-03 09:30)
     ☐ Roasted
     ☐ Burned
   Item:
@@ -89,13 +89,14 @@ Marshmallow Stick:
       ☐ Roast / burn speed influenced by the campfire's fuel count
       ☐ Progress reset when the player stops using
       ☐ Broadcast message "[player] burned a marshmallow!"
-      ☐ Edible, always - if roasted or burned state
+      ✘ Edible, always - if roasted or burned state @cancelled(20-05-03 09:58)
+      This will conflict with the always edible effect a player gets from the campfire. There are ways around it, but I think that this is also going to simplify other interactions, ie. how does the player assert whether they want to eat the marshmallow off of the stick or remove it with their empty hand. This would involve adding key combos, and it's just easier not to.
     NBT:
       ☐ Three states
       ☐ Roast and burn timestamps
       Precalculate the roast timestamps and store them when the player starts using the item. Clear them when the player stops.
       ☐ Cooldown timestamp
-      After the timestamp, the roasted marshmallow loses potency. Uses the same duration config as the roasted marshmallow.
+      This timestamp is transferred to the marshmallow item when it is removed from the stick.
   Advancements:
     ☐ Roast a marshmallow
     ☐ Hidden: Burn a marshmallow

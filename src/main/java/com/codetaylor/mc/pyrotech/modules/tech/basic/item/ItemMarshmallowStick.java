@@ -2,34 +2,95 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.item;
 
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 
 public class ItemMarshmallowStick
     extends Item {
 
   public static final String NAME = "marshmallow_stick";
 
+  public enum EnumType {
+    EMPTY(0), MARSHMALLOW(1), MARSHMALLOW_ROASTED(2), MARSHMALLOW_BURNED(3);
+
+    private static final Int2ObjectMap<EnumType> TYPES = new Int2ObjectOpenHashMap<>(EnumType.values().length);
+
+    static {
+      Arrays.stream(EnumType.values()).forEach(enumType -> TYPES.put(enumType.id, enumType));
+    }
+
+    public static EnumType from(int id) {
+
+      return TYPES.get(id);
+    }
+
+    private final int id;
+
+    EnumType(int id) {
+
+      this.id = id;
+    }
+  }
+
   public ItemMarshmallowStick() {
 
     this.setMaxStackSize(1);
     this.setMaxDamage(8);
+
+    this.addPropertyOverride(
+        new ResourceLocation(ModuleTechBasic.MOD_ID, "marshmallow_type"),
+        (itemStack, world, entity) -> ItemMarshmallowStick.getType(itemStack).id
+    );
+  }
+
+  @Nonnull
+  @Override
+  public String getUnlocalizedName(ItemStack stack) {
+
+    EnumType type = ItemMarshmallowStick.getType(stack);
+
+    if (type == EnumType.MARSHMALLOW) {
+      return "item.pyrotech.marshmallow.on.stick";
+
+    } else if (type == EnumType.MARSHMALLOW_BURNED) {
+      return "item.pyrotech.marshmallow.on.stick.burned";
+
+    } else if (type == EnumType.MARSHMALLOW_ROASTED) {
+      return "item.pyrotech.marshmallow.on.stick.roasted";
+    }
+
+    return super.getUnlocalizedName(stack);
+  }
+
+  public static void setType(EnumType type, ItemStack itemStack) {
+
+    NBTTagCompound tag = StackHelper.getTagSafe(itemStack);
+    tag.setInteger("MarshmallowType", type.id);
+    itemStack.setTagCompound(tag);
+  }
+
+  public static EnumType getType(ItemStack itemStack) {
+
+    NBTTagCompound tag = StackHelper.getTagSafe(itemStack);
+    return EnumType.from(tag.getInteger("MarshmallowType"));
   }
 
   @Nonnull
   @Override
   public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
-
-    // If the player is holding a marshmallow stick in their main hand, we want
-    // to check if they're holding a marshmallow in their offhand and apply that
-    // marshmallow to the stick if they are.
 
     if (hand == EnumHand.MAIN_HAND) {
       ItemStack itemMainHand = player.getHeldItemMainhand();
@@ -37,18 +98,48 @@ public class ItemMarshmallowStick
 
       if (itemOffhand.getItem() == ModuleTechBasic.Items.MARSHMALLOW) {
 
-        if (!world.isRemote) {
-          itemOffhand.shrink(1);
+        switch (ItemMarshmallowStick.getType(itemMainHand)) {
+          case MARSHMALLOW_BURNED:
+          case MARSHMALLOW_ROASTED:
+            break;
 
-          ItemStack newItemStack = new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK_EDIBLE);
-          ItemMarshmallowStickEdible.setType(ItemMarshmallowStickEdible.EnumType.MARSHMALLOW, newItemStack);
+          case MARSHMALLOW:
+            if (itemOffhand.getCount() < itemOffhand.getMaxStackSize()) {
+              player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW, itemOffhand.getCount() + 1));
+              ItemMarshmallowStick.setType(EnumType.EMPTY, itemMainHand);
+              player.getCooldownTracker().setCooldown(this, 10);
+              player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW, 10);
+              return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
+            }
 
-          if (itemMainHand.getCount() > 1) {
-            itemMainHand.shrink(1);
-            StackHelper.addToInventoryOrSpawn(world, player, newItemStack, player.getPosition(), 0.5, false, true);
-          }
+          case EMPTY:
+            itemOffhand.shrink(1);
+            ItemMarshmallowStick.setType(ItemMarshmallowStick.EnumType.MARSHMALLOW, itemMainHand);
+            player.getCooldownTracker().setCooldown(this, 10);
+            player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW, 10);
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
+
+          default:
         }
-        return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
+
+      } else if (itemOffhand.isEmpty()) {
+
+        switch (ItemMarshmallowStick.getType(itemMainHand)) {
+          case MARSHMALLOW_BURNED:
+            // TODO: remove burned marshmallow
+
+          case MARSHMALLOW_ROASTED:
+            // TODO: remove roasted marshmallow
+
+          case MARSHMALLOW:
+            player.getCooldownTracker().setCooldown(this, 10);
+            player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW, 10);
+            player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW));
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
+
+          case EMPTY:
+          default:
+        }
       }
     }
 

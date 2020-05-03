@@ -1,7 +1,6 @@
 {
   "parent": "pyrotech:item/marshmallow_stick",
   "textures": {
-    "layer0": "pyrotech:items/marshmallow_on_stick",
-    "particle": "pyrotech:items/marshmallow"
+    "layer0": "pyrotech:items/marshmallow_on_stick"
   }
 }
