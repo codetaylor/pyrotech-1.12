@@ -29,13 +29,13 @@ public class ItemMarshmallowRoasted
   }
 
   @Override
-  protected int getSpeedDurationTicks() {
+  protected int getEffectDurationTicks() {
 
     return ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS;
   }
 
   @Override
-  protected int getMaxSpeedDurationTicks() {
+  protected int getMaxEffectDurationTicks() {
 
     return ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS;
   }

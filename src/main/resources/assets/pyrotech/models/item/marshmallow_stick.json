@@ -4,6 +4,8 @@
     "layer0": "pyrotech:items/marshmallow_stick"
   },
   "overrides": [
-    {"predicate": {"pyrotech:marshmallow_type": 1}, "model": "pyrotech:item/marshmallow_on_stick"}
+    {"predicate": {"pyrotech:marshmallow_type": 1}, "model": "pyrotech:item/marshmallow_on_stick"},
+    {"predicate": {"pyrotech:marshmallow_type": 2}, "model": "pyrotech:item/marshmallow_roasted_on_stick"},
+    {"predicate": {"pyrotech:marshmallow_type": 3}, "model": "pyrotech:item/marshmallow_burned_on_stick"}
   ]
 }

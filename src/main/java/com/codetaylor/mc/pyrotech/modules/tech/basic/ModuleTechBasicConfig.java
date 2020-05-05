@@ -1100,6 +1100,12 @@ public class ModuleTechBasicConfig {
   public static class CampfireMarshmallows {
 
     @Config.Comment({
+        "The number of times marshmallows can be roasted before the stick breaks.",
+        "Default: " + 8
+    })
+    public int MARSHMALLOW_STICK_DURABILITY = 8;
+
+    @Config.Comment({
         "The amount of hunger healed by eating.",
         "For reference, the vanilla apple restores 4 hunger.",
         "Default: " + 1
@@ -1159,6 +1165,29 @@ public class ModuleTechBasicConfig {
         "Default: " + (5 * 60 * 20)
     })
     public int MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS = 5 * 60 * 20;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 0)
+    public int BURNED_MARSHMALLOW_HUNGER = 1;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.01
+    })
+    @Config.RangeDouble(min = 0)
+    public double BURNED_MARSHMALLOW_SATURATION = 0.01;
+
+    @Config.Comment({
+        "The duration of the marshmallow's slow effect in ticks.",
+        "Set to zero to disable.",
+        "Default: " + (5 * 20)
+    })
+    public int BURNED_MARSHMALLOW_SPEED_DURATION_TICKS = 5 * 20;
   }
 
   // ---------------------------------------------------------------------------

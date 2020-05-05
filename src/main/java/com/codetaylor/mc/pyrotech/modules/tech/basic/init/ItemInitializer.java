@@ -2,12 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallow;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallowRoasted;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallowStick;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
-import net.minecraft.item.Item;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.item.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -18,13 +13,15 @@ public final class ItemInitializer {
   public static final ItemMarshmallow MARSHMALLOW = new ItemMarshmallow();
   public static final ItemMarshmallowRoasted MARSHMALLOW_ROASTED = new ItemMarshmallowRoasted();
   public static final ItemMarshmallowStick MARSHMALLOW_STICK = new ItemMarshmallowStick();
+  public static final ItemMarshmallowBurned MARSHMALLOW_BURNED = new ItemMarshmallowBurned();
 
   public static void onRegister(Registry registry) {
 
     registry.registerItem(TINDER, ItemTinder.NAME);
     registry.registerItem(MARSHMALLOW, ItemMarshmallow.NAME);
-    registry.registerItem(MARSHMALLOW_ROASTED, ItemMarshmallow.NAME_ROASTED);
+    registry.registerItem(MARSHMALLOW_ROASTED, ItemMarshmallowRoasted.NAME);
     registry.registerItem(MARSHMALLOW_STICK, ItemMarshmallowStick.NAME);
+    registry.registerItem(MARSHMALLOW_BURNED, ItemMarshmallowBurned.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -36,7 +33,8 @@ public final class ItemInitializer {
           ItemInitializer.TINDER,
           ItemInitializer.MARSHMALLOW,
           ItemInitializer.MARSHMALLOW_STICK,
-          ItemInitializer.MARSHMALLOW_ROASTED
+          ItemInitializer.MARSHMALLOW_ROASTED,
+          ItemInitializer.MARSHMALLOW_BURNED
       );
     });
   }

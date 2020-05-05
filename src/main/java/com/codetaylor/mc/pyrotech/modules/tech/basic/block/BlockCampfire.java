@@ -10,6 +10,7 @@ import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleLava;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallowStick;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -266,6 +267,23 @@ public class BlockCampfire
     ItemStack heldItem = player.getHeldItemMainhand();
 
     if (heldItem.getItem() instanceof ItemIgniterBase) {
+      return false;
+    }
+
+    if (hand == EnumHand.MAIN_HAND && heldItem.getItem() instanceof ItemMarshmallowStick) {
+
+//      ItemMarshmallowStick.EnumType type = ItemMarshmallowStick.getType(heldItem);
+//
+//      if (type == ItemMarshmallowStick.EnumType.MARSHMALLOW
+//          || type == ItemMarshmallowStick.EnumType.MARSHMALLOW_ROASTED
+//          || type == ItemMarshmallowStick.EnumType.MARSHMALLOW_BURNED) {
+//        return false;
+//      }
+//
+//      if (type == ItemMarshmallowStick.EnumType.EMPTY
+//          && player.getHeldItemOffhand().getItem() == ModuleTechBasic.Items.MARSHMALLOW) {
+//        return false;
+//      }
       return false;
     }
 

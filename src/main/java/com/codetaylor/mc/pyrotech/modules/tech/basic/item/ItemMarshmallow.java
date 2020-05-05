@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
@@ -16,12 +17,11 @@ public class ItemMarshmallow
     extends ItemFood {
 
   public static final String NAME = "marshmallow";
-  public static final String NAME_ROASTED = "marshmallow_roasted";
-  public static final String NAME_BURNED = "marshmallow_burned";
 
   public ItemMarshmallow() {
 
     super(ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MARSHMALLOW_HUNGER, (float) ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MARSHMALLOW_SATURATION, false);
+    this.setAlwaysEdible();
   }
 
   public ItemMarshmallow(int amount, float saturation, boolean isWolfFood) {
@@ -41,12 +41,12 @@ public class ItemMarshmallow
     return (float) ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MARSHMALLOW_SATURATION;
   }
 
-  protected int getSpeedDurationTicks() {
+  protected int getEffectDurationTicks() {
 
     return ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MARSHMALLOW_SPEED_DURATION_TICKS;
   }
 
-  protected int getMaxSpeedDurationTicks() {
+  protected int getMaxEffectDurationTicks() {
 
     return ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MAX_MARSHMALLOW_SPEED_DURATION_TICKS;
   }
@@ -55,17 +55,17 @@ public class ItemMarshmallow
   @Override
   public ItemStack onItemUseFinish(ItemStack stack, @Nonnull World world, EntityLivingBase entityLiving) {
 
-    if (this.getSpeedDurationTicks() > 0) {
+    if (this.getEffectDurationTicks() > 0) {
 
-      int duration = this.getSpeedDurationTicks();
+      int duration = this.getEffectDurationTicks();
 
-      PotionEffect activePotionEffect = entityLiving.getActivePotionEffect(MobEffects.SPEED);
+      PotionEffect activePotionEffect = entityLiving.getActivePotionEffect(this.getEffect());
 
-      if (activePotionEffect != null) {
-        duration = Math.min(this.getMaxSpeedDurationTicks(), duration + activePotionEffect.getDuration());
+      if (this.stackEffect() && activePotionEffect != null) {
+        duration = Math.min(this.getMaxEffectDurationTicks(), duration + activePotionEffect.getDuration());
       }
 
-      entityLiving.addPotionEffect(new PotionEffect(MobEffects.SPEED, duration));
+      entityLiving.addPotionEffect(new PotionEffect(this.getEffect(), duration));
     }
 
     if (entityLiving instanceof EntityPlayer) {
@@ -73,6 +73,16 @@ public class ItemMarshmallow
     }
 
     return super.onItemUseFinish(stack, world, entityLiving);
+  }
+
+  protected Potion getEffect() {
+
+    return MobEffects.SPEED;
+  }
+
+  protected boolean stackEffect() {
+
+    return true;
   }
 
   protected void setCooldownOnMarshmallows(EntityPlayer player) {

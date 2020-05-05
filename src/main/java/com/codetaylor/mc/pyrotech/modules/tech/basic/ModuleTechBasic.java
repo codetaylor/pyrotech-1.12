@@ -12,9 +12,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.capability.IFocusedPlayerDa
 import com.codetaylor.mc.pyrotech.modules.tech.basic.event.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.*;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallow;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallowStick;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemTinder;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.item.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.potion.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.*;
 import net.minecraft.creativetab.CreativeTabs;
@@ -262,8 +260,11 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(ItemMarshmallow.NAME)
     public static final ItemMarshmallow MARSHMALLOW;
 
-    @GameRegistry.ObjectHolder(ItemMarshmallow.NAME_ROASTED)
+    @GameRegistry.ObjectHolder(ItemMarshmallowRoasted.NAME)
     public static final ItemMarshmallow MARSHMALLOW_ROASTED;
+
+    @GameRegistry.ObjectHolder(ItemMarshmallowBurned.NAME)
+    public static final ItemMarshmallow MARSHMALLOW_BURNED;
 
     @GameRegistry.ObjectHolder(ItemMarshmallowStick.NAME)
     public static final ItemMarshmallowStick MARSHMALLOW_STICK;
@@ -273,6 +274,7 @@ public class ModuleTechBasic
       MARSHMALLOW = null;
       MARSHMALLOW_STICK = null;
       MARSHMALLOW_ROASTED = null;
+      MARSHMALLOW_BURNED = null;
     }
   }
 
