@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
@@ -13,15 +12,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
 
 public abstract class PotionCampfireBase
     extends Potion {
 
-  public PotionCampfireBase(boolean isBadEffectIn, int liquidColorIn) {
+  public PotionCampfireBase(int liquidColor) {
 
-    super(isBadEffectIn, liquidColorIn);
+    super(false, liquidColor);
+    this.setBeneficial();
   }
 
   protected abstract ResourceLocation getTexture();

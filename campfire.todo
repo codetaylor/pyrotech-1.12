@@ -14,7 +14,8 @@ Bugs:
   I encountered this once before and it was solved by using a max value short as the duration instead of a max value integer because during serialization across the network, the duration value is clamped to a short.
   Solved by refreshing the Resting III each time the bar fills while the player already has Resting III.
   ✔ Loading into a world with a pre-existing max duration effects will show the duration in the inventory screen. @done(20-04-24 13:10)
-  ☐ It looks like the campfire effects are lower than some effects on the HUD. Is this because they are marked as bad effects?
+  ✔ It looks like the campfire effects are lower than some effects on the HUD. Is this because they are marked as bad effects? @done(20-05-08 11:53)
+  Fixed by calling setBeneficial() on the potions.
   ☐ If the stick is roasted and my hand is empty, I expect to be able to remove the roasted treat and eat it while looking at the campfire.
 
 Tasks:

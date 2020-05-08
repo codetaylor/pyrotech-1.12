@@ -20,7 +20,7 @@ public class PotionWellRested
 
   public PotionWellRested() {
 
-    super(false, Color.BLACK.getRGB());
+    super(Color.BLACK.getRGB());
   }
 
   @Override

@@ -40,7 +40,7 @@ public class PotionResting
 
   public PotionResting() {
 
-    super(false, Color.BLACK.getRGB());
+    super(Color.BLACK.getRGB());
   }
 
   @Override

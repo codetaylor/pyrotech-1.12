@@ -25,7 +25,7 @@ public class PotionFocused
 
   public PotionFocused() {
 
-    super(false, Color.BLACK.getRGB());
+    super(Color.BLACK.getRGB());
   }
 
   @Override

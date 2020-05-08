@@ -16,7 +16,7 @@ public class PotionWellFed
 
   public PotionWellFed() {
 
-    super(false, Color.BLACK.getRGB());
+    super(Color.BLACK.getRGB());
   }
 
   @Override
