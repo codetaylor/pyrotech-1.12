@@ -311,12 +311,13 @@ public class ItemMarshmallowStick
 
       if (player.isSneaking()) {
         // Try removing a marshmallow from the stick.
+        EnumType type = ItemMarshmallowStick.getType(itemMainHand);
 
         if (itemOffhand.getItem() == ModuleTechBasic.Items.MARSHMALLOW) {
 
           // If the player is holding marshmallows in their offhand,
           // remove the stick's marshmallow and add it to the offhand stack.
-          if (ItemMarshmallowStick.getType(itemMainHand) == EnumType.MARSHMALLOW
+          if (type == EnumType.MARSHMALLOW
               && itemOffhand.getCount() < itemOffhand.getMaxStackSize()) {
             player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW, itemOffhand.getCount() + 1));
             ItemStack newItemStack = new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY, 1, itemOffhand.getItemDamage());
@@ -327,12 +328,14 @@ public class ItemMarshmallowStick
         } else if (itemOffhand.isEmpty()) {
 
           // Remove any marshmallow from the stick.
-          switch (ItemMarshmallowStick.getType(itemMainHand)) {
+          switch (type) {
             case MARSHMALLOW_BURNED:
               player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_BURNED));
+              break;
 
             case MARSHMALLOW_ROASTED:
               player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_ROASTED));
+              break;
 
             case MARSHMALLOW:
               player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW));
