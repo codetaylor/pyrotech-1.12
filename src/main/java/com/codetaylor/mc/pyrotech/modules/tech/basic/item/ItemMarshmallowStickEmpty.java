@@ -70,6 +70,7 @@ public class ItemMarshmallowStickEmpty
 
   private void setCooldownOnMarshmallows(EntityPlayer player) {
 
+    player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW_STICK, 10);
     player.getCooldownTracker().setCooldown(this, 10);
     player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW, 10);
     player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW_ROASTED, 10);
