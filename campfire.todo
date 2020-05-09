@@ -110,7 +110,8 @@ Marshmallow Stick:
         This would force the player to learn how to put the marshmallow on the stick to use the mechanic and also teach them about how to remove the marshmallow.
         ✔ Shift + click to remove a marshmallow from the stick @done(20-05-08 18:38)
         ☐ Finish eating should return empty stick or break depending on durability
-        ☐ Bug: using a roasted stick on a campfire renders the stick unedible
+        ✔ Bug: using a roasted stick on a campfire renders the stick unedible @done(20-05-08 18:56)
+        ☐ Bug: taking off a roasted marshmallow gives a normal one
     NBT:
       ✔ Three states @done(20-05-04 17:07)
       ✔ Roast and burn timestamps @done(20-05-04 17:07)

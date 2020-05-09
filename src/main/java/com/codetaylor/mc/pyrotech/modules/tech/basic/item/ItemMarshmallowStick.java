@@ -250,44 +250,46 @@ public class ItemMarshmallowStick
       //
       // We can check for the roasted timestamp that we will apply in the future
       // to the stopped using method.
+      if (ItemMarshmallowStick.getRoastedAtTimestamp(itemMainHand) == 0) {
 
-      // ray trace result can be null
-      //noinspection ConstantConditions
-      if (rayTraceResult != null
-          && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-          && this.isRoastingBlock(world, rayTraceResult.getBlockPos())) {
+        // ray trace result can be null
+        //noinspection ConstantConditions
+        if (rayTraceResult != null
+            && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
+            && this.isRoastingBlock(world, rayTraceResult.getBlockPos())) {
 
-        // TODO: Setting the NBT data here is causing an item reset and interrupting the use cycle.
-        // When we set the NBT later, set it to roasted, it will interrupt the roasting process and
-        // never let the marshmallow burn.
-        if (!world.isRemote && ItemMarshmallowStick.getRoastByTimestamp(itemMainHand) == Long.MAX_VALUE) {
+          // TODO: Setting the NBT data here is causing an item reset and interrupting the use cycle.
+          // When we set the NBT later, set it to roasted, it will interrupt the roasting process and
+          // never let the marshmallow burn.
+          if (!world.isRemote && ItemMarshmallowStick.getRoastByTimestamp(itemMainHand) == Long.MAX_VALUE) {
 
-          // TODO: timestamp, config these magic numbers
+            // TODO: timestamp, config these magic numbers
 
-          int roastDuration = 5 * 20;
-          float roastVariance = 0.2f;
-          roastDuration = Math.max(0, (int) (roastDuration - roastDuration * roastVariance));
+            int roastDuration = 5 * 20;
+            float roastVariance = 0.2f;
+            roastDuration = Math.max(0, (int) (roastDuration - roastDuration * roastVariance));
 
-          long timestamp = world.getTotalWorldTime() + roastDuration;
-          ItemMarshmallowStick.setRoastByTimestamp(itemMainHand, timestamp);
-          ModuleTechBasic.PACKET_SERVICE.sendToAll(new SCPacketMarshmallowStickTimestamp(player, timestamp));
-        }
-
-        player.setActiveHand(hand);
-
-        if (world.isRemote) {
-
-          try {
-            // This will prevent the client from using the initial duration set before
-            // the packet arrives indicating that we're actually roasting.
-            entityLivingBase$activeItemStackUseCountSetter.invokeExact((EntityLivingBase) player, ROASTING_DURATION);
-
-          } catch (Throwable t) {
-            throw new RuntimeException("Error setting activeItemStackUseCount", t);
+            long timestamp = world.getTotalWorldTime() + roastDuration;
+            ItemMarshmallowStick.setRoastByTimestamp(itemMainHand, timestamp);
+            ModuleTechBasic.PACKET_SERVICE.sendToAll(new SCPacketMarshmallowStickTimestamp(player, timestamp));
           }
-        }
 
-        return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
+          player.setActiveHand(hand);
+
+          if (world.isRemote) {
+
+            try {
+              // This will prevent the client from using the initial duration set before
+              // the packet arrives indicating that we're actually roasting.
+              entityLivingBase$activeItemStackUseCountSetter.invokeExact((EntityLivingBase) player, ROASTING_DURATION);
+
+            } catch (Throwable t) {
+              throw new RuntimeException("Error setting activeItemStackUseCount", t);
+            }
+          }
+
+          return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
+        }
       }
 
       // -----------------------------------------------------------------------
