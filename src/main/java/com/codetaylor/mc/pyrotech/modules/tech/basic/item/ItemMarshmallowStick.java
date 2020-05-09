@@ -11,7 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
@@ -21,41 +21,52 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 
 public class ItemMarshmallowStick
-    extends Item {
+    extends ItemFood {
 
   public static final String NAME = "marshmallow_stick";
 
-  public enum EnumType {
-    EMPTY(0), MARSHMALLOW(1), MARSHMALLOW_ROASTED(2), MARSHMALLOW_BURNED(3);
+  private static final MethodHandle entityLivingBase$activeItemStackUseCountSetter;
 
-    private static final Int2ObjectMap<EnumType> TYPES = new Int2ObjectOpenHashMap<>(EnumType.values().length);
+  static {
 
-    static {
-      Arrays.stream(EnumType.values()).forEach(enumType -> TYPES.put(enumType.id, enumType));
-    }
+    try {
 
-    public static EnumType from(int id) {
+      entityLivingBase$activeItemStackUseCountSetter = MethodHandles.lookup().unreflectSetter(
+          /*
+          MC 1.12: net/minecraft/entity/EntityLivingBase.activeItemStackUseCount
+          Name: bp => field_184628_bn => activeItemStackUseCount
+          Comment: None
+          Side: BOTH
+          AT: public net.minecraft.entity.EntityLivingBase field_184628_bn # activeItemStackUseCount
+          */
+          ObfuscationReflectionHelper.findField(EntityLivingBase.class, "field_184628_bn")
+      );
 
-      return TYPES.get(id);
-    }
-
-    private final int id;
-
-    EnumType(int id) {
-
-      this.id = id;
+    } catch (Throwable t) {
+      throw new RuntimeException(String.format("Error unreflecting setter for field %s", "field_184628_bn"), t);
     }
   }
 
+  private static final int ROASTING_DURATION = 10 * 60 * 20;
+  private static final int EATING_DURATION = 32;
+
   public ItemMarshmallowStick() {
 
+    super(
+        ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTED_MARSHMALLOW_HUNGER,
+        (float) ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTED_MARSHMALLOW_SATURATION,
+        false
+    );
     this.setMaxStackSize(1);
     this.setMaxDamage(ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MARSHMALLOW_STICK_DURABILITY);
 
@@ -78,27 +89,27 @@ public class ItemMarshmallowStick
   @Override
   public int getMaxItemUseDuration(ItemStack stack) {
 
-    /*if (ItemMarshmallowStick.getType(stack) == EnumType.MARSHMALLOW) {
-      return 5 * 20;
+    if (ItemMarshmallowStick.getRoastByTimestamp(stack) < Long.MAX_VALUE) {
+      // This means we've aimed it at a fire and we're roasting.
+//      System.out.println("ROASTING DURATION");
+      return ROASTING_DURATION;
     }
 
-    return 0;*/
-    return 10 * 60 * 20;
+    // If eating return a duration of 32
+//    System.out.println("EATING DURATION");
+    return EATING_DURATION;
   }
 
   @Nonnull
   @Override
   public EnumAction getItemUseAction(ItemStack stack) {
 
-    switch (ItemMarshmallowStick.getType(stack)) {
-
-      case MARSHMALLOW:
-      case MARSHMALLOW_ROASTED:
-        return EnumAction.BOW;
-
-      default:
-        return EnumAction.NONE;
+    if (ItemMarshmallowStick.getRoastByTimestamp(stack) < Long.MAX_VALUE) {
+      // This means we've aimed it at a fire and we're roasting.
+      return EnumAction.BOW;
     }
+
+    return EnumAction.EAT;
   }
 
   @Nonnull
@@ -121,7 +132,7 @@ public class ItemMarshmallowStick
   }
 
   @Override
-  public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+  public boolean shouldCauseReequipAnimation(ItemStack oldStack, @Nonnull ItemStack newStack, boolean slotChanged) {
 
     return ItemMarshmallowStick.getType(oldStack) != ItemMarshmallowStick.getType(newStack);
   }
@@ -169,7 +180,7 @@ public class ItemMarshmallowStick
     return EnumType.from(tag.getInteger("MarshmallowType"));
   }
 
-  public static void setRoastByTimestamp(World world, EntityPlayer player, ItemStack itemStack, long timestamp) {
+  public static void setRoastByTimestamp(ItemStack itemStack, long timestamp) {
 
     // TODO: remove logger, unused params
     LogManager.getLogger(ItemMarshmallowStick.class).info(timestamp);
@@ -190,6 +201,27 @@ public class ItemMarshmallowStick
     return tag.getLong("RoastByTimestamp");
   }
 
+  public static void setRoastedAtTimestamp(ItemStack itemStack, long timestamp) {
+
+    // TODO: remove logger, unused params
+    LogManager.getLogger(ItemMarshmallowStick.class).info("setRoastedAtTimestamp: " + timestamp);
+
+    NBTTagCompound tag = StackHelper.getTagSafe(itemStack);
+    tag.setLong("RoastedAtTimestamp", timestamp);
+    itemStack.setTagCompound(tag);
+  }
+
+  public static long getRoastedAtTimestamp(ItemStack itemStack) {
+
+    NBTTagCompound tag = StackHelper.getTagSafe(itemStack);
+
+    if (!tag.hasKey("RoastedAtTimestamp")) {
+      return 0;
+    }
+
+    return tag.getLong("RoastedAtTimestamp");
+  }
+
   // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------
@@ -204,97 +236,114 @@ public class ItemMarshmallowStick
       ItemStack itemMainHand = player.getHeldItemMainhand();
       ItemStack itemOffhand = player.getHeldItemOffhand();
 
-      // Try starting the roast.
+      // -----------------------------------------------------------------------
+      // - Roast
+      // -----------------------------------------------------------------------
 
-      if (ItemMarshmallowStick.getType(itemMainHand) != EnumType.EMPTY
-          /*|| itemOffhand.getItem() != ModuleTechBasic.Items.MARSHMALLOW*/) {
+      RayTraceResult rayTraceResult = this.rayTrace(world, player, false);
 
-        RayTraceResult rayTraceResult = this.rayTrace(world, player, false);
+      // TODO
+      // If this is a roasted marshmallow, we need to check that the player
+      // has stopped using it and, if they have, prevent them from using it again.
+      // This will prevent players from being able to start roasting an already
+      // roasted marshmallow.
+      //
+      // We can check for the roasted timestamp that we will apply in the future
+      // to the stopped using method.
 
-        // ray trace result can be null
-        //noinspection ConstantConditions
-        if (rayTraceResult != null
-            && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-            && this.isRoastingBlock(world, rayTraceResult.getBlockPos())) {
+      // ray trace result can be null
+      //noinspection ConstantConditions
+      if (rayTraceResult != null
+          && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
+          && this.isRoastingBlock(world, rayTraceResult.getBlockPos())) {
 
-          // TODO: Setting the NBT data here is causing an item reset and interrupting the use cycle.
-          // When we set the NBT later, set it to roasted, it will interrupt the roasting process and
-          // never let the marshmallow burn.
-          if (!world.isRemote && ItemMarshmallowStick.getRoastByTimestamp(itemMainHand) == Long.MAX_VALUE) {
+        // TODO: Setting the NBT data here is causing an item reset and interrupting the use cycle.
+        // When we set the NBT later, set it to roasted, it will interrupt the roasting process and
+        // never let the marshmallow burn.
+        if (!world.isRemote && ItemMarshmallowStick.getRoastByTimestamp(itemMainHand) == Long.MAX_VALUE) {
 
-            // TODO: timestamp, config these magic numbers
+          // TODO: timestamp, config these magic numbers
 
-            int roastDuration = 5 * 20;
-            float roastVariance = 0.2f;
-            roastDuration = Math.max(0, (int) (roastDuration - roastDuration * roastVariance));
+          int roastDuration = 5 * 20;
+          float roastVariance = 0.2f;
+          roastDuration = Math.max(0, (int) (roastDuration - roastDuration * roastVariance));
 
-            long timestamp = world.getTotalWorldTime() + roastDuration;
-            ItemMarshmallowStick.setRoastByTimestamp(world, player, itemMainHand, timestamp);
-            ModuleTechBasic.PACKET_SERVICE.sendToAll(new SCPacketMarshmallowStickTimestamp(player, timestamp));
-          }
-
-          player.setActiveHand(hand);
-          return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
+          long timestamp = world.getTotalWorldTime() + roastDuration;
+          ItemMarshmallowStick.setRoastByTimestamp(itemMainHand, timestamp);
+          ModuleTechBasic.PACKET_SERVICE.sendToAll(new SCPacketMarshmallowStickTimestamp(player, timestamp));
         }
+
+        player.setActiveHand(hand);
+
+        if (world.isRemote) {
+
+          try {
+            // This will prevent the client from using the initial duration set before
+            // the packet arrives indicating that we're actually roasting.
+            entityLivingBase$activeItemStackUseCountSetter.invokeExact((EntityLivingBase) player, ROASTING_DURATION);
+
+          } catch (Throwable t) {
+            throw new RuntimeException("Error setting activeItemStackUseCount", t);
+          }
+        }
+
+        return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
       }
 
-      // Try placing a marshmallow on the stick or removing one from the stick.
+      // -----------------------------------------------------------------------
+      // - Eat
+      // -----------------------------------------------------------------------
 
-      if (itemOffhand.getItem() == ModuleTechBasic.Items.MARSHMALLOW) {
+      ActionResult<ItemStack> eatActionResult = super.onItemRightClick(world, player, hand);
 
-        // Place a marshmallow on the stick.
+      if (!player.isSneaking() && eatActionResult.getType() == EnumActionResult.SUCCESS) {
+        System.out.println("EATING");
+        return eatActionResult;
+      }
 
-        switch (ItemMarshmallowStick.getType(itemMainHand)) {
-          case MARSHMALLOW_BURNED:
-          case MARSHMALLOW_ROASTED:
-            break;
+      System.out.println("NOT EATING");
 
-          case MARSHMALLOW:
-            if (itemOffhand.getCount() < itemOffhand.getMaxStackSize()) {
-              player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW, itemOffhand.getCount() + 1));
-              ItemMarshmallowStick.setType(EnumType.EMPTY, itemMainHand);
-              this.setCooldownOnMarshmallows(player);
-              return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
-            }
+      // -----------------------------------------------------------------------
+      // - Remove Marshmallow
+      // -----------------------------------------------------------------------
 
-          case EMPTY:
-            itemOffhand.shrink(1);
-            ItemMarshmallowStick.setType(ItemMarshmallowStick.EnumType.MARSHMALLOW, itemMainHand);
+      if (player.isSneaking()) {
+        // Try removing a marshmallow from the stick.
+
+        if (itemOffhand.getItem() == ModuleTechBasic.Items.MARSHMALLOW) {
+
+          // If the player is holding marshmallows in their offhand,
+          // remove the stick's marshmallow and add it to the offhand stack.
+          if (ItemMarshmallowStick.getType(itemMainHand) == EnumType.MARSHMALLOW
+              && itemOffhand.getCount() < itemOffhand.getMaxStackSize()) {
+            player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW, itemOffhand.getCount() + 1));
+            ItemStack newItemStack = new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY, 1, itemOffhand.getItemDamage());
             this.setCooldownOnMarshmallows(player);
-            return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
+            return new ActionResult<>(EnumActionResult.SUCCESS, newItemStack);
+          }
 
-          default:
-        }
+        } else if (itemOffhand.isEmpty()) {
 
-      } else if (itemOffhand.isEmpty()) {
+          // Remove any marshmallow from the stick.
+          switch (ItemMarshmallowStick.getType(itemMainHand)) {
+            case MARSHMALLOW_BURNED:
+              player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_BURNED));
 
-        // Remove a marshmallow from the stick.
+            case MARSHMALLOW_ROASTED:
+              player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_ROASTED));
 
-        switch (ItemMarshmallowStick.getType(itemMainHand)) {
-          case MARSHMALLOW_BURNED:
-            player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_BURNED));
-            ItemMarshmallowStick.setType(EnumType.EMPTY, itemMainHand);
-            this.setCooldownOnMarshmallows(player);
-            return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
+            case MARSHMALLOW:
+              player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW));
+          }
 
-          case MARSHMALLOW_ROASTED:
-            player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_ROASTED));
-            ItemMarshmallowStick.setType(EnumType.EMPTY, itemMainHand);
-            this.setCooldownOnMarshmallows(player);
-            return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
-
-          case MARSHMALLOW:
-            player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW));
-            ItemMarshmallowStick.setType(EnumType.EMPTY, itemMainHand);
-            this.setCooldownOnMarshmallows(player);
-            return new ActionResult<>(EnumActionResult.SUCCESS, itemMainHand);
-
-          case EMPTY:
-          default:
+          ItemStack newItemStack = new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY, 1, itemMainHand.getItemDamage());
+          this.setCooldownOnMarshmallows(player);
+          return new ActionResult<>(EnumActionResult.SUCCESS, newItemStack);
         }
       }
     }
 
+    // This call will handle eating with the offhand.
     return super.onItemRightClick(world, player, hand);
   }
 
@@ -307,33 +356,39 @@ public class ItemMarshmallowStick
       return;
     }
 
+    long roastByTimestamp = ItemMarshmallowStick.getRoastByTimestamp(stack);
     World world = player.world;
-    RayTraceResult rayTraceResult = this.rayTrace(world, (EntityPlayer) player, false);
 
-    // The ray trace result can be null
-    //noinspection ConstantConditions
-    if (rayTraceResult == null
-        || rayTraceResult.typeOfHit != RayTraceResult.Type.BLOCK
-        || !this.isRoastingBlock(world, rayTraceResult.getBlockPos())) {
+    // Only want to check for campfire if we're roasting as indicated by the
+    // roast timestamp.
+    if (roastByTimestamp < Long.MAX_VALUE) {
+      RayTraceResult rayTraceResult = this.rayTrace(world, (EntityPlayer) player, false);
 
-      // TODO: Check if within roasting range of the fire
+      // The ray trace result can be null
+      //noinspection ConstantConditions
+      if (rayTraceResult == null
+          || rayTraceResult.typeOfHit != RayTraceResult.Type.BLOCK
+          || !this.isRoastingBlock(world, rayTraceResult.getBlockPos())) {
 
-      player.stopActiveHand();
-      this.setCooldownOnMarshmallows((EntityPlayer) player);
+        // TODO: Check if within roasting range of the fire
+
+        player.stopActiveHand();
+        this.setCooldownOnMarshmallows((EntityPlayer) player);
+        System.out.println("USING: STOPPED -> " + roastByTimestamp);
+      }
     }
 
     // TODO: turn into a roasted stick when it passes the threshold
     if (world.isRemote) {
       long totalWorldTime = world.getTotalWorldTime();
-      long roastTimestamp = ItemMarshmallowStick.getRoastByTimestamp(stack);
 
-      if (roastTimestamp < Long.MAX_VALUE) {
+      if (roastByTimestamp < Long.MAX_VALUE) {
         EnumType type = ItemMarshmallowStick.getType(stack);
 
-        if (type == EnumType.MARSHMALLOW_ROASTED && totalWorldTime >= roastTimestamp + 20) { // TODO: magic numbers
+        if (type == EnumType.MARSHMALLOW_ROASTED && totalWorldTime >= roastByTimestamp + 20) { // TODO: magic numbers
           ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_BURNED, stack);
 
-        } else if (type == EnumType.MARSHMALLOW && totalWorldTime >= roastTimestamp) {
+        } else if (type == EnumType.MARSHMALLOW && totalWorldTime >= roastByTimestamp) {
           ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_ROASTED, stack);
         }
       }
@@ -349,17 +404,28 @@ public class ItemMarshmallowStick
       return;
     }
 
+    if (ItemMarshmallowStick.getRoastedAtTimestamp(stack) > 0) {
+      return;
+    }
+
     long totalWorldTime = world.getTotalWorldTime();
     long roastTimestamp = ItemMarshmallowStick.getRoastByTimestamp(stack);
 
-    if (totalWorldTime >= roastTimestamp + 20) { // TODO: magic numbers
-      ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_BURNED, stack);
+    if (roastTimestamp < Long.MAX_VALUE) {
 
-    } else if (totalWorldTime >= roastTimestamp) {
-      ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_ROASTED, stack);
+      if (totalWorldTime >= roastTimestamp + 20) { // TODO: magic numbers
+        ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_BURNED, stack);
+
+      } else if (totalWorldTime >= roastTimestamp) {
+        ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_ROASTED, stack);
+
+        if (!world.isRemote) {
+          ItemMarshmallowStick.setRoastedAtTimestamp(stack, world.getTotalWorldTime());
+        }
+      }
+
+      ItemMarshmallowStick.setRoastByTimestamp(stack, Long.MAX_VALUE);
     }
-
-    ItemMarshmallowStick.setRoastByTimestamp(world, (EntityPlayer) player, stack, Long.MAX_VALUE);
   }
 
   @Nonnull
@@ -372,8 +438,19 @@ public class ItemMarshmallowStick
       return stack;
     }
 
-    ItemMarshmallowStick.setRoastByTimestamp(world, (EntityPlayer) player, stack, Long.MAX_VALUE);
+    // Handle eating.
+    if (this.canEat(stack)) {
+      super.onItemUseFinish(stack, world, player);
+      this.setCooldownOnMarshmallows((EntityPlayer) player);
+      return new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY, 1, stack.getItemDamage());
+    }
+
+    ItemMarshmallowStick.setRoastByTimestamp(stack, Long.MAX_VALUE);
     ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_BURNED, stack);
+
+    if (!world.isRemote) {
+      ItemMarshmallowStick.setRoastedAtTimestamp(stack, world.getTotalWorldTime());
+    }
 
     RayTraceResult rayTraceResult = this.rayTrace(world, (EntityPlayer) player, false);
 
@@ -393,6 +470,15 @@ public class ItemMarshmallowStick
     return stack;
   }
 
+  /**
+   * Return true if the stack has been roasted or is a plain marshmallow.
+   */
+  private boolean canEat(ItemStack stack) {
+
+    return ItemMarshmallowStick.getRoastedAtTimestamp(stack) > 0
+        || ItemMarshmallowStick.getType(stack) == EnumType.MARSHMALLOW;
+  }
+
   public boolean isRoastingBlock(World world, BlockPos blockPos) {
 
     return world.getTileEntity(blockPos) instanceof TileCampfire;
@@ -405,4 +491,27 @@ public class ItemMarshmallowStick
     player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW_ROASTED, 10);
     player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW_BURNED, 10);
   }
+
+  public enum EnumType {
+    MARSHMALLOW(0), MARSHMALLOW_ROASTED(1), MARSHMALLOW_BURNED(2);
+
+    private static final Int2ObjectMap<EnumType> TYPES = new Int2ObjectOpenHashMap<>(EnumType.values().length);
+
+    static {
+      Arrays.stream(EnumType.values()).forEach(enumType -> TYPES.put(enumType.id, enumType));
+    }
+
+    public static EnumType from(int id) {
+
+      return TYPES.get(id);
+    }
+
+    private final int id;
+
+    EnumType(int id) {
+
+      this.id = id;
+    }
+  }
+
 }

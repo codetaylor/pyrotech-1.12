@@ -29,7 +29,6 @@ Tasks:
   ☐ Campfire effects docs info
   ☐ Campfire effects advancement, hidden, have all effects active
   ☐ Marshmallow book info
-  ☐ Consider re-implementing the edible marshmallow on stick
 
 Marshmallow:
   ✔ Art @done(20-05-03 09:10)
@@ -88,6 +87,7 @@ Marshmallow Stick:
     ✔ Custom model that changes with NBT state @done(20-05-04 16:59)
     This can be done with item property overrides.
     ☐ Tooltip displaying potency for roasted state
+    ☐ Tooltip indicating usage key combos, ie. shift + use to remove marshmallow
     ✔ Don't stack due to NBT and durability @done(20-05-04 16:59)
     Use:
       ☐ Only roast in range of campfire
@@ -97,8 +97,20 @@ Marshmallow Stick:
       Do we really need to do this?
       ✔ Progress reset when the player stops using @done(20-05-04 17:07)
       ☐ Broadcast message "[player] burned a marshmallow!"
-      ✘ Edible, always - if roasted or burned state @cancelled(20-05-03 09:58)
-      This will conflict with the always edible effect a player gets from the campfire. There are ways around it, but I think that this is also going to simplify other interactions, ie. how does the player assert whether they want to eat the marshmallow off of the stick or remove it with their empty hand. This would involve adding key combos, and it's just easier not to.
+      Allow eating marshmallow from stick:
+        Originally I didn't want to do this, but after using the marshmallow stick, I would really like to be able to eat the marshmallow right off of the stick without having to first empty the stack of marshmallows from my offhand to remove and eat the treat. I will include my earlier reasoning below.
+        ✘ Edible, always - if roasted or burned state @cancelled(20-05-03 09:58)
+        This will conflict with the always edible effect a player gets from the campfire. There are ways around it, but I think that this is also going to simplify other interactions, ie. how does the player assert whether they want to eat the marshmallow off of the stick or remove it with their empty hand. This would involve adding key combos, and it's just easier not to.
+        ✔ Consider re-implementing the edible marshmallow on stick @done(20-05-08 18:39)
+        We could create a separate item for the stick that isn't edible.
+        Would a different stick item conflict with any of the mechanics so far?
+        We would have to transfer durability from the treat stick to the empty stick and vica versa.
+        ✔ Separate stick item that's non-edible for the empty stick @done(20-05-08 18:39)
+        ✔ Sneak + click to add a marshmallow to the stick @done(20-05-08 18:38)
+        This would force the player to learn how to put the marshmallow on the stick to use the mechanic and also teach them about how to remove the marshmallow.
+        ✔ Shift + click to remove a marshmallow from the stick @done(20-05-08 18:38)
+        ☐ Finish eating should return empty stick or break depending on durability
+        ☐ Bug: using a roasted stick on a campfire renders the stick unedible
     NBT:
       ✔ Three states @done(20-05-04 17:07)
       ✔ Roast and burn timestamps @done(20-05-04 17:07)

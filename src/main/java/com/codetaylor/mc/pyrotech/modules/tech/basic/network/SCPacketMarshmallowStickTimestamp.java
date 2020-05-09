@@ -68,7 +68,7 @@ public class SCPacketMarshmallowStickTimestamp
 
         if (item == ModuleTechBasic.Items.MARSHMALLOW_STICK
             && ItemMarshmallowStick.getType(heldItemMainhand) == ItemMarshmallowStick.EnumType.MARSHMALLOW) {
-          ItemMarshmallowStick.setRoastByTimestamp(world, player, heldItemMainhand, message.timestamp);
+          ItemMarshmallowStick.setRoastByTimestamp(heldItemMainhand, message.timestamp);
         }
       }
     }

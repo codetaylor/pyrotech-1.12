@@ -13,6 +13,7 @@ public final class ItemInitializer {
   public static final ItemMarshmallow MARSHMALLOW = new ItemMarshmallow();
   public static final ItemMarshmallowRoasted MARSHMALLOW_ROASTED = new ItemMarshmallowRoasted();
   public static final ItemMarshmallowStick MARSHMALLOW_STICK = new ItemMarshmallowStick();
+  public static final ItemMarshmallowStickEmpty MARSHMALLOW_STICK_EMPTY = new ItemMarshmallowStickEmpty();
   public static final ItemMarshmallowBurned MARSHMALLOW_BURNED = new ItemMarshmallowBurned();
 
   public static void onRegister(Registry registry) {
@@ -21,6 +22,7 @@ public final class ItemInitializer {
     registry.registerItem(MARSHMALLOW, ItemMarshmallow.NAME);
     registry.registerItem(MARSHMALLOW_ROASTED, ItemMarshmallowRoasted.NAME);
     registry.registerItem(MARSHMALLOW_STICK, ItemMarshmallowStick.NAME);
+    registry.registerItem(MARSHMALLOW_STICK_EMPTY, ItemMarshmallowStickEmpty.NAME);
     registry.registerItem(MARSHMALLOW_BURNED, ItemMarshmallowBurned.NAME);
   }
 
@@ -33,6 +35,7 @@ public final class ItemInitializer {
           ItemInitializer.TINDER,
           ItemInitializer.MARSHMALLOW,
           ItemInitializer.MARSHMALLOW_STICK,
+          ItemInitializer.MARSHMALLOW_STICK_EMPTY,
           ItemInitializer.MARSHMALLOW_ROASTED,
           ItemInitializer.MARSHMALLOW_BURNED
       );
