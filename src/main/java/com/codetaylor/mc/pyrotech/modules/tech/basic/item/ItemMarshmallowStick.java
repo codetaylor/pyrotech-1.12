@@ -327,14 +327,19 @@ public class ItemMarshmallowStick
 
         } else if (itemOffhand.isEmpty()) {
 
+          boolean shouldDamage = false;
+
           // Remove any marshmallow from the stick.
           switch (type) {
             case MARSHMALLOW_BURNED:
               player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_BURNED));
+              shouldDamage = true;
               break;
 
             case MARSHMALLOW_ROASTED:
+
               player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_ROASTED));
+              shouldDamage = true;
               break;
 
             case MARSHMALLOW:
@@ -342,6 +347,11 @@ public class ItemMarshmallowStick
           }
 
           ItemStack newItemStack = new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY, 1, itemMainHand.getItemDamage());
+
+          if (shouldDamage) {
+            newItemStack.damageItem(1, player);
+          }
+
           this.setCooldownOnMarshmallows(player);
           return new ActionResult<>(EnumActionResult.SUCCESS, newItemStack);
         }
@@ -445,9 +455,16 @@ public class ItemMarshmallowStick
 
     // Handle eating.
     if (this.canEat(stack)) {
+
+      ItemStack newItemStack = new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY, 1, stack.getItemDamage());
+
+      // Allow eating a marshmallow from the stick without damaging it.
+      if (ItemMarshmallowStick.getType(stack) != EnumType.MARSHMALLOW) {
+        newItemStack.damageItem(1, player);
+      }
       super.onItemUseFinish(stack, world, player);
       this.setCooldownOnMarshmallows((EntityPlayer) player);
-      return new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY, 1, stack.getItemDamage());
+      return newItemStack;
     }
 
     ItemMarshmallowStick.setRoastByTimestamp(stack, Long.MAX_VALUE);
@@ -492,6 +509,7 @@ public class ItemMarshmallowStick
   private void setCooldownOnMarshmallows(EntityPlayer player) {
 
     player.getCooldownTracker().setCooldown(this, 10);
+    player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY, 10);
     player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW, 10);
     player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW_ROASTED, 10);
     player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW_BURNED, 10);

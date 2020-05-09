@@ -58,7 +58,7 @@ public class ItemMarshmallowStickEmpty
       // Try placing a marshmallow on the stick.
       if (itemOffhand.getItem() == ModuleTechBasic.Items.MARSHMALLOW) {
         itemOffhand.shrink(1);
-        ItemStack newItemStack = new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK);
+        ItemStack newItemStack = new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK, 1, player.getHeldItemMainhand().getItemDamage());
         ItemMarshmallowStick.setType(ItemMarshmallowStick.EnumType.MARSHMALLOW, newItemStack);
         this.setCooldownOnMarshmallows(player);
         return new ActionResult<>(EnumActionResult.SUCCESS, newItemStack);
