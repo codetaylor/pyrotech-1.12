@@ -17,6 +17,7 @@
         * `item.pyrotech.marshmallow.on.stick.name`
         * `item.pyrotech.marshmallow.on.stick.roasted.name`
         * `item.pyrotech.marshmallow.on.stick.burned.name`
+        * `item.pyrotech.marshmallow.stick.empty.name`
 
   * **Added:**
     * Oredict:
