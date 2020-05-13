@@ -25,22 +25,28 @@
             * `minecraft:milk`
             * wooden, clay, and stone milk bucket from Pyrotech
         * `toolSharp` contains swords and axes, sans wooden sword
-    * Marshmallows:
-        * Short speed effect when eaten
+    * Marshmallow roasting mechanic:
         * Added config values:
-            * `MARSHMALLOW_HUNGER`
-            * `MARSHMALLOW_SATURATION`
-            * `MARSHMALLOW_SPEED_DURATION_TICKS`
-            * `MAX_MARSHMALLOW_SPEED_DURATION_TICKS`
-    * Roasted Marshmallows:
-        * Speed effect when eaten
-        * Added config values:
-            * `ROASTED_MARSHMALLOW_HUNGER`
-            * `ROASTED_MARSHMALLOW_SATURATION`
-            * `ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS`
-            * `MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS`
-    * Marshmallow Stick:
-        * Sharpen a stick with a sharp tool, `ore:toolSharp`
+            * `ROASTING_RANGE_BLOCKS`
+            * `ROASTING_DURATION_TICKS`
+            * `ROASTING_DURATION_VARIANCE_PERCENTAGE`
+            * `ROASTING_BURN_DURATION_TICKS`
+        * Marshmallows:
+            * Short speed effect when eaten
+            * Added config values:
+                * `MARSHMALLOW_HUNGER`
+                * `MARSHMALLOW_SATURATION`
+                * `MARSHMALLOW_SPEED_DURATION_TICKS`
+                * `MAX_MARSHMALLOW_SPEED_DURATION_TICKS`
+        * Roasted Marshmallows:
+            * Speed effect when eaten
+            * Added config values:
+                * `ROASTED_MARSHMALLOW_HUNGER`
+                * `ROASTED_MARSHMALLOW_SATURATION`
+                * `ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS`
+                * `MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS`
+        * Marshmallow Stick:
+            * Sharpen a stick with a sharp tool, `ore:toolSharp`
     * Campfire effects:
         * Added config values:
             * `EFFECTS_START_TIME`
