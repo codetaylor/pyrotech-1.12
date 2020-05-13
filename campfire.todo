@@ -54,7 +54,7 @@ Roasted Marshmallow:
     ☐ Tooltip displaying potency
     ✔ Don't stack due to NBT timestamp @done(20-05-04 16:53)
     NBT:
-      ☐ Cooldown timestamp
+      ✔ Cooldown timestamp @done(20-05-13 11:24)
       After the timestamp, the roasted marshmallow loses potency.
   Config:
     ✔ Hunger / saturation @done(20-05-03 11:24)
@@ -75,6 +75,7 @@ Burned Marshmallow:
     ✔ Slow effect duration @done(20-05-04 16:54)
     ☐ Enable / disable broadcast message
     ☐ Edit broadcast message
+    Lang files?
 
 Marshmallow Stick:
   ✔ Lang @done(20-05-04 16:59)
@@ -86,14 +87,15 @@ Marshmallow Stick:
     ✔ Roasted @done(20-05-04 16:59)
     ✔ Burned @done(20-05-04 16:59)
   Item:
-    ☐ Durability
+    ✔ Durability @done(20-05-13 11:24)
     ✔ Custom model that changes with NBT state @done(20-05-04 16:59)
     This can be done with item property overrides.
     ☐ Tooltip displaying potency for roasted state
     ☐ Tooltip indicating usage key combos, ie. shift + use to remove marshmallow
+    Do we still need to do this? We're now forcing the player to learn the shift + use combo to put the treat on the stick, so it shouldn't be that hard for them to make the logical jump to know how to take it off.
     ✔ Don't stack due to NBT and durability @done(20-05-04 16:59)
     Use:
-      ☐ Only roast in range of campfire
+      ✔ Only roast in range of campfire @done(20-05-13 11:26)
       ✔ Only roast while looking at campfire @done(20-05-04 17:07)
       Only a normal marshmallow on a stick can be used on the campfire. Once roasted or burned, the item will switch to the eat behavior.
       ✘ Roast / burn speed influenced by the campfire's fuel count @cancelled(20-05-13 09:23)
@@ -113,7 +115,7 @@ Marshmallow Stick:
         This would force the player to learn how to put the marshmallow on the stick to use the mechanic and also teach them about how to remove the marshmallow.
         ✔ Shift + click to remove a marshmallow from the stick @done(20-05-08 18:38)
         ✔ Finish eating should return empty stick or break depending on durability @done(20-05-08 19:29)
-        ☐ The marshmallow stick shouldn't be shown in JEI
+        ✔ The marshmallow stick shouldn't be shown in JEI @done(20-05-13 11:34)
     NBT:
       ✔ Three states @done(20-05-04 17:07)
       ✔ Roast and burn timestamps @done(20-05-04 17:07)
@@ -134,10 +136,13 @@ Marshmallow Stick:
     ☐ Enable / disable broadcast message
     ☐ Edit broadcast message
     This can be done with resource packs if we use the lang file.
-    ☐ Stick durability
-    ☐ Stick durability lost per roast
-    ☐ Stick durability lost per burn
-    ☐ Stick durability lost per eat
+    ✔ Stick durability @done(20-05-13 11:30)
+    ✘ Stick durability lost per roast @cancelled(20-05-13 11:30)
+    Too granular.
+    ✘ Stick durability lost per burn @cancelled(20-05-13 11:30)
+    Too granular.
+    ✘ Stick durability lost per eat @cancelled(20-05-13 11:30)
+    Too granular.
 
 Comfort:
   ✔ icon: campfire + haunch @done(20-04-20 20:08)

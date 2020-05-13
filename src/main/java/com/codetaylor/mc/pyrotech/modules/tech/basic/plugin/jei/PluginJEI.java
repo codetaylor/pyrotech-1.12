@@ -71,6 +71,8 @@ public class PluginJEI
 
     final IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 
+    jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK));
+
     // Pit Kiln Info
     registry.addIngredientInfo(new ItemStack(ModuleTechBasic.Blocks.KILN_PIT), ItemStack.class, "gui.pyrotech.jei.info.pit.kiln");
 
