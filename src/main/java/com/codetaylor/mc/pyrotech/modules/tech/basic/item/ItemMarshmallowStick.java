@@ -151,6 +151,7 @@ public class ItemMarshmallowStick
 
     if (tag != null) {
 
+      // TODO: what's this?
       // Allow the timestamp tag to be sent to the client if we're clearing
       // the value, causing an item change.
       //if (ItemMarshmallowStick.getRoastTimestamp(stack) != Long.MAX_VALUE) {
@@ -420,6 +421,7 @@ public class ItemMarshmallowStick
       return;
     }
 
+    // Mallow is roasted or burned
     if (ItemMarshmallowStick.getRoastedAtTimestamp(stack) > 0) {
       return;
     }
@@ -434,10 +436,10 @@ public class ItemMarshmallowStick
 
       } else if (totalWorldTime >= roastTimestamp) {
         ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_ROASTED, stack);
+      }
 
-        if (!world.isRemote) {
-          ItemMarshmallowStick.setRoastedAtTimestamp(stack, world.getTotalWorldTime());
-        }
+      if (!world.isRemote) {
+        ItemMarshmallowStick.setRoastedAtTimestamp(stack, world.getTotalWorldTime());
       }
 
       ItemMarshmallowStick.setRoastByTimestamp(stack, Long.MAX_VALUE);
@@ -446,7 +448,7 @@ public class ItemMarshmallowStick
 
   @Nonnull
   @Override
-  public ItemStack onItemUseFinish(@Nonnull ItemStack stack, World world, EntityLivingBase player) {
+  public ItemStack onItemUseFinish(@Nonnull ItemStack stack, @Nonnull World world, EntityLivingBase player) {
 
     System.out.println("FINISH");
 
@@ -464,7 +466,6 @@ public class ItemMarshmallowStick
       if (type != EnumType.MARSHMALLOW) {
         newItemStack.damageItem(1, player);
       }
-      super.onItemUseFinish(stack, world, player);
 
       switch (type) {
         case MARSHMALLOW:
@@ -498,6 +499,7 @@ public class ItemMarshmallowStick
           break;
       }
 
+      super.onItemUseFinish(stack, world, player);
       this.setCooldownOnMarshmallows((EntityPlayer) player);
       return newItemStack;
     }
@@ -528,12 +530,12 @@ public class ItemMarshmallowStick
   }
 
   /**
-   * Return true if the stack has been roasted or is a plain marshmallow.
+   * Return true if the stack has been roasted, burned, or is a plain marshmallow.
    */
   private boolean canEat(ItemStack stack) {
 
-    return ItemMarshmallowStick.getRoastedAtTimestamp(stack) > 0
-        || ItemMarshmallowStick.getType(stack) == EnumType.MARSHMALLOW;
+    return ItemMarshmallowStick.getRoastedAtTimestamp(stack) > 0 // is roasted or burned
+        || ItemMarshmallowStick.getType(stack) == EnumType.MARSHMALLOW; // is plain mallow
   }
 
   public boolean isRoastingBlock(World world, BlockPos blockPos) {

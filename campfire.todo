@@ -1,7 +1,3 @@
-All values subject to change during balancing.
-
-Elements marked with (?) need to be verified technically feasible.
-
 Bugs:
   ✔ Comfort / Resting doesn't always remove when out of range of a campfire @done(20-04-21 18:27)
   Seems fixed. Wasn't able to reliably reproduce. Fixed the campfire effect player tracking event handler to not run on both the client and the server thread simultaneously -- should only run on the server thread.
@@ -16,7 +12,13 @@ Bugs:
   ✔ Loading into a world with a pre-existing max duration effects will show the duration in the inventory screen. @done(20-04-24 13:10)
   ✔ It looks like the campfire effects are lower than some effects on the HUD. Is this because they are marked as bad effects? @done(20-05-08 11:53)
   Fixed by calling setBeneficial() on the potions.
+  ✔ Using a roasted stick on a campfire renders the stick unedible @done(20-05-08 18:56)
+  ✔ Taking off a roasted marshmallow gives a normal one @done(20-05-08 19:08)
+  ✔ Eating marshmallow off of stick does not give speed bonus @done(20-05-13 09:29)
   ☐ If the stick is roasted and my hand is empty, I expect to be able to remove the roasted treat and eat it while looking at the campfire.
+  ☐ I don't want to 'use' empty mallow stick on campfire
+  ✔ Eating a burned mallow on stick doesn't consume the food, consumes on second try @done(20-05-13 10:53)
+  ☐ Shouldn't be able to roast a mallow from max range
 
 Tasks:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)
@@ -110,9 +112,6 @@ Marshmallow Stick:
         This would force the player to learn how to put the marshmallow on the stick to use the mechanic and also teach them about how to remove the marshmallow.
         ✔ Shift + click to remove a marshmallow from the stick @done(20-05-08 18:38)
         ✔ Finish eating should return empty stick or break depending on durability @done(20-05-08 19:29)
-        ✔ Bug: using a roasted stick on a campfire renders the stick unedible @done(20-05-08 18:56)
-        ✔ Bug: taking off a roasted marshmallow gives a normal one @done(20-05-08 19:08)
-        ✔ Bug: eating marshmallow off of stick does not give speed bonus @done(20-05-13 09:29)
         ☐ The marshmallow stick shouldn't be shown in JEI
     NBT:
       ✔ Three states @done(20-05-04 17:07)
@@ -130,8 +129,10 @@ Marshmallow Stick:
     ☐ Ticks to burn from roasted
     ✘ Ticks to burn from roasted variance +/- random @cancelled(20-05-13 09:09)
     It's better to have only one unpredictable value.
+    ☐ Allowed roasting range
     ☐ Enable / disable broadcast message
     ☐ Edit broadcast message
+    This can be done with resource packs if we use the lang file.
     ☐ Stick durability
     ☐ Stick durability lost per roast
     ☐ Stick durability lost per burn
