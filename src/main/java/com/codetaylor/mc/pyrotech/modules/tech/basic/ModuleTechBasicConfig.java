@@ -1100,11 +1100,33 @@ public class ModuleTechBasicConfig {
   public static class CampfireMarshmallows {
 
     @Config.Comment({
-        "The maximum range at which a marshmallow roast will work.",
+        "The maximum range in blocks at which a marshmallow roast will work.",
         "Default: " + 2
     })
     @Config.RangeInt(min = 0)
-    public int ROASTING_RANGE = 2;
+    public int ROASTING_RANGE_BLOCKS = 2;
+
+    @Config.Comment({
+        "How many ticks until a marshmallow is roasted.",
+        "Default: " + (5 * 20)
+    })
+    @Config.RangeInt(min = 0, max = 10 * 60 * 20)
+    public int ROASTING_DURATION_TICKS = 5 * 20;
+
+    @Config.Comment({
+        "Percentage of random increase / decrease in roast duration per",
+        "marshmallow.",
+        "Default: " + 0.2
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double ROASTING_DURATION_VARIANCE_PERCENTAGE = 0.2;
+
+    @Config.Comment({
+        "How many ticks until a marshmallow is burned after it becomes roasted.",
+        "Default: " + 20
+    })
+    @Config.RangeInt(min = 0, max = 10 * 60 * 20)
+    public int ROASTING_BURN_DURATION_TICKS = 20;
 
     @Config.Comment({
         "The number of times marshmallows can be roasted before the stick breaks.",
@@ -1164,7 +1186,6 @@ public class ModuleTechBasicConfig {
         "Default: " + (25 * 20)
     })
     public int ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS = 25 * 20;
-
 
     @Config.Comment({
         "The max duration of the marshmallow's stacked speed effect in ticks.",

@@ -127,9 +127,9 @@ Marshmallow Stick:
     ☐ Hidden: Burn a marshmallow
     ☐ Hidden: Eat a burned marshmallow
   Config:
-    ☐ Ticks to roast
-    ☐ Ticks to roast variance +/- random
-    ☐ Ticks to burn from roasted
+    ✔ Ticks to roast @done(20-05-13 11:49)
+    ✔ Ticks to roast variance +/- random @done(20-05-13 11:49)
+    ✔ Ticks to burn from roasted @done(20-05-13 11:49)
     ✘ Ticks to burn from roasted variance +/- random @cancelled(20-05-13 09:09)
     It's better to have only one unpredictable value.
     ✔ Allowed roasting range @done(20-05-13 11:16)

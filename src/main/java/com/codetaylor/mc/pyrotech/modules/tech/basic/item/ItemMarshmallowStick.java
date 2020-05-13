@@ -250,11 +250,9 @@ public class ItemMarshmallowStick
           // and stuttering the experience.
           if (!world.isRemote && ItemMarshmallowStick.getRoastByTimestamp(itemMainHand) == Long.MAX_VALUE) {
 
-            // TODO: config these magic numbers
-
-            int roastDuration = 5 * 20;
-            float roastVariance = 0.2f;
-            roastDuration = Math.max(0, (int) (roastDuration - roastDuration * roastVariance));
+            int roastDuration = ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTING_DURATION_TICKS;
+            double roastVariance = (world.rand.nextDouble() * 2 - 1) * ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTING_DURATION_VARIANCE_PERCENTAGE;
+            roastDuration = Math.max(0, (int) (roastDuration + roastDuration * roastVariance));
 
             long timestamp = world.getTotalWorldTime() + roastDuration;
             ItemMarshmallowStick.setRoastByTimestamp(itemMainHand, timestamp);
@@ -380,7 +378,8 @@ public class ItemMarshmallowStick
       if (roastByTimestamp < Long.MAX_VALUE) {
         EnumType type = ItemMarshmallowStick.getType(stack);
 
-        if (type == EnumType.MARSHMALLOW_ROASTED && totalWorldTime >= roastByTimestamp + 20) { // TODO: magic numbers
+        if (type == EnumType.MARSHMALLOW_ROASTED
+            && totalWorldTime >= roastByTimestamp + ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTING_BURN_DURATION_TICKS) {
           ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_BURNED, stack);
 
         } else if (type == EnumType.MARSHMALLOW && totalWorldTime >= roastByTimestamp) {
@@ -392,7 +391,7 @@ public class ItemMarshmallowStick
 
   private boolean isWithinRoastingRange(EntityLivingBase player, BlockPos blockPos) {
 
-    return player.getDistanceSqToCenter(blockPos) <= ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTING_RANGE * ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTING_RANGE;
+    return player.getDistanceSqToCenter(blockPos) <= ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTING_RANGE_BLOCKS * ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTING_RANGE_BLOCKS;
   }
 
   @Override
@@ -412,7 +411,7 @@ public class ItemMarshmallowStick
 
     if (roastTimestamp < Long.MAX_VALUE) {
 
-      if (totalWorldTime >= roastTimestamp + 20) { // TODO: magic numbers
+      if (totalWorldTime >= roastTimestamp + ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTING_BURN_DURATION_TICKS) {
         ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_BURNED, stack);
 
         if (!world.isRemote) {
