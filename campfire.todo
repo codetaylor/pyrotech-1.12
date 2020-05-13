@@ -15,11 +15,11 @@ Bugs:
   ✔ Using a roasted stick on a campfire renders the stick unedible @done(20-05-08 18:56)
   ✔ Taking off a roasted marshmallow gives a normal one @done(20-05-08 19:08)
   ✔ Eating marshmallow off of stick does not give speed bonus @done(20-05-13 09:29)
-  ☐ If the stick is roasted and my hand is empty, I expect to be able to remove the roasted treat and eat it while looking at the campfire.
+  ✔ If the stick is roasted and my hand is empty, I expect to be able to remove the roasted treat and eat it while looking at the campfire. @done(20-05-13 10:57)
   ✔ I don't want to 'use' empty mallow stick on campfire @done(20-05-13 10:56)
   ✔ Eating a burned mallow on stick doesn't consume the food, consumes on second try @done(20-05-13 10:53)
   ☐ Shouldn't be able to roast a mallow from max range
-  ☐ Stop roasting a mallow before it's roasted makes it unroastable
+  ✔ Stop roasting a mallow before it's roasted makes it unroastable @done(20-05-13 11:00)
 
 Tasks:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)

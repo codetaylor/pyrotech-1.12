@@ -434,12 +434,16 @@ public class ItemMarshmallowStick
       if (totalWorldTime >= roastTimestamp + 20) { // TODO: magic numbers
         ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_BURNED, stack);
 
+        if (!world.isRemote) {
+          ItemMarshmallowStick.setRoastedAtTimestamp(stack, world.getTotalWorldTime());
+        }
+
       } else if (totalWorldTime >= roastTimestamp) {
         ItemMarshmallowStick.setType(EnumType.MARSHMALLOW_ROASTED, stack);
-      }
 
-      if (!world.isRemote) {
-        ItemMarshmallowStick.setRoastedAtTimestamp(stack, world.getTotalWorldTime());
+        if (!world.isRemote) {
+          ItemMarshmallowStick.setRoastedAtTimestamp(stack, world.getTotalWorldTime());
+        }
       }
 
       ItemMarshmallowStick.setRoastByTimestamp(stack, Long.MAX_VALUE);
