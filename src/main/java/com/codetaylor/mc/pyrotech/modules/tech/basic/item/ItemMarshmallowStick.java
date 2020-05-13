@@ -147,14 +147,8 @@ public class ItemMarshmallowStick
     NBTTagCompound tag = super.getNBTShareTag(stack);
 
     if (tag != null) {
-
-      // TODO: what's this?
-      // Allow the timestamp tag to be sent to the client if we're clearing
-      // the value, causing an item change.
-      //if (ItemMarshmallowStick.getRoastTimestamp(stack) != Long.MAX_VALUE) {
       tag = tag.copy();
       tag.removeTag("RoastByTimestamp");
-      //}
     }
     return tag;
   }
