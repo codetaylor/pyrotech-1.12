@@ -23,7 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -92,12 +91,10 @@ public class ItemMarshmallowStick
 
     if (ItemMarshmallowStick.getRoastByTimestamp(stack) < Long.MAX_VALUE) {
       // This means we've aimed it at a fire and we're roasting.
-//      System.out.println("ROASTING DURATION");
       return ROASTING_DURATION;
     }
 
     // If eating return a duration of 32
-//    System.out.println("EATING DURATION");
     return EATING_DURATION;
   }
 
@@ -168,9 +165,6 @@ public class ItemMarshmallowStick
 
   public static void setType(EnumType type, ItemStack itemStack) {
 
-    // TODO: remove loggers and stdout
-    LogManager.getLogger(ItemMarshmallowStick.class).info(type);
-
     NBTTagCompound tag = StackHelper.getTagSafe(itemStack);
     tag.setInteger("MarshmallowType", type.id);
     itemStack.setTagCompound(tag);
@@ -183,9 +177,6 @@ public class ItemMarshmallowStick
   }
 
   public static void setRoastByTimestamp(ItemStack itemStack, long timestamp) {
-
-    // TODO: remove logger, unused params
-    LogManager.getLogger(ItemMarshmallowStick.class).info(timestamp);
 
     NBTTagCompound tag = StackHelper.getTagSafe(itemStack);
     tag.setLong("RoastByTimestamp", timestamp);
@@ -204,9 +195,6 @@ public class ItemMarshmallowStick
   }
 
   public static void setRoastedAtTimestamp(ItemStack itemStack, long timestamp) {
-
-    // TODO: remove logger, unused params
-    LogManager.getLogger(ItemMarshmallowStick.class).info("setRoastedAtTimestamp: " + timestamp);
 
     NBTTagCompound tag = StackHelper.getTagSafe(itemStack);
     tag.setLong("RoastedAtTimestamp", timestamp);
@@ -231,8 +219,6 @@ public class ItemMarshmallowStick
   @Nonnull
   @Override
   public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
-
-//    System.out.println("CLICK");
 
     if (hand == EnumHand.MAIN_HAND) {
       ItemStack itemMainHand = player.getHeldItemMainhand();
@@ -259,12 +245,12 @@ public class ItemMarshmallowStick
             && this.isRoastingBlock(world, rayTraceResult.getBlockPos())
             && this.isWithinRoastingRange(player, rayTraceResult.getBlockPos())) {
 
-          // TODO: Setting the NBT data here is causing an item reset and interrupting the use cycle.
-          // When we set the NBT later, set it to roasted, it will interrupt the roasting process and
-          // never let the marshmallow burn.
+          // Here we send a packet to the client instead of setting the timestamp
+          // directly. This avoids triggering the new item or reequip animation
+          // and stuttering the experience.
           if (!world.isRemote && ItemMarshmallowStick.getRoastByTimestamp(itemMainHand) == Long.MAX_VALUE) {
 
-            // TODO: timestamp, config these magic numbers
+            // TODO: config these magic numbers
 
             int roastDuration = 5 * 20;
             float roastVariance = 0.2f;
@@ -300,11 +286,8 @@ public class ItemMarshmallowStick
       ActionResult<ItemStack> eatActionResult = super.onItemRightClick(world, player, hand);
 
       if (!player.isSneaking() && eatActionResult.getType() == EnumActionResult.SUCCESS) {
-        System.out.println("EATING");
         return eatActionResult;
       }
-
-      System.out.println("NOT EATING");
 
       // -----------------------------------------------------------------------
       // - Remove Marshmallow
@@ -387,7 +370,6 @@ public class ItemMarshmallowStick
           || !this.isWithinRoastingRange(player, rayTraceResult.getBlockPos())) {
         player.stopActiveHand();
         this.setCooldownOnMarshmallows((EntityPlayer) player);
-        System.out.println("USING: STOPPED -> " + roastByTimestamp);
       }
     }
 
@@ -415,8 +397,6 @@ public class ItemMarshmallowStick
 
   @Override
   public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase player, int timeLeft) {
-
-    System.out.println("STOPPED");
 
     if (!(player instanceof EntityPlayer)) {
       return;
@@ -454,8 +434,6 @@ public class ItemMarshmallowStick
   @Nonnull
   @Override
   public ItemStack onItemUseFinish(@Nonnull ItemStack stack, @Nonnull World world, EntityLivingBase player) {
-
-    System.out.println("FINISH");
 
     if (!(player instanceof EntityPlayer)) {
       return stack;
