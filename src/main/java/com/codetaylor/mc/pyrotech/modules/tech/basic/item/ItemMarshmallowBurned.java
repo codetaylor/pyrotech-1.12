@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraft.world.World;
 
 public class ItemMarshmallowBurned
     extends ItemMarshmallow {
@@ -31,7 +32,7 @@ public class ItemMarshmallowBurned
   }
 
   @Override
-  protected int getEffectDurationTicks() {
+  protected int getEffectDurationTicks(World world, long roastedAtTimestamp) {
 
     return ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.BURNED_MARSHMALLOW_SLOW_DURATION_TICKS;
   }

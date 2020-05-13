@@ -326,6 +326,7 @@ gui.pyrotech.tooltip.torch.burns.true=Burns up over time.
 gui.pyrotech.tooltip.torch.burns.false=Lasts forever.
 gui.pyrotech.tooltip.rain.extinguishes.true=Extinguished by rain.
 gui.pyrotech.tooltip.rain.extinguishes.false=Stays lit in the rain.
+gui.pyrotech.tooltip.potency=Potency: %d%%
 
 #------------------------------------------------------------------------------
 # Waila

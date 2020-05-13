@@ -1195,6 +1195,14 @@ public class ModuleTechBasicConfig {
     public int MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS = 5 * 60 * 20;
 
     @Config.Comment({
+        "How long before a roasted marshmallow loses potency. Potency affects",
+        "the duration of the treat's speed effect.",
+        "Default: " + (30 * 20)
+    })
+    @Config.RangeInt(min = 0)
+    public int ROASTED_MARSHMALLOW_EFFECT_POTENCY_DURATION_TICKS = 30 * 20;
+
+    @Config.Comment({
         "The amount of hunger healed by eating.",
         "For reference, the vanilla apple restores 4 hunger.",
         "Default: " + 1

@@ -325,6 +325,7 @@ gui.pyrotech.tooltip.torch.burns.true=Сгорает со временем
 gui.pyrotech.tooltip.torch.burns.false=Длиться вечно
 gui.pyrotech.tooltip.rain.extinguishes.true=Тухнет под дождём
 gui.pyrotech.tooltip.rain.extinguishes.false=Остается гореть под дождем
+gui.pyrotech.tooltip.potency=Potency: %d%%
 
 #------------------------------------------------------------------------------
 # Waila

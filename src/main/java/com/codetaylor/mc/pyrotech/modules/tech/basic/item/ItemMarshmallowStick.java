@@ -7,6 +7,8 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.network.SCPacketMarshmallow
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -21,14 +23,18 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
+import java.util.List;
 
 public class ItemMarshmallowStick
     extends ItemFood {
@@ -313,8 +319,9 @@ public class ItemMarshmallowStick
               break;
 
             case MARSHMALLOW_ROASTED:
-
-              player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_ROASTED));
+              ItemStack stack = new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_ROASTED);
+              ItemMarshmallow.setRoastedAtTimestamp(stack, ItemMarshmallowStick.getRoastedAtTimestamp(itemMainHand));
+              player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, stack);
               shouldDamage = true;
               break;
 
@@ -456,8 +463,9 @@ public class ItemMarshmallowStick
           break;
 
         case MARSHMALLOW_ROASTED:
+          double potency = ItemMarshmallow.calculatePotency(world, ItemMarshmallowStick.getRoastedAtTimestamp(stack));
           ItemMarshmallow.applyMarshmallowEffects(
-              ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS,
+              (int) (ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS * potency),
               ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS,
               player,
               MobEffects.SPEED,
@@ -493,6 +501,20 @@ public class ItemMarshmallowStick
     }
 
     return stack;
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag tooltipFlag) {
+
+    super.addInformation(stack, world, tooltip, tooltipFlag);
+
+    if (world != null && ItemMarshmallowStick.getType(stack) == EnumType.MARSHMALLOW_ROASTED) {
+      long roastedAtTimestamp = ItemMarshmallowStick.getRoastedAtTimestamp(stack);
+      double potency = ItemMarshmallow.calculatePotency(world, roastedAtTimestamp);
+      int displayPotency = (int) Math.round(potency * 100);
+      tooltip.add(TextFormatting.GRAY + I18n.format("gui.pyrotech.tooltip.potency", String.valueOf(displayPotency)));
+    }
   }
 
   /**

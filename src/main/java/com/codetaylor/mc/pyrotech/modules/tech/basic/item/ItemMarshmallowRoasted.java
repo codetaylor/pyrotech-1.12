@@ -4,6 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemMarshmallowRoasted
     extends ItemMarshmallow {
@@ -29,9 +30,9 @@ public class ItemMarshmallowRoasted
   }
 
   @Override
-  protected int getEffectDurationTicks() {
+  protected int getEffectDurationTicks(World world, long roastedAtTimestamp) {
 
-    return ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS;
+    return (int) (ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS * ItemMarshmallow.calculatePotency(world, roastedAtTimestamp));
   }
 
   @Override

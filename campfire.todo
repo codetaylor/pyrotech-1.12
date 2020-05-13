@@ -51,7 +51,7 @@ Roasted Marshmallow:
   Item:
     ✔ Edible, always @done(20-05-04 16:53)
     ✔ Speed boost @done(20-05-03 11:24)
-    ☐ Tooltip displaying potency
+    ✔ Tooltip displaying potency @done(20-05-13 12:52)
     ✔ Don't stack due to NBT timestamp @done(20-05-04 16:53)
     NBT:
       ✔ Cooldown timestamp @done(20-05-13 11:24)
@@ -59,7 +59,7 @@ Roasted Marshmallow:
   Config:
     ✔ Hunger / saturation @done(20-05-03 11:24)
     ✔ Speed boost duration @done(20-05-03 11:24)
-    ☐ Cooldown duration
+    ✔ Cooldown duration @done(20-05-13 12:52)
 
 Burned Marshmallow:  
   ✔ Art @done(20-05-04 16:53)
@@ -90,7 +90,7 @@ Marshmallow Stick:
     ✔ Durability @done(20-05-13 11:24)
     ✔ Custom model that changes with NBT state @done(20-05-04 16:59)
     This can be done with item property overrides.
-    ☐ Tooltip displaying potency for roasted state
+    ✔ Tooltip displaying potency for roasted state @done(20-05-13 12:51)
     ☐ Tooltip indicating usage key combos, ie. shift + use to remove marshmallow
     Do we still need to do this? We're now forcing the player to learn the shift + use combo to put the treat on the stick, so it shouldn't be that hard for them to make the logical jump to know how to take it off.
     ✔ Don't stack due to NBT and durability @done(20-05-04 16:59)
@@ -120,7 +120,7 @@ Marshmallow Stick:
       ✔ Three states @done(20-05-04 17:07)
       ✔ Roast and burn timestamps @done(20-05-04 17:07)
       Precalculate the roast timestamps and store them when the player starts using the item. Clear them when the player stops.
-      ☐ Cooldown timestamp
+      ✔ Cooldown timestamp @done(20-05-13 12:52)
       This timestamp is transferred to the marshmallow item when it is removed from the stick.
   Advancements:
     ☐ Roast a marshmallow

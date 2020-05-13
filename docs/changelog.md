@@ -18,6 +18,7 @@
         * `item.pyrotech.marshmallow.on.stick.roasted.name`
         * `item.pyrotech.marshmallow.on.stick.burned.name`
         * `item.pyrotech.marshmallow.stick.empty.name`
+        * `gui.pyrotech.tooltip.potency`
 
   * **Added:**
     * Oredict:
@@ -45,6 +46,7 @@
                 * `ROASTED_MARSHMALLOW_SATURATION`
                 * `ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS`
                 * `MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS`
+                * `ROASTED_MARSHMALLOW_EFFECT_POTENCY_DURATION_TICKS`
         * Marshmallow Stick:
             * Sharpen a stick with a sharp tool, `ore:toolSharp`
     * Campfire effects:

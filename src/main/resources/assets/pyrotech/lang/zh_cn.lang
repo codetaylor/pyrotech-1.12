@@ -325,6 +325,7 @@ gui.pyrotech.tooltip.torch.burns.true=一段时间后熄灭。
 gui.pyrotech.tooltip.torch.burns.false=持续燃烧。
 gui.pyrotech.tooltip.rain.extinguishes.true=淋雨后熄灭，
 gui.pyrotech.tooltip.rain.extinguishes.false=淋雨后仍燃烧。
+gui.pyrotech.tooltip.potency=Potency: %d%%
 
 #------------------------------------------------------------------------------
 # Waila
