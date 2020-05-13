@@ -1224,6 +1224,22 @@ public class ModuleTechBasicConfig {
         "Default: " + (5 * 20)
     })
     public int BURNED_MARSHMALLOW_SLOW_DURATION_TICKS = 5 * 20;
+
+    @Config.Comment({
+        "Set to false to disable the message broadcast to all players when a",
+        "player burns a marshmallow.",
+        "The message is located under the lang key:",
+        "  gui.pyrotech.marshmallow.burned.broadcast.message"
+    })
+    public boolean ENABLE_BURNED_MARSHMALLOW_BROADCAST_MESSAGE = true;
+
+    @Config.Comment({
+        "Set to false to disable the message broadcast to all players when a",
+        "player eats a burned marshmallow.",
+        "The message is located under the lang key:",
+        "  gui.pyrotech.marshmallow.burned.eat.broadcast.message"
+    })
+    public boolean ENABLE_BURNED_MARSHMALLOW_EAT_BROADCAST_MESSAGE = true;
   }
 
   // ---------------------------------------------------------------------------

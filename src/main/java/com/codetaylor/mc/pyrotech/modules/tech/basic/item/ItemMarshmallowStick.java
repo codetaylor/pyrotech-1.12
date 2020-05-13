@@ -11,18 +11,22 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -417,6 +421,18 @@ public class ItemMarshmallowStick
 
         if (!world.isRemote) {
           ItemMarshmallowStick.setRoastedAtTimestamp(stack, world.getTotalWorldTime());
+
+          if (ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ENABLE_BURNED_MARSHMALLOW_BROADCAST_MESSAGE) {
+            MinecraftServer minecraftServer = world.getMinecraftServer();
+
+            if (minecraftServer != null) {
+              PlayerList playerList = minecraftServer.getPlayerList();
+
+              for (EntityPlayerMP playerMP : playerList.getPlayers()) {
+                playerMP.sendMessage(new TextComponentTranslation("gui.pyrotech.marshmallow.burned.broadcast.message", player.getName()));
+              }
+            }
+          }
         }
 
       } else if (totalWorldTime >= roastTimestamp) {
@@ -474,6 +490,19 @@ public class ItemMarshmallowStick
           break;
 
         case MARSHMALLOW_BURNED:
+
+          if (!world.isRemote && ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ENABLE_BURNED_MARSHMALLOW_EAT_BROADCAST_MESSAGE) {
+            MinecraftServer minecraftServer = world.getMinecraftServer();
+
+            if (minecraftServer != null) {
+              PlayerList playerList = minecraftServer.getPlayerList();
+
+              for (EntityPlayerMP playerMP : playerList.getPlayers()) {
+                playerMP.sendMessage(new TextComponentTranslation("gui.pyrotech.marshmallow.burned.eat.broadcast.message", player.getName()));
+              }
+            }
+          }
+
           ItemMarshmallow.applyMarshmallowEffects(
               ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.BURNED_MARSHMALLOW_SLOW_DURATION_TICKS,
               ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.BURNED_MARSHMALLOW_SLOW_DURATION_TICKS,

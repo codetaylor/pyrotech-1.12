@@ -18,6 +18,8 @@
         * `item.pyrotech.marshmallow.on.stick.roasted.name`
         * `item.pyrotech.marshmallow.on.stick.burned.name`
         * `item.pyrotech.marshmallow.stick.empty.name`
+        * `gui.pyrotech.marshmallow.burned.broadcast.message`
+        * `gui.pyrotech.marshmallow.burned.eat.broadcast.message`
         * `gui.pyrotech.tooltip.potency`
 
   * **Added:**
@@ -47,6 +49,13 @@
                 * `ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS`
                 * `MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS`
                 * `ROASTED_MARSHMALLOW_EFFECT_POTENCY_DURATION_TICKS`
+        * Burned Marshmallows:
+            * Added config values:
+                * `BURNED_MARSHMALLOW_HUNGER`
+                * `BURNED_MARSHMALLOW_SATURATION`
+                * `BURNED_MARSHMALLOW_SLOW_DURATION_TICKS`
+                * `ENABLE_BURNED_MARSHMALLOW_BROADCAST_MESSAGE`
+                * `ENABLE_BURNED_MARSHMALLOW_EAT_BROADCAST_MESSAGE`
         * Marshmallow Stick:
             * Sharpen a stick with a sharp tool, `ore:toolSharp`
     * Campfire effects:

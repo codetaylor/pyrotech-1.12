@@ -41,6 +41,7 @@ public class ItemMarshmallowRoasted
     return ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS;
   }
 
+  @Override
   protected void setCooldownOnMarshmallows(EntityPlayer player) {
 
     player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW_STICK, 10);

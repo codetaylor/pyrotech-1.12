@@ -73,6 +73,9 @@ tile.pyrotech.worktable_stone.name=Каменный рабочий стол
 tile.pyrotech.compacting_bin.name=Уплотнительный закром
 tile.pyrotech.soaking_pot.name=Горшок для замачивания
 
+gui.pyrotech.marshmallow.burned.broadcast.message=%s burned a marshmallow!
+gui.pyrotech.marshmallow.burned.eat.broadcast.message=%s ate a burned marshmallow, gross!
+
 pyrotech.effect.comfort=Comfort
 pyrotech.effect.well.fed=Well Fed
 pyrotech.effect.resting=Resting

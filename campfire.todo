@@ -69,13 +69,14 @@ Burned Marshmallow:
     ✔ No hunger / saturation @done(20-05-04 16:53)
     Ended up going with very little hunger / saturation, configurable.
     ✔ Very short slow effect @done(20-05-04 16:53)
-    ☐ Broadcast message "[player] ate a burned marshmallow, gross!"
+    ✔ Broadcast message "[player] ate a burned marshmallow, gross!" @done(20-05-13 13:21)
     ✔ Stackable @done(20-05-04 16:54)
   Config:
     ✔ Slow effect duration @done(20-05-04 16:54)
-    ☐ Enable / disable broadcast message
-    ☐ Edit broadcast message
+    ✔ Enable / disable broadcast message @done(20-05-13 13:20)
+    ✘ Edit broadcast message @cancelled(20-05-13 13:20)
     Lang files?
+    Skipped in favor of just allowing edits to the lang file.
 
 Marshmallow Stick:
   ✔ Lang @done(20-05-04 16:59)
@@ -91,8 +92,9 @@ Marshmallow Stick:
     ✔ Custom model that changes with NBT state @done(20-05-04 16:59)
     This can be done with item property overrides.
     ✔ Tooltip displaying potency for roasted state @done(20-05-13 12:51)
-    ☐ Tooltip indicating usage key combos, ie. shift + use to remove marshmallow
+    ✘ Tooltip indicating usage key combos, ie. shift + use to remove marshmallow @cancelled(20-05-13 12:58)
     Do we still need to do this? We're now forcing the player to learn the shift + use combo to put the treat on the stick, so it shouldn't be that hard for them to make the logical jump to know how to take it off.
+    Let's skip this.
     ✔ Don't stack due to NBT and durability @done(20-05-04 16:59)
     Use:
       ✔ Only roast in range of campfire @done(20-05-13 11:26)
@@ -101,7 +103,7 @@ Marshmallow Stick:
       ✘ Roast / burn speed influenced by the campfire's fuel count @cancelled(20-05-13 09:23)
       Do we really need to do this? No, this would make the feature unnecessarily complex.
       ✔ Progress reset when the player stops using @done(20-05-04 17:07)
-      ☐ Broadcast message "[player] burned a marshmallow!"
+      ✔ Broadcast message "[player] burned a marshmallow!" @done(20-05-13 13:21)
       Allow eating marshmallow from stick:
         Originally I didn't want to do this, but after using the marshmallow stick, I would really like to be able to eat the marshmallow right off of the stick without having to first empty the stack of marshmallows from my offhand to remove and eat the treat. I will include my earlier reasoning below.
         ✘ Edible, always - if roasted or burned state @cancelled(20-05-03 09:58)
@@ -133,8 +135,8 @@ Marshmallow Stick:
     ✘ Ticks to burn from roasted variance +/- random @cancelled(20-05-13 09:09)
     It's better to have only one unpredictable value.
     ✔ Allowed roasting range @done(20-05-13 11:16)
-    ☐ Enable / disable broadcast message
-    ☐ Edit broadcast message
+    ✔ Enable / disable broadcast message @done(20-05-13 13:21)
+    ✔ Edit broadcast message @done(20-05-13 13:21)
     This can be done with resource packs if we use the lang file.
     ✔ Stick durability @done(20-05-13 11:30)
     ✘ Stick durability lost per roast @cancelled(20-05-13 11:30)
