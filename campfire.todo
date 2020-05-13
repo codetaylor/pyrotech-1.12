@@ -18,7 +18,7 @@ Bugs:
   ✔ If the stick is roasted and my hand is empty, I expect to be able to remove the roasted treat and eat it while looking at the campfire. @done(20-05-13 10:57)
   ✔ I don't want to 'use' empty mallow stick on campfire @done(20-05-13 10:56)
   ✔ Eating a burned mallow on stick doesn't consume the food, consumes on second try @done(20-05-13 10:53)
-  ☐ Shouldn't be able to roast a mallow from max range
+  ✔ Shouldn't be able to roast a mallow from max range @done(20-05-13 11:16)
   ✔ Stop roasting a mallow before it's roasted makes it unroastable @done(20-05-13 11:00)
 
 Tasks:
@@ -130,7 +130,7 @@ Marshmallow Stick:
     ☐ Ticks to burn from roasted
     ✘ Ticks to burn from roasted variance +/- random @cancelled(20-05-13 09:09)
     It's better to have only one unpredictable value.
-    ☐ Allowed roasting range
+    ✔ Allowed roasting range @done(20-05-13 11:16)
     ☐ Enable / disable broadcast message
     ☐ Edit broadcast message
     This can be done with resource packs if we use the lang file.

@@ -244,21 +244,20 @@ public class ItemMarshmallowStick
 
       RayTraceResult rayTraceResult = this.rayTrace(world, player, false);
 
-      // TODO
       // If this is a roasted marshmallow, we need to check that the player
       // has stopped using it and, if they have, prevent them from using it again.
       // This will prevent players from being able to start roasting an already
       // roasted marshmallow.
       //
-      // We can check for the roasted timestamp that we will apply in the future
-      // to the stopped using method.
+      // We can check for the roasted timestamp.
       if (ItemMarshmallowStick.getRoastedAtTimestamp(itemMainHand) == 0) {
 
         // ray trace result can be null
         //noinspection ConstantConditions
         if (rayTraceResult != null
             && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK
-            && this.isRoastingBlock(world, rayTraceResult.getBlockPos())) {
+            && this.isRoastingBlock(world, rayTraceResult.getBlockPos())
+            && this.isWithinRoastingRange(player, rayTraceResult.getBlockPos())) {
 
           // TODO: Setting the NBT data here is causing an item reset and interrupting the use cycle.
           // When we set the NBT later, set it to roasted, it will interrupt the roasting process and
@@ -367,8 +366,6 @@ public class ItemMarshmallowStick
   @Override
   public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
 
-//    System.out.println("USING");
-
     if (!(player instanceof EntityPlayer)) {
       return;
     }
@@ -377,7 +374,8 @@ public class ItemMarshmallowStick
     World world = player.world;
 
     // Only want to check for campfire if we're roasting as indicated by the
-    // roast timestamp.
+    // roast timestamp. We check that the player is still looking at the
+    // campfire and is still within range.
     if (roastByTimestamp < Long.MAX_VALUE) {
       RayTraceResult rayTraceResult = this.rayTrace(world, (EntityPlayer) player, false);
 
@@ -385,17 +383,15 @@ public class ItemMarshmallowStick
       //noinspection ConstantConditions
       if (rayTraceResult == null
           || rayTraceResult.typeOfHit != RayTraceResult.Type.BLOCK
-          || !this.isRoastingBlock(world, rayTraceResult.getBlockPos())) {
-
-        // TODO: Check if within roasting range of the fire
-
+          || !this.isRoastingBlock(world, rayTraceResult.getBlockPos())
+          || !this.isWithinRoastingRange(player, rayTraceResult.getBlockPos())) {
         player.stopActiveHand();
         this.setCooldownOnMarshmallows((EntityPlayer) player);
         System.out.println("USING: STOPPED -> " + roastByTimestamp);
       }
     }
 
-    // TODO: turn into a roasted stick when it passes the threshold
+    // Turn into a roasted or burned stick when it passes the threshold.
     if (world.isRemote) {
       long totalWorldTime = world.getTotalWorldTime();
 
@@ -410,6 +406,11 @@ public class ItemMarshmallowStick
         }
       }
     }
+  }
+
+  private boolean isWithinRoastingRange(EntityLivingBase player, BlockPos blockPos) {
+
+    return player.getDistanceSqToCenter(blockPos) <= ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTING_RANGE * ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTING_RANGE;
   }
 
   @Override
@@ -471,6 +472,7 @@ public class ItemMarshmallowStick
         newItemStack.damageItem(1, player);
       }
 
+      // Apply the appropriate marshmallow effects.
       switch (type) {
         case MARSHMALLOW:
           ItemMarshmallow.applyMarshmallowEffects(
@@ -503,8 +505,12 @@ public class ItemMarshmallowStick
           break;
       }
 
+      // Call super for the eating logic.
       super.onItemUseFinish(stack, world, player);
+
+      // Set the cooldown.
       this.setCooldownOnMarshmallows((EntityPlayer) player);
+
       return newItemStack;
     }
 
@@ -515,21 +521,6 @@ public class ItemMarshmallowStick
       ItemMarshmallowStick.setRoastedAtTimestamp(stack, world.getTotalWorldTime());
     }
 
-    RayTraceResult rayTraceResult = this.rayTrace(world, (EntityPlayer) player, false);
-
-    // The ray trace result can be null
-    //noinspection ConstantConditions
-    if (rayTraceResult == null
-        || rayTraceResult.typeOfHit != RayTraceResult.Type.BLOCK
-        || !this.isRoastingBlock(world, rayTraceResult.getBlockPos())) {
-
-      // TODO: Check if within roasting range of the fire
-
-      player.stopActiveHand();
-      return stack;
-    }
-
-    // TODO: turn into a burned stick
     return stack;
   }
 

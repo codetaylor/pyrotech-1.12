@@ -1100,6 +1100,13 @@ public class ModuleTechBasicConfig {
   public static class CampfireMarshmallows {
 
     @Config.Comment({
+        "The maximum range at which a marshmallow roast will work.",
+        "Default: " + 2
+    })
+    @Config.RangeInt(min = 0)
+    public int ROASTING_RANGE = 2;
+
+    @Config.Comment({
         "The number of times marshmallows can be roasted before the stick breaks.",
         "Default: " + 8
     })
