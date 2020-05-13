@@ -1187,7 +1187,7 @@ public class ModuleTechBasicConfig {
         "Set to zero to disable.",
         "Default: " + (5 * 20)
     })
-    public int BURNED_MARSHMALLOW_SPEED_DURATION_TICKS = 5 * 20;
+    public int BURNED_MARSHMALLOW_SLOW_DURATION_TICKS = 5 * 20;
   }
 
   // ---------------------------------------------------------------------------

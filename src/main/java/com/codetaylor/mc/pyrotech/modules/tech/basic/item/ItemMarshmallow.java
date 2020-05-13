@@ -55,18 +55,7 @@ public class ItemMarshmallow
   @Override
   public ItemStack onItemUseFinish(ItemStack stack, @Nonnull World world, EntityLivingBase entityLiving) {
 
-    if (this.getEffectDurationTicks() > 0) {
-
-      int duration = this.getEffectDurationTicks();
-
-      PotionEffect activePotionEffect = entityLiving.getActivePotionEffect(this.getEffect());
-
-      if (this.stackEffect() && activePotionEffect != null) {
-        duration = Math.min(this.getMaxEffectDurationTicks(), duration + activePotionEffect.getDuration());
-      }
-
-      entityLiving.addPotionEffect(new PotionEffect(this.getEffect(), duration));
-    }
+    ItemMarshmallow.applyMarshmallowEffects(this.getEffectDurationTicks(), this.getMaxEffectDurationTicks(), entityLiving, this.getEffect(), this.stackEffect());
 
     if (entityLiving instanceof EntityPlayer) {
       this.setCooldownOnMarshmallows((EntityPlayer) entityLiving);
@@ -93,4 +82,19 @@ public class ItemMarshmallow
     player.getCooldownTracker().setCooldown(ModuleTechBasic.Items.MARSHMALLOW_ROASTED, 10);
   }
 
+  public static void applyMarshmallowEffects(int durationTicks, int maxDurationTicks, EntityLivingBase entityLiving, Potion effect, boolean stackEffect) {
+
+    if (durationTicks > 0) {
+
+      int duration = durationTicks;
+
+      PotionEffect activePotionEffect = entityLiving.getActivePotionEffect(effect);
+
+      if (stackEffect && activePotionEffect != null) {
+        duration = Math.min(maxDurationTicks, duration + activePotionEffect.getDuration());
+      }
+
+      entityLiving.addPotionEffect(new PotionEffect(effect, duration));
+    }
+  }
 }

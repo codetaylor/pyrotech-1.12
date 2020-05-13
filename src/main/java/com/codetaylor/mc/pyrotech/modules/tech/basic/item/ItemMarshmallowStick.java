@@ -9,6 +9,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
@@ -457,12 +458,46 @@ public class ItemMarshmallowStick
     if (this.canEat(stack)) {
 
       ItemStack newItemStack = new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY, 1, stack.getItemDamage());
+      EnumType type = ItemMarshmallowStick.getType(stack);
 
       // Allow eating a marshmallow from the stick without damaging it.
-      if (ItemMarshmallowStick.getType(stack) != EnumType.MARSHMALLOW) {
+      if (type != EnumType.MARSHMALLOW) {
         newItemStack.damageItem(1, player);
       }
       super.onItemUseFinish(stack, world, player);
+
+      switch (type) {
+        case MARSHMALLOW:
+          ItemMarshmallow.applyMarshmallowEffects(
+              ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MARSHMALLOW_SPEED_DURATION_TICKS,
+              ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MAX_MARSHMALLOW_SPEED_DURATION_TICKS,
+              player,
+              MobEffects.SPEED,
+              true
+          );
+          break;
+
+        case MARSHMALLOW_ROASTED:
+          ItemMarshmallow.applyMarshmallowEffects(
+              ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS,
+              ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.MAX_ROASTED_MARSHMALLOW_SPEED_DURATION_TICKS,
+              player,
+              MobEffects.SPEED,
+              true
+          );
+          break;
+
+        case MARSHMALLOW_BURNED:
+          ItemMarshmallow.applyMarshmallowEffects(
+              ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.BURNED_MARSHMALLOW_SLOW_DURATION_TICKS,
+              ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.BURNED_MARSHMALLOW_SLOW_DURATION_TICKS,
+              player,
+              MobEffects.SLOWNESS,
+              false
+          );
+          break;
+      }
+
       this.setCooldownOnMarshmallows((EntityPlayer) player);
       return newItemStack;
     }

@@ -33,7 +33,7 @@ public class ItemMarshmallowBurned
   @Override
   protected int getEffectDurationTicks() {
 
-    return ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.BURNED_MARSHMALLOW_SPEED_DURATION_TICKS;
+    return ModuleTechBasicConfig.CAMPFIRE_MARSHMALLOWS.BURNED_MARSHMALLOW_SLOW_DURATION_TICKS;
   }
 
   @Override
