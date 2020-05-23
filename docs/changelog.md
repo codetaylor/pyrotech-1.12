@@ -1,6 +1,16 @@
 !!! note "Pyrotech in 1.14.4 and beyond!"
     Hi, I'm Codetaylor, the creator of Pyrotech and I would love to work on moving the mod to more recent versions of Minecraft. If you'd like to see Pyrotech move beyond 1.12.2, [click here to read more about my campaign to make that happen](https://bit.ly/2KaxA3Hd)!
 
+**1.4.28**
+
+  * **Fixed:**
+    * Inserting liquid from stackable containers voids container & liquid [(#236)](https://github.com/codetaylor/artisan-worktables/issues/236)
+    
+  * **Required:**
+    * Athenaeum >= 1.18.1
+    
+---
+    
 **1.4.27**
 
   * **API**

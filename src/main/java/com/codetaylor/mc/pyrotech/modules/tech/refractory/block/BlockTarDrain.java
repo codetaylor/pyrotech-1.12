@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.refractory.block;
 
 import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.athenaeum.util.FluidUtilFix;
 import com.codetaylor.mc.pyrotech.library.util.Tooltips;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileBrickTarDrain;
@@ -191,7 +192,7 @@ public class BlockTarDrain
 
     ItemStack heldItem = player.getHeldItem(hand);
 
-    return FluidUtil.interactWithFluidHandler(player, hand, fluidHandler)
+    return FluidUtilFix.interactWithFluidHandler(player, hand, fluidHandler)
         || FluidUtil.getFluidHandler(heldItem) != null;
   }
 
