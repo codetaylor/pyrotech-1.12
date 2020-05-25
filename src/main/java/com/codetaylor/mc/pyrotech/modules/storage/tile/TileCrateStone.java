@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.storage.tile;
 
-import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 
 import javax.annotation.Nullable;

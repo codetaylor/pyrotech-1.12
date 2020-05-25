@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
-import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;

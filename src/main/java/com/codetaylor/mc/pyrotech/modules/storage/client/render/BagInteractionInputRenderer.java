@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.storage.client.render;
 
-import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
-import com.codetaylor.mc.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.athenaeum.interaction.api.InteractionRenderers;
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

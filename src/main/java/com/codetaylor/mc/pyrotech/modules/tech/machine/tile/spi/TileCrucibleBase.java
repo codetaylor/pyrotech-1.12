@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.CrucibleFluidRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInFluidOutBase;
 import net.minecraft.block.state.IBlockState;

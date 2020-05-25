@@ -2,11 +2,11 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.pyrotech.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;

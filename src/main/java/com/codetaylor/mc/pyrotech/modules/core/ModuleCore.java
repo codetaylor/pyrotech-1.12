@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core;
 
+import com.codetaylor.mc.athenaeum.interaction.event.InteractionMouseScrollEventHandler;
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.athenaeum.network.IPacketService;
@@ -81,6 +82,7 @@ public class ModuleCore
     TILE_DATA_SERVICE = this.enableNetworkTileDataService(PACKET_SERVICE);
 
     MinecraftForge.EVENT_BUS.register(this);
+    MinecraftForge.EVENT_BUS.register(new InteractionMouseScrollEventHandler(PACKET_SERVICE));
 
     String[] craftTweakerPlugins = {
         "ZenStages"

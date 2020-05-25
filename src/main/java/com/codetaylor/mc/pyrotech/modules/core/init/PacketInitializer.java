@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.core.init;
 
 import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.athenaeum.network.tile.SCPacketTileData;
-import com.codetaylor.mc.pyrotech.interaction.network.CSPacketInteractionMouseWheel;
+import com.codetaylor.mc.athenaeum.interaction.network.CSPacketInteractionMouseWheel;
 import com.codetaylor.mc.pyrotech.modules.core.network.*;
 import net.minecraftforge.fml.relauncher.Side;
 

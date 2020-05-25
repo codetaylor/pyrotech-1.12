@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.delegate;
 
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;
-import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionItemStack;
+import com.codetaylor.mc.athenaeum.interaction.util.InteractionRayTraceData;
 import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

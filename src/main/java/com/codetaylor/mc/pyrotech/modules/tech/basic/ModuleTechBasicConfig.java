@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
-import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;

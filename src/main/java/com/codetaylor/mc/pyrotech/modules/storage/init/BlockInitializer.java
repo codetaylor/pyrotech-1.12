@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.storage.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
-import com.codetaylor.mc.pyrotech.interaction.spi.TESRInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;

@@ -113,6 +113,9 @@
         * Added campfire `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
     * Campfire will now burn food faster or slower based on how much fuel it has 
         * Burn speed depends on the `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
+    * Moved configs to Athenaeum config:
+        * `core.cfg.client.ALWAYS_SHOW_QUANTITIES`
+        * `core.cfg.client.SHOW_INTERACTION_BOUNDS`
 
 ---
 

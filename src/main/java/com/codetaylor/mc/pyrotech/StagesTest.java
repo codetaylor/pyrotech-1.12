@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech;
 
-import com.codetaylor.mc.pyrotech.library.Stages;
-import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 
 import java.util.Arrays;
 import java.util.List;
