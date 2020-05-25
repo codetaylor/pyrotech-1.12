@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.interaction.spi;
 
+import com.codetaylor.mc.athenaeum.util.FluidUtilFix;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -42,7 +43,7 @@ public abstract class InteractionBucketBase<T extends TileEntity & ITileInteract
 
   protected boolean doInteraction(T tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-    return FluidUtil.interactWithFluidHandler(player, hand, this.fluidHandler);
+    return FluidUtilFix.interactWithFluidHandler(player, hand, this.fluidHandler);
   }
 
 }
