@@ -15,7 +15,7 @@ import com.codetaylor.mc.athenaeum.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
-import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
+import com.codetaylor.mc.athenaeum.util.ParticleHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;

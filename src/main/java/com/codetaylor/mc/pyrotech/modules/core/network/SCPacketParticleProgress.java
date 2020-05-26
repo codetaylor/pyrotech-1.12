@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core.network;
 
-import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
+import com.codetaylor.mc.athenaeum.util.ParticleHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
