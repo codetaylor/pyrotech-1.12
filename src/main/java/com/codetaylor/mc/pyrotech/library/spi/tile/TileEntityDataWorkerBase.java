@@ -5,7 +5,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataBoolean;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
-import com.codetaylor.mc.athenaeum.network.tile.spi.TileNetBase;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagFloat;
 import net.minecraft.nbt.NBTTagList;
@@ -17,8 +17,8 @@ import javax.annotation.Nonnull;
 /**
  * A base implementation of {@link ITileWorker}.
  */
-public abstract class TileNetWorkerBase
-    extends TileNetBase
+public abstract class TileEntityDataWorkerBase
+    extends TileEntityDataBase
     implements ITileWorker,
     ITickable {
 
@@ -32,7 +32,7 @@ public abstract class TileNetWorkerBase
    */
   protected final TileDataFloat[] progress;
 
-  protected TileNetWorkerBase(ITileDataService tileDataService, int taskCount) {
+  protected TileEntityDataWorkerBase(ITileDataService tileDataService, int taskCount) {
 
     super(tileDataService);
 
