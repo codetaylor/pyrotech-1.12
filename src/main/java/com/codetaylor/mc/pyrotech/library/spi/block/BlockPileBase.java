@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.library.spi.block;
 
+import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
