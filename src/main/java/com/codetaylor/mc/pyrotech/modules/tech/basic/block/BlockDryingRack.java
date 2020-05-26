@@ -5,7 +5,7 @@ import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
+import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileDryingRack;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileDryingRackCrude;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileDryingRackBase;

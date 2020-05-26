@@ -5,7 +5,7 @@ import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.library.spi.block.BlockPartialBase;
+import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankBrick;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankStone;
