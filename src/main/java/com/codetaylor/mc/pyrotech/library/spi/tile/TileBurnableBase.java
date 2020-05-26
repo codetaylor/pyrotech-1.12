@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.library.spi.tile;
 
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileNetBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
