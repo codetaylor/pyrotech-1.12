@@ -11,7 +11,7 @@ import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileNetBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.InteractionCogRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemCog;

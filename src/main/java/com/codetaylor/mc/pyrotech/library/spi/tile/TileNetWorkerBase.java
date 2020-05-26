@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataBoolean;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileNetBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagFloat;
 import net.minecraft.nbt.NBTTagList;

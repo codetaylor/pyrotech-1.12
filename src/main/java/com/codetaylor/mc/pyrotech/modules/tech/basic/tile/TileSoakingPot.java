@@ -18,7 +18,7 @@ import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
-import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileNetBase;
 import com.codetaylor.mc.pyrotech.library.util.ParticleHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleCombust;
