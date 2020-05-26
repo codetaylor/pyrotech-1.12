@@ -11,7 +11,7 @@ import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBase;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.athenaeum.network.tile.spi.TileNetBase;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.client.render.BagInteractionInputRenderer;
@@ -38,7 +38,7 @@ import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 public abstract class TileBagBase
-    extends TileNetBase
+    extends TileEntityDataBase
     implements ITileInteractable {
 
   protected StackHandler stackHandler;

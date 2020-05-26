@@ -14,7 +14,7 @@ import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
-import com.codetaylor.mc.athenaeum.network.tile.spi.TileNetBase;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
@@ -43,7 +43,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TileCompactingBin
-    extends TileNetBase
+    extends TileEntityDataBase
     implements ITileInteractable {
 
   private InputStackHandler inputStackHandler;

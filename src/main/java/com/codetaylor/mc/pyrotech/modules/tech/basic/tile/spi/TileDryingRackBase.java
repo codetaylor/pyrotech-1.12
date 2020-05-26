@@ -8,7 +8,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.util.TickCounter;
-import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetWorkerBase;
+import com.codetaylor.mc.pyrotech.library.spi.tile.TileEntityDataWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.spi.DryingRackRecipeBase;
@@ -30,7 +30,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 public abstract class TileDryingRackBase
-    extends TileNetWorkerBase
+    extends TileEntityDataWorkerBase
     implements ITickable {
 
   private static final int SPEED_CHECK_INTERVAL_TICKS = 20;
