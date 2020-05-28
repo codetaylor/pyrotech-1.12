@@ -27,7 +27,7 @@ public class SoakingPotProviderDelegate
 
       float progress = tile.getRecipeProgress();
       ItemStack outputStack = currentRecipe.getOutput();
-      outputStack.setCount(inputStack.getCount());
+      outputStack.setCount(inputStack.getCount() * outputStack.getCount());
 
       this.display.setRecipeProgress(inputStack, outputStack, (int) (100 * progress), 100);
     }

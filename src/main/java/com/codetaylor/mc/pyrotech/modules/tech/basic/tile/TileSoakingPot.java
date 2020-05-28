@@ -294,7 +294,7 @@ public class TileSoakingPot
         ItemStack inputItem = this.inputStackHandler.extractItem(0, this.inputStackHandler.getSlotLimit(0), false);
         this.inputFluidTank.drain(currentRecipe.getInputFluid().amount * inputItem.getCount(), true);
         ItemStack output = currentRecipe.getOutput();
-        output.setCount(inputItem.getCount());
+        output.setCount(inputItem.getCount() * output.getCount());
         this.outputStackHandler.insertItem(0, output, false);
 
         this.recipeProgress.set(0);

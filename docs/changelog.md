@@ -1,6 +1,14 @@
 !!! note "Pyrotech in 1.14.4 and beyond!"
     Hi, I'm Codetaylor, the creator of Pyrotech and I would love to work on moving the mod to more recent versions of Minecraft. If you'd like to see Pyrotech move beyond 1.12.2, [click here to read more about my campaign to make that happen](https://bit.ly/2KaxA3Hd)!
 
+**1.4.29**
+
+  * **Fixed:**
+    * Pit Kiln and Soaking Pot output quantities don't respect the output quantities set in the recipe [(#305)](https://github.com/codetaylor/artisan-worktables/issues/305)
+    * Hwyla and TOP don't display correct Pit Kiln and Soaking Pot output quantities
+    
+---
+    
 **1.4.28**
 
   * **Fixed:**

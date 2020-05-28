@@ -359,7 +359,6 @@ public class TileKilnPit
 
     if (recipe != null) {
       ItemStack output = recipe.getOutput();
-      output.setCount(1);
       this.stackHandler.setStackInSlot(0, ItemStack.EMPTY);
 
       ItemStack[] failureItems = recipe.getFailureItems();
