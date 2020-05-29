@@ -67,6 +67,7 @@ public class SCPacketMarshmallowStickTimestamp
             && ItemMarshmallowStick.getType(heldItemMainhand) == ItemMarshmallowStick.EnumType.MARSHMALLOW) {
           ItemMarshmallowStick.setRoastByTimestamp(heldItemMainhand, message.timestamp);
         }
+        break;
       }
     }
 
