@@ -114,7 +114,7 @@ public class ItemMarshmallowStick
 
     if (ItemMarshmallowStick.getRoastByTimestamp(stack) < Long.MAX_VALUE) {
       // This means we've aimed it at a fire and we're roasting.
-      return EnumAction.BOW;
+      return EnumAction.DRINK;
     }
 
     return EnumAction.EAT;
