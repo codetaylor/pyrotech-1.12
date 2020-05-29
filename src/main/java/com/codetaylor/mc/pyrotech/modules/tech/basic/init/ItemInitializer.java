@@ -2,7 +2,9 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.*;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -21,7 +23,7 @@ public final class ItemInitializer {
     registry.registerItem(TINDER, ItemTinder.NAME);
     registry.registerItem(MARSHMALLOW, ItemMarshmallow.NAME);
     registry.registerItem(MARSHMALLOW_ROASTED, ItemMarshmallowRoasted.NAME);
-    registry.registerItem(MARSHMALLOW_STICK, ItemMarshmallowStick.NAME);
+    registry.registerItem(MARSHMALLOW_STICK, new ResourceLocation(ModuleTechBasic.MOD_ID, ItemMarshmallowStick.NAME), true);
     registry.registerItem(MARSHMALLOW_STICK_EMPTY, ItemMarshmallowStickEmpty.NAME);
     registry.registerItem(MARSHMALLOW_BURNED, ItemMarshmallowBurned.NAME);
   }
