@@ -3,12 +3,13 @@ site_name: Pyrotech
 pages:
 - Introduction: index.md
 - ChangeLog: changelog.md
-- Known Issues: knownissues.md
 - Modules: modules.md
 - Commands: commands.md
 - Dropt Rules: droptrules.md
-- Ore Compat: orecompat.md
-- Wood Compat: woodcompat.md
+- Compatibility:
+  - Known Issues: knownissues.md
+  - Ore Compatibility: orecompat.md
+  - Wood Compatibility: woodcompat.md
 - Devices:
   - Recipe Inheritance: inheritance.md
   - Drying Racks: dryingracks.md
