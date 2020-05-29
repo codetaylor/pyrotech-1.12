@@ -63,9 +63,6 @@ public class SCPacketMarshmallowStickTimestamp
         ItemStack heldItemMainhand = player.getHeldItemMainhand();
         Item item = heldItemMainhand.getItem();
 
-        System.out.println("Found player: " + playerUuid);
-        System.out.println(heldItemMainhand.toString());
-
         if (item == ModuleTechBasic.Items.MARSHMALLOW_STICK
             && ItemMarshmallowStick.getType(heldItemMainhand) == ItemMarshmallowStick.EnumType.MARSHMALLOW) {
           ItemMarshmallowStick.setRoastByTimestamp(heldItemMainhand, message.timestamp);
