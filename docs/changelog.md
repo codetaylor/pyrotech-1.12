@@ -119,6 +119,14 @@
 
 ---
 
+**1.4.29**
+
+  * **Fixed:**
+    * Pit Kiln and Soaking Pot output quantities don't respect the output quantities set in the recipe [(#305)](https://github.com/codetaylor/artisan-worktables/issues/305)
+    * Hwyla and TOP don't display correct Pit Kiln and Soaking Pot output quantities
+    
+---
+    
 **1.4.28**
 
   * **Fixed:**

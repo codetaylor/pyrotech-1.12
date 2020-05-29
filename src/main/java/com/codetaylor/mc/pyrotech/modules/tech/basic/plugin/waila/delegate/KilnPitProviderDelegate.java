@@ -35,7 +35,7 @@ public class KilnPitProviderDelegate
     } else if (recipe != null) {
       // the kiln's recipe isn't complete
       ItemStack output = recipe.getOutput();
-      output.setCount(input.getCount());
+      output.setCount(input.getCount() * output.getCount());
       float progress = tile.getProgress();
       this.display.setRecipeProgress(input, output, (int) (100 * progress), 100);
     }
