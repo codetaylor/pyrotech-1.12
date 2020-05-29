@@ -29,7 +29,7 @@ Tasks:
   ✔ Resting effect should use green for the effect bar to indicate that it's a good thing. @done(20-04-21 18:35)
   ✔ Test campfire effects on server @done(20-04-24 12:54)
   ☐ Campfire effects book info
-  ☐ Campfire effects docs info
+  ✔ Campfire effects docs info @done(20-05-29 13:37)
   ☐ Campfire effects advancement, hidden, have all effects active
   ☐ Marshmallow book info
 
