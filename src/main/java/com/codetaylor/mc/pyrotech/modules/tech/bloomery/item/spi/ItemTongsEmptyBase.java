@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi;
 
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItem;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionItem;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;

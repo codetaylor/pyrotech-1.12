@@ -1,6 +1,15 @@
 !!! note "Pyrotech in 1.14.4 and beyond!"
     Hi, I'm Codetaylor, the creator of Pyrotech and I would love to work on moving the mod to more recent versions of Minecraft. If you'd like to see Pyrotech move beyond 1.12.2, [click here to read more about my campaign to make that happen](https://bit.ly/2KaxA3Hd)!
 
+**1.4.30**
+
+  * **Changed:**
+    * Moved configs to Athenaeum config:
+        * `core.cfg.client.ALWAYS_SHOW_QUANTITIES`
+        * `core.cfg.client.SHOW_INTERACTION_BOUNDS`
+
+---
+
 **1.4.29**
 
   * **Fixed:**

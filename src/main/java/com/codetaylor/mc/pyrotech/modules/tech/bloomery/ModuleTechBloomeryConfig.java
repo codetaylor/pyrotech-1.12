@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
-import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;

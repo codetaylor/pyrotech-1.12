@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.gamestages;
 
-import com.codetaylor.mc.pyrotech.library.Stages;
-import com.codetaylor.mc.pyrotech.modules.core.plugin.gamestages.GameStages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.GameStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.PluginJEI;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.jei.category.JEIRecipeCategoryWorktable;

@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate;
 
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionItemStack;
-import com.codetaylor.mc.pyrotech.interaction.util.InteractionRayTraceData;
-import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionItemStack;
+import com.codetaylor.mc.athenaeum.interaction.util.InteractionRayTraceData;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
-import com.codetaylor.mc.pyrotech.modules.core.plugin.gamestages.GameStages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.GameStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileWorktable;
 import net.minecraft.entity.player.EntityPlayer;

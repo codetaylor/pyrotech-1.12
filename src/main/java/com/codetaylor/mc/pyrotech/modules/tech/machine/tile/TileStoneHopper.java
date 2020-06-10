@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
-import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockMechanicalHopper;

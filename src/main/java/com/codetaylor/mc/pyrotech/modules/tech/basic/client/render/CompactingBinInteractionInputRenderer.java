@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.client.render;
 
-import com.codetaylor.mc.pyrotech.interaction.api.InteractionRenderers;
-import com.codetaylor.mc.pyrotech.interaction.api.Transform;
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.athenaeum.interaction.api.InteractionRenderers;
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCompactingBin;
 import net.minecraft.block.state.IBlockState;

@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.storage;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
-import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockGrass;

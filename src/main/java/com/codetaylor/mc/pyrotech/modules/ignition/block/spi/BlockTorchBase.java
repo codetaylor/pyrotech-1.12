@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.ignition.block.spi;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.ignition.tile.spi.TileTorchBase;
