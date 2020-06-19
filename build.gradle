@@ -45,8 +45,10 @@ compileJava.doFirst {
             filter {
                 it.replaceAll('@@VERSION@@', project.version)
             }
-            filter {
-                it.replaceAll('//@@DEPENDENCIES@@', project.ext.dependencies)
+            project.ext.replace.each{entry -> 
+                filter {
+                    it.replaceAll(entry.key, entry.value)
+                }
             }
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         }
