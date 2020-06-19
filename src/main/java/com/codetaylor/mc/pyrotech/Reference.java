@@ -7,6 +7,16 @@ public class Reference {
   public static final String MOD_ID = "pyrotech";
   public static final String VERSION = "@@VERSION@@";
   public static final String NAME = "Pyrotech";
+  public static final String DEPENDENCIES =
+      "required-after:dropt;" +
+          "required-after:athenaeum;" +
+          "after:patchouli;" +
+          "after:crafttweaker;" +
+          "after:jei;" +
+          "after:gamestages;" +
+          "after:thermalexpansion;" +
+          "after:theoneprobe;" +
+          "after:waila;";
 
   public static final boolean IS_DEV = VERSION.equals("@@" + "VERSION" + "@@");
 
