@@ -7,13 +7,16 @@
     }
   ],
   "pattern": [
-    "TM",
-    "M "
+    "TS",
+    "MM"
   ],
   "key": {
     "M": {
       "item": "pyrotech:material",
       "data": 11
+    },
+    "S": {
+      "item": "pyrotech:clay_shears"
     },
     "T": {
       "type": "forge:ore_dict",
