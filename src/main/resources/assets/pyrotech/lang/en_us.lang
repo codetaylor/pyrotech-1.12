@@ -245,6 +245,7 @@ item.pyrotech.egg.roasted.name=Roasted Egg
 item.pyrotech.mushroom.brown.roasted.name=Roasted Brown Mushroom
 item.pyrotech.mushroom.red.roasted.name=Roasted Red Mushroom
 item.pyrotech.beetroot.roasted.name=Roasted Beetroot
+item.pyrotech.strange.tuber.name=Strange Tuber
 
 item.pyrotech.crude.hammer.name=Crude Hammer
 item.pyrotech.stone.hammer.name=Stone Hammer

@@ -384,6 +384,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemBurnedFood.NAME)
     public static final ItemBurnedFood BURNED_FOOD;
 
+    @GameRegistry.ObjectHolder(ItemStrangeTuber.NAME)
+    public static final ItemStrangeTuber STRANGE_TUBER;
+
     @GameRegistry.ObjectHolder(ItemBoneHammer.NAME)
     public static final ItemBoneHammer BONE_HAMMER;
 
@@ -425,6 +428,7 @@ public class ModuleCore
       MUSHROOM_RED_ROASTED = null;
       BEETROOT_ROASTED = null;
       BURNED_FOOD = null;
+      STRANGE_TUBER = null;
       BONE_HAMMER = null;
       DIAMOND_HAMMER = null;
       FLINT_HAMMER = null;

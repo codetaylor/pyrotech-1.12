@@ -4,7 +4,6 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.*;
-import com.codetaylor.mc.pyrotech.modules.plugin.patchouli.ModulePluginPatchouli;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -24,6 +23,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemMushroomRedRoasted(), ItemMushroomRedRoasted.NAME);
     registry.registerItem(new ItemBeetrootRoasted(), ItemBeetrootRoasted.NAME);
     registry.registerItem(new ItemBurnedFood(), ItemBurnedFood.NAME);
+    registry.registerItem(new ItemStrangeTuber(), ItemStrangeTuber.NAME);
 
     registry.registerItem(new ItemCrudeHammer(), ItemCrudeHammer.NAME);
     registry.registerItem(new ItemStoneHammer(), ItemStoneHammer.NAME);
@@ -52,6 +52,7 @@ public final class ItemInitializer {
           ModuleCore.Items.MUSHROOM_RED_ROASTED,
           ModuleCore.Items.BEETROOT_ROASTED,
           ModuleCore.Items.BURNED_FOOD,
+          ModuleCore.Items.STRANGE_TUBER,
 
           ModuleCore.Items.CRUDE_HAMMER,
           ModuleCore.Items.STONE_HAMMER,

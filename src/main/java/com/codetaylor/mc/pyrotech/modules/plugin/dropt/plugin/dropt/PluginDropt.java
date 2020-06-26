@@ -7,6 +7,7 @@ import com.codetaylor.mc.dropt.api.reference.*;
 import com.codetaylor.mc.pyrotech.ModPyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemStrangeTuber;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDropt;
 import com.codetaylor.mc.pyrotech.modules.plugin.dropt.ModulePluginDroptConfig;
 import com.codetaylor.mc.pyrotech.modules.tool.item.ItemCrudePickaxe;
@@ -103,6 +104,7 @@ public class PluginDropt {
     String plantFibersDried = item(ItemMaterial.NAME, ItemMaterial.EnumType.PLANT_FIBERS_DRIED.getMeta());
     String coalPieces = item(ItemMaterial.NAME, ItemMaterial.EnumType.COAL_PIECES.getMeta());
     String clayLump = item(ItemMaterial.NAME, ItemMaterial.EnumType.CLAY_LUMP.getMeta());
+    String strangeTuber = item(ItemStrangeTuber.NAME, 0);
 
     List<IDroptRuleBuilder> list = new ArrayList<>();
 
@@ -122,7 +124,8 @@ public class PluginDropt {
           .addDrops(new IDroptDropBuilder[]{
               drop().selector(weight(80)),
               drop().items(new String[]{plantFibers}, range(1, 2)).selector(weight(35)),
-              drop().items(new String[]{plantFibersDried}, range(1, 2)).selector(weight(5))
+              drop().items(new String[]{plantFibersDried}, range(1, 2)).selector(weight(5)),
+              drop().items(new String[]{strangeTuber}, range(1, 2)).selector(weight(1))
           })
       );
     }
@@ -244,13 +247,16 @@ public class PluginDropt {
           .matchHarvester(harvester()
               .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
           )
+          .dropCount(range(1, 2))
+          .dropStrategy(EnumDropStrategy.UNIQUE)
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockDirt}, range(1, 3))
+              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(5)),
+              drop().items(new String[]{strangeTuber}).selector(weight(1))
           })
       );
 
       // Shovel 0
-      // Drops dirt clumps and grass clumps
+      // Drops dirt clumps, grass clumps, and Strange Tubers
       list.add(rule()
           .matchBlocks(new String[]{
               grass,
@@ -263,8 +269,9 @@ public class PluginDropt {
           .dropStrategy(EnumDropStrategy.UNIQUE)
           .dropCount(range(1, 2))
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockDirt}, range(2, 4)).selector(weight(4)),
-              drop().items(new String[]{rockGrass}).selector(weight(1))
+              drop().items(new String[]{rockDirt}, range(2, 4)).selector(weight(40)),
+              drop().items(new String[]{rockGrass}).selector(weight(10)),
+              drop().items(new String[]{strangeTuber}).selector(weight(5))
           })
       );
 
@@ -282,9 +289,10 @@ public class PluginDropt {
           .dropStrategy(EnumDropStrategy.UNIQUE)
           .dropCount(range(2))
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{dirt}).selector(weight(1)),
-              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(3)),
-              drop().items(new String[]{rockGrass}, range(1, 3)).selector(weight(2))
+              drop().items(new String[]{dirt}).selector(weight(10)),
+              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(30)),
+              drop().items(new String[]{rockGrass}, range(1, 3)).selector(weight(20)),
+              drop().items(new String[]{strangeTuber}).selector(weight(1))
           })
       );
 

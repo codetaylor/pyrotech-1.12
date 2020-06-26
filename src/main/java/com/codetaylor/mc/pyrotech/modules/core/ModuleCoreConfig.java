@@ -205,6 +205,22 @@ public class ModuleCoreConfig {
 
     @Config.Comment({
         "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 6
+    })
+    @Config.RangeInt(min = 0)
+    public int STRANGE_TUBER_HUNGER = 2;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.2
+    })
+    @Config.RangeDouble(min = 0)
+    public double STRANGE_TUBER_SATURATION = 0.2;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
         "For reference, the vanilla beetroot restores 1 hunger.",
         "Default: " + 2
     })

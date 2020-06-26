@@ -28,6 +28,12 @@
             * `minecraft:milk`
             * wooden, clay, and stone milk bucket from Pyrotech
         * `toolSharp` contains swords and axes, sans wooden sword
+    * Strange Tuber drops from tall grass and grassy dirt
+        * Edible
+        * More drop when not using a shovel
+        * Added config values:
+            * `STRANGE_TUBER_HUNGER`
+            * `STRANGE_TUBER_SATURATION`
     * Marshmallow roasting mechanic:
         * Added config values:
             * `ROASTING_RANGE_BLOCKS`
