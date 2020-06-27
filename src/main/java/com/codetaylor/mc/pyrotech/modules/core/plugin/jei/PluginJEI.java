@@ -22,6 +22,10 @@ public class PluginJEI
     RecipeItemParser parser = new RecipeItemParser();
     IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleCore.Blocks.ORE_DENSE_REDSTONE_LARGE));
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleCore.Blocks.ORE_DENSE_REDSTONE_SMALL));
+    blacklist.addIngredientToBlacklist(new ItemStack(ModuleCore.Blocks.ORE_DENSE_REDSTONE_ROCKS));
+
     for (String itemString : ModuleCoreConfig.CLIENT.JEI_BLACKLIST) {
 
       try {

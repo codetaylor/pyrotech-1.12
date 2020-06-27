@@ -59,6 +59,12 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockCharcoalBlock(), BlockCharcoalBlock.NAME);
     registry.registerBlockWithItem(new BlockWoodTarBlock(), BlockWoodTarBlock.NAME);
     registry.registerBlockWithItem(new BlockLivingTar(), BlockLivingTar.NAME);
+    registry.registerBlockWithItem(new BlockOreDenseRedstoneLarge(false), BlockOreDenseRedstoneLarge.NAME);
+    registry.registerBlockWithItem(new BlockOreDenseRedstoneLarge(true), BlockOreDenseRedstoneLarge.NAME_ACTIVATED);
+    registry.registerBlockWithItem(new BlockOreDenseRedstoneSmall(false), BlockOreDenseRedstoneSmall.NAME);
+    registry.registerBlockWithItem(new BlockOreDenseRedstoneSmall(true), BlockOreDenseRedstoneSmall.NAME_ACTIVATED);
+    registry.registerBlockWithItem(new BlockOreDenseRedstoneRocks(false), BlockOreDenseRedstoneRocks.NAME);
+    registry.registerBlockWithItem(new BlockOreDenseRedstoneRocks(true), BlockOreDenseRedstoneRocks.NAME_ACTIVATED);
 
     RegistryHelper.registerTileEntities(
         registry,
@@ -90,7 +96,13 @@ public final class BlockInitializer {
           ModuleCore.Blocks.LIVING_TAR,
           ModuleCore.Blocks.ORE_FOSSIL,
           ModuleCore.Blocks.ORE_DENSE_COAL,
-          ModuleCore.Blocks.ORE_DENSE_NETHER_COAL
+          ModuleCore.Blocks.ORE_DENSE_NETHER_COAL,
+          ModuleCore.Blocks.ORE_DENSE_REDSTONE_LARGE,
+          ModuleCore.Blocks.ORE_DENSE_REDSTONE_LARGE_ACTIVATED,
+          ModuleCore.Blocks.ORE_DENSE_REDSTONE_SMALL,
+          ModuleCore.Blocks.ORE_DENSE_REDSTONE_SMALL_ACTIVATED,
+          ModuleCore.Blocks.ORE_DENSE_REDSTONE_ROCKS,
+          ModuleCore.Blocks.ORE_DENSE_REDSTONE_ROCKS_ACTIVATED
       );
 
       ModelRegistrationHelper.registerItemModels(

@@ -19,6 +19,7 @@
         * `item.pyrotech.marshmallow.on.stick.burned.name`
         * `item.pyrotech.marshmallow.stick.empty.name`
         * `item.pyrotech.redstone.shard.name`
+        * `tile.pyrotech.dense_redstone_ore.name`
         * `gui.pyrotech.marshmallow.burned.broadcast.message`
         * `gui.pyrotech.marshmallow.burned.eat.broadcast.message`
         * `gui.pyrotech.tooltip.potency`
@@ -31,6 +32,8 @@
         * `toolSharp` contains swords and axes, sans wooden sword
     * Materials:
         * Redstone Shard
+    * Blocks:
+        * Dense Redstone Ore
     * Strange Tuber drops from tall grass and grassy dirt
         * Edible
         * More drop when not using a shovel

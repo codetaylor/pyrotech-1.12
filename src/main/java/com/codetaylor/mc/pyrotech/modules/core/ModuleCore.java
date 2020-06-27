@@ -314,6 +314,24 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockLivingTar.NAME)
     public static final BlockLivingTar LIVING_TAR;
 
+    @GameRegistry.ObjectHolder(BlockOreDenseRedstoneLarge.NAME)
+    public static final BlockOreDenseRedstoneLarge ORE_DENSE_REDSTONE_LARGE;
+
+    @GameRegistry.ObjectHolder(BlockOreDenseRedstoneLarge.NAME_ACTIVATED)
+    public static final BlockOreDenseRedstoneLarge ORE_DENSE_REDSTONE_LARGE_ACTIVATED;
+
+    @GameRegistry.ObjectHolder(BlockOreDenseRedstoneSmall.NAME)
+    public static final BlockOreDenseRedstoneSmall ORE_DENSE_REDSTONE_SMALL;
+
+    @GameRegistry.ObjectHolder(BlockOreDenseRedstoneSmall.NAME_ACTIVATED)
+    public static final BlockOreDenseRedstoneSmall ORE_DENSE_REDSTONE_SMALL_ACTIVATED;
+
+    @GameRegistry.ObjectHolder(BlockOreDenseRedstoneRocks.NAME)
+    public static final BlockOreDenseRedstoneRocks ORE_DENSE_REDSTONE_ROCKS;
+
+    @GameRegistry.ObjectHolder(BlockOreDenseRedstoneRocks.NAME_ACTIVATED)
+    public static final BlockOreDenseRedstoneRocks ORE_DENSE_REDSTONE_ROCKS_ACTIVATED;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -339,6 +357,12 @@ public class ModuleCore
       CHARCOAL_BLOCK = null;
       WOOD_TAR_BLOCK = null;
       LIVING_TAR = null;
+      ORE_DENSE_REDSTONE_LARGE = null;
+      ORE_DENSE_REDSTONE_LARGE_ACTIVATED = null;
+      ORE_DENSE_REDSTONE_SMALL = null;
+      ORE_DENSE_REDSTONE_SMALL_ACTIVATED = null;
+      ORE_DENSE_REDSTONE_ROCKS = null;
+      ORE_DENSE_REDSTONE_ROCKS_ACTIVATED = null;
     }
   }
 
