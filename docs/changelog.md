@@ -18,6 +18,7 @@
         * `item.pyrotech.marshmallow.on.stick.roasted.name`
         * `item.pyrotech.marshmallow.on.stick.burned.name`
         * `item.pyrotech.marshmallow.stick.empty.name`
+        * `item.pyrotech.redstone.shard.name`
         * `gui.pyrotech.marshmallow.burned.broadcast.message`
         * `gui.pyrotech.marshmallow.burned.eat.broadcast.message`
         * `gui.pyrotech.tooltip.potency`
@@ -28,6 +29,8 @@
             * `minecraft:milk`
             * wooden, clay, and stone milk bucket from Pyrotech
         * `toolSharp` contains swords and axes, sans wooden sword
+    * Materials:
+        * Redstone Shard
     * Strange Tuber drops from tall grass and grassy dirt
         * Edible
         * More drop when not using a shovel

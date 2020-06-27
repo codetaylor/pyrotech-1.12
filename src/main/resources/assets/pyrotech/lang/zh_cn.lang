@@ -237,6 +237,7 @@ item.pyrotech.dust.flint.name=粉碎的燧石
 item.pyrotech.glass.shard.name=玻璃碎片
 item.pyrotech.obsidian.shard.name=黑曜石碎片
 item.pyrotech.gold.shard.name=金碎片
+item.pyrotech.redstone.shard.name=Redstone Shard
 
 item.pyrotech.apple.baked.name=烤苹果
 item.pyrotech.carrot.roasted.name=烤胡萝卜

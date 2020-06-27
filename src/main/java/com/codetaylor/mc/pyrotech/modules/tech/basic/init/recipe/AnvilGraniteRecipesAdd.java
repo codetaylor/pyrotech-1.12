@@ -25,6 +25,15 @@ public class AnvilGraniteRecipesAdd {
 
   private static void registerHammerRecipes(IForgeRegistry<AnvilRecipe> registry) {
 
+    // Redstone Dust from Redstone Shard
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.REDSTONE, 2),
+        Ingredient.fromStacks(ItemMaterial.EnumType.REDSTONE_SHARD.asStack()),
+        2,
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "redstone_dust_from_redstone_shard"));
+
     // Crushed Flint from Flint Shard
     registry.register(new AnvilRecipe(
         ItemMaterial.EnumType.DUST_FLINT.asStack(3),

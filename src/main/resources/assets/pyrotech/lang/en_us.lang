@@ -238,6 +238,7 @@ item.pyrotech.dust.flint.name=Crushed Flint
 item.pyrotech.glass.shard.name=Glass Shard
 item.pyrotech.obsidian.shard.name=Obsidian Shard
 item.pyrotech.gold.shard.name=Gold Shard
+item.pyrotech.redstone.shard.name=Redstone Shard
 
 item.pyrotech.apple.baked.name=Baked Apple
 item.pyrotech.carrot.roasted.name=Roasted Carrot
