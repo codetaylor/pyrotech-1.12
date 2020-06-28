@@ -1,7 +1,7 @@
 {
   "name": "Fishing Rod, Crude",
   "icon": "pyrotech:crude_fishing_rod",
-  "category": "survive",
+  "category": "survive_tools",
   "pages": [
     {
       "type": "crafting",

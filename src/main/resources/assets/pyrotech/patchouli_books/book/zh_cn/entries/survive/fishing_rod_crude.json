@@ -1,7 +1,7 @@
 {
   "name": "粗制钓竿",
   "icon": "pyrotech:crude_fishing_rod",
-  "category": "survive",
+  "category": "survive_tools",
   "pages": [
     {
       "type": "crafting",

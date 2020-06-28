@@ -1,7 +1,7 @@
 {
   "name": "Tools, Crude",
   "icon": "pyrotech:crude_pickaxe",
-  "category": "survive",
+  "category": "survive_tools",
   "pages": [
     {
       "type": "text",

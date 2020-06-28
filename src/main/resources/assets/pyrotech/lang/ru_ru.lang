@@ -181,6 +181,12 @@ item.pyrotech.obsidian.pickaxe.name=обсидиановая кирка
 item.pyrotech.obsidian.shovel.name=обсидиановая лопата
 item.pyrotech.obsidian.sword.name=обсидиановый меч
 
+item.pyrotech.redstone.axe.name=Redstone Axe
+item.pyrotech.redstone.hoe.name=Redstone Hoe
+item.pyrotech.redstone.pickaxe.name=Redstone Pickaxe
+item.pyrotech.redstone.shovel.name=Redstone Shovel
+item.pyrotech.redstone.sword.name=Redstone Sword
+
 item.pyrotech.unfired.clay.shears.name=Необожжённые глиняные ножницы
 item.pyrotech.clay.shears.name=Глиняные ножницы
 item.pyrotech.stone.shears.name=Каменные ножницы
@@ -237,7 +243,7 @@ item.pyrotech.dust.flint.name=Измельчённый кремень
 item.pyrotech.glass.shard.name=Стеклянный осколок
 item.pyrotech.obsidian.shard.name=Обсидиановый осколок
 item.pyrotech.gold.shard.name=Золотой осколок
-item.pyrotech.redstone.shard.name=Redstone Shard
+item.pyrotech.dense.redstone.name=Dense Redstone
 
 item.pyrotech.apple.baked.name=Запечённое яблоко
 item.pyrotech.carrot.roasted.name=Обжаренная морковь

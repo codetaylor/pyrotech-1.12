@@ -116,6 +116,21 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemSwordBase.NAME_OBSIDIAN)
     public static final ItemSwordBase OBSIDIAN_SWORD;
 
+    @GameRegistry.ObjectHolder(ItemRedstoneAxe.NAME)
+    public static final ItemRedstoneAxe REDSTONE_AXE;
+
+    @GameRegistry.ObjectHolder(ItemRedstoneHoe.NAME)
+    public static final ItemRedstoneHoe REDSTONE_HOE;
+
+    @GameRegistry.ObjectHolder(ItemRedstonePickaxe.NAME)
+    public static final ItemRedstonePickaxe REDSTONE_PICKAXE;
+
+    @GameRegistry.ObjectHolder(ItemRedstoneShovel.NAME)
+    public static final ItemRedstoneShovel REDSTONE_SHOVEL;
+
+    @GameRegistry.ObjectHolder(ItemRedstoneSword.NAME)
+    public static final ItemRedstoneSword REDSTONE_SWORD;
+
     @GameRegistry.ObjectHolder(ItemUnfiredClayShears.NAME)
     public static final ItemUnfiredClayShears UNFIRED_CLAY_SHEARS;
 
@@ -161,6 +176,11 @@ public class ModuleTool
       OBSIDIAN_PICKAXE = null;
       OBSIDIAN_SHOVEL = null;
       OBSIDIAN_SWORD = null;
+      REDSTONE_AXE = null;
+      REDSTONE_HOE = null;
+      REDSTONE_PICKAXE = null;
+      REDSTONE_SHOVEL = null;
+      REDSTONE_SWORD = null;
       UNFIRED_CLAY_SHEARS = null;
       CLAY_SHEARS = null;
       STONE_SHEARS = null;

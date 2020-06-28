@@ -41,6 +41,12 @@ Polish:
   ✔ Check and make sure the mallow on stick item isn't available in the creative tab. @done(20-05-29 10:07)
   The marshmallow is visible in the creative tab.
 
+Redstone:
+  ✔ Tools should have durability tooltip like the flint and bone tools @done(20-06-28 13:54)
+  ✔ axe is super slow to get ready @done(20-06-28 15:14)
+  ✔ silk touch doesn't work on any of the dense ore deposits @done(20-06-28 13:28)
+  ☐ tool and dense ore activation needs sound
+
 Marshmallow:
   ✔ Art @done(20-05-03 09:10)
   ✔ Lang @done(20-05-03 09:10)

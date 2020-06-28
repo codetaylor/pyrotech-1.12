@@ -1,7 +1,7 @@
 {
   "name": "Hammer, Crude",
   "icon": "pyrotech:crude_hammer",
-  "category": "survive",
+  "category": "survive_tools",
   "pages": [
     {
       "type": "crafting",

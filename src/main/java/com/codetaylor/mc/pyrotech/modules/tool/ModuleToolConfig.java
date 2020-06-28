@@ -8,6 +8,68 @@ import java.util.Map;
 @Config(modid = ModuleTool.MOD_ID, name = ModuleTool.MOD_ID + "/" + "module.Tool")
 public class ModuleToolConfig {
 
+  public static RedstoneTools REDSTONE_TOOLS = new RedstoneTools();
+
+  public static class RedstoneTools {
+
+    @Config.Comment({
+        "The duration of the redstone tools' special abilities in ticks.",
+        "Default: " + (10 * 20)
+    })
+    public int ACTIVE_DURATION_TICKS = 10 * 20;
+
+    @Config.Comment({
+        "The chance that the tool will take damage when it is active.",
+        "For example, if the value is 0.25, there will be a 75% chance",
+        "that the tool will not take damage when damaged.",
+        "Default: " + 0.25
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double ACTIVE_DAMAGE_CHANCE = 0.25;
+
+    @Config.Comment({
+        "The chance that the tool will activate when damaged while inactive.",
+        "Default: " + 0.1
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double INACTIVE_ACTIVATION_CHANCE = 0.1;
+
+    @Config.Comment({
+        "The chance that the tool will activate when damaged while active.",
+        "Default: " + 0.25
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double ACTIVE_ACTIVATION_CHANCE = 0.25;
+
+    @Config.Comment({
+        "The speed multiplier that is applied when the tool is active.",
+        "Default: " + 4
+    })
+    @Config.RangeDouble(min = 1)
+    public double ACTIVE_HARVEST_SPEED_SCALAR = 4;
+
+    @Config.Comment({
+        "The damage multiplier that is applied when the sword is active.",
+        "Default: " + 4
+    })
+    @Config.RangeDouble(min = 1)
+    public double ACTIVE_SWORD_DAMAGE_SCALAR = 4;
+
+    @Config.Comment({
+        "Chance to restore durability when near redstone ore and dense redstone ore.",
+        "Default: " + 0.125
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double PROXIMITY_REPAIR_CHANCE = 0.125;
+
+
+    @Config.Comment({
+        "The amount of repair for each size variant: rocks, small, large.",
+        "Default: [1, 2, 3]"
+    })
+    public int[] PROXIMITY_REPAIR_AMOUNTS = {1, 2, 3};
+  }
+
   @Config.Comment({
       "The durability of the vanilla type tools, excluding hammers.",
       "To change the durability of hammers, see the hammers section in core.cfg."
@@ -18,6 +80,7 @@ public class ModuleToolConfig {
     DURABILITY.put("crude", 32);
     DURABILITY.put("bone", 150);
     DURABILITY.put("flint", 150);
+    DURABILITY.put("redstone", 200);
     DURABILITY.put("obsidian", 1400);
   }
 
@@ -31,6 +94,7 @@ public class ModuleToolConfig {
     HARVEST_LEVEL.put("crude", 0);
     HARVEST_LEVEL.put("bone", 1);
     HARVEST_LEVEL.put("flint", 1);
+    HARVEST_LEVEL.put("redstone", 1);
     HARVEST_LEVEL.put("obsidian", 2);
   }
 

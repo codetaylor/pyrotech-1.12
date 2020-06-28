@@ -1,0 +1,7 @@
+{
+  "name": "Redstone",
+  "description": "$(thing)Tools$() made from $(item)Dense Redstone$() exhibit unique properties when damaged or in close proximity to $(thing)Redstone Ore$().",
+  "icon": "pyrotech:dense_redstone_ore_large",
+  "sortnum": 4,
+  "parent": "bloom"
+}

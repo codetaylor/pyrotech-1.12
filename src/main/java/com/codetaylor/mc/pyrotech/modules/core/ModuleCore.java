@@ -26,6 +26,7 @@ import com.codetaylor.mc.pyrotech.modules.core.item.*;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.CrTEventHandler;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.client.ClientCommandHandler;
@@ -33,6 +34,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Loader;
@@ -476,5 +478,10 @@ public class ModuleCore
     static {
       CLAY = null;
     }
+  }
+
+  public static class Materials {
+
+    public static final Item.ToolMaterial REDSTONE = EnumHelper.addToolMaterial("pyrotech:redstone", 1, 200, 2.8f, 1.0f, 9);
   }
 }

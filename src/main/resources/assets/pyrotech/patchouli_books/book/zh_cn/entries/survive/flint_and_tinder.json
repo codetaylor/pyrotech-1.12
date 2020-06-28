@@ -1,7 +1,7 @@
 {
   "name": "燧石和火绒",
   "icon": "pyrotech:flint_and_tinder",
-  "category": "survive",
+  "category": "survive_tools",
   "pages": [
     {
       "type": "crafting",

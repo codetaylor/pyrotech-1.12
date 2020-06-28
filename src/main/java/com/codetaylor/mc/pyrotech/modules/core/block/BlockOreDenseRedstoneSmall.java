@@ -2,19 +2,16 @@ package com.codetaylor.mc.pyrotech.modules.core.block;
 
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class BlockOreDenseRedstoneSmall
-    extends BlockOreDenseRedstoneLarge {
+    extends BlockOreDenseRedstoneBase {
 
   public static final String NAME = "dense_redstone_ore_small_inactive";
   public static final String NAME_ACTIVATED = "dense_redstone_ore_small";
@@ -39,23 +36,15 @@ public class BlockOreDenseRedstoneSmall
   }
 
   @Override
-  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+  protected int getActiveLightValue() {
 
-    return (this.isActivated) ? 9 : super.getLightValue(state, world, pos);
+    return 9;
   }
 
   @Override
   public int quantityDropped(Random random) {
 
     return 2 + random.nextInt(4);
-  }
-
-  @Nonnull
-  @ParametersAreNonnullByDefault
-  @Override
-  protected ItemStack getSilkTouchDrop(IBlockState state) {
-
-    return new ItemStack(ModuleCore.Blocks.ORE_DENSE_REDSTONE_SMALL_ACTIVATED);
   }
 
   @Override
@@ -75,10 +64,14 @@ public class BlockOreDenseRedstoneSmall
   }
 
   @Override
-  protected void spawnParticles(World world, BlockPos pos) {
+  protected int getParticleCount() {
 
-    if (world.rand.nextFloat() < 0.5) {
-      super.spawnParticles(world, pos);
-    }
+    return 4;
+  }
+
+  @Override
+  protected int getProximityRepairAmount() {
+
+    return ModuleToolConfig.REDSTONE_TOOLS.PROXIMITY_REPAIR_AMOUNTS[1];
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "Flint and Tinder",
   "icon": "pyrotech:flint_and_tinder",
-  "category": "survive",
+  "category": "survive_tools",
   "pages": [
     {
       "type": "crafting",

@@ -314,4 +314,49 @@ public class ModuleWorldGenConfig {
     public double DENSITY = 0.0625;
   }
 
+  public static WorldGenDenseRedstoneOre DENSE_REDSTONE_ORE = new WorldGenDenseRedstoneOre();
+
+  public static class WorldGenDenseRedstoneOre {
+
+    @Config.Comment({
+        "Set to false to disable this worldgen.",
+        "Default: " + true
+    })
+    public boolean ENABLED = true;
+
+    @Config.Comment({
+        "An int array of dimension id's that this is allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_WHITELIST = {
+        0
+    };
+
+    @Config.Comment({
+        "An int array of dimension id's that this is not allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_BLACKLIST = new int[0];
+
+    @Config.Comment({
+        "Percent chance to attempt to spawn in a chunk.",
+        "Default: " + 0.25
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double CHANCE_TO_SPAWN = 0.25;
+
+    @Config.Comment({
+        "Percent chance to spawn redstone ore in stone below the dense ore.",
+        "Default: " + 0.5
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double CHANCE_TO_SPAWN_REDSTONE_ORE = 0.5;
+
+    @Config.Comment({
+        "An int array of the y value's [min, max] used for spawning.",
+        "Default: [5, 25]"
+    })
+    public int[] VERTICAL_BOUNDS = {5, 25};
+  }
+
 }

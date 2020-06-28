@@ -4,6 +4,14 @@
 # 1.5.0
 
   * **Translators:**
+    * **New Patchouli Categories**
+        * `bloom_redstone.json`
+        * `survive_tools.json`
+    * **New Patchouli Entries**
+        * `bloom/dense_redstone.json`
+        * `bloom/dense_redstone_ore.json`
+        * `bloom/redstone_tools.json`
+        * `survive/food_raw.json`
     * **New Lang Keys:**
         * `pyrotech.effect.comfort`
         * `pyrotech.effect.well.fed`
@@ -18,11 +26,21 @@
         * `item.pyrotech.marshmallow.on.stick.roasted.name`
         * `item.pyrotech.marshmallow.on.stick.burned.name`
         * `item.pyrotech.marshmallow.stick.empty.name`
-        * `item.pyrotech.redstone.shard.name`
+        * `item.pyrotech.dense.redstone.name`
+        * `item.pyrotech.redstone.axe.name`
+        * `item.pyrotech.redstone.hoe.name`
+        * `item.pyrotech.redstone.pickaxe.name`
+        * `item.pyrotech.redstone.shovel.name`
+        * `item.pyrotech.redstone.sword.name`
         * `tile.pyrotech.dense_redstone_ore.name`
         * `gui.pyrotech.marshmallow.burned.broadcast.message`
         * `gui.pyrotech.marshmallow.burned.eat.broadcast.message`
         * `gui.pyrotech.tooltip.potency`
+        * `gui.pyrotech.tooltip.redstone.activation.chance`
+        * `gui.pyrotech.tooltip.redstone.active.durability`
+        * `gui.pyrotech.tooltip.redstone.active.efficiency`
+        * `gui.pyrotech.tooltip.redstone.active.damage`
+        * `gui.pyrotech.tooltip.redstone.active.hoe`
 
   * **Added:**
     * Oredict:
@@ -30,10 +48,18 @@
             * `minecraft:milk`
             * wooden, clay, and stone milk bucket from Pyrotech
         * `toolSharp` contains swords and axes, sans wooden sword
-    * Materials:
-        * Redstone Shard
-    * Blocks:
-        * Dense Redstone Ore
+    * Dense Redstone Ore
+    * Dense Redstone
+    * Redstone Tools
+        * Redstone tools have a small chance to activate when damaged, giving them unique properties.
+        * Added config values:
+            * `ACTIVE_DURATION_TICKS`
+            * `ACTIVE_DAMAGE_CHANCE`
+            * `INACTIVE_ACTIVATION_CHANCE`
+            * `ACTIVE_ACTIVATION_CHANCE`
+            * `ACTIVE_HARVEST_SPEED_SCALAR`
+            * `ACTIVE_SWORD_DAMAGE_SCALAR`
+            * `PROXIMITY_REPAIR_CHANCE`
     * Strange Tuber drops from tall grass and grassy dirt
         * Edible
         * More drop when not using a shovel

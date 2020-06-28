@@ -181,6 +181,12 @@ item.pyrotech.obsidian.pickaxe.name=黑曜石镐
 item.pyrotech.obsidian.shovel.name=黑曜石锹
 item.pyrotech.obsidian.sword.name=黑曜石剑
 
+item.pyrotech.redstone.axe.name=Redstone Axe
+item.pyrotech.redstone.hoe.name=Redstone Hoe
+item.pyrotech.redstone.pickaxe.name=Redstone Pickaxe
+item.pyrotech.redstone.shovel.name=Redstone Shovel
+item.pyrotech.redstone.sword.name=Redstone Sword
+
 item.pyrotech.unfired.clay.shears.name=未烧制的粘土剪刀
 item.pyrotech.clay.shears.name=粘土剪刀
 item.pyrotech.stone.shears.name=石剪刀
@@ -237,7 +243,7 @@ item.pyrotech.dust.flint.name=粉碎的燧石
 item.pyrotech.glass.shard.name=玻璃碎片
 item.pyrotech.obsidian.shard.name=黑曜石碎片
 item.pyrotech.gold.shard.name=金碎片
-item.pyrotech.redstone.shard.name=Redstone Shard
+item.pyrotech.dense.redstone.name=Dense Redstone
 
 item.pyrotech.apple.baked.name=烤苹果
 item.pyrotech.carrot.roasted.name=烤胡萝卜

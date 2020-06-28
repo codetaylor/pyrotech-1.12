@@ -44,6 +44,15 @@ public final class ItemInitializer {
       registry.registerItem(new ItemSwordBase(material, "flint"), ItemSwordBase.NAME_FLINT);
     }
 
+    // redstone
+    {
+      registry.registerItem(new ItemRedstoneAxe(8f, -2.8f), ItemRedstoneAxe.NAME);
+      registry.registerItem(new ItemRedstoneHoe(), ItemRedstoneHoe.NAME);
+      registry.registerItem(new ItemRedstonePickaxe(), ItemRedstonePickaxe.NAME);
+      registry.registerItem(new ItemRedstoneShovel(), ItemRedstoneShovel.NAME);
+      registry.registerItem(new ItemRedstoneSword(), ItemRedstoneSword.NAME);
+    }
+
     // obsidian
     {
       Item.ToolMaterial material = Preconditions.checkNotNull(ModuleMaterials.OBSIDIAN);
@@ -94,6 +103,12 @@ public final class ItemInitializer {
           ModuleTool.Items.OBSIDIAN_PICKAXE,
           ModuleTool.Items.OBSIDIAN_SHOVEL,
           ModuleTool.Items.OBSIDIAN_SWORD,
+
+          ModuleTool.Items.REDSTONE_PICKAXE,
+          ModuleTool.Items.REDSTONE_HOE,
+          ModuleTool.Items.REDSTONE_SHOVEL,
+          ModuleTool.Items.REDSTONE_AXE,
+          ModuleTool.Items.REDSTONE_SWORD,
 
           ModuleTool.Items.UNFIRED_CLAY_SHEARS,
           ModuleTool.Items.CLAY_SHEARS,

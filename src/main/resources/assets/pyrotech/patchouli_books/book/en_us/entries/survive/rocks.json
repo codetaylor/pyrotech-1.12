@@ -1,7 +1,7 @@
 {
   "name": "Rocks",
   "icon": "pyrotech:rock:0",
-  "category": "survive",
+  "category": "survive_tools",
   "pages": [
     {
       "type": "image",

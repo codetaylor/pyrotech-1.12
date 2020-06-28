@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {"layer0": "pyrotech:items/redstone_pickaxe"},
+  "overrides": [
+    {"predicate": {"pyrotech:active": 1}, "model": "pyrotech:item/tool/redstone_pickaxe_active"}
+  ]
+}

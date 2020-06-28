@@ -1,7 +1,7 @@
 {
   "name": "粗制工具",
   "icon": "pyrotech:crude_pickaxe",
-  "category": "survive",
+  "category": "survive_tools",
   "pages": [
     {
       "type": "text",
