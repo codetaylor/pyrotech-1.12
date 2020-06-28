@@ -129,6 +129,7 @@
         * `core.cfg.client.ALWAYS_SHOW_QUANTITIES`
         * `core.cfg.client.SHOW_INTERACTION_BOUNDS`
     * Bone and Flint Shears now require Clay Shears to craft
+    * Improved rock gen compatibility [(#284)](https://github.com/codetaylor/artisan-worktables/issues/284)
 
 ---
 

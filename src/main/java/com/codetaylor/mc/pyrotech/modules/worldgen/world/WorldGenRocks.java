@@ -4,9 +4,9 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
-import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -54,7 +54,14 @@ public class WorldGenRocks
 
   private boolean canSpawnOnTopOf(World world, BlockPos pos, IBlockState blockState) {
 
-    Block block = blockState.getBlock();
-    return block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.STONE;
+    if (!blockState.isSideSolid(world, pos, EnumFacing.UP)) {
+      return false;
+    }
+
+    Material material = blockState.getMaterial();
+
+    return material == Material.GROUND
+        || material == Material.GRASS
+        || material == Material.ROCK;
   }
 }
