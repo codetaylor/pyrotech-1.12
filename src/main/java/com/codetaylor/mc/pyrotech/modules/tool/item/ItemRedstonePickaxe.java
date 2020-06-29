@@ -44,7 +44,18 @@ public class ItemRedstonePickaxe
   @Override
   public float getDestroySpeed(ItemStack itemStack, IBlockState state) {
 
-    return RedstoneToolDelegate.isActive(itemStack) ? (float) (super.getDestroySpeed(itemStack, state) * Math.max(1, ModuleToolConfig.REDSTONE_TOOLS.ACTIVE_HARVEST_SPEED_SCALAR)) : super.getDestroySpeed(itemStack, state);
+    if (RedstoneToolDelegate.isActive(itemStack)) {
+      // Store the efficiency, then modify it to be used by the call to super.
+      // Revert the efficiency when we're done.
+      // This ensures that the tool will only buff for blocks it is efficient at breaking.
+      float efficiency = this.efficiency;
+      this.efficiency *= Math.max(1, ModuleToolConfig.REDSTONE_TOOLS.ACTIVE_HARVEST_SPEED_SCALAR);
+      float result = super.getDestroySpeed(itemStack, state);
+      this.efficiency = efficiency;
+      return result;
+    }
+
+    return super.getDestroySpeed(itemStack, state);
   }
 
   @Override

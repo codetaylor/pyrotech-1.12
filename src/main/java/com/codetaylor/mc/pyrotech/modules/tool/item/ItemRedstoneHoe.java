@@ -49,7 +49,7 @@ public class ItemRedstoneHoe
   @Override
   public float getDestroySpeed(ItemStack itemStack, IBlockState state) {
 
-    return RedstoneToolDelegate.isActive(itemStack) ? (float) (super.getDestroySpeed(itemStack, state) * Math.max(1, ModuleToolConfig.REDSTONE_TOOLS.ACTIVE_HARVEST_SPEED_SCALAR)) : super.getDestroySpeed(itemStack, state);
+    return super.getDestroySpeed(itemStack, state);
   }
 
   @Override
