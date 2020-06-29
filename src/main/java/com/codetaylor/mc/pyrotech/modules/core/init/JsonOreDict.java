@@ -61,7 +61,8 @@ public class JsonOreDict {
         "pyrotech:crude_axe:*",
         "pyrotech:flint_axe:*",
         "pyrotech:bone_axe:*",
-        "pyrotech:obsidian_axe:*"
+        "pyrotech:obsidian_axe:*",
+        "pyrotech:redstone_axe:*"
     });
 
     result.oreDict.put("toolSharp", new String[]{
@@ -73,13 +74,15 @@ public class JsonOreDict {
         "pyrotech:flint_axe:*",
         "pyrotech:bone_axe:*",
         "pyrotech:obsidian_axe:*",
+        "pyrotech:redstone_axe:*",
         "minecraft:stone_sword:*",
         "minecraft:iron_sword:*",
         "minecraft:golden_sword:*",
         "minecraft:diamond_sword:*",
         "pyrotech:flint_sword:*",
         "pyrotech:bone_sword:*",
-        "pyrotech:obsidian_sword:*"
+        "pyrotech:obsidian_sword:*",
+        "pyrotech:redstone_sword:*"
     });
 
     result.oreDict.put("twine", new String[]{
