@@ -43,6 +43,7 @@
         * `gui.pyrotech.tooltip.redstone.active.hoe`
 
   * **Added:**
+    * Config option to disable throwing rocks / clumps `THROW_ENABLED` [(#301)](https://github.com/codetaylor/artisan-worktables/issues/301)
     * Oredict:
         * `milk` now contains:
             * `minecraft:milk`

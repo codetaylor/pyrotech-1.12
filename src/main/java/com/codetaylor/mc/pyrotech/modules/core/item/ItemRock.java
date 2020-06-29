@@ -37,6 +37,10 @@ public class ItemRock
   @Override
   public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
 
+    if (!ModuleCoreConfig.ROCKS.THROW_ENABLED) {
+      return super.onItemRightClick(world, player, hand);
+    }
+
     ItemStack itemstack = player.getHeldItem(hand);
 
     if (!player.isCreative()) {

@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core;
 
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.PyrotechAPI;
 import com.codetaylor.mc.pyrotech.modules.core.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
@@ -177,6 +176,12 @@ public class ModuleCoreConfig {
         "Default: " + 10
     })
     public int THROW_COOLDOWN_TICKS = 10;
+
+    @Config.Comment({
+        "Set to false to prevent players from throwing rocks and clumps.",
+        "Default: " + true
+    })
+    public boolean THROW_ENABLED = true;
   }
 
   // ---------------------------------------------------------------------------
