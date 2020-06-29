@@ -1,5 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.*;
 import com.codetaylor.mc.athenaeum.inventory.LIFOStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataBoolean;
@@ -9,13 +13,8 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
 import com.codetaylor.mc.athenaeum.util.*;
-import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
-import com.codetaylor.mc.athenaeum.interaction.api.Transform;
-import com.codetaylor.mc.athenaeum.interaction.spi.*;
 import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
-import com.codetaylor.mc.athenaeum.util.ParticleHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
@@ -216,7 +215,7 @@ public class TileCampfire
 
     this.dead.set(true);
     this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
-        .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.ASH));
+                                                 .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.ASH));
   }
 
   // ---------------------------------------------------------------------------
@@ -313,14 +312,14 @@ public class TileCampfire
 
       if (this.world.getBlockState(this.pos).getBlock() == ModuleTechBasic.Blocks.CAMPFIRE) {
         this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
-            .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.NORMAL));
+                                                     .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.NORMAL));
       }
 
     } else if (!this.workerIsActive() && active) {
 
       if (this.world.getBlockState(this.pos).getBlock() == ModuleTechBasic.Blocks.CAMPFIRE) {
         this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
-            .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.LIT));
+                                                     .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.LIT));
       }
     }
 
@@ -433,9 +432,11 @@ public class TileCampfire
     }
 
     // Apply the tier 1 campfire effects
+    long worldTime = this.world.getWorldTime() % 24000;
+
     if (this.world.getTotalWorldTime() % 20 == 0
-        && this.world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_START_TIME
-        && this.world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_STOP_TIME) {
+        && worldTime >= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_START_TIME
+        && worldTime <= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_STOP_TIME) {
 
       if (ModuleTechBasicConfig.CAMPFIRE_EFFECTS.COMFORT_EFFECT_ENABLED
           || ModuleTechBasicConfig.CAMPFIRE_EFFECTS.RESTING_EFFECT_ENABLED) {

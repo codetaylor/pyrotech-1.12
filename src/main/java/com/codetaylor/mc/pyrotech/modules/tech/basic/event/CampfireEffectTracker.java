@@ -5,12 +5,16 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -24,9 +28,9 @@ public final class CampfireEffectTracker {
   private int intervalCounter;
 
   @SubscribeEvent
-  public void on(TickEvent.PlayerTickEvent event) {
+  public void on(TickEvent.ServerTickEvent event) {
 
-    if (event.player.world.isRemote || event.phase != TickEvent.Phase.START) {
+    if (event.phase != TickEvent.Phase.START) {
       return;
     }
 
@@ -34,7 +38,14 @@ public final class CampfireEffectTracker {
 
     if (this.intervalCounter >= 10) {
       this.intervalCounter = 0;
-      this.updateTracking(event.player);
+
+      MinecraftServer minecraftServer = FMLCommonHandler.instance().getMinecraftServerInstance();
+      PlayerList playerList = minecraftServer.getPlayerList();
+      List<EntityPlayerMP> players = playerList.getPlayers();
+
+      for (EntityPlayerMP player : players) {
+        this.updateTracking(player);
+      }
     }
   }
 
@@ -73,8 +84,9 @@ public final class CampfireEffectTracker {
     }
 
     // Check the time.
-    boolean effectsActive = world.getWorldTime() >= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_START_TIME
-        && world.getWorldTime() <= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_STOP_TIME;
+    long worldTime = world.getWorldTime() % 24000;
+    boolean effectsActive = worldTime >= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_START_TIME
+        && worldTime <= ModuleTechBasicConfig.CAMPFIRE_EFFECTS.EFFECTS_STOP_TIME;
 
     if (trackingCampfires.isEmpty() || !effectsActive) {
       Map<Potion, PotionEffect> activePotionMap = entity.getActivePotionMap();
