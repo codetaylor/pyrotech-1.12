@@ -122,14 +122,14 @@ public final class RedstoneToolDelegate {
 
           if (!block.isActivated()) {
             block.activate(w, p);
-            RedstoneToolDelegate.activateAndHealTool(itemStack, world, (IRedstoneTool) item);
+            RedstoneToolDelegate.activateAndHealTool(itemStack, world, (IRedstoneTool) item, block.getProximityRepairAmount());
           }
 
           return world.rand.nextFloat() < 0.32;
 
         } else if (bs.getBlock() == Blocks.REDSTONE_ORE) {
           world.setBlockState(p, Blocks.LIT_REDSTONE_ORE.getDefaultState());
-          RedstoneToolDelegate.activateAndHealTool(itemStack, world, (IRedstoneTool) item);
+          RedstoneToolDelegate.activateAndHealTool(itemStack, world, (IRedstoneTool) item, 1);
           return world.rand.nextFloat() < 0.16;
         }
         return true; // keep processing
@@ -137,14 +137,14 @@ public final class RedstoneToolDelegate {
     }
   }
 
-  private static void activateAndHealTool(ItemStack itemStack, World world, IRedstoneTool item) {
+  private static void activateAndHealTool(ItemStack itemStack, World world, IRedstoneTool item, int amount) {
 
     if (!item.isRedstoneToolActive(itemStack)) {
       item.activateRedstoneTool(itemStack);
     }
 
     if (world.rand.nextFloat() < ModuleToolConfig.REDSTONE_TOOLS.PROXIMITY_REPAIR_CHANCE) {
-      itemStack.setItemDamage(itemStack.getItemDamage() - 1);
+      itemStack.setItemDamage(itemStack.getItemDamage() - amount);
     }
   }
 

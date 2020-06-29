@@ -152,7 +152,7 @@ public abstract class BlockOreDenseRedstoneBase
 
   protected abstract int getParticleCount();
 
-  protected abstract int getProximityRepairAmount();
+  public abstract int getProximityRepairAmount();
 
   protected void spawnParticles(World world, BlockPos pos, int particleCount) {
 
