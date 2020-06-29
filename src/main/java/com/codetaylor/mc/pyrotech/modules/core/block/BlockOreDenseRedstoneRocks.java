@@ -104,7 +104,7 @@ public class BlockOreDenseRedstoneRocks
 
 
   @Override
-  protected int getProximityRepairAmount() {
+  public int getProximityRepairAmount() {
 
     return ModuleToolConfig.REDSTONE_TOOLS.PROXIMITY_REPAIR_AMOUNTS[0];
   }

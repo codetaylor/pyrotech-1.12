@@ -3,6 +3,8 @@ package com.codetaylor.mc.pyrotech.modules.tool.item.api;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockOreDenseRedstoneBase;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.IRedstoneTool;
@@ -12,6 +14,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -119,17 +123,14 @@ public final class RedstoneToolDelegate {
 
         if (bs.getBlock() instanceof BlockOreDenseRedstoneBase) {
           BlockOreDenseRedstoneBase block = (BlockOreDenseRedstoneBase) bs.getBlock();
-
-          if (!block.isActivated()) {
-            block.activate(w, p);
-            RedstoneToolDelegate.activateAndHealTool(itemStack, world, (IRedstoneTool) item, block.getProximityRepairAmount());
-          }
-
+          block.activate(w, p);
+          RedstoneToolDelegate.activateAndHealTool(itemStack, world, (IRedstoneTool) item, pos, block.getProximityRepairAmount());
           return world.rand.nextFloat() < 0.32;
 
         } else if (bs.getBlock() == Blocks.REDSTONE_ORE) {
           world.setBlockState(p, Blocks.LIT_REDSTONE_ORE.getDefaultState());
-          RedstoneToolDelegate.activateAndHealTool(itemStack, world, (IRedstoneTool) item, 1);
+          ModuleCore.Blocks.ORE_DENSE_REDSTONE_LARGE.playSound(world, p);
+          RedstoneToolDelegate.activateAndHealTool(itemStack, world, (IRedstoneTool) item, pos, 1);
           return world.rand.nextFloat() < 0.16;
         }
         return true; // keep processing
@@ -137,7 +138,41 @@ public final class RedstoneToolDelegate {
     }
   }
 
-  private static void activateAndHealTool(ItemStack itemStack, World world, IRedstoneTool item, int amount) {
+  public static void playActivationSound(World world, BlockPos pos) {
+
+    if (!world.isRemote) {
+      world.playSound(
+          null,
+          pos,
+          RedstoneToolDelegate.selectSoundEvent(),
+          SoundCategory.PLAYERS,
+          1.0f,
+          1.0f
+      );
+    }
+  }
+
+  public static void playActivationSound() {
+
+    float pitchVariance = (RandomHelper.random().nextFloat() * 2 - 1) * 0.05f;
+    ModPyrotech.PROXY.playSound(RedstoneToolDelegate.selectSoundEvent(), SoundCategory.PLAYERS, 1.0f, 1.0f + pitchVariance, false);
+  }
+
+  private static SoundEvent selectSoundEvent() {
+
+    SoundEvent[] soundEvents = {
+        ModuleCore.Sounds.REDSTONE_TOOL_ACTIVATE_00,
+        ModuleCore.Sounds.REDSTONE_TOOL_ACTIVATE_01,
+        ModuleCore.Sounds.REDSTONE_TOOL_ACTIVATE_02,
+        ModuleCore.Sounds.REDSTONE_TOOL_ACTIVATE_03,
+        ModuleCore.Sounds.REDSTONE_TOOL_ACTIVATE_04,
+        ModuleCore.Sounds.REDSTONE_TOOL_ACTIVATE_05
+    };
+
+    return soundEvents[RandomHelper.random().nextInt(soundEvents.length)];
+  }
+
+  private static void activateAndHealTool(ItemStack itemStack, World world, IRedstoneTool item, BlockPos pos, int amount) {
 
     if (!item.isRedstoneToolActive(itemStack)) {
       item.activateRedstoneTool(itemStack);

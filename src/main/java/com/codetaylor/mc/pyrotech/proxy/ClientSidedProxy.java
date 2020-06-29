@@ -5,6 +5,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 
 public class ClientSidedProxy
     extends SidedProxy {
@@ -19,15 +20,13 @@ public class ClientSidedProxy
   public void playSound(SoundEvent soundEvent, SoundCategory soundCategory) {
 
     Minecraft minecraft = Minecraft.getMinecraft();
-    WorldClient world = minecraft.world;
     EntityPlayerSP player = minecraft.player;
 
-    if (world == null || player == null) {
+    if (player == null) {
       return;
     }
 
-    // playSound(BlockPos pos, SoundEvent soundIn, SoundCategory category, float volume, float pitch, boolean distanceDelay)
-    world.playSound(
+    this.playSound(
         player.getPosition(),
         soundEvent,
         soundCategory,
@@ -35,5 +34,32 @@ public class ClientSidedProxy
         0.9F + (float) Math.random() * 0.15F,
         false
     );
+  }
+
+  @Override
+  public void playSound(SoundEvent soundEvent, SoundCategory soundCategory, float volume, float pitch, boolean distanceDelay) {
+
+    Minecraft minecraft = Minecraft.getMinecraft();
+    WorldClient world = minecraft.world;
+    EntityPlayerSP player = minecraft.player;
+
+    if (player == null) {
+      return;
+    }
+
+    if (world != null) {
+      world.playSound(player.getPosition(), soundEvent, soundCategory, volume, pitch, distanceDelay);
+    }
+  }
+
+  @Override
+  public void playSound(BlockPos pos, SoundEvent soundEvent, SoundCategory soundCategory, float volume, float pitch, boolean distanceDelay) {
+
+    Minecraft minecraft = Minecraft.getMinecraft();
+    WorldClient world = minecraft.world;
+
+    if (world != null) {
+      world.playSound(pos, soundEvent, soundCategory, volume, pitch, distanceDelay);
+    }
   }
 }

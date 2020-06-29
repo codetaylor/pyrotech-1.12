@@ -63,6 +63,10 @@ public class ItemRedstoneSword
   @Override
   public void activateRedstoneTool(ItemStack itemStack) {
 
+    if (!this.isRedstoneToolActive(itemStack)) {
+      RedstoneToolDelegate.playActivationSound();
+    }
+
     RedstoneToolDelegate.setActive(itemStack, ModuleToolConfig.REDSTONE_TOOLS.ACTIVE_DURATION_TICKS);
   }
 

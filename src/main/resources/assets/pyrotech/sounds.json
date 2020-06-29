@@ -34,5 +34,131 @@
         "stream": false
       }
     ]
+  },
+  "dense_redstone_ore_activate_00": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/dense_redstone_ore_activate_00",
+        "stream": false
+      }
+    ]
+  },
+  "dense_redstone_ore_activate_01": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/dense_redstone_ore_activate_01",
+        "stream": false
+      }
+    ]
+  },
+  "dense_redstone_ore_activate_02": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/dense_redstone_ore_activate_02",
+        "stream": false
+      }
+    ]
+  },
+  "dense_redstone_ore_activate_03": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/dense_redstone_ore_activate_03",
+        "stream": false
+      }
+    ]
+  },
+  "dense_redstone_ore_activate_04": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/dense_redstone_ore_activate_04",
+        "stream": false
+      }
+    ]
+  },
+  "dense_redstone_ore_activate_05": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/dense_redstone_ore_activate_05",
+        "stream": false
+      }
+    ]
+  },
+  "dense_redstone_ore_activate_06": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/dense_redstone_ore_activate_06",
+        "stream": false
+      }
+    ]
+  },
+  "dense_redstone_ore_activate_07": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/dense_redstone_ore_activate_07",
+        "stream": false
+      }
+    ]
+  },
+  "redstone_tool_activate_00": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/redstone_tool_activate_00",
+        "stream": false
+      }
+    ]
+  },
+  "redstone_tool_activate_01": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/redstone_tool_activate_01",
+        "stream": false
+      }
+    ]
+  },
+  "redstone_tool_activate_02": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/redstone_tool_activate_02",
+        "stream": false
+      }
+    ]
+  },
+  "redstone_tool_activate_03": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/redstone_tool_activate_03",
+        "stream": false
+      }
+    ]
+  },
+  "redstone_tool_activate_04": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/redstone_tool_activate_04",
+        "stream": false
+      }
+    ]
+  },
+  "redstone_tool_activate_05": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "pyrotech:redstone/redstone_tool_activate_05",
+        "stream": false
+      }
+    ]
   }
 }

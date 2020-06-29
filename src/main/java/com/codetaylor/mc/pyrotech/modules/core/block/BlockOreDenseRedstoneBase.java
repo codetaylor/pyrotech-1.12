@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.core.block;
 
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -9,10 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -47,6 +45,38 @@ public abstract class BlockOreDenseRedstoneBase
 
     if (!this.activated) {
       world.setBlockState(pos, this.getActiveState());
+      this.playSound(world, pos);
+
+    } else {
+
+      if (world.rand.nextFloat() < 0.25) {
+        this.playSound(world, pos);
+      }
+    }
+  }
+
+  public void playSound(World world, BlockPos pos) {
+
+    if (!world.isRemote) {
+      SoundEvent[] soundEvents = new SoundEvent[]{
+          ModuleCore.Sounds.DENSE_REDSTONE_ORE_ACTIVATE_00,
+          ModuleCore.Sounds.DENSE_REDSTONE_ORE_ACTIVATE_01,
+          ModuleCore.Sounds.DENSE_REDSTONE_ORE_ACTIVATE_02,
+          ModuleCore.Sounds.DENSE_REDSTONE_ORE_ACTIVATE_03,
+          ModuleCore.Sounds.DENSE_REDSTONE_ORE_ACTIVATE_04,
+          ModuleCore.Sounds.DENSE_REDSTONE_ORE_ACTIVATE_05,
+          ModuleCore.Sounds.DENSE_REDSTONE_ORE_ACTIVATE_06,
+          ModuleCore.Sounds.DENSE_REDSTONE_ORE_ACTIVATE_07
+      };
+
+      world.playSound(
+          null,
+          pos,
+          soundEvents[world.rand.nextInt(soundEvents.length)],
+          SoundCategory.BLOCKS,
+          1.0f,
+          1.0f
+      );
     }
   }
 
