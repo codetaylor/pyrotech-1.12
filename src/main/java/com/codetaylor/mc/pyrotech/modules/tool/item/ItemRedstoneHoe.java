@@ -5,9 +5,9 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
+import com.codetaylor.mc.pyrotech.modules.tool.item.api.RedstoneToolDelegate;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.IRedstoneTool;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemHoeBase;
-import com.codetaylor.mc.pyrotech.modules.tool.util.RedstoneToolHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -42,14 +42,14 @@ public class ItemRedstoneHoe
 
     this.addPropertyOverride(
         new ResourceLocation(ModuleTechBasic.MOD_ID, "active"),
-        (itemStack, world, entity) -> RedstoneToolHelper.isActive(itemStack) ? 1 : 0
+        (itemStack, world, entity) -> RedstoneToolDelegate.isActive(itemStack) ? 1 : 0
     );
   }
 
   @Override
   public float getDestroySpeed(ItemStack itemStack, IBlockState state) {
 
-    return RedstoneToolHelper.isActive(itemStack) ? (float) (super.getDestroySpeed(itemStack, state) * Math.max(1, ModuleToolConfig.REDSTONE_TOOLS.ACTIVE_HARVEST_SPEED_SCALAR)) : super.getDestroySpeed(itemStack, state);
+    return RedstoneToolDelegate.isActive(itemStack) ? (float) (super.getDestroySpeed(itemStack, state) * Math.max(1, ModuleToolConfig.REDSTONE_TOOLS.ACTIVE_HARVEST_SPEED_SCALAR)) : super.getDestroySpeed(itemStack, state);
   }
 
   @Override
@@ -62,13 +62,13 @@ public class ItemRedstoneHoe
   @Override
   public void activateRedstoneTool(ItemStack itemStack) {
 
-    RedstoneToolHelper.setActive(itemStack, ModuleToolConfig.REDSTONE_TOOLS.ACTIVE_DURATION_TICKS);
+    RedstoneToolDelegate.setActive(itemStack, ModuleToolConfig.REDSTONE_TOOLS.ACTIVE_DURATION_TICKS);
   }
 
   @Override
   public boolean isRedstoneToolActive(ItemStack itemStack) {
 
-    return RedstoneToolHelper.isActive(itemStack);
+    return RedstoneToolDelegate.isActive(itemStack);
   }
 
   @Override
@@ -86,7 +86,7 @@ public class ItemRedstoneHoe
   @Override
   public void setDamage(@Nonnull ItemStack itemStack, int damage) {
 
-    RedstoneToolHelper.setDamage(this, itemStack, damage);
+    RedstoneToolDelegate.setDamage(this, itemStack, damage);
   }
 
   @Nonnull
@@ -134,7 +134,7 @@ public class ItemRedstoneHoe
   @Override
   public void onUpdate(ItemStack itemStack, World world, Entity entity, int itemSlot, boolean isSelected) {
 
-    RedstoneToolHelper.activateNearbyDenseRedstoneOre(itemStack, world, entity);
+    RedstoneToolDelegate.activateNearbyDenseRedstoneOre(itemStack, world, entity);
   }
 
 }

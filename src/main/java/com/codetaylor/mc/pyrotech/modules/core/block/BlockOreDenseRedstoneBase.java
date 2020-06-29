@@ -28,33 +28,38 @@ public abstract class BlockOreDenseRedstoneBase
 
   private static final int TICK_RATE = 30;
 
-  protected final boolean isActivated;
+  protected final boolean activated;
 
-  public BlockOreDenseRedstoneBase(boolean isActivated) {
+  public BlockOreDenseRedstoneBase(boolean activated) {
 
     super(Material.ROCK);
-    this.isActivated = isActivated;
+    this.activated = activated;
     this.setResistance(5.0F);
     this.setHardness(3);
     this.setHarvestLevel("pickaxe", 2);
     this.setSoundType(SoundType.STONE);
-    this.setTickRandomly(this.isActivated);
+    this.setTickRandomly(this.activated);
   }
 
   public void activate(World world, BlockPos pos) {
 
     this.spawnParticles(world, pos, this.getParticleCount());
 
-    if (!this.isActivated) {
+    if (!this.activated) {
       world.setBlockState(pos, this.getActiveState());
     }
+  }
+
+  public boolean isActivated() {
+
+    return this.activated;
   }
 
   @ParametersAreNonnullByDefault
   @SideOnly(Side.CLIENT)
   public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 
-    if (this.isActivated) {
+    if (this.activated) {
       this.spawnParticles(world, pos, this.getParticleCount());
     }
   }
@@ -63,7 +68,7 @@ public abstract class BlockOreDenseRedstoneBase
   @Override
   public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 
-    if (this.isActivated) {
+    if (this.activated) {
       world.setBlockState(pos, this.getInactiveState());
     }
   }
@@ -89,7 +94,7 @@ public abstract class BlockOreDenseRedstoneBase
   @Override
   public CreativeTabs getCreativeTabToDisplayOn() {
 
-    return this.isActivated ? super.getCreativeTabToDisplayOn() : null;
+    return this.activated ? super.getCreativeTabToDisplayOn() : null;
   }
 
   @Override
@@ -136,7 +141,7 @@ public abstract class BlockOreDenseRedstoneBase
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
-    return (this.isActivated) ? this.getActiveLightValue() : super.getLightValue(state, world, pos);
+    return (this.activated) ? this.getActiveLightValue() : super.getLightValue(state, world, pos);
   }
 
   protected abstract IBlockState getInactiveState();

@@ -20,6 +20,12 @@ Bugs:
   ✔ Eating a burned mallow on stick doesn't consume the food, consumes on second try @done(20-05-13 10:53)
   ✔ Shouldn't be able to roast a mallow from max range @done(20-05-13 11:16)
   ✔ Stop roasting a mallow before it's roasted makes it unroastable @done(20-05-13 11:00)
+  ☐ axe + stick recipe should make emtpy mallow stick
+  ☐ roasting animation disappeared
+
+Sound Attribution:
+  ☐ CC https://freesound.org/people/Glaneur%20de%20sons/sounds/34169/
+  ☐ CCNC https://freesound.org/people/GlenCurtisAdams/sounds/326923/
 
 Tasks:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)
@@ -28,7 +34,7 @@ Tasks:
   Nope. Any experience bonus that the player has is a good thing. If the player gains a little bit of experience bonus, it's a good thing and shouldn't be rendered red. Red indicates that something you don't want to happen is going to happen. Sure you don't want to run out of experience bonus, but it isn't a bad thing like a tool breaking.
   ✔ Resting effect should use green for the effect bar to indicate that it's a good thing. @done(20-04-21 18:35)
   ✔ Test campfire effects on server @done(20-04-24 12:54)
-  ☐ Campfire effects book info
+  ✔ Campfire effects book info @done(20-06-28 16:44)
   ✔ Campfire effects docs info @done(20-05-29 13:37)
   ☐ Campfire effects advancement, hidden, have all effects active
   ☐ Marshmallow book info

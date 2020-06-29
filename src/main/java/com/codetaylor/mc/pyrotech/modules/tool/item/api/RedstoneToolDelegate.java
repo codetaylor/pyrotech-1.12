@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.tool.util;
+package com.codetaylor.mc.pyrotech.modules.tool.item.api;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public final class RedstoneToolHelper {
+public final class RedstoneToolDelegate {
 
   public static long ticksToMillis(long ticks) {
 
@@ -26,7 +26,7 @@ public final class RedstoneToolHelper {
 
   public static long getExpirationTimestamp(long ticks) {
 
-    return System.currentTimeMillis() + RedstoneToolHelper.ticksToMillis(ticks);
+    return System.currentTimeMillis() + RedstoneToolDelegate.ticksToMillis(ticks);
   }
 
   public static boolean isActive(ItemStack itemStack) {
@@ -62,7 +62,7 @@ public final class RedstoneToolHelper {
 
     NBTTagCompound compound = StackHelper.getTagSafe(itemStack);
     NBTTagCompound pyrotech = compound.getCompoundTag("Pyrotech");
-    pyrotech.setLong("RedstoneToolActiveExpiresTimestamp", RedstoneToolHelper.getExpirationTimestamp(durationTicks));
+    pyrotech.setLong("RedstoneToolActiveExpiresTimestamp", RedstoneToolDelegate.getExpirationTimestamp(durationTicks));
     compound.setTag("Pyrotech", pyrotech);
   }
 
@@ -118,14 +118,19 @@ public final class RedstoneToolHelper {
       BlockHelper.forBlocksInCubeShuffled(world, pos, 4, 4, 4, (w, p, bs) -> {
 
         if (bs.getBlock() instanceof BlockOreDenseRedstoneBase) {
-          ((BlockOreDenseRedstoneBase) bs.getBlock()).activate(w, p);
-          RedstoneToolHelper.activateAndHealTool(itemStack, world, (IRedstoneTool) item);
-          return world.rand.nextFloat() < 0.33;
+          BlockOreDenseRedstoneBase block = (BlockOreDenseRedstoneBase) bs.getBlock();
+
+          if (!block.isActivated()) {
+            block.activate(w, p);
+            RedstoneToolDelegate.activateAndHealTool(itemStack, world, (IRedstoneTool) item);
+          }
+
+          return world.rand.nextFloat() < 0.32;
 
         } else if (bs.getBlock() == Blocks.REDSTONE_ORE) {
           world.setBlockState(p, Blocks.LIT_REDSTONE_ORE.getDefaultState());
-          RedstoneToolHelper.activateAndHealTool(itemStack, world, (IRedstoneTool) item);
-          return world.rand.nextFloat() < 0.33;
+          RedstoneToolDelegate.activateAndHealTool(itemStack, world, (IRedstoneTool) item);
+          return world.rand.nextFloat() < 0.16;
         }
         return true; // keep processing
       });
@@ -143,7 +148,7 @@ public final class RedstoneToolHelper {
     }
   }
 
-  private RedstoneToolHelper() {
+  private RedstoneToolDelegate() {
     //
   }
 }
