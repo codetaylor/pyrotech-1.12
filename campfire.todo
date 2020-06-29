@@ -20,12 +20,16 @@ Bugs:
   ✔ Eating a burned mallow on stick doesn't consume the food, consumes on second try @done(20-05-13 10:53)
   ✔ Shouldn't be able to roast a mallow from max range @done(20-05-13 11:16)
   ✔ Stop roasting a mallow before it's roasted makes it unroastable @done(20-05-13 11:00)
+  ✔ campfire effects stopped working after the first day in MP @done(20-06-29 13:40)
   ☐ axe + stick recipe should make emtpy mallow stick
   ☐ roasting animation disappeared
 
 Sound Attribution:
-  ☐ CC https://freesound.org/people/Glaneur%20de%20sons/sounds/34169/
-  ☐ CCNC https://freesound.org/people/GlenCurtisAdams/sounds/326923/
+  ✘ CC https://freesound.org/people/Glaneur%20de%20sons/sounds/34169/ @cancelled(20-06-29 13:41)
+  Didn't end up using this sound.
+  ✔ CCNC https://freesound.org/people/GlenCurtisAdams/sounds/326923/ @done(20-06-29 13:59)
+  ✔ CC0 https://freesound.org/people/sophiehall3535/sounds/245942/ @done(20-06-29 13:59)
+  ✔ CC0 saw sounds @done(20-06-29 14:00)
 
 Tasks:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)
@@ -51,7 +55,7 @@ Redstone:
   ✔ Tools should have durability tooltip like the flint and bone tools @done(20-06-28 13:54)
   ✔ axe is super slow to get ready @done(20-06-28 15:14)
   ✔ silk touch doesn't work on any of the dense ore deposits @done(20-06-28 13:28)
-  ☐ tool and dense ore activation needs sound
+  ✔ tool and dense ore activation needs sound @done(20-06-29 13:39)
 
 Marshmallow:
   ✔ Art @done(20-05-03 09:10)
