@@ -1261,10 +1261,10 @@ public class ModuleTechBasicConfig {
         "If the current world time is larger than this value and less than",
         "the stop value, the effects will work.",
         "See: https://minecraft.gamepedia.com/Day-night_cycle#24-hour_Minecraft_day",
-        "Default: " + 13000
+        "Default: " + 12000
     })
     @Config.RangeInt(min = 0, max = 24000)
-    public int EFFECTS_START_TIME = 13000;
+    public int EFFECTS_START_TIME = 12000;
 
     @Config.Comment({
         "The time of day that the campfire effects should stop working.",
