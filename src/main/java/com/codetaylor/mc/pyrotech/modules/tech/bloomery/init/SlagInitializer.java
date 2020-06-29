@@ -119,8 +119,11 @@ public final class SlagInitializer {
           for (int i = 1; i < split.length; i++) {
             langKey.append(":").append(split[i]);
           }
-        } else {
+        } else if (split.length == 2) {
           langKey.append(split[1]);
+
+        } else {
+          langKey.append(split[0]);
         }
 
         langKey.append(".name");

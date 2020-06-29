@@ -21,8 +21,8 @@ Bugs:
   ✔ Shouldn't be able to roast a mallow from max range @done(20-05-13 11:16)
   ✔ Stop roasting a mallow before it's roasted makes it unroastable @done(20-05-13 11:00)
   ✔ campfire effects stopped working after the first day in MP @done(20-06-29 13:40)
-  ☐ axe + stick recipe should make emtpy mallow stick
-  ☐ roasting animation disappeared
+  ✔ axe + stick recipe should make emtpy mallow stick @done(20-06-29 14:16)
+  ☐ roasting animation disappeared in MP
 
 Sound Attribution:
   ✘ CC https://freesound.org/people/Glaneur%20de%20sons/sounds/34169/ @cancelled(20-06-29 13:41)

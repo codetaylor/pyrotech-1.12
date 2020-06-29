@@ -56,7 +56,7 @@ The oredict key, `oreGold` in the example, must correspond to an existing oredic
 
 The `slagColor` is a hexidecimal string without the `#`. This defines the color used for the generated slag.
 
-The `langKey` entries are strings in the format `(domain):(key)`. The domain is added by the generator and is useful for determining which mod a lang key came from. The domain is purely optional if you're adding entries manually. Entries in the format `(key)` will work just fine. The first valid lang key found in the list will be the lang key used for the generated content.
+The `langKey` entries are strings in the format `(domain):(key)`. The domain is added by the generator and is useful for determining which mod a lang key came from. The domain is purely optional if you're adding entries manually. Entries in the format `(key)` will work just fine so long as the key is a valid, existing lang key. The first valid lang key found in the list will be the lang key used for the generated content.
 
 !!! hint
     Use the command, `/ptlang`, to copy the lang key for a held item to the clipboard.
