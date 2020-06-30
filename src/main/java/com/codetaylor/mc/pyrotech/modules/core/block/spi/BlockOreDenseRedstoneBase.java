@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.core.block;
+package com.codetaylor.mc.pyrotech.modules.core.block.spi;
 
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;

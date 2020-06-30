@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.core.block;
 
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.block.spi.BlockOreDenseRedstoneBase;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
