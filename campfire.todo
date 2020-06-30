@@ -23,6 +23,9 @@ Bugs:
   ✔ campfire effects stopped working after the first day in MP @done(20-06-29 13:40)
   ✔ axe + stick recipe should make emtpy mallow stick @done(20-06-29 14:16)
   ☐ roasting animation disappeared in MP
+  This has been linked to some kind of conflict with the AppleCore mod. Removing the mod has solved the problem.
+  ☐ sawmill log to plank recipe reporting wrong required burn time in waila
+  The burn time is green, indicating there's enough fuel, but it isn't enough fuel.
 
 Sound Attribution:
   ✘ CC https://freesound.org/people/Glaneur%20de%20sons/sounds/34169/ @cancelled(20-06-29 13:41)
@@ -50,6 +53,7 @@ Polish:
   Solved by changing the action animation to DRINK.
   ✔ Check and make sure the mallow on stick item isn't available in the creative tab. @done(20-05-29 10:07)
   The marshmallow is visible in the creative tab.
+  ☐ Small and large dense redstone ore variants should activate when the player stands on them like the rocks variant
 
 Redstone:
   ✔ Tools should have durability tooltip like the flint and bone tools @done(20-06-28 13:54)
