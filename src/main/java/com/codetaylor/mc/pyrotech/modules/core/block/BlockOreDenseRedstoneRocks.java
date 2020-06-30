@@ -86,18 +86,6 @@ public class BlockOreDenseRedstoneRocks
   }
 
   @Override
-  public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-
-    this.activate(worldIn, pos);
-  }
-
-  @Override
-  public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-
-    this.activate(worldIn, pos);
-  }
-
-  @Override
   protected int getParticleCount() {
 
     return 2;

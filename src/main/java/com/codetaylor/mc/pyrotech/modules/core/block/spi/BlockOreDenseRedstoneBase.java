@@ -7,6 +7,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -37,6 +38,18 @@ public abstract class BlockOreDenseRedstoneBase
     this.setHarvestLevel("pickaxe", 2);
     this.setSoundType(SoundType.STONE);
     this.setTickRandomly(this.activated);
+  }
+
+  @Override
+  public void onEntityWalk(World world, BlockPos pos, Entity entity) {
+
+    this.activate(world, pos);
+  }
+
+  @Override
+  public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+
+    this.activate(world, pos);
   }
 
   public void activate(World world, BlockPos pos) {
