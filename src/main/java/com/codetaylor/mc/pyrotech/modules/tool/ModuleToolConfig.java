@@ -22,17 +22,17 @@ public class ModuleToolConfig {
         "The chance that the tool will take damage when it is active.",
         "For example, if the value is 0.25, there will be a 75% chance",
         "that the tool will not take damage when damaged.",
-        "Default: " + 0.25
+        "Default: " + 0.125
     })
     @Config.RangeDouble(min = 0, max = 1)
-    public double ACTIVE_DAMAGE_CHANCE = 0.25;
+    public double ACTIVE_DAMAGE_CHANCE = 0.125;
 
     @Config.Comment({
         "The chance that the tool will activate when damaged while inactive.",
-        "Default: " + 0.1
+        "Default: " + 0.05
     })
     @Config.RangeDouble(min = 0, max = 1)
-    public double INACTIVE_ACTIVATION_CHANCE = 0.1;
+    public double INACTIVE_ACTIVATION_CHANCE = 0.05;
 
     @Config.Comment({
         "The chance that the tool will activate when damaged while active.",
@@ -43,17 +43,17 @@ public class ModuleToolConfig {
 
     @Config.Comment({
         "The speed multiplier that is applied when the tool is active.",
-        "Default: " + 4
+        "Default: " + 2
     })
     @Config.RangeDouble(min = 1)
-    public double ACTIVE_HARVEST_SPEED_SCALAR = 4;
+    public double ACTIVE_HARVEST_SPEED_SCALAR = 2;
 
     @Config.Comment({
         "The damage multiplier that is applied when the sword is active.",
-        "Default: " + 4
+        "Default: " + 2
     })
     @Config.RangeDouble(min = 1)
-    public double ACTIVE_SWORD_DAMAGE_SCALAR = 4;
+    public double ACTIVE_SWORD_DAMAGE_SCALAR = 2;
 
     @Config.Comment({
         "Chance to restore durability when near redstone ore and dense redstone ore.",
@@ -61,7 +61,6 @@ public class ModuleToolConfig {
     })
     @Config.RangeDouble(min = 0, max = 1)
     public double PROXIMITY_REPAIR_CHANCE = 0.125;
-
 
     @Config.Comment({
         "The amount of repair for each size variant: rocks, small, large.",
