@@ -497,6 +497,7 @@ public class ModuleCore
   public static class Materials {
 
     public static final Item.ToolMaterial REDSTONE = EnumHelper.addToolMaterial("pyrotech:redstone", 1, 200, 2.8f, 1.0f, 9);
+    public static final Item.ToolMaterial QUARTZ = EnumHelper.addToolMaterial("pyrotech:quartz", 1, 350, 3.2f, 1.0f, 2);
   }
 
   public static class Sounds {

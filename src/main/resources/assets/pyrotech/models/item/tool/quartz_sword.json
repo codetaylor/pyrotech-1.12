@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {"layer0": "pyrotech:items/quartz_sword"},
+  "overrides": [
+    {"predicate": {"pyrotech:active": 1}, "model": "pyrotech:item/tool/quartz_sword_active"}
+  ]
+}

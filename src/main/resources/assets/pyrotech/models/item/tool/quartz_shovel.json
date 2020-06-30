@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {"layer0": "pyrotech:items/quartz_shovel"},
+  "overrides": [
+    {"predicate": {"pyrotech:active": 1}, "model": "pyrotech:item/tool/quartz_shovel_active"}
+  ]
+}

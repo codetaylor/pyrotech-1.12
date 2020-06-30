@@ -131,6 +131,21 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemRedstoneSword.NAME)
     public static final ItemRedstoneSword REDSTONE_SWORD;
 
+    @GameRegistry.ObjectHolder(ItemQuartzAxe.NAME)
+    public static final ItemQuartzAxe QUARTZ_AXE;
+
+    @GameRegistry.ObjectHolder(ItemQuartzHoe.NAME)
+    public static final ItemQuartzHoe QUARTZ_HOE;
+
+    @GameRegistry.ObjectHolder(ItemQuartzPickaxe.NAME)
+    public static final ItemQuartzPickaxe QUARTZ_PICKAXE;
+
+    @GameRegistry.ObjectHolder(ItemQuartzShovel.NAME)
+    public static final ItemQuartzShovel QUARTZ_SHOVEL;
+
+    @GameRegistry.ObjectHolder(ItemQuartzSword.NAME)
+    public static final ItemQuartzSword QUARTZ_SWORD;
+
     @GameRegistry.ObjectHolder(ItemUnfiredClayShears.NAME)
     public static final ItemUnfiredClayShears UNFIRED_CLAY_SHEARS;
 
@@ -181,6 +196,11 @@ public class ModuleTool
       REDSTONE_PICKAXE = null;
       REDSTONE_SHOVEL = null;
       REDSTONE_SWORD = null;
+      QUARTZ_AXE = null;
+      QUARTZ_HOE = null;
+      QUARTZ_PICKAXE = null;
+      QUARTZ_SHOVEL = null;
+      QUARTZ_SWORD = null;
       UNFIRED_CLAY_SHEARS = null;
       CLAY_SHEARS = null;
       STONE_SHEARS = null;

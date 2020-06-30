@@ -187,6 +187,12 @@ item.pyrotech.redstone.pickaxe.name=Redstone Pickaxe
 item.pyrotech.redstone.shovel.name=Redstone Shovel
 item.pyrotech.redstone.sword.name=Redstone Sword
 
+item.pyrotech.quartz.axe.name=Quartz Axe
+item.pyrotech.quartz.hoe.name=Quartz Hoe
+item.pyrotech.quartz.pickaxe.name=Quartz Pickaxe
+item.pyrotech.quartz.shovel.name=Quartz Shovel
+item.pyrotech.quartz.sword.name=Quartz Sword
+
 item.pyrotech.unfired.clay.shears.name=未烧制的粘土剪刀
 item.pyrotech.clay.shears.name=粘土剪刀
 item.pyrotech.stone.shears.name=石剪刀
@@ -340,6 +346,15 @@ gui.pyrotech.tooltip.torch.burns.false=持续燃烧。
 gui.pyrotech.tooltip.rain.extinguishes.true=淋雨后熄灭，
 gui.pyrotech.tooltip.rain.extinguishes.false=淋雨后仍燃烧。
 gui.pyrotech.tooltip.potency=Potency: %d%%
+gui.pyrotech.tooltip.redstone.activation.chance=Has a %s%d%%%s chance to activate when damaged.
+gui.pyrotech.tooltip.redstone.active.durability=Has a %s%d%%%s chance to ignore damage while active.
+gui.pyrotech.tooltip.redstone.active.efficiency=Breaks blocks %s%d%%%s faster while active.
+gui.pyrotech.tooltip.redstone.active.damage=Deals %s%d%%%s damage while active.
+gui.pyrotech.tooltip.redstone.active.hoe=Tills a %s3x3%s area while active.
+
+gui.pyrotech.tooltip.quartz.active.efficiency=Breaks blocks %s%d%%%s faster in %sThe Nether%s.
+gui.pyrotech.tooltip.quartz.active.damage=Deals %s%d%%%s damage in %sThe Nether%s.
+gui.pyrotech.tooltip.quartz.active.hoe=Tills a %s3x3%s area in %sThe Nether%s.
 
 #------------------------------------------------------------------------------
 # Waila

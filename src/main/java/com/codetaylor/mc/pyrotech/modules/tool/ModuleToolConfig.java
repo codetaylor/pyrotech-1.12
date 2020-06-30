@@ -8,6 +8,25 @@ import java.util.Map;
 @Config(modid = ModuleTool.MOD_ID, name = ModuleTool.MOD_ID + "/" + "module.Tool")
 public class ModuleToolConfig {
 
+  public static QuartzTools QUARTZ_TOOLS = new QuartzTools();
+
+  public static class QuartzTools {
+
+    @Config.Comment({
+        "The speed multiplier that is applied when the tool is active.",
+        "Default: " + 3
+    })
+    @Config.RangeDouble(min = 1)
+    public double ACTIVE_HARVEST_SPEED_SCALAR = 3;
+
+    @Config.Comment({
+        "The damage multiplier that is applied when the sword is active.",
+        "Default: " + 4
+    })
+    @Config.RangeDouble(min = 1)
+    public double ACTIVE_SWORD_DAMAGE_SCALAR = 3;
+  }
+
   public static RedstoneTools REDSTONE_TOOLS = new RedstoneTools();
 
   public static class RedstoneTools {
@@ -80,6 +99,7 @@ public class ModuleToolConfig {
     DURABILITY.put("bone", 150);
     DURABILITY.put("flint", 150);
     DURABILITY.put("redstone", 200);
+    DURABILITY.put("quartz", 350);
     DURABILITY.put("obsidian", 1400);
   }
 
@@ -94,6 +114,7 @@ public class ModuleToolConfig {
     HARVEST_LEVEL.put("bone", 1);
     HARVEST_LEVEL.put("flint", 1);
     HARVEST_LEVEL.put("redstone", 1);
+    HARVEST_LEVEL.put("quartz", 1);
     HARVEST_LEVEL.put("obsidian", 2);
   }
 
