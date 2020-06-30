@@ -27,7 +27,7 @@ public abstract class BlockOreDenseQuartzBase
     this.setResistance(5.0F);
     this.setHardness(3);
     this.setHarvestLevel("pickaxe", 2);
-    this.setSoundType(SoundType.GLASS);
+    this.setSoundType(SoundType.STONE);
   }
 
   @ParametersAreNonnullByDefault
