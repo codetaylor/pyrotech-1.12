@@ -244,6 +244,7 @@ item.pyrotech.glass.shard.name=玻璃碎片
 item.pyrotech.obsidian.shard.name=黑曜石碎片
 item.pyrotech.gold.shard.name=金碎片
 item.pyrotech.dense.redstone.name=Dense Redstone
+item.pyrotech.dense.quartz.name=Dense Quartz
 
 item.pyrotech.apple.baked.name=烤苹果
 item.pyrotech.carrot.roasted.name=烤胡萝卜

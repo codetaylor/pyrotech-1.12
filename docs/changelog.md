@@ -27,6 +27,7 @@
         * `item.pyrotech.marshmallow.on.stick.burned.name`
         * `item.pyrotech.marshmallow.stick.empty.name`
         * `item.pyrotech.dense.redstone.name`
+        * `item.pyrotech.dense.quartz.name`
         * `item.pyrotech.redstone.axe.name`
         * `item.pyrotech.redstone.hoe.name`
         * `item.pyrotech.redstone.pickaxe.name`
@@ -50,10 +51,21 @@
             * wooden, clay, and stone milk bucket from Pyrotech
         * `toolSharp` contains swords and axes, sans wooden sword
     * Dense Redstone Ore
+        * Spawns in caves between height 5 and 25
+        * Drops Dense Redstone and Redstone when harvested with an iron+ tier pickaxe
+        * Added worldgen module config values:
+            * `ENABLED`
+            * `DIMENSION_WHITELIST`
+            * `DIMENSION_BLACKLIST`
+            * `CHANCE_TO_SPAWN`
+            * `CHANCE_TO_SPAWN_REDSTONE_ORE`
+            * `VERTICAL_BOUNDS`
     * Dense Redstone
+        * Anvil hammer recipe to convert Dense Redstone into Redstone
     * Redstone Tools
+        * Made from Dense Redstone
         * Redstone tools have a small chance to activate when damaged, giving them unique properties.
-        * Added config values:
+        * Added tools module config values:
             * `ACTIVE_DURATION_TICKS`
             * `ACTIVE_DAMAGE_CHANCE`
             * `INACTIVE_ACTIVATION_CHANCE`
@@ -61,6 +73,8 @@
             * `ACTIVE_HARVEST_SPEED_SCALAR`
             * `ACTIVE_SWORD_DAMAGE_SCALAR`
             * `PROXIMITY_REPAIR_CHANCE`
+    * Dense Quartz
+        * Anvil pickaxe recipe to convert Dense Quartz into Quartz
     * Strange Tuber drops from tall grass and grassy dirt
         * Edible
         * More drop when not using a shovel

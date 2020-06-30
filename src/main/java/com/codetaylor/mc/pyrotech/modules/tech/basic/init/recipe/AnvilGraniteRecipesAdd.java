@@ -250,6 +250,15 @@ public class AnvilGraniteRecipesAdd {
 
   private static void registerPickaxeRecipes(IForgeRegistry<AnvilRecipe> registry) {
 
+    // Quartz from Dense Quartz
+    registry.register(new AnvilRecipe(
+        new ItemStack(Items.QUARTZ, 2),
+        Ingredient.fromStacks(ItemMaterial.EnumType.DENSE_QUARTZ.asStack()),
+        4,
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "quartz_from_dense_quartz"));
+
     // Flint Shard from Flint
     registry.register(new AnvilRecipe(
         ItemMaterial.EnumType.FLINT_SHARD.asStack(3),

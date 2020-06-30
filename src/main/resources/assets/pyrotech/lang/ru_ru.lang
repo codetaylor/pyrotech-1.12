@@ -244,6 +244,7 @@ item.pyrotech.glass.shard.name=Стеклянный осколок
 item.pyrotech.obsidian.shard.name=Обсидиановый осколок
 item.pyrotech.gold.shard.name=Золотой осколок
 item.pyrotech.dense.redstone.name=Dense Redstone
+item.pyrotech.dense.quartz.name=Dense Quartz
 
 item.pyrotech.apple.baked.name=Запечённое яблоко
 item.pyrotech.carrot.roasted.name=Обжаренная морковь

@@ -245,6 +245,7 @@ item.pyrotech.glass.shard.name=Glass Shard
 item.pyrotech.obsidian.shard.name=Obsidian Shard
 item.pyrotech.gold.shard.name=Gold Shard
 item.pyrotech.dense.redstone.name=Dense Redstone
+item.pyrotech.dense.quartz.name=Dense Quartz
 
 item.pyrotech.apple.baked.name=Baked Apple
 item.pyrotech.carrot.roasted.name=Roasted Carrot
