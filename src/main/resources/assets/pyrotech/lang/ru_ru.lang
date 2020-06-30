@@ -287,6 +287,7 @@ tile.pyrotech.charcoal_block.name=Блок древесного угля
 tile.pyrotech.wood_tar_block.name=Рулон смолы
 tile.pyrotech.living_tar.name=Живая смола
 tile.pyrotech.dense_redstone_ore.name=Dense Redstone Ore
+tile.pyrotech.dense_quartz_ore.name=Dense Quartz Ore
 
 tile.pyrotech.rock_stone.name=Каменный булыжник
 tile.pyrotech.rock_andesite.name=Андезитовый булыжник

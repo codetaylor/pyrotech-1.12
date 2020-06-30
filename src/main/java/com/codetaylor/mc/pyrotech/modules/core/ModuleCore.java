@@ -336,6 +336,15 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockOreDenseRedstoneRocks.NAME_ACTIVATED)
     public static final BlockOreDenseRedstoneRocks ORE_DENSE_REDSTONE_ROCKS_ACTIVATED;
 
+    @GameRegistry.ObjectHolder(BlockOreDenseQuartzLarge.NAME)
+    public static final BlockOreDenseQuartzLarge ORE_DENSE_QUARTZ_LARGE;
+
+    @GameRegistry.ObjectHolder(BlockOreDenseQuartzSmall.NAME)
+    public static final BlockOreDenseQuartzSmall ORE_DENSE_QUARTZ_SMALL;
+
+    @GameRegistry.ObjectHolder(BlockOreDenseQuartzRocks.NAME)
+    public static final BlockOreDenseQuartzRocks ORE_DENSE_QUARTZ_ROCKS;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -367,6 +376,9 @@ public class ModuleCore
       ORE_DENSE_REDSTONE_SMALL_ACTIVATED = null;
       ORE_DENSE_REDSTONE_ROCKS = null;
       ORE_DENSE_REDSTONE_ROCKS_ACTIVATED = null;
+      ORE_DENSE_QUARTZ_LARGE = null;
+      ORE_DENSE_QUARTZ_SMALL = null;
+      ORE_DENSE_QUARTZ_ROCKS = null;
     }
   }
 

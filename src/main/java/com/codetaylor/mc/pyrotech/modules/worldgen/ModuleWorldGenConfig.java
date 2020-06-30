@@ -359,4 +359,49 @@ public class ModuleWorldGenConfig {
     public int[] VERTICAL_BOUNDS = {5, 25};
   }
 
+  public static WorldGenDenseQuartzOre DENSE_QUARTZ_ORE = new WorldGenDenseQuartzOre();
+
+  public static class WorldGenDenseQuartzOre {
+
+    @Config.Comment({
+        "Set to false to disable this worldgen.",
+        "Default: " + true
+    })
+    public boolean ENABLED = true;
+
+    @Config.Comment({
+        "An int array of dimension id's that this is allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_WHITELIST = {
+        -1
+    };
+
+    @Config.Comment({
+        "An int array of dimension id's that this is not allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_BLACKLIST = new int[0];
+
+    @Config.Comment({
+        "Percent chance to attempt to spawn in a chunk.",
+        "Default: " + 0.125
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double CHANCE_TO_SPAWN = 0.125;
+
+    @Config.Comment({
+        "Percent chance to spawn quartz ore in netherrack below the dense ore.",
+        "Default: " + 0.5
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double CHANCE_TO_SPAWN_QUARTZ_ORE = 0.5;
+
+    @Config.Comment({
+        "An int array of the y value's [min, max] used for spawning.",
+        "Default: [1, 64]"
+    })
+    public int[] VERTICAL_BOUNDS = {1, 64};
+  }
+
 }

@@ -1,0 +1,34 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "0": "pyrotech:blocks/dense_quartz_ore",
+      "1": "pyrotech:blocks/dense_quartz_ore_2",
+      "particle": "pyrotech:blocks/dense_quartz_ore"
+    }
+  },
+  "variants": {
+    "normal": [
+      {"model": "pyrotech:dense_crystal_ore_small_a"},
+      {"model": "pyrotech:dense_crystal_ore_small_a", "y": 90},
+      {"model": "pyrotech:dense_crystal_ore_small_a", "y": 180},
+      {"model": "pyrotech:dense_crystal_ore_small_a", "y": 270},
+      {"model": "pyrotech:dense_crystal_ore_small_b"},
+      {"model": "pyrotech:dense_crystal_ore_small_b", "y": 90},
+      {"model": "pyrotech:dense_crystal_ore_small_b", "y": 180},
+      {"model": "pyrotech:dense_crystal_ore_small_b", "y": 270},
+      {"model": "pyrotech:dense_crystal_ore_small_c"},
+      {"model": "pyrotech:dense_crystal_ore_small_c", "y": 90},
+      {"model": "pyrotech:dense_crystal_ore_small_c", "y": 180},
+      {"model": "pyrotech:dense_crystal_ore_small_c", "y": 270},
+      {"model": "pyrotech:dense_crystal_ore_small_d"},
+      {"model": "pyrotech:dense_crystal_ore_small_d", "y": 90},
+      {"model": "pyrotech:dense_crystal_ore_small_d", "y": 180},
+      {"model": "pyrotech:dense_crystal_ore_small_d", "y": 270},
+      {"model": "pyrotech:dense_crystal_ore_small_e"},
+      {"model": "pyrotech:dense_crystal_ore_small_e", "y": 90},
+      {"model": "pyrotech:dense_crystal_ore_small_e", "y": 180},
+      {"model": "pyrotech:dense_crystal_ore_small_e", "y": 270}
+    ]
+  }
+}

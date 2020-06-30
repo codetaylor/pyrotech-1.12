@@ -65,6 +65,9 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockOreDenseRedstoneSmall(true), BlockOreDenseRedstoneSmall.NAME_ACTIVATED);
     registry.registerBlockWithItem(new BlockOreDenseRedstoneRocks(false), BlockOreDenseRedstoneRocks.NAME);
     registry.registerBlockWithItem(new BlockOreDenseRedstoneRocks(true), BlockOreDenseRedstoneRocks.NAME_ACTIVATED);
+    registry.registerBlockWithItem(new BlockOreDenseQuartzLarge(), BlockOreDenseQuartzLarge.NAME);
+    registry.registerBlockWithItem(new BlockOreDenseQuartzSmall(), BlockOreDenseQuartzSmall.NAME);
+    registry.registerBlockWithItem(new BlockOreDenseQuartzRocks(), BlockOreDenseQuartzRocks.NAME);
 
     RegistryHelper.registerTileEntities(
         registry,
@@ -102,7 +105,10 @@ public final class BlockInitializer {
           ModuleCore.Blocks.ORE_DENSE_REDSTONE_SMALL,
           ModuleCore.Blocks.ORE_DENSE_REDSTONE_SMALL_ACTIVATED,
           ModuleCore.Blocks.ORE_DENSE_REDSTONE_ROCKS,
-          ModuleCore.Blocks.ORE_DENSE_REDSTONE_ROCKS_ACTIVATED
+          ModuleCore.Blocks.ORE_DENSE_REDSTONE_ROCKS_ACTIVATED,
+          ModuleCore.Blocks.ORE_DENSE_QUARTZ_LARGE,
+          ModuleCore.Blocks.ORE_DENSE_QUARTZ_SMALL,
+          ModuleCore.Blocks.ORE_DENSE_QUARTZ_ROCKS
       );
 
       ModelRegistrationHelper.registerItemModels(

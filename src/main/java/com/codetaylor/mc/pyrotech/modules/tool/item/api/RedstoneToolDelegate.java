@@ -5,7 +5,7 @@ import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockOreDenseRedstoneBase;
+import com.codetaylor.mc.pyrotech.modules.core.block.spi.BlockOreDenseRedstoneBase;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.IRedstoneTool;
 import net.minecraft.entity.Entity;

@@ -287,6 +287,7 @@ tile.pyrotech.charcoal_block.name=木炭块
 tile.pyrotech.wood_tar_block.name=焦油稻草捆
 tile.pyrotech.living_tar.name=活焦油
 tile.pyrotech.dense_redstone_ore.name=Dense Redstone Ore
+tile.pyrotech.dense_quartz_ore.name=Dense Quartz Ore
 
 tile.pyrotech.rock_stone.name=石块
 tile.pyrotech.rock_andesite.name=安山岩块

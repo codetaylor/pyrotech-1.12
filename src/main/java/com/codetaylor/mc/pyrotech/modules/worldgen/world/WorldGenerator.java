@@ -26,7 +26,8 @@ public class WorldGenerator
         new WorldGenDenseCoal(),
         new WorldGenDenseNetherCoal(),
         new WorldGenRocks(),
-        new WorldGenDenseRedstoneOre()
+        new WorldGenDenseRedstoneOre(),
+        new WorldGenDenseQuartzOre()
     );
 
     this.perDimensionFeatureList = new Int2ObjectOpenHashMap<>();

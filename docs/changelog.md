@@ -51,8 +51,9 @@
             * wooden, clay, and stone milk bucket from Pyrotech
         * `toolSharp` contains swords and axes, sans wooden sword
     * Dense Redstone Ore
-        * Spawns in caves between height 5 and 25
+        * Spawns in caves between height 5 and 25 in the overworld
         * Drops Dense Redstone and Redstone when harvested with an iron+ tier pickaxe
+        * Chance to spawn Redstone Ore below the dense ores
         * Added worldgen module config values:
             * `ENABLED`
             * `DIMENSION_WHITELIST`
@@ -73,6 +74,17 @@
             * `ACTIVE_HARVEST_SPEED_SCALAR`
             * `ACTIVE_SWORD_DAMAGE_SCALAR`
             * `PROXIMITY_REPAIR_CHANCE`
+    * Dense Quartz Ore
+        * Spawns in caves between height 1 and 64 in the nether
+        * Drops Dense Quartz and Quartz when harvested with an iron+ tier pickaxe
+        * Chance to spawn Quartz Ore below the dense ores
+        * Added worldgen module config values:
+            * `ENABLED`
+            * `DIMENSION_WHITELIST`
+            * `DIMENSION_BLACKLIST`
+            * `CHANCE_TO_SPAWN`
+            * `CHANCE_TO_SPAWN_QUARTZ_ORE`
+            * `VERTICAL_BOUNDS`
     * Dense Quartz
         * Anvil pickaxe recipe to convert Dense Quartz into Quartz
     * Strange Tuber drops from tall grass and grassy dirt
