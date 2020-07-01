@@ -27,12 +27,17 @@
         * `item.pyrotech.marshmallow.on.stick.burned.name`
         * `item.pyrotech.marshmallow.stick.empty.name`
         * `item.pyrotech.dense.redstone.name`
-        * `item.pyrotech.dense.quartz.name`
         * `item.pyrotech.redstone.axe.name`
         * `item.pyrotech.redstone.hoe.name`
         * `item.pyrotech.redstone.pickaxe.name`
         * `item.pyrotech.redstone.shovel.name`
         * `item.pyrotech.redstone.sword.name`
+        * `item.pyrotech.dense.quartz.name`
+        * `item.pyrotech.quartz.axe.name`
+        * `item.pyrotech.quartz.hoe.name`
+        * `item.pyrotech.quartz.pickaxe.name`
+        * `item.pyrotech.quartz.shovel.name`
+        * `item.pyrotech.quartz.sword.name`
         * `tile.pyrotech.dense_redstone_ore.name`
         * `gui.pyrotech.marshmallow.burned.broadcast.message`
         * `gui.pyrotech.marshmallow.burned.eat.broadcast.message`
@@ -50,6 +55,10 @@
             * `minecraft:milk`
             * wooden, clay, and stone milk bucket from Pyrotech
         * `toolSharp` contains swords and axes, sans wooden sword
+        * `mulchNitrogen` now contains `pyrotech:rock_netherrack`
+    * Netherrack Rocks
+        * Drop from Netherrack with low tier tools
+        * Work as a mulch ingredient
     * Dense Redstone Ore
         * Spawns in caves between height 5 and 25 in the overworld
         * Drops Dense Redstone and Redstone when harvested with an iron+ tier pickaxe
@@ -87,9 +96,15 @@
             * `VERTICAL_BOUNDS`
     * Dense Quartz
         * Anvil pickaxe recipe to convert Dense Quartz into Quartz
+    * Dense Quartz Tools
+        * Made from Dense Quartz
+        * Dense Quartz tools perform better in The Nether.
+        * Added tools module config values:
+            * `ACTIVE_HARVEST_SPEED_SCALAR`
+            * `ACTIVE_SWORD_DAMAGE_SCALAR`
     * Strange Tuber drops from tall grass and grassy dirt
         * Edible
-        * More drop when not using a shovel
+        * Higher drop chance when not using a shovel
         * Added config values:
             * `STRANGE_TUBER_HUNGER`
             * `STRANGE_TUBER_SATURATION`

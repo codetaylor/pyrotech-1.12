@@ -5,6 +5,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompactingBinRecipe;
+import net.minecraft.block.BlockNetherrack;
 import net.minecraft.block.BlockSand;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -16,6 +17,13 @@ import net.minecraftforge.registries.IForgeRegistryModifiable;
 public class CompactingBinRecipesAdd {
 
   public static void apply(IForgeRegistryModifiable<CompactingBinRecipe> registry) {
+
+    // Netherrack
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(Blocks.NETHERRACK),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Items.ROCK_NETHERRACK)),
+        8
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "netherrack"));
 
     // Ash Pile
     registry.register(new CompactingBinRecipe(

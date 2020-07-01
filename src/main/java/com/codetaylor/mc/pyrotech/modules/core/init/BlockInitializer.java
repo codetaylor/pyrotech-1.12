@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.block.item.ItemDoorStone;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockGrass;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockNetherrack;
 import com.codetaylor.mc.pyrotech.modules.core.tile.TileFarmlandMulched;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
@@ -30,6 +31,10 @@ public final class BlockInitializer {
     final BlockRockGrass blockRockGrass = new BlockRockGrass();
     ItemRockGrass itemRockGrass = new ItemRockGrass(blockRockGrass);
     registry.registerBlock(blockRockGrass, itemRockGrass, BlockRockGrass.NAME);
+
+    final BlockRockNetherrack blockRockNetherrack = new BlockRockNetherrack();
+    ItemRockNetherrack itemRockNetherrack = new ItemRockNetherrack(blockRockNetherrack);
+    registry.registerBlock(blockRockNetherrack, itemRockNetherrack, BlockRockNetherrack.NAME);
 
     final BlockRefractoryDoor blockRefractoryDoor = new BlockRefractoryDoor();
     registry.registerBlock(blockRefractoryDoor, BlockRefractoryDoor.NAME);
@@ -114,7 +119,8 @@ public final class BlockInitializer {
       ModelRegistrationHelper.registerItemModels(
           ModuleCore.Items.REFRACTORY_DOOR,
           ModuleCore.Items.STONE_DOOR,
-          ModuleCore.Items.ROCK_GRASS
+          ModuleCore.Items.ROCK_GRASS,
+          ModuleCore.Items.ROCK_NETHERRACK
       );
 
       // Refractory Door

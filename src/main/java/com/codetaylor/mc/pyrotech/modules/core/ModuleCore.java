@@ -279,6 +279,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockRockGrass.NAME)
     public static final BlockRockGrass ROCK_GRASS;
 
+    @GameRegistry.ObjectHolder(BlockRockNetherrack.NAME)
+    public static final BlockRockNetherrack ROCK_NETHERRACK;
+
     @GameRegistry.ObjectHolder(BlockOreFossil.NAME)
     public static final BlockOreFossil ORE_FOSSIL;
 
@@ -357,6 +360,7 @@ public class ModuleCore
       SLAG_GLASS = null;
       ROCK = null;
       ROCK_GRASS = null;
+      ROCK_NETHERRACK = null;
       ORE_FOSSIL = null;
       ORE_DENSE_COAL = null;
       ORE_DENSE_NETHER_COAL = null;
@@ -390,6 +394,9 @@ public class ModuleCore
 
     @GameRegistry.ObjectHolder(BlockRockGrass.NAME)
     public static final ItemRockGrass ROCK_GRASS;
+
+    @GameRegistry.ObjectHolder(BlockRockNetherrack.NAME)
+    public static final ItemRockNetherrack ROCK_NETHERRACK;
 
     @GameRegistry.ObjectHolder(ItemMaterial.NAME)
     public static final ItemMaterial MATERIAL;
@@ -457,6 +464,7 @@ public class ModuleCore
     static {
       ROCK = null;
       ROCK_GRASS = null;
+      ROCK_NETHERRACK = null;
       MATERIAL = null;
       REFRACTORY_DOOR = null;
       STONE_DOOR = null;

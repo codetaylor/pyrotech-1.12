@@ -772,6 +772,16 @@ public class PluginDropt {
     }
 
     // -------------------------------------------------------------------------
+    // - Netherrack
+    // -------------------------------------------------------------------------
+
+    if (enabled("netherrack")) {
+      String matchBlock = item("minecraft", "netherrack", BlockStone.EnumType.STONE.getMetadata());
+      String rock = item(BlockRockNetherrack.NAME, 0);
+      this.addRockDrops(matchBlock, rock, list);
+    }
+
+    // -------------------------------------------------------------------------
     // - Stone / Cobblestone
     // -------------------------------------------------------------------------
 

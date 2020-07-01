@@ -144,7 +144,8 @@ public class JsonOreDict {
         "minecraft:fish:2",
         "minecraft:fish:3",
         "minecraft:porkchop",
-        "minecraft:dye:15"
+        "minecraft:dye:15",
+        "pyrotech:rock_netherrack"
     });
 
     {

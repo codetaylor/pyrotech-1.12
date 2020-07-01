@@ -34,7 +34,8 @@ public class ModulePluginDroptConfig {
         "andesite_cobbled",
         "granite",
         "granite_smooth",
-        "granite_cobbled"
+        "granite_cobbled",
+        "netherrack"
     };
 
     for (String rule : rules) {
@@ -48,7 +49,8 @@ public class ModulePluginDroptConfig {
       "",
       "Blocks affected: dirt, grass, sand, red sand, gravel, limestone, stone,",
       "cobblestone, diorite, smooth diorite, cobbled diorite, andesite, smooth",
-      "andesite, cobbled andesite, granite, smooth granite, and cobbled granite."
+      "andesite, cobbled andesite, granite, smooth granite, netherrack, and ",
+      "cobbled granite."
   })
   public static boolean REDUCE_EXPLOSION_DROPS = false;
 

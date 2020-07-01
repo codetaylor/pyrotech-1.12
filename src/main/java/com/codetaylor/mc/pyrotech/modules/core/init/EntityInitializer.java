@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.entity.EntityRock;
 import com.codetaylor.mc.pyrotech.modules.core.entity.EntityRockGrass;
+import com.codetaylor.mc.pyrotech.modules.core.entity.EntityRockNetherrack;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemBook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderItem;
@@ -21,15 +22,23 @@ public final class EntityInitializer {
 
   public static void onRegister(Registry registry) {
 
-    registry.createEntityEntry(EntityRock.NAME, EntityEntryBuilder.create()
+    registry.createEntityEntry(EntityRock.NAME, EntityEntryBuilder
+        .create()
         .entity(EntityRock.class)
         .tracker(80, 1, true)
     );
-    registry.createEntityEntry(EntityRockGrass.NAME, EntityEntryBuilder.create()
+    registry.createEntityEntry(EntityRockGrass.NAME, EntityEntryBuilder
+        .create()
         .entity(EntityRockGrass.class)
         .tracker(80, 1, true)
     );
-    registry.createEntityEntry(ItemBook.EntityItemBook.NAME, EntityEntryBuilder.create()
+    registry.createEntityEntry(EntityRockNetherrack.NAME, EntityEntryBuilder
+        .create()
+        .entity(EntityRockNetherrack.class)
+        .tracker(80, 1, true)
+    );
+    registry.createEntityEntry(ItemBook.EntityItemBook.NAME, EntityEntryBuilder
+        .create()
         .entity(ItemBook.EntityItemBook.class)
         .tracker(80, 4, true)
     );
@@ -59,6 +68,20 @@ public final class EntityInitializer {
         @Nonnull
         @Override
         public ItemStack getStackToRender(EntityRockGrass entity) {
+
+          int meta = entity.getMeta();
+          return new ItemStack(this.item, 1, meta);
+        }
+      };
+    });
+
+    RenderingRegistry.registerEntityRenderingHandler(EntityRockNetherrack.class, manager -> {
+      RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+      return new RenderSnowball<EntityRockNetherrack>(manager, Item.getItemFromBlock(ModuleCore.Blocks.ROCK_NETHERRACK), renderItem) {
+
+        @Nonnull
+        @Override
+        public ItemStack getStackToRender(EntityRockNetherrack entity) {
 
           int meta = entity.getMeta();
           return new ItemStack(this.item, 1, meta);
