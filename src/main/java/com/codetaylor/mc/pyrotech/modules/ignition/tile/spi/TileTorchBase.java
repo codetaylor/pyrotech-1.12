@@ -4,12 +4,12 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
-import com.codetaylor.mc.pyrotech.interaction.api.InteractionBounds;
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteraction;
-import com.codetaylor.mc.pyrotech.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.pyrotech.interaction.spi.InteractionBucketBase;
-import com.codetaylor.mc.pyrotech.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBucketBase;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchFiber;
@@ -34,7 +34,7 @@ import net.minecraftforge.fluids.FluidTank;
 import javax.annotation.Nonnull;
 
 public abstract class TileTorchBase
-    extends TileNetBase
+    extends TileEntityDataBase
     implements ITileInteractable,
     ITickable {
 

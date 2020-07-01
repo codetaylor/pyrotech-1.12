@@ -1,0 +1,53 @@
+ext {
+
+  modid = 'pyrotech'
+
+  forge = [
+    version: '1.12.2-14.23.5.2847'
+  ]
+
+  mappings = [
+    channel: 'snapshot',
+    version: 'snapshot_20171003'
+  ]
+
+  manifest = [
+    attributesEnabled: false,
+    attributes: [
+      'Specification-Title': 'examplemod',
+      'Specification-Vendor': 'examplemodsareus',
+      'Specification-Version': '1', // We are version 1 of ourselves
+      'Implementation-Title': project.name,
+      'Implementation-Version': "${version}",
+      'Implementation-Vendor' :'examplemodsareus',
+      'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    ]
+  ]
+
+  replace = [
+    'required-after:dropt;': 'required-after:dropt@[1.12.2-1.12.0,);',
+    'required-after:athenaeum;': 'required-after:athenaeum@[1.12.2-1.19.0-RC.1,);'
+  ]
+}
+
+repositories {
+  // hwyla
+  maven { url "http://tehnut.info/maven" }
+
+  // patchouli
+  maven { url 'https://maven.blamejared.com' }
+
+  maven { // TOP
+    name 'tterrag maven'
+    url "http://maven.tterrag.com/"
+  }
+}
+
+dependencies {
+  compile project(":athenaeum")
+  compile project(":dropt")
+  
+  deobfCompile "curse.maven:hwyla:2568751"
+  deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.28-17"
+  compile "vazkii.patchouli:Patchouli:1.0-20.108"
+}

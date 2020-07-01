@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.client.render;
 
-import com.codetaylor.mc.pyrotech.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionRenderer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCrucibleBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

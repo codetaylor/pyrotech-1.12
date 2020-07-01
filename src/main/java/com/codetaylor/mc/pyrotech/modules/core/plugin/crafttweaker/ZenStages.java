@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.tools.*;
-import com.codetaylor.mc.pyrotech.library.Stages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 

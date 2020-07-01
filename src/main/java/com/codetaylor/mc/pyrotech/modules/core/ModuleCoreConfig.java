@@ -423,17 +423,6 @@ public class ModuleCoreConfig {
     };
 
     @Config.Comment({
-        "Set to true to render the interaction bounds for debugging."
-    })
-    public boolean SHOW_INTERACTION_BOUNDS = false;
-
-    @Config.Comment({
-        "If true, the quantities shown when sneaking and looking at a block",
-        "will always be shown, regardless of sneaking."
-    })
-    public boolean ALWAYS_SHOW_QUANTITIES = false;
-
-    @Config.Comment({
         "Show an item's burn time in it's tooltip.",
         "Default: " + true
     })

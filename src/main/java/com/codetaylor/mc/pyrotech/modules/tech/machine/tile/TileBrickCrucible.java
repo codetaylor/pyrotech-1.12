@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
-import com.codetaylor.mc.pyrotech.library.Stages;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.BrickCrucibleRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCrucibleBase;

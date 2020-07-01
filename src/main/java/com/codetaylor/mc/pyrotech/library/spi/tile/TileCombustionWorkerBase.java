@@ -12,7 +12,7 @@ import net.minecraft.world.EnumSkyBlock;
 import javax.annotation.Nonnull;
 
 public abstract class TileCombustionWorkerBase
-    extends TileNetWorkerBase {
+    extends TileEntityDataWorkerBase {
 
   protected TileDataInteger burnTimeRemaining;
 

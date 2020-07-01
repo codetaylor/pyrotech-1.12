@@ -2,22 +2,17 @@ buildscript {
     repositories {
         jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'com.wynprice.cursemaven:CurseMaven:2.1.1'
     }
 }
-
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'com.wynprice.cursemaven'
 
-ext.configFile = file "build.properties"
-configFile.withReader {
-    def prop = new Properties()
-    prop.load(it)
-    ext.config = new ConfigSlurper().parse prop
-}
-
-// ----------------------------------------------------------------------------
+apply from: 'project.gradle'
 
 def getVersionName = { String workTree ->
     def stdout = new ByteArrayOutputStream()
@@ -28,23 +23,18 @@ def getVersionName = { String workTree ->
     return stdout.toString().trim()
 }
 
-project.ext.modVersion = getVersionName("${project.projectDir}")
+version = getVersionName("${project.projectDir}")
+group = 'com.codetaylor.mc.' + project.ext.modid
+archivesBaseName = project.ext.modid
 
-project.ext.dependencies = ',dependencies = "' +
-        'required-after:dropt@[' + config.droptVersion + ',);' +
-        'required-after:athenaeum@[' + config.athenaeumVersion + ',);' +
-        'after:patchouli;' +
-        'after:crafttweaker;' +
-        'after:jei;' +
-        'after:gamestages;' +
-        'after:thermalexpansion;' +
-        'after:theoneprobe;' +
-        'after:waila;' +
-        '"'
-
-version = "${config.minecraftVersion}-${project.ext.modVersion}"
-group = config.packageGroup
-archivesBaseName = config.modId
+println()
+println("-------------------------------------------------------------")
+println("- Mod Id: " + project.ext.modid)
+println("- Version: " + version)
+println("- Forge Version: " + project.ext.forge.version)
+println("- Mappings: " + project.ext.mappings.channel + " " + project.ext.mappings.version)
+println("-------------------------------------------------------------")
+println()
 
 compileJava.doFirst {
     project.sourceSets.main.java.srcDirs.each { dir ->
@@ -55,8 +45,10 @@ compileJava.doFirst {
             filter {
                 it.replaceAll('@@VERSION@@', project.version)
             }
-            filter {
-                it.replaceAll('//@@DEPENDENCIES@@', project.ext.dependencies)
+            project.ext.replace.each{entry -> 
+                filter {
+                    it.replaceAll(entry.key, entry.value)
+                }
             }
             duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         }
@@ -78,36 +70,14 @@ compileJava {
 }
 
 minecraft {
-    version = "${config.minecraftVersion}-${config.forgeVersion}"
+    version = project.ext.forge.version
     runDir = "run"
-    mappings = config.mappings
+    mappings = project.ext.mappings.version
 }
 
-repositories {
+repositories {}
 
-    // hwyla
-    maven { url "http://tehnut.info/maven" }
-
-    // patchouli
-    maven { url 'https://maven.blamejared.com' }
-
-    maven { // TOP
-        name 'tterrag maven'
-        url "http://maven.tterrag.com/"
-    }
-
-    flatDir {
-        dirs 'libs'
-    }
-}
-
-dependencies {
-    compile project(":athenaeum")
-    compile project(":dropt")
-    deobfCompile "mcp.mobius.waila:Hwyla:${config.hwylaVersion}"
-    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:${config.topVersion}"
-    compile "vazkii.patchouli:Patchouli:${config.patchouliVersion}"
-}
+dependencies {}
 
 jar {
     from sourceSets.api.output

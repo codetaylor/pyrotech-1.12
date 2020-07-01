@@ -31,14 +31,15 @@ import java.util.Set;
 @Mod(
     modid = ModPyrotech.MOD_ID,
     version = ModPyrotech.VERSION,
-    name = ModPyrotech.NAME
-    //@@DEPENDENCIES@@
+    name = ModPyrotech.NAME,
+    dependencies = ModPyrotech.DEPENDENCIES
 )
 public class ModPyrotech {
 
   public static final String MOD_ID = Reference.MOD_ID;
   public static final String VERSION = Reference.VERSION;
   public static final String NAME = Reference.NAME;
+  public static final String DEPENDENCIES = Reference.DEPENDENCIES;
 
   public static final PyrotechAPI_Internal API_INTERNAL = new PyrotechAPI_Internal();
 

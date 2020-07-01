@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
 
-import com.codetaylor.mc.pyrotech.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockWorktableBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileWorktableStone;

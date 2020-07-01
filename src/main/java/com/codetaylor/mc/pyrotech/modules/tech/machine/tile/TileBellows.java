@@ -4,10 +4,10 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.IAirflowConsumerCapability;
-import com.codetaylor.mc.pyrotech.library.Stages;
-import com.codetaylor.mc.pyrotech.library.spi.tile.TileNetBase;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.plugin.gamestages.GameStages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.GameStages;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import net.minecraft.block.state.IBlockState;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileBellows
-    extends TileNetBase
+    extends TileEntityDataBase
     implements ITickable {
 
   private TileDataFloat progress;
