@@ -237,6 +237,24 @@ public class PluginDropt {
         );
       }
 
+      // Empty hand
+      // Drops dirt clumps and strange tubers
+      list.add(rule()
+          .matchBlocks(new String[]{
+              grass,
+              grassPath
+          })
+          .matchHarvester(harvester()
+              .mainHand(EnumListType.WHITELIST, new String[]{"EMPTY"})
+          )
+          .dropCount(range(1, 2))
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(5)),
+              drop().items(new String[]{strangeTuber}, range(1, 2)).selector(weight(2))
+          })
+      );
+
       // Not a shovel
       // Drops dirt clumps
       list.add(rule()
@@ -250,7 +268,7 @@ public class PluginDropt {
           .dropCount(range(1, 2))
           .dropStrategy(EnumDropStrategy.UNIQUE)
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(5)),
+              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(50)),
               drop().items(new String[]{strangeTuber}).selector(weight(1))
           })
       );
@@ -269,8 +287,8 @@ public class PluginDropt {
           .dropStrategy(EnumDropStrategy.UNIQUE)
           .dropCount(range(1, 2))
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{rockDirt}, range(2, 4)).selector(weight(40)),
-              drop().items(new String[]{rockGrass}).selector(weight(10)),
+              drop().items(new String[]{rockDirt}, range(2, 4)).selector(weight(400)),
+              drop().items(new String[]{rockGrass}).selector(weight(100)),
               drop().items(new String[]{strangeTuber}).selector(weight(5))
           })
       );
@@ -289,9 +307,9 @@ public class PluginDropt {
           .dropStrategy(EnumDropStrategy.UNIQUE)
           .dropCount(range(2))
           .addDrops(new IDroptDropBuilder[]{
-              drop().items(new String[]{dirt}).selector(weight(10)),
-              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(30)),
-              drop().items(new String[]{rockGrass}, range(1, 3)).selector(weight(20)),
+              drop().items(new String[]{dirt}).selector(weight(100)),
+              drop().items(new String[]{rockDirt}, range(1, 3)).selector(weight(300)),
+              drop().items(new String[]{rockGrass}, range(1, 3)).selector(weight(200)),
               drop().items(new String[]{strangeTuber}).selector(weight(1))
           })
       );
