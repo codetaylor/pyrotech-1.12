@@ -202,6 +202,19 @@
 
 ---
 
+**1.4.30**
+
+  * **Changed:**
+    * Updated to support changes to the Artisan Worktables API
+    * Moved configs to Athenaeum config:
+        * `core.cfg.client.ALWAYS_SHOW_QUANTITIES`
+        * `core.cfg.client.SHOW_INTERACTION_BOUNDS`
+
+  * **Required:**
+    * Athenaeum >= 1.19.0
+
+---
+
 **1.4.29**
 
   * **Fixed:**
