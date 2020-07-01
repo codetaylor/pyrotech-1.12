@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.core.block;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -33,6 +34,12 @@ public class BlockRockNetherrack
     this.setTickRandomly(true);
   }
 
+  @Override
+  public int tickRate(World world) {
+
+    return 40;
+  }
+
   // ---------------------------------------------------------------------------
   // - Update
   // ---------------------------------------------------------------------------
@@ -56,15 +63,29 @@ public class BlockRockNetherrack
       }
     }
 
-    BlockHelper.forBlocksInRangeShuffled(world, pos, 4, (w, p, bs) -> {
+    int range = Math.max(0, Math.min(16, ModuleCoreConfig.ROCKS.NETHERRACK_SPREAD_RADIUS));
+
+    BlockHelper.forBlocksInRangeShuffled(world, pos, range, (w, p, bs) -> {
 
       Material material = bs.getMaterial();
 
       if (material == Material.ROCK || material == Material.GROUND || material == Material.GRASS) {
 
+        boolean isNetherrackAdjacent = false;
+
         if (bs.isFullBlock()) {
-          w.setBlockState(p, Blocks.NETHERRACK.getDefaultState(), 1 | 2);
-          return false;
+          for (EnumFacing facing : EnumFacing.values()) {
+
+            if (w.getBlockState(p.offset(facing)).getBlock() == Blocks.NETHERRACK) {
+              isNetherrackAdjacent = true;
+              break;
+            }
+          }
+
+          if (isNetherrackAdjacent) {
+            w.setBlockState(p, Blocks.NETHERRACK.getDefaultState(), 1 | 2);
+            return false;
+          }
         }
       }
 

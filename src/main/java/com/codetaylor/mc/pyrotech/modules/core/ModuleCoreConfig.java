@@ -182,6 +182,14 @@ public class ModuleCoreConfig {
         "Default: " + true
     })
     public boolean THROW_ENABLED = true;
+
+    @Config.Comment({
+        "Netherrack rocks spread netherrack when placed. This defines how big",
+        "their range is.",
+        "Default: " + 3
+    })
+    @Config.RangeInt(min = 0, max = 16)
+    public int NETHERRACK_SPREAD_RADIUS = 3;
   }
 
   // ---------------------------------------------------------------------------

@@ -59,6 +59,7 @@
     * Netherrack Rocks
         * Drop from Netherrack with low tier tools
         * Work as a mulch ingredient
+        * Spread netherrack `ModuleCoreConfig.ROCKS.NETHERRACK_SPREAD_RADIUS`
     * Dense Redstone Ore
         * Spawns in caves between height 5 and 25 in the overworld
         * Drops Dense Redstone and Redstone when harvested with an iron+ tier pickaxe
