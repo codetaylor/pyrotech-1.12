@@ -3,51 +3,6 @@
 
 # 1.5.0
 
-  * **Translators:**
-    * **New Patchouli Categories**
-        * `bloom_redstone.json`
-        * `survive_tools.json`
-    * **New Patchouli Entries**
-        * `bloom/dense_redstone.json`
-        * `bloom/dense_redstone_ore.json`
-        * `bloom/redstone_tools.json`
-        * `survive/food_raw.json`
-    * **New Lang Keys:**
-        * `pyrotech.effect.comfort`
-        * `pyrotech.effect.well.fed`
-        * `pyrotech.effect.resting`
-        * `pyrotech.effect.well.rested`
-        * `pyrotech.effect.focused`
-        * `item.pyrotech.marshmallow.name`
-        * `item.pyrotech.marshmallow.roasted.name`
-        * `item.pyrotech.marshmallow.burned.name`
-        * `item.pyrotech.marshmallow.stick.name`
-        * `item.pyrotech.marshmallow.on.stick.name`
-        * `item.pyrotech.marshmallow.on.stick.roasted.name`
-        * `item.pyrotech.marshmallow.on.stick.burned.name`
-        * `item.pyrotech.marshmallow.stick.empty.name`
-        * `item.pyrotech.dense.redstone.name`
-        * `item.pyrotech.redstone.axe.name`
-        * `item.pyrotech.redstone.hoe.name`
-        * `item.pyrotech.redstone.pickaxe.name`
-        * `item.pyrotech.redstone.shovel.name`
-        * `item.pyrotech.redstone.sword.name`
-        * `item.pyrotech.dense.quartz.name`
-        * `item.pyrotech.quartz.axe.name`
-        * `item.pyrotech.quartz.hoe.name`
-        * `item.pyrotech.quartz.pickaxe.name`
-        * `item.pyrotech.quartz.shovel.name`
-        * `item.pyrotech.quartz.sword.name`
-        * `tile.pyrotech.dense_redstone_ore.name`
-        * `gui.pyrotech.marshmallow.burned.broadcast.message`
-        * `gui.pyrotech.marshmallow.burned.eat.broadcast.message`
-        * `gui.pyrotech.tooltip.potency`
-        * `gui.pyrotech.tooltip.redstone.activation.chance`
-        * `gui.pyrotech.tooltip.redstone.active.durability`
-        * `gui.pyrotech.tooltip.redstone.active.efficiency`
-        * `gui.pyrotech.tooltip.redstone.active.damage`
-        * `gui.pyrotech.tooltip.redstone.active.hoe`
-
   * **Added:**
     * Config option to disable throwing rocks / clumps `THROW_ENABLED` [(#301)](https://github.com/codetaylor/artisan-worktables/issues/301)
     * Oredict:
@@ -85,7 +40,7 @@
             * `ACTIVE_SWORD_DAMAGE_SCALAR`
             * `PROXIMITY_REPAIR_CHANCE`
     * Dense Quartz Ore
-        * Spawns in caves between height 1 and 64 in the nether
+        * Spawns in the lower half of the nether
         * Drops Dense Quartz and Quartz when harvested with an iron+ tier pickaxe
         * Chance to spawn Quartz Ore below the dense ores
         * Added worldgen module config values:
@@ -199,6 +154,54 @@
         * `core.cfg.client.SHOW_INTERACTION_BOUNDS`
     * Bone and Flint Shears now require Clay Shears to craft
     * Improved rock gen compatibility [(#284)](https://github.com/codetaylor/artisan-worktables/issues/284)
+
+  * **Translators:**
+    * **New Patchouli Categories**
+        * `survive_tools.json`
+    * **New Patchouli Entries**
+        * `bloom/dense_redstone.json`
+        * `bloom/dense_redstone_ore.json`
+        * `bloom/tools_redstone.json`
+        * `bloom/dense_quartz.json`
+        * `bloom/dense_quartz_ore.json`
+        * `bloom/tools_quartz.json`
+        * `survive/food_raw.json`
+    * **New Lang Keys:**
+        * `pyrotech.effect.comfort`
+        * `pyrotech.effect.well.fed`
+        * `pyrotech.effect.resting`
+        * `pyrotech.effect.well.rested`
+        * `pyrotech.effect.focused`
+        * `item.pyrotech.marshmallow.name`
+        * `item.pyrotech.marshmallow.roasted.name`
+        * `item.pyrotech.marshmallow.burned.name`
+        * `item.pyrotech.marshmallow.stick.name`
+        * `item.pyrotech.marshmallow.on.stick.name`
+        * `item.pyrotech.marshmallow.on.stick.roasted.name`
+        * `item.pyrotech.marshmallow.on.stick.burned.name`
+        * `item.pyrotech.marshmallow.stick.empty.name`
+        * `item.pyrotech.dense.redstone.name`
+        * `item.pyrotech.redstone.axe.name`
+        * `item.pyrotech.redstone.hoe.name`
+        * `item.pyrotech.redstone.pickaxe.name`
+        * `item.pyrotech.redstone.shovel.name`
+        * `item.pyrotech.redstone.sword.name`
+        * `item.pyrotech.dense.quartz.name`
+        * `item.pyrotech.quartz.axe.name`
+        * `item.pyrotech.quartz.hoe.name`
+        * `item.pyrotech.quartz.pickaxe.name`
+        * `item.pyrotech.quartz.shovel.name`
+        * `item.pyrotech.quartz.sword.name`
+        * `tile.pyrotech.dense_redstone_ore.name`
+        * `tile.pyrotech.dense_quartz_ore.name`
+        * `gui.pyrotech.marshmallow.burned.broadcast.message`
+        * `gui.pyrotech.marshmallow.burned.eat.broadcast.message`
+        * `gui.pyrotech.tooltip.potency`
+        * `gui.pyrotech.tooltip.redstone.activation.chance`
+        * `gui.pyrotech.tooltip.redstone.active.durability`
+        * `gui.pyrotech.tooltip.redstone.active.efficiency`
+        * `gui.pyrotech.tooltip.redstone.active.damage`
+        * `gui.pyrotech.tooltip.redstone.active.hoe`
 
 ---
 

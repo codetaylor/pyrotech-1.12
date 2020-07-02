@@ -1,7 +1,7 @@
 {
   "name": "Redstone, Dense",
   "icon": "pyrotech:material:36",
-  "category": "bloom_redstone",
+  "category": "bloom",
   "pages": [
     {
       "type": "spotlight",
@@ -18,7 +18,7 @@
       "type": "relations",
       "entries": [
         "bloom/dense_redstone_ore",
-        "bloom/redstone_tools"
+        "bloom/tools_redstone"
       ]
     }
   ]

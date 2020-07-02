@@ -34,6 +34,11 @@ Sound Attribution:
   ✔ CC0 https://freesound.org/people/sophiehall3535/sounds/245942/ @done(20-06-29 13:59)
   ✔ CC0 saw sounds @done(20-06-29 14:00)
 
+Playtest Notes:
+  ☐ reinforcement kit to upgrade crate, shelf, and stash in-place
+  ☐ tool repair kits
+  ☐ need to fix mossy cobble
+
 Tasks:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)
   Using the red / orange / yellow / green color shift would probably indicate that the lower the bar, the worse something is. That's not really the case with the Resting effect as any progress on the bar should be good news to the player. Maybe shift it to green and use the red to green colors with the Focused effect.
@@ -47,6 +52,9 @@ Tasks:
   ☐ Marshmallow book info
   ☐ Quartz tools and Dense Quartz Ore book info
   ☐ Netherrack rocks book info?
+  ☐ composting bin?
+  Takes longer than the vanilla composting bin and gives mulch instead of bone meal.
+  ☐ Explosions drop a lot of tubers?
 
 Polish:
   ☐ Visual fade from raw mallow color to roasted color
@@ -56,6 +64,17 @@ Polish:
   ✔ Check and make sure the mallow on stick item isn't available in the creative tab. @done(20-05-29 10:07)
   The marshmallow is visible in the creative tab.
   ☐ Small and large dense redstone ore variants should activate when the player stands on them like the rocks variant
+
+Compost:
+  ☐ Can add items to the composter via the top like the compacting bin
+  ☐ Breaking the block drops its contents
+  ☐ Block holds 1 bucket of water when it has material
+  ☐ Block loses all water when it has no material
+  ☐ If the block has moisture, is not active, and has enough material, it consumes the material and activates
+  Visual:
+    ☐ If the compost is dry, it looks like cracked dirt
+    ☐ Else if the compost is ready to harvest, it looks like mulch
+    ☐ Else if the compost is healthy, it looks like compost
 
 Redstone:
   ✔ Tools should have durability tooltip like the flint and bone tools @done(20-06-28 13:54)

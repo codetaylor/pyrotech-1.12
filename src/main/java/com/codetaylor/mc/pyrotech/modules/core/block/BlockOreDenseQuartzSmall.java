@@ -48,12 +48,6 @@ public class BlockOreDenseQuartzSmall
   }
 
   @Override
-  public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
-
-    return true;
-  }
-
-  @Override
   public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune) {
 
     return 2 + RANDOM.nextInt(4);

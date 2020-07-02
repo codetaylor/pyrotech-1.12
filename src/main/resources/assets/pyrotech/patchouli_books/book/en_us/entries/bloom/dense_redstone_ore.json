@@ -1,12 +1,12 @@
 {
   "name": "Ore, Dense Redstone",
   "icon": "pyrotech:dense_redstone_ore_large",
-  "category": "bloom_redstone",
+  "category": "bloom",
   "pages": [
     {
       "type": "spotlight",
       "item": "pyrotech:dense_redstone_ore_large",
-      "text": "Found deep in caves, $(item)Dense Redstone Ore$() is the purest naturally occurring redstone.$(p)$(info) The large $(item)Dense Redstone Ore$() block can be collected using $(thing)Silk Touch$().$(p)$(info) Requires an $(thing)Iron-Tier Pickaxe$() to harvest $(item)Dense Redstone$()."
+      "text": "Found deep in caves, $(item)Dense Redstone Ore$() is the purest naturally occurring redstone.$(p)$(info) The large $(item)Dense Redstone Ore$() block can be collected using $(thing)Silk Touch$().$(p)$(info) Requires an $(thing)Iron-Tier Pickaxe$() to harvest."
     },
     {
       "type": "image",

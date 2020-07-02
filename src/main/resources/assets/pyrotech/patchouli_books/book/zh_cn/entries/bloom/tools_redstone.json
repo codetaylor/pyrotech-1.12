@@ -1,7 +1,7 @@
 {
   "name": "Tools, Redstone",
   "icon": "pyrotech:redstone_pickaxe",
-  "category": "bloom_redstone",
+  "category": "bloom",
   "pages": [
     {
       "type": "text",
