@@ -37,7 +37,7 @@ public class ItemQuartzShovel
 
     this.addPropertyOverride(
         new ResourceLocation(ModuleTechBasic.MOD_ID, "active"),
-        (itemStack, world, entity) -> RedstoneToolDelegate.isActive(itemStack) ? 1 : 0
+        (itemStack, world, entity) -> QuartzToolDelegate.isActive(itemStack) ? 1 : 0
     );
   }
 
