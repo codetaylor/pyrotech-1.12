@@ -307,7 +307,7 @@ tile.pyrotech.rock_grass.name=Grass Clump
 tile.pyrotech.rock_wood_chips.name=Pile of Wood Chips
 tile.pyrotech.rock_limestone.name=Limestone Rock
 tile.pyrotech.rock_sand_red.name=Red Sand Pile
-tile.pyrotech.rock_netherrack.name=Netherrack Cutlet
+tile.pyrotech.rock_netherrack.name=Netherrack Gib
 
 #------------------------------------------------------------------------------
 # Tooltips

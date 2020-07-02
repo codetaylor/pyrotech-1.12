@@ -306,7 +306,7 @@ tile.pyrotech.rock_grass.name=Комок травы
 tile.pyrotech.rock_wood_chips.name=Куча опилок
 tile.pyrotech.rock_limestone.name=Известняковый камень
 tile.pyrotech.rock_sand_red.name=Куча красного песка
-tile.pyrotech.rock_netherrack.name=Netherrack Cutlet
+tile.pyrotech.rock_netherrack.name=Netherrack Gib
 
 #------------------------------------------------------------------------------
 # Tooltips
