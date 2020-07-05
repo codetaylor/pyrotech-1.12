@@ -57,7 +57,8 @@ public class ExportDocumentation {
         ZenStoneTank.class,
         ZenWoodRack.class,
         ZenFaucetStone.class,
-        ZenFaucetBrick.class
+        ZenFaucetBrick.class,
+        ZenCompostBin.class
     };
 
     ZenDocExporter export = new ZenDocExporter();
