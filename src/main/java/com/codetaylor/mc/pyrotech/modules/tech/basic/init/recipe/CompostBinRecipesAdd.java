@@ -41,30 +41,19 @@ public class CompostBinRecipesAdd {
     registerMulchRecipe(new ItemStack(Items.FEATHER));
     registerMulchRecipe(new ItemStack(Items.EGG));
     registerMulchRecipe(new ItemStack(Items.NETHER_WART));
-//    registerMulchRecipe(new ItemStack(Items.FERMENTED_SPIDER_EYE));
-//    registerMulchRecipe(new ItemStack(Items.SPIDER_EYE));
-//    registerMulchRecipe(new ItemStack(Items.POTATO));
-//    registerMulchRecipe(new ItemStack(Items.POISONOUS_POTATO));
-//    registerMulchRecipe(new ItemStack(Items.MUTTON), 2);
-//    registerMulchRecipe(new ItemStack(Items.RABBIT), 2);
-//    registerMulchRecipe(new ItemStack(Items.BEEF), 2);
-//    registerMulchRecipe(new ItemStack(Items.CHICKEN), 2);
-//    registerMulchRecipe(new ItemStack(Items.ROTTEN_FLESH), 1);
-//    registerMulchRecipe(new ItemStack(Items.FISH, 1, 0));
-//    registerMulchRecipe(new ItemStack(Items.FISH, 1, 1));
-//    registerMulchRecipe(new ItemStack(Items.FISH, 1, 2));
-//    registerMulchRecipe(new ItemStack(Items.FISH, 1, 3));
 
+    registerMulchRecipe(new ItemStack(Blocks.PUMPKIN));
     registerMulchRecipe(new ItemStack(Blocks.WEB));
-    registerMulchRecipe(new ItemStack(Blocks.SLIME_BLOCK), 4);
     registerMulchRecipe(new ItemStack(Blocks.DEADBUSH));
     registerMulchRecipe(new ItemStack(Blocks.BROWN_MUSHROOM));
-    registerMulchRecipe(new ItemStack(Blocks.BROWN_MUSHROOM_BLOCK), 4);
     registerMulchRecipe(new ItemStack(Blocks.RED_MUSHROOM));
-    registerMulchRecipe(new ItemStack(Blocks.RED_MUSHROOM_BLOCK), 4);
     registerMulchRecipe(new ItemStack(Blocks.CACTUS));
     registerMulchRecipe(new ItemStack(Blocks.VINE));
     registerMulchRecipe(new ItemStack(Blocks.WATERLILY));
+    registerMulchRecipe(new ItemStack(Blocks.LEAVES, 1, 0));
+    registerMulchRecipe(new ItemStack(Blocks.LEAVES, 1, 1));
+    registerMulchRecipe(new ItemStack(Blocks.LEAVES, 1, 2));
+    registerMulchRecipe(new ItemStack(Blocks.LEAVES, 1, 3));
     registerMulchRecipe(new ItemStack(Blocks.LEAVES2, 1, 0));
     registerMulchRecipe(new ItemStack(Blocks.LEAVES2, 1, 1));
     registerMulchRecipe(new ItemStack(Blocks.DOUBLE_PLANT, 1, 0));
@@ -75,17 +64,16 @@ public class CompostBinRecipesAdd {
     registerMulchRecipe(new ItemStack(Blocks.DOUBLE_PLANT, 1, 5));
     registerMulchRecipe(new ItemStack(Blocks.YELLOW_FLOWER));
     registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER, 1, 0));
-    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER,1, 1));
-    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER,1, 2));
-    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER,1, 3));
-    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER,1, 4));
-    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER,1, 5));
-    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER,1, 6));
-    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER,1, 7));
-    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER,1, 8));
+    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER, 1, 1));
+    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER, 1, 2));
+    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER, 1, 3));
+    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER, 1, 4));
+    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER, 1, 5));
+    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER, 1, 6));
+    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER, 1, 7));
+    registerMulchRecipe(new ItemStack(Blocks.RED_FLOWER, 1, 8));
     registerMulchRecipe(new ItemStack(Blocks.TALLGRASS, 1, 1));
     registerMulchRecipe(new ItemStack(Blocks.TALLGRASS, 1, 2));
-    registerMulchRecipe(new ItemStack(Blocks.HAY_BLOCK, 1,4));
     registerMulchRecipe(new ItemStack(Blocks.SAPLING, 1, 0));
     registerMulchRecipe(new ItemStack(Blocks.SAPLING, 1, 1));
     registerMulchRecipe(new ItemStack(Blocks.SAPLING, 1, 2));
@@ -96,7 +84,6 @@ public class CompostBinRecipesAdd {
     // pyrotech
     registerMulchRecipe(BlockRock.EnumType.WOOD_CHIPS.asStack());
 
-    registerMulchRecipe(new ItemStack(ModuleCore.Blocks.THATCH), 4);
     registerMulchRecipe(new ItemStack(ModuleTechBasic.Items.TINDER), 2);
     registerMulchRecipe(new ItemStack(ModuleTechBasic.Blocks.KILN_PIT), 2);
 
@@ -105,6 +92,7 @@ public class CompostBinRecipesAdd {
     registerMulchRecipe(ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack());
     registerMulchRecipe(ItemMaterial.EnumType.TWINE.asStack());
     registerMulchRecipe(ItemMaterial.EnumType.BOARD.asStack());
+    registerMulchRecipe(ItemMaterial.EnumType.STRAW.asStack());
 
     for (Item item : ForgeRegistries.ITEMS.getValuesCollection()) {
 
