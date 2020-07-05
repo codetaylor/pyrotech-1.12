@@ -36,14 +36,19 @@ public class CompostBinProviderDelegate
     TileCompostBin.InputStackHandler inputStackHandler = tile.getInputStackHandler();
     TileCompostBin.OutputStackHandler outputStackHandler = tile.getOutputStackHandler();
 
-    for (int i = this.progress.length - 1; i >= 0; i--) {
+    if (Minecraft.getMinecraft().player.isSneaking()) {
 
-      if (this.progress[i] > 0) {
-        this.display.setRecipeProgress(currentRecipeOutput, (int) (100 * this.progress[i]), 100);
+      for (int i = this.progress.length - 1; i >= 0; i--) {
 
-        if (!Minecraft.getMinecraft().player.isSneaking()) {
-          break;
+        if (this.progress[i] > 0) {
+          this.display.setRecipeProgress(currentRecipeOutput, (int) (100 * this.progress[i]), 100);
         }
+      }
+
+    } else {
+
+      if (this.progress[0] > 0) {
+        this.display.setRecipeProgress(currentRecipeOutput, (int) (100 * this.progress[0]), 100);
       }
     }
 
