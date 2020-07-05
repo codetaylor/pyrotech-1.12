@@ -63,8 +63,13 @@ public class CompostBinProvider
       }
     }
 
-    renderString.append(WailaUtil.getStackRenderString(storedCompostValue));
-    renderString.append(WailaUtil.getStackRenderString(outputStack));
+    if (!storedCompostValue.isEmpty()) {
+      renderString.append(WailaUtil.getStackRenderString(storedCompostValue));
+    }
+
+    if (!outputStack.isEmpty()) {
+      renderString.append(WailaUtil.getStackRenderString(outputStack));
+    }
 
     this.tooltip.add(renderString.toString());
   }
