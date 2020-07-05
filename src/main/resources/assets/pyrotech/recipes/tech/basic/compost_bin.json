@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "TLT",
+    "LWL",
+    "TLT"
+  ],
+  "key": {
+    "T": {
+      "type": "forge:ore_dict",
+      "ore": "twine"
+    },
+    "L": {
+      "item": "minecraft:ladder",
+      "data": 0
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    }
+  },
+  "result": {
+    "item": "pyrotech:compost_bin",
+    "count": 1,
+    "data": 0
+  }
+}
