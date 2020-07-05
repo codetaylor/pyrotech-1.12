@@ -204,7 +204,7 @@ public class TileCompostBin
 
       if (ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES
           && this.getMoistureLevel() > 0
-          && this.getLayerCountActive() > 0
+          && this.getLayerCountActive() - this.getLayerCountComplete() > 0
           && this.world.getTotalWorldTime() % 20 == 0) {
         ParticleHelper.spawnProgressParticlesClient(1, this.pos.getX() + 0.5, this.pos.getY() + 1.15, this.pos.getZ() + 0.5, 0.5, 0.15, 0.5);
       }
@@ -401,6 +401,23 @@ public class TileCompostBin
   // - Accessors
   // ---------------------------------------------------------------------------
 
+  public int getLayerCountComplete() {
+
+    int result = 0;
+
+    for (int layerIndex = 0; layerIndex < this.getLayerCount(); layerIndex++) {
+
+      if (this.isLayerProgressComplete(layerIndex)) {
+        result += 1;
+      }
+    }
+
+    return result;
+  }
+
+  /**
+   * @return the total number of active layers, including complete layers
+   */
   public int getLayerCountActive() {
 
     int totalCompostValue = this.getTotalCompostValue();
