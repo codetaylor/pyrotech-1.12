@@ -152,6 +152,7 @@
             * `MOISTURE_EVAPORATION_RATE_MILLIBUCKETS_PER_TICK`
 
   * **Changed:**
+    * Removed mulch crafting recipe
     * Removed oredict entry `mulchNitrogen`
     * Campfire light level now depends on how much fuel it has
         * Removed campfire `LIGHT_LEVEL` config value
