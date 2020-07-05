@@ -139,6 +139,18 @@
                 * `FOCUSED_MAXIMUM_ACCUMULATED_BONUS`
                 * `FOCUSED_ACCUMULATED_BONUS`
                 * `FOCUSED_BONUS`
+    * Compost Bin
+        * Added config values:
+            * `ALLOW_AUTOMATION`
+            * `SHOW_COMPOST_VALUE_IN_TOOLTIPS`
+            * `SHOVEL_WHITELIST`
+            * `SHOVEL_BLACKLIST`
+            * `MAXIMUM_OUTPUT_ITEM_CAPACITY`
+            * `COMPOST_VALUE_REQUIRED_PER_OUTPUT_ITEM`
+            * `GENERATED_FOOD_COMPOST_VALUE_RANGE`
+            * `COMPOST_DURATION_TICKS`
+            * `ADDITIVE_PERCENTILE_SPEED_MODIFIER_PER_LAYER`
+            * `MOISTURE_EVAPORATION_RATE_MILLIBUCKETS_PER_TICK`
 
   * **Changed:**
     * Campfire light level now depends on how much fuel it has
@@ -194,6 +206,7 @@
         * `item.pyrotech.quartz.sword.name`
         * `tile.pyrotech.dense_redstone_ore.name`
         * `tile.pyrotech.dense_quartz_ore.name`
+        * `tile.pyrotech.compost_bin.name`
         * `gui.pyrotech.marshmallow.burned.broadcast.message`
         * `gui.pyrotech.marshmallow.burned.eat.broadcast.message`
         * `gui.pyrotech.tooltip.potency`
@@ -202,6 +215,8 @@
         * `gui.pyrotech.tooltip.redstone.active.efficiency`
         * `gui.pyrotech.tooltip.redstone.active.damage`
         * `gui.pyrotech.tooltip.redstone.active.hoe`
+        * `gui.pyrotech.tooltip.compost.value`
+        * `gui.pyrotech.waila.moisture.level`
 
 ---
 
