@@ -33,7 +33,6 @@ public class CompostBinRecipesAdd {
     registerMulchRecipe(new ItemStack(Items.BEETROOT_SEEDS));
     registerMulchRecipe(new ItemStack(Items.MELON_SEEDS));
     registerMulchRecipe(new ItemStack(Items.PUMPKIN_SEEDS));
-    registerMulchRecipe(new ItemStack(Items.STICK));
     registerMulchRecipe(new ItemStack(Items.STRING));
     registerMulchRecipe(new ItemStack(Items.SLIME_BALL));
     registerMulchRecipe(new ItemStack(Items.REEDS));
@@ -84,14 +83,10 @@ public class CompostBinRecipesAdd {
     // pyrotech
     registerMulchRecipe(BlockRock.EnumType.WOOD_CHIPS.asStack());
 
-    registerMulchRecipe(new ItemStack(ModuleTechBasic.Items.TINDER), 2);
-    registerMulchRecipe(new ItemStack(ModuleTechBasic.Blocks.KILN_PIT), 2);
-
     registerMulchRecipe(ItemMaterial.EnumType.PIT_ASH.asStack());
     registerMulchRecipe(ItemMaterial.EnumType.PLANT_FIBERS.asStack());
     registerMulchRecipe(ItemMaterial.EnumType.PLANT_FIBERS_DRIED.asStack());
     registerMulchRecipe(ItemMaterial.EnumType.TWINE.asStack());
-    registerMulchRecipe(ItemMaterial.EnumType.BOARD.asStack());
     registerMulchRecipe(ItemMaterial.EnumType.STRAW.asStack());
 
     for (Item item : ForgeRegistries.ITEMS.getValuesCollection()) {
