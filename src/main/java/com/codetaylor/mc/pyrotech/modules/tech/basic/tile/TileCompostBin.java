@@ -23,10 +23,13 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.client.render.CompostBinInt
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompostBinRecipe;
 import com.google.common.base.Preconditions;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -1076,8 +1079,27 @@ public class TileCompostBin
     @Override
     public int fillInternal(FluidStack resource, boolean doFill) {
 
-      if (super.fillInternal(resource, doFill) > 0) {
-        return Fluid.BUCKET_VOLUME;
+      FluidStack copy = resource.copy();
+      copy.amount = Math.min(copy.amount, Fluid.BUCKET_VOLUME);
+
+      if (super.fillInternal(copy, doFill) > 0) {
+
+        World world = this.tile.world;
+
+        if (!world.isRemote) {
+
+          for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+            BlockPos offset = this.tile.pos.offset(facing);
+            IBlockState blockState = world.getBlockState(offset);
+            Block block = blockState.getBlock();
+
+            if (block.isReplaceable(world, offset)) {
+              world.setBlockState(offset, Blocks.FLOWING_WATER.getDefaultState().withProperty(BlockLiquid.LEVEL, 7), 1 | 2);
+            }
+          }
+        }
+
+        return copy.amount;
       }
 
       return 0;
