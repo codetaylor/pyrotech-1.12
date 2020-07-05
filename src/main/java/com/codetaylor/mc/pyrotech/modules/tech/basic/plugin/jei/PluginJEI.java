@@ -29,6 +29,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -62,7 +63,8 @@ public class PluginJEI
         new JEIRecipeCategoryCompactingBin(guiHelper),
         new JEIRecipeCategoryCampfire(guiHelper),
         new JEIRecipeCategoryWorktable(guiHelper),
-        new JEIRecipeCategorySoakingPot(guiHelper)
+        new JEIRecipeCategorySoakingPot(guiHelper),
+        new JEIRecipeCategoryCompostBin(guiHelper)
     );
   }
 
@@ -95,29 +97,29 @@ public class PluginJEI
       }
 
       List<IRecipe> vanillaRecipes = CraftingRecipeChecker.getValidRecipes(jeiHelpers)
-          .stream()
-          .filter(recipe -> {
-            ResourceLocation resourceLocation = recipe.getRegistryName();
+                                                          .stream()
+                                                          .filter(recipe -> {
+                                                            ResourceLocation resourceLocation = recipe.getRegistryName();
 
-            if (Loader.isModLoaded("crafttweaker") && recipe instanceof MCRecipeBase) {
+                                                            if (Loader.isModLoaded("crafttweaker") && recipe instanceof MCRecipeBase) {
 
-              if (!((MCRecipeBase) recipe).isVisible()) {
-                return false;
-              }
+                                                              if (!((MCRecipeBase) recipe).isVisible()) {
+                                                                return false;
+                                                              }
 
-              ((MCRecipeBase) recipe).update();
-            }
+                                                              ((MCRecipeBase) recipe).update();
+                                                            }
 
-            if (WorktableRecipe.hasWhitelist()) {
-              return WorktableRecipe.isWhitelisted(resourceLocation);
+                                                            if (WorktableRecipe.hasWhitelist()) {
+                                                              return WorktableRecipe.isWhitelisted(resourceLocation);
 
-            } else if (WorktableRecipe.hasBlacklist()) {
-              return !WorktableRecipe.isBlacklisted(resourceLocation);
-            }
+                                                            } else if (WorktableRecipe.hasBlacklist()) {
+                                                              return !WorktableRecipe.isBlacklisted(resourceLocation);
+                                                            }
 
-            return true;
-          })
-          .collect(Collectors.toList());
+                                                            return true;
+                                                          })
+                                                          .collect(Collectors.toList());
       registry.addRecipes(vanillaRecipes, JEIRecipeCategoryWorktable.UID);
 
       ResourceLocation resourceLocation = new ResourceLocation("minecraft:tipped_arrow");
@@ -190,8 +192,8 @@ public class PluginJEI
       registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.ANVIL_GRANITE), JEIRecipeCategoryAnvilGranite.UID);
       registry.handleRecipes(AnvilRecipe.class, JEIRecipeWrapperAnvil::new, JEIRecipeCategoryAnvilGranite.UID);
       List<AnvilRecipe> recipeList = ModuleTechBasic.Registries.ANVIL_RECIPE.getValuesCollection().stream()
-          .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.GRANITE))
-          .collect(Collectors.toList());
+                                                                            .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.GRANITE))
+                                                                            .collect(Collectors.toList());
       registry.addRecipes(recipeList, JEIRecipeCategoryAnvilGranite.UID);
     }
 
@@ -200,8 +202,8 @@ public class PluginJEI
       registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.ANVIL_IRON_PLATED), JEIRecipeCategoryAnvilIronclad.UID);
       registry.handleRecipes(AnvilRecipe.class, JEIRecipeWrapperAnvil::new, JEIRecipeCategoryAnvilIronclad.UID);
       List<AnvilRecipe> recipeList = ModuleTechBasic.Registries.ANVIL_RECIPE.getValuesCollection().stream()
-          .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.IRONCLAD))
-          .collect(Collectors.toList());
+                                                                            .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.IRONCLAD))
+                                                                            .collect(Collectors.toList());
       registry.addRecipes(recipeList, JEIRecipeCategoryAnvilIronclad.UID);
     }
 
@@ -235,6 +237,63 @@ public class PluginJEI
       registry.handleRecipes(KilnPitRecipe.class, JEIRecipeWrapperKilnPit::new, JEIRecipeCategoryKilnPit.UID);
       List<KilnPitRecipe> recipeList = new ArrayList<>(ModuleTechBasic.Registries.KILN_PIT_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryKilnPit.UID);
+    }
+
+    // --- Compost Bin
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.COMPOST_BIN), JEIRecipeCategoryCompostBin.UID);
+
+      // TODO: aggregate all recipes
+      // We can assume at this point that there are no duplicate inputs or outputs defined.
+      Map<ItemStack, List<CompostBinRecipe>> aggregateRecipes = new ConcurrentHashMap<>();
+      Collection<CompostBinRecipe> valuesCollection = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValuesCollection();
+
+      for (CompostBinRecipe recipe : valuesCollection) {
+        ItemStack output = recipe.getOutput();
+
+        boolean found = false;
+
+        for (Map.Entry<ItemStack, List<CompostBinRecipe>> entry : aggregateRecipes.entrySet()) {
+
+          if (ItemStack.areItemStacksEqual(entry.getKey(), output)) {
+            // add to an existing entry
+            List<CompostBinRecipe> list = entry.getValue();
+            list.add(recipe);
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
+          // make a new entry
+          ArrayList<CompostBinRecipe> list = new ArrayList<>();
+          list.add(recipe);
+          aggregateRecipes.put(output.copy(), list);
+        }
+      }
+
+      List<JEIRecipeWrapperCompostBin> recipeList = new ArrayList<>();
+
+      for (Map.Entry<ItemStack, List<CompostBinRecipe>> entry : aggregateRecipes.entrySet()) {
+
+        // sort the list by compost value
+        List<CompostBinRecipe> list = entry.getValue()
+                                           .stream()
+                                           .sorted(Comparator.comparingInt(CompostBinRecipe::getCompostValue).reversed())
+                                           .collect(Collectors.toList());
+        int pages = ((list.size() - 1) / 54) + 1;
+
+        for (int i = 0; i < pages; i++) {
+          int fromIndex = i * 54;
+          int toIndex = Math.min((i + 1) * 54, list.size());
+          List<ItemStack> subList = list.subList(fromIndex, toIndex)
+                                        .stream()
+                                        .map(compostBinRecipe -> compostBinRecipe.getInput().copy())
+                                        .collect(Collectors.toList());
+          recipeList.add(new JEIRecipeWrapperCompostBin(subList, entry.getKey()));
+        }
+      }
+      registry.addRecipes(recipeList, JEIRecipeCategoryCompostBin.UID);
     }
   }
 
