@@ -13,7 +13,6 @@
         * `mulchNitrogen` now contains `pyrotech:rock_netherrack`
     * Netherrack Rocks
         * Drop from Netherrack with low tier tools
-        * Work as a mulch ingredient
         * Spread netherrack `ModuleCoreConfig.ROCKS.NETHERRACK_SPREAD_RADIUS`
     * Dense Redstone Ore
         * Spawns in caves between height 5 and 25 in the overworld
@@ -153,6 +152,7 @@
             * `MOISTURE_EVAPORATION_RATE_MILLIBUCKETS_PER_TICK`
 
   * **Changed:**
+    * Removed oredict entry `mulchNitrogen`
     * Campfire light level now depends on how much fuel it has
         * Removed campfire `LIGHT_LEVEL` config value
         * Added campfire `MAXIMUM_LIGHT_LEVEL` config value

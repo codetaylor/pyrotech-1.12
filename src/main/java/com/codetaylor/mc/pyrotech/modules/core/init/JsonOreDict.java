@@ -133,21 +133,6 @@ public class JsonOreDict {
         "pyrotech:rock:" + BlockRock.EnumType.LIMESTONE.getMeta()
     });
 
-    result.oreDict.put("mulchNitrogen", new String[]{
-        "minecraft:mutton",
-        "minecraft:rabbit",
-        "minecraft:rotten_flesh",
-        "minecraft:chicken",
-        "minecraft:beef",
-        "minecraft:fish:0",
-        "minecraft:fish:1",
-        "minecraft:fish:2",
-        "minecraft:fish:3",
-        "minecraft:porkchop",
-        "minecraft:dye:15",
-        "pyrotech:rock_netherrack"
-    });
-
     {
       List<String> list = new ArrayList<>(16);
 
