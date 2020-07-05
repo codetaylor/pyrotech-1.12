@@ -272,7 +272,9 @@ public class TileCompostBin
         int outputIndex = this.layerIndexToOutputIndex.removeInt(layerIndex);
         this.layerIndexToOutputIndex.add(outputIndex);
 
-        System.out.println("Reset layer progress for layer at index " + layerIndex);
+        if (BlockCompostBin.DEBUG) {
+          System.out.println("Reset layer progress for layer at index " + layerIndex);
+        }
       }
     }
 
@@ -317,9 +319,12 @@ public class TileCompostBin
 
             int compostValue = this.getCompostValue(itemStack);
             this.storedCompostValue.add(compostValue);
-            System.out.println("Removed item: " + itemStack);
-            System.out.println("Added compost value: " + compostValue);
-            System.out.println("Stored compost value: " + this.storedCompostValue.get());
+
+            if (BlockCompostBin.DEBUG) {
+              System.out.println("Removed item: " + itemStack);
+              System.out.println("Added compost value: " + compostValue);
+              System.out.println("Stored compost value: " + this.storedCompostValue.get());
+            }
 
             if (--sanity <= 0) {
               // This shouldn't happen, obv.
@@ -336,10 +341,13 @@ public class TileCompostBin
 
           if (layerIndex <= this.outputStackHandler.getSlots() && this.isLayerOutputEmpty(layerIndex)) {
             this.storedCompostValue.add(-this.getCompostValueRequiredPerOutputItem());
-            System.out.println("Decrementing stored compost value by " + this.getCompostValueRequiredPerOutputItem());
-            System.out.println("Stored compost value: " + this.storedCompostValue.get());
             this.outputStackHandler.insertItem(this.getLayerOutputIndex(layerIndex), this.currentRecipeOutput.get().copy(), false);
-            System.out.println("Inserting output item in slot " + layerIndex);
+
+            if (BlockCompostBin.DEBUG) {
+              System.out.println("Decrementing stored compost value by " + this.getCompostValueRequiredPerOutputItem());
+              System.out.println("Stored compost value: " + this.storedCompostValue.get());
+              System.out.println("Inserting output item in slot " + layerIndex);
+            }
           }
         }
 
@@ -376,7 +384,9 @@ public class TileCompostBin
       }
     }
 
-    System.out.println("Updated recipe output: " + this.currentRecipeOutput);
+    if (BlockCompostBin.DEBUG) {
+      System.out.println("Updated recipe output: " + this.currentRecipeOutput);
+    }
   }
 
   /**

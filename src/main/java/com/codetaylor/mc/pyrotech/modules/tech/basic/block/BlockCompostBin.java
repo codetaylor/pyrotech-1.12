@@ -41,6 +41,9 @@ public class BlockCompostBin
   public static final PropertyInteger PROPERTY_STATE = PropertyInteger.create("state", 0, 2);
   public static final PropertyInteger PROPERTY_COMPOST_VALUE = PropertyInteger.create("compost_value", 0, 5);
 
+  // TODO: remove this and the debug messages after proven stable
+  public static final boolean DEBUG = false;
+
   public BlockCompostBin() {
 
     super(Material.WOOD);
@@ -80,7 +83,9 @@ public class BlockCompostBin
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    if (!world.isRemote && hand == EnumHand.MAIN_HAND && playerIn.getHeldItemMainhand().isEmpty()) {
+    if (BlockCompostBin.DEBUG
+        && !world.isRemote && hand == EnumHand.MAIN_HAND
+        && playerIn.getHeldItemMainhand().isEmpty()) {
       TileEntity tileEntity = world.getTileEntity(pos);
 
       if (tileEntity instanceof TileCompostBin) {
