@@ -70,7 +70,7 @@ public class CompostBinProviderDelegate
 
   public interface ICompostBinDisplay {
 
-    void setContents(ItemStackHandler inputStackHandler, ItemStack storedCompostValue, ItemStack outputStackHandler);
+    void setContents(ItemStackHandler inputStackHandler, ItemStack storedCompostValue, ItemStack outputStack);
 
     void setRecipeProgress(ItemStack output, int progress, int maxProgress);
 
