@@ -72,6 +72,7 @@ tile.pyrotech.worktable.name=Рабочий стол
 tile.pyrotech.worktable_stone.name=Каменный рабочий стол
 tile.pyrotech.compacting_bin.name=Уплотнительный закром
 tile.pyrotech.soaking_pot.name=Горшок для замачивания
+tile.pyrotech.compost_bin.name=Compost Bin
 
 gui.pyrotech.marshmallow.burned.broadcast.message=%s burned a marshmallow!
 gui.pyrotech.marshmallow.burned.eat.broadcast.message=%s ate a burned marshmallow, gross!
@@ -352,6 +353,7 @@ gui.pyrotech.tooltip.redstone.active.durability=Has a %s%d%%%s chance to ignore 
 gui.pyrotech.tooltip.redstone.active.efficiency=Breaks blocks %s%d%%%s faster while active.
 gui.pyrotech.tooltip.redstone.active.damage=Deals %s%d%%%s damage while active.
 gui.pyrotech.tooltip.redstone.active.hoe=Tills a %s3x3%s area while active.
+gui.pyrotech.tooltip.compost.value=Compost Value: %d
 
 gui.pyrotech.tooltip.quartz.active.efficiency=Breaks blocks %s%d%%%s faster in %sThe Nether%s.
 gui.pyrotech.tooltip.quartz.active.damage=Deals %s%d%%%s damage in %sThe Nether%s.
@@ -387,6 +389,7 @@ gui.pyrotech.waila.worktable.condition.good=Хороший
 gui.pyrotech.waila.worktable.condition.fair=Красивый
 gui.pyrotech.waila.worktable.condition.used=Используемый
 gui.pyrotech.waila.worktable.condition.fractured=Сломанный
+gui.pyrotech.waila.moisture.level=Moisture: %d%%
 
 #------------------------------------------------------------------------------
 # JEI

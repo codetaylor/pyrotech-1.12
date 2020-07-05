@@ -66,6 +66,12 @@ public final class RegistryInitializer {
         .allowModification()
         .create();
 
+    new RegistryBuilder<CompostBinRecipe>()
+        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "compost_bin_recipe"))
+        .setType(CompostBinRecipe.class)
+        .allowModification()
+        .create();
+
     // --- Injection
 
     Injector injector = new Injector();
@@ -114,6 +120,11 @@ public final class RegistryInitializer {
         ModuleTechBasic.Registries.class,
         "SOAKING_POT_RECIPE",
         GameRegistry.findRegistry(SoakingPotRecipe.class)
+    );
+    injector.inject(
+        ModuleTechBasic.Registries.class,
+        "COMPOST_BIN_RECIPE",
+        GameRegistry.findRegistry(CompostBinRecipe.class)
     );
   }
 

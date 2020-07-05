@@ -38,6 +38,8 @@ Playtest Notes:
   ☐ reinforcement kit to upgrade crate, shelf, and stash in-place
   ☐ tool repair kits
   ☐ need to fix mossy cobble
+  ☐ dogs walk through torches and get hurt
+  ☐ sawmill plays sound after last stuff is done
 
 Tasks:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)
@@ -48,9 +50,9 @@ Tasks:
   ✔ Test campfire effects on server @done(20-04-24 12:54)
   ✔ Campfire effects book info @done(20-06-28 16:44)
   ✔ Campfire effects docs info @done(20-05-29 13:37)
+  ✔ Quartz tools and Dense Quartz Ore book info @done(20-07-02 10:22)
   ☐ Campfire effects advancement, hidden, have all effects active
   ☐ Marshmallow book info
-  ☐ Quartz tools and Dense Quartz Ore book info
   ☐ Netherrack rocks book info?
   ☐ composting bin?
   Takes longer than the vanilla composting bin and gives mulch instead of bone meal.
@@ -63,14 +65,58 @@ Polish:
   Solved by changing the action animation to DRINK.
   ✔ Check and make sure the mallow on stick item isn't available in the creative tab. @done(20-05-29 10:07)
   The marshmallow is visible in the creative tab.
-  ☐ Small and large dense redstone ore variants should activate when the player stands on them like the rocks variant
+  ✔ Small and large dense redstone ore variants should activate when the player stands on them like the rocks variant @done(20-07-02 10:40)
 
 Compost:
-  ☐ Can add items to the composter via the top like the compacting bin
-  ☐ Breaking the block drops its contents
-  ☐ Block holds 1 bucket of water when it has material
-  ☐ Block loses all water when it has no material
-  ☐ If the block has moisture, is not active, and has enough material, it consumes the material and activates
+  https://github.com/BloodyMods/ExNihiloCreatio/blob/1.12/src/main/java/exnihilocreatio
+  Will accept an item of any CV value until max capacity CV.
+    ☐ Seed cv = 1
+    ☐ Ash cv = 1
+    ☐ Wood Chips cv = 1
+    ☐ Wheat cv = 2
+    ☐ ore:mulchNitrogen cv = 8
+  ✔ The compost value of food is determined by its hunger and saturation @done(20-07-04 16:13)
+  ✔ Can insert items into the composter via the top @done(20-07-04 16:13)
+  ✔ Can extract items from the composter via the bottom @done(20-07-04 16:13)
+  Item Retention:
+    ✔ Breaking the block drops any input items @done(20-07-04 16:13)
+    ☐ Breaking the block drops any CV as dirt
+    ☐ Breaking the block drops any output items
+  Water:
+    ☐ Block holds 1 bucket of water when it has material
+    ☐ Block loses all water when it has no material
+    ☐ Loses water over time
+    ☐ Block will always accept water but will not retain more than its capacity
+  Active:
+    ☐ The block has one composting lane per output item count
+    ☐ If a lane has enough total CV, it will progress if the block has water
+    ☐ If it does not have enough CV, its progress will reset
+    ☐ CV is calculated as potential_cv + stored_cv + output_item_cv_value * output_item_count
+    ☐ When a lane has 50% progress, it will comsume items and convert them to stored_cv
+    ☐ When a lane has 100% progress, it will consume cv and generate an output item
+  Config:
+    ☐ min / max compost duration in ticks per cycle, varies with fullness
+    ☐ required compost value per output item, default 16
+    ☐ maximum output item capacity, default 16
+    ☐ moisture cost, ticks per 100mb
+    ☐ compost value tooltip
+    ☐ compost value cost per output item
+    ☐ output item
+    domain:path:meta
+  Tooltip:
+    ☐ Compost value tooltip on ingredients
+  CrT:
+    ☐ gamestages interaction stuff
+    ☐ removeInput(IIngredient input)
+    ☐ addInput(IIngredient input)
+    ☐ addInput(IIngredient input, int compostValue)
+    If cv is omitted, assumed cv = 1 unless edible, then cv is derived from the food's hunger and saturation
+  Waila:
+    ☐ Shows composter block -> output for closest item only
+    ☐ Shows stored compost output quantity
+    ☐ Shows moisture remaining
+  JEI:
+    TODO
   Visual:
     ☐ If the compost is dry, it looks like cracked dirt
     ☐ Else if the compost is ready to harvest, it looks like mulch

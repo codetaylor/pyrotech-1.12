@@ -1,0 +1,21 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"compost": "blocks/dirt_podzol_top",
+		"particle": "pyrotech:blocks/compost_bin"
+	},
+	"elements": [
+		{
+			"from": [2, 2, 2],
+			"to": [14, 12, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [10, 10, 10]},
+			"faces": {
+				"north": {"uv": [2, 4, 14, 14], "texture": "#compost"},
+				"east": {"uv": [2, 4, 14, 14], "texture": "#compost"},
+				"south": {"uv": [2, 4, 14, 14], "texture": "#compost"},
+				"west": {"uv": [2, 4, 14, 14], "texture": "#compost"},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#compost"}
+			}
+		}
+	]
+}

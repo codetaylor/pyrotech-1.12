@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic;
 
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -43,6 +43,9 @@ public class ModuleTechBasicConfig {
 
   @Config.Ignore
   public static Stages STAGES_COMPACTING_BIN = null;
+
+  @Config.Ignore
+  public static Stages STAGES_COMPOST_BIN = null;
 
   @Config.Ignore
   public static Stages STAGES_CHOPPING_BLOCK = null;
@@ -259,6 +262,89 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Compost Bin
+  // ---------------------------------------------------------------------------
+
+  public static CompostBin COMPOST_BIN = new CompostBin();
+
+  public static class CompostBin {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
+        "Set this to false to prevent displaying the compost value in tooltips.",
+        "Default: " + true
+    })
+    public boolean SHOW_COMPOST_VALUE_IN_TOOLTIPS = true;
+
+    @Config.Comment({
+        "Any item with a tool class of shovel is automatically valid.",
+        "Use this to add items that you want to be valid that don't have the",
+        "shovel tool class. Items you add are assumed to have durability.",
+        "",
+        "The whitelist takes priority over the blacklist.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] SHOVEL_WHITELIST = new String[0];
+
+    @Config.Comment({
+        "Any item with a tool class of shovel is automatically valid.",
+        "Use this to remove items that you don't want to be valid.",
+        "",
+        "The whitelist takes priority over the blacklist.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] SHOVEL_BLACKLIST = new String[0];
+
+    @Config.Comment({
+        "The maximum number of output items the device can hold.",
+        "This value also determines its maximum capacity.",
+        "Default: " + 16
+    })
+    @Config.RequiresMcRestart
+    public int MAXIMUM_OUTPUT_ITEM_CAPACITY = 16;
+
+    @Config.Comment({
+        "The required compost value to complete one recipe.",
+        "Default: " + 16
+    })
+    public int COMPOST_VALUE_REQUIRED_PER_OUTPUT_ITEM = 16;
+
+    @Config.Comment({
+        "The range of compost values used when generating values for food.",
+        "Default: [1, 8]"
+    })
+    public int[] GENERATED_FOOD_COMPOST_VALUE_RANGE = {1, 8};
+
+    @Config.Comment({
+        "How long does the process take in ticks.",
+        "Default: " + (24000 * 4)
+    })
+    public int COMPOST_DURATION_TICKS = (24000 * 4);
+
+    @Config.Comment({
+        "A compost bin layer will compost faster for each actively composting",
+        "layer above it. By default a layer will be 20% faster for each layer",
+        "above it that is actively composting.",
+        "Default: " + 0.2
+    })
+    public double ADDITIVE_PERCENTILE_SPEED_MODIFIER_PER_LAYER = 0.2;
+
+    @Config.Comment({
+        "The rate at which moisture will evaporate in mB / tick. The default",
+        "is 1 mB every 48 ticks and will last two full Minecraft day/night cycles.",
+        "Default: [1, 48]"
+    })
+    public int[] MOISTURE_EVAPORATION_RATE_MILLIBUCKETS_PER_TICK = {1, 48};
   }
 
   // ---------------------------------------------------------------------------

@@ -128,6 +128,10 @@ public class ModuleTechBasic
         "register",
         "com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.PluginWaila.wailaCallback"
     );
+
+    if (ModuleTechBasicConfig.COMPOST_BIN.SHOW_COMPOST_VALUE_IN_TOOLTIPS) {
+      MinecraftForge.EVENT_BUS.register(new TooltipEventHandler.CompostValue());
+    }
   }
 
   @Override
@@ -149,7 +153,8 @@ public class ModuleTechBasic
     ChoppingBlockRecipesAdd.applyCompatRecipes(this.getConfigurationDirectory().toPath(), ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE);
     CompactingBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE);
     SoakingPotRecipesAdd.apply(ModuleTechBasic.Registries.SOAKING_POT_RECIPE);
-    CampfireRecipesAdd.apply(Registries.CAMPFIRE_RECIPE);
+    CampfireRecipesAdd.apply(ModuleTechBasic.Registries.CAMPFIRE_RECIPE);
+    CompostBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPOST_BIN_RECIPE);
 
     DryingRackRecipesAdd.registerInheritedRecipes(Registries.CRUDE_DRYING_RACK_RECIPE, Registries.DRYING_RACK_RECIPE);
     AnvilIroncladRecipesAdd.registerInheritedRecipes(Registries.ANVIL_RECIPE);
@@ -237,6 +242,9 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(BlockSoakingPot.NAME)
     public static final BlockSoakingPot SOAKING_POT;
 
+    @GameRegistry.ObjectHolder(BlockCompostBin.NAME)
+    public static final BlockCompostBin COMPOST_BIN;
+
     static {
       KILN_PIT = null;
       CAMPFIRE = null;
@@ -248,6 +256,7 @@ public class ModuleTechBasic
       WORKTABLE_STONE = null;
       COMPACTING_BIN = null;
       SOAKING_POT = null;
+      COMPOST_BIN = null;
     }
   }
 
@@ -290,6 +299,7 @@ public class ModuleTechBasic
     public static final IForgeRegistryModifiable<ChoppingBlockRecipe> CHOPPING_BLOCK_RECIPE;
     public static final IForgeRegistryModifiable<AnvilRecipe> ANVIL_RECIPE;
     public static final IForgeRegistryModifiable<CompactingBinRecipe> COMPACTING_BIN_RECIPE;
+    public static final IForgeRegistryModifiable<CompostBinRecipe> COMPOST_BIN_RECIPE;
     public static final IForgeRegistryModifiable<CampfireRecipe> CAMPFIRE_RECIPE;
     public static final IForgeRegistryModifiable<WorktableRecipe> WORKTABLE_RECIPE;
     public static final IForgeRegistryModifiable<SoakingPotRecipe> SOAKING_POT_RECIPE;
@@ -301,6 +311,7 @@ public class ModuleTechBasic
       CHOPPING_BLOCK_RECIPE = null;
       ANVIL_RECIPE = null;
       COMPACTING_BIN_RECIPE = null;
+      COMPOST_BIN_RECIPE = null;
       CAMPFIRE_RECIPE = null;
       WORKTABLE_RECIPE = null;
       SOAKING_POT_RECIPE = null;

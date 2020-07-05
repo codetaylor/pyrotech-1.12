@@ -1,0 +1,49 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:compost_bin"
+  },
+  "variants": {
+    "state": {
+      "0": {
+        "textures": {
+          "compost": "pyrotech:blocks/compost_bin_dry"
+        }
+      },
+      "1": {},
+      "2": {
+        "textures": {
+          "compost": "pyrotech:blocks/compost_bin_ready"
+        }
+      }
+    },
+    "compost_value": {
+      "0": {},
+      "1": {
+        "submodel": {
+          "compost_value": {"model": "pyrotech:compost_bin_level_1"}
+        }
+      },
+      "2": {
+        "submodel": {
+          "compost_value": {"model": "pyrotech:compost_bin_level_2"}
+        }
+      },
+      "3": {
+        "submodel": {
+          "compost_value": {"model": "pyrotech:compost_bin_level_3"}
+        }
+      },
+      "4": {
+        "submodel": {
+          "compost_value": {"model": "pyrotech:compost_bin_level_4"}
+        }
+      },
+      "5": {
+        "submodel": {
+          "compost_value": {"model": "pyrotech:compost_bin_level_5"}
+        }
+      }
+    }
+  }
+}
