@@ -279,6 +279,13 @@ public class ModuleTechBasicConfig {
     public boolean ALLOW_AUTOMATION = true;
 
     @Config.Comment({
+        "Set this to false to prevent the mod from automatically creating",
+        "mulch recipes from food items.",
+        "Default: " + true
+    })
+    public boolean AUTO_CREATE_RECIPES_FROM_FOOD = true;
+
+    @Config.Comment({
         "Set this to false to prevent displaying the compost value in tooltips.",
         "Default: " + true
     })

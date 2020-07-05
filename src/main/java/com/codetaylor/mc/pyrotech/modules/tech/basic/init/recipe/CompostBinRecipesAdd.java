@@ -4,6 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompostBinRecipe;
 import com.google.common.base.Preconditions;
 import net.minecraft.creativetab.CreativeTabs;
@@ -89,20 +90,24 @@ public class CompostBinRecipesAdd {
     registerMulchRecipe(ItemMaterial.EnumType.TWINE.asStack());
     registerMulchRecipe(ItemMaterial.EnumType.STRAW.asStack());
 
-    for (Item item : ForgeRegistries.ITEMS.getValuesCollection()) {
+    // auto-create recipes from existing food items
+    if (ModuleTechBasicConfig.COMPOST_BIN.AUTO_CREATE_RECIPES_FROM_FOOD) {
 
-      if (item instanceof ItemFood) {
+      for (Item item : ForgeRegistries.ITEMS.getValuesCollection()) {
 
-        if (item.getHasSubtypes()) {
-          NonNullList<ItemStack> items = NonNullList.create();
-          item.getSubItems(CreativeTabs.SEARCH, items);
+        if (item instanceof ItemFood) {
 
-          for (ItemStack itemStack : items) {
-            registerMulchRecipe(itemStack);
+          if (item.getHasSubtypes()) {
+            NonNullList<ItemStack> items = NonNullList.create();
+            item.getSubItems(CreativeTabs.SEARCH, items);
+
+            for (ItemStack itemStack : items) {
+              registerMulchRecipe(itemStack);
+            }
+
+          } else {
+            registerMulchRecipe(new ItemStack(item));
           }
-
-        } else {
-          registerMulchRecipe(new ItemStack(item));
         }
       }
     }
