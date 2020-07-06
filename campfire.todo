@@ -40,6 +40,8 @@ Playtest Notes:
   ☐ need to fix mossy cobble
   ☐ dogs walk through torches and get hurt
   ☐ sawmill plays sound after last stuff is done
+  ☐ too many strange tubers from explosions
+  ☐ change mulch color
 
 Tasks:
   ✘ Use item durability bar colors for the Resting effect bar? @cancelled(20-04-21 18:33)
@@ -54,9 +56,8 @@ Tasks:
   ☐ Campfire effects advancement, hidden, have all effects active
   ☐ Marshmallow book info
   ☐ Netherrack rocks book info?
-  ☐ composting bin?
-  Takes longer than the vanilla composting bin and gives mulch instead of bone meal.
-  ☐ Explosions drop a lot of tubers?
+  ✘ Explosions drop a lot of tubers? @cancelled(20-07-05 09:46)
+  It's fine.
 
 Polish:
   ☐ Visual fade from raw mallow color to roasted color
@@ -68,59 +69,61 @@ Polish:
   ✔ Small and large dense redstone ore variants should activate when the player stands on them like the rocks variant @done(20-07-02 10:40)
 
 Compost:
+  ☐ Add composting bin to the book
+  ✔ Review recipes @done(20-07-05 14:24)
+  ✔ Add config to disable automatic food recipe creation @done(20-07-05 14:28)
+  ✔ Remove debug output @done(20-07-05 14:24)
+  ✔ ToP integration @done(20-07-05 10:28)
+  ✔ Needs recipe @done(20-07-05 09:42)
+  ✔ Waila arrow order still gets messed up, not showing the most complete one @done(20-07-05 09:06)
   https://github.com/BloodyMods/ExNihiloCreatio/blob/1.12/src/main/java/exnihilocreatio
-  Will accept an item of any CV value until max capacity CV.
-    ☐ Seed cv = 1
-    ☐ Ash cv = 1
-    ☐ Wood Chips cv = 1
-    ☐ Wheat cv = 2
-    ☐ ore:mulchNitrogen cv = 8
   ✔ The compost value of food is determined by its hunger and saturation @done(20-07-04 16:13)
   ✔ Can insert items into the composter via the top @done(20-07-04 16:13)
   ✔ Can extract items from the composter via the bottom @done(20-07-04 16:13)
+  Missing Recipes:
+    ✔ straw (pyrotech:material:2) @done(20-07-05 14:24)
   Item Retention:
     ✔ Breaking the block drops any input items @done(20-07-04 16:13)
-    ☐ Breaking the block drops any CV as dirt
-    ☐ Breaking the block drops any output items
+    ✔ Breaking the block drops any CV as dirt @done(20-07-05 09:06)
+    ✔ Breaking the block drops any output items @done(20-07-05 09:06)
   Water:
-    ☐ Block holds 1 bucket of water when it has material
-    ☐ Block loses all water when it has no material
-    ☐ Loses water over time
-    ☐ Block will always accept water but will not retain more than its capacity
+    ✔ Block holds 1 bucket of water when it has material @done(20-07-05 09:06)
+    ✔ Block loses all water when it has no material @done(20-07-05 09:06)
+    ✔ Loses water over time @done(20-07-05 09:06)
+    ✔ Block will always accept water but will not retain more than its capacity @done(20-07-05 09:06)
   Active:
-    ☐ The block has one composting lane per output item count
-    ☐ If a lane has enough total CV, it will progress if the block has water
-    ☐ If it does not have enough CV, its progress will reset
-    ☐ CV is calculated as potential_cv + stored_cv + output_item_cv_value * output_item_count
-    ☐ When a lane has 50% progress, it will comsume items and convert them to stored_cv
-    ☐ When a lane has 100% progress, it will consume cv and generate an output item
+    ✔ The block has one composting lane per output item count @done(20-07-05 09:06)
+    ✔ If a lane has enough total CV, it will progress if the block has water @done(20-07-05 09:06)
+    ✔ If it does not have enough CV, its progress will reset @done(20-07-05 09:06)
+    ✔ CV is calculated as potential_cv + stored_cv + output_item_cv_value * output_item_count @done(20-07-05 09:06)
+    ✔ When a lane has 30% progress, it will comsume items and convert them to stored_cv @done(20-07-05 09:06)
+    ✔ When a lane has 100% progress, it will consume stored cv and generate an output item @done(20-07-05 09:07)
   Config:
-    ☐ min / max compost duration in ticks per cycle, varies with fullness
-    ☐ required compost value per output item, default 16
-    ☐ maximum output item capacity, default 16
-    ☐ moisture cost, ticks per 100mb
-    ☐ compost value tooltip
-    ☐ compost value cost per output item
-    ☐ output item
-    domain:path:meta
+    ✔ min / max compost duration in ticks per cycle, varies with fullness @done(20-07-05 09:07)
+    ✔ required compost value per output item, default 16 @done(20-07-05 09:07)
+    ✔ maximum output item capacity, default 16 @done(20-07-05 09:07)
+    ✔ moisture cost, mb / tick @done(20-07-05 09:07)
+    ✔ compost value tooltip @done(20-07-05 09:07)
+    ✔ compost value cost per output item @done(20-07-05 09:09)
   Tooltip:
-    ☐ Compost value tooltip on ingredients
+    ✔ Compost value tooltip on ingredients @done(20-07-05 09:07)
   CrT:
-    ☐ gamestages interaction stuff
-    ☐ removeInput(IIngredient input)
-    ☐ addInput(IIngredient input)
-    ☐ addInput(IIngredient input, int compostValue)
+    ✔ gen docs @done(20-07-05 15:11)
+    ✔ gamestages interaction stuff @done(20-07-05 15:11)
+    ✔ removeInput(IIngredient input) @done(20-07-05 15:11)
+    ✔ addRecipe(IIngredient input, IItemStack output) @done(20-07-05 15:11)
+    ✔ addRecipe(IIngredient input, IItemStack output, int compostValue) @done(20-07-05 15:11)
     If cv is omitted, assumed cv = 1 unless edible, then cv is derived from the food's hunger and saturation
   Waila:
-    ☐ Shows composter block -> output for closest item only
-    ☐ Shows stored compost output quantity
-    ☐ Shows moisture remaining
+    ✔ Shows composter block -> output for closest item only @done(20-07-05 09:13)
+    ✔ Shows stored compost output quantity @done(20-07-05 09:13)
+    ✔ Shows moisture remaining @done(20-07-05 09:13)
   JEI:
     TODO
   Visual:
-    ☐ If the compost is dry, it looks like cracked dirt
-    ☐ Else if the compost is ready to harvest, it looks like mulch
-    ☐ Else if the compost is healthy, it looks like compost
+    ✔ If the compost is dry, it looks like cracked dirt @done(20-07-05 09:08)
+    ✔ Else if the compost is ready to harvest, it looks like mulch @done(20-07-05 09:08)
+    ✔ Else if the compost is healthy, it looks like compost @done(20-07-05 09:08)
 
 Redstone:
   ✔ Tools should have durability tooltip like the flint and bone tools @done(20-06-28 13:54)

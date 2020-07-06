@@ -1,10 +1,10 @@
 {
   "parent": "block/block",
   "textures": {
-    "bottom": "pyrotech:blocks/kiln_stone_side",
+    "bottom": "pyrotech:blocks/stone_bricks",
     "top": "pyrotech:blocks/stone_tank",
     "side": "pyrotech:blocks/stone_tank_side",
-    "particle": "pyrotech:blocks/kiln_stone_side"
+    "particle": "pyrotech:blocks/stone_bricks"
   },
   "elements": [
     {

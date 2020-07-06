@@ -3,7 +3,7 @@
   "defaults": {
     "model": "pyrotech:stone_oven",
     "textures": {
-      "particle": "pyrotech:blocks/kiln_stone_side"
+      "particle": "pyrotech:blocks/stone_bricks"
     }
   },
   "variants": {

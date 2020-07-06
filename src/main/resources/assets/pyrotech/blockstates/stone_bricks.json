@@ -3,7 +3,7 @@
   "defaults": {
     "model": "minecraft:cube_all",
     "textures": {
-      "all": "pyrotech:blocks/kiln_stone_side"
+      "all": "pyrotech:blocks/stone_bricks"
     }
   },
   "variants": {
