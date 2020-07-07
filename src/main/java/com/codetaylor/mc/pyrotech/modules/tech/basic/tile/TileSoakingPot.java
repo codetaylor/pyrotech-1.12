@@ -329,7 +329,7 @@ public class TileSoakingPot
     this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
     this.outputStackHandler.deserializeNBT(compound.getCompoundTag("outputStackHandler"));
     this.inputFluidTank.readFromNBT(compound.getCompoundTag("inputFluidTank"));
-    this.recipeProgress.set(compound.getInteger("recipeProgress"));
+    this.recipeProgress.set(compound.getFloat("recipeProgress"));
     this.updateRecipe();
   }
 
