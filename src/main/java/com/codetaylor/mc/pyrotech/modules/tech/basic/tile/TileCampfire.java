@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
-import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.*;
 import com.codetaylor.mc.athenaeum.inventory.LIFOStackHandler;
