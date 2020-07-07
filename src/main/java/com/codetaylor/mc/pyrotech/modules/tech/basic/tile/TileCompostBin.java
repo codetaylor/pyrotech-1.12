@@ -231,12 +231,12 @@ public class TileCompostBin
     } else {
 
       // rain moisture
-      if (this.world.isRainingAt(this.pos)) {
+      if (this.world.isRainingAt(this.pos.up())) {
         this.inputFluidTank.fill(new FluidStack(FluidRegistry.WATER, UPDATE_INTERVAL_TICKS), true);
-      }
 
-      // moisture evaporation
-      if (this.getMoistureLevel() > 0) {
+      } else if (this.getMoistureLevel() > 0) {
+        // moisture evaporation
+
         int mB = ModuleTechBasicConfig.COMPOST_BIN.MOISTURE_EVAPORATION_RATE_MILLIBUCKETS_PER_TICK[0];
         int tick = ModuleTechBasicConfig.COMPOST_BIN.MOISTURE_EVAPORATION_RATE_MILLIBUCKETS_PER_TICK[1];
         double moistureEvaporationRate = (mB / (double) tick) * UPDATE_INTERVAL_TICKS;
@@ -1096,7 +1096,7 @@ public class TileCompostBin
 
         World world = this.tile.world;
 
-        if (!world.isRemote) {
+        if (!world.isRemote && !this.tile.world.isRainingAt(this.tile.pos.up())) {
 
           for (EnumFacing facing : EnumFacing.HORIZONTALS) {
             BlockPos offset = this.tile.pos.offset(facing);
