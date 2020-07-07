@@ -763,7 +763,7 @@ public class TileCampfire
           this.setFluid(null);
           return filled;
         }
-      }, EnumFacing.VALUES, InteractionBounds.BLOCK);
+      }, EnumFacing.VALUES, BlockCampfire.AABB_FULL);
     }
 
     @Override
