@@ -119,13 +119,26 @@ public class PluginDropt {
           })
           .matchHarvester(harvester()
               .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.WHITELIST, new String[]{"EMPTY"})
+          )
+          .replaceStrategy(EnumReplaceStrategy.ADD)
+          .addDrops(new IDroptDropBuilder[]{
+              drop().selector(weight(80)),
+              drop().items(new String[]{strangeTuber}, range(1, 2)).selector(weight(1))
+          })
+      );
+      list.add(rule()
+          .matchBlocks(new String[]{
+              tallGrassAny
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
           )
           .replaceStrategy(EnumReplaceStrategy.ADD)
           .addDrops(new IDroptDropBuilder[]{
               drop().selector(weight(80)),
               drop().items(new String[]{plantFibers}, range(1, 2)).selector(weight(35)),
-              drop().items(new String[]{plantFibersDried}, range(1, 2)).selector(weight(5)),
-              drop().items(new String[]{strangeTuber}, range(1, 2)).selector(weight(1))
+              drop().items(new String[]{plantFibersDried}, range(1, 2)).selector(weight(5))
           })
       );
     }
@@ -245,6 +258,7 @@ public class PluginDropt {
               grassPath
           })
           .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
               .mainHand(EnumListType.WHITELIST, new String[]{"EMPTY"})
           )
           .dropCount(range(1, 2))
