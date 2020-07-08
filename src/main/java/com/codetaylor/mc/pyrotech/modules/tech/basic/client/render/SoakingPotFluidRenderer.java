@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.client.render;
 
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockSoakingPot;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileSoakingPot;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -54,6 +55,10 @@ public class SoakingPotFluidRenderer
       int k = i & 0xFFFF;
 
       float level = (PX * 7) * (fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()) + (1 * PX);
+
+      if (blockState.getBlock().getActualState(blockState, world, pos).getValue(BlockSoakingPot.PROPERTY_CAMPFIRE)) {
+        level -= (PX * 5);
+      }
 
       Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
       RenderHelper.disableStandardItemLighting();

@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
 
-import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
+import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleLava;
@@ -13,6 +13,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallowStick;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.item.ItemMarshmallowStickEmpty;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileSoakingPot;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -370,6 +371,16 @@ public class BlockCampfire
     if (!world.isSideSolid(pos.down(), EnumFacing.UP)) {
       world.destroyBlock(pos, false);
     }
+
+    if (world.getTileEntity(pos.up()) instanceof TileSoakingPot) {
+      TileEntity tileEntity = world.getTileEntity(pos);
+
+      if (tileEntity instanceof TileCampfire) {
+        TileCampfire tileCampfire = (TileCampfire) tileEntity;
+        tileCampfire.dropInput();
+        tileCampfire.dropOutput();
+      }
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -420,8 +431,8 @@ public class BlockCampfire
     ITEM(3, "item");
 
     private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
-        .sorted(Comparator.comparing(EnumType::getMeta))
-        .toArray(EnumType[]::new);
+                                                        .sorted(Comparator.comparing(EnumType::getMeta))
+                                                        .toArray(EnumType[]::new);
 
     private final int meta;
     private final String name;

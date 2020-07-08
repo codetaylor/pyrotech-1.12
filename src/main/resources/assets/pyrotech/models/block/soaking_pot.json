@@ -1,10 +1,10 @@
 {
   "parent": "block/block",
   "textures": {
+    "particle": "pyrotech:blocks/soaking_pot",
     "side": "pyrotech:blocks/soaking_pot",
     "inside": "pyrotech:blocks/soaking_pot_inside",
-    "bottom": "pyrotech:blocks/soaking_pot_bottom",
-    "particle": "pyrotech:blocks/soaking_pot"
+    "bottom": "pyrotech:blocks/soaking_pot_bottom"
   },
   "elements": [
     {
@@ -92,23 +92,23 @@
       }
     },
     {
-      "from": [2, 0, 2],
+      "from": [2, 3, 2],
       "to": [3, 7, 14],
       "faces": {
-        "north": {"uv": [13, 9, 14, 16], "texture": "#side"},
-        "south": {"uv": [2, 9, 3, 16], "texture": "#side"},
-        "west": {"uv": [2, 9, 14, 16], "texture": "#side"},
+        "north": {"uv": [13, 9, 14, 13], "texture": "#side"},
+        "south": {"uv": [2, 9, 3, 13], "texture": "#side"},
+        "west": {"uv": [2, 9, 14, 13], "texture": "#side"},
         "up": {"uv": [2, 9, 14, 10], "rotation": 90, "texture": "#side"},
         "down": {"uv": [2, 12, 14, 13], "rotation": 90, "texture": "#side"}
       }
     },
     {
-      "from": [13, 0, 2],
+      "from": [13, 3, 2],
       "to": [14, 7, 14],
       "faces": {
-        "north": {"uv": [2, 9, 3, 16], "texture": "#side"},
-        "east": {"uv": [2, 9, 14, 16], "texture": "#side"},
-        "south": {"uv": [13, 9, 14, 16], "texture": "#side"},
+        "north": {"uv": [2, 9, 3, 13], "texture": "#side"},
+        "east": {"uv": [2, 9, 14, 13], "texture": "#side"},
+        "south": {"uv": [13, 9, 14, 13], "texture": "#side"},
         "up": {"uv": [3, 9, 13, 10], "rotation": 90, "texture": "#side"},
         "down": {"uv": [2, 12, 14, 13], "rotation": 90, "texture": "#side"}
       }
@@ -146,19 +146,19 @@
       }
     },
     {
-      "from": [3, 0, 2],
+      "from": [3, 3, 2],
       "to": [13, 7, 3],
       "faces": {
-        "north": {"uv": [3, 9, 13, 16], "texture": "#side"},
+        "north": {"uv": [3, 9, 13, 13], "texture": "#side"},
         "up": {"uv": [3, 9, 13, 10], "texture": "#side"},
         "down": {"uv": [3, 12, 13, 13], "texture": "#side"}
       }
     },
     {
-      "from": [3, 0, 13],
+      "from": [3, 3, 13],
       "to": [13, 7, 14],
       "faces": {
-        "south": {"uv": [3, 9, 13, 16], "texture": "#side"},
+        "south": {"uv": [3, 9, 13, 13], "texture": "#side"},
         "up": {"uv": [3, 9, 13, 10], "texture": "#side"},
         "down": {"uv": [3, 12, 13, 13], "texture": "#side"}
       }

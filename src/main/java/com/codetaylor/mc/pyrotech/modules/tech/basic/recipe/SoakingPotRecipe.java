@@ -38,18 +38,21 @@ public class SoakingPotRecipe
   private final ItemStack output;
   private final Ingredient inputItem;
   private final FluidStack inputFluid;
+  private final boolean campfireRequired;
   private final int timeTicks;
 
   public SoakingPotRecipe(
       ItemStack output,
       Ingredient inputItem,
       FluidStack inputFluid,
+      boolean campfireRequired,
       int timeTicks
   ) {
 
     this.output = output;
     this.inputItem = inputItem;
     this.inputFluid = inputFluid;
+    this.campfireRequired = campfireRequired;
     this.timeTicks = timeTicks;
   }
 
@@ -66,6 +69,11 @@ public class SoakingPotRecipe
   public ItemStack getOutput() {
 
     return this.output.copy();
+  }
+
+  public boolean isCampfireRequired() {
+
+    return this.campfireRequired;
   }
 
   @Override

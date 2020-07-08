@@ -49,12 +49,45 @@ public class ZenSoakingPot {
         CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getLiquidStack(inputFluid),
         CraftTweakerMC.getIngredient(inputItem),
+        false,
+        timeTicks
+    ));
+  }
+
+
+  @ZenDocMethod(
+      order = 2,
+      args = {
+          @ZenDocArg(arg = "name", info = "unique recipe name"),
+          @ZenDocArg(arg = "output", info = "recipe output"),
+          @ZenDocArg(arg = "inputFluid", info = "input fluid"),
+          @ZenDocArg(arg = "inputItem", info = "input item"),
+          @ZenDocArg(arg = "requiresCampfire", info = "needs to be above a campfire"),
+          @ZenDocArg(arg = "timeTicks", info = "recipe duration in ticks")
+      }
+  )
+  @ZenMethod
+  public static void addRecipe(
+      String name,
+      IItemStack output,
+      ILiquidStack inputFluid,
+      IIngredient inputItem,
+      boolean requiresCampfire,
+      int timeTicks
+  ) {
+
+    CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
+        name,
+        CraftTweakerMC.getItemStack(output),
+        CraftTweakerMC.getLiquidStack(inputFluid),
+        CraftTweakerMC.getIngredient(inputItem),
+        false,
         timeTicks
     ));
   }
 
   @ZenDocMethod(
-      order = 2,
+      order = 3,
       args = {
           @ZenDocArg(arg = "output", info = "output ingredient to match")
       }
@@ -66,7 +99,7 @@ public class ZenSoakingPot {
   }
 
   @ZenDocMethod(
-      order = 3
+      order = 4
   )
   @ZenMethod
   public static void removeAllRecipes() {
@@ -75,7 +108,7 @@ public class ZenSoakingPot {
   }
 
   @ZenDocMethod(
-      order = 4,
+      order = 5,
       args = {
           @ZenDocArg(arg = "stages", info = "game stages")
       },
@@ -119,6 +152,7 @@ public class ZenSoakingPot {
     private final ItemStack output;
     private final FluidStack inputFluid;
     private final Ingredient inputItem;
+    private boolean requiresCampfire;
     private final int timeTicks;
 
     public AddRecipe(
@@ -126,6 +160,7 @@ public class ZenSoakingPot {
         ItemStack output,
         FluidStack inputFluid,
         Ingredient inputItem,
+        boolean requiresCampfire,
         int timeTicks
     ) {
 
@@ -133,6 +168,7 @@ public class ZenSoakingPot {
       this.output = output;
       this.inputItem = inputItem;
       this.inputFluid = inputFluid;
+      this.requiresCampfire = requiresCampfire;
       this.timeTicks = timeTicks;
     }
 
@@ -143,6 +179,7 @@ public class ZenSoakingPot {
           this.output,
           this.inputItem,
           this.inputFluid,
+          this.requiresCampfire,
           this.timeTicks
       );
       ModuleTechBasic.Registries.SOAKING_POT_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));

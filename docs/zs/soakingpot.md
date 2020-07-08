@@ -24,6 +24,21 @@ static void addRecipe(
 
 
 ```java
+static void addRecipe(
+  string name,              // unique recipe name
+  IItemStack output,        // recipe output
+  ILiquidStack inputFluid,  // input fluid
+  IIngredient inputItem,    // input item
+  boolean requiresCampfire, // needs to be above a campfire
+  int timeTicks             // recipe duration in ticks
+);
+```
+
+
+---
+
+
+```java
 static void removeRecipes(
   IIngredient output // output ingredient to match
 );

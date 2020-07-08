@@ -1,5 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBucketBase;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
@@ -10,16 +16,10 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandl
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.SoundHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.athenaeum.interaction.api.Transform;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBucketBase;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.athenaeum.util.ParticleHelper;
+import com.codetaylor.mc.athenaeum.util.SoundHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleCombust;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
@@ -33,9 +33,11 @@ import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
@@ -259,15 +261,38 @@ public class TileSoakingPot
       this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
     }
 
+    if (this.currentRecipe != null
+        && this.currentRecipe.isCampfireRequired()) {
+
+      TileEntity tileEntity = this.world.getTileEntity(this.pos.down());
+
+      if (!(tileEntity instanceof TileCampfire)) {
+        return;
+      }
+
+      if (!((TileCampfire) tileEntity).workerIsActive()) {
+        return;
+      }
+    }
+
     if (this.world.isRemote) {
 
       if (ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES
           && this.currentRecipe != null
           && !this.getInputStackHandler().getStackInSlot(0).isEmpty()
           && this.world.getTotalWorldTime() % 40 == 0) {
+
+        double y = this.pos.getY() + 0.75;
+
+        IBlockState blockState = this.world.getBlockState(this.pos);
+
+        if (blockState.getBlock().getActualState(blockState, this.world, this.pos).getValue(BlockSoakingPot.PROPERTY_CAMPFIRE)) {
+          y -= 0.25;
+        }
+
         ParticleHelper.spawnProgressParticlesClient(
             1,
-            this.pos.getX() + 0.5, this.pos.getY() + 0.75, this.pos.getZ() + 0.5,
+            this.pos.getX() + 0.5, y, this.pos.getZ() + 0.5,
             0.25, 0.25, 0.25
         );
       }
@@ -356,8 +381,14 @@ public class TileSoakingPot
     return this.interactions;
   }
 
-  private class InteractionItem
+  private static class InteractionItem
       extends InteractionItemStack<TileSoakingPot> {
+
+    private static final Transform TRANSFORM_CAMPFIRE = new Transform(
+        Transform.translate(0.5, 0.5 - (5 / 16.0), 0.5),
+        Transform.rotate(),
+        Transform.scale(6.0 / 16.0, 6.0 / 16.0, 6.0 / 16.0)
+    );
 
     private final TileSoakingPot tile;
 
@@ -369,6 +400,26 @@ public class TileSoakingPot
           Transform.scale(6.0 / 16.0, 6.0 / 16.0, 6.0 / 16.0)
       ));
       this.tile = tile;
+    }
+
+    @Override
+    public Transform getTransform(World world, BlockPos pos, IBlockState blockState, ItemStack itemStack, float partialTicks) {
+
+      if (blockState.getBlock().getActualState(blockState, world, pos).getValue(BlockSoakingPot.PROPERTY_CAMPFIRE)) {
+        return TRANSFORM_CAMPFIRE;
+      }
+
+      return super.getTransform(world, pos, blockState, itemStack, partialTicks);
+    }
+
+    @Override
+    public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
+
+      if (blockState.getBlock().getActualState(blockState, world, pos).getValue(BlockSoakingPot.PROPERTY_CAMPFIRE)) {
+        return BlockSoakingPot.AABB_CAMPFIRE;
+      }
+
+      return super.getInteractionBounds(world, pos, blockState);
     }
 
     @Override
@@ -397,6 +448,16 @@ public class TileSoakingPot
 
       super(fluidTank, new EnumFacing[]{EnumFacing.UP}, BlockSoakingPot.AABB);
       this.fluidTank = fluidTank;
+    }
+
+    @Override
+    public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
+
+      if (blockState.getBlock().getActualState(blockState, world, pos).getValue(BlockSoakingPot.PROPERTY_CAMPFIRE)) {
+        return BlockSoakingPot.AABB_CAMPFIRE;
+      }
+
+      return super.getInteractionBounds(world, pos, blockState);
     }
 
     public FluidTank getFluidTank() {

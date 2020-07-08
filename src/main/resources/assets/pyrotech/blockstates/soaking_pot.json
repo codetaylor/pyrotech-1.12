@@ -16,6 +16,12 @@
       "west": {
         "y": 270
       }
+    },
+    "campfire": {
+      "true": {
+        "model": "pyrotech:soaking_pot_campfire"
+      },
+      "false": {}
     }
   }
 }

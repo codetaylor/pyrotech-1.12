@@ -650,19 +650,8 @@ public class TileCampfire
       }
     }
 
-    ItemStackHandler stackHandler = this.getInputStackHandler();
-    itemStack = stackHandler.extractItem(0, 64, false);
-
-    if (!itemStack.isEmpty()) {
-      StackHelper.spawnStackOnTop(this.world, itemStack, this.pos, -0.125);
-    }
-
-    stackHandler = this.getOutputStackHandler();
-    itemStack = stackHandler.extractItem(0, 64, false);
-
-    if (!itemStack.isEmpty()) {
-      StackHelper.spawnStackOnTop(this.world, itemStack, this.pos, -0.125);
-    }
+    this.dropInput();
+    this.dropOutput();
 
     if (this.ashLevel.get() > 0) {
       ItemStack ashStack = ItemMaterial.EnumType.PIT_ASH.asStack(this.ashLevel.get());
@@ -670,6 +659,28 @@ public class TileCampfire
     }
 
     BlockHelper.notifyBlockUpdate(this.world, this.pos);
+  }
+
+  public void dropOutput() {
+
+    ItemStack itemStack;
+    ItemStackHandler stackHandler = this.getOutputStackHandler();
+    itemStack = stackHandler.extractItem(0, 64, false);
+
+    if (!itemStack.isEmpty()) {
+      StackHelper.spawnStackOnTop(this.world, itemStack, this.pos, -0.125);
+    }
+  }
+
+  public void dropInput() {
+
+    ItemStack itemStack;
+    ItemStackHandler stackHandler = this.getInputStackHandler();
+    itemStack = stackHandler.extractItem(0, 64, false);
+
+    if (!itemStack.isEmpty()) {
+      StackHelper.spawnStackOnTop(this.world, itemStack, this.pos, -0.125);
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -809,7 +820,8 @@ public class TileCampfire
     @Override
     public boolean isEnabled() {
 
-      return !TileCampfire.this.isDead();
+      TileCampfire tile = TileCampfire.this;
+      return !tile.isDead() && !(tile.world.getTileEntity(tile.pos.up()) instanceof TileSoakingPot);
     }
 
     @Override

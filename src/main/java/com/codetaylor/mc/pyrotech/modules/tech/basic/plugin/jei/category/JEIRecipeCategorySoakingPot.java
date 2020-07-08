@@ -27,13 +27,11 @@ public class JEIRecipeCategorySoakingPot
   public JEIRecipeCategorySoakingPot(IGuiHelper guiHelper) {
 
     ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, "textures/gui/jei4.png");
+    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 56);
 
     IDrawableStatic arrowDrawable = guiHelper.createDrawable(resourceLocation, 82, 0, 24, 17);
-
     IDrawableAnimated.StartDirection left = IDrawableAnimated.StartDirection.LEFT;
-
     this.arrow = guiHelper.createAnimatedDrawable(arrowDrawable, 200, left, false);
-    this.background = guiHelper.createDrawable(resourceLocation, 0, 0, 82, 38);
 
     this.title = Translator.translateToLocal("gui." + ModuleTechBasic.MOD_ID + ".jei.category.soaking.pot");
   }
@@ -69,7 +67,7 @@ public class JEIRecipeCategorySoakingPot
   @Override
   public void drawExtras(Minecraft minecraft) {
 
-    this.arrow.draw(minecraft, 24, 16);
+    this.arrow.draw(minecraft, 24, 19);
   }
 
   @ParametersAreNonnullByDefault
@@ -80,12 +78,12 @@ public class JEIRecipeCategorySoakingPot
 
     IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
     itemStacks.init(0, true, 0, 0);
-    //itemStacks.init(1, true, 0, 21);
-    itemStacks.init(2, false, 60, 16);
+    itemStacks.init(1, true, 0, 38);
+    itemStacks.init(2, false, 60, 19);
     itemStacks.set(ingredients);
 
     IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-    int capacity = ModuleTechBasicConfig.SOAKING_POT.MAX_FLUID_CAPACITY;
+    int capacity = recipeWrapper.getInputFluid().amount;
     fluidStacks.init(1, true, 1, 20, 16, 16, capacity, false, null);
     fluidStacks.set(ingredients);
   }

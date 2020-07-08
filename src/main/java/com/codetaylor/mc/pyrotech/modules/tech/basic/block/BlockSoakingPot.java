@@ -1,13 +1,16 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
 
-import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
+import com.codetaylor.mc.athenaeum.util.AABBHelper;
+import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileSoakingPot;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,7 +35,10 @@ public class BlockSoakingPot
 
   public static final String NAME = "soaking_pot";
 
-  public static final AxisAlignedBB AABB = new AxisAlignedBB(2.0 / 16.0, 0, 2.0 / 16.0, 14.0 / 16.0, 9.0 / 16.0, 14.0 / 16.0);
+  public static final PropertyBool PROPERTY_CAMPFIRE = PropertyBool.create("campfire");
+
+  public static final AxisAlignedBB AABB = AABBHelper.create(2, 0, 2, 14, 9, 14);
+  public static final AxisAlignedBB AABB_CAMPFIRE = AABBHelper.create(2, 0, 2, 14, 4, 14);
 
   public BlockSoakingPot() {
 
@@ -41,6 +47,11 @@ public class BlockSoakingPot
     this.setResistance(5.0F);
     this.setSoundType(SoundType.STONE);
     this.setHarvestLevel("pickaxe", 0);
+    this.setDefaultState(
+        this.blockState
+            .getBaseState()
+            .withProperty(PROPERTY_CAMPFIRE, false)
+    );
   }
 
   // ---------------------------------------------------------------------------
@@ -120,7 +131,7 @@ public class BlockSoakingPot
   @Override
   protected BlockStateContainer createBlockState() {
 
-    return new BlockStateContainer(this, Properties.FACING_HORIZONTAL);
+    return new BlockStateContainer(this, Properties.FACING_HORIZONTAL, PROPERTY_CAMPFIRE);
   }
 
   @Nonnull
@@ -128,13 +139,24 @@ public class BlockSoakingPot
   public IBlockState getStateFromMeta(int meta) {
 
     return this.getDefaultState()
-        .withProperty(Properties.FACING_HORIZONTAL, EnumFacing.HORIZONTALS[meta]);
+               .withProperty(Properties.FACING_HORIZONTAL, EnumFacing.HORIZONTALS[meta]);
   }
 
   @Override
   public int getMetaFromState(IBlockState state) {
 
     return state.getValue(Properties.FACING_HORIZONTAL).getIndex() - 2;
+  }
+
+  @Nonnull
+  @ParametersAreNonnullByDefault
+  @Override
+  public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos.down());
+    boolean isCampfire = tileEntity instanceof TileCampfire;
+    state = state.withProperty(PROPERTY_CAMPFIRE, isCampfire);
+    return super.getActualState(state, world, pos);
   }
 
   // ---------------------------------------------------------------------------
@@ -152,8 +174,13 @@ public class BlockSoakingPot
   // ---------------------------------------------------------------------------
 
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+
+    if (this.getActualState(state, source, pos).getValue(PROPERTY_CAMPFIRE)) {
+      return AABB_CAMPFIRE;
+    }
 
     return AABB;
   }
