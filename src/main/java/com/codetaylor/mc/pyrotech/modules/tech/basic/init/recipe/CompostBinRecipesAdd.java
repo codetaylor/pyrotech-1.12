@@ -42,7 +42,7 @@ public class CompostBinRecipesAdd {
     registerMulchRecipe(new ItemStack(Items.EGG));
     registerMulchRecipe(new ItemStack(Items.NETHER_WART));
 
-    registerMulchRecipe(new ItemStack(Blocks.PUMPKIN));
+    registerMulchRecipe(new ItemStack(Blocks.PUMPKIN), 4);
     registerMulchRecipe(new ItemStack(Blocks.WEB));
     registerMulchRecipe(new ItemStack(Blocks.DEADBUSH));
     registerMulchRecipe(new ItemStack(Blocks.BROWN_MUSHROOM));
