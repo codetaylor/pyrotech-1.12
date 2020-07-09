@@ -223,6 +223,13 @@
 
 ---
 
+**1.4.31**
+
+  * **Fixed:**
+    * Soaking Pot doesn't save progress between game loads
+
+---
+
 **1.4.30**
 
   * **Changed:**
