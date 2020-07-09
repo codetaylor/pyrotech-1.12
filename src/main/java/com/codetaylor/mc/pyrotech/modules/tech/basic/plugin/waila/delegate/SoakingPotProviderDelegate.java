@@ -36,6 +36,10 @@ public class SoakingPotProviderDelegate
       this.display.setFluid(fluid, inputFluidTank.getCapacity());
     }
 
+    if (currentRecipe != null && currentRecipe.isCampfireRequired()) {
+      this.display.setCampfireRequired();
+    }
+
     TileSoakingPot.OutputStackHandler outputStackHandler = tile.getOutputStackHandler();
     ItemStack outputStack = outputStackHandler.getStackInSlot(0);
 
@@ -51,5 +55,7 @@ public class SoakingPotProviderDelegate
     void setOutputItem(ItemStack outputStack);
 
     void setFluid(FluidStack fluidStack, int capacity);
+
+    void setCampfireRequired();
   }
 }

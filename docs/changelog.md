@@ -220,6 +220,7 @@
         * `gui.pyrotech.tooltip.redstone.active.hoe`
         * `gui.pyrotech.tooltip.compost.value`
         * `gui.pyrotech.waila.moisture.level`
+        * `gui.pyrotech.waila.campfire.required`
 
 ---
 

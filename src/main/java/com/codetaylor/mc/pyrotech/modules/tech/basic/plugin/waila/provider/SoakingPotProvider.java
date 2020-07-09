@@ -10,6 +10,7 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
@@ -69,5 +70,12 @@ public class SoakingPotProvider
     String langKey = "gui." + ModuleTechBasic.MOD_ID + ".waila.tank.fluid";
     String localizedFluidName = fluidStack.getLocalizedName();
     this.tooltip.add(Util.translateFormatted(langKey, localizedFluidName, fluidStack.amount, capacity));
+  }
+
+  @Override
+  public void setCampfireRequired() {
+
+    String langKey = "gui." + ModuleTechBasic.MOD_ID + ".waila.campfire.required";
+    this.tooltip.add(TextFormatting.RED + Util.translateFormatted(langKey));
   }
 }

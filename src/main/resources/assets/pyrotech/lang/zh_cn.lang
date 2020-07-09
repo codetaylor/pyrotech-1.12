@@ -390,6 +390,7 @@ gui.pyrotech.waila.worktable.condition.fair=一般
 gui.pyrotech.waila.worktable.condition.used=破旧
 gui.pyrotech.waila.worktable.condition.fractured=损坏
 gui.pyrotech.waila.moisture.level=Moisture: %d%%
+gui.pyrotech.waila.campfire.required=Campfire required
 
 #------------------------------------------------------------------------------
 # JEI

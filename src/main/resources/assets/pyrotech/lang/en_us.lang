@@ -391,6 +391,7 @@ gui.pyrotech.waila.worktable.condition.fair=Fair
 gui.pyrotech.waila.worktable.condition.used=Used
 gui.pyrotech.waila.worktable.condition.fractured=Fractured
 gui.pyrotech.waila.moisture.level=Moisture: %d%%
+gui.pyrotech.waila.campfire.required=Campfire required
 
 #------------------------------------------------------------------------------
 # JEI

@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -68,5 +69,12 @@ public class SoakingPotProvider
   public void setFluid(FluidStack fluidStack, int capacity) {
 
     this.probeInfo.element(new PluginTOP.ElementTankLabel(null, fluidStack, capacity));
+  }
+
+  @Override
+  public void setCampfireRequired() {
+
+    String langKey = "gui." + ModuleTechBasic.MOD_ID + ".waila.campfire.required";
+    this.probeInfo.element(new PluginTOP.ElementTextLocalized(TextFormatting.RED, langKey));
   }
 }
