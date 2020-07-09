@@ -188,20 +188,21 @@ public class BlockCompostBin
     TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileCompostBin) {
-      float moistureLevel = ((TileCompostBin) tileEntity).getMoistureLevel();
+      TileCompostBin tileCompostBin = (TileCompostBin) tileEntity;
+      float moistureLevel = tileCompostBin.getMoistureLevel();
 
       if (moistureLevel == 0) {
         state = state.withProperty(PROPERTY_STATE, PROPERTY_STATE_DRY);
 
-      } else if (!((TileCompostBin) tileEntity).getOutputStackHandler().getFirstNonEmptyItemStack().isEmpty()) {
+      } else if (!tileCompostBin.getOutputStackHandler().getFirstNonEmptyItemStack().isEmpty()) {
         state = state.withProperty(PROPERTY_STATE, PROPERTY_STATE_READY);
 
       } else {
         state = state.withProperty(PROPERTY_STATE, PROPERTY_STATE_WET);
       }
 
-      int totalCompostValue = ((TileCompostBin) tileEntity).getTotalCompostValue();
-      int maxCompostValueCapacity = ((TileCompostBin) tileEntity).getMaxCompostValueCapacity();
+      int totalCompostValue = tileCompostBin.getTotalCompostValue();
+      int maxCompostValueCapacity = tileCompostBin.getMaxCompostValueCapacity();
       float percentFull = (totalCompostValue / (float) maxCompostValueCapacity);
       float usedCapacity = Math.max(0, Math.min(1, percentFull)) * 100;
 
