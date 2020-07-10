@@ -191,7 +191,7 @@
         * `bloom/dense_quartz_ore.json`
         * `bloom/tools_quartz.json`
         * `survive/food_raw.json`
-    * **New Lang Keys:**
+    * **New Lang Entries:**
         * `pyrotech.effect.comfort`
         * `pyrotech.effect.well.fed`
         * `pyrotech.effect.resting`
@@ -231,6 +231,8 @@
         * `gui.pyrotech.tooltip.compost.value`
         * `gui.pyrotech.waila.moisture.level`
         * `gui.pyrotech.waila.campfire.required`
+    * **Changed Lang Entries**
+        * `item.pyrotech.mulch.name` from `Potash Mulch` to `Mulch`
 
 ---
 
