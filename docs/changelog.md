@@ -152,23 +152,33 @@
             * `MOISTURE_EVAPORATION_RATE_MILLIBUCKETS_PER_TICK`
 
   * **Changed:**
-    * Removed mulch crafting recipe
-    * Removed oredict entry `mulchNitrogen`
-    * Campfire light level now depends on how much fuel it has
-        * Removed campfire `LIGHT_LEVEL` config value
-        * Added campfire `MAXIMUM_LIGHT_LEVEL` config value
-        * Added campfire `MINIMUM_LIGHT_LEVEL` config value
-    * Campfire will now cook faster or slower based on how much fuel it has
-        * Added campfire `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
-    * Campfire will now burn food faster or slower based on how much fuel it has 
-        * Burn speed depends on the `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
-    * Moved configs to Athenaeum config:
-        * `core.cfg.client.ALWAYS_SHOW_QUANTITIES`
-        * `core.cfg.client.SHOW_INTERACTION_BOUNDS`
-    * Bone and Flint Shears now require Clay Shears to craft
-    * Improved rock gen compatibility [(#284)](https://github.com/codetaylor/artisan-worktables/issues/284)
-    * Soaking Pot can now be placed above a campfire
-    * Soaking Pot recipes can now require a campfire 
+    * Recipes:
+        * Removed mulch crafting recipe
+        * Bone and Flint Shears now require Clay Shears to craft
+    * OreDict:
+        * Removed entry `mulchNitrogen`
+    * Soaking Pot:
+        * New texture
+        * Can now be placed above a campfire
+        * Recipes can now require a campfire
+        * Waila / ToP now indicates when a recipe is missing a campfire
+        * JEI now indicates when a recipe requires a campfire
+        * Patchouli template now indicates when a recipe requires a campfire 
+    * Campfire:
+        * Campfire light level now depends on how much fuel it has
+            * Removed campfire `LIGHT_LEVEL` config value
+            * Added campfire `MAXIMUM_LIGHT_LEVEL` config value
+            * Added campfire `MINIMUM_LIGHT_LEVEL` config value
+        * Campfire will now cook faster or slower based on how much fuel it has
+            * Added campfire `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
+        * Campfire will now burn food faster or slower based on how much fuel it has 
+            * Burn speed depends on the `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
+    * World Gen:
+        * Improved rock gen compatibility [(#284)](https://github.com/codetaylor/artisan-worktables/issues/284)
+    * Interaction Framework:
+        * Moved configs to Athenaeum config:
+            * `core.cfg.client.ALWAYS_SHOW_QUANTITIES`
+            * `core.cfg.client.SHOW_INTERACTION_BOUNDS`
 
   * **Translators:**
     * **New Patchouli Categories**
