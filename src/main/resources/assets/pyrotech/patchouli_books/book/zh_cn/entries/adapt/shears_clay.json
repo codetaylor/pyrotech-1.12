@@ -1,7 +1,7 @@
 {
   "name": "粘土剪刀",
   "icon": "pyrotech:clay_shears",
-  "category": "adapt",
+  "category": "adapt_tools",
   "pages": [
     {
       "type": "crafting",

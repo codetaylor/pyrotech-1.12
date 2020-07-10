@@ -1,7 +1,7 @@
 {
   "name": "Bucket, Wood & Clay",
   "icon": "pyrotech:bucket_wood",
-  "category": "adapt",
+  "category": "adapt_tools",
   "pages": [
     {
       "type": "text",

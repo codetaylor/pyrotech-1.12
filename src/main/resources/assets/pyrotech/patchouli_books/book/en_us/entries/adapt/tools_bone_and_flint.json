@@ -1,7 +1,7 @@
 {
   "name": "Tools, Bone & Flint",
   "icon": "pyrotech:bone_pickaxe",
-  "category": "adapt",
+  "category": "adapt_tools",
   "pages": [
     {
       "type": "crafting",

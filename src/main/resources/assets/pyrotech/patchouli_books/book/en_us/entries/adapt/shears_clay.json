@@ -1,7 +1,7 @@
 {
   "name": "Shears, Clay",
   "icon": "pyrotech:clay_shears",
-  "category": "adapt",
+  "category": "adapt_tools",
   "pages": [
     {
       "type": "crafting",

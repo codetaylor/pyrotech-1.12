@@ -1,7 +1,7 @@
 {
   "name": "骨锤&燧石锤",
   "icon": "pyrotech:bone_hammer",
-  "category": "adapt",
+  "category": "adapt_tools",
   "pages": [
     {
       "type": "crafting",

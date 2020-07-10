@@ -1,7 +1,7 @@
 {
   "name": "骨制工具&燧石工具",
   "icon": "pyrotech:bone_pickaxe",
-  "category": "adapt",
+  "category": "adapt_tools",
   "pages": [
     {
       "type": "crafting",
