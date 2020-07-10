@@ -41,7 +41,7 @@
     {
       "type": "image",
       "image": "pyrotech:textures/gui/book/crafting_texture.png",
-      "x": 56, "y": 17,
+      "x": 56, "y": 14,
       "u": 65, "v": 27,
       "width": 9, "height": 9,
       "texture_width": 128, "texture_height": 128
@@ -58,7 +58,10 @@
     {
       "type": "text",
       "text": "$(t:#ticks# Ticks)#ticks_hms#$()",
-      "x": 51, "y": 30
+      "x": 51, "y": 23
+    },
+    {
+      "type": "item", "item": "pyrotech:campfire", "x": 52, "y": 26, "framed": false, "guard": "#requires_campfire->exists"
     }
   ]
 }

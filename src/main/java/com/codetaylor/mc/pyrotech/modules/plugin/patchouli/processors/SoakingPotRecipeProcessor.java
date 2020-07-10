@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors;
 
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
 import net.minecraft.util.ResourceLocation;
 import vazkii.patchouli.common.util.ItemStackUtil;
@@ -36,6 +37,9 @@ public class SoakingPotRecipeProcessor
 
       } else if ("input_fluid_amount".equals(key)) {
         return String.valueOf(this.recipe.getInputFluid().amount);
+
+      } else if ("requires_campfire".equals(key)) {
+        return this.recipe.isCampfireRequired() ? "t" : "";
       }
     }
 
