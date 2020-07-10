@@ -183,6 +183,7 @@
   * **Translators:**
     * **New Patchouli Categories**
         * `survive_tools.json`
+        * `adapt_tools.json`
     * **New Patchouli Entries**
         * `bloom/dense_redstone.json`
         * `bloom/dense_redstone_ore.json`
@@ -191,6 +192,7 @@
         * `bloom/dense_quartz_ore.json`
         * `bloom/tools_quartz.json`
         * `survive/food_raw.json`
+        * `adapt/compost_bin.json`
     * **New Lang Entries:**
         * `pyrotech.effect.comfort`
         * `pyrotech.effect.well.fed`
