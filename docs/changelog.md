@@ -193,6 +193,8 @@
         * `bloom/tools_quartz.json`
         * `survive/food_raw.json`
         * `adapt/compost_bin.json`
+    * **Changed Patchouli Entries**
+        * `adapt/mulch.json`
     * **New Lang Entries:**
         * `pyrotech.effect.comfort`
         * `pyrotech.effect.well.fed`
