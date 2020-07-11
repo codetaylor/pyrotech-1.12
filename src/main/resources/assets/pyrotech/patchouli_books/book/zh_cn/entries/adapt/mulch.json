@@ -4,14 +4,14 @@
   "category": "adapt",
   "pages": [
     {
-      "type": "crafting",
-      "recipe": "pyrotech:mulch",
-      "text": "$(item)土壤改良剂$()是用$(item)木屑$()，$(item)灰烬$()和一般的具有蛋白质的物品（比如$(thing)肉$()或者$(item)骨粉$()）制成。"
+      "type": "spotlight",
+      "item": "pyrotech:mulch",
+      "text": "$(item)Mulch$() is made using a $(item)Compost Bin$() and can be placed on $(item)Farmland$().$(p)$(item)Mulch$() can be placed on either $(item)Farmland$() or a plant growing on top to create a temporary $(item)Mulched Farmland$()."
     },
     {
       "type": "spotlight",
       "item": "pyrotech:farmland_mulched",
-      "text": "$(item)改良耕地$()是用$(item)土壤改良剂$()释放于$(item)湿润的耕地$()或耕地上的植物制成。$(p)$(info_cn) $(item)改良耕地$()不会被踩坏，而且上边种植的植物会周期性的收到$(thing)骨粉效果$()。"
+      "text": "$(item)改良耕地$()不会被踩坏，而且上边种植的植物会周期性的收到$(thing)骨粉效果$()。"
     },
     {
       "type": "image",
@@ -23,8 +23,7 @@
     {
       "type": "relations",
       "entries": [
-        "gather/ash",
-        "gather/wood_chips"
+        "adapt/compost_bin"
       ]
     }
   ]
