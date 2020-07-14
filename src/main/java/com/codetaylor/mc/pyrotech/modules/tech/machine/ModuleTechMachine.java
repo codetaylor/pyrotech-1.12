@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.block.*;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.event.CogTooltipEventHandler;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.init.RegistryInitializer;
@@ -54,6 +55,7 @@ public class ModuleTechMachine
     TILE_DATA_SERVICE = this.enableNetworkTileDataService(PACKET_SERVICE);
 
     MinecraftForge.EVENT_BUS.register(this);
+    MinecraftForge.EVENT_BUS.register(new CogTooltipEventHandler());
 
     String[] craftTweakerPlugins = {
         "ZenStoneKiln",
