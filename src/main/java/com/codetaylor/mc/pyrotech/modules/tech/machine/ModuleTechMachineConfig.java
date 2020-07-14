@@ -241,7 +241,7 @@ public class ModuleTechMachineConfig {
     public int OBSIDIAN_DURABILITY = (int) ((64 * 256) * 0.8968);
 
     @Config.Comment({
-        "Sawblade items listed here will not be damaged by the Sawmills",
+        "Cog items listed here will not be damaged",
         "String format is (domain):(path)"
     })
     public String[] INDESTRUCTIBLE_COGS = new String[0];
