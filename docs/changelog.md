@@ -5,6 +5,7 @@
 
   * **Fixed:**
     * Custom cogs aren't properly recognized
+    * Custom cogs don't have a cog tooltip
     * Config comment for cogs should not refer to sawmill and sawblades
 
 ---

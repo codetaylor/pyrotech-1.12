@@ -55,33 +55,47 @@ public class ItemCog
   @Override
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 
+    ItemCog.getTooltip(stack, tooltip);
+  }
+
+  public static boolean isCog(ItemStack stack) {
+
+    Item item = stack.getItem();
+    ResourceLocation registryName = item.getRegistryName();
+    return ModuleTechMachineConfig.STONE_HOPPER.getCogTransferAmount(registryName) > -1
+        || ModuleTechMachineConfig.MECHANICAL_COMPACTING_BIN.getCogRecipeProgress(registryName) > -1
+        || ModuleTechMachineConfig.MECHANICAL_MULCH_SPREADER.getCogData(registryName, new int[2])[0] > -1;
+  }
+
+  public static List<String> getTooltip(ItemStack stack, List<String> tooltip) {
+
     if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)
         || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
 
       Item item = stack.getItem();
       ResourceLocation registryName = item.getRegistryName();
 
-      int transferAmount = ModuleTechMachineConfig.STONE_HOPPER.getCogTransferAmount(registryName);
+      int stoneHopperTransferAmount = ModuleTechMachineConfig.STONE_HOPPER.getCogTransferAmount(registryName);
 
-      if (transferAmount > -1) {
+      if (stoneHopperTransferAmount > -1) {
         String unlocalizedName = Item.getItemFromBlock(ModuleTechMachine.Blocks.STONE_HOPPER).getUnlocalizedName() + ".name";
         String localizedName = I18n.translateToLocal(unlocalizedName);
-        tooltip.add(Reference.Tooltip.COLOR_EXTENDED_INFO + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.cog.hopper", localizedName, Reference.Tooltip.COLOR_EXTENDED_INFO_HIGHLIGHT, transferAmount));
+        tooltip.add(Reference.Tooltip.COLOR_EXTENDED_INFO + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.cog.hopper", localizedName, Reference.Tooltip.COLOR_EXTENDED_INFO_HIGHLIGHT, stoneHopperTransferAmount));
       }
 
-      double recipeProgress = ModuleTechMachineConfig.MECHANICAL_COMPACTING_BIN.getCogRecipeProgress(registryName);
+      double compactingBinRecipeProgress = ModuleTechMachineConfig.MECHANICAL_COMPACTING_BIN.getCogRecipeProgress(registryName);
 
-      if (recipeProgress > -1) {
+      if (compactingBinRecipeProgress > -1) {
         String unlocalizedName = Item.getItemFromBlock(ModuleTechMachine.Blocks.MECHANICAL_COMPACTING_BIN).getUnlocalizedName() + ".name";
         String localizedName = I18n.translateToLocal(unlocalizedName);
-        tooltip.add(Reference.Tooltip.COLOR_EXTENDED_INFO + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.cog.compactor", localizedName, Reference.Tooltip.COLOR_EXTENDED_INFO_HIGHLIGHT, (int) (recipeProgress * 100)));
+        tooltip.add(Reference.Tooltip.COLOR_EXTENDED_INFO + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.cog.compactor", localizedName, Reference.Tooltip.COLOR_EXTENDED_INFO_HIGHLIGHT, (int) (compactingBinRecipeProgress * 100)));
       }
 
-      int[] cogData = ModuleTechMachineConfig.MECHANICAL_MULCH_SPREADER.getCogData(registryName, new int[2]);
+      int[] mulchSpreaderCogData = ModuleTechMachineConfig.MECHANICAL_MULCH_SPREADER.getCogData(registryName, new int[2]);
 
-      if (cogData[0] > -1) {
-        int range = cogData[0] * 2 + 1;
-        int attempts = cogData[1];
+      if (mulchSpreaderCogData[0] > -1) {
+        int range = mulchSpreaderCogData[0] * 2 + 1;
+        int attempts = mulchSpreaderCogData[1];
         String unlocalizedName = Item.getItemFromBlock(ModuleTechMachine.Blocks.MECHANICAL_MULCH_SPREADER).getUnlocalizedName() + ".name";
         String localizedName = I18n.translateToLocal(unlocalizedName);
         tooltip.add(Reference.Tooltip.COLOR_EXTENDED_INFO + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.cog.spreader", localizedName, Reference.Tooltip.COLOR_EXTENDED_INFO_HIGHLIGHT, attempts, range, range));
@@ -95,12 +109,14 @@ public class ItemCog
       tooltip.add(I18n.translateToLocal("gui.pyrotech.tooltip.durability.indestructible"));
 
     } else {
-      int damage = this.getDamage(stack);
+      int damage = stack.getItemDamage();
 
       if (damage == 0) {
-        int maxDamage = this.getMaxDamage(stack);
+        int maxDamage = stack.getMaxDamage();
         tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
       }
     }
+
+    return tooltip;
   }
 }
