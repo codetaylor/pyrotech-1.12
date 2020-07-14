@@ -271,7 +271,7 @@ public abstract class TileCogWorkerBase
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (itemStack.getItem() instanceof ItemCog);
+      return this.tile.isValidCog(itemStack);
     }
 
     public TileCogWorkerBase getTile() {
