@@ -1,18 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.ignition.tile.spi;
 
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.spi.TileEntityBase;
+import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
-import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
-import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchFiber;
+import com.codetaylor.mc.pyrotech.modules.ignition.block.spi.BlockTorchBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -34,11 +30,9 @@ import net.minecraftforge.fluids.FluidTank;
 import javax.annotation.Nonnull;
 
 public abstract class TileTorchBase
-    extends TileEntityDataBase
+    extends TileEntityBase
     implements ITileInteractable,
     ITickable {
-
-  private TileDataInteger type;
 
   private int duration;
   private long lastTimeStamp;
@@ -48,15 +42,7 @@ public abstract class TileTorchBase
 
   public TileTorchBase() {
 
-    super(ModuleIgnition.TILE_DATA_SERVICE);
-
-    this.type = new TileDataInteger(BlockTorchFiber.EnumType.UNLIT.getMeta());
-
     this.duration = (int) (this.getDuration() + (Math.random() * 2 - 1) * this.getDurationVariant());
-
-    this.registerTileDataForNetwork(new ITileData[]{
-        this.type
-    });
 
     this.interactions = new IInteraction[]{
         new InteractionBucket(),
@@ -68,21 +54,32 @@ public abstract class TileTorchBase
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  public BlockTorchFiber.EnumType getType() {
-
-    return BlockTorchFiber.EnumType.fromMeta(this.type.get());
-  }
-
   public void activate() {
 
-    IBlockState blockState = this.world.getBlockState(this.pos);
-
-    if (blockState.getValue(BlockTorchFiber.TYPE) != BlockTorchFiber.EnumType.LIT) {
+    if (!this.isLit()) {
 
       if (!this.shouldDouse()) {
-        this.type.set(BlockTorchFiber.EnumType.LIT.getMeta());
+        this.setLit();
       }
     }
+  }
+
+  private void setLit() {
+
+    IBlockState blockState = this.world.getBlockState(this.pos);
+    this.world.setBlockState(this.pos, blockState.withProperty(BlockTorchBase.TYPE, BlockTorchBase.EnumType.LIT));
+  }
+
+  private boolean isLit() {
+
+    IBlockState blockState = this.world.getBlockState(this.pos);
+    return blockState.getValue(BlockTorchBase.TYPE) == BlockTorchBase.EnumType.LIT;
+  }
+
+  private void setDoused() {
+
+    IBlockState blockState = this.world.getBlockState(this.pos);
+    this.world.setBlockState(this.pos, blockState.withProperty(BlockTorchBase.TYPE, BlockTorchBase.EnumType.DOUSED));
   }
 
   private boolean shouldDouse() {
@@ -112,25 +109,16 @@ public abstract class TileTorchBase
     }
   }
 
-  @Override
-  public void onTileDataUpdate() {
-
-    if (this.type.isDirty()) {
-      BlockHelper.notifyBlockUpdate(this.world, this.pos);
-      this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
-    }
-  }
-
   public void randomUpdate() {
 
     // This update is called from the block's random update.
     // The idea is to reduce the tick time consumed by the torches since
     // it seems reasonable that many might be placed.
 
-    if (this.type.get() == BlockTorchFiber.EnumType.LIT.getMeta()) {
+    if (this.isLit()) {
 
       if (this.shouldDouse()) {
-        this.type.set(BlockTorchFiber.EnumType.DOUSED.getMeta());
+        this.setDoused();
 
       } else if (this.shouldBurnUp()) {
 
@@ -159,7 +147,6 @@ public abstract class TileTorchBase
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    compound.setInteger("type", this.type.get());
     compound.setInteger("duration", this.duration);
     compound.setLong("lastTimeStamp", this.lastTimeStamp);
     return compound;
@@ -169,7 +156,6 @@ public abstract class TileTorchBase
   public void readFromNBT(NBTTagCompound compound) {
 
     super.readFromNBT(compound);
-    this.type.set(compound.getInteger("type"));
     this.duration = compound.getInteger("duration");
     this.lastTimeStamp = compound.getLong("lastTimeStamp");
     this.world.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
@@ -218,12 +204,12 @@ public abstract class TileTorchBase
     @Override
     protected boolean doInteraction(TileTorchBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      if (tile.type.get() != BlockTorchFiber.EnumType.LIT.getMeta()) {
+      if (!tile.isLit()) {
         return false;
       }
 
       if (super.doInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {
-        tile.type.set(BlockTorchFiber.EnumType.DOUSED.getMeta());
+        tile.setDoused();
 
         if (!world.isRemote) {
           SoundHelper.playSoundServer(world, tile.getPos(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS);

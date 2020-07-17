@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.ignition.block.spi;
 
-import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.ignition.tile.spi.TileTorchBase;
@@ -95,8 +95,7 @@ public abstract class BlockTorchBase
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
-    IBlockState actualState = this.getActualState(state, world, pos);
-    EnumType type = actualState.getValue(TYPE);
+    EnumType type = state.getValue(TYPE);
 
     if (type == BlockTorchBase.EnumType.LIT) {
       return this.getLightValue();
@@ -125,7 +124,7 @@ public abstract class BlockTorchBase
   @Override
   public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 
-    if (this.getActualState(state, world, pos).getValue(TYPE) == BlockTorchBase.EnumType.LIT) {
+    if (state.getValue(TYPE) == BlockTorchBase.EnumType.LIT) {
 
       EnumFacing enumfacing = state.getValue(FACING);
       double x = (double) pos.getX() + 0.5D + (rand.nextDouble() * 2 - 1) * 0.1;
@@ -185,9 +184,7 @@ public abstract class BlockTorchBase
   @Override
   public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
 
-    IBlockState actualState = this.getActualState(state, world, pos);
-
-    if (actualState.getValue(BlockTorchBase.TYPE) == EnumType.LIT) {
+    if (state.getValue(BlockTorchBase.TYPE) == EnumType.LIT) {
 
       int fireDamage = this.getFireDamage();
 
@@ -233,8 +230,7 @@ public abstract class BlockTorchBase
   @Override
   public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 
-    IBlockState actualState = this.getActualState(state, world, pos);
-    EnumType type = actualState.getValue(BlockTorchBase.TYPE);
+    EnumType type = state.getValue(BlockTorchBase.TYPE);
 
     if (type == BlockTorchBase.EnumType.UNLIT) {
       super.getDrops(drops, world, pos, state, fortune);
@@ -273,20 +269,6 @@ public abstract class BlockTorchBase
   protected BlockStateContainer createBlockState() {
 
     return new BlockStateContainer(this, FACING, TYPE);
-  }
-
-  @SuppressWarnings("deprecation")
-  @Nonnull
-  @Override
-  public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
-
-    TileEntity tile = world.getTileEntity(pos);
-
-    if (tile instanceof TileTorchBase) {
-      return state.withProperty(TYPE, ((TileTorchBase) tile).getType());
-    }
-
-    return state;
   }
 
   public enum EnumType

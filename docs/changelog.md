@@ -157,6 +157,8 @@
         * Bone and Flint Shears now require Clay Shears to craft
     * OreDict:
         * Removed entry `mulchNitrogen`
+    * Torches:
+        * Torches are now compatible with TaN's temperature config [(#229)](https://github.com/codetaylor/artisan-worktables/issues/229)
     * Soaking Pot:
         * New texture
         * Can now be placed above a campfire
