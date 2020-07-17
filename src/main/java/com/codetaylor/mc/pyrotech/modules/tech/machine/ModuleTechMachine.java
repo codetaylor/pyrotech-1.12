@@ -55,7 +55,6 @@ public class ModuleTechMachine
     TILE_DATA_SERVICE = this.enableNetworkTileDataService(PACKET_SERVICE);
 
     MinecraftForge.EVENT_BUS.register(this);
-    MinecraftForge.EVENT_BUS.register(new CogTooltipEventHandler());
 
     String[] craftTweakerPlugins = {
         "ZenStoneKiln",
@@ -109,6 +108,8 @@ public class ModuleTechMachine
   public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
 
     super.onClientPreInitializationEvent(event);
+
+    MinecraftForge.EVENT_BUS.register(new CogTooltipEventHandler());
 
     FMLInterModComms.sendMessage(
         "waila",
