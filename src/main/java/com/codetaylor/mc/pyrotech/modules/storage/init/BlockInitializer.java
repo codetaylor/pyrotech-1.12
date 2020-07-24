@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.storage.init;
 
+import com.codetaylor.mc.athenaeum.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
-import com.codetaylor.mc.athenaeum.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;
@@ -28,7 +28,8 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockCrate(), BlockCrate.NAME);
     registry.registerBlockWithItem(new BlockCrateStone(), BlockCrateStone.NAME);
     registry.registerBlockWithItem(new BlockWoodRack(), BlockWoodRack.NAME);
-    registry.registerBlockWithItem(new BlockTank(), BlockTank.NAME);
+    registry.registerBlockWithItem(new BlockTankStone(), BlockTankStone.NAME);
+    registry.registerBlockWithItem(new BlockTankBrick(), BlockTankBrick.NAME);
     registry.registerBlockWithItem(new BlockFaucetStone(), BlockFaucetStone.NAME);
     registry.registerBlockWithItem(new BlockFaucetBrick(), BlockFaucetBrick.NAME);
 
@@ -72,7 +73,9 @@ public final class BlockInitializer {
           ModuleStorage.Blocks.BAG_SIMPLE,
           ModuleStorage.Blocks.BAG_DURABLE,
           ModuleStorage.Blocks.FAUCET_STONE,
-          ModuleStorage.Blocks.FAUCET_BRICK
+          ModuleStorage.Blocks.FAUCET_BRICK,
+          ModuleStorage.Blocks.TANK_STONE,
+          ModuleStorage.Blocks.TANK_BRICK
       );
 
       ModelRegistrationHelper.registerBlockItemModelForMeta(
@@ -83,12 +86,6 @@ public final class BlockInitializer {
       ModelRegistrationHelper.registerBlockItemModelForMeta(
           ModuleStorage.Blocks.BAG_DURABLE.getDefaultState().withProperty(BlockBagBase.TYPE, BlockBagBase.EnumType.OPEN),
           1
-      );
-
-      // Tank
-      ModelRegistrationHelper.registerVariantBlockItemModels(
-          ModuleStorage.Blocks.TANK.getDefaultState(),
-          BlockTank.TYPE
       );
 
       // TESRs

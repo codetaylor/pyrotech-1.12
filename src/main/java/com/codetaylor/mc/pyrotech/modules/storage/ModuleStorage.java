@@ -142,8 +142,11 @@ public class ModuleStorage
     @GameRegistry.ObjectHolder(BlockWoodRack.NAME)
     public static final BlockWoodRack WOOD_RACK;
 
-    @GameRegistry.ObjectHolder(BlockTank.NAME)
-    public static final BlockTank TANK;
+    @GameRegistry.ObjectHolder(BlockTankStone.NAME)
+    public static final BlockTankStone TANK_STONE;
+
+    @GameRegistry.ObjectHolder(BlockTankBrick.NAME)
+    public static final BlockTankBrick TANK_BRICK;
 
     @GameRegistry.ObjectHolder(BlockBagSimple.NAME)
     public static final BlockBagSimple BAG_SIMPLE;
@@ -165,7 +168,8 @@ public class ModuleStorage
       STASH_STONE = null;
       CRATE_STONE = null;
       WOOD_RACK = null;
-      TANK = null;
+      TANK_STONE = null;
+      TANK_BRICK = null;
       BAG_SIMPLE = null;
       BAG_DURABLE = null;
       FAUCET_STONE = null;

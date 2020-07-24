@@ -1,0 +1,39 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:tank",
+    "textures": {
+      "top": "pyrotech:blocks/brick_tank",
+      "side": "pyrotech:blocks/brick_tank_side",
+      "bottom": "pyrotech:blocks/bloomery_bottom",
+      "particle": "pyrotech:blocks/brick_tank"
+    }
+  },
+  "variants": {
+    "connection": {
+      "none": {},
+      "up": {
+        "model": "pyrotech:tank_up",
+        "textures": {
+          "side": "pyrotech:blocks/brick_tank_side_up",
+          "top": "pyrotech:blocks/_empty"
+        }
+      },
+      "down": {
+        "model": "pyrotech:tank_down",
+        "textures": {
+          "side": "pyrotech:blocks/brick_tank_side_down",
+          "bottom": "pyrotech:blocks/_empty"
+        }
+      },
+      "both": {
+        "model": "pyrotech:tank_both",
+        "textures": {
+          "side": "pyrotech:blocks/brick_tank_side_both",
+          "top": "pyrotech:blocks/_empty",
+          "bottom": "pyrotech:blocks/_empty"
+        }
+      }
+    }
+  }
+}

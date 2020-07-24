@@ -1,22 +1,20 @@
-package com.codetaylor.mc.pyrotech.modules.storage.block;
+package com.codetaylor.mc.pyrotech.modules.storage.block.spi;
 
-import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
-import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
-import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
-import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankBrick;
-import com.codetaylor.mc.pyrotech.modules.storage.tile.TileTankStone;
+import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -38,23 +36,73 @@ import net.minecraftforge.fluids.FluidTank;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class BlockTank
+public abstract class BlockTankBase
     extends BlockPartialBase
-    implements IBlockVariant<BlockTank.EnumType>,
-    IBlockInteractable {
+    implements IBlockInteractable {
 
-  public static final String NAME = "tank";
-  public static final IProperty<EnumType> TYPE = PropertyEnum.create("type", EnumType.class);
+  public static final IProperty<EnumConnection> CONNECTION = PropertyEnum.create("connection", EnumConnection.class);
 
-  public BlockTank() {
+  public BlockTankBase() {
 
     super(Material.ROCK);
     this.setHarvestLevel("pickaxe", 0);
     this.setHardness(2);
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Multiblock
+  // ---------------------------------------------------------------------------
+
+  @ParametersAreNonnullByDefault
+  @Override
+  public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+
+    this.updateConnectionState(world, pos);
+    this.updateTankGroups(world, pos);
+    this.settleFluids(world, pos);
+  }
+
+  @ParametersAreNonnullByDefault
+  @Override
+  public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+
+    this.updateConnectionState(world, pos);
+  }
+
+  private void updateConnectionState(World world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileTankBase) {
+      TileTankBase tileTankBase = (TileTankBase) tileEntity;
+      tileTankBase.updateConnectionState();
+      BlockHelper.notifyBlockUpdate(world, pos);
+    }
+  }
+
+  private void updateTankGroups(World world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileTankBase) {
+      TileTankBase tileTankBase = (TileTankBase) tileEntity;
+      tileTankBase.updateTankGroups();
+    }
+  }
+
+  private void settleFluids(World world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileTankBase) {
+      TileTankBase tileTankBase = (TileTankBase) tileEntity;
+      tileTankBase.settleFluids();
+    }
   }
 
   // ---------------------------------------------------------------------------
@@ -137,30 +185,21 @@ public class BlockTank
     // Serialize the TE into the item dropped.
     // Called before #breakBlock
 
-    if (this.canHoldContentsWhenBroken(state)) {
-      drops.add(StackHelper.createItemStackFromTileEntity(
-          this,
-          1,
-          state.getValue(BlockTank.TYPE).getMeta(),
-          world.getTileEntity(pos)
-      ));
+    TileEntity tileEntity = world.getTileEntity(pos);
 
-    } else {
-      super.getDrops(drops, world, pos, state, fortune);
-    }
-  }
+    if (tileEntity instanceof TileTankBase) {
 
-  private boolean canHoldContentsWhenBroken(IBlockState blockState) {
+      if (this.canHoldContentsWhenBroken()) {
+        drops.add(StackHelper.createItemStackFromTileEntity(
+            this,
+            1,
+            0,
+            tileEntity
+        ));
 
-    EnumType type = blockState.getValue(BlockTank.TYPE);
-
-    switch (type) {
-      case STONE:
-        return ModuleStorageConfig.STONE_TANK.HOLDS_CONTENTS_WHEN_BROKEN;
-      case BRICK:
-        return ModuleStorageConfig.BRICK_TANK.HOLDS_CONTENTS_WHEN_BROKEN;
-      default:
-        throw new RuntimeException("Unknown tank type: " + type);
+      } else {
+        super.getDrops(drops, world, pos, state, fortune);
+      }
     }
   }
 
@@ -172,22 +211,6 @@ public class BlockTank
   public boolean hasTileEntity(IBlockState state) {
 
     return true;
-  }
-
-  @Nullable
-  @Override
-  public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
-
-    EnumType type = state.getValue(TYPE);
-
-    if (type == EnumType.STONE) {
-      return new TileTankStone();
-
-    } else if (type == EnumType.BRICK) {
-      return new TileTankBrick();
-    }
-
-    return null;
   }
 
   // ---------------------------------------------------------------------------
@@ -208,7 +231,14 @@ public class BlockTank
   @Override
   public BlockRenderLayer getBlockLayer() {
 
-    return BlockRenderLayer.CUTOUT;
+    return BlockRenderLayer.SOLID;
+  }
+
+  @ParametersAreNonnullByDefault
+  @Override
+  public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+
+    return super.canRenderInLayer(state, layer);
   }
 
   // ---------------------------------------------------------------------------
@@ -219,10 +249,9 @@ public class BlockTank
   public void addInformation(@Nonnull ItemStack stack, @Nullable World world, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flag) {
 
     NBTTagCompound stackTag = stack.getTagCompound();
-    EnumType type = EnumType.fromMeta(stack.getMetadata());
 
     if (stackTag == null) {
-      this.addInformationCapacity(tooltip, type);
+      this.addInformationCapacity(tooltip);
 
     } else {
 
@@ -236,7 +265,7 @@ public class BlockTank
               && (!tankTag.hasKey("Amount")
               || tankTag.getInteger("Amount") <= 0)) {
 
-            this.addInformationCapacity(tooltip, type);
+            this.addInformationCapacity(tooltip);
 
           } else {
             FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(tankTag);
@@ -244,48 +273,31 @@ public class BlockTank
             if (fluidStack != null) {
               String localizedName = fluidStack.getLocalizedName();
               int amount = fluidStack.amount;
-
-              if (type == EnumType.STONE) {
-                int capacity = ModuleStorageConfig.STONE_TANK.CAPACITY;
-                tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid", localizedName, amount, capacity));
-
-              } else if (type == EnumType.BRICK) {
-                int capacity = ModuleStorageConfig.BRICK_TANK.CAPACITY;
-                tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid", localizedName, amount, capacity));
-              }
+              int capacity = this.getCapacity();
+              tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid", localizedName, amount, capacity));
             }
           }
         }
       }
     }
 
-    if (type == EnumType.STONE) {
-      boolean hotFluids = ModuleStorageConfig.STONE_TANK.HOLDS_HOT_FLUIDS;
-      tooltip.add((hotFluids ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.hot.fluids." + hotFluids));
+    boolean hotFluids = this.canHoldHotFluids();
+    tooltip.add((hotFluids ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.hot.fluids." + hotFluids));
 
-      boolean holdsContents = ModuleStorageConfig.STONE_TANK.HOLDS_CONTENTS_WHEN_BROKEN;
-      tooltip.add((holdsContents ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.contents.retain." + holdsContents));
-
-    } else if (type == EnumType.BRICK) {
-      boolean hotFluids = ModuleStorageConfig.BRICK_TANK.HOLDS_HOT_FLUIDS;
-      tooltip.add((hotFluids ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.hot.fluids." + hotFluids));
-
-      boolean holdsContents = ModuleStorageConfig.BRICK_TANK.HOLDS_CONTENTS_WHEN_BROKEN;
-      tooltip.add((holdsContents ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.contents.retain." + holdsContents));
-    }
-
+    boolean holdsContents = this.canHoldContentsWhenBroken();
+    tooltip.add((holdsContents ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.contents.retain." + holdsContents));
   }
 
-  private void addInformationCapacity(@Nonnull List<String> tooltip, EnumType type) {
+  protected abstract int getCapacity();
 
-    if (type == EnumType.STONE) {
-      int capacity = ModuleStorageConfig.STONE_TANK.CAPACITY;
-      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid.capacity", capacity));
+  protected abstract boolean canHoldHotFluids();
 
-    } else if (type == EnumType.BRICK) {
-      int capacity = ModuleStorageConfig.BRICK_TANK.CAPACITY;
-      tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid.capacity", capacity));
-    }
+  protected abstract boolean canHoldContentsWhenBroken();
+
+  private void addInformationCapacity(@Nonnull List<String> tooltip) {
+
+    int capacity = this.getCapacity();
+    tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid.capacity", capacity));
   }
 
   // ---------------------------------------------------------------------------
@@ -293,70 +305,55 @@ public class BlockTank
   // ---------------------------------------------------------------------------
 
   @Nonnull
+  @ParametersAreNonnullByDefault
+  @Override
+  public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileTankBase) {
+      state = state.withProperty(CONNECTION, ((TileTankBase) tileEntity).getConnectionState());
+    }
+
+    return super.getActualState(state, world, pos);
+  }
+
+  @Nonnull
   @Override
   protected BlockStateContainer createBlockState() {
 
-    return new BlockStateContainer(this, TYPE);
+    return new BlockStateContainer(this, CONNECTION);
   }
 
   @Override
   public int getMetaFromState(IBlockState state) {
 
-    return state.getValue(TYPE).getMeta();
+    return 0;
   }
 
   @Nonnull
   @Override
   public IBlockState getStateFromMeta(int meta) {
 
-    return this.getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
+    return this.getDefaultState();
   }
 
-  @Override
-  public int damageDropped(IBlockState state) {
-
-    return state.getValue(TYPE).getMeta();
-  }
-
-  @Nonnull
-  @Override
-  public String getModelName(ItemStack itemStack) {
-
-    return EnumType.fromMeta(itemStack.getMetadata()).getName();
-  }
-
-  @Nonnull
-  @Override
-  public IProperty<EnumType> getVariant() {
-
-    return TYPE;
-  }
-
-  @Override
-  public void getSubBlocks(
-      CreativeTabs tab,
-      NonNullList<ItemStack> list
-  ) {
-
-    for (EnumType type : EnumType.values()) {
-      list.add(new ItemStack(this, 1, type.getMeta()));
-    }
-  }
-
-  public enum EnumType
+  public enum EnumConnection
       implements IVariant {
 
-    STONE(0, "stone"),
-    BRICK(1, "brick");
+    NONE(0, "none"),
+    UP(1, "up"),
+    DOWN(2, "down"),
+    BOTH(3, "both");
 
-    private static final EnumType[] META_LOOKUP = Stream.of(EnumType.values())
-        .sorted(Comparator.comparing(EnumType::getMeta))
-        .toArray(EnumType[]::new);
+    private static final EnumConnection[] META_LOOKUP = Stream.of(EnumConnection.values())
+        .sorted(Comparator.comparing(EnumConnection::getMeta))
+        .toArray(EnumConnection[]::new);
 
     private final int meta;
     private final String name;
 
-    EnumType(int meta, String name) {
+    EnumConnection(int meta, String name) {
 
       this.meta = meta;
       this.name = name;
@@ -375,7 +372,7 @@ public class BlockTank
       return this.name;
     }
 
-    public static EnumType fromMeta(int meta) {
+    public static EnumConnection fromMeta(int meta) {
 
       if (meta < 0 || meta >= META_LOOKUP.length) {
         meta = 0;

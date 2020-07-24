@@ -175,6 +175,8 @@
             * Added campfire `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
         * Campfire will now burn food faster or slower based on how much fuel it has 
             * Burn speed depends on the `FUEL_LEVEL_FOR_FULL_COOK_SPEED` config value
+    * Tanks:
+        * Tanks can now be stacked vertically to combine into one larger tank [(#105)](https://github.com/codetaylor/artisan-worktables/issues/105)
     * World Gen:
         * Improved rock gen compatibility [(#284)](https://github.com/codetaylor/artisan-worktables/issues/284)
     * Interaction Framework:
