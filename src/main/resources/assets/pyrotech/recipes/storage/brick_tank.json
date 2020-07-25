@@ -22,8 +22,8 @@
     }
   },
   "result": {
-    "item": "pyrotech:tank",
+    "item": "pyrotech:brick_tank",
     "count": 1,
-    "data": 1
+    "data": 0
   }
 }
