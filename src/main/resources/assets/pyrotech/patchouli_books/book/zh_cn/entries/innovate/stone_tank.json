@@ -1,6 +1,6 @@
 {
   "name": "石缸",
-  "icon": "pyrotech:tank:0",
+  "icon": "pyrotech:stone_tank",
   "category": "innovate_soaking",
   "pages": [
     {

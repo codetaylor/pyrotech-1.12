@@ -1,6 +1,6 @@
 {
   "name": "耐火缸",
-  "icon": "pyrotech:tank:1",
+  "icon": "pyrotech:brick_tank",
   "category": "accelerate",
   "pages": [
     {
