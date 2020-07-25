@@ -8,7 +8,7 @@
   ],
   "ingredients": [
     {
-      "item": "pyrotech:tank",
+      "item": "pyrotech:brick_tank",
       "data": 1
     }
   ],
