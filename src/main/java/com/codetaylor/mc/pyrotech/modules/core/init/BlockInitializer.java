@@ -9,7 +9,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.item.ItemDoorStone;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockGrass;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockNetherrack;
-import com.codetaylor.mc.pyrotech.modules.core.item.ItemStrawMat;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemStrawBed;
 import com.codetaylor.mc.pyrotech.modules.core.tile.TileFarmlandMulched;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
@@ -47,7 +47,7 @@ public final class BlockInitializer {
 
     final BlockStrawBed blockStrawBed = new BlockStrawBed();
     registry.registerBlock(blockStrawBed, BlockStrawBed.NAME);
-    registry.registerItem(new ItemStrawMat(blockStrawBed), blockStrawBed.getRegistryName());
+    registry.registerItem(new ItemStrawBed(blockStrawBed), blockStrawBed.getRegistryName());
 
     registry.registerBlockWithItem(new BlockLogPile(), BlockLogPile.NAME);
     registry.registerBlockWithItem(new BlockCoalCokeBlock(), BlockCoalCokeBlock.NAME);

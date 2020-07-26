@@ -21,10 +21,10 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class ItemStrawMat
+public class ItemStrawBed
     extends ItemBlock {
 
-  public ItemStrawMat(Block block) {
+  public ItemStrawBed(Block block) {
 
     super(block);
     this.setMaxStackSize(1);
