@@ -17,6 +17,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.command.ClientCommandExport;
 import com.codetaylor.mc.pyrotech.modules.core.command.ClientCommandLang;
 import com.codetaylor.mc.pyrotech.modules.core.event.HarvestDropsEventHandler;
+import com.codetaylor.mc.pyrotech.modules.core.event.StrawBedEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.event.TooltipEventHandler;
 import com.codetaylor.mc.pyrotech.modules.core.init.*;
 import com.codetaylor.mc.pyrotech.modules.core.init.recipe.VanillaCraftingRecipesRemove;
@@ -87,6 +88,7 @@ public class ModuleCore
 
     MinecraftForge.EVENT_BUS.register(this);
     MinecraftForge.EVENT_BUS.register(new InteractionMouseScrollEventHandler(PACKET_SERVICE));
+    MinecraftForge.EVENT_BUS.register(new StrawBedEventHandler());
 
     String[] craftTweakerPlugins = {
         "ZenStages"
@@ -348,6 +350,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockOreDenseQuartzRocks.NAME)
     public static final BlockOreDenseQuartzRocks ORE_DENSE_QUARTZ_ROCKS;
 
+    @GameRegistry.ObjectHolder(BlockStrawBed.NAME)
+    public static final BlockStrawBed STRAW_BED;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -383,6 +388,7 @@ public class ModuleCore
       ORE_DENSE_QUARTZ_LARGE = null;
       ORE_DENSE_QUARTZ_SMALL = null;
       ORE_DENSE_QUARTZ_ROCKS = null;
+      STRAW_BED = null;
     }
   }
 

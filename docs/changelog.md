@@ -11,6 +11,8 @@
             * wooden, clay, and stone milk bucket from Pyrotech
         * `toolSharp` contains swords and axes, sans wooden sword
         * `mulchNitrogen` now contains `pyrotech:rock_netherrack`
+    * Straw Bed
+        * Single-use bed that does not set a spawn point
     * Netherrack Rocks
         * Drop from Netherrack with low tier tools
         * Spread netherrack `ModuleCoreConfig.ROCKS.NETHERRACK_SPREAD_RADIUS`
@@ -228,6 +230,7 @@
         * `tile.pyrotech.dense_redstone_ore.name`
         * `tile.pyrotech.dense_quartz_ore.name`
         * `tile.pyrotech.compost_bin.name`
+        * `tile.pyrotech.straw_bed.name`
         * `gui.pyrotech.marshmallow.burned.broadcast.message`
         * `gui.pyrotech.marshmallow.burned.eat.broadcast.message`
         * `gui.pyrotech.tooltip.potency`

@@ -9,6 +9,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.item.ItemDoorStone;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockGrass;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockNetherrack;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemStrawMat;
 import com.codetaylor.mc.pyrotech.modules.core.tile.TileFarmlandMulched;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
@@ -43,6 +44,10 @@ public final class BlockInitializer {
     final BlockStoneDoor blockStoneDoor = new BlockStoneDoor();
     registry.registerBlock(blockStoneDoor, BlockStoneDoor.NAME);
     registry.registerItem(new ItemDoorStone(blockStoneDoor), blockStoneDoor.getRegistryName());
+
+    final BlockStrawBed blockStrawBed = new BlockStrawBed();
+    registry.registerBlock(blockStrawBed, BlockStrawBed.NAME);
+    registry.registerItem(new ItemStrawMat(blockStrawBed), blockStrawBed.getRegistryName());
 
     registry.registerBlockWithItem(new BlockLogPile(), BlockLogPile.NAME);
     registry.registerBlockWithItem(new BlockCoalCokeBlock(), BlockCoalCokeBlock.NAME);
@@ -113,7 +118,8 @@ public final class BlockInitializer {
           ModuleCore.Blocks.ORE_DENSE_REDSTONE_ROCKS_ACTIVATED,
           ModuleCore.Blocks.ORE_DENSE_QUARTZ_LARGE,
           ModuleCore.Blocks.ORE_DENSE_QUARTZ_SMALL,
-          ModuleCore.Blocks.ORE_DENSE_QUARTZ_ROCKS
+          ModuleCore.Blocks.ORE_DENSE_QUARTZ_ROCKS,
+          ModuleCore.Blocks.STRAW_BED
       );
 
       ModelRegistrationHelper.registerItemModels(

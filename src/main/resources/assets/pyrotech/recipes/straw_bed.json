@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "pyrotech:material",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "pyrotech:straw_bed",
+    "count": 1,
+    "data": 0
+  }
+}
