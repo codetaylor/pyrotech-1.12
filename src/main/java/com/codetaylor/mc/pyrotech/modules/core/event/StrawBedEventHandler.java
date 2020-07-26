@@ -38,10 +38,6 @@ public class StrawBedEventHandler {
       return;
     }
 
-    if (!world.isDaytime()) {
-      return;
-    }
-
     int dimensionId = world.provider.getDimension();
     List<BlockPos> blockPosList = this.usedBeds.get(dimensionId);
 
@@ -54,7 +50,7 @@ public class StrawBedEventHandler {
       IBlockState blockState = world.getBlockState(blockPos);
       Block block = blockState.getBlock();
 
-      if (block == ModuleCore.Blocks.STRAW_BED) {
+      if (block == ModuleCore.Blocks.STRAW_BED && world.isDaytime()) {
         world.destroyBlock(blockPos, false);
       }
     }
