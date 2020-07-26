@@ -118,15 +118,15 @@ public final class BlockInitializer {
           ModuleCore.Blocks.ORE_DENSE_REDSTONE_ROCKS_ACTIVATED,
           ModuleCore.Blocks.ORE_DENSE_QUARTZ_LARGE,
           ModuleCore.Blocks.ORE_DENSE_QUARTZ_SMALL,
-          ModuleCore.Blocks.ORE_DENSE_QUARTZ_ROCKS,
-          ModuleCore.Blocks.STRAW_BED
+          ModuleCore.Blocks.ORE_DENSE_QUARTZ_ROCKS
       );
 
       ModelRegistrationHelper.registerItemModels(
           ModuleCore.Items.REFRACTORY_DOOR,
           ModuleCore.Items.STONE_DOOR,
           ModuleCore.Items.ROCK_GRASS,
-          ModuleCore.Items.ROCK_NETHERRACK
+          ModuleCore.Items.ROCK_NETHERRACK,
+          ModuleCore.Items.STRAW_BED
       );
 
       // Refractory Door

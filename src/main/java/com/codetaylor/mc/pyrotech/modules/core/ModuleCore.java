@@ -467,6 +467,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemBook.NAME)
     public static final ItemBook BOOK;
 
+    @GameRegistry.ObjectHolder(BlockStrawBed.NAME)
+    public static final ItemStrawBed STRAW_BED;
+
     static {
       ROCK = null;
       ROCK_GRASS = null;
@@ -492,6 +495,7 @@ public class ModuleCore
       CRUDE_HAMMER = null;
       OBSIDIAN_HAMMER = null;
       BOOK = null;
+      STRAW_BED = null;
     }
   }
 
