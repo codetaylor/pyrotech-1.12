@@ -1,37 +1,37 @@
 itemGroup.pyrotech=Pyrotech
 
 #------------------------------------------------------------------------------
-# Module: Bucket
+# Модуль: Ведро
 #------------------------------------------------------------------------------
 
 item.pyrotech.bucket.clay.unfired.name=Необожжённое глиняное ведро
-item.pyrotech.bucket.clay.name=%s Глиняное ведро
+item.pyrotech.bucket.clay.name=%s глиняное ведро
 item.pyrotech.bucket.clay.empty.name=Глиняное ведро
-item.pyrotech.bucket.clay.milk.name=Глиняное ведро молока
+item.pyrotech.bucket.clay.milk.name=Глиняное ведро с молоком
 
-item.pyrotech.bucket.stone.name=%s Каменное ведро
+item.pyrotech.bucket.stone.name=%s каменное ведро
 item.pyrotech.bucket.stone.empty.name=Каменное ведро
-item.pyrotech.bucket.stone.milk.name=Каменное ведро молока
+item.pyrotech.bucket.stone.milk.name=Каменное ведро с молоком
 
-item.pyrotech.bucket.wood.name=%s Деревянное ведро
+item.pyrotech.bucket.wood.name=%s деревянное ведро
 item.pyrotech.bucket.wood.empty.name=Деревянное ведро
-item.pyrotech.bucket.wood.milk.name=Деревянное ведро молока
+item.pyrotech.bucket.wood.milk.name=Деревянное ведро с молоком
 
 #------------------------------------------------------------------------------
-# Module: Ignition
+# Модуль: Поджигание
 #------------------------------------------------------------------------------
 
-item.pyrotech.bow.drill.name=Лучковая дрель
+item.pyrotech.bow.drill.name=Сверло с дугой
 item.pyrotech.flint.and.tinder.name=Кремень и трут
 item.pyrotech.matchstick.name=Спичка
 
 tile.pyrotech.igniter.stone.name=Каменный воспламенитель
 tile.pyrotech.igniter.brick.name=Огнеупорный воспламенитель
-tile.pyrotech.torch_fiber.name=Травяной факел
+tile.pyrotech.torch_fiber.name=Волоконный факел
 tile.pyrotech.torch_stone.name=Каменный факел
 
 #------------------------------------------------------------------------------
-# Module: Storage
+# Модуль: Хранилища
 #------------------------------------------------------------------------------
 
 tile.pyrotech.shelf.name=Полка
@@ -40,113 +40,113 @@ tile.pyrotech.stash.name=Тайник
 tile.pyrotech.stash_stone.name=Прочный тайник
 tile.pyrotech.crate.name=Ящик
 tile.pyrotech.crate_stone.name=Прочный ящик
-tile.pyrotech.wood_rack.name=Деревянный стеллаж
+tile.pyrotech.wood_rack.name=Деревянная стойка
 tile.pyrotech.tank.stone.name=Каменный резервуар
-tile.pyrotech.tank.brick.name=Прочный резервуар
-tile.pyrotech.bag_simple.name=Сумка для камней
-tile.pyrotech.bag_durable.name=Прочная сумка для камней
-tile.pyrotech.faucet_stone.name=Stone Faucet
-tile.pyrotech.faucet_brick.name=Refractory Faucet
+tile.pyrotech.tank.brick.name=Огнеупорный резервуар
+tile.pyrotech.bag_simple.name=Рюкзак для камней
+tile.pyrotech.bag_durable.name=Прочный рюкзак для камней
+tile.pyrotech.faucet_stone.name=Каменный слив
+tile.pyrotech.faucet_brick.name=Огнеупорный слив
 
 #------------------------------------------------------------------------------
-# Module: Tech - Basic
+# Модуль: Технология - Основное
 #------------------------------------------------------------------------------
 
 item.pyrotech.tinder.name=Трут
 
-tile.pyrotech.kiln_pit.name=Грунтовая печь
+tile.pyrotech.kiln_pit.name=Яма для обжига
 tile.pyrotech.campfire.name=Костёр
-tile.pyrotech.drying_rack.crude.name=Сырой сушильный стеллаж
-tile.pyrotech.drying_rack.normal.name=Сушильный стеллаж
+tile.pyrotech.drying_rack.crude.name=Сырая стойка для сушки
+tile.pyrotech.drying_rack.normal.name=Стойка для сушки
 tile.pyrotech.chopping_block.name=Плаха
 tile.pyrotech.anvil_granite.name=Гранитная наковальня
-tile.pyrotech.anvil_iron_plated.name=Железная наковальня
+tile.pyrotech.anvil_iron_plated.name=Покрытая железом наковальня
 tile.pyrotech.worktable.name=Рабочий стол
 tile.pyrotech.worktable_stone.name=Каменный рабочий стол
-tile.pyrotech.compacting_bin.name=Уплотнительный закром
+tile.pyrotech.compacting_bin.name=Контейнер для уплотнения
 tile.pyrotech.soaking_pot.name=Горшок для замачивания
 
 #------------------------------------------------------------------------------
-# Module: Tech - Bloomery
+# Модуль: Технология - Сыродутные печи
 #------------------------------------------------------------------------------
 
 item.pyrotech.slag.name=Шлак
 item.pyrotech.slag.unique.name=Шлак: %s
-item.pyrotech.tongs.flint.name=Кремниевые клещи
-item.pyrotech.tongs.bone.name=Костяные клещи
-item.pyrotech.tongs.stone.name=Каменные клещи
-item.pyrotech.tongs.iron.name=Железные клещи
-item.pyrotech.tongs.gold.name=Золотые клещи
-item.pyrotech.tongs.diamond.name=Алмазные клещи
-item.pyrotech.tongs.obsidian.name=Обсидиановые клещи
+item.pyrotech.tongs.flint.name=Кремниевые щипцы
+item.pyrotech.tongs.bone.name=Костяные щипцы
+item.pyrotech.tongs.stone.name=Каменные щипцы
+item.pyrotech.tongs.iron.name=Железные щипцы
+item.pyrotech.tongs.gold.name=Золотые щипцы
+item.pyrotech.tongs.diamond.name=Алмазные щипцы
+item.pyrotech.tongs.obsidian.name=Обсидиановые щипцы
 
 tile.pyrotech.bloom.name=Сырьё
 tile.pyrotech.bloom.unique.name=%s сырья
 tile.pyrotech.bloomery.name=Сыродутная печь
-tile.pyrotech.wither_forge.name=Адская печь
+tile.pyrotech.wither_forge.name=Иссущающая кузница
 tile.pyrotech.pile_slag.name=Куча шлака
 tile.pyrotech.pile_slag.unique.name=Куча шлака: %s
 
 #------------------------------------------------------------------------------
-# Module: Tech - Machine
+# Модуль: Технология - Машина
 #------------------------------------------------------------------------------
 
-item.pyrotech.sawmill.blade.stone.name=Каменное лезвие лесопилки
-item.pyrotech.sawmill.blade.flint.name=Кремневое лезвие лесопилки
-item.pyrotech.sawmill.blade.bone.name=Костяное лезвие лесопилки
-item.pyrotech.sawmill.blade.iron.name=Железное лезвие лесопилки
-item.pyrotech.sawmill.blade.gold.name=Золотое лезвие лесопилки
-item.pyrotech.sawmill.blade.diamond.name=Алмазное лезвие лесопилки
-item.pyrotech.sawmill.blade.obsidian.name=обсидиановое лезвие лесопилки
+item.pyrotech.sawmill.blade.stone.name=Каменное лезвие пилорамы
+item.pyrotech.sawmill.blade.flint.name=Кремниевое лезвие пилорамы
+item.pyrotech.sawmill.blade.bone.name=Костяное лезвие пилорамы
+item.pyrotech.sawmill.blade.iron.name=Железное лезвие пилорамы
+item.pyrotech.sawmill.blade.gold.name=Золотое лезвие пилорамы
+item.pyrotech.sawmill.blade.diamond.name=Алмазное лезвие пилорамы
+item.pyrotech.sawmill.blade.obsidian.name=Обсидиановое лезвие пилорамы
 
 item.pyrotech.cog.wood.name=Деревянная шестерёнка
 item.pyrotech.cog.stone.name=Каменная шестерёнка
-item.pyrotech.cog.flint.name=Кремневая шестерёнка
+item.pyrotech.cog.flint.name=Кремниевая шестерёнка
 item.pyrotech.cog.bone.name=Костяная шестерёнка
 item.pyrotech.cog.iron.name=Железная шестерёнка
 item.pyrotech.cog.gold.name=Золотая шестерёнка
 item.pyrotech.cog.diamond.name=Алмазная шестерёнка
-item.pyrotech.cog.obsidian.name=обсидиановая шестерёнка
+item.pyrotech.cog.obsidian.name=Обсидиановая шестерёнка
 
 tile.pyrotech.stone_kiln.name=Каменная печь для обжига
 tile.pyrotech.stone_oven.name=Каменная духовка
-tile.pyrotech.stone_sawmill.name=Каменная лесопилка
+tile.pyrotech.stone_sawmill.name=Каменная пилорама
 tile.pyrotech.stone_crucible.name=Каменный тигель
 
 tile.pyrotech.brick_kiln.name=Огнеупорная печь для обжига
 tile.pyrotech.brick_oven.name=Огнеупорная духовка
-tile.pyrotech.brick_sawmill.name=Огнеупорная лесопилка
+tile.pyrotech.brick_sawmill.name=Огнеупорная пилорама
 tile.pyrotech.brick_crucible.name=Огнеупорный тигель
 
 tile.pyrotech.mechanical_hopper.name=Механическая воронка
-tile.pyrotech.mechanical_compacting_bin.name=Механический уплотнитель
-tile.pyrotech.mechanical_mulch_spreader.name=Механический мульчер
+tile.pyrotech.mechanical_compacting_bin.name=Механический компрессор
+tile.pyrotech.mechanical_mulch_spreader.name=Механический удобритель
 tile.pyrotech.bellows.name=Меха
 tile.pyrotech.mechanical_bellows.name=Механические меха
 
 #------------------------------------------------------------------------------
-# Module: Tech - Refractory
+# Модуль: Технология - Огнеупорные
 #------------------------------------------------------------------------------
 
-fluid.wood_tar=Древесная смола
-tile.fluid.wood_tar.name=Древесная смола
-fluid.coal_tar=Каменноугольная смола
-tile.fluid.coal_tar.name=Каменноугольная смола
+fluid.wood_tar=Жидкость: Древесная смола
+tile.fluid.wood_tar.name=Жидкость: Древесная смола
+fluid.coal_tar=Жидкость: Каменноугольная смола
+tile.fluid.coal_tar.name=Жидкость: Каменноугольная смола
 
 tile.pyrotech.tar_collector.stone.name=Каменный сборщик
 tile.pyrotech.tar_collector.brick.name=Огнеупорный сборщик
-tile.pyrotech.tar_drain.stone.name=Каменный дренаж
-tile.pyrotech.tar_drain.brick.name=Огнеупорный дренаж
+tile.pyrotech.tar_drain.stone.name=Каменный водосток
+tile.pyrotech.tar_drain.brick.name=Огнеупорный водосток
 
 #------------------------------------------------------------------------------
-# Module: Tool
+# Модуль: Инструмент
 #------------------------------------------------------------------------------
 
-item.pyrotech.crude.axe.name=Примитивный топор
-item.pyrotech.crude.hoe.name=Примитивная мотыга
-item.pyrotech.crude.pickaxe.name=Примитивная кирка
-item.pyrotech.crude.shovel.name=Примитивная лопата
-item.pyrotech.crude.fishing.rod.name=Примитивная удочка
+item.pyrotech.crude.axe.name=Сырой топор
+item.pyrotech.crude.hoe.name=Сырая мотыга
+item.pyrotech.crude.pickaxe.name=Сырая кирка
+item.pyrotech.crude.shovel.name=Сырая лопата
+item.pyrotech.crude.fishing.rod.name=Сырая удочка
 
 item.pyrotech.bone.axe.name=Костяной топор
 item.pyrotech.bone.hoe.name=Костяная мотыга
@@ -154,29 +154,29 @@ item.pyrotech.bone.pickaxe.name=Костяная кирка
 item.pyrotech.bone.shovel.name=Костяная лопата
 item.pyrotech.bone.sword.name=Костяной меч
 
-item.pyrotech.flint.axe.name=Кремневый топор
-item.pyrotech.flint.hoe.name=Кремневая мотыга
-item.pyrotech.flint.pickaxe.name=Кремневая кирка
-item.pyrotech.flint.shovel.name=Кремневая лопата
-item.pyrotech.flint.sword.name=Кремневый меч
+item.pyrotech.flint.axe.name=Кремниевый топор
+item.pyrotech.flint.hoe.name=Кремниевая мотыга
+item.pyrotech.flint.pickaxe.name=Кремниевая кирка
+item.pyrotech.flint.shovel.name=Кремниевая лопата
+item.pyrotech.flint.sword.name=Кремниевый меч
 
-item.pyrotech.obsidian.axe.name=обсидиановый топор
-item.pyrotech.obsidian.hoe.name=обсидиановая мотыга
-item.pyrotech.obsidian.pickaxe.name=обсидиановая кирка
-item.pyrotech.obsidian.shovel.name=обсидиановая лопата
-item.pyrotech.obsidian.sword.name=обсидиановый меч
+item.pyrotech.obsidian.axe.name=Обсидиановый топор
+item.pyrotech.obsidian.hoe.name=Обсидиановая мотыга
+item.pyrotech.obsidian.pickaxe.name=Обсидиановая кирка
+item.pyrotech.obsidian.shovel.name=Обсидиановая лопата
+item.pyrotech.obsidian.sword.name=Обсидиановая меч
 
-item.pyrotech.unfired.clay.shears.name=Необожжённые глиняные ножницы
+item.pyrotech.unfired.clay.shears.name=Обожённые глиняные ножницы
 item.pyrotech.clay.shears.name=Глиняные ножницы
 item.pyrotech.stone.shears.name=Каменные ножницы
 item.pyrotech.bone.shears.name=Костяные ножницы
-item.pyrotech.flint.shears.name=Кремневые ножницы
+item.pyrotech.flint.shears.name=Кремниевые ножницы
 item.pyrotech.gold.shears.name=Золотые ножницы
 item.pyrotech.diamond.shears.name=Алмазные ножницы
-item.pyrotech.obsidian.shears.name=обсидиановые ножницы
+item.pyrotech.obsidian.shears.name=Обсидиановые ножницы
 
 #------------------------------------------------------------------------------
-# Module: Core
+# Модуль: Ядро
 #------------------------------------------------------------------------------
 
 fluid.liquid_clay=Жидкая глина
@@ -185,52 +185,52 @@ tile.fluid.liquid_clay.name=Жидкая глина
 item.pyrotech.straw.name=Солома
 item.pyrotech.coal.coke.name=Коксовый уголь
 item.pyrotech.pit.ash.name=Пепел
-item.pyrotech.flint.clay.ball.name=Кремневая глина
+item.pyrotech.flint.clay.ball.name=Кремниевая глина
 item.pyrotech.refractory.clay.ball.name=Огнеупорная глина
-item.pyrotech.refractory.clay.lump.name=Lump of Refractory Clay
-item.pyrotech.unfired.refractory.brick.name=Необожжённый огнеупорный кирпич
-item.pyrotech.unfired.brick.name=Необожжённый глиняный кирпич
+item.pyrotech.refractory.clay.lump.name=Комок огнеупорной глины
+item.pyrotech.unfired.refractory.brick.name=Обожённо-огнеупорный кирпич
+item.pyrotech.unfired.brick.name=Обожённо-глиняный кирпич
 item.pyrotech.refractory.brick.name=Огнеупорный кирпич
-item.pyrotech.pottery.fragments.name=Керамические фрагменты
-item.pyrotech.pottery.shard.name=Керамический осколок
+item.pyrotech.pottery.fragments.name=Фрагменты керамики
+item.pyrotech.pottery.shard.name=Керамический черепок
 item.pyrotech.refractory.door.name=Огнеупорная дверь
 item.pyrotech.stone.door.name=Каменная дверь
-item.pyrotech.quicklime.name=Негашеная известь
-item.pyrotech.slaked.lime.name=Гашеная известь
-item.pyrotech.flint.shard.name=Кремневый осколок
+item.pyrotech.quicklime.name=Известь
+item.pyrotech.slaked.lime.name=Негашеная известь
+item.pyrotech.flint.shard.name=Кремниевый осколок
 item.pyrotech.bone.shard.name=Костяной осколок
-item.pyrotech.plant.fibers.name=Растительное волокно
-item.pyrotech.plant.fibers.dried.name=Высушенное растительное волокно
+item.pyrotech.plant.fibers.name=Растительные волокна
+item.pyrotech.plant.fibers.dried.name=Высушенные растительные волокна
 item.pyrotech.twine.name=Верёвка
-item.pyrotech.charcoal.flakes.name=Угольная стружка
+item.pyrotech.charcoal.flakes.name=Стружки древесного угля
 item.pyrotech.brick.stone.name=Кирпичная кладка
-item.pyrotech.clay.lump.name=Глиняный кусок
+item.pyrotech.clay.lump.name=Комок глины
 item.pyrotech.iron.shard.name=Железный осколок
 item.pyrotech.diamond.shard.name=Алмазный осколок
 item.pyrotech.board.name=Доска
 item.pyrotech.coal.pieces.name=Кусочки угля
-item.pyrotech.mulch.name=Калийная мульча
-item.pyrotech.board.tarred.name=Пропитанная доска
-item.pyrotech.pulp.name=Бумажная масса
-item.pyrotech.twine.durable.name=Прочная верёвка
+item.pyrotech.mulch.name=Поташный грунт
+item.pyrotech.board.tarred.name=Смолянистая доска
+item.pyrotech.pulp.name=Целлюлоза
+item.pyrotech.twine.durable.name=Высушенная верёвка
 item.pyrotech.stick.stone.name=Каменный стержень
-item.pyrotech.burned.food.name=Сожжённая еда
+item.pyrotech.burned.food.name=Сгоревшая еда
 item.pyrotech.dust.limestone.name=Измельчённый известняк
 item.pyrotech.kindling.name=Хворост
-item.pyrotech.kindling.tarred.name=Пропитанный хворост
+item.pyrotech.kindling.tarred.name=Смолянистый хворост
 item.pyrotech.dust.flint.name=Измельчённый кремень
 item.pyrotech.glass.shard.name=Стеклянный осколок
 item.pyrotech.obsidian.shard.name=Обсидиановый осколок
-item.pyrotech.gold.shard.name=Золотой осколок
+item.pyrotech.gold.shard.name=Осколок золота
 
 item.pyrotech.apple.baked.name=Запечённое яблоко
-item.pyrotech.carrot.roasted.name=Обжаренная морковь
-item.pyrotech.egg.roasted.name=Обжаренные яйца
-item.pyrotech.mushroom.brown.roasted.name=Обжаренные коричневые грибы
-item.pyrotech.mushroom.red.roasted.name=Обжаренные красные грибы
-item.pyrotech.beetroot.roasted.name=Обжаренная свекла
+item.pyrotech.carrot.roasted.name=Жаренная морковка
+item.pyrotech.egg.roasted.name=Жаренное яйцо
+item.pyrotech.mushroom.brown.roasted.name=Жаренный коричневый гриб
+item.pyrotech.mushroom.red.roasted.name=Жаренный красный гриб
+item.pyrotech.beetroot.roasted.name=Жаренная свёкла
 
-item.pyrotech.crude.hammer.name=Примитивный молот
+item.pyrotech.crude.hammer.name=Сырой молот
 item.pyrotech.stone.hammer.name=Каменный молот
 item.pyrotech.flint.hammer.name=Кремниевый молот
 item.pyrotech.bone.hammer.name=Костяной молот
@@ -239,109 +239,109 @@ item.pyrotech.gold.hammer.name=Золотой молот
 item.pyrotech.diamond.hammer.name=Алмазный молот
 item.pyrotech.obsidian.hammer.name=Обсидиановый молот
 
-tile.pyrotech.thatch.name=Рулон соломы
+tile.pyrotech.thatch.name=Соломенный тюк
 tile.pyrotech.coal_coke_block.name=Блок коксового угля
-tile.pyrotech.log_pile.name=Куча бревен
+tile.pyrotech.log_pile.name=Стопка брёвен
 tile.pyrotech.refractory_brick_block.name=Огнеупорный блок
 tile.pyrotech.limestone.name=Известняк
 tile.pyrotech.refractory_glass.name=Огнеупорное стекло
 tile.pyrotech.slag_glass.name=Шлаковое стекло
 tile.pyrotech.fossil_ore.name=Ископаемая руда
 tile.pyrotech.dense_coal_ore.name=Плотная угольная руда
-tile.pyrotech.dense_nether_coal_ore.name=Плотный адский уголь
+tile.pyrotech.dense_nether_coal_ore.name=Плотный незеровский уголь
 tile.pyrotech.cobblestone.andesite.name=Мощеный андезит
 tile.pyrotech.cobblestone.diorite.name=Мощеный диорит
 tile.pyrotech.cobblestone.granite.name=Мощеный гранит
 tile.pyrotech.cobblestone.limestone.name=Мощеный известняк
 tile.pyrotech.stone_bricks.name=Кирпичная кладка
-tile.pyrotech.farmland_mulched.name=Мульчированная пашня
-tile.pyrotech.planks_tarred.name=Пропитанные доски
+tile.pyrotech.farmland_mulched.name=Удобренная сельскохозяйственная земля
+tile.pyrotech.planks_tarred.name=Смолянистые доски
 tile.pyrotech.pile_wood_chips.name=Опилки
 tile.pyrotech.pile_ash.name=Куча пепла
-tile.pyrotech.wool_tarred.name=Пропитанная шерсть
+tile.pyrotech.wool_tarred.name=Смолянистая шерсть
 tile.pyrotech.charcoal_block.name=Блок древесного угля
-tile.pyrotech.wood_tar_block.name=Рулон смолы
+tile.pyrotech.wood_tar_block.name=Тюк смолы
 tile.pyrotech.living_tar.name=Живая смола
 
-tile.pyrotech.rock_stone.name=Каменный булыжник
-tile.pyrotech.rock_andesite.name=Андезитовый булыжник
-tile.pyrotech.rock_diorite.name=Диоритовый булыжник
-tile.pyrotech.rock_granite.name=Гранитный булыжник
-tile.pyrotech.rock_dirt.name=Комок земли
-tile.pyrotech.rock_sand.name=Куча песка
-tile.pyrotech.rock_sandstone.name=Песчанниковый камень
+tile.pyrotech.rock_stone.name=Камешек
+tile.pyrotech.rock_andesite.name=Андезитовый камешек
+tile.pyrotech.rock_diorite.name=Диоритовый камешек
+tile.pyrotech.rock_granite.name=Гранитовый камешек
+tile.pyrotech.rock_dirt.name=Комок грязи
+tile.pyrotech.rock_sand.name=Комок песка
+tile.pyrotech.rock_sandstone.name=Песчаный камешек
 tile.pyrotech.rock_grass.name=Комок травы
 tile.pyrotech.rock_wood_chips.name=Куча опилок
-tile.pyrotech.rock_limestone.name=Известняковый камень
+tile.pyrotech.rock_limestone.name=Известняковый камешек
 tile.pyrotech.rock_sand_red.name=Куча красного песка
 
 #------------------------------------------------------------------------------
-# Tooltips
+# Подсказки
 #------------------------------------------------------------------------------
 
-gui.pyrotech.tooltip.machine.input.capacity.item=Емкость выхода: %s%d
-gui.pyrotech.tooltip.machine.output.capacity.fluid=Емкость входа: %s%d mB
-gui.pyrotech.tooltip.machine.fuel.capacity.item=Емкость топлива: %s%d
+gui.pyrotech.tooltip.machine.input.capacity.item=Ёмкость входа: %s%d
+gui.pyrotech.tooltip.machine.output.capacity.fluid=Ёмкость выхода: %s%d мБ
+gui.pyrotech.tooltip.machine.fuel.capacity.item=Объём топлива: %s%d
 gui.pyrotech.tooltip.machine.fuel.modifier=Модификатор топлива: %s%d%%
-gui.pyrotech.tooltip.machine.fuel.keep.heat=Затухает при завершении
+gui.pyrotech.tooltip.machine.fuel.keep.heat=Самозатухает при завершении рецепта
 
-gui.pyrotech.tooltip.extended.shift=Нажмите %s<SHIFT>%s для информации
+gui.pyrotech.tooltip.extended.shift=Удерживайте %s<SHIFT>%s для информации
 gui.pyrotech.tooltip.uses=Использований: %d / %d
 gui.pyrotech.tooltip.uses.full=Использований: %d
 gui.pyrotech.tooltip.durability=Прочность: %d / %d
 gui.pyrotech.tooltip.durability.full=Прочность: %d
-gui.pyrotech.tooltip.durability.indestructible=Indestructible
-gui.pyrotech.tooltip.hot.fluids.true=Может держать горячие жидкости
-gui.pyrotech.tooltip.hot.fluids.false=Не выдерживает горячие жидкости
+gui.pyrotech.tooltip.durability.indestructible=Неразрушимый
+gui.pyrotech.tooltip.hot.fluids.true=Может удерживать горячие жидкости
+gui.pyrotech.tooltip.hot.fluids.false=Ломается с горячими жидкостями
 gui.pyrotech.tooltip.burn.time=Время горения: %s
-gui.pyrotech.tooltip.fluid.capacity=Емкость: %d mB
+gui.pyrotech.tooltip.fluid.capacity=Ёмкость: %d мБ
 gui.pyrotech.tooltip.fluid=%s: %d / %d
-gui.pyrotech.tooltip.fluid.transfer.rate=Rate: %d mB/t
-gui.pyrotech.tooltip.fluid.transfer.limit=Shutoff: %d mB
-gui.pyrotech.tooltip.item.capacity.empty=Емкость: %d предметов
-gui.pyrotech.tooltip.item.capacity=Емкость: %d / %d предметов
-gui.pyrotech.tooltip.drain=Водостоки коллектора в диапазоне %dx%d с передней части блока
+gui.pyrotech.tooltip.fluid.transfer.rate=Темп: %d мБ/т
+gui.pyrotech.tooltip.fluid.transfer.limit=Ограничение до: %d мБ
+gui.pyrotech.tooltip.item.capacity.empty=Ёмкость: %d предметов
+gui.pyrotech.tooltip.item.capacity=Ёмкость: %d / %d предметов
+gui.pyrotech.tooltip.drain=Истощает сборщики в %dх%d радиусе перед блоком
 gui.pyrotech.tooltip.refractory.valid=Допустимо для огнеупорной структуры
-gui.pyrotech.tooltip.cog.hopper=%s: %sx%d
+gui.pyrotech.tooltip.cog.hopper=%s: %sх%d
 gui.pyrotech.tooltip.cog.compactor=%s: %s%d%%
-gui.pyrotech.tooltip.cog.spreader=%s: %sx%d в %dx%d
-gui.pyrotech.tooltip.contents.retain.true=Сохраняет содержимое при разрушении
-gui.pyrotech.tooltip.contents.retain.false=Уничтожает содержимое при разрушении
+gui.pyrotech.tooltip.cog.spreader=%s: %sх%d в %dх%d
+gui.pyrotech.tooltip.contents.retain.true=Сохраняет содержимое, если сломан
+gui.pyrotech.tooltip.contents.retain.false=Уничтожает содержимое, если сломан
 gui.pyrotech.tooltip.burn.time.efficiency=Эффективность:
 gui.pyrotech.tooltip.burn.time.modifier=%s: %s%d%%
 gui.pyrotech.tooltip.torch.burns.true=Сгорает со временем
-gui.pyrotech.tooltip.torch.burns.false=Длиться вечно
+gui.pyrotech.tooltip.torch.burns.false=Это навсегда.
 gui.pyrotech.tooltip.rain.extinguishes.true=Тухнет под дождём
-gui.pyrotech.tooltip.rain.extinguishes.false=Остается гореть под дождем
+gui.pyrotech.tooltip.rain.extinguishes.false=Остаётся зажжённым под дождём
 
 #------------------------------------------------------------------------------
 # Waila
 #------------------------------------------------------------------------------
 
 gui.pyrotech.waila.quantity=%s: %d
-gui.pyrotech.waila.capacity=Емкость: %d из %d
+gui.pyrotech.waila.capacity=Ёмкость: %d из %d
 gui.pyrotech.waila.recipe=Рецепт: %s
 gui.pyrotech.waila.recipe.synchronous=Рецепт: %s (%s)
 gui.pyrotech.waila.cog=Шестерёнка: %s
-gui.pyrotech.waila.tank.fluid=%s: %d из %d mB
-gui.pyrotech.waila.tank.empty=Пусто: %d из %d mB
+gui.pyrotech.waila.tank.fluid=%s: %d из %d мБ
+gui.pyrotech.waila.tank.empty=Пусто: %d из %d мБ
 gui.pyrotech.waila.fuel=Топливо: %s%s
-gui.pyrotech.waila.campfire.fuel=Бревно: %d из %d
+gui.pyrotech.waila.campfire.fuel=Брёвна: %d из %d
 gui.pyrotech.waila.ash=Пепел: %d из %d
 gui.pyrotech.waila.burn.time=Время горения: %s
 gui.pyrotech.waila.sawmill.blade=Лезвие: %s
 gui.pyrotech.waila.speed=Скорость: %d%%
-gui.pyrotech.waila.bloom.hammered=Ковка: %d%%
+gui.pyrotech.waila.bloom.hammered=Сковка: %d%%
 gui.pyrotech.waila.bloom.integrity=Целостность: %d%%
 gui.pyrotech.waila.bloom.hammer.power=Сила молота: %d%%
-gui.pyrotech.waila.bloomery.fuel=Топливо: %d of %d
-gui.pyrotech.waila.bloomery.airflow=Поток воздуха: %d%%
+gui.pyrotech.waila.bloomery.fuel=Топливао: %d из %d
+gui.pyrotech.waila.bloomery.airflow=Воздушный поток: %d%%
 gui.pyrotech.waila.anvil.recipe.type=Тип: %s
 gui.pyrotech.waila.anvil.recipe.type.hammer=Молот
 gui.pyrotech.waila.anvil.recipe.type.pickaxe=Кирка
 gui.pyrotech.waila.worktable.condition=Состояние: %s%s
 gui.pyrotech.waila.worktable.condition.good=Хороший
-gui.pyrotech.waila.worktable.condition.fair=Красивый
+gui.pyrotech.waila.worktable.condition.fair=Прекрасный
 gui.pyrotech.waila.worktable.condition.used=Используемый
 gui.pyrotech.waila.worktable.condition.fractured=Сломанный
 
@@ -351,124 +351,124 @@ gui.pyrotech.waila.worktable.condition.fractured=Сломанный
 
 gui.pyrotech.jei.failure=Провал: %d%%
 
-gui.pyrotech.jei.category.kiln.brick=Огнеупорная печь для обжига
+gui.pyrotech.jei.category.kiln.brick=Огнеупорная яма для обжига
 gui.pyrotech.jei.category.crucible.brick=Огнеупорный тигель
-gui.pyrotech.jei.category.sawmill.brick=Огнеупорная лесопилка
+gui.pyrotech.jei.category.sawmill.brick=Огнеупорная пилорама
 gui.pyrotech.jei.category.oven.brick=Огнеупорная духовка
 
-gui.pyrotech.jei.category.kiln.stone=Каменная печь для обжига
+gui.pyrotech.jei.category.kiln.stone=Каменная яма для обжига
 gui.pyrotech.jei.category.crucible.stone=Каменный тигель
-gui.pyrotech.jei.category.sawmill.stone=Каменная лесопилка
+gui.pyrotech.jei.category.sawmill.stone=Каменная пилорама
 gui.pyrotech.jei.category.oven.stone=Каменная духовка
 
-gui.pyrotech.jei.category.mechanical.compacting.bin=Механический уплотнитель
+gui.pyrotech.jei.category.mechanical.compacting.bin=Механический компрессор
 
-gui.pyrotech.jei.category.kiln.pit=Грунтовый настил
-gui.pyrotech.jei.category.burn.pit=Горение
+gui.pyrotech.jei.category.kiln.pit=Яма обжига
+gui.pyrotech.jei.category.burn.pit=Горящая яма
 gui.pyrotech.jei.category.burn.refractory=Огнеупорное горение
-gui.pyrotech.jei.category.drying.rack=Сушка
+gui.pyrotech.jei.category.drying.rack=Высушивание
 gui.pyrotech.jei.category.chopping=Рубка
 gui.pyrotech.jei.category.anvil.granite=Гранитная наковальня
-gui.pyrotech.jei.category.anvil.ironclad=Железная наковальня
-gui.pyrotech.jei.category.compacting.bin=Уплотнительный закром
+gui.pyrotech.jei.category.anvil.ironclad=Покрытая железом наковальня
+gui.pyrotech.jei.category.compacting.bin=Контейнер для уплотнения
 gui.pyrotech.jei.category.campfire=Костёр
-gui.pyrotech.jei.category.worktable=Верстак
+gui.pyrotech.jei.category.worktable=Рабочий стол
 gui.pyrotech.jei.category.soaking.pot=Горшок для замачивания
 
 gui.pyrotech.jei.category.bloomery=Сыродутная печь
-gui.pyrotech.jei.category.wither.forge=Адская печь
+gui.pyrotech.jei.category.wither.forge=Иссушающая кузница
 
-gui.pyrotech.jei.info.campfire=Чтобы развести костер, положите трут на землю, добавьте поленья и зажгите его.
-gui.pyrotech.jei.info.pit.kiln=Чтобы использовать грунтовую печь, сначала выройте яму в земле и поместите грунтовую печь внутрь. Затем поместите внутрь предмет, который вы хотите сжечь в печи, поместите соломенный блок и поместите три бревна сверху. Наконец, зажгите верхнюю часть печи и обязательно держите ее сухой, пока она горит!
-gui.pyrotech.jei.info.burn=Чтобы выполнить сжигание ямы, поместите блоки для сжигания в яму и убедитесь, что все стороны покрыты твердыми, негорючими блоками, оставляя одно отверстие открытым. Подожгите блоки и быстро закройте отверстие. Все содержимое должно быть покрыто полными, негорючими блоками, чтобы добиться успеха. Когда содержимое перестает испускать дым, процесс завершен. Чтобы собрать жидкость из поджога, поместите сборщики под блоками.
-gui.pyrotech.jei.info.refractory=Огнеупорное горение подобно горению ямы за исключением того, что горящие блоки должны быть полностью покрыты действительными огнеупорными блоками. Чтобы собрать жидкость из поджога, поместите действующий огнеупорный сборщик под блоками.
+gui.pyrotech.jei.info.campfire=Чтобы сделать Костёр, поместите Трут на землю, добавьте брёвен, и подожгите его.
+gui.pyrotech.jei.info.pit.kiln=Чтобы использовать Яму для обжига, сначала выкопайте дыру в земле и поместите Яму для обжига внутрь. Затем, поместите предмет который Вы хотите поджечь в яму для обжига, поместите a соломенный блок, и поместите 3 бревна на вверх. Наконец, зажгите верхнюю часть печи и убедитесь, что она сухая, пока горит!
+gui.pyrotech.jei.info.burn=Чтобы осуществить горение ямы, разместите блоки в горящую яму и убедитесь, что все стороны покрыты твёрдыми, невоспламеняющимися блоками, оставляя открытым одно отверстие. Зажгите блоки и быстро закройте отверстие. Всё содержимое должно быть покрыто полными невоспламеняющимися блоками. Когда содержимое прекратит дымиться, горение закончено. Чтобы собрать жидкость из обжога, поместите Сборщики под блоки.
+gui.pyrotech.jei.info.refractory=Огнеупорное горение - схожее горению ямы, за исключением того, что горящие блоки должны быть полностью покрыты допустимыми огнеупорными блоками. Чтобы собрать жидкость из обжога, разметстите допустимые огнеупорные сборщики под блоки.
 
 #------------------------------------------------------------------------------
-# Module: Plugin - Patchouli
+# Модуль: Плагин - Patchouli
 #------------------------------------------------------------------------------
 
 item.pyrotech.book.name=Пиротехническая эзотерика
-gui.pyrotech.book.landing_text=Добро пожаловать в официальное, санкционированное руководство по выживанию в пустыне, начиная пожары, а не потушить их.$(p)на этих страницах вы узнаете, как выжить, собраться, адаптироваться, внедрять инновации, ускоряться и расцветать в своей новой роли добровольца.
+gui.pyrotech.book.landing_text=Добро пожаловать в официальный, ДПО (Добровольная пожарная охрана) - санкционированный путеводитель по выживанию в дикой природе, разводя костёр, нежели потушить их, переведено вк Модовестник.$(p)Эти страницы проинструктируют Вас, как выживать, собирать, адаптироваться, изобретать, ускорять, и расцветать в Вашей новой роли в качестве Волонтёра.
 gui.pyrotech.book.subtitle=Выживание при пожаре
 
 #------------------------------------------------------------------------------
-# Advancements
+# Достижения
 #------------------------------------------------------------------------------
 
 pyrotech.desc=Выживание при пожаре!
 
-advancement.pyrotech.dried.plant.fibers=Фибиозный поиск пищи
-advancement.pyrotech.dried.plant.fibers.desc=Сбор высушенных растительных волокон 
-advancement.pyrotech.flint.and.tinder=Каменный век
+advancement.pyrotech.dried.plant.fibers=Волокнистое собирательство
+advancement.pyrotech.dried.plant.fibers.desc=Соберите сухие растительные волокна
+advancement.pyrotech.flint.and.tinder=Шипение каменного века
 advancement.pyrotech.flint.and.tinder.desc=Просто кремень, камень, трут
-advancement.pyrotech.roasted.food=Жареные Закуски
-advancement.pyrotech.roasted.food.desc=Ешьте каждый из шести жареных продуктов
-advancement.pyrotech.tools.crude=Примитивная кирка
-advancement.pyrotech.tools.crude.desc=Создание примитивной кирки
-advancement.pyrotech.chopping.block=Чоп, Чоп!
-advancement.pyrotech.chopping.block.desc=Создание плахи
-advancement.pyrotech.worktable=Творческое создание
-advancement.pyrotech.worktable.desc=Создание верстака
-advancement.pyrotech.pickaxe=Улучшение, Несомненно
-advancement.pyrotech.pickaxe.desc=Создание кремневой или костяной кирки
-advancement.pyrotech.cobblestone=Накопление булыжника
-advancement.pyrotech.cobblestone.desc=Копай или создавай булыжник
-advancement.pyrotech.stone=Крепкий камень
-advancement.pyrotech.stone.desc=Огонь и булыжник в камень
-advancement.pyrotech.pit.kiln=Практические Ямы
-advancement.pyrotech.pit.kiln.desc=Создание грунтовой печи
-advancement.pyrotech.straw=Только солома
-advancement.pyrotech.straw.desc=Создание пучков соломы
-advancement.pyrotech.stone.slab=Просто Плиты
-advancement.pyrotech.stone.slab.desc=Создание каменной плиты
-advancement.pyrotech.anvil.granite=С Благодарностью, Гранит
-advancement.pyrotech.anvil.granite.desc=Создание гранитной наковальни
-advancement.pyrotech.stone.brick=Скромная Кладка
-advancement.pyrotech.stone.brick.desc=Используйте гранитную наковальню для создания кирпичной кладки
-advancement.pyrotech.bellows=Бушующие Мехи
-advancement.pyrotech.bellows.desc=Создание мехов
-advancement.pyrotech.mechanical.bellows=Автоматическая подача воздуха
-advancement.pyrotech.mechanical.bellows.desc=Создание механических мехов
+advancement.pyrotech.roasted.food=Жаренные закуски
+advancement.pyrotech.roasted.food.desc=Съесть каждую из шести жареных продуктов
+advancement.pyrotech.tools.crude=Первобытная кирка
+advancement.pyrotech.tools.crude.desc=Создайте сырую кирку
+advancement.pyrotech.chopping.block=Рубить, рубить!
+advancement.pyrotech.chopping.block.desc=Создайте плаху
+advancement.pyrotech.worktable=Креативное создание
+advancement.pyrotech.worktable.desc=Создайте рабочий стол
+advancement.pyrotech.pickaxe=Улучшенная, несомненная
+advancement.pyrotech.pickaxe.desc=Создайте кремниевую или костяную кирку
+advancement.pyrotech.cobblestone=Кумуляция камешка
+advancement.pyrotech.cobblestone.desc=Добудьте или создайте Булыжник
+advancement.pyrotech.stone=Весьма существенный камень
+advancement.pyrotech.stone.desc=Подожгите булыжник в камень
+advancement.pyrotech.pit.kiln=Практичная яма
+advancement.pyrotech.pit.kiln.desc=Создайте яму для обжига
+advancement.pyrotech.straw=Строго соломенный
+advancement.pyrotech.straw.desc=Создайте соломенный тюк
+advancement.pyrotech.stone.slab=Просто плиты
+advancement.pyrotech.stone.slab.desc=Создайте каменную плиту
+advancement.pyrotech.anvil.granite=С признательностью, Гранит
+advancement.pyrotech.anvil.granite.desc=Создайте гранитную наковальню
+advancement.pyrotech.stone.brick=Скромная кладка
+advancement.pyrotech.stone.brick.desc=Используйте гранитную наковальню для создания Кирпичной кладки
+advancement.pyrotech.bellows=Шумные меха
+advancement.pyrotech.bellows.desc=Создайте меха
+advancement.pyrotech.mechanical.bellows=Автоматизированный воздушный поток
+advancement.pyrotech.mechanical.bellows.desc=Создайте механические меха
 advancement.pyrotech.mechanical.compacting.bin=Конструктивное сжатие
-advancement.pyrotech.mechanical.compacting.bin.desc=Создание механического уплотнителя
+advancement.pyrotech.mechanical.compacting.bin.desc=Создайте механический компрессор
 advancement.pyrotech.mechanical.hopper=Трудолюбивая воронка
-advancement.pyrotech.mechanical.hopper.desc=Создание механической воронки
-advancement.pyrotech.charcoal=Сжатое топливо
-advancement.pyrotech.charcoal.desc=Выполнить сжигание ямы, для получения древесного угля
-advancement.pyrotech.stone.machines=Адекватные Приборы
-advancement.pyrotech.stone.machines.desc=Сделать каждую каменную машину
-advancement.pyrotech.slaked.lime=Достаточно Гашеная
-advancement.pyrotech.slaked.lime.desc=Создать Гашеную Известь
-advancement.pyrotech.refractory.brick=Рафинированная огнеупорность
-advancement.pyrotech.refractory.brick.desc=Создать огнеупорный кирпич
-advancement.pyrotech.coal.coke.block=Маленькое топливо
-advancement.pyrotech.coal.coke.block.desc=Мне нравился углерод до того, как он стал углем
-advancement.pyrotech.living.tar=Страшное топливо
-advancement.pyrotech.living.tar.desc=Создать живую смолу
+advancement.pyrotech.mechanical.hopper.desc=Создайте механическую воронку
+advancement.pyrotech.charcoal=Внушительное топливо
+advancement.pyrotech.charcoal.desc=Используйте горящую яму, чтобы собрать Древесный уголь
+advancement.pyrotech.stone.machines=Соответствующее оборудование
+advancement.pyrotech.stone.machines.desc=Сделать каждую машину внутреннего сгорания
+advancement.pyrotech.slaked.lime=Достаточно негашеная
+advancement.pyrotech.slaked.lime.desc=Создайте негашеную известь
+advancement.pyrotech.refractory.brick=Декоративно огнеупорный
+advancement.pyrotech.refractory.brick.desc=Создайте огнеупорный кирпич
+advancement.pyrotech.coal.coke.block=Отличное топливо
+advancement.pyrotech.coal.coke.block.desc=Мне нравился углерод до того, как он стал Углём
+advancement.pyrotech.living.tar=Ужасное топливо
+advancement.pyrotech.living.tar.desc=Создайте живую смолу
 advancement.pyrotech.bloomery=Многообещающее сырьё
-advancement.pyrotech.bloomery.desc=Создать сырьё
-advancement.pyrotech.iron.ingot=Немного железа
-advancement.pyrotech.iron.ingot.desc=Создать железный самородок
+advancement.pyrotech.bloomery.desc=Создайте сыродутную печь
+advancement.pyrotech.iron.ingot=Негибкое железо
+advancement.pyrotech.iron.ingot.desc=Создайте железный слиток
 advancement.pyrotech.crafting.table=Умное создание
-advancement.pyrotech.crafting.table.desc=Шаг до вашего создания игры
-advancement.pyrotech.brick.machines=Усовершенствованные инструменты
-advancement.pyrotech.brick.machines.desc=Создать каждый кирпич машины
-advancement.pyrotech.furnace=Печь, Наконец
-advancement.pyrotech.furnace.desc=Создать печь
-advancement.pyrotech.nether=Отвратительный Ад
-advancement.pyrotech.nether.desc=Построить, активировать и войдти в Адский портал
-advancement.pyrotech.wither.forge=Грязная Кузница
-advancement.pyrotech.wither.forge.desc=Создать адскую печь
-advancement.pyrotech.tools.obsidian=Упрямый Обсидиан
-advancement.pyrotech.tools.obsidian.desc=Создать обсидиановую кирку
+advancement.pyrotech.crafting.table.desc=Выйдите на новый уровень создания игры
+advancement.pyrotech.brick.machines=Улучшенные инструменты
+advancement.pyrotech.brick.machines.desc=Создайте каждый кирпич из Машины внутреннего сгорания
+advancement.pyrotech.furnace=Печка, наконец то
+advancement.pyrotech.furnace.desc=Создайте печку
+advancement.pyrotech.nether=Гнусный незер
+advancement.pyrotech.nether.desc=Постройте, зажгите, и войдите Портал в Незер
+advancement.pyrotech.wither.forge=Неприятная кузница
+advancement.pyrotech.wither.forge.desc=Создайте иссушающую кузницу
+advancement.pyrotech.tools.obsidian=Упрямый обсидиан
+advancement.pyrotech.tools.obsidian.desc=Создайте обсидиановую кирку
 
 
 #------------------------------------------------------------------------------
-# Misc
+# Разное
 #------------------------------------------------------------------------------
 
-gui.pyrotech.disconnect.module.mismatch=Клиентские модули, включенные в конфигурации модуля Pyrotech, не соответствуют модулям, включенным на сервере. Сервер ожидает: %s.
+gui.pyrotech.disconnect.module.mismatch=Модули на стороне сервера включены в конфигурации модуля Pyrotech, который не совпадает с включёнными модулями на сервере. Сервер ожидает: %s.
 
-gui.pyrotech.restart=[Pyrotech] Пожалуйста, перезапустите игру.
-gui.pyrotech.missing.wood.compat=[Pyrotech] Сгенерированные рецепты древесины будут загружены при следующем запуске игры.
-gui.pyrotech.missing.ore.compat=[Pyrotech] Сгенерированные рецепты руды будут загружены при следующем запуске игры.
+gui.pyrotech.restart=[Pyrotech] Пожалуйста, перезагрузите игру.
+gui.pyrotech.missing.wood.compat=[Pyrotech] Сгенерированные рецепты древесины, загрузятся при следующем запуске игры.
+gui.pyrotech.missing.ore.compat=[Pyrotech] Сгенерированные рецепты руд, загрузятся при следующем запуске игры.
