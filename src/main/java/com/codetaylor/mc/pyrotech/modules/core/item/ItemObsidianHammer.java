@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core.item;
 
-import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
+import com.codetaylor.mc.athenaeum.reference.ModuleMaterials;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.item.spi.ItemHammerBase;
 
@@ -13,7 +13,7 @@ public class ItemObsidianHammer
 
   public ItemObsidianHammer() {
 
-    super(EnumMaterial.FLINT.getToolMaterial(), Collections.emptySet());
+    super(ModuleMaterials.OBSIDIAN, Collections.emptySet());
     this.setMaxDamage(ModuleCoreConfig.HAMMERS.OBSIDIAN_HAMMER_DURABILITY);
   }
 }
