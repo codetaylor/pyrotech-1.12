@@ -6,7 +6,7 @@
 **Remove Log to Plank Vanilla Crafting Recipes**
 by Discord member Woomyn
 
-```zs
+```
 recipes.removeShapeless(<biomesoplenty:planks_0:15> * 4, [ <biomesoplenty:log_3:7>]);
 recipes.removeShapeless(<biomesoplenty:planks_0:14> * 4, [ <biomesoplenty:log_3:6>]);
 recipes.removeShapeless(<biomesoplenty:planks_0:13> * 4, [ <biomesoplenty:log_3:5>]);
@@ -36,7 +36,7 @@ The following ZenScript was written to circumvent this issue.
 
 You can read more about the issue here: [#325](https://github.com/codetaylor/pyrotech-1.12/issues/325) 
 
-```zs
+```
 //Fix Chopping Block slab recipes to max out at 2 slabs per plank
 	//Generate your own lines automagically from the wood compat file with some regex:
 	//"([^:"]+):([^:"]+):([^:"]+)": "([^:"]+):([^:"]+slab[^:"]*):([^:"]+)",?
