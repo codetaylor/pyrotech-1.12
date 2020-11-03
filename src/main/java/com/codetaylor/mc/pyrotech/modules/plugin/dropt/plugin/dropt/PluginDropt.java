@@ -788,6 +788,16 @@ public class PluginDropt {
     }
 
     // -------------------------------------------------------------------------
+    // - Red Sandstone
+    // -------------------------------------------------------------------------
+
+    if (enabled("sandstone_red")) {
+      String matchBlock = item("minecraft", "red_sandstone", OreDictionary.WILDCARD_VALUE);
+      String rock = item(BlockRock.NAME, BlockRock.EnumType.SANDSTONE_RED.getMeta());
+      this.addRockDrops(matchBlock, rock, list);
+    }
+
+    // -------------------------------------------------------------------------
     // - Limestone
     // -------------------------------------------------------------------------
 

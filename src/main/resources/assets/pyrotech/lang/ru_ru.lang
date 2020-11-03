@@ -304,6 +304,7 @@ tile.pyrotech.rock_granite.name=Гранитный булыжник
 tile.pyrotech.rock_dirt.name=Комок земли
 tile.pyrotech.rock_sand.name=Куча песка
 tile.pyrotech.rock_sandstone.name=Песчанниковый камень
+tile.pyrotech.rock_sandstone_red.name=Red Sandstone Rock
 tile.pyrotech.rock_grass.name=Комок травы
 tile.pyrotech.rock_wood_chips.name=Куча опилок
 tile.pyrotech.rock_limestone.name=Известняковый камень

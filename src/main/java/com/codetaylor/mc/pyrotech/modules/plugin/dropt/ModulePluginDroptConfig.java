@@ -22,6 +22,7 @@ public class ModulePluginDroptConfig {
         "ore_coal",
         "ore_fossil",
         "sandstone",
+        "sandstone_red",
         "limestone",
         "limestone_cobbled",
         "stone",

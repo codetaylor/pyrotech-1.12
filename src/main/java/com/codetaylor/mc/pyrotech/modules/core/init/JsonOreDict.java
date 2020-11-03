@@ -130,7 +130,8 @@ public class JsonOreDict {
         "pyrotech:rock:" + BlockRock.EnumType.GRANITE.getMeta(),
         "pyrotech:rock:" + BlockRock.EnumType.ANDESITE.getMeta(),
         "pyrotech:rock:" + BlockRock.EnumType.SANDSTONE.getMeta(),
-        "pyrotech:rock:" + BlockRock.EnumType.LIMESTONE.getMeta()
+        "pyrotech:rock:" + BlockRock.EnumType.LIMESTONE.getMeta(),
+        "pyrotech:rock:" + BlockRock.EnumType.SANDSTONE_RED.getMeta()
     });
 
     {

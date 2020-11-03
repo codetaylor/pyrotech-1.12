@@ -11,6 +11,8 @@
             * wooden, clay, and stone milk bucket from Pyrotech
         * `toolSharp` contains swords and axes, sans wooden sword
         * `mulchNitrogen` now contains `pyrotech:rock_netherrack`
+        * `rock` now contains `pyrotech:rock:10`
+    * Red Sandstone Rocks
     * Straw Bed
         * Single-use bed that does not set a spawn point
     * Netherrack Rocks
@@ -231,6 +233,7 @@
         * `tile.pyrotech.dense_quartz_ore.name`
         * `tile.pyrotech.compost_bin.name`
         * `tile.pyrotech.straw_bed.name`
+        * `tile.pyrotech.rock_sandstone_red.name`
         * `gui.pyrotech.marshmallow.burned.broadcast.message`
         * `gui.pyrotech.marshmallow.burned.eat.broadcast.message`
         * `gui.pyrotech.tooltip.potency`
