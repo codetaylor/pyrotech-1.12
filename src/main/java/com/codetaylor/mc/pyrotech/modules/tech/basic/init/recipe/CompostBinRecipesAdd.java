@@ -148,8 +148,9 @@ public class CompostBinRecipesAdd {
     Item inputItem = input.getItem();
     ResourceLocation registryName = inputItem.getRegistryName();
     Preconditions.checkNotNull(registryName);
-    String resourcePath = registryName.getResourcePath();
-    compostBinRecipe.setRegistryName(ModuleTechBasic.MOD_ID, resourcePath + "_" + input.getMetadata());
+    String resourceDomain = registryName.getResourceDomain().toLowerCase();
+    String resourcePath = registryName.getResourcePath().toLowerCase();
+    compostBinRecipe.setRegistryName(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + input.getMetadata());
     REGISTRY.register(compostBinRecipe);
   }
 }
