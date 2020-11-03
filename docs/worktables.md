@@ -1,6 +1,3 @@
-!!! note "Pyrotech in 1.14.4 and beyond!"
-    Hi, I'm Codetaylor, the creator of Pyrotech and I would love to work on moving the mod to more recent versions of Minecraft. If you'd like to see Pyrotech move beyond 1.12.2, [click here to read more about my campaign to make that happen](https://bit.ly/2KaxA3H)!
-
 ## Recipes
 
 The Pyrotech Worktable inherits recipes from the vanilla Crafting Table, but does so on-demand. This means that the recipes aren't actually created until the last possible moment. This dramatically reduces the memory overhead required by the Worktable recipes, but it can make removing recipes a little trickier.

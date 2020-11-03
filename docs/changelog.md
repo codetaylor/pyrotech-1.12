@@ -1,6 +1,3 @@
-!!! note "Pyrotech in 1.14.4 and beyond!"
-    Hi, I'm Codetaylor, the creator of Pyrotech and I would love to work on moving the mod to more recent versions of Minecraft. If you'd like to see Pyrotech move beyond 1.12.2, [click here to read more about my campaign to make that happen](https://bit.ly/2KaxA3H)!
-
 # 1.5.0
 
   * **Added:**
@@ -644,7 +641,7 @@
 
 ---
 
-1.3.13
+**1.3.13**
 
   * **Fixed:**
     * Crash when breaking a lit campfire with the bloomery module disabled [(#189)](https://github.com/codetaylor/pyrotech-1.12/issues/189)
@@ -654,7 +651,7 @@
 
 ---
 
-1.3.12
+**1.3.12**
 
   * **Fixed:**
     * Crash with SpongeForge plugin Grief Prevention [(#176)](https://github.com/codetaylor/pyrotech-1.12/issues/176)
@@ -664,14 +661,14 @@
 
 ---
 
-1.3.11
+**1.3.11**
 
   * Added:
     * `ru_ru.lang` [(#178, SSKirillSS)](https://github.com/codetaylor/pyrotech-1.12/pull/178)
 
 ---
 
-1.3.10
+**1.3.10**
 
   * Fixed:
     * Snow accumulates on top of machines [(#172)](https://github.com/codetaylor/pyrotech-1.12/issues/172)
@@ -680,21 +677,21 @@
 
 ---
 
-1.3.9
+**1.3.9**
 
   * Fixed:
     * Startup crash caused by setting `DISABLE_YOUR_PATREON_EFFECTS` to `true`
 
 ---
 
-1.3.8
+**1.3.8**
 
   * Fixed:
     * Slag glass furnace recipe should be in the bloomery module and not the refractory module
 
 ---
 
-1.3.7
+**1.3.7**
 
   * Fixed:
     * No Cog sound for Mechanical Mulcher [(#162)](https://github.com/codetaylor/pyrotech-1.12/issues/162)
@@ -702,42 +699,42 @@
 
 ---
 
-1.3.6
+**1.3.6**
 
   * Fixed:
     * Wood chip pile doesn't work in a pit burn [(#161)](https://github.com/codetaylor/pyrotech-1.12/issues/161)
 
 ---
 
-1.3.5
+**1.3.5**
 
   * Fixed:
     * Block of iron and gold only give 1 ingot when broken on an anvil [(#158)](https://github.com/codetaylor/pyrotech-1.12/issues/158)
 
 ---
 
-1.3.4
+**1.3.4**
 
   * Fixed:
     * JEI plugin for Refractory module will fail to load under certain conditions [(#154)](https://github.com/codetaylor/pyrotech-1.12/issues/154)
 
 ---
 
-1.3.3
+**1.3.3**
 
   * Fixed:
     * Custom CrT drying recipes don't work [(#153)](https://github.com/codetaylor/pyrotech-1.12/issues/153)
 
 ---
 
-1.3.2
+**1.3.2**
 
   * Fixed:
     * Grass Path block should drop dirt and grass clumps [(#146)](https://github.com/codetaylor/pyrotech-1.12/issues/146)
 
 ---
 
-1.3.1
+**1.3.1**
 
   * Added:
     * `/ptlang` command will now copy the lang key to the clipboard
@@ -749,7 +746,7 @@
 
 ---
 
-1.3.0
+# 1.3.0
 
   * Notes:
     * Refresh your `core.OreDict-Custom.json` file or copy the new entries from `core.OreDict-Generated.json`.
@@ -814,14 +811,14 @@
 
 ---
 
-1.2.9
+**1.2.9**
 
   * Fixed:
       * Crash when other mods throw an exception during a call to their block's `Block#getItem` method [(#139)](https://github.com/codetaylor/pyrotech-1.12/issues/139)
 
 ---
 
-1.2.8
+**1.2.8**
 
   * Notes:
       * CrT Bloomery recipes with an oredict as input may fail to deduce the lang key from the input if the oredict is empty during script execution. To solve this, simply supply a lang key with the recipe builder. This issue has been resolved in-dev as a part of the inheritance overhaul for `1.3.0`.
@@ -834,28 +831,28 @@
 
 ---
 
-1.2.7
+**1.2.7**
 
   * Fixed:
       * Worktable whitelist / blacklist doesn't work [(#125)](https://github.com/codetaylor/pyrotech-1.12/issues/125)
 
 ---
 
-1.2.6
+**1.2.6**
 
   * Fixed:
       * ArrayIndexOutOfBoundsException when using a whitelisted non-axe tool with the chopping block [(#124)](https://github.com/codetaylor/pyrotech-1.12/issues/124)
 
 ---
 
-1.2.5
+**1.2.5**
 
   * Fixed:
       * ZenScript method to whitelist campfire fuel doesn't work [(#121)](https://github.com/codetaylor/pyrotech-1.12/issues/121)
 
 ---
 
-1.2.4
+**1.2.4**
 
   * Note:
       * Any Stone Igniter or Refractory Igniter currently in the world will be inert after this update. They will need to be broken and replaced in order to function.
@@ -865,14 +862,14 @@
 
 ---
 
-1.2.3
+**1.2.3**
 
   * Fixed:
       * Unfired Clay Shears should not work as shears with 238 durability [(#100)](https://github.com/codetaylor/pyrotech-1.12/issues/100)
 
 ---
 
-1.2.2
+**1.2.2**
 
   * Note:
     * Remove the leading `.` from Pyrotech's config files
@@ -888,14 +885,14 @@
 
 ---
 
-1.2.1
+**1.2.1**
 
   * Fixed:
     * Missing config option to disable stick drops from leaves: `DROP_STICKS_FROM_LEAVES` in the `TWEAKS` section of `.core.cfg`
 
 ---
 
-1.2.0
+# 1.2.0
 
   * Note:
     * Bugs: A lot of code has been touched in this release - thank you for your continued bug reports!
@@ -925,7 +922,7 @@
 
 ---
 
-1.1.7
+**1.1.7**
 
   * Fixed:
     * Mulched Farmland should not sound like stone (#90)
@@ -937,7 +934,7 @@
 
 ---
 
-1.1.6
+**1.1.6**
 
   * Fixed:
     * Having an open rock bag suppresses pick-up noises of other items (#62)
@@ -946,7 +943,7 @@
 
 ---
 
-1.1.5
+**1.1.5**
 
   * [!] Requires Athenaeum >= 1.17.2
 
@@ -963,7 +960,7 @@
 
 ---
 
-1.1.4
+**1.1.4**
 
   * Fixed:
     * Can't remove crude drying rack recipes (#73)
@@ -973,14 +970,14 @@
 
 ---
 
-1.1.3
+**1.1.3**
 
   * Fixed:
     * CrT Burn method `addFailureItem` should take `IItemStack` not `ItemStack`
 
 ---
 
-1.1.2
+**1.1.2**
 
   * Note:
     * To fix a conflict with generated wood compat recipe names, the generated recipe names have been changed. They now include both the input and output and look something like this: `pyrotech:minecraft_planks_4_from_minecraft_log2_0`.
@@ -994,7 +991,7 @@
 
 ---
 
-1.1.1
+**1.1.1**
 
   * Notes:
     * The format of both `config/pyrotech/.core.compat.Wood` json files has changed, be sure to delete and refresh or manually edit those files.
@@ -1010,7 +1007,7 @@
 
 ---
 
-1.1.0
+# 1.1.0
 
   * Notes:
     * Load mod once to generate new ore and wood compat .json files in config folder:
@@ -1043,7 +1040,7 @@
 
 ---
 
-1.0.9
+**1.0.9**
 
   * NOTE: Remember to refresh (delete and re-run the game) your `Custom` ore dict config file or add the changes manually, changes will only appear in the `Generated` file.
 
@@ -1066,7 +1063,7 @@
 
 ---
 
-1.0.8
+**1.0.8**
 
   * Added:
     * Config option to disable milking cows with the buckets (#48)
@@ -1079,7 +1076,7 @@
 
 ---
 
-1.0.7
+**1.0.7**
 
   * Fixed:
     * Lapis block gives dandelion yellow in anvil (#35)
@@ -1096,7 +1093,7 @@
 
 ---
 
-1.0.6
+**1.0.6**
 
   * Added:
     * Limestone block to `stoneLimestone` oredict (#29) - NOTE: Remember to refresh (delete and re-run the game) your `Custom` ore dict config file or add the changes manually, changes will only appear in the `Generated` file.
@@ -1109,7 +1106,7 @@
 
 ---
 
-1.0.5
+**1.0.5**
 
   * Fixed:
     * Recipe left in worktable doesn't work after logging out and back in
@@ -1123,7 +1120,7 @@
 
 ---
 
-1.0.4
+**1.0.4**
 
   * Fixed:
     * Removed conflicting bone meal anvil recipes (#18)
@@ -1132,7 +1129,7 @@
 
 ---
 
-1.0.3
+**1.0.3**
 
   * Fixed:
     * Build filename missing MC version
@@ -1144,14 +1141,14 @@
 
 ---
 
-1.0.2
+**1.0.2**
 
   * Fixed:
     * Error with Thermal Expansion (#8)
 
 ---
 
-1.0.1
+**1.0.1**
 
   * Fixed:
     * Repeated grammatical error in guidebook (#10)
@@ -1159,7 +1156,7 @@
 
 ---
 
-1.0.0
+# 1.0.0
 
   * Initial beta release
 
