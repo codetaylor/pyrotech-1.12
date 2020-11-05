@@ -24,7 +24,7 @@ public class TileBrickSawmill
   }
 
   @Override
-  protected double getFuelBurnTimeModifier(ItemStack fuel) {
+  public double getFuelBurnTimeModifier(ItemStack fuel) {
 
     return ModuleTechMachineConfig.BRICK_SAWMILL.FUEL_BURN_TIME_MODIFIER;
   }

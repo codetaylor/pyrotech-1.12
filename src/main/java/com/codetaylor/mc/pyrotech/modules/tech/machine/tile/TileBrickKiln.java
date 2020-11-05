@@ -24,7 +24,7 @@ public class TileBrickKiln
   }
 
   @Override
-  protected double getFuelBurnTimeModifier(ItemStack fuel) {
+  public double getFuelBurnTimeModifier(ItemStack fuel) {
 
     return ModuleTechMachineConfig.BRICK_KILN.FUEL_BURN_TIME_MODIFIER;
   }

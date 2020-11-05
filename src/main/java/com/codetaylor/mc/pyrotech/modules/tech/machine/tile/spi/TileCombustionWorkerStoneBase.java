@@ -218,7 +218,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     return (int) Math.max(0, super.combustionGetBurnTimeForFuel(fuel) * this.getFuelBurnTimeModifier(fuel));
   }
 
-  protected abstract double getFuelBurnTimeModifier(ItemStack fuel);
+  public abstract double getFuelBurnTimeModifier(ItemStack fuel);
 
   // ---------------------------------------------------------------------------
   // - Worker

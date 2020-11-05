@@ -56,7 +56,7 @@ public class TileBrickCrucible
   }
 
   @Override
-  protected double getFuelBurnTimeModifier(ItemStack fuel) {
+  public double getFuelBurnTimeModifier(ItemStack fuel) {
 
     return ModuleTechMachineConfig.BRICK_CRUCIBLE.FUEL_BURN_TIME_MODIFIER;
   }

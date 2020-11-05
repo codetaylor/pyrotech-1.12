@@ -25,7 +25,7 @@ public abstract class CombustionMachineProviderDelegateBase<D extends Combustion
     int ticks = tile.combustionGetBurnTimeRemaining();
 
     if (!fuelStack.isEmpty()) {
-      ticks += fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack);
+      ticks += fuelStack.getCount() * StackHelper.getItemBurnTime(fuelStack) * tile.getFuelBurnTimeModifier(fuelStack);
     }
 
     {

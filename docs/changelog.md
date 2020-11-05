@@ -185,6 +185,9 @@
             * `core.cfg.client.ALWAYS_SHOW_QUANTITIES`
             * `core.cfg.client.SHOW_INTERACTION_BOUNDS`
 
+  * **Fixed:**
+    * ToP/Waila displays incorrect fuel time for brick machines
+
   * **Translators:**
     * **New Patchouli Categories**
         * `survive_tools.json`
