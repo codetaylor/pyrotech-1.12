@@ -517,8 +517,8 @@ public class ModuleTechMachineConfig {
 
           try {
             String[] split = data.split(";");
-            result[0] = MathHelper.clamp(Integer.valueOf(split[0]), 0, 5);
-            result[1] = MathHelper.clamp(Integer.valueOf(split[1]), 1, 121);
+            result[0] = MathHelper.clamp(Integer.parseInt(split[0]), 0, 5);
+            result[1] = MathHelper.clamp(Integer.parseInt(split[1]), 1, 121);
             return result;
 
           } catch (Exception e) {
