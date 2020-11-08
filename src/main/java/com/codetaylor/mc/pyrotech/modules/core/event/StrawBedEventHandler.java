@@ -68,11 +68,17 @@ public class StrawBedEventHandler {
       return;
     }
 
-    IBlockState blockState = world.getBlockState(player.bedLocation);
+    BlockPos bedLocation = player.bedLocation;
+
+    if (bedLocation == null) {
+      return;
+    }
+    
+    IBlockState blockState = world.getBlockState(bedLocation);
     Block block = blockState.getBlock();
 
     if (block == ModuleCore.Blocks.STRAW_BED) {
-      this.addUsedBed(world, player.bedLocation);
+      this.addUsedBed(world, bedLocation);
       event.setCanceled(true);
     }
   }
