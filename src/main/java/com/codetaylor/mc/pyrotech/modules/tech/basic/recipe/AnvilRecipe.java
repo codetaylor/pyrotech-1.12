@@ -6,8 +6,10 @@ import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -26,14 +28,66 @@ public class AnvilRecipe
     HAMMER, PICKAXE
   }
 
-  @Nullable
-  public static AnvilRecipe getRecipe(ItemStack input, EnumTier tier) {
+  public static boolean hasRecipe(ItemStack input, EnumTier tier) {
 
     for (AnvilRecipe recipe : ModuleTechBasic.Registries.ANVIL_RECIPE) {
 
-      if (recipe.matches(input, tier)) {
+      if (recipe.matches(input, tier, null)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  @Nullable
+  public static AnvilRecipe getRecipe(ItemStack input, EnumTier tier, @Nullable AnvilRecipe.EnumType type) {
+
+    if (type == null) {
+      return null;
+    }
+
+    for (AnvilRecipe recipe : ModuleTechBasic.Registries.ANVIL_RECIPE) {
+
+      if (recipe.matches(input, tier, type)) {
         return recipe;
       }
+    }
+
+    return null;
+  }
+
+  @Nullable
+  public static EnumType getTypeFromItemStack(TileAnvilBase tile, ItemStack itemStack) {
+
+    /*
+      if explicitly declared in hammer config, is hammer
+      else if tool is pickaxe
+        if tool is not explicitly blacklisted as pickaxe, is pickaxe
+      else if tool is explicitly whitelisted as pickaxe, is pickaxe
+      else, is neither
+     */
+
+    Item item = itemStack.getItem();
+    ResourceLocation resourceLocation = item.getRegistryName();
+
+    if (resourceLocation == null) {
+      return null;
+    }
+
+    if (tile.getHammerHitReduction(resourceLocation) > -1) {
+      // held item is hammer
+      return AnvilRecipe.EnumType.HAMMER;
+
+    } else if (item.getToolClasses(itemStack).contains("pickaxe")) {
+      // held item is pickaxe
+      if (!ArrayHelper.contains(tile.getPickaxeBlacklist(), resourceLocation.toString())) {
+        return AnvilRecipe.EnumType.PICKAXE;
+      }
+
+    } else if (ArrayHelper.contains(tile.getPickaxeWhitelist(), resourceLocation.toString())) {
+      // held item is pickaxe
+      return AnvilRecipe.EnumType.PICKAXE;
     }
 
     return null;
@@ -107,9 +161,9 @@ public class AnvilRecipe
     return ArrayHelper.contains(this.tiers, tier);
   }
 
-  public boolean matches(ItemStack input, EnumTier tier) {
+  public boolean matches(ItemStack input, EnumTier tier, EnumType type) {
 
-    return this.isTier(tier) && (this.input.apply(input));
+    return this.isTier(tier) && (this.input.apply(input)) && (type == null || this.type == type);
   }
 
   public interface IExtendedRecipe<T extends AnvilRecipe & IExtendedRecipe> {

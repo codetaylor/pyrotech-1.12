@@ -51,19 +51,19 @@ public class TileAnvilGranite
   }
 
   @Override
-  protected int getHammerHitReduction(ResourceLocation resourceLocation) {
+  public int getHammerHitReduction(ResourceLocation resourceLocation) {
 
     return ModuleTechBasicConfig.ANVIL_COMMON.getHammerHitReduction(resourceLocation);
   }
 
   @Override
-  protected String[] getPickaxeWhitelist() {
+  public String[] getPickaxeWhitelist() {
 
     return ModuleTechBasicConfig.ANVIL_COMMON.PICKAXE_WHITELIST;
   }
 
   @Override
-  protected String[] getPickaxeBlacklist() {
+  public String[] getPickaxeBlacklist() {
 
     return ModuleTechBasicConfig.ANVIL_COMMON.PICKAXE_BLACKLIST;
   }

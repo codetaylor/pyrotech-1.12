@@ -7,6 +7,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -60,7 +61,9 @@ public class SCPacketParticleAnvilHit
   @Override
   public IMessage onMessage(SCPacketParticleAnvilHit message, MessageContext ctx) {
 
-    WorldClient world = Minecraft.getMinecraft().world;
+    Minecraft minecraft = Minecraft.getMinecraft();
+    EntityPlayerSP player = minecraft.player;
+    WorldClient world = minecraft.world;
     BlockPos pos = message.blockPos;
     float hitX = message.hitX;
     float hitY = message.hitY;
@@ -78,7 +81,8 @@ public class SCPacketParticleAnvilHit
 
       ItemStackHandler stackHandler = tile.getStackHandler();
       ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
-      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier());
+      AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(tile, player.getHeldItemMainhand());
+      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier(), type);
 
       if (recipe instanceof AnvilRecipe.IExtendedRecipe) {
         ((AnvilRecipe.IExtendedRecipe) recipe).onAnvilHitClient(world, tile, hitX, hitY, hitZ);

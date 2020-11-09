@@ -1,19 +1,18 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi;
 
-import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.ArrayHelper;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
@@ -54,6 +53,8 @@ public abstract class TileAnvilBase
 
   private IInteraction[] interactions;
   private AxisAlignedBB renderBounds;
+
+  private AnvilRecipe recipe;
 
   public TileAnvilBase() {
 
@@ -104,6 +105,12 @@ public abstract class TileAnvilBase
   // ---------------------------------------------------------------------------
   // - Accessors
   // ---------------------------------------------------------------------------
+
+  @Nullable
+  public AnvilRecipe getRecipe() {
+
+    return this.recipe;
+  }
 
   public void setDamage(int damage) {
 
@@ -156,11 +163,11 @@ public abstract class TileAnvilBase
 
   protected abstract double getExhaustionCostPerHit();
 
-  protected abstract int getHammerHitReduction(ResourceLocation resourceLocation);
+  public abstract int getHammerHitReduction(ResourceLocation resourceLocation);
 
-  protected abstract String[] getPickaxeWhitelist();
+  public abstract String[] getPickaxeWhitelist();
 
-  protected abstract String[] getPickaxeBlacklist();
+  public abstract String[] getPickaxeBlacklist();
 
   protected abstract int getMinimumHungerToUse();
 
@@ -293,7 +300,7 @@ public abstract class TileAnvilBase
     @Override
     protected boolean doItemStackValidation(ItemStack itemStack) {
 
-      return (AnvilRecipe.getRecipe(itemStack, this.tile.getRecipeTier()) != null);
+      return (AnvilRecipe.hasRecipe(itemStack, this.tile.getRecipeTier()));
     }
 
     @Override
@@ -302,6 +309,9 @@ public abstract class TileAnvilBase
       super.onInsert(type, itemStack, world, player, pos);
 
       if (!world.isRemote) {
+
+        this.tile.recipe = null;
+
         world.playSound(
             null,
             pos.getX(),
@@ -312,6 +322,16 @@ public abstract class TileAnvilBase
             0.5f,
             (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
         );
+      }
+    }
+
+    @Override
+    protected void onExtract(EnumType type, World world, EntityPlayer player, BlockPos pos) {
+
+      super.onExtract(type, world, player, pos);
+
+      if (!world.isRemote) {
+        this.tile.recipe = null;
       }
     }
   }
@@ -332,46 +352,12 @@ public abstract class TileAnvilBase
       }
 
       ItemStack heldItemStack = player.getHeldItem(hand);
-      Item heldItem = heldItemStack.getItem();
-
-      ResourceLocation resourceLocation = heldItem.getRegistryName();
-
-      if (resourceLocation == null) {
-        return false;
-      }
-
+      AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(tile, heldItemStack);
       ItemStackHandler stackHandler = tile.getStackHandler();
       ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
-      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier());
+      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier(), type);
 
-      if (recipe == null) {
-        return false;
-      }
-
-      /*
-        if explicitly declared in hammer config, is hammer
-        else if tool is pickaxe
-          if tool is not explicitly blacklisted as pickaxe, is pickaxe
-        else if tool is explicitly whitelisted as pickaxe, is pickaxe
-        else, is neither
-       */
-
-      if (tile.getHammerHitReduction(resourceLocation) > -1) {
-        // held item is hammer
-        return (recipe.getType() == AnvilRecipe.EnumType.HAMMER);
-
-      } else if (heldItem.getToolClasses(heldItemStack).contains("pickaxe")) {
-        // held item is pickaxe
-        if (!ArrayHelper.contains(tile.getPickaxeBlacklist(), resourceLocation.toString())) {
-          return (recipe.getType() == AnvilRecipe.EnumType.PICKAXE);
-        }
-
-      } else if (ArrayHelper.contains(tile.getPickaxeWhitelist(), resourceLocation.toString())) {
-        // held item is pickaxe
-        return (recipe.getType() == AnvilRecipe.EnumType.PICKAXE);
-      }
-
-      return false;
+      return (recipe != null);
     }
 
     @Override
@@ -379,13 +365,19 @@ public abstract class TileAnvilBase
 
       ItemStackHandler stackHandler = tile.getStackHandler();
       ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
-      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier());
-
+      ItemStack heldItemStack = player.getHeldItem(hand);
+      AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(tile, heldItemStack);
+      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier(), type);
       boolean isExtendedRecipe = (recipe instanceof AnvilRecipe.IExtendedRecipe);
 
       if (!world.isRemote) {
 
         // Server logic
+
+        if (recipe != tile.recipe) {
+          tile.setRecipeProgress(0);
+          tile.recipe = recipe;
+        }
 
         if (tile.getExhaustionCostPerHit() > 0) {
           player.addExhaustion((float) tile.getExhaustionCostPerHit());
@@ -488,6 +480,8 @@ public abstract class TileAnvilBase
               player.addExhaustion((float) tile.getExhaustionCostPerCraftComplete());
             }
 
+            tile.recipe = null;
+
             tile.markDirty();
             BlockHelper.notifyBlockUpdate(world, tile.getPos());
           }
@@ -533,7 +527,7 @@ public abstract class TileAnvilBase
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
       if (!stack.isEmpty()
-          && AnvilRecipe.getRecipe(stack, this.tile.getRecipeTier()) != null) {
+          && AnvilRecipe.hasRecipe(stack, this.tile.getRecipeTier())) {
         return super.insertItem(slot, stack, simulate);
       }
 

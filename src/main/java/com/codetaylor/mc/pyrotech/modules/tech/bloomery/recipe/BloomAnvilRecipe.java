@@ -37,7 +37,11 @@ public class BloomAnvilRecipe
   }
 
   @Override
-  public boolean matches(ItemStack input, EnumTier tier) {
+  public boolean matches(ItemStack input, EnumTier tier, EnumType type) {
+
+    if (type != null && this.getType() != type) {
+      return false;
+    }
 
     if (input.getItem() != ModuleTechBloomery.Items.BLOOM) {
       return false;
