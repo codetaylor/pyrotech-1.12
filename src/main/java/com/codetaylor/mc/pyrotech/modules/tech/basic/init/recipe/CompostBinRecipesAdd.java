@@ -150,7 +150,14 @@ public class CompostBinRecipesAdd {
     Preconditions.checkNotNull(registryName);
     String resourceDomain = registryName.getResourceDomain().toLowerCase();
     String resourcePath = registryName.getResourcePath().toLowerCase();
-    compostBinRecipe.setRegistryName(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + input.getMetadata());
-    REGISTRY.register(compostBinRecipe);
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + input.getMetadata());
+
+    if (REGISTRY.getValue(resourceLocation) != null) {
+      ModuleTechBasic.LOGGER.warn("Attempted to register duplicate Compost Bin recipe, skipped duplicate: " + resourceLocation);
+
+    } else {
+      compostBinRecipe.setRegistryName(resourceLocation);
+      REGISTRY.register(compostBinRecipe);
+    }
   }
 }
