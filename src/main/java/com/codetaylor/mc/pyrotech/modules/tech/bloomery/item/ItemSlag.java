@@ -25,10 +25,8 @@ public class ItemSlag
       if (properties != null
           && properties.langKey != null) {
 
-        String langKey = properties.langKey + ".name";
-
-        if (I18n.canTranslate(langKey)) {
-          String translatedLangKey = I18n.translateToLocal(langKey);
+        if (I18n.canTranslate(properties.langKey)) {
+          String translatedLangKey = I18n.translateToLocal(properties.langKey);
           return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".unique.name", translatedLangKey).trim();
         }
       }

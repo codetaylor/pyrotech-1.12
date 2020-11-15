@@ -126,7 +126,6 @@ public final class SlagInitializer {
           langKey.append(split[0]);
         }
 
-        langKey.append(".name");
         langKeysToTest.add(langKey.toString());
       }
 
@@ -174,12 +173,10 @@ public final class SlagInitializer {
     for (String langKey : langKeysToTest) {
 
       if (I18n.canTranslate(langKey)) {
-
-        if (langKey.endsWith(".name")) {
-          langKey = langKey.substring(0, langKey.length() - 5);
-        }
-
         return langKey;
+
+      } else if (I18n.canTranslate(langKey + ".name")) {
+        return langKey + ".name";
       }
     }
 

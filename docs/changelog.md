@@ -187,6 +187,7 @@
 
   * **Fixed:**
     * ToP/Waila displays incorrect fuel time for brick machines
+    * Lang keys in ore compat and custom slag file will now work properly with keys not suffixed with `.name` [(#330)](https://github.com/codetaylor/pyrotech-1.12/issues/330)
 
   * **Translators:**
     * **New Patchouli Categories**

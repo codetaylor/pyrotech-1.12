@@ -309,12 +309,11 @@ public class BlockPileSlag
 
         Properties properties = ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.get(this.getBlock());
 
-        if (properties != null) {
+        if (properties != null
+            && properties.langKey != null) {
 
-          String langKey = properties.langKey + ".name";
-
-          if (I18n.canTranslate(langKey)) {
-            String translatedLangKey = I18n.translateToLocal(langKey);
+          if (I18n.canTranslate(properties.langKey)) {
+            String translatedLangKey = I18n.translateToLocal(properties.langKey);
             return I18n.translateToLocalFormatted(this.getUnlocalizedNameInefficiently(stack) + ".unique.name", translatedLangKey).trim();
           }
         }
