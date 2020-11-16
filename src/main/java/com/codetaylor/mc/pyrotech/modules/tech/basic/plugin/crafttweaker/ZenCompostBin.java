@@ -180,7 +180,7 @@ public class ZenCompostBin {
 
       ResourceLocation registryName = input.getItem().getRegistryName();
       Preconditions.checkNotNull(registryName);
-      this.name = registryName.getResourcePath() + "_" + input.getMetadata();
+      this.name = registryName.getResourceDomain() + "_" + registryName.getResourcePath() + "_" + input.getMetadata();
     }
 
     @Override
@@ -195,7 +195,9 @@ public class ZenCompostBin {
         recipe = new CompostBinRecipe(this.output, this.input);
       }
 
-      ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
+      ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", this.name);
+      recipe.setRegistryName(resourceLocation);
+      ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.register(recipe);
     }
 
     @Override
