@@ -1,3 +1,10 @@
+# 1.6.0
+
+  * **Changed:**
+    * The anvil will now allow both a pickaxe and a hammer recipe for the same input
+    
+---
+
 # 1.5.0
 
   * **Added:**
