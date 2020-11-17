@@ -2,6 +2,7 @@
 
   * **Changed:**
     * The anvil will now allow both a pickaxe and a hammer recipe for the same input
+    * Added back the stone to cobblestone anvil hammer recipe
     
 ---
 

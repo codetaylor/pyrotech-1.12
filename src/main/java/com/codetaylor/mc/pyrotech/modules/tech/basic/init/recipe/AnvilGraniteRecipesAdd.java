@@ -146,8 +146,6 @@ public class AnvilGraniteRecipesAdd {
     ).setRegistryName(ModuleTechBasic.MOD_ID, "bone_shard"));
 
     // Stone to cobblestone
-    // Removed because it conflicts with the stone to stone slab pickaxe recipe
-    /*
     registry.register(new AnvilRecipe(
         new ItemStack(Blocks.COBBLESTONE),
         Ingredient.fromStacks(new ItemStack(Blocks.STONE, 1, BlockStone.EnumType.STONE.getMetadata())),
@@ -155,7 +153,6 @@ public class AnvilGraniteRecipesAdd {
         AnvilRecipe.EnumType.HAMMER,
         AnvilRecipe.EnumTier.GRANITE
     ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_to_cobbled"));
-    */
 
     // Andesite to cobbled andesite
     registry.register(new AnvilRecipe(
