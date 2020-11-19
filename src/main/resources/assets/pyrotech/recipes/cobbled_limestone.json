@@ -11,8 +11,8 @@
       "data": 17
     },
     "R": {
-      "item": "pyrotech:rock",
-      "data": 8
+      "type": "forge:ore_dict",
+      "ore": "rockLimestone"
     }
   },
   "result": {

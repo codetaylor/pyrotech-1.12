@@ -143,6 +143,10 @@ public class JsonOreDict {
         "pyrotech:rock:" + BlockRock.EnumType.SANDSTONE_RED.getMeta()
     });
 
+    result.oreDict.put("rockLimestone", new String[]{
+        "pyrotech:rock:" + BlockRock.EnumType.LIMESTONE.getMeta()
+    });
+
     {
       List<String> list = new ArrayList<>(16);
 

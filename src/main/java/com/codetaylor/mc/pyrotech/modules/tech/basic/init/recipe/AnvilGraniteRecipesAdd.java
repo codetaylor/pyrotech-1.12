@@ -239,7 +239,7 @@ public class AnvilGraniteRecipesAdd {
     // Limestone rocks to crushed limestone
     registry.register(new AnvilRecipe(
         ItemMaterial.EnumType.DUST_LIMESTONE.asStack(),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.LIMESTONE.getMeta())),
+        new OreIngredient("rockLimestone"),
         4,
         AnvilRecipe.EnumType.HAMMER,
         AnvilRecipe.EnumTier.GRANITE
