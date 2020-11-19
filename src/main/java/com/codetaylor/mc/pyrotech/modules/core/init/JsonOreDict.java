@@ -31,6 +31,10 @@ public class JsonOreDict {
 
     JsonOreDict result = new JsonOreDict();
 
+    result.oreDict.put("straw", new String[]{
+        "pyrotech:material:" + ItemMaterial.EnumType.STRAW.getMeta(),
+    });
+
     result.oreDict.put("blockCharcoal", new String[]{
         "pyrotech:" + BlockCharcoalBlock.NAME
     });

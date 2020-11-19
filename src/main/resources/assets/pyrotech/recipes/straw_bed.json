@@ -5,8 +5,8 @@
   ],
   "key": {
     "A": {
-      "item": "pyrotech:material",
-      "data": 2
+      "type": "forge:ore_dict",
+      "ore": "straw"
     }
   },
   "result": {
