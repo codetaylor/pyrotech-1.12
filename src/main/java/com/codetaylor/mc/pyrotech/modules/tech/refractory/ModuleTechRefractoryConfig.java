@@ -142,10 +142,10 @@ public class ModuleTechRefractoryConfig {
 
     @Config.Comment({
         "Fluid capacity of the tar collector in mB.",
-        "Default: " + 4000
+        "Default: " + 2000
     })
     @Config.RangeInt(min = 1)
-    public int CAPACITY = 4000;
+    public int CAPACITY = 2000;
 
     @Config.Comment({
         "The temperature that the container considers hot.",
@@ -181,10 +181,10 @@ public class ModuleTechRefractoryConfig {
 
     @Config.Comment({
         "Fluid capacity of the tar collector in mB.",
-        "Default: " + 8000
+        "Default: " + 4000
     })
     @Config.RangeInt(min = 1)
-    public int CAPACITY = 8000;
+    public int CAPACITY = 4000;
 
     @Config.Comment({
         "The temperature that the container considers hot.",
