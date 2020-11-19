@@ -29,4 +29,10 @@ public class TileStoneTarDrain
 
     return ModuleTechRefractoryConfig.STONE_TAR_DRAIN.RANGE;
   }
+
+  @Override
+  protected boolean allowSourceDrain() {
+
+    return ModuleTechRefractoryConfig.STONE_TAR_DRAIN.ALLOW_SOURCE_DRAIN;
+  }
 }

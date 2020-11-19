@@ -4,9 +4,9 @@ import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
+import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.athenaeum.util.TickCounter;
-import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleCombust;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
@@ -24,6 +24,8 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -88,23 +90,31 @@ public abstract class TileTarTankBase
     }
 
     Set<BlockPos> sourcePositions = this.getCollectionSourcePositions(world, pos);
-    List<FluidTank> fluidTanks = new ArrayList<>(sourcePositions.size());
+    List<IFluidHandler> fluidHandlers = new ArrayList<>(sourcePositions.size());
 
     for (BlockPos sourcePosition : sourcePositions) {
-      TileEntity tileEntity = world.getTileEntity(sourcePosition);
-      FluidTank sourceFluidTank = this.getCollectionSourceFluidTank(tileEntity);
+      IFluidHandler sourceFluidTank = this.getCollectionSourceFluidHandler(world, sourcePosition);
 
       if (sourceFluidTank != null) {
-        fluidTanks.add(sourceFluidTank);
+        fluidHandlers.add(sourceFluidTank);
       }
     }
 
-    fluidTanks.sort(Comparator.comparingInt(FluidTank::getFluidAmount).reversed());
+    Comparator<IFluidHandler> comparator = Comparator.comparingInt(value -> {
+      IFluidTankProperties[] tankProperties = value.getTankProperties();
 
-    for (FluidTank tank : fluidTanks) {
+      if (tankProperties == null || tankProperties.length == 0 || tankProperties[0] == null || tankProperties[0].getContents() == null) {
+        return 0;
+      }
+
+      return tankProperties[0].getContents().amount;
+    });
+    fluidHandlers.sort(comparator.reversed());
+
+    for (IFluidHandler handler : fluidHandlers) {
 
       if (fluidTank.getFluidAmount() < fluidTank.getCapacity()) {
-        this.collect(tank, fluidTank);
+        this.collect(handler, fluidTank);
 
       } else {
         break;
@@ -112,11 +122,16 @@ public abstract class TileTarTankBase
     }
   }
 
-  private void collect(FluidTank source, FluidTank target) {
+  private void collect(IFluidHandler source, FluidTank target) {
 
-    if (source.getFluidAmount() > 0) {
-      source.drain(target.fillInternal(source.getFluid(), true), true);
+    IFluidTankProperties[] tankProperties = source.getTankProperties();
+
+    if (tankProperties == null || tankProperties.length == 0 || tankProperties[0] == null || tankProperties[0].getContents() == null) {
+      return;
     }
+
+    FluidStack fluidStack = tankProperties[0].getContents();
+    source.drain(target.fillInternal(fluidStack, true), true);
   }
 
   @Nonnull
@@ -160,7 +175,7 @@ public abstract class TileTarTankBase
   protected abstract int getTankCapacity();
 
   @Nullable
-  protected abstract FluidTank getCollectionSourceFluidTank(@Nullable TileEntity tileEntity);
+  protected abstract IFluidHandler getCollectionSourceFluidHandler(World world, BlockPos pos);
 
   public static class Tank
       extends ObservableFluidTank

@@ -238,6 +238,12 @@ public class ModuleTechRefractoryConfig {
         "Default: " + 1
     })
     public int RANGE = 1;
+
+    @Config.Comment({
+        "If true, the drain will collect fluid source blocks directly in front",
+        "of the side with the big hole."
+    })
+    public boolean ALLOW_SOURCE_DRAIN = true;
   }
 
   // ---------------------------------------------------------------------------
@@ -276,6 +282,12 @@ public class ModuleTechRefractoryConfig {
         "Default: " + 2
     })
     public int RANGE = 2;
+
+    @Config.Comment({
+        "If true, the drain will collect fluid source blocks directly in front",
+        "of the side with the big hole."
+    })
+    public boolean ALLOW_SOURCE_DRAIN = true;
   }
 
   // ---------------------------------------------------------------------------

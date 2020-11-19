@@ -4,14 +4,19 @@ import com.codetaylor.mc.pyrotech.library.util.FloodFill;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileActivePile;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.wrappers.BlockLiquidWrapper;
+import net.minecraftforge.fluids.capability.wrappers.FluidBlockWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -82,8 +87,20 @@ public abstract class TileTarDrainBase
 
     BlockPos start = origin.offset(facing);
 
-    FloodFill.ICandidatePredicate candidatePredicate = (w, p) -> eligiblePos.contains(p) && this.getCollectionSourceFluidTank(w.getTileEntity(p)) != null;
-    FloodFill.IAction action = (w, p) -> result.add(p);
+    FloodFill.ICandidatePredicate candidatePredicate = (w, p) -> eligiblePos.contains(p) && this.getCollectionSourceFluidHandler(w, p) != null;
+    FloodFill.IAction action = (w, p) -> {
+      boolean isFluidSource = this.getFluidBlockHandler(w, p) != null;
+
+      if (isFluidSource && p.equals(start)) {
+        // end flood fill if a fluid source and origin
+        result.add(p);
+        return false;
+
+      } else if (!isFluidSource) {
+        result.add(p);
+      }
+      return true;
+    };
     FloodFill.apply(world, start, candidatePredicate, action, eligiblePos.size());
 
     return result;
@@ -91,9 +108,13 @@ public abstract class TileTarDrainBase
 
   protected abstract int getDrainRange();
 
+  protected abstract boolean allowSourceDrain();
+
   @Nullable
   @Override
-  protected FluidTank getCollectionSourceFluidTank(@Nullable TileEntity tileEntity) {
+  protected IFluidHandler getCollectionSourceFluidHandler(World world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileTarCollectorBase) {
       return ((TileTarCollectorBase) tileEntity).getFluidTank();
@@ -102,7 +123,25 @@ public abstract class TileTarDrainBase
       return ((TileActivePile) tileEntity).getFluidTank();
     }
 
-    return null;
+    return this.getFluidBlockHandler(world, pos);
   }
 
+  private IFluidHandler getFluidBlockHandler(World world, BlockPos pos) {
+
+    if (!this.allowSourceDrain()) {
+      return null;
+    }
+    
+    Block block = world.getBlockState(pos).getBlock();
+
+    if (block instanceof IFluidBlock) {
+      return new FluidBlockWrapper((IFluidBlock) block, world, pos);
+
+    } else if (block instanceof BlockLiquid) {
+      return new BlockLiquidWrapper((BlockLiquid) block, world, pos);
+
+    } else {
+      return null;
+    }
+  }
 }

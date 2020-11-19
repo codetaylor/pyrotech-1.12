@@ -18,8 +18,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -89,7 +89,9 @@ public abstract class TileTarCollectorBase
 
   @Nullable
   @Override
-  protected FluidTank getCollectionSourceFluidTank(@Nullable TileEntity tileEntity) {
+  protected IFluidHandler getCollectionSourceFluidHandler(World world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileActivePile) {
       return ((TileActivePile) tileEntity).getFluidTank();

@@ -1,9 +1,13 @@
 # 1.6.0
 
   * **Changed:**
-    * The anvil will now allow both a pickaxe and a hammer recipe for the same input
-    * Added back the stone to cobblestone anvil hammer recipe
-    * Drains will now only drain from continguous collectors within range
+    * Anvils
+        * The anvil will now allow both a pickaxe and a hammer recipe for the same input
+        * Added back the stone to cobblestone anvil hammer recipe
+    * Drains
+        * Drains will now only drain from continguous collectors within range
+        * Drains will now collect fluid source blocks directly in front of them [(#278)](https://github.com/codetaylor/pyrotech-1.12/issues/278)
+            * Config: `ALLOW_SOURCE_DRAIN`
 
 ---
 
