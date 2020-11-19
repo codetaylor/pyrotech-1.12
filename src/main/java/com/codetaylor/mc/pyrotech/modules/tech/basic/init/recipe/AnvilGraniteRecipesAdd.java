@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
+import crafttweaker.api.oredict.IngredientOreDict;
 import net.minecraft.block.BlockStone;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -478,7 +479,7 @@ public class AnvilGraniteRecipesAdd {
     // Charcoal block to charcoal
     registry.register(new AnvilRecipe(
         new ItemStack(Items.COAL, 9, 1),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK)),
+        new OreIngredient("blockCharcoal"),
         8,
         AnvilRecipe.EnumType.PICKAXE,
         AnvilRecipe.EnumTier.GRANITE

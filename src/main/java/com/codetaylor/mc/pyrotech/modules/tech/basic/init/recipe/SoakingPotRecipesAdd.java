@@ -34,7 +34,7 @@ public class SoakingPotRecipesAdd {
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
       registry.register(new SoakingPotRecipe(
           new ItemStack(Blocks.COAL_BLOCK),
-          Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK)),
+          new OreIngredient("blockCharcoal"),
           new FluidStack(ModuleTechRefractory.Fluids.COAL_TAR, 1000),
           true,
           7 * 60 * 20
