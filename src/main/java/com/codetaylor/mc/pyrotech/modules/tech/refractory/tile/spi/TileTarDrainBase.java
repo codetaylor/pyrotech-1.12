@@ -110,17 +110,29 @@ public abstract class TileTarDrainBase
 
   protected abstract boolean allowSourceDrain();
 
+  protected abstract boolean allowTileDrain();
+
   @Nullable
   @Override
   protected IFluidHandler getCollectionSourceFluidHandler(World world, BlockPos pos) {
 
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileTarCollectorBase) {
-      return ((TileTarCollectorBase) tileEntity).getFluidTank();
+    if (tileEntity != null) {
 
-    } else if (tileEntity instanceof TileActivePile) {
-      return ((TileActivePile) tileEntity).getFluidTank();
+      if (tileEntity instanceof TileTarCollectorBase) {
+        return ((TileTarCollectorBase) tileEntity).getFluidTank();
+
+      } else if (tileEntity instanceof TileActivePile) {
+        return ((TileActivePile) tileEntity).getFluidTank();
+
+      } else if (this.allowTileDrain()) {
+        IFluidHandler fluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null);
+
+        if (fluidHandler != null) {
+          return fluidHandler;
+        }
+      }
     }
 
     return this.getFluidBlockHandler(world, pos);
@@ -131,7 +143,7 @@ public abstract class TileTarDrainBase
     if (!this.allowSourceDrain()) {
       return null;
     }
-    
+
     Block block = world.getBlockState(pos).getBlock();
 
     if (block instanceof IFluidBlock) {

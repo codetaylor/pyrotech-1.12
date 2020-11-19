@@ -8,6 +8,8 @@
         * Drains will now only drain from continguous collectors within range
         * Drains will now collect fluid source blocks directly in front of them [(#278)](https://github.com/codetaylor/pyrotech-1.12/issues/278)
             * Config: `ALLOW_SOURCE_DRAIN`
+        * Drains will now collect fluid from any tile entities with the fluid handler capability [(#278)](https://github.com/codetaylor/pyrotech-1.12/issues/278) 
+            * Config: `ALLOW_TILE_DRAIN`
 
 ---
 

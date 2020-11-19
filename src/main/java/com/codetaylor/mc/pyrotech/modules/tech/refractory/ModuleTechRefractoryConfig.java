@@ -244,6 +244,12 @@ public class ModuleTechRefractoryConfig {
         "of the side with the big hole."
     })
     public boolean ALLOW_SOURCE_DRAIN = true;
+
+    @Config.Comment({
+        "If true, the drain will collect from all tile entities with fluid handler",
+        "capabilities, not just the collectors."
+    })
+    public boolean ALLOW_TILE_DRAIN = true;
   }
 
   // ---------------------------------------------------------------------------
@@ -288,6 +294,12 @@ public class ModuleTechRefractoryConfig {
         "of the side with the big hole."
     })
     public boolean ALLOW_SOURCE_DRAIN = true;
+
+    @Config.Comment({
+        "If true, the drain will collect from all tile entities with fluid handler",
+        "capabilities, not just the collectors."
+    })
+    public boolean ALLOW_TILE_DRAIN = true;
   }
 
   // ---------------------------------------------------------------------------
