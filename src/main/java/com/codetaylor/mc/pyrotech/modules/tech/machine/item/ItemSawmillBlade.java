@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.item;
 
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import net.minecraft.client.util.ITooltipFlag;
@@ -42,7 +43,7 @@ public class ItemSawmillBlade
     } else {
       int damage = this.getDamage(stack);
 
-      if (damage == 0) {
+      if (ModuleCoreConfig.CLIENT.SHOW_DURABILITY_TOOLTIPS && damage == 0) {
         int maxDamage = this.getMaxDamage(stack);
         tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
       }

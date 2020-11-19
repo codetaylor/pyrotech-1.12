@@ -440,6 +440,11 @@ public class ModuleCoreConfig {
   public static class Client {
 
     @Config.Comment({
+        "Set to false to hide the durability tooltip on tools."
+    })
+    public boolean SHOW_DURABILITY_TOOLTIPS = true;
+
+    @Config.Comment({
         "These items will be removed from JEI.",
         "Note: This should only be used to remove vanilla items.",
         "String format is a resource location: (domain):(path)"

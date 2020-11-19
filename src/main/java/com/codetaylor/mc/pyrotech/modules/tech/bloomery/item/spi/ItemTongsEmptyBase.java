@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi;
 
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionItem;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
@@ -105,7 +106,7 @@ public abstract class ItemTongsEmptyBase
   @Override
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 
-    if (this.getDamage(stack) == 0) {
+    if (ModuleCoreConfig.CLIENT.SHOW_DURABILITY_TOOLTIPS && this.getDamage(stack) == 0) {
       tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", this.getMaxDamage(stack)));
     }
   }

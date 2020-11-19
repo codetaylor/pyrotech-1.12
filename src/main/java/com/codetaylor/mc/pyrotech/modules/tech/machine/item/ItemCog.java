@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.item;
 
 import com.codetaylor.mc.pyrotech.Reference;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import net.minecraft.client.util.ITooltipFlag;
@@ -111,7 +112,7 @@ public class ItemCog
     } else {
       int damage = stack.getItemDamage();
 
-      if (damage == 0) {
+      if (ModuleCoreConfig.CLIENT.SHOW_DURABILITY_TOOLTIPS && damage == 0) {
         int maxDamage = stack.getMaxDamage();
         tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", maxDamage));
       }

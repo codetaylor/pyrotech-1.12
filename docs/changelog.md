@@ -2,6 +2,7 @@
 
   * **Added:**
     * Config option to change rock bags' fill texture `ROCK_FILL_TEXTURE_LOCATION` [(#253)](https://github.com/codetaylor/pyrotech-1.12/issues/253)
+    * Config option to disable durability tooltips `SHOW_DURABILITY_TOOLTIPS` [(#221)](https://github.com/codetaylor/pyrotech-1.12/issues/221)
 
   * **Changed:**
     * Anvils
