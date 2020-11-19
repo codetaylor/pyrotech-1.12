@@ -1,3 +1,10 @@
+**1.5.1**
+
+  * **Fixed:**
+    * Refractory Tank empty recipe is messed up [(#331)](https://github.com/codetaylor/pyrotech-1.12/issues/331)
+
+---
+
 # 1.5.0
 
   * **Added:**
