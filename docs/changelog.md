@@ -3,6 +3,8 @@
   * **Added:**
     * Config option to change rock bags' fill texture `ROCK_FILL_TEXTURE_LOCATION` [(#253)](https://github.com/codetaylor/pyrotech-1.12/issues/253)
     * Config option to disable durability tooltips `SHOW_DURABILITY_TOOLTIPS` [(#221)](https://github.com/codetaylor/pyrotech-1.12/issues/221)
+    * Oredict:
+        * `blockCharcoal` now contains `pyrotech:charcoal_block` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
 
   * **Changed:**
     * Anvils

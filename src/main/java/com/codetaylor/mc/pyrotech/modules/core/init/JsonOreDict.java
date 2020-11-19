@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core.init;
 
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockCharcoalBlock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
@@ -29,6 +30,10 @@ public class JsonOreDict {
   public static JsonOreDict generate() {
 
     JsonOreDict result = new JsonOreDict();
+
+    result.oreDict.put("blockCharcoal", new String[]{
+        "pyrotech:" + BlockCharcoalBlock.NAME
+    });
 
     result.oreDict.put("cobblestone", new String[]{
         "pyrotech:cobblestone:" + BlockCobblestone.EnumType.ANDESITE.getMeta(),
