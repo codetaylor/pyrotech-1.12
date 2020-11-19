@@ -1,5 +1,8 @@
 # 1.6.0
 
+  * **Added:**
+    * Config option to change rock bags' fill texture `ROCK_FILL_TEXTURE_LOCATION` [(#253)](https://github.com/codetaylor/pyrotech-1.12/issues/253)
+
   * **Changed:**
     * Anvils
         * The anvil will now allow both a pickaxe and a hammer recipe for the same input

@@ -36,7 +36,7 @@ public class BagInteractionInputRenderer
 
     TextureMap textureMapBlocks = Minecraft.getMinecraft().getTextureMapBlocks();
     TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
-    TextureAtlasSprite still = textureMapBlocks.getAtlasSprite("minecraft:blocks/gravel");
+    TextureAtlasSprite still = textureMapBlocks.getAtlasSprite(tile.getRockFillTextureLocation());
 
     BlockPos blockpos = new BlockPos(tile.getPos());
     int i = tile.getWorld().isBlockLoaded(blockpos) ? tile.getWorld().getCombinedLight(blockpos, 0) : 0;

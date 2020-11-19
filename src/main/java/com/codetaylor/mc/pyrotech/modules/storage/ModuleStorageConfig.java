@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.storage;
 
-import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockGrass;
@@ -124,6 +124,12 @@ public class ModuleStorageConfig {
         "Item string format is (domain):(path):(meta|*) where * matches any meta."
     })
     public String[] ITEM_BLACKLIST = new String[0];
+
+    @Config.Comment({
+        "This is the texture used to indicate the fill level when the bag is in",
+        "the world."
+    })
+    public String ROCK_FILL_TEXTURE_LOCATION = "minecraft:blocks/gravel";
   }
 
   // ---------------------------------------------------------------------------
@@ -199,6 +205,12 @@ public class ModuleStorageConfig {
         "Item string format is (domain):(path):(meta|*) where * matches any meta."
     })
     public String[] ITEM_BLACKLIST = new String[0];
+
+    @Config.Comment({
+        "This is the texture used to indicate the fill level when the bag is in",
+        "the world."
+    })
+    public String ROCK_FILL_TEXTURE_LOCATION = "minecraft:blocks/gravel";
   }
 
   // ---------------------------------------------------------------------------

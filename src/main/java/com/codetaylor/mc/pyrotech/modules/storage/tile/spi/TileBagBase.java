@@ -99,6 +99,8 @@ public abstract class TileBagBase
 
   public abstract int getItemCapacity();
 
+  public abstract String getRockFillTextureLocation();
+
   public void setOpen(boolean open) {
 
     if (open && !this.isOpen()) {

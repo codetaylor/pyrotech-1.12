@@ -16,6 +16,12 @@ public class TileBagSimple
   }
 
   @Override
+  public String getRockFillTextureLocation() {
+
+    return ModuleStorageConfig.SIMPLE_ROCK_BAG.ROCK_FILL_TEXTURE_LOCATION;
+  }
+
+  @Override
   public boolean allowAutomation() {
 
     return ModuleStorageConfig.SIMPLE_ROCK_BAG.ALLOW_AUTOMATION;
