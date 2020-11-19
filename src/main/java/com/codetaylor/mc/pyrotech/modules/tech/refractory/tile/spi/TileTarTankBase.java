@@ -30,6 +30,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public abstract class TileTarTankBase
     extends TileEntityDataBase
@@ -86,7 +87,7 @@ public abstract class TileTarTankBase
       return;
     }
 
-    List<BlockPos> sourcePositions = this.getCollectionSourcePositions(world, pos);
+    Set<BlockPos> sourcePositions = this.getCollectionSourcePositions(world, pos);
     List<FluidTank> fluidTanks = new ArrayList<>(sourcePositions.size());
 
     for (BlockPos sourcePosition : sourcePositions) {
@@ -154,7 +155,7 @@ public abstract class TileTarTankBase
     this.readFromNBT(packet.getNbtCompound());
   }
 
-  protected abstract List<BlockPos> getCollectionSourcePositions(World world, BlockPos origin);
+  protected abstract Set<BlockPos> getCollectionSourcePositions(World world, BlockPos origin);
 
   protected abstract int getTankCapacity();
 

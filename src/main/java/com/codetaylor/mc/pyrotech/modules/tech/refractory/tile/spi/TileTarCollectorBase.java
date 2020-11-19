@@ -26,8 +26,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public abstract class TileTarCollectorBase
     extends TileTarTankBase {
@@ -82,9 +82,9 @@ public abstract class TileTarCollectorBase
   }
 
   @Override
-  protected List<BlockPos> getCollectionSourcePositions(World world, BlockPos origin) {
+  protected Set<BlockPos> getCollectionSourcePositions(World world, BlockPos origin) {
 
-    return Collections.emptyList();
+    return Collections.emptySet();
   }
 
   @Nullable

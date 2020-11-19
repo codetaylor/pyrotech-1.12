@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi;
 
+import com.codetaylor.mc.pyrotech.library.util.FloodFill;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.block.BlockTarDrain;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.TileActivePile;
@@ -14,9 +15,9 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class TileTarDrainBase
     extends TileTarTankBase {
@@ -58,25 +59,32 @@ public abstract class TileTarDrainBase
   }
 
   @Override
-  protected List<BlockPos> getCollectionSourcePositions(World world, BlockPos origin) {
+  protected Set<BlockPos> getCollectionSourcePositions(World world, BlockPos origin) {
 
     IBlockState blockState = world.getBlockState(origin);
 
     if (blockState.getBlock() != ModuleTechRefractory.Blocks.TAR_DRAIN) {
-      return Collections.emptyList();
+      return Collections.emptySet();
     }
 
     EnumFacing facing = blockState.getValue(BlockTarDrain.FACING).getOpposite();
     int drainRange = this.getDrainRange();
     BlockPos offset = origin.offset(facing, 1 + drainRange);
-    List<BlockPos> result = new ArrayList<>(9);
+    Set<BlockPos> eligiblePos = new HashSet<>(9);
+    Set<BlockPos> result = new HashSet<>(9);
 
     for (int x = -drainRange; x <= drainRange; x++) {
 
       for (int z = -drainRange; z <= drainRange; z++) {
-        result.add(offset.add(x, 0, z));
+        eligiblePos.add(offset.add(x, 0, z));
       }
     }
+
+    BlockPos start = origin.offset(facing);
+
+    FloodFill.ICandidatePredicate candidatePredicate = (w, p) -> eligiblePos.contains(p) && this.getCollectionSourceFluidTank(w.getTileEntity(p)) != null;
+    FloodFill.IAction action = (w, p) -> result.add(p);
+    FloodFill.apply(world, start, candidatePredicate, action, eligiblePos.size());
 
     return result;
   }
