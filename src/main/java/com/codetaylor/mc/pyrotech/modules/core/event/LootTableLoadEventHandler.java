@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.core.event;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -15,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -85,7 +85,7 @@ public class LootTableLoadEventHandler {
   @SubscribeEvent(priority = EventPriority.LOWEST)
   public static void on(LootTableLoadEvent event) {
 
-    if (!ModuleCoreConfig.TWEAKS.REPLACE_IRON_INGOTS_WITH_IRON_ORE) {
+    if (!ModuleCoreConfig.TWEAKS.REPLACE_IRON_INGOTS) {
       return;
     }
 
@@ -105,8 +105,15 @@ public class LootTableLoadEventHandler {
       return;
     }
 
+    Item replacementItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(ModuleCoreConfig.TWEAKS.REPLACE_IRON_INGOTS_WITH));
+
+    if (replacementItem == null) {
+      ModuleCore.LOGGER.error("Unable to locate item for Iron Ingot replacement: " + ModuleCoreConfig.TWEAKS.REPLACE_IRON_INGOTS_WITH);
+      return;
+    }
+
     Map<Item, Item> replacementMap = new HashMap<Item, Item>() {{
-      this.put(Items.IRON_INGOT, Item.getItemFromBlock(Blocks.IRON_ORE));
+      this.put(Items.IRON_INGOT, replacementItem);
     }};
 
     try {

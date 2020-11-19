@@ -1,12 +1,15 @@
 # 1.6.0
 
   * **Added:**
-    * Config option to change rock bags' fill texture `ROCK_FILL_TEXTURE_LOCATION` [(#253)](https://github.com/codetaylor/pyrotech-1.12/issues/253)
-    * Config option to disable durability tooltips `SHOW_DURABILITY_TOOLTIPS` [(#221)](https://github.com/codetaylor/pyrotech-1.12/issues/221)
+    * Config option to:
+        * Change rock bags' fill texture `ROCK_FILL_TEXTURE_LOCATION` [(#253)](https://github.com/codetaylor/pyrotech-1.12/issues/253)
+        * Disable durability tooltips `SHOW_DURABILITY_TOOLTIPS` [(#221)](https://github.com/codetaylor/pyrotech-1.12/issues/221)
+        * Specify Iron Ingot replacement item `REPLACE_IRON_INGOTS_WITH` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
     * Oredict:
         * `blockCharcoal` now contains `pyrotech:charcoal_block` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
 
   * **Changed:**
+    * Config entry `REPLACE_IRON_INGOTS_WITH_IRON_ORE` is now `REPLACE_IRON_INGOTS` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
     * Leather armor will now change color when Slaked Lime is applied [(#223)](https://github.com/codetaylor/pyrotech-1.12/issues/223)
     * Anvils
         * The anvil will now allow both a pickaxe and a hammer recipe for the same input

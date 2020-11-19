@@ -39,12 +39,20 @@ public class ModuleCoreConfig {
     public boolean DROP_STICKS_FROM_LEAVES = true;
 
     @Config.Comment({
-        "Pyrotech will swap iron ingots for iron ore in loot tables.",
+        "Pyrotech will swap iron ingots for iron ore in loot tables by default.",
         "This feature may not play well with mods designed to modify loot tables.",
         "Set to false to disable.",
         "Default: " + true
     })
-    public boolean REPLACE_IRON_INGOTS_WITH_IRON_ORE = true;
+    public boolean REPLACE_IRON_INGOTS = true;
+
+    @Config.Comment({
+        "Pyrotech will swap iron ingots for iron ore in loot tables by default.",
+        "This feature may not play well with mods designed to modify loot tables.",
+        "Set to false to disable.",
+        "Default: " + "minecraft:iron_ore"
+    })
+    public String REPLACE_IRON_INGOTS_WITH = "minecraft:iron_ore";
 
     @Config.Comment({
         "Set to false to allow all wood chips to be collected with any held item.",
