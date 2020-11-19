@@ -18,6 +18,6 @@
     "item": "minecraft:leather_boots",
     "count": 1,
     "data": 0,
-    "nbt": {"ench": [{"id": 1, "lvl": 1}]}
+    "nbt": {"ench": [{"id": 1, "lvl": 1}], "display": {"color": 10068616}}
   }
 }

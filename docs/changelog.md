@@ -7,6 +7,7 @@
         * `blockCharcoal` now contains `pyrotech:charcoal_block` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
 
   * **Changed:**
+    * Leather armor will now change color when Slaked Lime is applied [(#223)](https://github.com/codetaylor/pyrotech-1.12/issues/223)
     * Anvils
         * The anvil will now allow both a pickaxe and a hammer recipe for the same input
         * Added back the stone to cobblestone anvil hammer recipe

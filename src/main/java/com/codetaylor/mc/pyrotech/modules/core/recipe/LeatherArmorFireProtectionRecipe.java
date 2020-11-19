@@ -14,6 +14,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
@@ -48,7 +49,10 @@ public class LeatherArmorFireProtectionRecipe
           || itemStack.getItem() == Items.LEATHER_CHESTPLATE
           || itemStack.getItem() == Items.LEATHER_LEGGINGS
           || itemStack.getItem() == Items.LEATHER_BOOTS) {
-        return this.applyFireResistanceEnchantment(itemStack);
+        ItemStack newItemStack = this.applyFireResistanceEnchantment(itemStack);
+        NBTTagCompound displayTag = newItemStack.getOrCreateSubCompound("display");
+        displayTag.setInteger("color", 10068616);
+        return newItemStack;
       }
     }
 
