@@ -14,7 +14,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -25,12 +24,10 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -100,17 +97,6 @@ public abstract class TileTarTankBase
       }
     }
 
-    Comparator<IFluidHandler> comparator = Comparator.comparingInt(value -> {
-      IFluidTankProperties[] tankProperties = value.getTankProperties();
-
-      if (tankProperties == null || tankProperties.length == 0 || tankProperties[0] == null || tankProperties[0].getContents() == null) {
-        return 0;
-      }
-
-      return tankProperties[0].getContents().amount;
-    });
-    fluidHandlers.sort(comparator.reversed());
-
     for (IFluidHandler handler : fluidHandlers) {
 
       if (fluidTank.getFluidAmount() < fluidTank.getCapacity()) {
@@ -124,14 +110,11 @@ public abstract class TileTarTankBase
 
   private void collect(IFluidHandler source, FluidTank target) {
 
-    IFluidTankProperties[] tankProperties = source.getTankProperties();
+    int filled = target.fillInternal(source.drain(target.getCapacity() - target.getFluidAmount(), false), false);
 
-    if (tankProperties == null || tankProperties.length == 0 || tankProperties[0] == null || tankProperties[0].getContents() == null) {
-      return;
+    if (filled > 0) {
+      target.fillInternal(source.drain(filled, true), true);
     }
-
-    FluidStack fluidStack = tankProperties[0].getContents();
-    source.drain(target.fillInternal(fluidStack, true), true);
   }
 
   @Nonnull
