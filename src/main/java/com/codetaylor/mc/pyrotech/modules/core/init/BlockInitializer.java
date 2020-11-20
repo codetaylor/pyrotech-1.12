@@ -11,13 +11,11 @@ import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockGrass;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockNetherrack;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemStrawBed;
 import com.codetaylor.mc.pyrotech.modules.core.tile.TileFarmlandMulched;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.block.BlockMechanicalCompactingBin;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
@@ -55,7 +53,6 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockLogPile(), BlockLogPile.NAME);
     registry.registerBlockWithItem(new BlockCoalCokeBlock(), BlockCoalCokeBlock.NAME);
     registry.registerBlockWithItem(new BlockThatch(), BlockThatch.NAME);
-    registry.registerBlockWithItem(new BlockRefractoryBrick(), BlockRefractoryBrick.NAME);
     registry.registerBlockWithItem(new BlockLimestone(), BlockLimestone.NAME);
     registry.registerBlockWithItem(new BlockRefractoryGlass(), BlockRefractoryGlass.NAME);
     registry.registerBlockWithItem(new BlockSlagGlass(), BlockSlagGlass.NAME);
@@ -80,6 +77,10 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockOreDenseQuartzLarge(), BlockOreDenseQuartzLarge.NAME);
     registry.registerBlockWithItem(new BlockOreDenseQuartzSmall(), BlockOreDenseQuartzSmall.NAME);
     registry.registerBlockWithItem(new BlockOreDenseQuartzRocks(), BlockOreDenseQuartzRocks.NAME);
+
+    BlockRefractoryBrick blockRefractoryBrick = new BlockRefractoryBrick();
+    registry.registerBlockWithItem(blockRefractoryBrick, BlockRefractoryBrick.NAME);
+    registry.registerBlockWithItem(new BlockRefractoryBricksStairs(blockRefractoryBrick.getDefaultState()), BlockRefractoryBricksStairs.NAME);
 
     BlockStoneBricks blockStoneBricks = new BlockStoneBricks();
     registry.registerBlockWithItem(blockStoneBricks, BlockStoneBricks.NAME);
@@ -133,6 +134,11 @@ public final class BlockInitializer {
           ModuleCore.Items.ROCK_GRASS,
           ModuleCore.Items.ROCK_NETHERRACK,
           ModuleCore.Items.STRAW_BED
+      );
+
+      ModelRegistrationHelper.registerItemModel(
+          Item.getItemFromBlock(ModuleCore.Blocks.REFRACTORY_BRICKS_STAIRS),
+          ModuleCore.MOD_ID + ":" + BlockRefractoryBricksStairs.NAME
       );
 
       ModelRegistrationHelper.registerItemModel(

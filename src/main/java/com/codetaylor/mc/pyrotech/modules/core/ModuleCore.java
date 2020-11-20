@@ -260,6 +260,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockRefractoryBrick.NAME)
     public static final BlockRefractoryBrick REFRACTORY_BRICK;
 
+    @GameRegistry.ObjectHolder(BlockRefractoryBricksStairs.NAME)
+    public static final BlockRefractoryBricksStairs REFRACTORY_BRICKS_STAIRS;
+
     @GameRegistry.ObjectHolder(BlockRefractoryDoor.NAME)
     public static final BlockRefractoryDoor REFRACTORY_DOOR;
 
@@ -361,6 +364,7 @@ public class ModuleCore
       COAL_COKE_BLOCK = null;
       THATCH = null;
       REFRACTORY_BRICK = null;
+      REFRACTORY_BRICKS_STAIRS = null;
       REFRACTORY_DOOR = null;
       STONE_DOOR = null;
       LIMESTONE = null;

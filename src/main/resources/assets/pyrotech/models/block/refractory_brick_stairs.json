@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "pyrotech:blocks/refractory_brick",
+        "top": "pyrotech:blocks/refractory_brick",
+        "side": "pyrotech:blocks/refractory_brick"
+    }
+}

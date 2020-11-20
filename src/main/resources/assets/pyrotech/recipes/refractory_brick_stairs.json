@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "pyrotech:refractory_brick_block"
+    }
+  },
+  "result": {
+    "item": "pyrotech:refractory_brick_stairs",
+    "count": 4
+  }
+}
