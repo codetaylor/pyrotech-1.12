@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockGrass;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRockNetherrack;
 import net.minecraftforge.common.config.Config;
 
 import java.util.Map;
@@ -114,7 +115,9 @@ public class ModuleStorageConfig {
         ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.DIRT.getMeta(),
         ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.SANDSTONE.getMeta(),
         ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.LIMESTONE.getMeta(),
-        ModuleStorage.MOD_ID + ":" + BlockRockGrass.NAME + ":0"
+        ModuleStorage.MOD_ID + ":" + BlockRock.NAME + ":" + BlockRock.EnumType.SANDSTONE_RED.getMeta(),
+        ModuleStorage.MOD_ID + ":" + BlockRockGrass.NAME + ":0",
+        ModuleStorage.MOD_ID + ":" + BlockRockNetherrack.NAME + ":0"
     };
 
     @Config.Comment({

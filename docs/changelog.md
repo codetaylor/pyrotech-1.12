@@ -1,3 +1,11 @@
+**1.5.2**
+
+  * **Fixed:**
+    * Red Sandstone Rock can't be placed in rock bags [(#332)](https://github.com/codetaylor/pyrotech-1.12/issues/332)
+    * Netherrack Gib can't be placed in rock bags
+
+---
+
 **1.5.1**
 
   * **Fixed:**
