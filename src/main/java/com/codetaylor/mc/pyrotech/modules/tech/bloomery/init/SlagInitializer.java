@@ -97,9 +97,9 @@ public final class SlagInitializer {
       return;
     }
 
-    for (Map.Entry<String, CompatInitializerOre.OreCompatOreDictEntry> entry : data.oredict.entrySet()) {
+    for (Map.Entry<String, CompatInitializerOre.OreCompatEntry> entry : data.oredict.entrySet()) {
       String oreDictKey = entry.getKey();
-      CompatInitializerOre.OreCompatOreDictEntry oreDictEntry = entry.getValue();
+      CompatInitializerOre.OreCompatEntry oreDictEntry = entry.getValue();
 
       // lang key
 

@@ -42,7 +42,7 @@ public class BloomeryRecipesAdd {
       return;
     }
 
-    for (Map.Entry<String, CompatInitializerOre.OreCompatOreDictEntry> entry : data.oredict.entrySet()) {
+    for (Map.Entry<String, CompatInitializerOre.OreCompatEntry> entry : data.oredict.entrySet()) {
 
       String oreDictKey = entry.getKey();
       ItemSlag itemSlag = SlagInitializer.SLAG_BY_OREDICT.get(oreDictKey);
@@ -55,11 +55,37 @@ public class BloomeryRecipesAdd {
 
       ItemSlag.Properties properties = ModuleTechBloomery.Items.GENERATED_SLAG.get(itemSlag);
       String langKey = properties.langKey;
-      CompatInitializerOre.OreCompatOreDictEntry oreDictEntry = entry.getValue();
-      ItemStack outputItemStack = BloomeryRecipesAdd.getFirstValidOutput(oreDictEntry.output);
+      CompatInitializerOre.OreCompatEntry oreCompatEntry = entry.getValue();
+      ItemStack outputItemStack = BloomeryRecipesAdd.getFirstValidOutput(oreCompatEntry.output);
 
       if (outputItemStack.isEmpty()) {
         continue;
+      }
+
+      int bloomYieldMin;
+      int bloomYieldMax;
+
+      if (oreCompatEntry.bloomYieldMinMax == null || oreCompatEntry.bloomYieldMinMax.length != 2) {
+        ModuleCore.LOGGER.error(String.format("Invalid value for key %s in oredict %s in file %s, expected integer array of length 2", "bloomYieldMinMax", oreDictKey, "core.compat.Ore-Custom.json"));
+        bloomYieldMin = CompatInitializerOre.DEFAULT_BLOOM_YIELD_MIN_MAX[0];
+        bloomYieldMax = CompatInitializerOre.DEFAULT_BLOOM_YIELD_MIN_MAX[1];
+
+      } else {
+        bloomYieldMin = oreCompatEntry.bloomYieldMinMax[0];
+        bloomYieldMax = oreCompatEntry.bloomYieldMinMax[1];
+      }
+
+      int slagBloomYieldMin;
+      int slagBloomYieldMax;
+
+      if (oreCompatEntry.slagBloomYieldMinMax == null || oreCompatEntry.slagBloomYieldMinMax.length != 2) {
+        ModuleCore.LOGGER.error(String.format("Invalid value for key %s in oredict %s in file %s, expected integer array of length 2", "slagBloomYieldMinMax", oreDictKey, "core.compat.Ore-Custom.json"));
+        slagBloomYieldMin = CompatInitializerOre.DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX[0];
+        slagBloomYieldMax = CompatInitializerOre.DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX[1];
+
+      } else {
+        slagBloomYieldMin = oreCompatEntry.slagBloomYieldMinMax[0];
+        slagBloomYieldMax = oreCompatEntry.slagBloomYieldMinMax[1];
       }
 
       // 2019-07-20: (#133) We have to set the lang key for the ore bloom recipe
@@ -76,7 +102,7 @@ public class BloomeryRecipesAdd {
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(12, 15)
+              .setBloomYield(bloomYieldMin, bloomYieldMax)
               .setSlagItem(new ItemStack(itemSlag), 4)
               .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG), 1)
               .addFailureItem(new ItemStack(itemSlag), 2)
@@ -93,7 +119,7 @@ public class BloomeryRecipesAdd {
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS / 2)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
-              .setBloomYield(12, 15)
+              .setBloomYield(slagBloomYieldMin, slagBloomYieldMax)
               .setSlagItem(new ItemStack(itemSlag), 2)
               .addFailureItem(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.STONE.getMeta()), 1)
               .addFailureItem(new ItemStack(ModuleTechBloomery.Items.SLAG, 1, 0), 2)
@@ -156,5 +182,4 @@ public class BloomeryRecipesAdd {
         recipe
     ).setRegistryName(registryName));
   }
-
 }

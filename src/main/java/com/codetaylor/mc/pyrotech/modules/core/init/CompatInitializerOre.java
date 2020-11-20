@@ -16,6 +16,9 @@ import java.util.*;
 
 public final class CompatInitializerOre {
 
+  public static final int[] DEFAULT_BLOOM_YIELD_MIN_MAX = new int[]{12, 15};
+  public static final int[] DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX = new int[]{12, 15};
+
   public static void create(Path configurationPath) {
 
     JsonInitializer.create(
@@ -101,10 +104,10 @@ public final class CompatInitializerOre {
 
       // add entry
 
-      OreCompatOreDictEntry oreCompatOreDictEntry = data.oredict.computeIfAbsent(oreKey, s -> new OreCompatOreDictEntry());
-      oreCompatOreDictEntry.slagColor = entry.getValue();
-      oreCompatOreDictEntry.langKey = langKeys.toArray(new String[0]);
-      oreCompatOreDictEntry.output = nuggetItemStrings.toArray(new String[0]);
+      OreCompatEntry oreCompatEntry = data.oredict.computeIfAbsent(oreKey, s -> new OreCompatEntry());
+      oreCompatEntry.slagColor = entry.getValue();
+      oreCompatEntry.langKey = langKeys.toArray(new String[0]);
+      oreCompatEntry.output = nuggetItemStrings.toArray(new String[0]);
     }
 
     return data;
@@ -133,14 +136,16 @@ public final class CompatInitializerOre {
         "Output item strings are in the format: (domain):(path):(meta)"
     };
 
-    public Map<String, OreCompatOreDictEntry> oredict = new TreeMap<>();
+    public Map<String, OreCompatEntry> oredict = new TreeMap<>();
   }
 
-  public static class OreCompatOreDictEntry {
+  public static class OreCompatEntry {
 
     public String slagColor = "ffffff";
     public String[] langKey = new String[0];
     public String[] output = new String[0];
+    public int[] bloomYieldMinMax = CompatInitializerOre.DEFAULT_BLOOM_YIELD_MIN_MAX;
+    public int[] slagBloomYieldMinMax = CompatInitializerOre.DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX;
   }
 
   private CompatInitializerOre() {
