@@ -24,11 +24,11 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.wrappers.BlockLiquidWrapper;
+import net.minecraftforge.fluids.capability.wrappers.FluidBlockWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 public abstract class TileTarTankBase
@@ -87,30 +87,33 @@ public abstract class TileTarTankBase
     }
 
     Set<BlockPos> sourcePositions = this.getCollectionSourcePositions(world, pos);
-    List<IFluidHandler> fluidHandlers = new ArrayList<>(sourcePositions.size());
 
     for (BlockPos sourcePosition : sourcePositions) {
-      IFluidHandler sourceFluidTank = this.getCollectionSourceFluidHandler(world, sourcePosition);
+      IFluidHandler handler = this.getCollectionSourceFluidHandler(world, sourcePosition);
 
-      if (sourceFluidTank != null) {
-        fluidHandlers.add(sourceFluidTank);
+      if (handler != null) {
+
+        if (fluidTank.getFluidAmount() < fluidTank.getCapacity()) {
+          this.collect(handler, fluidTank);
+
+        } else {
+          break;
+        }
       }
     }
 
-    for (IFluidHandler handler : fluidHandlers) {
-
-      if (fluidTank.getFluidAmount() < fluidTank.getCapacity()) {
-        this.collect(handler, fluidTank);
-
-      } else {
-        break;
-      }
-    }
   }
 
   private void collect(IFluidHandler source, FluidTank target) {
 
     int filled = target.fillInternal(source.drain(target.getCapacity() - target.getFluidAmount(), false), false);
+
+    if (source instanceof FluidBlockWrapper || source instanceof BlockLiquidWrapper) {
+
+      if (filled < Fluid.BUCKET_VOLUME) {
+        return;
+      }
+    }
 
     if (filled > 0) {
       target.fillInternal(source.drain(filled, true), true);
