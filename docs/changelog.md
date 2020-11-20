@@ -14,6 +14,8 @@
     * Recipes that use a Charcoal Block have been changed to use the new oredict `blockCharcoal` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
     * Recipes that use Straw have been changed to use the new oredict `straw` [(#200)](https://github.com/codetaylor/pyrotech-1.12/issues/200)
     * Recipes that use Limestone Rock have been changed to use the new oredict `rockLimestone` [(#199)](https://github.com/codetaylor/pyrotech-1.12/issues/199)
+    * Recipes that use Coal Coke have been changed to use the oredict `fuelCoke` [(#150)](https://github.com/codetaylor/pyrotech-1.12/issues/150)
+    * Recipes that use Block of Coal Coke have been changed to use the oredict `blockFuelCoke` [(#150)](https://github.com/codetaylor/pyrotech-1.12/issues/150)
     * Config entry `REPLACE_IRON_INGOTS_WITH_IRON_ORE` is now `REPLACE_IRON_INGOTS` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
     * Leather armor will now change color when Slaked Lime is applied [(#223)](https://github.com/codetaylor/pyrotech-1.12/issues/223)
     * Anvils

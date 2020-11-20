@@ -14,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
@@ -49,7 +50,7 @@ public class MechanicalCompactingBinRecipesAdd {
 
     registry.register(new MechanicalCompactingBinRecipe(
         new ItemStack(ModuleCore.Blocks.COAL_COKE_BLOCK),
-        Ingredient.fromStacks(ItemMaterial.EnumType.COAL_COKE.asStack()),
+        new OreIngredient("fuelCoke"),
         9,
         ModuleTechBasicConfig.COMPACTING_BIN.TOOL_USES_REQUIRED_PER_HARVEST_LEVEL
     ).setRegistryName(ModuleTechMachine.MOD_ID, "coal_coke_block"));

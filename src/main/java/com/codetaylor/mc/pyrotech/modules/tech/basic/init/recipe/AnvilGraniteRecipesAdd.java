@@ -470,7 +470,7 @@ public class AnvilGraniteRecipesAdd {
     // Coal coke block to coal coke
     registry.register(new AnvilRecipe(
         ItemMaterial.EnumType.COAL_COKE.asStack(9),
-        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COAL_COKE_BLOCK)),
+        new OreIngredient("blockFuelCoke"),
         8,
         AnvilRecipe.EnumType.PICKAXE,
         AnvilRecipe.EnumTier.GRANITE
