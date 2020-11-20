@@ -11,6 +11,7 @@
         * `rockLimestone` now contains `pyrotech:rock:8` [(#199)](https://github.com/codetaylor/pyrotech-1.12/issues/199)
 
   * **Changed:**
+    * The ore compat reference map is no longer hard-coded and is exposed in the core config `OREDICT_COLOR_MAP`
     * Recipes that use a Charcoal Block have been changed to use the new oredict `blockCharcoal` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
     * Recipes that use Straw have been changed to use the new oredict `straw` [(#200)](https://github.com/codetaylor/pyrotech-1.12/issues/200)
     * Recipes that use Limestone Rock have been changed to use the new oredict `rockLimestone` [(#199)](https://github.com/codetaylor/pyrotech-1.12/issues/199)

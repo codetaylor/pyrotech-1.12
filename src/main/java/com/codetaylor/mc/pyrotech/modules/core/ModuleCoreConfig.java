@@ -5,6 +5,9 @@ import com.codetaylor.mc.pyrotech.modules.core.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Config;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 @Config(modid = ModuleCore.MOD_ID, name = ModuleCore.MOD_ID + "/" + "core")
 public class ModuleCoreConfig {
 
@@ -49,7 +52,6 @@ public class ModuleCoreConfig {
     @Config.Comment({
         "Pyrotech will swap iron ingots for iron ore in loot tables by default.",
         "This feature may not play well with mods designed to modify loot tables.",
-        "Set to false to disable.",
         "Default: " + "minecraft:iron_ore"
     })
     public String REPLACE_IRON_INGOTS_WITH = "minecraft:iron_ore";
@@ -516,6 +518,40 @@ public class ModuleCoreConfig {
         "Default: " + false
     })
     public boolean RESTRICT_TO_MOISTURIZED_FARMLAND = false;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Ore Compat
+  // ---------------------------------------------------------------------------
+
+  public static OreCompat ORE_COMPAT = new OreCompat();
+
+  public static class OreCompat {
+
+    @Config.Comment({
+        "This map contains the oredict keys and hex color values that the ore",
+        "compatibility system uses to auto generate content.",
+        "Format: S:(oredict)=(hex_color)"
+    })
+    public Map<String, String> OREDICT_COLOR_MAP = new TreeMap<String, String>() {{
+      this.put("oreAluminum", "e2e2e3");
+      this.put("oreArdite", "e85e17");
+      this.put("oreCobalt", "1c5bc1");
+      this.put("oreCopper", "ffaa1c");
+      this.put("oreGold", "fcee4b");
+      this.put("oreIridium", "d5d4e7");
+      this.put("oreIron", "d8af93");
+      this.put("oreLead", "95afee");
+      this.put("oreMithril", "9cf9ff");
+      this.put("oreNickel", "e4e5d8");
+      this.put("oreOctine", "ffaa22");
+      this.put("oreOsmium", "9babc4");
+      this.put("orePlatinum", "55f3ff");
+      this.put("oreSilver", "e8f6fd");
+      this.put("oreSyrmorite", "4455bb");
+      this.put("oreTin", "c3e9ff");
+      this.put("oreUranium", "5c734b");
+    }};
   }
 
   // ---------------------------------------------------------------------------
