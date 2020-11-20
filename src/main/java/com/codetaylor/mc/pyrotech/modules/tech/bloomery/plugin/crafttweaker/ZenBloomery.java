@@ -291,6 +291,22 @@ public class ZenBloomery {
   @ZenDocMethod(
       order = 6,
       args = {
+          @ZenDocArg(arg = "experience", info = "the total experience produced by a bloom")
+      },
+      description = {
+          "Sets the total experience rewarded for hammering on the bloom."
+      }
+  )
+  @ZenMethod
+  public ZenBloomery setExperience(float experience) {
+
+    this.builder.setExperience(experience);
+    return this;
+  }
+
+  @ZenDocMethod(
+      order = 7,
+      args = {
           @ZenDocArg(arg = "failureChance", info = "the recipe's failure chance")
       },
       description = {
@@ -305,7 +321,7 @@ public class ZenBloomery {
   }
 
   @ZenDocMethod(
-      order = 7,
+      order = 8,
       args = {
           @ZenDocArg(arg = "min", info = "the minimum output yield"),
           @ZenDocArg(arg = "max", info = "the maximum output yield")
@@ -322,7 +338,7 @@ public class ZenBloomery {
   }
 
   @ZenDocMethod(
-      order = 8,
+      order = 9,
       args = {
           @ZenDocArg(arg = "slagItem", info = "the item to use as slag"),
           @ZenDocArg(arg = "slagCount", info = "the amount of slag produced in-world during processing")
@@ -339,7 +355,7 @@ public class ZenBloomery {
   }
 
   @ZenDocMethod(
-      order = 9,
+      order = 10,
       args = {
           @ZenDocArg(arg = "itemStack", info = "the failure item"),
           @ZenDocArg(arg = "weight", info = "the weight")
@@ -356,7 +372,7 @@ public class ZenBloomery {
   }
 
   @ZenDocMethod(
-      order = 10,
+      order = 11,
       args = {
           @ZenDocArg(arg = "langKey", info = "the lang key")
       },
@@ -379,7 +395,7 @@ public class ZenBloomery {
   }
 
   @ZenDocMethod(
-      order = 11,
+      order = 12,
       args = {
           @ZenDocArg(arg = "tiers", info = "valid enums: granite, ironclad")
       },

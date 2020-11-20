@@ -29,6 +29,7 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
   protected final ItemStack output;
   protected ItemStack outputBloom;
   protected final int burnTimeTicks;
+  protected final float experience;
   protected final float failureChance;
   protected final int bloomYieldMin;
   protected final int bloomYieldMax;
@@ -36,14 +37,26 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
   protected final FailureItem[] failureItems;
   protected final ItemStack slagItem;
   protected final AnvilRecipe.EnumTier[] anvilTiers;
-  @Nullable
   protected final String langKey;
 
-  public BloomeryRecipeBase(Ingredient input, ItemStack output, int burnTimeTicks, float failureChance, int bloomYieldMin, int bloomYieldMax, int slagCount, FailureItem[] failureItems, ItemStack slagItem, AnvilRecipe.EnumTier[] anvilTiers, @Nullable String langKey) {
+  public BloomeryRecipeBase(
+      Ingredient input,
+      ItemStack output,
+      int burnTimeTicks,
+      float experience, float failureChance,
+      int bloomYieldMin,
+      int bloomYieldMax,
+      int slagCount,
+      FailureItem[] failureItems,
+      ItemStack slagItem,
+      AnvilRecipe.EnumTier[] anvilTiers,
+      @Nullable String langKey
+  ) {
 
     this.input = input;
     this.output = output;
     this.burnTimeTicks = burnTimeTicks;
+    this.experience = experience;
     this.failureChance = MathHelper.clamp(failureChance, 0, 1);
     this.bloomYieldMin = bloomYieldMin;
     this.bloomYieldMax = bloomYieldMax;
@@ -78,6 +91,7 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
       // for comparing blooms in JEI.
       this.outputBloom = BloomHelper.createBloomAsItemStack(
           this.bloomYieldMax,
+          this.experience,
           this.getRegistryName().toString(),
           this.langKey
       );
@@ -115,8 +129,11 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
       integrity += MathHelper.getInt(RandomHelper.random(), this.bloomYieldMin, this.bloomYieldMax);
     }
 
+    float experiencePerComplete = this.experience * quantity;
+
     return BloomHelper.createBloomAsItemStack(
         integrity,
+        experiencePerComplete,
         this.getRegistryName().toString().replaceAll("\\.slag", ""),
         this.langKey
     );

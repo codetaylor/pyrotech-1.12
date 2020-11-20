@@ -29,8 +29,12 @@ import java.util.*;
 
 public class BloomeryRecipesAdd {
 
+  public static final int[] DEFAULT_BLOOM_YIELD_MIN_MAX = new int[]{12, 15};
+  public static final int[] DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX = new int[]{12, 15};
+
   private static final int DEFAULT_BURN_TIME_TICKS = 24 * 60 * 20;
   private static final float DEFAULT_FAILURE_CHANCE = 0.25f;
+  private static final float DEFAULT_EXPERIENCE = 0.5f;
 
   private static final RecipeItemParser RECIPE_ITEM_PARSER = new RecipeItemParser();
 
@@ -67,8 +71,8 @@ public class BloomeryRecipesAdd {
 
       if (oreCompatEntry.bloomYieldMinMax == null || oreCompatEntry.bloomYieldMinMax.length != 2) {
         ModuleCore.LOGGER.error(String.format("Invalid value for key %s in oredict %s in file %s, expected integer array of length 2", "bloomYieldMinMax", oreDictKey, "core.compat.Ore-Custom.json"));
-        bloomYieldMin = CompatInitializerOre.DEFAULT_BLOOM_YIELD_MIN_MAX[0];
-        bloomYieldMax = CompatInitializerOre.DEFAULT_BLOOM_YIELD_MIN_MAX[1];
+        bloomYieldMin = DEFAULT_BLOOM_YIELD_MIN_MAX[0];
+        bloomYieldMax = DEFAULT_BLOOM_YIELD_MIN_MAX[1];
 
       } else {
         bloomYieldMin = oreCompatEntry.bloomYieldMinMax[0];
@@ -80,8 +84,8 @@ public class BloomeryRecipesAdd {
 
       if (oreCompatEntry.slagBloomYieldMinMax == null || oreCompatEntry.slagBloomYieldMinMax.length != 2) {
         ModuleCore.LOGGER.error(String.format("Invalid value for key %s in oredict %s in file %s, expected integer array of length 2", "slagBloomYieldMinMax", oreDictKey, "core.compat.Ore-Custom.json"));
-        slagBloomYieldMin = CompatInitializerOre.DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX[0];
-        slagBloomYieldMax = CompatInitializerOre.DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX[1];
+        slagBloomYieldMin = DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX[0];
+        slagBloomYieldMax = DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX[1];
 
       } else {
         slagBloomYieldMin = oreCompatEntry.slagBloomYieldMinMax[0];
@@ -101,6 +105,7 @@ public class BloomeryRecipesAdd {
               new OreIngredient(oreDictKey)
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS)
+              .setExperience(DEFAULT_EXPERIENCE)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
               .setBloomYield(bloomYieldMin, bloomYieldMax)
               .setSlagItem(new ItemStack(itemSlag), 4)
@@ -118,6 +123,7 @@ public class BloomeryRecipesAdd {
               Ingredient.fromStacks(new ItemStack(blockPileSlag))
           )
               .setBurnTimeTicks(DEFAULT_BURN_TIME_TICKS / 2)
+              .setExperience(DEFAULT_EXPERIENCE)
               .setFailureChance(DEFAULT_FAILURE_CHANCE)
               .setBloomYield(slagBloomYieldMin, slagBloomYieldMax)
               .setSlagItem(new ItemStack(itemSlag), 2)

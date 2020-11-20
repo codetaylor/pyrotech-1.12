@@ -382,6 +382,11 @@ public class BlockBloom
       return this.getTileInteger(itemStack, "integrity");
     }
 
+    public float getExperiencePerComplete(ItemStack itemStack) {
+
+      return this.getTileFloat(itemStack, "experiencePerComplete");
+    }
+
     public void setIntegrity(ItemStack itemStack, int integrity) {
 
       if (itemStack.getItem() == this) {
@@ -402,6 +407,20 @@ public class BlockBloom
         if (tagCompound != null) {
           NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
           return tileTag.getInteger(key);
+        }
+      }
+
+      return 0;
+    }
+
+    private float getTileFloat(ItemStack itemStack, String key) {
+
+      if (itemStack.getItem() == this) {
+        NBTTagCompound tagCompound = itemStack.getTagCompound();
+
+        if (tagCompound != null) {
+          NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
+          return tileTag.getFloat(key);
         }
       }
 

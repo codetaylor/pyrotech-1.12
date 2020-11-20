@@ -19,6 +19,7 @@ public abstract class BloomeryRecipeBuilderBase<R extends BloomeryRecipeBase, B 
   protected ItemStack output;
   protected Ingredient input;
   protected int burnTimeTicks;
+  protected float experience;
   protected float failureChance;
   protected int bloomYieldMin;
   protected int bloomYieldMax;
@@ -47,6 +48,13 @@ public abstract class BloomeryRecipeBuilderBase<R extends BloomeryRecipeBase, B 
   public B setBurnTimeTicks(int burnTimeTicks) {
 
     this.burnTimeTicks = burnTimeTicks;
+    //noinspection unchecked
+    return (B) this;
+  }
+
+  public B setExperience(float experience) {
+
+    this.experience = experience;
     //noinspection unchecked
     return (B) this;
   }

@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.library.util.ExperienceHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
@@ -10,6 +11,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -127,6 +129,9 @@ public class BloomAnvilRecipe
       item.setIntegrity(bloom, integrity);
       stackHandler.insertItem(0, bloom, false);
     }
+
+    // Spawn in the XP
+    ExperienceHelper.spawnXp(world, 1, item.getExperiencePerComplete(bloom), tile.getPos());
   }
 
   @Override

@@ -10,6 +10,7 @@ import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.pyrotech.library.util.ExperienceHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
@@ -43,6 +44,7 @@ public class TileBloom
 
   private IInteraction[] interactions;
   private int maxIntegrity;
+  private float experiencePerComplete;
 
   public TileBloom() {
 
@@ -115,7 +117,7 @@ public class TileBloom
   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    BloomHelper.writeToNBT(compound, this.maxIntegrity, this.integrity.get(), this.recipeId, this.langKey);
+    BloomHelper.writeToNBT(compound, this.maxIntegrity, this.integrity.get(), this.experiencePerComplete, this.recipeId, this.langKey);
     return compound;
   }
 
@@ -125,6 +127,7 @@ public class TileBloom
     super.readFromNBT(compound);
     this.maxIntegrity = compound.getInteger("maxIntegrity");
     this.integrity.set(compound.getInteger("integrity"));
+    this.experiencePerComplete = compound.getFloat("experiencePerComplete");
 
     if (compound.hasKey("recipeId")) {
       this.recipeId = compound.getString("recipeId");
@@ -238,6 +241,9 @@ public class TileBloom
           if (recipe != null) {
             ItemStack output = recipe.getRandomOutput(player);
             StackHelper.spawnStackOnTop(world, output, tilePos, 0);
+
+            // Spawn in the XP
+            ExperienceHelper.spawnXp(world, 1, tile.experiencePerComplete, tile.getPos());
           }
 
           world.playSound(

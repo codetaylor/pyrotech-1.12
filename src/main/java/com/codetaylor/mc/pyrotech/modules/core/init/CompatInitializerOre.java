@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.core.init;
 import com.codetaylor.mc.pyrotech.library.JsonInitializer;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.BloomeryRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,9 +16,6 @@ import java.nio.file.Path;
 import java.util.*;
 
 public final class CompatInitializerOre {
-
-  public static final int[] DEFAULT_BLOOM_YIELD_MIN_MAX = new int[]{12, 15};
-  public static final int[] DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX = new int[]{12, 15};
 
   public static void create(Path configurationPath) {
 
@@ -144,8 +142,8 @@ public final class CompatInitializerOre {
     public String slagColor = "ffffff";
     public String[] langKey = new String[0];
     public String[] output = new String[0];
-    public int[] bloomYieldMinMax = CompatInitializerOre.DEFAULT_BLOOM_YIELD_MIN_MAX;
-    public int[] slagBloomYieldMinMax = CompatInitializerOre.DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX;
+    public int[] bloomYieldMinMax = BloomeryRecipesAdd.DEFAULT_BLOOM_YIELD_MIN_MAX;
+    public int[] slagBloomYieldMinMax = BloomeryRecipesAdd.DEFAULT_SLAG_BLOOM_YIELD_MIN_MAX;
   }
 
   private CompatInitializerOre() {

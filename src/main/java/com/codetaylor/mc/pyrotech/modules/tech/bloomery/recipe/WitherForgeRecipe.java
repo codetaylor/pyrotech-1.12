@@ -33,6 +33,7 @@ public class WitherForgeRecipe
       ItemStack output,
       Ingredient input,
       int burnTimeTicks,
+      float experience,
       float failureChance,
       int bloomYieldMin,
       int bloomYieldMax,
@@ -43,7 +44,7 @@ public class WitherForgeRecipe
       @Nullable String langKey
   ) {
 
-    super(input, output, burnTimeTicks, failureChance, bloomYieldMin, bloomYieldMax, slagCount, failureItems, slagItem, anvilTiers, langKey);
+    super(input, output, burnTimeTicks, experience, failureChance, bloomYieldMin, bloomYieldMax, slagCount, failureItems, slagItem, anvilTiers, langKey);
   }
 
 }

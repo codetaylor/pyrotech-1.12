@@ -107,14 +107,14 @@ public class BloomHelper {
     return Math.max(0, result);
   }
 
-  public static ItemStack createBloomAsItemStack(int maxIntegrity, @Nullable String recipeId, @Nullable String langKey) {
+  public static ItemStack createBloomAsItemStack(int maxIntegrity, float experiencePerComplete, @Nullable String recipeId, @Nullable String langKey) {
 
-    return createBloomAsItemStack(new ItemStack(ModuleTechBloomery.Blocks.BLOOM), maxIntegrity, maxIntegrity, recipeId, langKey);
+    return createBloomAsItemStack(new ItemStack(ModuleTechBloomery.Blocks.BLOOM), maxIntegrity, maxIntegrity, experiencePerComplete, recipeId, langKey);
   }
 
-  public static ItemStack createBloomAsItemStack(ItemStack itemStack, int maxIntegrity, int integrity, @Nullable String recipeId, @Nullable String langKey) {
+  public static ItemStack createBloomAsItemStack(ItemStack itemStack, int maxIntegrity, int integrity, float experiencePerComplete, @Nullable String recipeId, @Nullable String langKey) {
 
-    NBTTagCompound tileTag = writeToNBT(new NBTTagCompound(), maxIntegrity, integrity, recipeId, langKey);
+    NBTTagCompound tileTag = writeToNBT(new NBTTagCompound(), maxIntegrity, integrity, experiencePerComplete, recipeId, langKey);
     return createBloomAsItemStack(itemStack, tileTag);
   }
 
@@ -135,10 +135,11 @@ public class BloomHelper {
     return StackHelper.writeTileEntityToItemStack(tile, itemStack);
   }
 
-  public static NBTTagCompound writeToNBT(NBTTagCompound compound, int maxIntegrity, int integrity, @Nullable String recipeId, @Nullable String langKey) {
+  public static NBTTagCompound writeToNBT(NBTTagCompound compound, int maxIntegrity, int integrity, float experiencePerComplete, @Nullable String recipeId, @Nullable String langKey) {
 
     compound.setInteger("maxIntegrity", maxIntegrity);
     compound.setInteger("integrity", integrity);
+    compound.setFloat("experiencePerComplete", experiencePerComplete);
 
     if (recipeId != null) {
       compound.setString("recipeId", recipeId);

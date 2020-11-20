@@ -19,6 +19,7 @@ public class WitherForgeRecipeBuilder
         this.output,
         this.input,
         this.burnTimeTicks,
+        this.experience,
         this.failureChance,
         this.bloomYieldMin,
         this.bloomYieldMax,
