@@ -92,7 +92,7 @@ public abstract class BlockBagBase
     }
 
     String[] itemWhitelist = this.getItemWhitelist();
-    String[] itemBlacklist = getItemBlacklist();
+    String[] itemBlacklist = this.getItemBlacklist();
 
     if (itemWhitelist.length > 0) {
 
