@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
@@ -101,6 +102,16 @@ public class BrickSawmillRecipesAdd {
     registerSawmillRecipeStone(registry, "stone_brick",
         ItemMaterial.EnumType.BRICK_STONE.asStack(2),
         Ingredient.fromStacks(new ItemStack(Blocks.STONE_SLAB, 1, 5))
+    );
+
+    registerSawmillRecipeStone(registry, "masonry_brick_slab",
+        new ItemStack(ModuleCore.Blocks.MASONRY_BRICK_SLAB, 2),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.MASONRY_BRICK))
+    );
+
+    registerSawmillRecipeStone(registry, "refractory_brick_slab",
+        new ItemStack(ModuleCore.Blocks.REFRACTORY_BRICK_SLAB, 2),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.REFRACTORY_BRICK))
     );
 
   }
