@@ -87,7 +87,8 @@ public final class RegistryInitializer {
         new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.NORTH)),
         new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.EAST)),
         new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.SOUTH)),
-        new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.WEST))
+        new BlockMetaMatcher(ModuleTechRefractory.Blocks.TAR_DRAIN, RegistryInitializer.getTarDrainMeta(EnumFacing.WEST)),
+        new BlockMetaMatcher(ModuleCore.Blocks.REFRACTORY_BRICK_SLAB_DOUBLE, 0)
     ));
 
     ItemTooltipEventHandler.VALID_REFRACTORY_ITEM_BLOCKS.addAll(Lists.newArrayList(

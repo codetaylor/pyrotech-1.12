@@ -263,6 +263,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockRefractoryBrickSlab.Half.NAME)
     public static final BlockRefractoryBrickSlab.Half REFRACTORY_BRICK_SLAB;
 
+    @GameRegistry.ObjectHolder(BlockRefractoryBrickSlab.Double.NAME)
+    public static final BlockRefractoryBrickSlab.Double REFRACTORY_BRICK_SLAB_DOUBLE;
+
     @GameRegistry.ObjectHolder(BlockRefractoryBricksStairs.NAME)
     public static final BlockRefractoryBricksStairs REFRACTORY_BRICK_STAIRS;
 
@@ -371,6 +374,7 @@ public class ModuleCore
       THATCH = null;
       REFRACTORY_BRICK = null;
       REFRACTORY_BRICK_SLAB = null;
+      REFRACTORY_BRICK_SLAB_DOUBLE = null;
       REFRACTORY_BRICK_STAIRS = null;
       REFRACTORY_DOOR = null;
       STONE_DOOR = null;
