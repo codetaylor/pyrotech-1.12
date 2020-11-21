@@ -266,8 +266,8 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockRefractoryBrickSlab.Double.NAME)
     public static final BlockRefractoryBrickSlab.Double REFRACTORY_BRICK_SLAB_DOUBLE;
 
-    @GameRegistry.ObjectHolder(BlockRefractoryBricksStairs.NAME)
-    public static final BlockRefractoryBricksStairs REFRACTORY_BRICK_STAIRS;
+    @GameRegistry.ObjectHolder(BlockRefractoryBrickStairs.NAME)
+    public static final BlockRefractoryBrickStairs REFRACTORY_BRICK_STAIRS;
 
     @GameRegistry.ObjectHolder(BlockRefractoryDoor.NAME)
     public static final BlockRefractoryDoor REFRACTORY_DOOR;

@@ -84,7 +84,7 @@ public final class BlockInitializer {
       BlockRefractoryBrick block = new BlockRefractoryBrick();
       registry.registerBlockWithItem(block, BlockRefractoryBrick.NAME);
       IBlockState defaultState = block.getDefaultState();
-      registry.registerBlockWithItem(new BlockRefractoryBricksStairs(defaultState), BlockRefractoryBricksStairs.NAME);
+      registry.registerBlockWithItem(new BlockRefractoryBrickStairs(defaultState), BlockRefractoryBrickStairs.NAME);
       BlockMasonryBrickSlab.Double slabDouble = new BlockMasonryBrickSlab.Double(defaultState);
       BlockMasonryBrickSlab.Half slab = new BlockMasonryBrickSlab.Half(defaultState);
       registry.registerBlock(slabDouble, BlockMasonryBrickSlab.Double.NAME);
@@ -156,7 +156,7 @@ public final class BlockInitializer {
 
       ModelRegistrationHelper.registerItemModel(
           Item.getItemFromBlock(ModuleCore.Blocks.REFRACTORY_BRICK_STAIRS),
-          ModuleCore.MOD_ID + ":" + BlockRefractoryBricksStairs.NAME
+          ModuleCore.MOD_ID + ":" + BlockRefractoryBrickStairs.NAME
       );
 
       ModelRegistrationHelper.registerItemModel(
