@@ -89,6 +89,7 @@ public final class BlockInitializer {
       BlockMasonryBrickSlab.Half slab = new BlockMasonryBrickSlab.Half(defaultState);
       registry.registerBlock(slabDouble, BlockMasonryBrickSlab.Double.NAME);
       registry.registerBlock(slab, new ItemSlab(slab, slab, slabDouble), BlockMasonryBrickSlab.Half.NAME);
+      registry.registerBlockWithItem(new BlockRefractoryBrickWall(), BlockRefractoryBrickWall.NAME);
     }
 
     {
@@ -153,6 +154,11 @@ public final class BlockInitializer {
           ModuleCore.Items.ROCK_GRASS,
           ModuleCore.Items.ROCK_NETHERRACK,
           ModuleCore.Items.STRAW_BED
+      );
+
+      ModelRegistrationHelper.registerItemModel(
+          Item.getItemFromBlock(ModuleCore.Blocks.REFRACTORY_BRICK_WALL),
+          ModuleCore.MOD_ID + ":" + BlockRefractoryBrickWall.NAME
       );
 
       ModelRegistrationHelper.registerItemModel(

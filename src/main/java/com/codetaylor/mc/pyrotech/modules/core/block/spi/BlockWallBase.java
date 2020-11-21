@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.core.block.spi;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
@@ -71,6 +72,12 @@ public abstract class BlockWallBase
   public BlockWallBase(Material material) {
 
     super(material);
+    this.setDefaultState(this.blockState.getBaseState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
+  }
+
+  public BlockWallBase(Material material, MapColor color) {
+
+    super(material, color);
     this.setDefaultState(this.blockState.getBaseState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
   }
 

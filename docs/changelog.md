@@ -9,6 +9,7 @@
     * Masonry Brick Wall [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
     * Refractory Brick Stairs
     * Refractory Brick Slab
+    * Refractory Brick Wall
     * Valid refractory blocks:
         * Double Refractory Brick Slab
     * Ore Compat:
@@ -49,6 +50,7 @@
     * **New Lang Entries:**
         * `tile.pyrotech.refractory_brick_slab.name`
         * `tile.pyrotech.refractory_brick_stairs.name`
+        * `tile.pyrotech.refractory_brick_wall.name`
         * `tile.pyrotech.masonry_brick_slab.name`
         * `tile.pyrotech.masonry_brick_stairs.name`
         * `tile.pyrotech.masonry_brick_wall.name`
