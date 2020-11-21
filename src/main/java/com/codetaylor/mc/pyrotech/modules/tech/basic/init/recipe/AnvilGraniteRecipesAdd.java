@@ -299,6 +299,17 @@ public class AnvilGraniteRecipesAdd {
 
     // Slabs
 
+    // Masonry Bricks Slab
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.STONE_BRICKS_SLAB, 2),
+        Ingredient.fromStacks(
+            new ItemStack(ModuleCore.Blocks.STONE_BRICKS)
+        ),
+        8,
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_bricks_slab"));
+
     // Stone Brick Slab
     registry.register(new AnvilRecipe(
         new ItemStack(Blocks.STONE_SLAB, 2, 5),

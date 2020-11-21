@@ -12,10 +12,12 @@ import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockNetherrack;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemStrawBed;
 import com.codetaylor.mc.pyrotech.modules.core.tile.TileFarmlandMulched;
 import net.minecraft.block.BlockDoor;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSlab;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
@@ -78,9 +80,16 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockOreDenseQuartzSmall(), BlockOreDenseQuartzSmall.NAME);
     registry.registerBlockWithItem(new BlockOreDenseQuartzRocks(), BlockOreDenseQuartzRocks.NAME);
 
-    BlockRefractoryBrick blockRefractoryBrick = new BlockRefractoryBrick();
-    registry.registerBlockWithItem(blockRefractoryBrick, BlockRefractoryBrick.NAME);
-    registry.registerBlockWithItem(new BlockRefractoryBricksStairs(blockRefractoryBrick.getDefaultState()), BlockRefractoryBricksStairs.NAME);
+    {
+      BlockRefractoryBrick block = new BlockRefractoryBrick();
+      registry.registerBlockWithItem(block, BlockRefractoryBrick.NAME);
+      IBlockState defaultState = block.getDefaultState();
+      registry.registerBlockWithItem(new BlockRefractoryBricksStairs(defaultState), BlockRefractoryBricksStairs.NAME);
+      BlockStoneBricksSlab.Double slabDouble = new BlockStoneBricksSlab.Double(defaultState);
+      BlockStoneBricksSlab.Half slab = new BlockStoneBricksSlab.Half(defaultState);
+      registry.registerBlock(slabDouble, BlockStoneBricksSlab.Double.NAME);
+      registry.registerBlock(slab, new ItemSlab(slab, slab, slabDouble), BlockStoneBricksSlab.Half.NAME);
+    }
 
     BlockStoneBricks blockStoneBricks = new BlockStoneBricks();
     registry.registerBlockWithItem(blockStoneBricks, BlockStoneBricks.NAME);
@@ -106,6 +115,7 @@ public final class BlockInitializer {
           ModuleCore.Blocks.REFRACTORY_GLASS,
           ModuleCore.Blocks.SLAG_GLASS,
           ModuleCore.Blocks.STONE_BRICKS,
+          ModuleCore.Blocks.STONE_BRICKS_SLAB,
           ModuleCore.Blocks.FARMLAND_MULCHED,
           ModuleCore.Blocks.PLANKS_TARRED,
           ModuleCore.Blocks.PILE_WOOD_CHIPS,

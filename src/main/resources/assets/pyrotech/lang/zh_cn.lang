@@ -286,6 +286,7 @@ tile.pyrotech.cobblestone.diorite.name=碎闪长岩
 tile.pyrotech.cobblestone.granite.name=碎花岗岩
 tile.pyrotech.cobblestone.limestone.name=碎石灰岩
 tile.pyrotech.stone_bricks.name=砌砖
+tile.pyrotech.stone_bricks_slab.name=Masonry Brick Slab
 tile.pyrotech.stone_bricks_stairs.name=Masonry Brick Stairs
 tile.pyrotech.farmland_mulched.name=改良耕地
 tile.pyrotech.planks_tarred.name=浸焦油的木板

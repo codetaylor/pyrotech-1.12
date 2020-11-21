@@ -286,6 +286,7 @@ tile.pyrotech.cobblestone.diorite.name=Мощеный диорит
 tile.pyrotech.cobblestone.granite.name=Мощеный гранит
 tile.pyrotech.cobblestone.limestone.name=Мощеный известняк
 tile.pyrotech.stone_bricks.name=Кирпичная кладка
+tile.pyrotech.stone_bricks_slab.name=Masonry Brick Slab
 tile.pyrotech.stone_bricks_stairs.name=Masonry Brick Stairs
 tile.pyrotech.farmland_mulched.name=Мульчированная пашня
 tile.pyrotech.planks_tarred.name=Пропитанные доски

@@ -287,6 +287,7 @@ tile.pyrotech.cobblestone.diorite.name=Cobbled Diorite
 tile.pyrotech.cobblestone.granite.name=Cobbled Granite
 tile.pyrotech.cobblestone.limestone.name=Cobbled Limestone
 tile.pyrotech.stone_bricks.name=Masonry Bricks
+tile.pyrotech.stone_bricks_slab.name=Masonry Brick Slab
 tile.pyrotech.stone_bricks_stairs.name=Masonry Brick Stairs
 tile.pyrotech.farmland_mulched.name=Mulched Farmland
 tile.pyrotech.planks_tarred.name=Tarred Planks

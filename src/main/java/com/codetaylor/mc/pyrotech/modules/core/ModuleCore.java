@@ -302,6 +302,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockStoneBricks.NAME)
     public static final BlockStoneBricks STONE_BRICKS;
 
+    @GameRegistry.ObjectHolder(BlockStoneBricksSlab.Half.NAME)
+    public static final BlockStoneBricksSlab.Half STONE_BRICKS_SLAB;
+
     @GameRegistry.ObjectHolder(BlockStoneBricksStairs.NAME)
     public static final BlockStoneBricksStairs STONE_BRICKS_STAIRS;
 
@@ -378,6 +381,7 @@ public class ModuleCore
       ORE_DENSE_NETHER_COAL = null;
       COBBLESTONE = null;
       STONE_BRICKS = null;
+      STONE_BRICKS_SLAB = null;
       STONE_BRICKS_STAIRS = null;
       FARMLAND_MULCHED = null;
       PLANKS_TARRED = null;
