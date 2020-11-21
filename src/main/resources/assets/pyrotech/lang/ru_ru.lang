@@ -274,6 +274,7 @@ tile.pyrotech.thatch.name=Рулон соломы
 tile.pyrotech.coal_coke_block.name=Блок коксового угля
 tile.pyrotech.log_pile.name=Куча бревен
 tile.pyrotech.refractory_brick_block.name=Огнеупорный блок
+tile.pyrotech.refractory_brick_slab.name=Refractory Brick Slab
 tile.pyrotech.refractory_brick_stairs.name=Refractory Brick Stairs
 tile.pyrotech.limestone.name=Известняк
 tile.pyrotech.refractory_glass.name=Огнеупорное стекло

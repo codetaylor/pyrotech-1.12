@@ -4,6 +4,7 @@
     * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
     * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
     * Refractory Brick Stairs
+    * Refractory Brick Slab
     * Ore Compat:
         * Bloom yield and slag bloom yield can now be adjusted in the ore compat json files [(#310)](https://github.com/codetaylor/pyrotech-1.12/issues/310)
     * Config option to:
@@ -37,6 +38,13 @@
             * Config: `ALLOW_SOURCE_DRAIN`
         * Drains will now collect fluid from any tile entities with the fluid handler capability [(#278)](https://github.com/codetaylor/pyrotech-1.12/issues/278) 
             * Config: `ALLOW_TILE_DRAIN`
+
+  * **Translators:**
+    * **New Lang Entries:**
+        * `tile.pyrotech.refractory_brick_slab.name`
+        * `tile.pyrotech.refractory_brick_stairs.name`
+        * `tile.pyrotech.stone_bricks_slab.name`
+        * `tile.pyrotech.stone_bricks_stairs.name`
 
 ---
 

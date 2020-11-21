@@ -275,6 +275,7 @@ tile.pyrotech.thatch.name=Straw Bale
 tile.pyrotech.coal_coke_block.name=Block of Coal Coke
 tile.pyrotech.log_pile.name=Log Pile
 tile.pyrotech.refractory_brick_block.name=Refractory Block
+tile.pyrotech.refractory_brick_slab.name=Refractory Brick Slab
 tile.pyrotech.refractory_brick_stairs.name=Refractory Brick Stairs
 tile.pyrotech.limestone.name=Limestone
 tile.pyrotech.refractory_glass.name=Refractory Glass

@@ -91,9 +91,16 @@ public final class BlockInitializer {
       registry.registerBlock(slab, new ItemSlab(slab, slab, slabDouble), BlockStoneBricksSlab.Half.NAME);
     }
 
-    BlockStoneBricks blockStoneBricks = new BlockStoneBricks();
-    registry.registerBlockWithItem(blockStoneBricks, BlockStoneBricks.NAME);
-    registry.registerBlockWithItem(new BlockStoneBricksStairs(blockStoneBricks.getDefaultState()), BlockStoneBricksStairs.NAME);
+    {
+      BlockStoneBricks block = new BlockStoneBricks();
+      registry.registerBlockWithItem(block, BlockStoneBricks.NAME);
+      IBlockState defaultState = block.getDefaultState();
+      registry.registerBlockWithItem(new BlockStoneBricksStairs(defaultState), BlockStoneBricksStairs.NAME);
+      BlockRefractoryBrickSlab.Double slabDouble = new BlockRefractoryBrickSlab.Double(defaultState);
+      BlockRefractoryBrickSlab.Half slab = new BlockRefractoryBrickSlab.Half(defaultState);
+      registry.registerBlock(slabDouble, BlockRefractoryBrickSlab.Double.NAME);
+      registry.registerBlock(slab, new ItemSlab(slab, slab, slabDouble), BlockRefractoryBrickSlab.Half.NAME);
+    }
 
     RegistryHelper.registerTileEntities(
         registry,
@@ -111,6 +118,7 @@ public final class BlockInitializer {
           ModuleCore.Blocks.COAL_COKE_BLOCK,
           ModuleCore.Blocks.THATCH,
           ModuleCore.Blocks.REFRACTORY_BRICK,
+          ModuleCore.Blocks.REFRACTORY_BRICK_SLAB,
           ModuleCore.Blocks.LIMESTONE,
           ModuleCore.Blocks.REFRACTORY_GLASS,
           ModuleCore.Blocks.SLAG_GLASS,
@@ -147,7 +155,7 @@ public final class BlockInitializer {
       );
 
       ModelRegistrationHelper.registerItemModel(
-          Item.getItemFromBlock(ModuleCore.Blocks.REFRACTORY_BRICKS_STAIRS),
+          Item.getItemFromBlock(ModuleCore.Blocks.REFRACTORY_BRICK_STAIRS),
           ModuleCore.MOD_ID + ":" + BlockRefractoryBricksStairs.NAME
       );
 

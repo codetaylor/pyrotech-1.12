@@ -299,6 +299,17 @@ public class AnvilGraniteRecipesAdd {
 
     // Slabs
 
+    // Refractory Brick Slab
+    registry.register(new AnvilRecipe(
+        new ItemStack(ModuleCore.Blocks.REFRACTORY_BRICK_SLAB, 2),
+        Ingredient.fromStacks(
+            new ItemStack(ModuleCore.Blocks.REFRACTORY_BRICK)
+        ),
+        8,
+        AnvilRecipe.EnumType.PICKAXE,
+        AnvilRecipe.EnumTier.GRANITE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "refractory_brick_slab"));
+
     // Masonry Bricks Slab
     registry.register(new AnvilRecipe(
         new ItemStack(ModuleCore.Blocks.STONE_BRICKS_SLAB, 2),
