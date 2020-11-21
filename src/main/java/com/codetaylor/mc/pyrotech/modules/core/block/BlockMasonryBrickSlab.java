@@ -6,12 +6,12 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 
-public final class BlockStoneBricksSlab {
+public final class BlockMasonryBrickSlab {
 
   public static class Double
       extends BlockSlab.Double {
 
-    public static final String NAME = "stone_bricks_slab_double";
+    public static final String NAME = "masonry_brick_slab_double";
 
     public Double(IBlockState blockState) {
 
@@ -25,14 +25,14 @@ public final class BlockStoneBricksSlab {
     @Override
     protected Item getItem() {
 
-      return Item.getItemFromBlock(ModuleCore.Blocks.STONE_BRICKS_SLAB);
+      return Item.getItemFromBlock(ModuleCore.Blocks.MASONRY_BRICK_SLAB);
     }
   }
 
   public static class Half
       extends BlockSlab.Half {
 
-    public static final String NAME = "stone_bricks_slab";
+    public static final String NAME = "masonry_brick_slab";
 
     public Half(IBlockState blockState) {
 
@@ -46,11 +46,11 @@ public final class BlockStoneBricksSlab {
     @Override
     protected Item getItem() {
 
-      return Item.getItemFromBlock(ModuleCore.Blocks.STONE_BRICKS_SLAB);
+      return Item.getItemFromBlock(ModuleCore.Blocks.MASONRY_BRICK_SLAB);
     }
   }
 
-  private BlockStoneBricksSlab() {
+  private BlockMasonryBrickSlab() {
     //
   }
 }

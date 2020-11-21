@@ -29,11 +29,11 @@
     {
       "type": "relations",
       "entries": [
-        "innovate/stone_brick",
+        "innovate/masonry_brick",
         "innovate/wood_tarred",
         "innovate/mechanical_hopper",
         "innovate/compacting_bin",
-        "innovate/stone_bricks",
+        "innovate/masonry_brick_block",
         "bloom/cog_advanced",
         "innovate/cog_basic"
       ]

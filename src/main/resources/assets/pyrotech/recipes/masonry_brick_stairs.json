@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "pyrotech:stone_bricks"
+      "item": "pyrotech:masonry_brick_block"
     }
   },
   "result": {
-    "item": "pyrotech:stone_bricks_stairs",
+    "item": "pyrotech:masonry_brick_stairs",
     "count": 4
   }
 }

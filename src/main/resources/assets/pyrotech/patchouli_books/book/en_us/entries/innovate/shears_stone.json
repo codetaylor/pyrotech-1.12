@@ -10,7 +10,7 @@
     {
       "type": "relations",
       "entries": [
-        "innovate/stone_brick",
+        "innovate/masonry_brick",
         "adapt/twine"
       ]
     }

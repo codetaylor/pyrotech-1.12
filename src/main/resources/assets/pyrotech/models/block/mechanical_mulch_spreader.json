@@ -1,7 +1,7 @@
 {
   "parent": "block/block",
   "textures": {
-    "8": "pyrotech:blocks/stone_bricks",
+    "8": "pyrotech:blocks/masonry_brick",
     "9": "pyrotech:blocks/mechanical_hopper_inside",
     "10": "pyrotech:blocks/stone_worker_bottom",
     "11": "pyrotech:blocks/crate_stone_side",

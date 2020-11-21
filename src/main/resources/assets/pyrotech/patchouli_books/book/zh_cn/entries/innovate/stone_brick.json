@@ -6,7 +6,7 @@
     {
       "type": "rrt_anvil_recipe",
       "header": true,
-      "recipe": "pyrotech:stone_brick_slab",
+      "recipe": "pyrotech:masonry_brick_slab",
       "header2": true,
       "recipe2": "pyrotech:brick_stone",
       "text": "$(item)砌砖$()是石匠工艺的真正基石！"

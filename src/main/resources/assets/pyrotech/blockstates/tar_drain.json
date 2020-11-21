@@ -8,7 +8,7 @@
     "variant": {
       "stone": {
         "textures": {
-          "all": "pyrotech:blocks/stone_bricks"
+          "all": "pyrotech:blocks/masonry_brick"
         }
       },
       "brick": {

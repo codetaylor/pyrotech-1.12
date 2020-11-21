@@ -4,12 +4,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 
-public class BlockStoneBricks
+public class BlockMasonryBrick
     extends Block {
 
-  public static final String NAME = "stone_bricks";
+  public static final String NAME = "masonry_brick_block";
 
-  public BlockStoneBricks() {
+  public BlockMasonryBrick() {
 
     super(Material.ROCK);
     this.setSoundType(SoundType.STONE);

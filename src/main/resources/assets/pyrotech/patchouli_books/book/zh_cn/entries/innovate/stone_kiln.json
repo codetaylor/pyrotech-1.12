@@ -11,8 +11,8 @@
     {
       "type": "relations",
       "entries": [
-        "innovate/stone_brick",
-        "innovate/stone_bricks",
+        "innovate/masonry_brick",
+        "innovate/masonry_brick_block",
         "adapt/pit_kiln"
       ]
     }

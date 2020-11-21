@@ -3,8 +3,8 @@
   "textures": {
     "top": "pyrotech:blocks/worktable_stone_top",
     "andesite": "blocks/stone_andesite_smooth",
-    "side": "pyrotech:blocks/stone_bricks",
-    "particle": "pyrotech:blocks/stone_bricks",
+    "side": "pyrotech:blocks/masonry_brick",
+    "particle": "pyrotech:blocks/masonry_brick",
     "planks": "blocks/planks_oak"
   },
   "elements": [

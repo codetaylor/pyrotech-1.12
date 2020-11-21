@@ -6,7 +6,6 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
-import crafttweaker.api.oredict.IngredientOreDict;
 import net.minecraft.block.BlockStone;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -312,14 +311,14 @@ public class AnvilGraniteRecipesAdd {
 
     // Masonry Bricks Slab
     registry.register(new AnvilRecipe(
-        new ItemStack(ModuleCore.Blocks.STONE_BRICKS_SLAB, 2),
+        new ItemStack(ModuleCore.Blocks.MASONRY_BRICK_SLAB, 2),
         Ingredient.fromStacks(
-            new ItemStack(ModuleCore.Blocks.STONE_BRICKS)
+            new ItemStack(ModuleCore.Blocks.MASONRY_BRICK)
         ),
         8,
         AnvilRecipe.EnumType.PICKAXE,
         AnvilRecipe.EnumTier.GRANITE
-    ).setRegistryName(ModuleTechBasic.MOD_ID, "stone_bricks_slab"));
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "masonry_brick_slab"));
 
     // Stone Brick Slab
     registry.register(new AnvilRecipe(

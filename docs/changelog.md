@@ -1,5 +1,8 @@
 # 1.6.0
 
+  * **BREAKING:**
+    * `pyrotech:stone_bricks` renamed to `pyrotech:masonry_brick_block`
+
   * **Added:**
     * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
     * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
@@ -45,8 +48,13 @@
     * **New Lang Entries:**
         * `tile.pyrotech.refractory_brick_slab.name`
         * `tile.pyrotech.refractory_brick_stairs.name`
-        * `tile.pyrotech.stone_bricks_slab.name`
-        * `tile.pyrotech.stone_bricks_stairs.name`
+        * `tile.pyrotech.masonry_brick_slab.name`
+        * `tile.pyrotech.masonry_brick_stairs.name`
+    * **Changed Lang Keys:**
+        * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
+    * **Changed Lang Values:**
+        * `tile.pyrotech.refractory_brick_block.name`
+            * From `Refractory Block` to `Refractory Bricks`
 
 ---
 

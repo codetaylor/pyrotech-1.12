@@ -6,8 +6,8 @@
     "6": "pyrotech:blocks/stone_worker_side",
     "back": "pyrotech:blocks/mill_stone_back",
     "top": "pyrotech:blocks/mill_stone_top",
-    "side": "pyrotech:blocks/stone_bricks",
-    "particle": "pyrotech:blocks/stone_bricks",
+    "side": "pyrotech:blocks/masonry_brick",
+    "particle": "pyrotech:blocks/masonry_brick",
     "dark": "pyrotech:blocks/kiln_stone_dark"
   },
   "elements": [

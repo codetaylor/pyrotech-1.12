@@ -3,12 +3,12 @@ package com.codetaylor.mc.pyrotech.modules.core.block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 
-public class BlockStoneBricksStairs
+public class BlockMasonryBrickStairs
     extends BlockStairs {
 
-  public static final String NAME = "stone_bricks_stairs";
+  public static final String NAME = "masonry_brick_stairs";
 
-  public BlockStoneBricksStairs(IBlockState modelState) {
+  public BlockMasonryBrickStairs(IBlockState modelState) {
 
     super(modelState);
   }

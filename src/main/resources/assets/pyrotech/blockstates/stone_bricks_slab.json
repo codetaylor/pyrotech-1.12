@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "half=bottom,variant=default": {"model": "pyrotech:stone_bricks_slab"},
-    "half=top,variant=default": {"model": "pyrotech:stone_bricks_slab_upper"}
-  }
-}

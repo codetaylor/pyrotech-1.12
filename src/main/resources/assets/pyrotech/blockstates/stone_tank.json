@@ -5,7 +5,7 @@
     "textures": {
       "top": "pyrotech:blocks/stone_tank",
       "side": "pyrotech:blocks/stone_tank_side",
-      "bottom": "pyrotech:blocks/stone_bricks",
+      "bottom": "pyrotech:blocks/masonry_brick",
       "particle": "pyrotech:blocks/stone_tank"
     }
   },

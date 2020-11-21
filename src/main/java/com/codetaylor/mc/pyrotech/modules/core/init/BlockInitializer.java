@@ -85,17 +85,17 @@ public final class BlockInitializer {
       registry.registerBlockWithItem(block, BlockRefractoryBrick.NAME);
       IBlockState defaultState = block.getDefaultState();
       registry.registerBlockWithItem(new BlockRefractoryBricksStairs(defaultState), BlockRefractoryBricksStairs.NAME);
-      BlockStoneBricksSlab.Double slabDouble = new BlockStoneBricksSlab.Double(defaultState);
-      BlockStoneBricksSlab.Half slab = new BlockStoneBricksSlab.Half(defaultState);
-      registry.registerBlock(slabDouble, BlockStoneBricksSlab.Double.NAME);
-      registry.registerBlock(slab, new ItemSlab(slab, slab, slabDouble), BlockStoneBricksSlab.Half.NAME);
+      BlockMasonryBrickSlab.Double slabDouble = new BlockMasonryBrickSlab.Double(defaultState);
+      BlockMasonryBrickSlab.Half slab = new BlockMasonryBrickSlab.Half(defaultState);
+      registry.registerBlock(slabDouble, BlockMasonryBrickSlab.Double.NAME);
+      registry.registerBlock(slab, new ItemSlab(slab, slab, slabDouble), BlockMasonryBrickSlab.Half.NAME);
     }
 
     {
-      BlockStoneBricks block = new BlockStoneBricks();
-      registry.registerBlockWithItem(block, BlockStoneBricks.NAME);
+      BlockMasonryBrick block = new BlockMasonryBrick();
+      registry.registerBlockWithItem(block, BlockMasonryBrick.NAME);
       IBlockState defaultState = block.getDefaultState();
-      registry.registerBlockWithItem(new BlockStoneBricksStairs(defaultState), BlockStoneBricksStairs.NAME);
+      registry.registerBlockWithItem(new BlockMasonryBrickStairs(defaultState), BlockMasonryBrickStairs.NAME);
       BlockRefractoryBrickSlab.Double slabDouble = new BlockRefractoryBrickSlab.Double(defaultState);
       BlockRefractoryBrickSlab.Half slab = new BlockRefractoryBrickSlab.Half(defaultState);
       registry.registerBlock(slabDouble, BlockRefractoryBrickSlab.Double.NAME);
@@ -122,8 +122,8 @@ public final class BlockInitializer {
           ModuleCore.Blocks.LIMESTONE,
           ModuleCore.Blocks.REFRACTORY_GLASS,
           ModuleCore.Blocks.SLAG_GLASS,
-          ModuleCore.Blocks.STONE_BRICKS,
-          ModuleCore.Blocks.STONE_BRICKS_SLAB,
+          ModuleCore.Blocks.MASONRY_BRICK,
+          ModuleCore.Blocks.MASONRY_BRICK_SLAB,
           ModuleCore.Blocks.FARMLAND_MULCHED,
           ModuleCore.Blocks.PLANKS_TARRED,
           ModuleCore.Blocks.PILE_WOOD_CHIPS,
@@ -160,8 +160,8 @@ public final class BlockInitializer {
       );
 
       ModelRegistrationHelper.registerItemModel(
-          Item.getItemFromBlock(ModuleCore.Blocks.STONE_BRICKS_STAIRS),
-          ModuleCore.MOD_ID + ":" + BlockStoneBricksStairs.NAME
+          Item.getItemFromBlock(ModuleCore.Blocks.MASONRY_BRICK_STAIRS),
+          ModuleCore.MOD_ID + ":" + BlockMasonryBrickStairs.NAME
       );
 
       // Refractory Door

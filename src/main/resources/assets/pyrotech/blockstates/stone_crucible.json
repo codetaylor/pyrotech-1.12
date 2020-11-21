@@ -3,7 +3,7 @@
   "defaults": {
     "model": "pyrotech:stone_crucible",
     "textures": {
-      "particle": "pyrotech:blocks/stone_bricks"
+      "particle": "pyrotech:blocks/masonry_brick"
     }
   },
   "variants": {

@@ -25,7 +25,7 @@
     {
       "type": "relations",
       "entries": [
-        "innovate/stone_brick",
+        "innovate/masonry_brick",
         "innovate/stone_rod",
         "innovate/wood_tarred",
         "innovate/cog_basic",

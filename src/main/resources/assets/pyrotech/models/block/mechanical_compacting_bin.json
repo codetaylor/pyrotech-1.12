@@ -3,7 +3,7 @@
 	"parent": "block/block",
 	"textures": {
 		"7": "pyrotech:blocks/kiln_stone_dark",
-		"8": "pyrotech:blocks/stone_bricks",
+		"8": "pyrotech:blocks/masonry_brick",
 		"9": "pyrotech:blocks/mechanical_hopper_inside",
 		"11": "pyrotech:blocks/crate_stone_side",
 		"12": "pyrotech:blocks/mechanical_compacting_bin_top",

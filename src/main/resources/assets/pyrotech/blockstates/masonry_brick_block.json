@@ -3,7 +3,7 @@
   "defaults": {
     "model": "minecraft:cube_all",
     "textures": {
-      "all": "pyrotech:blocks/stone_bricks"
+      "all": "pyrotech:blocks/masonry_brick"
     }
   },
   "variants": {

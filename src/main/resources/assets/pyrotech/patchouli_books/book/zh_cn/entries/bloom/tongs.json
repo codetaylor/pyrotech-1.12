@@ -29,7 +29,7 @@
     {
       "type": "relations",
       "entries": [
-        "innovate/stone_brick",
+        "innovate/masonry_brick",
         "innovate/stone_rod",
         "gather/shard_bone_and_flint"
       ]

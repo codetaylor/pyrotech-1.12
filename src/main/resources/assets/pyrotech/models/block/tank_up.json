@@ -1,8 +1,8 @@
 {
   "parent": "block/block",
   "textures": {
-    "particle": "pyrotech:blocks/stone_bricks",
-    "bottom": "pyrotech:blocks/stone_bricks",
+    "particle": "pyrotech:blocks/masonry_brick",
+    "bottom": "pyrotech:blocks/masonry_brick",
     "side": "pyrotech:blocks/stone_tank_side_up"
   },
   "elements": [

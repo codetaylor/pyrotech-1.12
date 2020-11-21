@@ -6,7 +6,7 @@
     {
       "type": "rrt_anvil_recipe",
       "header": true,
-      "recipe": "pyrotech:stone_brick_slab",
+      "recipe": "pyrotech:masonry_brick_slab",
       "header2": true,
       "recipe2": "pyrotech:brick_stone",
       "text": "The $(item)Masonry Brick$() is the true cornerstone of a stonemason's craft."

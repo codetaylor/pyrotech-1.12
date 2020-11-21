@@ -4,8 +4,8 @@
     "4": "pyrotech:blocks/stone_worker_front",
     "5": "pyrotech:blocks/stone_worker_side",
     "6": "pyrotech:blocks/stone_worker_bottom",
-    "side": "pyrotech:blocks/stone_bricks",
-    "particle": "pyrotech:blocks/stone_bricks",
+    "side": "pyrotech:blocks/masonry_brick",
+    "particle": "pyrotech:blocks/masonry_brick",
     "dark": "pyrotech:blocks/kiln_stone_dark",
     "top": "pyrotech:blocks/kiln_stone_top",
     "top_front": "pyrotech:blocks/kiln_stone_top_front"
