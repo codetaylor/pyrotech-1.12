@@ -34,7 +34,7 @@ public class BloomeryRecipesAdd {
 
   private static final int DEFAULT_BURN_TIME_TICKS = 24 * 60 * 20;
   private static final float DEFAULT_FAILURE_CHANCE = 0.25f;
-  private static final float DEFAULT_EXPERIENCE = 0.5f;
+  private static final float DEFAULT_EXPERIENCE = 0.25f;
 
   private static final RecipeItemParser RECIPE_ITEM_PARSER = new RecipeItemParser();
 
