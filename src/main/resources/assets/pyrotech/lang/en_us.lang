@@ -290,6 +290,7 @@ tile.pyrotech.cobblestone.limestone.name=Cobbled Limestone
 tile.pyrotech.masonry_brick_block.name=Masonry Bricks
 tile.pyrotech.masonry_brick_slab.name=Masonry Brick Slab
 tile.pyrotech.masonry_brick_stairs.name=Masonry Brick Stairs
+tile.pyrotech.masonry_brick_wall.name=Masonry Brick Wall
 tile.pyrotech.farmland_mulched.name=Mulched Farmland
 tile.pyrotech.planks_tarred.name=Tarred Planks
 tile.pyrotech.pile_wood_chips.name=Wood Chips

@@ -308,6 +308,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockMasonryBrick.NAME)
     public static final BlockMasonryBrick MASONRY_BRICK;
 
+    @GameRegistry.ObjectHolder(BlockMasonryBrickWall.NAME)
+    public static final BlockMasonryBrickWall MASONRY_BRICK_WALL;
+
     @GameRegistry.ObjectHolder(BlockMasonryBrickSlab.Half.NAME)
     public static final BlockMasonryBrickSlab.Half MASONRY_BRICK_SLAB;
 
@@ -389,6 +392,7 @@ public class ModuleCore
       ORE_DENSE_NETHER_COAL = null;
       COBBLESTONE = null;
       MASONRY_BRICK = null;
+      MASONRY_BRICK_WALL = null;
       MASONRY_BRICK_SLAB = null;
       MASONRY_BRICK_STAIRS = null;
       FARMLAND_MULCHED = null;

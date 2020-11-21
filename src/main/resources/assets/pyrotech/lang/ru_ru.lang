@@ -289,6 +289,7 @@ tile.pyrotech.cobblestone.limestone.name=Мощеный известняк
 tile.pyrotech.masonry_brick_block.name=Кирпичная кладка
 tile.pyrotech.masonry_brick_slab.name=Masonry Brick Slab
 tile.pyrotech.masonry_brick_stairs.name=Masonry Brick Stairs
+tile.pyrotech.masonry_brick_wall.name=Masonry Brick Wall
 tile.pyrotech.farmland_mulched.name=Мульчированная пашня
 tile.pyrotech.planks_tarred.name=Пропитанные доски
 tile.pyrotech.pile_wood_chips.name=Опилки

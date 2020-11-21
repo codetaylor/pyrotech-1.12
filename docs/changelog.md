@@ -6,6 +6,7 @@
   * **Added:**
     * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
     * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
+    * Masonry Brick Wall [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
     * Refractory Brick Stairs
     * Refractory Brick Slab
     * Valid refractory blocks:
@@ -50,6 +51,7 @@
         * `tile.pyrotech.refractory_brick_stairs.name`
         * `tile.pyrotech.masonry_brick_slab.name`
         * `tile.pyrotech.masonry_brick_stairs.name`
+        * `tile.pyrotech.masonry_brick_wall.name`
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
     * **Changed Lang Values:**

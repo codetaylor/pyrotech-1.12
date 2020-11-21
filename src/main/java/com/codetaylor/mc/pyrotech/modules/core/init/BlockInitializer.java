@@ -100,6 +100,7 @@ public final class BlockInitializer {
       BlockRefractoryBrickSlab.Half slab = new BlockRefractoryBrickSlab.Half(defaultState);
       registry.registerBlock(slabDouble, BlockRefractoryBrickSlab.Double.NAME);
       registry.registerBlock(slab, new ItemSlab(slab, slab, slabDouble), BlockRefractoryBrickSlab.Half.NAME);
+      registry.registerBlockWithItem(new BlockMasonryBrickWall(), BlockMasonryBrickWall.NAME);
     }
 
     RegistryHelper.registerTileEntities(
@@ -157,6 +158,11 @@ public final class BlockInitializer {
       ModelRegistrationHelper.registerItemModel(
           Item.getItemFromBlock(ModuleCore.Blocks.REFRACTORY_BRICK_STAIRS),
           ModuleCore.MOD_ID + ":" + BlockRefractoryBrickStairs.NAME
+      );
+
+      ModelRegistrationHelper.registerItemModel(
+          Item.getItemFromBlock(ModuleCore.Blocks.MASONRY_BRICK_WALL),
+          ModuleCore.MOD_ID + ":" + BlockMasonryBrickWall.NAME
       );
 
       ModelRegistrationHelper.registerItemModel(
