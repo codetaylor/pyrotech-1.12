@@ -271,6 +271,19 @@ public abstract class BlockTorchBase
     return new BlockStateContainer(this, FACING, TYPE);
   }
 
+  @Override
+  public int getMetaFromState(@Nonnull IBlockState blockState) {
+
+    return blockState.getValue(TYPE).getMeta();
+  }
+
+  @Nonnull
+  @Override
+  public IBlockState getStateFromMeta(int meta) {
+
+    return this.getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
+  }
+
   public enum EnumType
       implements IVariant {
 
