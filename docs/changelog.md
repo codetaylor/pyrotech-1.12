@@ -1,3 +1,10 @@
+**1.5.3**
+
+  * **Fixed:**
+    * Torches don't ignite on client connected to server [(#333)](https://github.com/codetaylor/pyrotech-1.12/issues/333)
+
+---
+
 **1.5.2**
 
   * **Fixed:**
