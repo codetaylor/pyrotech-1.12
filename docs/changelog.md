@@ -1,3 +1,10 @@
+**1.5.4**
+
+  * **Fixed:**
+    * Torches don't attach to walls [(#334)](https://github.com/codetaylor/pyrotech-1.12/issues/334)
+
+---
+
 **1.5.3**
 
   * **Fixed:**
