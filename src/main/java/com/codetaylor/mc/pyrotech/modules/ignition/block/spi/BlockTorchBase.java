@@ -274,14 +274,26 @@ public abstract class BlockTorchBase
   @Override
   public int getMetaFromState(@Nonnull IBlockState blockState) {
 
-    return blockState.getValue(TYPE).getMeta();
+    EnumFacing facing = blockState.getValue(FACING);
+
+    if (facing == EnumFacing.DOWN) {
+      facing = EnumFacing.UP;
+    }
+
+    return facing.getIndex() - 1 + (blockState.getValue(TYPE).getMeta() * 5);
   }
 
   @Nonnull
   @Override
   public IBlockState getStateFromMeta(int meta) {
 
-    return this.getDefaultState().withProperty(TYPE, EnumType.fromMeta(meta));
+    int encodedFacing = meta % 5;
+    int facingIndex = encodedFacing + 1;
+    int type = (meta - encodedFacing) / 5;
+
+    return this.getDefaultState()
+        .withProperty(FACING, EnumFacing.VALUES[facingIndex])
+        .withProperty(TYPE, EnumType.fromMeta(type));
   }
 
   public enum EnumType
