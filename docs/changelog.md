@@ -62,6 +62,14 @@
 
 ---
 
+**1.5.5**
+
+  * **Fixed:**
+    * Soaking Pot should require campfire when specified in ZS
+    * Hwyla / ToP should not indicate Soaking Pot needs a campfire if it has one lit below
+
+---
+
 **1.5.4**
 
   * **Fixed:**

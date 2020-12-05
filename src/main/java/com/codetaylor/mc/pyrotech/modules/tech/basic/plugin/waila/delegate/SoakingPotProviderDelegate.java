@@ -2,8 +2,12 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate;
 
 import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCampfire;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileSoakingPot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
 public class SoakingPotProviderDelegate
@@ -37,7 +41,20 @@ public class SoakingPotProviderDelegate
     }
 
     if (currentRecipe != null && currentRecipe.isCampfireRequired()) {
-      this.display.setCampfireRequired();
+
+      World world = tile.getWorld();
+      BlockPos down = tile.getPos().down();
+      TileEntity tileCampfire = world.getTileEntity(down);
+
+      if (tileCampfire instanceof TileCampfire) {
+
+        if (!((TileCampfire) tileCampfire).workerIsActive()) {
+          this.display.setCampfireRequired();
+        }
+
+      } else {
+        this.display.setCampfireRequired();
+      }
     }
 
     TileSoakingPot.OutputStackHandler outputStackHandler = tile.getOutputStackHandler();
