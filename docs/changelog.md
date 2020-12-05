@@ -1,3 +1,10 @@
+**1.5.5**
+
+  * **Fixed:**
+    * Soaking Pot should require campfire when specified in ZS
+
+---
+
 **1.5.4**
 
   * **Fixed:**

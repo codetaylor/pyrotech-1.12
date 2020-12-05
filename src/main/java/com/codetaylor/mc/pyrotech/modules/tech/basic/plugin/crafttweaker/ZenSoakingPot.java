@@ -81,7 +81,7 @@ public class ZenSoakingPot {
         CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getLiquidStack(inputFluid),
         CraftTweakerMC.getIngredient(inputItem),
-        false,
+        requiresCampfire,
         timeTicks
     ));
   }
