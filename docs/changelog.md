@@ -62,6 +62,13 @@
 
 ---
 
+**1.5.6**
+
+  * **Required:**
+    * Athenaeum >= 1.19.2 [(#338)](https://github.com/codetaylor/pyrotech-1.12/issues/338)
+
+---
+
 **1.5.5**
 
   * **Fixed:**
