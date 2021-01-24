@@ -1,3 +1,10 @@
+**1.5.7**
+
+  * **Fixed:**
+    * Rock Bag voids contents when placed and replaces a block, ie. tall grass, rocks [(#341)](https://github.com/codetaylor/pyrotech-1.12/issues/341)
+
+---
+
 **1.5.6**
 
   * **Required:**
