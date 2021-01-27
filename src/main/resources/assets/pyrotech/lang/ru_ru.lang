@@ -302,6 +302,7 @@ tile.pyrotech.living_tar.name=Живая смола
 tile.pyrotech.dense_redstone_ore.name=Dense Redstone Ore
 tile.pyrotech.dense_quartz_ore.name=Dense Quartz Ore
 tile.pyrotech.straw_bed.name=Straw Bed
+tile.pyrotech.carcass.name=Carcass
 
 tile.pyrotech.rock_stone.name=Каменный булыжник
 tile.pyrotech.rock_andesite.name=Андезитовый булыжник

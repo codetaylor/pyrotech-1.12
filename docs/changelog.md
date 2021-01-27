@@ -54,6 +54,7 @@
         * `tile.pyrotech.masonry_brick_slab.name`
         * `tile.pyrotech.masonry_brick_stairs.name`
         * `tile.pyrotech.masonry_brick_wall.name`
+        * `tile.pyrotech.carcass.name`
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
     * **Changed Lang Values:**
