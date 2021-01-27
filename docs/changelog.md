@@ -40,7 +40,7 @@
         * Stone Collector default capacity reduced to 2000 mb
         * Refractory Collector default capacity reduced to 4000 mb
     * Drains
-        * Drains will now only drain from continguous collectors within range
+        * Drains will now only drain from contiguous collectors within range
         * Drains will now collect fluid source blocks directly in front of them [(#278)](https://github.com/codetaylor/pyrotech-1.12/issues/278)
             * Config: `ALLOW_SOURCE_DRAIN`
         * Drains will now collect fluid from any tile entities with the fluid handler capability [(#278)](https://github.com/codetaylor/pyrotech-1.12/issues/278) 
@@ -59,6 +59,13 @@
     * **Changed Lang Values:**
         * `tile.pyrotech.refractory_brick_block.name`
             * From `Refractory Block` to `Refractory Bricks`
+
+---
+
+**1.5.7**
+
+  * **Fixed:**
+    * Rock Bag voids contents when placed and replaces a block, ie. tall grass, rocks [(#341)](https://github.com/codetaylor/pyrotech-1.12/issues/341)
 
 ---
 

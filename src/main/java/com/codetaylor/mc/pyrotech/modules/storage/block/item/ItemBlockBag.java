@@ -4,6 +4,8 @@ import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -237,7 +239,7 @@ public class ItemBlockBag
 
   @Nonnull
   @Override
-  public EnumActionResult onItemUse(EntityPlayer player, World world, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
+  public EnumActionResult onItemUse(EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
 
     ItemStack heldItem = player.getHeldItem(hand);
     TileBagBase.StackHandler stackHandler = ItemBlockBag.getStackHandler(heldItem);
@@ -260,11 +262,18 @@ public class ItemBlockBag
       }
     }
 
+    IBlockState blockState = world.getBlockState(pos);
+    Block block = blockState.getBlock();
+
+    if (!block.isReplaceable(world, pos)) {
+      pos = pos.offset(facing);
+    }
+
     ItemStack copy = heldItem.copy();
     EnumActionResult result = super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 
     if (result == EnumActionResult.SUCCESS) {
-      TileEntity tileEntity = world.getTileEntity(pos.offset(facing));
+      TileEntity tileEntity = world.getTileEntity(pos);
 
       if (tileEntity instanceof TileBagBase) {
         IItemHandler itemHandler = ItemBlockBag.getStackHandler(copy);
