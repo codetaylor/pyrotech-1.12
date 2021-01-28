@@ -1,11 +1,11 @@
-package com.codetaylor.mc.pyrotech.modules.core.block;
+package com.codetaylor.mc.pyrotech.modules.hunting.block;
 
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.pyrotech.modules.core.tile.TileCarcass;
+import com.codetaylor.mc.pyrotech.modules.hunting.tile.TileCarcass;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
