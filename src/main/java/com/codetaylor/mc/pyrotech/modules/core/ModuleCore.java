@@ -374,9 +374,6 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockStrawBed.NAME)
     public static final BlockStrawBed STRAW_BED;
 
-    @GameRegistry.ObjectHolder(BlockCarcass.NAME)
-    public static final BlockCarcass CARCASS;
-
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -420,7 +417,6 @@ public class ModuleCore
       ORE_DENSE_QUARTZ_SMALL = null;
       ORE_DENSE_QUARTZ_ROCKS = null;
       STRAW_BED = null;
-      CARCASS = null;
     }
   }
 

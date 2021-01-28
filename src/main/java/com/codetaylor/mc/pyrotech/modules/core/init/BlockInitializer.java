@@ -10,8 +10,8 @@ import com.codetaylor.mc.pyrotech.modules.core.item.ItemRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockGrass;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockNetherrack;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemStrawBed;
-import com.codetaylor.mc.pyrotech.modules.core.tile.TileCarcass;
 import com.codetaylor.mc.pyrotech.modules.core.tile.TileFarmlandMulched;
+import com.codetaylor.mc.pyrotech.modules.hunting.tile.TileCarcass;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -80,7 +80,6 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockOreDenseQuartzLarge(), BlockOreDenseQuartzLarge.NAME);
     registry.registerBlockWithItem(new BlockOreDenseQuartzSmall(), BlockOreDenseQuartzSmall.NAME);
     registry.registerBlockWithItem(new BlockOreDenseQuartzRocks(), BlockOreDenseQuartzRocks.NAME);
-    registry.registerBlockWithItem(new BlockCarcass(), BlockCarcass.NAME);
 
     {
       BlockRefractoryBrick block = new BlockRefractoryBrick();
@@ -148,8 +147,7 @@ public final class BlockInitializer {
           ModuleCore.Blocks.ORE_DENSE_REDSTONE_ROCKS_ACTIVATED,
           ModuleCore.Blocks.ORE_DENSE_QUARTZ_LARGE,
           ModuleCore.Blocks.ORE_DENSE_QUARTZ_SMALL,
-          ModuleCore.Blocks.ORE_DENSE_QUARTZ_ROCKS,
-          ModuleCore.Blocks.CARCASS
+          ModuleCore.Blocks.ORE_DENSE_QUARTZ_ROCKS
       );
 
       ModelRegistrationHelper.registerItemModels(

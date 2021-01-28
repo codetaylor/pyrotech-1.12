@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.core.tile;
+package com.codetaylor.mc.pyrotech.modules.hunting.tile;
 
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
@@ -13,6 +13,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -147,7 +148,7 @@ public class TileCarcass
 
         // Client particles
 
-        IBlockState blockState = ModuleCore.Blocks.CARCASS.getDefaultState();
+        IBlockState blockState = ModuleHunting.Blocks.CARCASS.getDefaultState();
 
         for (int i = 0; i < 8; ++i) {
           world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, tile.getPos().getX() + hitX, tile.getPos().getY() + hitY, tile.getPos().getZ() + hitZ, 0.0D, 0.0D, 0.0D, Block.getStateId(blockState));
