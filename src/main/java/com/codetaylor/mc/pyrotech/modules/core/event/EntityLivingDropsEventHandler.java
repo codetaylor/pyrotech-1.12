@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import java.util.Iterator;
 
 @Mod.EventBusSubscriber
-public class EntityLivingDeathEventHandler {
+public class EntityLivingDropsEventHandler {
 
   @GameRegistry.ObjectHolder("minecraft:wool")
   private static final Item ITEM_WOOL;
