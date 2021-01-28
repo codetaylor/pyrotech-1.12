@@ -1,6 +1,36 @@
 itemGroup.pyrotech=Pyrotech
 
 #------------------------------------------------------------------------------
+# Module: Hunting
+#------------------------------------------------------------------------------
+
+item.pyrotech.hide.cow.name=Cow Hide
+item.pyrotech.hide.mooshroom.name=Mooshroom Hide
+item.pyrotech.hide.polar.bear.name=Polar Bear Hide
+item.pyrotech.hide.pig.name=Pig Hide
+item.pyrotech.hide.bat.name=Bat Hide
+item.pyrotech.hide.horse.name=Horse Hide
+item.pyrotech.hide.sheep.sheared.name=Sheep Hide
+item.pyrotech.hide.sheep.yellow.name=Yellow Sheep Hide
+item.pyrotech.hide.sheep.white.name=White Sheep Hide
+item.pyrotech.hide.sheep.gray.light.name=Light Gray Sheep Hide
+item.pyrotech.hide.sheep.red.name=Red Sheep Hide
+item.pyrotech.hide.sheep.purple.name=Purple Sheep Hide
+item.pyrotech.hide.sheep.pink.name=Pink Sheep Hide
+item.pyrotech.hide.sheep.orange.name=Orange Sheep Hide
+item.pyrotech.hide.sheep.magenta.name=Magenta Sheep Hide
+item.pyrotech.hide.sheep.lime.name=Lime Sheep Hide
+item.pyrotech.hide.sheep.blue.light.name=Light Blue Sheep Hide
+item.pyrotech.hide.sheep.green.name=Green Sheep Hide
+item.pyrotech.hide.sheep.gray.name=Gray Sheep Hide
+item.pyrotech.hide.sheep.cyan.name=Cyan Sheep Hide
+item.pyrotech.hide.sheep.brown.name=Brown Sheep Hide
+item.pyrotech.hide.sheep.blue.name=Blue Sheep Hide
+item.pyrotech.hide.sheep.black.name=Black Sheep Hide
+
+tile.pyrotech.carcass.name=Carcass
+
+#------------------------------------------------------------------------------
 # Module: Bucket
 #------------------------------------------------------------------------------
 
@@ -303,7 +333,6 @@ tile.pyrotech.living_tar.name=Living Tar
 tile.pyrotech.dense_redstone_ore.name=Dense Redstone Ore
 tile.pyrotech.dense_quartz_ore.name=Dense Quartz Ore
 tile.pyrotech.straw_bed.name=Straw Bed
-tile.pyrotech.carcass.name=Carcass
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock

@@ -55,6 +55,29 @@
         * `tile.pyrotech.masonry_brick_stairs.name`
         * `tile.pyrotech.masonry_brick_wall.name`
         * `tile.pyrotech.carcass.name`
+        * `item.pyrotech.hide.cow.name`
+        * `item.pyrotech.hide.mooshroom.name`
+        * `item.pyrotech.hide.polar.bear.name`
+        * `item.pyrotech.hide.pig.name`
+        * `item.pyrotech.hide.bat.name`
+        * `item.pyrotech.hide.horse.name`
+        * `item.pyrotech.hide.sheep.sheared.name`
+        * `item.pyrotech.hide.sheep.yellow.name`
+        * `item.pyrotech.hide.sheep.white.name`
+        * `item.pyrotech.hide.sheep.gray.light.name`
+        * `item.pyrotech.hide.sheep.red.name`
+        * `item.pyrotech.hide.sheep.purple.name`
+        * `item.pyrotech.hide.sheep.pink.name`
+        * `item.pyrotech.hide.sheep.orange.name`
+        * `item.pyrotech.hide.sheep.magenta.name`
+        * `item.pyrotech.hide.sheep.lime.name`
+        * `item.pyrotech.hide.sheep.blue.light.name`
+        * `item.pyrotech.hide.sheep.green.name`
+        * `item.pyrotech.hide.sheep.gray.name`
+        * `item.pyrotech.hide.sheep.cyan.name`
+        * `item.pyrotech.hide.sheep.brown.name`
+        * `item.pyrotech.hide.sheep.blue.name`
+        * `item.pyrotech.hide.sheep.black.name`        
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
     * **Changed Lang Values:**

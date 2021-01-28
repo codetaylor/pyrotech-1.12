@@ -32,4 +32,8 @@ public final class BlockInitializer {
     });
   }
 
+  private BlockInitializer() {
+    //
+  }
+
 }

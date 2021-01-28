@@ -1,6 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.core.event;
 
+import com.codetaylor.mc.pyrotech.ModPyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.Item;
@@ -38,6 +40,12 @@ public class EntityLivingDropsEventHandler {
           iterator.remove();
         }
       }
+    }
+
+    // We call this here to ensure that it will always run after the sheep
+    // wool directive has been processed.
+    if (ModPyrotechConfig.MODULES.get(ModuleHunting.MODULE_ID)) {
+      com.codetaylor.mc.pyrotech.modules.hunting.event.EntityLivingDropsEventHandler.on(event);
     }
   }
 
