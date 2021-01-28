@@ -431,6 +431,7 @@ public class ModuleCoreConfig {
         "minecraft:iron_ingot_from_block",
         "minecraft:gold_ingot_from_block",
         "minecraft:fire_charge",
+        "minecraft:leather",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
