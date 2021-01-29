@@ -11,7 +11,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -52,7 +54,7 @@ public class EntityLivingDropsEventHandler {
     List<EntityItem> drops = event.getDrops();
     List<ItemStack> capturedDrops = new ArrayList<>();
 
-    // Remove leather.
+    // Remove leather and capture drops.
 
     for (Iterator<EntityItem> iterator = drops.iterator(); iterator.hasNext(); ) {
       EntityItem entityItem = iterator.next();
@@ -79,9 +81,84 @@ public class EntityLivingDropsEventHandler {
       }
     }
 
+    // Special sheep handling
+    if (entityLiving instanceof EntitySheep) {
+      SheepDropFactory.create((EntitySheep) entityLiving, capturedDrops);
+    }
+
     if (!capturedDrops.isEmpty()) {
       ItemStack itemStack = CarcassFactory.create(capturedDrops);
       drops.add(new EntityItem(entityLiving.world, entityLiving.posX, entityLiving.posY, entityLiving.posZ, itemStack));
+    }
+  }
+
+  private static class SheepDropFactory {
+
+    private static void create(EntitySheep entitySheep, List<ItemStack> result) {
+
+      if (RandomHelper.random().nextFloat() > ModuleHuntingConfig.DROPS.SHEEP_PELT_CHANCE) {
+        return;
+      }
+
+      if (entitySheep.getSheared()) {
+        result.add(new ItemStack(ModuleHunting.Items.HIDE_SHEEP_SHEARED, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+
+      } else {
+        EnumDyeColor fleeceColor = entitySheep.getFleeceColor();
+
+        switch (fleeceColor) {
+          case BLUE:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_BLUE, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case RED:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_RED, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case GRAY:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_GRAY, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case BLACK:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_BLACK, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case BROWN:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_BROWN, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case GREEN:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_GREEN, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case WHITE:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_WHITE, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case SILVER:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_GRAY_LIGHT, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case YELLOW:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_YELLOW, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case CYAN:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_CYAN, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case LIME:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_LIME, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case PINK:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_PINK, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case ORANGE:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_ORANGE, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case PURPLE:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_PURPLE, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case MAGENTA:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_MAGENTA, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          case LIGHT_BLUE:
+            result.add(new ItemStack(ModuleHunting.Items.PELT_SHEEP_BLUE_LIGHT, ModuleHuntingConfig.DROPS.SHEEP_PELT_COUNT));
+            return;
+          default:
+            throw new IllegalStateException("Unknown enum: " + fleeceColor);
+        }
+      }
     }
   }
 

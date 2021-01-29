@@ -13,7 +13,7 @@ public class ModuleHuntingConfig {
   public static class Drops {
 
     @Config.Comment({
-        "If true, leather drops will be removed from entities.",
+        "If true, leather drops will be removed from entity drops.",
         "Default: " + true
     })
     public boolean REMOVE_LEATHER_DROPS = true;
@@ -24,13 +24,14 @@ public class ModuleHuntingConfig {
         "is the drop. The count is an integer and the chance is a float.",
         "Meta is optional and defaults to 0.",
         "",
+        "Sheep require special handling and aren't processed using the drop map.",
+        "",
         "String key format is (domain):(path)",
         "String value format is (domain):(path):(meta);(count);(chance)"
     })
     @Config.RequiresMcRestart
     public Map<String, String> DROP_MAP = new HashMap<String, String>() {{
       this.put("minecraft:pig", "pyrotech:hide_pig:0;1;0.85");
-      this.put("minecraft:sheep", "pyrotech:hide_sheep_sheared:0;1;0.85");
       this.put("minecraft:cow", "pyrotech:pelt_cow:0;1;0.85");
       this.put("minecraft:mooshroom", "pyrotech:pelt_mooshroom:0;1;0.65");
       this.put("minecraft:polar_bear", "pyrotech:pelt_polar_bear:0;1;0.85");
@@ -56,5 +57,19 @@ public class ModuleHuntingConfig {
         "minecraft:porkchop",
         "minecraft:red_mushroom"
     };
+
+    @Config.Comment({
+        "Sheep require special handling and aren't processed using the drop map.",
+        "This is the chance that a sheep pelt will drop.",
+        "Default: " + 0.85
+    })
+    public double SHEEP_PELT_CHANCE = 0.85;
+
+    @Config.Comment({
+        "Sheep require special handling and aren't processed using the drop map.",
+        "This is the amount of sheep pelts that will drop.",
+        "Default: " + 1
+    })
+    public int SHEEP_PELT_COUNT = 1;
   }
 }

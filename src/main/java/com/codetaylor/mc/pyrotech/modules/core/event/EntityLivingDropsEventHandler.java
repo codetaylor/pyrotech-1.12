@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -24,7 +25,7 @@ public class EntityLivingDropsEventHandler {
     ITEM_WOOL = null;
   }
 
-  @SubscribeEvent
+  @SubscribeEvent(priority = EventPriority.LOWEST)
   public static void on(LivingDropsEvent event) {
 
     if (ModuleCoreConfig.TWEAKS.PREVENT_WOOL_ON_SHEEP_DEATH
