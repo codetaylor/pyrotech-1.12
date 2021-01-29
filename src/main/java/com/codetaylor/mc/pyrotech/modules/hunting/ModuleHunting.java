@@ -15,6 +15,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ModuleHunting
     extends ModuleBase {
@@ -22,6 +24,7 @@ public class ModuleHunting
   public static final String MODULE_ID = "module.hunting";
   public static final String MOD_ID = ModPyrotech.MOD_ID;
   public static final CreativeTabs CREATIVE_TAB = ModPyrotech.CREATIVE_TAB;
+  public static final Logger LOGGER = LogManager.getLogger(ModuleHunting.class);
 
   public static IPacketService PACKET_SERVICE;
   public static ITileDataService TILE_DATA_SERVICE;
