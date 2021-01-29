@@ -4,29 +4,30 @@ itemGroup.pyrotech=火种科技
 # Module: Hunting
 #------------------------------------------------------------------------------
 
-item.pyrotech.hide.cow.name=Cow Hide
-item.pyrotech.hide.mooshroom.name=Mooshroom Hide
-item.pyrotech.hide.polar.bear.name=Polar Bear Hide
 item.pyrotech.hide.pig.name=Pig Hide
-item.pyrotech.hide.bat.name=Bat Hide
-item.pyrotech.hide.horse.name=Horse Hide
 item.pyrotech.hide.sheep.sheared.name=Sheep Hide
-item.pyrotech.hide.sheep.yellow.name=Yellow Sheep Hide
-item.pyrotech.hide.sheep.white.name=White Sheep Hide
-item.pyrotech.hide.sheep.gray.light.name=Light Gray Sheep Hide
-item.pyrotech.hide.sheep.red.name=Red Sheep Hide
-item.pyrotech.hide.sheep.purple.name=Purple Sheep Hide
-item.pyrotech.hide.sheep.pink.name=Pink Sheep Hide
-item.pyrotech.hide.sheep.orange.name=Orange Sheep Hide
-item.pyrotech.hide.sheep.magenta.name=Magenta Sheep Hide
-item.pyrotech.hide.sheep.lime.name=Lime Sheep Hide
-item.pyrotech.hide.sheep.blue.light.name=Light Blue Sheep Hide
-item.pyrotech.hide.sheep.green.name=Green Sheep Hide
-item.pyrotech.hide.sheep.gray.name=Gray Sheep Hide
-item.pyrotech.hide.sheep.cyan.name=Cyan Sheep Hide
-item.pyrotech.hide.sheep.brown.name=Brown Sheep Hide
-item.pyrotech.hide.sheep.blue.name=Blue Sheep Hide
-item.pyrotech.hide.sheep.black.name=Black Sheep Hide
+
+item.pyrotech.pelt.cow.name=Cow Pelt
+item.pyrotech.pelt.mooshroom.name=Mooshroom Pelt
+item.pyrotech.pelt.polar.bear.name=Polar Bear Pelt
+item.pyrotech.pelt.bat.name=Bat Pelt
+item.pyrotech.pelt.horse.name=Horse Pelt
+item.pyrotech.pelt.sheep.yellow.name=Yellow Sheep Pelt
+item.pyrotech.pelt.sheep.white.name=White Sheep Pelt
+item.pyrotech.pelt.sheep.gray.light.name=Light Gray Sheep Pelt
+item.pyrotech.pelt.sheep.red.name=Red Sheep Pelt
+item.pyrotech.pelt.sheep.purple.name=Purple Sheep Pelt
+item.pyrotech.pelt.sheep.pink.name=Pink Sheep Pelt
+item.pyrotech.pelt.sheep.orange.name=Orange Sheep Pelt
+item.pyrotech.pelt.sheep.magenta.name=Magenta Sheep Pelt
+item.pyrotech.pelt.sheep.lime.name=Lime Sheep Pelt
+item.pyrotech.pelt.sheep.blue.light.name=Light Blue Sheep Pelt
+item.pyrotech.pelt.sheep.green.name=Green Sheep Pelt
+item.pyrotech.pelt.sheep.gray.name=Gray Sheep Pelt
+item.pyrotech.pelt.sheep.cyan.name=Cyan Sheep Pelt
+item.pyrotech.pelt.sheep.brown.name=Brown Sheep Pelt
+item.pyrotech.pelt.sheep.blue.name=Blue Sheep Pelt
+item.pyrotech.pelt.sheep.black.name=Black Sheep Pelt
 
 tile.pyrotech.carcass.name=Carcass
 

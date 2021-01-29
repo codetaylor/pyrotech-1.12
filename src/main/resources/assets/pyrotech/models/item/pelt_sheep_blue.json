@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "pyrotech:items/hide_sheep_lime"
+    "layer0": "pyrotech:items/pelt_sheep_blue"
   }
 }
