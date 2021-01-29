@@ -34,9 +34,10 @@ public class ModuleHuntingConfig {
       this.put("minecraft:cow", "pyrotech:pelt_cow:0;1;0.85");
       this.put("minecraft:mooshroom", "pyrotech:pelt_mooshroom:0;1;0.65");
       this.put("minecraft:polar_bear", "pyrotech:pelt_polar_bear:0;1;0.85");
-      this.put("minecraft:bat", "pyrotech:pelt_bat:0;1;0.85");
+      this.put("minecraft:bat", "pyrotech:pelt_bat:0;1;0.65");
       this.put("minecraft:horse", "pyrotech:pelt_horse:0;1;0.85");
       this.put("minecraft:donkey", "pyrotech:pelt_horse:0;1;0.85");
+      this.put("minecraft:rabbit", "minecraft:rabbit_hide:0;1;0.65");
     }};
 
     @Config.Comment({
@@ -52,7 +53,8 @@ public class ModuleHuntingConfig {
         "minecraft:mutton",
         "minecraft:rabbit",
         "minecraft:rabbit_foot",
-        "minecraft:porkchop"
+        "minecraft:porkchop",
+        "minecraft:red_mushroom"
     };
   }
 }
