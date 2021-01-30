@@ -1,8 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.hunting;
 
+import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Config;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Config(modid = ModuleHunting.MOD_ID, name = ModuleHunting.MOD_ID + "/" + "module.Hunting")
@@ -48,7 +50,7 @@ public class ModuleHuntingConfig {
         "String format is (domain):(path):(meta)"
     })
     @Config.RequiresMcRestart
-    public String[] DROP_CAPTURE_LIST = new String[] {
+    public String[] DROP_CAPTURE_LIST = new String[]{
         "minecraft:beef",
         "minecraft:chicken",
         "minecraft:mutton",
@@ -72,4 +74,20 @@ public class ModuleHuntingConfig {
     })
     public int SHEEP_PELT_COUNT = 1;
   }
+
+  @Config.Comment({
+      "The durability of the hunting knives."
+  })
+  public static Map<String, Integer> HUNTING_KNIFE_DURABILITY = new LinkedHashMap<>();
+
+  static {
+    HUNTING_KNIFE_DURABILITY.put("bone", 150);
+    HUNTING_KNIFE_DURABILITY.put("flint", 150);
+    HUNTING_KNIFE_DURABILITY.put("stone", Item.ToolMaterial.STONE.getMaxUses());
+    HUNTING_KNIFE_DURABILITY.put("iron", Item.ToolMaterial.IRON.getMaxUses());
+    HUNTING_KNIFE_DURABILITY.put("gold", Item.ToolMaterial.GOLD.getMaxUses());
+    HUNTING_KNIFE_DURABILITY.put("diamond", Item.ToolMaterial.DIAMOND.getMaxUses());
+    HUNTING_KNIFE_DURABILITY.put("obsidian", 1400);
+  }
+
 }

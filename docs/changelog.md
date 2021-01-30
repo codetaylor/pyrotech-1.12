@@ -86,7 +86,15 @@
         * `item.pyrotech.hide.sheep.cyan.name`
         * `item.pyrotech.hide.sheep.brown.name`
         * `item.pyrotech.hide.sheep.blue.name`
-        * `item.pyrotech.hide.sheep.black.name`        
+        * `item.pyrotech.hide.sheep.black.name`
+        * `item.pyrotech.bone.hunting.knife.name`
+        * `item.pyrotech.flint.hunting.knife.name`
+        * `item.pyrotech.stone.hunting.knife.name`
+        * `item.pyrotech.iron.hunting.knife.name`
+        * `item.pyrotech.gold.hunting.knife.name`
+        * `item.pyrotech.diamond.hunting.knife.name`
+        * `item.pyrotech.obsidian.hunting.knife.name`
+
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
     * **Changed Lang Values:**

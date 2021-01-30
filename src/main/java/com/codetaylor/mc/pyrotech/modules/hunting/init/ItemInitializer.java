@@ -1,10 +1,16 @@
 package com.codetaylor.mc.pyrotech.modules.hunting.init;
 
+import com.codetaylor.mc.athenaeum.reference.EnumMaterial;
+import com.codetaylor.mc.athenaeum.reference.ModuleMaterials;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
+import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHuntingConfig;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHide;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntingKnife;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemPelt;
+import com.google.common.base.Preconditions;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -36,6 +42,15 @@ public final class ItemInitializer {
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_SHEEP_BROWN);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_SHEEP_BLUE);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_SHEEP_BLACK);
+
+    registry.registerItem(new ItemHuntingKnife(EnumMaterial.BONE.getToolMaterial(), ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("bone")), ItemHuntingKnife.BONE_NAME);
+    registry.registerItem(new ItemHuntingKnife(EnumMaterial.FLINT.getToolMaterial(), ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("flint")), ItemHuntingKnife.FLINT_NAME);
+    registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.STONE, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("stone")), ItemHuntingKnife.STONE_NAME);
+    registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.IRON, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("iron")), ItemHuntingKnife.IRON_NAME);
+    registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.GOLD, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("gold")), ItemHuntingKnife.GOLD_NAME);
+    registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.DIAMOND, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("diamond")), ItemHuntingKnife.DIAMOND_NAME);
+    registry.registerItem(new ItemHuntingKnife(Preconditions.checkNotNull(ModuleMaterials.OBSIDIAN), ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("obsidian")), ItemHuntingKnife.OBSIDIAN_NAME);
+
   }
 
   @SideOnly(Side.CLIENT)
@@ -66,7 +81,14 @@ public final class ItemInitializer {
           ModuleHunting.Items.PELT_SHEEP_CYAN,
           ModuleHunting.Items.PELT_SHEEP_BROWN,
           ModuleHunting.Items.PELT_SHEEP_BLUE,
-          ModuleHunting.Items.PELT_SHEEP_BLACK
+          ModuleHunting.Items.PELT_SHEEP_BLACK,
+          ModuleHunting.Items.BONE_HUNTING_KNIFE,
+          ModuleHunting.Items.FLINT_HUNTING_KNIFE,
+          ModuleHunting.Items.STONE_HUNTING_KNIFE,
+          ModuleHunting.Items.IRON_HUNTING_KNIFE,
+          ModuleHunting.Items.GOLD_HUNTING_KNIFE,
+          ModuleHunting.Items.DIAMOND_HUNTING_KNIFE,
+          ModuleHunting.Items.OBSIDIAN_HUNTING_KNIFE
       );
     });
   }

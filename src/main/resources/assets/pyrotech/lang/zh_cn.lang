@@ -29,6 +29,14 @@ item.pyrotech.pelt.sheep.brown.name=Brown Sheep Pelt
 item.pyrotech.pelt.sheep.blue.name=Blue Sheep Pelt
 item.pyrotech.pelt.sheep.black.name=Black Sheep Pelt
 
+item.pyrotech.bone.hunting.knife.name=Bone Hunting Knife
+item.pyrotech.flint.hunting.knife.name=Flint Hunting Knife
+item.pyrotech.stone.hunting.knife.name=Stone Hunting Knife
+item.pyrotech.iron.hunting.knife.name=Iron Hunting Knife
+item.pyrotech.gold.hunting.knife.name=Gold Hunting Knife
+item.pyrotech.diamond.hunting.knife.name=Diamond Hunting Knife
+item.pyrotech.obsidian.hunting.knife.name=Obsidian Hunting Knife
+
 tile.pyrotech.carcass.name=Carcass
 
 #------------------------------------------------------------------------------

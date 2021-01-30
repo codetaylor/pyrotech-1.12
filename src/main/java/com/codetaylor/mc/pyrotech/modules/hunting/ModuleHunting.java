@@ -9,6 +9,7 @@ import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockCarcass;
 import com.codetaylor.mc.pyrotech.modules.hunting.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.hunting.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHide;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntingKnife;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemPelt;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -140,6 +141,27 @@ public class ModuleHunting
     @GameRegistry.ObjectHolder(ItemPelt.NAME_SHEEP_BLACK)
     public static final ItemPelt PELT_SHEEP_BLACK;
 
+    @GameRegistry.ObjectHolder(ItemHuntingKnife.BONE_NAME)
+    public static final ItemHuntingKnife BONE_HUNTING_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemHuntingKnife.FLINT_NAME)
+    public static final ItemHuntingKnife FLINT_HUNTING_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemHuntingKnife.STONE_NAME)
+    public static final ItemHuntingKnife STONE_HUNTING_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemHuntingKnife.GOLD_NAME)
+    public static final ItemHuntingKnife GOLD_HUNTING_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemHuntingKnife.IRON_NAME)
+    public static final ItemHuntingKnife IRON_HUNTING_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemHuntingKnife.DIAMOND_NAME)
+    public static final ItemHuntingKnife DIAMOND_HUNTING_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemHuntingKnife.OBSIDIAN_NAME)
+    public static final ItemHuntingKnife OBSIDIAN_HUNTING_KNIFE;
+
     static {
       HIDE_PIG = null;
       HIDE_SHEEP_SHEARED = null;
@@ -164,6 +186,13 @@ public class ModuleHunting
       PELT_SHEEP_BROWN = null;
       PELT_SHEEP_BLUE = null;
       PELT_SHEEP_BLACK = null;
+      BONE_HUNTING_KNIFE = null;
+      FLINT_HUNTING_KNIFE = null;
+      STONE_HUNTING_KNIFE = null;
+      IRON_HUNTING_KNIFE = null;
+      GOLD_HUNTING_KNIFE = null;
+      DIAMOND_HUNTING_KNIFE = null;
+      OBSIDIAN_HUNTING_KNIFE = null;
     }
   }
 
