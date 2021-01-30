@@ -33,10 +33,10 @@ public class TileCarcass
     extends TileEntityDataBase
     implements ITileInteractable {
 
-  private StackHandler stackHandler;
-  private TileDataFloat progress;
+  private final StackHandler stackHandler;
+  private final TileDataFloat progress;
 
-  private IInteraction[] interactions;
+  private final IInteraction[] interactions;
 
   public TileCarcass() {
 
@@ -44,13 +44,13 @@ public class TileCarcass
 
     // --- Initialize ---
 
+    this.progress = new TileDataFloat(0);
+
     this.stackHandler = new StackHandler();
     this.stackHandler.addObserver((handler, slot) -> {
       this.progress.set(0);
       this.markDirty();
     });
-
-    this.progress = new TileDataFloat(0);
 
     // --- Network ---
 
@@ -104,7 +104,7 @@ public class TileCarcass
     return this.interactions;
   }
 
-  private class Interaction
+  private static class Interaction
       extends InteractionUseItemBase<TileCarcass> {
 
     public Interaction() {
