@@ -1,13 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tool.item;
 
-import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ICrudeTierTool;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemAxeBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 
 public class ItemCrudeAxe
-    extends ItemAxeBase
-    implements ICrudeTierTool {
+    extends ItemAxeBase {
 
   public static final String NAME = "crude_axe";
 

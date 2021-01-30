@@ -1,13 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tool.item;
 
-import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ICrudeTierTool;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemShovelBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 
 public class ItemCrudeShovel
-    extends ItemShovelBase
-    implements ICrudeTierTool {
+    extends ItemShovelBase {
 
   public static final String NAME = "crude_shovel";
 
