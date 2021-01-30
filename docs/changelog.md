@@ -22,6 +22,15 @@
         * `blockCharcoal` now contains `pyrotech:charcoal_block` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
         * `straw` now contains `pyrotech:material:2` [(#200)](https://github.com/codetaylor/pyrotech-1.12/issues/200)
         * `rockLimestone` now contains `pyrotech:rock:8` [(#199)](https://github.com/codetaylor/pyrotech-1.12/issues/199)
+        * `shears` now contains:
+            * `minecraft:shears`
+            * `pyrotech:clay_shears`
+            * `pyrotech:stone_shears`
+            * `pyrotech:bone_shears`
+            * `pyrotech:flint_shears`
+            * `pyrotech:gold_shears`
+            * `pyrotech:diamond_shears`
+            * `pyrotech:obsidian_shears`
 
   * **Changed:**
     * Hammering a bloom will now yield experience [(#228)](https://github.com/codetaylor/pyrotech-1.12/issues/228)
