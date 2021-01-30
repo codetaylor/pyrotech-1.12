@@ -164,15 +164,15 @@ public class JsonOreDict {
         "pyrotech:bucket_stone:1"
     });
 
-    result.oreDict.put("shears", new String[]{
-        "minecraft:shears",
-        "pyrotech:clay_shears",
-        "pyrotech:stone_shears",
-        "pyrotech:bone_shears",
-        "pyrotech:flint_shears",
-        "pyrotech:gold_shears",
-        "pyrotech:diamond_shears",
-        "pyrotech:obsidian_shears"
+    result.oreDict.put("toolShears", new String[]{
+        "minecraft:shears:*",
+        "pyrotech:clay_shears:*",
+        "pyrotech:stone_shears:*",
+        "pyrotech:bone_shears:*",
+        "pyrotech:flint_shears:*",
+        "pyrotech:gold_shears:*",
+        "pyrotech:diamond_shears:*",
+        "pyrotech:obsidian_shears:*"
     });
 
     return result;
