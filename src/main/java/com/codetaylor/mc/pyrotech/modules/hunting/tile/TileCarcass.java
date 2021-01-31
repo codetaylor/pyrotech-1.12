@@ -11,18 +11,21 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandl
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
+import com.codetaylor.mc.athenaeum.util.RandomHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
+import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHuntingConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -64,6 +67,22 @@ public class TileCarcass
     this.interactions = new IInteraction[]{
         new Interaction()
     };
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Accessors
+  // ---------------------------------------------------------------------------
+
+  public int getFirstNonEmptySlot() {
+
+    for (int i = 0; i < this.stackHandler.getSlots(); i++) {
+      ItemStack stackInSlot = this.stackHandler.getStackInSlot(i);
+
+      if (!stackInSlot.isEmpty()) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   // ---------------------------------------------------------------------------
@@ -115,8 +134,21 @@ public class TileCarcass
     @Override
     protected boolean allowInteraction(TileCarcass tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      // TODO: check tool
-      return true;
+      if (player.getFoodStats().getFoodLevel() < ModuleHuntingConfig.CARCASS.MINIMUM_HUNGER_TO_USE) {
+        return false;
+      }
+
+      ItemStack heldItemStack = player.getHeldItem(hand);
+      Item heldItem = heldItemStack.getItem();
+
+      ResourceLocation resourceLocation = heldItem.getRegistryName();
+
+      if (resourceLocation == null) {
+        return false;
+      }
+
+      String registryName = resourceLocation.toString();
+      return ArrayHelper.contains(ModuleHuntingConfig.CARCASS.ALLOWED_HUNTING_KNIVES, registryName);
     }
 
     @Override
@@ -124,7 +156,10 @@ public class TileCarcass
 
       if (!world.isRemote) {
 
-        // TODO: Charge exhaustion.
+        // Charge exhaustion.
+        if (ModuleHuntingConfig.CARCASS.EXHAUSTION_COST_PER_KNIFE_USE > 0) {
+          player.addExhaustion((float) ModuleHuntingConfig.CARCASS.EXHAUSTION_COST_PER_KNIFE_USE);
+        }
 
         // Play sound for chop.
         world.playSound(
@@ -138,11 +173,37 @@ public class TileCarcass
             (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
         );
 
-        // TODO: Damage the tool.
+        ItemStack heldItemStack = player.getHeldItem(hand);
+        Item heldItem = heldItemStack.getItem();
 
-        // TODO: Advance the progress.
+        ResourceLocation resourceLocation = heldItem.getRegistryName();
 
-        // TODO: Check progress, drop item, reset progress or destroy carcass.
+        if (resourceLocation == null) {
+          return false;
+        }
+
+        String registryName = resourceLocation.toString();
+        int efficiency = ModuleHuntingConfig.CARCASS.HUNTING_KNIFE_EFFICIENCY.getOrDefault(registryName, 1);
+
+        // Advance the progress.
+        tile.progress.set(tile.progress.get() + efficiency);
+
+        if (tile.progress.get() >= ModuleHuntingConfig.CARCASS.TOTAL_PROGRESS_REQUIRED) {
+          // Check progress, drop item, reset progress or destroy carcass.
+
+          ItemStack itemStack = tile.stackHandler.extractRandomItem(false, RandomHelper.random());
+
+          if (!itemStack.isEmpty()) {
+            StackHelper.spawnStackOnTop(world, itemStack, tile.pos);
+          }
+
+          if (tile.stackHandler.getTotalItemCount() == 0) {
+            world.destroyBlock(tile.pos, false);
+
+          } else {
+            tile.progress.set(0);
+          }
+        }
 
       } else {
 
