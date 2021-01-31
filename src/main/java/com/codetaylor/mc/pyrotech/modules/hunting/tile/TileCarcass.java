@@ -37,7 +37,8 @@ public class TileCarcass
     implements ITileInteractable {
 
   private final StackHandler stackHandler;
-  private final TileDataFloat progress;
+  private final TileDataFloat currentProgress;
+  private final TileDataFloat totalProgress;
 
   private final IInteraction[] interactions;
 
@@ -47,7 +48,8 @@ public class TileCarcass
 
     // --- Initialize ---
 
-    this.progress = new TileDataFloat(0);
+    this.currentProgress = new TileDataFloat(0);
+    this.totalProgress = new TileDataFloat(0);
 
     this.stackHandler = new StackHandler();
     this.stackHandler.addObserver((handler, slot) -> {
@@ -59,7 +61,8 @@ public class TileCarcass
 
     this.registerTileDataForNetwork(new ITileData[]{
         new TileDataLargeItemStackHandler<>(this.stackHandler),
-        this.progress
+        this.currentProgress,
+        this.totalProgress
     });
 
     // --- Interactions ---
@@ -75,7 +78,36 @@ public class TileCarcass
 
     int progressRequired = ModuleHuntingConfig.CARCASS.TOTAL_PROGRESS_REQUIRED;
     float adjustment = RandomHelper.random().nextFloat() * 0.2f - 0.1f;
-    this.progress.set(Math.max(1, progressRequired + progressRequired * adjustment));
+    this.currentProgress.set(Math.max(1, progressRequired + progressRequired * adjustment));
+    this.totalProgress.set(this.currentProgress.get());
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Accessors
+  // ---------------------------------------------------------------------------
+
+  public float getCurrentProgress() {
+
+    return 1.0f - this.currentProgress.get() / this.totalProgress.get();
+  }
+
+  public ItemStack getNextItem() {
+
+    ItemStack itemStack = this.stackHandler.getFirstNonEmptyItemStack().copy();
+    itemStack.setCount(1);
+    return itemStack;
+  }
+
+  private int getFirstNonEmptySlot() {
+
+    for (int i = 0; i < this.stackHandler.getSlots(); i++) {
+      ItemStack stackInSlot = this.stackHandler.getStackInSlot(i);
+
+      if (!stackInSlot.isEmpty()) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   // ---------------------------------------------------------------------------
@@ -179,12 +211,13 @@ public class TileCarcass
         int efficiency = ModuleHuntingConfig.CARCASS.HUNTING_KNIFE_EFFICIENCY.getOrDefault(registryName, 1);
 
         // Advance the progress.
-        tile.progress.set(tile.progress.get() - efficiency);
+        tile.currentProgress.set(tile.currentProgress.get() - efficiency);
 
-        if (tile.progress.get() <= 0) {
+        if (tile.currentProgress.get() <= 0) {
           // Check progress, drop item, reset progress or destroy carcass.
 
-          ItemStack itemStack = tile.stackHandler.extractRandomItem(false, RandomHelper.random());
+          int slot = tile.getFirstNonEmptySlot();
+          ItemStack itemStack = tile.stackHandler.extractItem(slot, 1, false);
 
           if (!itemStack.isEmpty()) {
             StackHelper.spawnStackOnTop(world, itemStack, tile.pos);

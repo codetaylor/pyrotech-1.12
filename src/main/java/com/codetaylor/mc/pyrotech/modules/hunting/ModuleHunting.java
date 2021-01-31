@@ -13,6 +13,8 @@ import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntingKnife;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemPelt;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -56,6 +58,30 @@ public class ModuleHunting
 
     BlockInitializer.onClientRegister(registry);
     ItemInitializer.onClientRegister(registry);
+  }
+
+  @Override
+  public void onPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onPreInitializationEvent(event);
+
+    FMLInterModComms.sendFunctionMessage(
+        "theoneprobe",
+        "getTheOneProbe",
+        "com.codetaylor.mc.pyrotech.modules.hunting.plugin.top.PluginTOP$Callback"
+    );
+  }
+
+  @Override
+  public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onClientPreInitializationEvent(event);
+
+    FMLInterModComms.sendMessage(
+        "waila",
+        "register",
+        "com.codetaylor.mc.pyrotech.modules.hunting.plugin.waila.PluginWaila.wailaCallback"
+    );
   }
 
   @GameRegistry.ObjectHolder(ModuleHunting.MOD_ID)
