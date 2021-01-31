@@ -70,22 +70,6 @@ public class TileCarcass
   }
 
   // ---------------------------------------------------------------------------
-  // - Accessors
-  // ---------------------------------------------------------------------------
-
-  public int getFirstNonEmptySlot() {
-
-    for (int i = 0; i < this.stackHandler.getSlots(); i++) {
-      ItemStack stackInSlot = this.stackHandler.getStackInSlot(i);
-
-      if (!stackInSlot.isEmpty()) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
-  // ---------------------------------------------------------------------------
   // - Serialization
   // ---------------------------------------------------------------------------
 
