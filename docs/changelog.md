@@ -4,6 +4,9 @@
     * `pyrotech:stone_bricks` renamed to `pyrotech:masonry_brick_block`
 
   * **Added:**
+    * Carcass:
+        * Use Hunting Knife on carcass to release drops
+    * Hunting Knives
     * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
     * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
     * Masonry Brick Wall [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
