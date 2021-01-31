@@ -46,7 +46,7 @@ public class ModuleHuntingConfig {
     public double EXHAUSTION_COST_PER_KNIFE_USE = 1.5;
 
     @Config.Comment({
-        "Total progress required to drop item.",
+        "Total progress required to drop item +/- 10%.",
         "Default: " + 100
     })
     @Config.RangeInt(min = 1)
@@ -61,9 +61,9 @@ public class ModuleHuntingConfig {
     })
     @Config.RequiresMcRestart
     public Map<String, Integer> HUNTING_KNIFE_EFFICIENCY = new HashMap<String, Integer>() {{
-      this.put("pyrotech:" + ItemHuntingKnife.BONE_NAME, 12);
-      this.put("pyrotech:" + ItemHuntingKnife.FLINT_NAME, 12);
-      this.put("pyrotech:" + ItemHuntingKnife.STONE_NAME, 8);
+      this.put("pyrotech:" + ItemHuntingKnife.BONE_NAME, 15);
+      this.put("pyrotech:" + ItemHuntingKnife.FLINT_NAME, 15);
+      this.put("pyrotech:" + ItemHuntingKnife.STONE_NAME, 10);
       this.put("pyrotech:" + ItemHuntingKnife.IRON_NAME, 20);
       this.put("pyrotech:" + ItemHuntingKnife.GOLD_NAME, 5);
       this.put("pyrotech:" + ItemHuntingKnife.DIAMOND_NAME, 35);

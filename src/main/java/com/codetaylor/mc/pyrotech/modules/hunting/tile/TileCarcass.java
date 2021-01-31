@@ -51,7 +51,7 @@ public class TileCarcass
 
     this.stackHandler = new StackHandler();
     this.stackHandler.addObserver((handler, slot) -> {
-      this.progress.set(0);
+      this.initializeProgress();
       this.markDirty();
     });
 
@@ -67,6 +67,15 @@ public class TileCarcass
     this.interactions = new IInteraction[]{
         new Interaction()
     };
+
+    this.initializeProgress();
+  }
+
+  private void initializeProgress() {
+
+    int progressRequired = ModuleHuntingConfig.CARCASS.TOTAL_PROGRESS_REQUIRED;
+    float adjustment = RandomHelper.random().nextFloat() * 0.2f - 0.1f;
+    this.progress.set(Math.max(1, progressRequired + progressRequired * adjustment));
   }
 
   // ---------------------------------------------------------------------------
@@ -170,9 +179,9 @@ public class TileCarcass
         int efficiency = ModuleHuntingConfig.CARCASS.HUNTING_KNIFE_EFFICIENCY.getOrDefault(registryName, 1);
 
         // Advance the progress.
-        tile.progress.set(tile.progress.get() + efficiency);
+        tile.progress.set(tile.progress.get() - efficiency);
 
-        if (tile.progress.get() >= ModuleHuntingConfig.CARCASS.TOTAL_PROGRESS_REQUIRED) {
+        if (tile.progress.get() <= 0) {
           // Check progress, drop item, reset progress or destroy carcass.
 
           ItemStack itemStack = tile.stackHandler.extractRandomItem(false, RandomHelper.random());
@@ -185,7 +194,7 @@ public class TileCarcass
             world.destroyBlock(tile.pos, false);
 
           } else {
-            tile.progress.set(0);
+            tile.initializeProgress();
           }
         }
 
