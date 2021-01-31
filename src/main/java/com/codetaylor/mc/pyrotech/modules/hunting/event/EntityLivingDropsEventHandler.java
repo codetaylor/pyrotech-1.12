@@ -74,10 +74,13 @@ public class EntityLivingDropsEventHandler {
 
     List<DropData> dropData = DROP_MAP.get(resourceLocation);
 
-    for (DropData data : dropData) {
+    if (dropData != null) {
 
-      if (RandomHelper.random().nextFloat() <= data.chance) {
-        capturedDrops.add(new ItemStack(data.item, data.count, data.meta));
+      for (DropData data : dropData) {
+
+        if (RandomHelper.random().nextFloat() <= data.chance) {
+          capturedDrops.add(new ItemStack(data.item, data.count, data.meta));
+        }
       }
     }
 
