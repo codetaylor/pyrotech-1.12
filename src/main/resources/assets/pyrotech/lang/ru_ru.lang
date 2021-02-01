@@ -6,6 +6,10 @@ itemGroup.pyrotech=Pyrotech
 
 item.pyrotech.hide.pig.name=Pig Hide
 item.pyrotech.hide.sheep.sheared.name=Sheep Hide
+item.pyrotech.hide.scraped.name=Scraped Hide
+item.pyrotech.hide.small.scraped.name=Small Scraped Hide
+item.pyrotech.hide.washed.name=Washed Hide
+item.pyrotech.hide.small.washed.name=Small Washed Hide
 
 item.pyrotech.pelt.cow.name=Cow Pelt
 item.pyrotech.pelt.mooshroom.name=Mooshroom Pelt

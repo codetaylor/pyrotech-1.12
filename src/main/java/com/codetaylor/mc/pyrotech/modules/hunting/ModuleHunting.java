@@ -8,9 +8,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockCarcass;
 import com.codetaylor.mc.pyrotech.modules.hunting.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.hunting.init.ItemInitializer;
-import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHide;
-import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntingKnife;
-import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemPelt;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
@@ -188,6 +186,18 @@ public class ModuleHunting
     @GameRegistry.ObjectHolder(ItemHuntingKnife.OBSIDIAN_NAME)
     public static final ItemHuntingKnife OBSIDIAN_HUNTING_KNIFE;
 
+    @GameRegistry.ObjectHolder(ItemHide.NAME_WASHED)
+    public static final ItemHide HIDE_WASHED;
+
+    @GameRegistry.ObjectHolder(ItemHide.NAME_SMALL_WASHED)
+    public static final ItemHide HIDE_SMALL_WASHED;
+
+    @GameRegistry.ObjectHolder(ItemHideScraped.NAME)
+    public static final ItemHideScraped HIDE_SCRAPED;
+
+    @GameRegistry.ObjectHolder(ItemHideSmallScraped.NAME)
+    public static final ItemHideSmallScraped HIDE_SMALL_SCRAPED;
+
     static {
       HIDE_PIG = null;
       HIDE_SHEEP_SHEARED = null;
@@ -219,6 +229,10 @@ public class ModuleHunting
       GOLD_HUNTING_KNIFE = null;
       DIAMOND_HUNTING_KNIFE = null;
       OBSIDIAN_HUNTING_KNIFE = null;
+      HIDE_WASHED = null;
+      HIDE_SMALL_WASHED = null;
+      HIDE_SCRAPED = null;
+      HIDE_SMALL_SCRAPED = null;
     }
   }
 

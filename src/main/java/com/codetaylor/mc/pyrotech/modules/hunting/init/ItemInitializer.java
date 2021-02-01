@@ -6,9 +6,7 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHuntingConfig;
-import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHide;
-import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntingKnife;
-import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemPelt;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.*;
 import com.google.common.base.Preconditions;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,6 +18,11 @@ public final class ItemInitializer {
 
     registry.registerItem(new ItemHide(), ItemHide.NAME_PIG);
     registry.registerItem(new ItemHide(), ItemHide.NAME_SHEEP_SHEARED);
+    registry.registerItem(new ItemHide(), ItemHide.NAME_WASHED);
+    registry.registerItem(new ItemHide(), ItemHide.NAME_SMALL_WASHED);
+
+    registry.registerItem(new ItemHideScraped(), ItemHideScraped.NAME);
+    registry.registerItem(new ItemHideSmallScraped(), ItemHideSmallScraped.NAME);
 
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_COW);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_MOOSHROOM);
@@ -88,7 +91,11 @@ public final class ItemInitializer {
           ModuleHunting.Items.IRON_HUNTING_KNIFE,
           ModuleHunting.Items.GOLD_HUNTING_KNIFE,
           ModuleHunting.Items.DIAMOND_HUNTING_KNIFE,
-          ModuleHunting.Items.OBSIDIAN_HUNTING_KNIFE
+          ModuleHunting.Items.OBSIDIAN_HUNTING_KNIFE,
+          ModuleHunting.Items.HIDE_WASHED,
+          ModuleHunting.Items.HIDE_SMALL_WASHED,
+          ModuleHunting.Items.HIDE_SCRAPED,
+          ModuleHunting.Items.HIDE_SMALL_SCRAPED
       );
     });
   }

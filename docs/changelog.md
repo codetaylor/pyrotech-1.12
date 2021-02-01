@@ -7,6 +7,21 @@
     * Carcass:
         * Use Hunting Knife on carcass to release drops
     * Hunting Knives
+    * Hides:
+        * Scraped Hide
+        * Small Scraped Hide
+        * Washed Hide
+        * Small Washed Hide
+        * Sheep Hide
+        * Pig Hide
+    * Pelts:
+        * Cow Pelt
+        * Various colored Sheep Pelts
+        * Bat Pelt
+        * Rabbit Pelt
+        * Polar Bear Pelt
+        * Horse Pelt
+        * Mooshroom Pelt
     * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
     * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
     * Masonry Brick Wall [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
@@ -67,29 +82,29 @@
         * `tile.pyrotech.masonry_brick_stairs.name`
         * `tile.pyrotech.masonry_brick_wall.name`
         * `tile.pyrotech.carcass.name`
-        * `item.pyrotech.hide.cow.name`
-        * `item.pyrotech.hide.mooshroom.name`
-        * `item.pyrotech.hide.polar.bear.name`
+        * `item.pyrotech.pelt.cow.name`
+        * `item.pyrotech.pelt.mooshroom.name`
+        * `item.pyrotech.pelt.polar.bear.name`
         * `item.pyrotech.hide.pig.name`
-        * `item.pyrotech.hide.bat.name`
-        * `item.pyrotech.hide.horse.name`
+        * `item.pyrotech.pelt.bat.name`
+        * `item.pyrotech.pelt.horse.name`
         * `item.pyrotech.hide.sheep.sheared.name`
-        * `item.pyrotech.hide.sheep.yellow.name`
-        * `item.pyrotech.hide.sheep.white.name`
-        * `item.pyrotech.hide.sheep.gray.light.name`
-        * `item.pyrotech.hide.sheep.red.name`
-        * `item.pyrotech.hide.sheep.purple.name`
-        * `item.pyrotech.hide.sheep.pink.name`
-        * `item.pyrotech.hide.sheep.orange.name`
-        * `item.pyrotech.hide.sheep.magenta.name`
-        * `item.pyrotech.hide.sheep.lime.name`
-        * `item.pyrotech.hide.sheep.blue.light.name`
-        * `item.pyrotech.hide.sheep.green.name`
-        * `item.pyrotech.hide.sheep.gray.name`
-        * `item.pyrotech.hide.sheep.cyan.name`
-        * `item.pyrotech.hide.sheep.brown.name`
-        * `item.pyrotech.hide.sheep.blue.name`
-        * `item.pyrotech.hide.sheep.black.name`
+        * `item.pyrotech.pelt.sheep.yellow.name`
+        * `item.pyrotech.pelt.sheep.white.name`
+        * `item.pyrotech.pelt.sheep.gray.light.name`
+        * `item.pyrotech.pelt.sheep.red.name`
+        * `item.pyrotech.pelt.sheep.purple.name`
+        * `item.pyrotech.pelt.sheep.pink.name`
+        * `item.pyrotech.pelt.sheep.orange.name`
+        * `item.pyrotech.pelt.sheep.magenta.name`
+        * `item.pyrotech.pelt.sheep.lime.name`
+        * `item.pyrotech.pelt.sheep.blue.light.name`
+        * `item.pyrotech.pelt.sheep.green.name`
+        * `item.pyrotech.pelt.sheep.gray.name`
+        * `item.pyrotech.pelt.sheep.cyan.name`
+        * `item.pyrotech.pelt.sheep.brown.name`
+        * `item.pyrotech.pelt.sheep.blue.name`
+        * `item.pyrotech.pelt.sheep.black.name`
         * `item.pyrotech.bone.hunting.knife.name`
         * `item.pyrotech.flint.hunting.knife.name`
         * `item.pyrotech.stone.hunting.knife.name`
@@ -97,6 +112,10 @@
         * `item.pyrotech.gold.hunting.knife.name`
         * `item.pyrotech.diamond.hunting.knife.name`
         * `item.pyrotech.obsidian.hunting.knife.name`
+        * `item.pyrotech.hide.scraped.name`
+        * `item.pyrotech.hide.small.scraped.name`
+        * `item.pyrotech.hide.washed.name`
+        * `item.pyrotech.hide.small.washed.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
