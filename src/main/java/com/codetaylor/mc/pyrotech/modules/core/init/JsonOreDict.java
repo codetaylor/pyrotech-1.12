@@ -4,6 +4,9 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockCharcoalBlock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHide;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntingKnife;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemPelt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +94,14 @@ public class JsonOreDict {
         "pyrotech:flint_sword:*",
         "pyrotech:bone_sword:*",
         "pyrotech:obsidian_sword:*",
-        "pyrotech:redstone_sword:*"
+        "pyrotech:redstone_sword:*",
+        "pyrotech:" + ItemHuntingKnife.FLINT_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.BONE_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.STONE_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.IRON_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.GOLD_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.DIAMOND_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME + ":*"
     });
 
     result.oreDict.put("twine", new String[]{
@@ -173,6 +183,46 @@ public class JsonOreDict {
         "pyrotech:gold_shears:*",
         "pyrotech:diamond_shears:*",
         "pyrotech:obsidian_shears:*"
+    });
+
+    result.oreDict.put("toolHuntingKnife", new String[]{
+        "pyrotech:" + ItemHuntingKnife.FLINT_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.BONE_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.STONE_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.IRON_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.GOLD_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.DIAMOND_NAME + ":*",
+        "pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME + ":*"
+    });
+
+    result.oreDict.put("hideScrapeable", new String[]{
+        "pyrotech:" + ItemPelt.NAME_COW,
+        "pyrotech:" + ItemPelt.NAME_HORSE,
+        "pyrotech:" + ItemPelt.NAME_MOOSHROOM,
+        "pyrotech:" + ItemPelt.NAME_POLAR_BEAR,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_BLACK,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_BLUE,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_BLUE_LIGHT,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_BROWN,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_CYAN,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_GRAY,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_GRAY_LIGHT,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_GREEN,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_LIME,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_MAGENTA,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_ORANGE,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_PINK,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_PURPLE,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_RED,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_WHITE,
+        "pyrotech:" + ItemPelt.NAME_SHEEP_YELLOW,
+        "pyrotech:" + ItemHide.NAME_PIG,
+        "pyrotech:" + ItemHide.NAME_SHEEP_SHEARED
+    });
+
+    result.oreDict.put("hideSmallScrapeable", new String[]{
+        "pyrotech:" + ItemPelt.NAME_BAT,
+        "minecraft:rabbit_hide"
     });
 
     return result;

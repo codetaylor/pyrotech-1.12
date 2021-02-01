@@ -40,7 +40,15 @@
         * `blockCharcoal` now contains `pyrotech:charcoal_block` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
         * `straw` now contains `pyrotech:material:2` [(#200)](https://github.com/codetaylor/pyrotech-1.12/issues/200)
         * `rockLimestone` now contains `pyrotech:rock:8` [(#199)](https://github.com/codetaylor/pyrotech-1.12/issues/199)
-        * `shears` now contains:
+        * `toolSharp` now contains:
+            * `pyrotech:flint_hunting_knife`
+            * `pyrotech:bone_hunting_knife`
+            * `pyrotech:stone_hunting_knife`
+            * `pyrotech:iron_hunting_knife`
+            * `pyrotech:gold_hunting_knife`
+            * `pyrotech:diamond_hunting_knife`
+            * `pyrotech:obsidian_hunting_knife`
+        * `toolShears` now contains:
             * `minecraft:shears`
             * `pyrotech:clay_shears`
             * `pyrotech:stone_shears`
@@ -49,6 +57,40 @@
             * `pyrotech:gold_shears`
             * `pyrotech:diamond_shears`
             * `pyrotech:obsidian_shears`
+        * `toolHuntingKnife` now contains:
+            * `pyrotech:flint_hunting_knife`
+            * `pyrotech:bone_hunting_knife`
+            * `pyrotech:stone_hunting_knife`
+            * `pyrotech:iron_hunting_knife`
+            * `pyrotech:gold_hunting_knife`
+            * `pyrotech:diamond_hunting_knife`
+            * `pyrotech:obsidian_hunting_knife`
+        * `hideScrapeable` now contains:
+            * `pyrotech:pelt_cow`
+            * `pyrotech:pelt_horse`
+            * `pyrotech:pelt_mooshroom`
+            * `pyrotech:pelt_polar_bear`
+            * `pyrotech:pelt_sheep_black`
+            * `pyrotech:pelt_sheep_blue`
+            * `pyrotech:pelt_sheep_blue_light`
+            * `pyrotech:pelt_sheep_brown`
+            * `pyrotech:pelt_sheep_cyan`
+            * `pyrotech:pelt_sheep_gray`
+            * `pyrotech:pelt_sheep_gray_light`
+            * `pyrotech:pelt_sheep_green`
+            * `pyrotech:pelt_sheep_lime`
+            * `pyrotech:pelt_sheep_magenta`
+            * `pyrotech:pelt_sheep_orange`
+            * `pyrotech:pelt_sheep_pink`
+            * `pyrotech:pelt_sheep_purple`
+            * `pyrotech:pelt_sheep_red`
+            * `pyrotech:pelt_sheep_white`
+            * `pyrotech:pelt_sheep_yellow`
+            * `pyrotech:hide_pig`
+            * `pyrotech:hide_sheep_sheared`
+        * `hideSmallScrapeable` now contains:
+            * `pyrotech:pelt_bat`
+            * `minecraft:rabbit_hide`
 
   * **Changed:**
     * Hammering a bloom will now yield experience [(#228)](https://github.com/codetaylor/pyrotech-1.12/issues/228)

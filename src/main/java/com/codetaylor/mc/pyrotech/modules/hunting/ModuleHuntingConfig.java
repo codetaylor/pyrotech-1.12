@@ -151,4 +151,10 @@ public class ModuleHuntingConfig {
     HUNTING_KNIFE_DURABILITY.put("obsidian", 1400);
   }
 
+  @Config.Comment({
+      "How much damage is applied to a Hunting Knife when scraping a hide.",
+      "Default: " + 2
+  })
+  public static int HIDE_SCRAPING_TOOL_DAMAGE = 2;
+
 }
