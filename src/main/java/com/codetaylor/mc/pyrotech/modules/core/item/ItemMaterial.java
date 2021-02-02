@@ -109,7 +109,10 @@ public class ItemMaterial
     GOLD_SHARD(34, "gold_shard"),
     REFRACTORY_CLAY_LUMP(35, "refractory_clay_lump"),
     DENSE_REDSTONE(36, "dense_redstone"),
-    DENSE_QUARTZ(37, "dense_quartz");
+    DENSE_QUARTZ(37, "dense_quartz"),
+    LEATHER_SHEET(38, "leather_sheet"),
+    LEATHER_STRAP(39, "leather_strap"),
+    LEATHER_CORD(40, "leather_cord");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())

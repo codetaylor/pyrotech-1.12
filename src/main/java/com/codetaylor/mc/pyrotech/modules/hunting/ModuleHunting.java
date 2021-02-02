@@ -205,15 +205,6 @@ public class ModuleHunting
     @GameRegistry.ObjectHolder(ItemHideSmallScraped.NAME)
     public static final ItemHideSmallScraped HIDE_SMALL_SCRAPED;
 
-    @GameRegistry.ObjectHolder(ItemLeatherSheet.NAME)
-    public static final ItemLeatherSheet LEATHER_SHEET;
-
-    @GameRegistry.ObjectHolder(ItemLeatherStrap.NAME)
-    public static final ItemLeatherStrap LEATHER_STRAP;
-
-    @GameRegistry.ObjectHolder(ItemLeatherCord.NAME)
-    public static final ItemLeatherCord LEATHER_CORD;
-
     static {
       HIDE_PIG = null;
       HIDE_SHEEP_SHEARED = null;
@@ -249,9 +240,6 @@ public class ModuleHunting
       HIDE_SMALL_WASHED = null;
       HIDE_SCRAPED = null;
       HIDE_SMALL_SCRAPED = null;
-      LEATHER_SHEET = null;
-      LEATHER_STRAP = null;
-      LEATHER_CORD = null;
     }
   }
 
