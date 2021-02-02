@@ -43,6 +43,8 @@ item.pyrotech.obsidian.hunting.knife.name=Obsidian Hunting Knife
 
 tile.pyrotech.carcass.name=Carcass
 
+gui.pyrotech.hide.scraped.washing=Scraped Hides can be washed by placing them in water for %s
+
 #------------------------------------------------------------------------------
 # Module: Bucket
 #------------------------------------------------------------------------------

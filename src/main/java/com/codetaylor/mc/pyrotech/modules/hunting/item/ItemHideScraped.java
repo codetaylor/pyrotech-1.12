@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class ItemHideScraped
-    extends Item {
+    extends ItemHideScrapedBase {
 
   public static final String NAME = "hide_scraped";
 

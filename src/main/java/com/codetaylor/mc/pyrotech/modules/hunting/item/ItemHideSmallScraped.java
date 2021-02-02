@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.hunting.item;
 
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -11,7 +10,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class ItemHideSmallScraped
-    extends Item {
+    extends ItemHideScrapedBase {
 
   public static final String NAME = "hide_small_scraped";
 
