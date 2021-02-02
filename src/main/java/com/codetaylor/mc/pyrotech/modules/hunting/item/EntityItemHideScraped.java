@@ -67,7 +67,7 @@ public class EntityItemHideScraped
 
         this.ticksInWater += 1;
 
-        if (this.ticksInWater % 20 == 0) {
+        if (this.ticksInWater % 40 == 0) {
           ModuleHunting.PACKET_SERVICE.sendToAllAround(
               new SCPacketParticleProgress(pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, 2),
               this.world.provider.getDimension(),
