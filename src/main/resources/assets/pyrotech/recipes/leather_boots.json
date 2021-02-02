@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C C",
+    "L L"
+  ],
+  "key": {
+    "L": {
+      "item": "pyrotech:material",
+      "data": 38
+    },
+    "C": {
+      "item": "pyrotech:material",
+      "data": 40
+    }
+  },
+  "result": {
+    "item": "minecraft:leather_boots",
+    "count": 1
+  }
+}

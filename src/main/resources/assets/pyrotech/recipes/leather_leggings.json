@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LCL",
+    "L L",
+    "S S"
+  ],
+  "key": {
+    "L": {
+      "item": "pyrotech:material",
+      "data": 38
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 39
+    },
+    "C": {
+      "item": "pyrotech:material",
+      "data": 40
+    }
+  },
+  "result": {
+    "item": "minecraft:leather_leggings",
+    "count": 1
+  }
+}

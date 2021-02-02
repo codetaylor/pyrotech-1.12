@@ -438,7 +438,12 @@ public class ModuleCoreConfig {
         "minecraft:birch_boat",
         "minecraft:jungle_boat",
         "minecraft:acacia_boat",
-        "minecraft:dark_oak_boat"
+        "minecraft:dark_oak_boat",
+
+        "minecraft:leather_leggings",
+        "minecraft:leather_helmet",
+        "minecraft:leather_chestplate",
+        "minecraft:leather_boots"
     };
   }
 

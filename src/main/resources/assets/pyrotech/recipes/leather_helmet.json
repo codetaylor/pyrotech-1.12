@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "S S"
+  ],
+  "key": {
+    "L": {
+      "item": "pyrotech:material",
+      "data": 38
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 39
+    }
+  },
+  "result": {
+    "item": "minecraft:leather_helmet",
+    "count": 1
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S S",
+    "LLL",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "item": "pyrotech:material",
+      "data": 38
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 39
+    }
+  },
+  "result": {
+    "item": "minecraft:leather_chestplate",
+    "count": 1
+  }
+}
