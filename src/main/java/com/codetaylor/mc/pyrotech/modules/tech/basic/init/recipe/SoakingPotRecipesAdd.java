@@ -4,6 +4,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
@@ -20,6 +21,26 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class SoakingPotRecipesAdd {
 
   public static void apply(IForgeRegistry<SoakingPotRecipe> registry) {
+
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleHunting.class)) {
+      // Small washed hide
+      registry.register(new SoakingPotRecipe(
+          new ItemStack(ModuleHunting.Items.HIDE_SMALL_WASHED),
+          Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_SMALL_SCRAPED)),
+          new FluidStack(FluidRegistry.WATER, 100),
+          true,
+          4 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "hide_small_washed"));
+
+      // Washed hide
+      registry.register(new SoakingPotRecipe(
+          new ItemStack(ModuleHunting.Items.HIDE_WASHED),
+          Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_SCRAPED)),
+          new FluidStack(FluidRegistry.WATER, 100),
+          true,
+          4 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "hide_washed"));
+    }
 
     // Sponge
     registry.register(new SoakingPotRecipe(
