@@ -91,6 +91,15 @@
         * `hideSmallScrapeable` now contains:
             * `pyrotech:pelt_bat`
             * `minecraft:rabbit_hide`
+        * `shard` now contains:
+            * `pyrotech:material:7`
+            * `pyrotech:material:11`
+            * `pyrotech:material:10`
+            * `pyrotech:material:32`
+            * `pyrotech:material:34`
+            * `pyrotech:material:18`
+            * `pyrotech:material:19`
+            * `pyrotech:material:33`
 
   * **Changed:**
     * Hammering a bloom will now yield experience [(#228)](https://github.com/codetaylor/pyrotech-1.12/issues/228)

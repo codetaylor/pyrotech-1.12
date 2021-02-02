@@ -225,6 +225,17 @@ public class JsonOreDict {
         "minecraft:rabbit_hide"
     });
 
+    result.oreDict.put("shard", new String[]{
+        "pyrotech:material:" + ItemMaterial.EnumType.POTTERY_SHARD.getMeta(),
+        "pyrotech:material:" + ItemMaterial.EnumType.BONE_SHARD.getMeta(),
+        "pyrotech:material:" + ItemMaterial.EnumType.FLINT_SHARD.getMeta(),
+        "pyrotech:material:" + ItemMaterial.EnumType.GLASS_SHARD.getMeta(),
+        "pyrotech:material:" + ItemMaterial.EnumType.GOLD_SHARD.getMeta(),
+        "pyrotech:material:" + ItemMaterial.EnumType.DIAMOND_SHARD.getMeta(),
+        "pyrotech:material:" + ItemMaterial.EnumType.IRON_SHARD.getMeta(),
+        "pyrotech:material:" + ItemMaterial.EnumType.OBSIDIAN_SHARD.getMeta()
+    });
+
     return result;
   }
 

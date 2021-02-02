@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "hideSmallScrapeable"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "shard"
+    }
+  ],
+  "result": {
+    "item": "pyrotech:hide_small_scraped",
+    "count": 1
+  }
+}
