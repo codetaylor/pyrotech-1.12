@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "pyrotech:hide_scraped"
+    },
+    {
+      "type": "pyrotech:fluid",
+      "fluid": "water"
+    }
+  ],
+  "result": {
+    "item": "pyrotech:hide_washed",
+    "count": 1
+  }
+}
