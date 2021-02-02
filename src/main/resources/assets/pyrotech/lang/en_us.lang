@@ -41,6 +41,10 @@ item.pyrotech.gold.hunting.knife.name=Gold Hunting Knife
 item.pyrotech.diamond.hunting.knife.name=Diamond Hunting Knife
 item.pyrotech.obsidian.hunting.knife.name=Obsidian Hunting Knife
 
+item.pyrotech.leather.sheet.name=Leather Sheet
+item.pyrotech.leather.strap.name=Leather Strap
+item.pyrotech.leather.cord.name=Leather Cord
+
 tile.pyrotech.carcass.name=Carcass
 
 gui.pyrotech.hide.scraped.washing=Scraped Hides can be washed by placing them in water for %s

@@ -186,6 +186,9 @@
         * `item.pyrotech.hide.washed.name`
         * `item.pyrotech.hide.small.washed.name`
         * `gui.pyrotech.hide.scraped.washing`
+        * `item.pyrotech.leather.sheet.name`
+        * `item.pyrotech.leather.strap.name`
+        * `item.pyrotech.leather.cord.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
