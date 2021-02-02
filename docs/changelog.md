@@ -5,8 +5,16 @@
 
   * **Added:**
     * Carcass:
-        * Use Hunting Knife on carcass to release drops
+        * Captures configured mob drops
+        * Use Hunting Knife on Carcass to release captured drops
     * Hunting Knives
+        * Bone Hunting Knife
+        * Flint Hunting Knife
+        * Stone Hunting Knife
+        * Iron Hunting Knife
+        * Gold Hunting Knife
+        * Diamond Hunting Knife
+        * Obsidian Hunting Knife
     * Hides:
         * Scraped Hide
         * Small Scraped Hide
@@ -16,18 +24,18 @@
         * Pig Hide
     * Pelts:
         * Cow Pelt
-        * Various colored Sheep Pelts
+        * Colored Sheep Pelts
         * Bat Pelt
-        * Rabbit Pelt
         * Polar Bear Pelt
         * Horse Pelt
         * Mooshroom Pelt
-    * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
-    * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
-    * Masonry Brick Wall [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
-    * Refractory Brick Stairs
-    * Refractory Brick Slab
-    * Refractory Brick Wall
+    * Decorative blocks:
+        * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
+        * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
+        * Masonry Brick Wall [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
+        * Refractory Brick Stairs
+        * Refractory Brick Slab
+        * Refractory Brick Wall
     * Valid refractory blocks:
         * Double Refractory Brick Slab
     * Ore Compat:
@@ -36,6 +44,15 @@
         * Change rock bags' fill texture `ROCK_FILL_TEXTURE_LOCATION` [(#253)](https://github.com/codetaylor/pyrotech-1.12/issues/253)
         * Disable durability tooltips `SHOW_DURABILITY_TOOLTIPS` [(#221)](https://github.com/codetaylor/pyrotech-1.12/issues/221)
         * Specify Iron Ingot replacement item `REPLACE_IRON_INGOTS_WITH` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
+    * Recipes:
+        * Crafting Hunting Knives
+        * Crafting `fluid:water` with Scraped Hides -> Washed Hides
+        * Shearing Sheep Pelts with `ore:toolShears`
+        * Scraping Pelts with `ore:toolHuntingKnife`
+        * Scraping Pelts with `ore:shard`
+        * Soaking Pot recipes Scraped Hides -> Washed Hides
+    * New config file:
+        * `module.Hunting.cfg`
     * Oredict:
         * `blockCharcoal` now contains `pyrotech:charcoal_block` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
         * `straw` now contains `pyrotech:material:2` [(#200)](https://github.com/codetaylor/pyrotech-1.12/issues/200)
@@ -123,6 +140,7 @@
             * Config: `ALLOW_SOURCE_DRAIN`
         * Drains will now collect fluid from any tile entities with the fluid handler capability [(#278)](https://github.com/codetaylor/pyrotech-1.12/issues/278) 
             * Config: `ALLOW_TILE_DRAIN`
+    * Removed Charcoal Flakes failure items from Wood Chips pit burn recipe
 
   * **Translators:**
     * **New Lang Entries:**
@@ -167,6 +185,7 @@
         * `item.pyrotech.hide.small.scraped.name`
         * `item.pyrotech.hide.washed.name`
         * `item.pyrotech.hide.small.washed.name`
+        * `gui.pyrotech.hide.scraped.washing`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
