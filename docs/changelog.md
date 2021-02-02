@@ -124,6 +124,7 @@
 
   * **Changed:**
     * Leather armor recipes now use new leather items
+    * Bellows recipe now uses new leather items
     * Hammering a bloom will now yield experience [(#228)](https://github.com/codetaylor/pyrotech-1.12/issues/228)
     * The ore compat reference map is no longer hard-coded and is exposed in the core config `OREDICT_COLOR_MAP`
     * Recipes that use a Charcoal Block have been changed to use the new oredict `blockCharcoal` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)

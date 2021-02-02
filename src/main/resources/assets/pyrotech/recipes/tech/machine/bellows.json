@@ -29,8 +29,8 @@
       "data": 0
     },
     "L": {
-      "type": "forge:ore_dict",
-      "ore": "leather"
+      "item": "pyrotech:material",
+      "data": 38
     }
   },
   "result": {
