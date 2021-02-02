@@ -157,4 +157,10 @@ public class ModuleHuntingConfig {
   })
   public static int HIDE_SCRAPING_TOOL_DAMAGE = 2;
 
+  @Config.Comment({
+      "How many ticks are required to in-world soak a hide.",
+      "Default: " + 20 * 60 * 10
+  })
+  public static int IN_WORLD_HIDE_SOAK_TICKS = 20 * 60 * 10;
+
 }

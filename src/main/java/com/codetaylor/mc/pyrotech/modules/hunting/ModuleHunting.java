@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockCarcass;
 import com.codetaylor.mc.pyrotech.modules.hunting.init.BlockInitializer;
+import com.codetaylor.mc.pyrotech.modules.hunting.init.EntityInitializer;
 import com.codetaylor.mc.pyrotech.modules.hunting.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.*;
 import net.minecraft.creativetab.CreativeTabs;
@@ -48,6 +49,7 @@ public class ModuleHunting
 
     BlockInitializer.onRegister(registry);
     ItemInitializer.onRegister(registry);
+    EntityInitializer.onRegister(registry);
   }
 
   @SideOnly(Side.CLIENT)
