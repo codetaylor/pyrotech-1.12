@@ -97,29 +97,29 @@ public class PluginJEI
       }
 
       List<IRecipe> vanillaRecipes = CraftingRecipeChecker.getValidRecipes(jeiHelpers)
-                                                          .stream()
-                                                          .filter(recipe -> {
-                                                            ResourceLocation resourceLocation = recipe.getRegistryName();
+          .stream()
+          .filter(recipe -> {
+            ResourceLocation resourceLocation = recipe.getRegistryName();
 
-                                                            if (Loader.isModLoaded("crafttweaker") && recipe instanceof MCRecipeBase) {
+            if (Loader.isModLoaded("crafttweaker") && recipe instanceof MCRecipeBase) {
 
-                                                              if (!((MCRecipeBase) recipe).isVisible()) {
-                                                                return false;
-                                                              }
+              if (!((MCRecipeBase) recipe).isVisible()) {
+                return false;
+              }
 
-                                                              ((MCRecipeBase) recipe).update();
-                                                            }
+              ((MCRecipeBase) recipe).update();
+            }
 
-                                                            if (WorktableRecipe.hasWhitelist()) {
-                                                              return WorktableRecipe.isWhitelisted(resourceLocation);
+            if (WorktableRecipe.hasWhitelist()) {
+              return WorktableRecipe.isWhitelisted(resourceLocation);
 
-                                                            } else if (WorktableRecipe.hasBlacklist()) {
-                                                              return !WorktableRecipe.isBlacklisted(resourceLocation);
-                                                            }
+            } else if (WorktableRecipe.hasBlacklist()) {
+              return !WorktableRecipe.isBlacklisted(resourceLocation);
+            }
 
-                                                            return true;
-                                                          })
-                                                          .collect(Collectors.toList());
+            return true;
+          })
+          .collect(Collectors.toList());
       registry.addRecipes(vanillaRecipes, JEIRecipeCategoryWorktable.UID);
 
       ResourceLocation resourceLocation = new ResourceLocation("minecraft:tipped_arrow");
@@ -192,8 +192,8 @@ public class PluginJEI
       registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.ANVIL_GRANITE), JEIRecipeCategoryAnvilGranite.UID);
       registry.handleRecipes(AnvilRecipe.class, JEIRecipeWrapperAnvil::new, JEIRecipeCategoryAnvilGranite.UID);
       List<AnvilRecipe> recipeList = ModuleTechBasic.Registries.ANVIL_RECIPE.getValuesCollection().stream()
-                                                                            .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.GRANITE))
-                                                                            .collect(Collectors.toList());
+          .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.GRANITE))
+          .collect(Collectors.toList());
       registry.addRecipes(recipeList, JEIRecipeCategoryAnvilGranite.UID);
     }
 
@@ -202,8 +202,8 @@ public class PluginJEI
       registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.ANVIL_IRON_PLATED), JEIRecipeCategoryAnvilIronclad.UID);
       registry.handleRecipes(AnvilRecipe.class, JEIRecipeWrapperAnvil::new, JEIRecipeCategoryAnvilIronclad.UID);
       List<AnvilRecipe> recipeList = ModuleTechBasic.Registries.ANVIL_RECIPE.getValuesCollection().stream()
-                                                                            .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.IRONCLAD))
-                                                                            .collect(Collectors.toList());
+          .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.IRONCLAD))
+          .collect(Collectors.toList());
       registry.addRecipes(recipeList, JEIRecipeCategoryAnvilIronclad.UID);
     }
 
@@ -278,18 +278,18 @@ public class PluginJEI
 
         // sort the list by compost value
         List<CompostBinRecipe> list = entry.getValue()
-                                           .stream()
-                                           .sorted(Comparator.comparingInt(CompostBinRecipe::getCompostValue).reversed())
-                                           .collect(Collectors.toList());
+            .stream()
+            .sorted(Comparator.comparingInt(CompostBinRecipe::getCompostValue).reversed())
+            .collect(Collectors.toList());
         int pages = ((list.size() - 1) / 54) + 1;
 
         for (int i = 0; i < pages; i++) {
           int fromIndex = i * 54;
           int toIndex = Math.min((i + 1) * 54, list.size());
           List<ItemStack> subList = list.subList(fromIndex, toIndex)
-                                        .stream()
-                                        .map(compostBinRecipe -> compostBinRecipe.getInput().copy())
-                                        .collect(Collectors.toList());
+              .stream()
+              .map(compostBinRecipe -> compostBinRecipe.getInput().copy())
+              .collect(Collectors.toList());
           recipeList.add(new JEIRecipeWrapperCompostBin(subList, entry.getKey()));
         }
       }
