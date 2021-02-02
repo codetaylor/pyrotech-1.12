@@ -27,18 +27,18 @@ public class SoakingPotRecipesAdd {
       registry.register(new SoakingPotRecipe(
           new ItemStack(ModuleHunting.Items.HIDE_SMALL_WASHED),
           Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_SMALL_SCRAPED)),
-          new FluidStack(FluidRegistry.WATER, 100),
+          new FluidStack(FluidRegistry.WATER, 250),
           true,
-          4 * 60 * 20
+          2 * 60 * 20
       ).setRegistryName(ModuleTechBasic.MOD_ID, "hide_small_washed"));
 
       // Washed hide
       registry.register(new SoakingPotRecipe(
           new ItemStack(ModuleHunting.Items.HIDE_WASHED),
           Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_SCRAPED)),
-          new FluidStack(FluidRegistry.WATER, 100),
+          new FluidStack(FluidRegistry.WATER, 250),
           true,
-          4 * 60 * 20
+          2 * 60 * 20
       ).setRegistryName(ModuleTechBasic.MOD_ID, "hide_washed"));
     }
 
