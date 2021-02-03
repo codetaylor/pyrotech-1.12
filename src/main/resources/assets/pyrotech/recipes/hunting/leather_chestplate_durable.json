@@ -1,8 +1,14 @@
 {
   "type": "pyrotech:leather_durable_upgrade",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
   "ingredients": [
     {
-      "item": "minecraft:leather_helmet",
+      "item": "minecraft:leather_chestplate",
       "data": 32767
     },
     {
@@ -10,7 +16,7 @@
     }
   ],
   "result": {
-    "item": "minecraft:leather_helmet",
+    "item": "minecraft:leather_chestplate",
     "count": 1,
     "data": 0,
     "nbt": {"ench": [{"id": 34, "lvl": 1}], "display": {"color": 4791302}}
