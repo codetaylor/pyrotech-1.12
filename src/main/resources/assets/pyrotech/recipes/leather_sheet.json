@@ -1,0 +1,19 @@
+{
+  "type": "pyrotech:leather_cutting",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "leather"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "toolHuntingKnife"
+    }
+  ],
+  "toolDamage": 4,
+  "result": {
+    "item": "pyrotech:material",
+    "count": 1,
+    "data": 38
+  }
+}

@@ -10,6 +10,7 @@
     "leather_fire_protection": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherArmorFireProtectionRecipe$Factory",
     "chopping_block": "com.codetaylor.mc.pyrotech.modules.core.recipe.ChoppingBlockRecipe$Factory",
     "shearing_pelt": "com.codetaylor.mc.pyrotech.modules.core.recipe.ShearingPeltRecipe$Factory",
-    "scraping_pelt": "com.codetaylor.mc.pyrotech.modules.core.recipe.ScrapingPeltRecipe$Factory"
+    "scraping_pelt": "com.codetaylor.mc.pyrotech.modules.core.recipe.ScrapingPeltRecipe$Factory",
+    "leather_cutting": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherCuttingRecipe$Factory"
   }
 }
