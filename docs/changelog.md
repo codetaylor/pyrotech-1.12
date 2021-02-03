@@ -55,6 +55,7 @@
         * Scraping Pelts with `ore:toolHuntingKnife`
         * Scraping Pelts with `ore:shard`
         * Soaking Pot recipes Scraped Hides -> Washed Hides
+        * Saddle recipe uses new leather materials
     * New config file:
         * `module.Hunting.cfg`
     * Oredict:

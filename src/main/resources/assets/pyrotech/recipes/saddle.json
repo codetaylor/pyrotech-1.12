@@ -1,0 +1,26 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    " ~ ",
+    "LLL",
+    "S S"
+  ],
+  "key": {
+    "L": {
+      "item": "pyrotech:material",
+      "data": 38
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 39
+    },
+    "~": {
+      "item": "pyrotech:material",
+      "data": 40
+    }
+  },
+  "result": {
+    "item": "minecraft:saddle",
+    "count": 1
+  }
+}
