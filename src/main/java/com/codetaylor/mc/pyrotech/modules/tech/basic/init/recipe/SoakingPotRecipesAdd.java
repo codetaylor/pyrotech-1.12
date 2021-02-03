@@ -22,6 +22,44 @@ public class SoakingPotRecipesAdd {
 
   public static void apply(IForgeRegistry<SoakingPotRecipe> registry) {
 
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
+      // Durable Leather
+      registry.register(new SoakingPotRecipe(
+          ItemMaterial.EnumType.LEATHER_DURABLE.asStack(),
+          new OreIngredient("leather"),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 250),
+          true,
+          5 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "durable_leather"));
+
+      // Durable Leather Sheet
+      registry.register(new SoakingPotRecipe(
+          ItemMaterial.EnumType.LEATHER_DURABLE_SHEET.asStack(),
+          Ingredient.fromStacks(ItemMaterial.EnumType.LEATHER_SHEET.asStack()),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 250),
+          true,
+          5 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "durable_leather_sheet"));
+
+      // Durable Leather Strap
+      registry.register(new SoakingPotRecipe(
+          ItemMaterial.EnumType.LEATHER_DURABLE_STRAP.asStack(),
+          Ingredient.fromStacks(ItemMaterial.EnumType.LEATHER_STRAP.asStack()),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 250),
+          true,
+          5 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "durable_leather_strap"));
+
+      // Durable Leather Cord
+      registry.register(new SoakingPotRecipe(
+          ItemMaterial.EnumType.LEATHER_DURABLE_CORD.asStack(),
+          Ingredient.fromStacks(ItemMaterial.EnumType.LEATHER_CORD.asStack()),
+          new FluidStack(ModuleTechRefractory.Fluids.WOOD_TAR, 250),
+          true,
+          5 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "durable_leather_cord"));
+    }
+
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleHunting.class)) {
       // Small washed hide
       registry.register(new SoakingPotRecipe(
