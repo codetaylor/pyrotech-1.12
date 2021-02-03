@@ -236,6 +236,10 @@ public class JsonOreDict {
         "pyrotech:material:" + ItemMaterial.EnumType.OBSIDIAN_SHARD.getMeta()
     });
 
+    result.oreDict.put("leatherDurable", new String[]{
+        "pyrotech:material:" + ItemMaterial.EnumType.LEATHER_DURABLE.getMeta()
+    });
+
     return result;
   }
 

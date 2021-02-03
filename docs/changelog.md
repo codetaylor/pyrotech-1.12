@@ -61,6 +61,7 @@
         * Soaking Pot recipes Scraped Hides -> Washed Hides
         * Saddle recipe uses new leather materials
         * Leather cutting recipes with `ore:toolHuntingKnife`
+        * Durable Leather cutting recipes with `ore:toolHuntingKnife`
     * New config file:
         * `module.Hunting.cfg`
     * Oredict:
@@ -127,6 +128,8 @@
             * `pyrotech:material:18`
             * `pyrotech:material:19`
             * `pyrotech:material:33`
+        * `leatherDurable` now contains:
+            * `pyrotech:material:41`
 
   * **Changed:**
     * Leather armor recipes now use new leather materials
