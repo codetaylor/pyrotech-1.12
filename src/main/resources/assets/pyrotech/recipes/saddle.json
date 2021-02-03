@@ -3,7 +3,7 @@
   "pattern": [
     " ~ ",
     "LLL",
-    "S S"
+    "SWS"
   ],
   "key": {
     "L": {
@@ -17,6 +17,10 @@
     "~": {
       "item": "pyrotech:material",
       "data": 40
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "blockWool"
     }
   },
   "result": {
