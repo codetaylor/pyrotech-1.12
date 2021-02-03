@@ -7,18 +7,22 @@
     }
   ],
   "pattern": [
-    "WTW",
+    "sCs",
     "LSL",
-    " L "
+    "WsW"
   ],
   "key": {
-    "T": {
-      "type": "forge:ore_dict",
-      "ore": "twine"
+    "C": {
+      "item": "pyrotech:material",
+      "data": 40
     },
     "L": {
-      "type": "forge:ore_dict",
-      "ore": "leather"
+      "item": "pyrotech:material",
+      "data": 38
+    },
+    "s": {
+      "item": "pyrotech:material",
+      "data": 39
     },
     "W": {
       "type": "forge:ore_dict",
