@@ -1,0 +1,18 @@
+{
+  "type": "pyrotech:leather_durable_upgrade",
+  "ingredients": [
+    {
+      "item": "minecraft:leather_leggings",
+      "data": 32767
+    },
+    {
+      "item": "pyrotech:leather_durable_upgrade_kit"
+    }
+  ],
+  "result": {
+    "item": "minecraft:leather_leggings",
+    "count": 1,
+    "data": 0,
+    "nbt": {"ench": [{"id": 34, "lvl": 1}], "display": {"color": 4791302}}
+  }
+}

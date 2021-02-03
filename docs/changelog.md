@@ -37,6 +37,10 @@
         * Durable Leather Sheet
         * Durable Leather Strap
         * Durable Leather Cord
+    * Leather kits:
+        * Leather Repair Kit
+        * Durable Leather Repair Kit
+        * Durable Leather Upgrade Kit
     * Decorative blocks:
         * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
         * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)

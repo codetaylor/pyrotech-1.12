@@ -50,8 +50,12 @@ public class LeatherArmorFireProtectionRecipe
           || itemStack.getItem() == Items.LEATHER_LEGGINGS
           || itemStack.getItem() == Items.LEATHER_BOOTS) {
         ItemStack newItemStack = this.applyFireResistanceEnchantment(itemStack);
-        NBTTagCompound displayTag = newItemStack.getOrCreateSubCompound("display");
-        displayTag.setInteger("color", 10068616);
+
+        if (!newItemStack.isEmpty()) {
+          NBTTagCompound displayTag = newItemStack.getOrCreateSubCompound("display");
+          displayTag.setInteger("color", 10068616);
+        }
+
         return newItemStack;
       }
     }
