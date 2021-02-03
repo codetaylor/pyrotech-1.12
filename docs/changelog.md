@@ -68,6 +68,8 @@
         * Durable Leather cutting recipes with `ore:toolHuntingKnife`
         * Leather armor Unbreaking I recipe with `pyrotech:leather_durable_upgrade_kit`
         * Crafting leather kits
+        * Leather armor repair recipes with `ore:kitRepairLeather`
+        * Soaking Pot recipes for durable leather materials using Wood Tar
     * New config file:
         * `module.Hunting.cfg`
     * Oredict:
@@ -136,6 +138,9 @@
             * `pyrotech:material:33`
         * `leatherDurable` now contains:
             * `pyrotech:material:41`
+        * `kitRepairLeather` now contains:
+            * `pyrotech:leather_repair_kit:*`
+            * `pyrotech:leather_durable_repair_kit:*`
 
   * **Changed:**
     * Leather armor recipes now use new leather materials
