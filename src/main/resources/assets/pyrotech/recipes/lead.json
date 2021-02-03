@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "~~ ",
+    "~S ",
+    "  ~"
+  ],
+  "key": {
+    "~": {
+      "item": "pyrotech:material",
+      "data": 40
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 39
+    }
+  },
+  "result": {
+    "item": "minecraft:lead",
+    "count": 1
+  }
+}

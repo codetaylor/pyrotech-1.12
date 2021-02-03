@@ -434,6 +434,7 @@ public class ModuleCoreConfig {
         "minecraft:leather",
         "minecraft:item_frame",
         "minecraft:book",
+        "minecraft:lead",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
