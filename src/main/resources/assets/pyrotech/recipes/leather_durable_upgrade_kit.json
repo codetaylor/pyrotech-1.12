@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pyrotech:material",
+      "data": 42
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 42
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 42
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 43
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 43
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 44
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 44
+    },
+    {
+      "item": "minecraft:string"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "toolHuntingKnife"
+    }
+  ],
+  "result": {
+    "item": "pyrotech:leather_durable_upgrade_kit",
+    "count": 1
+  }
+}

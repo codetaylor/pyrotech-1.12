@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pyrotech:material",
+      "data": 42
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 42
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 43
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 44
+    },
+    {
+      "item": "minecraft:string"
+    }
+  ],
+  "result": {
+    "item": "pyrotech:leather_durable_repair_kit",
+    "count": 1
+  }
+}

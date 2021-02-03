@@ -66,6 +66,8 @@
         * Saddle recipe uses new leather materials
         * Leather cutting recipes with `ore:toolHuntingKnife`
         * Durable Leather cutting recipes with `ore:toolHuntingKnife`
+        * Leather armor Unbreaking I recipe with `pyrotech:leather_durable_upgrade_kit`
+        * Crafting leather kits
     * New config file:
         * `module.Hunting.cfg`
     * Oredict:
