@@ -433,6 +433,7 @@ public class ModuleCoreConfig {
         "minecraft:fire_charge",
         "minecraft:leather",
         "minecraft:item_frame",
+        "minecraft:book",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
