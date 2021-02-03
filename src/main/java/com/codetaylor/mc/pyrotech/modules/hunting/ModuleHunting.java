@@ -205,6 +205,15 @@ public class ModuleHunting
     @GameRegistry.ObjectHolder(ItemHideSmallScraped.NAME)
     public static final ItemHideSmallScraped HIDE_SMALL_SCRAPED;
 
+    @GameRegistry.ObjectHolder(ItemLeatherDurableRepairKit.NAME)
+    public static final ItemLeatherDurableRepairKit LEATHER_DURABLE_REPAIR_KIT;
+
+    @GameRegistry.ObjectHolder(ItemLeatherDurableUpgradeKit.NAME)
+    public static final ItemLeatherDurableUpgradeKit LEATHER_DURABLE_UPGRADE_KIT;
+
+    @GameRegistry.ObjectHolder(ItemLeatherRepairKit.NAME)
+    public static final ItemLeatherRepairKit LEATHER_REPAIR_KIT;
+
     static {
       HIDE_PIG = null;
       HIDE_SHEEP_SHEARED = null;
@@ -240,6 +249,9 @@ public class ModuleHunting
       HIDE_SMALL_WASHED = null;
       HIDE_SCRAPED = null;
       HIDE_SMALL_SCRAPED = null;
+      LEATHER_DURABLE_REPAIR_KIT = null;
+      LEATHER_DURABLE_UPGRADE_KIT = null;
+      LEATHER_REPAIR_KIT = null;
     }
   }
 

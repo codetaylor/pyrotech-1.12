@@ -53,6 +53,10 @@ public final class ItemInitializer {
     registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.GOLD, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("gold")), ItemHuntingKnife.GOLD_NAME);
     registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.DIAMOND, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("diamond")), ItemHuntingKnife.DIAMOND_NAME);
     registry.registerItem(new ItemHuntingKnife(Preconditions.checkNotNull(ModuleMaterials.OBSIDIAN), ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("obsidian")), ItemHuntingKnife.OBSIDIAN_NAME);
+
+    registry.registerItem(new ItemLeatherDurableRepairKit(), ItemLeatherDurableRepairKit.NAME);
+    registry.registerItem(new ItemLeatherDurableUpgradeKit(), ItemLeatherDurableUpgradeKit.NAME);
+    registry.registerItem(new ItemLeatherRepairKit(), ItemLeatherRepairKit.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -94,7 +98,10 @@ public final class ItemInitializer {
           ModuleHunting.Items.HIDE_WASHED,
           ModuleHunting.Items.HIDE_SMALL_WASHED,
           ModuleHunting.Items.HIDE_SCRAPED,
-          ModuleHunting.Items.HIDE_SMALL_SCRAPED
+          ModuleHunting.Items.HIDE_SMALL_SCRAPED,
+          ModuleHunting.Items.LEATHER_DURABLE_REPAIR_KIT,
+          ModuleHunting.Items.LEATHER_DURABLE_UPGRADE_KIT,
+          ModuleHunting.Items.LEATHER_REPAIR_KIT
       );
     });
   }

@@ -212,6 +212,9 @@
         * `item.pyrotech.leather.durable.sheet.name`
         * `item.pyrotech.leather.durable.strap.name`
         * `item.pyrotech.leather.durable.cord.name`
+        * `item.pyrotech.leather.repair.kit.name`
+        * `item.pyrotech.leather.durable.repair.kit.name`
+        * `item.pyrotech.leather.durable.upgrade.kit.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

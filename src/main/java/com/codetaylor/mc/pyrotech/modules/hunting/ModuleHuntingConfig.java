@@ -136,6 +136,23 @@ public class ModuleHuntingConfig {
     public int SHEEP_PELT_COUNT = 1;
   }
 
+  public static LeatherKits LEATHER_KITS = new LeatherKits();
+
+  public static class LeatherKits {
+
+    @Config.Comment({
+        "The number of uses per leather repair kit.",
+        "Default: " + 4
+    })
+    public int LEATHER_REPAIR_KIT_USES = 4;
+
+    @Config.Comment({
+        "The number of uses per durable leather repair kit.",
+        "Default: " + 8
+    })
+    public int LEATHER_DURABLE_REPAIR_KIT_USES = 8;
+  }
+
   @Config.Comment({
       "The durability of the hunting knives."
   })

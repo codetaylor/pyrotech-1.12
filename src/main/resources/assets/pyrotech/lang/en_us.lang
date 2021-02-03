@@ -50,6 +50,10 @@ item.pyrotech.leather.durable.sheet.name=Durable Leather Sheet
 item.pyrotech.leather.durable.strap.name=Durable Leather Strap
 item.pyrotech.leather.durable.cord.name=Durable Leather Cord
 
+item.pyrotech.leather.repair.kit.name=Leather Repair Kit
+item.pyrotech.leather.durable.repair.kit.name=Durable Leather Repair Kit
+item.pyrotech.leather.durable.upgrade.kit.name=Durable Leather Upgrade Kit
+
 tile.pyrotech.carcass.name=Carcass
 
 gui.pyrotech.hide.scraped.washing=Scraped Hides can be washed by placing them in water for %s
