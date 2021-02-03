@@ -33,6 +33,10 @@
         * Leather Sheet
         * Leather Strap
         * Leather Cord
+        * Durable Leather
+        * Durable Leather Sheet
+        * Durable Leather Strap
+        * Durable Leather Cord
     * Decorative blocks:
         * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
         * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
@@ -201,6 +205,10 @@
         * `item.pyrotech.leather.sheet.name`
         * `item.pyrotech.leather.strap.name`
         * `item.pyrotech.leather.cord.name`
+        * `item.pyrotech.leather.durable.name`
+        * `item.pyrotech.leather.durable.sheet.name`
+        * `item.pyrotech.leather.durable.strap.name`
+        * `item.pyrotech.leather.durable.cord.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

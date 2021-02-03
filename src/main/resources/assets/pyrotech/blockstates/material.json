@@ -45,7 +45,11 @@
       "dense_quartz": {"textures": {"layer0": "pyrotech:items/dense_quartz"}},
       "leather_sheet": {"textures": {"layer0": "pyrotech:items/leather_sheet"}},
       "leather_strap": {"textures": {"layer0": "pyrotech:items/leather_strap"}},
-      "leather_cord": {"textures": {"layer0": "pyrotech:items/leather_cord"}}
+      "leather_cord": {"textures": {"layer0": "pyrotech:items/leather_cord"}},
+      "leather_durable": {"textures": {"layer0": "pyrotech:items/leather_durable"}},
+      "leather_durable_sheet": {"textures": {"layer0": "pyrotech:items/leather_durable_sheet"}},
+      "leather_durable_strap": {"textures": {"layer0": "pyrotech:items/leather_durable_strap"}},
+      "leather_durable_cord": {"textures": {"layer0": "pyrotech:items/leather_durable_cord"}}
     }
   }
 }

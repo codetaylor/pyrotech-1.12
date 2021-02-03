@@ -112,7 +112,11 @@ public class ItemMaterial
     DENSE_QUARTZ(37, "dense_quartz"),
     LEATHER_SHEET(38, "leather_sheet"),
     LEATHER_STRAP(39, "leather_strap"),
-    LEATHER_CORD(40, "leather_cord");
+    LEATHER_CORD(40, "leather_cord"),
+    LEATHER_DURABLE(41, "leather_durable"),
+    LEATHER_DURABLE_SHEET(42, "leather_durable_sheet"),
+    LEATHER_DURABLE_STRAP(43, "leather_durable_strap"),
+    LEATHER_DURABLE_CORD(44, "leather_durable_cord");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())
