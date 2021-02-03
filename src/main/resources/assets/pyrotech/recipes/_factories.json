@@ -12,6 +12,7 @@
     "shearing_pelt": "com.codetaylor.mc.pyrotech.modules.core.recipe.ShearingPeltRecipe$Factory",
     "scraping_pelt": "com.codetaylor.mc.pyrotech.modules.core.recipe.ScrapingPeltRecipe$Factory",
     "leather_cutting": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherCuttingRecipe$Factory",
-    "leather_durable_upgrade": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherArmorDurableUpgradeRecipe$Factory"
+    "leather_durable_upgrade": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherArmorDurableUpgradeRecipe$Factory",
+    "leather_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherRepairRecipe$Factory"
   }
 }

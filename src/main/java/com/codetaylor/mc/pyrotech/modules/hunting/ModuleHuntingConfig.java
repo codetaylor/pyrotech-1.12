@@ -151,6 +151,18 @@ public class ModuleHuntingConfig {
         "Default: " + 8
     })
     public int LEATHER_DURABLE_REPAIR_KIT_USES = 8;
+
+    @Config.Comment({
+        "The damage applied to the hunting knife when repairing leather armor with a kit.",
+        "Default: " + 4
+    })
+    public int HUNTING_KNIFE_REPAIR_DAMAGE = 4;
+
+    @Config.Comment({
+        "The percentage of durability repaired.",
+        "Default: " + 0.25
+    })
+    public double PERCENTAGE_DURABILITY_REPAIRED = 0.25;
   }
 
   @Config.Comment({

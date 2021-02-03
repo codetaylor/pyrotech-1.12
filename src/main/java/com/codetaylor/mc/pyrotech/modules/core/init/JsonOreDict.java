@@ -4,9 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockCharcoalBlock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
-import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHide;
-import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntingKnife;
-import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemPelt;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -238,6 +236,11 @@ public class JsonOreDict {
 
     result.oreDict.put("leatherDurable", new String[]{
         "pyrotech:material:" + ItemMaterial.EnumType.LEATHER_DURABLE.getMeta()
+    });
+
+    result.oreDict.put("kitRepairLeather", new String[]{
+        "pyrotech:" + ItemLeatherRepairKit.NAME + ":*",
+        "pyrotech:" + ItemLeatherDurableRepairKit.NAME + ":*"
     });
 
     return result;

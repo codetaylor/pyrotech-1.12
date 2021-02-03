@@ -1,0 +1,27 @@
+{
+  "type": "pyrotech:leather_repair",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:leather_chestplate",
+      "data": 32767
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "toolHuntingKnife"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "kitRepairLeather"
+    }
+  ],
+  "result": {
+    "item": "minecraft:leather_chestplate",
+    "count": 1
+  }
+}
