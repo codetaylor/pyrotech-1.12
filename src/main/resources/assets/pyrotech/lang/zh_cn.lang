@@ -99,7 +99,7 @@ item.pyrotech.tongs.obsidian.name=黑曜石钳
 tile.pyrotech.bloom.name=铁坯
 tile.pyrotech.bloom.unique.name=%s坯
 tile.pyrotech.bloomery.name=锻造炉
-tile.pyrotech.wither_forge.name=凋零锻造炉
+tile.pyrotech.wither_forge.name=凋灵锻造炉
 tile.pyrotech.pile_slag.name=炉渣堆
 tile.pyrotech.pile_slag.unique.name=%s渣堆
 
@@ -284,7 +284,7 @@ tile.pyrotech.cobblestone.andesite.name=碎安山岩
 tile.pyrotech.cobblestone.diorite.name=碎闪长岩
 tile.pyrotech.cobblestone.granite.name=碎花岗岩
 tile.pyrotech.cobblestone.limestone.name=碎石灰岩
-tile.pyrotech.stone_bricks.name=砌砖
+tile.pyrotech.stone_bricks.name=砌砖块
 tile.pyrotech.farmland_mulched.name=改良耕地
 tile.pyrotech.planks_tarred.name=浸焦油的木板
 tile.pyrotech.pile_wood_chips.name=木屑
