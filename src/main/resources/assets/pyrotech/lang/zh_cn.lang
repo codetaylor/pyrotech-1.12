@@ -326,9 +326,7 @@ gui.pyrotech.tooltip.uses=耐久：%d / %d
 gui.pyrotech.tooltip.uses.full=耐久：%d
 gui.pyrotech.tooltip.durability=耐久：%d / %d
 gui.pyrotech.tooltip.durability.full=耐久：%d
-gui.pyrotech.tooltip.durability.indestructible=Indestructible
-#I (DRAMING)couldn't find this entry, so I didn't translate it.(Could you please tell me?)
-#我（DRAMING）未找到此词条，所以我不翻译
+gui.pyrotech.tooltip.durability.indestructible=无限耐久
 gui.pyrotech.tooltip.hot.fluids.true=可以盛装滚烫的流体。
 gui.pyrotech.tooltip.hot.fluids.false=不能盛装滚烫的流体。
 gui.pyrotech.tooltip.burn.time=燃烧时间：%s
