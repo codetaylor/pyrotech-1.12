@@ -349,9 +349,7 @@ gui.pyrotech.tooltip.torch.burns.true=一段时间后熄灭。
 gui.pyrotech.tooltip.torch.burns.false=持续燃烧。
 gui.pyrotech.tooltip.rain.extinguishes.true=淋雨后熄灭，
 gui.pyrotech.tooltip.rain.extinguishes.false=淋雨后仍燃烧。
-gui.pyrotech.tooltip.potency=Potency: %d%%
-#I (DRAMING)couldn't find this entry, so I didn't translate it.(Could you please tell me?)
-#我（DRAMING）未找到此词条，所以我不翻译
+gui.pyrotech.tooltip.potency=效果：%d%%
 gui.pyrotech.tooltip.redstone.activation.chance=当消耗耐久时，有%s%d%%%s的几率被激活。
 gui.pyrotech.tooltip.redstone.active.durability=当激活时，有%s%d%%%s的几率免疫伤害。
 gui.pyrotech.tooltip.redstone.active.efficiency=当激活时，以%s%d%%%s的效率破坏方块。
@@ -510,7 +508,7 @@ advancement.pyrotech.furnace.desc=制作熔炉
 advancement.pyrotech.nether=恐怖的下界
 advancement.pyrotech.nether.desc=搭建、点亮并进入下界传送门
 advancement.pyrotech.wither.forge=罪恶锻造
-advancement.pyrotech.wither.forge.desc=制作凋零锻造炉
+advancement.pyrotech.wither.forge.desc=制作凋灵锻造炉
 advancement.pyrotech.tools.obsidian=黑曜石镐
 advancement.pyrotech.tools.obsidian.desc=制作黑曜石镐
 
