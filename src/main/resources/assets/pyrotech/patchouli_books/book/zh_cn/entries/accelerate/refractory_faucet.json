@@ -1,12 +1,12 @@
 {
-  "name": "Faucet, Refractory",
+  "name": "耐火龙头",
   "icon": "pyrotech:faucet_brick",
   "category": "accelerate",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/brick_faucet",
-      "text": "Use a $(item)Refractory Faucet$() to transfer fluid from the side of a device to the device below."
+      "text": "使用$(item)耐火龙头$()来把液体从一个容器的侧面传输到龙头下方的容器。"
     },
     {
       "type": "relations",
