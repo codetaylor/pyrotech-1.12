@@ -90,18 +90,19 @@ public class ModuleHuntingConfig {
         "Sheep require special handling and aren't processed using the drop map.",
         "",
         "String key format is (domain):(path)",
-        "String value format is (domain):(path):(meta);(count);(chance)"
+        "String value format is (domain):(path):(meta);(count);(chance)",
+        "Multiple values can be concatenated with &"
     })
     @Config.RequiresMcRestart
     public Map<String, String> DROP_MAP = new HashMap<String, String>() {{
-      this.put("minecraft:pig", "pyrotech:hide_pig:0;1;0.85");
-      this.put("minecraft:cow", "pyrotech:pelt_cow:0;1;0.85");
-      this.put("minecraft:mooshroom", "pyrotech:pelt_mooshroom:0;1;0.65");
-      this.put("minecraft:polar_bear", "pyrotech:pelt_polar_bear:0;1;0.85");
+      this.put("minecraft:pig", "pyrotech:hide_pig:0;1;0.85&minecraft:bone:0;1;0.50");
+      this.put("minecraft:cow", "pyrotech:pelt_cow:0;1;0.85&minecraft:bone:0;1;0.50");
+      this.put("minecraft:mooshroom", "pyrotech:pelt_mooshroom:0;1;0.65&minecraft:bone:0;1;0.50");
+      this.put("minecraft:polar_bear", "pyrotech:pelt_polar_bear:0;1;0.85&minecraft:bone:0;1;0.50");
       this.put("minecraft:bat", "pyrotech:pelt_bat:0;1;0.65");
-      this.put("minecraft:horse", "pyrotech:pelt_horse:0;1;0.85");
-      this.put("minecraft:donkey", "pyrotech:pelt_horse:0;1;0.85");
-      this.put("minecraft:rabbit", "minecraft:rabbit_hide:0;1;0.65");
+      this.put("minecraft:horse", "pyrotech:pelt_horse:0;1;0.85&minecraft:bone:0;1;0.50");
+      this.put("minecraft:donkey", "pyrotech:pelt_horse:0;1;0.85&minecraft:bone:0;1;0.50");
+      this.put("minecraft:rabbit", "minecraft:rabbit_hide:0;1;0.65&minecraft:bone:0;1;0.25");
     }};
 
     @Config.Comment({

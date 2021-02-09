@@ -22,6 +22,7 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class EntityLivingDropsEventHandler {
@@ -182,56 +183,70 @@ public class EntityLivingDropsEventHandler {
         }
 
         String value = entry.getValue();
-        String[] split = value.split(";");
+        String[] split = value.split("&");
 
-        if (split.length != 3) {
-          ModuleHunting.LOGGER.error("Invalid drop string: " + value);
-          continue;
+        for (String itemString : split) {
+          DropData dropData = DropMapFactory.createDropData(itemString);
+
+          if (dropData != null) {
+            List<DropData> list = result.computeIfAbsent(entityResourceLocation, resourceLocation -> new ArrayList<>());
+            list.add(dropData);
+          }
         }
-
-        ParseResult parseResult;
-
-        try {
-          parseResult = RecipeItemParser.INSTANCE.parse(split[0]);
-
-        } catch (MalformedRecipeItemException e) {
-          ModuleHunting.LOGGER.error("Unable to parse item string: " + split[0]);
-          continue;
-        }
-
-        ResourceLocation itemResourceLocation = new ResourceLocation(parseResult.getDomain(), parseResult.getPath());
-        Item item = ForgeRegistries.ITEMS.getValue(itemResourceLocation);
-
-        if (item == null) {
-          ModuleHunting.LOGGER.error("Unable to find item: " + split[0]);
-          continue;
-        }
-
-        int count;
-
-        try {
-          count = Integer.parseInt(split[1]);
-
-        } catch (NumberFormatException e) {
-          ModuleHunting.LOGGER.error("Invalid integer: " + split[1]);
-          continue;
-        }
-
-        float chance;
-
-        try {
-          chance = Float.parseFloat(split[2]);
-
-        } catch (NumberFormatException e) {
-          ModuleHunting.LOGGER.error("Invalid float: " + split[2]);
-          continue;
-        }
-
-        List<DropData> list = result.computeIfAbsent(entityResourceLocation, resourceLocation -> new ArrayList<>());
-        list.add(new DropData(item, parseResult.getMeta(), count, chance));
       }
 
       return result;
+    }
+
+    @Nullable
+    private static DropData createDropData(String value) {
+
+      String[] split = value.split(";");
+
+      if (split.length != 3) {
+        ModuleHunting.LOGGER.error("Invalid drop string: " + value);
+        return null;
+      }
+
+      ParseResult parseResult;
+
+      try {
+        parseResult = RecipeItemParser.INSTANCE.parse(split[0]);
+
+      } catch (MalformedRecipeItemException e) {
+        ModuleHunting.LOGGER.error("Unable to parse item string: " + split[0]);
+        return null;
+      }
+
+      ResourceLocation itemResourceLocation = new ResourceLocation(parseResult.getDomain(), parseResult.getPath());
+      Item item = ForgeRegistries.ITEMS.getValue(itemResourceLocation);
+
+      if (item == null) {
+        ModuleHunting.LOGGER.error("Unable to find item: " + split[0]);
+        return null;
+      }
+
+      int count;
+
+      try {
+        count = Integer.parseInt(split[1]);
+
+      } catch (NumberFormatException e) {
+        ModuleHunting.LOGGER.error("Invalid integer: " + split[1]);
+        return null;
+      }
+
+      float chance;
+
+      try {
+        chance = Float.parseFloat(split[2]);
+
+      } catch (NumberFormatException e) {
+        ModuleHunting.LOGGER.error("Invalid float: " + split[2]);
+        return null;
+      }
+
+      return new DropData(item, parseResult.getMeta(), count, chance);
     }
   }
 
