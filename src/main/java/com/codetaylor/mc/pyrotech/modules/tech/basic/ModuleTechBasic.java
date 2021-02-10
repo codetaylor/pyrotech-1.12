@@ -246,6 +246,9 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(BlockCompostBin.NAME)
     public static final BlockCompostBin COMPOST_BIN;
 
+    @GameRegistry.ObjectHolder(BlockBarrel.NAME)
+    public static final BlockBarrel BARREL;
+
     static {
       KILN_PIT = null;
       CAMPFIRE = null;
@@ -258,6 +261,7 @@ public class ModuleTechBasic
       COMPACTING_BIN = null;
       SOAKING_POT = null;
       COMPOST_BIN = null;
+      BARREL = null;
     }
   }
 

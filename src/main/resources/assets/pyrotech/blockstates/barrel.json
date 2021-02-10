@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:barrel"
+  },
+  "variants": {
+    "sealed": {
+      "true": {
+        "model": "pyrotech:barrel_lid"
+      },
+      "false": {}
+    }
+  }
+}

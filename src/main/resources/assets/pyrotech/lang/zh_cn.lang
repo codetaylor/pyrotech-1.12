@@ -131,6 +131,7 @@ tile.pyrotech.worktable_stone.name=石工作桌
 tile.pyrotech.compacting_bin.name=挤压桶
 tile.pyrotech.soaking_pot.name=浸泡壶
 tile.pyrotech.compost_bin.name=Compost Bin
+tile.pyrotech.barrel.name=Barrel
 
 gui.pyrotech.marshmallow.burned.broadcast.message=%s burned a marshmallow!
 gui.pyrotech.marshmallow.burned.eat.broadcast.message=%s ate a burned marshmallow, gross!

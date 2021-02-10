@@ -226,6 +226,7 @@
         * `item.pyrotech.leather.repair.kit.name`
         * `item.pyrotech.leather.durable.repair.kit.name`
         * `item.pyrotech.leather.durable.upgrade.kit.name`
+        * `tile.pyrotech.barrel.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

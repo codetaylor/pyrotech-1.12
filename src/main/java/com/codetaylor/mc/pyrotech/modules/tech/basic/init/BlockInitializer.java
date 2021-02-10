@@ -37,6 +37,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockCompactingBin(), BlockCompactingBin.NAME);
     registry.registerBlockWithItem(new BlockSoakingPot(), BlockSoakingPot.NAME);
     registry.registerBlockWithItem(new BlockCompostBin(), BlockCompostBin.NAME);
+    registry.registerBlockWithItem(new BlockBarrel(), BlockBarrel.NAME);
 
     RegistryHelper.registerTileEntities(
         registry,
@@ -65,7 +66,8 @@ public final class BlockInitializer {
           ModuleTechBasic.Blocks.WORKTABLE_STONE,
           ModuleTechBasic.Blocks.COMPACTING_BIN,
           ModuleTechBasic.Blocks.SOAKING_POT,
-          ModuleTechBasic.Blocks.COMPOST_BIN
+          ModuleTechBasic.Blocks.COMPOST_BIN,
+          ModuleTechBasic.Blocks.BARREL
       );
 
       // Pit Kiln
