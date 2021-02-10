@@ -72,13 +72,13 @@ public class BlockCarcass
   public IBlockState getStateFromMeta(int meta) {
 
     return this.getDefaultState()
-        .withProperty(FACING, EnumFacing.HORIZONTALS[meta & 0x3]);
+        .withProperty(FACING, EnumFacing.HORIZONTALS[meta]);
   }
 
   @Override
   public int getMetaFromState(IBlockState state) {
 
-    return (state.getValue(FACING).getHorizontalIndex() << 2);
+    return (state.getValue(FACING).getHorizontalIndex());
   }
 
   // ---------------------------------------------------------------------------
