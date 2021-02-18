@@ -9,6 +9,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -161,6 +162,17 @@ public class ItemMarshmallowStick
       tag.removeTag("RoastByTimestamp");
     }
     return tag;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Creative Menu
+  // ---------------------------------------------------------------------------
+
+  @Nullable
+  @Override
+  public CreativeTabs getCreativeTab() {
+
+    return null;
   }
 
   // ---------------------------------------------------------------------------
