@@ -42,4 +42,11 @@ public class ItemHuntingKnife
       tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", this.getMaxDamage(stack)));
     }
   }
+
+  @ParametersAreNonnullByDefault
+  @Override
+  public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+
+    return super.getIsRepairable(toRepair, repair);
+  }
 }

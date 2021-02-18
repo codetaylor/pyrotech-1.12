@@ -72,6 +72,12 @@ public final class RegistryInitializer {
         .allowModification()
         .create();
 
+    new RegistryBuilder<BarrelRecipe>()
+        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "barrel_recipe"))
+        .setType(BarrelRecipe.class)
+        .allowModification()
+        .create();
+
     // --- Injection
 
     Injector injector = new Injector();
@@ -125,6 +131,11 @@ public final class RegistryInitializer {
         ModuleTechBasic.Registries.class,
         "COMPOST_BIN_RECIPE",
         GameRegistry.findRegistry(CompostBinRecipe.class)
+    );
+    injector.inject(
+        ModuleTechBasic.Registries.class,
+        "BARREL_RECIPE",
+        GameRegistry.findRegistry(BarrelRecipe.class)
     );
   }
 

@@ -454,6 +454,29 @@ public class ModuleTechBasicConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Barrel
+  // ---------------------------------------------------------------------------
+
+  public static Barrel BARREL = new Barrel();
+
+  public static class Barrel {
+
+    @Config.Comment({
+        "Multiplicative modifier applied to every recipe in this device.",
+        "recipeDurationTicks = recipeDurationTicks * BASE_RECIPE_DURATION_MODIFIER",
+        "Default: " + 1
+    })
+    @Config.RangeDouble(min = 0)
+    public double BASE_RECIPE_DURATION_MODIFIER = 1;
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Soaking Pot
   // ---------------------------------------------------------------------------
 

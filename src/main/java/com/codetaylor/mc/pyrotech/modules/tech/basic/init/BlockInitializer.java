@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.init;
 
+import com.codetaylor.mc.athenaeum.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
-import com.codetaylor.mc.athenaeum.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.*;
@@ -37,7 +37,13 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockCompactingBin(), BlockCompactingBin.NAME);
     registry.registerBlockWithItem(new BlockSoakingPot(), BlockSoakingPot.NAME);
     registry.registerBlockWithItem(new BlockCompostBin(), BlockCompostBin.NAME);
-    registry.registerBlockWithItem(new BlockBarrel(), BlockBarrel.NAME);
+    registry.registerBlockWithItem(new BlockBarrel(false), BlockBarrel.NAME);
+
+    {
+      BlockBarrel block = new BlockBarrel(true);
+      registry.registerBlock(block, BlockBarrel.NAME_SEALED);
+      registry.registerItem(new BlockBarrel.ItemBlockBarrelSealed(block), BlockBarrel.NAME_SEALED, true);
+    }
 
     RegistryHelper.registerTileEntities(
         registry,
@@ -52,7 +58,8 @@ public final class BlockInitializer {
         TileWorktableStone.class,
         TileCompactingBin.class,
         TileSoakingPot.class,
-        TileCompostBin.class
+        TileCompostBin.class,
+        TileBarrel.class
     );
   }
 
@@ -67,7 +74,8 @@ public final class BlockInitializer {
           ModuleTechBasic.Blocks.COMPACTING_BIN,
           ModuleTechBasic.Blocks.SOAKING_POT,
           ModuleTechBasic.Blocks.COMPOST_BIN,
-          ModuleTechBasic.Blocks.BARREL
+          ModuleTechBasic.Blocks.BARREL,
+          ModuleTechBasic.Blocks.BARREL_SEALED
       );
 
       // Pit Kiln
@@ -118,6 +126,7 @@ public final class BlockInitializer {
       ClientRegistry.bindTileEntitySpecialRenderer(TileCompactingBin.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileSoakingPot.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCompostBin.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new TESRInteractable<>());
     });
   }
 

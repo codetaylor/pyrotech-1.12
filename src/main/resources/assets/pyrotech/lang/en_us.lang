@@ -118,6 +118,7 @@ item.pyrotech.marshmallow.stick.empty.name=Marshmallow Stick
 item.pyrotech.marshmallow.on.stick.name=Marshmallow on a Stick
 item.pyrotech.marshmallow.on.stick.roasted.name=Roasted Marshmallow on a Stick
 item.pyrotech.marshmallow.on.stick.burned.name=Burned Marshmallow on a Stick
+item.pyrotech.barrel.lid.name=Barrel Lid
 
 tile.pyrotech.kiln_pit.name=Pit Kiln
 tile.pyrotech.campfire.name=Campfire
@@ -132,6 +133,7 @@ tile.pyrotech.compacting_bin.name=Compacting Bin
 tile.pyrotech.soaking_pot.name=Soaking Pot
 tile.pyrotech.compost_bin.name=Compost Bin
 tile.pyrotech.barrel.name=Barrel
+tile.pyrotech.barrel_sealed.name=Sealed Barrel
 
 gui.pyrotech.marshmallow.burned.broadcast.message=%s burned a marshmallow!
 gui.pyrotech.marshmallow.burned.eat.broadcast.message=%s ate a burned marshmallow, gross!

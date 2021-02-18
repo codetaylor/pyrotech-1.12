@@ -19,6 +19,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemMarshmallowStick(), new ResourceLocation(ModuleTechBasic.MOD_ID, ItemMarshmallowStick.NAME), true);
     registry.registerItem(new ItemMarshmallowStickEmpty(), ItemMarshmallowStickEmpty.NAME);
     registry.registerItem(new ItemMarshmallowBurned(), ItemMarshmallowBurned.NAME);
+    registry.registerItem(new ItemBarrelLid(), ItemBarrelLid.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -32,7 +33,8 @@ public final class ItemInitializer {
           ModuleTechBasic.Items.MARSHMALLOW_STICK,
           ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY,
           ModuleTechBasic.Items.MARSHMALLOW_ROASTED,
-          ModuleTechBasic.Items.MARSHMALLOW_BURNED
+          ModuleTechBasic.Items.MARSHMALLOW_BURNED,
+          ModuleTechBasic.Items.BARREL_LID
       );
     });
   }

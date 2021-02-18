@@ -11,6 +11,7 @@ import crafttweaker.mc1120.recipes.MCRecipeBase;
 import crafttweaker.mc1120.recipes.MCRecipeShaped;
 import crafttweaker.mc1120.recipes.MCRecipeShapeless;
 import mezz.jei.api.*;
+import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
@@ -73,7 +74,9 @@ public class PluginJEI
 
     final IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 
-    jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK));
+    IIngredientBlacklist ingredientBlacklist = jeiHelpers.getIngredientBlacklist();
+    ingredientBlacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBasic.Items.MARSHMALLOW_STICK));
+    ingredientBlacklist.addIngredientToBlacklist(new ItemStack(ModuleTechBasic.Blocks.BARREL_SEALED));
 
     // Pit Kiln Info
     registry.addIngredientInfo(new ItemStack(ModuleTechBasic.Blocks.KILN_PIT), ItemStack.class, "gui.pyrotech.jei.info.pit.kiln");

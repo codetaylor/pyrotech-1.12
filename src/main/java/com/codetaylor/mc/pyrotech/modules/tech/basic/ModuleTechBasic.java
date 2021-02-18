@@ -156,6 +156,7 @@ public class ModuleTechBasic
     SoakingPotRecipesAdd.apply(ModuleTechBasic.Registries.SOAKING_POT_RECIPE);
     CampfireRecipesAdd.apply(ModuleTechBasic.Registries.CAMPFIRE_RECIPE);
     CompostBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPOST_BIN_RECIPE);
+    BarrelRecipesAdd.apply(ModuleTechBasic.Registries.BARREL_RECIPE);
 
     DryingRackRecipesAdd.registerInheritedRecipes(Registries.CRUDE_DRYING_RACK_RECIPE, Registries.DRYING_RACK_RECIPE);
     AnvilIroncladRecipesAdd.registerInheritedRecipes(Registries.ANVIL_RECIPE);
@@ -249,6 +250,9 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(BlockBarrel.NAME)
     public static final BlockBarrel BARREL;
 
+    @GameRegistry.ObjectHolder(BlockBarrel.NAME_SEALED)
+    public static final BlockBarrel BARREL_SEALED;
+
     static {
       KILN_PIT = null;
       CAMPFIRE = null;
@@ -262,6 +266,7 @@ public class ModuleTechBasic
       SOAKING_POT = null;
       COMPOST_BIN = null;
       BARREL = null;
+      BARREL_SEALED = null;
     }
   }
 
@@ -286,6 +291,9 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(ItemMarshmallowStick.NAME)
     public static final ItemMarshmallowStick MARSHMALLOW_STICK;
 
+    @GameRegistry.ObjectHolder(ItemBarrelLid.NAME)
+    public static final ItemBarrelLid BARREL_LID;
+
     static {
       TINDER = null;
       MARSHMALLOW = null;
@@ -293,6 +301,7 @@ public class ModuleTechBasic
       MARSHMALLOW_BURNED = null;
       MARSHMALLOW_STICK_EMPTY = null;
       MARSHMALLOW_STICK = null;
+      BARREL_LID = null;
     }
   }
 
@@ -308,6 +317,7 @@ public class ModuleTechBasic
     public static final IForgeRegistryModifiable<CampfireRecipe> CAMPFIRE_RECIPE;
     public static final IForgeRegistryModifiable<WorktableRecipe> WORKTABLE_RECIPE;
     public static final IForgeRegistryModifiable<SoakingPotRecipe> SOAKING_POT_RECIPE;
+    public static final IForgeRegistryModifiable<BarrelRecipe> BARREL_RECIPE;
 
     static {
       KILN_PIT_RECIPE = null;
@@ -320,6 +330,7 @@ public class ModuleTechBasic
       CAMPFIRE_RECIPE = null;
       WORKTABLE_RECIPE = null;
       SOAKING_POT_RECIPE = null;
+      BARREL_RECIPE = null;
     }
   }
 }

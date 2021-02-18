@@ -7,7 +7,7 @@
     * Carcass:
         * Captures configured mob drops
         * Use Hunting Knife on Carcass to release captured drops
-    * Hunting Knives
+    * Hunting Knives:
         * Bone Hunting Knife
         * Flint Hunting Knife
         * Stone Hunting Knife
@@ -50,6 +50,9 @@
         * Refractory Brick Wall
     * Valid refractory blocks:
         * Double Refractory Brick Slab
+    * Barrel:
+        * Barrel Lid
+        * Barrel block
     * Ore Compat:
         * Bloom yield and slag bloom yield can now be adjusted in the ore compat json files [(#310)](https://github.com/codetaylor/pyrotech-1.12/issues/310)
     * Config option to:
@@ -227,6 +230,8 @@
         * `item.pyrotech.leather.durable.repair.kit.name`
         * `item.pyrotech.leather.durable.upgrade.kit.name`
         * `tile.pyrotech.barrel.name`
+        * `tile.pyrotech.barrel_sealed.name`
+        * `item.pyrotech.barrel.lid.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

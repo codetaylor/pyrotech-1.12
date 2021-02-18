@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "pyrotech:barrel"
+    "model": "pyrotech:barrel_sealed"
   },
   "variants": {
     "normal": [{}]
