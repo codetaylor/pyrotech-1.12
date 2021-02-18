@@ -11,21 +11,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SuppressWarnings("WeakerAccess")
 public final class ItemInitializer {
 
-  public static final ItemTinder TINDER = new ItemTinder();
-  public static final ItemMarshmallow MARSHMALLOW = new ItemMarshmallow();
-  public static final ItemMarshmallowRoasted MARSHMALLOW_ROASTED = new ItemMarshmallowRoasted();
-  public static final ItemMarshmallowStick MARSHMALLOW_STICK = new ItemMarshmallowStick();
-  public static final ItemMarshmallowStickEmpty MARSHMALLOW_STICK_EMPTY = new ItemMarshmallowStickEmpty();
-  public static final ItemMarshmallowBurned MARSHMALLOW_BURNED = new ItemMarshmallowBurned();
-
   public static void onRegister(Registry registry) {
 
-    registry.registerItem(TINDER, ItemTinder.NAME);
-    registry.registerItem(MARSHMALLOW, ItemMarshmallow.NAME);
-    registry.registerItem(MARSHMALLOW_ROASTED, ItemMarshmallowRoasted.NAME);
-    registry.registerItem(MARSHMALLOW_STICK, new ResourceLocation(ModuleTechBasic.MOD_ID, ItemMarshmallowStick.NAME), true);
-    registry.registerItem(MARSHMALLOW_STICK_EMPTY, ItemMarshmallowStickEmpty.NAME);
-    registry.registerItem(MARSHMALLOW_BURNED, ItemMarshmallowBurned.NAME);
+    registry.registerItem(new ItemTinder(), ItemTinder.NAME);
+    registry.registerItem(new ItemMarshmallow(), ItemMarshmallow.NAME);
+    registry.registerItem(new ItemMarshmallowRoasted(), ItemMarshmallowRoasted.NAME);
+    registry.registerItem(new ItemMarshmallowStick(), new ResourceLocation(ModuleTechBasic.MOD_ID, ItemMarshmallowStick.NAME), true);
+    registry.registerItem(new ItemMarshmallowStickEmpty(), ItemMarshmallowStickEmpty.NAME);
+    registry.registerItem(new ItemMarshmallowBurned(), ItemMarshmallowBurned.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -34,12 +27,12 @@ public final class ItemInitializer {
     registry.registerClientModelRegistrationStrategy(() -> {
 
       ModelRegistrationHelper.registerItemModels(
-          ItemInitializer.TINDER,
-          ItemInitializer.MARSHMALLOW,
-          ItemInitializer.MARSHMALLOW_STICK,
-          ItemInitializer.MARSHMALLOW_STICK_EMPTY,
-          ItemInitializer.MARSHMALLOW_ROASTED,
-          ItemInitializer.MARSHMALLOW_BURNED
+          ModuleTechBasic.Items.TINDER,
+          ModuleTechBasic.Items.MARSHMALLOW,
+          ModuleTechBasic.Items.MARSHMALLOW_STICK,
+          ModuleTechBasic.Items.MARSHMALLOW_STICK_EMPTY,
+          ModuleTechBasic.Items.MARSHMALLOW_ROASTED,
+          ModuleTechBasic.Items.MARSHMALLOW_BURNED
       );
     });
   }
