@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "B B",
+    "B B",
+    "BPB"
+  ],
+  "key": {
+    "B": {
+      "item": "pyrotech:material",
+      "data": 23
+    },
+    "P": {
+      "item": "pyrotech:planks_tarred",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:barrel",
+    "count": 1
+  }
+}
