@@ -31,6 +31,15 @@ public class SoakingPotRecipesAdd {
           true,
           10 * 60 * 20
       ).setRegistryName(ModuleTechBasic.MOD_ID, "leather"));
+
+      // Small Leather
+      registry.register(new SoakingPotRecipe(
+          ItemMaterial.EnumType.LEATHER_SMALL.asStack(),
+          Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_SMALL_WASHED)),
+          new FluidStack(ModuleHunting.Fluids.TANNIN, 250),
+          true,
+          5 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "leather_small"));
     }
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
