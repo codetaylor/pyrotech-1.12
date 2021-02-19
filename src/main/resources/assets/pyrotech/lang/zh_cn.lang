@@ -493,6 +493,7 @@ gui.pyrotech.jei.category.campfire=篝火
 gui.pyrotech.jei.category.worktable=工作桌
 gui.pyrotech.jei.category.soaking.pot=浸泡壶
 gui.pyrotech.jei.category.compost.bin=Composting
+gui.pyrotech.jei.category.barrel=Barrel
 
 gui.pyrotech.jei.category.bloomery=锻造炉
 gui.pyrotech.jei.category.wither.forge=凋零锻造炉

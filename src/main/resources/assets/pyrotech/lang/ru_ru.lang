@@ -493,6 +493,7 @@ gui.pyrotech.jei.category.campfire=Костёр
 gui.pyrotech.jei.category.worktable=Верстак
 gui.pyrotech.jei.category.soaking.pot=Горшок для замачивания
 gui.pyrotech.jei.category.compost.bin=Composting
+gui.pyrotech.jei.category.barrel=Barrel
 
 gui.pyrotech.jei.category.bloomery=Сыродутная печь
 gui.pyrotech.jei.category.wither.forge=Адская печь

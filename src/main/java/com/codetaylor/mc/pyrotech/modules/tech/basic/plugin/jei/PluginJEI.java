@@ -65,7 +65,8 @@ public class PluginJEI
         new JEIRecipeCategoryCampfire(guiHelper),
         new JEIRecipeCategoryWorktable(guiHelper),
         new JEIRecipeCategorySoakingPot(guiHelper),
-        new JEIRecipeCategoryCompostBin(guiHelper)
+        new JEIRecipeCategoryCompostBin(guiHelper),
+        new JEIRecipeCategoryBarrel(guiHelper)
     );
   }
 
@@ -242,11 +243,19 @@ public class PluginJEI
       registry.addRecipes(recipeList, JEIRecipeCategoryKilnPit.UID);
     }
 
+    // --- Barrel
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.BARREL), JEIRecipeCategoryBarrel.UID);
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.BARREL_SEALED), JEIRecipeCategoryBarrel.UID);
+      registry.handleRecipes(BarrelRecipe.class, JEIRecipeWrapperBarrel::new, JEIRecipeCategoryBarrel.UID);
+      List<BarrelRecipe> recipeList = new ArrayList<>(ModuleTechBasic.Registries.BARREL_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryBarrel.UID);
+    }
+
     // --- Compost Bin
     {
       registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.COMPOST_BIN), JEIRecipeCategoryCompostBin.UID);
 
-      // TODO: aggregate all recipes
       // We can assume at this point that there are no duplicate inputs or outputs defined.
       Map<ItemStack, List<CompostBinRecipe>> aggregateRecipes = new ConcurrentHashMap<>();
       Collection<CompostBinRecipe> valuesCollection = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValuesCollection();

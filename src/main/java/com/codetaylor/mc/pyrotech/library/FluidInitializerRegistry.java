@@ -66,13 +66,13 @@ public class FluidInitializerRegistry {
 
     if (useOwnFluid) {
       fluidPropertyApplier.accept(fluid);
-      modFluidBlockList.add(blockFactory.apply(fluid));
+      this.modFluidBlockList.add(blockFactory.apply(fluid));
 
     } else {
       fluid = FluidRegistry.getFluid(name);
     }
 
-    allFluidList.add(fluid);
+    this.allFluidList.add(fluid);
 
     return fluid;
   }

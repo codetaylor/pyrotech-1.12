@@ -246,6 +246,7 @@
         * `fluid.tannin`
         * `tile.fluid.tannin.name`
         * `item.pyrotech.leather.small.name`
+        * `gui.pyrotech.jei.category.barrel`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
