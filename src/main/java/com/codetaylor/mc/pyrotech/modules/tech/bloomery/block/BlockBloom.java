@@ -481,7 +481,7 @@ public class BlockBloom
         String[] langKeys = teCompound.getString("langKey").split(";");
 
         if (langKeys.length == 1) {
-          String langKey = langKeys[0] + ".name";
+          String langKey = (langKeys[0].endsWith(".name"))? langKeys[0] : langKeys[0] + ".name";
 
           if (I18n.canTranslate(langKey)) {
             String translatedLangKey = I18n.translateToLocal(langKey);
@@ -493,7 +493,7 @@ public class BlockBloom
           String translatedLangKey = null;
 
           for (int i = 0; i < langKeys.length; i++) {
-            String langKey = langKeys[i] + ".name";
+            String langKey = (langKeys[i].endsWith(".name"))? langKeys[i] : langKeys[i] + ".name";
 
             if (I18n.canTranslate(langKey)) {
 

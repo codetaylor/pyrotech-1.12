@@ -62,6 +62,13 @@
 
 ---
 
+**1.5.8**
+
+  * **Fixed:**
+    * Broken bloom block item stack display name
+
+---
+
 **1.5.7**
 
   * **Fixed:**
