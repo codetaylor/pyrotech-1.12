@@ -56,6 +56,9 @@ item.pyrotech.leather.durable.upgrade.kit.name=Durable Leather Upgrade Kit
 
 tile.pyrotech.carcass.name=Carcass
 
+fluid.tannin=Tannin
+tile.fluid.tannin.name=Tannin
+
 gui.pyrotech.hide.scraped.washing=Scraped Hides can be washed by placing them in water for %s
 
 #------------------------------------------------------------------------------

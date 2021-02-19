@@ -24,6 +24,13 @@
           "fluid": "liquid_clay"
         }
       }
+    ],
+    "tannin": [
+      {
+        "custom": {
+          "fluid": "tannin"
+        }
+      }
     ]
   }
 }

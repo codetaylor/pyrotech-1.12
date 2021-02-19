@@ -53,6 +53,8 @@
     * Barrel:
         * Barrel Lid
         * Barrel block
+    * Fluids:
+        * Tannin
     * Ore Compat:
         * Bloom yield and slag bloom yield can now be adjusted in the ore compat json files [(#310)](https://github.com/codetaylor/pyrotech-1.12/issues/310)
     * Config option to:
@@ -73,6 +75,8 @@
         * Crafting leather kits
         * Leather armor repair recipes with `ore:kitRepairLeather`
         * Soaking Pot recipes for durable leather materials using Wood Tar
+        * Crafting Barrels
+        * Crafting Barrel Lids
     * New config file:
         * `module.Hunting.cfg`
     * Oredict:
@@ -232,6 +236,8 @@
         * `tile.pyrotech.barrel.name`
         * `tile.pyrotech.barrel_sealed.name`
         * `item.pyrotech.barrel.lid.name`
+        * `fluid.tannin`
+        * `tile.fluid.tannin.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

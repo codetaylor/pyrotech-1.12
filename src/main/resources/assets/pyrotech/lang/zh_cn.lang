@@ -43,6 +43,9 @@ item.pyrotech.obsidian.hunting.knife.name=Obsidian Hunting Knife
 
 tile.pyrotech.carcass.name=Carcass
 
+fluid.tannin=Tannin
+tile.fluid.tannin.name=Tannin
+
 item.pyrotech.leather.sheet.name=Leather Sheet
 item.pyrotech.leather.strap.name=Leather Strap
 item.pyrotech.leather.cord.name=Leather Cord

@@ -8,10 +8,12 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockCarcass;
 import com.codetaylor.mc.pyrotech.modules.hunting.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.hunting.init.EntityInitializer;
+import com.codetaylor.mc.pyrotech.modules.hunting.init.FluidInitializer;
 import com.codetaylor.mc.pyrotech.modules.hunting.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -52,6 +54,7 @@ public class ModuleHunting
   @Override
   public void onRegister(Registry registry) {
 
+    FluidInitializer.onRegister(registry);
     BlockInitializer.onRegister(registry);
     ItemInitializer.onRegister(registry);
     EntityInitializer.onRegister(registry);
@@ -61,6 +64,7 @@ public class ModuleHunting
   @Override
   public void onClientRegister(Registry registry) {
 
+    FluidInitializer.onClientRegister(registry);
     BlockInitializer.onClientRegister(registry);
     ItemInitializer.onClientRegister(registry);
   }
@@ -255,4 +259,16 @@ public class ModuleHunting
     }
   }
 
+  public static class Fluids {
+
+    /*
+    Fluids are injected from the fluid initializer.
+     */
+
+    public static final Fluid TANNIN;
+
+    static {
+      TANNIN = null;
+    }
+  }
 }
