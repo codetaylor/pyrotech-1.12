@@ -30,6 +30,7 @@
         * Horse Pelt
         * Mooshroom Pelt
     * Leather materials:
+        * Small Leather
         * Leather Sheet
         * Leather Strap
         * Leather Cord
@@ -62,21 +63,27 @@
         * Disable durability tooltips `SHOW_DURABILITY_TOOLTIPS` [(#221)](https://github.com/codetaylor/pyrotech-1.12/issues/221)
         * Specify Iron Ingot replacement item `REPLACE_IRON_INGOTS_WITH` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
     * Recipes:
-        * Crafting Hunting Knives
-        * Crafting `fluid:water` with Scraped Hides -> Washed Hides
-        * Shearing Sheep Pelts with `ore:toolShears`
-        * Scraping Pelts with `ore:toolHuntingKnife`
-        * Scraping Pelts with `ore:shard`
-        * Soaking Pot recipes Scraped Hides -> Washed Hides
-        * Saddle recipe uses new leather materials
-        * Leather cutting recipes with `ore:toolHuntingKnife`
-        * Durable Leather cutting recipes with `ore:toolHuntingKnife`
-        * Leather armor Unbreaking I recipe with `pyrotech:leather_durable_upgrade_kit`
-        * Crafting leather kits
-        * Leather armor repair recipes with `ore:kitRepairLeather`
-        * Soaking Pot recipes for durable leather materials using Wood Tar
-        * Crafting Barrels
-        * Crafting Barrel Lids
+        * Crafting:
+            * Hunting Knives
+            * `fluid:water` with Scraped Hides -> Washed Hides
+            * Barrels
+            * Barrel Lids
+            * Leather kits
+            * Leather cutting recipes with `ore:toolHuntingKnife`
+            * Durable Leather cutting recipes with `ore:toolHuntingKnife`
+            * Shearing Sheep Pelts with `ore:toolShears`
+            * Scraping Pelts with `ore:toolHuntingKnife`
+            * Scraping Pelts with `ore:shard`
+            * Saddle recipe uses new leather materials
+            * Leather armor Unbreaking I recipe with `pyrotech:leather_durable_upgrade_kit`
+            * Leather armor repair recipes with `ore:kitRepairLeather`
+        * Soaking Pot:
+            * Scraped Hides and `fluid:water` -> Washed Hides
+            * Leather materials and `fluid:wood_tar` -> Durable Leather materials
+            * Washed Hide and `fluid:tannin` -> Leather
+            * Small Washed Hide and `fluid:tannin` -> Small Leather
+        * Barrel:
+            * `treeLeaves` and `fluid:water` to create `fluid:tannin`
     * New config file:
         * `module.Hunting.cfg`
     * Oredict:
@@ -238,6 +245,7 @@
         * `item.pyrotech.barrel.lid.name`
         * `fluid.tannin`
         * `tile.fluid.tannin.name`
+        * `item.pyrotech.leather.small.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
