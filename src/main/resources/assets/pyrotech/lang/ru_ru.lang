@@ -46,15 +46,6 @@ tile.pyrotech.carcass.name=Carcass
 fluid.tannin=Tannin
 tile.fluid.tannin.name=Tannin
 
-item.pyrotech.leather.sheet.name=Leather Sheet
-item.pyrotech.leather.strap.name=Leather Strap
-item.pyrotech.leather.cord.name=Leather Cord
-
-item.pyrotech.leather.durable.name=Durable Leather
-item.pyrotech.leather.durable.sheet.name=Durable Leather Sheet
-item.pyrotech.leather.durable.strap.name=Durable Leather Strap
-item.pyrotech.leather.durable.cord.name=Durable Leather Cord
-
 item.pyrotech.leather.repair.kit.name=Leather Repair Kit
 item.pyrotech.leather.durable.repair.kit.name=Durable Leather Repair Kit
 item.pyrotech.leather.durable.upgrade.kit.name=Durable Leather Upgrade Kit
@@ -316,6 +307,14 @@ item.pyrotech.obsidian.shard.name=Обсидиановый осколок
 item.pyrotech.gold.shard.name=Золотой осколок
 item.pyrotech.dense.redstone.name=Dense Redstone
 item.pyrotech.dense.quartz.name=Dense Quartz
+item.pyrotech.leather.sheet.name=Leather Sheet
+item.pyrotech.leather.strap.name=Leather Strap
+item.pyrotech.leather.cord.name=Leather Cord
+item.pyrotech.leather.durable.name=Durable Leather
+item.pyrotech.leather.durable.sheet.name=Durable Leather Sheet
+item.pyrotech.leather.durable.strap.name=Durable Leather Strap
+item.pyrotech.leather.durable.cord.name=Durable Leather Cord
+item.pyrotech.leather.small.name=Small Leather
 
 item.pyrotech.apple.baked.name=Запечённое яблоко
 item.pyrotech.carrot.roasted.name=Обжаренная морковь
