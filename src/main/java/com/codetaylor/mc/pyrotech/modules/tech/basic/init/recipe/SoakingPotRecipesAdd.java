@@ -22,6 +22,17 @@ public class SoakingPotRecipesAdd {
 
   public static void apply(IForgeRegistry<SoakingPotRecipe> registry) {
 
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleHunting.class)) {
+      // Leather
+      registry.register(new SoakingPotRecipe(
+          new ItemStack(Items.LEATHER),
+          Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_WASHED)),
+          new FluidStack(ModuleHunting.Fluids.TANNIN, 500),
+          true,
+          10 * 60 * 20
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "leather"));
+    }
+
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
       // Durable Leather
       registry.register(new SoakingPotRecipe(
