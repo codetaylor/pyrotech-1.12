@@ -474,6 +474,24 @@ public class ModuleTechBasicConfig {
         "Default: " + true
     })
     public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
+        "While raining and unsealed, every N ticks 5 mB of water is added.",
+        "Set to zero to disable.",
+        "Default: " + 20
+    })
+    @Config.RangeInt(min = 0)
+    public int RAIN_WATER_FILL_DURATION_TICKS = 20;
+
+    @Config.Comment({
+        "While raining and unsealed, every N ticks any existing fluid is",
+        "converted to water.",
+        "Set to zero to disable.",
+        "Default: " + (20 * 60 * 2)
+    })
+    @Config.RangeInt(min = 0)
+    public int RAIN_WATER_CONVERSION_DURATION_TICKS = 20 * 60 * 2;
+
   }
 
   // ---------------------------------------------------------------------------

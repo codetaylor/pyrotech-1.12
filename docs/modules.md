@@ -45,6 +45,7 @@ Contains the basic tech.
 * Worktables
 * Compacting Bin
 * Soaking Pot
+* Barrel
 
 ### Tech: Bloomery Module
 

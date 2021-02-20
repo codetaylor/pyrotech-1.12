@@ -41,10 +41,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -70,6 +67,8 @@ public class TileBarrel
   private final TileDataFloat recipeProgress;
 
   private BarrelRecipe currentRecipe;
+  private int waterConversionTickCounter;
+  private int waterFillTickCounter;
 
   private final IInteraction<?>[] interactions;
 
@@ -203,8 +202,52 @@ public class TileBarrel
   public void update() {
 
     if (!this.isSealed()) {
+
+      // If the barrel is not sealed and it is raining on top, periodically
+      // check if we can add water to the barrel. Also periodically check if
+      // we can transform the contained fluid into water.
+
+      if (this.world.isRainingAt(this.pos.up())) {
+
+        if (ModuleTechBasicConfig.BARREL.RAIN_WATER_FILL_DURATION_TICKS > 0) {
+          this.waterFillTickCounter += 1;
+
+          if (this.waterFillTickCounter >= ModuleTechBasicConfig.BARREL.RAIN_WATER_FILL_DURATION_TICKS) {
+            this.waterFillTickCounter = 0;
+
+            if (this.inputFluidTank.getFluidAmount() < 1000) {
+              FluidStack fluid = new FluidStack(FluidRegistry.WATER, 5);
+
+              if (this.inputFluidTank.fill(fluid, false) > 0) {
+                this.inputFluidTank.fill(fluid, true);
+              }
+            }
+          }
+        }
+
+        if (ModuleTechBasicConfig.BARREL.RAIN_WATER_CONVERSION_DURATION_TICKS > 0) {
+          this.waterConversionTickCounter += 1;
+
+          if (this.waterConversionTickCounter >= ModuleTechBasicConfig.BARREL.RAIN_WATER_CONVERSION_DURATION_TICKS) {
+            this.waterConversionTickCounter = 0;
+            FluidStack fluidStack = this.inputFluidTank.getFluid();
+
+            if (fluidStack != null && fluidStack.getFluid() != FluidRegistry.WATER) {
+              int fluidAmount = this.inputFluidTank.getFluidAmount();
+              this.inputFluidTank.drain(fluidAmount, true);
+              this.inputFluidTank.fill(new FluidStack(FluidRegistry.WATER, fluidAmount), true);
+            }
+          }
+        }
+
+      } else {
+        this.waterConversionTickCounter = 0;
+      }
+
       return;
     }
+
+    this.waterConversionTickCounter = 0;
 
     if (this.world.isRemote) {
 

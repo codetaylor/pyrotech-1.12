@@ -53,7 +53,12 @@
         * Double Refractory Brick Slab
     * Barrel:
         * Barrel Lid
-        * Barrel block
+        * Barrel
+            * 2x2 shapeless item + fluid -> fluid
+            * Recipe starts when sealed with a Barrel Lid
+            * Sealed Barrels retain contents and recipe progress when broken
+            * Unsealed Barrels in rain will collect water over time
+            * Unsealed Barrels in rain will convert non-water fluids to water over time
     * Fluids:
         * Tannin
     * Ore Compat:
