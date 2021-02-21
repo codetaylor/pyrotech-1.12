@@ -10,7 +10,7 @@
     },
     {
       "type": "text",
-      "text": "$(info) To remove $(item)Mulch$(), $(use) with a $(thing)Shovel$().$(p)$(info) The $(item)Compost Bin$() will work faster when it has more active compost in it.$(p)$(info) Moisture in the form of $(item)Water$() is required for the device to function."
+      "text": "$(info)要把$(item)土壤改良剂$()从堆肥桶中取出$(use)需要用$(thing)锹$()。$(p)$(info)$(item)堆肥桶$()里的堆肥值越多，堆肥的效率越高。$(p)$(info)堆肥需要$(item)水$()。"
     },
     {
       "type": "relations",
