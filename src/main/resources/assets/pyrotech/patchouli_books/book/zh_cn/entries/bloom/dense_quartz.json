@@ -12,7 +12,7 @@
     {
       "type": "rt_anvil_recipe",
       "recipe": "pyrotech:quartz_from_dense_quartz",
-      "text": "$(item)Dense Quartz$() can be shattered with a pickaxe on an $(item)Anvil$() to procure $(item)Quartz$()."
+      "text": "$(item)致密下界石英$()可以在$(item)砧$()上用镐子敲成$(item)下界石英$()。"
     },
     {
       "type": "relations",
