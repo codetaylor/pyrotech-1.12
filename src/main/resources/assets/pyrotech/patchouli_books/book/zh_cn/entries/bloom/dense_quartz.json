@@ -1,5 +1,5 @@
 {
-  "name": "Quartz, Dense",
+  "name": "致密下界石英",
   "icon": "pyrotech:material:37",
   "category": "bloom",
   "pages": [
@@ -7,7 +7,7 @@
       "type": "spotlight",
       "item": "pyrotech:material:37",
       "link_recipe": true,
-      "text": "$(item)Dense Quartz$() can be found by harvesting $(item)Dense Quartz Ore$() deposits with, at minimum, an $(thing)Iron-Tier Pickaxe$().$(p)$(info) $(thing)Tools$() made from $(item)Dense Quartz$() have unique properties."
+      "text": "$(item)致密下界石英$()可以通过挖掘$(item)致密下界石英矿石$()获得，起码需要$(thing)相当于铁镐的工具$()才能开采它。$(p)$(info)使用$(item)致密下界石英$()制作的$(thing)工具$()具有独特的属性。"
     },
     {
       "type": "rt_anvil_recipe",
