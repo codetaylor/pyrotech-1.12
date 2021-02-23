@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTInputHelper;
+import com.codetaylor.mc.athenaeum.integration.crafttweaker.mtlib.helpers.CTLogHelper;
 import com.codetaylor.mc.athenaeum.tools.*;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
@@ -43,6 +44,11 @@ public class ZenBarrel {
       IIngredient[] inputItems,
       int timeTicks
   ) {
+
+    if (inputItems.length > 4) {
+      CTLogHelper.logErrorFromZenMethod("Recipe named '" + name + "' can't have more than 4 input ingredient items");
+      return;
+    }
 
     FluidStack outputFluidStack = CraftTweakerMC.getLiquidStack(outputFluid);
     outputFluidStack.amount = Fluid.BUCKET_VOLUME;
