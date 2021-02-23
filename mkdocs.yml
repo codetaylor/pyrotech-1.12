@@ -20,6 +20,7 @@ pages:
   - Community Scripts: communityscripts.md
   - Wood:  scripts/wood.md
 - ZenScript:
+  - Barrel: zs/barrel.md
   - Bellows: zs/bellows.md
   - Bloomery: zs/bloomery.md
   - Brick Crucible: zs/brickcrucible.md

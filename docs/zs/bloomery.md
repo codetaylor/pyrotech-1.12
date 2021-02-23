@@ -138,6 +138,17 @@ Sets the base time in ticks that this recipe takes to produce a bloom. This valu
 
 
 ```java
+Bloomery setExperience(
+  float experience // the total experience produced by a bloom
+);
+```
+
+Sets the total experience rewarded for hammering on the bloom.
+
+---
+
+
+```java
 Bloomery setFailureChance(
   float failureChance // the recipe's failure chance
 );

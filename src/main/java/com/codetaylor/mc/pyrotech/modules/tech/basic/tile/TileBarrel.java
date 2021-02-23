@@ -76,7 +76,7 @@ public class TileBarrel
 
     super(ModuleTechBasic.TILE_DATA_SERVICE);
 
-    this.inputFluidTank = new InputFluidTank(this, 1000);
+    this.inputFluidTank = new InputFluidTank(this, Fluid.BUCKET_VOLUME);
     this.inputStackHandler = new InputStackHandler(4);
     this.lidStackHandler = new LidStackHandler();
     this.recipeProgress = new TileDataFloat(0);
@@ -215,7 +215,7 @@ public class TileBarrel
           if (this.waterFillTickCounter >= ModuleTechBasicConfig.BARREL.RAIN_WATER_FILL_DURATION_TICKS) {
             this.waterFillTickCounter = 0;
 
-            if (this.inputFluidTank.getFluidAmount() < 1000) {
+            if (this.inputFluidTank.getFluidAmount() < Fluid.BUCKET_VOLUME) {
               FluidStack fluid = new FluidStack(FluidRegistry.WATER, 5);
 
               if (this.inputFluidTank.fill(fluid, false) > 0) {
@@ -394,8 +394,7 @@ public class TileBarrel
   @Override
   public Stages getStages() {
 
-    // TODO
-    return null;
+    return ModuleTechBasicConfig.STAGES_BARREL;
   }
 
   @Override

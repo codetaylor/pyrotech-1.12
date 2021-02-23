@@ -59,6 +59,9 @@ public class ModuleTechBasicConfig {
   @Config.Ignore
   public static Stages STAGES_ANVIL_GRANITE = null;
 
+  @Config.Ignore
+  public static Stages STAGES_BARREL = null;
+
   // ---------------------------------------------------------------------------
   // - Worktable Common
   // ---------------------------------------------------------------------------
