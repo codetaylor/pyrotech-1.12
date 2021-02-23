@@ -228,7 +228,7 @@ public class BlockBarrel
           }
 
           if (tileTag.hasKey("inputStackHandler")) {
-            TileBarrel.InputStackHandler stackHandler = new TileBarrel.InputStackHandler(4);
+            TileBarrel.InputStackHandler stackHandler = new TileBarrel.InputStackHandler(null, 4);
             stackHandler.deserializeNBT(tileTag.getCompoundTag("inputStackHandler"));
 
             for (int i = 0; i < stackHandler.getSlots(); i++) {

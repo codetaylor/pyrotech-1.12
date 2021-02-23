@@ -555,7 +555,7 @@ public class TileBarrel
 
     private final TileBarrel tile;
 
-    public InputStackHandler(TileBarrel tile, int slots) {
+    public InputStackHandler(@Nullable TileBarrel tile, int slots) {
 
       super(slots);
       this.tile = tile;
@@ -571,7 +571,7 @@ public class TileBarrel
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
-      if (this.tile.isSealed()) {
+      if (this.tile != null && this.tile.isSealed()) {
         return stack;
       }
 
