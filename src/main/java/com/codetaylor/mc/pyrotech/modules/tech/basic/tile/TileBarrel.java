@@ -77,7 +77,7 @@ public class TileBarrel
     super(ModuleTechBasic.TILE_DATA_SERVICE);
 
     this.inputFluidTank = new InputFluidTank(this, Fluid.BUCKET_VOLUME);
-    this.inputStackHandler = new InputStackHandler(4);
+    this.inputStackHandler = new InputStackHandler(this, 4);
     this.lidStackHandler = new LidStackHandler();
     this.recipeProgress = new TileDataFloat(0);
     this.inputItems = new ItemStack[4];
@@ -553,15 +553,29 @@ public class TileBarrel
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
-    public InputStackHandler(int slots) {
+    private final TileBarrel tile;
+
+    public InputStackHandler(TileBarrel tile, int slots) {
 
       super(slots);
+      this.tile = tile;
     }
 
     @Override
     public int getSlotLimit(int slot) {
 
       return 1;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+
+      if (this.tile.isSealed()) {
+        return stack;
+      }
+
+      return super.insertItem(slot, stack, simulate);
     }
   }
 
@@ -579,6 +593,10 @@ public class TileBarrel
 
     @Override
     public int fillInternal(FluidStack resource, boolean doFill) {
+
+      if (this.tile.isSealed()) {
+        return 0;
+      }
 
       int filled = super.fillInternal(resource, doFill);
 
