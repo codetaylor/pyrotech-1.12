@@ -3,6 +3,9 @@
   * **BREAKING:**
     * `pyrotech:stone_bricks` renamed to `pyrotech:masonry_brick_block`
 
+  * **Fixed:**
+    * Hammering anvil bloom shouldn't show progress particles with zero hammer power
+
   * **Added:**
     * Carcass:
         * Captures configured mob drops
