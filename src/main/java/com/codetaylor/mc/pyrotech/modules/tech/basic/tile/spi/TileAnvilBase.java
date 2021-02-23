@@ -452,6 +452,15 @@ public abstract class TileAnvilBase
             }
 
             tile.setRecipeProgress(tile.getRecipeProgress() + recipeProgressIncrement);
+
+            if (recipeProgressIncrement > 0) {
+              // Progress Particles
+              ModuleCore.PACKET_SERVICE.sendToAllAround(
+                  new SCPacketParticleProgress(hitPos.getX() + 0.5, hitPos.getY() + 1, hitPos.getZ() + 0.5, 2),
+                  world.provider.getDimension(),
+                  hitPos
+              );
+            }
           }
 
           if (tile.getRecipeProgress() >= 0.9999) {
@@ -487,11 +496,6 @@ public abstract class TileAnvilBase
           }
 
           // Client particles
-          ModuleCore.PACKET_SERVICE.sendToAllAround(
-              new SCPacketParticleProgress(hitPos.getX() + 0.5, hitPos.getY() + 1, hitPos.getZ() + 0.5, 2),
-              world.provider.getDimension(),
-              hitPos
-          );
           ModuleTechBasic.PACKET_SERVICE.sendToAllAround(new SCPacketParticleAnvilHit(tile.pos, hitX, hitY, hitZ), tile);
         }
       }
