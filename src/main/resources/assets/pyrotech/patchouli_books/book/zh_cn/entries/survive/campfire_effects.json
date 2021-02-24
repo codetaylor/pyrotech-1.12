@@ -27,7 +27,7 @@
       "type": "campfire_effect",
       "title": "小憩",
       "image": "pyrotech:textures/potions/resting.png",
-      "text": "Stand still within range of a campfire at night to gain the $(thing)Resting$() effect.$(p)$(info) The $(thing)Resting$() effect slowly regenerates health.$(p)$(info) Continue standing still to increase the level of $(thing)Resting$().$(p)$(warning) This effect will disappear if hostile mobs are nearby."
+      "text": "在晚上时，站在篝火旁一定范围来获得$(thing)小憩$()效果。$(p)$(info)$(thing)小憩$()效果可以缓慢地回复生命。$(p)$(info) Continue standing still to increase the level of $(thing)Resting$().$(p)$(warning) This effect will disappear if hostile mobs are nearby."
     },
     {
       "type": "campfire_effect",
