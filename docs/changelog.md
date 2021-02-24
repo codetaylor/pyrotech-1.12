@@ -146,6 +146,10 @@
             * `pyrotech:pelt_sheep_yellow`
             * `pyrotech:hide_pig`
             * `pyrotech:hide_sheep_sheared`
+            * `pyrotech:pelt_llama_white`
+            * `pyrotech:pelt_llama_creamy`
+            * `pyrotech:pelt_llama_gray`
+            * `pyrotech:pelt_llama_brown`
         * `hideSmallScrapeable` now contains:
             * `pyrotech:pelt_bat`
             * `minecraft:rabbit_hide`
@@ -255,6 +259,11 @@
         * `tile.fluid.tannin.name`
         * `item.pyrotech.leather.small.name`
         * `gui.pyrotech.jei.category.barrel`
+        * `item.pyrotech.hide.llama.name`
+        * `item.pyrotech.pelt.llama.white.name`
+        * `item.pyrotech.pelt.llama.creamy.name`
+        * `item.pyrotech.pelt.llama.gray.name`
+        * `item.pyrotech.pelt.llama.brown.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

@@ -135,6 +135,20 @@ public class ModuleHuntingConfig {
         "Default: " + 1
     })
     public int SHEEP_PELT_COUNT = 1;
+
+    @Config.Comment({
+        "Llamas require special handling and aren't processed using the drop map.",
+        "This is the chance that a llama pelt will drop.",
+        "Default: " + 0.85
+    })
+    public double LLAMA_PELT_CHANCE = 0.85;
+
+    @Config.Comment({
+        "Llama require special handling and aren't processed using the drop map.",
+        "This is the amount of llama pelts that will drop.",
+        "Default: " + 1
+    })
+    public int LLAMA_PELT_COUNT = 1;
   }
 
   public static LeatherKits LEATHER_KITS = new LeatherKits();

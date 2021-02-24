@@ -1,0 +1,23 @@
+{
+  "type": "pyrotech:shearing_pelt_llama",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "pyrotech:pelt_llama_brown"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "toolShears"
+    }
+  ],
+  "result": {
+    "item": "minecraft:wool",
+    "count": 1,
+    "data": 12
+  }
+}

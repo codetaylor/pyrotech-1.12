@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityLlama;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
@@ -90,9 +91,43 @@ public class EntityLivingDropsEventHandler {
       SheepDropFactory.create((EntitySheep) entityLiving, capturedDrops);
     }
 
+    // Special llama handling
+    if (entityLiving instanceof EntityLlama) {
+      LlamaDropFactory.create((EntityLlama) entityLiving, capturedDrops);
+    }
+
     if (!capturedDrops.isEmpty()) {
       ItemStack itemStack = CarcassFactory.create(capturedDrops);
       drops.add(new EntityItem(entityLiving.world, entityLiving.posX, entityLiving.posY, entityLiving.posZ, itemStack));
+    }
+  }
+
+  private static class LlamaDropFactory {
+
+    private static void create(EntityLlama entityLlama, List<ItemStack> result) {
+
+      if (RandomHelper.random().nextFloat() > ModuleHuntingConfig.DROPS.LLAMA_PELT_CHANCE) {
+        return;
+      }
+
+      int variant = entityLlama.getVariant();
+
+      switch (variant) {
+        case 0: // creamy
+          result.add(new ItemStack(ModuleHunting.Items.PELT_LLAMA_CREAMY, ModuleHuntingConfig.DROPS.LLAMA_PELT_COUNT));
+          return;
+        case 1: // white
+          result.add(new ItemStack(ModuleHunting.Items.PELT_LLAMA_WHITE, ModuleHuntingConfig.DROPS.LLAMA_PELT_COUNT));
+          return;
+        case 2: // brown
+          result.add(new ItemStack(ModuleHunting.Items.PELT_LLAMA_BROWN, ModuleHuntingConfig.DROPS.LLAMA_PELT_COUNT));
+          return;
+        case 3: // gray
+          result.add(new ItemStack(ModuleHunting.Items.PELT_LLAMA_GRAY, ModuleHuntingConfig.DROPS.LLAMA_PELT_COUNT));
+          return;
+        default:
+          throw new RuntimeException("Unknown llama variant: " + variant);
+      }
     }
   }
 

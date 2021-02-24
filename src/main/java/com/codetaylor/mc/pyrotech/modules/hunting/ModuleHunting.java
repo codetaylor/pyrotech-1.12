@@ -218,6 +218,21 @@ public class ModuleHunting
     @GameRegistry.ObjectHolder(ItemLeatherRepairKit.NAME)
     public static final ItemLeatherRepairKit LEATHER_REPAIR_KIT;
 
+    @GameRegistry.ObjectHolder(ItemPelt.NAME_LLAMA_WHITE)
+    public static final ItemPelt PELT_LLAMA_WHITE;
+
+    @GameRegistry.ObjectHolder(ItemPelt.NAME_LLAMA_CREAMY)
+    public static final ItemPelt PELT_LLAMA_CREAMY;
+
+    @GameRegistry.ObjectHolder(ItemPelt.NAME_LLAMA_GRAY)
+    public static final ItemPelt PELT_LLAMA_GRAY;
+
+    @GameRegistry.ObjectHolder(ItemPelt.NAME_LLAMA_BROWN)
+    public static final ItemPelt PELT_LLAMA_BROWN;
+
+    @GameRegistry.ObjectHolder(ItemHide.NAME_LLAMA)
+    public static final ItemHide HIDE_LLAMA;
+
     static {
       HIDE_PIG = null;
       HIDE_SHEEP_SHEARED = null;
@@ -256,6 +271,11 @@ public class ModuleHunting
       LEATHER_DURABLE_REPAIR_KIT = null;
       LEATHER_DURABLE_UPGRADE_KIT = null;
       LEATHER_REPAIR_KIT = null;
+      PELT_LLAMA_WHITE = null;
+      PELT_LLAMA_CREAMY = null;
+      PELT_LLAMA_GRAY = null;
+      PELT_LLAMA_BROWN = null;
+      HIDE_LLAMA = null;
     }
   }
 

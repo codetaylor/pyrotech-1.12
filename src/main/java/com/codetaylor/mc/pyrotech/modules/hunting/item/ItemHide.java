@@ -9,5 +9,6 @@ public class ItemHide
   public static final String NAME_SHEEP_SHEARED = "hide_sheep_sheared";
   public static final String NAME_WASHED = "hide_washed";
   public static final String NAME_SMALL_WASHED = "hide_small_washed";
+  public static final String NAME_LLAMA = "hide_llama";
 
 }

@@ -6,6 +6,7 @@ itemGroup.pyrotech=Pyrotech
 
 item.pyrotech.hide.pig.name=Pig Hide
 item.pyrotech.hide.sheep.sheared.name=Sheep Hide
+item.pyrotech.hide.llama.name=Llama Hide
 item.pyrotech.hide.scraped.name=Scraped Hide
 item.pyrotech.hide.small.scraped.name=Small Scraped Hide
 item.pyrotech.hide.washed.name=Washed Hide
@@ -32,6 +33,10 @@ item.pyrotech.pelt.sheep.cyan.name=Cyan Sheep Pelt
 item.pyrotech.pelt.sheep.brown.name=Brown Sheep Pelt
 item.pyrotech.pelt.sheep.blue.name=Blue Sheep Pelt
 item.pyrotech.pelt.sheep.black.name=Black Sheep Pelt
+item.pyrotech.pelt.llama.white.name=White Llama Pelt
+item.pyrotech.pelt.llama.creamy.name=Creamy Llama Pelt
+item.pyrotech.pelt.llama.gray.name=Gray Llama Pelt
+item.pyrotech.pelt.llama.brown.name=Brown Llama Pelt
 
 item.pyrotech.bone.hunting.knife.name=Bone Hunting Knife
 item.pyrotech.flint.hunting.knife.name=Flint Hunting Knife

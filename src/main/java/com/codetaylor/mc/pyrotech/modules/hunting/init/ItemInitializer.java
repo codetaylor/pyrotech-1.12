@@ -20,6 +20,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemHide(), ItemHide.NAME_SHEEP_SHEARED);
     registry.registerItem(new ItemHide(), ItemHide.NAME_WASHED);
     registry.registerItem(new ItemHide(), ItemHide.NAME_SMALL_WASHED);
+    registry.registerItem(new ItemHide(), ItemHide.NAME_LLAMA);
 
     registry.registerItem(new ItemHideScraped(), ItemHideScraped.NAME);
     registry.registerItem(new ItemHideSmallScraped(), ItemHideSmallScraped.NAME);
@@ -45,6 +46,11 @@ public final class ItemInitializer {
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_SHEEP_BROWN);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_SHEEP_BLUE);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_SHEEP_BLACK);
+
+    registry.registerItem(new ItemPelt(), ItemPelt.NAME_LLAMA_WHITE);
+    registry.registerItem(new ItemPelt(), ItemPelt.NAME_LLAMA_CREAMY);
+    registry.registerItem(new ItemPelt(), ItemPelt.NAME_LLAMA_GRAY);
+    registry.registerItem(new ItemPelt(), ItemPelt.NAME_LLAMA_BROWN);
 
     registry.registerItem(new ItemHuntingKnife(EnumMaterial.BONE.getToolMaterial(), ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("bone")), ItemHuntingKnife.BONE_NAME);
     registry.registerItem(new ItemHuntingKnife(EnumMaterial.FLINT.getToolMaterial(), ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("flint")), ItemHuntingKnife.FLINT_NAME);
@@ -101,7 +107,12 @@ public final class ItemInitializer {
           ModuleHunting.Items.HIDE_SMALL_SCRAPED,
           ModuleHunting.Items.LEATHER_DURABLE_REPAIR_KIT,
           ModuleHunting.Items.LEATHER_DURABLE_UPGRADE_KIT,
-          ModuleHunting.Items.LEATHER_REPAIR_KIT
+          ModuleHunting.Items.LEATHER_REPAIR_KIT,
+          ModuleHunting.Items.PELT_LLAMA_WHITE,
+          ModuleHunting.Items.PELT_LLAMA_CREAMY,
+          ModuleHunting.Items.PELT_LLAMA_GRAY,
+          ModuleHunting.Items.PELT_LLAMA_BROWN,
+          ModuleHunting.Items.HIDE_LLAMA
       );
     });
   }
