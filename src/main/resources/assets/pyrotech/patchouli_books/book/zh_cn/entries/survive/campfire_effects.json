@@ -1,11 +1,11 @@
 {
-  "name": "Campfire Effects",
+  "name": "篝火效果",
   "icon": "pyrotech:campfire",
   "category": "survive",
   "pages": [
     {
       "type": "image",
-      "title": "Campfire Effects",
+      "title": "篝火效果",
       "border": false,
       "images": [
         "pyrotech:textures/gui/book/photo/campfire_effects_progression_00.png"
@@ -13,19 +13,19 @@
     },
     {
       "type": "campfire_effect",
-      "title": "Comfortable",
+      "title": "舒适",
       "image": "pyrotech:textures/potions/comfort.png",
-      "text": "Stand within range of a campfire at night to gain the $(thing)Comfortable$() effect.$(p)$(info) The $(thing)Comfortable$() effect increases the effect of eating.$(p)$(warning) This effect will disappear if hostile mobs are nearby."
+      "text": "在晚上时，站在篝火旁一定范围来获得$(thing)舒适$()效果。$(p)$(info)$(thing)舒适$()效果使进食的回复效果更好。$(p)$(warning)如果敌对生物在附近，这个效果就会消失。"
     },
     {
       "type": "campfire_effect",
-      "title": "Well Fed",
+      "title": "吃饱喝足",
       "image": "pyrotech:textures/potions/well_fed.png",
-      "text": "Eat a lot of food with the $(thing)Comfortable$() effect to gain the $(thing)Well Fed$() effect.$(p)$(info) The $(thing)Well Fed$() effect increases your stamina.$(p)$(warning) This effect will disappear over time."
+      "text": "在有$(thing)舒适$()效果时吃很多食物即可获得$(thing)吃饱喝足$()效果。$(p)$(info)$(thing)吃饱喝足$()效果会增加你的耐力。$(p)$(warning)这个效果会在效果时间结束后消失。"
     },
     {
       "type": "campfire_effect",
-      "title": "Resting",
+      "title": "小憩",
       "image": "pyrotech:textures/potions/resting.png",
       "text": "Stand still within range of a campfire at night to gain the $(thing)Resting$() effect.$(p)$(info) The $(thing)Resting$() effect slowly regenerates health.$(p)$(info) Continue standing still to increase the level of $(thing)Resting$().$(p)$(warning) This effect will disappear if hostile mobs are nearby."
     },
