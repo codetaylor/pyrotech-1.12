@@ -33,13 +33,13 @@
       "type": "campfire_effect",
       "title": "精力充沛",
       "image": "pyrotech:textures/potions/well_rested.png",
-      "text": "在有$(thing)小憩$()效果时一直站在篝火旁就能获得$(thing)精力充沛$()效果。$(p)$(info)$(thing)精力充沛$()增加两颗心的“专心致志”生命值。$(p)$(warning)这个效果会在效果时间结束后消失。"
+      "text": "在有$(thing)小憩$()效果时站在篝火旁不动就能获得$(thing)精力充沛$()效果。$(p)$(info)$(thing)精力充沛$()增加两颗心的“专心致志”生命值。$(p)$(warning)这个效果会在效果时间结束后消失。"
     },
     {
       "type": "campfire_effect",
-      "title": "Focused",
+      "title": "聚精会神",
       "image": "pyrotech:textures/potions/focused.png",
-      "text": "Stand still with all effects to increase the $(thing)Focused$() effect duration.$(p)$(info) The $(thing)Focused$() effect increases experience gained.$(p)$(warning) This effect will disappear as you gain experience."
+      "text": "在有所有篝火效果时站着不动来增加$(thing)聚精会神$()效果的持续时间。$(p)$(info)$(thing)聚精会神$()效果会增加获得的经验。$(p)$(warning)当你获得经验时，这个效果就会消失。"
     }
   ]
 }
