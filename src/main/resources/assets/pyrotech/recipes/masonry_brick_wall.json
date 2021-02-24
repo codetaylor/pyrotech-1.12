@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "pyrotech:masonry_brick_block"
+    }
+  },
+  "result": {
+    "item": "pyrotech:masonry_brick_wall",
+    "count": 6
+  }
+}
