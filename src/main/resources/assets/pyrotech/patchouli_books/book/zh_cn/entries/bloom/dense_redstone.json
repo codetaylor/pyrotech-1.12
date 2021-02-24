@@ -1,5 +1,5 @@
 {
-  "name": "Redstone, Dense",
+  "name": "致密红石",
   "icon": "pyrotech:material:36",
   "category": "bloom",
   "pages": [
@@ -7,12 +7,12 @@
       "type": "spotlight",
       "item": "pyrotech:material:36",
       "link_recipe": true,
-      "text": "$(item)Dense Redstone$() can be found by harvesting $(item)Dense Redstone Ore$() deposits with, at minimum, an $(thing)Iron-Tier Pickaxe$().$(p)$(info) $(thing)Tools$() made from $(item)Dense Redstone$() have unique properties."
+      "text": "$(item)致密红石$()可以通过挖掘$(item)致密红石矿石$()获得，至少需要$(thing)相当于铁镐的镐子$()以开采。$(p)$(info)用$(item)致密红石$()制作的$(thing)工具$()有独特的属性。"
     },
     {
       "type": "rt_anvil_recipe",
       "recipe": "pyrotech:redstone_dust_from_dense_redstone",
-      "text": "$(item)Dense Redstone$() can be smashed with a hammer on an $(item)Anvil$() to procure $(item)Redstone$()."
+      "text": "$(item)致密红石$()用锤在$(item)砧$()上砸成$(item)红石$()。"
     },
     {
       "type": "relations",
