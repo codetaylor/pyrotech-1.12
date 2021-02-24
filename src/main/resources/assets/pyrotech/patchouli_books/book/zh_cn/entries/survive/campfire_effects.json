@@ -31,9 +31,9 @@
     },
     {
       "type": "campfire_effect",
-      "title": "Well Rested",
+      "title": "精力充沛",
       "image": "pyrotech:textures/potions/well_rested.png",
-      "text": "Stand still with the $(thing)Resting$() effect to gain the $(thing)Well Rested$() effect.$(p)$(info) The $(thing)Well Rested$() effect adds two absorption hearts.$(p)$(warning) This effect will disappear over time."
+      "text": "在有$(thing)小憩$()效果时一直站在篝火旁就能获得$(thing)精力充沛$()效果。$(p)$(info)$(thing)精力充沛$()增加两颗心的“专心致志”生命值。$(p)$(warning)这个效果会在效果时间结束后消失。"
     },
     {
       "type": "campfire_effect",
