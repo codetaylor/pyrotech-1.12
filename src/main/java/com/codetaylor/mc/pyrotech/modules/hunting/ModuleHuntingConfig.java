@@ -88,6 +88,7 @@ public class ModuleHuntingConfig {
         "Meta is optional and defaults to 0.",
         "",
         "Sheep require special handling and aren't processed using the drop map.",
+        "Llamas require special handling and aren't processed using the drop map.",
         "",
         "String key format is (domain):(path)",
         "String value format is (domain):(path):(meta);(count);(chance)",
@@ -103,6 +104,7 @@ public class ModuleHuntingConfig {
       this.put("minecraft:horse", "pyrotech:pelt_horse:0;1;0.85&minecraft:bone:0;1;0.50");
       this.put("minecraft:donkey", "pyrotech:pelt_horse:0;1;0.85&minecraft:bone:0;1;0.50");
       this.put("minecraft:rabbit", "minecraft:rabbit_hide:0;1;0.65&minecraft:bone:0;1;0.25");
+      this.put("minecraft:wolf", "pyrotech:pelt_wolf:0;1;0.85&minecraft:bone:0;1;0.50");
     }};
 
     @Config.Comment({

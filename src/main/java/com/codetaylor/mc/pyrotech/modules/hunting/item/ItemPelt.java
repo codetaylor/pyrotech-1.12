@@ -10,6 +10,7 @@ public class ItemPelt
   public static final String NAME_POLAR_BEAR = "pelt_polar_bear";
   public static final String NAME_BAT = "pelt_bat";
   public static final String NAME_HORSE = "pelt_horse";
+  public static final String NAME_WOLF = "pelt_wolf";
 
   public static final String NAME_SHEEP_YELLOW = "pelt_sheep_yellow";
   public static final String NAME_SHEEP_WHITE = "pelt_sheep_white";

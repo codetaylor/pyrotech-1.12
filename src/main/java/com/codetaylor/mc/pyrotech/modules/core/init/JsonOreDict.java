@@ -220,7 +220,8 @@ public class JsonOreDict {
         "pyrotech:" + ItemPelt.NAME_LLAMA_WHITE,
         "pyrotech:" + ItemPelt.NAME_LLAMA_CREAMY,
         "pyrotech:" + ItemPelt.NAME_LLAMA_GRAY,
-        "pyrotech:" + ItemPelt.NAME_LLAMA_BROWN
+        "pyrotech:" + ItemPelt.NAME_LLAMA_BROWN,
+        "pyrotech:" + ItemPelt.NAME_WOLF
     });
 
     result.oreDict.put("hideSmallScrapeable", new String[]{

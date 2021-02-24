@@ -150,6 +150,7 @@
             * `pyrotech:pelt_llama_creamy`
             * `pyrotech:pelt_llama_gray`
             * `pyrotech:pelt_llama_brown`
+            * `pyrotech:pelt_wolf`
         * `hideSmallScrapeable` now contains:
             * `pyrotech:pelt_bat`
             * `minecraft:rabbit_hide`
@@ -264,6 +265,7 @@
         * `item.pyrotech.pelt.llama.creamy.name`
         * `item.pyrotech.pelt.llama.gray.name`
         * `item.pyrotech.pelt.llama.brown.name`
+        * `item.pyrotech.pelt.wolf.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

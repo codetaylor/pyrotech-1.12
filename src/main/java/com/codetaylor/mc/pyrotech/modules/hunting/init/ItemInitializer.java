@@ -30,6 +30,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_POLAR_BEAR);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_BAT);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_HORSE);
+    registry.registerItem(new ItemPelt(), ItemPelt.NAME_WOLF);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_SHEEP_YELLOW);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_SHEEP_WHITE);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_SHEEP_GRAY_LIGHT);
@@ -78,6 +79,7 @@ public final class ItemInitializer {
           ModuleHunting.Items.PELT_POLAR_BEAR,
           ModuleHunting.Items.PELT_BAT,
           ModuleHunting.Items.PELT_HORSE,
+          ModuleHunting.Items.PELT_WOLF,
           ModuleHunting.Items.PELT_SHEEP_YELLOW,
           ModuleHunting.Items.PELT_SHEEP_WHITE,
           ModuleHunting.Items.PELT_SHEEP_GRAY_LIGHT,

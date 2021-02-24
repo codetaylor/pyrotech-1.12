@@ -233,6 +233,9 @@ public class ModuleHunting
     @GameRegistry.ObjectHolder(ItemHide.NAME_LLAMA)
     public static final ItemHide HIDE_LLAMA;
 
+    @GameRegistry.ObjectHolder(ItemPelt.NAME_WOLF)
+    public static final ItemPelt PELT_WOLF;
+
     static {
       HIDE_PIG = null;
       HIDE_SHEEP_SHEARED = null;
@@ -276,6 +279,7 @@ public class ModuleHunting
       PELT_LLAMA_GRAY = null;
       PELT_LLAMA_BROWN = null;
       HIDE_LLAMA = null;
+      PELT_WOLF = null;
     }
   }
 
