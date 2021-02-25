@@ -134,6 +134,7 @@ tile.pyrotech.soaking_pot.name=浸泡壶
 tile.pyrotech.compost_bin.name=Compost Bin
 tile.pyrotech.barrel.name=Barrel
 tile.pyrotech.barrel_sealed.name=Sealed Barrel
+tile.pyrotech.tanning_rack.name=Tanning Rack
 
 gui.pyrotech.marshmallow.burned.broadcast.message=%s burned a marshmallow!
 gui.pyrotech.marshmallow.burned.eat.broadcast.message=%s ate a burned marshmallow, gross!

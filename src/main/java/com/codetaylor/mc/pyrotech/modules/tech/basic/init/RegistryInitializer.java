@@ -78,6 +78,12 @@ public final class RegistryInitializer {
         .allowModification()
         .create();
 
+    new RegistryBuilder<TanningRackRecipe>()
+        .setName(new ResourceLocation(ModuleTechBasic.MOD_ID, "tanning_rack_recipe"))
+        .setType(TanningRackRecipe.class)
+        .allowModification()
+        .create();
+
     // --- Injection
 
     Injector injector = new Injector();
@@ -136,6 +142,11 @@ public final class RegistryInitializer {
         ModuleTechBasic.Registries.class,
         "BARREL_RECIPE",
         GameRegistry.findRegistry(BarrelRecipe.class)
+    );
+    injector.inject(
+        ModuleTechBasic.Registries.class,
+        "TANNING_RACK_RECIPE",
+        GameRegistry.findRegistry(TanningRackRecipe.class)
     );
   }
 

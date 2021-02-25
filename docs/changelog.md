@@ -54,6 +54,7 @@
         * Refractory Brick Wall
     * Valid refractory blocks:
         * Double Refractory Brick Slab
+    * Tanning Rack
     * Barrel:
         * Barrel Lid
         * Barrel
@@ -266,6 +267,7 @@
         * `item.pyrotech.pelt.llama.gray.name`
         * `item.pyrotech.pelt.llama.brown.name`
         * `item.pyrotech.pelt.wolf.name`
+        * `tile.pyrotech.tanning_rack.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

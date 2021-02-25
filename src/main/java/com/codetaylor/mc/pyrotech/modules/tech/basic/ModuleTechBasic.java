@@ -158,6 +158,7 @@ public class ModuleTechBasic
     CampfireRecipesAdd.apply(ModuleTechBasic.Registries.CAMPFIRE_RECIPE);
     CompostBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPOST_BIN_RECIPE);
     BarrelRecipesAdd.apply(ModuleTechBasic.Registries.BARREL_RECIPE);
+    TanningRackRecipesAdd.apply(ModuleTechBasic.Registries.TANNING_RACK_RECIPE);
 
     DryingRackRecipesAdd.registerInheritedRecipes(Registries.CRUDE_DRYING_RACK_RECIPE, Registries.DRYING_RACK_RECIPE);
     AnvilIroncladRecipesAdd.registerInheritedRecipes(Registries.ANVIL_RECIPE);
@@ -254,6 +255,9 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(BlockBarrel.NAME_SEALED)
     public static final BlockBarrel BARREL_SEALED;
 
+    @GameRegistry.ObjectHolder(BlockTanningRack.NAME)
+    public static final BlockTanningRack TANNING_RACK;
+
     static {
       KILN_PIT = null;
       CAMPFIRE = null;
@@ -268,6 +272,7 @@ public class ModuleTechBasic
       COMPOST_BIN = null;
       BARREL = null;
       BARREL_SEALED = null;
+      TANNING_RACK = null;
     }
   }
 
@@ -319,6 +324,7 @@ public class ModuleTechBasic
     public static final IForgeRegistryModifiable<WorktableRecipe> WORKTABLE_RECIPE;
     public static final IForgeRegistryModifiable<SoakingPotRecipe> SOAKING_POT_RECIPE;
     public static final IForgeRegistryModifiable<BarrelRecipe> BARREL_RECIPE;
+    public static final IForgeRegistryModifiable<TanningRackRecipe> TANNING_RACK_RECIPE;
 
     static {
       KILN_PIT_RECIPE = null;
@@ -332,6 +338,7 @@ public class ModuleTechBasic
       WORKTABLE_RECIPE = null;
       SOAKING_POT_RECIPE = null;
       BARREL_RECIPE = null;
+      TANNING_RACK_RECIPE = null;
     }
   }
 }

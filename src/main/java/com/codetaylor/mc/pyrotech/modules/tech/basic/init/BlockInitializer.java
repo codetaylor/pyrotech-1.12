@@ -38,6 +38,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockSoakingPot(), BlockSoakingPot.NAME);
     registry.registerBlockWithItem(new BlockCompostBin(), BlockCompostBin.NAME);
     registry.registerBlockWithItem(new BlockBarrel(false), BlockBarrel.NAME);
+    registry.registerBlockWithItem(new BlockTanningRack(), BlockTanningRack.NAME);
 
     {
       BlockBarrel block = new BlockBarrel(true);
@@ -59,7 +60,8 @@ public final class BlockInitializer {
         TileCompactingBin.class,
         TileSoakingPot.class,
         TileCompostBin.class,
-        TileBarrel.class
+        TileBarrel.class,
+        TileTanningRack.class
     );
   }
 
@@ -75,7 +77,8 @@ public final class BlockInitializer {
           ModuleTechBasic.Blocks.SOAKING_POT,
           ModuleTechBasic.Blocks.COMPOST_BIN,
           ModuleTechBasic.Blocks.BARREL,
-          ModuleTechBasic.Blocks.BARREL_SEALED
+          ModuleTechBasic.Blocks.BARREL_SEALED,
+          ModuleTechBasic.Blocks.TANNING_RACK
       );
 
       // Pit Kiln
@@ -127,6 +130,7 @@ public final class BlockInitializer {
       ClientRegistry.bindTileEntitySpecialRenderer(TileSoakingPot.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileCompostBin.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileTanningRack.class, new TESRInteractable<>());
     });
   }
 

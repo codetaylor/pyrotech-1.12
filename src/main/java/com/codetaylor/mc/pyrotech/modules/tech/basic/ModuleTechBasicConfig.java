@@ -62,6 +62,9 @@ public class ModuleTechBasicConfig {
   @Config.Ignore
   public static Stages STAGES_BARREL = null;
 
+  @Config.Ignore
+  public static Stages STAGES_TANNING_RACK = null;
+
   // ---------------------------------------------------------------------------
   // - Worktable Common
   // ---------------------------------------------------------------------------
@@ -454,6 +457,24 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeInt(min = 0, max = 20)
     public int MINIMUM_HUNGER_TO_USE = 3;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Tanning Rack
+  // ---------------------------------------------------------------------------
+
+  public static TanningRack TANNING_RACK = new TanningRack();
+
+  public static class TanningRack {
+
+    @Config.Comment({
+        "Multiplicative modifier applied to every recipe in this device.",
+        "recipeDurationTicks = recipeDurationTicks * BASE_RECIPE_DURATION_MODIFIER",
+        "Default: " + 1
+    })
+    @Config.RangeDouble(min = 0)
+    public double BASE_RECIPE_DURATION_MODIFIER = 1;
+
   }
 
   // ---------------------------------------------------------------------------
