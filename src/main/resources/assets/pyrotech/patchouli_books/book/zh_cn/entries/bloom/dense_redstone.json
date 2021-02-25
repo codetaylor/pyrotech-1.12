@@ -12,7 +12,7 @@
     {
       "type": "rt_anvil_recipe",
       "recipe": "pyrotech:redstone_dust_from_dense_redstone",
-      "text": "$(item)致密红石$()用锤在$(item)砧$()上砸成$(item)红石$()。"
+      "text": "$(item)致密红石$()可以用锤在$(item)砧$()上砸成$(item)红石$()。"
     },
     {
       "type": "relations",
