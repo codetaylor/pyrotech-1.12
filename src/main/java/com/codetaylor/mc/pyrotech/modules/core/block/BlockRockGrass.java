@@ -30,7 +30,7 @@ public class BlockRockGrass
 
   public BlockRockGrass() {
 
-    super(Material.GROUND);
+    super(Material.PLANTS);
     this.setHardness(0.1f);
     this.setSoundType(SoundType.PLANT);
     this.setTickRandomly(true);

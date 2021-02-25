@@ -171,6 +171,7 @@
             * `pyrotech:leather_durable_repair_kit:*`
 
   * **Changed:**
+    * Rocks material type is now `Material.PLANTS` so they wash away with water [(#347)](https://github.com/codetaylor/pyrotech-1.12/issues/347)
     * Leather armor recipes now use new leather materials
     * Bellows recipe now uses new leather materials
     * Rock Bag recipe now uses new leather materials

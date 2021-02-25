@@ -28,7 +28,7 @@ public class BlockRockNetherrack
 
   public BlockRockNetherrack() {
 
-    super(Material.ROCK);
+    super(Material.PLANTS);
     this.setHardness(0.1f);
     this.setSoundType(SoundType.STONE);
     this.setTickRandomly(true);

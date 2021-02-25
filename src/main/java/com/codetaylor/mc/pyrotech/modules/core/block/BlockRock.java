@@ -41,7 +41,7 @@ public class BlockRock //'n beats
 
   public BlockRock() {
 
-    super(Material.GROUND);
+    super(Material.PLANTS);
     this.setHardness(0.1f);
     this.setSoundType(SoundType.STONE);
   }
