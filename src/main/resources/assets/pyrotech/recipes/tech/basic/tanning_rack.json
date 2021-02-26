@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "sSs",
+    "SsS",
+    "LSL"
+  ],
+  "key": {
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "s": {
+      "type": "forge:ore_dict",
+      "ore": "twine"
+    }
+  },
+  "result": {
+    "item": "pyrotech:tanning_rack",
+    "count": 1
+  }
+}
