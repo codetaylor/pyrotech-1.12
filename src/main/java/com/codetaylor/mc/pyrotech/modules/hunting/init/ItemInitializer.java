@@ -21,6 +21,8 @@ public final class ItemInitializer {
     registry.registerItem(new ItemHide(), ItemHide.NAME_WASHED);
     registry.registerItem(new ItemHide(), ItemHide.NAME_SMALL_WASHED);
     registry.registerItem(new ItemHide(), ItemHide.NAME_LLAMA);
+    registry.registerItem(new ItemHide(), ItemHide.NAME_TANNED);
+    registry.registerItem(new ItemHide(), ItemHide.NAME_SMALL_TANNED);
 
     registry.registerItem(new ItemHideScraped(), ItemHideScraped.NAME);
     registry.registerItem(new ItemHideSmallScraped(), ItemHideSmallScraped.NAME);
@@ -114,7 +116,9 @@ public final class ItemInitializer {
           ModuleHunting.Items.PELT_LLAMA_CREAMY,
           ModuleHunting.Items.PELT_LLAMA_GRAY,
           ModuleHunting.Items.PELT_LLAMA_BROWN,
-          ModuleHunting.Items.HIDE_LLAMA
+          ModuleHunting.Items.HIDE_LLAMA,
+          ModuleHunting.Items.HIDE_TANNED,
+          ModuleHunting.Items.HIDE_SMALL_TANNED
       );
     });
   }

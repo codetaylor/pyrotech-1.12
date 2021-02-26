@@ -10,5 +10,7 @@ public class ItemHide
   public static final String NAME_WASHED = "hide_washed";
   public static final String NAME_SMALL_WASHED = "hide_small_washed";
   public static final String NAME_LLAMA = "hide_llama";
+  public static final String NAME_TANNED = "hide_tanned";
+  public static final String NAME_SMALL_TANNED = "hide_small_tanned";
 
 }

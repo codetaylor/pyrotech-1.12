@@ -19,6 +19,8 @@
         * Diamond Hunting Knife
         * Obsidian Hunting Knife
     * Hides:
+        * Tanned Hide
+        * Small Tanned Hide
         * Scraped Hide
         * Small Scraped Hide
         * Washed Hide
@@ -269,6 +271,8 @@
         * `item.pyrotech.pelt.llama.brown.name`
         * `item.pyrotech.pelt.wolf.name`
         * `tile.pyrotech.tanning_rack.name`
+        * `item.pyrotech.hide.tanned.name`
+        * `item.pyrotech.hide.small.tanned.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
