@@ -26,6 +26,7 @@ public class PluginTOP {
       top.registerProvider(new WorktableProvider());
       top.registerProvider(new CompostBinProvider());
       top.registerProvider(new BarrelProvider());
+      top.registerProvider(new TanningRackProvider());
       return null;
     }
   }

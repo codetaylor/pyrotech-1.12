@@ -22,5 +22,6 @@ public class PluginWaila {
     registrar.registerBodyProvider(new SoakingPotProvider(), TileSoakingPot.class);
     registrar.registerBodyProvider(new CompostBinProvider(), TileCompostBin.class);
     registrar.registerBodyProvider(new BarrelProvider(), TileBarrel.class);
+    registrar.registerBodyProvider(new TanningRackProvider(), TileTanningRack.class);
   }
 }

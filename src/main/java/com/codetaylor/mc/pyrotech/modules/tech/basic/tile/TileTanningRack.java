@@ -92,6 +92,16 @@ public class TileTanningRack
     return this.outputStackHandler;
   }
 
+  public float getRecipeProgress() {
+
+    return this.recipeProgress.get();
+  }
+
+  public TanningRackRecipe getCurrentRecipe() {
+
+    return this.currentRecipe;
+  }
+
   // ---------------------------------------------------------------------------
   // - Update
   // ---------------------------------------------------------------------------
@@ -235,7 +245,7 @@ public class TileTanningRack
       super(
           new ItemStackHandler[]{stackHandler},
           0,
-          new EnumFacing[]{EnumFacing.NORTH},
+          EnumFacing.VALUES,
           BlockTanningRack.AABB_NORTH_SOUTH,
           new Transform(
               Transform.translate(0.5, 0.525, 0.475),
@@ -267,7 +277,7 @@ public class TileTanningRack
       super(
           new ItemStackHandler[]{stackHandler},
           0,
-          new EnumFacing[]{EnumFacing.NORTH},
+          EnumFacing.VALUES,
           BlockTanningRack.AABB_NORTH_SOUTH,
           new Transform(
               Transform.translate(0.5, 0.525, 0.475),
