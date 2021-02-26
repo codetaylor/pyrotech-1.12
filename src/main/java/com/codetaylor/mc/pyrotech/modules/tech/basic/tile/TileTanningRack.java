@@ -11,9 +11,12 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.util.ParticleHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockTanningRack;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.TanningRackRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -42,6 +45,7 @@ public class TileTanningRack
   private final IInteraction<?>[] interactions;
 
   private TanningRackRecipe currentRecipe;
+  private int rainTicks;
 
   public TileTanningRack() {
 
@@ -95,7 +99,55 @@ public class TileTanningRack
   @Override
   public void update() {
 
-    // TODO
+    if (this.world.isRemote) {
+
+      if (ModuleCoreConfig.CLIENT.SHOW_RECIPE_PROGRESSION_PARTICLES
+          && this.currentRecipe != null
+          && this.world.getTotalWorldTime() % 40 == 0
+          && !(ModuleTechBasicConfig.TANNING_RACK.RECIPE_RUIN_RAIN_TICKS >= 0 && this.world.isRainingAt(this.pos.up()))
+          && this.world.canSeeSky(this.pos)
+          && (this.world.getWorldTime() >= 0 && this.world.getWorldTime() <= 12000)) {
+
+        ParticleHelper.spawnProgressParticlesClient(
+            1,
+            this.pos.getX() + 0.5, this.pos.getY() + 0.85, this.pos.getZ() + 0.5,
+            0.5, 0.25, 0.5
+        );
+      }
+      return;
+    }
+
+    if (this.currentRecipe != null
+        && this.world.canSeeSky(this.pos)) {
+
+      if (ModuleTechBasicConfig.TANNING_RACK.RECIPE_RUIN_RAIN_TICKS >= 0
+          && this.world.isRainingAt(this.pos.up())) {
+
+        this.rainTicks += 1;
+
+        if (this.rainTicks >= ModuleTechBasicConfig.TANNING_RACK.RECIPE_RUIN_RAIN_TICKS) {
+          this.outputStackHandler.setStackInSlot(0, this.currentRecipe.getRainFailureItem());
+          this.inputStackHandler.extractItem(0, 1, false);
+          this.recipeProgress.set(0);
+          this.updateRecipe();
+        }
+
+      } else if (this.world.getWorldTime() >= 0 && this.world.getWorldTime() <= 12000) {
+        int timeTicks = Math.max(1, this.currentRecipe.getTimeTicks());
+        float increment = 1.0f / timeTicks;
+        this.recipeProgress.add(increment);
+
+        if (this.recipeProgress.get() >= 0.9999) {
+          this.outputStackHandler.setStackInSlot(0, this.currentRecipe.getOutput());
+          this.inputStackHandler.extractItem(0, 1, false);
+          this.recipeProgress.set(0);
+          this.updateRecipe();
+        }
+      }
+
+    } else {
+      this.recipeProgress.set(0);
+    }
   }
 
   private void updateRecipe() {

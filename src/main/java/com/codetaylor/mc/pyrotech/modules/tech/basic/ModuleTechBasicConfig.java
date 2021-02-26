@@ -475,6 +475,13 @@ public class ModuleTechBasicConfig {
     @Config.RangeDouble(min = 0)
     public double BASE_RECIPE_DURATION_MODIFIER = 1;
 
+    @Config.Comment({
+        "Number of rain ticks before the recipe is ruined.",
+        "Set to -1 to disable.",
+        "Default: " + (2 * 60 * 20)
+    })
+    @Config.RangeInt(min = -1)
+    public int RECIPE_RUIN_RAIN_TICKS = 2 * 60 * 20;
   }
 
   // ---------------------------------------------------------------------------
