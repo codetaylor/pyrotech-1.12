@@ -25,7 +25,7 @@ public class SoakingPotRecipesAdd {
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleHunting.class)) {
       // Leather
       registry.register(new SoakingPotRecipe(
-          new ItemStack(Items.LEATHER),
+          new ItemStack(ModuleHunting.Items.HIDE_TANNED),
           Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_WASHED)),
           new FluidStack(ModuleHunting.Fluids.TANNIN, 500),
           true,
@@ -34,7 +34,7 @@ public class SoakingPotRecipesAdd {
 
       // Small Leather
       registry.register(new SoakingPotRecipe(
-          ItemMaterial.EnumType.LEATHER_SMALL.asStack(),
+          new ItemStack(ModuleHunting.Items.HIDE_SMALL_TANNED),
           Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_SMALL_WASHED)),
           new FluidStack(ModuleHunting.Fluids.TANNIN, 250),
           true,
