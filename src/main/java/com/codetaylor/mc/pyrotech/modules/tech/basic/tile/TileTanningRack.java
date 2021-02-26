@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
-import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
@@ -21,13 +20,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.function.BooleanSupplier;
 
 public class TileTanningRack
     extends TileEntityDataBase
@@ -70,7 +69,7 @@ public class TileTanningRack
     // --- Interactions
 
     this.interactions = new IInteraction[]{
-        new InputInteraction(this.inputStackHandler),
+        new InputInteraction(this.inputStackHandler, () -> this.outputStackHandler.getStackInSlot(0).isEmpty()),
         new OutputInteraction(this.outputStackHandler)
     };
   }
@@ -177,31 +176,34 @@ public class TileTanningRack
   private static class InputInteraction
       extends InteractionItemStack<TileTanningRack> {
 
-    public InputInteraction(ItemStackHandler stackHandler) {
+    private final BooleanSupplier isEnabled;
+
+    public InputInteraction(ItemStackHandler stackHandler, BooleanSupplier isEnabled) {
 
       super(
           new ItemStackHandler[]{stackHandler},
           0,
           new EnumFacing[]{EnumFacing.NORTH},
-          InteractionBounds.BLOCK,
+          BlockTanningRack.AABB_NORTH_SOUTH,
           new Transform(
               Transform.translate(0.5, 0.525, 0.475),
               Transform.rotate(1, 0, 0, 22.5),
               Transform.scale(0.75, 0.75, 0.75)
           )
       );
-    }
-
-    @Override
-    public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
-
-      return ModuleTechBasic.Blocks.TANNING_RACK.getBoundingBox(blockState, world, pos);
+      this.isEnabled = isEnabled;
     }
 
     @Override
     public boolean isItemStackValid(ItemStack itemStack) {
 
       return (TanningRackRecipe.getRecipe(itemStack) != null);
+    }
+
+    @Override
+    public boolean isEnabled() {
+
+      return this.isEnabled.getAsBoolean();
     }
   }
 
@@ -214,19 +216,13 @@ public class TileTanningRack
           new ItemStackHandler[]{stackHandler},
           0,
           new EnumFacing[]{EnumFacing.NORTH},
-          InteractionBounds.BLOCK,
+          BlockTanningRack.AABB_NORTH_SOUTH,
           new Transform(
               Transform.translate(0.5, 0.525, 0.475),
               Transform.rotate(1, 0, 0, 22.5),
               Transform.scale(0.75, 0.75, 0.75)
           )
       );
-    }
-
-    @Override
-    public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
-
-      return ModuleTechBasic.Blocks.TANNING_RACK.getBoundingBox(blockState, world, pos);
     }
 
     @Override
