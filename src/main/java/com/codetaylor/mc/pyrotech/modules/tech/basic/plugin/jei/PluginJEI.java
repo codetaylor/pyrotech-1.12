@@ -66,7 +66,8 @@ public class PluginJEI
         new JEIRecipeCategoryWorktable(guiHelper),
         new JEIRecipeCategorySoakingPot(guiHelper),
         new JEIRecipeCategoryCompostBin(guiHelper),
-        new JEIRecipeCategoryBarrel(guiHelper)
+        new JEIRecipeCategoryBarrel(guiHelper),
+        new JEIRecipeCategoryTanningRack(guiHelper)
     );
   }
 
@@ -233,6 +234,14 @@ public class PluginJEI
       registry.handleRecipes(DryingRackRecipe.class, JEIRecipeWrapperDryingRack::new, JEIRecipeCategoryDryingRack.UID);
       List<DryingRackRecipe> recipeList = new ArrayList<>(ModuleTechBasic.Registries.DRYING_RACK_RECIPE.getValuesCollection());
       registry.addRecipes(recipeList, JEIRecipeCategoryDryingRack.UID);
+    }
+
+    // --- Tanning Rack
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.TANNING_RACK, 1), JEIRecipeCategoryTanningRack.UID);
+      registry.handleRecipes(TanningRackRecipe.class, JEIRecipeWrapperTanningRack::new, JEIRecipeCategoryTanningRack.UID);
+      List<TanningRackRecipe> recipeList = new ArrayList<>(ModuleTechBasic.Registries.TANNING_RACK_RECIPE.getValuesCollection());
+      registry.addRecipes(recipeList, JEIRecipeCategoryTanningRack.UID);
     }
 
     // --- Pit Kiln

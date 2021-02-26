@@ -273,6 +273,7 @@
         * `tile.pyrotech.tanning_rack.name`
         * `item.pyrotech.hide.tanned.name`
         * `item.pyrotech.hide.small.tanned.name`
+        * `gui.pyrotech.jei.category.tanning.rack`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
