@@ -55,6 +55,7 @@ public class TileTanningRack
     this.outputStackHandler = new OutputStackHandler();
 
     this.inputStackHandler.addObserver((stackHandler, slotIndex) -> {
+      this.rainTicks = 0;
       this.updateRecipe();
       this.markDirty();
     });
@@ -133,13 +134,15 @@ public class TileTanningRack
       if (ModuleTechBasicConfig.TANNING_RACK.RECIPE_RUIN_RAIN_TICKS >= 0
           && this.world.isRainingAt(this.pos.up())) {
 
-        this.rainTicks += 1;
+        if (this.currentRecipe.getRainFailureItem() != null) {
+          this.rainTicks += 1;
 
-        if (this.rainTicks >= ModuleTechBasicConfig.TANNING_RACK.RECIPE_RUIN_RAIN_TICKS) {
-          this.outputStackHandler.setStackInSlot(0, this.currentRecipe.getRainFailureItem());
-          this.inputStackHandler.extractItem(0, 1, false);
-          this.recipeProgress.set(0);
-          this.updateRecipe();
+          if (this.rainTicks >= ModuleTechBasicConfig.TANNING_RACK.RECIPE_RUIN_RAIN_TICKS) {
+            this.outputStackHandler.setStackInSlot(0, this.currentRecipe.getRainFailureItem());
+            this.inputStackHandler.extractItem(0, 1, false);
+            this.recipeProgress.set(0);
+            this.updateRecipe();
+          }
         }
 
       } else if (this.world.getWorldTime() >= 0 && this.world.getWorldTime() <= 12000) {

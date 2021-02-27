@@ -46,7 +46,7 @@ public class TanningRackRecipe
   public TanningRackRecipe(
       ItemStack output,
       Ingredient inputItem,
-      ItemStack rainFailureItem,
+      @Nullable ItemStack rainFailureItem,
       int timeTicks
   ) {
 
@@ -66,7 +66,12 @@ public class TanningRackRecipe
     return this.output.copy();
   }
 
+  @Nullable
   public ItemStack getRainFailureItem() {
+
+    if (this.rainFailureItem == null) {
+      return null;
+    }
 
     return this.rainFailureItem.copy();
   }
