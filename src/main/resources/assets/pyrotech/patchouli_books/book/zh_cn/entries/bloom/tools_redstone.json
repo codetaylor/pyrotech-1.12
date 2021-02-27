@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(info) $(thing)Redstone Tools$() are activated by taking damage or being near $(thing)Redstone Ore$().$(p)$(info) $(thing)Redstone Tools$() will slowly regain durability when near $(thing)Redstone Ore$().$(p)$(info) Active $(thing)Redstone Tools$() resist damage and are more likely to remain active by taking damage."
+      "text": "$(info) $(thing)红石工具$()会在耐久消耗或待在$(thing)红石矿石$()附近时被激活。$(p)$(info) $(thing)红石工具$()会在玩家待在$(thing)红石矿石$()附近时缓慢回复耐久。$(p)$(info) Active $(thing)Redstone Tools$() resist damage and are more likely to remain active by taking damage."
     },
     {
       "type": "crafting",
