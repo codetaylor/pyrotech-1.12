@@ -67,7 +67,8 @@ public class ModuleTechBasic
         "ZenWorktable",
         "ZenSoakingPot",
         "ZenCompostBin",
-        "ZenBarrel"
+        "ZenBarrel",
+        "ZenTanningRack"
     };
 
     for (String plugin : craftTweakerPlugins) {
