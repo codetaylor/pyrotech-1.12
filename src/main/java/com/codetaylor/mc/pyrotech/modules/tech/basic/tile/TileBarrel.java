@@ -613,7 +613,7 @@ public class TileBarrel
               world.setBlockToAir(pos);
               SoundHelper.playSoundServer(world, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
               FluidUtil.tryPlaceFluid(null, world, pos, this, resource);
-              ModuleStorage.PACKET_SERVICE.sendToAllAround(new SCPacketParticleCombust(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0.5, 0.5, 0.5), this.tile);
+              ModuleTechBasic.PACKET_SERVICE.sendToAllAround(new SCPacketParticleCombust(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0.5, 0.5, 0.5), this.tile);
             }
             world.checkLightFor(EnumSkyBlock.BLOCK, pos);
           }
