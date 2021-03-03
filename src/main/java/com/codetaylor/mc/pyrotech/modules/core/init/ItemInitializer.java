@@ -35,6 +35,9 @@ public final class ItemInitializer {
     registry.registerItem(new ItemObsidianHammer(), ItemObsidianHammer.NAME);
 
     registry.registerItem(new ItemBook(), ItemBook.NAME);
+
+    registry.registerItem(new ItemPyroberrySeeds(), ItemPyroberrySeeds.NAME);
+    registry.registerItem(new ItemPyroberries(), ItemPyroberries.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -63,7 +66,10 @@ public final class ItemInitializer {
           ModuleCore.Items.DIAMOND_HAMMER,
           ModuleCore.Items.OBSIDIAN_HAMMER,
 
-          ModuleCore.Items.BOOK
+          ModuleCore.Items.BOOK,
+
+          ModuleCore.Items.PYROBERRY_SEEDS,
+          ModuleCore.Items.PYROBERRIES
       );
 
       // Material

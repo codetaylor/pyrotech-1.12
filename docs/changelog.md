@@ -67,6 +67,9 @@
             * Unsealed Barrels in rain will convert non-water fluids to water over time
     * Fluids:
         * Tannin
+    * Pyroberry Bush
+        * Spawns in desert
+        * Drops Pyroberries when sheared at max growth stage
     * Ore Compat:
         * Bloom yield and slag bloom yield can now be adjusted in the ore compat json files [(#310)](https://github.com/codetaylor/pyrotech-1.12/issues/310)
     * Config option to:
@@ -274,6 +277,9 @@
         * `item.pyrotech.hide.tanned.name`
         * `item.pyrotech.hide.small.tanned.name`
         * `gui.pyrotech.jei.category.tanning.rack`
+        * `item.pyrotech.pyroberries.name`
+        * `tile.pyrotech.pyroberry_bush.name`
+        * `item.pyrotech.pyroberry.seeds.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

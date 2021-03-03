@@ -332,6 +332,8 @@ item.pyrotech.mushroom.brown.roasted.name=Обжаренные коричнев�
 item.pyrotech.mushroom.red.roasted.name=Обжаренные красные грибы
 item.pyrotech.beetroot.roasted.name=Обжаренная свекла
 item.pyrotech.strange.tuber.name=Strange Tuber
+item.pyrotech.pyroberries.name=Pyroberries
+item.pyrotech.pyroberry.seeds.name=Pyroberry Seeds
 
 item.pyrotech.crude.hammer.name=Примитивный молот
 item.pyrotech.stone.hammer.name=Каменный молот
@@ -374,6 +376,7 @@ tile.pyrotech.living_tar.name=Живая смола
 tile.pyrotech.dense_redstone_ore.name=Dense Redstone Ore
 tile.pyrotech.dense_quartz_ore.name=Dense Quartz Ore
 tile.pyrotech.straw_bed.name=Straw Bed
+tile.pyrotech.pyroberry_bush.name=Pyroberry Bush
 
 tile.pyrotech.rock_stone.name=Каменный булыжник
 tile.pyrotech.rock_andesite.name=Андезитовый булыжник

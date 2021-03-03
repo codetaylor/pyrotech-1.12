@@ -213,6 +213,22 @@ public class ModuleCoreConfig {
     @Config.Comment({
         "The amount of hunger healed by eating.",
         "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 2
+    })
+    @Config.RangeInt(min = 0)
+    public int PYROBERRIES_HUNGER = 2;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.1
+    })
+    @Config.RangeDouble(min = 0)
+    public double PYROBERRIES_SATURATION = 0.1;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
         "Default: " + 6
     })
     @Config.RangeInt(min = 0)
@@ -737,6 +753,14 @@ public class ModuleCoreConfig {
     })
     @Config.RangeInt(min = 0)
     public int WOOD_TAR_BLOCK_BURN_TIME_TICKS = 8000;
+
+    @Config.Comment({
+        "Pyroberries burn time in ticks.",
+        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
+        "Default: " + 400
+    })
+    @Config.RangeInt(min = 0)
+    public int PYROBERRIES_BURN_TIME_TICKS = 400;
   }
 
 }

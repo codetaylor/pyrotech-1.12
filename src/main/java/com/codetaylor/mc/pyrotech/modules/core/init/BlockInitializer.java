@@ -29,6 +29,8 @@ public final class BlockInitializer {
 
   public static void onRegister(Registry registry) {
 
+    registry.registerBlock(new BlockPyroberryBush(), BlockPyroberryBush.NAME);
+
     final BlockRock blockRock = new BlockRock();
     final ItemRock itemRock = new ItemRock(blockRock);
     registry.registerBlock(blockRock, itemRock, BlockRock.NAME);

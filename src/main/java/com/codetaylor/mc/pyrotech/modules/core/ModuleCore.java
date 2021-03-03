@@ -374,6 +374,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockStrawBed.NAME)
     public static final BlockStrawBed STRAW_BED;
 
+    @GameRegistry.ObjectHolder(BlockPyroberryBush.NAME)
+    public static final BlockPyroberryBush PYROBERRY_BUSH;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -417,6 +420,7 @@ public class ModuleCore
       ORE_DENSE_QUARTZ_SMALL = null;
       ORE_DENSE_QUARTZ_ROCKS = null;
       STRAW_BED = null;
+      PYROBERRY_BUSH = null;
     }
   }
 
@@ -498,6 +502,12 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockStrawBed.NAME)
     public static final ItemStrawBed STRAW_BED;
 
+    @GameRegistry.ObjectHolder(ItemPyroberrySeeds.NAME)
+    public static final ItemPyroberrySeeds PYROBERRY_SEEDS;
+
+    @GameRegistry.ObjectHolder(ItemPyroberries.NAME)
+    public static final ItemPyroberries PYROBERRIES;
+
     static {
       ROCK = null;
       ROCK_GRASS = null;
@@ -524,6 +534,8 @@ public class ModuleCore
       OBSIDIAN_HAMMER = null;
       BOOK = null;
       STRAW_BED = null;
+      PYROBERRY_SEEDS = null;
+      PYROBERRIES = null;
     }
   }
 

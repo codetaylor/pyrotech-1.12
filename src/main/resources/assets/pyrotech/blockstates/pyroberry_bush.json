@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "age": {
+      "0": {"model": "pyrotech:pyroberry_bush_0"},
+      "1": {"model": "pyrotech:pyroberry_bush_1"},
+      "2": {"model": "pyrotech:pyroberry_bush_2"},
+      "3": {"model": "pyrotech:pyroberry_bush_3"},
+      "4": {"model": "pyrotech:pyroberry_bush_4"},
+      "5": {"model": "pyrotech:pyroberry_bush_5"},
+      "6": {"model": "pyrotech:pyroberry_bush_6"},
+      "7": {"model": "pyrotech:pyroberry_bush_7"}
+    }
+  }
+}

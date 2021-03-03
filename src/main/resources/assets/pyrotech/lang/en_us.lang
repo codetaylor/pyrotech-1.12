@@ -333,6 +333,8 @@ item.pyrotech.mushroom.brown.roasted.name=Roasted Brown Mushroom
 item.pyrotech.mushroom.red.roasted.name=Roasted Red Mushroom
 item.pyrotech.beetroot.roasted.name=Roasted Beetroot
 item.pyrotech.strange.tuber.name=Strange Tuber
+item.pyrotech.pyroberries.name=Pyroberries
+item.pyrotech.pyroberry.seeds.name=Pyroberry Seeds
 
 item.pyrotech.crude.hammer.name=Crude Hammer
 item.pyrotech.stone.hammer.name=Stone Hammer
@@ -375,6 +377,7 @@ tile.pyrotech.living_tar.name=Living Tar
 tile.pyrotech.dense_redstone_ore.name=Dense Redstone Ore
 tile.pyrotech.dense_quartz_ore.name=Dense Quartz Ore
 tile.pyrotech.straw_bed.name=Straw Bed
+tile.pyrotech.pyroberry_bush.name=Pyroberry Bush
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock

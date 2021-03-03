@@ -97,6 +97,9 @@ public class FurnaceFuelBurnTimeEventHandler {
 
     } else if (item == ITEM_LIVING_TAR) {
       event.setBurnTime(ModuleCoreConfig.FUEL.LIVING_TAR_BURN_TIME_TICKS);
+
+    } else if (item == ModuleCore.Items.PYROBERRIES) {
+      event.setBurnTime(ModuleCoreConfig.FUEL.PYROBERRIES_BURN_TIME_TICKS);
     }
   }
 
