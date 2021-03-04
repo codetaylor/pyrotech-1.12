@@ -18,7 +18,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -229,9 +231,65 @@ public class BlockPyroberryBush
 
   @ParametersAreNonnullByDefault
   @Override
-  public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+  public boolean onBlockActivated(World world, BlockPos pos, IBlockState blockState, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    if (hand == EnumHand.MAIN_HAND) {
+      ItemStack itemStack = player.getHeldItemMainhand();
+      Item item = itemStack.getItem();
+
+      if (item == Items.BLAZE_POWDER) {
+        int age = this.getAge(blockState);
+
+        if (age < this.getMaxAge()
+            && ForgeHooks.onCropsGrowPre(world, pos, blockState, true)) {
+
+          if (!player.isCreative() && !player.isSpectator()) {
+            itemStack.setCount(itemStack.getCount() - 1);
+          }
+
+          world.setBlockState(pos, this.withAge(age + 1), 2);
+          world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1, 1);
+          this.spawnFireParticles(pos, world.provider.getDimension());
+          ForgeHooks.onCropsGrowPost(world, pos, blockState, world.getBlockState(pos));
+
+        } else if (this.isMaxAge(blockState)) {
+          this.spawnFireParticles(pos, world.provider.getDimension());
+          world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1.5f, true);
+        }
+
+        return true;
+
+      } else if (item == Items.AIR && this.isMaxAge(blockState)) {
+        this.spawnFireParticles(pos, world.provider.getDimension());
+        world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1.5f, true);
+        return true;
+      }
+    }
+
+    return super.onBlockActivated(world, pos, blockState, player, hand, facing, hitX, hitY, hitZ);
+  }
+
+  @ParametersAreNonnullByDefault
+  @Override
+  public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
+
+    super.onBlockClicked(world, pos, player);
+
+    if (this.getAge(world.getBlockState(pos)) == this.getMaxAge()) {
+      this.spawnFireParticles(pos, world.provider.getDimension());
+    }
+  }
+
+  @ParametersAreNonnullByDefault
+  @Override
+  public void onEntityWalk(World world, BlockPos pos, Entity entity) {
+
+    super.onEntityWalk(world, pos, entity);
+
+    if (RandomHelper.random().nextFloat() < 0.05
+        && this.getAge(world.getBlockState(pos)) == this.getMaxAge()) {
+      this.spawnFireParticles(pos, world.provider.getDimension());
+    }
   }
 
   @Override
@@ -260,14 +318,14 @@ public class BlockPyroberryBush
   @Override
   public void neighborChanged(IBlockState blockState, World world, BlockPos pos, Block block, BlockPos fromPos) {
 
-    this.checkAndDropBlock(world, pos, blockState);
+    this.checkAndDropBlock(world, pos);
   }
 
   @ParametersAreNonnullByDefault
   @Override
   public void updateTick(World world, BlockPos pos, IBlockState blockState, Random rand) {
 
-    this.checkAndDropBlock(world, pos, blockState);
+    this.checkAndDropBlock(world, pos);
 
     if (world.canSeeSky(pos)) {
 
@@ -299,17 +357,19 @@ public class BlockPyroberryBush
       } else if (world.isDaytime()) {
         // Increase age if is daytime.
         int age = this.getAge(blockState);
+        boolean grew = false;
 
         if (age < this.getMaxAge()) {
           double chance = (age == this.getMaxAge() - 1) ? ModuleCoreConfig.PYROBERRY_BUSH.PYROBERRY_GROWTH_CHANCE : ModuleCoreConfig.PYROBERRY_BUSH.GROWTH_CHANCE;
 
           if (ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < chance)) {
             world.setBlockState(pos, this.withAge(age + 1), 2);
+            grew = true;
             ForgeHooks.onCropsGrowPost(world, pos, blockState, world.getBlockState(pos));
           }
         }
 
-        if (this.isMaxAge(blockState) || age + 1 == this.getMaxAge()) {
+        if ((age > 2 && grew) || (this.isMaxAge(blockState) && rand.nextFloat() < 0.5)) {
           this.spawnFireParticles(pos, world.provider.getDimension());
           world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1, 1);
         }
@@ -329,7 +389,7 @@ public class BlockPyroberryBush
     }
   }
 
-  protected void checkAndDropBlock(World world, BlockPos pos, IBlockState blockState) {
+  protected void checkAndDropBlock(World world, BlockPos pos) {
 
     if (!BlockPyroberryBush.isValidBlock(world.getBlockState(pos.down()))) {
       world.destroyBlock(pos, true);
