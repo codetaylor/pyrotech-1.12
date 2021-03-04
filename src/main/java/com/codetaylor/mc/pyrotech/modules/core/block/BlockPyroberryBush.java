@@ -9,6 +9,8 @@ import com.codetaylor.mc.pyrotech.library.spi.block.IBlockShearable;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleCombust;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
@@ -27,6 +29,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -37,6 +40,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class BlockPyroberryBush
@@ -46,6 +51,9 @@ public class BlockPyroberryBush
   public static final String NAME = "pyroberry_bush";
 
   private static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
+
+  private static final Random RANDOM = new Random();
+  private static final int[] OFFSET = new int[2];
 
   private static final AxisAlignedBB[] AABB = new AxisAlignedBB[]{
       AABBHelper.create(7, 0, 7, 9, 3, 9),
@@ -57,6 +65,29 @@ public class BlockPyroberryBush
       AABBHelper.create(2, 4, 2, 14, 12, 14),
       AABBHelper.create(2, 4, 2, 14, 12, 14)
   };
+
+  private static final List<Int2ObjectMap<AxisAlignedBB>> OFFSET_AABB = new ArrayList<>(8);
+
+  static {
+    // x = 0, 1, 2 = -1, 0, 1 = 2 bits
+    // z = 0, 1, 2 = -1, 0, 1 = 2 bits
+
+    for (AxisAlignedBB axisAlignedBB : AABB) {
+      Int2ObjectOpenHashMap<AxisAlignedBB> map = new Int2ObjectOpenHashMap<>(9);
+      OFFSET_AABB.add(map);
+
+      for (int x = 0; x < 3; x++) {
+        for (int z = 0; z < 3; z++) {
+          map.put(encodeOffset(x, z), axisAlignedBB.offset((x - 1) * 0.0625, 0, (z - 1) * 0.0625));
+        }
+      }
+    }
+  }
+
+  private static int encodeOffset(int x, int z) {
+
+    return (x & 0b11) | ((z & 0b11) << 2);
+  }
 
   public BlockPyroberryBush() {
 
@@ -111,6 +142,18 @@ public class BlockPyroberryBush
   public boolean canSilkHarvest(World world, BlockPos pos, IBlockState blockState, EntityPlayer player) {
 
     return false;
+  }
+
+  @ParametersAreNonnullByDefault
+  @Nonnull
+  @Override
+  public Vec3d getOffset(IBlockState state, IBlockAccess world, BlockPos pos) {
+
+    long seed = MathHelper.getCoordinateRandom(pos.getX(), 0, pos.getZ());
+    int value = (int) (seed >> 16 & 0b1111);
+    int x = (value & 0b11) % 3;
+    int z = ((value >> 2) & 0b11) % 3;
+    return new Vec3d((x - 1) * 0.0625, 0, (z - 1) * 0.0625);
   }
 
   // ---------------------------------------------------------------------------
@@ -192,7 +235,13 @@ public class BlockPyroberryBush
       return super.getBoundingBox(blockState, world, pos);
     }
 
-    return AABB[age];
+    long seed = MathHelper.getCoordinateRandom(pos.getX(), 0, pos.getZ());
+    int value = (int) (seed >> 16 & 0b1111);
+    int x = (value & 0b11) % 3;
+    int z = ((value >> 2) & 0b11) % 3;
+    int encodedOffset = BlockPyroberryBush.encodeOffset(x, z);
+
+    return OFFSET_AABB.get(age).get(encodedOffset);
   }
 
   @ParametersAreNonnullByDefault
@@ -207,13 +256,10 @@ public class BlockPyroberryBush
       case 3:
         return Block.NULL_AABB;
       case 4:
-        return AABB[4];
       case 5:
-        return AABB[5];
       case 6:
-        return AABB[6];
       case 7:
-        return AABB[7];
+        return this.getBoundingBox(blockState, world, pos);
       default:
         return super.getCollisionBoundingBox(blockState, world, pos);
     }
@@ -483,8 +529,8 @@ public class BlockPyroberryBush
   @Override
   public IBlockState getActualState(IBlockState blockState, IBlockAccess world, BlockPos pos) {
 
-    long random = MathHelper.getCoordinateRandom(pos.getX(), pos.getY(), pos.getZ());
-    EnumFacing facing = EnumFacing.HORIZONTALS[(new Random(random)).nextInt(4)];
+    RANDOM.setSeed(MathHelper.getCoordinateRandom(pos.getX(), 0, pos.getZ()));
+    EnumFacing facing = EnumFacing.HORIZONTALS[RANDOM.nextInt(4)];
     return blockState.withProperty(Properties.FACING_HORIZONTAL, facing);
   }
 }
