@@ -91,6 +91,8 @@
             * Saddle recipe uses new leather materials
             * Leather armor Unbreaking I recipe with `pyrotech:leather_durable_upgrade_kit`
             * Leather armor repair recipes with `ore:kitRepairLeather`
+            * Pyroberries with Slimeball -> Magma Cream
+            * Pyroberries -> Pyroberry Seeds
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
@@ -176,6 +178,7 @@
             * `pyrotech:leather_durable_repair_kit:*`
 
   * **Changed:**
+    * Removed vanilla recipe for Magma Cream
     * Rocks material type is now `Material.PLANTS` so they wash away with water [(#347)](https://github.com/codetaylor/pyrotech-1.12/issues/347)
     * Leather armor recipes now use new leather materials
     * Bellows recipe now uses new leather materials
