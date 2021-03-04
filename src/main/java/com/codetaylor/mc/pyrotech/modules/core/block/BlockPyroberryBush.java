@@ -312,7 +312,7 @@ public class BlockPyroberryBush
       itemStack.damageItem(1, player);
       this.spawnFireParticles(pos, player.dimension);
       world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1, 1);
-      StackHelper.spawnStackOnTop(world, new ItemStack(ModuleCore.Items.PYROBERRIES), pos, 0.5);
+      StackHelper.spawnStackOnTop(world, new ItemStack(ModuleCore.Items.PYROBERRIES, RandomHelper.random().nextInt(3) + 1), pos, 0.5);
     }
   }
 
