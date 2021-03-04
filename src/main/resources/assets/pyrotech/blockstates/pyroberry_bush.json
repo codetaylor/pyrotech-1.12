@@ -10,6 +10,12 @@
       "5": {"model": "pyrotech:pyroberry_bush_5"},
       "6": {"model": "pyrotech:pyroberry_bush_6"},
       "7": {"model": "pyrotech:pyroberry_bush_7"}
+    },
+    "facing": {
+      "north": {},
+      "east": {"y": 90},
+      "south": {"y": 180},
+      "west": {"y": 270}
     }
   }
 }

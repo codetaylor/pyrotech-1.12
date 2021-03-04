@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.core.block;
 
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
+import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockShearable;
@@ -25,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -473,6 +475,16 @@ public class BlockPyroberryBush
   @Override
   protected BlockStateContainer createBlockState() {
 
-    return new BlockStateContainer(this, AGE);
+    return new BlockStateContainer(this, AGE, Properties.FACING_HORIZONTAL);
+  }
+
+  @ParametersAreNonnullByDefault
+  @Nonnull
+  @Override
+  public IBlockState getActualState(IBlockState blockState, IBlockAccess world, BlockPos pos) {
+
+    long random = MathHelper.getCoordinateRandom(pos.getX(), pos.getY(), pos.getZ());
+    EnumFacing facing = EnumFacing.HORIZONTALS[(new Random(random)).nextInt(4)];
+    return blockState.withProperty(Properties.FACING_HORIZONTAL, facing);
   }
 }
