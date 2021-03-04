@@ -104,6 +104,13 @@ public class BlockPyroberryBush
     return super.getBlockHardness(blockState, world, pos);
   }
 
+  @ParametersAreNonnullByDefault
+  @Override
+  public boolean canSilkHarvest(World world, BlockPos pos, IBlockState blockState, EntityPlayer player) {
+
+    return false;
+  }
+
   // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------
