@@ -179,17 +179,17 @@ public class ModuleCoreConfig {
 
     @Config.Comment({
         "The chance of advancing to the next growth stage when the block randomly ticks.",
-        "Default: " + 0.05
+        "Default: " + 0.1
     })
     @Config.RangeDouble(min = 0)
-    public double GROWTH_CHANCE = 0.05;
+    public double GROWTH_CHANCE = 0.1;
 
     @Config.Comment({
         "The chance of advancing to the last growth stage when the block randomly ticks.",
-        "Default: " + 0.01
+        "Default: " + 0.05
     })
     @Config.RangeDouble(min = 0)
-    public double PYROBERRY_GROWTH_CHANCE = 0.01;
+    public double PYROBERRY_GROWTH_CHANCE = 0.05;
 
     @Config.Comment({
         "The chance of reverting to a previous growth stage when the block randomly ticks in the rain.",
