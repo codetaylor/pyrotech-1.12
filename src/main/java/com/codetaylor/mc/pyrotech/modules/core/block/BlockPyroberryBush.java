@@ -93,6 +93,17 @@ public class BlockPyroberryBush
     return (blockState.getBlock() == Blocks.SAND);
   }
 
+  @ParametersAreNonnullByDefault
+  @Override
+  public float getBlockHardness(IBlockState blockState, World world, BlockPos pos) {
+
+    if (this.getAge(blockState) < 3) {
+      return 0.1f;
+    }
+
+    return super.getBlockHardness(blockState, world, pos);
+  }
+
   // ---------------------------------------------------------------------------
   // - Interaction
   // ---------------------------------------------------------------------------
