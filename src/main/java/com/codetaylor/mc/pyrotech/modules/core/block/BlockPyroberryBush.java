@@ -419,6 +419,33 @@ public class BlockPyroberryBush
   }
 
   // ---------------------------------------------------------------------------
+  // - Drops
+  // ---------------------------------------------------------------------------
+
+  @ParametersAreNonnullByDefault
+  @Nonnull
+  @Override
+  public Item getItemDropped(IBlockState blockState, Random rand, int fortune) {
+
+    if (this.getAge(blockState) < 3) {
+      return ModuleCore.Items.PYROBERRY_SEEDS;
+    }
+
+    return Items.STICK;
+  }
+
+  @ParametersAreNonnullByDefault
+  @Override
+  public int quantityDropped(IBlockState blockState, int fortune, Random random) {
+
+    if (this.getAge(blockState) < 3) {
+      return 1;
+    }
+
+    return random.nextInt(3) + 1;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Variants
   // ---------------------------------------------------------------------------
 
