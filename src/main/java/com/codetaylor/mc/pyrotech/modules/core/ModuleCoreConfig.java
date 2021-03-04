@@ -179,10 +179,10 @@ public class ModuleCoreConfig {
 
     @Config.Comment({
         "The chance of advancing to the next growth stage when the block randomly ticks.",
-        "Default: " + 0.1
+        "Default: " + 0.025
     })
     @Config.RangeDouble(min = 0)
-    public double GROWTH_CHANCE = 0.1;
+    public double GROWTH_CHANCE = 0.025;
 
     @Config.Comment({
         "The chance of advancing to the last growth stage when the block randomly ticks.",
