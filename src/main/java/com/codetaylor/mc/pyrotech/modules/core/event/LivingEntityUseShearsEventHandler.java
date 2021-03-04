@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core.event;
 
-import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockPyroberryBush;
+import com.codetaylor.mc.pyrotech.library.spi.block.IBlockShearable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,8 +34,8 @@ public class LivingEntityUseShearsEventHandler {
       IBlockState blockState = world.getBlockState(pos);
       Block block = blockState.getBlock();
 
-      if (block == ModuleCore.Blocks.PYROBERRY_BUSH) {
-        ((BlockPyroberryBush) block).onSheared(world, pos, blockState, itemStack, player);
+      if (block instanceof IBlockShearable) {
+        ((IBlockShearable) block).onSheared(world, pos, blockState, itemStack, player);
       }
     }
   }
