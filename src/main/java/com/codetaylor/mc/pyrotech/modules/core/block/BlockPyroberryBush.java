@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockShearable;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleCombust;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -274,12 +275,10 @@ public class BlockPyroberryBush
         // Reduce age if raining.
         int age = this.getAge(blockState);
 
-        if (age > 4) {
-
-          if (ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < 1.0)) {
-            world.setBlockState(pos, this.withAge(age - 1), 2);
-            ForgeHooks.onCropsGrowPost(world, pos, blockState, world.getBlockState(pos));
-          }
+        if (age > 4
+            && ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < ModuleCoreConfig.PYROBERRY_BUSH.RAIN_GROWTH_REVERT_CHANCE)) {
+          world.setBlockState(pos, this.withAge(age - 1), 2);
+          ForgeHooks.onCropsGrowPost(world, pos, blockState, world.getBlockState(pos));
         }
 
         if (!world.isRemote) {
@@ -291,10 +290,10 @@ public class BlockPyroberryBush
             double x = pos.getX() + 0.5 + offsetX;
             double y = pos.getY() + 0.6 + offsetY;
             double z = pos.getZ() + 0.5 + offsetZ;
-            //     public void spawnParticle(EnumParticleTypes particleType, double xCoord, double yCoord, double zCoord, int numberOfParticles, double xOffset, double yOffset, double zOffset, double particleSpeed, int... particleArguments)
-            ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, 4, 0.0, 0.0, 0.0, 0.0);
-            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5f, 1);
+            ((WorldServer) world).spawnParticle(RandomHelper.random().nextFloat() < 0.25 ? EnumParticleTypes.SMOKE_LARGE : EnumParticleTypes.SMOKE_NORMAL, x, y, z, 4, 0.0, 0.0, 0.0, 0.0);
           }
+
+          world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5f, 1);
         }
 
       } else if (world.isDaytime()) {
@@ -302,8 +301,9 @@ public class BlockPyroberryBush
         int age = this.getAge(blockState);
 
         if (age < this.getMaxAge()) {
+          double chance = (age == this.getMaxAge() - 1) ? ModuleCoreConfig.PYROBERRY_BUSH.PYROBERRY_GROWTH_CHANCE : ModuleCoreConfig.PYROBERRY_BUSH.GROWTH_CHANCE;
 
-          if (ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < 1.0)) {
+          if (ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < chance)) {
             world.setBlockState(pos, this.withAge(age + 1), 2);
             ForgeHooks.onCropsGrowPost(world, pos, blockState, world.getBlockState(pos));
           }
@@ -321,7 +321,7 @@ public class BlockPyroberryBush
 
       if (age > 4) {
 
-        if (ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < 1.0)) {
+        if (ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < ModuleCoreConfig.PYROBERRY_BUSH.OBSTRUCTED_GROWTH_REVERT_CHANCE)) {
           world.setBlockState(pos, this.withAge(age - 1), 2);
           ForgeHooks.onCropsGrowPost(world, pos, blockState, world.getBlockState(pos));
         }

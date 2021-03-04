@@ -173,6 +173,39 @@ public class ModuleCoreConfig {
     public int OBSIDIAN_HAMMER_DURABILITY = 4035;
   }
 
+  public static PyroberryBush PYROBERRY_BUSH = new PyroberryBush();
+
+  public static class PyroberryBush {
+
+    @Config.Comment({
+        "The chance of advancing to the next growth stage when the block randomly ticks.",
+        "Default: " + 0.05
+    })
+    @Config.RangeDouble(min = 0)
+    public double GROWTH_CHANCE = 0.05;
+
+    @Config.Comment({
+        "The chance of advancing to the last growth stage when the block randomly ticks.",
+        "Default: " + 0.01
+    })
+    @Config.RangeDouble(min = 0)
+    public double PYROBERRY_GROWTH_CHANCE = 0.01;
+
+    @Config.Comment({
+        "The chance of reverting to a previous growth stage when the block randomly ticks in the rain.",
+        "Default: " + 1.0
+    })
+    @Config.RangeDouble(min = 0)
+    public double RAIN_GROWTH_REVERT_CHANCE = 1.0;
+
+    @Config.Comment({
+        "The chance of reverting to a previous growth stage when the block randomly ticks and can't see sky.",
+        "Default: " + 0.25
+    })
+    @Config.RangeDouble(min = 0)
+    public double OBSTRUCTED_GROWTH_REVERT_CHANCE = 0.25;
+  }
+
   // ---------------------------------------------------------------------------
   // - Rocks
   // ---------------------------------------------------------------------------
