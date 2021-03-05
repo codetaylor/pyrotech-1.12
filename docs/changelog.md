@@ -27,6 +27,7 @@
         * Small Washed Hide
         * Sheep Hide
         * Pig Hide
+        * Llama Hide
     * Pelts:
         * Cow Pelt
         * Colored Sheep Pelts
@@ -34,6 +35,8 @@
         * Polar Bear Pelt
         * Horse Pelt
         * Mooshroom Pelt
+        * Colored Llama Pelts
+        * Wolf Pelt
     * Leather materials:
         * Small Leather
         * Leather Sheet
