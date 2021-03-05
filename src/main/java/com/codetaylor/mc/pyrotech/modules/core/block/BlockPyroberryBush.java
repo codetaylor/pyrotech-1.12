@@ -20,7 +20,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -123,7 +122,7 @@ public class BlockPyroberryBush
 
   public static boolean isValidBlock(IBlockState blockState) {
 
-    return (blockState.getBlock() == Blocks.SAND);
+    return (blockState.getMaterial() == Material.SAND);
   }
 
   @ParametersAreNonnullByDefault
