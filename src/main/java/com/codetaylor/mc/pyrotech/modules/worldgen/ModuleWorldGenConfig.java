@@ -274,6 +274,62 @@ public class ModuleWorldGenConfig {
     public int MAX_VEIN_SIZE = 20;
   }
 
+  public static WorldGenPyroberryBush PYROBERRY_BUSH = new WorldGenPyroberryBush();
+
+  public static class WorldGenPyroberryBush {
+
+    @Config.Comment({
+        "Set to false to disable this worldgen.",
+        "Default: " + true
+    })
+    public boolean ENABLED = true;
+
+    @Config.Comment({
+        "An int array of dimension id's that this is allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_WHITELIST = {
+        0
+    };
+
+    @Config.Comment({
+        "An int array of dimension id's that this is not allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_BLACKLIST = new int[0];
+
+    @Config.Comment({
+        "How many times will the generator try to spawn this worldgen.",
+        "Default: " + 4
+    })
+    @Config.RangeInt(min = 0)
+    public int CHANCES_TO_SPAWN = 4;
+
+    @Config.Comment({
+        "The density of each successful spawn.",
+        "Larger density means more are placed.",
+        "Default: " + 0.03
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double DENSITY = 0.03;
+
+    @Config.Comment({
+        "The frequency of spawns.",
+        "Larger frequency means more spawns.",
+        "Default: " + 0.06
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double CLUSTER_FREQUENCY = 0.06;
+
+    @Config.Comment({
+        "The allowed biomes."
+    })
+    @Config.RequiresMcRestart
+    public String[] ALLOWED_BIOMES = new String[]{
+        "minecraft:desert"
+    };
+  }
+
   public static WorldGenRocks ROCKS = new WorldGenRocks();
 
   public static class WorldGenRocks {

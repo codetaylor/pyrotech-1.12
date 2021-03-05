@@ -15,8 +15,8 @@ import java.util.Random;
 public class WorldGenerator
     implements IWorldGenerator {
 
-  private List<IWorldGenFeature> featureList;
-  private Int2ObjectMap<List<IWorldGenFeature>> perDimensionFeatureList;
+  private final List<IWorldGenFeature> featureList;
+  private final Int2ObjectMap<List<IWorldGenFeature>> perDimensionFeatureList;
 
   public WorldGenerator() {
 
@@ -27,7 +27,8 @@ public class WorldGenerator
         new WorldGenDenseNetherCoal(),
         new WorldGenRocks(),
         new WorldGenDenseRedstoneOre(),
-        new WorldGenDenseQuartzOre()
+        new WorldGenDenseQuartzOre(),
+        new WorldGenPyroberryBush()
     );
 
     this.perDimensionFeatureList = new Int2ObjectOpenHashMap<>();
