@@ -13,6 +13,8 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.pyrotech.library.util.ExperienceHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketNoHunger;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
@@ -21,6 +23,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -199,6 +202,10 @@ public class TileBloom
       BlockPos tilePos = tile.getPos();
 
       if (player.getFoodStats().getFoodLevel() < ModuleTechBloomeryConfig.BLOOM.MINIMUM_HUNGER_TO_USE) {
+
+        if (!world.isRemote) {
+          ModuleTechBasic.PACKET_SERVICE.sendTo(new SCPacketNoHunger(), (EntityPlayerMP) player);
+        }
         return false;
       }
 

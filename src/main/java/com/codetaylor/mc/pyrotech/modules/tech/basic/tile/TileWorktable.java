@@ -21,6 +21,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketNoHunger;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
 import com.codetaylor.mc.athenaeum.integration.gamestages.GameStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
@@ -338,6 +339,10 @@ public class TileWorktable
     protected boolean allowInteraction(TileWorktable tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (player.getFoodStats().getFoodLevel() < tile.getMinimumHungerToUse()) {
+
+        if (!world.isRemote) {
+          ModuleTechBasic.PACKET_SERVICE.sendTo(new SCPacketNoHunger(), (EntityPlayerMP) player);
+        }
         return false;
       }
 

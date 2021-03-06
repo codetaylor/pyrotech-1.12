@@ -16,6 +16,7 @@ import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketNoHunger;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.client.render.CompactingBinInteractionInputRenderer;
@@ -24,6 +25,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -361,6 +363,10 @@ public class TileCompactingBin
     protected boolean allowInteraction(TileCompactingBin tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (player.getFoodStats().getFoodLevel() < tile.getMinimumHungerToUse()) {
+
+        if (!world.isRemote) {
+          ModuleTechBasic.PACKET_SERVICE.sendTo(new SCPacketNoHunger(), (EntityPlayerMP) player);
+        }
         return false;
       }
 

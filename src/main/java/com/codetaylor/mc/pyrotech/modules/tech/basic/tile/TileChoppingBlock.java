@@ -1,24 +1,25 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
-import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.ArrayHelper;
-import com.codetaylor.mc.athenaeum.util.BlockHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
+import com.codetaylor.mc.athenaeum.util.BlockHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketNoHunger;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
@@ -27,6 +28,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.ChoppingBlockRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -354,6 +356,10 @@ public class TileChoppingBlock
     protected boolean allowInteraction(TileChoppingBlock tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (player.getFoodStats().getFoodLevel() < ModuleTechBasicConfig.CHOPPING_BLOCK.MINIMUM_HUNGER_TO_USE) {
+
+        if (!world.isRemote) {
+          ModuleTechBasic.PACKET_SERVICE.sendTo(new SCPacketNoHunger(), (EntityPlayerMP) player);
+        }
         return false;
       }
 

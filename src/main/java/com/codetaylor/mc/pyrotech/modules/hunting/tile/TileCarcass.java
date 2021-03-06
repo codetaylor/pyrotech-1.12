@@ -16,11 +16,14 @@ import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketNoHunger;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHuntingConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -160,6 +163,10 @@ public class TileCarcass
     protected boolean allowInteraction(TileCarcass tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (player.getFoodStats().getFoodLevel() < ModuleHuntingConfig.CARCASS.MINIMUM_HUNGER_TO_USE) {
+
+        if (!world.isRemote) {
+          ModuleTechBasic.PACKET_SERVICE.sendTo(new SCPacketNoHunger(), (EntityPlayerMP) player);
+        }
         return false;
       }
 

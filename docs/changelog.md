@@ -105,6 +105,7 @@
             * `treeLeaves` and `fluid:water` to create `fluid:tannin`
     * New config file:
         * `module.Hunting.cfg`
+    * Visual indicator when the player's hunger is too low to use a device
     * Oredict:
         * `blockCharcoal` now contains `pyrotech:charcoal_block` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
         * `straw` now contains `pyrotech:material:2` [(#200)](https://github.com/codetaylor/pyrotech-1.12/issues/200)

@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.core.init;
 
+import com.codetaylor.mc.athenaeum.interaction.network.CSPacketInteractionMouseWheel;
 import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.athenaeum.network.tile.SCPacketTileData;
-import com.codetaylor.mc.athenaeum.interaction.network.CSPacketInteractionMouseWheel;
 import com.codetaylor.mc.pyrotech.modules.core.network.*;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -50,6 +50,12 @@ public final class PacketInitializer {
         CSPacketInteractionMouseWheel.class,
         CSPacketInteractionMouseWheel.class,
         Side.SERVER
+    );
+
+    registry.register(
+        SCPacketNoHunger.class,
+        SCPacketNoHunger.class,
+        Side.CLIENT
     );
 
     // Tile Data
