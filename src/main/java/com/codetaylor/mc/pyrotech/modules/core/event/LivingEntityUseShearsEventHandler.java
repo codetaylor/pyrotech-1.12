@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core.event;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockShearable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -13,7 +14,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = ModPyrotech.MOD_ID)
 public class LivingEntityUseShearsEventHandler {
 
   @SubscribeEvent

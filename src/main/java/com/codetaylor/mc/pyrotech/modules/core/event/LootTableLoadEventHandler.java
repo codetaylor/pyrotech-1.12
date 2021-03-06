@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core.event;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.init.Items;
@@ -22,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = ModPyrotech.MOD_ID)
 public class LootTableLoadEventHandler {
 
   private static MethodHandle lootTable$poolsGetter;

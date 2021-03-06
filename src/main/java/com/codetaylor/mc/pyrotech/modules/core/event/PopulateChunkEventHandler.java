@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core.event;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = ModPyrotech.MOD_ID)
 public class PopulateChunkEventHandler {
 
   @SubscribeEvent(priority = EventPriority.LOWEST)

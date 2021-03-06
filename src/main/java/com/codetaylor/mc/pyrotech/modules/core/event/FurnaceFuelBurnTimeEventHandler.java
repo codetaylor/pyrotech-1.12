@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core.event;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
@@ -12,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = ModPyrotech.MOD_ID)
 public class FurnaceFuelBurnTimeEventHandler {
 
   @GameRegistry.ObjectHolder(ModuleCore.MOD_ID + ":" + BlockCoalCokeBlock.NAME)

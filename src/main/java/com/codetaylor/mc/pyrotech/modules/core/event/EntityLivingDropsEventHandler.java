@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.core.event;
 
+import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.ModPyrotechConfig;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
@@ -15,7 +16,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.Iterator;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = ModPyrotech.MOD_ID)
 public class EntityLivingDropsEventHandler {
 
   @GameRegistry.ObjectHolder("minecraft:wool")
