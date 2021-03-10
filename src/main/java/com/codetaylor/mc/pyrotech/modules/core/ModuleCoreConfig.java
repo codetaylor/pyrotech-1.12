@@ -233,6 +233,33 @@ public class ModuleCoreConfig {
     })
     @Config.RangeInt(min = 0, max = 16)
     public int NETHERRACK_SPREAD_RADIUS = 3;
+
+    @Config.Comment({
+        "Increase this number to decrease the thrown rock accuracy.",
+        "Default: " + 5.0
+    })
+    @Config.RangeDouble(min = 1)
+    public double INACCURACY = 5.0;
+
+    @Config.Comment({
+        "The velocity of a thrown rock.",
+        "Default: " + 0.75
+    })
+    @Config.RangeDouble(min = 0)
+    public double VELOCITY = 0.75;
+
+    @Config.Comment({
+        "The pitch offset of a thrown rock.",
+        "Default: " + (-15.0)
+    })
+    public double PITCH = -15.0;
+
+    @Config.Comment({
+        "The damage of a thrown rock.",
+        "Default: " + 0.5
+    })
+    @Config.RangeDouble(min = 0)
+    public double DAMAGE = 0.5;
   }
 
   // ---------------------------------------------------------------------------

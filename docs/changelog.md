@@ -79,6 +79,10 @@
         * Change rock bags' fill texture `ROCK_FILL_TEXTURE_LOCATION` [(#253)](https://github.com/codetaylor/pyrotech-1.12/issues/253)
         * Disable durability tooltips `SHOW_DURABILITY_TOOLTIPS` [(#221)](https://github.com/codetaylor/pyrotech-1.12/issues/221)
         * Specify Iron Ingot replacement item `REPLACE_IRON_INGOTS_WITH` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
+        * Change thrown rock / clump damage `DAMAGE` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
+        * Change thrown rock / clump velocity `VELOCITY` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
+        * Change thrown rock / clump pitch offset `PITCH` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
+        * Change thrown rock / clump inaccuracy `INACCURACY` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
     * Recipes:
         * Crafting:
             * Hunting Knives
@@ -182,6 +186,7 @@
             * `pyrotech:leather_durable_repair_kit:*`
 
   * **Changed:**
+    * Reduced damage, velocity, and accuracy of thrown rocks / clumps
     * Removed vanilla recipe for Magma Cream
     * Rocks material type is now `Material.PLANTS` so they wash away with water [(#347)](https://github.com/codetaylor/pyrotech-1.12/issues/347)
     * Leather armor recipes now use new leather materials

@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.core.entity;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -74,7 +75,8 @@ public class EntityRock
   protected void onImpact(@Nonnull RayTraceResult result) {
 
     if (result.entityHit != null) {
-      result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 1);
+      float damage = (float) Math.max(0, ModuleCoreConfig.ROCKS.DAMAGE);
+      result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), damage);
     }
 
     if (!this.world.isRemote) {
