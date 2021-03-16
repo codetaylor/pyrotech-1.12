@@ -292,6 +292,9 @@
         * `item.pyrotech.pyroberries.name`
         * `tile.pyrotech.pyroberry_bush.name`
         * `item.pyrotech.pyroberry.seeds.name`
+        * `fluid.pyroberry_wine`
+        * `tile.fluid.pyroberry_wine.name`
+        * `item.pyrotech.pyroberry.wine.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

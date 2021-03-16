@@ -421,6 +421,22 @@ public class ModuleCoreConfig {
     })
     @Config.RangeInt(min = 0)
     public int BURNED_FOOD_HUNGER_EFFECT_DURATION_TICKS = 600;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 3
+    })
+    @Config.RangeInt(min = 0)
+    public int PYROBERRY_WINE_HUNGER = 3;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.20
+    })
+    @Config.RangeDouble(min = 0)
+    public double PYROBERRY_WINE_SATURATION = 0.20;
   }
 
   // ---------------------------------------------------------------------------
