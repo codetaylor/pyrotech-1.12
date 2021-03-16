@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:glass_bottle"},
+    {"item": "minecraft:glass_bottle"},
+    {"item": "minecraft:glass_bottle"},
+    {"type": "pyrotech:fluid", "fluid": "pyroberry_wine"}
+  ],
+  "result": {
+    "item": "pyrotech:pyroberry_wine",
+    "count": 3
+  }
+}
