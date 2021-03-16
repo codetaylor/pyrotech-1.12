@@ -274,6 +274,8 @@ item.pyrotech.obsidian.shears.name=Obsidian Shears
 
 fluid.liquid_clay=Liquid Clay
 tile.fluid.liquid_clay.name=Liquid Clay
+fluid.pyroberry_wine=Pyroberry Wine
+tile.fluid.pyroberry_wine.name=Pyroberry Wine
 
 item.pyrotech.straw.name=Straw
 item.pyrotech.coal.coke.name=Coal Coke

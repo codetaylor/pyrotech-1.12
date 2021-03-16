@@ -546,9 +546,11 @@ public class ModuleCore
      */
 
     public static final Fluid CLAY;
+    public static final Fluid PYROBERRY_WINE;
 
     static {
       CLAY = null;
+      PYROBERRY_WINE = null;
     }
   }
 

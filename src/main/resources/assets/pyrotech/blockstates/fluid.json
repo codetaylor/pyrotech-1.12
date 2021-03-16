@@ -4,33 +4,10 @@
     "model": "forge:fluid"
   },
   "variants": {
-    "wood_tar": [
-      {
-        "custom": {
-          "fluid": "wood_tar"
-        }
-      }
-    ],
-    "coal_tar": [
-      {
-        "custom": {
-          "fluid": "coal_tar"
-        }
-      }
-    ],
-    "liquid_clay": [
-      {
-        "custom": {
-          "fluid": "liquid_clay"
-        }
-      }
-    ],
-    "tannin": [
-      {
-        "custom": {
-          "fluid": "tannin"
-        }
-      }
-    ]
+    "wood_tar": [{"custom": {"fluid": "wood_tar"}}],
+    "coal_tar": [{"custom": {"fluid": "coal_tar"}}],
+    "liquid_clay": [{"custom": {"fluid": "liquid_clay"}}],
+    "tannin": [{"custom": {"fluid": "tannin"}}],
+    "pyroberry_wine": [{"custom": {"fluid": "pyroberry_wine"}}]
   }
 }
