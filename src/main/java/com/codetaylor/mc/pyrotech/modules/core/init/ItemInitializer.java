@@ -39,6 +39,7 @@ public final class ItemInitializer {
 
     registry.registerItem(new ItemPyroberrySeeds(), ItemPyroberrySeeds.NAME);
     registry.registerItem(new ItemPyroberries(), ItemPyroberries.NAME);
+    registry.registerItem(new ItemPyroberryCocktail(), ItemPyroberryCocktail.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -71,7 +72,8 @@ public final class ItemInitializer {
 
           ModuleCore.Items.PYROBERRY_SEEDS,
           ModuleCore.Items.PYROBERRIES,
-          ModuleCore.Items.PYROBERRY_WINE
+          ModuleCore.Items.PYROBERRY_WINE,
+          ModuleCore.Items.PYROBERRY_COCKTAIL
       );
 
       // Material

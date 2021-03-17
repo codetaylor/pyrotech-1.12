@@ -511,6 +511,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemPyroberryWine.NAME)
     public static final ItemPyroberryWine PYROBERRY_WINE;
 
+    @GameRegistry.ObjectHolder(ItemPyroberryCocktail.NAME)
+    public static final ItemPyroberryCocktail PYROBERRY_COCKTAIL;
+
     static {
       ROCK = null;
       ROCK_GRASS = null;
@@ -540,6 +543,7 @@ public class ModuleCore
       PYROBERRY_SEEDS = null;
       PYROBERRIES = null;
       PYROBERRY_WINE = null;
+      PYROBERRY_COCKTAIL = null;
     }
   }
 

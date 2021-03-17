@@ -207,6 +207,62 @@ public class ModuleCoreConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Pyroberry Cocktail
+  // ---------------------------------------------------------------------------
+
+  public static PyroberryCocktail PYROBERRY_COCKTAIL = new PyroberryCocktail();
+
+  public static class PyroberryCocktail {
+
+    @Config.Comment({
+        "Defines the number of ticks a player must wait between throws.",
+        "Default: " + 20
+    })
+    public int THROW_COOLDOWN_TICKS = 20;
+
+    @Config.Comment({
+        "Increase this number to decrease the thrown accuracy.",
+        "Default: " + 5.0
+    })
+    @Config.RangeDouble(min = 1)
+    public double INACCURACY = 5.0;
+
+    @Config.Comment({
+        "The velocity.",
+        "Default: " + 0.75
+    })
+    @Config.RangeDouble(min = 0)
+    public double VELOCITY = 0.75;
+
+    @Config.Comment({
+        "The pitch offset.",
+        "Default: " + (-15.0)
+    })
+    public double PITCH = -15.0;
+
+    @Config.Comment({
+        "Defines the number of seconds for which a target entity will be set ablaze.",
+        "Default: " + 20
+    })
+    public int ENTITY_FIRE_DURATION_SECONDS = 20;
+
+    @Config.Comment({
+        "Defines the range of blocks that will be set ablaze.",
+        "Default: " + 4
+    })
+    @Config.RangeInt(min = 0)
+    public int FIRE_RANGE = 4;
+
+    @Config.Comment({
+        "The chance to light a block on fire in the given range.",
+        "Default: " + 0.25
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double FIRE_CHANCE = 0.25;
+
+  }
+
+  // ---------------------------------------------------------------------------
   // - Rocks
   // ---------------------------------------------------------------------------
 

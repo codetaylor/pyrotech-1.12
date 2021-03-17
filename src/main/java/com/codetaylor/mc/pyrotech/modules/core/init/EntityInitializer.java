@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.core.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.entity.EntityPyroberryCocktail;
 import com.codetaylor.mc.pyrotech.modules.core.entity.EntityRock;
 import com.codetaylor.mc.pyrotech.modules.core.entity.EntityRockGrass;
 import com.codetaylor.mc.pyrotech.modules.core.entity.EntityRockNetherrack;
@@ -42,6 +43,11 @@ public final class EntityInitializer {
         .entity(ItemBook.EntityItemBook.class)
         .tracker(80, 4, true)
     );
+    registry.createEntityEntry(EntityPyroberryCocktail.NAME, EntityEntryBuilder
+        .create()
+        .entity(EntityPyroberryCocktail.class)
+        .tracker(80, 1, true)
+    );
   }
 
   @SideOnly(Side.CLIENT)
@@ -53,7 +59,7 @@ public final class EntityInitializer {
 
         @Nonnull
         @Override
-        public ItemStack getStackToRender(EntityRock entity) {
+        public ItemStack getStackToRender(@Nonnull EntityRock entity) {
 
           int meta = entity.getMeta();
           return new ItemStack(this.item, 1, meta);
@@ -67,7 +73,7 @@ public final class EntityInitializer {
 
         @Nonnull
         @Override
-        public ItemStack getStackToRender(EntityRockGrass entity) {
+        public ItemStack getStackToRender(@Nonnull EntityRockGrass entity) {
 
           int meta = entity.getMeta();
           return new ItemStack(this.item, 1, meta);
@@ -81,10 +87,23 @@ public final class EntityInitializer {
 
         @Nonnull
         @Override
-        public ItemStack getStackToRender(EntityRockNetherrack entity) {
+        public ItemStack getStackToRender(@Nonnull EntityRockNetherrack entity) {
 
           int meta = entity.getMeta();
           return new ItemStack(this.item, 1, meta);
+        }
+      };
+    });
+
+    RenderingRegistry.registerEntityRenderingHandler(EntityPyroberryCocktail.class, manager -> {
+      RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+      return new RenderSnowball<EntityPyroberryCocktail>(manager, ModuleCore.Items.PYROBERRY_COCKTAIL, renderItem) {
+
+        @Nonnull
+        @Override
+        public ItemStack getStackToRender(@Nonnull EntityPyroberryCocktail entity) {
+
+          return new ItemStack(this.item, 1);
         }
       };
     });
