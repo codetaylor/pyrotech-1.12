@@ -81,6 +81,7 @@ public class EntityPyroberryCocktail
 
       this.world.playSound(null, blockPos, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1, 1);
       this.world.playSound(null, blockPos, SoundEvents.ENTITY_FIREWORK_BLAST, SoundCategory.PLAYERS, 1, 1);
+      this.world.playSound(null, blockPos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.PLAYERS, 0.5f, 1);
 
       if (ModuleCoreConfig.PYROBERRY_COCKTAIL.FIRE_RANGE > 0) {
         float chance = (float) MathHelper.clamp(ModuleCoreConfig.PYROBERRY_COCKTAIL.FIRE_CHANCE, 0, 1);
