@@ -27,28 +27,9 @@ public class EntityRock
   private static final DataParameter<Integer> META = EntityDataManager.createKey(EntityRock.class, DataSerializers.VARINT);
   private int meta;
 
-  public EntityRock(World world) {
+  public EntityRock(World world, EntityLivingBase thrower, int meta) {
 
-    super(world);
-  }
-
-  public EntityRock(World world, int meta) {
-
-    super(world);
-    this.dataManager.set(META, meta);
-    this.meta = meta;
-  }
-
-  public EntityRock(World world, double x, double y, double z, int meta) {
-
-    super(world, x, y, z);
-    this.dataManager.set(META, meta);
-    this.meta = meta;
-  }
-
-  public EntityRock(World world, EntityLivingBase throwerIn, int meta) {
-
-    super(world, throwerIn);
+    super(world, thrower);
     this.dataManager.set(META, meta);
     this.meta = meta;
   }
@@ -93,7 +74,7 @@ public class EntityRock
   }
 
   @Override
-  public void notifyDataManagerChange(DataParameter<?> key) {
+  public void notifyDataManagerChange(@Nonnull DataParameter<?> key) {
 
     if (this.world.isRemote) {
 

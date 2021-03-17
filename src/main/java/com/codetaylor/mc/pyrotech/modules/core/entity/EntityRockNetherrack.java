@@ -26,28 +26,9 @@ public class EntityRockNetherrack
   private static final DataParameter<Integer> META = EntityDataManager.createKey(EntityRockNetherrack.class, DataSerializers.VARINT);
   private int meta;
 
-  public EntityRockNetherrack(World world) {
+  public EntityRockNetherrack(World world, EntityLivingBase thrower, int meta) {
 
-    super(world);
-  }
-
-  public EntityRockNetherrack(World world, int meta) {
-
-    super(world);
-    this.dataManager.set(META, meta);
-    this.meta = meta;
-  }
-
-  public EntityRockNetherrack(World world, double x, double y, double z, int meta) {
-
-    super(world, x, y, z);
-    this.dataManager.set(META, meta);
-    this.meta = meta;
-  }
-
-  public EntityRockNetherrack(World world, EntityLivingBase throwerIn, int meta) {
-
-    super(world, throwerIn);
+    super(world, thrower);
     this.dataManager.set(META, meta);
     this.meta = meta;
   }
@@ -91,7 +72,7 @@ public class EntityRockNetherrack
   }
 
   @Override
-  public void notifyDataManagerChange(DataParameter<?> key) {
+  public void notifyDataManagerChange(@Nonnull DataParameter<?> key) {
 
     if (this.world.isRemote) {
 

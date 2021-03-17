@@ -26,28 +26,9 @@ public class EntityRockGrass
   private static final DataParameter<Integer> META = EntityDataManager.createKey(EntityRockGrass.class, DataSerializers.VARINT);
   private int meta;
 
-  public EntityRockGrass(World world) {
+  public EntityRockGrass(World world, EntityLivingBase thrower, int meta) {
 
-    super(world);
-  }
-
-  public EntityRockGrass(World world, int meta) {
-
-    super(world);
-    this.dataManager.set(META, meta);
-    this.meta = meta;
-  }
-
-  public EntityRockGrass(World world, double x, double y, double z, int meta) {
-
-    super(world, x, y, z);
-    this.dataManager.set(META, meta);
-    this.meta = meta;
-  }
-
-  public EntityRockGrass(World world, EntityLivingBase throwerIn, int meta) {
-
-    super(world, throwerIn);
+    super(world, thrower);
     this.dataManager.set(META, meta);
     this.meta = meta;
   }
@@ -91,7 +72,7 @@ public class EntityRockGrass
   }
 
   @Override
-  public void notifyDataManagerChange(DataParameter<?> key) {
+  public void notifyDataManagerChange(@Nonnull DataParameter<?> key) {
 
     if (this.world.isRemote) {
 
