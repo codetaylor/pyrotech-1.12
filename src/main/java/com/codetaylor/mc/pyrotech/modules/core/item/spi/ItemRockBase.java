@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.core.item.spi;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
-import com.codetaylor.mc.pyrotech.modules.core.entity.EntityRock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
