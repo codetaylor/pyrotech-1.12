@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "pyrotech:pyroberry_wine"},
+    {"item": "minecraft:string"},
+    {"item": "minecraft:gunpowder"}
+  ],
+  "result": {
+    "item": "pyrotech:pyroberry_cocktail",
+    "count": 1
+  }
+}
