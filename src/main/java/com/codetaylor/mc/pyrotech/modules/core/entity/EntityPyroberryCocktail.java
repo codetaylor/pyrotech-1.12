@@ -53,12 +53,12 @@ public class EntityPyroberryCocktail
         this.world.spawnParticle(
             EnumParticleTypes.EXPLOSION_LARGE,
             this.posX, this.posY, this.posZ,
-            ((double) this.rand.nextFloat() - 0.5) * 0.08, ((double) this.rand.nextFloat() - 0.5) * 0.08, ((double) this.rand.nextFloat() - 0.5) * 0.08
+            ((double) this.rand.nextFloat() - 0.5) * 0.08, 0, ((double) this.rand.nextFloat() - 0.5) * 0.08
         );
         this.world.spawnParticle(
             EnumParticleTypes.SMOKE_LARGE,
-            this.posX, this.posY, this.posZ,
-            ((double) this.rand.nextFloat() - 0.5) * 0.08, ((double) this.rand.nextFloat() - 0.5) * 0.08, ((double) this.rand.nextFloat() - 0.5) * 0.08
+            this.rand.nextFloat() * 0.5 + this.posX, this.posY, this.rand.nextFloat() * 0.5 + this.posZ,
+            0, ((double) this.rand.nextFloat()) * 0.08, 0
         );
       }
     }
