@@ -26,6 +26,13 @@ public class EntityRockGrass
   private static final DataParameter<Integer> META = EntityDataManager.createKey(EntityRockGrass.class, DataSerializers.VARINT);
   private int meta;
 
+  // serialization
+  @SuppressWarnings("unused")
+  public EntityRockGrass(World world) {
+
+    super(world);
+  }
+
   public EntityRockGrass(World world, EntityLivingBase thrower, int meta) {
 
     super(world, thrower);
