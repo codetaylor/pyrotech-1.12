@@ -20,7 +20,7 @@ public class ItemPyroberryWine
 
   public ItemPyroberryWine() {
 
-    super(ModuleCoreConfig.FOOD.PYROBERRY_WINE_HUNGER, (float) ModuleCoreConfig.FOOD.PYROBERRY_WINE_SATURATION, false);
+    super(ModuleCoreConfig.PYROBERRY_WINE.HUNGER, (float) ModuleCoreConfig.PYROBERRY_WINE.SATURATION, false);
     this.setMaxStackSize(3);
     this.setAlwaysEdible();
   }
@@ -36,14 +36,14 @@ public class ItemPyroberryWine
 
     PotionEffect potionEffect = entityLiving.getActivePotionEffect(MobEffects.FIRE_RESISTANCE);
 
-    int effectDuration = (30 * 20);
+    int effectDuration = ModuleCoreConfig.PYROBERRY_WINE.EFFECT_DURATION_TICKS;
 
     if (potionEffect != null) {
       effectDuration += potionEffect.getDuration();
     }
 
-    if (effectDuration > (60 * 20)) {
-      int nauseaDuration = (effectDuration - (60 * 20)) / 2;
+    if (effectDuration > ModuleCoreConfig.PYROBERRY_WINE.SICK_THRESHOLD_TICKS) {
+      int nauseaDuration = (effectDuration - ModuleCoreConfig.PYROBERRY_WINE.SICK_THRESHOLD_TICKS) / 2;
       entityLiving.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, nauseaDuration, 1));
     }
 

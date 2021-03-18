@@ -173,6 +173,10 @@ public class ModuleCoreConfig {
     public int OBSIDIAN_HAMMER_DURABILITY = 4035;
   }
 
+  // ---------------------------------------------------------------------------
+  // - Pyroberry Bush
+  // ---------------------------------------------------------------------------
+
   public static PyroberryBush PYROBERRY_BUSH = new PyroberryBush();
 
   public static class PyroberryBush {
@@ -204,6 +208,45 @@ public class ModuleCoreConfig {
     })
     @Config.RangeDouble(min = 0)
     public double OBSTRUCTED_GROWTH_REVERT_CHANCE = 0.25;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Pyroberry Wine
+  // ---------------------------------------------------------------------------
+
+  public static PyroberryWine PYROBERRY_WINE = new PyroberryWine();
+
+  public static class PyroberryWine {
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 0)
+    public int HUNGER = 1;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.10
+    })
+    @Config.RangeDouble(min = 0)
+    public double SATURATION = 0.10;
+
+    @Config.Comment({
+        "The tick duration of the effect.",
+        "Default: " + (60 * 20)
+    })
+    @Config.RangeInt(min = 0)
+    public int EFFECT_DURATION_TICKS = 60 * 20;
+
+    @Config.Comment({
+        "The effect duration after which the player becomes sick.",
+        "Default: " + (2 * 60 * 20)
+    })
+    @Config.RangeInt(min = 0)
+    public int SICK_THRESHOLD_TICKS = 2 * 60 * 20;
   }
 
   // ---------------------------------------------------------------------------
@@ -477,22 +520,6 @@ public class ModuleCoreConfig {
     })
     @Config.RangeInt(min = 0)
     public int BURNED_FOOD_HUNGER_EFFECT_DURATION_TICKS = 600;
-
-    @Config.Comment({
-        "The amount of hunger healed by eating.",
-        "For reference, the vanilla apple restores 4 hunger.",
-        "Default: " + 3
-    })
-    @Config.RangeInt(min = 0)
-    public int PYROBERRY_WINE_HUNGER = 3;
-
-    @Config.Comment({
-        "The amount of saturation healed by eating.",
-        "For reference, the vanilla apple restores 0.3 saturation.",
-        "Default: " + 0.20
-    })
-    @Config.RangeDouble(min = 0)
-    public double PYROBERRY_WINE_SATURATION = 0.20;
   }
 
   // ---------------------------------------------------------------------------
