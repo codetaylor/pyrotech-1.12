@@ -1,10 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.core.block;
 
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.block.spi.BlockBushBase;
-import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleCombust;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleBoneMeal;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleGloamberry;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -37,7 +38,9 @@ public class BlockGloamberryBush
   @Override
   public boolean isValidBlock(IBlockState blockState) {
 
-    return (blockState.getMaterial() == Material.GROUND);
+    return (blockState.getMaterial() == Material.GROUND
+        || blockState.getMaterial() == Material.GRASS)
+        && blockState.isFullBlock();
   }
 
   @Override
@@ -63,10 +66,10 @@ public class BlockGloamberryBush
         case 1:
         case 2:
         case 3:
-          break;
         case 4:
         case 5:
         case 6:
+          break;
         case 7:
         default:
           this.spawnParticles(pos, world.provider.getDimension());
@@ -76,7 +79,7 @@ public class BlockGloamberryBush
     }
 
     if (this.isMaxAge(blockState)) {
-      world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1.5f, true);
+//      world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1.5f, true);
     }
   }
 
@@ -89,10 +92,11 @@ public class BlockGloamberryBush
       Item item = itemStack.getItem();
 
       if (item == Items.DYE
-          && EnumDyeColor.CYAN == EnumDyeColor.byDyeDamage(itemStack.getMetadata())) {
+          && EnumDyeColor.WHITE == EnumDyeColor.byDyeDamage(itemStack.getMetadata())) {
         int age = this.getAge(blockState);
 
-        if (age < this.getMaxAge()
+        if (!world.isDaytime()
+            && age < this.getMaxAge()
             && ForgeHooks.onCropsGrowPre(world, pos, blockState, true)) {
 
           if (!player.isCreative() && !player.isSpectator()) {
@@ -100,20 +104,29 @@ public class BlockGloamberryBush
           }
 
           world.setBlockState(pos, this.withAge(age + 1), 2);
-          this.playSound(world, pos);
-          this.spawnParticles(pos, world.provider.getDimension());
+//          this.playSound(world, pos);
+//          this.spawnParticles(pos, world.provider.getDimension());
+          ModuleCore.PACKET_SERVICE.sendToAllAround(
+              new SCPacketParticleBoneMeal(pos, 4),
+              world.provider.getDimension(),
+              pos
+          );
           ForgeHooks.onCropsGrowPost(world, pos, blockState, world.getBlockState(pos));
 
-        } else if (this.isMaxAge(blockState)) {
-          this.spawnParticles(pos, world.provider.getDimension());
-          world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1.5f, true);
+        } else {
+          return !this.isMaxAge(blockState);
         }
 
         return true;
 
       } else if (item == Items.AIR && this.isMaxAge(blockState)) {
         this.spawnParticles(pos, world.provider.getDimension());
-        world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1.5f, true);
+
+        if (!world.isRemote) {
+          world.setBlockState(pos, this.withAge(this.getAge(blockState) - 1), 2);
+          StackHelper.spawnStackOnTop(world, new ItemStack(ModuleCore.Items.GLOAMBERRIES), pos);
+          this.playSound(world, pos);
+        }
         return true;
       }
     }
@@ -146,7 +159,9 @@ public class BlockGloamberryBush
 
   private void playSound(World world, BlockPos pos) {
 
-    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_NOTE_PLING, SoundCategory.BLOCKS, 1, 1);
+    if (RandomHelper.random().nextFloat() < 0.25) {
+      world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_VEX_AMBIENT, SoundCategory.BLOCKS, 0.75f, 1);
+    }
   }
 
   private void spawnParticles(BlockPos pos, int dimension) {
@@ -163,6 +178,12 @@ public class BlockGloamberryBush
   public void updateTick(World world, BlockPos pos, IBlockState blockState, Random rand) {
 
     this.checkAndDropBlock(world, pos);
+
+    if (world.isDaytime()
+        && this.isMaxAge(blockState)
+        && RandomHelper.random().nextFloat() < ModuleCoreConfig.GLOAMBERRY_BUSH.DAYTIME_BERRY_LOSS_CHANCE) {
+      world.setBlockState(pos, this.withAge(this.getAge(blockState) - 1), 2);
+    }
 
     if (world.canSeeSky(pos)) {
 
