@@ -58,6 +58,12 @@ public final class PacketInitializer {
         Side.CLIENT
     );
 
+    registry.register(
+        SCPacketParticleGloamberry.class,
+        SCPacketParticleGloamberry.class,
+        Side.CLIENT
+    );
+
     // Tile Data
     registry.register(
         SCPacketTileData.class,

@@ -338,6 +338,8 @@ item.pyrotech.pyroberries.name=Pyroberries
 item.pyrotech.pyroberry.seeds.name=Pyroberry Seeds
 item.pyrotech.pyroberry.wine.name=Pyroberry Wine
 item.pyrotech.pyroberry.cocktail.name=Pyroberry Cocktail
+item.pyrotech.gloamberry.seeds.name=Gloamberry Seeds
+item.pyrotech.gloamberries.name=Gloamberries
 
 item.pyrotech.crude.hammer.name=简陋的锤
 item.pyrotech.stone.hammer.name=石锤
@@ -381,6 +383,7 @@ tile.pyrotech.dense_redstone_ore.name=Dense Redstone Ore
 tile.pyrotech.dense_quartz_ore.name=Dense Quartz Ore
 tile.pyrotech.straw_bed.name=Straw Bed
 tile.pyrotech.pyroberry_bush.name=Pyroberry Bush
+tile.pyrotech.gloamberry_bush.name=Gloamberry Bush
 
 tile.pyrotech.rock_stone.name=石块
 tile.pyrotech.rock_andesite.name=安山岩块

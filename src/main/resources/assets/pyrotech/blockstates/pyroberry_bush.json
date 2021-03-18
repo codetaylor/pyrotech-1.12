@@ -1,15 +1,23 @@
 {
   "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "stem": "pyrotech:blocks/pyroberry_stem",
+      "leaves": "pyrotech:blocks/pyroberry_leaves",
+      "berry": "pyrotech:blocks/pyroberry",
+      "particle": "pyrotech:blocks/pyroberry_stem"
+    }
+  },
   "variants": {
     "age": {
-      "0": {"model": "pyrotech:pyroberry_bush_0"},
-      "1": {"model": "pyrotech:pyroberry_bush_1"},
-      "2": {"model": "pyrotech:pyroberry_bush_2"},
-      "3": {"model": "pyrotech:pyroberry_bush_3"},
-      "4": {"model": "pyrotech:pyroberry_bush_4"},
-      "5": {"model": "pyrotech:pyroberry_bush_5"},
-      "6": {"model": "pyrotech:pyroberry_bush_6"},
-      "7": {"model": "pyrotech:pyroberry_bush_7"}
+      "0": {"model": "pyrotech:bush_0"},
+      "1": {"model": "pyrotech:bush_1"},
+      "2": {"model": "pyrotech:bush_2"},
+      "3": {"model": "pyrotech:bush_3"},
+      "4": {"model": "pyrotech:bush_4", "textures": {"particle": "pyrotech:blocks/pyroberry_leaves"}},
+      "5": {"model": "pyrotech:bush_5", "textures": {"particle": "pyrotech:blocks/pyroberry_leaves"}},
+      "6": {"model": "pyrotech:bush_6", "textures": {"particle": "pyrotech:blocks/pyroberry_leaves"}},
+      "7": {"model": "pyrotech:bush_7", "textures": {"particle": "pyrotech:blocks/pyroberry_leaves"}}
     },
     "facing": {
       "north": {},

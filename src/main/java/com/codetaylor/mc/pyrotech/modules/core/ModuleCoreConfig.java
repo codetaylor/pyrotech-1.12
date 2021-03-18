@@ -174,6 +174,43 @@ public class ModuleCoreConfig {
   }
 
   // ---------------------------------------------------------------------------
+  // - Gloamberry Bush
+  // ---------------------------------------------------------------------------
+
+  public static GloamberryBush GLOAMBERRY_BUSH = new GloamberryBush();
+
+  public static class GloamberryBush {
+
+    @Config.Comment({
+        "The chance of advancing to the next growth stage when the block randomly ticks.",
+        "Default: " + 0.05
+    })
+    @Config.RangeDouble(min = 0)
+    public double GROWTH_CHANCE = 0.05;
+
+    @Config.Comment({
+        "The chance of advancing to the last growth stage when the block randomly ticks.",
+        "Default: " + 0.1
+    })
+    @Config.RangeDouble(min = 0)
+    public double BERRY_GROWTH_CHANCE = 0.1;
+
+    @Config.Comment({
+        "The chance of reverting to a previous growth stage when the block randomly ticks and can't see sky.",
+        "Default: " + 0.25
+    })
+    @Config.RangeDouble(min = 0)
+    public double OBSTRUCTED_GROWTH_REVERT_CHANCE = 0.25;
+
+    @Config.Comment({
+        "The chance of losing it's berries during the day.",
+        "Default: " + 0.75
+    })
+    @Config.RangeDouble(min = 0)
+    public double DAYTIME_BERRY_LOSS_CHANCE = 0.75;
+  }
+
+  // ---------------------------------------------------------------------------
   // - Pyroberry Bush
   // ---------------------------------------------------------------------------
 
@@ -193,7 +230,7 @@ public class ModuleCoreConfig {
         "Default: " + 0.05
     })
     @Config.RangeDouble(min = 0)
-    public double PYROBERRY_GROWTH_CHANCE = 0.05;
+    public double BERRY_GROWTH_CHANCE = 0.05;
 
     @Config.Comment({
         "The chance of reverting to a previous growth stage when the block randomly ticks in the rain.",
@@ -384,6 +421,22 @@ public class ModuleCoreConfig {
     })
     @Config.RangeDouble(min = 0)
     public double PYROBERRIES_SATURATION = 0.1;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 2
+    })
+    @Config.RangeInt(min = 0)
+    public int GLOAMBERRIES_HUNGER = 2;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.1
+    })
+    @Config.RangeDouble(min = 0)
+    public double GLOAMBERRIES_SATURATION = 0.1;
 
     @Config.Comment({
         "The amount of hunger healed by eating.",

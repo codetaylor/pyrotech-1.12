@@ -377,6 +377,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockPyroberryBush.NAME)
     public static final BlockPyroberryBush PYROBERRY_BUSH;
 
+    @GameRegistry.ObjectHolder(BlockGloamberryBush.NAME)
+    public static final BlockGloamberryBush GLOAMBERRY_BUSH;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -421,6 +424,7 @@ public class ModuleCore
       ORE_DENSE_QUARTZ_ROCKS = null;
       STRAW_BED = null;
       PYROBERRY_BUSH = null;
+      GLOAMBERRY_BUSH = null;
     }
   }
 
@@ -514,6 +518,12 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemPyroberryCocktail.NAME)
     public static final ItemPyroberryCocktail PYROBERRY_COCKTAIL;
 
+    @GameRegistry.ObjectHolder(ItemGloamberrySeeds.NAME)
+    public static final ItemGloamberrySeeds GLOAMBERRY_SEEDS;
+
+    @GameRegistry.ObjectHolder(ItemGloamberries.NAME)
+    public static final ItemGloamberries GLOAMBERRIES;
+
     static {
       ROCK = null;
       ROCK_GRASS = null;
@@ -544,6 +554,8 @@ public class ModuleCore
       PYROBERRIES = null;
       PYROBERRY_WINE = null;
       PYROBERRY_COCKTAIL = null;
+      GLOAMBERRY_SEEDS = null;
+      GLOAMBERRIES = null;
     }
   }
 
