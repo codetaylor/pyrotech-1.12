@@ -30,7 +30,7 @@ public class ItemPyroberrySeeds
 
     if (facing == EnumFacing.UP
         && player.canPlayerEdit(pos.offset(facing), facing, itemStack)
-        && BlockPyroberryBush.isValidBlock(blockState)
+        && ModuleCore.Blocks.PYROBERRY_BUSH.isValidBlock(blockState)
         && world.isAirBlock(pos.up())) {
 
       world.setBlockState(pos.up(), ModuleCore.Blocks.PYROBERRY_BUSH.getDefaultState());

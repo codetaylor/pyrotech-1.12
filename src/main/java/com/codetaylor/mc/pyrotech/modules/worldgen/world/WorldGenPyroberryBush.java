@@ -2,7 +2,6 @@ package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
-import com.codetaylor.mc.pyrotech.modules.core.block.BlockPyroberryBush;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
@@ -104,6 +103,6 @@ public class WorldGenPyroberryBush
       return false;
     }
 
-    return BlockPyroberryBush.isValidBlock(blockState);
+    return ModuleCore.Blocks.PYROBERRY_BUSH.isValidBlock(blockState);
   }
 }
