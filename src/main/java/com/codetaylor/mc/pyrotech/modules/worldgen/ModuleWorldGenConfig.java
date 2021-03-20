@@ -384,6 +384,8 @@ public class ModuleWorldGenConfig {
     public String[] ALLOWED_BIOMES = new String[]{
         "minecraft:forest",
         "minecraft:forest_hills",
+        "minecraft:birch_forest",
+        "minecraft:birch_forest_hills",
         "minecraft:taiga",
         "minecraft:taiga_hills",
         "minecraft:redwood_taiga",
