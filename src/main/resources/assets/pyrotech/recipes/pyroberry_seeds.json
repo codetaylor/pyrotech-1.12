@@ -1,6 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
+    {"item": "pyrotech:pyroberries"},
+    {"item": "pyrotech:pyroberries"},
     {"item": "pyrotech:pyroberries"}
   ],
   "result": {
