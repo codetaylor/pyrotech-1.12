@@ -28,7 +28,8 @@ public class WorldGenerator
         new WorldGenRocks(),
         new WorldGenDenseRedstoneOre(),
         new WorldGenDenseQuartzOre(),
-        new WorldGenPyroberryBush()
+        new WorldGenPyroberryBush(),
+        new WorldGenGloamberryBush()
     );
 
     this.perDimensionFeatureList = new Int2ObjectOpenHashMap<>();
