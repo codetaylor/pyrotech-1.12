@@ -195,6 +195,10 @@ public class BlockGloamberryBush
         if (age < this.getMaxAge()) {
           double chance = (age == this.getMaxAge() - 1) ? ModuleCoreConfig.GLOAMBERRY_BUSH.BERRY_GROWTH_CHANCE : ModuleCoreConfig.GLOAMBERRY_BUSH.GROWTH_CHANCE;
 
+          if (!world.canSeeSky(pos)) {
+            chance *= ModuleCoreConfig.GLOAMBERRY_BUSH.OBSTRUCTED_GROWTH_MULTIPLICATIVE_MODIFIER;
+          }
+
           if (ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < chance)) {
             world.setBlockState(pos, this.withAge(age + 1), 2);
             grew = true;
@@ -205,18 +209,6 @@ public class BlockGloamberryBush
         if ((age > 2 && grew) || (this.isMaxAge(blockState) && rand.nextFloat() < 0.5)) {
           this.spawnParticles(pos, world.provider.getDimension());
           this.playSound(world, pos);
-        }
-      }
-
-    } else {
-      // Reduce age if the plant can't see sky.
-      int age = this.getAge(blockState);
-
-      if (age > 4) {
-
-        if (ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < ModuleCoreConfig.GLOAMBERRY_BUSH.OBSTRUCTED_GROWTH_REVERT_CHANCE)) {
-          world.setBlockState(pos, this.withAge(age - 1), 2);
-          ForgeHooks.onCropsGrowPost(world, pos, blockState, world.getBlockState(pos));
         }
       }
     }

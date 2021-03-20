@@ -196,11 +196,12 @@ public class ModuleCoreConfig {
     public double BERRY_GROWTH_CHANCE = 0.1;
 
     @Config.Comment({
-        "The chance of reverting to a previous growth stage when the block randomly ticks and can't see sky.",
+        "The multiplicative modifier applied to the growth chance when the block can't see sky.",
+        "chance = chance * modifier",
         "Default: " + 0.25
     })
     @Config.RangeDouble(min = 0)
-    public double OBSTRUCTED_GROWTH_REVERT_CHANCE = 0.25;
+    public double OBSTRUCTED_GROWTH_MULTIPLICATIVE_MODIFIER = 0.25;
 
     @Config.Comment({
         "The chance of losing it's berries during the day.",
