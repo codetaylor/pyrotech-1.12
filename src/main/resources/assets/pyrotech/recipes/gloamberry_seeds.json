@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "pyrotech:gloamberries"},
+    {"item": "pyrotech:gloamberries"},
+    {"item": "pyrotech:gloamberries"}
+  ],
+  "result": {
+    "item": "pyrotech:gloamberry_seeds",
+    "count": 1
+  }
+}
