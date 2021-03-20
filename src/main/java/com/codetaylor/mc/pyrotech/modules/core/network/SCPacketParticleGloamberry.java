@@ -65,7 +65,7 @@ public class SCPacketParticleGloamberry
 
     World world = Minecraft.getMinecraft().world;
 
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 8; i++) {
       double offsetX = (RandomHelper.random().nextDouble() * 2.0 - 1.0) * message.rangeX;
       double offsetY = (RandomHelper.random().nextDouble() * 2.0 - 1.0) * message.rangeY;
       double offsetZ = (RandomHelper.random().nextDouble() * 2.0 - 1.0) * message.rangeZ;
