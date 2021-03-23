@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.util.Injector;
 import com.codetaylor.mc.pyrotech.library.FluidInitializerRegistry;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.fluid.BlockFluidClay;
+import com.codetaylor.mc.pyrotech.modules.core.block.fluid.BlockFluidGloamberryWine;
 import com.codetaylor.mc.pyrotech.modules.core.block.fluid.BlockFluidPyroberryWine;
 
 public final class FluidInitializer {
@@ -38,6 +39,17 @@ public final class FluidInitializer {
             true,
             fluid -> fluid.setDensity(1000).setViscosity(2000),
             BlockFluidPyroberryWine::new
+        )
+    );
+
+    injector.inject(
+        ModuleCore.Fluids.class,
+        "GLOAMBERRY_WINE",
+        REGISTRY.createFluid(
+            "gloamberry_wine",
+            true,
+            fluid -> fluid.setDensity(1000).setViscosity(2000),
+            BlockFluidGloamberryWine::new
         )
     );
 

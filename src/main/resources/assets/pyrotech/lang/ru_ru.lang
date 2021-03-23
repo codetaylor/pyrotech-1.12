@@ -275,6 +275,8 @@ fluid.liquid_clay=Жидкая глина
 tile.fluid.liquid_clay.name=Жидкая глина
 fluid.pyroberry_wine=Pyroberry Wine
 tile.fluid.pyroberry_wine.name=Pyroberry Wine
+fluid.gloamberry_wine=Gloamberry Wine
+tile.fluid.gloamberry_wine.name=Gloamberry Wine
 
 item.pyrotech.straw.name=Солома
 item.pyrotech.coal.coke.name=Коксовый уголь

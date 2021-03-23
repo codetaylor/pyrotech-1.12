@@ -275,6 +275,8 @@ fluid.liquid_clay=液态粘土
 tile.fluid.liquid_clay.name=液态粘土
 fluid.pyroberry_wine=Pyroberry Wine
 tile.fluid.pyroberry_wine.name=Pyroberry Wine
+fluid.gloamberry_wine=Gloamberry Wine
+tile.fluid.gloamberry_wine.name=Gloamberry Wine
 
 item.pyrotech.straw.name=稻草
 item.pyrotech.coal.coke.name=煤焦

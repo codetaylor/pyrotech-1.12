@@ -70,16 +70,18 @@
             * Unsealed Barrels in rain will convert non-water fluids to water over time
     * Fluids:
         * Tannin
+        * Pyroberry Wine
+        * Gloamberry Wine
     * Pyroberry Bush
         * Spawns in desert
         * Drops Pyroberries when sheared at max growth stage
     * Pyroberry Seeds
     * Pyroberries
-    * Pyroberry Wine
     * Pyroberry Cocktail
     * Gloamberry Bush
         * Drops Gloamberries when ripe
     * Gloamberry Seeds
+    * Gloamberries
     * Ore Compat:
         * Bloom yield and slag bloom yield can now be adjusted in the ore compat json files [(#310)](https://github.com/codetaylor/pyrotech-1.12/issues/310)
     * Config option to:
@@ -305,6 +307,8 @@
         * `item.pyrotech.pyroberry.cocktail.name`
         * `tile.pyrotech.gloamberry_bush.name`
         * `item.pyrotech.gloamberry.seeds.name`
+        * `fluid.gloamberry_wine`
+        * `tile.fluid.gloamberry_wine.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
