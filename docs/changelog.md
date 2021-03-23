@@ -116,6 +116,8 @@
             * Pyroberries with Slimeball -> Magma Cream
             * Pyroberries -> Pyroberry Seeds
             * Gloamberries -> Gloamberry Seeds
+            * Fluid Pyroberry Wine with Glass Bottles -> Pyroberry Wine
+            * Fluid Gloamberry Wine with Glass Bottles -> Gloamberry Wine
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
