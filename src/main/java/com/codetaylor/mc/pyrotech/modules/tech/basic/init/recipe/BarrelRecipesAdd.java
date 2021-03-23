@@ -40,7 +40,19 @@ public class BarrelRecipesAdd {
             Ingredient.fromItems(Items.SUGAR)
         },
         new FluidStack(FluidRegistry.WATER, 1000),
-        20 * 60 * 10
+        20 * 60 * 15
     ).setRegistryName(new ResourceLocation(ModuleTechBasic.MOD_ID, "pyroberry_wine")));
+
+    registry.register(new BarrelRecipe(
+        new FluidStack(ModuleCore.Fluids.GLOAMBERRY_WINE, 1000),
+        new Ingredient[]{
+            Ingredient.fromItems(ModuleCore.Items.GLOAMBERRIES),
+            Ingredient.fromItems(ModuleCore.Items.GLOAMBERRIES),
+            Ingredient.fromItems(ModuleCore.Items.GLOAMBERRIES),
+            Ingredient.fromItems(Items.SUGAR)
+        },
+        new FluidStack(FluidRegistry.WATER, 1000),
+        20 * 60 * 15
+    ).setRegistryName(new ResourceLocation(ModuleTechBasic.MOD_ID, "gloamberry_wine")));
   }
 }
