@@ -7,91 +7,95 @@
     * Hammering anvil bloom shouldn't show progress particles with zero hammer power
 
   * **Added:**
-    * Carcass:
-        * Captures configured mob drops
-        * Use Hunting Knife on Carcass to release captured drops
-    * Hunting Knives:
-        * Bone Hunting Knife
-        * Flint Hunting Knife
-        * Stone Hunting Knife
-        * Iron Hunting Knife
-        * Gold Hunting Knife
-        * Diamond Hunting Knife
-        * Obsidian Hunting Knife
-    * Hides:
-        * Tanned Hide
-        * Small Tanned Hide
-        * Scraped Hide
-        * Small Scraped Hide
-        * Washed Hide
-        * Small Washed Hide
-        * Sheep Hide
-        * Pig Hide
-        * Llama Hide
-    * Pelts:
-        * Cow Pelt
-        * Colored Sheep Pelts
-        * Bat Pelt
-        * Polar Bear Pelt
-        * Horse Pelt
-        * Mooshroom Pelt
-        * Colored Llama Pelts
-        * Wolf Pelt
-    * Leather materials:
-        * Small Leather
-        * Leather Sheet
-        * Leather Strap
-        * Leather Cord
-        * Durable Leather
-        * Durable Leather Sheet
-        * Durable Leather Strap
-        * Durable Leather Cord
-    * Leather kits:
-        * Leather Repair Kit
-        * Durable Leather Repair Kit
-        * Durable Leather Upgrade Kit
-    * Decorative blocks:
-        * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
-        * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
-        * Masonry Brick Wall [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
-        * Refractory Brick Stairs
-        * Refractory Brick Slab
-        * Refractory Brick Wall
-    * Valid refractory blocks:
-        * Double Refractory Brick Slab
-    * Tanning Rack
-    * Barrel:
-        * Barrel Lid
+    * Blocks:
+        * Carcass
+            * Captures configured mob drops
+            * Use Hunting Knife on Carcass to release captured drops
+        * Decorative blocks:
+            * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
+            * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
+            * Masonry Brick Wall [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
+            * Refractory Brick Stairs
+            * Refractory Brick Slab
+            * Refractory Brick Wall
+        * Tanning Rack
+            * item -> item
         * Barrel
             * 2x2 shapeless item + fluid -> fluid
             * Recipe starts when sealed with a Barrel Lid
             * Sealed Barrels retain contents and recipe progress when broken
             * Unsealed Barrels in rain will collect water over time
             * Unsealed Barrels in rain will convert non-water fluids to water over time
-    * Fluids:
+        * Pyroberry Bush
+            * Drops Pyroberries when sheared at max growth stage
+        * Gloamberry Bush
+            * Drops Gloamberries when ripe
+    * Items:
+        * Hunting Knives:
+            * Bone Hunting Knife
+            * Flint Hunting Knife
+            * Stone Hunting Knife
+            * Iron Hunting Knife
+            * Gold Hunting Knife
+            * Diamond Hunting Knife
+            * Obsidian Hunting Knife
+        * Hides:
+            * Tanned Hide
+            * Small Tanned Hide
+            * Scraped Hide
+            * Small Scraped Hide
+            * Washed Hide
+            * Small Washed Hide
+            * Sheep Hide
+            * Pig Hide
+            * Llama Hide
+        * Pelts:
+            * Cow Pelt
+            * Colored Sheep Pelts
+            * Bat Pelt
+            * Polar Bear Pelt
+            * Horse Pelt
+            * Mooshroom Pelt
+            * Colored Llama Pelts
+            * Wolf Pelt
+        * Leather materials:
+            * Small Leather
+            * Leather Sheet
+            * Leather Strap
+            * Leather Cord
+            * Durable Leather
+            * Durable Leather Sheet
+            * Durable Leather Strap
+            * Durable Leather Cord
+        * Leather kits:
+            * Leather Repair Kit
+            * Durable Leather Repair Kit
+            * Durable Leather Upgrade Kit
+        * Barrel Lid
+        * Pyroberry Seeds
+        * Pyroberries
+        * Pyroberry Cocktail
+        * Gloamberry Seeds
+        * Gloamberries
+    * Fluids
         * Tannin
         * Pyroberry Wine
         * Gloamberry Wine
-    * Pyroberry Bush
-        * Spawns in desert
-        * Drops Pyroberries when sheared at max growth stage
-    * Pyroberry Seeds
-    * Pyroberries
-    * Pyroberry Cocktail
-    * Gloamberry Bush
-        * Drops Gloamberries when ripe
-    * Gloamberry Seeds
-    * Gloamberries
+    * Valid refractory blocks:
+        * Double Refractory Brick Slab
     * Ore Compat:
         * Bloom yield and slag bloom yield can now be adjusted in the ore compat json files [(#310)](https://github.com/codetaylor/pyrotech-1.12/issues/310)
-    * Config option to:
-        * Change rock bags' fill texture `ROCK_FILL_TEXTURE_LOCATION` [(#253)](https://github.com/codetaylor/pyrotech-1.12/issues/253)
-        * Disable durability tooltips `SHOW_DURABILITY_TOOLTIPS` [(#221)](https://github.com/codetaylor/pyrotech-1.12/issues/221)
-        * Specify Iron Ingot replacement item `REPLACE_IRON_INGOTS_WITH` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
-        * Change thrown rock / clump damage `DAMAGE` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
-        * Change thrown rock / clump velocity `VELOCITY` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
-        * Change thrown rock / clump pitch offset `PITCH` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
-        * Change thrown rock / clump inaccuracy `INACCURACY` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
+    * Config:
+        * Option to:
+            * Change rock bags' fill texture `ROCK_FILL_TEXTURE_LOCATION` [(#253)](https://github.com/codetaylor/pyrotech-1.12/issues/253)
+            * Disable durability tooltips `SHOW_DURABILITY_TOOLTIPS` [(#221)](https://github.com/codetaylor/pyrotech-1.12/issues/221)
+            * Specify Iron Ingot replacement item `REPLACE_IRON_INGOTS_WITH` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
+            * Change thrown rock / clump damage `DAMAGE` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
+            * Change thrown rock / clump velocity `VELOCITY` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
+            * Change thrown rock / clump pitch offset `PITCH` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
+            * Change thrown rock / clump inaccuracy `INACCURACY` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
+        * New config file:
+            * `module.Hunting.cfg`
     * Recipes:
         * Crafting:
             * Hunting Knives
@@ -109,6 +113,7 @@
             * Leather armor repair recipes with `ore:kitRepairLeather`
             * Pyroberries with Slimeball -> Magma Cream
             * Pyroberries -> Pyroberry Seeds
+            * Gloamberries -> Gloamberry Seeds
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
@@ -116,8 +121,6 @@
             * Small Washed Hide and `fluid:tannin` -> Small Leather
         * Barrel:
             * `treeLeaves` and `fluid:water` to create `fluid:tannin`
-    * New config file:
-        * `module.Hunting.cfg`
     * Visual indicator when the player's hunger is too low to use a device
     * Oredict:
         * `blockCharcoal` now contains `pyrotech:charcoal_block` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
