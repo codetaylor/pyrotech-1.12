@@ -74,9 +74,11 @@
         * Barrel Lid
         * Pyroberry Seeds
         * Pyroberries
+        * Pyroberry Wine
         * Pyroberry Cocktail
         * Gloamberry Seeds
         * Gloamberries
+        * Gloamberry Wine
     * Fluids
         * Tannin
         * Pyroberry Wine
@@ -312,6 +314,7 @@
         * `item.pyrotech.gloamberry.seeds.name`
         * `fluid.gloamberry_wine`
         * `tile.fluid.gloamberry_wine.name`
+        * `item.pyrotech.gloamberry.wine.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

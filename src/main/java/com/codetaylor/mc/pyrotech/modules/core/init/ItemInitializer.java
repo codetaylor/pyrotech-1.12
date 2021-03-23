@@ -25,6 +25,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemBurnedFood(), ItemBurnedFood.NAME);
     registry.registerItem(new ItemStrangeTuber(), ItemStrangeTuber.NAME);
     registry.registerItem(new ItemPyroberryWine(), ItemPyroberryWine.NAME);
+    registry.registerItem(new ItemGloamberryWine(), ItemGloamberryWine.NAME);
 
     registry.registerItem(new ItemCrudeHammer(), ItemCrudeHammer.NAME);
     registry.registerItem(new ItemStoneHammer(), ItemStoneHammer.NAME);
@@ -79,7 +80,8 @@ public final class ItemInitializer {
           ModuleCore.Items.PYROBERRY_COCKTAIL,
 
           ModuleCore.Items.GLOAMBERRY_SEEDS,
-          ModuleCore.Items.GLOAMBERRIES
+          ModuleCore.Items.GLOAMBERRIES,
+          ModuleCore.Items.GLOAMBERRY_WINE
       );
 
       // Material

@@ -524,6 +524,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemGloamberries.NAME)
     public static final ItemGloamberries GLOAMBERRIES;
 
+    @GameRegistry.ObjectHolder(ItemGloamberryWine.NAME)
+    public static final ItemGloamberryWine GLOAMBERRY_WINE;
+
     static {
       ROCK = null;
       ROCK_GRASS = null;
@@ -556,6 +559,7 @@ public class ModuleCore
       PYROBERRY_COCKTAIL = null;
       GLOAMBERRY_SEEDS = null;
       GLOAMBERRIES = null;
+      GLOAMBERRY_WINE = null;
     }
   }
 

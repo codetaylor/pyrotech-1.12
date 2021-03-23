@@ -386,6 +386,7 @@ tile.pyrotech.dense_quartz_ore.name=Dense Quartz Ore
 tile.pyrotech.straw_bed.name=Straw Bed
 tile.pyrotech.pyroberry_bush.name=Pyroberry Bush
 tile.pyrotech.gloamberry_bush.name=Gloamberry Bush
+item.pyrotech.gloamberry.wine.name=Gloamberry Wine
 
 tile.pyrotech.rock_stone.name=石块
 tile.pyrotech.rock_andesite.name=安山岩块
