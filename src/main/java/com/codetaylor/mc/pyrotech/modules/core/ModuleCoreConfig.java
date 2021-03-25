@@ -704,6 +704,7 @@ public class ModuleCoreConfig {
         "minecraft:book",
         "minecraft:lead",
         "minecraft:magma_cream",
+        "minecraft:arrow",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
