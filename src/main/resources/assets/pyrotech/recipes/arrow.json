@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
+  "pattern": [
+    "  ^",
+    " / ",
+    "#  "
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "pyrotech:material",
+      "data": 46
+    },
+    "^": {
+      "item": "pyrotech:material",
+      "data": 11
+    }
+  },
+  "result": {
+    "item": "pyrotech:bone_arrow",
+    "count": 1
+  }
+}
