@@ -1,0 +1,25 @@
+{
+  "type": "pyrotech:hunting_knife_shapeless",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "feather"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "toolHuntingKnife"
+    }
+  ],
+  "toolDamage": 0,
+  "result": {
+    "item": "pyrotech:material",
+    "data": 46,
+    "count": 3
+  }
+}
