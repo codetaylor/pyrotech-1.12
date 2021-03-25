@@ -79,6 +79,7 @@
         * Gloamberry Seeds
         * Gloamberries
         * Gloamberry Wine
+        * Fletching
     * Fluids
         * Tannin
         * Pyroberry Wine
@@ -317,6 +318,7 @@
         * `fluid.gloamberry_wine`
         * `tile.fluid.gloamberry_wine.name`
         * `item.pyrotech.gloamberry.wine.name`
+        * `item.pyrotech.fletching.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

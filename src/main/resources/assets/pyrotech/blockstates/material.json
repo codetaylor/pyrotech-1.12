@@ -50,7 +50,8 @@
       "leather_durable_sheet": {"textures": {"layer0": "pyrotech:items/leather_durable_sheet"}},
       "leather_durable_strap": {"textures": {"layer0": "pyrotech:items/leather_durable_strap"}},
       "leather_durable_cord": {"textures": {"layer0": "pyrotech:items/leather_durable_cord"}},
-      "leather_small": {"textures": {"layer0": "pyrotech:items/leather_small"}}
+      "leather_small": {"textures": {"layer0": "pyrotech:items/leather_small"}},
+      "fletching": {"textures": {"layer0": "pyrotech:items/fletching"}}
     }
   }
 }
