@@ -20,12 +20,12 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import javax.annotation.Nonnull;
 
-public class LeatherCuttingRecipe
+public class HuntingKnifeShapelessRecipe
     extends ShapelessOreRecipe {
 
   private final int damage;
 
-  public LeatherCuttingRecipe(ResourceLocation group, NonNullList<Ingredient> input, @Nonnull ItemStack result, int damage) {
+  public HuntingKnifeShapelessRecipe(ResourceLocation group, NonNullList<Ingredient> input, @Nonnull ItemStack result, int damage) {
 
     super(group, input, result);
     this.damage = damage;
@@ -78,7 +78,7 @@ public class LeatherCuttingRecipe
       }
 
       ItemStack itemstack = CraftingHelper.getItemStack(JsonUtils.getJsonObject(json, "result"), context);
-      return new LeatherCuttingRecipe(group.isEmpty() ? null : new ResourceLocation(group), ingredients, itemstack, damage);
+      return new HuntingKnifeShapelessRecipe(group.isEmpty() ? null : new ResourceLocation(group), ingredients, itemstack, damage);
     }
   }
 }
