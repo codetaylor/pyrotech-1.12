@@ -67,6 +67,7 @@ public class ModuleHunting
     FluidInitializer.onClientRegister(registry);
     BlockInitializer.onClientRegister(registry);
     ItemInitializer.onClientRegister(registry);
+    EntityInitializer.onClientRegister();
   }
 
   @Override
@@ -242,6 +243,12 @@ public class ModuleHunting
     @GameRegistry.ObjectHolder(ItemHide.NAME_SMALL_TANNED)
     public static final ItemHide HIDE_SMALL_TANNED;
 
+    @GameRegistry.ObjectHolder(ItemFlintArrow.NAME)
+    public static final ItemFlintArrow FLINT_ARROW;
+
+    @GameRegistry.ObjectHolder(ItemBoneArrow.NAME)
+    public static final ItemBoneArrow BONE_ARROW;
+
     static {
       HIDE_PIG = null;
       HIDE_SHEEP_SHEARED = null;
@@ -288,6 +295,8 @@ public class ModuleHunting
       PELT_WOLF = null;
       HIDE_TANNED = null;
       HIDE_SMALL_TANNED = null;
+      FLINT_ARROW = null;
+      BONE_ARROW = null;
     }
   }
 

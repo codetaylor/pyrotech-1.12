@@ -66,6 +66,9 @@ public final class ItemInitializer {
     registry.registerItem(new ItemLeatherDurableRepairKit(), ItemLeatherDurableRepairKit.NAME);
     registry.registerItem(new ItemLeatherDurableUpgradeKit(), ItemLeatherDurableUpgradeKit.NAME);
     registry.registerItem(new ItemLeatherRepairKit(), ItemLeatherRepairKit.NAME);
+
+    registry.registerItem(new ItemFlintArrow(), ItemFlintArrow.NAME);
+    registry.registerItem(new ItemBoneArrow(), ItemBoneArrow.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -118,7 +121,9 @@ public final class ItemInitializer {
           ModuleHunting.Items.PELT_LLAMA_BROWN,
           ModuleHunting.Items.HIDE_LLAMA,
           ModuleHunting.Items.HIDE_TANNED,
-          ModuleHunting.Items.HIDE_SMALL_TANNED
+          ModuleHunting.Items.HIDE_SMALL_TANNED,
+          ModuleHunting.Items.FLINT_ARROW,
+          ModuleHunting.Items.BONE_ARROW
       );
     });
   }

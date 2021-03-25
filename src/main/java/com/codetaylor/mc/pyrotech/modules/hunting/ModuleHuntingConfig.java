@@ -11,6 +11,76 @@ import java.util.Map;
 @Config(modid = ModuleHunting.MOD_ID, name = ModuleHunting.MOD_ID + "/" + "module.Hunting")
 public class ModuleHuntingConfig {
 
+  public static FlintArrow FLINT_ARROW = new FlintArrow();
+
+  public static class FlintArrow {
+
+    @Config.Comment({
+        "Chance to break when the arrow hits a block.",
+        "This chance is modified by the speed of the arrow.",
+        "Default: " + 0.75
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double BREAK_ON_HIT_CHANCE = 0.75;
+
+    @Config.Comment({
+        "Chance to drop materials when arrow breaks after hitting a block.",
+        "Default: " + 0.5
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double MATERIAL_DROP_CHANCE = 0.5;
+
+    @Config.Comment({
+        "Stack size.",
+        "Default: " + 16
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int STACK_SIZE = 16;
+
+    @Config.Comment({
+        "Damage.",
+        "For reference, the vanilla arrow does 2.0 damage.",
+        "Default: " + 1
+    })
+    @Config.RangeDouble(min = 0)
+    public double DAMAGE = 1;
+  }
+
+  public static BoneArrow BONE_ARROW = new BoneArrow();
+
+  public static class BoneArrow {
+
+    @Config.Comment({
+        "Chance to break when the arrow hits a block.",
+        "This chance is modified by the speed of the arrow.",
+        "Default: " + 0.75
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double BREAK_ON_HIT_CHANCE = 0.75;
+
+    @Config.Comment({
+        "Chance to drop materials when arrow breaks after hitting a block.",
+        "Default: " + 0.5
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double MATERIAL_DROP_CHANCE = 0.5;
+
+    @Config.Comment({
+        "Stack size.",
+        "Default: " + 16
+    })
+    @Config.RangeInt(min = 1, max = 64)
+    public int STACK_SIZE = 16;
+
+    @Config.Comment({
+        "Damage.",
+        "For reference, the vanilla arrow does 2.0 damage.",
+        "Default: " + 1
+    })
+    @Config.RangeDouble(min = 0)
+    public double DAMAGE = 1;
+  }
+
   public static Carcass CARCASS = new Carcass();
 
   public static class Carcass {

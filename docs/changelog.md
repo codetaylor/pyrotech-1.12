@@ -80,6 +80,8 @@
         * Gloamberries
         * Gloamberry Wine
         * Fletching
+        * Flint Arrow
+        * Bone Arrow
     * Fluids
         * Tannin
         * Pyroberry Wine
@@ -319,6 +321,8 @@
         * `tile.fluid.gloamberry_wine.name`
         * `item.pyrotech.gloamberry.wine.name`
         * `item.pyrotech.fletching.name`
+        * `item.pyrotech.flint.arrow.name`
+        * `item.pyrotech.bone.arrow.name`
 
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`

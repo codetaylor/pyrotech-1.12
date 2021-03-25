@@ -53,6 +53,9 @@ item.pyrotech.leather.repair.kit.name=Leather Repair Kit
 item.pyrotech.leather.durable.repair.kit.name=Durable Leather Repair Kit
 item.pyrotech.leather.durable.upgrade.kit.name=Durable Leather Upgrade Kit
 
+item.pyrotech.flint.arrow.name=Flint Arrow
+item.pyrotech.bone.arrow.name=Bone Arrow
+
 tile.pyrotech.carcass.name=Carcass
 
 fluid.tannin=Tannin
