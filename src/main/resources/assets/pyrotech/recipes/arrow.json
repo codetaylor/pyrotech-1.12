@@ -1,11 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "conditions": [
-    {
-      "type": "modules_enabled",
-      "include": ["module.hunting"]
-    }
-  ],
   "pattern": [
     "  ^",
     " / ",
@@ -21,11 +15,11 @@
     },
     "^": {
       "item": "pyrotech:material",
-      "data": 11
+      "data": 19
     }
   },
   "result": {
-    "item": "pyrotech:bone_arrow",
+    "item": "minecraft:arrow",
     "count": 1
   }
 }
