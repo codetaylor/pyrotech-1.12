@@ -11,7 +11,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:material:12",
-      "text": "$(item)植物纤维$()在破坏高草丛是掉落。$(p)$(item)植物纤维$()也可以被制作。"
+      "text": "$(item)植物纤维$()在破坏高草丛时掉落。$(p)$(item)植物纤维$()也可以被制作。"
     },
     {
       "type": "relations",
