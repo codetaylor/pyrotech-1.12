@@ -20,7 +20,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tool/quartz_hoe",
-      "text": "$(info) 当激活时，$(item)石英锄$()的耕种范围变为3*3。"
+      "text": "$(info) 当激活时，$(item)石英锄$()的耕种范围变为 3*3。"
     },
     {
       "type": "crafting",
