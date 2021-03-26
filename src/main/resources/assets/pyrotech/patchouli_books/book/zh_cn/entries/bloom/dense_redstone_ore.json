@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:dense_redstone_ore_large",
-      "text": "$(item)致密红石矿石$()是自然生成的纯度最高的红石，能在很深的洞穴中被找到。$(p)$(info)$(item)致密红石矿石$()这个大家伙可以被有$(thing)精准采集$()的镐子完整收集。$(p)$(info)至少需要$(thing)相当于铁镐的镐子$()以开采。"
+      "text": "$(item)致密红石矿石$()是自然生成的纯度最高的红石，能在很深的洞穴中被找到。$(p)$(info) 大型的$(item)致密红石矿石$(可以被有$(thing)精准采集$()的镐子完整收集。$(p)$(info)至少需要$(thing)相当于铁镐的镐子$()以开采。"
     },
     {
       "type": "image",
