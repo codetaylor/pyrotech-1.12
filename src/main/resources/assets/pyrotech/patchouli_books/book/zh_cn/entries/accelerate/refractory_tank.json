@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/brick_tank",
-      "text": "$(item)耐火缸$()的掉落物能继续保持内部液体，并且能够储存热液体。"
+      "text": "挖掘$(item)耐火缸$()不会失去其中的液体，并且能够储存热液体。"
     },
     {
       "type": "relations",
