@@ -188,11 +188,11 @@ item.pyrotech.redstone.pickaxe.name=红石镐
 item.pyrotech.redstone.shovel.name=红石锹
 item.pyrotech.redstone.sword.name=红石剑
 
-item.pyrotech.quartz.axe.name=石英斧
-item.pyrotech.quartz.hoe.name=石英锄
-item.pyrotech.quartz.pickaxe.name=石英镐
-item.pyrotech.quartz.shovel.name=石英锹
-item.pyrotech.quartz.sword.name=石英剑
+item.pyrotech.quartz.axe.name=下界石英斧
+item.pyrotech.quartz.hoe.name=下界石英锄
+item.pyrotech.quartz.pickaxe.name=下界石英镐
+item.pyrotech.quartz.shovel.name=下界石英锹
+item.pyrotech.quartz.sword.name=下界石英剑
 
 item.pyrotech.unfired.clay.shears.name=未烧制的粘土剪刀
 item.pyrotech.clay.shears.name=粘土剪刀
@@ -251,7 +251,7 @@ item.pyrotech.glass.shard.name=玻璃碎片
 item.pyrotech.obsidian.shard.name=黑曜石碎片
 item.pyrotech.gold.shard.name=金碎片
 item.pyrotech.dense.redstone.name=致密红石
-item.pyrotech.dense.quartz.name=致密石英
+item.pyrotech.dense.quartz.name=致密下界石英
 
 item.pyrotech.apple.baked.name=烤苹果
 item.pyrotech.carrot.roasted.name=烤胡萝卜
@@ -294,7 +294,7 @@ tile.pyrotech.charcoal_block.name=木炭块
 tile.pyrotech.wood_tar_block.name=焦油稻草捆
 tile.pyrotech.living_tar.name=活焦油
 tile.pyrotech.dense_redstone_ore.name=致密红石矿
-tile.pyrotech.dense_quartz_ore.name=致密石英矿
+tile.pyrotech.dense_quartz_ore.name=致密下界石英矿
 tile.pyrotech.straw_bed.name=草席
 
 tile.pyrotech.rock_stone.name=石块
