@@ -19,7 +19,7 @@
     {
       "type": "text",
       "title": "Automation",
-      "text": "$(info_cn) Regarding automation, input ingredients are inserted into the top, or top sides, of the device, fuel is inserted into the bottom sides, and output items are extracted from the bottom."
+      "text": "$(info_cn) 关于自动化，（机器共高两格）原料可以从机器顶部和第二格高的侧面导入，燃料可以从第一格高的侧面导入，输出的成品则从底面导出。"
     },
     {
       "type": "image",

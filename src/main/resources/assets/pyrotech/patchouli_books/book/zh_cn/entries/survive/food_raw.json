@@ -1,5 +1,5 @@
 {
-  "name": "Food, Raw",
+  "name": "生的食物",
   "icon": "pyrotech:strange_tuber",
   "category": "survive",
   "pages": [
@@ -7,7 +7,7 @@
       "type": "spotlight",
       "item": "pyrotech:strange_tuber",
       "link_recipe": true,
-      "text": "$(item)Strange Tubers$() are found most often by digging through grassy dirt with bare hands and can occasionally be found in tall grasses.$(p)$(info) While they taste mostly of wood and dirt, $(item)Strange Tubers$() are edible."
+      "text": "$(item)怪异根茎$()在空手挖开长草的泥土时最为常见，偶尔也能在高草丛里面找到。$(p)$(info) 尽管$(item)怪异根茎$()尝起来味同“吃土”，但它们确实能拿来充饥。"
     }
   ]
 }

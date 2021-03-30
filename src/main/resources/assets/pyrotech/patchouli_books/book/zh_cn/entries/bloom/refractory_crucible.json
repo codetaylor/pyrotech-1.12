@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/machine/brick_crucible",
-      "text": "$(item)耐火坩埚$()与$(item)石坩埚$()类似，但拥有更好的效率。$(p)$(info_cn) $(item)耐火坩埚$()可以保存热液体。"
+      "text": "$(item)耐火坩埚$()与$(item)石坩埚$()类似，但拥有更高的效率。$(p)$(info_cn) $(item)耐火坩埚$()可以保存热液体。"
     },
     {
       "type": "relations",

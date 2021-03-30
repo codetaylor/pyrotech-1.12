@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/refractory/tar_drain_stone",
-      "text": "$(item)石排液口$()能排出它前方的收集器中的液体。$(p)$(info_cn) $(item)石排液口$()的前面是有一个巨大洞口一面。"
+      "text": "$(item)石排液口$()能排出它前方的收集器中的液体。$(p)$(info_cn) $(item)石排液口$()的前面是有一个巨大洞口的一面。"
     },
     {
       "type": "image",

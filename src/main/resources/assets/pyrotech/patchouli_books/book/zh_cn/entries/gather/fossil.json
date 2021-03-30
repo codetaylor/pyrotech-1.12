@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:fossil_ore",
-      "text": "$(item)化石矿$()几乎可以在任何地底找到。$(p)$(info_cn) 它甚至可以用$(thing)粗制工具$()挖掘，但用更好的工具会有更好的结果。"
+      "text": "$(item)化石矿$()几乎可以在地底的任何地方找到。$(p)$(info_cn) 它甚至可以用$(thing)简陋的工具$()挖掘，但用更好的工具会有更好的结果。"
     },
     {
       "type": "relations",

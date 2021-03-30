@@ -1,12 +1,12 @@
 {
-  "name": "Ore, Dense Quartz",
+  "name": "致密下界石英矿石",
   "icon": "pyrotech:dense_quartz_ore_large",
   "category": "bloom",
   "pages": [
     {
       "type": "spotlight",
       "item": "pyrotech:dense_quartz_ore_large",
-      "text": "$(item)Dense Quartz Ore$() is found in the lower reaches of $(thing)The Nether$() and is the purest naturally occurring quartz.$(p)$(info) The large $(item)Dense Quartz Ore$() block can be collected using $(thing)Silk Touch$().$(p)$(info) Requires an $(thing)Iron-Tier Pickaxe$() to harvest."
+      "text": "$(item)致密下界石英矿石$()在$(thing)地狱$()的下层可以找到，它是大自然中最纯的石英。$(p)$(info) 大型的$(item)致密下界石英矿石$()方块可以用带$(thing)精准采集$()的镐子来完整挖下。$(p)$(info) 至少需要$(thing)相当于铁镐的镐子$()以开采。"
     },
     {
       "type": "image",

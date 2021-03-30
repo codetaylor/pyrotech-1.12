@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/machine/mechanical_mulch_spreader",
-      "text": "$(item)土壤疏松机$()使用$(thing)齿轮$()来将$(item)土壤改良剂$()散布到机器前方的一片耕地中。$(p)$(info_cn) 不同的$(thing)齿轮$()不同的范围和速度。"
+      "text": "$(item)土壤疏松机$()使用$(thing)齿轮$()来将$(item)土壤改良剂$()散布到机器前方的一片耕地中。$(p)$(info_cn) 使用不同的$(thing)齿轮$()可以使土壤疏松机有不同的范围和速度。"
     },
     {
       "type": "mechanical_mulcher_cogs",

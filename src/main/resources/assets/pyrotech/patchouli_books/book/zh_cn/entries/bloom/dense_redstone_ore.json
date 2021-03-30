@@ -1,12 +1,12 @@
 {
-  "name": "Ore, Dense Redstone",
+  "name": "致密红石矿石",
   "icon": "pyrotech:dense_redstone_ore_large",
   "category": "bloom",
   "pages": [
     {
       "type": "spotlight",
       "item": "pyrotech:dense_redstone_ore_large",
-      "text": "Found deep in caves, $(item)Dense Redstone Ore$() is the purest naturally occurring redstone.$(p)$(info) The large $(item)Dense Redstone Ore$() block can be collected using $(thing)Silk Touch$().$(p)$(info) Requires an $(thing)Iron-Tier Pickaxe$() to harvest."
+      "text": "$(item)致密红石矿石$()是大自然中最纯的红石，能在很深的洞穴中被找到。$(p)$(info) 大型的$(item)致密红石矿石$(可以用带$(thing)精准采集$()的镐子来完整挖下。$(p)$(info) 至少需要$(thing)相当于铁镐的镐子$()以开采。"
     },
     {
       "type": "image",

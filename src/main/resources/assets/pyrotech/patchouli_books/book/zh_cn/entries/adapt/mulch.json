@@ -6,12 +6,12 @@
     {
       "type": "spotlight",
       "item": "pyrotech:mulch",
-      "text": "$(item)Mulch$() is made using a $(item)Compost Bin$() and can be placed on $(item)Farmland$().$(p)$(item)Mulch$() can be placed on either $(item)Farmland$() or a plant growing on top to create a temporary $(item)Mulched Farmland$()."
+      "text": "$(item)土壤改良剂$()是使用$(item)堆肥桶$()制成的，并且能被放在$(item)耕地$()上。$(p)$(item)土壤改良剂$()可以被放置在$(item)耕地$()或一株长在耕地上的植物上以暂时性把耕地改良成$(item)改良耕地$()。"
     },
     {
       "type": "spotlight",
       "item": "pyrotech:farmland_mulched",
-      "text": "$(item)改良耕地$()不会被踩坏，而且上边种植的植物会周期性的收到$(thing)骨粉效果$()。"
+      "text": "$(item)改良耕地$()不会被踩坏，而且上面种植的植物会周期性的受到$(thing)骨粉效果$()。"
     },
     {
       "type": "image",

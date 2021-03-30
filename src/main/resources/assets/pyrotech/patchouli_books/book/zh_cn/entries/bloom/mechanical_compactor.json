@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/machine/mechanical_compacting_bin",
-      "text": "$(item)机械挤压机$()比$(item)挤压筒$()更耐用，而且可以使用$(thing)齿轮$()驱动。$(p)$(info_cn) 不同的$(thing)齿轮$()不同的速度。"
+      "text": "$(item)机械挤压机$()比$(item)挤压桶$()更耐用，而且可以使用$(thing)齿轮$()驱动。$(p)$(info_cn) 使用不同的$(thing)齿轮$()可以使机械挤压机以不同的速度工作。"
     },
     {
       "type": "mechanical_compactor_cogs",
