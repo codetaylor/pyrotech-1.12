@@ -18,7 +18,7 @@
     {
       "type": "text",
       "title": "敲击铁坯",
-      "text": "$(item)铁坯$()可以直接放在地上或者放在$(thing)砧台$()上敲击。$(p)$(warning_cn) 在地上敲击$(item)铁坯$()会导致它弹入世界，并且可能会破坏下方的方块。$(p)$(warning_cn) 敲击$(item)铁坯$()可能会产生火焰。$(p)$(info_cn) 在$(thing)砧台$()上敲击$(item)铁坯$()就安全多了。$(p)$(italic)译者：一点都不安全！"
+      "text": "$(item)铁坯$()可以直接放在地上或者放在$(thing)砧台$()上敲击。$(p)$(warning_cn) 在地上敲击$(item)铁坯$()不仅可能会导致它弹到地上，并且可能会破坏下方的方块。$(p)$(warning_cn) 敲击$(item)铁坯$()可能会产生火焰。$(p)$(info_cn) 在$(thing)砧台$()上敲击$(item)铁坯$()就安全多了。$(p)$(italic)"
     },
     {
       "type": "image",

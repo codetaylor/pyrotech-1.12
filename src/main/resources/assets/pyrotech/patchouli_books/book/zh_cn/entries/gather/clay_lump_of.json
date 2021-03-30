@@ -7,7 +7,7 @@
       "type": "spotlight",
       "link_recipe": true,
       "item": "pyrotech:material:17",
-      "text": "$(item)粘土粒$()可以从世界生成的粘土块掉落或由$(item)粘土$()合成。"
+      "text": "$(item)粘土粒$()可以从粘土块掉落或由$(item)粘土$()合成。"
     },
     {
       "type": "crafting",

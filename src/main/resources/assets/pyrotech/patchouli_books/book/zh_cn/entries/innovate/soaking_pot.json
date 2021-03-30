@@ -14,7 +14,7 @@
       "images": [
         "pyrotech:textures/gui/book/photo/soaking_pot_campfire_00.png"
       ],
-      "text": "$(info) Some recipes require a $(item)Soaking Pot$() to be placed above a $(item)Campfire$()."
+      "text": "$(info) 某些配方需要$(item)浸泡壶$()被放置在$(item)篝火$()上方。"
     },
     {
       "type": "relations",

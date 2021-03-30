@@ -7,7 +7,7 @@
       "type": "fuel_living_tar",
       "recipe": "pyrotech:living_tar",
       "fuel": "pyrotech:living_tar",
-      "text": "一些油腻腻的肉做成油, $(item)活焦油$()是世界上最恶心的燃料候选人之一。"
+      "text": "这简直是一坨恶心又油腻的肉，$(item)活焦油$()不一定是最强力的燃料，但一定是最恶心的"
     },
     {
       "type": "relations",

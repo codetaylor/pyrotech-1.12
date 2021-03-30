@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:limestone",
-      "text": "$(item)石灰岩$()几乎能在任何地底找到。"
+      "text": "$(item)石灰岩$()几乎能在地底的任何地方找到。"
     },
     {
       "type": "relations",
