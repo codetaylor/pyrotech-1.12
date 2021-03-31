@@ -1,3 +1,10 @@
+**1.5.10**
+
+  * **Fixed:**
+    * Dense redstone crystals don't play sounds on a dedicated server and spam error in client log [(#350)](https://github.com/codetaylor/pyrotech-1.12/issues/350)
+
+---
+
 **1.5.9**
 
   * **Changed:**

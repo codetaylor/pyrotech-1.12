@@ -30,7 +30,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDoor;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,6 +44,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -184,6 +184,16 @@ public class ModuleCore
     BlockInitializer.onRegister(registry);
     ItemInitializer.onRegister(registry);
     EntityInitializer.onRegister(registry);
+  }
+
+  /**
+   * This is bypassing the module system in Athenaeum because it doesn't yet
+   * support registering sound events through its systems.
+   */
+  @SubscribeEvent
+  public void onRegister(RegistryEvent.Register<SoundEvent> event) {
+
+    SoundInitializer.onRegister(event.getRegistry());
   }
 
   @SideOnly(Side.CLIENT)
@@ -536,64 +546,24 @@ public class ModuleCore
     public static final SoundEvent REDSTONE_TOOL_ACTIVATE_04;
     public static final SoundEvent REDSTONE_TOOL_ACTIVATE_05;
 
+    // These are assigned during pre-init.
     static {
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "dense_redstone_ore_activate_00");
-        DENSE_REDSTONE_ORE_ACTIVATE_00 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "dense_redstone_ore_activate_01");
-        DENSE_REDSTONE_ORE_ACTIVATE_01 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "dense_redstone_ore_activate_02");
-        DENSE_REDSTONE_ORE_ACTIVATE_02 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "dense_redstone_ore_activate_03");
-        DENSE_REDSTONE_ORE_ACTIVATE_03 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "dense_redstone_ore_activate_04");
-        DENSE_REDSTONE_ORE_ACTIVATE_04 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "dense_redstone_ore_activate_05");
-        DENSE_REDSTONE_ORE_ACTIVATE_05 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "dense_redstone_ore_activate_06");
-        DENSE_REDSTONE_ORE_ACTIVATE_06 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "dense_redstone_ore_activate_07");
-        DENSE_REDSTONE_ORE_ACTIVATE_07 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
+      DENSE_REDSTONE_ORE_ACTIVATE_00 = null;
+      DENSE_REDSTONE_ORE_ACTIVATE_01 = null;
+      DENSE_REDSTONE_ORE_ACTIVATE_02 = null;
+      DENSE_REDSTONE_ORE_ACTIVATE_03 = null;
+      DENSE_REDSTONE_ORE_ACTIVATE_04 = null;
+      DENSE_REDSTONE_ORE_ACTIVATE_05 = null;
+      DENSE_REDSTONE_ORE_ACTIVATE_06 = null;
+      DENSE_REDSTONE_ORE_ACTIVATE_07 = null;
 
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "redstone_tool_activate_00");
-        REDSTONE_TOOL_ACTIVATE_00 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "redstone_tool_activate_01");
-        REDSTONE_TOOL_ACTIVATE_01 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "redstone_tool_activate_02");
-        REDSTONE_TOOL_ACTIVATE_02 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "redstone_tool_activate_03");
-        REDSTONE_TOOL_ACTIVATE_03 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "redstone_tool_activate_04");
-        REDSTONE_TOOL_ACTIVATE_04 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
-      {
-        ResourceLocation resourceLocation = new ResourceLocation(ModuleCore.MOD_ID, "redstone_tool_activate_05");
-        REDSTONE_TOOL_ACTIVATE_05 = new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
-      }
+      REDSTONE_TOOL_ACTIVATE_00 = null;
+      REDSTONE_TOOL_ACTIVATE_01 = null;
+      REDSTONE_TOOL_ACTIVATE_02 = null;
+      REDSTONE_TOOL_ACTIVATE_03 = null;
+      REDSTONE_TOOL_ACTIVATE_04 = null;
+      REDSTONE_TOOL_ACTIVATE_05 = null;
     }
+
   }
 }
