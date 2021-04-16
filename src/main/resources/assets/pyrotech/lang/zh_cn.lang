@@ -321,7 +321,7 @@ gui.pyrotech.tooltip.machine.fuel.capacity.item=燃料容量：%s%d
 gui.pyrotech.tooltip.machine.fuel.modifier=燃料效率：%s%d%%
 gui.pyrotech.tooltip.machine.fuel.keep.heat=配方完成后自动熄灭。
 
-gui.pyrotech.tooltip.extended.shift=按住%s<SHIFT>%s查看详情。
+gui.pyrotech.tooltip.extended.shift=按住 %s<SHIFT>%s 查看详情。
 gui.pyrotech.tooltip.uses=耐久：%d / %d
 gui.pyrotech.tooltip.uses.full=耐久：%d
 gui.pyrotech.tooltip.durability=耐久：%d / %d
@@ -336,7 +336,7 @@ gui.pyrotech.tooltip.fluid.transfer.rate=效率：%d mB/t
 gui.pyrotech.tooltip.fluid.transfer.limit=关闭阈值：%d mB
 gui.pyrotech.tooltip.item.capacity.empty=容量：%d个物品
 gui.pyrotech.tooltip.item.capacity=容量：%d / %d个物品
-gui.pyrotech.tooltip.drain=吸取方块前方%dx%d范围内的收集器内的液体。
+gui.pyrotech.tooltip.drain=吸取方块前方 %dx%d 范围内的收集器内的液体。
 gui.pyrotech.tooltip.refractory.valid=可用于构筑耐火结构。
 gui.pyrotech.tooltip.cog.hopper=%s：%sx%d
 gui.pyrotech.tooltip.cog.compactor=%s：%s%d%%
