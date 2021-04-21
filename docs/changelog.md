@@ -335,6 +335,13 @@
 
 ---
 
+**1.5.11**
+
+  * **Changed:**
+    * Updated zh_cn.lang [(#353)](https://github.com/codetaylor/pyrotech-1.12/pull/353)
+
+---
+
 **1.5.10**
 
   * **Fixed:**
