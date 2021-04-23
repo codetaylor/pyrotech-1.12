@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.hunting.init;
 
 import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
+import com.codetaylor.mc.pyrotech.modules.hunting.network.CSPacketCapabilitySyncSpearRequest;
 import com.codetaylor.mc.pyrotech.modules.hunting.network.SCPacketCapabilitySyncSpear;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -12,6 +13,12 @@ public final class PacketInitializer {
         SCPacketCapabilitySyncSpear.class,
         SCPacketCapabilitySyncSpear.class,
         Side.CLIENT
+    );
+
+    registry.register(
+        CSPacketCapabilitySyncSpearRequest.class,
+        CSPacketCapabilitySyncSpearRequest.class,
+        Side.SERVER
     );
   }
 

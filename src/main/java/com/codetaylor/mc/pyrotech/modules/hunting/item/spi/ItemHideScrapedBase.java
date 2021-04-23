@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.hunting.item;
+package com.codetaylor.mc.pyrotech.modules.hunting.item.spi;
 
 import com.codetaylor.mc.athenaeum.util.StringHelper;
 import com.codetaylor.mc.pyrotech.Reference;

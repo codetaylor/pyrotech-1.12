@@ -2,25 +2,14 @@ package com.codetaylor.mc.pyrotech.modules.hunting.event;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
-import com.codetaylor.mc.pyrotech.modules.hunting.capability.CapabilitySpear;
-import com.codetaylor.mc.pyrotech.modules.hunting.capability.ISpearEntityData;
 import com.codetaylor.mc.pyrotech.modules.hunting.client.LayerSpear;
-import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntitySpear;
+import com.codetaylor.mc.pyrotech.modules.hunting.network.CSPacketCapabilitySyncSpearRequest;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.model.ModelBox;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -30,9 +19,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
-import java.util.Random;
 
-public class EntityJoinWorldEventHandler {
+public class ClientEntityJoinWorldEventHandler {
 
   private static MethodHandle renderLivingBase$layerRenderersGetter;
 
@@ -64,6 +52,17 @@ public class EntityJoinWorldEventHandler {
     }
 
     Entity entity = event.getEntity();
+    this.requestCapabilitySync(entity);
+    this.addRenderLayer(entity);
+  }
+
+  private void requestCapabilitySync(Entity entity) {
+
+    ModuleHunting.PACKET_SERVICE.sendToServer(new CSPacketCapabilitySyncSpearRequest(entity.getEntityId()));
+  }
+
+  private void addRenderLayer(Entity entity) {
+
     RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
     Render<Entity> render = renderManager.getEntityRenderObject(entity);
 

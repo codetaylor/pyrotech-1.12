@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
 
-public class EntityLivingDeathEventHandler {
+public class LivingDeathEventHandler {
 
   @SubscribeEvent
   public void on(LivingDeathEvent event) {

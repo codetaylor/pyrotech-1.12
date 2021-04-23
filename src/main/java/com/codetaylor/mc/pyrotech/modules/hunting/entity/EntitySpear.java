@@ -26,19 +26,21 @@ public class EntitySpear
 
   private ItemStack itemStack;
 
-  public EntitySpear(World worldIn) {
+  // serialization
+  @SuppressWarnings("unused")
+  public EntitySpear(World world) {
 
-    super(worldIn);
+    super(world);
   }
 
-  public EntitySpear(World worldIn, double x, double y, double z) {
+  public EntitySpear(World world, double x, double y, double z) {
 
-    super(worldIn, x, y, z);
+    super(world, x, y, z);
   }
 
-  public EntitySpear(World worldIn, EntityLivingBase shooter) {
+  public EntitySpear(World world, EntityLivingBase shooter) {
 
-    super(worldIn, shooter);
+    super(world, shooter);
   }
 
   @Nonnull

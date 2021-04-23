@@ -70,7 +70,9 @@ public final class ItemInitializer {
     registry.registerItem(new ItemFlintArrow(), ItemFlintArrow.NAME);
     registry.registerItem(new ItemBoneArrow(), ItemBoneArrow.NAME);
 
+    registry.registerItem(new ItemCrudeSpear(), ItemCrudeSpear.NAME);
     registry.registerItem(new ItemFlintSpear(), ItemFlintSpear.NAME);
+    registry.registerItem(new ItemBoneSpear(), ItemBoneSpear.NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -126,7 +128,9 @@ public final class ItemInitializer {
           ModuleHunting.Items.HIDE_SMALL_TANNED,
           ModuleHunting.Items.FLINT_ARROW,
           ModuleHunting.Items.BONE_ARROW,
-          ModuleHunting.Items.FLINT_SPEAR
+          ModuleHunting.Items.CRUDE_SPEAR,
+          ModuleHunting.Items.FLINT_SPEAR,
+          ModuleHunting.Items.BONE_SPEAR
       );
     });
   }

@@ -3,12 +3,12 @@ package com.codetaylor.mc.pyrotech.modules.hunting.item;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHuntingConfig;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.spi.ItemSpearBase;
 
-public class ItemFlintSpear
+public class ItemBoneSpear
     extends ItemSpearBase {
 
-  public static final String NAME = "flint_spear";
+  public static final String NAME = "bone_spear";
 
-  private static final String CONFIG_KEY = "flint";
+  private static final String CONFIG_KEY = "bone";
 
   @Override
   protected int getDurability() {
