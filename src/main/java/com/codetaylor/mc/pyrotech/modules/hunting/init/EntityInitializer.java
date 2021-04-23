@@ -2,8 +2,10 @@ package com.codetaylor.mc.pyrotech.modules.hunting.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
+import com.codetaylor.mc.pyrotech.modules.hunting.client.RenderSpear;
 import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntityBoneArrow;
 import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntityFlintArrow;
+import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntitySpear;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.EntityItemHideScraped;
 import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.util.ResourceLocation;
@@ -32,6 +34,11 @@ public final class EntityInitializer {
         .entity(EntityBoneArrow.class)
         .tracker(80, 1, true)
     );
+
+    registry.createEntityEntry(EntitySpear.NAME, EntityEntryBuilder.create()
+        .entity(EntitySpear.class)
+        .tracker(80, 1, true)
+    );
   }
 
   @SideOnly(Side.CLIENT)
@@ -58,6 +65,8 @@ public final class EntityInitializer {
         return this.texture;
       }
     });
+
+    RenderingRegistry.registerEntityRenderingHandler(EntitySpear.class, RenderSpear::new);
   }
 
   private EntityInitializer() {

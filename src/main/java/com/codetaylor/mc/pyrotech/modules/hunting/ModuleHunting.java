@@ -1,15 +1,16 @@
 package com.codetaylor.mc.pyrotech.modules.hunting;
 
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
+import com.codetaylor.mc.athenaeum.network.IPacketRegistry;
 import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockCarcass;
-import com.codetaylor.mc.pyrotech.modules.hunting.init.BlockInitializer;
-import com.codetaylor.mc.pyrotech.modules.hunting.init.EntityInitializer;
-import com.codetaylor.mc.pyrotech.modules.hunting.init.FluidInitializer;
-import com.codetaylor.mc.pyrotech.modules.hunting.init.ItemInitializer;
+import com.codetaylor.mc.pyrotech.modules.hunting.event.ClientEntityJoinWorldEventHandler;
+import com.codetaylor.mc.pyrotech.modules.hunting.event.EntityAttachCapabilitiesEventHandler;
+import com.codetaylor.mc.pyrotech.modules.hunting.event.LivingDeathEventHandler;
+import com.codetaylor.mc.pyrotech.modules.hunting.init.*;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -44,6 +45,8 @@ public class ModuleHunting
     TILE_DATA_SERVICE = this.enableNetworkTileDataService(PACKET_SERVICE);
 
     MinecraftForge.EVENT_BUS.register(this);
+    MinecraftForge.EVENT_BUS.register(new EntityAttachCapabilitiesEventHandler());
+    MinecraftForge.EVENT_BUS.register(new LivingDeathEventHandler());
 
     this.registerIntegrationPlugin(
         "jei",
@@ -71,6 +74,12 @@ public class ModuleHunting
   }
 
   @Override
+  public void onNetworkRegister(IPacketRegistry registry) {
+
+    PacketInitializer.register(registry);
+  }
+
+  @Override
   public void onPreInitializationEvent(FMLPreInitializationEvent event) {
 
     super.onPreInitializationEvent(event);
@@ -82,6 +91,7 @@ public class ModuleHunting
     );
   }
 
+  @SideOnly(Side.CLIENT)
   @Override
   public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
 
@@ -92,6 +102,8 @@ public class ModuleHunting
         "register",
         "com.codetaylor.mc.pyrotech.modules.hunting.plugin.waila.PluginWaila.wailaCallback"
     );
+
+    MinecraftForge.EVENT_BUS.register(new ClientEntityJoinWorldEventHandler());
   }
 
   @GameRegistry.ObjectHolder(ModuleHunting.MOD_ID)
@@ -249,6 +261,15 @@ public class ModuleHunting
     @GameRegistry.ObjectHolder(ItemBoneArrow.NAME)
     public static final ItemBoneArrow BONE_ARROW;
 
+    @GameRegistry.ObjectHolder(ItemFlintSpear.NAME)
+    public static final ItemFlintSpear FLINT_SPEAR;
+
+    @GameRegistry.ObjectHolder(ItemBoneSpear.NAME)
+    public static final ItemBoneSpear BONE_SPEAR;
+
+    @GameRegistry.ObjectHolder(ItemCrudeSpear.NAME)
+    public static final ItemCrudeSpear CRUDE_SPEAR;
+
     static {
       HIDE_PIG = null;
       HIDE_SHEEP_SHEARED = null;
@@ -297,6 +318,9 @@ public class ModuleHunting
       HIDE_SMALL_TANNED = null;
       FLINT_ARROW = null;
       BONE_ARROW = null;
+      FLINT_SPEAR = null;
+      BONE_SPEAR = null;
+      CRUDE_SPEAR = null;
     }
   }
 

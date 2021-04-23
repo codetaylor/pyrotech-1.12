@@ -1,0 +1,12 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "pyrotech:items/bone_spear"
+  },
+  "overrides": [
+    {
+      "predicate": {"charging":  1},
+      "model": "pyrotech:item/bone_spear_charging"
+    }
+  ]
+}

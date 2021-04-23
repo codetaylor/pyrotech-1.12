@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  F",
+    " ST",
+    "S  "
+  ],
+  "key": {
+    "F": {
+      "item": "pyrotech:material",
+      "data": 10
+    },
+    "T": {
+      "item": "pyrotech:material",
+      "data": 14
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "pyrotech:flint_spear",
+    "count": 1,
+    "data": 0
+  }
+}

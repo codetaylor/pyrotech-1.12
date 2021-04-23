@@ -62,6 +62,10 @@ item.pyrotech.leather.durable.upgrade.kit.name=Durable Leather Upgrade Kit
 item.pyrotech.flint.arrow.name=Flint Arrow
 item.pyrotech.bone.arrow.name=Bone Arrow
 
+item.pyrotech.crude.spear.name=Crude Spear
+item.pyrotech.flint.spear.name=Flint Spear
+item.pyrotech.bone.spear.name=Bone Spear
+
 tile.pyrotech.carcass.name=Carcass
 
 fluid.tannin=Tannin

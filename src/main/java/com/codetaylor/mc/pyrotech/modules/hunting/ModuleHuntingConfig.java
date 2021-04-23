@@ -11,6 +11,54 @@ import java.util.Map;
 @Config(modid = ModuleHunting.MOD_ID, name = ModuleHunting.MOD_ID + "/" + "module.Hunting")
 public class ModuleHuntingConfig {
 
+  public static Spear SPEAR = new Spear();
+
+  public static class Spear {
+
+    @Config.Comment({
+        "Durability.",
+        "(Integer)"
+    })
+    public Map<String, Integer> DURABILITY = new HashMap<String, Integer>() {{
+      this.put("crude", 16);
+      this.put("flint", 32);
+      this.put("bone", 32);
+    }};
+
+    @Config.Comment({
+        "Damage when thrown.",
+        "For reference, the vanilla arrow does 2 damage.",
+        "(Double)"
+    })
+    public Map<String, Double> THROWN_DAMAGE = new HashMap<String, Double>() {{
+      this.put("crude", 2.0);
+      this.put("flint", 4.0);
+      this.put("bone", 4.0);
+    }};
+
+    @Config.Comment({
+        "Increase this number to decrease the spear's accuracy.",
+        "For reference, the vanilla arrow has an inaccuracy of 1.",
+        "(Double)"
+    })
+    public Map<String, Double> INACCURACY = new HashMap<String, Double>() {{
+      this.put("crude", 2.0);
+      this.put("flint", 1.0);
+      this.put("bone", 1.0);
+    }};
+
+    @Config.Comment({
+        "The velocity scalar.",
+        "For reference, the vanilla arrow has a velocity scalar of 3.",
+        "(Double)"
+    })
+    public Map<String, Double> VELOCITY_SCALAR = new HashMap<String, Double>() {{
+      this.put("crude", 1.0);
+      this.put("flint", 2.0);
+      this.put("bone", 2.0);
+    }};
+  }
+
   public static FlintArrow FLINT_ARROW = new FlintArrow();
 
   public static class FlintArrow {

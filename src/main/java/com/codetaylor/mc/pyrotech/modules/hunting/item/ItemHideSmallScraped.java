@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.hunting.item;
 
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.spi.ItemHideScrapedBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

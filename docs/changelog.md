@@ -31,6 +31,14 @@
         * Gloamberry Bush
             * Drops Gloamberries when ripe
     * Items:
+        * Spears:
+            * Crude Spear
+            * Flint Spear
+            * Bone Spear
+        * Arrows:
+            * Fletching
+            * Flint Arrow
+            * Bone Arrow
         * Hunting Knives:
             * Bone Hunting Knife
             * Flint Hunting Knife
@@ -79,9 +87,6 @@
         * Gloamberry Seeds
         * Gloamberries
         * Gloamberry Wine
-        * Fletching
-        * Flint Arrow
-        * Bone Arrow
     * Fluids
         * Tannin
         * Pyroberry Wine
@@ -103,6 +108,7 @@
             * `module.Hunting.cfg`
     * Recipes:
         * Crafting:
+            * Spears
             * Hunting Knives
             * `fluid:water` with Scraped Hides -> Washed Hides
             * Barrels
@@ -324,7 +330,10 @@
         * `item.pyrotech.gloamberry.wine.name`
         * `item.pyrotech.fletching.name`
         * `item.pyrotech.flint.arrow.name`
-        * `item.pyrotech.bone.arrow.name`       
+        * `item.pyrotech.bone.arrow.name`
+        * `item.pyrotech.crude.spear.name`
+        * `item.pyrotech.flint.spear.name`
+        * `item.pyrotech.bone.spear.name`
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`
     * **Changed Lang Keys:**

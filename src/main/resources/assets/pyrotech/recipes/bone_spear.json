@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  B",
+    " ST",
+    "S  "
+  ],
+  "key": {
+    "B": {
+      "item": "pyrotech:material",
+      "data": 11
+    },
+    "T": {
+      "item": "pyrotech:material",
+      "data": 14
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "pyrotech:bone_spear",
+    "count": 1,
+    "data": 0
+  }
+}
