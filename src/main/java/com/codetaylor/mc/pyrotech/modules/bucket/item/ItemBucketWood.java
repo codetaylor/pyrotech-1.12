@@ -57,12 +57,6 @@ public class ItemBucketWood
   }
 
   @Override
-  public int getItemBurnTime(ItemStack stack) {
-
-    return ModuleBucketConfig.BUCKET_WOOD.BURN_TIME_TICKS;
-  }
-
-  @Override
   protected boolean isCowMilkDisabled() {
 
     return !ModuleBucketConfig.BUCKET_WOOD.ENABLE_COW_MILK;

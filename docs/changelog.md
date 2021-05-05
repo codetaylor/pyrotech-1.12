@@ -1,3 +1,13 @@
+**1.5.12**
+
+  * **Fixed:**
+    * Infinite fuel exploit [(#356)](https://github.com/codetaylor/pyrotech-1.12/issues/356)
+
+  * **Changed:**
+    * Wooden Buckets can no longer be used as fuel
+
+---
+
 **1.5.11**
 
   * **Changed:**

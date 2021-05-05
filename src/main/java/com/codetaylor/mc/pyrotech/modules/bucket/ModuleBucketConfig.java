@@ -17,14 +17,6 @@ public class ModuleBucketConfig {
       implements Serializable {
 
     @Config.Comment({
-        "Board burn time in ticks.",
-        "A burn time of 200 ticks will smelt one item in the vanilla furnace.",
-        "Default: " + 200
-    })
-    @Config.RangeInt(min = 0)
-    public int BURN_TIME_TICKS = 200;
-
-    @Config.Comment({
         "Set to true to show all bucket / fluid combinations.",
         "Default: " + false
     })
