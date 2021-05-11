@@ -81,6 +81,7 @@ pyrotech.effect.comfort=Уют
 pyrotech.effect.well.fed=Сытость
 pyrotech.effect.resting=Отдых
 pyrotech.effect.well.rested=Хороший отдых
+pyrotech.effect.focused=Концентрация
 
 #------------------------------------------------------------------------------
 # Module: Tech - Bloomery
