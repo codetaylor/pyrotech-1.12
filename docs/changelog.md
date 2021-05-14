@@ -344,6 +344,16 @@
 
 ---
 
+**1.5.13**
+
+  * **Changed:**
+    * Updated ru_ru.lang [(#358)](https://github.com/codetaylor/pyrotech-1.12/pull/358)
+    
+  * **Added:**
+    * Russian guidebook translation [(#358)](https://github.com/codetaylor/pyrotech-1.12/pull/358)
+    
+---
+
 **1.5.12**
 
   * **Fixed:**
