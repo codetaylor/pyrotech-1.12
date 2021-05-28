@@ -141,8 +141,7 @@ public class TileCarcass
   @Override
   public Stages getStages() {
 
-    // TODO
-    return null;
+    return ModuleHuntingConfig.STAGES_CARCASS;
   }
 
   @Override

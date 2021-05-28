@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.hunting;
 
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntingKnife;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Config;
@@ -10,6 +11,12 @@ import java.util.Map;
 
 @Config(modid = ModuleHunting.MOD_ID, name = ModuleHunting.MOD_ID + "/" + "module.Hunting")
 public class ModuleHuntingConfig {
+
+  @Config.Ignore
+  public static Stages STAGES_CARCASS = null;
+
+  @Config.Ignore
+  public static Stages STAGES_BUTCHERS_BLOCK = null;
 
   public static Spear SPEAR = new Spear();
 

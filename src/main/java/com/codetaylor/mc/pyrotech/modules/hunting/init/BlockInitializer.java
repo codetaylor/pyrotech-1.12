@@ -1,14 +1,16 @@
 package com.codetaylor.mc.pyrotech.modules.hunting.init;
 
+import com.codetaylor.mc.athenaeum.interaction.spi.TESRInteractable;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
-import com.codetaylor.mc.pyrotech.modules.core.block.spi.BlockBushBase;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockButchersBlock;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockCarcass;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemBlockCarcass;
+import com.codetaylor.mc.pyrotech.modules.hunting.tile.TileButchersBlock;
 import com.codetaylor.mc.pyrotech.modules.hunting.tile.TileCarcass;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -25,7 +27,8 @@ public final class BlockInitializer {
 
     RegistryHelper.registerTileEntities(
         registry,
-        TileCarcass.class
+        TileCarcass.class,
+        TileButchersBlock.class
     );
   }
 
@@ -39,6 +42,10 @@ public final class BlockInitializer {
           ModuleHunting.Blocks.BUTCHERS_BLOCK
       );
     });
+
+    // TESRs
+    ClientRegistry.bindTileEntitySpecialRenderer(TileButchersBlock.class, new TESRInteractable<>());
+
   }
 
   private BlockInitializer() {
