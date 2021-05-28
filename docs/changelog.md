@@ -11,6 +11,7 @@
         * Carcass
             * Captures configured mob drops
             * Use Hunting Knife on Carcass to release captured drops
+        * Butcher's Block
         * Decorative blocks:
             * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
             * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
@@ -334,6 +335,7 @@
         * `item.pyrotech.crude.spear.name`
         * `item.pyrotech.flint.spear.name`
         * `item.pyrotech.bone.spear.name`
+        * `tile.pyrotech.butchers_block.name`
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`
     * **Changed Lang Keys:**

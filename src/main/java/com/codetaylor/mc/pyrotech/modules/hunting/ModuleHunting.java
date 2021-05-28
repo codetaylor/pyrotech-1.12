@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.network.IPacketService;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockButchersBlock;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockCarcass;
 import com.codetaylor.mc.pyrotech.modules.hunting.event.ClientEntityJoinWorldEventHandler;
 import com.codetaylor.mc.pyrotech.modules.hunting.event.EntityAttachCapabilitiesEventHandler;
@@ -112,8 +113,12 @@ public class ModuleHunting
     @GameRegistry.ObjectHolder(BlockCarcass.NAME)
     public static final BlockCarcass CARCASS;
 
+    @GameRegistry.ObjectHolder(BlockButchersBlock.NAME)
+    public static final BlockButchersBlock BUTCHERS_BLOCK;
+
     static {
       CARCASS = null;
+      BUTCHERS_BLOCK = null;
     }
   }
 
