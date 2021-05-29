@@ -215,6 +215,27 @@ public class ModuleHunting
     @GameRegistry.ObjectHolder(ItemHuntingKnife.OBSIDIAN_NAME)
     public static final ItemHuntingKnife OBSIDIAN_HUNTING_KNIFE;
 
+    @GameRegistry.ObjectHolder(ItemButchersKnife.BONE_NAME)
+    public static final ItemButchersKnife BONE_BUTCHERS_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemButchersKnife.FLINT_NAME)
+    public static final ItemButchersKnife FLINT_BUTCHERS_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemButchersKnife.STONE_NAME)
+    public static final ItemButchersKnife STONE_BUTCHERS_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemButchersKnife.GOLD_NAME)
+    public static final ItemButchersKnife GOLD_BUTCHERS_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemButchersKnife.IRON_NAME)
+    public static final ItemButchersKnife IRON_BUTCHERS_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemButchersKnife.DIAMOND_NAME)
+    public static final ItemButchersKnife DIAMOND_BUTCHERS_KNIFE;
+
+    @GameRegistry.ObjectHolder(ItemButchersKnife.OBSIDIAN_NAME)
+    public static final ItemButchersKnife OBSIDIAN_BUTCHERS_KNIFE;
+
     @GameRegistry.ObjectHolder(ItemHide.NAME_WASHED)
     public static final ItemHide HIDE_WASHED;
 
@@ -306,6 +327,13 @@ public class ModuleHunting
       GOLD_HUNTING_KNIFE = null;
       DIAMOND_HUNTING_KNIFE = null;
       OBSIDIAN_HUNTING_KNIFE = null;
+      BONE_BUTCHERS_KNIFE = null;
+      FLINT_BUTCHERS_KNIFE = null;
+      STONE_BUTCHERS_KNIFE = null;
+      IRON_BUTCHERS_KNIFE = null;
+      GOLD_BUTCHERS_KNIFE = null;
+      DIAMOND_BUTCHERS_KNIFE = null;
+      OBSIDIAN_BUTCHERS_KNIFE = null;
       HIDE_WASHED = null;
       HIDE_SMALL_WASHED = null;
       HIDE_SCRAPED = null;

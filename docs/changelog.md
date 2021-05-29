@@ -48,6 +48,14 @@
             * Gold Hunting Knife
             * Diamond Hunting Knife
             * Obsidian Hunting Knife
+        * Butcher's Knives:
+            * Bone Butcher's Knife
+            * Flint Butcher's Knife
+            * Stone Butcher's Knife
+            * Iron Butcher's Knife
+            * Gold Butcher's Knife
+            * Diamond Butcher's Knife
+            * Obsidian Butcher's Knife
         * Hides:
             * Tanned Hide
             * Small Tanned Hide
@@ -336,6 +344,14 @@
         * `item.pyrotech.flint.spear.name`
         * `item.pyrotech.bone.spear.name`
         * `tile.pyrotech.butchers_block.name`
+        * `item.pyrotech.bone.butchers.knife.name`
+        * `item.pyrotech.flint.butchers.knife.name`
+        * `item.pyrotech.stone.butchers.knife.name`
+        * `item.pyrotech.iron.butchers.knife.name`
+        * `item.pyrotech.gold.butchers.knife.name`
+        * `item.pyrotech.diamond.butchers.knife.name`
+        * `item.pyrotech.obsidian.butchers.knife.name`
+
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`
     * **Changed Lang Keys:**

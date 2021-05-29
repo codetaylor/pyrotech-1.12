@@ -328,6 +328,26 @@ public class ModuleHuntingConfig {
   public static boolean ALLOW_HUNTING_KNIFE_REPAIR = true;
 
   @Config.Comment({
+      "The durability of the butcher's knives."
+  })
+  public static Map<String, Integer> BUTCHERS_KNIFE_DURABILITY = new LinkedHashMap<>();
+
+  static {
+    BUTCHERS_KNIFE_DURABILITY.put("bone", 150);
+    BUTCHERS_KNIFE_DURABILITY.put("flint", 150);
+    BUTCHERS_KNIFE_DURABILITY.put("stone", Item.ToolMaterial.STONE.getMaxUses());
+    BUTCHERS_KNIFE_DURABILITY.put("iron", Item.ToolMaterial.IRON.getMaxUses());
+    BUTCHERS_KNIFE_DURABILITY.put("gold", Item.ToolMaterial.GOLD.getMaxUses());
+    BUTCHERS_KNIFE_DURABILITY.put("diamond", Item.ToolMaterial.DIAMOND.getMaxUses());
+    BUTCHERS_KNIFE_DURABILITY.put("obsidian", 1400);
+  }
+
+  @Config.Comment({
+      "Set to false to disable repair."
+  })
+  public static boolean ALLOW_BUTCHERS_KNIFE_REPAIR = true;
+
+  @Config.Comment({
       "How much damage is applied to a Hunting Knife when scraping a hide.",
       "Default: " + 2
   })

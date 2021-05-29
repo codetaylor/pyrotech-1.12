@@ -55,6 +55,14 @@ item.pyrotech.gold.hunting.knife.name=Gold Hunting Knife
 item.pyrotech.diamond.hunting.knife.name=Diamond Hunting Knife
 item.pyrotech.obsidian.hunting.knife.name=Obsidian Hunting Knife
 
+item.pyrotech.bone.butchers.knife.name=Bone Butcher's Knife
+item.pyrotech.flint.butchers.knife.name=Flint Butcher's Knife
+item.pyrotech.stone.butchers.knife.name=Stone Butcher's Knife
+item.pyrotech.iron.butchers.knife.name=Iron Butcher's Knife
+item.pyrotech.gold.butchers.knife.name=Gold Butcher's Knife
+item.pyrotech.diamond.butchers.knife.name=Diamond Butcher's Knife
+item.pyrotech.obsidian.butchers.knife.name=Obsidian Butcher's Knife
+
 item.pyrotech.leather.repair.kit.name=Leather Repair Kit
 item.pyrotech.leather.durable.repair.kit.name=Durable Leather Repair Kit
 item.pyrotech.leather.durable.upgrade.kit.name=Durable Leather Upgrade Kit

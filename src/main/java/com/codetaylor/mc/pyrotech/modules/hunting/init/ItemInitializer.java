@@ -63,6 +63,14 @@ public final class ItemInitializer {
     registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.DIAMOND, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("diamond")), ItemHuntingKnife.DIAMOND_NAME);
     registry.registerItem(new ItemHuntingKnife(Preconditions.checkNotNull(ModuleMaterials.OBSIDIAN), ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("obsidian")), ItemHuntingKnife.OBSIDIAN_NAME);
 
+    registry.registerItem(new ItemButchersKnife(EnumMaterial.BONE.getToolMaterial(), ModuleHuntingConfig.BUTCHERS_KNIFE_DURABILITY.get("bone")), ItemButchersKnife.BONE_NAME);
+    registry.registerItem(new ItemButchersKnife(EnumMaterial.FLINT.getToolMaterial(), ModuleHuntingConfig.BUTCHERS_KNIFE_DURABILITY.get("flint")), ItemButchersKnife.FLINT_NAME);
+    registry.registerItem(new ItemButchersKnife(Item.ToolMaterial.STONE, ModuleHuntingConfig.BUTCHERS_KNIFE_DURABILITY.get("stone")), ItemButchersKnife.STONE_NAME);
+    registry.registerItem(new ItemButchersKnife(Item.ToolMaterial.IRON, ModuleHuntingConfig.BUTCHERS_KNIFE_DURABILITY.get("iron")), ItemButchersKnife.IRON_NAME);
+    registry.registerItem(new ItemButchersKnife(Item.ToolMaterial.GOLD, ModuleHuntingConfig.BUTCHERS_KNIFE_DURABILITY.get("gold")), ItemButchersKnife.GOLD_NAME);
+    registry.registerItem(new ItemButchersKnife(Item.ToolMaterial.DIAMOND, ModuleHuntingConfig.BUTCHERS_KNIFE_DURABILITY.get("diamond")), ItemButchersKnife.DIAMOND_NAME);
+    registry.registerItem(new ItemButchersKnife(Preconditions.checkNotNull(ModuleMaterials.OBSIDIAN), ModuleHuntingConfig.BUTCHERS_KNIFE_DURABILITY.get("obsidian")), ItemButchersKnife.OBSIDIAN_NAME);
+
     registry.registerItem(new ItemLeatherDurableRepairKit(), ItemLeatherDurableRepairKit.NAME);
     registry.registerItem(new ItemLeatherDurableUpgradeKit(), ItemLeatherDurableUpgradeKit.NAME);
     registry.registerItem(new ItemLeatherRepairKit(), ItemLeatherRepairKit.NAME);
@@ -112,6 +120,13 @@ public final class ItemInitializer {
           ModuleHunting.Items.GOLD_HUNTING_KNIFE,
           ModuleHunting.Items.DIAMOND_HUNTING_KNIFE,
           ModuleHunting.Items.OBSIDIAN_HUNTING_KNIFE,
+          ModuleHunting.Items.BONE_BUTCHERS_KNIFE,
+          ModuleHunting.Items.FLINT_BUTCHERS_KNIFE,
+          ModuleHunting.Items.STONE_BUTCHERS_KNIFE,
+          ModuleHunting.Items.IRON_BUTCHERS_KNIFE,
+          ModuleHunting.Items.GOLD_BUTCHERS_KNIFE,
+          ModuleHunting.Items.DIAMOND_BUTCHERS_KNIFE,
+          ModuleHunting.Items.OBSIDIAN_BUTCHERS_KNIFE,
           ModuleHunting.Items.HIDE_WASHED,
           ModuleHunting.Items.HIDE_SMALL_WASHED,
           ModuleHunting.Items.HIDE_SCRAPED,
