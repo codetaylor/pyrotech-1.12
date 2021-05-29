@@ -323,6 +323,11 @@ public class ModuleHuntingConfig {
   }
 
   @Config.Comment({
+      "Set to false to disable repair."
+  })
+  public static boolean ALLOW_HUNTING_KNIFE_REPAIR = true;
+
+  @Config.Comment({
       "How much damage is applied to a Hunting Knife when scraping a hide.",
       "Default: " + 2
   })

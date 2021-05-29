@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.hunting.item;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHuntingConfig;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -47,6 +48,6 @@ public class ItemHuntingKnife
   @Override
   public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
 
-    return super.getIsRepairable(toRepair, repair);
+    return ModuleHuntingConfig.ALLOW_HUNTING_KNIFE_REPAIR && super.getIsRepairable(toRepair, repair);
   }
 }
