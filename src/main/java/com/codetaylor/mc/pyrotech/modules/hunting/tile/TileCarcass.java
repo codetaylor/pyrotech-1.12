@@ -179,7 +179,7 @@ public class TileCarcass
       }
 
       String registryName = resourceLocation.toString();
-      return ArrayHelper.contains(ModuleHuntingConfig.CARCASS.ALLOWED_HUNTING_KNIVES, registryName);
+      return ArrayHelper.contains(ModuleHuntingConfig.CARCASS.ALLOWED_KNIVES, registryName);
     }
 
     @Override
@@ -214,7 +214,7 @@ public class TileCarcass
         }
 
         String registryName = resourceLocation.toString();
-        int efficiency = ModuleHuntingConfig.CARCASS.HUNTING_KNIFE_EFFICIENCY.getOrDefault(registryName, 1);
+        int efficiency = ModuleHuntingConfig.CARCASS.KNIFE_EFFICIENCY.getOrDefault(registryName, 1);
 
         // Advance the progress.
         tile.currentProgress.set(tile.currentProgress.get() - efficiency);

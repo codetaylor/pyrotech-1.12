@@ -1,6 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.hunting;
 
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemButchersKnife;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntingKnife;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Config;
@@ -148,19 +149,26 @@ public class ModuleHuntingConfig {
     public int MINIMUM_HUNGER_TO_USE = 3;
 
     @Config.Comment({
-        "Use this to add items that you want to be valid.",
+        "Use this to add items that you want to be valid carcass knives.",
         "Items you add are assumed to have durability.",
         "",
         "String format is a resource location: (domain):(path)"
     })
-    public String[] ALLOWED_HUNTING_KNIVES = new String[]{
+    public String[] ALLOWED_KNIVES = new String[]{
         "pyrotech:" + ItemHuntingKnife.BONE_NAME,
         "pyrotech:" + ItemHuntingKnife.FLINT_NAME,
         "pyrotech:" + ItemHuntingKnife.STONE_NAME,
         "pyrotech:" + ItemHuntingKnife.IRON_NAME,
         "pyrotech:" + ItemHuntingKnife.GOLD_NAME,
         "pyrotech:" + ItemHuntingKnife.DIAMOND_NAME,
-        "pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME
+        "pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME,
+        "pyrotech:" + ItemButchersKnife.BONE_NAME,
+        "pyrotech:" + ItemButchersKnife.FLINT_NAME,
+        "pyrotech:" + ItemButchersKnife.STONE_NAME,
+        "pyrotech:" + ItemButchersKnife.IRON_NAME,
+        "pyrotech:" + ItemButchersKnife.GOLD_NAME,
+        "pyrotech:" + ItemButchersKnife.DIAMOND_NAME,
+        "pyrotech:" + ItemButchersKnife.OBSIDIAN_NAME
     };
 
     @Config.Comment({
@@ -185,7 +193,7 @@ public class ModuleHuntingConfig {
         "Integer value format is (efficiency)"
     })
     @Config.RequiresMcRestart
-    public Map<String, Integer> HUNTING_KNIFE_EFFICIENCY = new HashMap<String, Integer>() {{
+    public Map<String, Integer> KNIFE_EFFICIENCY = new HashMap<String, Integer>() {{
       this.put("pyrotech:" + ItemHuntingKnife.BONE_NAME, 15);
       this.put("pyrotech:" + ItemHuntingKnife.FLINT_NAME, 15);
       this.put("pyrotech:" + ItemHuntingKnife.STONE_NAME, 10);
@@ -193,6 +201,13 @@ public class ModuleHuntingConfig {
       this.put("pyrotech:" + ItemHuntingKnife.GOLD_NAME, 5);
       this.put("pyrotech:" + ItemHuntingKnife.DIAMOND_NAME, 35);
       this.put("pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME, 25);
+      this.put("pyrotech:" + ItemButchersKnife.BONE_NAME, 15);
+      this.put("pyrotech:" + ItemButchersKnife.FLINT_NAME, 15);
+      this.put("pyrotech:" + ItemButchersKnife.STONE_NAME, 10);
+      this.put("pyrotech:" + ItemButchersKnife.IRON_NAME, 20);
+      this.put("pyrotech:" + ItemButchersKnife.GOLD_NAME, 5);
+      this.put("pyrotech:" + ItemButchersKnife.DIAMOND_NAME, 35);
+      this.put("pyrotech:" + ItemButchersKnife.OBSIDIAN_NAME, 25);
     }};
   }
 
