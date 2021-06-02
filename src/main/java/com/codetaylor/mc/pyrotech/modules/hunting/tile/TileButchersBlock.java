@@ -82,11 +82,13 @@ public class TileButchersBlock
 
   private void resetProgress() {
 
-    int progressRequired = ModuleHuntingConfig.BUTCHERS_BLOCK.TOTAL_PROGRESS_REQUIRED;
-    float adjustment = RandomHelper.random().nextFloat() * 0.2f - 0.1f;
-    this.currentProgress.set(Math.max(1, progressRequired + progressRequired * adjustment));
-    this.totalProgress.set(this.currentProgress.get());
-    this.updateNextItem();
+    if (!this.world.isRemote) {
+      int progressRequired = ModuleHuntingConfig.BUTCHERS_BLOCK.TOTAL_PROGRESS_REQUIRED;
+      float adjustment = RandomHelper.random().nextFloat() * 0.2f - 0.1f;
+      this.currentProgress.set(Math.max(1, progressRequired + progressRequired * adjustment));
+      this.totalProgress.set(this.currentProgress.get());
+      this.updateNextItem();
+    }
   }
 
   private void updateNextItem() {
@@ -94,18 +96,21 @@ public class TileButchersBlock
     ItemStack itemStack = this.inputStackHandler.getStackInSlot(0);
 
     if (itemStack.isEmpty()) {
+      this.nextItem.set(ItemStack.EMPTY);
       return;
     }
 
     ItemStackHandler itemStackHandler = ItemBlockCarcass.getItemStackHandler(itemStack);
 
     if (itemStackHandler == null) {
+      this.nextItem.set(ItemStack.EMPTY);
       return;
     }
 
     int slot = this.getFirstNonEmptySlot(itemStackHandler);
 
     if (slot == -1) {
+      this.nextItem.set(ItemStack.EMPTY);
       return;
     }
 
