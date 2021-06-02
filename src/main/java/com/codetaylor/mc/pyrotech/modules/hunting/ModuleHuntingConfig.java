@@ -236,15 +236,15 @@ public class ModuleHuntingConfig {
     })
     @Config.RequiresMcRestart
     public Map<String, String> DROP_MAP = new HashMap<String, String>() {{
-      this.put("minecraft:pig", "pyrotech:hide_pig:0;1;0.85&minecraft:bone:0;1;0.50");
-      this.put("minecraft:cow", "pyrotech:pelt_cow:0;1;0.85&minecraft:bone:0;1;0.50");
-      this.put("minecraft:mooshroom", "pyrotech:pelt_mooshroom:0;1;0.65&minecraft:bone:0;1;0.50");
-      this.put("minecraft:polar_bear", "pyrotech:pelt_polar_bear:0;1;0.85&minecraft:bone:0;1;0.50");
+      this.put("minecraft:pig", "pyrotech:hide_pig:0;1;0.85&pyrotech:material:11;2;0.50");
+      this.put("minecraft:cow", "pyrotech:pelt_cow:0;1;0.85&pyrotech:material:11;2;0.50");
+      this.put("minecraft:mooshroom", "pyrotech:pelt_mooshroom:0;1;0.65&pyrotech:material:11;2;0.50");
+      this.put("minecraft:polar_bear", "pyrotech:pelt_polar_bear:0;1;0.85&pyrotech:material:11;2;0.50");
       this.put("minecraft:bat", "pyrotech:pelt_bat:0;1;0.65");
-      this.put("minecraft:horse", "pyrotech:pelt_horse:0;1;0.85&minecraft:bone:0;1;0.50");
-      this.put("minecraft:donkey", "pyrotech:pelt_horse:0;1;0.85&minecraft:bone:0;1;0.50");
-      this.put("minecraft:rabbit", "minecraft:rabbit_hide:0;1;0.65&minecraft:bone:0;1;0.25");
-      this.put("minecraft:wolf", "pyrotech:pelt_wolf:0;1;0.85&minecraft:bone:0;1;0.50");
+      this.put("minecraft:horse", "pyrotech:pelt_horse:0;1;0.85&pyrotech:material:11;2;0.50");
+      this.put("minecraft:donkey", "pyrotech:pelt_horse:0;1;0.85&pyrotech:material:11;2;0.50");
+      this.put("minecraft:rabbit", "minecraft:rabbit_hide:0;1;0.65&pyrotech:material:11;1;0.25");
+      this.put("minecraft:wolf", "pyrotech:pelt_wolf:0;1;0.85&pyrotech:material:11;2;0.50");
     }};
 
     @Config.Comment({
@@ -379,6 +379,40 @@ public class ModuleHuntingConfig {
       this.put("pyrotech:" + ItemButchersKnife.GOLD_NAME, 8);
       this.put("pyrotech:" + ItemButchersKnife.DIAMOND_NAME, 58);
       this.put("pyrotech:" + ItemButchersKnife.OBSIDIAN_NAME, 34);
+    }};
+
+    @Config.Comment({
+        "Transform an item into another item when it comes out of the carcass.",
+        "By default the Butcher's Block will increase the chance of getting a",
+        "Ruined Pelt instead of a good pelt, increase the chance of getting a",
+        "Bone instead of a Bone Shard, and increase the chance of getting twice",
+        "as much meat.",
+        "",
+        "String key format is (domain):(path):(meta)",
+        "String value format is (domain)(domain):(path):(meta);(count);(chance)"
+    })
+    @Config.RequiresMcRestart
+    public Map<String, String> OUTPUT_TRANSFORMERS = new HashMap<String, String>() {{
+      // hides and pelts
+      this.put("pyrotech:hide_pig:0", "pyrotech:pelt_ruined:0;1;0.85");
+      this.put("pyrotech:pelt_cow:0", "pyrotech:pelt_ruined:0;1;0.85");
+      this.put("pyrotech:pelt_mooshroom:0", "pyrotech:pelt_ruined:0;1;0.85");
+      this.put("pyrotech:pelt_polar_bear:0", "pyrotech:pelt_ruined:0;1;0.85");
+      this.put("pyrotech:pelt_bat:0", "pyrotech:pelt_ruined:0;1;0.85");
+      this.put("pyrotech:pelt_horse:0", "pyrotech:pelt_ruined:0;1;0.85");
+      this.put("minecraft:rabbit_hide:0", "pyrotech:pelt_ruined:0;1;0.85");
+      this.put("pyrotech:pelt_wolf:0", "pyrotech:pelt_ruined:0;1;0.85");
+      // bone shards
+      this.put("pyrotech:material:11", "minecraft:bone:0;1;0.5");
+      // meat
+      this.put("minecraft:beef:0", "minecraft:beef:0;2;0.85");
+      this.put("minecraft:chicken:0", "minecraft:chicken:0;2;0.85");
+      this.put("minecraft:mutton:0", "minecraft:mutton:0;2;0.85");
+      this.put("minecraft:rabbit:0", "minecraft:rabbit:0;2;0.85");
+      this.put("minecraft:rabbit_foot:0", "minecraft:rabbit_foot:0;2;0.85");
+      this.put("minecraft:porkchop:0", "minecraft:porkchop:0;2;0.85");
+      this.put("minecraft:red_mushroom:0", "minecraft:red_mushroom:0;2;0.85");
+
     }};
   }
 

@@ -13,6 +13,8 @@ import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
@@ -20,6 +22,7 @@ import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHuntingConfig;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemBlockCarcass;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,6 +33,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Map;
 
 public class TileButchersBlock
     extends TileEntityDataBase
@@ -117,6 +121,45 @@ public class TileButchersBlock
     this.nextItem.set(itemStackHandler.getStackInSlot(slot).copy());
   }
 
+  private ItemStack transformItem(ItemStack itemStack) {
+
+    for (Map.Entry<String, String> entry : ModuleHuntingConfig.BUTCHERS_BLOCK.OUTPUT_TRANSFORMERS.entrySet()) {
+
+      try {
+        ParseResult parseResult = RecipeItemParser.INSTANCE.parse(entry.getKey());
+
+        if (parseResult.matches(itemStack, true)) {
+          String[] split = entry.getValue().split(";");
+
+          if (split.length != 3) {
+            ModuleHunting.LOGGER.error("Invalid format for output transformer value: " + entry.getValue());
+            continue;
+          }
+
+          ParseResult outputParseResult = RecipeItemParser.INSTANCE.parse(split[0]);
+          int count = Integer.parseInt(split[1]);
+          float chance = Float.parseFloat(split[2]);
+
+          if (RandomHelper.random().nextFloat() <= chance) {
+            Item item = Item.getByNameOrId(outputParseResult.getDomain() + ":" + outputParseResult.getPath());
+
+            if (item == null) {
+              ModuleHunting.LOGGER.error("Invalid item for output transformer value: " + entry.getValue());
+              continue;
+            }
+
+            return new ItemStack(item, count, outputParseResult.getMeta());
+          }
+        }
+
+      } catch (Exception e) {
+        ModuleHunting.LOGGER.error("", e);
+      }
+    }
+
+    return itemStack;
+  }
+
   // ---------------------------------------------------------------------------
   // - ICarcassAccessor
   // ---------------------------------------------------------------------------
@@ -184,7 +227,7 @@ public class TileButchersBlock
       int slot = this.tile.getFirstNonEmptySlot(itemStackHandler);
       ItemStack result = itemStackHandler.extractItem(slot, 1, false);
       ItemBlockCarcass.updateItemStackHandler(itemStack, itemStackHandler);
-      return result;
+      return this.tile.transformItem(result);
     }
 
     @Override
