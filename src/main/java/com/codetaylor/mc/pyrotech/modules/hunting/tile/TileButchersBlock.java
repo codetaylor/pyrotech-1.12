@@ -82,7 +82,7 @@ public class TileButchersBlock
 
   private void resetProgress() {
 
-    if (!this.world.isRemote) {
+    if (this.world == null || !this.world.isRemote) {
       int progressRequired = ModuleHuntingConfig.BUTCHERS_BLOCK.TOTAL_PROGRESS_REQUIRED;
       float adjustment = RandomHelper.random().nextFloat() * 0.2f - 0.1f;
       this.currentProgress.set(Math.max(1, progressRequired + progressRequired * adjustment));
