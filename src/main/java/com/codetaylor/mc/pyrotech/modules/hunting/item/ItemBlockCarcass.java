@@ -26,12 +26,12 @@ public class ItemBlockCarcass
 
     NBTTagCompound tileTag = tag.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
 
-    if (!tileTag.hasKey("inputStackHandler")) {
+    if (!tileTag.hasKey("stackHandler")) {
       return null;
     }
 
     ItemStackHandler stackHandler = new ItemStackHandler();
-    stackHandler.deserializeNBT(tileTag.getCompoundTag("inputStackHandler"));
+    stackHandler.deserializeNBT(tileTag.getCompoundTag("stackHandler"));
     return stackHandler;
   }
 
@@ -44,7 +44,7 @@ public class ItemBlockCarcass
     }
 
     NBTTagCompound tileTag = tag.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
-    tileTag.setTag("inputStackHandler", stackHandler.serializeNBT());
+    tileTag.setTag("stackHandler", stackHandler.serializeNBT());
     itemStack.setTagCompound(tag);
   }
 }
