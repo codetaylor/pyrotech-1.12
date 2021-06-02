@@ -75,7 +75,7 @@ public class TileButchersBlock
 
   private void resetProgress() {
 
-    int progressRequired = ModuleHuntingConfig.CARCASS.TOTAL_PROGRESS_REQUIRED;
+    int progressRequired = ModuleHuntingConfig.BUTCHERS_BLOCK.TOTAL_PROGRESS_REQUIRED;
     float adjustment = RandomHelper.random().nextFloat() * 0.2f - 0.1f;
     this.currentProgress.set(Math.max(1, progressRequired + progressRequired * adjustment));
     this.totalProgress.set(this.currentProgress.get());
@@ -99,28 +99,28 @@ public class TileButchersBlock
     public boolean canUseWithHungerLevel(int playerFoodLevel) {
 
       return !this.tile.inputStackHandler.getStackInSlot(0).isEmpty()
-          && (playerFoodLevel < ModuleHuntingConfig.CARCASS.MINIMUM_HUNGER_TO_USE);
+          && (playerFoodLevel < ModuleHuntingConfig.BUTCHERS_BLOCK.MINIMUM_HUNGER_TO_USE);
     }
 
     @Override
     public boolean canUseWithHeldItem(String registryName) {
 
       return !this.tile.inputStackHandler.getStackInSlot(0).isEmpty()
-          && ArrayHelper.contains(ModuleHuntingConfig.CARCASS.ALLOWED_KNIVES, registryName);
+          && ArrayHelper.contains(ModuleHuntingConfig.BUTCHERS_BLOCK.ALLOWED_KNIVES, registryName);
     }
 
     @Override
     public void doExhaustion(EntityPlayer player) {
 
-      if (ModuleHuntingConfig.CARCASS.EXHAUSTION_COST_PER_KNIFE_USE > 0) {
-        player.addExhaustion((float) ModuleHuntingConfig.CARCASS.EXHAUSTION_COST_PER_KNIFE_USE);
+      if (ModuleHuntingConfig.BUTCHERS_BLOCK.EXHAUSTION_COST_PER_KNIFE_USE > 0) {
+        player.addExhaustion((float) ModuleHuntingConfig.BUTCHERS_BLOCK.EXHAUSTION_COST_PER_KNIFE_USE);
       }
     }
 
     @Override
     public int getItemEfficiency(String registryName) {
 
-      return ModuleHuntingConfig.CARCASS.KNIFE_EFFICIENCY.getOrDefault(registryName, 1);
+      return ModuleHuntingConfig.BUTCHERS_BLOCK.KNIFE_EFFICIENCY.getOrDefault(registryName, 1);
     }
 
     @Override

@@ -149,7 +149,7 @@ public class ModuleHuntingConfig {
     public int MINIMUM_HUNGER_TO_USE = 3;
 
     @Config.Comment({
-        "Use this to add items that you want to be valid carcass knives.",
+        "Use this to add items that you want to be valid knives.",
         "Items you add are assumed to have durability.",
         "",
         "String format is a resource location: (domain):(path)"
@@ -172,7 +172,7 @@ public class ModuleHuntingConfig {
     };
 
     @Config.Comment({
-        "How much exhaustion to apply per hunting knife use.",
+        "How much exhaustion to apply per knife use.",
         "Default: " + 1.5
     })
     @Config.RangeDouble(min = 0, max = 40)
@@ -200,14 +200,14 @@ public class ModuleHuntingConfig {
       this.put("pyrotech:" + ItemHuntingKnife.IRON_NAME, 20);
       this.put("pyrotech:" + ItemHuntingKnife.GOLD_NAME, 5);
       this.put("pyrotech:" + ItemHuntingKnife.DIAMOND_NAME, 35);
-      this.put("pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME, 25);
+      this.put("pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME, 20);
       this.put("pyrotech:" + ItemButchersKnife.BONE_NAME, 15);
       this.put("pyrotech:" + ItemButchersKnife.FLINT_NAME, 15);
       this.put("pyrotech:" + ItemButchersKnife.STONE_NAME, 10);
       this.put("pyrotech:" + ItemButchersKnife.IRON_NAME, 20);
       this.put("pyrotech:" + ItemButchersKnife.GOLD_NAME, 5);
       this.put("pyrotech:" + ItemButchersKnife.DIAMOND_NAME, 35);
-      this.put("pyrotech:" + ItemButchersKnife.OBSIDIAN_NAME, 25);
+      this.put("pyrotech:" + ItemButchersKnife.OBSIDIAN_NAME, 20);
     }};
   }
 
@@ -320,6 +320,66 @@ public class ModuleHuntingConfig {
         "Default: " + 0.25
     })
     public double PERCENTAGE_DURABILITY_REPAIRED = 0.25;
+  }
+
+  public static ButchersBlock BUTCHERS_BLOCK = new ButchersBlock();
+
+  public static class ButchersBlock {
+
+    @Config.Comment({
+        "Minimum amount of hunger the player needs to use.",
+        "Default: " + 3
+    })
+    @Config.RangeInt(min = 0, max = 20)
+    public int MINIMUM_HUNGER_TO_USE = 3;
+
+    @Config.Comment({
+        "Use this to add items that you want to be valid knives.",
+        "Items you add are assumed to have durability.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] ALLOWED_KNIVES = new String[]{
+        "pyrotech:" + ItemButchersKnife.BONE_NAME,
+        "pyrotech:" + ItemButchersKnife.FLINT_NAME,
+        "pyrotech:" + ItemButchersKnife.STONE_NAME,
+        "pyrotech:" + ItemButchersKnife.IRON_NAME,
+        "pyrotech:" + ItemButchersKnife.GOLD_NAME,
+        "pyrotech:" + ItemButchersKnife.DIAMOND_NAME,
+        "pyrotech:" + ItemButchersKnife.OBSIDIAN_NAME
+    };
+
+    @Config.Comment({
+        "How much exhaustion to apply per knife use.",
+        "Default: " + 1.5
+    })
+    @Config.RangeDouble(min = 0, max = 40)
+    public double EXHAUSTION_COST_PER_KNIFE_USE = 0.75;
+
+    @Config.Comment({
+        "Total progress required to drop item +/- 10%.",
+        "Default: " + 100
+    })
+    @Config.RangeInt(min = 1)
+    public int TOTAL_PROGRESS_REQUIRED = 100;
+
+    @Config.Comment({
+        "How fast the progress will be advanced per knife. This number is added",
+        "to the progress until it reaches the total progress required.",
+        "",
+        "String key format is (domain):(path)",
+        "Integer value format is (efficiency)"
+    })
+    @Config.RequiresMcRestart
+    public Map<String, Integer> KNIFE_EFFICIENCY = new HashMap<String, Integer>() {{
+      this.put("pyrotech:" + ItemButchersKnife.BONE_NAME, 25);
+      this.put("pyrotech:" + ItemButchersKnife.FLINT_NAME, 25);
+      this.put("pyrotech:" + ItemButchersKnife.STONE_NAME, 17);
+      this.put("pyrotech:" + ItemButchersKnife.IRON_NAME, 34);
+      this.put("pyrotech:" + ItemButchersKnife.GOLD_NAME, 8);
+      this.put("pyrotech:" + ItemButchersKnife.DIAMOND_NAME, 58);
+      this.put("pyrotech:" + ItemButchersKnife.OBSIDIAN_NAME, 34);
+    }};
   }
 
   @Config.Comment({
