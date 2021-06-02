@@ -138,8 +138,6 @@ public class TileButchersBlock
     @Override
     public ItemStack extractItem() {
 
-      // TODO: Can we optimize this by mirroring a local stack handler in the tile?
-
       ItemStack itemStack = this.tile.inputStackHandler.getStackInSlot(0);
       ItemStackHandler itemStackHandler = ItemBlockCarcass.getItemStackHandler(itemStack);
 
@@ -220,7 +218,7 @@ public class TileButchersBlock
   public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
-    compound.setTag("inputItemStack", this.inputStackHandler.serializeNBT());
+    compound.setTag("inputStackHandler", this.inputStackHandler.serializeNBT());
     return compound;
   }
 
@@ -228,7 +226,7 @@ public class TileButchersBlock
   public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
-    this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputItemStack"));
+    this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
   }
 
   // ---------------------------------------------------------------------------
