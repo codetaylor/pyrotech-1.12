@@ -1,5 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.hunting.plugin.top;
 
+import com.codetaylor.mc.pyrotech.modules.hunting.plugin.top.provider.ButchersBlockProvider;
 import com.codetaylor.mc.pyrotech.modules.hunting.plugin.top.provider.CarcassProvider;
 import mcjty.theoneprobe.api.ITheOneProbe;
 
@@ -15,6 +16,7 @@ public class PluginTOP {
     public Void apply(ITheOneProbe top) {
 
       top.registerProvider(new CarcassProvider());
+      top.registerProvider(new ButchersBlockProvider());
       return null;
     }
   }

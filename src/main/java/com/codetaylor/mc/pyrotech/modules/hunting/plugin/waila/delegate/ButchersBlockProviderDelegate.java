@@ -2,30 +2,34 @@ package com.codetaylor.mc.pyrotech.modules.hunting.plugin.waila.delegate;
 
 import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHuntingConfig;
-import com.codetaylor.mc.pyrotech.modules.hunting.tile.TileCarcass;
+import com.codetaylor.mc.pyrotech.modules.hunting.tile.TileButchersBlock;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarcassProviderDelegate
-    extends ProviderDelegateBase<CarcassProviderDelegate.ICarcassDisplay, TileCarcass> {
+public class ButchersBlockProviderDelegate
+    extends ProviderDelegateBase<ButchersBlockProviderDelegate.IButchersBlockDisplay, TileButchersBlock> {
 
   private List<ItemStack> toolList;
 
-  public CarcassProviderDelegate(ICarcassDisplay display) {
+  public ButchersBlockProviderDelegate(IButchersBlockDisplay display) {
 
     super(display);
   }
 
   @Override
-  public void display(TileCarcass tile) {
+  public void display(TileButchersBlock tile) {
+
+    if (tile.getInputStackHandler().getStackInSlot(0).isEmpty()) {
+      return;
+    }
 
     if (this.toolList == null) {
       this.toolList = new ArrayList<>();
 
-      for (String registryName : ModuleHuntingConfig.CARCASS.ALLOWED_KNIVES) {
+      for (String registryName : ModuleHuntingConfig.BUTCHERS_BLOCK.ALLOWED_KNIVES) {
         Item item = Item.getByNameOrId(registryName);
 
         if (item != null) {
@@ -45,7 +49,7 @@ public class CarcassProviderDelegate
     }
   }
 
-  public interface ICarcassDisplay {
+  public interface IButchersBlockDisplay {
 
     void setRecipeProgress(ItemStack input, ItemStack output, int progress, int maxProgress);
   }
