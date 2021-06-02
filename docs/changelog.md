@@ -67,6 +67,7 @@
             * Pig Hide
             * Llama Hide
         * Pelts:
+            * Ruined Pelt
             * Cow Pelt
             * Colored Sheep Pelts
             * Bat Pelt
@@ -351,6 +352,7 @@
         * `item.pyrotech.gold.butchers.knife.name`
         * `item.pyrotech.diamond.butchers.knife.name`
         * `item.pyrotech.obsidian.butchers.knife.name`
+        * `item.pyrotech.pelt.ruined.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`

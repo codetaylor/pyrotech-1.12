@@ -5,6 +5,8 @@ import net.minecraft.item.Item;
 public class ItemPelt
     extends Item {
 
+  public static final String NAME_RUINED = "pelt_ruined";
+
   public static final String NAME_COW = "pelt_cow";
   public static final String NAME_MOOSHROOM = "pelt_mooshroom";
   public static final String NAME_POLAR_BEAR = "pelt_polar_bear";

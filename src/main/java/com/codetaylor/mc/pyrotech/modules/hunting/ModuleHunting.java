@@ -125,6 +125,9 @@ public class ModuleHunting
   @GameRegistry.ObjectHolder(ModuleHunting.MOD_ID)
   public static class Items {
 
+    @GameRegistry.ObjectHolder(ItemPelt.NAME_RUINED)
+    public static final ItemPelt PELT_RUINED;
+
     @GameRegistry.ObjectHolder(ItemHide.NAME_PIG)
     public static final ItemHide HIDE_PIG;
 
@@ -297,6 +300,7 @@ public class ModuleHunting
     public static final ItemCrudeSpear CRUDE_SPEAR;
 
     static {
+      PELT_RUINED = null;
       HIDE_PIG = null;
       HIDE_SHEEP_SHEARED = null;
       PELT_COW = null;

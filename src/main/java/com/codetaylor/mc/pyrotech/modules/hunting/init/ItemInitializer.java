@@ -27,6 +27,8 @@ public final class ItemInitializer {
     registry.registerItem(new ItemHideScraped(), ItemHideScraped.NAME);
     registry.registerItem(new ItemHideSmallScraped(), ItemHideSmallScraped.NAME);
 
+    registry.registerItem(new ItemPelt(), ItemPelt.NAME_RUINED);
+
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_COW);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_MOOSHROOM);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_POLAR_BEAR);
@@ -89,6 +91,7 @@ public final class ItemInitializer {
     registry.registerClientModelRegistrationStrategy(() -> {
 
       ModelRegistrationHelper.registerItemModels(
+          ModuleHunting.Items.PELT_RUINED,
           ModuleHunting.Items.HIDE_PIG,
           ModuleHunting.Items.HIDE_SHEEP_SHEARED,
           ModuleHunting.Items.PELT_COW,
