@@ -1,5 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
+import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBucketBase;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
@@ -7,12 +13,6 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.IAirflowConsumerCapability;
-import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
-import com.codetaylor.mc.athenaeum.interaction.api.Transform;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBucketBase;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
@@ -54,14 +54,14 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
   private static final int DORMANT_COUNTER = 50;
   private static final AxisAlignedBB INTERACTION_BOUNDS_TOP = new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 24f / 16f, 15f / 16f);
 
-  private FuelStackHandler fuelStackHandler;
+  private final FuelStackHandler fuelStackHandler;
 
-  private TileDataInteger remainingRecipeTimeTicks;
+  private final TileDataInteger remainingRecipeTimeTicks;
   private float airflowBonus;
 
   private int dormantCounter;
 
-  private IInteraction[] interactions;
+  private IInteraction<?>[] interactions;
   private int interactionCooldown;
 
   public TileCombustionWorkerStoneBase() {
@@ -94,10 +94,10 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     // --- Interactions ---
 
     this.interactions = new IInteraction[]{
-        new InteractionBucket(),
-        new InteractionUseItemToActivateWorker(Items.FLINT_AND_STEEL, new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK),
-        new InteractionUseItemToActivateWorker(Items.FIRE_CHARGE, new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK, true),
-        new InteractionFuel(new ItemStackHandler[]{
+        new InteractionBucket<E>(),
+        new InteractionUseItemToActivateWorker<TileCombustionWorkerStoneBase<E>>(Items.FLINT_AND_STEEL, new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK),
+        new InteractionUseItemToActivateWorker<TileCombustionWorkerStoneBase<E>>(Items.FIRE_CHARGE, new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK, true),
+        new InteractionFuel<E>(new ItemStackHandler[]{
             TileCombustionWorkerStoneBase.this.fuelStackHandler
         })
     };
@@ -145,7 +145,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     this.dormantCounter = DORMANT_COUNTER;
   }
 
-  protected void addInteractions(IInteraction[] interactions) {
+  protected void addInteractions(IInteraction<?>[] interactions) {
 
     this.interactions = ArrayHelper.combine(this.interactions, interactions);
   }
@@ -443,7 +443,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
   // ---------------------------------------------------------------------------
 
   @Override
-  public IInteraction[] getInteractions() {
+  public IInteraction<?>[] getInteractions() {
 
     return this.interactions;
   }
@@ -484,8 +484,8 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     return INTERACTION_BOUNDS_TOP;
   }
 
-  private class InteractionBucket
-      extends InteractionBucketBase<TileCombustionWorkerStoneBase> {
+  private static class InteractionBucket<E extends MachineRecipeBase<E>>
+      extends InteractionBucketBase<TileCombustionWorkerStoneBase<E>> {
 
     /* package */ InteractionBucket() {
 
@@ -508,7 +508,7 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     }
 
     @Override
-    protected boolean doInteraction(TileCombustionWorkerStoneBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+    protected boolean doInteraction(TileCombustionWorkerStoneBase<E> tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
       if (!tile.workerIsActive()) {
         return false;
@@ -529,8 +529,8 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     }
   }
 
-  private class InteractionFuel
-      extends InteractionItemStack<TileCombustionWorkerStoneBase> {
+  private static class InteractionFuel<E extends MachineRecipeBase<E>>
+      extends InteractionItemStack<TileCombustionWorkerStoneBase<E>> {
 
     /* package */ InteractionFuel(ItemStackHandler[] stackHandlers) {
 
