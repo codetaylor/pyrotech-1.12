@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public abstract class BlockCrucibleBase
@@ -24,12 +25,12 @@ public abstract class BlockCrucibleBase
   // ---------------------------------------------------------------------------
 
   @Override
-  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+  public int getLightValue(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
 
     TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileCrucibleBase) {
-      TileCrucibleBase tile = (TileCrucibleBase) tileEntity;
+      TileCrucibleBase<?> tile = (TileCrucibleBase<?>) tileEntity;
       FluidTank fluidTank = tile.getOutputFluidTank();
       FluidStack fluid = fluidTank.getFluid();
       int fluidAmount = fluidTank.getFluidAmount();

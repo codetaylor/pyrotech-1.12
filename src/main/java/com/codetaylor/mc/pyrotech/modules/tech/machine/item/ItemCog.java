@@ -15,7 +15,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class ItemCog
@@ -37,7 +39,7 @@ public class ItemCog
   }
 
   @Override
-  public int getItemBurnTime(ItemStack itemStack) {
+  public int getItemBurnTime(@Nonnull ItemStack itemStack) {
 
     return this.burnTime;
   }
@@ -53,6 +55,7 @@ public class ItemCog
   }
 
   @SideOnly(Side.CLIENT)
+  @ParametersAreNonnullByDefault
   @Override
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 
@@ -68,6 +71,7 @@ public class ItemCog
         || ModuleTechMachineConfig.MECHANICAL_MULCH_SPREADER.getCogData(registryName, new int[2])[0] > -1;
   }
 
+  @SuppressWarnings("deprecation")
   public static List<String> getTooltip(ItemStack stack, List<String> tooltip) {
 
     if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)

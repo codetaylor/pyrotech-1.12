@@ -18,6 +18,7 @@ import java.util.Random;
 public abstract class BlockOvenBase
     extends BlockCombustionWorkerStoneBase {
 
+  @SuppressWarnings("deprecation")
   @ParametersAreNonnullByDefault
   @Override
   public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState) {

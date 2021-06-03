@@ -130,6 +130,7 @@ public class InteractionCogRenderer
    * @param c change in value
    * @param d duration
    */
+  @SuppressWarnings("SameParameterValue")
   private double bounce(double t, double b, double c, double d) {
 
     if ((t /= d) < (1 / 2.75)) {

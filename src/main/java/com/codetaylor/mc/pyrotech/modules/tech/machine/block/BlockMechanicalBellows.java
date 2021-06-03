@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 
+import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalBellows;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalBellowsTop;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
@@ -57,6 +57,7 @@ public class BlockMechanicalBellows
 
   @SuppressWarnings("deprecation")
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
@@ -70,8 +71,9 @@ public class BlockMechanicalBellows
 
   @SuppressWarnings("deprecation")
   @Nullable
+  @ParametersAreNonnullByDefault
   @Override
-  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+  public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 
     RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
 
@@ -82,6 +84,7 @@ public class BlockMechanicalBellows
     return result;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean onBlockActivated(
       World world,
@@ -155,6 +158,7 @@ public class BlockMechanicalBellows
     world.setBlockToAir(posBottom);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 
@@ -173,8 +177,9 @@ public class BlockMechanicalBellows
     super.onBlockPlacedBy(world, pos, state, placer, stack);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean canPlaceBlockAt(World world, @Nonnull BlockPos pos) {
+  public boolean canPlaceBlockAt(World world, BlockPos pos) {
 
     return super.canPlaceBlockAt(world, pos)
         && super.canPlaceBlockAt(world, pos.up());
@@ -198,7 +203,7 @@ public class BlockMechanicalBellows
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }

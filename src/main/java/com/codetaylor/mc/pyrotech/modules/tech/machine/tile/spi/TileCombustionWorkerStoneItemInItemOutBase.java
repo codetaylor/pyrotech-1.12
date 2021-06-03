@@ -1,13 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.inventory.LargeDynamicStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.athenaeum.interaction.api.Transform;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInItemOutBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -27,7 +28,7 @@ import java.util.List;
 public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends MachineRecipeItemInItemOutBase<E>>
     extends TileCombustionWorkerStoneItemInBase<E> {
 
-  private OutputStackHandler outputStackHandler;
+  private final OutputStackHandler outputStackHandler;
 
   public TileCombustionWorkerStoneItemInItemOutBase() {
 
@@ -42,7 +43,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Machi
     });
 
     this.addInteractions(new IInteraction[]{
-        new Interaction(this, new ItemStackHandler[]{
+        new Interaction<>(this, new ItemStackHandler[]{
             this.getInputStackHandler(),
             this.outputStackHandler
         })
@@ -191,8 +192,8 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Machi
   // - Interactions
   // ---------------------------------------------------------------------------
 
-  private class Interaction
-      extends InteractionItemStack<TileCombustionWorkerStoneBase> {
+  private static class Interaction<E extends MachineRecipeBase<E>>
+      extends InteractionItemStack<TileCombustionWorkerStoneBase<E>> {
 
     private final TileCombustionWorkerStoneBase<E> tile;
 
@@ -244,7 +245,7 @@ public abstract class TileCombustionWorkerStoneItemInItemOutBase<E extends Machi
   // - Stack Handlers
   // ---------------------------------------------------------------------------
 
-  public class OutputStackHandler
+  public static class OutputStackHandler
       extends LargeDynamicStackHandler
       implements ITileDataItemStackHandler {
 

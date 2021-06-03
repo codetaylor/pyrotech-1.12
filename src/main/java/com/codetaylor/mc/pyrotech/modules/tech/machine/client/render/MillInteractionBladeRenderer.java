@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.client.render;
 
-import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.athenaeum.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileSawmillBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -19,12 +19,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class MillInteractionBladeRenderer
-    implements IInteractionRenderer<TileSawmillBase.InteractionBlade> {
+    implements IInteractionRenderer<TileSawmillBase.InteractionBlade<?>> {
 
   public static final MillInteractionBladeRenderer INSTANCE = new MillInteractionBladeRenderer();
 
   @Override
-  public void renderSolidPass(TileSawmillBase.InteractionBlade interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
+  public void renderSolidPass(TileSawmillBase.InteractionBlade<?> interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
 
     // If the handler is not empty, render the handler's item.
 
@@ -47,12 +47,12 @@ public class MillInteractionBladeRenderer
   }
 
   @Override
-  public void renderSolidPassText(TileSawmillBase.InteractionBlade interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
+  public void renderSolidPassText(TileSawmillBase.InteractionBlade<?> interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
     // TODO
   }
 
   @Override
-  public boolean renderAdditivePass(TileSawmillBase.InteractionBlade interaction, World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+  public boolean renderAdditivePass(TileSawmillBase.InteractionBlade<?> interaction, World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
     // If the handler is empty, render the held item.
     // Else, render the handler's item if the player's hand is empty.

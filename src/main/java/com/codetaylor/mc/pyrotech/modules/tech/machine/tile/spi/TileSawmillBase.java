@@ -1,5 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataBoolean;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
@@ -8,9 +11,6 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.athenaeum.interaction.api.Transform;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
@@ -45,16 +45,15 @@ import java.util.List;
 public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
     extends TileCombustionWorkerStoneItemInItemOutBase<E> {
 
-  private BladeStackHandler bladeStackHandler;
-  private TileDataBoolean recipeComplete;
+  private final BladeStackHandler bladeStackHandler;
+  private final TileDataBoolean recipeComplete;
+
   private int counterIdleSound;
 
   public TileSawmillBase() {
 
     this.bladeStackHandler = new BladeStackHandler(this);
-    this.bladeStackHandler.addObserver((handler, slot) -> {
-      this.markDirty();
-    });
+    this.bladeStackHandler.addObserver((handler, slot) -> this.markDirty());
 
     // --- Network ---
 
@@ -68,7 +67,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
     // --- Interactions ---
 
     this.addInteractions(new IInteraction[]{
-        new InteractionBlade(this, new ItemStackHandler[]{this.bladeStackHandler})
+        new InteractionBlade<>(this, new ItemStackHandler[]{this.bladeStackHandler})
     });
   }
 
@@ -150,6 +149,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
         this.world.setBlockState(pos, ModuleCore.Blocks.PILE_WOOD_CHIPS.setLevel(ModuleCore.Blocks.PILE_WOOD_CHIPS.getDefaultState(), 2));
 
         // Adjust entity height.
+        //noinspection deprecation
         AxisAlignedBB boundingBox = block.getBoundingBox(blockState, this.world, pos);
         AxisAlignedBB offsetBoundingBox = new AxisAlignedBB(boundingBox.minX, 1.0 - boundingBox.maxY, boundingBox.minZ, boundingBox.maxX, 1.0, boundingBox.maxZ).offset(pos);
 
@@ -164,6 +164,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
           this.world.setBlockState(pos, ModuleCore.Blocks.PILE_WOOD_CHIPS.setLevel(ModuleCore.Blocks.PILE_WOOD_CHIPS.getDefaultState(), level + 1));
 
           // Adjust entity height.
+          //noinspection deprecation
           AxisAlignedBB boundingBox = block.getBoundingBox(blockState, this.world, pos);
           AxisAlignedBB offsetBoundingBox = new AxisAlignedBB(boundingBox.minX, 1.0 - boundingBox.maxY, boundingBox.minZ, boundingBox.maxX, 1.0, boundingBox.maxZ).offset(pos);
 
@@ -346,12 +347,12 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
     return new AxisAlignedBB(1f / 16f, 1, 1f / 16f, 15f / 16f, 20f / 16f, 15f / 16f);
   }
 
-  public class InteractionBlade
-      extends InteractionItemStack<TileSawmillBase> {
+  public static class InteractionBlade<E extends MachineRecipeBaseSawmill<E>>
+      extends InteractionItemStack<TileSawmillBase<E>> {
 
-    private final TileSawmillBase tile;
+    private final TileSawmillBase<E> tile;
 
-    /* package */ InteractionBlade(TileSawmillBase tile, ItemStackHandler[] stackHandlers) {
+    /* package */ InteractionBlade(TileSawmillBase<E> tile, ItemStackHandler[] stackHandlers) {
 
       super(
           stackHandlers,
@@ -395,7 +396,7 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
       return this.tile.isValidSawmillBlade(itemStack);
     }
 
-    public TileSawmillBase getTile() {
+    public TileSawmillBase<E> getTile() {
 
       return this.tile;
     }

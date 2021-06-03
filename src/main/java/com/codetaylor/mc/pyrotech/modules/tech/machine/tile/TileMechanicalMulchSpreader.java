@@ -1,16 +1,16 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
-import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.*;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMulch;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.TileStash;
@@ -185,7 +185,7 @@ public class TileMechanicalMulchSpreader
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setTag("stackHandler", this.mulchStackHandler.serializeNBT());
@@ -193,7 +193,7 @@ public class TileMechanicalMulchSpreader
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.mulchStackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));

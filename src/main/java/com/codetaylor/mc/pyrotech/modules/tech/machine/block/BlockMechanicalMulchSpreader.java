@@ -1,13 +1,13 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 
-import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.athenaeum.util.AABBHelper;
-import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
+import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.athenaeum.util.AABBHelper;
+import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalMulchSpreader;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
 import net.minecraft.block.Block;
@@ -85,8 +85,9 @@ public class BlockMechanicalMulchSpreader
 
   @SuppressWarnings("deprecation")
   @Nullable
+  @ParametersAreNonnullByDefault
   @Override
-  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+  public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 
     RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
 
@@ -98,6 +99,7 @@ public class BlockMechanicalMulchSpreader
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
@@ -171,6 +173,7 @@ public class BlockMechanicalMulchSpreader
 
   @SuppressWarnings("deprecation")
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
@@ -244,6 +247,7 @@ public class BlockMechanicalMulchSpreader
     return new BlockStateContainer(this, Properties.FACING_HORIZONTAL, TYPE);
   }
 
+  @SuppressWarnings("deprecation")
   @Nonnull
   @Override
   public IBlockState getStateFromMeta(int meta) {
@@ -317,8 +321,9 @@ public class BlockMechanicalMulchSpreader
     }
 
     @Nonnull
+    @ParametersAreNonnullByDefault
     @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World world, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
       IBlockState blockState = world.getBlockState(pos);
       Block block = blockState.getBlock();

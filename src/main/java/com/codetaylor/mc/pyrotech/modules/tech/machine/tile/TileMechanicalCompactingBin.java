@@ -10,7 +10,7 @@ public class TileMechanicalCompactingBin
     extends TileCompactingBin {
 
   @Override
-  public CompactingBinRecipeBase getRecipe(ItemStack itemStack) {
+  public CompactingBinRecipeBase<?> getRecipe(ItemStack itemStack) {
 
     return MechanicalCompactingBinRecipe.getRecipe(itemStack);
   }

@@ -18,6 +18,7 @@ import org.lwjgl.input.Keyboard;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
@@ -47,6 +48,7 @@ public class BlockBrickOven
 
 
   @SideOnly(Side.CLIENT)
+  @ParametersAreNonnullByDefault
   @Override
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 

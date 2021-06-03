@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.FluidTank;
 import org.lwjgl.opengl.GL11;
 
 public class CrucibleFluidRenderer
-    implements IInteractionRenderer<TileCrucibleBase.InteractionBucket> {
+    implements IInteractionRenderer<TileCrucibleBase.InteractionBucket<?>> {
 
   public static final CrucibleFluidRenderer INSTANCE = new CrucibleFluidRenderer();
 
@@ -29,7 +29,7 @@ public class CrucibleFluidRenderer
   private static final float INSET = 2 * PX;
 
   @Override
-  public void renderSolidPass(TileCrucibleBase.InteractionBucket interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
+  public void renderSolidPass(TileCrucibleBase.InteractionBucket<?> interaction, World world, RenderItem renderItem, BlockPos pos, IBlockState blockState, float partialTicks) {
 
     // If the handler is not empty, render the handler's item.
 
@@ -46,7 +46,7 @@ public class CrucibleFluidRenderer
       int color = fluid.getColor(fluidStack);
       float r = ((color >> 16) & 0xFF) / 255f;
       float g = ((color >> 8) & 0xFF) / 255f;
-      float b = ((color >> 0) & 0xFF) / 255f;
+      float b = (color & 0xFF) / 255f;
 
       BlockPos blockpos = new BlockPos(pos.getX(), pos.getY(), pos.getZ());
       int i = world.isBlockLoaded(blockpos.up()) ? world.getCombinedLight(blockpos.up(), 0) : 0;
@@ -111,12 +111,12 @@ public class CrucibleFluidRenderer
   }
 
   @Override
-  public void renderSolidPassText(TileCrucibleBase.InteractionBucket interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
+  public void renderSolidPassText(TileCrucibleBase.InteractionBucket<?> interaction, World world, FontRenderer fontRenderer, int yaw, Vec3d offset, BlockPos pos, IBlockState blockState, float partialTicks) {
     // no-op
   }
 
   @Override
-  public boolean renderAdditivePass(TileCrucibleBase.InteractionBucket interaction, World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
+  public boolean renderAdditivePass(TileCrucibleBase.InteractionBucket<?> interaction, World world, RenderItem renderItem, EnumFacing hitSide, Vec3d hitVec, BlockPos hitPos, IBlockState blockState, ItemStack heldItemMainHand, float partialTicks) {
 
     return false;
   }

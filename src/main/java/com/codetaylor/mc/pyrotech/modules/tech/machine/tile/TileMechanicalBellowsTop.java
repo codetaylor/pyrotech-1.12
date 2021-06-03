@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
-import com.codetaylor.mc.athenaeum.util.*;
-import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
@@ -20,15 +20,17 @@ import javax.annotation.Nullable;
 public class TileMechanicalBellowsTop
     extends TileCogWorkerBase {
 
+  private final TickCounter pushTickCounter;
+
   private boolean pushing;
-  private TickCounter pushTickCounter;
 
   public TileMechanicalBellowsTop() {
 
     super(ModuleTechMachine.TILE_DATA_SERVICE);
 
-    this.pushing = false;
     this.pushTickCounter = new TickCounter(ModuleTechMachineConfig.MECHANICAL_BELLOWS.TRAVEL_TIME_DOWN_TICKS);
+
+    this.pushing = false;
   }
 
   // ---------------------------------------------------------------------------

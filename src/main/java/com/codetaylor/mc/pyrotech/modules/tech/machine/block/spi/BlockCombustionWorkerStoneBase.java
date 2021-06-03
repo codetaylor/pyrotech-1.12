@@ -1,10 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.block.spi;
 
+import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
@@ -33,11 +33,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.stream.Stream;
 
-@SuppressWarnings("deprecation")
 public abstract class BlockCombustionWorkerStoneBase
     extends Block
     implements IBlockInteractable,
@@ -71,7 +71,7 @@ public abstract class BlockCombustionWorkerStoneBase
     TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileCombustionWorkerStoneBase) {
-      ((TileCombustionWorkerStoneBase) tileEntity).workerSetActive(true);
+      ((TileCombustionWorkerStoneBase<?>) tileEntity).workerSetActive(true);
     }
   }
 
@@ -84,7 +84,7 @@ public abstract class BlockCombustionWorkerStoneBase
       TileEntity tileEntity = world.getTileEntity(pos);
 
       if (tileEntity instanceof TileCombustionWorkerStoneBase) {
-        ((TileCombustionWorkerStoneBase) tileEntity).workerSetActive(true);
+        ((TileCombustionWorkerStoneBase<?>) tileEntity).workerSetActive(true);
       }
     }
   }
@@ -94,7 +94,7 @@ public abstract class BlockCombustionWorkerStoneBase
   // ---------------------------------------------------------------------------
 
   @Override
-  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+  public int getLightValue(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
 
     if (state.getValue(TYPE) == BlockCombustionWorkerStoneBase.EnumType.BOTTOM_LIT) {
       return MathHelper.clamp(ModuleTechMachineConfig.GENERAL.STONE_MACHINE_LIGHT_LEVEL, 0, 15);
@@ -116,7 +116,9 @@ public abstract class BlockCombustionWorkerStoneBase
   // - Spatial
   // ---------------------------------------------------------------------------
 
+  @SuppressWarnings("deprecation")
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
@@ -127,8 +129,10 @@ public abstract class BlockCombustionWorkerStoneBase
     return super.getBoundingBox(state, source, pos);
   }
 
+  @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean isSideSolid(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, EnumFacing face) {
+  public boolean isSideSolid(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
 
     if (this.isTop(state)) {
 
@@ -145,33 +149,39 @@ public abstract class BlockCombustionWorkerStoneBase
     }
   }
 
+  @SuppressWarnings("deprecation")
   @Override
-  public boolean isFullBlock(IBlockState state) {
+  public boolean isFullBlock(@Nonnull IBlockState state) {
 
     return false;
   }
 
+  @SuppressWarnings("deprecation")
   @Override
-  public boolean isFullCube(IBlockState state) {
+  public boolean isFullCube(@Nonnull IBlockState state) {
 
     return this.isFullBlock(state);
   }
 
+  @SuppressWarnings("deprecation")
   @Override
-  public boolean isOpaqueCube(IBlockState state) {
+  public boolean isOpaqueCube(@Nonnull IBlockState state) {
 
     return this.isFullBlock(state);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
 
     return this.isFullBlock(state);
   }
 
+  @SuppressWarnings("deprecation")
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
-  public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+  public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
 
     return BlockFaceShape.UNDEFINED;
   }
@@ -180,12 +190,14 @@ public abstract class BlockCombustionWorkerStoneBase
   // - Fire
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean isFireSource(@Nonnull World world, BlockPos pos, EnumFacing side) {
+  public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
 
     return false;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
 
@@ -197,7 +209,7 @@ public abstract class BlockCombustionWorkerStoneBase
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }
@@ -222,6 +234,7 @@ public abstract class BlockCombustionWorkerStoneBase
   // - Interaction
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public int quantityDropped(IBlockState state, int fortune, Random random) {
 
@@ -232,9 +245,11 @@ public abstract class BlockCombustionWorkerStoneBase
     return super.quantityDropped(state, fortune, random);
   }
 
+  @SuppressWarnings("deprecation")
   @Nullable
+  @ParametersAreNonnullByDefault
   @Override
-  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+  public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 
     RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
 
@@ -246,6 +261,7 @@ public abstract class BlockCombustionWorkerStoneBase
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean onBlockActivated(
       World world,
@@ -308,6 +324,7 @@ public abstract class BlockCombustionWorkerStoneBase
     super.breakBlock(world, pos, state);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 
@@ -324,16 +341,16 @@ public abstract class BlockCombustionWorkerStoneBase
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean canSilkHarvest(
-      World world, BlockPos pos, @Nonnull IBlockState state, EntityPlayer player
-  ) {
+  public boolean canSilkHarvest(World world, BlockPos pos, @Nonnull IBlockState state, EntityPlayer player) {
 
     return false;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean canPlaceBlockAt(World world, @Nonnull BlockPos pos) {
+  public boolean canPlaceBlockAt(World world, BlockPos pos) {
 
     return super.canPlaceBlockAt(world, pos)
         && super.canPlaceBlockAt(world, pos.up());
@@ -361,6 +378,7 @@ public abstract class BlockCombustionWorkerStoneBase
   }
 
   @SideOnly(Side.CLIENT)
+  @ParametersAreNonnullByDefault
   @Override
   public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 
@@ -368,14 +386,17 @@ public abstract class BlockCombustionWorkerStoneBase
 
       TileEntity tileEntity = world.getTileEntity(pos.down());
 
-      if (tileEntity instanceof TileCombustionWorkerStoneBase
-          && ((TileCombustionWorkerStoneBase) tileEntity).workerIsActive()) {
+      if (tileEntity instanceof TileCombustionWorkerStoneBase) {
+        TileCombustionWorkerStoneBase<?> tileCombustionWorkerStoneBase = (TileCombustionWorkerStoneBase<?>) tileEntity;
 
-        this.randomDisplayTickActiveTop(state, world, pos, rand);
+        if (tileCombustionWorkerStoneBase.workerIsActive()) {
 
-        if (((TileCombustionWorkerStoneBase) tileEntity).hasFuel()
-            && ((TileCombustionWorkerStoneBase) tileEntity).hasInput()) {
-          this.randomDisplayTickWorkingTop(state, world, pos, rand);
+          this.randomDisplayTickActiveTop(state, world, pos, rand);
+
+          if (tileCombustionWorkerStoneBase.hasFuel()
+              && tileCombustionWorkerStoneBase.hasInput()) {
+            this.randomDisplayTickWorkingTop(state, world, pos, rand);
+          }
         }
       }
 
@@ -387,33 +408,33 @@ public abstract class BlockCombustionWorkerStoneBase
           && ((TileCombustionWorkerBase) tileEntity).workerIsActive()) {
 
         EnumFacing enumfacing = state.getValue(Properties.FACING_HORIZONTAL);
-        double d0 = (double) pos.getX() + 0.5D;
-        double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
-        double d2 = (double) pos.getZ() + 0.5D;
-        double d4 = rand.nextDouble() * 0.6D - 0.3D;
+        double d0 = (double) pos.getX() + 0.5;
+        double d1 = (double) pos.getY() + rand.nextDouble() * 6.0 / 16.0;
+        double d2 = (double) pos.getZ() + 0.5;
+        double d4 = rand.nextDouble() * 0.6 - 0.3;
 
-        if (rand.nextDouble() < 0.1D) {
-          world.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+        if (rand.nextDouble() < 0.1) {
+          world.playSound((double) pos.getX() + 0.5, pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
         }
 
         double offset = 0.25;
 
         switch (enumfacing) {
           case WEST:
-            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - offset, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0 - offset, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - offset, d1, d2 + d4, 0, 0, 0);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0 - offset, d1, d2 + d4, 0, 0, 0);
             break;
           case EAST:
-            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + offset, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0 + offset, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + offset, d1, d2 + d4, 0, 0, 0);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0 + offset, d1, d2 + d4, 0, 0, 0);
             break;
           case NORTH:
-            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - offset, 0.0D, 0.0D, 0.0D);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - offset, 0.0D, 0.0D, 0.0D);
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - offset, 0, 0, 0);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - offset, 0, 0, 0);
             break;
           case SOUTH:
-            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + offset, 0.0D, 0.0D, 0.0D);
-            world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + offset, 0.0D, 0.0D, 0.0D);
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + offset, 0, 0, 0);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + offset, 0, 0, 0);
         }
       }
     }
@@ -444,6 +465,7 @@ public abstract class BlockCombustionWorkerStoneBase
     return new BlockStateContainer(this, Properties.FACING_HORIZONTAL, TYPE);
   }
 
+  @SuppressWarnings("deprecation")
   @Nonnull
   @Override
   public IBlockState getStateFromMeta(int meta) {
@@ -472,16 +494,17 @@ public abstract class BlockCombustionWorkerStoneBase
   }
 
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
   public IBlockState getStateForPlacement(
-      @Nonnull World world,
-      @Nonnull BlockPos pos,
-      @Nonnull EnumFacing facing,
+      World world,
+      BlockPos pos,
+      EnumFacing facing,
       float hitX,
       float hitY,
       float hitZ,
       int meta,
-      @Nonnull EntityLivingBase placer,
+      EntityLivingBase placer,
       EnumHand hand
   ) {
 
@@ -489,9 +512,11 @@ public abstract class BlockCombustionWorkerStoneBase
     return this.getDefaultState().withProperty(Properties.FACING_HORIZONTAL, opposite);
   }
 
+  @SuppressWarnings("deprecation")
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
-  public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
+  public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 
     if (state.getValue(TYPE) == BlockCombustionWorkerStoneBase.EnumType.BOTTOM) {
 

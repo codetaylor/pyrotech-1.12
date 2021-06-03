@@ -94,10 +94,10 @@ public abstract class TileCombustionWorkerStoneBase<E extends MachineRecipeBase<
     // --- Interactions ---
 
     this.interactions = new IInteraction[]{
-        new InteractionBucket<E>(),
+        new InteractionBucket<>(),
         new InteractionUseItemToActivateWorker<TileCombustionWorkerStoneBase<E>>(Items.FLINT_AND_STEEL, new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK),
         new InteractionUseItemToActivateWorker<TileCombustionWorkerStoneBase<E>>(Items.FIRE_CHARGE, new EnumFacing[]{EnumFacing.NORTH}, InteractionBounds.BLOCK, true),
-        new InteractionFuel<E>(new ItemStackHandler[]{
+        new InteractionFuel<>(new ItemStackHandler[]{
             TileCombustionWorkerStoneBase.this.fuelStackHandler
         })
     };

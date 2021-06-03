@@ -1,20 +1,20 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
-import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.util.ArrayHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.inventory.DynamicStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketNoHunger;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
@@ -48,15 +48,18 @@ public class TileCompactingBin
     extends TileEntityDataBase
     implements ITileInteractable {
 
-  private InputStackHandler inputStackHandler;
-  private TileDataFloat recipeProgress;
-  private TileDataItemStackHandler tileDataInputStackHandler;
-  private CompactingBinRecipeBase currentRecipe;
-  private IInteraction[] interactions;
+  private final InputStackHandler inputStackHandler;
+  private final TileDataItemStackHandler<InputStackHandler> tileDataInputStackHandler;
+  private final TileDataFloat recipeProgress;
+  private final IInteraction<?>[] interactions;
+
+  private CompactingBinRecipeBase<?> currentRecipe;
 
   public TileCompactingBin() {
 
     super(ModuleTechBasic.TILE_DATA_SERVICE);
+
+    this.recipeProgress = new TileDataFloat(0);
 
     this.inputStackHandler = new InputStackHandler(this);
     this.inputStackHandler.addObserver((handler, slot) -> {
@@ -74,8 +77,6 @@ public class TileCompactingBin
       }
       this.markDirty();
     });
-
-    this.recipeProgress = new TileDataFloat(0);
 
     // --- Network ---
 
@@ -149,7 +150,7 @@ public class TileCompactingBin
 
   private boolean isItemValidForInsertion(ItemStack itemStack) {
 
-    CompactingBinRecipeBase recipe = this.getRecipe(itemStack);
+    CompactingBinRecipeBase<?> recipe = this.getRecipe(itemStack);
 
     if (recipe == null) {
       return false;
@@ -166,7 +167,7 @@ public class TileCompactingBin
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  public CompactingBinRecipeBase getRecipe(ItemStack itemStack) {
+  public CompactingBinRecipeBase<?> getRecipe(ItemStack itemStack) {
 
     return CompactingBinRecipe.getRecipe(itemStack);
   }
@@ -191,7 +192,7 @@ public class TileCompactingBin
     return this.inputStackHandler;
   }
 
-  public CompactingBinRecipeBase getCurrentRecipe() {
+  public CompactingBinRecipeBase<?> getCurrentRecipe() {
 
     return this.currentRecipe;
   }
@@ -242,7 +243,7 @@ public class TileCompactingBin
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setTag("inputStackHandler", this.inputStackHandler.serializeNBT());
@@ -251,7 +252,7 @@ public class TileCompactingBin
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
@@ -281,7 +282,7 @@ public class TileCompactingBin
   }
 
   @Override
-  public IInteraction[] getInteractions() {
+  public IInteraction<?>[] getInteractions() {
 
     return this.interactions;
   }
@@ -351,7 +352,7 @@ public class TileCompactingBin
     }
   }
 
-  private class InteractionShovel
+  private static class InteractionShovel
       extends InteractionUseItemBase<TileCompactingBin> {
 
     /* package */ InteractionShovel() {
@@ -441,7 +442,7 @@ public class TileCompactingBin
   // - Stack Handlers
   // ---------------------------------------------------------------------------
 
-  public class InputStackHandler
+  public static class InputStackHandler
       extends DynamicStackHandler {
 
     private final TileCompactingBin tile;
@@ -460,7 +461,7 @@ public class TileCompactingBin
         return stack; // item is not valid for insertion, fail
       }
 
-      CompactingBinRecipeBase recipe = this.tile.getRecipe(stack);
+      CompactingBinRecipeBase<?> recipe = this.tile.getRecipe(stack);
 
       if (recipe == null) {
         // This should never happen because the item's recipe is checked above.
@@ -490,7 +491,7 @@ public class TileCompactingBin
       }
     }
 
-    public int removeItems(int amount) {
+    public void removeItems(int amount) {
 
       int remaining = amount;
 
@@ -500,12 +501,10 @@ public class TileCompactingBin
           remaining -= super.extractItem(i, remaining, false).getCount();
 
           if (remaining == 0) {
-            return amount;
+            return;
           }
         }
       }
-
-      return amount - remaining;
     }
 
     @Nonnull

@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 
+import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileBellows;
 import net.minecraft.block.material.Material;
@@ -35,6 +35,7 @@ public class BlockBellows
 
   @SuppressWarnings("deprecation")
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
@@ -84,7 +85,7 @@ public class BlockBellows
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }

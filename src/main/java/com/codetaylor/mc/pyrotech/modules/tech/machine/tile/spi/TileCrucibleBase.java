@@ -19,25 +19,29 @@ public abstract class TileCrucibleBase<E extends MachineRecipeItemInFluidOutBase
   public TileCrucibleBase() {
 
     this.addInteractions(new IInteraction[]{
-        new TileCrucibleBase.InteractionBucket()
+        new TileCrucibleBase.InteractionBucket<>(this)
     });
   }
 
-  public class InteractionBucket
-      extends InteractionBucketBase<TileCrucibleBase> {
+  public static class InteractionBucket<E extends MachineRecipeItemInFluidOutBase<E>>
+      extends InteractionBucketBase<TileCrucibleBase<E>> {
 
-    /* package */ InteractionBucket() {
+    private final TileCrucibleBase<E> tile;
+
+    /* package */ InteractionBucket(TileCrucibleBase<E> tile) {
 
       super(
-          TileCrucibleBase.this.getOutputFluidTank(),
+          tile.getOutputFluidTank(),
           new EnumFacing[]{EnumFacing.UP},
-          TileCrucibleBase.this.getInputInteractionBoundsTop()
+          tile.getInputInteractionBoundsTop()
       );
+
+      this.tile = tile;
     }
 
     public FluidTank getFluidTank() {
 
-      return TileCrucibleBase.this.getOutputFluidTank();
+      return this.tile.getOutputFluidTank();
     }
 
     @SideOnly(Side.CLIENT)

@@ -7,6 +7,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.util.ParticleHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,7 +23,7 @@ import javax.annotation.Nullable;
 public abstract class TileCombustionWorkerStoneItemInBase<E extends MachineRecipeItemInBase<E>>
     extends TileCombustionWorkerStoneBase<E> {
 
-  private InputStackHandler inputStackHandler;
+  private final InputStackHandler inputStackHandler;
 
   public TileCombustionWorkerStoneItemInBase() {
 
@@ -36,7 +37,7 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends MachineRecip
 
   protected IObservableStackHandler.IContentsChangedEventHandler getInputStackHandlerObserver() {
 
-    return new Observer(this);
+    return new Observer<>(this);
   }
 
   @Override
@@ -201,14 +202,14 @@ public abstract class TileCombustionWorkerStoneItemInBase<E extends MachineRecip
     return insertedItems.getCount();
   }
 
-  public static class Observer
+  public static class Observer<E extends MachineRecipeBase<E>>
       implements IObservableStackHandler.IContentsChangedEventHandler {
 
-    private final TileCombustionWorkerStoneBase tile;
+    private final TileCombustionWorkerStoneBase<E> tile;
 
     private int lastItemCount;
 
-    private Observer(TileCombustionWorkerStoneBase tile) {
+    private Observer(TileCombustionWorkerStoneBase<E> tile) {
 
       this.tile = tile;
       this.lastItemCount = -1;

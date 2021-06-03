@@ -1,20 +1,19 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataBoolean;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.*;
-import com.codetaylor.mc.athenaeum.interaction.api.Transform;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.client.render.InteractionCogRenderer;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.item.ItemCog;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneHopper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.RenderItem;
@@ -33,18 +32,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public abstract class TileCogWorkerBase
     extends TileEntityDataBase
     implements ITickable,
     ITileInteractable {
 
-  private CogStackHandler cogStackHandler;
-  private TickCounter updateTickCounter;
-  private TileDataBoolean triggered;
-  private IInteraction[] interactions;
+  private final CogStackHandler cogStackHandler;
+  private final TickCounter updateTickCounter;
+  private final TileDataBoolean triggered;
   private final TileDataItemStackHandler<CogStackHandler> tileDataItemStackHandler;
+
+  private IInteraction<?>[] interactions;
   private boolean ready;
 
   @SideOnly(Side.CLIENT)
@@ -79,7 +78,7 @@ public abstract class TileCogWorkerBase
     };
   }
 
-  protected void addInteractions(IInteraction[] interactions) {
+  protected void addInteractions(IInteraction<?>[] interactions) {
 
     this.interactions = ArrayHelper.combine(this.interactions, interactions);
   }
@@ -121,7 +120,6 @@ public abstract class TileCogWorkerBase
 
   protected abstract int getUpdateIntervalTicks();
 
-  @Nullable
   protected ItemStack getCog() {
 
     return this.cogStackHandler.getStackInSlot(0);
@@ -164,6 +162,7 @@ public abstract class TileCogWorkerBase
     }
 
     if (this.ready) {
+      //noinspection ConstantConditions
       this.updateTickCounter.reset();
       this.ready = false;
       int cogDamage = this.doWork(cog);
@@ -198,7 +197,7 @@ public abstract class TileCogWorkerBase
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setTag("cogStackHandler", this.cogStackHandler.serializeNBT());
@@ -206,7 +205,7 @@ public abstract class TileCogWorkerBase
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.cogStackHandler.deserializeNBT(compound.getCompoundTag("cogStackHandler"));
@@ -240,7 +239,7 @@ public abstract class TileCogWorkerBase
   // ---------------------------------------------------------------------------
 
   @Override
-  public IInteraction[] getInteractions() {
+  public IInteraction<?>[] getInteractions() {
 
     return this.interactions;
   }
@@ -251,7 +250,7 @@ public abstract class TileCogWorkerBase
     return (pass == 0) || (pass == 1);
   }
 
-  public class InteractionCog
+  public static class InteractionCog
       extends InteractionItemStack<TileCogWorkerBase> {
 
     private final TileCogWorkerBase tile;
@@ -298,7 +297,7 @@ public abstract class TileCogWorkerBase
   // - Stack Handler
   // ---------------------------------------------------------------------------
 
-  public class CogStackHandler
+  public static class CogStackHandler
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 

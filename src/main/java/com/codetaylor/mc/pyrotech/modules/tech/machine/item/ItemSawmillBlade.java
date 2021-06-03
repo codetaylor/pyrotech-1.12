@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class ItemSawmillBlade
@@ -33,7 +34,9 @@ public class ItemSawmillBlade
     return super.getItemEnchantability(stack);
   }
 
+  @SuppressWarnings("deprecation")
   @SideOnly(Side.CLIENT)
+  @ParametersAreNonnullByDefault
   @Override
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 

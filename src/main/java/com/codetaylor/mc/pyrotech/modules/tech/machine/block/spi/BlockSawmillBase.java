@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public abstract class BlockSawmillBase
@@ -28,6 +29,7 @@ public abstract class BlockSawmillBase
   private static final AxisAlignedBB AABB_TOP = new AxisAlignedBB(1.0 / 16.0, 0.0 / 16.0, 1.0 / 16.0, 15.0 / 16.0, 4.0 / 16.0, 15.0 / 16.0);
 
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 
@@ -39,15 +41,18 @@ public abstract class BlockSawmillBase
   }
 
   @Override
-  public void onEntityWalk(World world, BlockPos pos, Entity entity) {
+  public void onEntityWalk(World world, @Nonnull BlockPos pos, @Nonnull Entity entity) {
 
     if (this.isTop(world.getBlockState(pos))) {
       TileEntity tile = world.getTileEntity(pos.down());
 
-      if (tile instanceof TileSawmillBase
-          && ((TileSawmillBase) tile).workerIsActive()
-          && ((TileSawmillBase) tile).getEntityDamageFromBlade() > 0) {
-        entity.attackEntityFrom(DamageSource.GENERIC, (float) ((TileSawmillBase) tile).getEntityDamageFromBlade());
+      if (tile instanceof TileSawmillBase) {
+        TileSawmillBase<?> tileSawmillBase = (TileSawmillBase<?>) tile;
+
+        if (tileSawmillBase.workerIsActive()
+            && tileSawmillBase.getEntityDamageFromBlade() > 0) {
+          entity.attackEntityFrom(DamageSource.GENERIC, (float) tileSawmillBase.getEntityDamageFromBlade());
+        }
       }
     }
 
@@ -104,11 +109,12 @@ public abstract class BlockSawmillBase
     TileEntity tileEntity = world.getTileEntity(pos.down());
 
     if (tileEntity instanceof TileSawmillBase) {
-      ItemStackHandler inputStackHandler = ((TileSawmillBase) tileEntity).getInputStackHandler();
+      ItemStackHandler inputStackHandler = ((TileSawmillBase<?>) tileEntity).getInputStackHandler();
       ItemStack stackInSlot = inputStackHandler.getStackInSlot(0);
       Block blockFromItem = Block.getBlockFromItem(stackInSlot.getItem());
 
       if (blockFromItem != Blocks.AIR) {
+        //noinspection deprecation
         IBlockState blockState = blockFromItem.getStateFromMeta(stackInSlot.getMetadata());
         int stateId = Block.getStateId(blockState);
 

@@ -30,7 +30,8 @@ public class TileBellows
     extends TileEntityDataBase
     implements ITickable {
 
-  private TileDataFloat progress;
+  private final TileDataFloat progress;
+
   private float time;
 
   public TileBellows() {
@@ -224,7 +225,7 @@ public class TileBellows
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setFloat("progress", this.progress.get());
@@ -232,7 +233,7 @@ public class TileBellows
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.progress.set(compound.getFloat("progress"));

@@ -14,7 +14,6 @@ public class TESRMechanicalBellows
     extends FastTESR<TileBellows> {
 
   private static final float PX = 0.0625f;
-  private static final float INSET = PX * 0.1f;
 
   @Override
   public void renderTileEntityFast(
@@ -48,27 +47,26 @@ public class TESRMechanicalBellows
 
     // TOP
     {
-      double inset = 0;
       buffer
-          .pos(inset, level, inset)
+          .pos(0, level, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(top.getMinU(), top.getMinV())
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level, inset)
+          .pos(1, level, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(top.getMaxU(), top.getMinV())
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level, 1 - inset)
+          .pos(1, level, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(top.getMaxU(), top.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(inset, level, 1 - inset)
+          .pos(0, level, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(top.getMinU(), top.getMaxV())
           .lightmap(j, k)
@@ -77,27 +75,26 @@ public class TESRMechanicalBellows
 
     // BOTTOM
     {
-      double inset = 0;
       buffer
-          .pos(inset, level - PX * 2, inset)
+          .pos(0, level - PX * 2, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(top.getMinU(), top.getMinV())
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level - PX * 2, inset)
+          .pos(1, level - PX * 2, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(top.getMaxU(), top.getMinV())
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level - PX * 2, 1 - inset)
+          .pos(1, level - PX * 2, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(top.getMaxU(), top.getMaxV())
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(inset, level - PX * 2, 1 - inset)
+          .pos(0, level - PX * 2, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(top.getMinU(), top.getMaxV())
           .lightmap(j, k)
@@ -108,27 +105,26 @@ public class TESRMechanicalBellows
     {
       float maxV = side.getInterpolatedV(16);
       float minV = side.getInterpolatedV(14);
-      double inset = 0;
       buffer
-          .pos(1 - inset, level - PX * 2, inset)
+          .pos(1, level - PX * 2, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level - PX * 2, 1 - inset)
+          .pos(1, level - PX * 2, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level, 1 - inset)
+          .pos(1, level, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), minV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level, inset)
+          .pos(1, level, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), minV)
           .lightmap(j, k)
@@ -139,27 +135,26 @@ public class TESRMechanicalBellows
     {
       float maxV = side.getInterpolatedV(16);
       float minV = side.getInterpolatedV(14);
-      double inset = 0;
       buffer
-          .pos(inset, level - PX * 2, inset)
+          .pos(0, level - PX * 2, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(inset, level - PX * 2, 1 - inset)
+          .pos(0, level - PX * 2, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(inset, level, 1 - inset)
+          .pos(0, level, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), minV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(inset, level, inset)
+          .pos(0, level, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), minV)
           .lightmap(j, k)
@@ -170,27 +165,26 @@ public class TESRMechanicalBellows
     {
       float maxV = side.getInterpolatedV(16);
       float minV = side.getInterpolatedV(14);
-      double inset = 0;
       buffer
-          .pos(inset, level - PX * 2, 1 - inset)
+          .pos(0, level - PX * 2, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level - PX * 2, 1 - inset)
+          .pos(1, level - PX * 2, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level, 1 - inset)
+          .pos(1, level, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), minV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(inset, level, 1 - inset)
+          .pos(0, level, 1)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), minV)
           .lightmap(j, k)
@@ -201,27 +195,26 @@ public class TESRMechanicalBellows
     {
       float maxV = side.getInterpolatedV(16);
       float minV = side.getInterpolatedV(14);
-      double inset = 0;
       buffer
-          .pos(inset, level - PX * 2, inset)
+          .pos(0, level - PX * 2, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level - PX * 2, inset)
+          .pos(1, level - PX * 2, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), maxV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(1 - inset, level, inset)
+          .pos(1, level, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMaxU(), minV)
           .lightmap(j, k)
           .endVertex();
       buffer
-          .pos(inset, level, inset)
+          .pos(0, level, 0)
           .color(1f, 1f, 1f, 1f)
           .tex(side.getMinU(), minV)
           .lightmap(j, k)

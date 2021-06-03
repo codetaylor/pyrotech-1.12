@@ -1,5 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile;
 
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
@@ -8,9 +11,6 @@ import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.FacingHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
-import com.codetaylor.mc.athenaeum.interaction.api.Transform;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.library.CompactingBinRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCompactingBin;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileSoakingPot;
@@ -39,7 +39,7 @@ import javax.annotation.Nullable;
 public class TileMechanicalCompactingBinWorker
     extends TileCogWorkerBase {
 
-  private OutputStackHandler outputStackHandler;
+  private final OutputStackHandler outputStackHandler;
 
   public TileMechanicalCompactingBinWorker() {
 
@@ -128,7 +128,7 @@ public class TileMechanicalCompactingBinWorker
 
     if (tileEntity instanceof TileCompactingBin) {
       TileCompactingBin tile = (TileCompactingBin) tileEntity;
-      CompactingBinRecipeBase currentRecipe = tile.getCurrentRecipe();
+      CompactingBinRecipeBase<?> currentRecipe = tile.getCurrentRecipe();
 
       if (currentRecipe != null
           && currentRecipe.getAmount() <= tile.getInputStackHandler().getTotalItemCount()
@@ -173,7 +173,7 @@ public class TileMechanicalCompactingBinWorker
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setTag("outputStackHandler", this.outputStackHandler.serializeNBT());
@@ -181,7 +181,7 @@ public class TileMechanicalCompactingBinWorker
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.outputStackHandler.deserializeNBT(compound.getCompoundTag("outputStackHandler"));
@@ -215,7 +215,7 @@ public class TileMechanicalCompactingBinWorker
     return super.getTileFacing(world, pos, blockState);
   }
 
-  private class InteractionItem
+  private static class InteractionItem
       extends InteractionItemStack<TileSoakingPot> {
 
     /* package */ InteractionItem(ItemStackHandler stackHandler) {

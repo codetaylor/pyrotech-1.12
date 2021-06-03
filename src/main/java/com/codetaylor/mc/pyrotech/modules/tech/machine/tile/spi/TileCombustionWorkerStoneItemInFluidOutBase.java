@@ -1,5 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi;
 
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.inventory.IObservableStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
@@ -8,9 +11,6 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataFluidTank;
 import com.codetaylor.mc.athenaeum.util.FluidHelper;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.athenaeum.interaction.api.Transform;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.spi.MachineRecipeItemInFluidOutBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends MachineRecipeItemInFluidOutBase<E>>
     extends TileCombustionWorkerStoneItemInBase<E> {
 
-  private OutputFluidTank outputFluidTank;
+  private final OutputFluidTank outputFluidTank;
 
   public TileCombustionWorkerStoneItemInFluidOutBase() {
 
@@ -50,7 +50,7 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
     });
 
     this.addInteractions(new IInteraction[]{
-        new Interaction(this, new ItemStackHandler[]{
+        new Interaction<>(this, new ItemStackHandler[]{
             this.getInputStackHandler()
         })
     });
@@ -258,8 +258,8 @@ public abstract class TileCombustionWorkerStoneItemInFluidOutBase<E extends Mach
   // - Interactions
   // ---------------------------------------------------------------------------
 
-  private class Interaction
-      extends InteractionItemStack<TileCombustionWorkerStoneItemInFluidOutBase> {
+  private static class Interaction<E extends MachineRecipeItemInFluidOutBase<E>>
+      extends InteractionItemStack<TileCombustionWorkerStoneItemInFluidOutBase<E>> {
 
     private final TileCombustionWorkerStoneItemInFluidOutBase<E> tile;
 

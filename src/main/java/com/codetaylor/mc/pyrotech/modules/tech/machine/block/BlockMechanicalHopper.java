@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.block;
 
+import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileStoneHopper;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.material.Material;
@@ -47,10 +47,6 @@ public class BlockMechanicalHopper
         AABBHelper.create(4, 4, 4, 12, 10, 12)
     );
 
-    /*
-      Collision ray-trace code derived from RWTema's Diet Hopper code.
-      https://github.com/rwtema/DietHopper/blob/master/src/main/java/com/rwtema/diethopper/BlockDietHopper.java
-     */
     RAYTRACE_COLLISION_BOUNDS = Stream.of(EnumType.values())
         .collect(Collectors.toMap(type -> type, type -> {
 
@@ -113,6 +109,7 @@ public class BlockMechanicalHopper
   // - Interaction
   // ---------------------------------------------------------------------------
 
+  @SuppressWarnings("deprecation")
   @ParametersAreNonnullByDefault
   @Nullable
   @Override
@@ -143,6 +140,7 @@ public class BlockMechanicalHopper
         ? this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos, start, end) : null;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
@@ -168,12 +166,13 @@ public class BlockMechanicalHopper
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }
 
   @Nullable
+  @ParametersAreNonnullByDefault
   @Override
   public TileEntity createTileEntity(World world, IBlockState state) {
 
@@ -191,6 +190,7 @@ public class BlockMechanicalHopper
     return new BlockStateContainer(this, Properties.FACING_HORIZONTAL, TYPE);
   }
 
+  @SuppressWarnings("deprecation")
   @Nonnull
   @Override
   public IBlockState getStateFromMeta(int meta) {
@@ -219,16 +219,17 @@ public class BlockMechanicalHopper
   }
 
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
   public IBlockState getStateForPlacement(
-      @Nonnull World world,
-      @Nonnull BlockPos pos,
-      @Nonnull EnumFacing facing,
+      World world,
+      BlockPos pos,
+      EnumFacing facing,
       float hitX,
       float hitY,
       float hitZ,
       int meta,
-      @Nonnull EntityLivingBase placer,
+      EntityLivingBase placer,
       EnumHand hand
   ) {
 
