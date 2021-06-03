@@ -8,7 +8,6 @@ import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStack;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
@@ -42,7 +41,6 @@ public class TileButchersBlock
   private final InputStackHandler inputStackHandler;
   private final TileDataFloat currentProgress;
   private final TileDataFloat totalProgress;
-  private final TileDataItemStack nextItem;
 
   private final IInteraction<?>[] interactions;
 
@@ -63,15 +61,12 @@ public class TileButchersBlock
       this.markDirty();
     });
 
-    this.nextItem = new TileDataItemStack(ItemStack.EMPTY);
-
     // --- Network ---
 
     this.registerTileDataForNetwork(new ITileData[]{
         new TileDataItemStackHandler<>(this.inputStackHandler),
         this.currentProgress,
-        this.totalProgress,
-        this.nextItem
+        this.totalProgress
     });
 
     // --- Interactions ---
@@ -91,34 +86,7 @@ public class TileButchersBlock
       float adjustment = RandomHelper.random().nextFloat() * 0.2f - 0.1f;
       this.currentProgress.set(Math.max(1, progressRequired + progressRequired * adjustment));
       this.totalProgress.set(this.currentProgress.get());
-      this.updateNextItem();
     }
-  }
-
-  private void updateNextItem() {
-
-    ItemStack itemStack = this.inputStackHandler.getStackInSlot(0);
-
-    if (itemStack.isEmpty()) {
-      this.nextItem.set(ItemStack.EMPTY);
-      return;
-    }
-
-    ItemStackHandler itemStackHandler = ItemBlockCarcass.getItemStackHandler(itemStack);
-
-    if (itemStackHandler == null) {
-      this.nextItem.set(ItemStack.EMPTY);
-      return;
-    }
-
-    int slot = this.getFirstNonEmptySlot(itemStackHandler);
-
-    if (slot == -1) {
-      this.nextItem.set(ItemStack.EMPTY);
-      return;
-    }
-
-    this.nextItem.set(itemStackHandler.getStackInSlot(slot).copy());
   }
 
   private ItemStack transformItem(ItemStack itemStack) {
@@ -289,7 +257,25 @@ public class TileButchersBlock
 
   public ItemStack getNextItem() {
 
-    return this.nextItem.get();
+    ItemStack itemStack = this.inputStackHandler.getStackInSlot(0);
+
+    if (itemStack.isEmpty()) {
+      return ItemStack.EMPTY;
+    }
+
+    ItemStackHandler itemStackHandler = ItemBlockCarcass.getItemStackHandler(itemStack);
+
+    if (itemStackHandler == null) {
+      return ItemStack.EMPTY;
+    }
+
+    int slot = this.getFirstNonEmptySlot(itemStackHandler);
+
+    if (slot == -1) {
+      return ItemStack.EMPTY;
+    }
+
+    return itemStackHandler.getStackInSlot(slot);
   }
 
   private int getFirstNonEmptySlot(ItemStackHandler stackHandler) {
