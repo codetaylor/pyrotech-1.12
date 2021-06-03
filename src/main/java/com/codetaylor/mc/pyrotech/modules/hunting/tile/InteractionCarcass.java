@@ -4,7 +4,9 @@ import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketNoHunger;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import net.minecraft.block.Block;
@@ -46,6 +48,11 @@ public class InteractionCarcass<T extends TileEntity & ITileInteractable>
     boolean isEmpty();
 
     void destroyCarcass();
+
+    default double getProgressParticleOffsetY() {
+
+      return 1;
+    }
   }
 
   private final IInteractionCarcassDelegate delegate;
@@ -118,6 +125,12 @@ public class InteractionCarcass<T extends TileEntity & ITileInteractable>
 
       // Advance the progress.
       this.delegate.setCurrentProgress(this.delegate.getCurrentProgress() - efficiency);
+
+      ModuleCore.PACKET_SERVICE.sendToAllAround(
+          new SCPacketParticleProgress(hitPos.getX() + 0.5, hitPos.getY() + this.delegate.getProgressParticleOffsetY(), hitPos.getZ() + 0.5, 2),
+          world.provider.getDimension(),
+          hitPos
+      );
 
       if (this.delegate.getCurrentProgress() <= 0) {
         // Check progress, drop item, reset progress or destroy carcass.

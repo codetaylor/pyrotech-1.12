@@ -265,6 +265,12 @@ public class TileButchersBlock
 
       this.tile.resetProgress();
     }
+
+    @Override
+    public double getProgressParticleOffsetY() {
+
+      return 1.5;
+    }
   }
 
   // ---------------------------------------------------------------------------
