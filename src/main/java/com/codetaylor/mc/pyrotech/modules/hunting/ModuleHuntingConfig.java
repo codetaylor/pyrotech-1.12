@@ -2,7 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.hunting;
 
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemButchersKnife;
-import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntingKnife;
+import com.codetaylor.mc.pyrotech.modules.hunting.item.ItemHuntersKnife;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Config;
 
@@ -155,13 +155,13 @@ public class ModuleHuntingConfig {
         "String format is a resource location: (domain):(path)"
     })
     public String[] ALLOWED_KNIVES = new String[]{
-        "pyrotech:" + ItemHuntingKnife.BONE_NAME,
-        "pyrotech:" + ItemHuntingKnife.FLINT_NAME,
-        "pyrotech:" + ItemHuntingKnife.STONE_NAME,
-        "pyrotech:" + ItemHuntingKnife.IRON_NAME,
-        "pyrotech:" + ItemHuntingKnife.GOLD_NAME,
-        "pyrotech:" + ItemHuntingKnife.DIAMOND_NAME,
-        "pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME,
+        "pyrotech:" + ItemHuntersKnife.BONE_NAME,
+        "pyrotech:" + ItemHuntersKnife.FLINT_NAME,
+        "pyrotech:" + ItemHuntersKnife.STONE_NAME,
+        "pyrotech:" + ItemHuntersKnife.IRON_NAME,
+        "pyrotech:" + ItemHuntersKnife.GOLD_NAME,
+        "pyrotech:" + ItemHuntersKnife.DIAMOND_NAME,
+        "pyrotech:" + ItemHuntersKnife.OBSIDIAN_NAME,
         "pyrotech:" + ItemButchersKnife.BONE_NAME,
         "pyrotech:" + ItemButchersKnife.FLINT_NAME,
         "pyrotech:" + ItemButchersKnife.STONE_NAME,
@@ -194,13 +194,13 @@ public class ModuleHuntingConfig {
     })
     @Config.RequiresMcRestart
     public Map<String, Integer> KNIFE_EFFICIENCY = new HashMap<String, Integer>() {{
-      this.put("pyrotech:" + ItemHuntingKnife.BONE_NAME, 15);
-      this.put("pyrotech:" + ItemHuntingKnife.FLINT_NAME, 15);
-      this.put("pyrotech:" + ItemHuntingKnife.STONE_NAME, 10);
-      this.put("pyrotech:" + ItemHuntingKnife.IRON_NAME, 20);
-      this.put("pyrotech:" + ItemHuntingKnife.GOLD_NAME, 5);
-      this.put("pyrotech:" + ItemHuntingKnife.DIAMOND_NAME, 35);
-      this.put("pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME, 20);
+      this.put("pyrotech:" + ItemHuntersKnife.BONE_NAME, 15);
+      this.put("pyrotech:" + ItemHuntersKnife.FLINT_NAME, 15);
+      this.put("pyrotech:" + ItemHuntersKnife.STONE_NAME, 10);
+      this.put("pyrotech:" + ItemHuntersKnife.IRON_NAME, 20);
+      this.put("pyrotech:" + ItemHuntersKnife.GOLD_NAME, 5);
+      this.put("pyrotech:" + ItemHuntersKnife.DIAMOND_NAME, 35);
+      this.put("pyrotech:" + ItemHuntersKnife.OBSIDIAN_NAME, 20);
       this.put("pyrotech:" + ItemButchersKnife.BONE_NAME, 15);
       this.put("pyrotech:" + ItemButchersKnife.FLINT_NAME, 15);
       this.put("pyrotech:" + ItemButchersKnife.STONE_NAME, 10);
@@ -310,10 +310,10 @@ public class ModuleHuntingConfig {
     public int LEATHER_DURABLE_REPAIR_KIT_USES = 8;
 
     @Config.Comment({
-        "The damage applied to the hunting knife when repairing leather armor with a kit.",
+        "The damage applied to the hunters knife when repairing leather armor with a kit.",
         "Default: " + 4
     })
-    public int HUNTING_KNIFE_REPAIR_DAMAGE = 4;
+    public int HUNTERS_KNIFE_REPAIR_DAMAGE = 4;
 
     @Config.Comment({
         "The percentage of durability repaired.",
@@ -417,24 +417,24 @@ public class ModuleHuntingConfig {
   }
 
   @Config.Comment({
-      "The durability of the hunting knives."
+      "The durability of the hunter's knives."
   })
-  public static Map<String, Integer> HUNTING_KNIFE_DURABILITY = new LinkedHashMap<>();
+  public static Map<String, Integer> HUNTERS_KNIFE_DURABILITY = new LinkedHashMap<>();
 
   static {
-    HUNTING_KNIFE_DURABILITY.put("bone", 150);
-    HUNTING_KNIFE_DURABILITY.put("flint", 150);
-    HUNTING_KNIFE_DURABILITY.put("stone", Item.ToolMaterial.STONE.getMaxUses());
-    HUNTING_KNIFE_DURABILITY.put("iron", Item.ToolMaterial.IRON.getMaxUses());
-    HUNTING_KNIFE_DURABILITY.put("gold", Item.ToolMaterial.GOLD.getMaxUses());
-    HUNTING_KNIFE_DURABILITY.put("diamond", Item.ToolMaterial.DIAMOND.getMaxUses());
-    HUNTING_KNIFE_DURABILITY.put("obsidian", 1400);
+    HUNTERS_KNIFE_DURABILITY.put("bone", 150);
+    HUNTERS_KNIFE_DURABILITY.put("flint", 150);
+    HUNTERS_KNIFE_DURABILITY.put("stone", Item.ToolMaterial.STONE.getMaxUses());
+    HUNTERS_KNIFE_DURABILITY.put("iron", Item.ToolMaterial.IRON.getMaxUses());
+    HUNTERS_KNIFE_DURABILITY.put("gold", Item.ToolMaterial.GOLD.getMaxUses());
+    HUNTERS_KNIFE_DURABILITY.put("diamond", Item.ToolMaterial.DIAMOND.getMaxUses());
+    HUNTERS_KNIFE_DURABILITY.put("obsidian", 1400);
   }
 
   @Config.Comment({
       "Set to false to disable repair."
   })
-  public static boolean ALLOW_HUNTING_KNIFE_REPAIR = true;
+  public static boolean ALLOW_HUNTERS_KNIFE_REPAIR = true;
 
   @Config.Comment({
       "The durability of the butcher's knives."
@@ -457,7 +457,7 @@ public class ModuleHuntingConfig {
   public static boolean ALLOW_BUTCHERS_KNIFE_REPAIR = true;
 
   @Config.Comment({
-      "How much damage is applied to a Hunting Knife when scraping a hide.",
+      "How much damage is applied to a Hunter's Knife when scraping a hide.",
       "Default: " + 2
   })
   public static int HIDE_SCRAPING_TOOL_DAMAGE = 2;

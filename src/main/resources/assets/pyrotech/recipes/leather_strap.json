@@ -1,5 +1,5 @@
 {
-  "type": "pyrotech:hunting_knife_shapeless",
+  "type": "pyrotech:hunters_knife_shapeless",
   "ingredients": [
     {
       "item": "pyrotech:material",
@@ -7,7 +7,7 @@
     },
     {
       "type": "forge:ore_dict",
-      "ore": "toolHuntingKnife"
+      "ore": "toolhuntersKnife"
     }
   ],
   "toolDamage": 1,

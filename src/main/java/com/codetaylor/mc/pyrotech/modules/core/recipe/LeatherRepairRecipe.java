@@ -71,11 +71,11 @@ public class LeatherRepairRecipe
     for (int i = 0; i < result.size(); i++) {
       ItemStack itemStack = inv.getStackInSlot(i);
 
-      if (OreDictHelper.contains("toolHuntingKnife", itemStack)) {
+      if (OreDictHelper.contains("toolHuntersKnife", itemStack)) {
 
         itemStack = itemStack.copy();
 
-        if (itemStack.attemptDamageItem(ModuleHuntingConfig.LEATHER_KITS.HUNTING_KNIFE_REPAIR_DAMAGE, RandomHelper.random(), null)) {
+        if (itemStack.attemptDamageItem(ModuleHuntingConfig.LEATHER_KITS.HUNTERS_KNIFE_REPAIR_DAMAGE, RandomHelper.random(), null)) {
           itemStack.shrink(1);
         }
         result.set(i, itemStack);

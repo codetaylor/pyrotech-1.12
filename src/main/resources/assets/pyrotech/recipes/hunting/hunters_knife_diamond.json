@@ -21,11 +21,11 @@
     },
     "^": {
       "item": "pyrotech:material",
-      "data": 11
+      "data": 18
     }
   },
   "result": {
-    "item": "pyrotech:bone_hunting_knife",
+    "item": "pyrotech:diamond_hunters_knife",
     "count": 1
   }
 }

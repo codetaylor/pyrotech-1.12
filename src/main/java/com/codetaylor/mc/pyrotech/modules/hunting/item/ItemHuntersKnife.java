@@ -12,18 +12,18 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-public class ItemHuntingKnife
+public class ItemHuntersKnife
     extends ItemSword {
 
-  public static final String BONE_NAME = "bone_hunting_knife";
-  public static final String FLINT_NAME = "flint_hunting_knife";
-  public static final String STONE_NAME = "stone_hunting_knife";
-  public static final String IRON_NAME = "iron_hunting_knife";
-  public static final String GOLD_NAME = "gold_hunting_knife";
-  public static final String DIAMOND_NAME = "diamond_hunting_knife";
-  public static final String OBSIDIAN_NAME = "obsidian_hunting_knife";
+  public static final String BONE_NAME = "bone_hunters_knife";
+  public static final String FLINT_NAME = "flint_hunters_knife";
+  public static final String STONE_NAME = "stone_hunters_knife";
+  public static final String IRON_NAME = "iron_hunters_knife";
+  public static final String GOLD_NAME = "gold_hunters_knife";
+  public static final String DIAMOND_NAME = "diamond_hunters_knife";
+  public static final String OBSIDIAN_NAME = "obsidian_hunters_knife";
 
-  public ItemHuntingKnife(ToolMaterial material, int maxDamage) {
+  public ItemHuntersKnife(ToolMaterial material, int maxDamage) {
 
     super(material);
     this.setMaxDamage(maxDamage);
@@ -48,6 +48,6 @@ public class ItemHuntingKnife
   @Override
   public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
 
-    return ModuleHuntingConfig.ALLOW_HUNTING_KNIFE_REPAIR && super.getIsRepairable(toRepair, repair);
+    return ModuleHuntingConfig.ALLOW_HUNTERS_KNIFE_REPAIR && super.getIsRepairable(toRepair, repair);
   }
 }

@@ -11,7 +11,7 @@
     * Blocks:
         * Carcass
             * Captures configured mob drops
-            * Use Hunting Knife on Carcass to release captured drops
+            * Use Hunter's Knife on Carcass to release captured drops
         * Butcher's Block
         * Decorative blocks:
             * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
@@ -41,14 +41,14 @@
             * Fletching
             * Flint Arrow
             * Bone Arrow
-        * Hunting Knives:
-            * Bone Hunting Knife
-            * Flint Hunting Knife
-            * Stone Hunting Knife
-            * Iron Hunting Knife
-            * Gold Hunting Knife
-            * Diamond Hunting Knife
-            * Obsidian Hunting Knife
+        * Hunter's Knives:
+            * Bone Hunter's Knife
+            * Flint Hunter's Knife
+            * Stone Hunter's Knife
+            * Iron Hunter's Knife
+            * Gold Hunter's Knife
+            * Diamond Hunter's Knife
+            * Obsidian Hunter's Knife
         * Butcher's Knives:
             * Bone Butcher's Knife
             * Flint Butcher's Knife
@@ -120,15 +120,15 @@
     * Recipes:
         * Crafting:
             * Spears
-            * Hunting Knives
+            * Hunter's Knives
             * `fluid:water` with Scraped Hides -> Washed Hides
             * Barrels
             * Barrel Lids
             * Leather kits
-            * Leather cutting recipes with `ore:toolHuntingKnife`
-            * Durable Leather cutting recipes with `ore:toolHuntingKnife`
+            * Leather cutting recipes with `ore:toolHuntersKnife`
+            * Durable Leather cutting recipes with `ore:toolHuntersKnife`
             * Shearing Sheep Pelts with `ore:toolShears`
-            * Scraping Pelts with `ore:toolHuntingKnife`
+            * Scraping Pelts with `ore:toolHuntersKnife`
             * Scraping Pelts with `ore:shard`
             * Saddle recipe uses new leather materials
             * Leather armor Unbreaking I recipe with `pyrotech:leather_durable_upgrade_kit`
@@ -152,13 +152,13 @@
         * `straw` now contains `pyrotech:material:2` [(#200)](https://github.com/codetaylor/pyrotech-1.12/issues/200)
         * `rockLimestone` now contains `pyrotech:rock:8` [(#199)](https://github.com/codetaylor/pyrotech-1.12/issues/199)
         * `toolSharp` now contains:
-            * `pyrotech:flint_hunting_knife`
-            * `pyrotech:bone_hunting_knife`
-            * `pyrotech:stone_hunting_knife`
-            * `pyrotech:iron_hunting_knife`
-            * `pyrotech:gold_hunting_knife`
-            * `pyrotech:diamond_hunting_knife`
-            * `pyrotech:obsidian_hunting_knife`
+            * `pyrotech:flint_hunters_knife`
+            * `pyrotech:bone_hunters_knife`
+            * `pyrotech:stone_hunters_knife`
+            * `pyrotech:iron_hunters_knife`
+            * `pyrotech:gold_hunters_knife`
+            * `pyrotech:diamond_hunters_knife`
+            * `pyrotech:obsidian_hunters_knife`
         * `toolShears` now contains:
             * `minecraft:shears`
             * `pyrotech:clay_shears`
@@ -168,14 +168,14 @@
             * `pyrotech:gold_shears`
             * `pyrotech:diamond_shears`
             * `pyrotech:obsidian_shears`
-        * `toolHuntingKnife` now contains:
-            * `pyrotech:flint_hunting_knife`
-            * `pyrotech:bone_hunting_knife`
-            * `pyrotech:stone_hunting_knife`
-            * `pyrotech:iron_hunting_knife`
-            * `pyrotech:gold_hunting_knife`
-            * `pyrotech:diamond_hunting_knife`
-            * `pyrotech:obsidian_hunting_knife`
+        * `toolHuntersKnife` now contains:
+            * `pyrotech:flint_hunters_knife`
+            * `pyrotech:bone_hunters_knife`
+            * `pyrotech:stone_hunters_knife`
+            * `pyrotech:iron_hunters_knife`
+            * `pyrotech:gold_hunters_knife`
+            * `pyrotech:diamond_hunters_knife`
+            * `pyrotech:obsidian_hunters_knife`
         * `hideScrapeable` now contains:
             * `pyrotech:pelt_cow`
             * `pyrotech:pelt_horse`
@@ -288,13 +288,13 @@
         * `item.pyrotech.pelt.sheep.brown.name`
         * `item.pyrotech.pelt.sheep.blue.name`
         * `item.pyrotech.pelt.sheep.black.name`
-        * `item.pyrotech.bone.hunting.knife.name`
-        * `item.pyrotech.flint.hunting.knife.name`
-        * `item.pyrotech.stone.hunting.knife.name`
-        * `item.pyrotech.iron.hunting.knife.name`
-        * `item.pyrotech.gold.hunting.knife.name`
-        * `item.pyrotech.diamond.hunting.knife.name`
-        * `item.pyrotech.obsidian.hunting.knife.name`
+        * `item.pyrotech.bone.hunters.knife.name`
+        * `item.pyrotech.flint.hunters.knife.name`
+        * `item.pyrotech.stone.hunters.knife.name`
+        * `item.pyrotech.iron.hunters.knife.name`
+        * `item.pyrotech.gold.hunters.knife.name`
+        * `item.pyrotech.diamond.hunters.knife.name`
+        * `item.pyrotech.obsidian.hunters.knife.name`
         * `item.pyrotech.hide.scraped.name`
         * `item.pyrotech.hide.small.scraped.name`
         * `item.pyrotech.hide.washed.name`

@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "pyrotech:items/iron_hunting_knife"
+    "layer0": "pyrotech:items/gold_hunters_knife"
   }
 }

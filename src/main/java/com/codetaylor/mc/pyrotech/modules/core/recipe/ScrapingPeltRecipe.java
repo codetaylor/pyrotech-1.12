@@ -39,7 +39,7 @@ public class ScrapingPeltRecipe
     for (int i = 0; i < result.size(); i++) {
       ItemStack itemStack = inv.getStackInSlot(i);
 
-      if (OreDictHelper.contains("toolHuntingKnife", itemStack)) {
+      if (OreDictHelper.contains("toolHuntersKnife", itemStack)) {
 
         itemStack = itemStack.copy();
 

@@ -21,11 +21,11 @@
     },
     "^": {
       "item": "pyrotech:material",
-      "data": 19
+      "data": 10
     }
   },
   "result": {
-    "item": "pyrotech:iron_hunting_knife",
+    "item": "pyrotech:flint_hunters_knife",
     "count": 1
   }
 }

@@ -1,5 +1,5 @@
 {
-  "type": "pyrotech:hunting_knife_shapeless",
+  "type": "pyrotech:hunters_knife_shapeless",
   "conditions": [
     {
       "type": "modules_enabled",
@@ -13,7 +13,7 @@
     },
     {
       "type": "forge:ore_dict",
-      "ore": "toolHuntingKnife"
+      "ore": "toolHuntersKnife"
     }
   ],
   "toolDamage": 0,

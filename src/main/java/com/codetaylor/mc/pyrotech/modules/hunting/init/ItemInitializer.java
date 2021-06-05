@@ -57,13 +57,13 @@ public final class ItemInitializer {
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_LLAMA_GRAY);
     registry.registerItem(new ItemPelt(), ItemPelt.NAME_LLAMA_BROWN);
 
-    registry.registerItem(new ItemHuntingKnife(EnumMaterial.BONE.getToolMaterial(), ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("bone")), ItemHuntingKnife.BONE_NAME);
-    registry.registerItem(new ItemHuntingKnife(EnumMaterial.FLINT.getToolMaterial(), ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("flint")), ItemHuntingKnife.FLINT_NAME);
-    registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.STONE, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("stone")), ItemHuntingKnife.STONE_NAME);
-    registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.IRON, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("iron")), ItemHuntingKnife.IRON_NAME);
-    registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.GOLD, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("gold")), ItemHuntingKnife.GOLD_NAME);
-    registry.registerItem(new ItemHuntingKnife(Item.ToolMaterial.DIAMOND, ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("diamond")), ItemHuntingKnife.DIAMOND_NAME);
-    registry.registerItem(new ItemHuntingKnife(Preconditions.checkNotNull(ModuleMaterials.OBSIDIAN), ModuleHuntingConfig.HUNTING_KNIFE_DURABILITY.get("obsidian")), ItemHuntingKnife.OBSIDIAN_NAME);
+    registry.registerItem(new ItemHuntersKnife(EnumMaterial.BONE.getToolMaterial(), ModuleHuntingConfig.HUNTERS_KNIFE_DURABILITY.get("bone")), ItemHuntersKnife.BONE_NAME);
+    registry.registerItem(new ItemHuntersKnife(EnumMaterial.FLINT.getToolMaterial(), ModuleHuntingConfig.HUNTERS_KNIFE_DURABILITY.get("flint")), ItemHuntersKnife.FLINT_NAME);
+    registry.registerItem(new ItemHuntersKnife(Item.ToolMaterial.STONE, ModuleHuntingConfig.HUNTERS_KNIFE_DURABILITY.get("stone")), ItemHuntersKnife.STONE_NAME);
+    registry.registerItem(new ItemHuntersKnife(Item.ToolMaterial.IRON, ModuleHuntingConfig.HUNTERS_KNIFE_DURABILITY.get("iron")), ItemHuntersKnife.IRON_NAME);
+    registry.registerItem(new ItemHuntersKnife(Item.ToolMaterial.GOLD, ModuleHuntingConfig.HUNTERS_KNIFE_DURABILITY.get("gold")), ItemHuntersKnife.GOLD_NAME);
+    registry.registerItem(new ItemHuntersKnife(Item.ToolMaterial.DIAMOND, ModuleHuntingConfig.HUNTERS_KNIFE_DURABILITY.get("diamond")), ItemHuntersKnife.DIAMOND_NAME);
+    registry.registerItem(new ItemHuntersKnife(Preconditions.checkNotNull(ModuleMaterials.OBSIDIAN), ModuleHuntingConfig.HUNTERS_KNIFE_DURABILITY.get("obsidian")), ItemHuntersKnife.OBSIDIAN_NAME);
 
     registry.registerItem(new ItemButchersKnife(EnumMaterial.BONE.getToolMaterial(), ModuleHuntingConfig.BUTCHERS_KNIFE_DURABILITY.get("bone")), ItemButchersKnife.BONE_NAME);
     registry.registerItem(new ItemButchersKnife(EnumMaterial.FLINT.getToolMaterial(), ModuleHuntingConfig.BUTCHERS_KNIFE_DURABILITY.get("flint")), ItemButchersKnife.FLINT_NAME);

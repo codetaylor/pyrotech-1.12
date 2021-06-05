@@ -21,11 +21,11 @@
     },
     "^": {
       "item": "pyrotech:material",
-      "data": 16
+      "data": 33
     }
   },
   "result": {
-    "item": "pyrotech:stone_hunting_knife",
+    "item": "pyrotech:obsidian_hunters_knife",
     "count": 1
   }
 }

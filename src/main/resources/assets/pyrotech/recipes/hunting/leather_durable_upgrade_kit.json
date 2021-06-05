@@ -40,7 +40,7 @@
     },
     {
       "type": "forge:ore_dict",
-      "ore": "toolHuntingKnife"
+      "ore": "toolHuntersKnife"
     }
   ],
   "result": {

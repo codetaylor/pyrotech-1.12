@@ -48,13 +48,13 @@ item.pyrotech.pelt.llama.creamy.name=Creamy Llama Pelt
 item.pyrotech.pelt.llama.gray.name=Gray Llama Pelt
 item.pyrotech.pelt.llama.brown.name=Brown Llama Pelt
 
-item.pyrotech.bone.hunting.knife.name=Bone Hunting Knife
-item.pyrotech.flint.hunting.knife.name=Flint Hunting Knife
-item.pyrotech.stone.hunting.knife.name=Stone Hunting Knife
-item.pyrotech.iron.hunting.knife.name=Iron Hunting Knife
-item.pyrotech.gold.hunting.knife.name=Gold Hunting Knife
-item.pyrotech.diamond.hunting.knife.name=Diamond Hunting Knife
-item.pyrotech.obsidian.hunting.knife.name=Obsidian Hunting Knife
+item.pyrotech.bone.hunters.knife.name=Bone Hunter's Knife
+item.pyrotech.flint.hunters.knife.name=Flint Hunter's Knife
+item.pyrotech.stone.hunters.knife.name=Stone Hunter's Knife
+item.pyrotech.iron.hunters.knife.name=Iron Hunter's Knife
+item.pyrotech.gold.hunters.knife.name=Gold Hunter's Knife
+item.pyrotech.diamond.hunters.knife.name=Diamond Hunter's Knife
+item.pyrotech.obsidian.hunters.knife.name=Obsidian Hunter's Knife
 
 item.pyrotech.bone.butchers.knife.name=Bone Butcher's Knife
 item.pyrotech.flint.butchers.knife.name=Flint Butcher's Knife

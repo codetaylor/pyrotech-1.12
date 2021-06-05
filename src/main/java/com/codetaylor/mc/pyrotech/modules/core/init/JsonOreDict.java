@@ -93,13 +93,13 @@ public class JsonOreDict {
         "pyrotech:bone_sword:*",
         "pyrotech:obsidian_sword:*",
         "pyrotech:redstone_sword:*",
-        "pyrotech:" + ItemHuntingKnife.FLINT_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.BONE_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.STONE_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.IRON_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.GOLD_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.DIAMOND_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME + ":*"
+        "pyrotech:" + ItemHuntersKnife.FLINT_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.BONE_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.STONE_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.IRON_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.GOLD_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.DIAMOND_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.OBSIDIAN_NAME + ":*"
     });
 
     result.oreDict.put("twine", new String[]{
@@ -183,14 +183,14 @@ public class JsonOreDict {
         "pyrotech:obsidian_shears:*"
     });
 
-    result.oreDict.put("toolHuntingKnife", new String[]{
-        "pyrotech:" + ItemHuntingKnife.FLINT_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.BONE_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.STONE_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.IRON_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.GOLD_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.DIAMOND_NAME + ":*",
-        "pyrotech:" + ItemHuntingKnife.OBSIDIAN_NAME + ":*"
+    result.oreDict.put("toolHuntersKnife", new String[]{
+        "pyrotech:" + ItemHuntersKnife.FLINT_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.BONE_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.STONE_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.IRON_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.GOLD_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.DIAMOND_NAME + ":*",
+        "pyrotech:" + ItemHuntersKnife.OBSIDIAN_NAME + ":*"
     });
 
     result.oreDict.put("hideScrapeable", new String[]{
