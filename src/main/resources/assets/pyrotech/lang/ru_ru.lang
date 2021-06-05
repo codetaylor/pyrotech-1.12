@@ -704,6 +704,8 @@ advancement.pyrotech.tools.obsidian.desc=Создайте кирку из обс
 
 gui.pyrotech.disconnect.module.mismatch=Клиентская конфигурация Pyrotech не соответствуют серверной. Сервер ожидает: %s.
 
-gui.pyrotech.restart=[Pyrotech] Пожалуйста, перезапустите игру.
-gui.pyrotech.missing.wood.compat=[Pyrotech] Новые рецепты древесины будут загружены после перезапуска.
-gui.pyrotech.missing.ore.compat=[Pyrotech] Новые рецепты переработки руд будут загружены после перезапуска.
+gui.pyrotech.restart1=Pyrotech must restart once to function correctly.
+gui.pyrotech.restart2=Pyrotech has generated content and must restart to load it.
+gui.pyrotech.restart3=Please exit Minecraft and restart the game.
+gui.pyrotech.restart4=For more information, read the docs.
+gui.pyrotech.restart.button=I Understand

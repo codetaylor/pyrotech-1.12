@@ -226,6 +226,7 @@
             * `pyrotech:leather_durable_repair_kit:*`
 
   * **Changed:**
+    * Changed first load restart chat message to invasive full-screen GUI message [(#248)](https://github.com/codetaylor/pyrotech-1.12/issues/248)
     * Removed vanilla recipe for Arrow
     * Removed vanilla recipe for Magma Cream
     * Reduced damage, velocity, and accuracy of thrown rocks / clumps
@@ -357,14 +358,22 @@
         * `item.pyrotech.diamond.butchers.knife.name`
         * `item.pyrotech.obsidian.butchers.knife.name`
         * `item.pyrotech.pelt.ruined.name`
-
+        * `gui.pyrotech.restart1`
+        * `gui.pyrotech.restart2`
+        * `gui.pyrotech.restart3`
+        * `gui.pyrotech.restart4`
+        * `gui.pyrotech.restart.button`
     * **Changed Vanilla Lang Values:**
-        * `item.arrow.name`
+        * `item.arrow.name`       
     * **Changed Lang Keys:**
         * `tile.pyrotech.stone_bricks.name` -> `tile.pyrotech.masonry_brick_block.name`
     * **Changed Lang Values:**
         * `tile.pyrotech.refractory_brick_block.name`
             * From `Refractory Block` to `Refractory Bricks`
+    * **Removed Lang Values:**
+        * `gui.pyrotech.restart`
+        * `gui.pyrotech.missing.wood.compat`
+        * `gui.pyrotech.missing.ore.compat`        
 
 ---
 

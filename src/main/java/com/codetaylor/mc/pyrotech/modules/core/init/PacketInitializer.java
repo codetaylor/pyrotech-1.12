@@ -64,6 +64,12 @@ public final class PacketInitializer {
         Side.CLIENT
     );
 
+    registry.register(
+        SCPacketRestartRequired.class,
+        SCPacketRestartRequired.class,
+        Side.CLIENT
+    );
+
     // Tile Data
     registry.register(
         SCPacketTileData.class,

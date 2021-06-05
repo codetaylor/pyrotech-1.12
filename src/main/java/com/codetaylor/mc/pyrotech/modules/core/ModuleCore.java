@@ -66,8 +66,7 @@ public class ModuleCore
   public static IPacketService PACKET_SERVICE;
   public static ITileDataService TILE_DATA_SERVICE;
 
-  public static boolean MISSING_WOOD_COMPAT = true;
-  public static boolean MISSING_ORE_COMPAT = true;
+  public static boolean RESTART_REQUIRED = true;
 
   @CapabilityInject(IAirflowConsumerCapability.class)
   public static final Capability<IAirflowConsumerCapability> CAPABILITY_AIRFLOW_CONSUMER;
@@ -115,15 +114,10 @@ public class ModuleCore
     CapabilityManager.INSTANCE.register(IAirflowConsumerCapability.class, new IAirflowConsumerCapability.Storage(), new IAirflowConsumerCapability.Factory());
 
     CompatInitializerWood.WoodCompatData woodCompatData = CompatInitializerWood.read(this.getConfigurationDirectory().toPath());
-
-    if (woodCompatData != null) {
-      MISSING_WOOD_COMPAT = false;
-    }
-
     CompatInitializerOre.OreCompatData oreCompatData = CompatInitializerOre.read(this.getConfigurationDirectory().toPath());
 
-    if (oreCompatData != null) {
-      MISSING_ORE_COMPAT = false;
+    if (woodCompatData != null && oreCompatData != null) {
+      RESTART_REQUIRED = false;
     }
 
     if (Loader.isModLoaded("crafttweaker")) {
