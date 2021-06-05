@@ -13,6 +13,8 @@
             * Captures configured mob drops
             * Use Hunter's Knife on Carcass to release captured drops
         * Butcher's Block
+            * Chance to increase meat drops from Carcass
+            * Chance to decrease pelt drops from Carcass
         * Decorative blocks:
             * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
             * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
@@ -121,6 +123,7 @@
         * Crafting:
             * Spears
             * Hunter's Knives
+            * Butcher's Knives
             * `fluid:water` with Scraped Hides -> Washed Hides
             * Barrels
             * Barrel Lids
