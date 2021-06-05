@@ -5,6 +5,7 @@
 
   * **Fixed:**
     * Hammering anvil bloom shouldn't show progress particles with zero hammer power
+    * Pit Burn doesn't work correctly with SpongeForge [(#213)](https://github.com/codetaylor/pyrotech-1.12/issues/213)
 
   * **Added:**
     * Blocks:

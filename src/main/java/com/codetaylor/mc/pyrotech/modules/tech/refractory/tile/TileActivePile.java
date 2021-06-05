@@ -9,12 +9,14 @@ import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractoryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.tile.spi.TileTarCollectorBase;
+import com.google.common.util.concurrent.ListenableFutureTask;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -274,7 +276,35 @@ public class TileActivePile
 
     IBlockState state = ModuleTechRefractory.Blocks.PIT_ASH_BLOCK.getDefaultState();
     this.world.setBlockState(this.pos, state);
-    TileEntity tileEntity = this.world.getTileEntity(this.pos);
+
+    /*
+      2021-06-05
+      https://github.com/codetaylor/pyrotech-1.12/issues/213
+
+      Solution from Sledgehammer by Alex Thomson:
+
+        The BulkBlockCapture in Sponge's PhaseTracker causes the call setBlockState to get delayed,
+        This delay causes the call getTileEntity to return inconsistent results.
+
+        The fix implemented is to re-schedule the logic on the next tick.
+     */
+
+    MinecraftServer minecraftServer = this.world.getMinecraftServer();
+
+    if (minecraftServer != null) {
+      // Runs the logic at the start of the next tick.
+      // addScheduledTask won't work as it executes the task immediately if it's scheduled while on the Main Thread.
+      minecraftServer.futureTaskQueue.add(ListenableFutureTask.create(() -> this.insertItems(this.pos, itemStackList), null));
+    }
+  }
+
+  private void insertItems(BlockPos pos, List<ItemStack> itemStackList) {
+
+    if (itemStackList.isEmpty()) {
+      return;
+    }
+
+    TileEntity tileEntity = this.world.getTileEntity(pos);
 
     if (tileEntity instanceof TilePitAsh) {
       TilePitAsh tilePitAsh = (TilePitAsh) tileEntity;
