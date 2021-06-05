@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
+  "pattern": [
+    " ^ ",
+    "^/ ",
+    "/S "
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "twine"
+    },
+    "^": {
+      "item": "pyrotech:material",
+      "data": 10
+    }
+  },
+  "result": {
+    "item": "pyrotech:flint_butchers_knife",
+    "count": 1
+  }
+}

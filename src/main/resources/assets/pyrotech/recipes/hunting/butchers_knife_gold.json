@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
+  "pattern": [
+    " ^ ",
+    "^/ ",
+    "/S "
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "twine"
+    },
+    "^": {
+      "item": "pyrotech:material",
+      "data": 34
+    }
+  },
+  "result": {
+    "item": "pyrotech:gold_butchers_knife",
+    "count": 1
+  }
+}
