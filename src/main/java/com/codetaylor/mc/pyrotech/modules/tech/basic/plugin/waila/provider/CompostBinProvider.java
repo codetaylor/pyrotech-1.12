@@ -8,6 +8,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.waila.delegate.Compo
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCompostBin;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.TextFormatting;
@@ -43,6 +44,7 @@ public class CompostBinProvider
 
     if (tileEntity instanceof TileCompostBin) {
       this.tooltip = tooltip;
+      this.delegate.setPlayer(Minecraft.getMinecraft().player);
       this.delegate.display((TileCompostBin) tileEntity);
       this.tooltip = null;
     }
