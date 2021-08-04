@@ -1,3 +1,10 @@
+**1.5.14**
+
+  * **Fixed:**
+    * Compost Bin ToP error [(#364)](https://github.com/codetaylor/pyrotech-1.12/issues/364)
+
+---
+
 **1.5.13**
 
   * **Changed:**

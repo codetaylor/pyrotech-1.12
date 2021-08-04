@@ -47,6 +47,7 @@ public class CompostBinProvider
 
     if (tileEntity instanceof TileCompostBin) {
       this.probeInfo = probeInfo;
+      this.delegate.setPlayer(player);
       this.delegate.display((TileCompostBin) tileEntity);
       this.probeInfo = null;
     }

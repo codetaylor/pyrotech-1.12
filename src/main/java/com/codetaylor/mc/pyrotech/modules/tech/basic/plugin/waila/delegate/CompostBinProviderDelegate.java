@@ -5,6 +5,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.TileCompostBin;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.items.ItemStackHandler;
@@ -16,10 +17,16 @@ public class CompostBinProviderDelegate
     extends ProviderDelegateBase<CompostBinProviderDelegate.ICompostBinDisplay, TileCompostBin> {
 
   private float[] progress = new float[4];
+  private EntityPlayer player;
 
   public CompostBinProviderDelegate(ICompostBinDisplay display) {
 
     super(display);
+  }
+
+  public void setPlayer(EntityPlayer player) {
+
+    this.player = player;
   }
 
   @Override
@@ -36,7 +43,7 @@ public class CompostBinProviderDelegate
     TileCompostBin.InputStackHandler inputStackHandler = tile.getInputStackHandler();
     TileCompostBin.OutputStackHandler outputStackHandler = tile.getOutputStackHandler();
 
-    if (Minecraft.getMinecraft().player.isSneaking()) {
+    if (this.player.isSneaking()) {
 
       for (int i = this.progress.length - 1; i >= 0; i--) {
 
