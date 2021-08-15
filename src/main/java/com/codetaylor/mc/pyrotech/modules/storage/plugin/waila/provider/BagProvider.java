@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.storage.plugin.waila.delegate.BagProvi
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.TextFormatting;
@@ -41,6 +42,7 @@ public class BagProvider
 
     if (tileEntity instanceof TileBagBase) {
       this.tooltip = tooltip;
+      this.delegate.setPlayer(Minecraft.getMinecraft().player);
       this.delegate.display((TileBagBase) tileEntity);
       this.tooltip = null;
     }

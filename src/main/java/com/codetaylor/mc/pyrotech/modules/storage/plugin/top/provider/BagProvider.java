@@ -45,6 +45,7 @@ public class BagProvider
 
     if (tileEntity instanceof TileBagBase) {
       this.probeInfo = probeInfo;
+      this.delegate.setPlayer(player);
       this.delegate.display((TileBagBase) tileEntity);
       this.probeInfo = null;
     }
