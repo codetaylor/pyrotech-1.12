@@ -377,6 +377,13 @@
 
 ---
 
+**1.5.15**
+
+  * **Fixed:**
+    * Rock Bag ToP error [(#366)](https://github.com/codetaylor/pyrotech-1.12/issues/366)
+
+---
+
 **1.5.14**
 
   * **Fixed:**

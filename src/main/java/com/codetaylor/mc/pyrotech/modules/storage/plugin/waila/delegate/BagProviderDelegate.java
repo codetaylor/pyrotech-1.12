@@ -4,18 +4,25 @@ import com.codetaylor.mc.pyrotech.Reference;
 import com.codetaylor.mc.pyrotech.library.waila.ProviderDelegateBase;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileBagBase;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.items.ItemStackHandler;
 import org.apache.commons.lang3.StringUtils;
-import org.lwjgl.input.Keyboard;
 
 public class BagProviderDelegate
     extends ProviderDelegateBase<BagProviderDelegate.IBagDisplay, TileBagBase> {
 
+  private EntityPlayer player;
+
   public BagProviderDelegate(IBagDisplay display) {
 
     super(display);
+  }
+
+  public void setPlayer(EntityPlayer player) {
+
+    this.player = player;
   }
 
   @Override
@@ -51,8 +58,7 @@ public class BagProviderDelegate
 
     if (tile.isOpen()) {
 
-      if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)
-          || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
+      if (this.player.isSneaking()) {
 
         for (int i = 0; i < stackHandler.getSlots(); i++) {
           ItemStack stackInSlot = stackHandler.getStackInSlot(i);
