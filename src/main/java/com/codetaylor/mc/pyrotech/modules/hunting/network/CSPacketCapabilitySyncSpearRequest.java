@@ -42,7 +42,6 @@ public class CSPacketCapabilitySyncSpearRequest
     buffer.writeInt(this.entityId);
   }
 
-  @SideOnly(Side.SERVER)
   @Override
   public IMessage onMessage(CSPacketCapabilitySyncSpearRequest message, MessageContext ctx) {
 
