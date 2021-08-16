@@ -531,6 +531,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemGloamberryWine.NAME)
     public static final ItemGloamberryWine GLOAMBERRY_WINE;
 
+    @GameRegistry.ObjectHolder(ItemTaintedMeat.NAME)
+    public static final ItemTaintedMeat TAINTED_MEAT;
+
     static {
       ROCK = null;
       ROCK_GRASS = null;
@@ -564,6 +567,7 @@ public class ModuleCore
       GLOAMBERRY_SEEDS = null;
       GLOAMBERRIES = null;
       GLOAMBERRY_WINE = null;
+      TAINTED_MEAT = null;
     }
   }
 

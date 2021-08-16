@@ -100,6 +100,7 @@
         * Gloamberry Seeds
         * Gloamberries
         * Gloamberry Wine
+        * Tainted Meat
     * Fluids
         * Tannin
         * Pyroberry Wine
@@ -363,6 +364,7 @@
         * `gui.pyrotech.restart3`
         * `gui.pyrotech.restart4`
         * `gui.pyrotech.restart.button`
+        * `item.pyrotech.tainted.meat.name`
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       
     * **Changed Lang Keys:**

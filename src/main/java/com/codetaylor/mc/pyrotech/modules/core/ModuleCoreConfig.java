@@ -613,6 +613,31 @@ public class ModuleCoreConfig {
     })
     @Config.RangeInt(min = 0)
     public int BURNED_FOOD_HUNGER_EFFECT_DURATION_TICKS = 600;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 0)
+    public int TAINTED_MEAT_HUNGER = 1;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.05
+    })
+    @Config.RangeDouble(min = 0)
+    public double TAINTED_MEAT_SATURATION = 0.05;
+
+    @Config.Comment({
+        "Eating the burned food applies the poison effect.",
+        "Set to zero to disable",
+        "Default: " + 600
+    })
+    @Config.RangeInt(min = 0)
+    public int TAINTED_MEAT_POISON_EFFECT_DURATION_TICKS = 600;
+
   }
 
   // ---------------------------------------------------------------------------
