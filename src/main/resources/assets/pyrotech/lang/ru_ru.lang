@@ -136,21 +136,6 @@ tile.pyrotech.faucet_brick.name=Огнеупорный краник
 #------------------------------------------------------------------------------
 
 item.pyrotech.tinder.name=Трут
-<<<<<<< HEAD
-item.pyrotech.marshmallow.name=Marshmallow
-item.pyrotech.marshmallow.roasted.name=Roasted Marshmallow
-item.pyrotech.marshmallow.burned.name=Burned Marshmallow
-item.pyrotech.marshmallow.stick.empty.name=Marshmallow Stick
-item.pyrotech.marshmallow.on.stick.name=Marshmallow on a Stick
-item.pyrotech.marshmallow.on.stick.roasted.name=Roasted Marshmallow on a Stick
-item.pyrotech.marshmallow.on.stick.burned.name=Burned Marshmallow on a Stick
-item.pyrotech.barrel.lid.name=Barrel Lid
-
-tile.pyrotech.kiln_pit.name=Грунтовая печь
-tile.pyrotech.campfire.name=Костёр
-tile.pyrotech.drying_rack.crude.name=Сырой сушильный стеллаж
-tile.pyrotech.drying_rack.normal.name=Сушильный стеллаж
-=======
 item.pyrotech.marshmallow.name=Зефирка
 item.pyrotech.marshmallow.roasted.name=Румяная зефирка
 item.pyrotech.marshmallow.burned.name=Горелая зефирка
@@ -163,7 +148,6 @@ tile.pyrotech.kiln_pit.name=Печной настил
 tile.pyrotech.campfire.name=Костер
 tile.pyrotech.drying_rack.crude.name=Примитивная сушилка
 tile.pyrotech.drying_rack.normal.name=Сушилка
->>>>>>> master
 tile.pyrotech.chopping_block.name=Плаха
 tile.pyrotech.anvil_granite.name=Гранитная наковальня
 tile.pyrotech.anvil_iron_plated.name=Железная наковальня
@@ -171,14 +155,10 @@ tile.pyrotech.worktable.name=Рабочий стол
 tile.pyrotech.worktable_stone.name=Каменный рабочий стол
 tile.pyrotech.compacting_bin.name=Уплотнитель
 tile.pyrotech.soaking_pot.name=Горшок для замачивания
-<<<<<<< HEAD
-tile.pyrotech.compost_bin.name=Compost Bin
+tile.pyrotech.compost_bin.name=Компостер
 tile.pyrotech.barrel.name=Barrel
 tile.pyrotech.barrel_sealed.name=Sealed Barrel
 tile.pyrotech.tanning_rack.name=Tanning Rack
-=======
-tile.pyrotech.compost_bin.name=Компостер
->>>>>>> master
 
 gui.pyrotech.marshmallow.burned.broadcast.message=Ну вот, из-за %s зефики сгорели!
 gui.pyrotech.marshmallow.burned.eat.broadcast.message=Фу, %s ест жженые зефирки!
@@ -314,17 +294,12 @@ item.pyrotech.obsidian.shears.name=Обсидиановые ножницы
 # Module: Core
 #------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-fluid.liquid_clay=Жидкая глина
-tile.fluid.liquid_clay.name=Жидкая глина
+fluid.liquid_clay=Растопленная глина
+tile.fluid.liquid_clay.name=Растопленная глина
 fluid.pyroberry_wine=Pyroberry Wine
 tile.fluid.pyroberry_wine.name=Pyroberry Wine
 fluid.gloamberry_wine=Gloamberry Wine
 tile.fluid.gloamberry_wine.name=Gloamberry Wine
-=======
-fluid.liquid_clay=Растопленная глина
-tile.fluid.liquid_clay.name=Растопленная глина
->>>>>>> master
 
 item.pyrotech.straw.name=Солома
 item.pyrotech.coal.coke.name=Коксовый уголь
@@ -366,9 +341,8 @@ item.pyrotech.dust.flint.name=Измельченный кремень
 item.pyrotech.glass.shard.name=Стеклянный осколок
 item.pyrotech.obsidian.shard.name=Обсидиановый осколок
 item.pyrotech.gold.shard.name=Золотой осколок
-<<<<<<< HEAD
-item.pyrotech.dense.redstone.name=Dense Redstone
-item.pyrotech.dense.quartz.name=Dense Quartz
+item.pyrotech.dense.redstone.name=Краснокаменная глыба
+item.pyrotech.dense.quartz.name=Кварцевая глыба
 item.pyrotech.leather.sheet.name=Leather Sheet
 item.pyrotech.leather.strap.name=Leather Strap
 item.pyrotech.leather.cord.name=Leather Cord
@@ -378,10 +352,6 @@ item.pyrotech.leather.durable.strap.name=Durable Leather Strap
 item.pyrotech.leather.durable.cord.name=Durable Leather Cord
 item.pyrotech.leather.small.name=Small Leather
 item.pyrotech.fletching.name=Fletching
-=======
-item.pyrotech.dense.redstone.name=Краснокаменная глыба
-item.pyrotech.dense.quartz.name=Кварцевая глыба
->>>>>>> master
 
 item.pyrotech.apple.baked.name=Запеченное яблоко
 item.pyrotech.carrot.roasted.name=Обжаренная морковь
@@ -389,8 +359,7 @@ item.pyrotech.egg.roasted.name=Обжаренное яйцо
 item.pyrotech.mushroom.brown.roasted.name=Обжаренный гриб
 item.pyrotech.mushroom.red.roasted.name=Обжаренный мухомор
 item.pyrotech.beetroot.roasted.name=Обжаренная свекла
-<<<<<<< HEAD
-item.pyrotech.strange.tuber.name=Strange Tuber
+item.pyrotech.strange.tuber.name=Странный корешок
 item.pyrotech.pyroberries.name=Pyroberries
 item.pyrotech.pyroberry.seeds.name=Pyroberry Seeds
 item.pyrotech.pyroberry.wine.name=Pyroberry Wine
@@ -398,9 +367,6 @@ item.pyrotech.pyroberry.cocktail.name=Pyroberry Cocktail
 item.pyrotech.gloamberry.seeds.name=Gloamberry Seeds
 item.pyrotech.gloamberries.name=Gloamberries
 item.pyrotech.gloamberry.wine.name=Gloamberry Wine
-=======
-item.pyrotech.strange.tuber.name=Странный корешок
->>>>>>> master
 item.pyrotech.tainted.meat.name=Tainted Meat
 
 item.pyrotech.crude.hammer.name=Примитивный молот
@@ -414,33 +380,14 @@ item.pyrotech.obsidian.hammer.name=Обсидиановый молот
 
 tile.pyrotech.thatch.name=Тюк соломы
 tile.pyrotech.coal_coke_block.name=Блок коксового угля
-<<<<<<< HEAD
-tile.pyrotech.log_pile.name=Куча бревен
-tile.pyrotech.refractory_brick_block.name=Огнеупорный блок
+tile.pyrotech.log_pile.name=Охапка дров
+tile.pyrotech.refractory_brick_block.name=Огнеупорная кладка
 tile.pyrotech.refractory_brick_wall.name=Refractory Brick Wall
 tile.pyrotech.refractory_brick_slab.name=Refractory Brick Slab
 tile.pyrotech.refractory_brick_stairs.name=Refractory Brick Stairs
-=======
-tile.pyrotech.log_pile.name=Охапка дров
-tile.pyrotech.refractory_brick_block.name=Огнеупорная кладка
->>>>>>> master
 tile.pyrotech.limestone.name=Известняк
 tile.pyrotech.refractory_glass.name=Жаропрочное стекло
 tile.pyrotech.slag_glass.name=Шлаковое стекло
-<<<<<<< HEAD
-tile.pyrotech.fossil_ore.name=Ископаемая руда
-tile.pyrotech.dense_coal_ore.name=Плотная угольная руда
-tile.pyrotech.dense_nether_coal_ore.name=Плотный адский уголь
-tile.pyrotech.cobblestone.andesite.name=Мощеный андезит
-tile.pyrotech.cobblestone.diorite.name=Мощеный диорит
-tile.pyrotech.cobblestone.granite.name=Мощеный гранит
-tile.pyrotech.cobblestone.limestone.name=Мощеный известняк
-tile.pyrotech.masonry_brick_block.name=Кирпичная кладка
-tile.pyrotech.masonry_brick_slab.name=Masonry Brick Slab
-tile.pyrotech.masonry_brick_stairs.name=Masonry Brick Stairs
-tile.pyrotech.masonry_brick_wall.name=Masonry Brick Wall
-tile.pyrotech.farmland_mulched.name=Мульчированная пашня
-=======
 tile.pyrotech.fossil_ore.name=Окаменелость
 tile.pyrotech.dense_coal_ore.name=Угольный кластер
 tile.pyrotech.dense_nether_coal_ore.name=Адский угольный кластер
@@ -448,39 +395,28 @@ tile.pyrotech.cobblestone.andesite.name=Андезитовый булыжный 
 tile.pyrotech.cobblestone.diorite.name=Диоритный булыжный камень
 tile.pyrotech.cobblestone.granite.name=Гранитный булыжный камень
 tile.pyrotech.cobblestone.limestone.name=Известняковый булыжный камень
-tile.pyrotech.stone_bricks.name=Кирпичная кладка
+tile.pyrotech.masonry_brick_block.name=Кирпичная кладка
+tile.pyrotech.masonry_brick_slab.name=Masonry Brick Slab
+tile.pyrotech.masonry_brick_stairs.name=Masonry Brick Stairs
+tile.pyrotech.masonry_brick_wall.name=Masonry Brick Wall
 tile.pyrotech.farmland_mulched.name=Мульчированная почва
->>>>>>> master
 tile.pyrotech.planks_tarred.name=Пропитанные доски
 tile.pyrotech.pile_wood_chips.name=Опилки
 tile.pyrotech.pile_ash.name=Куча пепла
 tile.pyrotech.wool_tarred.name=Пропитанная шерсть
 tile.pyrotech.charcoal_block.name=Блок древесного угля
-<<<<<<< HEAD
-tile.pyrotech.wood_tar_block.name=Рулон смолы
-tile.pyrotech.living_tar.name=Живая смола
-tile.pyrotech.dense_redstone_ore.name=Dense Redstone Ore
-tile.pyrotech.dense_quartz_ore.name=Dense Quartz Ore
-tile.pyrotech.straw_bed.name=Straw Bed
-tile.pyrotech.pyroberry_bush.name=Pyroberry Bush
-tile.pyrotech.gloamberry_bush.name=Gloamberry Bush
-
-tile.pyrotech.rock_stone.name=Каменный булыжник
-tile.pyrotech.rock_andesite.name=Андезитовый булыжник
-tile.pyrotech.rock_diorite.name=Диоритовый булыжник
-tile.pyrotech.rock_granite.name=Гранитный булыжник
-=======
 tile.pyrotech.wood_tar_block.name=Застывший креозот
 tile.pyrotech.living_tar.name=Адская живица
 tile.pyrotech.dense_redstone_ore.name=Краснокаменный кластер
 tile.pyrotech.dense_quartz_ore.name=Кварцевый кластер
 tile.pyrotech.straw_bed.name=Соломенная лежанка
+tile.pyrotech.pyroberry_bush.name=Pyroberry Bush
+tile.pyrotech.gloamberry_bush.name=Gloamberry Bush
 
 tile.pyrotech.rock_stone.name=Камушек
 tile.pyrotech.rock_andesite.name=Андезитовый камушек
 tile.pyrotech.rock_diorite.name=Диоритовый камушек
 tile.pyrotech.rock_granite.name=Гранитный камушек
->>>>>>> master
 tile.pyrotech.rock_dirt.name=Комок земли
 tile.pyrotech.rock_sand.name=Горстка песка
 tile.pyrotech.rock_sandstone.name=Песчаниковый камушек
@@ -602,15 +538,10 @@ gui.pyrotech.jei.category.anvil.ironclad=Железная наковальня
 gui.pyrotech.jei.category.compacting.bin=Уплотнение
 gui.pyrotech.jei.category.campfire=Обжарка на костре
 gui.pyrotech.jei.category.worktable=Верстак
-<<<<<<< HEAD
-gui.pyrotech.jei.category.soaking.pot=Горшок для замачивания
-gui.pyrotech.jei.category.compost.bin=Composting
-gui.pyrotech.jei.category.barrel=Barrel
-gui.pyrotech.jei.category.tanning.rack=Tanning Rack
-=======
 gui.pyrotech.jei.category.soaking.pot=Замачивание
 gui.pyrotech.jei.category.compost.bin=Компостирование
->>>>>>> master
+gui.pyrotech.jei.category.barrel=Barrel
+gui.pyrotech.jei.category.tanning.rack=Tanning Rack
 
 gui.pyrotech.jei.category.bloomery=Домница
 gui.pyrotech.jei.category.wither.forge=Адская домница
