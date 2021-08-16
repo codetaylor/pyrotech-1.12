@@ -206,7 +206,7 @@ public class TileButchersBlock
       int slot = this.tile.getFirstNonEmptySlot(itemStackHandler);
       ItemStack result = itemStackHandler.extractItem(slot, 1, false);
       ItemBlockCarcass.updateItemStackHandler(itemStack, itemStackHandler);
-      return this.tile.transformItem(result);
+      this.tile.inputStackHandler.setStackInSlot(0, itemStack);
       return this.tile.transformItem(heldItemResourceLocation, result);
     }
 
