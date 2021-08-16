@@ -334,12 +334,12 @@ public class ModuleHuntingConfig {
     public int MINIMUM_HUNGER_TO_USE = 3;
 
     @Config.Comment({
-        "Use this to add items that you want to be valid knives.",
+        "Use this to add items that you want to be valid butcher's knives.",
         "Items you add are assumed to have durability.",
         "",
         "String format is a resource location: (domain):(path)"
     })
-    public String[] ALLOWED_KNIVES = new String[]{
+    public String[] ALLOWED_BUTCHERS_KNIVES = new String[]{
         "pyrotech:" + ItemButchersKnife.BONE_NAME,
         "pyrotech:" + ItemButchersKnife.FLINT_NAME,
         "pyrotech:" + ItemButchersKnife.STONE_NAME,
@@ -347,6 +347,22 @@ public class ModuleHuntingConfig {
         "pyrotech:" + ItemButchersKnife.GOLD_NAME,
         "pyrotech:" + ItemButchersKnife.DIAMOND_NAME,
         "pyrotech:" + ItemButchersKnife.OBSIDIAN_NAME
+    };
+
+    @Config.Comment({
+        "Use this to add items that you want to be valid hunter's knives.",
+        "Items you add are assumed to have durability.",
+        "",
+        "String format is a resource location: (domain):(path)"
+    })
+    public String[] ALLOWED_HUNTERS_KNIVES = new String[]{
+        "pyrotech:" + ItemHuntersKnife.BONE_NAME,
+        "pyrotech:" + ItemHuntersKnife.FLINT_NAME,
+        "pyrotech:" + ItemHuntersKnife.STONE_NAME,
+        "pyrotech:" + ItemHuntersKnife.IRON_NAME,
+        "pyrotech:" + ItemHuntersKnife.GOLD_NAME,
+        "pyrotech:" + ItemHuntersKnife.DIAMOND_NAME,
+        "pyrotech:" + ItemHuntersKnife.OBSIDIAN_NAME
     };
 
     @Config.Comment({
@@ -372,6 +388,15 @@ public class ModuleHuntingConfig {
     })
     @Config.RequiresMcRestart
     public Map<String, Integer> KNIFE_EFFICIENCY = new HashMap<String, Integer>() {{
+      // Hunter's Knife
+      this.put("pyrotech:" + ItemHuntersKnife.BONE_NAME, 25);
+      this.put("pyrotech:" + ItemHuntersKnife.FLINT_NAME, 25);
+      this.put("pyrotech:" + ItemHuntersKnife.STONE_NAME, 17);
+      this.put("pyrotech:" + ItemHuntersKnife.IRON_NAME, 34);
+      this.put("pyrotech:" + ItemHuntersKnife.GOLD_NAME, 8);
+      this.put("pyrotech:" + ItemHuntersKnife.DIAMOND_NAME, 58);
+      this.put("pyrotech:" + ItemHuntersKnife.OBSIDIAN_NAME, 34);
+      // Butcher's Knife
       this.put("pyrotech:" + ItemButchersKnife.BONE_NAME, 25);
       this.put("pyrotech:" + ItemButchersKnife.FLINT_NAME, 25);
       this.put("pyrotech:" + ItemButchersKnife.STONE_NAME, 17);
@@ -382,17 +407,19 @@ public class ModuleHuntingConfig {
     }};
 
     @Config.Comment({
+        "This map is used when a Butcher's Knife is used at the table.",
+        "",
         "Transform an item into another item when it comes out of the carcass.",
-        "By default the Butcher's Block will increase the chance of getting a",
+        "By default the Butcher's Knife will increase the chance of getting a",
         "Ruined Pelt instead of a good pelt, increase the chance of getting a",
         "Bone instead of a Bone Shard, and increase the chance of getting twice",
         "as much meat.",
         "",
         "String key format is (domain):(path):(meta)",
-        "String value format is (domain)(domain):(path):(meta);(count);(chance)"
+        "String value format is (domain):(path):(meta);(count);(chance)"
     })
     @Config.RequiresMcRestart
-    public Map<String, String> OUTPUT_TRANSFORMERS = new HashMap<String, String>() {{
+    public Map<String, String> BUTCHERS_KNIFE_OUTPUT_TRANSFORMERS = new HashMap<String, String>() {{
       // hides and pelts
       this.put("pyrotech:hide_pig:0", "pyrotech:pelt_ruined:0;1;0.85");
       this.put("pyrotech:pelt_cow:0", "pyrotech:pelt_ruined:0;1;0.85");
@@ -411,8 +438,41 @@ public class ModuleHuntingConfig {
       this.put("minecraft:rabbit:0", "minecraft:rabbit:0;2;0.85");
       this.put("minecraft:rabbit_foot:0", "minecraft:rabbit_foot:0;2;0.85");
       this.put("minecraft:porkchop:0", "minecraft:porkchop:0;2;0.85");
-      this.put("minecraft:red_mushroom:0", "minecraft:red_mushroom:0;2;0.85");
+      this.put("minecraft:red_mushroom:0", "minecraft:red_mushroom:0;4;0.85");
+    }};
 
+    @Config.Comment({
+        "This map is used when a Hunter's Knife is used at the table.",
+        "",
+        "Transform an item into another item when it comes out of the carcass.",
+        "By default the Hunter's Knife will increase the chance of getting a",
+        "Tainted Meat instead of a good meat, increase the chance of getting more",
+        "Bone Shards, and increase the chance of getting twice as many hides.",
+        "",
+        "String key format is (domain):(path):(meta)",
+        "String value format is (domain):(path):(meta);(count);(chance)"
+    })
+    @Config.RequiresMcRestart
+    public Map<String, String> HUNTERS_KNIFE_OUTPUT_TRANSFORMERS = new HashMap<String, String>() {{
+      // hides and pelts
+      this.put("pyrotech:hide_pig:0", "pyrotech:hide_pig:0;2;0.85");
+      this.put("pyrotech:pelt_cow:0", "pyrotech:pelt_cow:0;2;0.85");
+      this.put("pyrotech:pelt_mooshroom:0", "pyrotech:pelt_mooshroom:0;2;0.85");
+      this.put("pyrotech:pelt_polar_bear:0", "pyrotech:pelt_polar_bear:0;2;0.85");
+      this.put("pyrotech:pelt_bat:0", "pyrotech:pelt_bat:0;2;0.85");
+      this.put("pyrotech:pelt_horse:0", "pyrotech:pelt_horse:0;2;0.85");
+      this.put("minecraft:rabbit_hide:0", "minecraft:rabbit_hide:0;2;0.85");
+      this.put("pyrotech:pelt_wolf:0", "pyrotech:pelt_wolf:0;2;0.85");
+      // bone shards
+      this.put("pyrotech:material:11", "pyrotech:material:11;2;0.5");
+      // meat
+      this.put("minecraft:beef:0", "pyrotech:tainted_meat:0;1;0.85");
+      this.put("minecraft:chicken:0", "pyrotech:tainted_meat:0;1;0.85");
+      this.put("minecraft:mutton:0", "pyrotech:tainted_meat:0;1;0.85");
+      this.put("minecraft:rabbit:0", "pyrotech:tainted_meat:0;1;0.85");
+      this.put("minecraft:rabbit_foot:0", "minecraft:rabbit_foot:0;2;0.85");
+      this.put("minecraft:porkchop:0", "pyrotech:tainted_meat:0;1;0.85");
+      this.put("minecraft:red_mushroom:0", "minecraft:red_mushroom:0;4;0.85");
     }};
   }
 

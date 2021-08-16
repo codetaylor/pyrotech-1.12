@@ -29,7 +29,15 @@ public class ButchersBlockProviderDelegate
     if (this.toolList == null) {
       this.toolList = new ArrayList<>();
 
-      for (String registryName : ModuleHuntingConfig.BUTCHERS_BLOCK.ALLOWED_KNIVES) {
+      for (String registryName : ModuleHuntingConfig.BUTCHERS_BLOCK.ALLOWED_BUTCHERS_KNIVES) {
+        Item item = Item.getByNameOrId(registryName);
+
+        if (item != null) {
+          this.toolList.add(new ItemStack(item));
+        }
+      }
+
+      for (String registryName : ModuleHuntingConfig.BUTCHERS_BLOCK.ALLOWED_HUNTERS_KNIVES) {
         Item item = Item.getByNameOrId(registryName);
 
         if (item != null) {

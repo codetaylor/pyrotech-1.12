@@ -26,6 +26,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.items.ItemStackHandler;
@@ -89,9 +90,18 @@ public class TileButchersBlock
     }
   }
 
-  private ItemStack transformItem(ItemStack itemStack) {
+  private ItemStack transformItem(ResourceLocation heldItemResourceLocation, ItemStack itemStack) {
 
-    for (Map.Entry<String, String> entry : ModuleHuntingConfig.BUTCHERS_BLOCK.OUTPUT_TRANSFORMERS.entrySet()) {
+    Map<String, String> outputTransformers;
+
+    if (ArrayHelper.contains(ModuleHuntingConfig.BUTCHERS_BLOCK.ALLOWED_BUTCHERS_KNIVES, heldItemResourceLocation.toString())) {
+      outputTransformers = ModuleHuntingConfig.BUTCHERS_BLOCK.BUTCHERS_KNIFE_OUTPUT_TRANSFORMERS;
+
+    } else {
+      outputTransformers = ModuleHuntingConfig.BUTCHERS_BLOCK.HUNTERS_KNIFE_OUTPUT_TRANSFORMERS;
+    }
+
+    for (Map.Entry<String, String> entry : outputTransformers.entrySet()) {
 
       try {
         ParseResult parseResult = RecipeItemParser.INSTANCE.parse(entry.getKey());
@@ -153,7 +163,8 @@ public class TileButchersBlock
     public boolean canUseWithHeldItem(String registryName) {
 
       return !this.tile.inputStackHandler.getStackInSlot(0).isEmpty()
-          && ArrayHelper.contains(ModuleHuntingConfig.BUTCHERS_BLOCK.ALLOWED_KNIVES, registryName);
+          && (ArrayHelper.contains(ModuleHuntingConfig.BUTCHERS_BLOCK.ALLOWED_BUTCHERS_KNIVES, registryName)
+          || ArrayHelper.contains(ModuleHuntingConfig.BUTCHERS_BLOCK.ALLOWED_HUNTERS_KNIVES, registryName));
     }
 
     @Override
@@ -183,7 +194,7 @@ public class TileButchersBlock
     }
 
     @Override
-    public ItemStack extractItem() {
+    public ItemStack extractItem(ResourceLocation heldItemResourceLocation) {
 
       ItemStack itemStack = this.tile.inputStackHandler.getStackInSlot(0);
       ItemStackHandler itemStackHandler = ItemBlockCarcass.getItemStackHandler(itemStack);
@@ -196,6 +207,7 @@ public class TileButchersBlock
       ItemStack result = itemStackHandler.extractItem(slot, 1, false);
       ItemBlockCarcass.updateItemStackHandler(itemStack, itemStackHandler);
       return this.tile.transformItem(result);
+      return this.tile.transformItem(heldItemResourceLocation, result);
     }
 
     @Override

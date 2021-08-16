@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nonnull;
@@ -126,7 +127,7 @@ public class TileCarcass
     }
 
     @Override
-    public ItemStack extractItem() {
+    public ItemStack extractItem(ResourceLocation heldItemResourceLocation) {
 
       int slot = this.tile.getFirstNonEmptySlot();
       return this.tile.stackHandler.extractItem(slot, 1, false);

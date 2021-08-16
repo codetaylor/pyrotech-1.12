@@ -43,7 +43,7 @@ public class InteractionCarcass<T extends TileEntity & ITileInteractable>
 
     BlockPos getPosition();
 
-    ItemStack extractItem();
+    ItemStack extractItem(ResourceLocation heldItemResourceLocation);
 
     boolean isEmpty();
 
@@ -135,7 +135,7 @@ public class InteractionCarcass<T extends TileEntity & ITileInteractable>
       if (this.delegate.getCurrentProgress() <= 0) {
         // Check progress, drop item, reset progress or destroy carcass.
 
-        ItemStack itemStack = this.delegate.extractItem();
+        ItemStack itemStack = this.delegate.extractItem(resourceLocation);
 
         if (!itemStack.isEmpty()) {
           StackHelper.spawnStackOnTop(world, itemStack, this.delegate.getPosition());
