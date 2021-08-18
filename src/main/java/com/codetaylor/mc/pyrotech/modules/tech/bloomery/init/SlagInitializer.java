@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 import com.codetaylor.mc.athenaeum.util.CloneStateMapper;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.library.JsonInitializer;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.init.CompatInitializerOre;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockPileSlag;
@@ -94,6 +95,7 @@ public final class SlagInitializer {
     CompatInitializerOre.OreCompatData data = CompatInitializerOre.read(configurationPath);
 
     if (data == null) {
+      ModuleCore.LOGGER.error(String.format("Missing ore compat data from %s, SKIPPING ALL", configurationPath));
       return;
     }
 
@@ -105,6 +107,7 @@ public final class SlagInitializer {
 
       if (oreDictEntry.langKey == null
           || oreDictEntry.langKey.length == 0) {
+        ModuleCore.LOGGER.error(String.format("Null or zero length oreDict key in %s, SKIPPING", configurationPath));
         continue;
       }
 
@@ -132,7 +135,7 @@ public final class SlagInitializer {
       String langKey = SlagInitializer.getFirstValidLangKey(langKeysToTest);
 
       if (langKey == null) {
-        ModuleTechBloomery.LOGGER.error("Missing ore compat lang key for: " + oreDictKey);
+        ModuleTechBloomery.LOGGER.error(String.format("Missing ore compat lang key for %s in %s, SKIPPING", oreDictKey, configurationPath));
         continue;
       }
 
@@ -141,7 +144,7 @@ public final class SlagInitializer {
       String colorString = oreDictEntry.slagColor;
 
       if (colorString.length() != 6) {
-        ModuleTechBloomery.LOGGER.error("Malformed ore compat slag hex-color code: " + colorString);
+        ModuleTechBloomery.LOGGER.error(String.format("Malformed ore compat slag hex-color code %s for oreDictKey %s in %s, SKIPPING", colorString, oreDictKey, configurationPath));
         continue;
       }
 
@@ -151,7 +154,7 @@ public final class SlagInitializer {
         color = Integer.decode("0x" + colorString);
 
       } catch (Exception e) {
-        ModuleTechBloomery.LOGGER.error("Unable to decode ore compat slag hex-color string: " + colorString, e);
+        ModuleTechBloomery.LOGGER.error(String.format("Unable to decode ore compat slag hex-color code %s for oreDictKey %s in %s, SKIPPING", colorString, oreDictKey, configurationPath));
         continue;
       }
 
@@ -161,8 +164,11 @@ public final class SlagInitializer {
           .replace("[^a-z0-9_]", "_");
 
       ItemSlag itemSlag = SlagInitializer.generateSlagItem(registryName, langKey, color);
-      BlockPileSlag blockPileSlag = SlagInitializer.generateSlagBlock(registryName, langKey, color, itemSlag);
+      ModuleTechBloomery.LOGGER.info(String.format("Generated slag item for %s with langKey %s and color %s", itemSlag.getRegistryName(), langKey, color));
       SlagInitializer.SLAG_BY_OREDICT.put(oreDictKey, itemSlag);
+
+      BlockPileSlag blockPileSlag = SlagInitializer.generateSlagBlock(registryName, langKey, color, itemSlag);
+      ModuleTechBloomery.LOGGER.info(String.format("Generated slag pile block for %s with langKey %s and color %s", blockPileSlag.getRegistryName(), langKey, color));
       SlagInitializer.SLAG_PILE_BY_OREDICT.put(oreDictKey, blockPileSlag);
     }
   }

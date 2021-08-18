@@ -50,6 +50,7 @@ public class BloomeryRecipesAdd {
 
       if (itemSlag == null
           || blockPileSlag == null) {
+        ModuleTechBloomery.LOGGER.error(String.format("Missing slag for %s, SKIPPING", oreDictKey));
         continue;
       }
 
@@ -59,6 +60,7 @@ public class BloomeryRecipesAdd {
       ItemStack outputItemStack = BloomeryRecipesAdd.getFirstValidOutput(oreDictEntry.output);
 
       if (outputItemStack.isEmpty()) {
+        ModuleTechBloomery.LOGGER.error(String.format("Missing valid output item for %s, SKIPPING", oreDictKey));
         continue;
       }
 
