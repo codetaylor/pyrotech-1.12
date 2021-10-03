@@ -1,3 +1,13 @@
+**1.5.16**
+
+  * **Fixed:**
+    * Slag should scale with respect to the amount of ore in the bloomery and not the bloomery capacity [(#369)](https://github.com/codetaylor/pyrotech-1.12/issues/369)
+
+  * **Changed:**
+    * Improved ore compat error logging
+
+---
+
 **1.5.15**
 
   * **Fixed:**
