@@ -54,6 +54,7 @@ public class BloomeryRecipesAdd {
 
       if (itemSlag == null
           || blockPileSlag == null) {
+        ModuleTechBloomery.LOGGER.error(String.format("[%s] Missing slag for %s, SKIPPING", ModuleTechBloomery.MOD_ID, oreDictKey));
         continue;
       }
 
@@ -63,6 +64,7 @@ public class BloomeryRecipesAdd {
       ItemStack outputItemStack = BloomeryRecipesAdd.getFirstValidOutput(oreCompatEntry.output);
 
       if (outputItemStack.isEmpty()) {
+        ModuleTechBloomery.LOGGER.error(String.format("[%s] Missing valid output item for %s, SKIPPING", ModuleTechBloomery.MOD_ID, oreDictKey));
         continue;
       }
 
@@ -144,14 +146,14 @@ public class BloomeryRecipesAdd {
         Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(parseResult.getDomain(), parseResult.getPath()));
 
         if (item == null) {
-          ModuleTechBloomery.LOGGER.error("Unable to find registered item for: " + itemString);
+          ModuleTechBloomery.LOGGER.error(String.format("[%s] Unable to find registered item for %s", ModuleTechBloomery.MOD_ID, itemString));
           continue;
         }
 
         return new ItemStack(item, 1, parseResult.getMeta());
 
       } catch (Exception e) {
-        ModuleTechBloomery.LOGGER.error("Invalid item string: " + itemString);
+        ModuleTechBloomery.LOGGER.error(String.format("[%s] Invalid item string %s", ModuleTechBloomery.MOD_ID, itemString));
       }
     }
 
