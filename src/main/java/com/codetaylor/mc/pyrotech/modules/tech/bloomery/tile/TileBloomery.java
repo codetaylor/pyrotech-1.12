@@ -80,25 +80,26 @@ public class TileBloomery
       Transform.scale(0.5, 0.5, 0.5)
   );
 
-  private InputStackHandler inputStackHandler;
-  private OutputStackHandler outputStackHandler;
-  private FuelStackHandler fuelStackHandler;
+  private final InputStackHandler inputStackHandler;
+  private final OutputStackHandler outputStackHandler;
+  private final FuelStackHandler fuelStackHandler;
 
-  private TileDataItemStackHandler<InputStackHandler> tileDataInputStackHandler;
+  private final TileDataItemStackHandler<InputStackHandler> tileDataInputStackHandler;
 
-  private TileDataFloat recipeProgress;
-  private TileDataFloat speed;
-  private TileDataBoolean active;
-  private TileDataInteger fuelCount;
-  private TileDataInteger burnTime;
-  private TileDataFloat airflow;
+  private final TileDataFloat recipeProgress;
+  private final TileDataFloat speed;
+  private final TileDataBoolean active;
+  private final TileDataInteger fuelCount;
+  private final TileDataInteger burnTime;
+  private final TileDataFloat airflow;
+  private final TileDataInteger ashCount;
+
+  private final IInteraction<?>[] interactions;
+
   private float airflowBonus;
   private int lastBurnTime;
-  private BloomeryRecipeBase currentRecipe;
+  private BloomeryRecipeBase<?> currentRecipe;
   private int remainingSlag;
-  private TileDataInteger ashCount;
-
-  private IInteraction[] interactions;
   private boolean checkLight;
 
   public TileBloomery() {
@@ -217,7 +218,7 @@ public class TileBloomery
     return this.fuelStackHandler;
   }
 
-  public BloomeryRecipeBase getCurrentRecipe() {
+  public BloomeryRecipeBase<?> getCurrentRecipe() {
 
     return this.currentRecipe;
   }
@@ -405,7 +406,8 @@ public class TileBloomery
           this.airflow.add(0);
         }
 
-      } else if (blockState.getBlock().isSideSolid(blockState, this.world, position, tileFacing.getOpposite())) {
+      } else //noinspection deprecation
+        if (blockState.getBlock().isSideSolid(blockState, this.world, position, tileFacing.getOpposite())) {
         this.airflow.add(0);
 
       } else {
@@ -456,7 +458,7 @@ public class TileBloomery
           && rand.nextDouble() < 0.5) {
 
         if (rand.nextDouble() < 0.1) {
-          world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+          world.playSound((double) pos.getX() + 0.5, pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
         }
 
         IBlockState state = this.world.getBlockState(this.pos);
@@ -722,7 +724,7 @@ public class TileBloomery
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setTag("inputStackHandler", this.inputStackHandler.serializeNBT());
@@ -740,7 +742,7 @@ public class TileBloomery
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.inputStackHandler.deserializeNBT(compound.getCompoundTag("inputStackHandler"));
@@ -806,7 +808,7 @@ public class TileBloomery
   }
 
   @Override
-  public IInteraction[] getInteractions() {
+  public IInteraction<?>[] getInteractions() {
 
     return this.interactions;
   }
@@ -836,7 +838,7 @@ public class TileBloomery
   /**
    * Used for interaction items like the tongs.
    */
-  private class InteractionItem
+  private static class InteractionItem
       extends InteractionUseItemBase<TileBloomery> {
 
     /* package */ InteractionItem(AxisAlignedBB bounds) {
@@ -847,7 +849,7 @@ public class TileBloomery
 
   // --- FLINT AND STEEL ---
 
-  private class InteractionIgnite
+  private static class InteractionIgnite
       extends InteractionUseItemBase<TileBloomery> {
 
     /* package */ InteractionIgnite(AxisAlignedBB interactionBounds) {
@@ -890,7 +892,7 @@ public class TileBloomery
 
   // --- INPUT / OUTPUT ---
 
-  private class InteractionInput
+  private static class InteractionInput
       extends InteractionItemStack<TileBloomery> {
 
     private final TileBloomery tile;
@@ -944,7 +946,7 @@ public class TileBloomery
 
   // --- FUEL ---
 
-  public class InteractionFuel
+  public static class InteractionFuel
       extends InteractionItemStack<TileBloomery> {
 
     private final TileBloomery tile;
@@ -1018,7 +1020,7 @@ public class TileBloomery
 
   // --- ASH ---
 
-  private class InteractionShovel
+  private static class InteractionShovel
       extends InteractionBase<TileBloomery> {
 
     /* package */ InteractionShovel(AxisAlignedBB interactionBounds) {
@@ -1092,7 +1094,7 @@ public class TileBloomery
     }
   }
 
-  public class OutputStackHandler
+  public static class OutputStackHandler
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
@@ -1108,7 +1110,7 @@ public class TileBloomery
     }
   }
 
-  public class FuelStackHandler
+  public static class FuelStackHandler
       extends DynamicStackHandler {
 
     private final TileBloomery tile;
@@ -1185,12 +1187,12 @@ public class TileBloomery
         if (this.tile.hasSpeedCap()) {
           int burnTimeInsertCount = Math.min(toInsert.getCount(), (int) ((max - this.tile.burnTime.get()) / (float) fuelBurnTimeSingle));
           insertCount = Math.min(burnTimeInsertCount, itemCountInsertCount);
-          toInsert.setCount(insertCount);
 
         } else {
           insertCount = itemCountInsertCount;
-          toInsert.setCount(insertCount);
         }
+
+        toInsert.setCount(insertCount);
 
         if (!simulate) {
           this.tile.burnTime.add(insertCount * fuelBurnTimeSingle);

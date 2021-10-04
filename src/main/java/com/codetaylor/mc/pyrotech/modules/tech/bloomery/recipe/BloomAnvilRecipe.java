@@ -11,7 +11,6 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.block.BlockBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
-import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -25,15 +24,15 @@ public class BloomAnvilRecipe
     extends AnvilRecipe
     implements AnvilRecipe.IExtendedRecipe<BloomAnvilRecipe> {
 
-  private final BloomeryRecipeBase bloomeryRecipe;
+  private final BloomeryRecipeBase<?> bloomeryRecipe;
 
-  public BloomAnvilRecipe(ItemStack output, Ingredient input, int hits, EnumType type, EnumTier[] tiers, BloomeryRecipeBase bloomeryRecipe) {
+  public BloomAnvilRecipe(ItemStack output, Ingredient input, int hits, EnumType type, EnumTier[] tiers, BloomeryRecipeBase<?> bloomeryRecipe) {
 
     super(output, input, hits, type, tiers);
     this.bloomeryRecipe = bloomeryRecipe;
   }
 
-  public BloomeryRecipeBase getBloomeryRecipe() {
+  public BloomeryRecipeBase<?> getBloomeryRecipe() {
 
     return this.bloomeryRecipe;
   }

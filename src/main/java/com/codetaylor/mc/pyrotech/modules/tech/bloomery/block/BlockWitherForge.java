@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class BlockWitherForge
     extends BlockBloomery {
@@ -26,6 +27,7 @@ public class BlockWitherForge
     return ModuleTechBloomeryConfig.WITHER_FORGE.ENTITY_WALK_BURN_DAMAGE;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 
@@ -47,6 +49,7 @@ public class BlockWitherForge
   // - Light
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
@@ -62,7 +65,7 @@ public class BlockWitherForge
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }

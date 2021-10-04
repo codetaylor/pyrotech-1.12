@@ -6,6 +6,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 /**
  * Derived from ParticleLava
  */
@@ -68,6 +70,7 @@ public class ParticleBloomeryDrip
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void renderParticle(BufferBuilder buffer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
 

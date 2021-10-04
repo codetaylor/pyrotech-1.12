@@ -177,12 +177,14 @@ public final class SlagInitializer {
 
     for (String langKey : langKeysToTest) {
 
+      //noinspection deprecation
       if (I18n.canTranslate(langKey)) {
         return langKey;
 
-      } else if (I18n.canTranslate(langKey + ".name")) {
-        return langKey + ".name";
-      }
+      } else //noinspection deprecation
+        if (I18n.canTranslate(langKey + ".name")) {
+          return langKey + ".name";
+        }
     }
 
     return null;
@@ -272,9 +274,8 @@ public final class SlagInitializer {
     ItemColors itemColors = minecraft.getItemColors();
     BlockColors blockColors = minecraft.getBlockColors();
 
-    ModuleTechBloomery.Items.GENERATED_SLAG.forEach((itemSlag, properties) -> {
-      itemColors.registerItemColorHandler(new ItemColor(properties.color, 1), itemSlag);
-    });
+    ModuleTechBloomery.Items.GENERATED_SLAG.forEach((itemSlag, properties)
+        -> itemColors.registerItemColorHandler(new ItemColor(properties.color, 1), itemSlag));
 
     ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.forEach((blockPileSlag, properties) -> {
       Item itemBlock = Item.getItemFromBlock(blockPileSlag);
@@ -303,7 +304,7 @@ public final class SlagInitializer {
       implements IItemColor {
 
     private final int color;
-    private int tintIndex;
+    private final int tintIndex;
 
     private ItemColor(int color, int tintIndex) {
 

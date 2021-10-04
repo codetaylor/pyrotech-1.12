@@ -1,10 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.block;
 
-import com.codetaylor.mc.athenaeum.util.AABBHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
+import com.codetaylor.mc.athenaeum.util.AABBHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
@@ -66,6 +66,8 @@ public class BlockBloom
   // - Creative Menu
   // ---------------------------------------------------------------------------
 
+  // This can absolutely return null.
+  @SuppressWarnings("NullableProblems")
   @Override
   public CreativeTabs getCreativeTabToDisplayOn() {
 
@@ -76,14 +78,16 @@ public class BlockBloom
   // - Light
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
     return 9;
   }
 
+  @SuppressWarnings("deprecation")
   @Override
-  public int getLightValue(IBlockState state) {
+  public int getLightValue(@Nonnull IBlockState state) {
 
     return 9;
   }
@@ -92,6 +96,7 @@ public class BlockBloom
   // - Interaction
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
@@ -105,29 +110,34 @@ public class BlockBloom
     super.onEntityWalk(world, pos, entity);
   }
 
+  @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Nullable
   @Override
-  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+  public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 
     return this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos, start, end);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+  public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-    return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean removedByPlayer(@Nonnull IBlockState state, World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
+  public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
 
     // Delay the destruction of the TE until after #getDrops is called. We need
     // access to the TE while creating the dropped item in order to serialize it.
     return willHarvest || super.removedByPlayer(state, world, pos, player, false);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public void harvestBlock(@Nonnull World world, EntityPlayer player, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+  public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
 
     super.harvestBlock(world, player, pos, state, te, stack);
 
@@ -137,6 +147,7 @@ public class BlockBloom
   }
 
   @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Nonnull
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -150,6 +161,7 @@ public class BlockBloom
     BlockPos down = pos.down();
     IBlockState blockState = world.getBlockState(down);
 
+    //noinspection deprecation
     return super.canPlaceBlockAt(world, pos)
         && blockState.getBlock().isSideSolid(blockState, world, down, EnumFacing.UP);
   }
@@ -158,8 +170,9 @@ public class BlockBloom
   // - Drops
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
-  public void getDrops(@Nonnull NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
+  public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 
     // Check to see if the TE still contains items and
     // serialize the TE into the item dropped.
@@ -179,6 +192,7 @@ public class BlockBloom
   // - Update
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 
@@ -186,6 +200,7 @@ public class BlockBloom
     this.checkFall(world, pos);
   }
 
+  @ParametersAreNonnullByDefault
   @SideOnly(Side.CLIENT)
   public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 
@@ -194,7 +209,7 @@ public class BlockBloom
     double z = (double) pos.getZ() + 0.5;
 
     if (rand.nextDouble() < 0.1) {
-      world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+      world.playSound((double) pos.getX() + 0.5, pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
     }
 
     for (int i = 0; i < 4; i++) {
@@ -209,18 +224,23 @@ public class BlockBloom
   // - Falling
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
+  @Override
   public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
 
     world.scheduleUpdate(pos, this, this.tickRate(world));
   }
 
+  @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
+  @Override
   public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 
     world.scheduleUpdate(pos, this, this.tickRate(world));
   }
 
   @Override
-  public int tickRate(World world) {
+  public int tickRate(@Nonnull World world) {
 
     return 2;
   }
@@ -237,7 +257,7 @@ public class BlockBloom
           TileEntity tileEntity = world.getTileEntity(pos);
 
           if (tileEntity != null) {
-            EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, (double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, world.getBlockState(pos)) {
+            EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, (double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, world.getBlockState(pos)) {
 
               @Nullable
               @Override
@@ -274,10 +294,10 @@ public class BlockBloom
       } else {
         IBlockState state = world.getBlockState(pos);
         world.setBlockToAir(pos);
-        BlockPos blockpos;
+        BlockPos blockpos = pos.down();
 
-        for (blockpos = pos.down(); (world.isAirBlock(blockpos) || canFallThrough(world.getBlockState(blockpos))) && blockpos.getY() > 0; blockpos = blockpos.down()) {
-          ;
+        while ((world.isAirBlock(blockpos) || canFallThrough(world.getBlockState(blockpos))) && blockpos.getY() > 0) {
+          blockpos = blockpos.down();
         }
 
         if (blockpos.getY() > 0) {
@@ -346,7 +366,7 @@ public class BlockBloom
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }
@@ -413,7 +433,7 @@ public class BlockBloom
       return 0;
     }
 
-    private float getTileFloat(ItemStack itemStack, String key) {
+    private float getTileFloat(ItemStack itemStack, @SuppressWarnings("SameParameterValue") String key) {
 
       if (itemStack.getItem() == this) {
         NBTTagCompound tagCompound = itemStack.getTagCompound();
@@ -427,27 +447,13 @@ public class BlockBloom
       return 0;
     }
 
-    @Nullable
-    public String getRecipeId(ItemStack itemStack) {
-
-      if (itemStack.getItem() == this) {
-        NBTTagCompound tagCompound = itemStack.getTagCompound();
-
-        if (tagCompound != null) {
-          NBTTagCompound tileTag = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
-          return tileTag.getString("recipeId");
-        }
-      }
-
-      return null;
-    }
-
     @Override
-    public boolean hasCustomEntity(ItemStack stack) {
+    public boolean hasCustomEntity(@Nonnull ItemStack stack) {
 
       return true;
     }
 
+    @ParametersAreNonnullByDefault
     @Nullable
     @Override
     public Entity createEntity(World world, Entity entity, ItemStack itemstack) {
@@ -481,7 +487,7 @@ public class BlockBloom
         String[] langKeys = teCompound.getString("langKey").split(";");
 
         if (langKeys.length == 1) {
-          String langKey = (langKeys[0].endsWith(".name"))? langKeys[0] : langKeys[0] + ".name";
+          String langKey = (langKeys[0].endsWith(".name")) ? langKeys[0] : langKeys[0] + ".name";
 
           if (I18n.canTranslate(langKey)) {
             String translatedLangKey = I18n.translateToLocal(langKey);
@@ -492,8 +498,8 @@ public class BlockBloom
 
           String translatedLangKey = null;
 
-          for (int i = 0; i < langKeys.length; i++) {
-            String langKey = (langKeys[i].endsWith(".name"))? langKeys[i] : langKeys[i] + ".name";
+          for (String key : langKeys) {
+            String langKey = (key.endsWith(".name")) ? key : key + ".name";
 
             if (I18n.canTranslate(langKey)) {
 
@@ -515,6 +521,7 @@ public class BlockBloom
       return I18n.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name").trim();
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
 

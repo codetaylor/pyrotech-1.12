@@ -12,9 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class BloomeryRecipeBuilderBase<R extends BloomeryRecipeBase, B extends BloomeryRecipeBuilderBase> {
+public abstract class BloomeryRecipeBuilderBase<R extends BloomeryRecipeBase<?>, B extends BloomeryRecipeBuilderBase<R, B>> {
 
-  @Nullable
   protected final ResourceLocation resourceLocation;
   protected ItemStack output;
   protected Ingredient input;
@@ -27,7 +26,6 @@ public abstract class BloomeryRecipeBuilderBase<R extends BloomeryRecipeBase, B 
   protected ItemStack slagItem;
   protected List<BloomeryRecipeBase.FailureItem> failureItems;
   protected AnvilRecipe.EnumTier[] anvilTiers;
-  @Nullable
   protected String langKey;
 
   public BloomeryRecipeBuilderBase(@Nullable ResourceLocation resourceLocation, ItemStack output, Ingredient input) {

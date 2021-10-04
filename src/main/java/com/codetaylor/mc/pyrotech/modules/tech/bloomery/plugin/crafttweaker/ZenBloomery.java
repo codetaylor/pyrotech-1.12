@@ -29,6 +29,7 @@ import java.util.Set;
 
 import static com.codetaylor.mc.pyrotech.modules.tech.bloomery.init.recipe.WitherForgeRecipesAdd.INHERIT_TRANSFORMER;
 
+@SuppressWarnings("unused")
 @ZenDocClass("mods.pyrotech.Bloomery")
 @ZenDocPrepend({"docs/include/header.md"})
 @ZenDocAppend({"docs/include/bloomery.example.md"})
@@ -57,6 +58,7 @@ public class ZenBloomery {
     CraftTweaker.LATE_ACTIONS.add(new RemoveAllRecipesAction<>(ModuleTechBloomery.Registries.BLOOMERY_RECIPE, "bloomery"));
   }
 
+  @SuppressWarnings("DefaultAnnotationParam")
   @ZenDocMethod(
       order = 0
   )
@@ -261,11 +263,11 @@ public class ZenBloomery {
     }
   }
 
-  private final BloomeryRecipeBuilderBase builder;
+  private final BloomeryRecipeBuilderBase<?, ?> builder;
   private final EnumRecipeType recipeType;
   private final boolean inherited;
 
-  private ZenBloomery(BloomeryRecipeBuilderBase builder, EnumRecipeType recipeType, boolean inherited) {
+  private ZenBloomery(BloomeryRecipeBuilderBase<?, ?> builder, EnumRecipeType recipeType, boolean inherited) {
 
     this.builder = builder;
     this.recipeType = recipeType;
@@ -435,14 +437,14 @@ public class ZenBloomery {
     }
   }
 
-  public class AddRecipe
+  public static class AddRecipe
       implements IAction {
 
     private final EnumRecipeType recipeType;
-    private final BloomeryRecipeBase recipe;
+    private final BloomeryRecipeBase<?> recipe;
     private final boolean inherited;
 
-    public AddRecipe(EnumRecipeType recipeType, BloomeryRecipeBase recipe, boolean inherited) {
+    public AddRecipe(EnumRecipeType recipeType, BloomeryRecipeBase<?> recipe, boolean inherited) {
 
       this.recipeType = recipeType;
       this.recipe = recipe;
@@ -479,7 +481,14 @@ public class ZenBloomery {
     @Override
     public String describe() {
 
-      return "Registering bloomery recipe: " + this.recipe.getRegistryName().toString();
+      ResourceLocation resourceLocation = this.recipe.getRegistryName();
+
+      if (resourceLocation != null) { // should never be null
+        return "Registering bloomery recipe: " + resourceLocation.toString();
+
+      } else {
+        return "Registering bloomery recipe: " + null;
+      }
     }
   }
 }

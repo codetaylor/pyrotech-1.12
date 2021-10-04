@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ItemTooltipEventHandler {
 
+  @SuppressWarnings("deprecation")
   @SubscribeEvent
   public void on(ItemTooltipEvent event) {
 

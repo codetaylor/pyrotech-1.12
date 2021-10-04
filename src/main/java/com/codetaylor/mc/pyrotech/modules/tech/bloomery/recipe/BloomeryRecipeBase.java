@@ -1,7 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe;
 
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
-import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.WeightedPicker;
 import com.codetaylor.mc.pyrotech.library.spi.recipe.IRecipeTimed;
@@ -14,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
@@ -89,12 +89,16 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
       // We're lazily instantiating the output bloom here
       // so we can pass the registry name, which is important
       // for comparing blooms in JEI.
-      this.outputBloom = BloomHelper.createBloomAsItemStack(
-          this.bloomYieldMax,
-          this.experience,
-          this.getRegistryName().toString(),
-          this.langKey
-      );
+      ResourceLocation resourceLocation = this.getRegistryName();
+
+      if (resourceLocation != null) { // should never be null
+        this.outputBloom = BloomHelper.createBloomAsItemStack(
+            this.bloomYieldMax,
+            this.experience,
+            resourceLocation.toString(),
+            this.langKey
+        );
+      }
     }
 
     return this.outputBloom.copy();
@@ -115,11 +119,6 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
     return this.anvilTiers;
   }
 
-  public boolean isAnvilTier(AnvilRecipe.EnumTier tier) {
-
-    return ArrayHelper.contains(this.anvilTiers, tier);
-  }
-
   public ItemStack getUniqueBloomFromOutput(int quantity) {
 
     int integrity = 0;
@@ -131,12 +130,19 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
 
     float experiencePerComplete = this.experience * quantity;
 
-    return BloomHelper.createBloomAsItemStack(
-        integrity,
-        experiencePerComplete,
-        this.getRegistryName().toString().replaceAll("\\.slag", ""),
-        this.langKey
-    );
+    ResourceLocation resourceLocation = this.getRegistryName();
+
+    if (resourceLocation != null) { // should never be null
+      return BloomHelper.createBloomAsItemStack(
+          integrity,
+          experiencePerComplete,
+          resourceLocation.toString().replaceAll("\\.slag", ""),
+          this.langKey
+      );
+
+    } else {
+      return ItemStack.EMPTY;
+    }
   }
 
   public int getSlagCount() {

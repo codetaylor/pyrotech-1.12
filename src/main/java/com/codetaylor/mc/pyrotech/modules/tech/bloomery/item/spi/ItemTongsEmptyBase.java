@@ -22,6 +22,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -103,6 +104,7 @@ public abstract class ItemTongsEmptyBase
     // Only apply item damage when a bloom is placed.
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
 

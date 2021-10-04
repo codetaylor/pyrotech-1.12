@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
 public class TilePileSlag
     extends TileEntityBase {
 
-  private StackHandler stackHandler;
+  private final StackHandler stackHandler;
   private long lastMolten;
 
   public TilePileSlag() {
@@ -39,7 +39,7 @@ public class TilePileSlag
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setTag("stackHandler", this.stackHandler.serializeNBT());
@@ -48,7 +48,7 @@ public class TilePileSlag
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.stackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));

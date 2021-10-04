@@ -37,7 +37,6 @@ public class ItemSlag
 
   public static class Properties {
 
-    @Nullable
     public final String langKey;
     public final int color;
 

@@ -1,8 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi;
 
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionItem;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionItem;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
@@ -57,7 +57,7 @@ public abstract class ItemTongsFullBase
 
   @Nonnull
   @Override
-  public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+  public ActionResult<ItemStack> onItemRightClick(@Nonnull World world, EntityPlayer player, @Nonnull EnumHand hand) {
 
     ItemStack heldItem = player.getHeldItem(hand);
 
@@ -125,7 +125,7 @@ public abstract class ItemTongsFullBase
   }
 
   @Override
-  public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag) {
+  public void addInformation(ItemStack stack, @Nullable World world, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flag) {
 
     if (stack.getItem() != this) {
       return;
@@ -139,8 +139,11 @@ public abstract class ItemTongsFullBase
       NBTTagCompound teCompound = tagCompound.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
       String langKey = teCompound.getString("langKey") + ".name";
 
+      //noinspection deprecation
       if (I18n.canTranslate(langKey)) {
+        //noinspection deprecation
         String translatedLangKey = I18n.translateToLocal(langKey);
+        //noinspection deprecation
         String translatedTooltip = I18n.translateToLocalFormatted(ModuleTechBloomery.Blocks.BLOOM.getUnlocalizedName() + ".unique.name", translatedLangKey).trim();
 
         if (tooltip.size() > 1) {
@@ -153,6 +156,7 @@ public abstract class ItemTongsFullBase
     }
 
     if (ModuleCoreConfig.CLIENT.SHOW_DURABILITY_TOOLTIPS && this.getDamage(stack) == 0) {
+      //noinspection deprecation
       tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.durability.full", this.getMaxDamage(stack)));
     }
   }

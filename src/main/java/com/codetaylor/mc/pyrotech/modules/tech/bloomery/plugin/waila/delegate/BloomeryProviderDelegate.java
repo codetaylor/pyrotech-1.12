@@ -32,7 +32,7 @@ public class BloomeryProviderDelegate
 
       // Display input item and recipe output.
 
-      BloomeryRecipeBase recipe = tile.getCurrentRecipe();
+      BloomeryRecipeBase<?> recipe = tile.getCurrentRecipe();
 
       if (recipe != null) {
         ItemStack recipeOutput = recipe.getOutputBloom();

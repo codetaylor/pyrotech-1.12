@@ -2,10 +2,10 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.block;
 
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.BlockPileBase;
+import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleLava;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.ItemSlag;
-import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleLava;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TilePileSlag;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -71,6 +71,7 @@ public class BlockPileSlag
   // - Light
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
@@ -82,6 +83,7 @@ public class BlockPileSlag
     return super.getLightValue(state, world, pos);
   }
 
+  @SuppressWarnings("deprecation")
   @Override
   public int getLightValue(IBlockState state) {
 
@@ -97,6 +99,7 @@ public class BlockPileSlag
   // - Update
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 
@@ -126,6 +129,7 @@ public class BlockPileSlag
     return BlockRenderLayer.CUTOUT;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 
@@ -163,6 +167,7 @@ public class BlockPileSlag
   // - Interaction
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
@@ -214,7 +219,7 @@ public class BlockPileSlag
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }
@@ -270,8 +275,9 @@ public class BlockPileSlag
       return (BlockPileSlag) super.getBlock();
     }
 
+    @ParametersAreNonnullByDefault
     @Override
-    public boolean placeBlockAt(@Nonnull ItemStack stack, @Nonnull EntityPlayer player, World world, @Nonnull BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, @Nonnull IBlockState newState) {
+    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
 
       Properties properties = ModuleTechBloomery.Blocks.GENERATED_PILE_SLAG.get(this.getBlock());
       ItemStack slagItem;
@@ -325,7 +331,6 @@ public class BlockPileSlag
 
   public static class Properties {
 
-    @Nullable
     public final String langKey;
     public final int color;
     public final ItemSlag slagItem;

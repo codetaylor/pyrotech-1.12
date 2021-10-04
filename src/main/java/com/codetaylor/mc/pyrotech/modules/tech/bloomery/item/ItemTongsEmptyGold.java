@@ -5,6 +5,8 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.item.spi.ItemTongsEmptyBase;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public class ItemTongsEmptyGold
     extends ItemTongsEmptyBase {
 
@@ -16,7 +18,7 @@ public class ItemTongsEmptyGold
   }
 
   @Override
-  public int getItemEnchantability(ItemStack stack) {
+  public int getItemEnchantability(@Nonnull ItemStack stack) {
 
     return ToolMaterial.GOLD.getEnchantability();
   }

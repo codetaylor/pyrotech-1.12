@@ -1,12 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.block;
 
+import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.athenaeum.util.RandomHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
-import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
 import com.codetaylor.mc.pyrotech.library.spi.tile.ITileContainer;
@@ -41,6 +41,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -121,6 +122,8 @@ public class BlockBloomery
   // - Spatial
   // ---------------------------------------------------------------------------
 
+  @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Nonnull
   @Override
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -132,8 +135,10 @@ public class BlockBloomery
     return super.getBoundingBox(state, source, pos);
   }
 
+  @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean isSideSolid(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, EnumFacing face) {
+  public boolean isSideSolid(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
 
     if (this.isTop(state)) {
 
@@ -143,30 +148,36 @@ public class BlockBloomery
     return (face == EnumFacing.DOWN);
   }
 
+  @SuppressWarnings("deprecation")
   @Override
-  public boolean isFullBlock(IBlockState state) {
+  public boolean isFullBlock(@Nonnull IBlockState state) {
 
     return false;
   }
 
+  @SuppressWarnings("deprecation")
   @Override
-  public boolean isFullCube(IBlockState state) {
+  public boolean isFullCube(@Nonnull IBlockState state) {
 
     return this.isFullBlock(state);
   }
 
+  @SuppressWarnings("deprecation")
   @Override
-  public boolean isOpaqueCube(IBlockState state) {
+  public boolean isOpaqueCube(@Nonnull IBlockState state) {
 
     return this.isFullBlock(state);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
 
     return this.isFullBlock(state);
   }
 
+  @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Nonnull
   @Override
   public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
@@ -178,6 +189,7 @@ public class BlockBloomery
   // - Interaction
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public int quantityDropped(IBlockState state, int fortune, Random random) {
 
@@ -188,6 +200,7 @@ public class BlockBloomery
     return super.quantityDropped(state, fortune, random);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean onBlockActivated(
       World world,
@@ -223,6 +236,7 @@ public class BlockBloomery
   }
 
   @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Override
   public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 
@@ -233,6 +247,7 @@ public class BlockBloomery
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
 
@@ -261,9 +276,11 @@ public class BlockBloomery
     return ModuleTechBloomeryConfig.BLOOMERY.ENTITY_WALK_BURN_DAMAGE;
   }
 
+  @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Nullable
   @Override
-  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+  public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 
     RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
 
@@ -322,6 +339,7 @@ public class BlockBloomery
     super.breakBlock(world, pos, state);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 
@@ -338,16 +356,18 @@ public class BlockBloomery
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean canSilkHarvest(
-      World world, BlockPos pos, @Nonnull IBlockState state, EntityPlayer player
+      World world, BlockPos pos, IBlockState state, EntityPlayer player
   ) {
 
     return false;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean canPlaceBlockAt(World world, @Nonnull BlockPos pos) {
+  public boolean canPlaceBlockAt(World world, BlockPos pos) {
 
     return super.canPlaceBlockAt(world, pos)
         && super.canPlaceBlockAt(world, pos.up());
@@ -357,6 +377,7 @@ public class BlockBloomery
   // - Light
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
@@ -371,9 +392,11 @@ public class BlockBloomery
   // - Rendering
   // ---------------------------------------------------------------------------
 
+  @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Nonnull
   @Override
-  public IBlockState getActualState(@Nonnull IBlockState state, IBlockAccess world, BlockPos pos) {
+  public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 
     if (!this.isTop(state)) {
       TileEntity tileEntity = world.getTileEntity(pos);
@@ -389,6 +412,7 @@ public class BlockBloomery
     return super.getActualState(state, world, pos);
   }
 
+  @ParametersAreNonnullByDefault
   @SideOnly(Side.CLIENT)
   @Override
   public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
@@ -405,7 +429,7 @@ public class BlockBloomery
         double z = (double) pos.getZ() + 0.5;
 
         if (rand.nextDouble() < 0.1) {
-          world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
+          world.playSound((double) pos.getX() + 0.5, pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0f, 1.0f, false);
         }
 
         for (int i = 0; i < 8; i++) {
@@ -449,7 +473,7 @@ public class BlockBloomery
         double randomOffset = rand.nextDouble() * 0.4 - 0.2;
 
         if (rand.nextDouble() < 0.1) {
-          world.playSound((double) pos.getX() + 0.5, (double) pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+          world.playSound((double) pos.getX() + 0.5, pos.getY(), (double) pos.getZ() + 0.5, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
         }
 
         double offset = 0.55;
@@ -515,7 +539,7 @@ public class BlockBloomery
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }
@@ -543,6 +567,7 @@ public class BlockBloomery
     return new BlockStateContainer(this, Properties.FACING_HORIZONTAL, TYPE);
   }
 
+  @SuppressWarnings("deprecation")
   @Nonnull
   @Override
   public IBlockState getStateFromMeta(int meta) {
@@ -570,17 +595,18 @@ public class BlockBloomery
     return meta;
   }
 
+  @ParametersAreNonnullByDefault
   @Nonnull
   @Override
   public IBlockState getStateForPlacement(
-      @Nonnull World world,
-      @Nonnull BlockPos pos,
-      @Nonnull EnumFacing facing,
+      World world,
+      BlockPos pos,
+      EnumFacing facing,
       float hitX,
       float hitY,
       float hitZ,
       int meta,
-      @Nonnull EntityLivingBase placer,
+      EntityLivingBase placer,
       EnumHand hand
   ) {
 

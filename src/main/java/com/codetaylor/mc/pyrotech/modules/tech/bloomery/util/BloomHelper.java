@@ -20,6 +20,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -41,9 +42,7 @@ public class BloomHelper {
       double[] chanceArray = ModuleTechBloomeryConfig.BLOOM.CHANCE_TO_NOT_CONSUME_BLOOM_INTEGRITY_PER_FORTUNE_LEVEL;
       double chance = MathHelper.clamp(ArrayHelper.getOrLast(chanceArray, fortuneLevel), 0, 1);
 
-      if (random.nextFloat() < chance) {
-        return false;
-      }
+      return (random.nextFloat() >= chance);
     }
 
     return true;
@@ -52,7 +51,13 @@ public class BloomHelper {
   public static double calculateHammerPower(BlockPos pos, EntityPlayer player) {
 
     ItemStack heldItem = player.getHeldItemMainhand();
-    int hammerHarvestLevel = ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(heldItem.getItem().getRegistryName());
+    ResourceLocation registryName = heldItem.getItem().getRegistryName();
+
+    if (registryName == null) {
+      return 0;
+    }
+
+    int hammerHarvestLevel = ModuleCoreConfig.HAMMERS.getHammerHarvestLevel(registryName);
 
     if (hammerHarvestLevel == -1) {
       return 0;
@@ -162,6 +167,7 @@ public class BloomHelper {
         BlockPos position = closestPlayer.getPosition();
         IBlockState blockState = world.getBlockState(position.down());
 
+        //noinspection deprecation
         if (!world.isAirBlock(position)
             || !blockState.getBlock().isSideSolid(blockState, world, pos, EnumFacing.UP)) {
 

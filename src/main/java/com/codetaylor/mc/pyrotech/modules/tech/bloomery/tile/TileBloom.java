@@ -40,12 +40,13 @@ public class TileBloom
     extends TileEntityDataBase
     implements ITileInteractable {
 
+  private final TileDataFloat recipeProgress;
+  private final TileDataInteger integrity;
+
+  private final IInteraction<?>[] interactions;
+
   private String recipeId;
   private String langKey;
-  private TileDataFloat recipeProgress;
-  private TileDataInteger integrity;
-
-  private IInteraction[] interactions;
   private int maxIntegrity;
   private float experiencePerComplete;
 
@@ -75,11 +76,6 @@ public class TileBloom
   // - Accessors
   // ---------------------------------------------------------------------------
 
-  public void setRecipeId(String recipeId) {
-
-    this.recipeId = recipeId;
-  }
-
   public void setLangKey(String langKey) {
 
     this.langKey = langKey;
@@ -100,12 +96,6 @@ public class TileBloom
     return this.integrity.get();
   }
 
-  public void setMaxIntegrity(int maxIntegrity) {
-
-    this.maxIntegrity = maxIntegrity;
-    this.integrity.set(maxIntegrity);
-  }
-
   public float getRecipeProgress() {
 
     return this.recipeProgress.get();
@@ -117,7 +107,7 @@ public class TileBloom
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     BloomHelper.writeToNBT(compound, this.maxIntegrity, this.integrity.get(), this.experiencePerComplete, this.recipeId, this.langKey);
@@ -125,7 +115,7 @@ public class TileBloom
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.maxIntegrity = compound.getInteger("maxIntegrity");
@@ -153,12 +143,12 @@ public class TileBloom
   }
 
   @Override
-  public IInteraction[] getInteractions() {
+  public IInteraction<?>[] getInteractions() {
 
     return this.interactions;
   }
 
-  private class InteractionItem
+  private static class InteractionItem
       extends InteractionUseItemBase<TileBloom> {
 
     /* package */ InteractionItem() {
@@ -167,7 +157,7 @@ public class TileBloom
     }
   }
 
-  private class InteractionHit
+  private static class InteractionHit
       extends InteractionUseItemBase<TileBloom> {
 
     /* package */ InteractionHit() {
@@ -243,7 +233,7 @@ public class TileBloom
             tile.integrity.add(-1);
           }
 
-          BloomeryRecipeBase recipe = ModuleTechBloomery.Registries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
+          BloomeryRecipeBase<?> recipe = ModuleTechBloomery.Registries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
 
           if (recipe != null) {
             ItemStack output = recipe.getRandomOutput(player);
@@ -273,6 +263,7 @@ public class TileBloom
             BlockPos posDown = tilePos.down();
             IBlockState blockStateDown = world.getBlockState(posDown);
             Block blockDown = blockStateDown.getBlock();
+            //noinspection deprecation
             float blockDownHardness = blockDown.getBlockHardness(blockStateDown, world, posDown);
 
             if (blockDownHardness >= 0) {

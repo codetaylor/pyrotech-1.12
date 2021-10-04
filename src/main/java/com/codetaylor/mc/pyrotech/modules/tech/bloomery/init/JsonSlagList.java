@@ -3,8 +3,10 @@ package com.codetaylor.mc.pyrotech.modules.tech.bloomery.init;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("FieldMayBeFinal")
 public class JsonSlagList {
 
+  @SuppressWarnings("unused")
   private String[] __comments = {
       "WARNING: All changes should be made to the file with the name Custom",
       "in the title. Changes made to the Generated file will be overwritten.",

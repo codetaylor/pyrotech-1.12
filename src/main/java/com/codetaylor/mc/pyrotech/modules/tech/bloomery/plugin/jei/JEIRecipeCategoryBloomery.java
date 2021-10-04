@@ -73,7 +73,7 @@ public class JEIRecipeCategoryBloomery
   }
 
   @Override
-  public void drawExtras(Minecraft minecraft) {
+  public void drawExtras(@Nonnull Minecraft minecraft) {
 
     this.animatedFlame.draw(minecraft, 1, 7);
     this.arrow.draw(minecraft, 24, 18);

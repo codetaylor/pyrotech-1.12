@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.jei;
 
-import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
 import com.codetaylor.mc.pyrotech.library.spi.plugin.jei.JEIRecipeWrapperTimed;
+import com.codetaylor.mc.pyrotech.modules.tech.bloomery.recipe.BloomeryRecipeBase;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import net.minecraft.item.ItemStack;
@@ -21,7 +21,7 @@ public class JEIRecipeWrapperBloomery
   private final List<List<ItemStack>> inputs;
   private final List<List<ItemStack>> outputs;
 
-  public JEIRecipeWrapperBloomery(BloomeryRecipeBase recipe) {
+  public JEIRecipeWrapperBloomery(BloomeryRecipeBase<?> recipe) {
 
     super(recipe);
 

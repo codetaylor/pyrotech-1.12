@@ -67,7 +67,7 @@ public class WitherForgeRecipesAdd {
     Collection<WitherForgeRecipe> recipes = registryWitherForge.getValuesCollection();
     List<WitherForgeRecipe> snapshot = new ArrayList<>(recipes);
 
-    for (BloomeryRecipeBase recipe : snapshot) {
+    for (BloomeryRecipeBase<?> recipe : snapshot) {
       BloomeryRecipesAdd.registerBloomAnvilRecipe(registryAnvil, recipe);
     }
   }

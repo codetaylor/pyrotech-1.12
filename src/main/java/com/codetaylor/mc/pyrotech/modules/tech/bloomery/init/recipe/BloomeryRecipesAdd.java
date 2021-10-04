@@ -168,12 +168,12 @@ public class BloomeryRecipesAdd {
     Collection<BloomeryRecipe> bloomeryRecipes = registryBloomery.getValuesCollection();
     List<BloomeryRecipe> snapshot = new ArrayList<>(bloomeryRecipes);
 
-    for (BloomeryRecipeBase recipe : snapshot) {
+    for (BloomeryRecipeBase<?> recipe : snapshot) {
       BloomeryRecipesAdd.registerBloomAnvilRecipe(registryAnvil, recipe);
     }
   }
 
-  public static void registerBloomAnvilRecipe(IForgeRegistry<AnvilRecipe> registryAnvil, BloomeryRecipeBase recipe) {
+  public static void registerBloomAnvilRecipe(IForgeRegistry<AnvilRecipe> registryAnvil, BloomeryRecipeBase<?> recipe) {
 
     ResourceLocation registryName = recipe.getRegistryName();
 
