@@ -71,7 +71,7 @@ public class JEIRecipeCategoryPitBurn
   }
 
   @Override
-  public void drawExtras(Minecraft minecraft) {
+  public void drawExtras(@Nonnull Minecraft minecraft) {
 
     this.animatedFlame.draw(minecraft, 1, 6);
     this.arrow.draw(minecraft, 24, 18);

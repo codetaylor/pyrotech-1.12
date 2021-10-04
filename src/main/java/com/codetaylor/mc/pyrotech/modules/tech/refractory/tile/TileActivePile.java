@@ -39,9 +39,9 @@ public class TileActivePile
   private static final int DEFAULT_BURN_STAGES = 1;
   private static final int MAX_FLUID_PUSH_DEPTH = 3;
 
-  private FluidTank fluidTank;
+  private final FluidTank fluidTank;
   private ResourceLocation recipeKey;
-  private ItemStackHandler output;
+  private final ItemStackHandler output;
 
   public TileActivePile() {
 
@@ -205,6 +205,7 @@ public class TileActivePile
             for (EnumFacing facing : EnumFacing.VALUES) {
               BlockPos offset = p.offset(facing);
               IBlockState blockState = w.getBlockState(offset);
+              //noinspection deprecation
               blockState = blockState.getBlock().getActualState(blockState, w, offset);
 
               boolean isValid = false;
@@ -370,10 +371,10 @@ public class TileActivePile
           && blockState.getValue(BlockRefractoryDoor.FACING) == facing.rotateYCCW()) {
         return true;
 
-      } else if (blockState.getValue(BlockRefractoryDoor.OPEN)
-          && blockState.getValue(BlockRefractoryDoor.HINGE) == BlockDoor.EnumHingePosition.RIGHT
-          && blockState.getValue(BlockRefractoryDoor.FACING) == facing.rotateY()) {
-        return true;
+      } else {
+        return blockState.getValue(BlockRefractoryDoor.OPEN)
+            && blockState.getValue(BlockRefractoryDoor.HINGE) == BlockDoor.EnumHingePosition.RIGHT
+            && blockState.getValue(BlockRefractoryDoor.FACING) == facing.rotateY();
       }
     }
     return false;

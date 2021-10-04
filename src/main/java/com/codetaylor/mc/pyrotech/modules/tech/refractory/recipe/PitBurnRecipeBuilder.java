@@ -19,7 +19,7 @@ public class PitBurnRecipeBuilder {
   private int totalBurnTimeTicks;
   private FluidStack fluidProduced;
   private float failureChance;
-  private List<ItemStack> failureItems;
+  private final List<ItemStack> failureItems;
   private boolean requiresRefractoryBlocks;
   private boolean fluidLevelAffectsFailureChance;
 

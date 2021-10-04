@@ -12,6 +12,8 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
+import javax.annotation.Nonnull;
+
 public class TESRTarCollector
     extends FastTESR<TileTarCollectorBase> {
 
@@ -27,7 +29,7 @@ public class TESRTarCollector
       float partialTicks,
       int destroyStage,
       float partial,
-      BufferBuilder buffer
+      @Nonnull BufferBuilder buffer
   ) {
 
     FluidTank fluidTank = tile.getFluidTank();
@@ -43,6 +45,7 @@ public class TESRTarCollector
       int color = fluid.getColor(fluidStack);
       float r = ((color >> 16) & 0xFF) / 255f;
       float g = ((color >> 8) & 0xFF) / 255f;
+      //noinspection PointlessBitwiseExpression
       float b = ((color >> 0) & 0xFF) / 255f;
 
       BlockPos blockpos = new BlockPos(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ());

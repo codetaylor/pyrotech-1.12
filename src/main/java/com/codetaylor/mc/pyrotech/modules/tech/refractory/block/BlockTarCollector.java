@@ -38,6 +38,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
@@ -60,9 +61,11 @@ public class BlockTarCollector
     this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.STONE));
   }
 
+  @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Nonnull
   @Override
-  public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+  public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
 
     return (face == EnumFacing.UP) ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
   }
@@ -71,6 +74,7 @@ public class BlockTarCollector
   // - Light
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 
@@ -91,6 +95,7 @@ public class BlockTarCollector
     return super.getLightValue(state, world, pos);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void addInformation(ItemStack itemStack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
 
@@ -111,6 +116,7 @@ public class BlockTarCollector
     return new BlockStateContainer(this, VARIANT);
   }
 
+  @SuppressWarnings("deprecation")
   @Nonnull
   @Override
   public IBlockState getStateFromMeta(int meta) {
@@ -125,11 +131,12 @@ public class BlockTarCollector
   }
 
   @Override
-  public int damageDropped(IBlockState state) {
+  public int damageDropped(@Nonnull IBlockState state) {
 
     return this.getMetaFromState(state);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void getSubBlocks(
       CreativeTabs tab,
@@ -156,7 +163,7 @@ public class BlockTarCollector
   }
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }
@@ -209,6 +216,7 @@ public class BlockTarCollector
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean onBlockActivated(
       World world,
@@ -240,6 +248,7 @@ public class BlockTarCollector
         || FluidUtil.getFluidHandler(heldItem) != null;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
 
@@ -278,6 +287,7 @@ public class BlockTarCollector
       return this.meta;
     }
 
+    @Nonnull
     @Override
     public String getName() {
 

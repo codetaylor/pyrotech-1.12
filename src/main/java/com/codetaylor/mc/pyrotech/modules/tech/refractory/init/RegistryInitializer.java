@@ -23,7 +23,6 @@ import com.codetaylor.mc.pyrotech.modules.tech.refractory.recipe.PitBurnRecipe;
 import com.google.common.collect.Lists;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.RegistryBuilder;
@@ -35,7 +34,7 @@ import java.util.List;
 
 public final class RegistryInitializer {
 
-  public static void createRegistries(RegistryEvent.NewRegistry event) {
+  public static void createRegistries() {
 
     new RegistryBuilder<PitBurnRecipe>()
         .setName(new ResourceLocation(ModuleTechRefractory.MOD_ID, "pit_recipe"))

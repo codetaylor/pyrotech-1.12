@@ -38,7 +38,7 @@ public abstract class TileTarTankBase
   private static final int COLLECT_INTERVAL_TICKS = 20;
 
   protected Tank fluidTank;
-  private TickCounter collectionTickCounter;
+  private final TickCounter collectionTickCounter;
 
   public TileTarTankBase() {
 
@@ -122,7 +122,7 @@ public abstract class TileTarTankBase
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setTag("fluidTank", this.fluidTank.writeToNBT(new NBTTagCompound()));
@@ -130,7 +130,7 @@ public abstract class TileTarTankBase
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.fluidTank.readFromNBT(compound.getCompoundTag("fluidTank"));

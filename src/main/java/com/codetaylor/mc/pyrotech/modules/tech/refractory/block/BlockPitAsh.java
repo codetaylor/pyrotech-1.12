@@ -13,7 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class BlockPitAsh
@@ -30,11 +32,12 @@ public class BlockPitAsh
   }
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }
 
+  @ParametersAreNonnullByDefault
   @Nullable
   @Override
   public TileEntity createTileEntity(World world, IBlockState state) {
@@ -42,44 +45,50 @@ public class BlockPitAsh
     return new TilePitAsh();
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public int quantityDropped(IBlockState state, int fortune, Random random) {
 
     return 0;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
 
     return false;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+  public void breakBlock(World world, BlockPos pos, IBlockState state) {
 
-    TileEntity tileEntity = worldIn.getTileEntity(pos);
+    TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TilePitAsh) {
       ItemStackHandler stackHandler = ((TilePitAsh) tileEntity).getStackHandler();
 
       for (int i = 0; i < stackHandler.getSlots(); i++) {
-        StackHelper.spawnStackOnTop(worldIn, stackHandler.getStackInSlot(i), pos, 0);
+        StackHelper.spawnStackOnTop(world, stackHandler.getStackInSlot(i), pos, 0);
       }
     }
 
-    super.breakBlock(worldIn, pos, state);
+    super.breakBlock(world, pos, state);
   }
 
   // ---------------------------------------------------------------------------
   // - Creative Menu
   // ---------------------------------------------------------------------------
 
+  // Allowed to return null.
+  @SuppressWarnings("NullableProblems")
   @Override
   public CreativeTabs getCreativeTabToDisplayOn() {
 
     return null;
   }
 
+  @Nonnull
   @Override
   public String getUnlocalizedName() {
 

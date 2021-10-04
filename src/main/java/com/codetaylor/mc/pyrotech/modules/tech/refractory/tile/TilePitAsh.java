@@ -10,11 +10,12 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class TilePitAsh
     extends TileEntity {
 
-  private LargeDynamicStackHandler stackHandler;
+  private final LargeDynamicStackHandler stackHandler;
 
   public TilePitAsh() {
 
@@ -33,7 +34,7 @@ public class TilePitAsh
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setTag("stackHandler", this.stackHandler.serializeNBT());
@@ -41,7 +42,7 @@ public class TilePitAsh
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.stackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));
@@ -61,6 +62,7 @@ public class TilePitAsh
     return new SPacketUpdateTileEntity(this.pos, -1, this.getUpdateTag());
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void onDataPacket(NetworkManager networkManager, SPacketUpdateTileEntity packet) {
 

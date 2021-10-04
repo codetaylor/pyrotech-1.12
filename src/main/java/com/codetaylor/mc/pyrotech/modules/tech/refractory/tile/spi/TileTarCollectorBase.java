@@ -209,6 +209,7 @@ public abstract class TileTarCollectorBase
     );
   }
 
+  @SuppressWarnings("SameParameterValue")
   private void tryCatchFire(World worldIn, BlockPos pos, int chance, Random random, EnumFacing face) {
 
     int i = worldIn.getBlockState(pos).getBlock().getFlammability(worldIn, pos, face);
@@ -295,7 +296,7 @@ public abstract class TileTarCollectorBase
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setBoolean("burning", this.burning);
@@ -304,7 +305,7 @@ public abstract class TileTarCollectorBase
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.burning = compound.getBoolean("burning");

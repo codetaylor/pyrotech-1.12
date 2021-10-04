@@ -16,6 +16,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class BlockActivePile
@@ -32,12 +33,14 @@ public class BlockActivePile
     this.lightValue = 7;
   }
 
+  @SuppressWarnings("deprecation")
+  @ParametersAreNonnullByDefault
   @Override
   public void neighborChanged(
-      IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos
+      IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos
   ) {
 
-    TileEntity tileEntity = worldIn.getTileEntity(pos);
+    TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileActivePile) {
       ((TileActivePile) tileEntity).setNeedStructureValidation();
@@ -46,13 +49,13 @@ public class BlockActivePile
 
   @Override
   public void randomDisplayTick(
-      IBlockState stateIn, World worldIn, BlockPos pos, Random rand
+      @Nonnull IBlockState state, World world, BlockPos pos, Random rand
   ) {
 
     double centerX = pos.getX() + 0.5F;
     double centerY = pos.getY() + 2F;
     double centerZ = pos.getZ() + 0.5F;
-    worldIn.spawnParticle(
+    world.spawnParticle(
         EnumParticleTypes.SMOKE_NORMAL,
         centerX + (rand.nextDouble() - 0.5),
         centerY,
@@ -61,7 +64,7 @@ public class BlockActivePile
         0.1D,
         0.0D
     );
-    worldIn.spawnParticle(
+    world.spawnParticle(
         EnumParticleTypes.SMOKE_NORMAL,
         centerX + (rand.nextDouble() - 0.5),
         centerY,
@@ -70,7 +73,7 @@ public class BlockActivePile
         0.15D,
         0.0D
     );
-    worldIn.spawnParticle(
+    world.spawnParticle(
         EnumParticleTypes.SMOKE_NORMAL,
         centerX + (rand.nextDouble() - 0.5),
         centerY - 1,
@@ -79,7 +82,7 @@ public class BlockActivePile
         0.1D,
         0.0D
     );
-    worldIn.spawnParticle(
+    world.spawnParticle(
         EnumParticleTypes.SMOKE_NORMAL,
         centerX + (rand.nextDouble() - 0.5),
         centerY - 1,
@@ -90,36 +93,40 @@ public class BlockActivePile
     );
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+  public void breakBlock(World world, BlockPos pos, IBlockState state) {
 
-    TileEntity tileEntity = worldIn.getTileEntity(pos);
+    TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileActivePile) {
       ItemStackHandler stackHandler = ((TileActivePile) tileEntity).getOutput();
 
       for (int i = 0; i < stackHandler.getSlots(); i++) {
-        StackHelper.spawnStackOnTop(worldIn, stackHandler.getStackInSlot(i), pos, 0);
+        StackHelper.spawnStackOnTop(world, stackHandler.getStackInSlot(i), pos, 0);
       }
     }
 
-    super.breakBlock(worldIn, pos, state);
+    super.breakBlock(world, pos, state);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean canSilkHarvest(
-      World world, BlockPos pos, @Nonnull IBlockState state, EntityPlayer player
+      World world, BlockPos pos, IBlockState state, EntityPlayer player
   ) {
 
     return false;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public int quantityDropped(IBlockState state, int fortune, Random random) {
 
     return 0;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
 
@@ -127,11 +134,12 @@ public class BlockActivePile
   }
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }
 
+  @ParametersAreNonnullByDefault
   @Nullable
   @Override
   public TileEntity createTileEntity(World world, IBlockState state) {

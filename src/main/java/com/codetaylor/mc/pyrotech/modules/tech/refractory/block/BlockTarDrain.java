@@ -34,6 +34,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
@@ -57,6 +58,7 @@ public class BlockTarDrain
         .withProperty(FACING, EnumFacing.SOUTH));
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void addInformation(ItemStack itemStack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
 
@@ -79,6 +81,7 @@ public class BlockTarDrain
     return new BlockStateContainer(this, VARIANT, FACING);
   }
 
+  @SuppressWarnings("deprecation")
   @Nonnull
   @Override
   public IBlockState getStateFromMeta(int meta) {
@@ -100,6 +103,7 @@ public class BlockTarDrain
     return state.getValue(VARIANT).getMeta();
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void getSubBlocks(
       CreativeTabs tab,
@@ -111,6 +115,7 @@ public class BlockTarDrain
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Nonnull
   @Override
   public IBlockState getStateForPlacement(
@@ -130,7 +135,7 @@ public class BlockTarDrain
   }
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState state) {
 
     return true;
   }
@@ -165,6 +170,7 @@ public class BlockTarDrain
     return VARIANT;
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean onBlockActivated(
       World world,
@@ -230,6 +236,7 @@ public class BlockTarDrain
       return this.meta;
     }
 
+    @Nonnull
     @Override
     public String getName() {
 
