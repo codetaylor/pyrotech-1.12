@@ -201,7 +201,7 @@ public class BlockDryingRack
       IBlockState blockStateUp = world.getBlockState(pos.up());
 
       if (blockStateUp.getBlock() == this
-          && state.getValue(VARIANT) == EnumType.NORMAL) {
+          && blockStateUp.getValue(VARIANT) == EnumType.NORMAL) {
         return state.withProperty(VARIANT, EnumType.STACKED);
       }
     }
