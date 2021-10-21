@@ -88,7 +88,7 @@ public class ModuleTechRefractory
   }
 
   @SubscribeEvent
-  public void onNewRegistryEvent() {
+  public void onNewRegistryEvent(RegistryEvent.NewRegistry event) {
 
     RegistryInitializer.createRegistries();
   }
