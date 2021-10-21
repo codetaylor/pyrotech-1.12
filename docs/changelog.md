@@ -379,6 +379,13 @@
 
 ---
 
+**1.5.17**
+
+  * **Fixed:**
+    * Rendering issue when Crude Drying Rack placed above Drying Rack
+
+---
+
 **1.5.16**
 
   * **Fixed:**
