@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
+  "pattern": [
+    "WWW",
+    "B B",
+    "BPB"
+  ],
+  "key": {
+    "P": {
+      "item": "pyrotech:material",
+      "data": 20
+    },
+    "B": {
+      "item": "pyrotech:material",
+      "data": 23
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    }
+  },
+  "result": {
+    "item": "pyrotech:butchers_block",
+    "count": 1,
+    "data": 0
+  }
+}
