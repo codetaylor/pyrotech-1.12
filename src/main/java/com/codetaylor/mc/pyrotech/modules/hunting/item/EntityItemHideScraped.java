@@ -37,6 +37,14 @@ public class EntityItemHideScraped
     super(world, x, y, z, stack);
     this.transformedItem = transformedItem;
     this.lifespan = Integer.MAX_VALUE;
+
+    if (stack.hasTagCompound()) {
+      NBTTagCompound tagCompound = stack.getTagCompound();
+
+      if (tagCompound != null) {
+        this.ticksInWater = tagCompound.getInteger("ticksInWater");
+      }
+    }
   }
 
   @Override
@@ -52,7 +60,9 @@ public class EntityItemHideScraped
       return;
     }
 
-    if (this.getItem().getItem() == this.transformedItem.getItem()) {
+    ItemStack itemStack = this.getItem();
+
+    if (itemStack.getItem() == this.transformedItem.getItem()) {
       return;
     }
 
@@ -74,11 +84,26 @@ public class EntityItemHideScraped
               pos
           );
         }
+
+        if (this.ticksInWater % (10 * 20) == 0) {
+          NBTTagCompound tagCompound;
+
+          if (itemStack.hasTagCompound()) {
+            tagCompound = itemStack.getTagCompound();
+
+          } else {
+            tagCompound = new NBTTagCompound();
+          }
+
+          //noinspection ConstantConditions
+          tagCompound.setInteger("ticksInWater", this.ticksInWater);
+          itemStack.setTagCompound(tagCompound);
+        }
       }
 
       if (this.ticksInWater >= ModuleHuntingConfig.IN_WORLD_HIDE_SOAK_TICKS) {
         ItemStack copy = this.transformedItem.copy();
-        copy.setCount(this.getItem().getCount());
+        copy.setCount(itemStack.getCount());
         this.setItem(copy);
       }
     }
