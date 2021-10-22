@@ -234,7 +234,6 @@
     * Rocks material type is now `Material.PLANTS` so they wash away with water [(#347)](https://github.com/codetaylor/pyrotech-1.12/issues/347)
     * Leather armor recipes now use new leather materials
     * Bellows recipe now uses new leather materials
-    * Rock Bag recipe now uses new leather materials
     * Item Frame recipe now uses new leather materials
     * Book recipe now uses new leather materials
     * Lead recipe now uses new leather materials
@@ -247,6 +246,9 @@
     * Recipes that use Block of Coal Coke have been changed to use the oredict `blockFuelCoke` [(#150)](https://github.com/codetaylor/pyrotech-1.12/issues/150)
     * Config entry `REPLACE_IRON_INGOTS_WITH_IRON_ORE` is now `REPLACE_IRON_INGOTS` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
     * Leather armor will now change color when Slaked Lime is applied [(#223)](https://github.com/codetaylor/pyrotech-1.12/issues/223)
+    * Rock Bag
+        * Recipe changed to use wool and twine instead of leather
+        * Texture changed to reflect new recipe
     * Anvils
         * The anvil will now allow both a pickaxe and a hammer recipe for the same input
         * Added back the stone to cobblestone anvil hammer recipe

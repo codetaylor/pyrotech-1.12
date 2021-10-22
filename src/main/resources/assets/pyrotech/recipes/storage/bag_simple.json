@@ -7,22 +7,14 @@
     }
   ],
   "pattern": [
-    "sCs",
-    "LSL",
+    "sWs",
+    "WSW",
     "sWs"
   ],
   "key": {
-    "C": {
-      "item": "pyrotech:material",
-      "data": 40
-    },
-    "L": {
-      "item": "pyrotech:material",
-      "data": 38
-    },
     "s": {
       "item": "pyrotech:material",
-      "data": 39
+      "data": 14
     },
     "W": {
       "type": "forge:ore_dict",

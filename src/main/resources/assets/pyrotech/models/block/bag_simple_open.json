@@ -1,16 +1,16 @@
 {
   "parent": "pyrotech:block/bag_base",
   "textures": {
-    "0": "pyrotech:blocks/bag_front_simple",
-    "1": "pyrotech:blocks/bag_side",
-    "2": "pyrotech:blocks/bag_top",
-    "3": "pyrotech:blocks/bag_back_simple",
-    "4": "pyrotech:blocks/bag_bottom",
-    "5": "pyrotech:blocks/bag_top_open",
-    "6": "pyrotech:blocks/bag_inside",
-    "7": "pyrotech:blocks/bag_front_simple_open",
-    "1_5": "pyrotech:blocks/bag_handle",
-    "particle": "pyrotech:blocks/bag_front_simple"
+    "0": "pyrotech:blocks/bag_front_cloth",
+    "1": "pyrotech:blocks/bag_side_cloth",
+    "2": "pyrotech:blocks/bag_top_cloth",
+    "3": "pyrotech:blocks/bag_back_cloth",
+    "4": "pyrotech:blocks/bag_bottom_cloth",
+    "5": "pyrotech:blocks/bag_top_open_cloth",
+    "6": "pyrotech:blocks/bag_inside_cloth",
+    "7": "pyrotech:blocks/bag_front_open_cloth",
+    "1_5": "pyrotech:blocks/bag_handle_cloth",
+    "particle": "pyrotech:blocks/bag_front_cloth"
   },
   "elements": [
     {
