@@ -7,22 +7,22 @@
     }
   ],
   "pattern": [
-    "LTL",
+    "sCs",
     "LSL",
-    "LIL"
+    "sLs"
   ],
   "key": {
-    "T": {
+    "C": {
       "item": "pyrotech:material",
-      "data": 26
-    },
-    "I": {
-      "type": "forge:ore_dict",
-      "ore": "ingotGold"
+      "data": 44
     },
     "L": {
-      "type": "forge:ore_dict",
-      "ore": "leather"
+      "item": "pyrotech:material",
+      "data": 42
+    },
+    "s": {
+      "item": "pyrotech:material",
+      "data": 43
     },
     "S": {
       "item": "pyrotech:stash_stone",
