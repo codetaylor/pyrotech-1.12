@@ -1,5 +1,11 @@
 {
   "type": "pyrotech:leather_durable_upgrade",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.hunting"]
+    }
+  ],
   "ingredients": [
     {
       "item": "minecraft:leather_boots",
