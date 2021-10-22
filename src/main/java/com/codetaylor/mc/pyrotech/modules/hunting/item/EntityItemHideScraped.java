@@ -29,14 +29,14 @@ public class EntityItemHideScraped
 
     // serialization
     super(world);
-    this.setNoDespawn();
+    this.lifespan = Integer.MAX_VALUE;
   }
 
   public EntityItemHideScraped(World world, double x, double y, double z, ItemStack stack, ItemStack transformedItem) {
 
     super(world, x, y, z, stack);
-    this.setNoDespawn();
     this.transformedItem = transformedItem;
+    this.lifespan = Integer.MAX_VALUE;
   }
 
   @Override
