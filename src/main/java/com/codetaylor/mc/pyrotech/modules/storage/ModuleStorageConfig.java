@@ -179,9 +179,9 @@ public class ModuleStorageConfig {
 
     @Config.Comment({
         "The maximum number of items the bag can carry.",
-        "Default: " + 1280
+        "Default: " + 2560
     })
-    public int MAX_ITEM_CAPACITY = 1280;
+    public int MAX_ITEM_CAPACITY = 2560;
 
     @Config.Comment({
         "Items that are allowed in the bag.",

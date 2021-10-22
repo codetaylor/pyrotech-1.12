@@ -249,6 +249,9 @@
     * Rock Bag
         * Recipe changed to use wool and twine instead of leather
         * Texture changed to reflect new recipe
+    * Durable Rock Bag
+        * Recipe changed to use new leather materials
+        * Default capacity increased from 1280 to 2560
     * Anvils
         * The anvil will now allow both a pickaxe and a hammer recipe for the same input
         * Added back the stone to cobblestone anvil hammer recipe
