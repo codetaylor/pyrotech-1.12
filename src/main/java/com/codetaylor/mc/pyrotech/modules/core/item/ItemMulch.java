@@ -62,7 +62,11 @@ public class ItemMulch
             this.playSound(world, player);
           }
 
-          return new ActionResult<>(EnumActionResult.SUCCESS, StackHelper.decrease(heldItem, 1, false));
+          if (!player.capabilities.isCreativeMode) {
+            heldItem.shrink(1);
+          }
+
+          return new ActionResult<>(EnumActionResult.SUCCESS, heldItem);
         }
       }
     }
