@@ -35,6 +35,17 @@
         * Gloamberry Bush
             * Drops Gloamberries when ripe
     * Items:
+        * Durable Flint and Bone Tools:
+            * Durable Flint Axe
+            * Durable Flint Pickaxe
+            * Durable Flint Shovel
+            * Durable Flint Hoe
+            * Durable Flint Hammer
+            * Durable Bone Axe
+            * Durable Bone Pickaxe
+            * Durable Bone Shovel
+            * Durable Bone Hoe
+            * Durable Bone Hammer
         * Spears:
             * Crude Spear
             * Flint Spear
@@ -101,6 +112,7 @@
         * Gloamberries
         * Gloamberry Wine
         * Tainted Meat
+        * Stone Tool Shaft
     * Fluids
         * Tannin
         * Pyroberry Wine
@@ -370,6 +382,18 @@
         * `gui.pyrotech.restart4`
         * `gui.pyrotech.restart.button`
         * `item.pyrotech.tainted.meat.name`
+        * `item.pyrotech.flint.hammer.durable.name`
+        * `item.pyrotech.bone.hammer.durable.name`
+        * `item.pyrotech.stone.tool.shaft.name`
+        * `item.pyrotech.bone.axe.durable.name`
+        * `item.pyrotech.bone.hoe.durable.name`
+        * `item.pyrotech.bone.pickaxe.durable.name`
+        * `item.pyrotech.bone.shovel.durable.name`
+        * `item.pyrotech.flint.axe.durable.name`
+        * `item.pyrotech.flint.hoe.durable.name`
+        * `item.pyrotech.flint.pickaxe.durable.name`
+        * `item.pyrotech.flint.shovel.durable.name`
+
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       
     * **Changed Lang Keys:**
