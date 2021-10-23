@@ -21,7 +21,6 @@ import com.codetaylor.mc.athenaeum.util.ParticleHelper;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleCombust;
-import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.BlockBarrel;
@@ -281,7 +280,7 @@ public class TileBarrel
         if (!currentRecipe.getOutput().isFluidEqual(this.inputFluidTank.getFluid())) {
           FluidStack outputCopy = currentRecipe.getOutput().copy();
           this.inputFluidTank.drain(this.inputFluidTank.getFluidAmount(), true);
-          this.inputFluidTank.fill(outputCopy, true);
+          this.inputFluidTank.fillInternal(outputCopy, true);
         }
 
         this.recipeProgress.set(0);
@@ -592,11 +591,17 @@ public class TileBarrel
     }
 
     @Override
-    public int fillInternal(FluidStack resource, boolean doFill) {
+    public int fill(FluidStack resource, boolean doFill) {
 
       if (this.tile.isSealed()) {
         return 0;
       }
+
+      return super.fill(resource, doFill);
+    }
+
+    @Override
+    public int fillInternal(FluidStack resource, boolean doFill) {
 
       int filled = super.fillInternal(resource, doFill);
 
