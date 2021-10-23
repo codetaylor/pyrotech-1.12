@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tool"]
+    }
+  ],
+  "pattern": [
+    "RRR",
+    " C ",
+    " S "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:bone",
+      "data": 0
+    },
+    "C": {
+      "item": "pyrotech:material",
+      "data": 44
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 47
+    }
+  },
+  "result": {
+    "item": "pyrotech:bone_pickaxe_durable",
+    "count": 1,
+    "data": 0
+  }
+}

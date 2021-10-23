@@ -15,7 +15,9 @@ public class ItemPickaxeBase
     extends ItemPickaxe {
 
   public static final String NAME_BONE = "bone_pickaxe";
+  public static final String NAME_BONE_DURABLE = "bone_pickaxe_durable";
   public static final String NAME_FLINT = "flint_pickaxe";
+  public static final String NAME_FLINT_DURABLE = "flint_pickaxe_durable";
   public static final String NAME_OBSIDIAN = "obsidian_pickaxe";
 
   public ItemPickaxeBase(ToolMaterial material, String toolTierName) {

@@ -97,7 +97,9 @@ public class ModuleToolConfig {
   static {
     DURABILITY.put("crude", 32);
     DURABILITY.put("bone", 150);
+    DURABILITY.put("bone_durable", 600);
     DURABILITY.put("flint", 150);
+    DURABILITY.put("flint_durable", 600);
     DURABILITY.put("redstone", 200);
     DURABILITY.put("quartz", 350);
     DURABILITY.put("obsidian", 1400);
@@ -112,7 +114,9 @@ public class ModuleToolConfig {
   static {
     HARVEST_LEVEL.put("crude", 0);
     HARVEST_LEVEL.put("bone", 1);
+    HARVEST_LEVEL.put("bone_durable", 1);
     HARVEST_LEVEL.put("flint", 1);
+    HARVEST_LEVEL.put("flint_durable", 1);
     HARVEST_LEVEL.put("redstone", 1);
     HARVEST_LEVEL.put("quartz", 1);
     HARVEST_LEVEL.put("obsidian", 2);

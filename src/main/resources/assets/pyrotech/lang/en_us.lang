@@ -258,11 +258,21 @@ item.pyrotech.bone.pickaxe.name=Bone Pickaxe
 item.pyrotech.bone.shovel.name=Bone Shovel
 item.pyrotech.bone.sword.name=Bone Sword
 
+item.pyrotech.bone.axe.durable.name=Durable Bone Axe
+item.pyrotech.bone.hoe.durable.name=Durable Bone Hoe
+item.pyrotech.bone.pickaxe.durable.name=Durable Bone Pickaxe
+item.pyrotech.bone.shovel.durable.name=Durable Bone Shovel
+
 item.pyrotech.flint.axe.name=Flint Axe
 item.pyrotech.flint.hoe.name=Flint Hoe
 item.pyrotech.flint.pickaxe.name=Flint Pickaxe
 item.pyrotech.flint.shovel.name=Flint Shovel
 item.pyrotech.flint.sword.name=Flint Sword
+
+item.pyrotech.flint.axe.durable.name=Durable Flint Axe
+item.pyrotech.flint.hoe.durable.name=Durable Flint Hoe
+item.pyrotech.flint.pickaxe.durable.name=Durable Flint Pickaxe
+item.pyrotech.flint.shovel.durable.name=Durable Flint Shovel
 
 item.pyrotech.obsidian.axe.name=Obsidian Axe
 item.pyrotech.obsidian.hoe.name=Obsidian Hoe
@@ -353,6 +363,7 @@ item.pyrotech.leather.durable.strap.name=Durable Leather Strap
 item.pyrotech.leather.durable.cord.name=Durable Leather Cord
 item.pyrotech.leather.small.name=Small Leather
 item.pyrotech.fletching.name=Fletching
+item.pyrotech.stone.tool.shaft.name=Stone Tool Shaft
 
 item.pyrotech.apple.baked.name=Baked Apple
 item.pyrotech.carrot.roasted.name=Roasted Carrot

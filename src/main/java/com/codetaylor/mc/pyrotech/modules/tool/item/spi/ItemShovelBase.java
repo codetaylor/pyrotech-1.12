@@ -15,7 +15,9 @@ public class ItemShovelBase
     extends ItemSpade {
 
   public static final String NAME_BONE = "bone_shovel";
+  public static final String NAME_BONE_DURABLE = "bone_shovel_durable";
   public static final String NAME_FLINT = "flint_shovel";
+  public static final String NAME_FLINT_DURABLE = "flint_shovel_durable";
   public static final String NAME_OBSIDIAN = "obsidian_shovel";
 
   public ItemShovelBase(ToolMaterial material, String toolTierName) {

@@ -34,6 +34,15 @@ public final class ItemInitializer {
       registry.registerItem(new ItemSwordBase(material, "bone"), ItemSwordBase.NAME_BONE);
     }
 
+    // bone, durable
+    {
+      Item.ToolMaterial material = EnumMaterial.BONE.getToolMaterial();
+      registry.registerItem(new ItemAxeBase(material, 8f, -3.2f, "bone_durable"), ItemAxeBase.NAME_BONE_DURABLE);
+      registry.registerItem(new ItemHoeBase(material, "bone_durable"), ItemHoeBase.NAME_BONE_DURABLE);
+      registry.registerItem(new ItemPickaxeBase(material, "bone_durable"), ItemPickaxeBase.NAME_BONE_DURABLE);
+      registry.registerItem(new ItemShovelBase(material, "bone_durable"), ItemShovelBase.NAME_BONE_DURABLE);
+    }
+
     // flint
     {
       Item.ToolMaterial material = EnumMaterial.FLINT.getToolMaterial();
@@ -42,6 +51,15 @@ public final class ItemInitializer {
       registry.registerItem(new ItemPickaxeBase(material, "flint"), ItemPickaxeBase.NAME_FLINT);
       registry.registerItem(new ItemShovelBase(material, "flint"), ItemShovelBase.NAME_FLINT);
       registry.registerItem(new ItemSwordBase(material, "flint"), ItemSwordBase.NAME_FLINT);
+    }
+
+    // flint, durable
+    {
+      Item.ToolMaterial material = EnumMaterial.FLINT.getToolMaterial();
+      registry.registerItem(new ItemAxeBase(material, 8f, -3.2f, "flint_durable"), ItemAxeBase.NAME_FLINT_DURABLE);
+      registry.registerItem(new ItemHoeBase(material, "flint_durable"), ItemHoeBase.NAME_FLINT_DURABLE);
+      registry.registerItem(new ItemPickaxeBase(material, "flint_durable"), ItemPickaxeBase.NAME_FLINT_DURABLE);
+      registry.registerItem(new ItemShovelBase(material, "flint_durable"), ItemShovelBase.NAME_FLINT_DURABLE);
     }
 
     // redstone
@@ -101,11 +119,21 @@ public final class ItemInitializer {
           ModuleTool.Items.BONE_SHOVEL,
           ModuleTool.Items.BONE_SWORD,
 
+          ModuleTool.Items.BONE_AXE_DURABLE,
+          ModuleTool.Items.BONE_HOE_DURABLE,
+          ModuleTool.Items.BONE_PICKAXE_DURABLE,
+          ModuleTool.Items.BONE_SHOVEL_DURABLE,
+
           ModuleTool.Items.FLINT_AXE,
           ModuleTool.Items.FLINT_HOE,
           ModuleTool.Items.FLINT_PICKAXE,
           ModuleTool.Items.FLINT_SHOVEL,
           ModuleTool.Items.FLINT_SWORD,
+
+          ModuleTool.Items.FLINT_AXE_DURABLE,
+          ModuleTool.Items.FLINT_HOE_DURABLE,
+          ModuleTool.Items.FLINT_PICKAXE_DURABLE,
+          ModuleTool.Items.FLINT_SHOVEL_DURABLE,
 
           ModuleTool.Items.OBSIDIAN_AXE,
           ModuleTool.Items.OBSIDIAN_HOE,

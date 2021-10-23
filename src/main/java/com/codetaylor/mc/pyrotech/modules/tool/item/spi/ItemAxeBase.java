@@ -15,7 +15,9 @@ public class ItemAxeBase
     extends ItemAxe {
 
   public static final String NAME_BONE = "bone_axe";
+  public static final String NAME_BONE_DURABLE = "bone_axe_durable";
   public static final String NAME_FLINT = "flint_axe";
+  public static final String NAME_FLINT_DURABLE = "flint_axe_durable";
   public static final String NAME_OBSIDIAN = "obsidian_axe";
 
   public ItemAxeBase(ToolMaterial material, String toolTierName) {

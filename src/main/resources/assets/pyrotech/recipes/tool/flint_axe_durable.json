@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tool"]
+    }
+  ],
+  "pattern": [
+    "RR ",
+    "RC ",
+    " S "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:flint",
+      "data": 0
+    },
+    "C": {
+      "item": "pyrotech:material",
+      "data": 44
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 47
+    }
+  },
+  "result": {
+    "item": "pyrotech:flint_axe_durable",
+    "count": 1,
+    "data": 0
+  }
+}

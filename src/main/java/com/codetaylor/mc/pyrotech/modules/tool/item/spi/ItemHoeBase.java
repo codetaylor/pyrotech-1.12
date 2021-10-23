@@ -15,7 +15,9 @@ public class ItemHoeBase
     extends ItemHoe {
 
   public static final String NAME_BONE = "bone_hoe";
+  public static final String NAME_BONE_DURABLE = "bone_hoe_durable";
   public static final String NAME_FLINT = "flint_hoe";
+  public static final String NAME_FLINT_DURABLE = "flint_hoe_durable";
   public static final String NAME_OBSIDIAN = "obsidian_hoe";
 
   public ItemHoeBase(ToolMaterial material, String toolTierName) {

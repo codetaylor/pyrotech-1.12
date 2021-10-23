@@ -118,7 +118,8 @@ public class ItemMaterial
     LEATHER_DURABLE_STRAP(43, "leather_durable_strap"),
     LEATHER_DURABLE_CORD(44, "leather_durable_cord"),
     LEATHER_SMALL(45, "leather_small"),
-    FLETCHING(46, "fletching");
+    FLETCHING(46, "fletching"),
+    STONE_TOOL_SHAFT(47, "stone_tool_shaft");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())
