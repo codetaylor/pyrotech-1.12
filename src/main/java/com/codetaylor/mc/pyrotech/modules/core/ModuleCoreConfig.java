@@ -143,10 +143,22 @@ public class ModuleCoreConfig {
     public int BONE_HAMMER_DURABILITY = 150;
 
     @Config.Comment({
+        "Durability of the durable bone hammer.",
+        "Default: " + 600
+    })
+    public int BONE_HAMMER_DURABLE_DURABILITY = 600;
+
+    @Config.Comment({
         "Durability of the flint hammer.",
         "Default: " + 150
     })
     public int FLINT_HAMMER_DURABILITY = 150;
+
+    @Config.Comment({
+        "Durability of the durable flint hammer.",
+        "Default: " + 600
+    })
+    public int FLINT_HAMMER_DURABLE_DURABILITY = 600;
 
     @Config.Comment({
         "Durability of the iron hammer.",

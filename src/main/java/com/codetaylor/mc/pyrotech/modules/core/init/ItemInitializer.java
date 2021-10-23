@@ -31,7 +31,9 @@ public final class ItemInitializer {
     registry.registerItem(new ItemCrudeHammer(), ItemCrudeHammer.NAME);
     registry.registerItem(new ItemStoneHammer(), ItemStoneHammer.NAME);
     registry.registerItem(new ItemBoneHammer(), ItemBoneHammer.NAME);
+    registry.registerItem(new ItemBoneHammerDurable(), ItemBoneHammerDurable.NAME);
     registry.registerItem(new ItemFlintHammer(), ItemFlintHammer.NAME);
+    registry.registerItem(new ItemFlintHammerDurable(), ItemFlintHammerDurable.NAME);
     registry.registerItem(new ItemIronHammer(), ItemIronHammer.NAME);
     registry.registerItem(new ItemGoldHammer(), ItemGoldHammer.NAME);
     registry.registerItem(new ItemDiamondHammer(), ItemDiamondHammer.NAME);
@@ -68,6 +70,8 @@ public final class ItemInitializer {
           ModuleCore.Items.STONE_HAMMER,
           ModuleCore.Items.FLINT_HAMMER,
           ModuleCore.Items.BONE_HAMMER,
+          ModuleCore.Items.FLINT_HAMMER_DURABLE,
+          ModuleCore.Items.BONE_HAMMER_DURABLE,
           ModuleCore.Items.IRON_HAMMER,
           ModuleCore.Items.GOLD_HAMMER,
           ModuleCore.Items.DIAMOND_HAMMER,

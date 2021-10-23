@@ -483,11 +483,17 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemBoneHammer.NAME)
     public static final ItemBoneHammer BONE_HAMMER;
 
+    @GameRegistry.ObjectHolder(ItemBoneHammerDurable.NAME)
+    public static final ItemBoneHammerDurable BONE_HAMMER_DURABLE;
+
     @GameRegistry.ObjectHolder(ItemDiamondHammer.NAME)
     public static final ItemDiamondHammer DIAMOND_HAMMER;
 
     @GameRegistry.ObjectHolder(ItemFlintHammer.NAME)
     public static final ItemFlintHammer FLINT_HAMMER;
+
+    @GameRegistry.ObjectHolder(ItemFlintHammerDurable.NAME)
+    public static final ItemFlintHammerDurable FLINT_HAMMER_DURABLE;
 
     @GameRegistry.ObjectHolder(ItemIronHammer.NAME)
     public static final ItemIronHammer IRON_HAMMER;
@@ -551,8 +557,10 @@ public class ModuleCore
       BURNED_FOOD = null;
       STRANGE_TUBER = null;
       BONE_HAMMER = null;
+      BONE_HAMMER_DURABLE = null;
       DIAMOND_HAMMER = null;
       FLINT_HAMMER = null;
+      FLINT_HAMMER_DURABLE = null;
       IRON_HAMMER = null;
       GOLD_HAMMER = null;
       STONE_HAMMER = null;

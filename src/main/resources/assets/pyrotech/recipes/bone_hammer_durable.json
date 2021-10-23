@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " RC",
+    " sR",
+    "S  "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:bone"
+    },
+    "s": {
+      "type": "forge:ore_dict",
+      "ore": "stickStone"
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 47
+    },
+    "C": {
+      "item": "pyrotech:material",
+      "data": 44
+    }
+  },
+  "result": {
+    "item": "pyrotech:bone_hammer_durable",
+    "count": 1,
+    "data": 0
+  }
+}
