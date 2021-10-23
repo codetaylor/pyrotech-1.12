@@ -117,7 +117,7 @@ public class TileTanningRack
           && this.world.getTotalWorldTime() % 40 == 0
           && !(ModuleTechBasicConfig.TANNING_RACK.RECIPE_RUIN_RAIN_TICKS >= 0 && this.world.isRainingAt(this.pos.up()))
           && this.world.canSeeSky(this.pos)
-          && (this.world.getWorldTime() >= 0 && this.world.getWorldTime() <= 12000)) {
+          && (this.world.getWorldTime() % 24000 >= 0 && this.world.getWorldTime() % 24000 <= 12000)) {
 
         ParticleHelper.spawnProgressParticlesClient(
             1,
@@ -145,7 +145,7 @@ public class TileTanningRack
           }
         }
 
-      } else if (this.world.getWorldTime() >= 0 && this.world.getWorldTime() <= 12000) {
+      } else if (this.world.getWorldTime() % 24000 >= 0 && this.world.getWorldTime() % 24000 <= 12000) {
         int timeTicks = Math.max(1, this.currentRecipe.getTimeTicks());
         float increment = 1.0f / timeTicks;
         this.recipeProgress.add(increment);
