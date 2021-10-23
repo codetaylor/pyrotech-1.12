@@ -68,7 +68,8 @@ public class TileTanningRack
 
     this.registerTileDataForNetwork(new ITileData[]{
         this.tileDataInputStackHandler,
-        new TileDataItemStackHandler<>(this.outputStackHandler)
+        new TileDataItemStackHandler<>(this.outputStackHandler),
+        this.recipeProgress
     });
 
     // --- Interactions
