@@ -3,8 +3,12 @@ package com.codetaylor.mc.pyrotech.modules.core.init;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCharcoalBlock;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockCobblestone;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
-import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.core.item.*;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.*;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemAxeBase;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemHoeBase;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemPickaxeBase;
+import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemShovelBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +35,19 @@ public class JsonOreDict {
   public static JsonOreDict generate() {
 
     JsonOreDict result = new JsonOreDict();
+
+    result.oreDict.put("toolHammer", new String[]{
+        "pyrotech:" + ItemBoneHammerDurable.NAME + ":*",
+        "pyrotech:" + ItemFlintHammerDurable.NAME + ":*",
+        "pyrotech:" + ItemBoneHammer.NAME + ":*",
+        "pyrotech:" + ItemFlintHammer.NAME + ":*",
+        "pyrotech:" + ItemCrudeHammer.NAME + ":*",
+        "pyrotech:" + ItemDiamondHammer.NAME + ":*",
+        "pyrotech:" + ItemGoldHammer.NAME + ":*",
+        "pyrotech:" + ItemIronHammer.NAME + ":*",
+        "pyrotech:" + ItemStoneHammer.NAME + ":*",
+        "pyrotech:" + ItemObsidianHammer.NAME + ":*"
+    });
 
     result.oreDict.put("straw", new String[]{
         "pyrotech:material:" + ItemMaterial.EnumType.STRAW.getMeta(),
