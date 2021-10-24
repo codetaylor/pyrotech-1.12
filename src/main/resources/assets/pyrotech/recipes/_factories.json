@@ -14,6 +14,8 @@
     "scraping_pelt": "com.codetaylor.mc.pyrotech.modules.core.recipe.ScrapingPeltRecipe$Factory",
     "hunters_knife_shapeless": "com.codetaylor.mc.pyrotech.modules.core.recipe.HuntersKnifeShapelessRecipe$Factory",
     "leather_durable_upgrade": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherArmorDurableUpgradeRecipe$Factory",
-    "leather_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherRepairRecipe$Factory"
+    "leather_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherRepairRecipe$Factory",
+    "bone_tool_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.BoneToolRepairRecipe$Factory",
+    "flint_tool_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.FlintToolRepairRecipe$Factory"
   }
 }

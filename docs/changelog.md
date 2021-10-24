@@ -46,6 +46,9 @@
             * Durable Bone Shovel
             * Durable Bone Hoe
             * Durable Bone Hammer
+        * Tool Repair Kits:
+            * Bone - works with durable tools only
+            * Flint - works with durable tools only
         * Spears:
             * Crude Spear
             * Flint Spear
@@ -404,6 +407,8 @@
         * `item.pyrotech.flint.hoe.durable.name`
         * `item.pyrotech.flint.pickaxe.durable.name`
         * `item.pyrotech.flint.shovel.durable.name`
+        * `item.pyrotech.bone.tool.repair.kit.name`
+        * `item.pyrotech.flint.tool.repair.kit.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

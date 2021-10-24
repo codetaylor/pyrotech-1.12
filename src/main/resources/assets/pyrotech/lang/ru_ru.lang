@@ -300,6 +300,9 @@ item.pyrotech.gold.shears.name=Золотые ножницы
 item.pyrotech.diamond.shears.name=Алмазные ножницы
 item.pyrotech.obsidian.shears.name=Обсидиановые ножницы
 
+item.pyrotech.bone.tool.repair.kit.name=Bone Tool Repair Kit
+item.pyrotech.flint.tool.repair.kit.name=Flint Tool Repair Kit
+
 #------------------------------------------------------------------------------
 # Module: Core
 #------------------------------------------------------------------------------

@@ -162,4 +162,50 @@ public class ModuleToolConfig {
       "Default: " + 0.65
   })
   public static double CRUDE_FISHING_ROD_BREAK_CHANCE = 0.65;
+
+  public static BoneToolRepairKit BONE_TOOL_REPAIR_KIT = new BoneToolRepairKit();
+
+  public static class BoneToolRepairKit {
+
+    @Config.Comment({
+        "The number of uses per repair kit.",
+        "Default: " + 4
+    })
+    public int USES = 4;
+
+    @Config.Comment({
+        "The damage applied to the hammer when repairing with a kit.",
+        "Default: " + 4
+    })
+    public int HAMMER_REPAIR_DAMAGE = 4;
+
+    @Config.Comment({
+        "The percentage of durability repaired.",
+        "Default: " + 0.25
+    })
+    public double PERCENTAGE_DURABILITY_REPAIRED = 0.25;
+  }
+
+  public static FlintToolRepairKit FLINT_TOOL_REPAIR_KIT = new FlintToolRepairKit();
+
+  public static class FlintToolRepairKit {
+
+    @Config.Comment({
+        "The number of uses per repair kit.",
+        "Default: " + 4
+    })
+    public int USES = 4;
+
+    @Config.Comment({
+        "The damage applied to the hammer when repairing with a kit.",
+        "Default: " + 4
+    })
+    public int HAMMER_REPAIR_DAMAGE = 4;
+
+    @Config.Comment({
+        "The percentage of durability repaired.",
+        "Default: " + 0.25
+    })
+    public double PERCENTAGE_DURABILITY_REPAIRED = 0.25;
+  }
 }

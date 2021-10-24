@@ -194,6 +194,12 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemShearsBase.NAME_OBSIDIAN)
     public static final ItemShearsBase OBSIDIAN_SHEARS;
 
+    @GameRegistry.ObjectHolder(ItemToolRepairKit.BONE_NAME)
+    public static final ItemToolRepairKit BONE_TOOL_REPAIR_KIT;
+
+    @GameRegistry.ObjectHolder(ItemToolRepairKit.FLINT_NAME)
+    public static final ItemToolRepairKit FLINT_TOOL_REPAIR_KIT;
+
     static {
       CRUDE_AXE = null;
       CRUDE_HOE = null;
@@ -241,6 +247,8 @@ public class ModuleTool
       DIAMOND_SHEARS = null;
       OBSIDIAN_SHEARS = null;
       GOLD_SHEARS = null;
+      BONE_TOOL_REPAIR_KIT = null;
+      FLINT_TOOL_REPAIR_KIT = null;
     }
   }
 }

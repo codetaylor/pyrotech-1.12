@@ -1,0 +1,27 @@
+{
+  "type": "pyrotech:bone_tool_repair",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tool"]
+    }
+  ],
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "toolHammer"
+    },
+    {
+      "item": "pyrotech:bone_tool_repair_kit",
+      "data": 32767
+    },
+    {
+      "item": "pyrotech:bone_shovel_durable",
+      "data": 32767
+    }
+  ],
+  "result": {
+    "item": "pyrotech:bone_shovel_durable",
+    "count": 1
+  }
+}

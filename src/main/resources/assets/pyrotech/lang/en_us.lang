@@ -301,6 +301,9 @@ item.pyrotech.gold.shears.name=Golden Shears
 item.pyrotech.diamond.shears.name=Diamond Shears
 item.pyrotech.obsidian.shears.name=Obsidian Shears
 
+item.pyrotech.bone.tool.repair.kit.name=Bone Tool Repair Kit
+item.pyrotech.flint.tool.repair.kit.name=Flint Tool Repair Kit
+
 #------------------------------------------------------------------------------
 # Module: Core
 #------------------------------------------------------------------------------

@@ -300,6 +300,9 @@ item.pyrotech.gold.shears.name=金剪刀
 item.pyrotech.diamond.shears.name=钻石剪刀
 item.pyrotech.obsidian.shears.name=黑曜石剪刀
 
+item.pyrotech.bone.tool.repair.kit.name=Bone Tool Repair Kit
+item.pyrotech.flint.tool.repair.kit.name=Flint Tool Repair Kit
+
 #------------------------------------------------------------------------------
 # Module: Core
 #------------------------------------------------------------------------------

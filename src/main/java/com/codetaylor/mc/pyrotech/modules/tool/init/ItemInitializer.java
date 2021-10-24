@@ -5,6 +5,7 @@ import com.codetaylor.mc.athenaeum.reference.ModuleMaterials;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
+import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import com.codetaylor.mc.pyrotech.modules.tool.item.*;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.*;
 import com.google.common.base.Preconditions;
@@ -98,6 +99,9 @@ public final class ItemInitializer {
     registry.registerItem(new ItemGoldShears(), ItemGoldShears.NAME);
     registry.registerItem(new ItemShearsBase("diamond"), ItemShearsBase.NAME_DIAMOND);
     registry.registerItem(new ItemShearsBase("obsidian"), ItemShearsBase.NAME_OBSIDIAN);
+
+    registry.registerItem(new ItemToolRepairKit(ModuleToolConfig.BONE_TOOL_REPAIR_KIT.USES), ItemToolRepairKit.BONE_NAME);
+    registry.registerItem(new ItemToolRepairKit(ModuleToolConfig.FLINT_TOOL_REPAIR_KIT.USES), ItemToolRepairKit.FLINT_NAME);
   }
 
   @SideOnly(Side.CLIENT)
@@ -160,7 +164,10 @@ public final class ItemInitializer {
           ModuleTool.Items.FLINT_SHEARS,
           ModuleTool.Items.DIAMOND_SHEARS,
           ModuleTool.Items.OBSIDIAN_SHEARS,
-          ModuleTool.Items.GOLD_SHEARS
+          ModuleTool.Items.GOLD_SHEARS,
+
+          ModuleTool.Items.BONE_TOOL_REPAIR_KIT,
+          ModuleTool.Items.FLINT_TOOL_REPAIR_KIT
       );
     });
   }

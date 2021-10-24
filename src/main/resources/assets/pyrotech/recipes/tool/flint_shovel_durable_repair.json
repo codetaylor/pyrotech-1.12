@@ -1,0 +1,27 @@
+{
+  "type": "pyrotech:flint_tool_repair",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tool"]
+    }
+  ],
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "toolHammer"
+    },
+    {
+      "item": "pyrotech:flint_tool_repair_kit",
+      "data": 32767
+    },
+    {
+      "item": "pyrotech:flint_shovel_durable",
+      "data": 32767
+    }
+  ],
+  "result": {
+    "item": "pyrotech:flint_shovel_durable",
+    "count": 1
+  }
+}

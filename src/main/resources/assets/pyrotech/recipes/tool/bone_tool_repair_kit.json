@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tool"]
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "pyrotech:material",
+      "data": 11
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 11
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 11
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "stickStone"
+    },
+    {
+      "item": "pyrotech:material",
+      "data": 40
+    }
+  ],
+  "result": {
+    "item": "pyrotech:bone_tool_repair_kit",
+    "count": 1,
+    "data": 0
+  }
+}
