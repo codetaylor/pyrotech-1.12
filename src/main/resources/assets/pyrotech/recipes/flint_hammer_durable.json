@@ -1,17 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " RC",
-    " sR",
+    " R ",
+    " CR",
     "S  "
   ],
   "key": {
     "R": {
       "item": "minecraft:flint"
-    },
-    "s": {
-      "type": "forge:ore_dict",
-      "ore": "stickStone"
     },
     "S": {
       "item": "pyrotech:material",
