@@ -1,3 +1,10 @@
+**1.5.18**
+
+  * **Fixed:**
+    * Irregular behavior when transferring items from the rock bag into containers
+
+---
+
 **1.5.17**
 
   * **Fixed:**

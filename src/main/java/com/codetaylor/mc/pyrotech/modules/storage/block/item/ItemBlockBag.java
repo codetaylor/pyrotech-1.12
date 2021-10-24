@@ -238,28 +238,38 @@ public class ItemBlockBag
   }
 
   @Nonnull
+  @ParametersAreNonnullByDefault
   @Override
-  public EnumActionResult onItemUse(EntityPlayer player, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumHand hand, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ) {
+  public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
+
+    if (player.isSneaking()) {
+      ItemStack heldItem = player.getHeldItem(hand);
+
+      // try inventory
+      if (this.tryTransferItems(world, pos, side, heldItem)) {
+        return EnumActionResult.SUCCESS;
+      }
+
+      // spill contents
+      if (this.isOpen(heldItem)
+          && this.trySpillContents(world, pos, side, heldItem)) {
+        return EnumActionResult.SUCCESS;
+      }
+    }
+
+    return super.onItemUseFirst(player, world, pos, side, hitX, hitY, hitZ, hand);
+  }
+
+  @Nonnull
+  @ParametersAreNonnullByDefault
+  @Override
+  public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
     ItemStack heldItem = player.getHeldItem(hand);
     TileBagBase.StackHandler stackHandler = ItemBlockBag.getStackHandler(heldItem);
 
     if (stackHandler == null) {
       return EnumActionResult.PASS;
-    }
-
-    if (player.isSneaking()) {
-
-      // try inventory
-      if (this.tryTransferItems(world, pos, facing, heldItem)) {
-        return EnumActionResult.SUCCESS;
-      }
-
-      // spill contents
-      if (this.isOpen(heldItem)
-          && this.trySpillContents(world, pos, facing, heldItem)) {
-        return EnumActionResult.SUCCESS;
-      }
     }
 
     IBlockState blockState = world.getBlockState(pos);
