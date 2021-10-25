@@ -14,7 +14,7 @@
             * Use Hunter's Knife on Carcass to release captured drops
         * Butcher's Block
             * Chance to increase meat drops from Carcass
-            * Chance to decrease pelt drops from Carcass
+            * Chance to increase pelt drops from Carcass
         * Decorative blocks:
             * Masonry Brick Stairs [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
             * Masonry Brick Slab [(#194)](https://github.com/codetaylor/pyrotech-1.12/issues/194)
@@ -291,6 +291,9 @@
         * Drains will now collect fluid from any tile entities with the fluid handler capability [(#278)](https://github.com/codetaylor/pyrotech-1.12/issues/278) 
             * Config: `ALLOW_TILE_DRAIN`
     * Removed Charcoal Flakes failure items from Wood Chips pit burn recipe
+    * Rebalanced Soaking Pot recipes
+        * `pulp_from_wood_chips` no longer requires a Campfire
+        * `white_wool` no longer requires a Campfire
 
   * **Translators:**
     * **New Lang Entries:**
