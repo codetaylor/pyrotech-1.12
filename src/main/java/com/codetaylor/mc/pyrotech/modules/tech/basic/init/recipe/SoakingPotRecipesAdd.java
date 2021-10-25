@@ -28,7 +28,7 @@ public class SoakingPotRecipesAdd {
           new ItemStack(ModuleHunting.Items.HIDE_TANNED),
           Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_WASHED)),
           new FluidStack(ModuleHunting.Fluids.TANNIN, 500),
-          true,
+          false,
           10 * 60 * 20
       ).setRegistryName(ModuleTechBasic.MOD_ID, "leather"));
 
@@ -37,7 +37,7 @@ public class SoakingPotRecipesAdd {
           new ItemStack(ModuleHunting.Items.HIDE_SMALL_TANNED),
           Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_SMALL_WASHED)),
           new FluidStack(ModuleHunting.Fluids.TANNIN, 250),
-          true,
+          false,
           5 * 60 * 20
       ).setRegistryName(ModuleTechBasic.MOD_ID, "leather_small"));
     }
@@ -136,7 +136,8 @@ public class SoakingPotRecipesAdd {
         ItemMaterial.EnumType.FLINT_CLAY_BALL.asStack(),
         new OreIngredient("dustFlint"),
         new FluidStack(ModuleCore.Fluids.CLAY, 250),
-        false, 5 * 60 * 20
+        false,
+        5 * 60 * 20
     ).setRegistryName(ModuleTechBasic.MOD_ID, "flint_clay"));
 
     // Tarred Kindling
@@ -197,7 +198,7 @@ public class SoakingPotRecipesAdd {
         ItemMaterial.EnumType.PULP.asStack(),
         Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.WOOD_CHIPS.getMeta())),
         new FluidStack(FluidRegistry.WATER, 500),
-        true,
+        false,
         7 * 60 * 20
     ).setRegistryName(ModuleTechBasic.MOD_ID, "pulp_from_wood_chips"));
 
@@ -264,7 +265,7 @@ public class SoakingPotRecipesAdd {
         new ItemStack(Blocks.WOOL, 1, 0),
         Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, OreDictionary.WILDCARD_VALUE)),
         new FluidStack(FluidRegistry.WATER, 250),
-        true,
+        false,
         4 * 60 * 20
     ).setRegistryName(ModuleTechBasic.MOD_ID, "white_wool"));
 
