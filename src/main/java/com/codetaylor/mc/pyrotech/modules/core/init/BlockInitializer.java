@@ -56,6 +56,8 @@ public final class BlockInitializer {
     registry.registerBlock(blockStrawBed, BlockStrawBed.NAME);
     registry.registerItem(new ItemStrawBed(blockStrawBed), blockStrawBed.getRegistryName());
 
+    registry.registerBlockWithItem(new BlockCobWet(), BlockCobWet.NAME);
+    registry.registerBlockWithItem(new BlockCobDry(), BlockCobDry.NAME);
     registry.registerBlockWithItem(new BlockLogPile(), BlockLogPile.NAME);
     registry.registerBlockWithItem(new BlockCoalCokeBlock(), BlockCoalCokeBlock.NAME);
     registry.registerBlockWithItem(new BlockThatch(), BlockThatch.NAME);
@@ -121,6 +123,8 @@ public final class BlockInitializer {
     registry.registerClientModelRegistrationStrategy(() -> {
 
       ModelRegistrationHelper.registerBlockItemModels(
+          ModuleCore.Blocks.COB_WET,
+          ModuleCore.Blocks.COB_DRY,
           ModuleCore.Blocks.LOG_PILE,
           ModuleCore.Blocks.COAL_COKE_BLOCK,
           ModuleCore.Blocks.THATCH,

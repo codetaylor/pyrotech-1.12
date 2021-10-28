@@ -34,6 +34,8 @@
             * Drops Pyroberries when sheared at max growth stage
         * Gloamberry Bush
             * Drops Gloamberries when ripe
+        * Dry Cob
+        * Wet Cob
     * Items:
         * Durable Flint and Bone Tools:
             * Durable Flint Axe
@@ -412,6 +414,8 @@
         * `item.pyrotech.flint.shovel.durable.name`
         * `item.pyrotech.bone.tool.repair.kit.name`
         * `item.pyrotech.flint.tool.repair.kit.name`
+        * `tile.pyrotech.cob_wet.name`
+        * `tile.pyrotech.cob_dry.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

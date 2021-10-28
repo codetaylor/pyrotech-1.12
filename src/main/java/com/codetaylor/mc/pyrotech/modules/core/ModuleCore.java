@@ -384,6 +384,12 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockGloamberryBush.NAME)
     public static final BlockGloamberryBush GLOAMBERRY_BUSH;
 
+    @GameRegistry.ObjectHolder(BlockCobDry.NAME)
+    public static final BlockCobDry COB_DRY;
+
+    @GameRegistry.ObjectHolder(BlockCobWet.NAME)
+    public static final BlockCobWet COB_WET;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -429,6 +435,8 @@ public class ModuleCore
       STRAW_BED = null;
       PYROBERRY_BUSH = null;
       GLOAMBERRY_BUSH = null;
+      COB_DRY = null;
+      COB_WET = null;
     }
   }
 

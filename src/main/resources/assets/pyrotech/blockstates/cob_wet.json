@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all"
+  },
+  "variants": {
+    "normal": [{"textures": {"all": "pyrotech:blocks/cob_wet"}}],
+    "dry": {
+      "0": {"textures": {"all": "pyrotech:blocks/cob_wet"}},
+      "1": {"textures": {"all": "pyrotech:blocks/cob_wet"}},
+      "2": {"textures": {"all": "pyrotech:blocks/cob_wet"}},
+      "3": {"textures": {"all": "pyrotech:blocks/cob_wet"}}
+    }
+  }
+}
