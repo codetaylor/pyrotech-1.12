@@ -36,6 +36,7 @@
             * Drops Gloamberries when ripe
         * Dry Cob
         * Wet Cob
+        * Mud
     * Items:
         * Durable Flint and Bone Tools:
             * Durable Flint Axe
@@ -416,6 +417,8 @@
         * `item.pyrotech.flint.tool.repair.kit.name`
         * `tile.pyrotech.cob_wet.name`
         * `tile.pyrotech.cob_dry.name`
+        * `tile.pyrotech.mud.name`
+
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

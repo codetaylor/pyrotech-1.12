@@ -390,6 +390,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockCobWet.NAME)
     public static final BlockCobWet COB_WET;
 
+    @GameRegistry.ObjectHolder(BlockMud.NAME)
+    public static final BlockMud MUD;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -437,6 +440,7 @@ public class ModuleCore
       GLOAMBERRY_BUSH = null;
       COB_DRY = null;
       COB_WET = null;
+      MUD = null;
     }
   }
 
