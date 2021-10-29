@@ -46,7 +46,7 @@ public class BlockCobWet
   @Override
   public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 
-//    world.scheduleUpdate(pos, this, FALL_CHECK_DELAY);
+    // Overriden to prevent update tick on neighbor change.
   }
 
   @ParametersAreNonnullByDefault
