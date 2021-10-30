@@ -124,4 +124,20 @@ public class WorldGenOre
           && blockState.getBlock() == this.toReplace;
     }
   }
+
+  public static class BlockStatePredicate
+      implements Predicate<IBlockState> {
+
+    private final IBlockState toReplace;
+
+    public BlockStatePredicate(IBlockState toReplace) {
+
+      this.toReplace = toReplace;
+    }
+
+    public boolean apply(IBlockState blockState) {
+
+      return (blockState == this.toReplace);
+    }
+  }
 }

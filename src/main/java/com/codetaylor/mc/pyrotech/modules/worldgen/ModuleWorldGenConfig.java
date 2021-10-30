@@ -530,4 +530,36 @@ public class ModuleWorldGenConfig {
     public int[] VERTICAL_BOUNDS = {1, 64};
   }
 
+  public static WorldGenMud MUD = new WorldGenMud();
+
+  public static class WorldGenMud {
+
+    @Config.Comment({
+        "Set to false to disable this worldgen.",
+        "Default: " + true
+    })
+    public boolean ENABLED = true;
+
+    @Config.Comment({
+        "An int array of dimension id's that this is allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_WHITELIST = {
+        0
+    };
+
+    @Config.Comment({
+        "An int array of dimension id's that this is not allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_BLACKLIST = new int[0];
+
+    @Config.Comment({
+        "How many times will the generator try to spawn this worldgen.",
+        "Default: " + 8
+    })
+    @Config.RangeInt(min = 0)
+    public int CHANCES_TO_SPAWN = 8;
+  }
+
 }
