@@ -1,5 +1,12 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
+import com.codetaylor.mc.athenaeum.interaction.api.Transform;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.athenaeum.inventory.LargeDynamicStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
@@ -11,13 +18,6 @@ import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.OreDictHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
-import com.codetaylor.mc.athenaeum.interaction.api.Transform;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileBurnableBase;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
@@ -63,16 +63,16 @@ public class TileKilnPit
 
   private static final int DEFAULT_TOTAL_BURN_TIME_TICKS = 1000;
 
-  private InputStackHandler stackHandler;
-  private OutputStackHandler outputStackHandler;
-  private LogStackHandler logStackHandler;
+  private final InputStackHandler stackHandler;
+  private final OutputStackHandler outputStackHandler;
+  private final LogStackHandler logStackHandler;
 
   private int totalBurnTimeTicks;
   private boolean active;
-  private TileDataFloat progress;
+  private final TileDataFloat progress;
 
   // transient
-  private IInteraction[] interactions;
+  private final IInteraction<?>[] interactions;
 
   public TileKilnPit() {
 
@@ -435,7 +435,7 @@ public class TileKilnPit
   }
 
   // ---------------------------------------------------------------------------
-  // - Persistence
+  // - Serialization
   // ---------------------------------------------------------------------------
 
   @Nonnull
@@ -524,12 +524,12 @@ public class TileKilnPit
   }
 
   @Override
-  public IInteraction[] getInteractions() {
+  public IInteraction<?>[] getInteractions() {
 
     return this.interactions;
   }
 
-  private class InteractionThatch
+  private static class InteractionThatch
       extends InteractionUseItemBase<TileKilnPit> {
 
     /* package */ InteractionThatch() {
@@ -540,6 +540,7 @@ public class TileKilnPit
     @Override
     public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
 
+      //noinspection deprecation
       return blockState.getBlock().getBoundingBox(blockState, world, pos);
     }
 
@@ -577,7 +578,7 @@ public class TileKilnPit
     }
   }
 
-  private class InteractionLog
+  private static class InteractionLog
       extends InteractionItemStack<TileKilnPit> {
 
     private static final double ONE_THIRD = 1.0 / 3.0;
@@ -648,7 +649,7 @@ public class TileKilnPit
     }
   }
 
-  private class Interaction
+  private static class Interaction
       extends InteractionItemStack<TileKilnPit> {
 
     private final TileKilnPit tile;
@@ -681,6 +682,7 @@ public class TileKilnPit
     @Override
     public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
 
+      //noinspection deprecation
       return blockState.getBlock().getBoundingBox(blockState, world, pos);
     }
 
@@ -717,7 +719,7 @@ public class TileKilnPit
   // - Stack Handlers
   // ---------------------------------------------------------------------------
 
-  private class InputStackHandler
+  private static class InputStackHandler
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
@@ -733,7 +735,7 @@ public class TileKilnPit
     }
   }
 
-  private class OutputStackHandler
+  private static class OutputStackHandler
       extends LargeDynamicStackHandler
       implements ITileDataItemStackHandler {
 
@@ -743,7 +745,7 @@ public class TileKilnPit
     }
   }
 
-  private class LogStackHandler
+  private static class LogStackHandler
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
