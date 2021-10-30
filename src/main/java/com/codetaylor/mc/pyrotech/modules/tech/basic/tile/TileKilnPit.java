@@ -67,6 +67,7 @@ public class TileKilnPit
   private final OutputStackHandler outputStackHandler;
   private final LogStackHandler logStackHandler;
 
+  private int rainTimeRemaining;
   private int totalBurnTimeTicks;
   private boolean active;
   private final TileDataFloat progress;
@@ -137,10 +138,14 @@ public class TileKilnPit
   public void setActive(boolean active) {
 
     this.active = active;
-    this.logStackHandler.setStackInSlot(0, ItemStack.EMPTY);
-    this.logStackHandler.setStackInSlot(1, ItemStack.EMPTY);
-    this.logStackHandler.setStackInSlot(2, ItemStack.EMPTY);
+    this.rainTimeRemaining = this.getRainDeactivateTime();
     this.markDirty();
+
+    if (active) {
+      this.logStackHandler.setStackInSlot(0, ItemStack.EMPTY);
+      this.logStackHandler.setStackInSlot(1, ItemStack.EMPTY);
+      this.logStackHandler.setStackInSlot(2, ItemStack.EMPTY);
+    }
   }
 
   private void setTotalBurnTimeTicks(int totalBurnTimeTicks) {
@@ -172,6 +177,11 @@ public class TileKilnPit
   protected int getBurnStages() {
 
     return 1;
+  }
+
+  protected int getRainDeactivateTime() {
+
+    return ModuleTechBasicConfig.PIT_KILN.TICKS_BEFORE_EXTINGUISHED;
   }
 
   // ---------------------------------------------------------------------------
@@ -214,19 +224,29 @@ public class TileKilnPit
   @Override
   protected void onUpdate() {
 
-    if (this.world.isRainingAt(this.pos)) {
-      // set back to wood state and douse fire
-      IBlockState blockState = ModuleTechBasic.Blocks.KILN_PIT.getDefaultState()
-          .withProperty(VARIANT, BlockKilnPit.EnumType.WOOD);
-      this.world.setBlockState(this.pos, blockState);
+    BlockPos up = this.pos.up();
 
-      BlockPos up = this.pos.up();
+    if (ModuleTechBasicConfig.PIT_KILN.EXTINGUISHED_BY_RAIN
+        && this.world.isRainingAt(up)) {
 
-      if (this.world.getBlockState(up).getBlock() == Blocks.FIRE) {
-        this.world.setBlockToAir(up);
+      this.rainTimeRemaining -= 1;
+
+      if (this.rainTimeRemaining <= 0) {
+
+        // set back to thatch state and douse fire
+        IBlockState blockState = ModuleTechBasic.Blocks.KILN_PIT.getDefaultState()
+            .withProperty(VARIANT, BlockKilnPit.EnumType.THATCH);
+        this.world.setBlockState(this.pos, blockState);
+
+        if (this.world.getBlockState(up).getBlock() == Blocks.FIRE) {
+          this.world.setBlockToAir(up);
+        }
+
+        this.setActive(false);
       }
 
-      this.setActive(false);
+    } else {
+      this.rainTimeRemaining = this.getRainDeactivateTime();
     }
 
     this.progress.set(this.calculateProgress());
@@ -234,6 +254,10 @@ public class TileKilnPit
 
   @Override
   protected void onUpdateValid() {
+
+    if (!this.isActive()) {
+      return;
+    }
 
     // set the block above to fire if the kiln is active
 

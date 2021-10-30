@@ -6,6 +6,7 @@
   * **Fixed:**
     * Hammering anvil bloom shouldn't show progress particles with zero hammer power
     * Pit Burn doesn't work correctly with SpongeForge [(#213)](https://github.com/codetaylor/pyrotech-1.12/issues/213)
+    * Pit Kiln doesn't properly extinguish in rain
 
   * **Added:**
     * Blocks:
@@ -139,6 +140,9 @@
         * New config file:
             * `module.Hunting.cfg`
         * Option to specify allowed fluids to douse extinguishable blocks [(#372)](https://github.com/codetaylor/pyrotech-1.12/issues/372)
+        * Pit Kiln option to:
+            * Specify if extinguished by rain `EXTINGUISHED_BY_RAIN`
+            * Specify ticks before extinguished by rain `TICKS_BEFORE_EXTINGUISHED`
     * Recipes:
         * Crafting:
             * Spears

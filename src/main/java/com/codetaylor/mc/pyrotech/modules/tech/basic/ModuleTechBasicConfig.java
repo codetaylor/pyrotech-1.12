@@ -1114,6 +1114,20 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble(min = 0, max = 1)
     public double VARIABLE_SPEED_MODIFIER = 0.5;
+
+    @Config.Comment({
+        "Set to true if the pit kiln should be extinguished by rain.",
+        "Default: " + true
+    })
+    public boolean EXTINGUISHED_BY_RAIN = true;
+
+    @Config.Comment({
+        "The number of ticks that the pit kiln can be exposed to rain before",
+        "it is extinguished.",
+        "Default: " + (10 * 20)
+    })
+    @Config.RangeInt(min = 1)
+    public int TICKS_BEFORE_EXTINGUISHED = 10 * 20;
   }
 
   // ---------------------------------------------------------------------------
