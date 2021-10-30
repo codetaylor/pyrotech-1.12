@@ -66,19 +66,19 @@ public class TileCampfire
 
   // --- Networked ---
 
-  private InputStackHandler inputStackHandler;
-  private OutputStackHandler outputStackHandler;
-  private FuelStackHandler fuelStackHandler;
+  private final InputStackHandler inputStackHandler;
+  private final OutputStackHandler outputStackHandler;
+  private final FuelStackHandler fuelStackHandler;
 
-  private TileDataInteger ashLevel;
-  private TileDataBoolean dead;
-  private TileDataItemStackHandler<FuelStackHandler> fuelStackHandlerData;
+  private final TileDataInteger ashLevel;
+  private final TileDataBoolean dead;
+  private final TileDataItemStackHandler<FuelStackHandler> fuelStackHandlerData;
 
   // --- Server ---
 
   private int cookTime;
   private int cookTimeTotal;
-  private TickCounter burnedFoodTickCounter;
+  private final TickCounter burnedFoodTickCounter;
   private int[] effectRadii;
 
   /**
@@ -86,7 +86,7 @@ public class TileCampfire
    */
   private boolean extinguishedByRain;
 
-  private IInteraction[] interactions;
+  private final IInteraction<?>[] interactions;
   private int interactionCooldown;
   private AxisAlignedBB effectBounds;
 
@@ -125,10 +125,10 @@ public class TileCampfire
     });
 
     this.ashLevel = new TileDataInteger(0);
-    this.ashLevel.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty(this));
+    this.ashLevel.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty<>(this));
 
     this.dead = new TileDataBoolean(false);
-    this.dead.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty(this));
+    this.dead.addChangeObserver(new TileDataBase.IChangeObserver.OnDirtyMarkTileDirty<>(this));
 
     this.cookTime = -1;
     this.cookTimeTotal = -1;
@@ -154,8 +154,8 @@ public class TileCampfire
             this.outputStackHandler
         }),
         new TileCampfire.InteractionShovel(),
-        new InteractionUseItemToActivateWorker(Items.FLINT_AND_STEEL, EnumFacing.VALUES, BlockCampfire.AABB_FULL),
-        new InteractionUseItemToActivateWorker(Items.FIRE_CHARGE, EnumFacing.VALUES, BlockCampfire.AABB_FULL, true),
+        new InteractionUseItemToActivateWorker<>(Items.FLINT_AND_STEEL, EnumFacing.VALUES, BlockCampfire.AABB_FULL),
+        new InteractionUseItemToActivateWorker<>(Items.FIRE_CHARGE, EnumFacing.VALUES, BlockCampfire.AABB_FULL, true),
         new TileCampfire.InteractionLog(this)
     };
   }
@@ -214,7 +214,7 @@ public class TileCampfire
 
     this.dead.set(true);
     this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
-                                                 .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.ASH));
+        .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.ASH));
   }
 
   // ---------------------------------------------------------------------------
@@ -311,14 +311,14 @@ public class TileCampfire
 
       if (this.world.getBlockState(this.pos).getBlock() == ModuleTechBasic.Blocks.CAMPFIRE) {
         this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
-                                                     .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.NORMAL));
+            .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.NORMAL));
       }
 
     } else if (!this.workerIsActive() && active) {
 
       if (this.world.getBlockState(this.pos).getBlock() == ModuleTechBasic.Blocks.CAMPFIRE) {
         this.world.setBlockState(this.pos, this.world.getBlockState(this.pos)
-                                                     .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.LIT));
+            .withProperty(BlockCampfire.VARIANT, BlockCampfire.EnumType.LIT));
       }
     }
 
@@ -742,7 +742,7 @@ public class TileCampfire
   }
 
   @Override
-  public IInteraction[] getInteractions() {
+  public IInteraction<?>[] getInteractions() {
 
     return this.interactions;
   }
@@ -753,7 +753,7 @@ public class TileCampfire
     return this.interactionCooldown;
   }
 
-  private class InteractionBucket
+  private static class InteractionBucket
       extends InteractionBucketBase<TileCampfire> {
 
     public InteractionBucket() {
@@ -845,16 +845,6 @@ public class TileCampfire
   public static class InteractionLog
       extends InteractionBase<TileCampfire> {
 
-    /**
-     * Used to cache the last item checked for validation.
-     */
-    private ItemStack lastItemChecked;
-
-    /**
-     * Used to cache if the last item checked was valid.
-     */
-    private boolean lastItemValid;
-
     private final TileCampfire tile;
 
     /* package */ InteractionLog(TileCampfire tile) {
@@ -885,19 +875,6 @@ public class TileCampfire
       if (itemStack.isEmpty()) {
         return false;
       }
-
-      /*
-      if (this.lastItemChecked == null
-          || this.lastItemChecked.getItem() != itemStack.getItem()
-          || this.lastItemChecked.getMetadata() != itemStack.getMetadata()) {
-
-        // Run the potentially expensive check.
-        this.lastItemChecked = itemStack.copy();
-        this.lastItemValid = this.doItemStackValidation(itemStack);
-      }
-
-      return this.lastItemValid;
-      */
 
       return this.doItemStackValidation(itemStack);
     }
@@ -989,7 +966,7 @@ public class TileCampfire
     }
   }
 
-  private class InteractionShovel
+  private static class InteractionShovel
       extends InteractionBase<TileCampfire> {
 
     /* package */ InteractionShovel() {
@@ -1056,7 +1033,7 @@ public class TileCampfire
     }
   }
 
-  private class OutputStackHandler
+  private static class OutputStackHandler
       extends ObservableStackHandler
       implements ITileDataItemStackHandler {
 
@@ -1066,7 +1043,7 @@ public class TileCampfire
     }
   }
 
-  private class FuelStackHandler
+  private static class FuelStackHandler
       extends LIFOStackHandler
       implements ITileDataItemStackHandler {
 

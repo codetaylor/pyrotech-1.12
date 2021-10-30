@@ -36,7 +36,7 @@ public abstract class TileTorchBase
 
   private int duration;
   private long lastTimeStamp;
-  private IInteraction[] interactions;
+  private final IInteraction<?>[] interactions;
 
   private boolean firstLightCheck;
 
@@ -144,7 +144,7 @@ public abstract class TileTorchBase
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setInteger("duration", this.duration);
@@ -153,7 +153,7 @@ public abstract class TileTorchBase
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.duration = compound.getInteger("duration");
@@ -162,7 +162,7 @@ public abstract class TileTorchBase
   }
 
   @Override
-  protected void setWorldCreate(World world) {
+  protected void setWorldCreate(@Nonnull World world) {
 
     // This is required to prevent NPE during readFromNBT.
     this.setWorld(world);
@@ -173,12 +173,12 @@ public abstract class TileTorchBase
   // ---------------------------------------------------------------------------
 
   @Override
-  public IInteraction[] getInteractions() {
+  public IInteraction<?>[] getInteractions() {
 
     return this.interactions;
   }
 
-  private class InteractionBucket
+  private static class InteractionBucket
       extends InteractionBucketBase<TileTorchBase> {
 
     /* package */ InteractionBucket() {
@@ -224,7 +224,7 @@ public abstract class TileTorchBase
     }
   }
 
-  public class InteractionUseItemToActivate
+  public static class InteractionUseItemToActivate
       extends InteractionUseItemBase<TileTorchBase> {
 
     private final Item item;
@@ -238,6 +238,7 @@ public abstract class TileTorchBase
     @Override
     public AxisAlignedBB getInteractionBounds(World world, BlockPos pos, IBlockState blockState) {
 
+      //noinspection deprecation
       return blockState.getBlock().getBoundingBox(blockState, world, pos);
     }
 

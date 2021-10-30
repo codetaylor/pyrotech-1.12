@@ -440,7 +440,7 @@ public class TileKilnPit
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setTag("stackHandler", this.stackHandler.serializeNBT());
@@ -452,7 +452,7 @@ public class TileKilnPit
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.stackHandler.deserializeNBT(compound.getCompoundTag("stackHandler"));
