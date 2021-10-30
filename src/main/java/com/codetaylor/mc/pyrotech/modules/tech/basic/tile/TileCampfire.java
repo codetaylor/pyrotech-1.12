@@ -2,7 +2,10 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
-import com.codetaylor.mc.athenaeum.interaction.spi.*;
+import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
+import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBase;
+import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.inventory.LIFOStackHandler;
 import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataBoolean;
@@ -13,6 +16,7 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileDataBase;
 import com.codetaylor.mc.athenaeum.util.*;
 import com.codetaylor.mc.pyrotech.library.InteractionUseItemToActivateWorker;
+import com.codetaylor.mc.pyrotech.library.spi.interaction.InteractionExtinguishable;
 import com.codetaylor.mc.pyrotech.library.spi.tile.TileCombustionWorkerBase;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
@@ -46,9 +50,6 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -148,7 +149,7 @@ public class TileCampfire
     // --- Interactions ---
 
     this.interactions = new IInteraction[]{
-        new InteractionBucket(),
+        new InteractionExtinguish(),
         new TileCampfire.InteractionFood(new ItemStackHandler[]{
             this.inputStackHandler,
             this.outputStackHandler
@@ -753,49 +754,18 @@ public class TileCampfire
     return this.interactionCooldown;
   }
 
-  private static class InteractionBucket
-      extends InteractionBucketBase<TileCampfire> {
+  private static class InteractionExtinguish
+      extends InteractionExtinguishable<TileCampfire> {
 
-    public InteractionBucket() {
+    public InteractionExtinguish() {
 
-      super(new FluidTank(1000) {
-
-        @Override
-        public boolean canFillFluidType(FluidStack fluid) {
-
-          return fluid != null && fluid.getFluid() == FluidRegistry.WATER;
-        }
-
-        @Override
-        public int fillInternal(FluidStack resource, boolean doFill) {
-
-          int filled = super.fillInternal(resource, doFill);
-          this.setFluid(null);
-          return filled;
-        }
-      }, EnumFacing.VALUES, BlockCampfire.AABB_FULL);
-    }
-
-    @Override
-    protected boolean doInteraction(TileCampfire tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
-
-      if (!tile.workerIsActive()
-          || tile.isDead()) {
-        return false;
-      }
-
-      if (super.doInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {
-        tile.combustionOnDeactivatedByRain();
-        tile.workerSetActive(false);
-
-        if (!world.isRemote) {
-          SoundHelper.playSoundServer(world, tile.getPos(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS);
-        }
-
-        return true;
-      }
-
-      return false;
+      super(
+          tile -> (tile.workerIsActive() && !tile.isDead()),
+          tile -> {
+            tile.combustionOnDeactivatedByRain();
+            tile.workerSetActive(false);
+          }
+      );
     }
   }
 

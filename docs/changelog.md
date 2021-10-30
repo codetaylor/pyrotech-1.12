@@ -138,6 +138,7 @@
             * Change thrown rock / clump inaccuracy `INACCURACY` [(#348)](https://github.com/codetaylor/pyrotech-1.12/issues/348)
         * New config file:
             * `module.Hunting.cfg`
+        * Option to specify allowed fluids to douse extinguishable blocks [(#372)](https://github.com/codetaylor/pyrotech-1.12/issues/372)
     * Recipes:
         * Crafting:
             * Spears

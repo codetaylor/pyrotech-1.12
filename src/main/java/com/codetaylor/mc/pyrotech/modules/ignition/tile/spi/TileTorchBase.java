@@ -3,10 +3,9 @@ package com.codetaylor.mc.pyrotech.modules.ignition.tile.spi;
 import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBucketBase;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
 import com.codetaylor.mc.athenaeum.spi.TileEntityBase;
-import com.codetaylor.mc.athenaeum.util.SoundHelper;
+import com.codetaylor.mc.pyrotech.library.spi.interaction.InteractionExtinguishable;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.spi.BlockTorchBase;
 import net.minecraft.block.state.IBlockState;
@@ -23,9 +22,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
 
 import javax.annotation.Nonnull;
 
@@ -45,7 +41,7 @@ public abstract class TileTorchBase
     this.duration = (int) (this.getDuration() + (Math.random() * 2 - 1) * this.getDurationVariant());
 
     this.interactions = new IInteraction[]{
-        new InteractionBucket(),
+        new InteractionExtinguish(),
         new InteractionUseItemToActivate(Items.FLINT_AND_STEEL, EnumFacing.VALUES)
     };
   }
@@ -178,49 +174,19 @@ public abstract class TileTorchBase
     return this.interactions;
   }
 
-  private static class InteractionBucket
-      extends InteractionBucketBase<TileTorchBase> {
+  private static class InteractionExtinguish
+      extends InteractionExtinguishable<TileTorchBase> {
 
-    /* package */ InteractionBucket() {
+    public InteractionExtinguish() {
 
-      super(new FluidTank(1000) {
-
-        @Override
-        public boolean canFillFluidType(FluidStack fluid) {
-
-          return (fluid != null) && (fluid.getFluid() == FluidRegistry.WATER);
-        }
-
-        @Override
-        public int fillInternal(FluidStack resource, boolean doFill) {
-
-          int filled = super.fillInternal(resource, doFill);
-          this.setFluid(null);
-          return filled;
-        }
-      }, EnumFacing.VALUES, InteractionBounds.BLOCK);
-    }
-
-    @Override
-    protected boolean doInteraction(TileTorchBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
-
-      if (!tile.isLit()) {
-        return false;
-      }
-
-      if (super.doInteraction(tile, world, hitPos, state, player, hand, hitSide, hitX, hitY, hitZ)) {
-        tile.setDoused();
-
-        if (!world.isRemote) {
-          SoundHelper.playSoundServer(world, tile.getPos(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS);
-        }
-
-        // This causes the last timestamp to be reset the next time the torch is lit.
-        tile.lastTimeStamp = 0;
-        return true;
-      }
-
-      return false;
+      super(
+          TileTorchBase::isLit,
+          tile -> {
+            tile.setDoused();
+            // This causes the last timestamp to be reset the next time the torch is lit.
+            tile.lastTimeStamp = 0;
+          }
+      );
     }
   }
 

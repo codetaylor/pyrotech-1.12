@@ -1056,4 +1056,11 @@ public class ModuleCoreConfig {
     public int PYROBERRIES_BURN_TIME_TICKS = 400;
   }
 
+  @Config.Comment({
+      "A list of fluids that are valid for use in dousing extinguishable blocks."
+  })
+  public static String[] VALID_DOUSING_FLUIDS = {
+      "water"
+  };
+
 }
