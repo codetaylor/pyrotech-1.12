@@ -36,7 +36,8 @@ public class ModulePluginDroptConfig {
         "granite",
         "granite_smooth",
         "granite_cobbled",
-        "netherrack"
+        "netherrack",
+        "mud"
     };
 
     for (String rule : rules) {

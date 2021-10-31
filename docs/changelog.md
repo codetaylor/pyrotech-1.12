@@ -175,6 +175,8 @@
         * Barrel:
             * `treeLeaves` and `fluid:water` to create `fluid:tannin`
     * Visual indicator when the player's hunger is too low to use a device
+    * Dropt rules:
+        * Tool harvest level scaling rules for Mud
     * Oredict:
         * `blockCharcoal` now contains `pyrotech:charcoal_block` [(#224)](https://github.com/codetaylor/pyrotech-1.12/issues/224)
         * `straw` now contains `pyrotech:material:2` [(#200)](https://github.com/codetaylor/pyrotech-1.12/issues/200)

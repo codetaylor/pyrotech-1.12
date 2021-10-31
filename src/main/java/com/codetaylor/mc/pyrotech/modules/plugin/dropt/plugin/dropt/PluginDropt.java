@@ -89,6 +89,7 @@ public class PluginDropt {
     String rockDiorite = item(BlockRock.NAME, BlockRock.EnumType.DIORITE.getMeta());
     String rockAndesite = item(BlockRock.NAME, BlockRock.EnumType.ANDESITE.getMeta());
     String rockDirt = item(BlockRock.NAME, BlockRock.EnumType.DIRT.getMeta());
+    String rockMud = item(BlockRock.NAME, BlockRock.EnumType.MUD.getMeta());
     String rockSand = item(BlockRock.NAME, BlockRock.EnumType.SAND.getMeta());
     String rockSandRed = item(BlockRock.NAME, BlockRock.EnumType.SAND_RED.getMeta());
     String rockGrass = item(BlockRockGrass.NAME, 0);
@@ -97,6 +98,7 @@ public class PluginDropt {
     String cobbledGranite = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.GRANITE.getMeta());
     String cobbledLimestone = item(BlockCobblestone.NAME, BlockCobblestone.EnumType.LIMESTONE.getMeta());
     String mulchedFarmland = item(BlockFarmlandMulched.NAME, 0);
+    String mud = item(BlockMud.NAME, 0);
 
     String flintShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.FLINT_SHARD.getMeta());
     String boneShard = item(ItemMaterial.NAME, ItemMaterial.EnumType.BONE_SHARD.getMeta());
@@ -224,6 +226,77 @@ public class PluginDropt {
           .addDrops(new IDroptDropBuilder[]{
               drop().items(new String[]{rockDirt}, range(3, 6)).selector(weight(4)),
               drop().items(new String[]{dirt})
+          })
+      );
+    }
+
+    // -------------------------------------------------------------------------
+    // - Mud
+    // -------------------------------------------------------------------------
+
+    if (enabled("mud")) {
+
+      if (ModulePluginDroptConfig.REDUCE_EXPLOSION_DROPS) {
+        // Explosion
+        // Drops mud clumps
+        list.add(rule()
+            .matchBlocks(new String[]{
+                mud
+            })
+            .matchHarvester(harvester()
+                .type(EnumHarvesterType.EXPLOSION)
+            )
+            .addDrops(new IDroptDropBuilder[]{
+                drop().selector(weight(9)),
+                drop().items(new String[]{rockMud}, range(1))
+            })
+        );
+      }
+
+      // Not a shovel
+      // Drops mud clumps
+      list.add(rule()
+          .matchBlocks(new String[]{
+              mud
+          })
+          .matchHarvester(harvester()
+              .mainHand(EnumListType.BLACKLIST, "shovel;0;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockMud}, range(1, 3))
+          })
+      );
+
+      // Shovel 0
+      // Drops mud clumps
+      list.add(rule()
+          .matchBlocks(new String[]{
+              mud
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;1;-1")
+          )
+          .dropStrategy(EnumDropStrategy.UNIQUE)
+          .dropCount(range(1, 2))
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockMud}, range(2, 4))
+          })
+      );
+
+      // Shovel 1
+      // Drops mud clumps
+      list.add(rule()
+          .matchBlocks(new String[]{
+              mud
+          })
+          .matchHarvester(harvester()
+              .type(EnumHarvesterType.PLAYER)
+              .mainHand(EnumListType.BLACKLIST, "shovel;2;-1")
+          )
+          .addDrops(new IDroptDropBuilder[]{
+              drop().items(new String[]{rockMud}, range(3, 6)).selector(weight(4)),
+              drop().items(new String[]{mud})
           })
       );
     }
