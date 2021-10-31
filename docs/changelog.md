@@ -283,6 +283,7 @@
     * Recipes that use Block of Coal Coke have been changed to use the oredict `blockFuelCoke` [(#150)](https://github.com/codetaylor/pyrotech-1.12/issues/150)
     * Config entry `REPLACE_IRON_INGOTS_WITH_IRON_ORE` is now `REPLACE_IRON_INGOTS` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
     * Leather armor will now change color when Slaked Lime is applied [(#223)](https://github.com/codetaylor/pyrotech-1.12/issues/223)
+    * Clay recipe changed to: water + dirt block x2 = clay ball
     * Rock Bag
         * Recipe changed to use wool and twine instead of leather
         * Texture changed to reflect new recipe
