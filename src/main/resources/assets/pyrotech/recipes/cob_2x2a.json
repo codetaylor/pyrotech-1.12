@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "pyrotech:material",
+      "data": 13
+    },
+    {
+      "item": "pyrotech:rock",
+      "data": 11
+    },
+    {
+      "item": "pyrotech:rock",
+      "data": 11
+    },
+    {
+      "item": "pyrotech:rock",
+      "data": 11
+    }
+  ],
+  "result": {
+    "item": "pyrotech:cob_wet",
+    "count": 1
+  }
+}

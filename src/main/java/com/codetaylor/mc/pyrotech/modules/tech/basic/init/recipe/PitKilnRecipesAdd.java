@@ -66,6 +66,18 @@ public class PitKilnRecipesAdd {
         }
     ).setRegistryName(ModuleTechBasic.MOD_ID, "brick"));
 
+    // Cob
+    registry.register(new KilnPitRecipe(
+        new ItemStack(ModuleCore.Blocks.COB_DRY),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Blocks.COB_WET)),
+        Reference.PitKiln.DEFAULT_BURN_TIME_TICKS,
+        Reference.PitKiln.DEFAULT_FAILURE_CHANCE,
+        new ItemStack[]{
+            new ItemStack(ModuleCore.Blocks.ROCK, 1, 4),
+            new ItemStack(ModuleCore.Blocks.ROCK, 2, 4)
+        }
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cob"));
+
     // Charcoal Flakes
     registry.register(new KilnPitRecipe(
         ItemMaterial.EnumType.CHARCOAL_FLAKES.asStack(),

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DDD",
+    "DFD",
+    "DDD"
+  ],
+  "key": {
+    "D": {
+      "item": "pyrotech:rock",
+      "data": 11
+    },
+    "F": {
+      "item": "pyrotech:material",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "pyrotech:cob_wet",
+    "count": 4
+  }
+}
