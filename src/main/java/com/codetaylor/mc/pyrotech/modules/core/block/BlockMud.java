@@ -60,7 +60,8 @@ public class BlockMud
   public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 
     if (world.getBlockState(pos.up()).getBlock() != Blocks.WATER
-        && !world.isRainingAt(pos.up())) {
+        && !world.isRainingAt(pos.up())
+        && world.canSeeSky(pos.up())) {
       world.setBlockState(pos, Blocks.DIRT.getDefaultState());
     }
   }

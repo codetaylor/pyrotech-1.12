@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
@@ -47,6 +48,16 @@ public class WorldGenMud
                       w.setBlockState(p, ModuleCore.Blocks.MUD.getDefaultState(), 2);
                       break;
                     }
+                  }
+                }
+              } else if (bs.getBlock() == Blocks.AIR) {
+                BlockPos downPos = p.down();
+                IBlockState downState = w.getBlockState(downPos);
+                if (downState.getBlock().isTopSolid(downState)) {
+                  if (random.nextFloat() < 0.75) {
+                    w.setBlockState(p, ModuleCore.Blocks.ROCK.getDefaultState().withProperty(BlockRock.VARIANT, BlockRock.EnumType.MUD), 2);
+                  } else if (!w.canSeeSky(p)) {
+                    w.setBlockState(downPos, ModuleCore.Blocks.MUD.getDefaultState(), 2);
                   }
                 }
               }
