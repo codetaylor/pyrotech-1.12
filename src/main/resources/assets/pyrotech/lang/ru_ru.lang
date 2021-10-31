@@ -445,6 +445,7 @@ tile.pyrotech.rock_limestone.name=Известняковый камушек
 tile.pyrotech.rock_sand_red.name=Горстка красного песка
 tile.pyrotech.rock_sandstone_red.name=Красный песчаниковый камушек
 tile.pyrotech.rock_netherrack.name=Незеритовый камушек
+tile.pyrotech.rock_mud.name=Mud Clump
 
 #------------------------------------------------------------------------------
 # Tooltips

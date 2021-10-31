@@ -445,6 +445,7 @@ tile.pyrotech.rock_wood_chips.name=木屑堆
 tile.pyrotech.rock_limestone.name=石灰岩块
 tile.pyrotech.rock_sand_red.name=红沙堆
 tile.pyrotech.rock_netherrack.name=地狱岩碎片
+tile.pyrotech.rock_mud.name=Mud Clump
 
 #------------------------------------------------------------------------------
 # Tooltips

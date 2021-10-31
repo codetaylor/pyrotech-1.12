@@ -120,6 +120,7 @@
         * Gloamberry Wine
         * Tainted Meat
         * Stone Tool Shaft
+        * Mud Clump
     * Fluids
         * Tannin
         * Pyroberry Wine
@@ -423,7 +424,7 @@
         * `tile.pyrotech.cob_wet.name`
         * `tile.pyrotech.cob_dry.name`
         * `tile.pyrotech.mud.name`
-
+        * `tile.pyrotech.rock_mud.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       
