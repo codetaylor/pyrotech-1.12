@@ -35,7 +35,7 @@
             * Drops Pyroberries when sheared at max growth stage
         * Gloamberry Bush
             * Drops Gloamberries when ripe
-        * Dry Cob
+        * Cob
         * Wet Cob
         * Mud
     * Items:
