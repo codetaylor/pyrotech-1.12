@@ -74,6 +74,15 @@ public class CompactingBinRecipesAdd {
         8
     ).setRegistryName(ModuleTechBasic.MOD_ID, "dirt"));
 
+    // Mud
+    registry.register(new CompactingBinRecipe(
+        new ItemStack(ModuleCore.Blocks.MUD, 1, 0),
+        Ingredient.fromStacks(
+            new ItemStack(ModuleCore.Blocks.ROCK, 1, BlockRock.EnumType.MUD.getMeta())
+        ),
+        8
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "mud"));
+
     // Charcoal Block
     registry.register(new CompactingBinRecipe(
         new ItemStack(ModuleCore.Blocks.CHARCOAL_BLOCK, 1, 0),

@@ -4,6 +4,7 @@ import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemRock;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.SoakingPotRecipe;
@@ -119,6 +120,24 @@ public class SoakingPotRecipesAdd {
           7 * 60 * 20
       ).setRegistryName(ModuleTechBasic.MOD_ID, "coal_block"));
     }
+
+    // Mud
+    registry.register(new SoakingPotRecipe(
+        new ItemStack(ModuleCore.Blocks.MUD),
+        new OreIngredient("dirt"),
+        new FluidStack(FluidRegistry.WATER, 250),
+        false,
+        7 * 60 * 20
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "mud"));
+
+    // Mud Clump
+    registry.register(new SoakingPotRecipe(
+        new ItemStack(ModuleCore.Items.ROCK, 1, BlockRock.EnumType.MUD.getMeta()),
+        Ingredient.fromStacks(new ItemStack(ModuleCore.Items.ROCK, 1, BlockRock.EnumType.DIRT.getMeta())),
+        new FluidStack(FluidRegistry.WATER, 125),
+        false,
+        4 * 60 * 20
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "mud_clump"));
 
     // Living Tar
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
