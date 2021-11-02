@@ -74,6 +74,8 @@ item.pyrotech.bone.spear.name=Bone Spear
 tile.pyrotech.carcass.name=Carcass
 tile.pyrotech.butchers_block.name=Butcher's Block
 
+entity.pyrotech.mud.name=Animated Mud
+
 fluid.tannin=Tannin
 tile.fluid.tannin.name=Tannin
 
@@ -431,6 +433,7 @@ tile.pyrotech.gloamberry_bush.name=Gloamberry Bush
 tile.pyrotech.cob_wet.name=Wet Cob
 tile.pyrotech.cob_dry.name=Cob
 tile.pyrotech.mud.name=Mud
+tile.pyrotech.mud_layer.name=Mud
 
 tile.pyrotech.rock_stone.name=Камушек
 tile.pyrotech.rock_andesite.name=Андезитовый камушек

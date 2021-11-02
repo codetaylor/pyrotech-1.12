@@ -59,6 +59,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockCobWet(), BlockCobWet.NAME);
     registry.registerBlockWithItem(new BlockCobDry(), BlockCobDry.NAME);
     registry.registerBlockWithItem(new BlockMud(), BlockMud.NAME);
+    registry.registerBlockWithItem(new BlockMudLayer(), BlockMudLayer.NAME);
     registry.registerBlockWithItem(new BlockLogPile(), BlockLogPile.NAME);
     registry.registerBlockWithItem(new BlockCoalCokeBlock(), BlockCoalCokeBlock.NAME);
     registry.registerBlockWithItem(new BlockThatch(), BlockThatch.NAME);
@@ -127,6 +128,7 @@ public final class BlockInitializer {
           ModuleCore.Blocks.COB_WET,
           ModuleCore.Blocks.COB_DRY,
           ModuleCore.Blocks.MUD,
+          ModuleCore.Blocks.MUD_LAYER,
           ModuleCore.Blocks.LOG_PILE,
           ModuleCore.Blocks.COAL_COKE_BLOCK,
           ModuleCore.Blocks.THATCH,

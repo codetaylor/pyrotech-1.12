@@ -476,6 +476,37 @@ public class ModuleHuntingConfig {
     }};
   }
 
+  public static EntityMud ENTITY_MUD = new EntityMud();
+
+  public static class EntityMud {
+
+    @Config.Comment({
+        "List of biomes to spawn this mob in."
+    })
+    public String[] SPAWN_BIOMES = {
+        "minecraft:swampland",
+        "minecraft:river"
+    };
+
+    @Config.Comment({
+        "Spawn weight.",
+        "Default: " + 100
+    })
+    public int SPAWN_WEIGHT = 100;
+
+    @Config.Comment({
+        "Minimum spawn count.",
+        "Default: " + 1
+    })
+    public int SPAWN_COUNT_MIN = 1;
+
+    @Config.Comment({
+        "Maximum spawn count.",
+        "Default: " + 3
+    })
+    public int SPAWN_COUNT_MAX = 3;
+  }
+
   @Config.Comment({
       "The durability of the hunter's knives."
   })

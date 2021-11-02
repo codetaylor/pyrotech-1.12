@@ -37,7 +37,8 @@
             * Drops Gloamberries when ripe
         * Cob
         * Wet Cob
-        * Mud
+            * Dries in-world
+        * Mud - Block and layer
     * Items:
         * Durable Flint and Bone Tools:
             * Durable Flint Axe
@@ -121,6 +122,11 @@
         * Tainted Meat
         * Stone Tool Shaft
         * Mud Clump
+    * Mobs:
+        * Animated Mud
+            * Spawns in `minecraft:swampland` and `minecraft:river` biomes by default
+            * Drops Mud Clump
+            * Spawns Mud layer blocks when it jumps
     * Fluids
         * Tannin
         * Pyroberry Wine
@@ -167,6 +173,7 @@
             * Fluid Pyroberry Wine with Glass Bottles -> Pyroberry Wine
             * Fluid Gloamberry Wine with Glass Bottles -> Gloamberry Wine
             * Iron Shard, Stick, Fletching -> Iron Arrow (vanilla Arrow renamed)
+            * Wet Cob
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
@@ -428,6 +435,8 @@
         * `tile.pyrotech.cob_dry.name`
         * `tile.pyrotech.mud.name`
         * `tile.pyrotech.rock_mud.name`
+        * `entity.pyrotech.mud.name`
+        * `tile.pyrotech.mud_layer.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

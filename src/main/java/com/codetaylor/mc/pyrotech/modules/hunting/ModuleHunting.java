@@ -8,21 +8,30 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockButchersBlock;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockCarcass;
+import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntityMud;
 import com.codetaylor.mc.pyrotech.modules.hunting.event.ClientEntityJoinWorldEventHandler;
 import com.codetaylor.mc.pyrotech.modules.hunting.event.EntityAttachCapabilitiesEventHandler;
 import com.codetaylor.mc.pyrotech.modules.hunting.event.LivingDeathEventHandler;
 import com.codetaylor.mc.pyrotech.modules.hunting.init.*;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.*;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Arrays;
 
 public class ModuleHunting
     extends ModuleBase {
@@ -105,6 +114,24 @@ public class ModuleHunting
     );
 
     MinecraftForge.EVENT_BUS.register(new ClientEntityJoinWorldEventHandler());
+  }
+
+  @Override
+  public void onInitializationEvent(FMLInitializationEvent event) {
+
+    super.onInitializationEvent(event);
+
+    EntityRegistry.addSpawn(
+        EntityMud.class,
+        ModuleHuntingConfig.ENTITY_MUD.SPAWN_WEIGHT,
+        ModuleHuntingConfig.ENTITY_MUD.SPAWN_COUNT_MIN,
+        ModuleHuntingConfig.ENTITY_MUD.SPAWN_COUNT_MAX,
+        EnumCreatureType.MONSTER,
+        Arrays.stream(ModuleHuntingConfig.ENTITY_MUD.SPAWN_BIOMES)
+            .map(ResourceLocation::new)
+            .map(ForgeRegistries.BIOMES::getValue)
+            .toArray(Biome[]::new)
+    );
   }
 
   @GameRegistry.ObjectHolder(ModuleHunting.MOD_ID)

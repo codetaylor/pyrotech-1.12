@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:mud_layer"
+  },
+  "variants": {
+    "normal": [
+      {},
+      {"y": 90},
+      {"y": 180},
+      {"y": 270}
+    ]
+  }
+}

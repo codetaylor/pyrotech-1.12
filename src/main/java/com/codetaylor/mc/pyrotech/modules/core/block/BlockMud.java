@@ -1,20 +1,18 @@
 package com.codetaylor.mc.pyrotech.modules.core.block;
 
+import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntityMud;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Random;
 
 public class BlockMud
     extends Block {
@@ -29,7 +27,6 @@ public class BlockMud
     this.setSoundType(SoundType.SLIME);
     this.setHardness(0.4f);
     this.setHarvestLevel("shovel", 0);
-    this.setTickRandomly(true);
   }
 
   @SuppressWarnings("deprecation")
@@ -45,24 +42,13 @@ public class BlockMud
   @Override
   public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
 
-    entity.motionX *= 0.4D;
-    entity.motionZ *= 0.4D;
-  }
+    if (entity instanceof EntityMud) {
+      entity.motionX *= 1.05;
+      entity.motionZ *= 1.05;
 
-  @Override
-  public int tickRate(@Nonnull World world) {
-
-    return 20;
-  }
-
-  @ParametersAreNonnullByDefault
-  @Override
-  public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-
-    if (world.getBlockState(pos.up()).getBlock() != Blocks.WATER
-        && !world.isRainingAt(pos.up())
-        && world.canSeeSky(pos.up())) {
-      world.setBlockState(pos, Blocks.DIRT.getDefaultState());
+    } else {
+      entity.motionX *= 0.4;
+      entity.motionZ *= 0.4;
     }
   }
 }

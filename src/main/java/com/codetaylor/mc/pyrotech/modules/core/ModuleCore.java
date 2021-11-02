@@ -393,6 +393,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockMud.NAME)
     public static final BlockMud MUD;
 
+    @GameRegistry.ObjectHolder(BlockMudLayer.NAME)
+    public static final BlockMudLayer MUD_LAYER;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -441,6 +444,7 @@ public class ModuleCore
       COB_DRY = null;
       COB_WET = null;
       MUD = null;
+      MUD_LAYER = null;
     }
   }
 

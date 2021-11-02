@@ -2,19 +2,23 @@ package com.codetaylor.mc.pyrotech.modules.hunting.init;
 
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
+import com.codetaylor.mc.pyrotech.modules.hunting.client.RenderMud;
 import com.codetaylor.mc.pyrotech.modules.hunting.client.RenderSpear;
 import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntityBoneArrow;
 import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntityFlintArrow;
+import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntityMud;
 import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntitySpear;
 import com.codetaylor.mc.pyrotech.modules.hunting.item.EntityItemHideScraped;
 import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
 
 public final class EntityInitializer {
 
@@ -37,6 +41,12 @@ public final class EntityInitializer {
 
     registry.createEntityEntry(EntitySpear.NAME, EntityEntryBuilder.create()
         .entity(EntitySpear.class)
+        .tracker(80, 1, true)
+    );
+
+    registry.createEntityEntry(EntityMud.NAME, EntityEntryBuilder.create()
+        .entity(EntityMud.class)
+        .egg(Color.decode("#2b1a0b").getRGB(), Color.decode("#a25625").getRGB())
         .tracker(80, 1, true)
     );
   }
@@ -67,6 +77,8 @@ public final class EntityInitializer {
     });
 
     RenderingRegistry.registerEntityRenderingHandler(EntitySpear.class, RenderSpear::new);
+
+    RenderingRegistry.registerEntityRenderingHandler(EntityMud.class, RenderMud::new);
   }
 
   private EntityInitializer() {
