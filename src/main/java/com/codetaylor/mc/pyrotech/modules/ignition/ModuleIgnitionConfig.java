@@ -130,6 +130,20 @@ public class ModuleIgnitionConfig {
     public int BOW_DRILL_USE_DURATION_TICKS = 20;
 
     @Config.Comment({
+        "The durability of the durable bow drill.",
+        "Default: " + 48
+    })
+    @Config.RangeInt(min = 1, max = Short.MAX_VALUE)
+    public int DURABLE_BOW_DRILL_DURABILITY = 48;
+
+    @Config.Comment({
+        "Defines how many ticks it takes to start a fire while using the durable bow drill.",
+        "Default: " + (20)
+    })
+    @Config.RangeInt(min = 0)
+    public int DURABLE_BOW_DRILL_USE_DURATION_TICKS = 20;
+
+    @Config.Comment({
         "The durability of the flint and tinder.",
         "Default: 8"
     })

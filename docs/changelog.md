@@ -122,6 +122,7 @@
             * Gloamberry Wine
         * Durable Bow Drill
             * Durable Spindle
+            * Doesn't break, repaired with Durable Spindle
         * Barrel Lid
         * Tainted Meat
         * Stone Tool Shaft
@@ -179,6 +180,8 @@
             * Iron Shard, Stick, Fletching -> Iron Arrow (vanilla Arrow renamed)
             * Wet Cob
             * Durable Spindle
+            * Durable Spindle + Durable Bow Drill -> repair
+            * Durable Bow Drill
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
@@ -444,6 +447,7 @@
         * `entity.pyrotech.mud.name`
         * `tile.pyrotech.mud_layer.name`
         * `item.pyrotech.bow.drill.durable.stick.name`
+        * `item.pyrotech.bow.drill.durable.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

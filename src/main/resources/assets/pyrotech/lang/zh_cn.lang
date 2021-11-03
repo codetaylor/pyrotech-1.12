@@ -107,6 +107,7 @@ item.pyrotech.bucket.wood.milk.name=木牛奶桶
 #------------------------------------------------------------------------------
 
 item.pyrotech.bow.drill.name=弓钻
+item.pyrotech.bow.drill.durable.name=Durable Bow Drill
 item.pyrotech.flint.and.tinder.name=燧石和火绒
 item.pyrotech.matchstick.name=火柴棍
 

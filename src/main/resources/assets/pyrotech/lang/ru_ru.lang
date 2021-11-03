@@ -107,6 +107,7 @@ item.pyrotech.bucket.wood.milk.name=Деревянное ведро молока
 #------------------------------------------------------------------------------
 
 item.pyrotech.bow.drill.name=Лучковая дрель
+item.pyrotech.bow.drill.durable.name=Durable Bow Drill
 item.pyrotech.flint.and.tinder.name=Кремень и трут
 item.pyrotech.matchstick.name=Спичка
 

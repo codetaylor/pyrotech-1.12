@@ -11,6 +11,7 @@ import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchStone;
 import com.codetaylor.mc.pyrotech.modules.ignition.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.ignition.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemBowDrill;
+import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemBowDrillDurable;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemFlintAndTinder;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemMatchstick;
 import net.minecraft.creativetab.CreativeTabs;
@@ -86,6 +87,9 @@ public class ModuleIgnition
     @GameRegistry.ObjectHolder(ItemBowDrill.NAME)
     public static final ItemBowDrill BOW_DRILL;
 
+    @GameRegistry.ObjectHolder(ItemBowDrillDurable.NAME)
+    public static final ItemBowDrillDurable BOW_DRILL_DURABLE;
+
     @GameRegistry.ObjectHolder(ItemFlintAndTinder.NAME)
     public static final ItemFlintAndTinder FLINT_AND_TINDER;
 
@@ -94,6 +98,7 @@ public class ModuleIgnition
 
     static {
       BOW_DRILL = null;
+      BOW_DRILL_DURABLE = null;
       FLINT_AND_TINDER = null;
       MATCHSTICK = null;
     }

@@ -1,0 +1,27 @@
+{
+  "type": "pyrotech:bow_drill_durable",
+  "pattern": [
+    " S|",
+    "SL|",
+    " S|"
+  ],
+  "key": {
+    "|": {
+      "item": "pyrotech:material",
+      "data": 44
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "L": {
+      "item": "pyrotech:material",
+      "data": 39
+    }
+  },
+  "result": {
+    "item": "pyrotech:bow_drill_durable",
+    "count": 1,
+    "data": 0
+  }
+}

@@ -16,6 +16,7 @@
     "leather_durable_upgrade": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherArmorDurableUpgradeRecipe$Factory",
     "leather_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherRepairRecipe$Factory",
     "bone_tool_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.BoneToolRepairRecipe$Factory",
-    "flint_tool_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.FlintToolRepairRecipe$Factory"
+    "flint_tool_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.FlintToolRepairRecipe$Factory",
+    "bow_drill_durable": "com.codetaylor.mc.pyrotech.modules.core.recipe.BowDrillDurableRecipe$Factory"
   }
 }

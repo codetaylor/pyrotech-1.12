@@ -22,23 +22,30 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public abstract class ItemIgniterBase
     extends Item {
 
   @Nonnull
   @Override
-  public EnumAction getItemUseAction(ItemStack stack) {
+  public EnumAction getItemUseAction(@Nonnull ItemStack stack) {
 
     return EnumAction.BOW;
   }
 
+  @ParametersAreNonnullByDefault
   @Nonnull
   @Override
-  public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+  public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+
+    ItemStack heldItem = player.getHeldItem(hand);
+
+    if (!this.canUse(heldItem)) {
+      return new ActionResult<>(EnumActionResult.FAIL, heldItem);
+    }
 
     RayTraceResult rayTraceResult = this.rayTrace(world, player, false);
-    ItemStack heldItem = player.getHeldItem(hand);
 
     // The ray trace result can be null
     //noinspection ConstantConditions
@@ -53,6 +60,7 @@ public abstract class ItemIgniterBase
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
 
@@ -79,9 +87,10 @@ public abstract class ItemIgniterBase
     }
   }
 
+  @ParametersAreNonnullByDefault
   @Nonnull
   @Override
-  public ItemStack onItemUseFinish(@Nonnull ItemStack stack, World world, EntityLivingBase player) {
+  public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase player) {
 
     RayTraceResult rayTraceResult = this.rayTrace(world, (EntityPlayer) player, false);
 
@@ -132,6 +141,11 @@ public abstract class ItemIgniterBase
     }
 
     return stack;
+  }
+
+  protected boolean canUse(ItemStack stack) {
+
+    return true;
   }
 
   protected abstract void damageItem(@Nonnull ItemStack stack, EntityLivingBase player);
