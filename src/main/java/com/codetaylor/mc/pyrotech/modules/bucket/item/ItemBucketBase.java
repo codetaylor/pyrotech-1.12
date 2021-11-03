@@ -93,7 +93,7 @@ public abstract class ItemBucketBase
   @Override
   public int getItemStackLimit(ItemStack stack) {
 
-    return this.hasFluid(stack) ? 1 : this.getBucketStackLimit();
+    return (this.hasFluid(stack) || stack.getMetadata() == EnumType.MILK.getMeta()) ? 1 : this.getBucketStackLimit();
   }
 
   protected abstract int getBucketStackLimit();
