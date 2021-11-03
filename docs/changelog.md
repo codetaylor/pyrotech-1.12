@@ -134,9 +134,9 @@
             * Drops Mud Clump
             * Spawns Mud layer blocks when it jumps
     * Fluids
-        * Tannin
-        * Pyroberry Wine
-        * Gloamberry Wine
+        * Tannin `fluid:tannin`
+        * Pyroberry Wine `fluid:pyroberry_wine`
+        * Gloamberry Wine `fluid:gloamberry_wine`
     * Valid refractory blocks:
         * Double Refractory Brick Slab
     * Ore Compat:
@@ -191,6 +191,8 @@
             * Dirt -> Mud
         * Barrel:
             * `treeLeaves` and `fluid:water` to create `fluid:tannin`
+            * Pyroberries, Sugar and `fluid:water` to create `fluid:pyroberry_wine`
+            * Gloamberries, Sugar and `fluid:water` to create `fluid:gloamberry_wine`
         * Furnace:
             * Unfired Refractory Bucket -> Refractory Bucket
         * Pit Kiln:
@@ -273,16 +275,16 @@
             * `pyrotech:leather_repair_kit:*`
             * `pyrotech:leather_durable_repair_kit:*`
         * `toolHammer` now contains:
-            * `pyrotech:bone_hammer_durable`
-            * `pyrotech:flint_hammer_durable`
-            * `pyrotech:crude_hammer`
-            * `pyrotech:stone_hammer`
-            * `pyrotech:bone_hammer`
-            * `pyrotech:flint_hammer`
-            * `pyrotech:iron_hammer`
-            * `pyrotech:gold_hammer`
-            * `pyrotech:diamond_hammer`
-            * `pyrotech:obsidian_hammer`
+            * `pyrotech:bone_hammer_durable:*`
+            * `pyrotech:flint_hammer_durable:*`
+            * `pyrotech:crude_hammer:*`
+            * `pyrotech:stone_hammer:*`
+            * `pyrotech:bone_hammer:*`
+            * `pyrotech:flint_hammer:*`
+            * `pyrotech:iron_hammer:*`
+            * `pyrotech:gold_hammer:*`
+            * `pyrotech:diamond_hammer:*`
+            * `pyrotech:obsidian_hammer:*`
 
   * **Changed:**
     * Changed first load restart chat message to invasive full-screen GUI message [(#248)](https://github.com/codetaylor/pyrotech-1.12/issues/248)
