@@ -5,10 +5,7 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.bucket.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.bucket.init.VanillaFurnaceRecipesAdd;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketClay;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketClayUnfired;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketStone;
-import com.codetaylor.mc.pyrotech.modules.bucket.item.ItemBucketWood;
+import com.codetaylor.mc.pyrotech.modules.bucket.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.RegistryEvent;
@@ -64,6 +61,12 @@ public class ModuleBucket
     @GameRegistry.ObjectHolder(ItemBucketStone.NAME)
     public static final ItemBucketStone BUCKET_STONE;
 
+    @GameRegistry.ObjectHolder(ItemBucketRefractory.NAME)
+    public static final ItemBucketRefractory BUCKET_REFRACTORY;
+
+    @GameRegistry.ObjectHolder(ItemBucketRefractoryUnfired.NAME)
+    public static final ItemBucketRefractoryUnfired BUCKET_REFRACTORY_UNFIRED;
+
     @GameRegistry.ObjectHolder(ItemBucketClayUnfired.NAME)
     public static final ItemBucketClayUnfired BUCKET_CLAY_UNFIRED;
 
@@ -71,6 +74,8 @@ public class ModuleBucket
       BUCKET_WOOD = null;
       BUCKET_CLAY = null;
       BUCKET_STONE = null;
+      BUCKET_REFRACTORY = null;
+      BUCKET_REFRACTORY_UNFIRED = null;
       BUCKET_CLAY_UNFIRED = null;
     }
   }

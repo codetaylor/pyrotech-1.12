@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.bucket"]
+    }
+  ],
+  "pattern": [
+    "M M",
+    " M "
+  ],
+  "key": {
+    "M": {
+      "item": "pyrotech:material",
+      "data": 9
+    }
+  },
+  "result": {
+    "item": "pyrotech:bucket_refractory_unfired",
+    "count": 1,
+    "data": 0
+  }
+}

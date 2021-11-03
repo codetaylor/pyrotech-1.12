@@ -13,5 +13,11 @@ public class VanillaFurnaceRecipesAdd {
         new ItemStack(ModuleBucket.Items.BUCKET_CLAY),
         0.1f
     );
+
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        new ItemStack(ModuleBucket.Items.BUCKET_REFRACTORY_UNFIRED),
+        new ItemStack(ModuleBucket.Items.BUCKET_REFRACTORY),
+        0.1f
+    );
   }
 }

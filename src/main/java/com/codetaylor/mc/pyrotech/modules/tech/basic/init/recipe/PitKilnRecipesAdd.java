@@ -38,6 +38,21 @@ public class PitKilnRecipesAdd {
       ).setRegistryName(ModuleBucket.MOD_ID, "bucket_clay"));
     }
 
+    // Refractory Bucket
+    if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleBucket.class)) {
+      registry.register(new KilnPitRecipe(
+          new ItemStack(ModuleBucket.Items.BUCKET_REFRACTORY),
+          Ingredient.fromStacks(new ItemStack(ModuleBucket.Items.BUCKET_REFRACTORY_UNFIRED)),
+          Reference.PitKiln.DEFAULT_BURN_TIME_TICKS,
+          Reference.PitKiln.DEFAULT_FAILURE_CHANCE,
+          new ItemStack[]{
+              ItemMaterial.EnumType.PIT_ASH.asStack(),
+              ItemMaterial.EnumType.POTTERY_SHARD.asStack(),
+              ItemMaterial.EnumType.POTTERY_FRAGMENTS.asStack()
+          }
+      ).setRegistryName(ModuleBucket.MOD_ID, "bucket_refractory"));
+    }
+
     // Clay Shears
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTool.class)) {
       registry.register(new KilnPitRecipe(

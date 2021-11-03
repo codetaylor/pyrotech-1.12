@@ -127,6 +127,7 @@
         * Tainted Meat
         * Stone Tool Shaft
         * Mud Clump
+        * Refractory Bucket [(#311)](https://github.com/codetaylor/pyrotech-1.12/issues/311)
     * Mobs:
         * Animated Mud
             * Spawns in `minecraft:swampland` and `minecraft:river` biomes by default
@@ -190,6 +191,10 @@
             * Dirt -> Mud
         * Barrel:
             * `treeLeaves` and `fluid:water` to create `fluid:tannin`
+        * Furnace:
+            * Unfired Refractory Bucket -> Refractory Bucket
+        * Pit Kiln:
+            * Unfired Refractory Bucket -> Refractory Bucket
     * Visual indicator when the player's hunger is too low to use a device
     * Dropt rules:
         * Tool harvest level scaling rules for Mud
@@ -448,6 +453,10 @@
         * `tile.pyrotech.mud_layer.name`
         * `item.pyrotech.bow.drill.durable.stick.name`
         * `item.pyrotech.bow.drill.durable.name`
+        * `item.pyrotech.bucket.refractory.unfired.name`
+        * `item.pyrotech.bucket.refractory.name`
+        * `item.pyrotech.bucket.refractory.empty.name`
+        * `item.pyrotech.bucket.refractory.milk.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

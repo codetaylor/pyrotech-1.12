@@ -102,6 +102,11 @@ item.pyrotech.bucket.wood.name=%s Wooden Bucket
 item.pyrotech.bucket.wood.empty.name=Wooden Bucket
 item.pyrotech.bucket.wood.milk.name=Milk Wooden Bucket
 
+item.pyrotech.bucket.refractory.unfired.name=Unfired Refractory Bucket
+item.pyrotech.bucket.refractory.name=%s Refractory Bucket
+item.pyrotech.bucket.refractory.empty.name=Refractory Bucket
+item.pyrotech.bucket.refractory.milk.name=Milk Refractory Bucket
+
 #------------------------------------------------------------------------------
 # Module: Ignition
 #------------------------------------------------------------------------------
