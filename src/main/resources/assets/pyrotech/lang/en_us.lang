@@ -369,6 +369,7 @@ item.pyrotech.leather.durable.cord.name=Durable Leather Cord
 item.pyrotech.leather.small.name=Small Leather
 item.pyrotech.fletching.name=Fletching
 item.pyrotech.stone.tool.shaft.name=Stone Tool Shaft
+item.pyrotech.bow.drill.durable.stick.name=Durable Spindle
 
 item.pyrotech.apple.baked.name=Baked Apple
 item.pyrotech.carrot.roasted.name=Roasted Carrot
@@ -434,6 +435,7 @@ tile.pyrotech.gloamberry_bush.name=Gloamberry Bush
 tile.pyrotech.cob_wet.name=Wet Cob
 tile.pyrotech.cob_dry.name=Cob
 tile.pyrotech.mud.name=Mud
+tile.pyrotech.mud_layer.name=Mud
 tile.pyrotech.mud_layer.name=Mud
 
 tile.pyrotech.rock_stone.name=Stone Rock

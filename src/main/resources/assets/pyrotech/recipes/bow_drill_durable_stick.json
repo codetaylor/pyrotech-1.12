@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "-",
+    "S",
+    "|"
+  ],
+  "key": {
+    "|": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "item": "pyrotech:material",
+      "data": 39
+    },
+    "-": {
+      "item": "pyrotech:material",
+      "data": 20
+    }
+  },
+  "result": {
+    "item": "pyrotech:material",
+    "count": 2,
+    "data": 48
+  }
+}

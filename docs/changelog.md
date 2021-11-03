@@ -111,14 +111,18 @@
             * Leather Repair Kit
             * Durable Leather Repair Kit
             * Durable Leather Upgrade Kit
+        * Pyroberry:
+            * Pyroberry Seeds
+            * Pyroberries
+            * Pyroberry Wine
+            * Pyroberry Cocktail
+        * Gloamberry:
+            * Gloamberry Seeds
+            * Gloamberries
+            * Gloamberry Wine
+        * Durable Bow Drill
+            * Durable Spindle
         * Barrel Lid
-        * Pyroberry Seeds
-        * Pyroberries
-        * Pyroberry Wine
-        * Pyroberry Cocktail
-        * Gloamberry Seeds
-        * Gloamberries
-        * Gloamberry Wine
         * Tainted Meat
         * Stone Tool Shaft
         * Mud Clump
@@ -174,11 +178,13 @@
             * Fluid Gloamberry Wine with Glass Bottles -> Gloamberry Wine
             * Iron Shard, Stick, Fletching -> Iron Arrow (vanilla Arrow renamed)
             * Wet Cob
+            * Durable Spindle
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
             * Washed Hide and `fluid:tannin` -> Leather
             * Small Washed Hide and `fluid:tannin` -> Small Leather
+            * Dirt -> Mud
         * Barrel:
             * `treeLeaves` and `fluid:water` to create `fluid:tannin`
     * Visual indicator when the player's hunger is too low to use a device
@@ -437,6 +443,7 @@
         * `tile.pyrotech.rock_mud.name`
         * `entity.pyrotech.mud.name`
         * `tile.pyrotech.mud_layer.name`
+        * `item.pyrotech.bow.drill.durable.stick.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       
