@@ -1,3 +1,10 @@
+**1.5.19**
+
+  * **Fixed:**
+    * Milk buckets shouldn't stack and void on use [(#374)](https://github.com/codetaylor/pyrotech-1.12/issues/374)
+
+---
+
 **1.5.18**
 
   * **Fixed:**
