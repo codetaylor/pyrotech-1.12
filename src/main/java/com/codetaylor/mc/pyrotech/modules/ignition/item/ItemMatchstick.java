@@ -18,20 +18,23 @@ public class ItemMatchstick
   }
 
   @Override
-  public int getMaxItemUseDuration(ItemStack stack) {
+  public int getMaxItemUseDuration(@Nonnull ItemStack stack) {
 
     return ModuleIgnitionConfig.IGNITERS.MATCHSTICK_USE_DURATION_TICKS;
   }
 
   @Override
+  protected int getCooldownTicks() {
+
+    return ModuleIgnitionConfig.IGNITERS.MATCHSTICK_COOLDOWN_DURATION_TICKS;
+  }
+
+  @Override
   protected void damageItem(@Nonnull ItemStack stack, EntityLivingBase player) {
 
-    if (player instanceof EntityPlayer) {
-      ((EntityPlayer) player).getCooldownTracker().setCooldown(this, ModuleIgnitionConfig.IGNITERS.MATCHSTICK_COOLDOWN_DURATION_TICKS);
-
-      if (!((EntityPlayer) player).isCreative()) {
-        stack.shrink(1);
-      }
+    if (player instanceof EntityPlayer
+        && !((EntityPlayer) player).isCreative()) {
+      stack.damageItem(1, player);
     }
   }
 }
