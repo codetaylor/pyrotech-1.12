@@ -307,6 +307,11 @@
     * Config entry `REPLACE_IRON_INGOTS_WITH_IRON_ORE` is now `REPLACE_IRON_INGOTS` [(#205)](https://github.com/codetaylor/pyrotech-1.12/issues/205)
     * Leather armor will now change color when Slaked Lime is applied [(#223)](https://github.com/codetaylor/pyrotech-1.12/issues/223)
     * Clay recipe changed to: water + dirt block x2 = clay ball
+    * Ignition items:
+        * All ignition items now have configurable cooldown
+            * Config: `FLINT_AND_TINDER_COOLDOWN_TICKS`
+            * Config: `BOW_DRILL_COOLDOWN_TICKS`
+            * Config: `DURABLE_BOW_DRILL_COOLDOWN_TICKS`
     * Rock Bag
         * Recipe changed to use wool and twine instead of leather
         * Texture changed to reflect new recipe

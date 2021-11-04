@@ -135,8 +135,12 @@ public abstract class ItemIgniterBase
       }
     }
 
+    ((EntityPlayer) player).getCooldownTracker().setCooldown(this, this.getCooldownTicks());
+
     return stack;
   }
 
   protected abstract void damageItem(@Nonnull ItemStack stack, EntityLivingBase player);
+
+  protected abstract int getCooldownTicks();
 }

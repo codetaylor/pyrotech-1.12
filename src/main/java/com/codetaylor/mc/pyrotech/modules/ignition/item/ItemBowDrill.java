@@ -32,6 +32,12 @@ public class ItemBowDrill
   }
 
   @Override
+  protected int getCooldownTicks() {
+
+    return ModuleIgnitionConfig.IGNITERS.BOW_DRILL_COOLDOWN_TICKS;
+  }
+
+  @Override
   protected void damageItem(@Nonnull ItemStack stack, EntityLivingBase player) {
 
     if (player instanceof EntityPlayer

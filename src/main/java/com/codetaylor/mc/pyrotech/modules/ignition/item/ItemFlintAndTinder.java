@@ -31,6 +31,12 @@ public class ItemFlintAndTinder
   }
 
   @Override
+  protected int getCooldownTicks() {
+
+    return ModuleIgnitionConfig.IGNITERS.FLINT_AND_TINDER_COOLDOWN_TICKS;
+  }
+
+  @Override
   protected void damageItem(@Nonnull ItemStack stack, EntityLivingBase player) {
 
     if (player instanceof EntityPlayer

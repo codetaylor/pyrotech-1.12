@@ -130,6 +130,13 @@ public class ModuleIgnitionConfig {
     public int BOW_DRILL_USE_DURATION_TICKS = 20;
 
     @Config.Comment({
+        "Defines how many cooldown ticks applied after using the bow drill.",
+        "Default: " + (20)
+    })
+    @Config.RangeInt(min = 0)
+    public int BOW_DRILL_COOLDOWN_TICKS = 20;
+
+    @Config.Comment({
         "The durability of the durable bow drill.",
         "Default: " + 48
     })
@@ -144,6 +151,13 @@ public class ModuleIgnitionConfig {
     public int DURABLE_BOW_DRILL_USE_DURATION_TICKS = 20;
 
     @Config.Comment({
+        "Defines how many cooldown ticks applied after using the durable bow drill.",
+        "Default: " + (20)
+    })
+    @Config.RangeInt(min = 0)
+    public int DURABLE_BOW_DRILL_COOLDOWN_TICKS = 20;
+
+    @Config.Comment({
         "The durability of the flint and tinder.",
         "Default: 8"
     })
@@ -156,6 +170,13 @@ public class ModuleIgnitionConfig {
     })
     @Config.RangeInt(min = 0)
     public int FLINT_AND_TINDER_USE_DURATION_TICKS = 4 * 20;
+
+    @Config.Comment({
+        "Defines how many cooldown ticks applied after using the flint and tinder.",
+        "Default: " + (20)
+    })
+    @Config.RangeInt(min = 0)
+    public int FLINT_AND_TINDER_COOLDOWN_TICKS = 20;
 
     @Config.Comment({
         "The max stack size of the matchsticks.",

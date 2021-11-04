@@ -29,6 +29,12 @@ public class ItemBowDrillDurableSpindle
     this.setMaxStackSize(1);
   }
 
+  @Override
+  protected int getCooldownTicks() {
+
+    return ModuleIgnitionConfig.IGNITERS.DURABLE_BOW_DRILL_COOLDOWN_TICKS;
+  }
+
   @Nonnull
   @Override
   public String getUnlocalizedName() {
