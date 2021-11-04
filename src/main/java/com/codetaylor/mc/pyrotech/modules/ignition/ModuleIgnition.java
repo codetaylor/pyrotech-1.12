@@ -10,10 +10,7 @@ import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchFiber;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchStone;
 import com.codetaylor.mc.pyrotech.modules.ignition.init.BlockInitializer;
 import com.codetaylor.mc.pyrotech.modules.ignition.init.ItemInitializer;
-import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemBowDrill;
-import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemBowDrillDurable;
-import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemFlintAndTinder;
-import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemMatchstick;
+import com.codetaylor.mc.pyrotech.modules.ignition.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -45,6 +42,11 @@ public class ModuleIgnition
     TILE_DATA_SERVICE = this.enableNetworkTileDataService(PACKET_SERVICE);
 
     MinecraftForge.EVENT_BUS.register(this);
+
+    this.registerIntegrationPlugin(
+        "jei",
+        "com.codetaylor.mc.pyrotech.modules.ignition.plugin.jei.PluginJEI"
+    );
   }
 
   @Override
@@ -90,6 +92,9 @@ public class ModuleIgnition
     @GameRegistry.ObjectHolder(ItemBowDrillDurable.NAME)
     public static final ItemBowDrillDurable BOW_DRILL_DURABLE;
 
+    @GameRegistry.ObjectHolder(ItemBowDrillDurableSpindle.NAME)
+    public static final ItemBowDrillDurableSpindle BOW_DRILL_DURABLE_SPINDLE;
+
     @GameRegistry.ObjectHolder(ItemFlintAndTinder.NAME)
     public static final ItemFlintAndTinder FLINT_AND_TINDER;
 
@@ -99,6 +104,7 @@ public class ModuleIgnition
     static {
       BOW_DRILL = null;
       BOW_DRILL_DURABLE = null;
+      BOW_DRILL_DURABLE_SPINDLE = null;
       FLINT_AND_TINDER = null;
       MATCHSTICK = null;
     }

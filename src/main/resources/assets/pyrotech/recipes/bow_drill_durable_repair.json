@@ -2,8 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "pyrotech:bow_drill_durable",
-      "data": 32767
+      "item": "pyrotech:bow_drill_durable"
     },
     {
       "item": "pyrotech:material",
@@ -11,7 +10,7 @@
     }
   ],
   "result": {
-    "item": "pyrotech:bow_drill_durable",
+    "item": "pyrotech:bow_drill_durable_spindle",
     "count": 1,
     "data": 0
   }

@@ -40,11 +40,6 @@ public abstract class ItemIgniterBase
   public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 
     ItemStack heldItem = player.getHeldItem(hand);
-
-    if (!this.canUse(heldItem)) {
-      return new ActionResult<>(EnumActionResult.FAIL, heldItem);
-    }
-
     RayTraceResult rayTraceResult = this.rayTrace(world, player, false);
 
     // The ray trace result can be null
@@ -141,11 +136,6 @@ public abstract class ItemIgniterBase
     }
 
     return stack;
-  }
-
-  protected boolean canUse(ItemStack stack) {
-
-    return true;
   }
 
   protected abstract void damageItem(@Nonnull ItemStack stack, EntityLivingBase player);

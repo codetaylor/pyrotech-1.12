@@ -1,12 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "pyrotech:items/bow_drill_durable"
-  },
-  "overrides": [
-    {
-      "predicate": {"empty": 1},
-      "model": "pyrotech:item/bow_drill_durable_empty"
-    }
-  ]
+    "layer0": "pyrotech:items/bow_drill_durable_empty"
+  }
 }

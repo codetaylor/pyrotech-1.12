@@ -1,8 +1,8 @@
 {
-  "type": "pyrotech:bow_drill_durable",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     " S|",
-    "SL|",
+    "sL|",
     " S|"
   ],
   "key": {
@@ -13,6 +13,10 @@
     "S": {
       "type": "forge:ore_dict",
       "ore": "stickWood"
+    },
+    "s": {
+      "type": "forge:ore_dict",
+      "ore": "stickStone"
     },
     "L": {
       "item": "pyrotech:material",
