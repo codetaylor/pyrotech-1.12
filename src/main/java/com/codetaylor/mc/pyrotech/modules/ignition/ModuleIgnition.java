@@ -14,6 +14,8 @@ import com.codetaylor.mc.pyrotech.modules.ignition.init.ItemInitializer;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -51,10 +53,35 @@ public class ModuleIgnition
   }
 
   @Override
+  public void onPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onPreInitializationEvent(event);
+
+    FMLInterModComms.sendFunctionMessage(
+        "theoneprobe",
+        "getTheOneProbe",
+        "com.codetaylor.mc.pyrotech.modules.ignition.plugin.top.PluginTOP$Callback"
+    );
+  }
+
+  @Override
   public void onRegister(Registry registry) {
 
     BlockInitializer.onRegister(registry);
     ItemInitializer.onRegister(registry);
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void onClientPreInitializationEvent(FMLPreInitializationEvent event) {
+
+    super.onClientPreInitializationEvent(event);
+
+    FMLInterModComms.sendMessage(
+        "waila",
+        "register",
+        "com.codetaylor.mc.pyrotech.modules.ignition.plugin.waila.PluginWaila.wailaCallback"
+    );
   }
 
   @SideOnly(Side.CLIENT)
