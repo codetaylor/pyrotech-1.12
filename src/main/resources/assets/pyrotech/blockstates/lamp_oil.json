@@ -1,0 +1,9 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "lit": {
+      "true": {"model": "pyrotech:lamp_oil_lit"},
+      "false": {"model": "pyrotech:lamp_oil"}
+    }
+  }
+}

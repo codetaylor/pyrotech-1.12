@@ -35,6 +35,7 @@
             * Drops Pyroberries when sheared at max growth stage
         * Gloamberry Bush
             * Drops Gloamberries when ripe
+        * Oil Lamp
         * Cob
         * Wet Cob
             * Dries in-world
@@ -464,6 +465,7 @@
         * `item.pyrotech.bucket.refractory.name`
         * `item.pyrotech.bucket.refractory.empty.name`
         * `item.pyrotech.bucket.refractory.milk.name`
+        * `tile.pyrotech.lamp_oil.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

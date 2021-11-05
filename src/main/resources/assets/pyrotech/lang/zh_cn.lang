@@ -102,6 +102,11 @@ item.pyrotech.bucket.wood.name=木%s桶
 item.pyrotech.bucket.wood.empty.name=木桶
 item.pyrotech.bucket.wood.milk.name=木牛奶桶
 
+item.pyrotech.bucket.refractory.unfired.name=Unfired Refractory Bucket
+item.pyrotech.bucket.refractory.name=%s Refractory Bucket
+item.pyrotech.bucket.refractory.empty.name=Refractory Bucket
+item.pyrotech.bucket.refractory.milk.name=Milk Refractory Bucket
+
 #------------------------------------------------------------------------------
 # Module: Ignition
 #------------------------------------------------------------------------------
@@ -115,11 +120,7 @@ tile.pyrotech.igniter.stone.name=石点火器
 tile.pyrotech.igniter.brick.name=耐火砖点火器
 tile.pyrotech.torch_fiber.name=纤维火炬
 tile.pyrotech.torch_stone.name=石火炬
-
-item.pyrotech.bucket.refractory.unfired.name=Unfired Refractory Bucket
-item.pyrotech.bucket.refractory.name=%s Refractory Bucket
-item.pyrotech.bucket.refractory.empty.name=Refractory Bucket
-item.pyrotech.bucket.refractory.milk.name=Milk Refractory Bucket
+tile.pyrotech.lamp_oil.name=Oil Lamp
 
 #------------------------------------------------------------------------------
 # Module: Storage

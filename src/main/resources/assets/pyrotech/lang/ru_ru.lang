@@ -120,6 +120,7 @@ tile.pyrotech.igniter.stone.name=Каменный запальник
 tile.pyrotech.igniter.brick.name=Огнеупорный запальник
 tile.pyrotech.torch_fiber.name=Факел из сушеных волокон
 tile.pyrotech.torch_stone.name=Каменный факел
+tile.pyrotech.lamp_oil.name=Oil Lamp
 
 #------------------------------------------------------------------------------
 # Module: Storage

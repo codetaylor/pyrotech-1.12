@@ -120,6 +120,7 @@ tile.pyrotech.igniter.stone.name=Stone Igniter
 tile.pyrotech.igniter.brick.name=Refractory Igniter
 tile.pyrotech.torch_fiber.name=Fiber Torch
 tile.pyrotech.torch_stone.name=Stone Torch
+tile.pyrotech.lamp_oil.name=Oil Lamp
 
 #------------------------------------------------------------------------------
 # Module: Storage

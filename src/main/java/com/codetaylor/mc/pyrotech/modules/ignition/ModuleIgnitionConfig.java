@@ -1,9 +1,16 @@
 package com.codetaylor.mc.pyrotech.modules.ignition;
 
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import net.minecraftforge.common.config.Config;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Config(modid = ModuleIgnition.MOD_ID, name = ModuleIgnition.MOD_ID + "/" + "module.Ignition")
 public class ModuleIgnitionConfig {
+
+  @Config.Ignore
+  public static Stages STAGES_OIL_LAMP = null;
 
   // ---------------------------------------------------------------------------
   // - Fiber Torch
@@ -105,6 +112,35 @@ public class ModuleIgnitionConfig {
     })
     @Config.RangeInt(min = 0)
     public int FIRE_DAMAGE = 1;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Oil Lamp
+  // ---------------------------------------------------------------------------
+
+  public static OilLamp OIL_LAMP = new OilLamp();
+
+  public static class OilLamp {
+
+    @Config.Comment({
+        "The amount of fluid this container can hold in mB.",
+        "Default: " + 2000
+    })
+    public int CAPACITY = 2000;
+
+    @Config.Comment({
+        "Maps valid fuel liquids to mB used per minute.",
+        "Format: I:(liquid_name)=(int)"
+    })
+    public Map<String, Integer> ALLOWED_FUEL = new HashMap<String, Integer>() {{
+      this.put("pyroberry_wine", 12);
+    }};
+
+    @Config.Comment({
+        "The light value.",
+        "Default: " + 12
+    })
+    public int LIGHT_VALUE = 12;
   }
 
   // ---------------------------------------------------------------------------

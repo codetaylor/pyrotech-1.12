@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.network.tile.ITileDataService;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockIgniter;
+import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockLampOil;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchFiber;
 import com.codetaylor.mc.pyrotech.modules.ignition.block.BlockTorchStone;
 import com.codetaylor.mc.pyrotech.modules.ignition.init.BlockInitializer;
@@ -76,10 +77,14 @@ public class ModuleIgnition
     @GameRegistry.ObjectHolder(BlockTorchStone.NAME)
     public static final BlockTorchStone TORCH_STONE;
 
+    @GameRegistry.ObjectHolder(BlockLampOil.NAME)
+    public static final BlockLampOil LAMP_OIL;
+
     static {
       IGNITER = null;
       TORCH_FIBER = null;
       TORCH_STONE = null;
+      LAMP_OIL = null;
     }
   }
 
