@@ -9,6 +9,7 @@ import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterIt
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnitionConfig;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.ignition.tile.TileLampOil;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -47,6 +48,7 @@ public class BlockLampOil
     super(Material.ROCK);
     this.setHardness(1);
     this.setHarvestLevel("pickaxe", 0);
+    this.setSoundType(SoundType.GLASS);
 
     this.setDefaultState(this.blockState.getBaseState()
         .withProperty(LIT, false));
