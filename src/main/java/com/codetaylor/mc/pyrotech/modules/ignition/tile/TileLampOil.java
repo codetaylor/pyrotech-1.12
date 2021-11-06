@@ -88,7 +88,7 @@ public class TileLampOil
     if (active && !this.isActive() && this.tank.getFluidAmount() > 0) {
       this.world.setBlockState(this.pos, ModuleIgnition.Blocks.LAMP_OIL.getDefaultState().withProperty(BlockLampOil.LIT, true));
 
-    } else {
+    } else if (!active && this.isActive()) {
       this.world.setBlockState(this.pos, ModuleIgnition.Blocks.LAMP_OIL.getDefaultState().withProperty(BlockLampOil.LIT, false));
     }
   }
