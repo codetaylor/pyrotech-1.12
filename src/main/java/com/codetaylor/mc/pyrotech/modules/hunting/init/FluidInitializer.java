@@ -24,7 +24,7 @@ public final class FluidInitializer {
         REGISTRY.createFluid(
             "tannin",
             true,
-            fluid -> fluid.setDensity(1000).setViscosity(2000),
+            fluid -> fluid.setDensity(1000).setViscosity(1000),
             BlockFluidTannin::new
         )
     );
