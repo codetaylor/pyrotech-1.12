@@ -483,6 +483,13 @@
 
 ---
 
+**1.5.20**
+
+  * **Fixed:**
+    * Empty bucket Crucible recipe output displayed in Waila
+
+---
+
 **1.5.19**
 
   * **Fixed:**

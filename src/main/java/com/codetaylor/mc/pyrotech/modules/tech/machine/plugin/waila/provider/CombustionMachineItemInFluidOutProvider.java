@@ -10,10 +10,12 @@ import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCapabilityDe
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCombustionWorkerStoneItemInFluidOutBase;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 
@@ -98,10 +100,17 @@ public class CombustionMachineItemInFluidOutProvider
     }
 
     if (recipe != null) {
-      FluidStack output = recipe.getOutput();
-      ItemStack filledBucket = FluidUtil.getFilledBucket(output);
       renderString.append(WailaUtil.getProgressRenderString(progress, maxProgress));
-      renderString.append(WailaUtil.getStackRenderString(filledBucket));
+
+      FluidStack outputFluid = recipe.getOutput();
+      Block fluidBlock = outputFluid.getFluid().getBlock();
+
+      if (fluidBlock instanceof BlockFluidBase) {
+        renderString.append(WailaUtil.getStackRenderString(new ItemStack(outputFluid.getFluid().getBlock())));
+
+      } else {
+        renderString.append(WailaUtil.getStackRenderString(FluidUtil.getFilledBucket(outputFluid)));
+      }
     }
 
     this.tooltip.add(renderString.toString());
