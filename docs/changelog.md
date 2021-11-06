@@ -129,6 +129,7 @@
         * Stone Tool Shaft
         * Mud Clump
         * Refractory Bucket [(#311)](https://github.com/codetaylor/pyrotech-1.12/issues/311)
+        * Lard
     * Mobs:
         * Animated Mud
             * Spawns in `minecraft:swampland` and `minecraft:river` biomes by default
@@ -466,6 +467,7 @@
         * `item.pyrotech.bucket.refractory.empty.name`
         * `item.pyrotech.bucket.refractory.milk.name`
         * `tile.pyrotech.lamp_oil.name`
+        * `item.pyrotech.lard.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

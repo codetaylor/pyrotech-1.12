@@ -236,15 +236,15 @@ public class ModuleHuntingConfig {
     })
     @Config.RequiresMcRestart
     public Map<String, String> DROP_MAP = new HashMap<String, String>() {{
-      this.put("minecraft:pig", "pyrotech:hide_pig:0;1;0.85&pyrotech:material:11;2;0.50");
-      this.put("minecraft:cow", "pyrotech:pelt_cow:0;1;0.85&pyrotech:material:11;2;0.50");
-      this.put("minecraft:mooshroom", "pyrotech:pelt_mooshroom:0;1;0.65&pyrotech:material:11;2;0.50");
-      this.put("minecraft:polar_bear", "pyrotech:pelt_polar_bear:0;1;0.85&pyrotech:material:11;2;0.50");
+      this.put("minecraft:pig", "pyrotech:hide_pig:0;1;0.85&pyrotech:material:11;2;0.50&pyrotech:material:49;2;0.50");
+      this.put("minecraft:cow", "pyrotech:pelt_cow:0;1;0.85&pyrotech:material:11;2;0.50&pyrotech:material:49;2;0.50");
+      this.put("minecraft:mooshroom", "pyrotech:pelt_mooshroom:0;1;0.65&pyrotech:material:11;2;0.50&pyrotech:material:49;2;0.50");
+      this.put("minecraft:polar_bear", "pyrotech:pelt_polar_bear:0;1;0.85&pyrotech:material:11;2;0.50&pyrotech:material:49;3;0.50");
       this.put("minecraft:bat", "pyrotech:pelt_bat:0;1;0.65");
-      this.put("minecraft:horse", "pyrotech:pelt_horse:0;1;0.85&pyrotech:material:11;2;0.50");
-      this.put("minecraft:donkey", "pyrotech:pelt_horse:0;1;0.85&pyrotech:material:11;2;0.50");
-      this.put("minecraft:rabbit", "minecraft:rabbit_hide:0;1;0.65&pyrotech:material:11;1;0.25");
-      this.put("minecraft:wolf", "pyrotech:pelt_wolf:0;1;0.85&pyrotech:material:11;2;0.50");
+      this.put("minecraft:horse", "pyrotech:pelt_horse:0;1;0.85&pyrotech:material:11;2;0.50&pyrotech:material:49;2;0.50");
+      this.put("minecraft:donkey", "pyrotech:pelt_horse:0;1;0.85&pyrotech:material:11;2;0.50&pyrotech:material:49;1;0.50");
+      this.put("minecraft:rabbit", "minecraft:rabbit_hide:0;1;0.65&pyrotech:material:11;1;0.25&pyrotech:material:49;1;0.50");
+      this.put("minecraft:wolf", "pyrotech:pelt_wolf:0;1;0.85&pyrotech:material:11;2;0.50&pyrotech:material:49;1;0.50");
     }};
 
     @Config.Comment({
@@ -439,6 +439,8 @@ public class ModuleHuntingConfig {
       this.put("minecraft:rabbit_foot:0", "minecraft:rabbit_foot:0;2;0.85");
       this.put("minecraft:porkchop:0", "minecraft:porkchop:0;2;0.85");
       this.put("minecraft:red_mushroom:0", "minecraft:red_mushroom:0;4;0.85");
+      // lard
+      this.put("pyrotech:material:49", "pyrotech:material:49;2;0.85");
     }};
 
     @Config.Comment({
