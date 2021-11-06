@@ -122,6 +122,9 @@ tile.pyrotech.torch_fiber.name=Fiber Torch
 tile.pyrotech.torch_stone.name=Stone Torch
 tile.pyrotech.lamp_oil.name=Oil Lamp
 
+fluid.lamp_oil=Lamp Oil
+tile.fluid.lamp_oil.name=Lamp Oil
+
 #------------------------------------------------------------------------------
 # Module: Storage
 #------------------------------------------------------------------------------

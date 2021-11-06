@@ -134,6 +134,7 @@ public class ModuleIgnitionConfig {
     })
     public Map<String, Integer> ALLOWED_FUEL = new HashMap<String, Integer>() {{
       this.put("pyroberry_wine", 12);
+      this.put("lamp_oil", 10);
     }};
 
     @Config.Comment({

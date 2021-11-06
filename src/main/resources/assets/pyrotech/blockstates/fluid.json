@@ -9,6 +9,7 @@
     "liquid_clay": [{"custom": {"fluid": "liquid_clay"}}],
     "tannin": [{"custom": {"fluid": "tannin"}}],
     "pyroberry_wine": [{"custom": {"fluid": "pyroberry_wine"}}],
-    "gloamberry_wine": [{"custom": {"fluid": "gloamberry_wine"}}]
+    "gloamberry_wine": [{"custom": {"fluid": "gloamberry_wine"}}],
+    "lamp_oil": [{"custom": {"fluid": "lamp_oil"}}]
   }
 }
