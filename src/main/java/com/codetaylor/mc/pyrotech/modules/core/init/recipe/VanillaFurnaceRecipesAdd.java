@@ -125,5 +125,19 @@ public class VanillaFurnaceRecipesAdd {
         new ItemStack(Blocks.COBBLESTONE),
         0.1f
     );
+
+    // bread from bread dough
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        ItemMaterial.EnumType.BREAD_DOUGH.asStack(),
+        new ItemStack(Items.BREAD),
+        0.1f
+    );
+
+    // cookies from cookie dough
+    FurnaceRecipes.instance().addSmeltingRecipe(
+        ItemMaterial.EnumType.COOKIE_DOUGH.asStack(),
+        new ItemStack(Items.COOKIE, 8),
+        0.1f
+    );
   }
 }

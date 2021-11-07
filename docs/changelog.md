@@ -207,6 +207,8 @@
             * Gloamberries, Sugar and `fluid:water` to create `fluid:gloamberry_wine`
         * Furnace:
             * Unfired Refractory Bucket -> Refractory Bucket
+            * Bread Dough -> Bread
+            * Cookie Dough -> Cookie x8
         * Pit Kiln:
             * Unfired Refractory Bucket -> Refractory Bucket
         * Anvil:
