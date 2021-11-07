@@ -36,6 +36,14 @@ public class JsonOreDict {
 
     JsonOreDict result = new JsonOreDict();
 
+    result.oreDict.put("dustWheat", new String[]{
+        "pyrotech:material:" + ItemMaterial.EnumType.FLOUR.getMeta()
+    });
+
+    result.oreDict.put("foodDough", new String[]{
+        "pyrotech:material:" + ItemMaterial.EnumType.DOUGH.getMeta()
+    });
+
     result.oreDict.put("toolHammer", new String[]{
         "pyrotech:" + ItemBoneHammerDurable.NAME + ":*",
         "pyrotech:" + ItemFlintHammerDurable.NAME + ":*",

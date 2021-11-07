@@ -381,6 +381,9 @@ item.pyrotech.fletching.name=Fletching
 item.pyrotech.stone.tool.shaft.name=Stone Tool Shaft
 item.pyrotech.bow.drill.durable.stick.name=Durable Spindle
 item.pyrotech.lard.name=Lard
+item.pyrotech.dough.name=Dough
+item.pyrotech.flour.name=Flour
+item.pyrotech.bread.dough.name=Bread Dough
 
 item.pyrotech.apple.baked.name=Baked Apple
 item.pyrotech.carrot.roasted.name=Roasted Carrot

@@ -121,7 +121,10 @@ public class ItemMaterial
     FLETCHING(46, "fletching"),
     STONE_TOOL_SHAFT(47, "stone_tool_shaft"),
     BOW_DRILL_DURABLE_STICK(48, "bow_drill_durable_stick"),
-    LARD(49, "lard");
+    LARD(49, "lard"),
+    DOUGH(50, "dough"),
+    FLOUR(51, "flour"),
+    BREAD_DOUGH(52, "bread_dough");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())
@@ -143,6 +146,7 @@ public class ItemMaterial
       return this.meta;
     }
 
+    @Nonnull
     @Override
     public String getName() {
 

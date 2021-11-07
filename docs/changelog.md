@@ -130,6 +130,9 @@
         * Mud Clump
         * Refractory Bucket [(#311)](https://github.com/codetaylor/pyrotech-1.12/issues/311)
         * Lard
+        * Flour
+        * Dough
+        * Bread Dough
     * Mobs:
         * Animated Mud
             * Spawns in `minecraft:swampland` and `minecraft:river` biomes by default
@@ -190,7 +193,7 @@
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
             * Washed Hide and `fluid:tannin` -> Leather
             * Small Washed Hide and `fluid:tannin` -> Small Leather
-            * Dirt -> Mud
+            * Dirt and `fluid:water` -> Mud
         * Barrel:
             * `treeLeaves` and `fluid:water` to create `fluid:tannin`
             * Pyroberries, Sugar and `fluid:water` to create `fluid:pyroberry_wine`
@@ -287,11 +290,16 @@
             * `pyrotech:gold_hammer:*`
             * `pyrotech:diamond_hammer:*`
             * `pyrotech:obsidian_hammer:*`
+        * `dustWheat` now contains:
+            * `pyrotech:material:51`
+        * `foodDough` now contains:
+            * `pyrotech:material:50`
 
   * **Changed:**
     * Changed first load restart chat message to invasive full-screen GUI message [(#248)](https://github.com/codetaylor/pyrotech-1.12/issues/248)
     * Removed vanilla recipe for Arrow
     * Removed vanilla recipe for Magma Cream
+    * Removed vanilla recipe for Bread
     * Reduced damage, velocity, and accuracy of thrown rocks / clumps
     * Rocks material type is now `Material.PLANTS` so they wash away with water [(#347)](https://github.com/codetaylor/pyrotech-1.12/issues/347)
     * Leather armor recipes now use new leather materials
@@ -468,6 +476,9 @@
         * `item.pyrotech.bucket.refractory.milk.name`
         * `tile.pyrotech.lamp_oil.name`
         * `item.pyrotech.lard.name`
+        * `item.pyrotech.dough.name`
+        * `item.pyrotech.flour.name`
+        * `item.pyrotech.bread.dough.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

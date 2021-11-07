@@ -54,7 +54,10 @@
       "fletching": {"textures": {"layer0": "pyrotech:items/fletching"}},
       "stone_tool_shaft": {"textures": {"layer0": "pyrotech:items/stone_tool_shaft"}},
       "bow_drill_durable_stick": {"textures": {"layer0": "pyrotech:items/bow_drill_durable_stick"}},
-      "lard": {"textures": {"layer0": "pyrotech:items/lard"}}
+      "lard": {"textures": {"layer0": "pyrotech:items/lard"}},
+      "dough": {"textures": {"layer0": "pyrotech:items/dough"}},
+      "flour": {"textures": {"layer0": "pyrotech:items/flour"}},
+      "bread_dough": {"textures": {"layer0": "pyrotech:items/bread_dough"}}
     }
   }
 }
