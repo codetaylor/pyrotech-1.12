@@ -1242,6 +1242,14 @@ public class ModuleTechBasicConfig {
     })
     public boolean USE_LOG_WOOD_OREDICT = true;
 
+    @Config.Comment({
+        "List of recipes to blacklist by output."
+    })
+    public String[] RECIPE_BLACKLIST = {
+        "minecraft:bread",
+        "minecraft:cookie"
+    };
+
     public boolean isValidFuel(ItemStack fuel) {
 
       if (this.USE_LOG_WOOD_OREDICT

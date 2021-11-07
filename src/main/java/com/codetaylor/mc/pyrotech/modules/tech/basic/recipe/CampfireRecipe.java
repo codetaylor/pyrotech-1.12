@@ -1,12 +1,18 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.recipe;
 
+import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
+import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nullable;
@@ -123,6 +129,26 @@ public class CampfireRecipe
   public static boolean hasWhitelist() {
 
     return !WHITELIST.isEmpty();
+  }
+
+  public static void registerConfigBlacklist() {
+
+    for (String itemString : ModuleTechBasicConfig.CAMPFIRE.RECIPE_BLACKLIST) {
+
+      try {
+        ParseResult result = RecipeItemParser.INSTANCE.parse(itemString);
+        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(result.getDomain(), result.getPath()));
+
+        if (item == null) {
+          throw new NullPointerException("Item not found: " + result.toString());
+        }
+
+        BLACKLIST.add(Ingredient.fromStacks(new ItemStack(item, 1, result.getMeta())));
+
+      } catch (Exception e) {
+        ModuleTechBasic.LOGGER.error("Error parsing campfire blacklist config entry", e);
+      }
+    }
   }
 
   public static boolean isBlacklisted(ItemStack output) {

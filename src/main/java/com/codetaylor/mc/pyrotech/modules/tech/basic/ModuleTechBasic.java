@@ -148,6 +148,9 @@ public class ModuleTechBasic
 
     super.onRegisterRecipesEvent(event);
 
+    // blacklist campfire config recipes
+    CampfireRecipe.registerConfigBlacklist();
+
     PitKilnRecipesAdd.apply(ModuleTechBasic.Registries.KILN_PIT_RECIPE);
     CrudeDryingRackRecipesAdd.apply(ModuleTechBasic.Registries.CRUDE_DRYING_RACK_RECIPE);
     DryingRackRecipesAdd.apply(ModuleTechBasic.Registries.DRYING_RACK_RECIPE);

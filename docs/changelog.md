@@ -162,6 +162,7 @@
         * Pit Kiln option to:
             * Specify if extinguished by rain `EXTINGUISHED_BY_RAIN`
             * Specify ticks before extinguished by rain `TICKS_BEFORE_EXTINGUISHED`
+        * Added Campfire recipe blacklist to config
     * Recipes:
         * Crafting:
             * Spears
