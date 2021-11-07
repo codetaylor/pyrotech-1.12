@@ -57,7 +57,8 @@
       "lard": {"textures": {"layer0": "pyrotech:items/lard"}},
       "dough": {"textures": {"layer0": "pyrotech:items/dough"}},
       "flour": {"textures": {"layer0": "pyrotech:items/flour"}},
-      "bread_dough": {"textures": {"layer0": "pyrotech:items/bread_dough"}}
+      "bread_dough": {"textures": {"layer0": "pyrotech:items/bread_dough"}},
+      "cookie_dough": {"textures": {"layer0": "pyrotech:items/cookie_dough"}}
     }
   }
 }

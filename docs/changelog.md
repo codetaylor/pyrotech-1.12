@@ -133,6 +133,7 @@
         * Flour
         * Dough
         * Bread Dough
+        * Cookie Dough
     * Mobs:
         * Animated Mud
             * Spawns in `minecraft:swampland` and `minecraft:river` biomes by default
@@ -486,6 +487,7 @@
         * `item.pyrotech.dough.name`
         * `item.pyrotech.flour.name`
         * `item.pyrotech.bread.dough.name`
+        * `item.pyrotech.cookie.dough.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

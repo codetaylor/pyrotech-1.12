@@ -384,6 +384,7 @@ item.pyrotech.lard.name=Lard
 item.pyrotech.dough.name=Dough
 item.pyrotech.flour.name=Flour
 item.pyrotech.bread.dough.name=Bread Dough
+item.pyrotech.cookie.dough.name=Cookie Dough
 
 item.pyrotech.apple.baked.name=Baked Apple
 item.pyrotech.carrot.roasted.name=Roasted Carrot
