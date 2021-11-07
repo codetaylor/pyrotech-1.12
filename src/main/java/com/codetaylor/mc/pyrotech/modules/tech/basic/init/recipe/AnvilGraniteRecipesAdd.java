@@ -25,6 +25,15 @@ public class AnvilGraniteRecipesAdd {
 
   private static void registerHammerRecipes(IForgeRegistry<AnvilRecipe> registry) {
 
+    // Flour from cropWheat
+    registry.register(new AnvilRecipe(
+        ItemMaterial.EnumType.FLOUR.asStack(),
+        new OreIngredient("cropWheat"),
+        2,
+        AnvilRecipe.EnumType.HAMMER,
+        AnvilRecipe.EnumTier.GRANITE
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "flour_from_wheat"));
+
     // Redstone Dust from Redstone Shard
     registry.register(new AnvilRecipe(
         new ItemStack(Items.REDSTONE, 2),

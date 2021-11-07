@@ -23,6 +23,15 @@ public class SoakingPotRecipesAdd {
 
   public static void apply(IForgeRegistry<SoakingPotRecipe> registry) {
 
+    // Dough
+    registry.register(new SoakingPotRecipe(
+        ItemMaterial.EnumType.DOUGH.asStack(),
+        new OreIngredient("dustWheat"),
+        new FluidStack(FluidRegistry.WATER, 125),
+        false,
+        7 * 60 * 20
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "dough"));
+
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleHunting.class)) {
       // Leather
       registry.register(new SoakingPotRecipe(

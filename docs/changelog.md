@@ -188,12 +188,15 @@
             * Durable Spindle
             * Durable Spindle + Durable Bow Drill -> repair
             * Durable Bow Drill
+            * `ore:toolShears` + `ore:cropWheat` -> Straw
+            * `ore:dustWheat` x3 + `fluid:water` -> Dough x3
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
             * Washed Hide and `fluid:tannin` -> Leather
             * Small Washed Hide and `fluid:tannin` -> Small Leather
             * Dirt and `fluid:water` -> Mud
+            * `ore:dustWheat` and `fluid:water` -> Dough
         * Barrel:
             * `treeLeaves` and `fluid:water` to create `fluid:tannin`
             * Pyroberries, Sugar and `fluid:water` to create `fluid:pyroberry_wine`
@@ -202,6 +205,10 @@
             * Unfired Refractory Bucket -> Refractory Bucket
         * Pit Kiln:
             * Unfired Refractory Bucket -> Refractory Bucket
+        * Anvil:
+            * `ore:toolHammer` + `cropWheat` -> Flour
+        * Oven:
+            * Bread Dough -> Bread
     * Visual indicator when the player's hunger is too low to use a device
     * Dropt rules:
         * Tool harvest level scaling rules for Mud

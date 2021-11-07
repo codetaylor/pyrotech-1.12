@@ -17,7 +17,7 @@ public class CrudeDryingRackRecipesAdd {
     // Straw
     registry.register(new CrudeDryingRackRecipe(
         ItemMaterial.EnumType.STRAW.asStack(),
-        Ingredient.fromStacks(new ItemStack(Items.WHEAT)),
+        new OreIngredient("cropWheat"),
         12 * 60 * 20
     ).setRegistryName(ModuleTechBasic.MOD_ID, "straw"));
 

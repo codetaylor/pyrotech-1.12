@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "foodDough"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "foodDough"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "foodDough"
+    }
+  ],
+  "result": {
+    "item": "pyrotech:material",
+    "data": 52,
+    "count": 1
+  }
+}

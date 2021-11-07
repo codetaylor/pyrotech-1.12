@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustWheat"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustWheat"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustWheat"
+    },
+    {
+      "type": "pyrotech:fluid",
+      "fluid": "water"
+    }
+  ],
+  "result": {
+    "item": "pyrotech:material",
+    "data": 50,
+    "count": 3
+  }
+}

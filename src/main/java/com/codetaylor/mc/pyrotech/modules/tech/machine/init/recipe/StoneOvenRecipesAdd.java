@@ -2,10 +2,14 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.DryingRackRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachineConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneOvenRecipe;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
@@ -23,7 +27,11 @@ public class StoneOvenRecipesAdd {
   };
 
   public static void apply(IForgeRegistry<StoneOvenRecipe> registry) {
-    //
+
+    registry.register(new StoneOvenRecipe(
+        new ItemStack(Items.BREAD),
+        Ingredient.fromStacks(ItemMaterial.EnumType.BREAD_DOUGH.asStack())
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "bread"));
   }
 
   public static void registerInheritedDryingRackRecipes(
