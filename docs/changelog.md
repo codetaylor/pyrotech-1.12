@@ -191,6 +191,8 @@
             * Durable Bow Drill
             * `ore:toolShears` + `ore:cropWheat` -> Straw
             * `ore:dustWheat` x3 + `fluid:water` -> Dough x3
+            * Dough x3 -> Bread Dough
+            * Dough x2 + Cocoa Beans -> Cookie Dough
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
@@ -210,6 +212,7 @@
             * `ore:toolHammer` + `cropWheat` -> Flour
         * Oven:
             * Bread Dough -> Bread
+            * Cookie Dough -> Cookie x8
     * Visual indicator when the player's hunger is too low to use a device
     * Dropt rules:
         * Tool harvest level scaling rules for Mud

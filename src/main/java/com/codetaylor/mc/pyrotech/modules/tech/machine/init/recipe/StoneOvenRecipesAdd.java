@@ -28,10 +28,17 @@ public class StoneOvenRecipesAdd {
 
   public static void apply(IForgeRegistry<StoneOvenRecipe> registry) {
 
+    // Bread
     registry.register(new StoneOvenRecipe(
         new ItemStack(Items.BREAD),
         Ingredient.fromStacks(ItemMaterial.EnumType.BREAD_DOUGH.asStack())
     ).setRegistryName(ModuleTechBasic.MOD_ID, "bread"));
+
+    // Cookies
+    registry.register(new StoneOvenRecipe(
+        new ItemStack(Items.COOKIE, 8),
+        Ingredient.fromStacks(ItemMaterial.EnumType.COOKIE_DOUGH.asStack())
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "cookie"));
   }
 
   public static void registerInheritedDryingRackRecipes(
