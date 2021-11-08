@@ -17,6 +17,7 @@ public class PluginWaila {
     registrar.registerBodyProvider(new ChoppingBlockProvider(), TileChoppingBlock.class);
     registrar.registerBodyProvider(new AnvilProvider(AnvilRecipe.EnumTier.GRANITE), TileAnvilGranite.class);
     registrar.registerBodyProvider(new AnvilProvider(AnvilRecipe.EnumTier.IRONCLAD), TileAnvilIronPlated.class);
+    registrar.registerBodyProvider(new AnvilProvider(AnvilRecipe.EnumTier.OBSIDIAN), TileAnvilObsidian.class);
     registrar.registerBodyProvider(new WorktableProvider(), TileWorktable.class);
     registrar.registerBodyProvider(new CompactingBinProvider(), TileCompactingBin.class);
     registrar.registerBodyProvider(new SoakingPotProvider(), TileSoakingPot.class);
