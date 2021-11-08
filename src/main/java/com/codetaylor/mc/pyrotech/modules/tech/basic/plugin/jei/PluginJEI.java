@@ -61,6 +61,7 @@ public class PluginJEI
         new JEIRecipeCategoryChoppingBlock(guiHelper),
         new JEIRecipeCategoryAnvilGranite(guiHelper),
         new JEIRecipeCategoryAnvilIronclad(guiHelper),
+        new JEIRecipeCategoryAnvilObsidian(guiHelper),
         new JEIRecipeCategoryCompactingBin(guiHelper),
         new JEIRecipeCategoryCampfire(guiHelper),
         new JEIRecipeCategoryWorktable(guiHelper),
@@ -210,6 +211,16 @@ public class PluginJEI
           .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.IRONCLAD))
           .collect(Collectors.toList());
       registry.addRecipes(recipeList, JEIRecipeCategoryAnvilIronclad.UID);
+    }
+
+    // --- Obsidian Anvil
+    {
+      registry.addRecipeCatalyst(new ItemStack(ModuleTechBasic.Blocks.ANVIL_OBSIDIAN), JEIRecipeCategoryAnvilObsidian.UID);
+      registry.handleRecipes(AnvilRecipe.class, JEIRecipeWrapperAnvil::new, JEIRecipeCategoryAnvilObsidian.UID);
+      List<AnvilRecipe> recipeList = ModuleTechBasic.Registries.ANVIL_RECIPE.getValuesCollection().stream()
+          .filter(anvilRecipe -> anvilRecipe.isTier(AnvilRecipe.EnumTier.OBSIDIAN))
+          .collect(Collectors.toList());
+      registry.addRecipes(recipeList, JEIRecipeCategoryAnvilObsidian.UID);
     }
 
     // --- Chopping Block
