@@ -746,6 +746,7 @@ public class ModuleCoreConfig {
         "minecraft:arrow",
         "minecraft:bread",
         "minecraft:cookie",
+        "minecraft:cake",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
