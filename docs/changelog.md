@@ -194,6 +194,7 @@
             * `ore:dustWheat` x3 + `fluid:water` -> Dough x3
             * Dough x3 -> Bread Dough
             * Dough x2 + Cocoa Beans -> Cookie Dough
+            * Cake recipe that uses `ore:milk` and new Flour item
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
@@ -315,6 +316,7 @@
     * Removed vanilla recipe for Magma Cream
     * Removed vanilla recipe for Bread
     * Removed vanilla recipe for Cookie
+    * Removed vanilla recipe for Cake
     * Reduced damage, velocity, and accuracy of thrown rocks / clumps
     * Rocks material type is now `Material.PLANTS` so they wash away with water [(#347)](https://github.com/codetaylor/pyrotech-1.12/issues/347)
     * Leather armor recipes now use new leather materials
