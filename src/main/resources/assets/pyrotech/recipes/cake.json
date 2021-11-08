@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "SES",
+    "FFF"
+  ],
+  "key": {
+    "M": {
+      "type": "forge:ore_dict",
+      "ore": "milk"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "E": {
+      "type": "forge:ore_dict",
+      "ore": "egg"
+    },
+    "F": {
+      "type": "forge:ore_dict",
+      "ore": "dustWheat"
+    }
+  },
+  "result": {
+    "item": "minecraft:cake",
+    "count": 1,
+    "data": 0
+  }
+}
