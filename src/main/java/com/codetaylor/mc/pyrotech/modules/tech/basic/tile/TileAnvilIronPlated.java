@@ -6,7 +6,6 @@ import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
-import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -48,24 +47,6 @@ public class TileAnvilIronPlated
   protected double getExhaustionCostPerHit() {
 
     return ModuleTechBasicConfig.IRONCLAD_ANVIL.EXHAUSTION_COST_PER_HIT;
-  }
-
-  @Override
-  public int getHammerHitReduction(ResourceLocation resourceLocation) {
-
-    return ModuleTechBasicConfig.ANVIL_COMMON.getHammerHitReduction(resourceLocation);
-  }
-
-  @Override
-  public String[] getPickaxeWhitelist() {
-
-    return ModuleTechBasicConfig.ANVIL_COMMON.PICKAXE_WHITELIST;
-  }
-
-  @Override
-  public String[] getPickaxeBlacklist() {
-
-    return ModuleTechBasicConfig.ANVIL_COMMON.PICKAXE_BLACKLIST;
   }
 
   @Override

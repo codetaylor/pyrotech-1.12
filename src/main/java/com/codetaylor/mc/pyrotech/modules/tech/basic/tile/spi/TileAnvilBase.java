@@ -18,6 +18,7 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketNoHunger;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi.BlockAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.network.SCPacketParticleAnvilHit;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
@@ -30,7 +31,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -164,12 +164,6 @@ public abstract class TileAnvilBase
   protected abstract double getExhaustionCostPerCraftComplete();
 
   protected abstract double getExhaustionCostPerHit();
-
-  public abstract int getHammerHitReduction(ResourceLocation resourceLocation);
-
-  public abstract String[] getPickaxeWhitelist();
-
-  public abstract String[] getPickaxeBlacklist();
 
   protected abstract int getMinimumHungerToUse();
 
@@ -358,7 +352,7 @@ public abstract class TileAnvilBase
       }
 
       ItemStack heldItemStack = player.getHeldItem(hand);
-      AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(tile, heldItemStack);
+      AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(heldItemStack);
       ItemStackHandler stackHandler = tile.getStackHandler();
       ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
       AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier(), type);
@@ -372,7 +366,7 @@ public abstract class TileAnvilBase
       ItemStackHandler stackHandler = tile.getStackHandler();
       ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
       ItemStack heldItemStack = player.getHeldItem(hand);
-      AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(tile, heldItemStack);
+      AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(heldItemStack);
       AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier(), type);
       boolean isExtendedRecipe = (recipe instanceof AnvilRecipe.IExtendedRecipe);
 
@@ -447,7 +441,7 @@ public abstract class TileAnvilBase
               hitReduction = item.getHarvestLevel(heldItemMainHand, "pickaxe", player, null);
 
             } else {
-              hitReduction = tile.getHammerHitReduction(item.getRegistryName());
+              hitReduction = ModuleTechBasicConfig.ANVIL_COMMON.getHammerHitReduction(item.getRegistryName());
             }
 
             int hits = Math.max(1, recipe.getHits() - hitReduction);

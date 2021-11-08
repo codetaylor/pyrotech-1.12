@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -58,7 +59,7 @@ public class AnvilRecipe
   }
 
   @Nullable
-  public static EnumType getTypeFromItemStack(TileAnvilBase tile, ItemStack itemStack) {
+  public static EnumType getTypeFromItemStack(ItemStack itemStack) {
 
     /*
       if explicitly declared in hammer config, is hammer
@@ -75,17 +76,17 @@ public class AnvilRecipe
       return null;
     }
 
-    if (tile.getHammerHitReduction(resourceLocation) > -1) {
+    if (ModuleTechBasicConfig.ANVIL_COMMON.getHammerHitReduction(resourceLocation) > -1) {
       // held item is hammer
       return AnvilRecipe.EnumType.HAMMER;
 
     } else if (item.getToolClasses(itemStack).contains("pickaxe")) {
       // held item is pickaxe
-      if (!ArrayHelper.contains(tile.getPickaxeBlacklist(), resourceLocation.toString())) {
+      if (!ArrayHelper.contains(ModuleTechBasicConfig.ANVIL_COMMON.PICKAXE_BLACKLIST, resourceLocation.toString())) {
         return AnvilRecipe.EnumType.PICKAXE;
       }
 
-    } else if (ArrayHelper.contains(tile.getPickaxeWhitelist(), resourceLocation.toString())) {
+    } else if (ArrayHelper.contains(ModuleTechBasicConfig.ANVIL_COMMON.PICKAXE_WHITELIST, resourceLocation.toString())) {
       // held item is pickaxe
       return AnvilRecipe.EnumType.PICKAXE;
     }
