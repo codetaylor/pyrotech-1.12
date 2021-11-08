@@ -18,7 +18,7 @@ public class ExportDocumentation {
   public static void main(String[] args) {
 
     String targetPath = "docs/zs/";
-    Class[] classes = {
+    Class<?>[] classes = {
         ZenBloomery.class,
         ZenBurn.class,
         ZenCampfire.class,
@@ -28,6 +28,7 @@ public class ExportDocumentation {
         ZenDryingRack.class,
         ZenAnvilGranite.class,
         ZenAnvilIronclad.class,
+        ZenAnvilObsidian.class,
         ZenKilnPit.class,
         ZenSoakingPot.class,
         ZenWorktable.class,
