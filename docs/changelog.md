@@ -40,6 +40,7 @@
         * Wet Cob
             * Dries in-world
         * Mud - Block and layer
+        * Obsidian Anvil
     * Items:
         * Durable Flint and Bone Tools:
             * Durable Flint Axe
@@ -497,6 +498,8 @@
         * `item.pyrotech.flour.name`
         * `item.pyrotech.bread.dough.name`
         * `item.pyrotech.cookie.dough.name`
+        * `gui.pyrotech.jei.category.anvil.obsidian`
+        * `tile.pyrotech.anvil_obsidian.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

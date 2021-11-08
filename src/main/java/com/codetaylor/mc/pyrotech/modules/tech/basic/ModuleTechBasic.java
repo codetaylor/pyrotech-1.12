@@ -156,6 +156,7 @@ public class ModuleTechBasic
     DryingRackRecipesAdd.apply(ModuleTechBasic.Registries.DRYING_RACK_RECIPE);
     AnvilGraniteRecipesAdd.apply(ModuleTechBasic.Registries.ANVIL_RECIPE);
     AnvilIroncladRecipesAdd.apply(ModuleTechBasic.Registries.ANVIL_RECIPE);
+    AnvilObsidianRecipesAdd.apply(ModuleTechBasic.Registries.ANVIL_RECIPE);
     ChoppingBlockRecipesAdd.applyCompatRecipes(this.getConfigurationDirectory().toPath(), ModuleTechBasic.Registries.CHOPPING_BLOCK_RECIPE);
     CompactingBinRecipesAdd.apply(ModuleTechBasic.Registries.COMPACTING_BIN_RECIPE);
     SoakingPotRecipesAdd.apply(ModuleTechBasic.Registries.SOAKING_POT_RECIPE);
@@ -166,6 +167,7 @@ public class ModuleTechBasic
 
     DryingRackRecipesAdd.registerInheritedRecipes(Registries.CRUDE_DRYING_RACK_RECIPE, Registries.DRYING_RACK_RECIPE);
     AnvilIroncladRecipesAdd.registerInheritedRecipes(Registries.ANVIL_RECIPE);
+    AnvilObsidianRecipesAdd.registerInheritedRecipes(Registries.ANVIL_RECIPE);
   }
 
   @Override
@@ -238,6 +240,9 @@ public class ModuleTechBasic
     @GameRegistry.ObjectHolder(BlockAnvilIronPlated.NAME)
     public static final BlockAnvilIronPlated ANVIL_IRON_PLATED;
 
+    @GameRegistry.ObjectHolder(BlockAnvilObsidian.NAME)
+    public static final BlockAnvilObsidian ANVIL_OBSIDIAN;
+
     @GameRegistry.ObjectHolder(BlockWorktable.NAME)
     public static final BlockWorktable WORKTABLE;
 
@@ -269,6 +274,7 @@ public class ModuleTechBasic
       CHOPPING_BLOCK = null;
       ANVIL_GRANITE = null;
       ANVIL_IRON_PLATED = null;
+      ANVIL_OBSIDIAN = null;
       WORKTABLE = null;
       WORKTABLE_STONE = null;
       COMPACTING_BIN = null;

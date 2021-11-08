@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.basic"]
+    }
+  ],
+  "pattern": [
+    "GGG",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "G": {
+      "item": "minecraft:obsidian",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:anvil_obsidian",
+    "count": 1,
+    "data": 0
+  }
+}

@@ -27,6 +27,9 @@ public final class BlockInitializer {
     BlockAnvilIronPlated blockAnvilIronPlated = new BlockAnvilIronPlated();
     registry.registerBlock(blockAnvilIronPlated, new BlockAnvilIronPlated.ItemAnvil(blockAnvilIronPlated), BlockAnvilIronPlated.NAME);
 
+    BlockAnvilObsidian blockAnvilObsidian = new BlockAnvilObsidian();
+    registry.registerBlock(blockAnvilObsidian, new BlockAnvilObsidian.ItemAnvil(blockAnvilObsidian), BlockAnvilObsidian.NAME);
+
     BlockKilnPit blockKilnPit = new BlockKilnPit();
     registry.registerBlock(blockKilnPit, new ItemBlock(blockKilnPit), BlockKilnPit.NAME);
 
@@ -55,6 +58,7 @@ public final class BlockInitializer {
         TileChoppingBlock.class,
         TileAnvilGranite.class,
         TileAnvilIronPlated.class,
+        TileAnvilObsidian.class,
         TileWorktable.class,
         TileWorktableStone.class,
         TileCompactingBin.class,
@@ -108,6 +112,13 @@ public final class BlockInitializer {
       // Iron Plated Anvil
       ModelRegistrationHelper.registerVariantBlockItemModels(
           ModuleTechBasic.Blocks.ANVIL_IRON_PLATED.getDefaultState(),
+          BlockAnvilBase.DAMAGE,
+          value -> value
+      );
+
+      // Obsidian Anvil
+      ModelRegistrationHelper.registerVariantBlockItemModels(
+          ModuleTechBasic.Blocks.ANVIL_OBSIDIAN.getDefaultState(),
           BlockAnvilBase.DAMAGE,
           value -> value
       );

@@ -60,6 +60,9 @@ public class ModuleTechBasicConfig {
   public static Stages STAGES_ANVIL_GRANITE = null;
 
   @Config.Ignore
+  public static Stages STAGES_ANVIL_OBSIDIAN = null;
+
+  @Config.Ignore
   public static Stages STAGES_BARREL = null;
 
   @Config.Ignore
@@ -785,6 +788,84 @@ public class ModuleTechBasicConfig {
     })
     @Config.RangeDouble(min = 0)
     public double INHERITED_GRANITE_ANVIL_RECIPE_HIT_MODIFIER = 1.0;
+
+    @Config.Comment({
+        "Set to false to prevent the device from wearing out.",
+        "Default: " + true
+    })
+    public boolean USE_DURABILITY = true;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Obsidian Anvil
+  // ---------------------------------------------------------------------------
+
+  public static ObsidianAnvil OBSIDIAN_ANVIL = new ObsidianAnvil();
+
+  public static class ObsidianAnvil {
+
+    @Config.Comment({
+        "Set this to false to prevent piping contents in / out.",
+        "Default: " + true
+    })
+    public boolean ALLOW_AUTOMATION = true;
+
+    @Config.Comment({
+        "The number of times the block can be hit before applying damage",
+        "to the block. The block has a total of four damage stages. This number",
+        "represents the number of hits for just one damage stage.",
+        "Default: " + 2048
+    })
+    @Config.RangeInt(min = 1)
+    public int HITS_PER_DAMAGE = 2048;
+
+    @Config.Comment({
+        "The amount of extra damage to apply to the anvil damage when hitting a bloom.",
+        "Default: " + 0
+    })
+    @Config.RangeInt(min = 0)
+    public int BLOOM_EXTRA_DAMAGE_PER_HIT = 0;
+
+    @Config.Comment({
+        "The chance that extra damage will be applied when hitting a bloom.",
+        "Default: " + 0
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double BLOOM_EXTRA_DAMAGE_CHANCE = 0;
+
+    @Config.Comment({
+        "How much exhaustion to apply per hit.",
+        "Default: " + 0.25
+    })
+    @Config.RangeDouble(min = 0, max = 40)
+    public double EXHAUSTION_COST_PER_HIT = 0.25;
+
+    @Config.Comment({
+        "How much exhaustion to apply per completed craft.",
+        "Default: " + 0
+    })
+    @Config.RangeDouble(min = 0, max = 40)
+    public double EXHAUSTION_COST_PER_CRAFT_COMPLETE = 0;
+
+    @Config.Comment({
+        "Minimum amount of hunger the player needs to use.",
+        "Default: " + 3
+    })
+    @Config.RangeInt(min = 0, max = 20)
+    public int MINIMUM_HUNGER_TO_USE = 3;
+
+    @Config.Comment({
+        "If true, all the granite anvil recipes will also be available in this device.",
+        "Default: " + true
+    })
+    public boolean INHERIT_IRONCLAD_ANVIL_RECIPES = true;
+
+    @Config.Comment({
+        "Multiplicative modifier applied to the required hits for all inherited recipes.",
+        "Default: " + 1.0
+    })
+    @Config.RangeDouble(min = 0)
+    public double INHERITED_IRONCLAD_ANVIL_RECIPE_HIT_MODIFIER = 1.0;
 
     @Config.Comment({
         "Set to false to prevent the device from wearing out.",

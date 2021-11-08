@@ -21,7 +21,7 @@ public class AnvilRecipe
     implements IRecipeSingleOutput {
 
   public enum EnumTier {
-    GRANITE, IRONCLAD
+    GRANITE, IRONCLAD, OBSIDIAN
   }
 
   public enum EnumType {
