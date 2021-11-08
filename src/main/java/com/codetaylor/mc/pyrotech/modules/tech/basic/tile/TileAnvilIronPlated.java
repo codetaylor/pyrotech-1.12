@@ -29,7 +29,7 @@ public class TileAnvilIronPlated
   @Override
   public double getBloomAnvilExtraDamageChance() {
 
-    return ModuleTechBasicConfig.GRANITE_ANVIL.BLOOM_EXTRA_DAMAGE_CHANCE;
+    return ModuleTechBasicConfig.IRONCLAD_ANVIL.BLOOM_EXTRA_DAMAGE_CHANCE;
   }
 
   @Override
