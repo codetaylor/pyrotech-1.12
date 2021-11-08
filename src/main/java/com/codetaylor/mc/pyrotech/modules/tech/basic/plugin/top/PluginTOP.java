@@ -17,6 +17,7 @@ public class PluginTOP {
 
       top.registerProvider(new AnvilProvider(AnvilRecipe.EnumTier.GRANITE));
       top.registerProvider(new AnvilProvider(AnvilRecipe.EnumTier.IRONCLAD));
+      top.registerProvider(new AnvilProvider(AnvilRecipe.EnumTier.OBSIDIAN));
       top.registerProvider(new CampfireProvider());
       top.registerProvider(new ChoppingBlockProvider());
       top.registerProvider(new CompactingBinProvider());
