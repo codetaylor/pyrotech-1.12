@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.block.spi;
 
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.tile.spi.TileAnvilBase;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomeryConfig;
@@ -166,14 +166,12 @@ public abstract class BlockAnvilBase
     // Called before #breakBlock
 
     drops.add(StackHelper.createItemStackFromTileEntity(
-        this.getBlock(),
+        this,
         1,
         state.getValue(BlockAnvilBase.DAMAGE),
         world.getTileEntity(pos)
     ));
   }
-
-  protected abstract Block getBlock();
 
   // ---------------------------------------------------------------------------
   // - Tile
