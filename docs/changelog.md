@@ -199,7 +199,7 @@
             * Dough x3 -> Bread Dough
             * Dough x2 + Cocoa Beans -> Cookie Dough
             * Cake recipe that uses `ore:milk` and new Flour item
-            * Trip Hammer
+            * Trip Hammer [(#131)](https://github.com/codetaylor/pyrotech-1.12/issues/131)
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
