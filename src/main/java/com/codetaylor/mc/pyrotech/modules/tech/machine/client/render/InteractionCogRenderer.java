@@ -1,9 +1,9 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.client.render;
 
-import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.athenaeum.interaction.api.InteractionRenderers;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteractionRenderer;
+import com.codetaylor.mc.athenaeum.util.RenderHelper;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -39,7 +39,11 @@ public class InteractionCogRenderer
         TileCogWorkerBase.ClientRenderData data = interaction.getTile().getClientRenderData();
 
         if (data.remainingAnimationTime > 0) {
-          data.remainingAnimationTime -= partialTicks;
+
+          if (!Minecraft.getMinecraft().isGamePaused()) {
+            data.remainingAnimationTime -= partialTicks;
+          }
+
           int previousCogRotationStage = (data.cogRotationStage == 0) ? 7 : data.cogRotationStage - 1;
           double bounce = bounce(data.totalAnimationTime - data.remainingAnimationTime, previousCogRotationStage * 45, 45, data.totalAnimationTime);
           GlStateManager.rotate((float) bounce, 0, 0, 1);
