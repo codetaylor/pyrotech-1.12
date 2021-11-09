@@ -17,8 +17,11 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
+
+import javax.annotation.Nullable;
 
 public class BloomAnvilRecipe
     extends AnvilRecipe
@@ -86,9 +89,9 @@ public class BloomAnvilRecipe
   }
 
   @Override
-  public float getModifiedRecipeProgressIncrement(float increment, TileAnvilBase tile, EntityPlayer player) {
+  public float getModifiedRecipeProgressIncrement(float increment, BlockPos anvilPos, Vec3d hammerPos, ItemStack hammerItemStack, @Nullable EntityPlayer player) {
 
-    return (float) (increment * BloomHelper.calculateHammerPower(tile.getPos(), player));
+    return (float) (increment * BloomHelper.calculateHammerPower(anvilPos, hammerPos, hammerItemStack, player));
   }
 
   @Override

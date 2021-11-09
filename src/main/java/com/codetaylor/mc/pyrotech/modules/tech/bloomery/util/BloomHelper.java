@@ -23,6 +23,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -48,10 +49,9 @@ public class BloomHelper {
     return true;
   }
 
-  public static double calculateHammerPower(BlockPos pos, EntityPlayer player) {
+  public static double calculateHammerPower(BlockPos anvilPos, Vec3d hammerPos, ItemStack hammerItemStack, @Nullable EntityPlayer player) {
 
-    ItemStack heldItem = player.getHeldItemMainhand();
-    ResourceLocation registryName = heldItem.getItem().getRegistryName();
+    ResourceLocation registryName = hammerItemStack.getItem().getRegistryName();
 
     if (registryName == null) {
       return 0;
@@ -63,15 +63,11 @@ public class BloomHelper {
       return 0;
     }
 
-    double originX = pos.getX() + 0.5;
-    double originY = pos.getY() + 0.25;
-    double originZ = pos.getZ() + 0.5;
+    double originX = anvilPos.getX() + 0.5;
+    double originY = anvilPos.getY() + 0.25;
+    double originZ = anvilPos.getZ() + 0.5;
 
-    double playerX = player.posX;
-    double playerY = player.posY + player.getEyeHeight() * 0.5;
-    double playerZ = player.posZ;
-
-    double distance = DistanceHelper.getDistance(originX, originY, originZ, playerX, playerY, playerZ);
+    double distance = DistanceHelper.getDistance(originX, originY, originZ, hammerPos.x, hammerPos.y, hammerPos.z);
     double offsetX = 1;
     double clampedDistance = Math.max(offsetX, distance);
     double result = Math.max(0, 1 - (1.0 / 4.0) * Math.pow(clampedDistance - offsetX, 3));
@@ -83,7 +79,7 @@ public class BloomHelper {
     double[] modifier = ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_PER_HARVEST_LEVEL;
     result *= ArrayHelper.getOrLast(modifier, hammerHarvestLevel);
 
-    Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(heldItem);
+    Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(hammerItemStack);
     Integer efficiencyLevel = enchantments.get(Enchantments.EFFICIENCY);
 
     if (efficiencyLevel != null) {
@@ -91,22 +87,24 @@ public class BloomHelper {
       result *= ArrayHelper.getOrLast(bonus, efficiencyLevel - 1);
     }
 
-    PotionEffect effectStrength = player.getActivePotionEffect(MobEffects.STRENGTH);
+    if (player != null) {
+      PotionEffect effectStrength = player.getActivePotionEffect(MobEffects.STRENGTH);
 
-    if (effectStrength != null) {
-      result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_STRENGTH_EFFECT;
-    }
+      if (effectStrength != null) {
+        result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_STRENGTH_EFFECT;
+      }
 
-    PotionEffect effectWeakness = player.getActivePotionEffect(MobEffects.WEAKNESS);
+      PotionEffect effectWeakness = player.getActivePotionEffect(MobEffects.WEAKNESS);
 
-    if (effectWeakness != null) {
-      result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_WEAKNESS_EFFECT;
-    }
+      if (effectWeakness != null) {
+        result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_WEAKNESS_EFFECT;
+      }
 
-    PotionEffect effectMiningFatigue = player.getActivePotionEffect(MobEffects.MINING_FATIGUE);
+      PotionEffect effectMiningFatigue = player.getActivePotionEffect(MobEffects.MINING_FATIGUE);
 
-    if (effectMiningFatigue != null) {
-      result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_MINING_FATIGUE_EFFECT;
+      if (effectMiningFatigue != null) {
+        result *= ModuleTechBloomeryConfig.BLOOM.HAMMER_POWER_MODIFIER_FOR_MINING_FATIGUE_EFFECT;
+      }
     }
 
     return Math.max(0, result);

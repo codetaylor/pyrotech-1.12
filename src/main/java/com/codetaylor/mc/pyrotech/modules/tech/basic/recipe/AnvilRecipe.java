@@ -11,6 +11,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -171,7 +173,7 @@ public class AnvilRecipe
 
     void applyDamage(World world, TileAnvilBase tile);
 
-    float getModifiedRecipeProgressIncrement(float increment, TileAnvilBase tile, EntityPlayer player);
+    float getModifiedRecipeProgressIncrement(float increment, BlockPos anvilPos, Vec3d hammerPos, ItemStack hammerItemStack, @Nullable EntityPlayer player);
 
     void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, T recipe, EntityPlayer player);
 

@@ -1,15 +1,15 @@
 package com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile;
 
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.util.RandomHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.util.RandomHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.ExperienceHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
@@ -31,6 +31,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -223,7 +224,9 @@ public class TileBloom
 
         if (tile.recipeProgress.get() < 1) {
           int hits = Math.max(1, ModuleTechBloomeryConfig.BLOOM.HAMMER_HITS_REQUIRED);
-          float recipeProgressIncrement = (float) ((1f / hits) * BloomHelper.calculateHammerPower(tilePos, player));
+          Vec3d hammerPos = new Vec3d(player.posX, player.posY + player.getEyeHeight() * 0.5, player.posZ);
+          ItemStack toolItemStack = player.getHeldItemMainhand();
+          float recipeProgressIncrement = (float) ((1f / hits) * BloomHelper.calculateHammerPower(tilePos, hammerPos, toolItemStack, player));
           tile.recipeProgress.set(tile.recipeProgress.get() + recipeProgressIncrement);
         }
 

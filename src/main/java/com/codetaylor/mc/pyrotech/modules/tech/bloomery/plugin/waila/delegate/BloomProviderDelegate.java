@@ -5,6 +5,8 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.ModuleTechBloomery;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.tile.TileBloom;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 
 public class BloomProviderDelegate
@@ -29,7 +31,9 @@ public class BloomProviderDelegate
     int recipeProgress = (int) (tile.getRecipeProgress() * 100);
     this.display.setHammered("gui." + ModuleTechBloomery.MOD_ID + ".waila.bloom.hammered", recipeProgress);
 
-    int hammerPower = (int) (BloomHelper.calculateHammerPower(tile.getPos(), player) * 100);
+    Vec3d hammerPos = new Vec3d(player.posX, player.posY + player.getEyeHeight() * 0.5, player.posZ);
+    ItemStack toolItemStack = player.getHeldItemMainhand();
+    int hammerPower = (int) (BloomHelper.calculateHammerPower(tile.getPos(), hammerPos, toolItemStack, player) * 100);
 
     if (hammerPower > 0) {
       this.display.setHammerPower(

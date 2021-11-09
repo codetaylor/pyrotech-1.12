@@ -34,6 +34,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
@@ -269,6 +270,159 @@ public abstract class TileAnvilBase
     return this.interactions;
   }
 
+  private void doInteraction(ItemStack toolItemStack, @Nullable EntityPlayer player, float hitX, float hitY, float hitZ) {
+
+    // Server logic
+
+    if (this.world.isRemote
+        || this.stackHandler.getStackInSlot(0).isEmpty()
+        || toolItemStack.isEmpty()) {
+      return;
+    }
+
+    ItemStack inputItemStack = this.stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
+    AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(toolItemStack);
+    AnvilRecipe recipe = AnvilRecipe.getRecipe(inputItemStack, this.getRecipeTier(), type);
+    boolean isExtendedRecipe = (recipe instanceof AnvilRecipe.IExtendedRecipe);
+
+    if (recipe != this.recipe) {
+      this.setRecipeProgress(0);
+      this.recipe = recipe;
+    }
+
+    // If the player is hitting the anvil, increase the player's exhaustion.
+    if (player != null && this.getExhaustionCostPerHit() > 0) {
+      player.addExhaustion((float) this.getExhaustionCostPerHit());
+    }
+
+    // Decrement the tile's damage and reset the hits
+    // remaining until next damage. If the damage reaches the threshold,
+    // destroy the block and drop its contents.
+
+    if (this.useDurability()
+        && this.getDurabilityUntilNextDamage() <= 1) {
+
+      this.setDurabilityUntilNextDamage(this.getHitsPerDamage());
+
+      if (this.getDamage() + 1 < 4) {
+        this.setDamage(this.getDamage() + 1);
+
+      } else {
+
+        if (isExtendedRecipe) {
+          ((AnvilRecipe.IExtendedRecipe) recipe).onAnvilDurabilityExpired(this.world, this, hitX, hitY, hitZ);
+
+        } else {
+          StackHelper.spawnStackHandlerContentsOnTop(this.world, this.getStackHandler(), this.getPos());
+          world.destroyBlock(this.getPos(), false);
+        }
+        return;
+      }
+    }
+
+    // Play sound for hit.
+    this.world.playSound(
+        null,
+        this.pos.getX(),
+        this.pos.getY(),
+        this.pos.getZ(),
+        SoundEvents.BLOCK_STONE_HIT,
+        SoundCategory.BLOCKS,
+        0.75f,
+        (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
+    );
+
+    // Decrement the durability until next damage and progress or
+    // complete the recipe.
+
+    if (recipe != null) {
+
+      if (isExtendedRecipe) {
+        ((AnvilRecipe.IExtendedRecipe) recipe).applyDamage(this.world, this);
+
+      } else if (this.useDurability()) {
+        this.setDurabilityUntilNextDamage(this.getDurabilityUntilNextDamage() - 1);
+      }
+
+      if (this.getRecipeProgress() < 1) {
+        Item item = toolItemStack.getItem();
+        int hitReduction;
+
+        if (item.getToolClasses(toolItemStack).contains("pickaxe")) {
+          hitReduction = item.getHarvestLevel(toolItemStack, "pickaxe", player, null);
+
+        } else {
+          hitReduction = ModuleTechBasicConfig.ANVIL_COMMON.getHammerHitReduction(item.getRegistryName());
+        }
+
+        int hits = Math.max(1, recipe.getHits() - hitReduction);
+        float recipeProgressIncrement = 1f / hits;
+
+        if (isExtendedRecipe) {
+          Vec3d hammerPos;
+
+          if (player != null) {
+            // If the player exists, use their position.
+            hammerPos = new Vec3d(player.posX, player.posY + player.getEyeHeight() * 0.5, player.posZ);
+
+          } else {
+            // If the player doesn't exist, use the anvil's position, effectively
+            // maxing out the hammer power calculation.
+            hammerPos = new Vec3d(this.pos.getX(), this.pos.getY(), this.pos.getZ());
+          }
+
+          recipeProgressIncrement = ((AnvilRecipe.IExtendedRecipe) recipe).getModifiedRecipeProgressIncrement(recipeProgressIncrement, this.pos, hammerPos, toolItemStack, player);
+        }
+
+        this.setRecipeProgress(this.getRecipeProgress() + recipeProgressIncrement);
+
+        if (recipeProgressIncrement > 0) {
+          // Progress Particles
+          ModuleCore.PACKET_SERVICE.sendToAllAround(
+              new SCPacketParticleProgress(this.pos.getX() + 0.5, this.pos.getY() + 1, this.pos.getZ() + 0.5, 2),
+              this.world.provider.getDimension(),
+              this.pos
+          );
+        }
+      }
+
+      if (this.getRecipeProgress() >= 0.9999) {
+
+        if (isExtendedRecipe) {
+          //noinspection unchecked
+          ((AnvilRecipe.IExtendedRecipe) recipe).onRecipeCompleted(this, world, stackHandler, recipe, player);
+
+        } else {
+          stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
+          StackHelper.spawnStackOnTop(world, recipe.getOutput(), this.pos, 0);
+        }
+
+        this.world.playSound(
+            null,
+            this.pos.getX(),
+            this.pos.getY(),
+            this.pos.getZ(),
+            SoundEvents.BLOCK_STONE_BREAK,
+            SoundCategory.BLOCKS,
+            1,
+            (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
+        );
+
+        if (player != null && this.getExhaustionCostPerCraftComplete() > 0) {
+          player.addExhaustion((float) this.getExhaustionCostPerCraftComplete());
+        }
+
+        this.recipe = null;
+
+        this.markDirty();
+        BlockHelper.notifyBlockUpdate(this.world, this.pos);
+      }
+
+      // Client particles
+      ModuleTechBasic.PACKET_SERVICE.sendToAllAround(new SCPacketParticleAnvilHit(this.pos, hitX, hitY, hitZ), this);
+    }
+  }
+
   private class InteractionItem
       extends InteractionUseItemBase<TileAnvilBase> {
 
@@ -343,6 +497,8 @@ public abstract class TileAnvilBase
     @Override
     protected boolean allowInteraction(TileAnvilBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
+      // Check player's food level and restrict usage if too low.
+
       if (player.getFoodStats().getFoodLevel() < tile.getMinimumHungerToUse()) {
 
         if (!world.isRemote) {
@@ -350,6 +506,9 @@ public abstract class TileAnvilBase
         }
         return false;
       }
+
+      // Check that the anvil has a recipe for the player's held item and the anvil's
+      // current item.
 
       ItemStack heldItemStack = player.getHeldItem(hand);
       AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(heldItemStack);
@@ -363,141 +522,8 @@ public abstract class TileAnvilBase
     @Override
     protected boolean doInteraction(TileAnvilBase tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      ItemStackHandler stackHandler = tile.getStackHandler();
-      ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
-      ItemStack heldItemStack = player.getHeldItem(hand);
-      AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(heldItemStack);
-      AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier(), type);
-      boolean isExtendedRecipe = (recipe instanceof AnvilRecipe.IExtendedRecipe);
-
       if (!world.isRemote) {
-
-        // Server logic
-
-        if (recipe != tile.recipe) {
-          tile.setRecipeProgress(0);
-          tile.recipe = recipe;
-        }
-
-        if (tile.getExhaustionCostPerHit() > 0) {
-          player.addExhaustion((float) tile.getExhaustionCostPerHit());
-        }
-
-        // Decrement the tile's damage and reset the hits
-        // remaining until next damage. If the damage reaches the threshold,
-        // destroy the block and drop its contents.
-
-        if (tile.useDurability()
-            && tile.getDurabilityUntilNextDamage() <= 1) {
-
-          tile.setDurabilityUntilNextDamage(tile.getHitsPerDamage());
-
-          if (tile.getDamage() + 1 < 4) {
-            tile.setDamage(tile.getDamage() + 1);
-
-          } else {
-
-            if (isExtendedRecipe) {
-              ((AnvilRecipe.IExtendedRecipe) recipe).onAnvilDurabilityExpired(world, tile, hitX, hitY, hitZ);
-
-            } else {
-              StackHelper.spawnStackHandlerContentsOnTop(world, tile.getStackHandler(), tile.getPos());
-              world.destroyBlock(tile.getPos(), false);
-            }
-            return true;
-          }
-        }
-
-        // Play sound for hit.
-        world.playSound(
-            null,
-            player.posX,
-            player.posY,
-            player.posZ,
-            SoundEvents.BLOCK_STONE_HIT,
-            SoundCategory.BLOCKS,
-            0.75f,
-            (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
-        );
-
-        // Decrement the durability until next damage and progress or
-        // complete the recipe.
-
-        if (recipe != null) {
-
-          if (isExtendedRecipe) {
-            ((AnvilRecipe.IExtendedRecipe) recipe).applyDamage(world, tile);
-
-          } else if (tile.useDurability()) {
-            tile.setDurabilityUntilNextDamage(tile.getDurabilityUntilNextDamage() - 1);
-          }
-
-          if (tile.getRecipeProgress() < 1) {
-            ItemStack heldItemMainHand = player.getHeldItemMainhand();
-            Item item = heldItemMainHand.getItem();
-            int hitReduction;
-
-            if (item.getToolClasses(heldItemMainHand).contains("pickaxe")) {
-              hitReduction = item.getHarvestLevel(heldItemMainHand, "pickaxe", player, null);
-
-            } else {
-              hitReduction = ModuleTechBasicConfig.ANVIL_COMMON.getHammerHitReduction(item.getRegistryName());
-            }
-
-            int hits = Math.max(1, recipe.getHits() - hitReduction);
-            float recipeProgressIncrement = 1f / hits;
-
-            if (isExtendedRecipe) {
-              recipeProgressIncrement = ((AnvilRecipe.IExtendedRecipe) recipe).getModifiedRecipeProgressIncrement(recipeProgressIncrement, tile, player);
-            }
-
-            tile.setRecipeProgress(tile.getRecipeProgress() + recipeProgressIncrement);
-
-            if (recipeProgressIncrement > 0) {
-              // Progress Particles
-              ModuleCore.PACKET_SERVICE.sendToAllAround(
-                  new SCPacketParticleProgress(hitPos.getX() + 0.5, hitPos.getY() + 1, hitPos.getZ() + 0.5, 2),
-                  world.provider.getDimension(),
-                  hitPos
-              );
-            }
-          }
-
-          if (tile.getRecipeProgress() >= 0.9999) {
-
-            if (isExtendedRecipe) {
-              //noinspection unchecked
-              ((AnvilRecipe.IExtendedRecipe) recipe).onRecipeCompleted(tile, world, stackHandler, recipe, player);
-
-            } else {
-              stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
-              StackHelper.spawnStackOnTop(world, recipe.getOutput(), tile.getPos(), 0);
-            }
-
-            world.playSound(
-                player,
-                player.posX,
-                player.posY,
-                player.posZ,
-                SoundEvents.BLOCK_STONE_BREAK,
-                SoundCategory.BLOCKS,
-                1,
-                (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
-            );
-
-            if (tile.getExhaustionCostPerCraftComplete() > 0) {
-              player.addExhaustion((float) tile.getExhaustionCostPerCraftComplete());
-            }
-
-            tile.recipe = null;
-
-            tile.markDirty();
-            BlockHelper.notifyBlockUpdate(world, tile.getPos());
-          }
-
-          // Client particles
-          ModuleTechBasic.PACKET_SERVICE.sendToAllAround(new SCPacketParticleAnvilHit(tile.pos, hitX, hitY, hitZ), tile);
-        }
+        tile.doInteraction(player.getHeldItem(hand), player, hitX, hitY, hitZ);
       }
 
       return true;

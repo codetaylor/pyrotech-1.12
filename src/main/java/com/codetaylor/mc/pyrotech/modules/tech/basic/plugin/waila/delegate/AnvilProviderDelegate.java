@@ -10,6 +10,7 @@ import com.codetaylor.mc.pyrotech.modules.tech.bloomery.util.BloomHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -92,7 +93,9 @@ public class AnvilProviderDelegate
           }
 
           {
-            int hammerPower = (int) (BloomHelper.calculateHammerPower(tile.getPos(), player) * 100);
+            Vec3d hammerPos = new Vec3d(player.posX, player.posY + player.getEyeHeight() * 0.5, player.posZ);
+            ItemStack toolItemStack = player.getHeldItemMainhand();
+            int hammerPower = (int) (BloomHelper.calculateHammerPower(tile.getPos(), hammerPos, toolItemStack, player) * 100);
             String langKey = "gui." + ModuleTechBasic.MOD_ID + ".waila.bloom.hammer.power";
 
             if (hammerPower > 0) {
