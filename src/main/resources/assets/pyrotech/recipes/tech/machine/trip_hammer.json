@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "modules_enabled",
+      "include": ["module.tech.machine"]
+    }
+  ],
+  "pattern": [
+    "b-b",
+    "HT-",
+    "BLB"
+  ],
+  "key": {
+    "b": {
+      "item": "pyrotech:material",
+      "data": 16
+    },
+    "-": {
+      "item": "pyrotech:material",
+      "data": 23
+    },
+    "H": {
+      "item": "pyrotech:mechanical_hopper",
+      "data": 0
+    },
+    "T": {
+      "item": "pyrotech:cog_iron",
+      "data": 0
+    },
+    "B": {
+      "item": "pyrotech:masonry_brick_block",
+      "data": 0
+    },
+    "L": {
+      "item": "pyrotech:planks_tarred",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "pyrotech:trip_hammer",
+    "count": 1,
+    "data": 0
+  }
+}

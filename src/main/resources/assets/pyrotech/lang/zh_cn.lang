@@ -239,6 +239,7 @@ tile.pyrotech.mechanical_compacting_bin.name=机械挤压机
 tile.pyrotech.mechanical_mulch_spreader.name=土壤疏松机
 tile.pyrotech.bellows.name=风箱
 tile.pyrotech.mechanical_bellows.name=机械风箱
+tile.pyrotech.trip_hammer.name=Trip Hammer
 
 #------------------------------------------------------------------------------
 # Module: Tech - Refractory

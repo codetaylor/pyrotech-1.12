@@ -182,10 +182,9 @@ public abstract class BloomeryRecipeBase<T extends BloomeryRecipeBase<T>>
     return this.input.apply(input);
   }
 
-  public ItemStack getRandomOutput(EntityPlayer player) {
+  public ItemStack getRandomOutput(ItemStack toolItemStack) {
 
-    ItemStack heldItemMainhand = player.getHeldItemMainhand();
-    Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(heldItemMainhand);
+    Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(toolItemStack);
 
     double modifier = 1;
 

@@ -1,7 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine;
 
-import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -43,6 +43,9 @@ public class ModuleTechMachineConfig {
 
   @Config.Ignore
   public static Stages STAGES_MECHANICAL_MULCHER = null;
+
+  @Config.Ignore
+  public static Stages STAGES_TRIP_HAMMER = null;
 
   @Config.Ignore
   public static Stages STAGES_BELLOWS = null;
@@ -346,6 +349,47 @@ public class ModuleTechMachineConfig {
         "Default: " + 0.1
     })
     public double BASE_AIRFLOW = 0.1;
+  }
+
+  // ---------------------------------------------------------------------------
+  // - Trip Hammer
+  // ---------------------------------------------------------------------------
+
+  public static TripHammer TRIP_HAMMER = new TripHammer();
+
+  public static class TripHammer {
+
+    @Config.Comment({
+        "The number of ticks between tool swings.",
+        "Default: " + (5 * 20)
+    })
+    @Config.RangeInt(min = 40)
+    public int INTERVAL_TICKS = 5 * 20;
+
+    @Config.Comment({
+        "A list of valid cogs for the device.",
+        "NOTE: Items provided here are assumed to have durability.",
+        "String format is (domain):(path)"
+    })
+    public String[] COGS = {
+        "pyrotech:cog_wood",
+        "pyrotech:cog_stone",
+        "pyrotech:cog_flint",
+        "pyrotech:cog_bone",
+        "pyrotech:cog_iron",
+        "pyrotech:cog_gold",
+        "pyrotech:cog_obsidian",
+        "pyrotech:cog_diamond"
+    };
+
+    public boolean isValidCog(@Nullable ResourceLocation resourceLocation) {
+
+      if (resourceLocation != null) {
+        return ArrayHelper.contains(COGS, resourceLocation.toString());
+      }
+
+      return false;
+    }
   }
 
   // ---------------------------------------------------------------------------

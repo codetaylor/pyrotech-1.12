@@ -18,6 +18,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class AnvilRecipe
     extends IForgeRegistryEntry.Impl<AnvilRecipe>
@@ -175,7 +176,7 @@ public class AnvilRecipe
 
     float getModifiedRecipeProgressIncrement(float increment, BlockPos anvilPos, Vec3d hammerPos, ItemStack hammerItemStack, @Nullable EntityPlayer player);
 
-    void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, T recipe, EntityPlayer player);
+    List<ItemStack> onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, T recipe, ItemStack toolItemStack);
 
     void onAnvilHitClient(World world, TileAnvilBase tile, float hitX, float hitY, float hitZ);
 

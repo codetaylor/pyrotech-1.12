@@ -131,6 +131,8 @@ public abstract class TileCogWorkerBase
 
   /**
    * Perform work and return cog damage.
+   * Return 0 to trigger the cog, but do no damage.
+   * Return -1 to prevent the cog from triggering.
    *
    * @param cog the cog
    * @return cog damage
@@ -223,15 +225,27 @@ public abstract class TileCogWorkerBase
 
     if (this.triggered.isDirty()
         && this.triggered.get()) {
-      data.totalAnimationTime = Math.min(this.getUpdateIntervalTicks(), 40);
-      data.remainingAnimationTime = data.totalAnimationTime;
-      data.cogRotationStage = (data.cogRotationStage + 1) % 8;
+      this.onClientAnimationTriggered(data);
     }
 
     if (this.tileDataItemStackHandler.isDirty()
         && this.cogStackHandler.getStackInSlot(0).isEmpty()) {
-      data.remainingAnimationTime = -1;
+      this.onClientCogAnimationReset(data);
     }
+  }
+
+  @SideOnly(Side.CLIENT)
+  protected void onClientAnimationTriggered(ClientRenderData data) {
+
+    data.totalAnimationTime = Math.min(this.getUpdateIntervalTicks(), 40);
+    data.remainingAnimationTime = data.totalAnimationTime;
+    data.cogRotationStage = (data.cogRotationStage + 1) % 8;
+  }
+
+  @SideOnly(Side.CLIENT)
+  protected void onClientCogAnimationReset(ClientRenderData data) {
+
+    data.remainingAnimationTime = -1;
   }
 
   // ---------------------------------------------------------------------------

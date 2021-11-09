@@ -50,6 +50,8 @@ public final class BlockInitializer {
     BlockMechanicalMulchSpreader blockMechanicalMulchSpreader = new BlockMechanicalMulchSpreader();
     registry.registerBlock(blockMechanicalMulchSpreader, new BlockMechanicalMulchSpreader.Item(blockMechanicalMulchSpreader), BlockMechanicalMulchSpreader.NAME);
 
+    registry.registerBlockWithItem(new BlockTripHammer(), BlockTripHammer.NAME);
+
     RegistryHelper.registerTileEntities(
         registry,
         TileStoneKiln.class,
@@ -74,6 +76,7 @@ public final class BlockInitializer {
         TileMechanicalCompactingBin.class,
         TileMechanicalCompactingBinWorker.class,
         TileMechanicalMulchSpreader.class,
+        TileTripHammer.class,
 
         TileBellows.class,
         TileMechanicalBellows.class,
@@ -99,7 +102,8 @@ public final class BlockInitializer {
 
           ModuleTechMachine.Blocks.STONE_HOPPER,
           ModuleTechMachine.Blocks.MECHANICAL_COMPACTING_BIN,
-          ModuleTechMachine.Blocks.MECHANICAL_MULCH_SPREADER
+          ModuleTechMachine.Blocks.MECHANICAL_MULCH_SPREADER,
+          ModuleTechMachine.Blocks.TRIP_HAMMER
       );
 
       ModelRegistrationHelper.registerItemModel(
@@ -146,6 +150,7 @@ public final class BlockInitializer {
       ClientRegistry.bindTileEntitySpecialRenderer(TileStoneHopper.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileMechanicalCompactingBinWorker.class, new TESRInteractable<>());
       ClientRegistry.bindTileEntitySpecialRenderer(TileMechanicalMulchSpreader.class, new TESRInteractable<>());
+      ClientRegistry.bindTileEntitySpecialRenderer(TileTripHammer.class, new TESRInteractable<>());
 
       ClientRegistry.bindTileEntitySpecialRenderer(TileBellows.class, new TESRBellows());
       ClientRegistry.bindTileEntitySpecialRenderer(TileMechanicalBellowsTop.class, new TESRInteractable<>());

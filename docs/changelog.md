@@ -43,6 +43,7 @@
             * Dries in-world
         * Mud - Block and layer
         * Obsidian Anvil
+        * Cog powered Trip Hammer
     * Items:
         * Durable Flint and Bone Tools:
             * Durable Flint Axe
@@ -198,6 +199,7 @@
             * Dough x3 -> Bread Dough
             * Dough x2 + Cocoa Beans -> Cookie Dough
             * Cake recipe that uses `ore:milk` and new Flour item
+            * Trip Hammer
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
@@ -502,6 +504,7 @@
         * `item.pyrotech.cookie.dough.name`
         * `gui.pyrotech.jei.category.anvil.obsidian`
         * `tile.pyrotech.anvil_obsidian.name`
+        * `tile.pyrotech.trip_hammer.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

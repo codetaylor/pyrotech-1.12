@@ -239,6 +239,7 @@ tile.pyrotech.mechanical_compacting_bin.name=Механический уплот
 tile.pyrotech.mechanical_mulch_spreader.name=Механический мульчер
 tile.pyrotech.bellows.name=Меха
 tile.pyrotech.mechanical_bellows.name=Механические меха
+tile.pyrotech.trip_hammer.name=Trip Hammer
 
 #------------------------------------------------------------------------------
 # Module: Tech - Refractory

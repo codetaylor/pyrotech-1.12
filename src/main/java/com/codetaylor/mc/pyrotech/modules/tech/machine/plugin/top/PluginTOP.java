@@ -21,6 +21,7 @@ public class PluginTOP {
       top.registerProvider(new MechanicalCompactingBinWorkerProvider());
       top.registerProvider(new MechanicalMulchSpreaderProvider());
       top.registerProvider(new SawmillProvider());
+      top.registerProvider(new TripHammerProvider());
       return null;
     }
   }

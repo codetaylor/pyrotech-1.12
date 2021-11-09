@@ -32,10 +32,9 @@ import java.util.Random;
 
 public class BloomHelper {
 
-  public static boolean shouldReduceIntegrity(EntityPlayer player, Random random) {
+  public static boolean shouldReduceIntegrity(ItemStack toolItemStack, Random random) {
 
-    ItemStack heldItemMainhand = player.getHeldItemMainhand();
-    Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(heldItemMainhand);
+    Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(toolItemStack);
     Integer fortuneLevel = enchantments.get(Enchantments.FORTUNE);
 
     if (fortuneLevel != null) {

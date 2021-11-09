@@ -2,11 +2,9 @@ package com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.top.provider;
 
 import com.codetaylor.mc.pyrotech.modules.core.plugin.top.PluginTOP;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.delegate.CogWorkerProviderDelegate;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalCompactingBinWorker;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileMechanicalMulchSpreader;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
+import com.codetaylor.mc.pyrotech.modules.tech.machine.plugin.waila.delegate.TripHammerProviderDelegate;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.TileTripHammer;
-import com.codetaylor.mc.pyrotech.modules.tech.machine.tile.spi.TileCogWorkerBase;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
@@ -18,17 +16,17 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class CogWorkerProvider
+public class TripHammerProvider
     implements IProbeInfoProvider,
-    CogWorkerProviderDelegate.ICogWorkerDisplay {
+    TripHammerProviderDelegate.ITripHammerSpreaderDisplay {
 
-  private final CogWorkerProviderDelegate delegate;
+  private final TripHammerProviderDelegate delegate;
 
   private IProbeInfo probeInfo;
 
-  public CogWorkerProvider() {
+  public TripHammerProvider() {
 
-    this.delegate = new CogWorkerProviderDelegate(this);
+    this.delegate = new TripHammerProviderDelegate(this);
   }
 
   @Override
@@ -43,20 +41,29 @@ public class CogWorkerProvider
     BlockPos pos = data.getPos();
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof TileCogWorkerBase
-        && !(tileEntity instanceof TileMechanicalCompactingBinWorker)
-        && !(tileEntity instanceof TileMechanicalMulchSpreader)
-        && !(tileEntity instanceof TileTripHammer)) {
+    if (tileEntity instanceof TileTripHammer) {
       this.probeInfo = probeInfo;
-      this.delegate.display((TileCogWorkerBase) tileEntity);
+      this.delegate.display((TileTripHammer) tileEntity);
       this.probeInfo = null;
     }
   }
 
   @Override
-  public void setCog(ItemStack cog) {
+  public void setItems(ItemStack toolItemStack, ItemStack cog) {
 
-    this.probeInfo.item(cog);
+    if (toolItemStack.isEmpty() && cog.isEmpty()) {
+      return;
+    }
+
+    IProbeInfo horizontal = this.probeInfo.horizontal();
+
+    if (!toolItemStack.isEmpty()) {
+      horizontal.item(toolItemStack);
+    }
+
+    if (!cog.isEmpty()) {
+      horizontal.item(cog);
+    }
   }
 
   @Override

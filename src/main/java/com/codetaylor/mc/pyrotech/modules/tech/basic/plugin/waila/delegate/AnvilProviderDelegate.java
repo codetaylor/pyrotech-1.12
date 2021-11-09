@@ -43,11 +43,11 @@ public class AnvilProviderDelegate
 
       // Display input item and recipe output.
 
-      AnvilRecipe recipe = tile.getRecipe();
+      AnvilRecipe recipe = tile.getRecipe(); // TODO: Recipe only available on the server...
 
       if (recipe == null) {
         ItemStack heldItemMainhand = player.getHeldItemMainhand();
-        AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(tile, heldItemMainhand);
+        AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(heldItemMainhand);
         recipe = AnvilRecipe.getRecipe(input, this.tier, type);
       }
 

@@ -63,6 +63,11 @@ public class PluginWaila {
       MechanicalCompactingBinProvider provider = new MechanicalCompactingBinProvider();
       registrar.registerBodyProvider(provider, TileMechanicalCompactingBin.class);
     }
+
+    {
+      TripHammerProvider provider = new TripHammerProvider();
+      registrar.registerBodyProvider(provider, TileTripHammer.class);
+    }
   }
 
 }

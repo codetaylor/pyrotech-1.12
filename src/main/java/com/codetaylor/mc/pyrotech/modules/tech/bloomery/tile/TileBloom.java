@@ -220,26 +220,27 @@ public class TileBloom
             (float) (1 + Util.RANDOM.nextGaussian() * 0.4f)
         );
 
+        ItemStack toolItemStack = player.getHeldItemMainhand();
+
         BloomHelper.trySpawnFire(world, tilePos, RandomHelper.random(), ModuleTechBloomeryConfig.BLOOM.FIRE_SPAWN_CHANCE_ON_HIT_RAW);
 
         if (tile.recipeProgress.get() < 1) {
           int hits = Math.max(1, ModuleTechBloomeryConfig.BLOOM.HAMMER_HITS_REQUIRED);
           Vec3d hammerPos = new Vec3d(player.posX, player.posY + player.getEyeHeight() * 0.5, player.posZ);
-          ItemStack toolItemStack = player.getHeldItemMainhand();
           float recipeProgressIncrement = (float) ((1f / hits) * BloomHelper.calculateHammerPower(tilePos, hammerPos, toolItemStack, player));
           tile.recipeProgress.set(tile.recipeProgress.get() + recipeProgressIncrement);
         }
 
         if (tile.recipeProgress.get() >= 0.9999) {
 
-          if (BloomHelper.shouldReduceIntegrity(player, RandomHelper.random())) {
+          if (BloomHelper.shouldReduceIntegrity(toolItemStack, RandomHelper.random())) {
             tile.integrity.add(-1);
           }
 
           BloomeryRecipeBase<?> recipe = ModuleTechBloomery.Registries.BLOOMERY_RECIPE.getValue(new ResourceLocation(tile.recipeId));
 
           if (recipe != null) {
-            ItemStack output = recipe.getRandomOutput(player);
+            ItemStack output = recipe.getRandomOutput(toolItemStack);
             StackHelper.spawnStackOnTop(world, output, tilePos, 0);
 
             // Spawn in the XP

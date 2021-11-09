@@ -81,7 +81,7 @@ public class SCPacketParticleAnvilHit
 
       ItemStackHandler stackHandler = tile.getStackHandler();
       ItemStack itemStack = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), true);
-      AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(tile, player.getHeldItemMainhand());
+      AnvilRecipe.EnumType type = AnvilRecipe.getTypeFromItemStack(player.getHeldItemMainhand());
       AnvilRecipe recipe = AnvilRecipe.getRecipe(itemStack, tile.getRecipeTier(), type);
 
       if (recipe instanceof AnvilRecipe.IExtendedRecipe) {

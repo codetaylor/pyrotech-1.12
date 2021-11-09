@@ -22,6 +22,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BloomAnvilRecipe
     extends AnvilRecipe
@@ -95,35 +97,39 @@ public class BloomAnvilRecipe
   }
 
   @Override
-  public void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, BloomAnvilRecipe recipe, EntityPlayer player) {
+  public List<ItemStack> onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, BloomAnvilRecipe recipe, ItemStack toolItemStack) {
+
+    List<ItemStack> result = new ArrayList<>();
 
     float extraProgress = tile.getRecipeProgress() - 1;
 
-    this.onRecipeCompleted(tile, world, stackHandler, player);
+    result.add(this.onRecipeCompleted(tile, world, stackHandler, toolItemStack));
 
     while (extraProgress >= 1
         && !stackHandler.getStackInSlot(0).isEmpty()) {
       extraProgress -= 1;
 
-      this.onRecipeCompleted(tile, world, stackHandler, player);
+      result.add(this.onRecipeCompleted(tile, world, stackHandler, toolItemStack));
     }
 
     if (extraProgress > 0) {
       tile.setRecipeProgress(extraProgress);
     }
+
+    return result;
   }
 
-  protected void onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, EntityPlayer player) {
+  protected ItemStack onRecipeCompleted(TileAnvilBase tile, World world, ItemStackHandler stackHandler, ItemStack toolItemStack) {
 
     // Spawn in the bloomery recipe output
-    StackHelper.spawnStackOnTop(world, this.bloomeryRecipe.getRandomOutput(player), tile.getPos(), 0);
+    ItemStack result = this.bloomeryRecipe.getRandomOutput(toolItemStack);
 
     // Reduce the integrity of the bloom
     ItemStack bloom = stackHandler.extractItem(0, stackHandler.getSlotLimit(0), false);
     BlockBloom.ItemBlockBloom item = (BlockBloom.ItemBlockBloom) bloom.getItem();
     int integrity = item.getIntegrity(bloom);
 
-    if (BloomHelper.shouldReduceIntegrity(player, RandomHelper.random())) {
+    if (BloomHelper.shouldReduceIntegrity(toolItemStack, RandomHelper.random())) {
       integrity -= 1;
     }
 
@@ -134,6 +140,8 @@ public class BloomAnvilRecipe
 
     // Spawn in the XP
     ExperienceHelper.spawnXp(world, 1, item.getExperiencePerComplete(bloom), tile.getPos());
+
+    return result;
   }
 
   @Override

@@ -208,6 +208,9 @@ public class ModuleTechMachine
     @GameRegistry.ObjectHolder(BlockMechanicalMulchSpreader.NAME)
     public static final BlockMechanicalMulchSpreader MECHANICAL_MULCH_SPREADER;
 
+    @GameRegistry.ObjectHolder(BlockTripHammer.NAME)
+    public static final BlockTripHammer TRIP_HAMMER;
+
     @GameRegistry.ObjectHolder(BlockBellows.NAME)
     public static final BlockBellows BELLOWS;
 
@@ -228,6 +231,7 @@ public class ModuleTechMachine
       STONE_HOPPER = null;
       MECHANICAL_COMPACTING_BIN = null;
       MECHANICAL_MULCH_SPREADER = null;
+      TRIP_HAMMER = null;
 
       BELLOWS = null;
       MECHANICAL_BELLOWS = null;
