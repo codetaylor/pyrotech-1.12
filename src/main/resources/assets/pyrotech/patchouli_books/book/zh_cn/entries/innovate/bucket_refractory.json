@@ -1,0 +1,26 @@
+{
+  "name": "Bucket, Refractory",
+  "icon": "pyrotech:bucket_refractory",
+  "category": "innovate_soaking",
+  "pages": [
+    {
+      "type": "crafting",
+      "title": "Unfired",
+      "recipe": "pyrotech:bucket/bucket_refractory_unfired",
+      "text": "$(info) The $(item)Refractory Bucket$() will not break with hot fluids.$(p)$(warning) However, it will heat to dangerous levels when filled with a hot fluid."
+    },
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:bucket_refractory",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/bucket_refractory"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/plant_fibers",
+        "gather/clay_lump_of"
+      ]
+    }
+  ]
+}
