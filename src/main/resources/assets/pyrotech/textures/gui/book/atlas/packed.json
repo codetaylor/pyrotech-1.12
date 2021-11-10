@@ -12,29 +12,36 @@
   "image": {
     "crafting/anvil_granite": {
       "atlas": "textures/gui/book/atlas/atlas_1.png",
-      "u": 0,
+      "u": 56,
       "v": 0,
       "width": 57,
       "height": 42
     },
     "crafting/anvil_ironclad": {
       "atlas": "textures/gui/book/atlas/atlas_1.png",
-      "u": 114,
+      "u": 170,
       "v": 0,
       "width": 56,
       "height": 40
     },
     "crafting/anvil_obsidian": {
       "atlas": "textures/gui/book/atlas/atlas_1.png",
-      "u": 57,
+      "u": 113,
       "v": 0,
       "width": 57,
       "height": 42
     },
-    "crafting/compacting_bin": {
+    "crafting/barrel": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
       "u": 197,
       "v": 0,
+      "width": 56,
+      "height": 62
+    },
+    "crafting/compacting_bin": {
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 112,
+      "v": 155,
       "width": 56,
       "height": 62
     },
@@ -47,7 +54,7 @@
     },
     "crafting/drying_rack": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 112,
+      "u": 168,
       "v": 155,
       "width": 50,
       "height": 53
@@ -75,22 +82,22 @@
     },
     "crafting/pit_burn": {
       "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 162,
-      "v": 155,
+      "u": 168,
+      "v": 208,
       "width": 56,
       "height": 45
     },
     "crafting/pit_kiln": {
-      "atlas": "textures/gui/book/atlas/atlas_1.png",
-      "u": 170,
-      "v": 0,
+      "atlas": "textures/gui/book/atlas/atlas_0.png",
+      "u": 112,
+      "v": 217,
       "width": 56,
       "height": 34
     },
     "crafting/refractory_burn": {
-      "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 162,
-      "v": 200,
+      "atlas": "textures/gui/book/atlas/atlas_1.png",
+      "u": 0,
+      "v": 0,
       "width": 56,
       "height": 45
     },
@@ -123,9 +130,9 @@
       "height": 69
     },
     "crafting/soaking_pot": {
-      "atlas": "textures/gui/book/atlas/atlas_0.png",
-      "u": 112,
-      "v": 208,
+      "atlas": "textures/gui/book/atlas/atlas_1.png",
+      "u": 0,
+      "v": 45,
       "width": 42,
       "height": 40
     },

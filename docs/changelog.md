@@ -505,7 +505,6 @@
         * `gui.pyrotech.jei.category.anvil.obsidian`
         * `tile.pyrotech.anvil_obsidian.name`
         * `tile.pyrotech.trip_hammer.name`
-
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       
     * **Changed Lang Keys:**
@@ -516,7 +515,10 @@
     * **Removed Lang Values:**
         * `gui.pyrotech.restart`
         * `gui.pyrotech.missing.wood.compat`
-        * `gui.pyrotech.missing.ore.compat`        
+        * `gui.pyrotech.missing.ore.compat`
+    * **Patchouli:**
+        * **Added:**
+            * `templates/include/barrel_recipe.json`
 
 ---
 
