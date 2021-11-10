@@ -12,7 +12,7 @@
     },
     {
       "type": "text",
-      "text": "$(thing)炭窑$()的生产包含以下及步骤：$(p)  $(l:adapt/pit_burn#step_1)1. 放置$()$(br)  $(l:adapt/pit_burn#step_2)2. 点燃$()$(br)  $(l:adapt/pit_burn#step_3)3. 覆盖$()$(br)  $(l:adapt/pit_burn#step_4)4. 等待$()$(br)  $(l:adapt/pit_burn#step_5)5. 开箱$()$(p)接下来的几页将会仔细描述$(thing)炭窑$()的生产。"
+      "text": "$(thing)炭窑$()的生产包含以下及步骤：$(p)  $(l:innovate/pit_burn#step_1)1. 放置$()$(br)  $(l:innovate/pit_burn#step_2)2. 点燃$()$(br)  $(l:innovate/pit_burn#step_3)3. 覆盖$()$(br)  $(l:innovate/pit_burn#step_4)4. 等待$()$(br)  $(l:innovate/pit_burn#step_5)5. 开箱$()$(p)接下来的几页将会仔细描述$(thing)炭窑$()的生产。"
     },
     {
       "type": "image",

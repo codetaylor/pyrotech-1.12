@@ -12,7 +12,7 @@
     },
     {
       "type": "text",
-      "text": "Процесс $(thing)грунтового пиролиза$() состоит из нескольких шагов:$(p)  $(l:adapt/pit_burn#step_1)1. Укладка$()$(br)  $(l:adapt/pit_burn#step_2)2. Поджог$()$(br)  $(l:adapt/pit_burn#step_3)3. Покрытие$()$(br)  $(l:adapt/pit_burn#step_4)4. Ожидание$()$(br)  $(l:adapt/pit_burn#step_5)5. Раскопка$()$(p)На последующих страницах этой главы вы можете подробнее изучить каждый."
+      "text": "Процесс $(thing)грунтового пиролиза$() состоит из нескольких шагов:$(p)  $(l:innovate/pit_burn#step_1)1. Укладка$()$(br)  $(l:innovate/pit_burn#step_2)2. Поджог$()$(br)  $(l:innovate/pit_burn#step_3)3. Покрытие$()$(br)  $(l:innovate/pit_burn#step_4)4. Ожидание$()$(br)  $(l:innovate/pit_burn#step_5)5. Раскопка$()$(p)На последующих страницах этой главы вы можете подробнее изучить каждый."
     },
     {
       "type": "image",
