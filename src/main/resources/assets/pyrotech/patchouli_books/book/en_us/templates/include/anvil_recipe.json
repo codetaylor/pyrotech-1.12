@@ -25,6 +25,14 @@
       "guard": "#ironclad->exists"
     },
     {
+      "type": "custom",
+      "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
+      "image": "pyrotech:crafting/anvil_obsidian",
+      "x": 24, "y": 19,
+      "scale": 0.5,
+      "guard": "#obsidian->exists"
+    },
+    {
       "type": "item", "item": "#input", "x": 30, "y": 14, "framed": true
     },
     {
@@ -57,6 +65,16 @@
       "u": 65, "v": 27,
       "width": 9, "height": 9,
       "guard": "#ironclad->exists"
+    },
+    {
+      "type": "tooltip",
+      "tooltip": [
+        "Obsidian Anvil Recipe"
+      ],
+      "x": 56, "y": 17,
+      "u": 65, "v": 27,
+      "width": 9, "height": 9,
+      "guard": "#obsidian->exists"
     },
     {
       "type": "custom",

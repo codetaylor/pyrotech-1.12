@@ -46,6 +46,11 @@ public class AnvilRecipeProcessor
       } else if ("ironclad".equals(key)) {
         return (this.recipe.isTier(AnvilRecipe.EnumTier.IRONCLAD)
             && !this.recipe.isTier(AnvilRecipe.EnumTier.GRANITE)) ? "t" : "";
+
+      } else if ("obsidian".equals(key)) {
+        return (this.recipe.isTier(AnvilRecipe.EnumTier.OBSIDIAN)
+            && !this.recipe.isTier(AnvilRecipe.EnumTier.IRONCLAD)
+            && !this.recipe.isTier(AnvilRecipe.EnumTier.GRANITE)) ? "t" : "";
       }
     }
 
