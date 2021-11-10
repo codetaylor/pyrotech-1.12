@@ -519,6 +519,7 @@
     * **Patchouli:**
         * **Added:**
             * `entries/innovate/barrel.json`
+            * `entries/innovate/pyroberry_wine.json`
             * `templates/include/barrel_recipe.json`
         * **Modified:**
             * `entries/survive/food_raw.json`
