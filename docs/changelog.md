@@ -519,6 +519,8 @@
     * **Patchouli:**
         * **Added:**
             * `templates/include/barrel_recipe.json`
+        * **Modified:**
+            * `entries/survive/food_raw.json`
 
 ---
 

@@ -9,9 +9,15 @@
       "link_recipe": true,
       "text": "Копаясь в травянистом дёрне голыми руками, вы будете частенько натыкаться на $(item)странные корешки$(). Ещё их можно получить случайным образом, если добывать высокую траву."
     },
-	{
-	  "type": "text",
-      "text":"$(info_ru) По вкусу $(item)странные корешки$() напоминают мешанину коры с грязью, однако это не мешает оставаться им съедобными."
-	}
+    {
+      "type": "text",
+      "text": "$(info_ru) По вкусу $(item)странные корешки$() напоминают мешанину коры с грязью, однако это не мешает оставаться им съедобными."
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:pyroberries",
+      "link_recipe": true,
+      "text": "$(item)Pyroberries$() are often found growing on $(item)Pyroberry Bushes$() in the desert.$(p)$(info) $(item)Pyroberry Bushes$() can be fertilized with $(item)Blaze Powder$().$(p)$(warning) Harvesting $(item)Pyroberries$() is a very finicky and delicate procedure which may result in your untimely expiration."
+    }
   ]
 }
