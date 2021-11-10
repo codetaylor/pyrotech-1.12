@@ -518,6 +518,7 @@
         * `gui.pyrotech.missing.ore.compat`
     * **Patchouli:**
         * **Added:**
+            * `entries/innovate/barrel.json`
             * `templates/include/barrel_recipe.json`
         * **Modified:**
             * `entries/survive/food_raw.json`
