@@ -13,7 +13,13 @@
       "type": "spotlight",
       "item": "pyrotech:pyroberries",
       "link_recipe": true,
-      "text": "$(item)Pyroberries$() are often found growing on $(item)Pyroberry Bushes$() in the desert.$(p)$(info) $(item)Pyroberry Bushes$() can be fertilized with $(item)Blaze Powder$().$(p)$(warning) Harvesting $(item)Pyroberries$() is a very finicky and delicate procedure which may result in your untimely expiration."
+      "text": "$(item)Pyroberries$() are often found growing on $(item)Pyroberry Bushes$() in the desert with a clear view of the sun.$(p)$(info) $(item)Pyroberry Bushes$() can be fertilized with $(item)Blaze Powder$().$(p)$(warning) Harvesting $(item)Pyroberries$() is a very finicky and delicate procedure which may result in your untimely expiration."
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:gloamberries",
+      "link_recipe": true,
+      "text": "$(item)Gloamberries$() are often found growing on $(item)Gloamberry Bushes$() in forests.$(p)$(info) $(item)Gloamberry Bushes$() can be fertilized with $(item)Bone Meal$().$(p)$(info) $(item)Gloamberries$() ripen during the night under a clear sky."
     }
   ]
 }
