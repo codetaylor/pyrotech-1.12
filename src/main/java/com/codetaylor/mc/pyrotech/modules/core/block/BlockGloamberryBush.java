@@ -77,10 +77,6 @@ public class BlockGloamberryBush
       }
 
     }
-
-    if (this.isMaxAge(blockState)) {
-//      world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1.5f, true);
-    }
   }
 
   @ParametersAreNonnullByDefault
@@ -104,8 +100,6 @@ public class BlockGloamberryBush
           }
 
           world.setBlockState(pos, this.withAge(age + 1), 2);
-//          this.playSound(world, pos);
-//          this.spawnParticles(pos, world.provider.getDimension());
           ModuleCore.PACKET_SERVICE.sendToAllAround(
               new SCPacketParticleBoneMeal(pos, 4),
               world.provider.getDimension(),
@@ -183,33 +177,29 @@ public class BlockGloamberryBush
         && this.isMaxAge(blockState)
         && RandomHelper.random().nextFloat() < ModuleCoreConfig.GLOAMBERRY_BUSH.DAYTIME_BERRY_LOSS_CHANCE) {
       world.setBlockState(pos, this.withAge(this.getAge(blockState) - 1), 2);
-    }
 
-    if (world.canSeeSky(pos)) {
+    } else if (!world.isDaytime()) {
+      // Increase age if is nighttime.
+      int age = this.getAge(blockState);
+      boolean grew = false;
 
-      if (!world.isDaytime()) {
-        // Increase age if is nighttime.
-        int age = this.getAge(blockState);
-        boolean grew = false;
+      if (age < this.getMaxAge()) {
+        double chance = (age == this.getMaxAge() - 1) ? ModuleCoreConfig.GLOAMBERRY_BUSH.BERRY_GROWTH_CHANCE : ModuleCoreConfig.GLOAMBERRY_BUSH.GROWTH_CHANCE;
 
-        if (age < this.getMaxAge()) {
-          double chance = (age == this.getMaxAge() - 1) ? ModuleCoreConfig.GLOAMBERRY_BUSH.BERRY_GROWTH_CHANCE : ModuleCoreConfig.GLOAMBERRY_BUSH.GROWTH_CHANCE;
-
-          if (!world.canSeeSky(pos)) {
-            chance *= ModuleCoreConfig.GLOAMBERRY_BUSH.OBSTRUCTED_GROWTH_MULTIPLICATIVE_MODIFIER;
-          }
-
-          if (ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < chance)) {
-            world.setBlockState(pos, this.withAge(age + 1), 2);
-            grew = true;
-            ForgeHooks.onCropsGrowPost(world, pos, blockState, world.getBlockState(pos));
-          }
+        if (!world.canSeeSky(pos)) {
+          chance *= ModuleCoreConfig.GLOAMBERRY_BUSH.OBSTRUCTED_GROWTH_MULTIPLICATIVE_MODIFIER;
         }
 
-        if ((age > 2 && grew) || (this.isMaxAge(blockState) && rand.nextFloat() < 0.5)) {
-          this.spawnParticles(pos, world.provider.getDimension());
-          this.playSound(world, pos);
+        if (ForgeHooks.onCropsGrowPre(world, pos, blockState, rand.nextFloat() < chance)) {
+          world.setBlockState(pos, this.withAge(age + 1), 2);
+          grew = true;
+          ForgeHooks.onCropsGrowPost(world, pos, blockState, world.getBlockState(pos));
         }
+      }
+
+      if ((age > 2 && grew) || (this.isMaxAge(blockState) && rand.nextFloat() < 0.5)) {
+        this.spawnParticles(pos, world.provider.getDimension());
+        this.playSound(world, pos);
       }
     }
   }
