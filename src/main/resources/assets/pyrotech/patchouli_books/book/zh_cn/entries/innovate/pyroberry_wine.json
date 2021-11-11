@@ -7,7 +7,12 @@
       "type": "rt_barrel_recipe",
       "header": true,
       "recipe": "pyrotech:pyroberry_wine",
-      "text": "Soaking $(item)Pyroberries$() with $(item)Sugar$() in $(item)Water$() will yield $(item)Pyroberry Wine$().$(p)$(info) Drinking $(item)Pyroberry Wine$() has beneficial effects.$(p)$(warning) Drinking too much $(item)Pyroberry Wine$() can be hazardous to your health."
+      "text": "Soaking $(item)Pyroberries$() with $(item)Sugar$() in $(item)Water$() will yield $(item)Pyroberry Wine$().$(p)$(info) Drinking $(item)Pyroberry Wine$() has beneficial effects."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:pyroberry_wine",
+      "text": "$(warning) Drinking too much $(item)Pyroberry Wine$() can be hazardous to your health."
     },
     {
       "type": "relations",
