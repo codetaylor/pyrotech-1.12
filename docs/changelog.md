@@ -520,6 +520,7 @@
         * **Added:**
             * `entries/innovate/barrel.json`
             * `entries/innovate/bucket_refractory.json`
+            * `entries/innovate/gloamberry_wine.json`
             * `entries/innovate/pyroberry_wine.json`
             * `templates/include/barrel_recipe.json`
         * **Modified:**

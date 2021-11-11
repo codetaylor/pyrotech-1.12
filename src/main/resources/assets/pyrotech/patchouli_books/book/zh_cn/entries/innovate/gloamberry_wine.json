@@ -1,0 +1,25 @@
+{
+  "name": "Wine, Gloamberry",
+  "icon": "pyrotech:gloamberry_wine",
+  "category": "innovate_soaking",
+  "pages": [
+    {
+      "type": "rt_barrel_recipe",
+      "header": true,
+      "recipe": "pyrotech:gloamberry_wine",
+      "text": "Soaking $(item)Gloamberries$() with $(item)Sugar$() in $(item)Water$() will yield $(item)Gloamberry Wine$().$(p)$(info) Drinking $(item)Gloamberry Wine$() has beneficial effects."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:gloamberry_wine",
+      "text": "$(warning) Drinking too much $(item)Gloamberry Wine$() can be hazardous to your health."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/food_raw",
+        "innovate/barrel"
+      ]
+    }
+  ]
+}
