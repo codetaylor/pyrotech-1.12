@@ -59,7 +59,8 @@
       "type": "relations",
       "entries": [
         "adapt/anvil_granite",
-        "bloom/anvil_ironclad"
+        "bloom/anvil_ironclad",
+        "bloom/anvil_obsidian"
       ]
     }
   ]
