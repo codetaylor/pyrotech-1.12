@@ -1,0 +1,20 @@
+{
+  "name": "Arrow, Iron",
+  "icon": "minecraft:arrow",
+  "category": "bloom_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:arrow",
+      "text": "$(info) $(item)Iron Arrows$() are sturdier than their bone and flint counterparts and will not break upon impact."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "adapt/arrow_bone_and_flint",
+        "bloom/shards_advanced"
+      ]
+    }
+  ]
+}
