@@ -1,0 +1,26 @@
+{
+  "name": "Cob, Wet",
+  "icon": "pyrotech:cob_wet",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cob_2x2a",
+      "text": "$(info) $(item)Wet Cob$() will fall unless supported or dried.$(p)$(info) $(item)Wet Cob$() will dry into harder $(item)Cob$() over time when placed in the world."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cob_2x2b",
+      "recipe2": "pyrotech:cob_3x3"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/mud",
+        "gather/mud_clump",
+        "adapt/plant_fibers_dried",
+        "adapt/cob"
+      ]
+    }
+  ]
+}

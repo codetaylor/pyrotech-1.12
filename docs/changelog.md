@@ -528,6 +528,7 @@
             * `entries/adapt/butchers_knife_bone_and_flint`
             * `entries/adapt/carcass`
             * `entries/adapt/cob`
+            * `entries/adapt/cob_wet`
             * `entries/bloom/anvil_obsidian`
             * `entries/innovate/barrel`
             * `entries/innovate/bucket_refractory`
