@@ -1,0 +1,20 @@
+{
+  "name": "Tool Repair Kits",
+  "icon": "pyrotech:bone_tool_repair_kit",
+  "category": "innovate_durable_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/bone_tool_repair_kit",
+      "recipe2": "pyrotech:tool/flint_tool_repair_kit"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/leather_pieces",
+        "innovate/stone_rod",
+        "gather/shard_bone_and_flint"
+      ]
+    }
+  ]
+}
