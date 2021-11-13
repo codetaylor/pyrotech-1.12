@@ -1,0 +1,24 @@
+{
+  "name": "Arrow, Bone & Flint",
+  "icon": "pyrotech:bone_arrow",
+  "category": "adapt_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/arrow_bone",
+      "recipe2": "pyrotech:hunting/arrow_flint"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/fletching",
+      "text": "$(info) $(item)Bone and Flint Arrows$() have a chance to break upon impact depending on the strength of the shot."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "gather/shard_bone_and_flint"
+      ]
+    }
+  ]
+}
