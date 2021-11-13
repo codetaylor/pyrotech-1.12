@@ -1,0 +1,7 @@
+{
+  "name": "Advanced Tools",
+  "description": "Toolcraft is essential for survival.",
+  "icon": "pyrotech:obsidian_pickaxe",
+  "sortnum": 3,
+  "parent": "bloom"
+}
