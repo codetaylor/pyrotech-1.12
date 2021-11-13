@@ -518,24 +518,24 @@
         * `gui.pyrotech.missing.ore.compat`
     * **Patchouli:**
         * **Added:**
-            * `categories/adapt_butchery.json`
-            * `categories/bloom_tools.json`
-            * `categories/gather_material.json`
-            * `categories/innovate_durable_tools.json`
-            * `categories/innovate_leather.json`
-            * `entries/accelerate/refractory_bricks.json`
-            * `entries/adapt/arrow_bone_and_flint.json`
-            * `entries/adapt/butchers_knife_bone_and_flint.json`
-            * `entries/adapt/carcass.json`
-            * `entries/bloom/anvil_obsidian.json`
-            * `entries/innovate/barrel.json`
-            * `entries/innovate/bucket_refractory.json`
-            * `entries/innovate/gloamberry_wine.json`
-            * `entries/innovate/pyroberry_wine.json`
-            * `templates/include/barrel_recipe.json`
+            * `categories/adapt_butchery`
+            * `categories/bloom_tools`
+            * `categories/gather_material`
+            * `categories/innovate_durable_tools`
+            * `categories/innovate_leather`
+            * `entries/accelerate/refractory_bricks`
+            * `entries/adapt/arrow_bone_and_flint`
+            * `entries/adapt/butchers_knife_bone_and_flint`
+            * `entries/adapt/carcass`
+            * `entries/bloom/anvil_obsidian`
+            * `entries/innovate/barrel`
+            * `entries/innovate/bucket_refractory`
+            * `entries/innovate/gloamberry_wine`
+            * `entries/innovate/pyroberry_wine`
+            * `templates/include/barrel_recipe`
         * **Modified:**
-            * `entries/survive/food_raw.json`
-            * `templates/include/anvil_recipe.json`        
+            * `entries/survive/food_raw`
+            * `templates/include/anvil_recipe`        
 
 ---
 
