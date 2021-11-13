@@ -1,0 +1,23 @@
+{
+  "name": "Trip Hammer",
+  "icon": "pyrotech:trip_hammer",
+  "category": "bloom_cog_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/trip_hammer",
+      "text": "$(info) To use, place a $(thing)hammer$() or $(thing)pickaxe$() into the machine's slot and place an anvil in front of machine's stone side.$(p)$(info) The $(item)Trip Hammer$() will move its output into an inventory placed adjacent to the hole."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/wood_tarred",
+        "innovate/mechanical_hopper",
+        "innovate/masonry_brick_block",
+        "bloom/cog_advanced",
+        "innovate/cog_basic"
+      ]
+    }
+  ]
+}
