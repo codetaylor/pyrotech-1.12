@@ -1,7 +1,7 @@
 {
   "name": "Hammers, Advanced",
   "icon": "pyrotech:diamond_hammer",
-  "category": "bloom",
+  "category": "bloom_tools",
   "pages": [
     {
       "type": "crafting",
