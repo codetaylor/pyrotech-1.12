@@ -564,6 +564,7 @@
             * `entries/survive/marshmallow`
             * `entries/survive/spear_crude`
             * `templates/include/barrel_recipe`
+            * `templates/include/tanning_rack_recipe`
         * **Modified:**
             * `entries/appendix/credits`
             * `entries/gather/rock_bag`
