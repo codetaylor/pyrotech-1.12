@@ -526,6 +526,7 @@
             * `entries/accelerate/refractory_bricks.json`
             * `entries/adapt/arrow_bone_and_flint.json`
             * `entries/adapt/butchers_knife_bone_and_flint.json`
+            * `entries/adapt/carcass.json`
             * `entries/bloom/anvil_obsidian.json`
             * `entries/innovate/barrel.json`
             * `entries/innovate/bucket_refractory.json`

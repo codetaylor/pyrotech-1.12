@@ -1,0 +1,21 @@
+{
+  "name": "Carcass",
+  "icon": "pyrotech:carcass",
+  "category": "adapt_butchery",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:carcass",
+      "text": "Animals drop $(item)Carcasses$() when they expire.$(p)$(info) $(item)Carcasses$() can be processed into $(thing)Pelts$() and $(thing)Meats$() with a $(item)Hunter's Knife$() or $(item)Butcher's Knife$().$(p)$(info) Processing a $(item)Carcass$() on a $(item)Butcher's Block$() is likely to produce a higher yield."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/butchers_block",
+        "adapt/lard",
+        "adapt/butchers_knife_bone_and_flint",
+        "adapt/hunters_knife_bone_and_flint"
+      ]
+    }
+  ]
+}
