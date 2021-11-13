@@ -1,0 +1,17 @@
+{
+  "name": "Marshmallow",
+  "icon": "pyrotech:marshmallow",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/marshmallow",
+      "text": "To place a $(item)Marshmallow$() on a stick, hold a $(item)Marshmallow$() in your off-hand, a $(item)Marshmallow Stick$() in your main hand, and $(use) while sneaking.$(p)$(info) A $(item)Roasted Marshmallow$() can be eaten from the stick."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/marshmallow_stick",
+      "text": "To roast a $(item)Marshmallow$() on a stick, stand near a $(item)Campfire$() and hold $(use) until it turns a nice golden brown.$(p)$(info) A $(item)Roasted Marshmallow$() can be removed by $(use) while sneaking with an empty off-hand."
+    }
+  ]
+}

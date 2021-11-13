@@ -561,6 +561,7 @@
             * `entries/innovate/tool_repair_kit`
             * `entries/innovate/tools_durable`
             * `entries/innovate/washed_hide`
+            * `entries/survive/marshmallow`
             * `templates/include/barrel_recipe`
         * **Modified:**
             * `entries/appendix/credits`
