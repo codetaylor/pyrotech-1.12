@@ -131,7 +131,7 @@
     },
     "crafting/soaking_pot": {
       "atlas": "textures/gui/book/atlas/atlas_1.png",
-      "u": 0,
+      "u": 41,
       "v": 45,
       "width": 42,
       "height": 40
@@ -163,6 +163,13 @@
       "v": 0,
       "width": 56,
       "height": 69
+    },
+    "crafting/tanning_rack": {
+      "atlas": "textures/gui/book/atlas/atlas_1.png",
+      "u": 0,
+      "v": 45,
+      "width": 41,
+      "height": 54
     }
   }
 }
