@@ -44,7 +44,7 @@
     {
       "type": "relations",
       "entries": [
-        "accelerate/refractory_brick_block",
+        "accelerate/refractory_bricks",
         "accelerate/coal",
         "accelerate/coal_coke",
         "bloom/living_tar"
