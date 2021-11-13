@@ -556,6 +556,7 @@
             * `entries/innovate/sheared_hide`
             * `entries/innovate/stone_tool_shaft`
             * `entries/innovate/tanned_hide`
+            * `entries/innovate/tanning_rack`
             * `entries/innovate/pyroberry_wine`
             * `templates/include/barrel_recipe`
         * **Modified:**

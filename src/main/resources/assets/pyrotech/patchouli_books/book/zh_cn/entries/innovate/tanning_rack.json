@@ -1,0 +1,18 @@
+{
+  "name": "Tanning Rack",
+  "icon": "pyrotech:tanning_rack",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/tanning_rack",
+      "text": "$(info) $(item)Tanning Racks$() require a clear view of the sky to function correctly.$(p)$(info) $(item)Tanning Racks$() will only function during the daytime."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/twine"
+      ]
+    }
+  ]
+}
