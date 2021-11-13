@@ -1,0 +1,27 @@
+{
+  "name": "Rock Bag, Durable",
+  "icon": "pyrotech:bag_durable",
+  "category": "innovate_durable_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/bag_durable",
+      "text": "$(info) A $(item)Durable Rock Bag$() can hold a large quantity of $(thing)Cobbled Stone$()."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/rock_bag_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/durable_leather",
+        "innovate/storage_durable",
+        "gather/stone_cobbled",
+        "gather/rock_bag"
+      ]
+    }
+  ]
+}

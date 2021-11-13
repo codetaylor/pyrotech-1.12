@@ -551,6 +551,7 @@
             * `entries/innovate/masonry_brick_block`
             * `entries/innovate/oil_lamp`
             * `entries/innovate/pelt`
+            * `entries/innovate/rock_bag_durable`
             * `entries/innovate/pyroberry_wine`
             * `templates/include/barrel_recipe`
         * **Modified:**
