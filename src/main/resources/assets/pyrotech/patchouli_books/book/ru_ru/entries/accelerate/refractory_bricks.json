@@ -1,0 +1,30 @@
+{
+  "name": "Refractory Bricks",
+  "icon": "pyrotech:refractory_brick_block",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_brick_block",
+      "text": "$(item)Refractory Bricks$() are used in the construction of the $(item)Bloomery$(), $(thing)Refractory Machines$(), and enclosures for $(thing)Refractory Burning$().$(p)$(warning) Stairs, slabs, and walls are not valid blocks for a refractory enclosure."
+    },
+    {
+      "type": "rrr_anvil_recipe_brick_sawmill_recipe_brick_sawmill_recipe",
+      "anvil_header": true,
+      "anvil_recipe": "pyrotech:refractory_brick_slab",
+      "sawmill_recipe": "pyrotech:refractory_brick_slab_iron",
+      "sawmill_recipe2": "pyrotech:refractory_brick_slab_diamond"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_brick_stairs",
+      "recipe2": "pyrotech:refractory_brick_wall"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}
