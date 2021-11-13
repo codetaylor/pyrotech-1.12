@@ -33,23 +33,23 @@ public class SoakingPotRecipesAdd {
     ).setRegistryName(ModuleTechBasic.MOD_ID, "dough"));
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleHunting.class)) {
-      // Leather
+      // Tanned Hide
       registry.register(new SoakingPotRecipe(
           new ItemStack(ModuleHunting.Items.HIDE_TANNED),
           Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_WASHED)),
           new FluidStack(ModuleHunting.Fluids.TANNIN, 500),
           false,
           10 * 60 * 20
-      ).setRegistryName(ModuleTechBasic.MOD_ID, "leather"));
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "hide_tanned"));
 
-      // Small Leather
+      // Small Tanned Hide
       registry.register(new SoakingPotRecipe(
           new ItemStack(ModuleHunting.Items.HIDE_SMALL_TANNED),
           Ingredient.fromStacks(new ItemStack(ModuleHunting.Items.HIDE_SMALL_WASHED)),
           new FluidStack(ModuleHunting.Fluids.TANNIN, 250),
           false,
           5 * 60 * 20
-      ).setRegistryName(ModuleTechBasic.MOD_ID, "leather_small"));
+      ).setRegistryName(ModuleTechBasic.MOD_ID, "hide_small_tanned"));
     }
 
     if (ModPyrotech.INSTANCE.isModuleEnabled(ModuleTechRefractory.class)) {
