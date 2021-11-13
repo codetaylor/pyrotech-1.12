@@ -520,6 +520,7 @@
         * **Added:**
             * `categories/adapt_butchery.json`
             * `categories/bloom_tools.json`
+            * `categories/gather_material.json`
             * `entries/bloom/anvil_obsidian.json`
             * `entries/innovate/barrel.json`
             * `entries/innovate/bucket_refractory.json`
