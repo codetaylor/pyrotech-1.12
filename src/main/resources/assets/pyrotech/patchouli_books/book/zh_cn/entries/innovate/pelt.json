@@ -1,0 +1,20 @@
+{
+  "name": "Pelt",
+  "icon": "pyrotech:pelt_cow",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:pelt_cow",
+      "text": "$(thing)Pelts$() are acquired from processing $(item)Carcasses$().$(p)$(info) Processing a $(item)Carcass$() on a $(item)Butcher's Block$() with a $(item)Hunter's Knife$() is likely to produce a higher yield of $(thing)pelts$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/carcass",
+        "adapt/hunters_knife_bone_and_flint",
+        "innovate/butchers_block"
+      ]
+    }
+  ]
+}
