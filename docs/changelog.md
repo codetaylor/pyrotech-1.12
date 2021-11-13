@@ -543,12 +543,13 @@
             * `entries/innovate/bucket_refractory`
             * `entries/innovate/butchers_block`
             * `entries/innovate/durable_leather`
+            * `entries/innovate/gloamberry_wine`
             * `entries/innovate/leather`
             * `entries/innovate/leather_kits`
             * `entries/innovate/leather_pieces`
             * `entries/innovate/masonry_brick`
             * `entries/innovate/masonry_brick_block`
-            * `entries/innovate/gloamberry_wine`
+            * `entries/innovate/oil_lamp`
             * `entries/innovate/pyroberry_wine`
             * `templates/include/barrel_recipe`
         * **Modified:**

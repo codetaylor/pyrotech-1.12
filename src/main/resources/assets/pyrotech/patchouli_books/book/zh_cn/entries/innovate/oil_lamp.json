@@ -1,0 +1,25 @@
+{
+  "name": "Oil Lamp",
+  "icon": "pyrotech:lamp_oil",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/lamp_oil",
+      "text": "$(info) An $(item)Oil Lamp$() will not go out in the rain."
+    },
+    {
+      "type": "rt_stone_crucible_recipe",
+      "header": true,
+      "recipe": "pyrotech:lamp_oil_from_lard",
+      "text": "$(info) $(item)Oil Lamps$() can be fueled by $(item)Lamp Oil$() or $(item)Pyroberry Wine$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/lard",
+        "innovate/pyroberry_wine"
+      ]
+    }
+  ]
+}
