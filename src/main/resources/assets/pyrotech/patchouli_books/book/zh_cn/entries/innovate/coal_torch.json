@@ -1,7 +1,7 @@
 {
   "name": "石火炬",
   "icon": "pyrotech:torch_stone",
-  "category": "innovate",
+  "category": "innovate_stone",
   "pages": [
     {
       "type": "crafting",

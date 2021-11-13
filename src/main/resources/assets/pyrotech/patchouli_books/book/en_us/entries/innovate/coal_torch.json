@@ -1,7 +1,7 @@
 {
   "name": "Stone Torch",
   "icon": "pyrotech:torch_stone",
-  "category": "innovate",
+  "category": "innovate_stone",
   "pages": [
     {
       "type": "crafting",
