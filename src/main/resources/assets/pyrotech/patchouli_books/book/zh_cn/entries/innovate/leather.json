@@ -1,0 +1,21 @@
+{
+  "name": "Leather",
+  "icon": "minecraft:leather",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "rrt_tanning_rack_recipe",
+      "header": true,
+      "recipe": "pyrotech:leather",
+      "header2": true,
+      "recipe2": "pyrotech:leather_small",
+      "text": "$(item)Leather$() is produced by processing $(item)Tanned Hides$() on a $(item)Tanning Rack$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/tanned_hide"
+      ]
+    }
+  ]
+}
