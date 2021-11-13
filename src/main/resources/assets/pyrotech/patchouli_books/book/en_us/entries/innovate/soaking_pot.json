@@ -1,7 +1,7 @@
 {
   "name": "Soaking Pot",
   "icon": "pyrotech:soaking_pot",
-  "category": "innovate_soaking",
+  "category": "innovate_stone_soaking",
   "pages": [
     {
       "type": "crafting",

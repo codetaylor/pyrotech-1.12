@@ -1,7 +1,7 @@
 {
   "name": "Barrel",
   "icon": "pyrotech:barrel",
-  "category": "innovate_soaking",
+  "category": "innovate_stone_soaking",
   "pages": [
     {
       "type": "crafting",

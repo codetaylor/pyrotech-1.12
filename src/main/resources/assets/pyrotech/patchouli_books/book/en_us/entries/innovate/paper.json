@@ -1,7 +1,7 @@
 {
   "name": "Paper",
   "icon": "minecraft:paper",
-  "category": "innovate_soaking",
+  "category": "innovate_stone_soaking",
   "pages": [
     {
       "type": "rrt_soaking_pot_recipe",
