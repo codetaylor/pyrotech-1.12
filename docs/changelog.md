@@ -562,6 +562,7 @@
             * `entries/innovate/tools_durable`
             * `entries/innovate/washed_hide`
             * `entries/survive/marshmallow`
+            * `entries/survive/spear_crude`
             * `templates/include/barrel_recipe`
         * **Modified:**
             * `entries/appendix/credits`
