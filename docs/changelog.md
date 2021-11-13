@@ -540,6 +540,7 @@
             * `entries/innovate/pyroberry_wine`
             * `templates/include/barrel_recipe`
         * **Modified:**
+            * `entries/appendix/credits`
             * `entries/survive/food_raw`
             * `templates/include/anvil_recipe`        
 
