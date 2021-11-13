@@ -1,0 +1,25 @@
+{
+  "name": "Mud",
+  "icon": "pyrotech:mud",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "pyrotech:mud",
+      "text": "$(item)Mud$() is naturally occurring in swamps and rivers.$(p)$(info) Harvesting $(item)Mud$() with a low tier $(thing)shovel$() will increase the chance of obtaining $(item)Mud Clumps$() instead of $(item)Mud$()."
+    },
+    {
+      "type": "rrt_compacting_bin_recipe_soaking_pot_recipe",
+      "compacting_bin_recipe": "pyrotech:mud",
+      "soaking_pot_recipe": "pyrotech:mud",
+      "text": "$(item)Mud$() can also be created by $(thing)compacting$() $(item)Mud Clumps$() or $(thing)soaking$() $(item)Dirt$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/mud_clump"
+      ]
+    }
+  ]
+}

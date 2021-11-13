@@ -536,6 +536,7 @@
             * `entries/bloom/anvil_obsidian`
             * `entries/bloom/arrow_iron`
             * `entries/bloom/trip_hammer`
+            * `entries/gather/mud`
             * `entries/innovate/barrel`
             * `entries/innovate/bucket_refractory`
             * `entries/innovate/gloamberry_wine`
