@@ -1,7 +1,7 @@
 {
   "name": "下界石英工具",
   "icon": "pyrotech:quartz_pickaxe",
-  "category": "bloom",
+  "category": "bloom_tools",
   "pages": [
     {
       "type": "text",

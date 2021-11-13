@@ -1,7 +1,7 @@
 {
   "name": "黑曜石工具",
   "icon": "pyrotech:obsidian_pickaxe",
-  "category": "bloom",
+  "category": "bloom_tools",
   "pages": [
     {
       "type": "crafting",

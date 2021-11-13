@@ -1,7 +1,7 @@
 {
   "name": "Зато красиво!",
   "icon": "pyrotech:gold_shears",
-  "category": "bloom",
+  "category": "bloom_tools",
   "pages": [
     {
       "type": "crafting",

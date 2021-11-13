@@ -1,7 +1,7 @@
 {
   "name": "Нет, это не стеклорез",
   "icon": "pyrotech:diamond_shears",
-  "category": "bloom",
+  "category": "bloom_tools",
   "pages": [
     {
       "type": "crafting",
