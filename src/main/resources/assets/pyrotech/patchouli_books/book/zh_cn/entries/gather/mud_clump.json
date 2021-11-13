@@ -1,0 +1,27 @@
+{
+  "name": "Mud Clump",
+  "icon": "pyrotech:rock:11",
+  "category": "gather_material",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "pyrotech:rock:11",
+      "text": "$(item)Mud Clumps$() can be harvested from mud found in the world or crafted."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:mud"
+    },
+    {
+      "type": "rt_soaking_pot_recipe",
+      "recipe": "pyrotech:mud_clump"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/mud"
+      ]
+    }
+  ]
+}
