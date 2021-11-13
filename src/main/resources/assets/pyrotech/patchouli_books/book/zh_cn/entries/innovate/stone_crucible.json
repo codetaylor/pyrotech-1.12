@@ -1,7 +1,7 @@
 {
   "name": "石坩埚",
   "icon": "pyrotech:stone_crucible",
-  "category": "innovate_machines",
+  "category": "innovate_stone_machines",
   "pages": [
     {
       "type": "crafting",

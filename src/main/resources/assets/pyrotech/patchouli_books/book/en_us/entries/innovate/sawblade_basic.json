@@ -1,7 +1,7 @@
 {
   "name": "Sawmill Blade, Basic",
   "icon": "pyrotech:sawmill_blade_stone",
-  "category": "innovate_machines",
+  "category": "innovate_stone_machines",
   "pages": [
     {
       "type": "crafting",

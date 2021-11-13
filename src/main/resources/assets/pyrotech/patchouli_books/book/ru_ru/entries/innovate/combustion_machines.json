@@ -1,7 +1,7 @@
 {
   "name": "Тепловые машины",
   "icon": "pyrotech:textures/gui/book/icon/info.png",
-  "category": "innovate_machines",
+  "category": "innovate_stone_machines",
   "priority": true,
   "pages": [
     {

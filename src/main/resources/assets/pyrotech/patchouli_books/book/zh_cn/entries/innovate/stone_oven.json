@@ -1,7 +1,7 @@
 {
   "name": "石炉",
   "icon": "pyrotech:stone_oven",
-  "category": "innovate_machines",
+  "category": "innovate_stone_machines",
   "pages": [
     {
       "type": "crafting",

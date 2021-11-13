@@ -1,7 +1,7 @@
 {
   "name": "Stone Sawmill",
   "icon": "pyrotech:stone_sawmill",
-  "category": "innovate_machines",
+  "category": "innovate_stone_machines",
   "pages": [
     {
       "type": "crafting",

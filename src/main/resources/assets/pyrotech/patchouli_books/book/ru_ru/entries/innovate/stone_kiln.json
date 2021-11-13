@@ -1,7 +1,7 @@
 {
   "name": "Беспроигрышный вариант",
   "icon": "pyrotech:stone_kiln",
-  "category": "innovate_machines",
+  "category": "innovate_stone_machines",
   "pages": [
     {
       "type": "crafting",
