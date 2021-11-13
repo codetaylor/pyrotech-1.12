@@ -1,7 +1,7 @@
 {
   "name": "骨头碎片&燧石碎片",
   "icon": "pyrotech:material:11",
-  "category": "gather",
+  "category": "gather_material",
   "pages": [
     {
       "type": "text",

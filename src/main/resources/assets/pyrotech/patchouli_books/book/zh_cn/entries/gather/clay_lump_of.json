@@ -1,7 +1,7 @@
 {
   "name": "粘土粒",
   "icon": "pyrotech:material:17",
-  "category": "gather",
+  "category": "gather_material",
   "pages": [
     {
       "type": "spotlight",

@@ -1,7 +1,7 @@
 {
   "name": "Палки",
   "icon": "minecraft:stick",
-  "category": "gather",
+  "category": "gather_material",
   "pages": [
     {
       "type": "crafting",

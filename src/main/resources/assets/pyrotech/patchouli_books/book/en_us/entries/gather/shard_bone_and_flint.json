@@ -1,7 +1,7 @@
 {
   "name": "Shard, Bone & Flint",
   "icon": "pyrotech:material:11",
-  "category": "gather",
+  "category": "gather_material",
   "pages": [
     {
       "type": "text",

@@ -1,7 +1,7 @@
 {
   "name": "植物纤维",
   "icon": "pyrotech:material:12",
-  "category": "gather",
+  "category": "gather_material",
   "pages": [
     {
       "type": "crafting",

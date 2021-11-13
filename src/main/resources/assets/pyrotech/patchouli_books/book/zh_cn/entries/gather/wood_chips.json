@@ -1,7 +1,7 @@
 {
   "name": "木屑堆",
   "icon": "pyrotech:rock:7",
-  "category": "gather",
+  "category": "gather_material",
   "pages": [
     {
       "type": "spotlight",

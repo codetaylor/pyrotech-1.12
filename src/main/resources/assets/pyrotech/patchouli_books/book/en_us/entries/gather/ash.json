@@ -1,7 +1,7 @@
 {
   "name": "Ash",
   "icon": "pyrotech:material:0",
-  "category": "gather",
+  "category": "gather_material",
   "pages": [
     {
       "type": "spotlight",
