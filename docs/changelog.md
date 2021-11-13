@@ -545,6 +545,7 @@
             * `templates/include/barrel_recipe`
         * **Modified:**
             * `entries/appendix/credits`
+            * `entries/gather/rock_bag`
             * `entries/survive/food_raw`
             * `templates/include/anvil_recipe`        
 

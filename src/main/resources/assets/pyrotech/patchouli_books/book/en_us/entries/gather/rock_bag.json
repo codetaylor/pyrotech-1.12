@@ -6,17 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/bag_simple",
-      "recipe2": "pyrotech:storage/bag_durable"
-    },
-    {
-      "type": "text",
-      "text": "A $(item)Rock Bag$() can hold a large quantity of $(thing)Rocks$().$(p)A $(item)Durable Rock Bag$() can hold a large quantity of $(thing)Cobbled Stone$()."
-    },
-    {
-      "type": "image",
-      "images": [
-        "pyrotech:textures/gui/book/illustration/rock_bag_00.png"
-      ]
+      "text": "$(info) A $(item)Rock Bag$() can hold a large quantity of $(thing)Rocks$()."
     },
     {
       "type": "text",
@@ -37,10 +27,7 @@
       "entries": [
         "adapt/twine",
         "gather/storage",
-        "innovate/twine_durable",
-        "innovate/storage_durable",
-        "survive/rocks",
-        "gather/stone_cobbled"
+        "survive/rocks"
       ]
     }
   ]
