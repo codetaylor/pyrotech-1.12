@@ -2,6 +2,6 @@
   "name": "机器",
   "description": "$(thing)机器$()消耗$(thing)燃料$()工作。",
   "icon": "pyrotech:stone_sawmill",
-  "parent": "innovate",
-  "sortnum": 3
+  "parent": "innovate_stone",
+  "sortnum": 1
 }
