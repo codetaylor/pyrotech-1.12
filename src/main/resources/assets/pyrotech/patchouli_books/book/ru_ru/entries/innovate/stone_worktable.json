@@ -1,7 +1,7 @@
 {
   "name": "Бей - не промахнёшься",
   "icon": "pyrotech:worktable_stone",
-  "category": "innovate",
+  "category": "innovate_stone",
   "pages": [
     {
       "type": "text",

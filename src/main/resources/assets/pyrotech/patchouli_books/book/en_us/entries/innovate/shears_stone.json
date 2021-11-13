@@ -1,7 +1,7 @@
 {
   "name": "Shears, Stone",
   "icon": "pyrotech:stone_shears",
-  "category": "innovate",
+  "category": "innovate_stone",
   "pages": [
     {
       "type": "crafting",
