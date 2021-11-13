@@ -1,0 +1,35 @@
+{
+  "name": "Leather Kits",
+  "icon": "pyrotech:leather_repair_kit",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/leather_repair_kit",
+      "recipe2": "pyrotech:hunting/leather_durable_repair_kit"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/leather_repair_helmet",
+      "recipe2": "pyrotech:hunting/leather_repair_chestplate"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/leather_repair_leggings",
+      "recipe2": "pyrotech:hunting/leather_repair_boots"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/leather_durable_upgrade_kit",
+      "text": "$(item)Durable Leather Upgrade Kits$() can be used to upgrade $(thing)leather armor$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/leather_pieces",
+        "innovate/durable_leather",
+        "adapt/hunters_knife_bone_and_flint"
+      ]
+    }
+  ]
+}

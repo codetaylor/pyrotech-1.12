@@ -544,6 +544,7 @@
             * `entries/innovate/butchers_block`
             * `entries/innovate/durable_leather`
             * `entries/innovate/leather`
+            * `entries/innovate/leather_kits`
             * `entries/innovate/gloamberry_wine`
             * `entries/innovate/pyroberry_wine`
             * `templates/include/barrel_recipe`
