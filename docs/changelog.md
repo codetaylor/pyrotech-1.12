@@ -531,6 +531,7 @@
             * `entries/adapt/cob_wet`
             * `entries/adapt/hunters_knife_bone_and_flint`
             * `entries/adapt/lard`
+            * `entries/adapt/shears_bone_and_flint`
             * `entries/bloom/anvil_obsidian`
             * `entries/innovate/barrel`
             * `entries/innovate/bucket_refractory`
