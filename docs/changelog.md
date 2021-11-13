@@ -546,6 +546,7 @@
             * `entries/innovate/leather`
             * `entries/innovate/leather_kits`
             * `entries/innovate/leather_pieces`
+            * `entries/innovate/masonry_brick`
             * `entries/innovate/masonry_brick_block`
             * `entries/innovate/gloamberry_wine`
             * `entries/innovate/pyroberry_wine`

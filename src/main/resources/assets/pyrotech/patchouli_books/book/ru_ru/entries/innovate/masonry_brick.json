@@ -1,5 +1,5 @@
 {
-  "name": "砌砖",
+  "name": "Masonry Brick",
   "icon": "pyrotech:material:16",
   "category": "innovate_stone",
   "pages": [
@@ -9,7 +9,7 @@
       "recipe": "pyrotech:masonry_brick_slab",
       "header2": true,
       "recipe2": "pyrotech:brick_stone",
-      "text": "$(item)砌砖$()是石匠工艺的真正基石！"
+      "text": "The $(item)Masonry Brick$() is the true cornerstone of a stonemason's craft."
     },
     {
       "type": "relations",
