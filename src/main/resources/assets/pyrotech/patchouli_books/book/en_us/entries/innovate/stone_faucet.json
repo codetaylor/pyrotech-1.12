@@ -1,7 +1,7 @@
 {
   "name": "Faucet, Stone",
   "icon": "pyrotech:faucet_stone",
-  "category": "innovate_soaking",
+  "category": "innovate_stone_soaking",
   "pages": [
     {
       "type": "crafting",
