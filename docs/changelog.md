@@ -551,6 +551,7 @@
             * `entries/innovate/masonry_brick_block`
             * `entries/innovate/oil_lamp`
             * `entries/innovate/pelt`
+            * `entries/innovate/pyroberry_wine`
             * `entries/innovate/rock_bag_durable`
             * `entries/innovate/scraped_hide`
             * `entries/innovate/sheared_hide`
@@ -559,7 +560,7 @@
             * `entries/innovate/tanning_rack`
             * `entries/innovate/tool_repair_kit`
             * `entries/innovate/tools_durable`
-            * `entries/innovate/pyroberry_wine`
+            * `entries/innovate/washed_hide`
             * `templates/include/barrel_recipe`
         * **Modified:**
             * `entries/appendix/credits`

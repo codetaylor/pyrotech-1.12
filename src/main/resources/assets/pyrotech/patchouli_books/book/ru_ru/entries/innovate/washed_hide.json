@@ -1,0 +1,31 @@
+{
+  "name": "Hide, Washed",
+  "icon": "pyrotech:hide_washed",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Washed Hide",
+      "text": "$(item)Washed Hides$() can be produced using a variety of methods.$(p)$(info) $(item)Scraped Hides$() can be washed by placing them in water for a while.$(p)$(info) Alternatively, $(item)Scraped Hides$() can be washed instantly with a bucket of water."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/washing_hide",
+      "recipe2": "pyrotech:hunting/washing_hide_small"
+    },
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "recipe": "pyrotech:hide_washed",
+      "recipe2": "pyrotech:hide_small_washed",
+      "text": "$(info) $(item)Scraped Hides$() can also be cleaned by $(thing)soaking$() them in water over a $(item)Campfire$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/scraped_hide",
+        "innovate/soaking_pot",
+        "survive/campfire"
+      ]
+    }
+  ]
+}
