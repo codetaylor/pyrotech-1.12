@@ -1,0 +1,28 @@
+{
+  "name": "Hide, Tanned",
+  "icon": "pyrotech:hide_tanned",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:hide_tanned",
+      "recipe2": "pyrotech:hide_small_tanned",
+      "text": "$(item)Tanned Hides$() are produced by soaking $(item)Washed Hides$() in $(item)Tannin$()."
+    },
+    {
+      "type": "rt_barrel_recipe",
+      "header": true,
+      "recipe": "pyrotech:tannin",
+      "text": "Soaking $(item)Leaves$() in $(item)Water$() will yield $(item)Tannin$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/washed_hide",
+        "innovate/soaking_pot",
+        "innovate/barrel"
+      ]
+    }
+  ]
+}
