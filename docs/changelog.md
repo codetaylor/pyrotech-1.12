@@ -539,6 +539,7 @@
             * `entries/gather/mud`
             * `entries/gather/mud_clump`
             * `entries/innovate/barrel`
+            * `entries/innovate/bow_drill_durable`
             * `entries/innovate/bucket_refractory`
             * `entries/innovate/gloamberry_wine`
             * `entries/innovate/pyroberry_wine`
