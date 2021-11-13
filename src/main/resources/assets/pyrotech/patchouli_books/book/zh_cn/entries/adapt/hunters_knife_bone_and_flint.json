@@ -1,0 +1,25 @@
+{
+  "name": "Hunter's Knife, Bone & Flint",
+  "icon": "pyrotech:bone_hunters_knife",
+  "category": "adapt_butchery",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/hunters_knife_bone",
+      "recipe2": "pyrotech:hunting/hunters_knife_flint"
+    }, {
+      "type": "text",
+      "text": "$(info) A $(item)Hunter's Knife$() can be used to process a $(item)Carcass$() for $(thing)Pelts$(), $(thing)Meats$(), and other items.$(p)$(info) Using a $(item)Hunter's Knife$() on a $(item)Butcher's Block$() has a chance to increase the yield when harvesting $(thing)Pelts$().$(p)$(warning) Using a $(item)Hunter's Knife$() on a $(item)Butcher's Block$() has a chance to decrease the yield when harvesting $(thing)Meats$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/carcass",
+        "gather/sticks",
+        "gather/shard_bone_and_flint",
+        "adapt/twine",
+        "innovate/butchers_block"
+      ]
+    }
+  ]
+}
