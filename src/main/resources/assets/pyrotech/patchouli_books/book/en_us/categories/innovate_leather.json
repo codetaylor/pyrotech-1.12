@@ -1,0 +1,7 @@
+{
+  "name": "Leatherworking",
+  "description": "$(item)Leather$() is a strong, flexible, and durable material obtained by $(thing)tanning$() hides to prevent decay.",
+  "icon": "pyrotech:pelt_cow",
+  "parent": "innovate",
+  "sortnum": 3
+}
