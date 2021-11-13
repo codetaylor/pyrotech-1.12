@@ -518,6 +518,7 @@
         * `gui.pyrotech.missing.ore.compat`
     * **Patchouli:**
         * **Added:**
+            * `categories/adapt_butchery.json`
             * `entries/bloom/anvil_obsidian.json`
             * `entries/innovate/barrel.json`
             * `entries/innovate/bucket_refractory.json`
