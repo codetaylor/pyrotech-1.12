@@ -1,0 +1,24 @@
+{
+  "name": "Butcher's Block",
+  "icon": "pyrotech:butchers_block",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "To use, place a $(item)Carcass$() on the top and $(use) with a $(item)Hunter's Knife$() or a $(item)Butcher's Knife$().$(p)$(info) Using a $(item)Hunter's Knife$() on a $(item)Butcher's Block$() has a chance to increase the yield when harvesting $(thing)Pelts$().$(p)$(info) Using a $(item)Butcher's Knife$() on a $(item)Butcher's Block$() has a chance to increase the yield when harvesting $(thing)Meats$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/butchers_block",
+      "text": "$(warning) Using may cause hunger. If it isn't working, you might be too hungry."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/carcass",
+        "adapt/butchers_knife_bone_and_flint",
+        "adapt/hunters_knife_bone_and_flint"
+      ]
+    }
+  ]
+}
