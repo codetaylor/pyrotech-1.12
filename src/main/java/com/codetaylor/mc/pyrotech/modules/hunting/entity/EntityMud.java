@@ -69,6 +69,16 @@ public class EntityMud
     return true;
   }
 
+  @Override
+  public void setDead() {
+
+    if (!this.world.isRemote) {
+      this.spawnMud(this.getPosition());
+    }
+
+    super.setDead();
+  }
+
   private void spawnMud(BlockPos pos) {
 
     BlockHelper.forBlocksInRange(this.world, pos, 1 + RandomHelper.random().nextInt(this.getSlimeSize()), (w, p, bs) -> {
