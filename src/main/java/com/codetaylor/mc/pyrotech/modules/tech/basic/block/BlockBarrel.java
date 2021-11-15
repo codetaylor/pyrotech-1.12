@@ -199,10 +199,7 @@ public class BlockBarrel
 
     NBTTagCompound stackTag = stack.getTagCompound();
 
-    if (stackTag == null) {
-      return;
-
-    } else {
+    if (stackTag != null) {
 
       if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)
           || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
