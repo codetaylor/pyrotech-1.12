@@ -2,10 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.ignition.tile;
 
 import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
-import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
-import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionBucketBase;
-import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
+import com.codetaylor.mc.athenaeum.interaction.spi.*;
 import com.codetaylor.mc.athenaeum.inventory.ObservableFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFluidTank;
 import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
@@ -65,6 +62,7 @@ public class TileLampOil
 
     this.interactions = new IInteraction[]{
         new InteractionBucket(this.tank),
+        new InteractionExtinguish(EnumFacing.VALUES),
         new InteractionUseItemToActivate(Items.FLINT_AND_STEEL, EnumFacing.VALUES)
     };
   }
@@ -207,6 +205,39 @@ public class TileLampOil
           EnumFacing.VALUES,
           InteractionBounds.BLOCK
       );
+    }
+  }
+
+  public static class InteractionExtinguish
+      extends InteractionBase<TileLampOil> {
+
+    public InteractionExtinguish(EnumFacing[] sides) {
+
+      super(sides, InteractionBounds.BLOCK);
+    }
+
+    @Override
+    public boolean interact(EnumType type, TileLampOil tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
+
+      if (!player.getHeldItem(hand).isEmpty() || !tile.isActive()) {
+        return false;
+      }
+
+      if (!world.isRemote) {
+
+        tile.setActive(false);
+
+        world.playSound(
+            null,
+            hitPos,
+            SoundEvents.BLOCK_FIRE_EXTINGUISH,
+            SoundCategory.BLOCKS,
+            1.0F,
+            Util.RANDOM.nextFloat() * 0.4F + 0.8F
+        );
+      }
+
+      return true;
     }
   }
 

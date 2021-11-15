@@ -6,7 +6,6 @@ import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableWithIgniterItem;
-import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnitionConfig;
 import com.codetaylor.mc.pyrotech.modules.ignition.item.ItemIgniterBase;
 import com.codetaylor.mc.pyrotech.modules.ignition.tile.TileLampOil;
@@ -16,7 +15,6 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -156,26 +154,6 @@ public class BlockLampOil
   ) {
 
     ItemStack heldItem = player.getHeldItemMainhand();
-
-    if (heldItem.isEmpty()) {
-      TileEntity tileEntity = world.getTileEntity(pos);
-
-      if (tileEntity instanceof TileLampOil) {
-        ((TileLampOil) tileEntity).setActive(false);
-
-        if (!world.isRemote) {
-
-          world.playSound(
-              null,
-              pos,
-              SoundEvents.BLOCK_FIRE_EXTINGUISH,
-              SoundCategory.BLOCKS,
-              1.0F,
-              Util.RANDOM.nextFloat() * 0.4F + 0.8F
-          );
-        }
-      }
-    }
 
     if (heldItem.getItem() instanceof ItemIgniterBase) {
       return false;
