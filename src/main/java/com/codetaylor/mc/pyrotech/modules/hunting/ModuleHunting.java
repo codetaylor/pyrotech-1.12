@@ -59,7 +59,8 @@ public class ModuleHunting
     MinecraftForge.EVENT_BUS.register(new LivingDeathEventHandler());
 
     String[] craftTweakerPlugins = {
-        "ZenCarcass"
+        "ZenCarcass",
+        "ZenButchersBlock"
     };
 
     for (String plugin : craftTweakerPlugins) {
