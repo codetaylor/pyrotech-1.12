@@ -11,6 +11,20 @@ Contains new kinds of buckets.
 * Clay Bucket
 * Stone Bucket
 
+### Hunting Module
+
+Contains items and blocks related to butchery and hunting.
+
+* Butcher's Block
+* Carcass
+* Spear
+* Arrows
+* Butcher's Knife
+* Hunter's Knife
+* Leather Kits
+* Pelts
+* Hides
+
 ### Ignition Module
 
 Contains items and blocks used to light fires.
