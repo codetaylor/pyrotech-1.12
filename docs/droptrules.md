@@ -60,6 +60,9 @@ Here is a list of the rules and what they do.
 * **limestone_cobbled**:
     * drops rocks with low tier tools
     * higher chance of full block drop with higher tier tools
+* **mud**
+    * drops clumps with low tier tools
+    * higher chance of full block drop with higher tier tools
 * **ore_coal**:
     * drops rocks and coal pieces with low tier tools
     * higher chance of full coal item drop with higher tier tools
