@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:ignition/lamp_oil",
-      "text": "$(info) An $(item)Oil Lamp$() will not go out in the rain."
+      "text": "$(info) An $(item)Oil Lamp$() will not go out in the rain.$(p)$(info) An $(item)Oil Lamp$() can be extinguished by $(use) with an empty hand."
     },
     {
       "type": "rt_stone_crucible_recipe",
