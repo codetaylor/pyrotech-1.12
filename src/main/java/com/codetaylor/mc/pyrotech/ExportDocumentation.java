@@ -4,6 +4,7 @@ import com.codetaylor.mc.athenaeum.tools.ZenDocExporter;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.hunting.plugin.crafttweaker.ZenButchersBlock;
 import com.codetaylor.mc.pyrotech.modules.hunting.plugin.crafttweaker.ZenCarcass;
+import com.codetaylor.mc.pyrotech.modules.ignition.plugin.crafttweaker.ZenOilLamp;
 import com.codetaylor.mc.pyrotech.modules.storage.plugin.crafttweaker.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker.*;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.crafttweaker.ZenBloomery;
@@ -65,7 +66,8 @@ public class ExportDocumentation {
         ZenBarrel.class,
         ZenTanningRack.class,
         ZenCarcass.class,
-        ZenButchersBlock.class
+        ZenButchersBlock.class,
+        ZenOilLamp.class
     };
 
     ZenDocExporter export = new ZenDocExporter();

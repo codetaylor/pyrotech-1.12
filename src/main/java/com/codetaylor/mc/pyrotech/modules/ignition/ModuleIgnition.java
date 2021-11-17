@@ -48,6 +48,18 @@ public class ModuleIgnition
 
     MinecraftForge.EVENT_BUS.register(this);
 
+
+    String[] craftTweakerPlugins = {
+        "ZenOilLamp"
+    };
+
+    for (String plugin : craftTweakerPlugins) {
+      this.registerIntegrationPlugin(
+          "crafttweaker",
+          "com.codetaylor.mc.pyrotech.modules.ignition.plugin.crafttweaker." + plugin
+      );
+    }
+
     this.registerIntegrationPlugin(
         "jei",
         "com.codetaylor.mc.pyrotech.modules.ignition.plugin.jei.PluginJEI"
