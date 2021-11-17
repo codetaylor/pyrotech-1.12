@@ -58,6 +58,17 @@ public class ModuleHunting
     MinecraftForge.EVENT_BUS.register(new EntityAttachCapabilitiesEventHandler());
     MinecraftForge.EVENT_BUS.register(new LivingDeathEventHandler());
 
+    String[] craftTweakerPlugins = {
+        "ZenCarcass"
+    };
+
+    for (String plugin : craftTweakerPlugins) {
+      this.registerIntegrationPlugin(
+          "crafttweaker",
+          "com.codetaylor.mc.pyrotech.modules.hunting.plugin.crafttweaker." + plugin
+      );
+    }
+
     this.registerIntegrationPlugin(
         "jei",
         "com.codetaylor.mc.pyrotech.modules.hunting.plugin.jei.PluginJEI"

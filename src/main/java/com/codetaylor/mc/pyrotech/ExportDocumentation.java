@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech;
 
 import com.codetaylor.mc.athenaeum.tools.ZenDocExporter;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
+import com.codetaylor.mc.pyrotech.modules.hunting.plugin.crafttweaker.ZenCarcass;
 import com.codetaylor.mc.pyrotech.modules.storage.plugin.crafttweaker.*;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker.*;
 import com.codetaylor.mc.pyrotech.modules.tech.bloomery.plugin.crafttweaker.ZenBloomery;
@@ -61,7 +62,8 @@ public class ExportDocumentation {
         ZenFaucetBrick.class,
         ZenCompostBin.class,
         ZenBarrel.class,
-        ZenTanningRack.class
+        ZenTanningRack.class,
+        ZenCarcass.class
     };
 
     ZenDocExporter export = new ZenDocExporter();
