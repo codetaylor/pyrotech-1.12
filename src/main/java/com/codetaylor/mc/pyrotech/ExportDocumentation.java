@@ -67,7 +67,8 @@ public class ExportDocumentation {
         ZenTanningRack.class,
         ZenCarcass.class,
         ZenButchersBlock.class,
-        ZenOilLamp.class
+        ZenOilLamp.class,
+        ZenTripHammer.class
     };
 
     ZenDocExporter export = new ZenDocExporter();

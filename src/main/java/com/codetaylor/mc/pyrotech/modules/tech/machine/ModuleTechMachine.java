@@ -69,7 +69,8 @@ public class ModuleTechMachine
         "ZenMechanicalHopper",
         "ZenMechanicalMulcher",
         "ZenMechanicalBellows",
-        "ZenBellows"
+        "ZenBellows",
+        "ZenTripHammer"
     };
 
     for (String plugin : craftTweakerPlugins) {
