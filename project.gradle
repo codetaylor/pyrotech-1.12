@@ -26,7 +26,7 @@ ext {
 
   replace = [
     'required-after:dropt;': 'required-after:dropt@[1.12.2-1.12.0,);',
-    'required-after:athenaeum;': 'required-after:athenaeum@[1.12.2-1.19.2,);'
+    'required-after:athenaeum;': 'required-after:athenaeum@[1.12.2-1.19.5,);'
   ]
 }
 

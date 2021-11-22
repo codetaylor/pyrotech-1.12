@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.bucket.item;
 
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.FluidHelper;
+import com.codetaylor.mc.athenaeum.util.FluidUtilFix;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.library.util.Util;
@@ -396,7 +397,10 @@ public abstract class ItemBucketBase
 
       // Try to place the liquid
       FluidStack fluidStack = this.getFluid(containerStack);
-      FluidActionResult result = FluidUtil.tryPlaceFluid(player, world, targetPos, containerStack, fluidStack);
+
+      // Use FluidUtilFix instead of Forge's FluidUtil
+      // Fix for https://github.com/codetaylor/pyrotech-1.12/issues/375
+      FluidActionResult result = FluidUtilFix.tryPlaceFluid(player, world, targetPos, containerStack, fluidStack);
 
       if (result.isSuccess()
           && !player.capabilities.isCreativeMode) {
