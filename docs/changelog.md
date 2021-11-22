@@ -1,3 +1,10 @@
+**1.5.21**
+
+  * **Fixed:**
+    * Pyrotech buckets delete objects when placing water [(#375)](https://github.com/codetaylor/pyrotech-1.12/issues/375)
+
+---
+
 **1.5.20**
 
   * **Fixed:**
