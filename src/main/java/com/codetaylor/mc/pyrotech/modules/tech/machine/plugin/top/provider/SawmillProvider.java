@@ -101,7 +101,7 @@ public class SawmillProvider
 
     if (recipe != null) {
       ItemStack recipeOutput = recipe.getOutput();
-      recipeOutput.setCount(input.getCount());
+      recipeOutput.setCount(recipeOutput.getCount() * input.getCount());
       horizontal.progress(progress, maxProgress, new ProgressStyle().height(18).width(64).showText(false));
       horizontal.item(recipeOutput);
     }
