@@ -1,3 +1,10 @@
+**1.5.22**
+
+  * **Fixed:**
+    * ToP displays sawmill recipes result amounts incorrectly [(#376)](https://github.com/codetaylor/pyrotech-1.12/issues/376)
+
+---
+
 **1.5.21**
 
   * **Fixed:**
