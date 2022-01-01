@@ -24,6 +24,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -216,6 +217,23 @@ public class TileStash
   // - Stack Handlers
   // ---------------------------------------------------------------------------
 
+  /**
+   * https://github.com/codetaylor/pyrotech-1.12/issues/380
+   *
+   * This handler has been modified to fool interrogators into thinking that it
+   * has two item slots, one of which is always empty.
+   *
+   * This is necessary to trick the injected Forge logic found in
+   * {@link net.minecraftforge.items.VanillaInventoryCodeHooks#isFull(IItemHandler)}
+   * into thinking that this container is not full and can accept input. The
+   * hopper is then allowed to attempt an insert, which is always inserted into
+   * slot 0.
+   *
+   * This has been tested against the vanilla hopper and Pyrotech's stone hopper.
+   *
+   * It is considered to be an experimental fix and may introduce unintended
+   * side-effects with other mods.
+   */
   private class StackHandler
       extends LargeObservableStackHandler
       implements ITileDataItemStackHandler {
@@ -226,6 +244,39 @@ public class TileStash
 
       super(1);
       this.maxStacks = maxStacks;
+    }
+
+    @Override
+    public int getSlots() {
+
+      return 2;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getStackInSlot(int slot) {
+
+      return (slot == 1) ? ItemStack.EMPTY : super.getStackInSlot(0);
+    }
+
+    @Override
+    public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
+
+      super.setStackInSlot(0, stack);
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+
+      return super.insertItem(0, stack, simulate);
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack extractItem(int slot, int amount, boolean simulate) {
+
+      return super.extractItem(0, amount, simulate);
     }
 
     @Override

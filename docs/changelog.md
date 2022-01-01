@@ -9,6 +9,7 @@
     * Pit Kiln doesn't properly extinguish in rain
     * Ironclad Anvil used Granite Anvil config value for `BLOOM_EXTRA_DAMAGE_CHANCE`
     * Cogs continue to render movement when the game is paused
+    * *EXPERIMENTAL*: Vanilla Hoppers not filling stashes past increments of 64 [(#380)](https://github.com/codetaylor/pyrotech-1.12/issues/380)
 
   * **Added:**
     * Blocks:
