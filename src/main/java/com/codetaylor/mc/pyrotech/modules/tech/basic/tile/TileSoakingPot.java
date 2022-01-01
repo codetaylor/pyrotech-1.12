@@ -568,6 +568,12 @@ public class TileSoakingPot
 
       super(1);
     }
+
+    @Override
+    protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
+
+      return stack.getMaxStackSize() * 10;
+    }
   }
 
   public static class InputFluidTank
