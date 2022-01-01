@@ -576,6 +576,13 @@
 
 ---
 
+**1.5.23**
+
+  * **Fixed:**
+    * Soaking pot voids items in recipes resulting in stacks over the max stack size [(#381)](https://github.com/codetaylor/pyrotech-1.12/issues/381)
+
+---
+
 **1.5.22**
 
   * **Fixed:**
