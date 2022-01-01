@@ -3,9 +3,11 @@ package com.codetaylor.mc.pyrotech.modules.tech.basic.recipe;
 import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.CompostBinRecipeBase;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 import javax.annotation.Nullable;
@@ -20,24 +22,39 @@ public class CompostBinRecipe
   @Nullable
   public static CompostBinRecipe getRecipe(ItemStack input) {
 
-    for (CompostBinRecipe recipe : ModuleTechBasic.Registries.COMPOST_BIN_RECIPE) {
-
-      if (recipe.matches(input)) {
-        return recipe;
-      }
-    }
-
-    return null;
+    Item inputItem = input.getItem();
+    ResourceLocation registryName = inputItem.getRegistryName();
+    if (registryName == null) return null;
+    String resourceDomain = registryName.getResourceDomain().toLowerCase();
+    String resourcePath = registryName.getResourcePath().toLowerCase();
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + input.getMetadata());
+    ResourceLocation resourceLocationWild = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + OreDictionary.WILDCARD_VALUE);
+    
+    CompostBinRecipe recipe = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocation);
+    return (recipe != null) ? recipe : ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocationWild);
   }
 
   @Nullable
   public static CompostBinRecipe getRecipe(ItemStack input, ItemStack output) {
 
-    for (CompostBinRecipe recipe : ModuleTechBasic.Registries.COMPOST_BIN_RECIPE) {
+    Item inputItem = input.getItem();
+    ResourceLocation registryName = inputItem.getRegistryName();
+    if (registryName == null) return null;
+    String resourceDomain = registryName.getResourceDomain().toLowerCase();
+    String resourcePath = registryName.getResourcePath().toLowerCase();
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + input.getMetadata());
+    ResourceLocation resourceLocationWild = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + OreDictionary.WILDCARD_VALUE);
 
-      if (recipe.matches(input, output)) {
-        return recipe;
-      }
+    CompostBinRecipe recipe = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocation);
+
+    if (recipe != null && recipe.matches(input, output)) {
+      return recipe;
+    }
+
+    recipe = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocationWild);
+
+    if (recipe != null && recipe.matches(input, output)) {
+      return recipe;
     }
 
     return null;
