@@ -10,6 +10,8 @@
     * Ironclad Anvil used Granite Anvil config value for `BLOOM_EXTRA_DAMAGE_CHANCE`
     * Cogs continue to render movement when the game is paused
     * *EXPERIMENTAL*: Vanilla Hoppers not filling stashes past increments of 64 [(#380)](https://github.com/codetaylor/pyrotech-1.12/issues/380)
+    * *EXPERIMENTAL*: Vanilla Hoppers not filling crates past increments of 64
+    * *EXPERIMENTAL*: Vanilla Hoppers not filling shelves past increments of 64
 
   * **Added:**
     * Blocks:

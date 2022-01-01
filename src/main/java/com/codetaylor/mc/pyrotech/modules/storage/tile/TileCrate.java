@@ -1,17 +1,17 @@
 package com.codetaylor.mc.pyrotech.modules.storage.tile;
 
-import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import net.minecraft.block.state.IBlockState;
@@ -24,6 +24,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -209,7 +210,24 @@ public class TileCrate
   // - Stack Handler
   // ---------------------------------------------------------------------------
 
-  private class StackHandler
+  /**
+   * https://github.com/codetaylor/pyrotech-1.12/issues/380
+   * <p>
+   * This handler has been modified to fool interrogators into thinking that it
+   * has ten item slots, one of which is always empty.
+   * <p>
+   * This is necessary to trick the injected Forge logic found in
+   * {@link net.minecraftforge.items.VanillaInventoryCodeHooks#isFull(IItemHandler)}
+   * into thinking that this container is not full and can accept input. The
+   * hopper is then allowed to attempt an insert.
+   * <p>
+   * This has been tested against the vanilla hopper and Pyrotech's stone hopper.
+   * <p>
+   * It is considered to be an experimental fix and may introduce unintended
+   * side-effects with other mods.
+   */
+  @SuppressWarnings("JavadocReference")
+  private static class StackHandler
       extends LargeObservableStackHandler
       implements ITileDataItemStackHandler {
 
@@ -219,6 +237,39 @@ public class TileCrate
 
       super(9);
       this.maxStackSize = maxStackSize;
+    }
+
+    @Override
+    public int getSlots() {
+
+      return 10;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getStackInSlot(int slot) {
+
+      return (slot == 10) ? ItemStack.EMPTY : super.getStackInSlot(slot);
+    }
+
+    @Override
+    public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
+
+      super.setStackInSlot((slot == 10) ? 9 : slot, stack);
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+
+      return super.insertItem((slot == 10) ? 9 : slot, stack, simulate);
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack extractItem(int slot, int amount, boolean simulate) {
+
+      return super.extractItem((slot == 10) ? 9 : slot, amount, simulate);
     }
 
     @Override

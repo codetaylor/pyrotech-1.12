@@ -1,16 +1,16 @@
 package com.codetaylor.mc.pyrotech.modules.storage.tile;
 
-import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.inventory.LargeObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataLargeItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.util.Properties;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorageConfig;
 import com.codetaylor.mc.pyrotech.modules.storage.block.BlockStash;
@@ -219,22 +219,23 @@ public class TileStash
 
   /**
    * https://github.com/codetaylor/pyrotech-1.12/issues/380
-   *
+   * <p>
    * This handler has been modified to fool interrogators into thinking that it
    * has two item slots, one of which is always empty.
-   *
+   * <p>
    * This is necessary to trick the injected Forge logic found in
    * {@link net.minecraftforge.items.VanillaInventoryCodeHooks#isFull(IItemHandler)}
    * into thinking that this container is not full and can accept input. The
    * hopper is then allowed to attempt an insert, which is always inserted into
    * slot 0.
-   *
+   * <p>
    * This has been tested against the vanilla hopper and Pyrotech's stone hopper.
-   *
+   * <p>
    * It is considered to be an experimental fix and may introduce unintended
    * side-effects with other mods.
    */
-  private class StackHandler
+  @SuppressWarnings("JavadocReference")
+  private static class StackHandler
       extends LargeObservableStackHandler
       implements ITileDataItemStackHandler {
 
