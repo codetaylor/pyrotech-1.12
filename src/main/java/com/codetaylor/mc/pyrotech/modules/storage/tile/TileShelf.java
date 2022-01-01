@@ -289,27 +289,27 @@ public class TileShelf
     @Override
     public ItemStack getStackInSlot(int slot) {
 
-      return (slot == 10) ? ItemStack.EMPTY : super.getStackInSlot(slot);
+      return (slot == 9) ? ItemStack.EMPTY : super.getStackInSlot(slot);
     }
 
     @Override
     public void setStackInSlot(int slot, @Nonnull ItemStack stack) {
 
-      super.setStackInSlot((slot == 10) ? 9 : slot, stack);
+      super.setStackInSlot((slot == 9) ? 8 : slot, stack);
     }
 
     @Nonnull
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
 
-      return super.insertItem((slot == 10) ? 9 : slot, stack, simulate);
+      return super.insertItem((slot == 9) ? 8 : slot, stack, simulate);
     }
 
     @Nonnull
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
 
-      return super.extractItem((slot == 10) ? 9 : slot, amount, simulate);
+      return super.extractItem((slot == 9) ? 8 : slot, amount, simulate);
     }
 
     @Override
