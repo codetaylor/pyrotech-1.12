@@ -1,5 +1,6 @@
 # eclipse
-bin
+/bin/
+/eclipse/
 *.launch
 .settings
 .metadata
@@ -7,26 +8,26 @@ bin
 .project
 
 # idea
-out
+/out/
 *.ipr
 *.iws
 *.iml
 .idea
 
 # gradle
-build
-.gradle
+/build/
+/.gradle/
 
 # other
 /classes/
-eclipse
-run
+/run/
 /test/
 /site/
 /logs/
 /libs/
 /libs-disabled/
 /todo/
+/.vscode/
 
 *.log
 cloc-1.80.exe
