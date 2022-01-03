@@ -31,26 +31,15 @@ public class CompostBinRecipe
   @Nullable
   public static CompostBinRecipe getRecipe(ItemStack input) {
 
-    Item inputItem = input.getItem();
-    ResourceLocation registryName = inputItem.getRegistryName();
-
-    if (registryName == null) {
-      return null;
-    }
-
-    String resourceDomain = registryName.getResourceDomain().toLowerCase();
-    String resourcePath = registryName.getResourcePath().toLowerCase();
-    String resourceStringPrefix = resourceDomain + "_" + resourcePath + "_";
-
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceStringPrefix + input.getMetadata());
+    ResourceLocation resourceLocation = CompostBinRecipe.getResourceLocation(ModuleTechBasic.MOD_ID, input, input.getMetadata());
     CompostBinRecipe recipe = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocation);
 
     if (recipe != null) {
       return recipe;
     }
 
-    ResourceLocation resourceLocationWild = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceStringPrefix + OreDictionary.WILDCARD_VALUE);
-    return ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocationWild);
+    resourceLocation = CompostBinRecipe.getResourceLocation(ModuleTechBasic.MOD_ID, input, OreDictionary.WILDCARD_VALUE);
+    return ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocation);
   }
 
   /**
@@ -70,32 +59,41 @@ public class CompostBinRecipe
   @Nullable
   public static CompostBinRecipe getRecipe(ItemStack input, ItemStack output) {
 
-    Item inputItem = input.getItem();
-    ResourceLocation registryName = inputItem.getRegistryName();
-
-    if (registryName == null) {
-      return null;
-    }
-
-    String resourceDomain = registryName.getResourceDomain().toLowerCase();
-    String resourcePath = registryName.getResourcePath().toLowerCase();
-    String resourceStringPrefix = resourceDomain + "_" + resourcePath + "_";
-
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceStringPrefix + input.getMetadata());
+    ResourceLocation resourceLocation = CompostBinRecipe.getResourceLocation(ModuleTechBasic.MOD_ID, input, input.getMetadata());
     CompostBinRecipe recipe = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocation);
 
     if (recipe != null && recipe.matches(input, output)) {
       return recipe;
     }
 
-    ResourceLocation resourceLocationWild = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceStringPrefix + OreDictionary.WILDCARD_VALUE);
-    recipe = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocationWild);
+    resourceLocation = CompostBinRecipe.getResourceLocation(ModuleTechBasic.MOD_ID, input, OreDictionary.WILDCARD_VALUE);
+    recipe = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocation);
 
     if (recipe != null && recipe.matches(input, output)) {
       return recipe;
     }
 
     return null;
+  }
+
+  public static ResourceLocation getResourceLocation(String resourceDomain, ItemStack itemStack, int meta) {
+
+    Item item = itemStack.getItem();
+    ResourceLocation resourceLocation = item.getRegistryName();
+
+    /*
+    This will throw an NPE if the item's resource location is null.
+    The resource location will never be null during normal gameplay because this
+    null check is performed during recipe addition. No recipe will ever be added
+    for an item with a null resource location.
+     */
+    if (resourceLocation == null) {
+      throw new NullPointerException(String.format("Item %s is missing a resource location", itemStack.toString()));
+    }
+
+    String domain = resourceLocation.getResourceDomain().toLowerCase();
+    String path = resourceLocation.getResourcePath().toLowerCase();
+    return new ResourceLocation(resourceDomain, domain + "_" + path + "_" + meta);
   }
 
   public static boolean removeRecipesByOutput(Ingredient output) {

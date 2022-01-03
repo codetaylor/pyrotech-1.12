@@ -6,7 +6,6 @@ import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompostBinRecipe;
-import com.google.common.base.Preconditions;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -145,12 +144,7 @@ public class CompostBinRecipesAdd {
 
   private static void registerRecipe(ItemStack input, CompostBinRecipe compostBinRecipe) {
 
-    Item inputItem = input.getItem();
-    ResourceLocation registryName = inputItem.getRegistryName();
-    Preconditions.checkNotNull(registryName);
-    String resourceDomain = registryName.getResourceDomain().toLowerCase();
-    String resourcePath = registryName.getResourcePath().toLowerCase();
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + input.getMetadata());
+    ResourceLocation resourceLocation = CompostBinRecipe.getResourceLocation(ModuleTechBasic.MOD_ID, input, input.getMetadata());
 
     if (REGISTRY.getValue(resourceLocation) != null) {
       ModuleTechBasic.LOGGER.warn("Attempted to register duplicate Compost Bin recipe, skipped duplicate: " + resourceLocation);
