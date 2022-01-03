@@ -1,14 +1,14 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "pyrotech:crafting_table",
   "pattern": [
     "PPP",
-    "PBP",
+    "PTP",
     "PPP"
   ],
   "key": {
-    "B": {
-      "type": "forge:ore_dict",
-      "ore": "blockIron"
+    "T": {
+      "item": "pyrotech:crafting_table_template",
+      "data": 0
     },
     "P": {
       "type": "forge:ore_dict",

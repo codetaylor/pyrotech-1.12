@@ -396,6 +396,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockMudLayer.NAME)
     public static final BlockMudLayer MUD_LAYER;
 
+    @GameRegistry.ObjectHolder(BlockCraftingTableTemplate.NAME)
+    public static final BlockCraftingTableTemplate CRAFTING_TABLE_TEMPLATE;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -445,6 +448,7 @@ public class ModuleCore
       COB_WET = null;
       MUD = null;
       MUD_LAYER = null;
+      CRAFTING_TABLE_TEMPLATE = null;
     }
   }
 

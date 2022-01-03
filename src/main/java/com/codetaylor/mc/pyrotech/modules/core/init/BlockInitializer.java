@@ -87,6 +87,7 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockOreDenseQuartzLarge(), BlockOreDenseQuartzLarge.NAME);
     registry.registerBlockWithItem(new BlockOreDenseQuartzSmall(), BlockOreDenseQuartzSmall.NAME);
     registry.registerBlockWithItem(new BlockOreDenseQuartzRocks(), BlockOreDenseQuartzRocks.NAME);
+    registry.registerBlockWithItem(new BlockCraftingTableTemplate(), BlockCraftingTableTemplate.NAME);
 
     {
       BlockRefractoryBrick block = new BlockRefractoryBrick();
@@ -158,7 +159,8 @@ public final class BlockInitializer {
           ModuleCore.Blocks.ORE_DENSE_REDSTONE_ROCKS_ACTIVATED,
           ModuleCore.Blocks.ORE_DENSE_QUARTZ_LARGE,
           ModuleCore.Blocks.ORE_DENSE_QUARTZ_SMALL,
-          ModuleCore.Blocks.ORE_DENSE_QUARTZ_ROCKS
+          ModuleCore.Blocks.ORE_DENSE_QUARTZ_ROCKS,
+          ModuleCore.Blocks.CRAFTING_TABLE_TEMPLATE
       );
 
       ModelRegistrationHelper.registerItemModels(

@@ -47,6 +47,7 @@
         * Mud - Block and layer
         * Obsidian Anvil
         * Cog powered Trip Hammer
+        * Crafting Table Template
     * Items:
         * Durable Flint and Bone Tools:
             * Durable Flint Axe
@@ -203,6 +204,7 @@
             * Dough x2 + Cocoa Beans -> Cookie Dough
             * Cake recipe that uses `ore:milk` and new Flour item
             * Trip Hammer [(#131)](https://github.com/codetaylor/pyrotech-1.12/issues/131)
+            * Crafting Table Template
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
@@ -319,6 +321,7 @@
             * `pyrotech:material:50`
 
   * **Changed:**
+    * Crafting table recipe now uses a Crafting Table Template which is returned to the player [(#159)](https://github.com/codetaylor/pyrotech-1.12/issues/159)
     * Changed first load restart chat message to invasive full-screen GUI message [(#248)](https://github.com/codetaylor/pyrotech-1.12/issues/248)
     * Removed vanilla recipe for Arrow
     * Removed vanilla recipe for Magma Cream
@@ -508,6 +511,8 @@
         * `gui.pyrotech.jei.category.anvil.obsidian`
         * `tile.pyrotech.anvil_obsidian.name`
         * `tile.pyrotech.trip_hammer.name`
+        * `tile.pyrotech.crafting_table_template.name`
+
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       
     * **Changed Lang Keys:**

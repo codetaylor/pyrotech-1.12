@@ -1,0 +1,9 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pyrotech:crafting_table_template"
+  },
+  "variants": {
+    "normal": [{}]
+  }
+}

@@ -454,6 +454,7 @@ tile.pyrotech.cob_dry.name=Cob
 tile.pyrotech.mud.name=Mud
 tile.pyrotech.mud_layer.name=Mud
 tile.pyrotech.mud_layer.name=Mud
+tile.pyrotech.crafting_table_template.name=Crafting Table Template
 
 tile.pyrotech.rock_stone.name=Stone Rock
 tile.pyrotech.rock_andesite.name=Andesite Rock
