@@ -6,10 +6,7 @@ import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.block.*;
 import com.codetaylor.mc.pyrotech.modules.core.block.item.ItemDoorStone;
-import com.codetaylor.mc.pyrotech.modules.core.item.ItemRock;
-import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockGrass;
-import com.codetaylor.mc.pyrotech.modules.core.item.ItemRockNetherrack;
-import com.codetaylor.mc.pyrotech.modules.core.item.ItemStrawBed;
+import com.codetaylor.mc.pyrotech.modules.core.item.*;
 import com.codetaylor.mc.pyrotech.modules.core.tile.TileFarmlandMulched;
 import com.codetaylor.mc.pyrotech.modules.hunting.tile.TileCarcass;
 import net.minecraft.block.BlockDoor;
@@ -18,6 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.biome.BiomeColorHelper;
@@ -87,7 +85,12 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockOreDenseQuartzLarge(), BlockOreDenseQuartzLarge.NAME);
     registry.registerBlockWithItem(new BlockOreDenseQuartzSmall(), BlockOreDenseQuartzSmall.NAME);
     registry.registerBlockWithItem(new BlockOreDenseQuartzRocks(), BlockOreDenseQuartzRocks.NAME);
-    registry.registerBlockWithItem(new BlockCraftingTableTemplate(), BlockCraftingTableTemplate.NAME);
+
+    {
+      BlockCraftingTableTemplate block = new BlockCraftingTableTemplate();
+      ItemBlock itemBlock = new ItemCraftingTableTemplate(block);
+      registry.registerBlock(block, itemBlock, BlockCraftingTableTemplate.NAME);
+    }
 
     {
       BlockRefractoryBrick block = new BlockRefractoryBrick();

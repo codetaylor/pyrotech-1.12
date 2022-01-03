@@ -1,23 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "SSS",
-    "SFS",
-    "SSS"
+    "III",
+    "BBB",
+    "III"
   ],
   "key": {
-    "S": {
+    "I": {
       "type": "forge:ore_dict",
-      "ore": "stone"
+      "ore": "ingotIron"
     },
-    "F": {
-      "item": "pyrotech:furnace_core",
+    "B": {
+      "item": "minecraft:blaze_rod",
       "data": 0
     }
   },
   "result": {
-    "item": "minecraft:furnace",
-    "count": 1,
+    "item": "pyrotech:furnace_core",
+    "count": 16,
     "data": 0
   }
 }

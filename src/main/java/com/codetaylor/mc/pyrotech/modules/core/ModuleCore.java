@@ -560,6 +560,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemTaintedMeat.NAME)
     public static final ItemTaintedMeat TAINTED_MEAT;
 
+    @GameRegistry.ObjectHolder(ItemFurnaceCore.NAME)
+    public static final ItemFurnaceCore FURNACE_CORE;
+
     static {
       ROCK = null;
       ROCK_GRASS = null;
@@ -596,6 +599,7 @@ public class ModuleCore
       GLOAMBERRIES = null;
       GLOAMBERRY_WINE = null;
       TAINTED_MEAT = null;
+      FURNACE_CORE = null;
     }
   }
 

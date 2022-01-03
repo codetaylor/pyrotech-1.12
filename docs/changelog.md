@@ -142,6 +142,7 @@
         * Dough
         * Bread Dough
         * Cookie Dough
+        * Furnace Core
     * Mobs:
         * Animated Mud
             * Spawns in `minecraft:swampland` and `minecraft:river` biomes by default
@@ -205,6 +206,7 @@
             * Cake recipe that uses `ore:milk` and new Flour item
             * Trip Hammer [(#131)](https://github.com/codetaylor/pyrotech-1.12/issues/131)
             * Crafting Table Template
+            * Furnace Core
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
@@ -322,6 +324,7 @@
 
   * **Changed:**
     * Crafting table recipe now uses a Crafting Table Template which is returned to the player [(#159)](https://github.com/codetaylor/pyrotech-1.12/issues/159)
+    * Furnace recipe now uses a Furnace Core [(#159)](https://github.com/codetaylor/pyrotech-1.12/issues/159)
     * Changed first load restart chat message to invasive full-screen GUI message [(#248)](https://github.com/codetaylor/pyrotech-1.12/issues/248)
     * Removed vanilla recipe for Arrow
     * Removed vanilla recipe for Magma Cream
@@ -512,6 +515,7 @@
         * `tile.pyrotech.anvil_obsidian.name`
         * `tile.pyrotech.trip_hammer.name`
         * `tile.pyrotech.crafting_table_template.name`
+        * `item.pyrotech.furnace.core.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       
