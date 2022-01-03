@@ -1,3 +1,10 @@
+**1.5.24**
+
+  * **Changed:**
+    * Improve CompostBinRecipe#getRecipe loading time [(#379)](https://github.com/codetaylor/pyrotech-1.12/pull/379)
+
+---
+
 **1.5.23**
 
   * **Fixed:**
