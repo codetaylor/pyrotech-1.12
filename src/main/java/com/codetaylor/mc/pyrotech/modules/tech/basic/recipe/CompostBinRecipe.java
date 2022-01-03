@@ -13,44 +13,82 @@ import net.minecraftforge.registries.IForgeRegistryModifiable;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 public class CompostBinRecipe
     extends CompostBinRecipeBase<CompostBinRecipe> {
 
+  /**
+   * Attempt to retrieve a recipe from the given {@link ItemStack} by rebuilding
+   * the recipe's name from the stack's resource location and metadata.
+   * <p>
+   * First attempts to retrieve a recipe using the stack's exact metadata, then
+   * attempts to retrieve a recipe using the wildcard value.
+   *
+   * @param input item stack
+   * @return recipe or null
+   */
   @Nullable
   public static CompostBinRecipe getRecipe(ItemStack input) {
 
     Item inputItem = input.getItem();
     ResourceLocation registryName = inputItem.getRegistryName();
-    if (registryName == null) return null;
+
+    if (registryName == null) {
+      return null;
+    }
+
     String resourceDomain = registryName.getResourceDomain().toLowerCase();
     String resourcePath = registryName.getResourcePath().toLowerCase();
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + input.getMetadata());
-    ResourceLocation resourceLocationWild = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + OreDictionary.WILDCARD_VALUE);
-    
+    String resourceStringPrefix = resourceDomain + "_" + resourcePath + "_";
+
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceStringPrefix + input.getMetadata());
     CompostBinRecipe recipe = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocation);
-    return (recipe != null) ? recipe : ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocationWild);
+
+    if (recipe != null) {
+      return recipe;
+    }
+
+    ResourceLocation resourceLocationWild = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceStringPrefix + OreDictionary.WILDCARD_VALUE);
+    return ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocationWild);
   }
 
+  /**
+   * Attempt to retrieve a recipe from the given {@link ItemStack} by rebuilding
+   * the recipe's name from the input stack's resource location and metadata.
+   * <p>
+   * First attempts to retrieve a recipe using the stack's exact metadata, then
+   * attempts to retrieve a recipe using the wildcard value.
+   * <p>
+   * When a recipe is successfully retrieved from the registry, a subsequent
+   * check is made that the recipe matches the given output {@link ItemStack}.
+   *
+   * @param input  the input item
+   * @param output the output item
+   * @return recipe or null
+   */
   @Nullable
   public static CompostBinRecipe getRecipe(ItemStack input, ItemStack output) {
 
     Item inputItem = input.getItem();
     ResourceLocation registryName = inputItem.getRegistryName();
-    if (registryName == null) return null;
+
+    if (registryName == null) {
+      return null;
+    }
+
     String resourceDomain = registryName.getResourceDomain().toLowerCase();
     String resourcePath = registryName.getResourcePath().toLowerCase();
-    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + input.getMetadata());
-    ResourceLocation resourceLocationWild = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceDomain + "_" + resourcePath + "_" + OreDictionary.WILDCARD_VALUE);
+    String resourceStringPrefix = resourceDomain + "_" + resourcePath + "_";
 
+    ResourceLocation resourceLocation = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceStringPrefix + input.getMetadata());
     CompostBinRecipe recipe = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocation);
 
     if (recipe != null && recipe.matches(input, output)) {
       return recipe;
     }
 
+    ResourceLocation resourceLocationWild = new ResourceLocation(ModuleTechBasic.MOD_ID, resourceStringPrefix + OreDictionary.WILDCARD_VALUE);
     recipe = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.getValue(resourceLocationWild);
 
     if (recipe != null && recipe.matches(input, output)) {
@@ -70,10 +108,8 @@ public class CompostBinRecipe
     IForgeRegistryModifiable<CompostBinRecipe> registry = ModuleTechBasic.Registries.COMPOST_BIN_RECIPE;
     Collection<CompostBinRecipe> recipes = registry.getValuesCollection();
     List<ResourceLocation> toRemove = new ArrayList<>(1);
-    Iterator<CompostBinRecipe> iterator = recipes.iterator();
 
-    while (iterator.hasNext()) {
-      CompostBinRecipe recipe = iterator.next();
+    for (CompostBinRecipe recipe : recipes) {
 
       if (output.apply(recipe.getInput())) {
         toRemove.add(recipe.getRegistryName());
