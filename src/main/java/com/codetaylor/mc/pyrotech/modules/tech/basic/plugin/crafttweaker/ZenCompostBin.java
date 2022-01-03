@@ -5,7 +5,6 @@ import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.CompostBinRecipe;
-import com.google.common.base.Preconditions;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
@@ -155,7 +154,7 @@ public class ZenCompostBin {
   public static class AddRecipe
       implements IAction {
 
-    private final String name;
+    private final ResourceLocation resourceLocation;
     private final ItemStack output;
     private final ItemStack input;
     private final int compostValue;
@@ -177,10 +176,7 @@ public class ZenCompostBin {
       this.input = input;
       this.output = output;
       this.compostValue = compostValue;
-
-      ResourceLocation registryName = input.getItem().getRegistryName();
-      Preconditions.checkNotNull(registryName);
-      this.name = registryName.getResourceDomain() + "_" + registryName.getResourcePath() + "_" + input.getMetadata();
+      this.resourceLocation = CompostBinRecipe.getResourceLocation("crafttweaker", input, input.getMetadata());
     }
 
     @Override
@@ -195,8 +191,7 @@ public class ZenCompostBin {
         recipe = new CompostBinRecipe(this.output, this.input);
       }
 
-      ResourceLocation resourceLocation = new ResourceLocation("crafttweaker", this.name);
-      recipe.setRegistryName(resourceLocation);
+      recipe.setRegistryName(this.resourceLocation);
       ModuleTechBasic.Registries.COMPOST_BIN_RECIPE.register(recipe);
     }
 
