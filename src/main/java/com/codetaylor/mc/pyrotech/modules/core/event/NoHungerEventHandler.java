@@ -52,6 +52,7 @@ public class NoHungerEventHandler {
 
       Minecraft minecraft = Minecraft.getMinecraft();
       GlStateManager.enableAlpha();
+      GlStateManager.color(1, 1, 1);
 
       GuiHelper.drawTexturedRect(
           minecraft,
