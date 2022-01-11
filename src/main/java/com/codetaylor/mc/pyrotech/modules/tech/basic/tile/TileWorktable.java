@@ -1,14 +1,7 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.tile;
 
-import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
-import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
-import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
-import com.codetaylor.mc.athenaeum.util.Properties;
-import com.codetaylor.mc.athenaeum.util.RandomHelper;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.athenaeum.integration.gamestages.GameStages;
+import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
 import com.codetaylor.mc.athenaeum.interaction.api.InteractionBounds;
 import com.codetaylor.mc.athenaeum.interaction.api.Quaternion;
 import com.codetaylor.mc.athenaeum.interaction.api.Transform;
@@ -16,14 +9,21 @@ import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.interaction.spi.ITileInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionItemStack;
 import com.codetaylor.mc.athenaeum.interaction.spi.InteractionUseItemBase;
-import com.codetaylor.mc.athenaeum.integration.gamestages.Stages;
+import com.codetaylor.mc.athenaeum.inventory.ObservableStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataFloat;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataInteger;
+import com.codetaylor.mc.athenaeum.network.tile.data.TileDataItemStackHandler;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileData;
+import com.codetaylor.mc.athenaeum.network.tile.spi.ITileDataItemStackHandler;
 import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
+import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.athenaeum.util.RandomHelper;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.util.Util;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketNoHunger;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleProgress;
-import com.codetaylor.mc.athenaeum.integration.gamestages.GameStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.WorktableRecipe;
@@ -338,14 +338,6 @@ public class TileWorktable
     @Override
     protected boolean allowInteraction(TileWorktable tile, World world, BlockPos hitPos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing hitSide, float hitX, float hitY, float hitZ) {
 
-      if (player.getFoodStats().getFoodLevel() < tile.getMinimumHungerToUse()) {
-
-        if (!world.isRemote) {
-          ModuleTechBasic.PACKET_SERVICE.sendTo(new SCPacketNoHunger(), (EntityPlayerMP) player);
-        }
-        return false;
-      }
-
       ItemStack heldItemStack = player.getHeldItem(hand);
 
       if (heldItemStack.isEmpty()
@@ -377,11 +369,22 @@ public class TileWorktable
         if (recipe == null) {
           return false;
 
-        } else {
-          return !recipe.getRecipe().getCraftingResult(this.wrapper).isEmpty()
-              && this.isValidTool(player, item, registryName, recipe);
+        } else if (!recipe.getRecipe().getCraftingResult(this.wrapper).isEmpty()
+            && this.isValidTool(player, item, registryName, recipe)) {
+
+          if (player.getFoodStats().getFoodLevel() < tile.getMinimumHungerToUse()) {
+
+            if (!world.isRemote) {
+              ModuleTechBasic.PACKET_SERVICE.sendTo(new SCPacketNoHunger(), (EntityPlayerMP) player);
+            }
+            return false;
+          }
+
+          return true;
         }
       }
+
+      return false;
     }
 
     private boolean isValidTool(EntityPlayer player, Item item, ResourceLocation registryName, WorktableRecipe recipe) {
