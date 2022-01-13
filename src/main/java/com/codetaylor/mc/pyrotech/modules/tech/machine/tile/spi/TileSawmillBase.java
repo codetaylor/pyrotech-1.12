@@ -186,10 +186,12 @@ public abstract class TileSawmillBase<E extends MachineRecipeBaseSawmill<E>>
 
     this.recipeComplete.set(true);
 
-    ItemStack input = this.getInputStackHandler().getStackInSlot(0);
-
-    this.onRecipeComplete(input);
-    this.recalculateRemainingTime(input);
+    // The call to this method changes the stack in slot 0 and the passed
+    // parameter must not be factored out into a local variable or the
+    // remaining time will not be properly set after the last item is
+    // processed.
+    this.onRecipeComplete(this.getInputStackHandler().getStackInSlot(0));
+    this.recalculateRemainingTime(this.getInputStackHandler().getStackInSlot(0));
 
     if (this.shouldDamageBlades()) {
       ItemStack blade = this.bladeStackHandler.extractItem(0, 1, false);
