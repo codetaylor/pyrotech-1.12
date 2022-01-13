@@ -1,3 +1,10 @@
+**1.5.25**
+
+  * **Fixed:**
+    * Sawmill should only play the final work complete sound once  
+
+---
+
 **1.5.24**
 
   * **Changed:**
