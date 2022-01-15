@@ -318,6 +318,8 @@ item.pyrotech.obsidian.shears.name=Obsidian Shears
 item.pyrotech.bone.tool.repair.kit.name=Bone Tool Repair Kit
 item.pyrotech.flint.tool.repair.kit.name=Flint Tool Repair Kit
 
+item.pyrotech.crude.shield.name=Crude Shield
+
 #------------------------------------------------------------------------------
 # Module: Core
 #------------------------------------------------------------------------------

@@ -7,22 +7,22 @@
     }
   ],
   "pattern": [
-    " T ",
-    "TST",
-    " T "
+    "RR",
+    "RS",
+    " S"
   ],
   "key": {
+    "R": {
+      "item": "pyrotech:material",
+      "data": 11
+    },
     "S": {
       "type": "forge:ore_dict",
-      "ore": "slabWood"
-    },
-    "T": {
-      "type": "forge:ore_dict",
-      "ore": "twine"
+      "ore": "stickWood"
     }
   },
   "result": {
-    "item": "pyrotech:crude_shield",
+    "item": "pyrotech:bone_axe",
     "count": 1,
     "data": 0
   }

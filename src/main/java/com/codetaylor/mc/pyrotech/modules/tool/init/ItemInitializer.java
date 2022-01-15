@@ -6,10 +6,13 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
+import com.codetaylor.mc.pyrotech.modules.tool.client.model.ModelCrudeShield;
+import com.codetaylor.mc.pyrotech.modules.tool.client.render.TEISRShield;
 import com.codetaylor.mc.pyrotech.modules.tool.item.*;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.*;
 import com.google.common.base.Preconditions;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -24,6 +27,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemCrudePickaxe(), ItemCrudePickaxe.NAME);
     registry.registerItem(new ItemCrudeShovel(), ItemCrudeShovel.NAME);
     registry.registerItem(new ItemCrudeFishingRod(), ItemCrudeFishingRod.NAME);
+    registry.registerItem(new ItemCrudeShield(), ItemCrudeShield.NAME);
 
     // bone
     {
@@ -167,7 +171,16 @@ public final class ItemInitializer {
           ModuleTool.Items.GOLD_SHEARS,
 
           ModuleTool.Items.BONE_TOOL_REPAIR_KIT,
-          ModuleTool.Items.FLINT_TOOL_REPAIR_KIT
+          ModuleTool.Items.FLINT_TOOL_REPAIR_KIT,
+
+          ModuleTool.Items.CRUDE_SHIELD
+      );
+
+      ModuleTool.Items.CRUDE_SHIELD.setTileEntityItemStackRenderer(
+          new TEISRShield(
+              new ModelCrudeShield(),
+              new ResourceLocation(ModuleTool.MOD_ID, "textures/entity/crude_shield.png")
+          )
       );
     });
   }

@@ -8,6 +8,17 @@ import java.util.Map;
 @Config(modid = ModuleTool.MOD_ID, name = ModuleTool.MOD_ID + "/" + "module.Tool")
 public class ModuleToolConfig {
 
+  public static CrudeShield CRUDE_SHIELD = new CrudeShield();
+
+  public static class CrudeShield {
+
+    @Config.Comment({
+        "Durability of the item.",
+        "Default: " + 50
+    })
+    public int DURABILITY = 50;
+  }
+
   public static QuartzTools QUARTZ_TOOLS = new QuartzTools();
 
   public static class QuartzTools {

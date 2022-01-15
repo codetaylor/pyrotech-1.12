@@ -200,6 +200,9 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemToolRepairKit.FLINT_NAME)
     public static final ItemToolRepairKit FLINT_TOOL_REPAIR_KIT;
 
+    @GameRegistry.ObjectHolder(ItemCrudeShield.NAME)
+    public static final ItemCrudeShield CRUDE_SHIELD;
+
     static {
       CRUDE_AXE = null;
       CRUDE_HOE = null;
@@ -249,6 +252,7 @@ public class ModuleTool
       GOLD_SHEARS = null;
       BONE_TOOL_REPAIR_KIT = null;
       FLINT_TOOL_REPAIR_KIT = null;
+      CRUDE_SHIELD = null;
     }
   }
 }
