@@ -333,6 +333,7 @@
     * Removed vanilla recipe for Bread
     * Removed vanilla recipe for Cookie
     * Removed vanilla recipe for Cake
+    * Removed vanilla recipe for Shears
     * Reduced damage, velocity, and accuracy of thrown rocks / clumps
     * Rocks material type is now `Material.PLANTS` so they wash away with water [(#347)](https://github.com/codetaylor/pyrotech-1.12/issues/347)
     * Leather armor recipes now use new leather materials

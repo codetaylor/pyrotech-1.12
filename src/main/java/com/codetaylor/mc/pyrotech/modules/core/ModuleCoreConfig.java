@@ -747,6 +747,7 @@ public class ModuleCoreConfig {
         "minecraft:bread",
         "minecraft:cookie",
         "minecraft:cake",
+        "minecraft:shears",
 
         "minecraft:boat",
         "minecraft:spruce_boat",
