@@ -16,8 +16,8 @@
       "data": 16
     },
     "T": {
-      "type": "forge:ore_dict",
-      "ore": "twine"
+      "item": "pyrotech:material",
+      "data": 39
     }
   },
   "result": {
