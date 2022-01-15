@@ -324,6 +324,7 @@
             * `pyrotech:material:50`
 
   * **Changed:**
+    * Bone Shears and Flint Shears recipes now use Stone Rod instead of Clay Shears
     * Crafting table recipe now uses a Crafting Table Template which is returned to the player [(#159)](https://github.com/codetaylor/pyrotech-1.12/issues/159)
     * Furnace recipe now uses a Furnace Core [(#159)](https://github.com/codetaylor/pyrotech-1.12/issues/159)
     * Changed first load restart chat message to invasive full-screen GUI message [(#248)](https://github.com/codetaylor/pyrotech-1.12/issues/248)

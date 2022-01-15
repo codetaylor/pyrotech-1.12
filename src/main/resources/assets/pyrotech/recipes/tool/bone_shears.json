@@ -16,7 +16,8 @@
       "data": 11
     },
     "S": {
-      "item": "pyrotech:clay_shears"
+      "item": "pyrotech:material",
+      "data": 27
     },
     "T": {
       "type": "forge:ore_dict",
