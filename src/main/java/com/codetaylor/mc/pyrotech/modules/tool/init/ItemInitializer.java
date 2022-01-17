@@ -7,10 +7,12 @@ import com.codetaylor.mc.athenaeum.util.ModelRegistrationHelper;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import com.codetaylor.mc.pyrotech.modules.tool.client.model.ModelCrudeShield;
+import com.codetaylor.mc.pyrotech.modules.tool.client.model.ModelDurableShield;
 import com.codetaylor.mc.pyrotech.modules.tool.client.render.TEISRShield;
 import com.codetaylor.mc.pyrotech.modules.tool.item.*;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.*;
 import com.google.common.base.Preconditions;
+import net.darkhax.bookshelf.lib.ModTrackingList;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,7 +29,10 @@ public final class ItemInitializer {
     registry.registerItem(new ItemCrudePickaxe(), ItemCrudePickaxe.NAME);
     registry.registerItem(new ItemCrudeShovel(), ItemCrudeShovel.NAME);
     registry.registerItem(new ItemCrudeFishingRod(), ItemCrudeFishingRod.NAME);
+
+    // shield
     registry.registerItem(new ItemCrudeShield(), ItemCrudeShield.NAME);
+    registry.registerItem(new ItemDurableShield(), ItemDurableShield.NAME);
 
     // bone
     {
@@ -173,13 +178,21 @@ public final class ItemInitializer {
           ModuleTool.Items.BONE_TOOL_REPAIR_KIT,
           ModuleTool.Items.FLINT_TOOL_REPAIR_KIT,
 
-          ModuleTool.Items.CRUDE_SHIELD
+          ModuleTool.Items.CRUDE_SHIELD,
+          ModuleTool.Items.DURABLE_SHIELD
       );
 
       ModuleTool.Items.CRUDE_SHIELD.setTileEntityItemStackRenderer(
           new TEISRShield(
               new ModelCrudeShield(),
               new ResourceLocation(ModuleTool.MOD_ID, "textures/entity/crude_shield.png")
+          )
+      );
+
+      ModuleTool.Items.DURABLE_SHIELD.setTileEntityItemStackRenderer(
+          new TEISRShield(
+              new ModelDurableShield(),
+              new ResourceLocation(ModuleTool.MOD_ID, "textures/entity/durable_shield.png")
           )
       );
     });

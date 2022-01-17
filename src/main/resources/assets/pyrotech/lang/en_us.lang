@@ -319,6 +319,7 @@ item.pyrotech.bone.tool.repair.kit.name=Bone Tool Repair Kit
 item.pyrotech.flint.tool.repair.kit.name=Flint Tool Repair Kit
 
 item.pyrotech.crude.shield.name=Crude Shield
+item.pyrotech.durable.shield.name=Durable Shield
 
 #------------------------------------------------------------------------------
 # Module: Core

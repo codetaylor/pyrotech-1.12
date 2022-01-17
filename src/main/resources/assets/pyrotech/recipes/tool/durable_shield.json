@@ -7,22 +7,22 @@
     }
   ],
   "pattern": [
-    "RR",
-    "RS",
-    " S"
+    " S ",
+    "TST",
+    " S "
   ],
   "key": {
-    "R": {
-      "item": "pyrotech:material",
-      "data": 11
-    },
     "S": {
-      "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "item": "pyrotech:material",
+      "data": 23
+    },
+    "T": {
+      "item": "pyrotech:material",
+      "data": 39
     }
   },
   "result": {
-    "item": "pyrotech:bone_axe",
+    "item": "pyrotech:durable_shield",
     "count": 1,
     "data": 0
   }

@@ -3,13 +3,13 @@ package com.codetaylor.mc.pyrotech.modules.tool.item;
 import com.codetaylor.mc.pyrotech.modules.tool.ModuleToolConfig;
 import com.codetaylor.mc.pyrotech.modules.tool.item.spi.ItemShieldBase;
 
-public class ItemCrudeShield
+public class ItemDurableShield
     extends ItemShieldBase {
 
-  public static final String NAME = "crude_shield";
+  public static final String NAME = "durable_shield";
 
-  public ItemCrudeShield() {
+  public ItemDurableShield() {
 
-    super(() -> ModuleToolConfig.CRUDE_SHIELD.DURABILITY);
+    super(() -> ModuleToolConfig.DURABLE_SHIELD.DURABILITY);
   }
 }

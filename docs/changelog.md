@@ -144,6 +144,7 @@
         * Cookie Dough
         * Furnace Core
         * Crude Shield
+        * Durable Shield
     * Mobs:
         * Animated Mud
             * Spawns in `minecraft:swampland` and `minecraft:river` biomes by default
@@ -522,6 +523,7 @@
         * `tile.pyrotech.crafting_table_template.name`
         * `item.pyrotech.furnace.core.name`
         * `item.pyrotech.crude.shield.name`
+        * `item.pyrotech.durable.shield.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

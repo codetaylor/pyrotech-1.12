@@ -203,6 +203,9 @@ public class ModuleTool
     @GameRegistry.ObjectHolder(ItemCrudeShield.NAME)
     public static final ItemCrudeShield CRUDE_SHIELD;
 
+    @GameRegistry.ObjectHolder(ItemDurableShield.NAME)
+    public static final ItemDurableShield DURABLE_SHIELD;
+
     static {
       CRUDE_AXE = null;
       CRUDE_HOE = null;
@@ -253,6 +256,7 @@ public class ModuleTool
       BONE_TOOL_REPAIR_KIT = null;
       FLINT_TOOL_REPAIR_KIT = null;
       CRUDE_SHIELD = null;
+      DURABLE_SHIELD = null;
     }
   }
 }

@@ -19,6 +19,17 @@ public class ModuleToolConfig {
     public int DURABILITY = 50;
   }
 
+  public static DurableShield DURABLE_SHIELD = new DurableShield();
+
+  public static class DurableShield {
+
+    @Config.Comment({
+        "Durability of the item.",
+        "Default: " + 200
+    })
+    public int DURABILITY = 200;
+  }
+
   public static QuartzTools QUARTZ_TOOLS = new QuartzTools();
 
   public static class QuartzTools {

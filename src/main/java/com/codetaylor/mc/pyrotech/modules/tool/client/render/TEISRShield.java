@@ -1,6 +1,6 @@
 package com.codetaylor.mc.pyrotech.modules.tool.client.render;
 
-import com.codetaylor.mc.pyrotech.modules.tool.client.model.ModelCrudeShield;
+import com.codetaylor.mc.pyrotech.library.IModelRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
@@ -15,10 +15,10 @@ import javax.annotation.Nonnull;
 public class TEISRShield
     extends TileEntityItemStackRenderer {
 
-  private final ModelCrudeShield model;
+  private final IModelRenderer model;
   private final ResourceLocation texture;
 
-  public TEISRShield(ModelCrudeShield model, ResourceLocation texture) {
+  public TEISRShield(IModelRenderer model, ResourceLocation texture) {
 
     this.model = model;
     this.texture = texture;
@@ -30,7 +30,7 @@ public class TEISRShield
     Minecraft.getMinecraft().getTextureManager().bindTexture(this.texture);
 
     GlStateManager.pushMatrix();
-    GlStateManager.scale(1.0F, -1.0F, -1.0F);
+    GlStateManager.scale(1, -1, -1);
     this.model.render();
     GlStateManager.popMatrix();
   }
