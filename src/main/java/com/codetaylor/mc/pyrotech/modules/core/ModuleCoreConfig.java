@@ -466,6 +466,22 @@ public class ModuleCoreConfig {
         "Default: " + 2
     })
     @Config.RangeInt(min = 0)
+    public int FRECKLEBERRIES_HUNGER = 2;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.1
+    })
+    @Config.RangeDouble(min = 0)
+    public double FRECKLEBERRIES_SATURATION = 0.1;
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 2
+    })
+    @Config.RangeInt(min = 0)
     public int PYROBERRIES_HUNGER = 2;
 
     @Config.Comment({
