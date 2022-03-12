@@ -125,7 +125,8 @@ public class ItemMaterial
     DOUGH(50, "dough"),
     FLOUR(51, "flour"),
     BREAD_DOUGH(52, "bread_dough"),
-    COOKIE_DOUGH(53, "cookie_dough");
+    COOKIE_DOUGH(53, "cookie_dough"),
+    CLAY_BLASTING(54, "clay_blasting");
 
     private static final EnumType[] META_LOOKUP = Stream
         .of(EnumType.values())

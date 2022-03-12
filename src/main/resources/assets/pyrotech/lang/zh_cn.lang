@@ -390,6 +390,7 @@ item.pyrotech.flour.name=Flour
 item.pyrotech.bread.dough.name=Bread Dough
 item.pyrotech.cookie.dough.name=Cookie Dough
 item.pyrotech.furnace.core.name=Furnace Core
+item.pyrotech.clay.blasting.name=Blasting Clay
 
 item.pyrotech.apple.baked.name=烤苹果
 item.pyrotech.carrot.roasted.name=烤胡萝卜

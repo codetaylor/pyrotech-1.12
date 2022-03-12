@@ -145,6 +145,7 @@
         * Furnace Core
         * Crude Shield
         * Durable Shield
+        * Blasting Clay
     * Mobs:
         * Animated Mud
             * Spawns in `minecraft:swampland` and `minecraft:river` biomes by default
@@ -524,6 +525,7 @@
         * `item.pyrotech.furnace.core.name`
         * `item.pyrotech.crude.shield.name`
         * `item.pyrotech.durable.shield.name`
+        * `item.pyrotech.clay.blasting.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

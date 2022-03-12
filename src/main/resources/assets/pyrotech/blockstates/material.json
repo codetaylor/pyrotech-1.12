@@ -58,7 +58,8 @@
       "dough": {"textures": {"layer0": "pyrotech:items/dough"}},
       "flour": {"textures": {"layer0": "pyrotech:items/flour"}},
       "bread_dough": {"textures": {"layer0": "pyrotech:items/bread_dough"}},
-      "cookie_dough": {"textures": {"layer0": "pyrotech:items/cookie_dough"}}
+      "cookie_dough": {"textures": {"layer0": "pyrotech:items/cookie_dough"}},
+      "clay_blasting": {"textures": {"layer0": "pyrotech:items/clay_blasting"}}
     }
   }
 }
