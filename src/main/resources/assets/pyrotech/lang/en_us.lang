@@ -456,6 +456,7 @@ tile.pyrotech.dense_quartz_ore.name=Dense Quartz Ore
 tile.pyrotech.straw_bed.name=Straw Bed
 tile.pyrotech.pyroberry_bush.name=Pyroberry Bush
 tile.pyrotech.gloamberry_bush.name=Gloamberry Bush
+tile.pyrotech.freckleberry_plant.name=Freckleberry Plant
 tile.pyrotech.cob_wet.name=Wet Cob
 tile.pyrotech.cob_dry.name=Cob
 tile.pyrotech.mud.name=Mud

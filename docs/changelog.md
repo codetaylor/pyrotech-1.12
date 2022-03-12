@@ -40,6 +40,8 @@
             * Drops Pyroberries when sheared at max growth stage
         * Gloamberry Bush
             * Drops Gloamberries when ripe
+        * Freckleberry Plant
+            * Drops Freckleberries when ripe 
         * Oil Lamp
         * Cob
         * Wet Cob
@@ -538,6 +540,7 @@
         * `item.pyrotech.clay.blasting.name`
         * `item.pyrotech.freckleberry.seeds.name`
         * `item.pyrotech.freckleberries.name`
+        * `tile.pyrotech.freckleberry_plant.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

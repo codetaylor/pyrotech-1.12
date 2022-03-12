@@ -399,6 +399,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(BlockCraftingTableTemplate.NAME)
     public static final BlockCraftingTableTemplate CRAFTING_TABLE_TEMPLATE;
 
+    @GameRegistry.ObjectHolder(BlockFreckleberryPlant.NAME)
+    public static final BlockFreckleberryPlant FRECKLEBERRY_PLANT;
+
     static {
       LOG_PILE = null;
       COAL_COKE_BLOCK = null;
@@ -449,6 +452,7 @@ public class ModuleCore
       MUD = null;
       MUD_LAYER = null;
       CRAFTING_TABLE_TEMPLATE = null;
+      FRECKLEBERRY_PLANT = null;
     }
   }
 
