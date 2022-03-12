@@ -30,6 +30,7 @@ public class WorldGenerator
         new WorldGenDenseQuartzOre(),
         new WorldGenPyroberryBush(),
         new WorldGenGloamberryBush(),
+        new WorldGenFreckleberryPlant(),
         new WorldGenMud()
     );
 

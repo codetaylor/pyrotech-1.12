@@ -400,6 +400,83 @@ public class ModuleWorldGenConfig {
     };
   }
 
+  public static WorldGenFreckleberryPlant FRECKLEBERRY_PLANT = new WorldGenFreckleberryPlant();
+
+  public static class WorldGenFreckleberryPlant {
+
+    @Config.Comment({
+        "Set to false to disable this worldgen.",
+        "Default: " + true
+    })
+    public boolean ENABLED = true;
+
+    @Config.Comment({
+        "An int array of dimension id's that this is allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_WHITELIST = {
+        0
+    };
+
+    @Config.Comment({
+        "An int array of dimension id's that this is not allowed to generate in.",
+        "Whitelist takes precedence over blacklist."
+    })
+    public int[] DIMENSION_BLACKLIST = new int[0];
+
+    @Config.Comment({
+        "How many times will the generator try to spawn this worldgen.",
+        "Default: " + 4
+    })
+    @Config.RangeInt(min = 0)
+    public int CHANCES_TO_SPAWN = 4;
+
+    @Config.Comment({
+        "The density of each successful spawn.",
+        "Larger density means more are placed.",
+        "Default: " + 0.1
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double DENSITY = 0.1;
+
+    @Config.Comment({
+        "The frequency of spawns.",
+        "Larger frequency means more spawns.",
+        "Default: " + 0.075
+    })
+    @Config.RangeDouble(min = 0, max = 1)
+    public double CLUSTER_FREQUENCY = 0.075;
+
+    @Config.Comment({
+        "The allowed biomes."
+    })
+    @Config.RequiresMcRestart
+    public String[] ALLOWED_BIOMES = new String[]{
+        "minecraft:birch_forest",
+        "minecraft:birch_forest_hills",
+        "minecraft:forest",
+        "minecraft:forest_hills",
+        "minecraft:mutated_birch_forest",
+        "minecraft:mutated_birch_forest_hills",
+        "minecraft:mutated_forest",
+        "minecraft:mutated_plains",
+        "minecraft:mutated_redwood_taiga",
+        "minecraft:mutated_redwood_taiga_hills",
+        "minecraft:mutated_roofed_forest",
+        "minecraft:mutated_savanna",
+        "minecraft:mutated_savanna_rock",
+        "minecraft:mutated_taiga",
+        "minecraft:plains",
+        "minecraft:redwood_taiga",
+        "minecraft:redwood_taiga_hills",
+        "minecraft:roofed_forest",
+        "minecraft:savanna",
+        "minecraft:savanna_rock",
+        "minecraft:taiga",
+        "minecraft:taiga_hills"
+    };
+  }
+
   public static WorldGenRocks ROCKS = new WorldGenRocks();
 
   public static class WorldGenRocks {
