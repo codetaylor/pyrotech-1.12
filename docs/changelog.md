@@ -217,6 +217,7 @@
             * Small Washed Hide and `fluid:tannin` -> Small Leather
             * Dirt and `fluid:water` -> Mud
             * `ore:dustWheat` and `fluid:water` -> Dough
+            * Gunpowder and `fluid:liquid_clay` -> Blasting Clay
         * Barrel:
             * `treeLeaves` and `fluid:water` to create `fluid:tannin`
             * Pyroberries, Sugar and `fluid:water` to create `fluid:pyroberry_wine`

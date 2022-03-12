@@ -23,6 +23,15 @@ public class SoakingPotRecipesAdd {
 
   public static void apply(IForgeRegistry<SoakingPotRecipe> registry) {
 
+    // Clay, Blasting
+    registry.register(new SoakingPotRecipe(
+        ItemMaterial.EnumType.CLAY_BLASTING.asStack(),
+        Ingredient.fromItem(Items.GUNPOWDER),
+        new FluidStack(ModuleCore.Fluids.CLAY, 125),
+        false,
+        5 * 60 * 20
+    ).setRegistryName(ModuleTechBasic.MOD_ID, "clay_blasting"));
+
     // Dough
     registry.register(new SoakingPotRecipe(
         ItemMaterial.EnumType.DOUGH.asStack(),
