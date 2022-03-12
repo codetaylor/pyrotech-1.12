@@ -1,12 +1,14 @@
 package com.codetaylor.mc.pyrotech.modules.tech.machine.init.recipe;
 
 import com.codetaylor.mc.pyrotech.ModPyrotech;
+import com.codetaylor.mc.pyrotech.modules.bucket.ModuleBucket;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.core.item.ItemMaterial;
 import com.codetaylor.mc.pyrotech.modules.ignition.ModuleIgnition;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.ModuleTechMachine;
 import com.codetaylor.mc.pyrotech.modules.tech.machine.recipe.StoneCrucibleRecipe;
 import com.codetaylor.mc.pyrotech.modules.tech.refractory.ModuleTechRefractory;
+import com.codetaylor.mc.pyrotech.modules.tool.ModuleTool;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -54,6 +56,38 @@ public class StoneCrucibleRecipesAdd {
         ),
         4 * 60 * 20
     ).setRegistryName(ModuleTechMachine.MOD_ID, "water_from_packed_ice"));
+
+    // Liquid Clay from Unfired Clay Bucket
+    registry.register(new StoneCrucibleRecipe(
+        new FluidStack(ModuleCore.Fluids.CLAY, 125 * 3),
+        Ingredient.fromItem(ModuleBucket.Items.BUCKET_CLAY_UNFIRED),
+        3 * 30 * 20
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "liquid_clay_from_unfired_clay_bucket"));
+
+    // Liquid Clay from Unfired Clay Shears
+    registry.register(new StoneCrucibleRecipe(
+        new FluidStack(ModuleCore.Fluids.CLAY, 500),
+        Ingredient.fromItem(ModuleTool.Items.UNFIRED_CLAY_SHEARS),
+        2 * 60 * 20
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "liquid_clay_from_unfired_clay_shears"));
+
+    // Liquid Clay from Unfired Clay Brick
+    registry.register(new StoneCrucibleRecipe(
+        new FluidStack(ModuleCore.Fluids.CLAY, 125),
+        Ingredient.fromStacks(
+            ItemMaterial.EnumType.UNFIRED_BRICK.asStack()
+        ),
+        30 * 20
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "liquid_clay_from_unfired_clay_brick"));
+
+    // Liquid Clay from Clay Lump
+    registry.register(new StoneCrucibleRecipe(
+        new FluidStack(ModuleCore.Fluids.CLAY, 62),
+        Ingredient.fromStacks(
+            ItemMaterial.EnumType.CLAY_LUMP.asStack()
+        ),
+        15 * 20
+    ).setRegistryName(ModuleTechMachine.MOD_ID, "liquid_clay_from_clay_lump"));
 
     // Liquid Clay from Clay Ball
     registry.register(new StoneCrucibleRecipe(

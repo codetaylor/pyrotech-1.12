@@ -211,6 +211,11 @@
             * Crafting Table Template
             * Furnace Core
             * Stick x3 + Blasting Clay -> Matchstick x8
+        * Crucible:
+            * Unfired Clay Bucket -> `fluid:liquid_clay` x 375
+            * Unfired Clay Shears -> `fluid:liquid_clay` x 500
+            * Unfired Clay Brick -> `fluid:liquid_clay` x 125
+            * Lump of Clay -> `fluid:liquid_clay` x 62
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
