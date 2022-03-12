@@ -210,6 +210,7 @@
             * Trip Hammer [(#131)](https://github.com/codetaylor/pyrotech-1.12/issues/131)
             * Crafting Table Template
             * Furnace Core
+            * Stick x3 + Blasting Clay -> Matchstick x8
         * Soaking Pot:
             * Scraped Hides and `fluid:water` -> Washed Hides
             * Leather materials and `fluid:wood_tar` -> Durable Leather materials
