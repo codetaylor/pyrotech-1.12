@@ -48,6 +48,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemGloamberrySeeds(), ItemGloamberrySeeds.NAME);
     registry.registerItem(new ItemGloamberries(), ItemGloamberries.NAME);
 
+    registry.registerItem(new ItemFreckleberrySeeds(), ItemFreckleberrySeeds.NAME);
     registry.registerItem(new ItemFreckleberries(), ItemFreckleberries.NAME);
 
     registry.registerItem(new ItemFurnaceCore(), ItemFurnaceCore.NAME);
@@ -92,6 +93,7 @@ public final class ItemInitializer {
           ModuleCore.Items.GLOAMBERRIES,
           ModuleCore.Items.GLOAMBERRY_WINE,
 
+          ModuleCore.Items.FRECKLEBERRY_SEEDS,
           ModuleCore.Items.FRECKLEBERRIES,
 
           ModuleCore.Items.TAINTED_MEAT,

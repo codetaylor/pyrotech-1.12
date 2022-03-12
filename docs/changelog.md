@@ -129,6 +129,9 @@
             * Gloamberry Seeds
             * Gloamberries
             * Gloamberry Wine
+        * Freckleberry:
+            * Freckleberry Seeds
+            * Freckleberries
         * Durable Bow Drill
             * Durable Spindle
             * Doesn't break, repaired with Durable Spindle
@@ -533,6 +536,8 @@
         * `item.pyrotech.crude.shield.name`
         * `item.pyrotech.durable.shield.name`
         * `item.pyrotech.clay.blasting.name`
+        * `item.pyrotech.freckleberry.seeds.name`
+        * `item.pyrotech.freckleberries.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

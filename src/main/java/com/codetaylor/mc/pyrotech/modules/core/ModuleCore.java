@@ -563,6 +563,9 @@ public class ModuleCore
     @GameRegistry.ObjectHolder(ItemFurnaceCore.NAME)
     public static final ItemFurnaceCore FURNACE_CORE;
 
+    @GameRegistry.ObjectHolder(ItemFreckleberries.NAME)
+    public static final ItemFreckleberries FRECKLEBERRIES;
+
     @GameRegistry.ObjectHolder(ItemFreckleberrySeeds.NAME)
     public static final ItemFreckleberrySeeds FRECKLEBERRY_SEEDS;
 
@@ -604,6 +607,7 @@ public class ModuleCore
       TAINTED_MEAT = null;
       FURNACE_CORE = null;
       FRECKLEBERRIES = null;
+      FRECKLEBERRY_SEEDS = null;
     }
   }
 
