@@ -432,6 +432,13 @@ public class ModuleWorldGenConfig {
     public int CHANCES_TO_SPAWN = 4;
 
     @Config.Comment({
+        "Chance that the plant will spawn ripe and ready to pick.",
+        "Default: " + 0.1
+    })
+    @Config.RangeInt(min = 0)
+    public float CHANCE_TO_SPAWN_RIPE = 0.1f;
+
+    @Config.Comment({
         "The density of each successful spawn.",
         "Larger density means more are placed.",
         "Default: " + 0.1

@@ -58,7 +58,13 @@ public class WorldGenFreckleberryPlant
         if (w.isAirBlock(p)
             && random.nextFloat() < density
             && this.canSpawnOnTopOf(w, p.down(), w.getBlockState(p.down()))) {
-          world.setBlockState(p, ModuleCore.Blocks.FRECKLEBERRY_PLANT.withAge(random.nextInt(3) + 5), 2 | 16);
+
+          if (random.nextFloat() < ModuleWorldGenConfig.FRECKLEBERRY_PLANT.CHANCE_TO_SPAWN_RIPE) {
+            world.setBlockState(p, ModuleCore.Blocks.FRECKLEBERRY_PLANT.withAge(7), 2 | 16);
+
+          } else {
+            world.setBlockState(p, ModuleCore.Blocks.FRECKLEBERRY_PLANT.withAge(random.nextInt(5) + 2), 2 | 16);
+          }
         }
 
         return true; // keep processing
