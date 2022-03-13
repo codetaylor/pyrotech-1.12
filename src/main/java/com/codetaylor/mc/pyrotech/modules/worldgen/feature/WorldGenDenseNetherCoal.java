@@ -1,8 +1,8 @@
-package com.codetaylor.mc.pyrotech.modules.worldgen.world;
+package com.codetaylor.mc.pyrotech.modules.worldgen.feature;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
-import com.codetaylor.mc.pyrotech.modules.worldgen.world.spi.IWorldGenFeature;
+import com.codetaylor.mc.pyrotech.modules.worldgen.feature.spi.IWorldGenFeature;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

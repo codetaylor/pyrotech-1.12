@@ -1,6 +1,6 @@
-package com.codetaylor.mc.pyrotech.modules.worldgen.world.spi;
+package com.codetaylor.mc.pyrotech.modules.worldgen.feature.spi;
 
-import com.codetaylor.mc.pyrotech.modules.worldgen.world.*;
+import com.codetaylor.mc.pyrotech.modules.worldgen.feature.*;
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;

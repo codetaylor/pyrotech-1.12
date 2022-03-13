@@ -1,4 +1,4 @@
-package com.codetaylor.mc.pyrotech.modules.worldgen.world.spi;
+package com.codetaylor.mc.pyrotech.modules.worldgen.feature.spi;
 
 import com.codetaylor.mc.athenaeum.util.ArrayHelper;
 import net.minecraftforge.fml.common.IWorldGenerator;

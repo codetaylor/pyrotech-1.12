@@ -1,11 +1,10 @@
-package com.codetaylor.mc.pyrotech.modules.worldgen.world;
+package com.codetaylor.mc.pyrotech.modules.worldgen.feature;
 
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
-import com.codetaylor.mc.pyrotech.modules.worldgen.world.spi.IWorldGenFeature;
+import com.codetaylor.mc.pyrotech.modules.worldgen.feature.spi.IWorldGenFeature;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -18,14 +17,14 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class WorldGenGloamberryBush
+public class WorldGenFreckleberryPlant
     implements IWorldGenFeature {
 
   private final BlockPos.MutableBlockPos pos;
 
   private Set<Biome> allowedBiomeSet;
 
-  public WorldGenGloamberryBush() {
+  public WorldGenFreckleberryPlant() {
 
     this.pos = new BlockPos.MutableBlockPos();
   }
@@ -42,13 +41,13 @@ public class WorldGenGloamberryBush
       return;
     }
 
-    if (random.nextFloat() > ModuleWorldGenConfig.GLOAMBERRY_BUSH.CLUSTER_FREQUENCY) {
+    if (random.nextFloat() > ModuleWorldGenConfig.FRECKLEBERRY_PLANT.CLUSTER_FREQUENCY) {
       return;
     }
 
-    final double density = ModuleWorldGenConfig.GLOAMBERRY_BUSH.DENSITY;
+    final double density = ModuleWorldGenConfig.FRECKLEBERRY_PLANT.DENSITY;
 
-    for (int i = 0; i < ModuleWorldGenConfig.GLOAMBERRY_BUSH.CHANCES_TO_SPAWN; i++) {
+    for (int i = 0; i < ModuleWorldGenConfig.FRECKLEBERRY_PLANT.CHANCES_TO_SPAWN; i++) {
 
       int posX = blockXPos + random.nextInt(16) + 8;
       int posY = world.getHeight(blockXPos, blockZPos);
@@ -59,7 +58,7 @@ public class WorldGenGloamberryBush
         if (w.isAirBlock(p)
             && random.nextFloat() < density
             && this.canSpawnOnTopOf(w, p.down(), w.getBlockState(p.down()))) {
-          world.setBlockState(p, ModuleCore.Blocks.GLOAMBERRY_BUSH.withAge(random.nextInt(3) + 4), 2 | 16);
+          world.setBlockState(p, ModuleCore.Blocks.FRECKLEBERRY_PLANT.withAge(random.nextInt(3) + 5), 2 | 16);
         }
 
         return true; // keep processing
@@ -71,16 +70,16 @@ public class WorldGenGloamberryBush
   @Override
   public boolean isAllowed(int dimensionId) {
 
-    return ModuleWorldGenConfig.GLOAMBERRY_BUSH.ENABLED
-        && ModuleWorldGenConfig.GLOAMBERRY_BUSH.CHANCES_TO_SPAWN > 0
-        && ModuleWorldGenConfig.GLOAMBERRY_BUSH.CLUSTER_FREQUENCY > 0
-        && this.isAllowedDimension(dimensionId, ModuleWorldGenConfig.GLOAMBERRY_BUSH.DIMENSION_WHITELIST, ModuleWorldGenConfig.GLOAMBERRY_BUSH.DIMENSION_BLACKLIST);
+    return ModuleWorldGenConfig.FRECKLEBERRY_PLANT.ENABLED
+        && ModuleWorldGenConfig.FRECKLEBERRY_PLANT.CHANCES_TO_SPAWN > 0
+        && ModuleWorldGenConfig.FRECKLEBERRY_PLANT.CLUSTER_FREQUENCY > 0
+        && this.isAllowedDimension(dimensionId, ModuleWorldGenConfig.FRECKLEBERRY_PLANT.DIMENSION_WHITELIST, ModuleWorldGenConfig.FRECKLEBERRY_PLANT.DIMENSION_BLACKLIST);
   }
 
   private boolean isAllowed(Biome biome) {
 
     if (this.allowedBiomeSet == null) {
-      String[] allowedBiomes = ModuleWorldGenConfig.GLOAMBERRY_BUSH.ALLOWED_BIOMES;
+      String[] allowedBiomes = ModuleWorldGenConfig.FRECKLEBERRY_PLANT.ALLOWED_BIOMES;
       this.allowedBiomeSet = new HashSet<>(allowedBiomes.length);
 
       for (String allowedBiome : allowedBiomes) {
@@ -100,10 +99,6 @@ public class WorldGenGloamberryBush
 
   private boolean canSpawnOnTopOf(World world, BlockPos pos, IBlockState blockState) {
 
-    if (!blockState.isSideSolid(world, pos, EnumFacing.UP)) {
-      return false;
-    }
-
-    return ModuleCore.Blocks.GLOAMBERRY_BUSH.isValidBlock(blockState);
+    return ModuleCore.Blocks.FRECKLEBERRY_PLANT.isValidBlock(blockState);
   }
 }

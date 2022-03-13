@@ -1,6 +1,6 @@
-package com.codetaylor.mc.pyrotech.modules.worldgen.world;
+package com.codetaylor.mc.pyrotech.modules.worldgen.feature;
 
-import com.codetaylor.mc.pyrotech.modules.worldgen.world.spi.IRandomIntSupplier;
+import com.codetaylor.mc.pyrotech.modules.worldgen.feature.spi.IRandomIntSupplier;
 import com.google.common.base.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;

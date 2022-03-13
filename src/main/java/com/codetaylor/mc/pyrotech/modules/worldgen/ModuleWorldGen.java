@@ -3,7 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.worldgen;
 import com.codetaylor.mc.athenaeum.module.ModuleBase;
 import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
-import com.codetaylor.mc.pyrotech.modules.worldgen.world.spi.WorldGenerator;
+import com.codetaylor.mc.pyrotech.modules.worldgen.feature.spi.WorldGenerator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
