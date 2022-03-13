@@ -144,6 +144,12 @@ public class ModuleCore
     if (ModuleCoreConfig.CLIENT.SHOW_BURN_TIME_IN_TOOLTIPS) {
       MinecraftForge.EVENT_BUS.register(new TooltipEventHandler.BurnTime());
     }
+
+    FMLInterModComms.sendMessage(
+        "waila",
+        "register",
+        "com.codetaylor.mc.pyrotech.modules.core.plugin.waila.PluginWaila.wailaCallback"
+    );
   }
 
   @Override
