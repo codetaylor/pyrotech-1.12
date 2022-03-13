@@ -330,6 +330,8 @@ fluid.pyroberry_wine=Pyroberry Wine
 tile.fluid.pyroberry_wine.name=Pyroberry Wine
 fluid.gloamberry_wine=Gloamberry Wine
 tile.fluid.gloamberry_wine.name=Gloamberry Wine
+fluid.freckleberry_wine=Freckleberry Wine
+tile.fluid.freckleberry_wine.name=Freckleberry Wine
 
 item.pyrotech.straw.name=稻草
 item.pyrotech.coal.coke.name=煤焦

@@ -10,6 +10,7 @@
     "tannin": [{"custom": {"fluid": "tannin"}}],
     "pyroberry_wine": [{"custom": {"fluid": "pyroberry_wine"}}],
     "gloamberry_wine": [{"custom": {"fluid": "gloamberry_wine"}}],
+    "freckleberry_wine": [{"custom": {"fluid": "freckleberry_wine"}}],
     "lamp_oil": [{"custom": {"fluid": "lamp_oil"}}]
   }
 }

@@ -160,6 +160,7 @@
         * Tannin `fluid:tannin`
         * Pyroberry Wine `fluid:pyroberry_wine`
         * Gloamberry Wine `fluid:gloamberry_wine`
+        * Freckleberry Wine `fluid:freckleberry_wine`
     * Valid refractory blocks:
         * Double Refractory Brick Slab
     * Ore Compat:
@@ -541,6 +542,8 @@
         * `item.pyrotech.freckleberry.seeds.name`
         * `item.pyrotech.freckleberries.name`
         * `tile.pyrotech.freckleberry_plant.name`
+        * `fluid.freckleberry_wine`
+        * `tile.fluid.freckleberry_wine.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       
