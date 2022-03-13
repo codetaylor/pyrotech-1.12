@@ -110,7 +110,7 @@ public class BlockFreckleberryPlant
       if (!world.isRemote) {
         ItemStack heldItemMainhand = player.getHeldItemMainhand();
         int fortune = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, heldItemMainhand);
-        StackHelper.spawnStackOnTop(world, new ItemStack(this.getCrop(), this.quantityDropped(state, fortune, RandomHelper.random())), pos);
+        StackHelper.spawnStackOnTop(world, new ItemStack(this.getCrop(), this.quantityDropped(state, fortune, RandomHelper.random())), pos, 0.25f);
         world.setBlockState(pos, this.withAge(this.getMaxAge() - 1));
       }
 
