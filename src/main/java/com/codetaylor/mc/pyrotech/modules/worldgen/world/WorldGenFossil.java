@@ -2,6 +2,7 @@ package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
+import com.codetaylor.mc.pyrotech.modules.worldgen.world.spi.IWorldGenFeature;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;

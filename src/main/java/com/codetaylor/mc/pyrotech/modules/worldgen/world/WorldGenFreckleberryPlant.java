@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.worldgen.world;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
 import com.codetaylor.mc.pyrotech.modules.worldgen.ModuleWorldGenConfig;
+import com.codetaylor.mc.pyrotech.modules.worldgen.world.spi.IWorldGenFeature;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
