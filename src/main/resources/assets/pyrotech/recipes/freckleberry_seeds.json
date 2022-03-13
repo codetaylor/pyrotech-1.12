@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "pyrotech:freckleberries"}
+  ],
+  "result": {
+    "item": "pyrotech:freckleberry_seeds",
+    "count": 3
+  }
+}
