@@ -134,6 +134,7 @@
         * Freckleberry:
             * Freckleberry Seeds
             * Freckleberries
+            * Freckleberry Wine
         * Durable Bow Drill
             * Durable Spindle
             * Doesn't break, repaired with Durable Spindle
@@ -544,6 +545,7 @@
         * `tile.pyrotech.freckleberry_plant.name`
         * `fluid.freckleberry_wine`
         * `tile.fluid.freckleberry_wine.name`
+        * `item.pyrotech.freckleberry.wine.name`
 
     * **Changed Vanilla Lang Values:**
         * `item.arrow.name`       

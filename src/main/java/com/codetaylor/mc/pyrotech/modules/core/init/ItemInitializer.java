@@ -26,6 +26,7 @@ public final class ItemInitializer {
     registry.registerItem(new ItemStrangeTuber(), ItemStrangeTuber.NAME);
     registry.registerItem(new ItemPyroberryWine(), ItemPyroberryWine.NAME);
     registry.registerItem(new ItemGloamberryWine(), ItemGloamberryWine.NAME);
+    registry.registerItem(new ItemFreckleberryWine(), ItemFreckleberryWine.NAME);
     registry.registerItem(new ItemTaintedMeat(), ItemTaintedMeat.NAME);
 
     registry.registerItem(new ItemCrudeHammer(), ItemCrudeHammer.NAME);
@@ -95,6 +96,7 @@ public final class ItemInitializer {
 
           ModuleCore.Items.FRECKLEBERRY_SEEDS,
           ModuleCore.Items.FRECKLEBERRIES,
+          ModuleCore.Items.FRECKLEBERRY_WINE,
 
           ModuleCore.Items.TAINTED_MEAT,
 

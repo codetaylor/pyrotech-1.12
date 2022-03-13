@@ -187,6 +187,46 @@ public class ModuleCoreConfig {
     public int OBSIDIAN_HAMMER_DURABILITY = 4035;
   }
 
+
+  // ---------------------------------------------------------------------------
+  // - Freckleberry Wine
+  // ---------------------------------------------------------------------------
+
+  public static FreckleberryWine FRECKLEBERRY_WINE = new FreckleberryWine();
+
+  public static class FreckleberryWine {
+
+    @Config.Comment({
+        "The amount of hunger healed by eating.",
+        "For reference, the vanilla apple restores 4 hunger.",
+        "Default: " + 1
+    })
+    @Config.RangeInt(min = 0)
+    public int HUNGER = 1;
+
+    @Config.Comment({
+        "The amount of saturation healed by eating.",
+        "For reference, the vanilla apple restores 0.3 saturation.",
+        "Default: " + 0.10
+    })
+    @Config.RangeDouble(min = 0)
+    public double SATURATION = 0.10;
+
+    @Config.Comment({
+        "The tick duration of the effect.",
+        "Default: " + (60 * 20)
+    })
+    @Config.RangeInt(min = 0)
+    public int EFFECT_DURATION_TICKS = 60 * 20;
+
+    @Config.Comment({
+        "The effect duration after which the player becomes sick.",
+        "Default: " + (2 * 60 * 20)
+    })
+    @Config.RangeInt(min = 0)
+    public int SICK_THRESHOLD_TICKS = 2 * 60 * 20;
+  }
+
   // ---------------------------------------------------------------------------
   // - Gloamberry Bush
   // ---------------------------------------------------------------------------
@@ -226,7 +266,7 @@ public class ModuleCoreConfig {
   }
 
   // ---------------------------------------------------------------------------
-  // - Pyroberry Wine
+  // - Gloamberry Wine
   // ---------------------------------------------------------------------------
 
   public static GloamberryWine GLOAMBERRY_WINE = new GloamberryWine();
