@@ -54,5 +54,17 @@ public class BarrelRecipesAdd {
         new FluidStack(FluidRegistry.WATER, 1000),
         20 * 60 * 15
     ).setRegistryName(new ResourceLocation(ModuleTechBasic.MOD_ID, "gloamberry_wine")));
+
+    registry.register(new BarrelRecipe(
+        new FluidStack(ModuleCore.Fluids.FRECKLEBERRY_WINE, 1000),
+        new Ingredient[]{
+            Ingredient.fromItems(ModuleCore.Items.FRECKLEBERRIES),
+            Ingredient.fromItems(ModuleCore.Items.FRECKLEBERRIES),
+            Ingredient.fromItems(ModuleCore.Items.FRECKLEBERRIES),
+            Ingredient.fromItems(Items.SUGAR)
+        },
+        new FluidStack(FluidRegistry.WATER, 1000),
+        20 * 60 * 15
+    ).setRegistryName(new ResourceLocation(ModuleTechBasic.MOD_ID, "freckleberry_wine")));
   }
 }
