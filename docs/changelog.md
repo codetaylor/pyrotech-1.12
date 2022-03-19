@@ -235,6 +235,7 @@
             * `treeLeaves` and `fluid:water` to create `fluid:tannin`
             * Pyroberries, Sugar and `fluid:water` to create `fluid:pyroberry_wine`
             * Gloamberries, Sugar and `fluid:water` to create `fluid:gloamberry_wine`
+            * Freckleberries, Sugar and `fluid:water` to create `fluid:freckleberry_wine`
         * Furnace:
             * Unfired Refractory Bucket -> Refractory Bucket
             * Bread Dough -> Bread
