@@ -1,7 +1,7 @@
 {
   "name": "Wine, Pyroberry",
   "icon": "pyrotech:pyroberry_wine",
-  "category": "innovate_stone_soaking",
+  "category": "innovate_stone_fermenting",
   "pages": [
     {
       "type": "rt_barrel_recipe",
