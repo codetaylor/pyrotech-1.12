@@ -15,6 +15,12 @@
     },
     {
       "type": "spotlight",
+      "item": "pyrotech:freckleberries",
+      "link_recipe": true,
+      "text": "$(item)Freckleberries$() grow on $(item)Freckleberry Plants$() in plains and forests.$(p)$(info) $(item)Freckleberry Plants$() can be fertilized with $(item)Bone Meal$() and will ripen faster on fertile soil such as $(item)Farmland$()."
+    },
+    {
+      "type": "spotlight",
       "item": "pyrotech:pyroberries",
       "link_recipe": true,
       "text": "$(item)Pyroberries$() are often found growing on $(item)Pyroberry Bushes$() in the desert with a clear view of the sun.$(p)$(info) $(item)Pyroberry Bushes$() can be fertilized with $(item)Blaze Powder$().$(p)$(warning) Harvesting $(item)Pyroberries$() is a very finicky and delicate procedure which may result in your untimely expiration."
