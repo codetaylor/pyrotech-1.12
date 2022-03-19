@@ -587,6 +587,7 @@
             * `entries/innovate/bucket_refractory`
             * `entries/innovate/butchers_block`
             * `entries/innovate/durable_leather`
+            * `entries/innovate/freckleberry_wine`
             * `entries/innovate/gloamberry_wine`
             * `entries/innovate/leather`
             * `entries/innovate/leather_kits`
