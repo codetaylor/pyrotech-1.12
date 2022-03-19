@@ -1,7 +1,7 @@
 {
   "name": "Bucket, Refractory",
   "icon": "pyrotech:bucket_refractory",
-  "category": "innovate_stone_soaking",
+  "category": "innovate_stone_fluids",
   "pages": [
     {
       "type": "crafting",

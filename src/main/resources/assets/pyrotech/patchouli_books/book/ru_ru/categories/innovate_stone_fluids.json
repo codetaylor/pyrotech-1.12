@@ -1,0 +1,7 @@
+{
+  "name": "Fluid Storage",
+  "description": "The successful manipulation and storage of fluids is vital to survival.",
+  "icon": "pyrotech:stone_tank",
+  "parent": "innovate_stone",
+  "sortnum": 3
+}

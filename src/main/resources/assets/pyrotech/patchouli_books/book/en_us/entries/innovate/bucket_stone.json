@@ -1,7 +1,7 @@
 {
   "name": "Bucket, Stone",
   "icon": "pyrotech:bucket_stone",
-  "category": "innovate_stone_soaking",
+  "category": "innovate_stone_fluids",
   "pages": [
     {
       "type": "crafting",

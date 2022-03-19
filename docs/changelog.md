@@ -565,6 +565,7 @@
             * `categories/gather_material`
             * `categories/innovate_durable_tools`
             * `categories/innovate_leather`
+            * `categories/innovate_stone_fluids`
             * `entries/accelerate/refractory_bricks`
             * `entries/adapt/arrow_bone_and_flint`
             * `entries/adapt/butchers_knife_bone_and_flint`

@@ -1,7 +1,7 @@
 {
   "name": "Tank, Stone",
   "icon": "pyrotech:stone_tank",
-  "category": "innovate_stone_soaking",
+  "category": "innovate_stone_fluids",
   "pages": [
     {
       "type": "crafting",
