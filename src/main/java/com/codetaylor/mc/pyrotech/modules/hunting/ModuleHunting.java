@@ -8,6 +8,8 @@ import com.codetaylor.mc.athenaeum.registry.Registry;
 import com.codetaylor.mc.pyrotech.ModPyrotech;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockButchersBlock;
 import com.codetaylor.mc.pyrotech.modules.hunting.block.BlockCarcass;
+import com.codetaylor.mc.pyrotech.modules.hunting.capability.ISpearEntityData;
+import com.codetaylor.mc.pyrotech.modules.hunting.capability.SpearEntityData;
 import com.codetaylor.mc.pyrotech.modules.hunting.entity.EntityMud;
 import com.codetaylor.mc.pyrotech.modules.hunting.event.ClientEntityJoinWorldEventHandler;
 import com.codetaylor.mc.pyrotech.modules.hunting.event.EntityAttachCapabilitiesEventHandler;
@@ -19,6 +21,7 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
@@ -105,6 +108,8 @@ public class ModuleHunting
   public void onPreInitializationEvent(FMLPreInitializationEvent event) {
 
     super.onPreInitializationEvent(event);
+
+    CapabilityManager.INSTANCE.register(ISpearEntityData.class, new SpearEntityData(), SpearEntityData::new);
 
     FMLInterModComms.sendFunctionMessage(
         "theoneprobe",
