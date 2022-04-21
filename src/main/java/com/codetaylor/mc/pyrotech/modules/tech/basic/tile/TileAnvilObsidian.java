@@ -65,7 +65,7 @@ public class TileAnvilObsidian
   @Override
   protected BlockAnvilBase getBlock() {
 
-    return ModuleTechBasic.Blocks.ANVIL_GRANITE;
+    return ModuleTechBasic.Blocks.ANVIL_OBSIDIAN;
   }
 
   @Override
