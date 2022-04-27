@@ -1,33 +1,46 @@
 {
-  "name": "Rock Bag",
+  "name": "Рюкзак для камней",
   "icon": "pyrotech:bag_simple",
   "category": "gather",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/bag_simple",
-      "text": "$(info) A $(item)Rock Bag$() can hold a large quantity of $(thing)Rocks$()."
+      "recipe2": "pyrotech:storage/bag_durable"
     },
     {
       "type": "text",
-      "title": "In the World",
-      "text": "$(info) When placed in the world, bags can be opened and closed with $(use).$(p)$(info) When the bag is open, items can be manually added and removed from the top.$(p)$(info) Items can be extracted from the bottom."
+      "text": "Вы можете хранить большое количество $(thing)камешков$() в специальной $(item)сумке$()."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/rock_bag_00.png"
+      ]
     },
     {
       "type": "text",
-      "title": "In Your Inventory",
-      "text": "$(info) To open or close a bag while holding it, ensure you are not targeting a block and $(sneak) + $(use).$(p)$(info) If you have an open bag in your hand or hotbar, it will auto-collect items you pick up.$(p)$(info) Auto-collected items will fill existing stacks in your inventory before filling a bag."
+      "title": "В мире",
+      "text": "$(info_ru)Сумки, размещённые на поверхности, могут быть открыты при помощи $(use).$(p)$(info_ru) Когда ваш рюкзак открыт, его содержимое можно пополнить или забрать сверху.$(p)$(info_ru) Камешки достаются со дна сумки."
     },
     {
       "type": "text",
-      "text": "$(info) Items in a bag can be transferred to an inventory, like a chest, with $(sneak) + $(use).$(p)$(info) If you $(sneak) + $(use) an open bag on a non-inventory block, the contents of the bag will spill into the world."
+      "title": "В вашем инвентаре",
+      "text": "$(info_ru)Вы можете открыть сумку, держа её прямо в руке. Для этого удостоверьтесь, что не смотрите на какой-либо блок, и зажмите $(sneak) + $(use).$(p)$(info_ru) Если в вашей руке или ячейке хотбара находится открытая сумка, то она сама складирует собранные предметы."
+    },
+    {
+      "type": "text",
+      "text": "Добыча окажется в рюкзаке только в том случае, если в инвентаре нет незаполненных стаков.$(p)$(info_ru) Вещи из сумок можно перемещать, как если бы вы взаимодействовали с сундуком, при помощи одновременного нажатия $(sneak) + $(use).$(p)$(info_ru) Если вы $(sneak) + $(use) открыли сумку на блоке без внутреннего инвентаря, то её содержимое рассыплется."
     },
     {
       "type": "relations",
       "entries": [
         "adapt/twine",
         "gather/storage",
-        "survive/rocks"
+        "innovate/twine_durable",
+        "innovate/storage_durable",
+        "survive/rocks",
+        "gather/stone_cobbled"
       ]
     }
   ]
