@@ -1,17 +1,25 @@
 {
-  "name": "Marshmallow",
+  "name": "Походная сласть",
   "icon": "pyrotech:marshmallow",
   "category": "survive",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/marshmallow",
-      "text": "To place a $(item)Marshmallow$() on a stick, hold a $(item)Marshmallow$() in your off-hand, a $(item)Marshmallow Stick$() in your main hand, and $(use) while sneaking.$(p)$(info) A $(item)Roasted Marshmallow$() can be eaten from the stick."
-    },
+      "text": "Путешествие без $(item)зефирок$() - уже никакое не путешествие. Безопасность, однако, превыше всего. Вы же не станете лезть в костёр голыми руками?"
+	},
     {
-      "type": "crafting",
+	  "type": "crafting",
       "recipe": "pyrotech:tech/basic/marshmallow_stick",
-      "text": "To roast a $(item)Marshmallow$() on a stick, stand near a $(item)Campfire$() and hold $(use) until it turns a nice golden brown.$(p)$(info) A $(item)Roasted Marshmallow$() can be removed by $(use) while sneaking with an empty off-hand."
+	  "text": "Возьмите $(item)специальную палочку$() в ведущую руку, $(item)зефирку$() переложите в другую. Так, как если бы вы брали меч и щит. Затем присядьте $(sneak) и нажмите $(use).$(br)$(info_ru)Готовые зефирки можно смаковать прямо с палочки."
+	},
+    {
+	  "type":"text",
+	  "text": "$(p)Готовить это чудесное лакомство совсем не сложно. Проделайте ранее упомянутые шаги, устройтесь подле $(item)костра$() и задержите $(use). Как только ваши зефирки покроются $(item)румяной корочкой$(), можно приступать к трапезе. $(p)Главное - не перестарайтесь с жаркой. Иначе заработаете себе диарею."
+	},
+    {	
+      "type": "text",
+      "text": "$(p)$(info_ru)Если хотите заготовить партию для друзей, $(item)зефирки$() можно снять с палочки при помощи $(use), пока вы сидите$(sneak). Не забудьте освободить $(item)вторую руку$()."
     }
   ]
 }
