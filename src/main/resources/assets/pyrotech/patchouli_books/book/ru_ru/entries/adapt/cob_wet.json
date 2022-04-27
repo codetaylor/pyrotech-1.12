@@ -1,14 +1,18 @@
 {
-  "name": "Cob, Wet",
+  "name": "Cаман-сырец",
   "icon": "pyrotech:cob_wet",
   "category": "adapt",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:cob_2x2a",
-      "text": "$(info) $(item)Wet Cob$() will fall unless supported or dried.$(p)$(info) $(item)Wet Cob$() will dry into harder $(item)Cob$() over time when placed in the world."
+      "text": "$(info_ru) $(item)Саман-сырец$() - не лучший строительный материал. Без предварительной сушки или опорного каркаса, кирпич просто упадёт. И хорошо, если не на вашу голову."
     },
     {
+	  "type": "text",
+	  "text": "$(p)$(info_ru)Просто оставьте сырец где-нибудь на некоторое время. Спустя пару минут, он $(item)затвердеет$()."
+	},
+    {	
       "type": "crafting",
       "recipe": "pyrotech:cob_2x2b",
       "recipe2": "pyrotech:cob_3x3"

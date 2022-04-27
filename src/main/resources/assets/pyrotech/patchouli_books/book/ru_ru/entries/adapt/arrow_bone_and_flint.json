@@ -1,5 +1,5 @@
 {
-  "name": "Arrow, Bone & Flint",
+  "name": "Ваши первые стрелы",
   "icon": "pyrotech:bone_arrow",
   "category": "adapt_tools",
   "pages": [
@@ -11,7 +11,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:hunting/fletching",
-      "text": "$(info) $(item)Bone and Flint Arrows$() have a chance to break upon impact depending on the strength of the shot."
+	  "text": "$(info_ru) Чем сильнее вы натягиваете тетиву, тем хуже $(item)костяные и кремниевые стрелы$() переносят удар. Запаситесь арсеналом и терпением - ломаться снаряды будут очень часто."
     },
     {
       "type": "relations",
