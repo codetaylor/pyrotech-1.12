@@ -1,6 +1,6 @@
 {
-  "name": "Fluid Storage",
-  "description": "The successful manipulation and storage of fluids is vital to survival.",
+  "name": "Хранение жидкостей",
+  "description": "Вина в сундук не налить - без должной организации склада жидкостей вам не обойтись.",
   "icon": "pyrotech:stone_tank",
   "parent": "innovate_stone",
   "sortnum": 3

@@ -1,5 +1,5 @@
 {
-  "name": "Mud Clump",
+  "name": "Люблю с комочками!",
   "icon": "pyrotech:rock:11",
   "category": "gather_material",
   "pages": [
@@ -7,7 +7,7 @@
       "type": "spotlight",
       "link_recipe": true,
       "item": "pyrotech:rock:11",
-      "text": "$(item)Mud Clumps$() can be harvested from mud found in the world or crafted."
+      "text": "Маленькие $(item)комочки$() можно отыскать, если порыться в грязи. А можно просто создать их на верстаке."
     },
     {
       "type": "crafting",

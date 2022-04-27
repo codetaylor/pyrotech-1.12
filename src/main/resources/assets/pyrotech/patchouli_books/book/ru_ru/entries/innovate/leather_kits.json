@@ -1,5 +1,5 @@
 {
-  "name": "Leather Kits",
+  "name": "Латаные доспехи",
   "icon": "pyrotech:leather_repair_kit",
   "category": "innovate_leather",
   "pages": [
@@ -21,7 +21,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:hunting/leather_durable_upgrade_kit",
-      "text": "$(item)Durable Leather Upgrade Kits$() can be used to upgrade $(thing)leather armor$()."
+      "text": "$(item)Специальным набором$() можно преобразить вашу старую $(thing)кожаную броню$()."
     },
     {
       "type": "relations",

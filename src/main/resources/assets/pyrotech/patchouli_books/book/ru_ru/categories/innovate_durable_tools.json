@@ -1,6 +1,6 @@
 {
-  "name": "Durable Tools",
-  "description": "If one performs a task poorly, they may be tempted to lay blame on the quality of their equipment, or other such external factors, rather than take responsibility for their own failure - $(italic)a word which here means a lack of success.$()",
+  "name": "Инструментарий повышенной надёжности",
+  "description": "Когда работа идёт наперекосяк, для оправдания личных неудач возникает тысяча причин: неудобная рукоять, кривой обух, плохая погода. Как говорится: $(italic)в чужом глазу соломину видеть, в своём — бревна не замечать.$()",
   "icon": "pyrotech:bone_pickaxe_durable",
   "parent": "innovate",
   "sortnum": 4

@@ -1,6 +1,6 @@
 {
-  "name": "Advanced Tools",
-  "description": "Toolcraft is essential for survival.",
+  "name": "Торжество кузнеца",
+  "description": "Для выживания, согласитесь, недостаточно одних только косточек да палочек. Нужно что-то посерьёзнее.",
   "icon": "pyrotech:obsidian_pickaxe",
   "sortnum": 3,
   "parent": "bloom"

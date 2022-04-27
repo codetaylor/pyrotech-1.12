@@ -1,5 +1,5 @@
 {
-  "name": "Wine, Gloamberry",
+  "name": "Ночная хандра",
   "icon": "pyrotech:gloamberry_wine",
   "category": "innovate_stone_fermenting",
   "pages": [
@@ -7,12 +7,12 @@
       "type": "rt_barrel_recipe",
       "header": true,
       "recipe": "pyrotech:gloamberry_wine",
-      "text": "Soaking $(item)Gloamberries$() with $(item)Sugar$() in $(item)Water$() will yield $(item)Gloamberry Wine$().$(p)$(info) Drinking $(item)Gloamberry Wine$() has beneficial effects."
+      "text": "$(p)Из ягод $(item)тусклосвета$() выходит прекрасное $(item)вино$(). Технология проста - достаточно смешать плоды с $(item)сахаром$() в $(item)бочонке$(), залить всё $(item)водой$() и дать будущему напитку настояться."
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:gloamberry_wine",
-      "text": "$(warning) Drinking too much $(item)Gloamberry Wine$() can be hazardous to your health."
+      "text": "$(info_ru)Это вино одарит вас $(item)ночным зрением.$(br)$(warning_ru)Только не увлекайтесь. Алкоголь вредит вашему здоровью."
     },
     {
       "type": "relations",

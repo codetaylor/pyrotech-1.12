@@ -1,12 +1,12 @@
 {
-  "name": "Carcass",
+  "name": "Тушки",
   "icon": "pyrotech:carcass",
   "category": "adapt_butchery",
   "pages": [
     {
       "type": "spotlight",
       "item": "pyrotech:carcass",
-      "text": "Animals drop $(item)Carcasses$() when they expire.$(p)$(info) $(item)Carcasses$() can be processed into $(thing)Pelts$() and $(thing)Meats$() with a $(item)Hunter's Knife$() or $(item)Butcher's Knife$().$(p)$(info) Processing a $(item)Carcass$() on a $(item)Butcher's Block$() is likely to produce a higher yield."
+      "text": "$(item)Тушка$() - трофей за ваши зверства по отношению к животным.$(br)$(info_ru) Свежевание производится $(item)охотничьим ножом$() или $(item)тесаком$(). В результате вы получите $(thing)шкурки$() и $(thing)мясо$().$(br)$(info_ru) Можно собрать куда больше наживы, если разделывать $(item)тушки$() на $(item)мясницком столе$()."
     },
     {
       "type": "relations",

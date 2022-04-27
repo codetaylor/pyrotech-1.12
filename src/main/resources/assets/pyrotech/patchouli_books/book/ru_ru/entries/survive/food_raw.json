@@ -17,19 +17,23 @@
       "type": "spotlight",
       "item": "pyrotech:freckleberries",
       "link_recipe": true,
-      "text": "$(item)Freckleberries$() grow on $(item)Freckleberry Plants$() in plains and forests.$(p)$(info) $(item)Freckleberry Plants$() can be fertilized with $(item)Bone Meal$() and will ripen faster on fertile soil such as $(item)Farmland$()."
+      "text": "Равнины и пролески усеяны кустарниками $(item)крапиники$().$(br)$(info_ru)Удобряйте растьеньица при помощи $(item)костной муки$(), чтобы собрать побольше урожая. Кустики будут расти и плодоносить куда быстрее на облагороженной почве. Припасите местечко на вашем $(item)огороде$() - там ягодки будут чувствовать себя прекрасно."
     },
     {
       "type": "spotlight",
       "item": "pyrotech:pyroberries",
       "link_recipe": true,
-      "text": "$(item)Pyroberries$() are often found growing on $(item)Pyroberry Bushes$() in the desert with a clear view of the sun.$(p)$(info) $(item)Pyroberry Bushes$() can be fertilized with $(item)Blaze Powder$().$(p)$(warning) Harvesting $(item)Pyroberries$() is a very finicky and delicate procedure which may result in your untimely expiration."
+      "text": "Удивительное растение - $(item)полымягода$(). Её $(item)кустики$() произрастают зное пустынь, прямиком под палящим солнцем.$(p)$(info_ru) Костной мукой вы уже не отделаетесь, $(item)полымягоде$() нужно особое удобрение - $(item)порошок ифрита$()."
     },
+    {
+	  "type":"text",
+	  "text":"$(p)$(warning_ru) Пожиная плоды, проявите особую осторожность и щепетильность. Это не крыжовник. Потеряете бдительность - не доживёте до свадьбы."
+	},
     {
       "type": "spotlight",
       "item": "pyrotech:gloamberries",
       "link_recipe": true,
-      "text": "$(item)Gloamberries$() are often found growing on $(item)Gloamberry Bushes$() in forests.$(p)$(info) $(item)Gloamberry Bushes$() can be fertilized with $(item)Bone Meal$().$(p)$(info) $(item)Gloamberries$() ripen during the night under a clear sky."
+      "text": "В тени бескрайних лесов прячутся кустики $(item)тусклосвета$().$(p)$(info_ru) Многого этим ягодкам не надо - для хорошего урожая достаточно $(item)костной муки$() и $(info_ru)чистого $(info_ru)ночного неба."
     }
   ]
 }

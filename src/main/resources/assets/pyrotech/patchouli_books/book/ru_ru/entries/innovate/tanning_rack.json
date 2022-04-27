@@ -1,13 +1,17 @@
 {
-  "name": "Tanning Rack",
+  "name": "Дубильный станок",
   "icon": "pyrotech:tanning_rack",
   "category": "innovate_leather",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/tanning_rack",
-      "text": "$(info) $(item)Tanning Racks$() require a clear view of the sky to function correctly.$(p)$(info) $(item)Tanning Racks$() will only function during the daytime."
+      "text": "$(info_ru)На $(item)дубильном станке$() кожа проходит заключительный этап обработки.$(br)$(info_ru)Обратите внимание - станок необходимо установить под чистым солнечным небом."
     },
+    {
+	  "type": "text",
+      "text": "$(p)$(info_ru)Без дневного света и открытого пространства ничего не выйдет."
+	},
     {
       "type": "relations",
       "entries": [

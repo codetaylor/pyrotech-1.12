@@ -1,12 +1,12 @@
 {
-  "name": "Pelt",
+  "name": "Профессор Шкуродёр",
   "icon": "pyrotech:pelt_cow",
   "category": "innovate_leather",
   "pages": [
     {
       "type": "spotlight",
       "item": "pyrotech:pelt_cow",
-      "text": "$(thing)Pelts$() are acquired from processing $(item)Carcasses$().$(p)$(info) Processing a $(item)Carcass$() on a $(item)Butcher's Block$() with a $(item)Hunter's Knife$() is likely to produce a higher yield of $(thing)pelts$()."
+      "text": "$(thing)Шкурки$() можно получить путём разделки $(item)тушек$().$(p)$(info_ru) С $(item)мясницким столом$() в мастерской и $(item)охотничьим ножом$() за пазухой, добывать $(thing)шкурки$() значительно выгоднее."
     },
     {
       "type": "relations",

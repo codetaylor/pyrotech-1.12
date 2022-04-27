@@ -1,12 +1,12 @@
 {
-  "name": "Barrel",
+  "name": "Бочонок",
   "icon": "pyrotech:barrel",
   "category": "innovate_stone_fermenting",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/barrel",
-      "text": "To use, place fluid and ingredients in the top and seal with a $(item)Barrel Lid$().$(p)$(warning) A $(item)Barrel$() will break when filled with hot fluids, such as lava."
+      "text": "В обращении с бочонком нет ничего мудрёного - просто сложите все необходимые ингредиенты, залейте жидкость и накройте его $(item)крышкой$().$(br)$(warning_ru)$(item)Бочонок$() - деревянный. А дерево горит. Не нужно опытов с лавой. Вы сделаете себе только хуже."
     },
     {
       "type": "relations",

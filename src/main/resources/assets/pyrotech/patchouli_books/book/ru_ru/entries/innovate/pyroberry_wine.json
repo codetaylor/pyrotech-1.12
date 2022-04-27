@@ -1,5 +1,5 @@
 {
-  "name": "Wine, Pyroberry",
+  "name": "Огненная вода",
   "icon": "pyrotech:pyroberry_wine",
   "category": "innovate_stone_fermenting",
   "pages": [
@@ -7,12 +7,12 @@
       "type": "rt_barrel_recipe",
       "header": true,
       "recipe": "pyrotech:pyroberry_wine",
-      "text": "Soaking $(item)Pyroberries$() with $(item)Sugar$() in $(item)Water$() will yield $(item)Pyroberry Wine$().$(p)$(info) Drinking $(item)Pyroberry Wine$() has beneficial effects."
+      "text": "$(p)Из $(item)полымягоды$() выходит отменная $(item)настойка$(). Технология проста - достаточно смешать плоды с $(item)сахаром$() в $(item)бочонке$(), залить всё $(item)водой$() и дать будущему напитку побродить."
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:pyroberry_wine",
-      "text": "$(warning) Drinking too much $(item)Pyroberry Wine$() can be hazardous to your health."
+      "text": "$(info_ru)Хорошая наливка придаст вам влажность, прохладу и $(item)огнеупорность$().$(br)$(warning_ru)Только не увлекайтесь. Алкоголь вредит вашему здоровью."
     },
     {
       "type": "relations",

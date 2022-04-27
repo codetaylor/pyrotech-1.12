@@ -69,7 +69,7 @@
     {
       "type": "tooltip",
       "tooltip": [
-        "Obsidian Anvil Recipe"
+        "Обсидиановая наковальня"
       ],
       "x": 56, "y": 17,
       "u": 65, "v": 27,
@@ -85,7 +85,7 @@
     },
     {
       "type": "tooltip",
-      "tooltip": ["Pickaxe Recipe"],
+      "tooltip": ["Кирка"],
       "x": 18, "y": 16,
       "width": 6, "height": 6,
       "guard": "#pickaxe->exists"
@@ -99,7 +99,7 @@
     },
     {
       "type": "tooltip",
-      "tooltip": ["Hammer Recipe"],
+      "tooltip": ["Молот"],
       "x": 18, "y": 16,
       "width": 6, "height": 6,
       "guard": "#hammer->exists"

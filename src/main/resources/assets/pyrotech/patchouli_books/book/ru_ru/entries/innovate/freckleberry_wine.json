@@ -1,5 +1,5 @@
 {
-  "name": "Wine, Freckleberry",
+  "name": "Проказа, волчья сыпь!",
   "icon": "pyrotech:freckleberry_wine",
   "category": "innovate_stone_fermenting",
   "pages": [
@@ -7,12 +7,12 @@
       "type": "rt_barrel_recipe",
       "header": true,
       "recipe": "pyrotech:freckleberry_wine",
-      "text": "Soaking $(item)Freckleberries$() with $(item)Sugar$() in $(item)Water$() will yield $(item)Freckleberry Wine$().$(p)$(info) Drinking $(item)Freckleberry Wine$() has beneficial effects."
+      "text": "$(p)Из $(item)крапиники$() выходит прекрасное $(item)вино$(). Технология проста - достаточно смешать плоды с $(item)сахаром$() в $(item)бочонке$(), залить всё $(item)водой$() и дать будущему напитку настояться."
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:freckleberry_wine",
-      "text": "$(warning) Drinking too much $(item)Freckleberry Wine$() can be hazardous to your health."
+      "text": "$(info_ru)Хорошее вино снимет бремя невыносимой лёгкости бытия. Ваша $(item)скорая$() поступь будет сравнима с рысцой оцелота.$(br)$(warning_ru)Только не увлекайтесь. Алкоголь вредит вашему здоровью."
     },
     {
       "type": "relations",

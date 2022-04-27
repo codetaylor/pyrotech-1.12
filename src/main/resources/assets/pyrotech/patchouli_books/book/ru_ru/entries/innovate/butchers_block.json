@@ -1,17 +1,21 @@
 {
-  "name": "Butcher's Block",
+  "name": "Мясницкий стол",
   "icon": "pyrotech:butchers_block",
   "category": "innovate",
   "pages": [
     {
       "type": "text",
-      "text": "To use, place a $(item)Carcass$() on the top and $(use) with a $(item)Hunter's Knife$() or a $(item)Butcher's Knife$().$(p)$(info) Using a $(item)Hunter's Knife$() on a $(item)Butcher's Block$() has a chance to increase the yield when harvesting $(thing)Pelts$().$(p)$(info) Using a $(item)Butcher's Knife$() on a $(item)Butcher's Block$() has a chance to increase the yield when harvesting $(thing)Meats$()."
+      "text": "Чтобы приступить к работе, расположите $(item)тушку$() сверху. Дальше – просто кромсайте её $(item)охотничьим ножом$() или рубите $(item)тесаком$()$(use).$(p)$(info_ru)Продумайте способ разделки заранее, ведь от применяемого вами инструмента зависит шанс получения того или иного ресурса."
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:hunting/butchers_block",
-      "text": "$(warning) Using may cause hunger. If it isn't working, you might be too hungry."
+      "text": "Так, $(item)ножом$() лучше всего снимать $(thing)шкурки$(), $(item)тесаком$() - добывать $(thing)мясо$()."
     },
+    {
+	  "type": "text",
+      "text": "$(p)$(warning_ru)Свежевание тушек весьма утомительно. Если ваши потуги безрезультатны - перекусите. Заодно можете опробовать качество проделанной работы."
+	},
     {
       "type": "relations",
       "entries": [

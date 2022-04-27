@@ -1,5 +1,5 @@
 {
-  "name": "Hide, Tanned",
+  "name": "Дубление",
   "icon": "pyrotech:hide_tanned",
   "category": "innovate_leather",
   "pages": [
@@ -8,13 +8,13 @@
       "header": true,
       "recipe": "pyrotech:hide_tanned",
       "recipe2": "pyrotech:hide_small_tanned",
-      "text": "$(item)Tanned Hides$() are produced by soaking $(item)Washed Hides$() in $(item)Tannin$()."
+      "text": "$(item)Выделанная кожа$() - результат пропитки $(item)очищенных заготовок$() в специальном дубильном растворе - $(item)танине$()."
     },
     {
       "type": "rt_barrel_recipe",
       "header": true,
       "recipe": "pyrotech:tannin",
-      "text": "Soaking $(item)Leaves$() in $(item)Water$() will yield $(item)Tannin$()."
+      "text": "$(item)Танин$() можно получить путём длительной выдержки $(item)листвы$() в $(item)воде$()."
     },
     {
       "type": "relations",

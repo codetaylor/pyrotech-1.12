@@ -1,12 +1,12 @@
 {
-  "name": "Anvil, Obsidian",
+  "name": "Кузнец из преисподней",
   "icon": "pyrotech:anvil_obsidian",
   "category": "bloom_bloom",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/anvil_obsidian",
-      "text": "$(info) When used for hammering a $(item)Bloom$(), an $(item)Obsidian Anvil$() will last considerably longer than its counterparts."
+      "text": "$(info_ru)Природа даровала обсидиану феноменальную термостойкость. Именно потому $(item)наковальня на его основе$() лучше всего сгодится для обработки $(item)крицы$()."
     },
     {
       "type": "relations",

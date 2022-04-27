@@ -1,14 +1,19 @@
 {
-  "name": "Refractory Bricks",
+  "name": "Кирпич железной закалки",
   "icon": "pyrotech:refractory_brick_block",
   "category": "accelerate",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:refractory_brick_block",
-      "text": "$(item)Refractory Bricks$() are used in the construction of the $(item)Bloomery$(), $(thing)Refractory Machines$(), and enclosures for $(thing)Refractory Burning$().$(p)$(warning) Stairs, slabs, and walls are not valid blocks for a refractory enclosure."
+      "text": "Без $(item)огнеупорной кладки$() вам не видать ни $(item)домницы$(), ни $(thing)продвинутых тепловых машин$(), ни помещения для $(thing)высокотемпературного пиролиза$()."
     },
     {
+	  "type": "text",
+	  "text": "$(p)$(warning_ru)Кстати о нём. Ни ступеньки, ни полублоки, ни ограды не подойдут для стен. На пиролизе не экономят! А потому стройте вашу жаропрочную коробку только из цельных кирпичей."
+
+	},
+    {	
       "type": "rrr_anvil_recipe_brick_sawmill_recipe_brick_sawmill_recipe",
       "anvil_header": true,
       "anvil_recipe": "pyrotech:refractory_brick_slab",

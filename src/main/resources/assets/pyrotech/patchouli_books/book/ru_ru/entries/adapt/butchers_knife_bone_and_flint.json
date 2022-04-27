@@ -1,5 +1,5 @@
 {
-  "name": "Butcher's Knife, Bone & Flint",
+  "name": "Дело мясника",
   "icon": "pyrotech:bone_butchers_knife",
   "category": "adapt_butchery",
   "pages": [
@@ -9,7 +9,7 @@
       "recipe2": "pyrotech:hunting/butchers_knife_flint"
     }, {
       "type": "text",
-      "text": "$(info) A $(item)Butcher's Knife$() can be used to process a $(item)Carcass$() for $(thing)Pelts$(), $(thing)Meats$(), and other items.$(p)$(info) Using a $(item)Butcher's Knife$() on a $(item)Butcher's Block$() has a chance to increase the yield when harvesting $(thing)Meats$().$(p)$(warning) Using a $(item)Butcher's Knife$() on a $(item)Butcher's Block$() has a chance to decrease the yield when harvesting $(thing)Pelts$()."
+      "text": "$(info_ru)$(item)Тесак$() отлично справляется с разделкой $(item)тушек$() на $(thing)мясо$().$(p)$(info_ru)Рубка на $(item)мясницком столе$() обеспечит вас ещё большим продовольствием. $(p)$(warning_ru) Тесак - орудие грубой силы. Для добычи $(thing)шкурок$() он плохо годится."
     },
     {
       "type": "relations",

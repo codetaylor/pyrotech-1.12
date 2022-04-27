@@ -1,5 +1,5 @@
 {
-  "name": "Hunter's Knife, Bone & Flint",
+  "name": "Поохотиться охота!",
   "icon": "pyrotech:bone_hunters_knife",
   "category": "adapt_butchery",
   "pages": [
@@ -9,7 +9,7 @@
       "recipe2": "pyrotech:hunting/hunters_knife_flint"
     }, {
       "type": "text",
-      "text": "$(info) A $(item)Hunter's Knife$() can be used to process a $(item)Carcass$() for $(thing)Pelts$(), $(thing)Meats$(), and other items.$(p)$(info) Using a $(item)Hunter's Knife$() on a $(item)Butcher's Block$() has a chance to increase the yield when harvesting $(thing)Pelts$().$(p)$(warning) Using a $(item)Hunter's Knife$() on a $(item)Butcher's Block$() has a chance to decrease the yield when harvesting $(thing)Meats$()."
+      "text": "$(info_ru)$(item)Охотничий нож$() как нельзя лучше подходит для снятия $(thing)шкурок$() с ваших $(item)трофеев$().$(p)$(info_ru) $(item)Мясницкий стол$() лишним не будет - с удобством повышается и продуктивность.$(p)$(warning_ru) $(item)Охотничий нож$() куда хуже справляется с разделкой $(thing)мяса$(). Если вы охотитесь ради пропитания, лучше использовать $(item)тесак$()."
     },
     {
       "type": "relations",
