@@ -32,7 +32,7 @@
     {
       "type": "tooltip",
       "tooltip": [
-        "Tanning Rack Recipe"
+        "Дубление"
       ],
       "x": 56, "y": 17,
       "u": 65, "v": 27,
@@ -40,7 +40,7 @@
     },
     {
       "type": "text",
-      "text": "$(t:#ticks# Ticks)#ticks_hms#$()",
+      "text": "$(t:#ticks# Тиков)#ticks_hms#$()",
       "x": 51, "y": 30
     }
   ]
