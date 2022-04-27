@@ -1,6 +1,6 @@
 {
-  "name": "Leatherworking",
-  "description": "$(item)Leather$() is a strong, flexible, and durable material obtained by $(thing)tanning$() hides to prevent decay.",
+  "name": "Кожевничество",
+  "description": "$(item)Кожа$() легко поддаётся обработке и имеет приличный запас прочности, но в сыром виде, увы, она мало на что сгодится. $(thing)Дубление$() придаст ей красивый тёмный оттенок и поможет обратить процессы гниения вспять.",
   "icon": "pyrotech:pelt_cow",
   "parent": "innovate",
   "sortnum": 3

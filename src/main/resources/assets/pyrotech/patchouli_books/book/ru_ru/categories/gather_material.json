@@ -1,6 +1,6 @@
 {
-  "name": "Materials",
-  "description": "",
+  "name": "Ваши первые материалы",
+  "description": "В суровом мире полезно всё, что только под руку попадётся!",
   "icon": "pyrotech:material:11",
   "parent": "gather",
   "sortnum": 1
