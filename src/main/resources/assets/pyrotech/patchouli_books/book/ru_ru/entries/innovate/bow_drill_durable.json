@@ -1,5 +1,5 @@
 {
-  "name": "Bow Drill, Durable",
+  "name": "Укреплённая лучковая дрель",
   "icon": "pyrotech:bow_drill_durable",
   "category": "innovate_durable_tools",
   "pages": [
@@ -11,7 +11,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:bow_drill_durable_repair",
-      "text": "$(info) When a $(item)Durable Bow Drill$() wears out, it can be repaired using a $(item)Durable Spindle$()."
+      "text": "$(info)$(item)Эта лучковая дрель$() покуда надёжнее обычной. Если будете достаточно прозорливы, инструмент можно подлатать прежде, чем он рассыпется в труху. Для ремонта воспользуйтесь специальным $(item)веретеном$()."
     },
     {
       "type": "relations",

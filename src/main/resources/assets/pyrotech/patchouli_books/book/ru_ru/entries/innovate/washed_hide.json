@@ -1,12 +1,12 @@
 {
-  "name": "Hide, Washed",
+  "name": "Мытая кожа",
   "icon": "pyrotech:hide_washed",
   "category": "innovate_leather",
   "pages": [
     {
       "type": "text",
-      "title": "Washed Hide",
-      "text": "$(item)Washed Hides$() can be produced using a variety of methods.$(p)$(info) $(item)Scraped Hides$() can be washed by placing them in water for a while.$(p)$(info) Alternatively, $(item)Scraped Hides$() can be washed instantly with a bucket of water."
+      "title": "Способы промывки",
+      "text": "$(item)Промывка кожи$() осуществляется несколькими способами.$(p)$(info_ru) Можно ненадолго бросить $(item)гольё$() в окрестный прудик или лужицу. Всё же, куда лучше использовать воду в ведёрке - вы сэкономите уйму времени."
     },
     {
       "type": "crafting",
@@ -17,7 +17,7 @@
       "type": "rrt_soaking_pot_recipe",
       "recipe": "pyrotech:hide_washed",
       "recipe2": "pyrotech:hide_small_washed",
-      "text": "$(info) $(item)Scraped Hides$() can also be cleaned by $(thing)soaking$() them in water over a $(item)Campfire$()."
+      "text": "$(info_ru)$(item)Гольё$() можно прокипятить в $(thing)горшке для замачивания$(). Только не забудьте разжечь $(item)костёр$(). Несомненно, вы этому давно научились"
     },
     {
       "type": "relations",

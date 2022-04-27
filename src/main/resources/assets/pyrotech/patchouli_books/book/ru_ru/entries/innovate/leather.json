@@ -1,5 +1,5 @@
 {
-  "name": "Leather",
+  "name": "Кожа",
   "icon": "minecraft:leather",
   "category": "innovate_leather",
   "pages": [
@@ -9,7 +9,7 @@
       "recipe": "pyrotech:leather",
       "header2": true,
       "recipe2": "pyrotech:leather_small",
-      "text": "$(item)Leather$() is produced by processing $(item)Tanned Hides$() on a $(item)Tanning Rack$()."
+      "text": "$(item)Кожу$() можно получить путём просушки $(item)выделанных заготовок$() на $(item)дубильном станке$()."
     },
     {
       "type": "relations",

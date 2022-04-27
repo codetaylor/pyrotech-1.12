@@ -1,12 +1,12 @@
 {
-  "name": "Tools, Durable",
+  "name": "Укреплённые инструменты",
   "icon": "pyrotech:bone_pickaxe_durable",
   "category": "innovate_durable_tools",
   "pages": [
     {
       "type": "text",
       "title": true,
-      "text": "$(info) $(thing)Durable Tools$() have a significantly larger up-front cost, but last longer than their non-durable counterparts and can be repaired using $(thing)Tool Repair Kits$()."
+      "text": "$(info_ru)Изготовление $(thing)укреплённых инструментов$() весьма накладно. Но поверьте наслово - результат оправдает усилия. Ваш новый арсенал будет несоизмеримо прочнее дешёвых аналогов. Более того: после обновки, вы сможете подлатать изношенный инструмент. Для этого достаточно обладать соответствующим $(thing)ремонтным набором$()."
     },
     {
       "type": "crafting",

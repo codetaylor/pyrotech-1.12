@@ -1,13 +1,13 @@
 {
-  "name": "Bucket, Refractory",
+  "name": "Горячее ведёрко",
   "icon": "pyrotech:bucket_refractory",
   "category": "innovate_stone_fluids",
   "pages": [
     {
       "type": "crafting",
-      "title": "Unfired",
+      "title": "Необожжённое",
       "recipe": "pyrotech:bucket/bucket_refractory_unfired",
-      "text": "$(info) The $(item)Refractory Bucket$() will not break with hot fluids.$(p)$(warning) However, it will heat to dangerous levels when filled with a hot fluid."
+      "text": "$(info_ru)$(item)Огнеупорное ведро$() прекрасно хранит горячие жидкости, чего нельзя сказать о руках его владельца.$(p)$(warning_ru)Берегите ладошки. Если в ведре окажется что-то горячее, даже родной пруд вас не спасёт."
     },
     {
       "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",

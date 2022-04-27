@@ -1,5 +1,5 @@
 {
-  "name": "Masonry Brick",
+  "name": "Каменный кирпич",
   "icon": "pyrotech:material:16",
   "category": "innovate_stone",
   "pages": [
@@ -9,7 +9,7 @@
       "recipe": "pyrotech:masonry_brick_slab",
       "header2": true,
       "recipe2": "pyrotech:brick_stone",
-      "text": "The $(item)Masonry Brick$() is the true cornerstone of a stonemason's craft."
+      "text": "Каждый каменщик знает: $(item)каменный кирпич$() – краеугольный камень ремесла каменотёса."
     },
     {
       "type": "relations",

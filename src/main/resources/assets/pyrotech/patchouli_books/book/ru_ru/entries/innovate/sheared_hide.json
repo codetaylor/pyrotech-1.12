@@ -1,12 +1,12 @@
 {
-  "name": "Hide, Sheared",
+  "name": "До талого",
   "icon": "pyrotech:hide_sheep_sheared",
   "category": "innovate_leather",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:hunting/shearing_pelt_white",
-      "text": "$(thing)Sheep$() and $(thing)Llama$() pelts can be sheared."
+      "text": "Со шкурок $(thing)овец$() и $(thing)лам$() можно снять шерсть."
     },
     {
       "type": "relations",
