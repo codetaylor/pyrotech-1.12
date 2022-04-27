@@ -1,12 +1,12 @@
 {
-  "name": "Arrow, Iron",
+  "name": "Железная стрела",
   "icon": "minecraft:arrow",
   "category": "bloom_tools",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:arrow",
-      "text": "$(info) $(item)Iron Arrows$() are sturdier than their bone and flint counterparts and will not break upon impact."
+      "text": "$(info_ru) $(item)Эти стрелы$() снисходительны к вашим промахам. Они не ломаются при ударе о поверхность. Да и обладают куда большей прочностью, в сравнении с аналогами."
     },
     {
       "type": "relations",

@@ -1,13 +1,17 @@
 {
-  "name": "Trip Hammer",
+  "name": "Отбойный молот",
   "icon": "pyrotech:trip_hammer",
   "category": "bloom_cog_machines",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/machine/trip_hammer",
-      "text": "$(info) To use, place a $(thing)hammer$() or $(thing)pickaxe$() into the machine's slot and place an anvil in front of machine's stone side.$(p)$(info) The $(item)Trip Hammer$() will move its output into an inventory placed adjacent to the hole."
+      "text": "$(info_ru)Перед вами - лучший друг кузнеца и страшный враг ваших соседей. Чтобы привести агрегат в боевую готовность, необходима установка $(thing)молота$() или $(thing)кирки$() в уготовленное для них место. "
     },
+    {
+	  "type":"text",
+	  "text":"$(p)Не забудьте про шестерёнку! Далее, расположите любой из трёх видов наковален спереди, под рабочим инструментом.$(p)$(info_ru)Если разместить сундук вплотную к отверстию сбоку,$(item)механизм$() начнёт складировать все результаты обработки туда."
+	},
     {
       "type": "relations",
       "entries": [
