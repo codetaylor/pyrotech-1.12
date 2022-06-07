@@ -1,12 +1,12 @@
 {
-  "name": "Trip Hammer",
+  "name": "夹板锤",
   "icon": "pyrotech:trip_hammer",
   "category": "bloom_cog_machines",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/machine/trip_hammer",
-      "text": "$(info) To use, place a $(thing)hammer$() or $(thing)pickaxe$() into the machine's slot and place an anvil in front of machine's stone side.$(p)$(info) The $(item)Trip Hammer$() will move its output into an inventory placed adjacent to the hole."
+      "text": "$(info) 使用方法：把$(thing)锤$()或者$(thing)镐$()放进机器的空槽中，然后在机器石边的前面放一个砧板$(p)$(info) $(item)夹板锤$()会把物品输出到靠近坑的容器中。"
     },
     {
       "type": "relations",
