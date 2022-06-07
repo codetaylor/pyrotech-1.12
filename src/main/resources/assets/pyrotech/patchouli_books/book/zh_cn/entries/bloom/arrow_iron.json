@@ -1,12 +1,12 @@
 {
-  "name": "Arrow, Iron",
+  "name": "铁砧板",
   "icon": "minecraft:arrow",
   "category": "bloom_tools",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:arrow",
-      "text": "$(info) $(item)Iron Arrows$() are sturdier than their bone and flint counterparts and will not break upon impact."
+      "text": "$(info) $(item)铁砧板$()比骨和燧石都坚硬，所以在被敲打时不会损坏。"
     },
     {
       "type": "relations",
