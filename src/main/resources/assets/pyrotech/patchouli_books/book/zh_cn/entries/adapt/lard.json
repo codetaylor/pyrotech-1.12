@@ -1,12 +1,12 @@
 {
-  "name": "Lard",
+  "name": "猪油",
   "icon": "pyrotech:material:49",
   "category": "adapt_butchery",
   "pages": [
     {
       "type": "spotlight",
       "item": "pyrotech:material:49",
-      "text": "$(info) $(item)Lard$() is obtained by processing $(item)Carcasses$().$(p)$(info) $(item)Lard$() can be rendered into $(item)Lamp Oil$() using a $(thing)Crucible$()."
+      "text": "$(info) $(item)猪油$()可以通过加工$(item)尸体$()获得。$(p)$(info) 使用$(thing)坩埚$()可以把$(item)猪油$()制成$(item)灯油$()。"
     },
     {
       "type": "relations",

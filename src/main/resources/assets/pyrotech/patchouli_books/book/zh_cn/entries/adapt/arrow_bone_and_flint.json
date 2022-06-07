@@ -1,5 +1,5 @@
 {
-  "name": "Arrow, Bone & Flint",
+  "name": "骨箭&燧石箭",
   "icon": "pyrotech:bone_arrow",
   "category": "adapt_tools",
   "pages": [
@@ -11,7 +11,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:hunting/fletching",
-      "text": "$(info) $(item)Bone and Flint Arrows$() have a chance to break upon impact depending on the strength of the shot."
+      "text": "$(info) $(item)骨箭和燧石箭$()在命中目标时可能会损坏，这取决于你拉弓力度的大小。"
     },
     {
       "type": "relations",

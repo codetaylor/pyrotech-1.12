@@ -1,5 +1,5 @@
 {
-  "name": "Butcher's Knife, Bone & Flint",
+  "name": "骨屠刀&燧石屠刀",
   "icon": "pyrotech:bone_butchers_knife",
   "category": "adapt_butchery",
   "pages": [
@@ -9,7 +9,7 @@
       "recipe2": "pyrotech:hunting/butchers_knife_flint"
     }, {
       "type": "text",
-      "text": "$(info) A $(item)Butcher's Knife$() can be used to process a $(item)Carcass$() for $(thing)Pelts$(), $(thing)Meats$(), and other items.$(p)$(info) Using a $(item)Butcher's Knife$() on a $(item)Butcher's Block$() has a chance to increase the yield when harvesting $(thing)Meats$().$(p)$(warning) Using a $(item)Butcher's Knife$() on a $(item)Butcher's Block$() has a chance to decrease the yield when harvesting $(thing)Pelts$()."
+      "text": "$(info) 用一把$(item)屠刀$()处理$(item)生物的尸体$()可以获得$(thing)皮$()、$(thing)肉$()等其他的东西。$(p)$(info) $(item)屠刀$()配合$(item)屠夫桌$()使用会提高$(thing)肉$()的产量。$(p)$(warning_cn) 但是$(item)屠刀$()配合$(item)屠夫桌$()使用会降低$(thing)皮$()的产量！"
     },
     {
       "type": "relations",

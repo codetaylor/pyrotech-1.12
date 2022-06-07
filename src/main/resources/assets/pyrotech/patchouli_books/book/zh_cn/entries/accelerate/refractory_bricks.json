@@ -1,12 +1,12 @@
 {
-  "name": "Refractory Bricks",
+  "name": "耐火砖",
   "icon": "pyrotech:refractory_brick_block",
   "category": "accelerate",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:refractory_brick_block",
-      "text": "$(item)Refractory Bricks$() are used in the construction of the $(item)Bloomery$(), $(thing)Refractory Machines$(), and enclosures for $(thing)Refractory Burning$().$(p)$(warning) Stairs, slabs, and walls are not valid blocks for a refractory enclosure."
+      "text": "$(item)耐火砖$()可用于建造$(item)锻造炉$()和$(thing)耐火机器$()以及作为$(thing)耐火窑$()所需的密封方块。$(p)$(warning_cn) 楼梯、台阶和墙不能作为耐火窑的有效方块！"
     },
     {
       "type": "rrr_anvil_recipe_brick_sawmill_recipe_brick_sawmill_recipe",
