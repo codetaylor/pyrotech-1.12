@@ -1,5 +1,5 @@
 {
-  "name": "Mud Clump",
+  "name": "泥块",
   "icon": "pyrotech:rock:11",
   "category": "gather_material",
   "pages": [
@@ -7,7 +7,7 @@
       "type": "spotlight",
       "link_recipe": true,
       "item": "pyrotech:rock:11",
-      "text": "$(item)Mud Clumps$() can be harvested from mud found in the world or crafted."
+      "text": "$(item)泥块$()可以通过挖掘沼泽和河流中或合成的泥获得。"
     },
     {
       "type": "crafting",
