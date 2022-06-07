@@ -1,26 +1,26 @@
 {
-  "name": "Rock Bag",
+  "name": "采石包",
   "icon": "pyrotech:bag_simple",
   "category": "gather",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/bag_simple",
-      "text": "$(info) A $(item)Rock Bag$() can hold a large quantity of $(thing)Rocks$()."
+      "text": "$(info) 一个$(item)采石包$()可以容纳许多$(thing)石块$()。"
     },
     {
       "type": "text",
       "title": "In the World",
-      "text": "$(info) When placed in the world, bags can be opened and closed with $(use).$(p)$(info) When the bag is open, items can be manually added and removed from the top.$(p)$(info) Items can be extracted from the bottom."
+      "text": "$(info) 当采石包被放置在地上时，可以通过$(use)打开或关闭。$(p)$(info) 打开后，可以从顶部手动添加或移除物品。$(p)$(info) 可以从底部取出物品。"
     },
     {
       "type": "text",
       "title": "In Your Inventory",
-      "text": "$(info) To open or close a bag while holding it, ensure you are not targeting a block and $(sneak) + $(use).$(p)$(info) If you have an open bag in your hand or hotbar, it will auto-collect items you pick up.$(p)$(info) Auto-collected items will fill existing stacks in your inventory before filling a bag."
+      "text": "$(info) 如果要在拿着它的同时打开或关闭采石包，确保你的准星没有瞄准任何方块。然后$(sneak) + $(use)即可。$(p)$(info) 如果你的手上或者快捷栏里有个打开的采石包，它将会自动收集你能捡到的物品。$(p)$(info) 当你背包中现有的物品达到最大堆叠之后，才会被采石包自动收集。"
     },
     {
       "type": "text",
-      "text": "$(info) Items in a bag can be transferred to an inventory, like a chest, with $(sneak) + $(use).$(p)$(info) If you $(sneak) + $(use) an open bag on a non-inventory block, the contents of the bag will spill into the world."
+      "text": "$(info) 采石包中的物品可以转移到其他容器中，比如箱子。使用$(sneak) + $(use)即可。$(p)$(info) 如果你对一个打开的采石包使用$(sneak) + $(use)，采石包里的东西会被抛出并散落在地上。前提是这个采石包不能放在容器上。"
     },
     {
       "type": "relations",
