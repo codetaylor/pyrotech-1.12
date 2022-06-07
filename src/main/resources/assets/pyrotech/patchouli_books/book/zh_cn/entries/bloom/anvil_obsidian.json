@@ -1,12 +1,12 @@
 {
-  "name": "Anvil, Obsidian",
+  "name": "黑曜石砧板",
   "icon": "pyrotech:anvil_obsidian",
   "category": "bloom_bloom",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/anvil_obsidian",
-      "text": "$(info) When used for hammering a $(item)Bloom$(), an $(item)Obsidian Anvil$() will last considerably longer than its counterparts."
+      "text": "$(info) 当你用锤子敲$(item)铁坯$()时，$(item)黑曜石砧板$()相比其他砧板持续时间会更长。"
     },
     {
       "type": "relations",
