@@ -11,7 +11,7 @@
  ​# Module: Hunting 
  ​#------------------------------------------------------------------------------ 
   
- ​​item.pyrotech.hide.pig.name=猪皮革 
+ ​item.pyrotech.hide.pig.name=猪皮革 
  ​item.pyrotech.hide.sheep.sheared.name=羊皮革 
  ​item.pyrotech.hide.llama.name=羊驼皮革 
  ​item.pyrotech.hide.scraped.name=刮下的皮革 
@@ -43,7 +43,7 @@
  ​item.pyrotech.pelt.sheep.cyan.name=青色羊皮 
  ​item.pyrotech.pelt.sheep.brown.name=棕色羊皮 
  ​item.pyrotech.pelt.sheep.blue.name=蓝色羊皮 
- ​item.pyrotech.pelt.sheep.black.name=黑色羊​​皮 
+ ​item.pyrotech.pelt.sheep.black.name=黑色羊皮 
  ​item.pyrotech.pelt.llama.white.name=白色羊驼皮 
  ​item.pyrotech.pelt.llama.creamy.name=米色羊驼皮 
  ​item.pyrotech.pelt.llama.gray.name=灰色羊驼皮 
