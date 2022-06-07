@@ -1,5 +1,5 @@
 {
-  "name": "Mud",
+  "name": "泥",
   "icon": "pyrotech:mud",
   "category": "gather",
   "pages": [
@@ -7,13 +7,13 @@
       "type": "spotlight",
       "link_recipe": true,
       "item": "pyrotech:mud",
-      "text": "$(item)Mud$() is naturally occurring in swamps and rivers.$(p)$(info) Harvesting $(item)Mud$() with a low tier $(thing)shovel$() will increase the chance of obtaining $(item)Mud Clumps$() instead of $(item)Mud$()."
+      "text": "$(item)泥$()存在于沼泽和河流中。$(p)$(info) 用低级的$(thing)锹$()挖掘泥会增加掉落$(item)泥块$()而不是$(item)泥$()的概率。"
     },
     {
       "type": "rrt_compacting_bin_recipe_soaking_pot_recipe",
       "compacting_bin_recipe": "pyrotech:mud",
       "soaking_pot_recipe": "pyrotech:mud",
-      "text": "$(item)Mud$() can also be created by $(thing)compacting$() $(item)Mud Clumps$() or $(thing)soaking$() $(item)Dirt$()."
+      "text": "$(item)泥$()也可以通过$(thing)挤压$()$(item)泥块$()或者$(thing)浸泡$()$(item)泥土$()获得。"
     },
     {
       "type": "relations",
