@@ -1,12 +1,12 @@
 {
-  "name": "Carcass",
+  "name": "尸体",
   "icon": "pyrotech:carcass",
   "category": "adapt_butchery",
   "pages": [
     {
       "type": "spotlight",
       "item": "pyrotech:carcass",
-      "text": "Animals drop $(item)Carcasses$() when they expire.$(p)$(info) $(item)Carcasses$() can be processed into $(thing)Pelts$() and $(thing)Meats$() with a $(item)Hunter's Knife$() or $(item)Butcher's Knife$().$(p)$(info) Processing a $(item)Carcass$() on a $(item)Butcher's Block$() is likely to produce a higher yield."
+      "text": "动物在死亡时会掉落$(item)尸体$()。$(p)$(info) $(item)尸体$()可以被$(item)猎刀$()或$(item)屠刀$()加工成$(thing)皮$()和$(thing)肉$()。$(p)$(info)在$(item)屠夫桌$()上加工$(item)尸体$()有可能会提高产量。"
     },
     {
       "type": "relations",
