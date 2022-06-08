@@ -6,7 +6,7 @@
     {
       "type": "text",
       "title": true,
-      "text": "$(info) $(thing)Durable Tools$() have a significantly larger up-front cost, but last longer than their non-durable counterparts and can be repaired using $(thing)Tool Repair Kits$()."
+      "text": "$(info_cn) $(thing)耐用工具$()在前期虽然成本较高，但是它应有更高的耐久。并且它可以使用$(thing)工具维修套件$()修复。"
     },
     {
       "type": "crafting",
