@@ -9,7 +9,7 @@
       "recipe2": "pyrotech:hunting/hunters_knife_flint"
     }, {
       "type": "text",
-      "text": "$(info) 用一把$(item)猎刀$()加工$(item)尸体$()可以获得$(thing)皮$(), $(thing)肉$()和其他东西。$(p)$(info) $(item)猎刀$()配合$(item)屠夫桌$()使用可以提高$(thing)肉$()的产量。$(p)$(warning_cn) 但是$(item)猎刀$()配合$(item)屠夫桌$()使用会降低$(thing)皮$()的产量！"
+      "text": "$(info_cn) 用一把$(item)猎刀$()加工$(item)尸体$()可以获得$(thing)皮$(), $(thing)肉$()和其他东西。$(p)$(info_cn) $(item)猎刀$()配合$(item)屠夫桌$()使用可以提高$(thing)肉$()的产量。$(p)$(warning_cn) 但是$(item)猎刀$()配合$(item)屠夫桌$()使用会降低$(thing)皮$()的产量！"
     },
     {
       "type": "relations",
