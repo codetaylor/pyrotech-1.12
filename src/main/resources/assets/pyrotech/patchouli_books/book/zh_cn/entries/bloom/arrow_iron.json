@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:arrow",
-      "text": "$(info) $(item)铁砧板$()比骨和燧石都坚硬，所以在被敲打时不会损坏。"
+      "text": "$(info_cn) $(item)铁砧板$()比骨和燧石都坚硬，所以在被敲打时不会损坏。"
     },
     {
       "type": "relations",
