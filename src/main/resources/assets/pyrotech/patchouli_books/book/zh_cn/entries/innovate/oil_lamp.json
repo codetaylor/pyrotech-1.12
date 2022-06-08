@@ -1,18 +1,18 @@
 {
-  "name": "Oil Lamp",
+  "name": "油灯",
   "icon": "pyrotech:lamp_oil",
   "category": "innovate_stone",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:ignition/lamp_oil",
-      "text": "$(info) An $(item)Oil Lamp$() will not go out in the rain.$(p)$(info) An $(item)Oil Lamp$() can be extinguished by $(use) with an empty hand."
+      "text": "$(info) $(item)油灯$()在雨中不会熄灭。$(p)$(info) 你可以用一只空手$(use)$(item)油灯$()以熄灭它。"
     },
     {
       "type": "rt_stone_crucible_recipe",
       "header": true,
       "recipe": "pyrotech:lamp_oil_from_lard",
-      "text": "$(info) $(item)Oil Lamps$() can be fueled by $(item)Lamp Oil$() or $(item)Pyroberry Wine$()."
+      "text": "$(info) $(item)油灯$()需要$(item)灯油$()或$(item)火焰莓果酒$()作为燃料。"
     },
     {
       "type": "relations",
