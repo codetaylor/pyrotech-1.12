@@ -76,8 +76,8 @@
   
  ​entity.pyrotech.mud.name=飞溅的泥 
   
- ​fluid.tannin=单宁 
- ​tile.fluid.tannin.name=单宁 
+ ​fluid.tannin=鞣质 
+ ​tile.fluid.tannin.name=鞣质 
   
  ​item.pyrotech.leather.repair.kit.name=皮革维修套件 
  ​item.pyrotech.leather.durable.repair.kit.name=耐用皮革维修套件 
