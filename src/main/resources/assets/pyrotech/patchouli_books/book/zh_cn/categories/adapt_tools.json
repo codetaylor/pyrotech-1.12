@@ -1,6 +1,6 @@
 {
-  "name": "Tools",
-  "description": "Toolcraft is essential for survival.",
+  "name": "工具",
+  "description": "为了生存下去，制作工具是不可或缺的一步。",
   "icon": "pyrotech:bone_pickaxe",
   "sortnum": 1,
   "parent": "adapt"
