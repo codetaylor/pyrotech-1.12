@@ -12,7 +12,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:freckleberry_wine",
-      "text": "$(warning_cn) 过多饮用$(item)雀斑莓果酒$()对你的身体有害！"
+      "text": "$(warning_cn) 过多饮用$(item)雀斑莓果酒$()有害健康！"
     },
     {
       "type": "relations",
