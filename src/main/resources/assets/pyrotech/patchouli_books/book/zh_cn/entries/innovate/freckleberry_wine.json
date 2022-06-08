@@ -7,7 +7,7 @@
       "type": "rt_barrel_recipe",
       "header": true,
       "recipe": "pyrotech:freckleberry_wine",
-      "text": "$(item)雀斑莓$()和$(item)糖$()一起放入$(item)水中$()浸泡可以制出$(item)雀斑莓果酒$()。$(p)$(info) 饮用适量的$(item)雀斑莓果酒$()可以获得增益效果。"
+      "text": "把$(item)雀斑莓$()和$(item)糖$()一起放入$(item)水中$()浸泡可以制得$(item)雀斑莓果酒$()。$(p)$(info) 饮用适量的$(item)雀斑莓果酒$()对你的身体有益。"
     },
     {
       "type": "crafting",
