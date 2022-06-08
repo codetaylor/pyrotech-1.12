@@ -67,7 +67,7 @@
  ​item.pyrotech.flint.arrow.name=燧石箭 
  ​item.pyrotech.bone.arrow.name=骨箭 
   
- ​item.pyrotech.crude.spear.name=粗制长矛 
+ ​item.pyrotech.crude.spear.name=简陋的长矛 
  ​item.pyrotech.flint.spear.name=燧石长矛 
  ​item.pyrotech.bone.spear.name=骨长矛 
   
@@ -159,7 +159,7 @@
   
  ​tile.pyrotech.kiln_pit.name=坑窑 
  ​tile.pyrotech.campfire.name=篝火 
- ​tile.pyrotech.drying_rack.crude.name=粗制晾干架 
+ ​tile.pyrotech.drying_rack.crude.name=简陋的晾干架 
  ​tile.pyrotech.drying_rack.normal.name=晾干架 
  ​tile.pyrotech.chopping_block.name=砧板 
  ​tile.pyrotech.anvil_granite.name=花岗岩砧 
@@ -259,11 +259,11 @@
  ​# Module: Tool 
  ​#------------------------------------------------------------------------------ 
   
- ​item.pyrotech.crude.axe.name=粗制斧 
- ​item.pyrotech.crude.hoe.name=粗制锄 
- ​item.pyrotech.crude.pickaxe.name=粗制镐 
- ​item.pyrotech.crude.shovel.name=粗制锹 
- ​item.pyrotech.crude.fishing.rod.name=粗制钓鱼竿 
+ ​item.pyrotech.crude.axe.name=简陋的斧 
+ ​item.pyrotech.crude.hoe.name=简陋的锄 
+ ​item.pyrotech.crude.pickaxe.name=简陋的镐 
+ ​item.pyrotech.crude.shovel.name=简陋的锹 
+ ​item.pyrotech.crude.fishing.rod.name=简陋的钓鱼竿 
   
  ​item.pyrotech.bone.axe.name=骨斧 
  ​item.pyrotech.bone.hoe.name=骨锄 
@@ -317,7 +317,7 @@
  ​item.pyrotech.bone.tool.repair.kit.name=骨质工具维修套件 
  ​item.pyrotech.flint.tool.repair.kit.name=燧石工具维修套件 
   
- ​item.pyrotech.crude.shield.name=粗制盾牌 
+ ​item.pyrotech.crude.shield.name=简陋的盾牌 
  ​item.pyrotech.durable.shield.name=耐用盾牌 
   
  ​#------------------------------------------------------------------------------ 
@@ -413,7 +413,7 @@
  ​item.pyrotech.freckleberries.name=雀斑莓 
  ​item.pyrotech.freckleberry.wine.name=雀斑莓果酒 
   
- ​item.pyrotech.crude.hammer.name=粗制锤 
+ ​item.pyrotech.crude.hammer.name=简陋的锤 
  ​item.pyrotech.stone.hammer.name=石锤 
  ​item.pyrotech.flint.hammer.name=燧石锤 
  ​item.pyrotech.bone.hammer.name=骨锤 
@@ -626,7 +626,7 @@
  ​advancement.pyrotech.roasted.food=新鲜出炉 
  ​advancement.pyrotech.roasted.food.desc=食用六种烤制食物 
  ​advancement.pyrotech.tools.crude=原始之镐 
- ​advancement.pyrotech.tools.crude.desc=制作粗制镐 
+ ​advancement.pyrotech.tools.crude.desc=制作简陋的镐 
  ​advancement.pyrotech.chopping.block=砧板 
  ​advancement.pyrotech.chopping.block.desc=制作砧板 
  ​advancement.pyrotech.worktable=合成！ 
