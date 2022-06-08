@@ -1,5 +1,5 @@
 {
-  "name": "Leather",
+  "name": "皮革",
   "icon": "minecraft:leather",
   "category": "innovate_leather",
   "pages": [
@@ -9,7 +9,7 @@
       "recipe": "pyrotech:leather",
       "header2": true,
       "recipe2": "pyrotech:leather_small",
-      "text": "$(item)Leather$() is produced by processing $(item)Tanned Hides$() on a $(item)Tanning Rack$()."
+      "text": "$(item)皮革$()可以通过在$(item)晾晒架$()上晾晒$(item)鞣制过的皮革$()获得。"
     },
     {
       "type": "relations",
