@@ -9,7 +9,7 @@
       "recipe": "pyrotech:masonry_brick_slab",
       "header2": true,
       "recipe2": "pyrotech:brick_stone",
-      "text": "$(item)砌砖$()才是石匠工艺的真正基石！"
+      "text": "$(item)砌砖$()才是一位石匠手艺的真正基石。"
     },
     {
       "type": "relations",
