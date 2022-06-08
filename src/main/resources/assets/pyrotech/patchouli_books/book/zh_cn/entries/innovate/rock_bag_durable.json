@@ -1,12 +1,12 @@
 {
-  "name": "Rock Bag, Durable",
+  "name": "耐用采石包",
   "icon": "pyrotech:bag_durable",
   "category": "innovate_durable_tools",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:storage/bag_durable",
-      "text": "$(info) A $(item)Durable Rock Bag$() can hold a large quantity of $(thing)Cobbled Stone$()."
+      "text": "$(info) 一个$(item)耐用采石包$()可以容纳许多$(thing)圆石$()。"
     },
     {
       "type": "image",
