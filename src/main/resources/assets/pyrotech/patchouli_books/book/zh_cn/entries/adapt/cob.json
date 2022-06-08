@@ -8,7 +8,7 @@
       "pit_kiln_header": true,
       "pit_kiln_recipe": "pyrotech:cob",
       "stone_kiln_recipe": "pyrotech:pit_kiln/cob",
-      "text": "$(info_cn) 当天要下雨时$(item)土坯$()将会变成$(item)湿土坯$()。"
+      "text": "$(info_cn) 要下雨时$(item)土坯$()将会变成$(item)湿土坯$()。"
     },
     {
       "type": "relations",
