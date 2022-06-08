@@ -1,12 +1,12 @@
 {
-  "name": "Pelt",
+  "name": "皮",
   "icon": "pyrotech:pelt_cow",
   "category": "innovate_leather",
   "pages": [
     {
       "type": "spotlight",
       "item": "pyrotech:pelt_cow",
-      "text": "$(thing)Pelts$() are acquired from processing $(item)Carcasses$().$(p)$(info) Processing a $(item)Carcass$() on a $(item)Butcher's Block$() with a $(item)Hunter's Knife$() is likely to produce a higher yield of $(thing)pelts$()."
+      "text": "$(thing)皮$()可以通过加工$(item)尸体$()获得。$(p)$(info) 在$(item)屠夫桌$()上用$(item)猎刀$()加工$(item)尸体$()可以获得更多的$(thing)皮$()。"
     },
     {
       "type": "relations",
