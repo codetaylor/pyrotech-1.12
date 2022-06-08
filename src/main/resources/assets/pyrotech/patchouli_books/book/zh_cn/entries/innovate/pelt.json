@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:pelt_cow",
-      "text": "$(thing)皮$()可以通过加工$(item)尸体$()获得。$(p)$(info) 在$(item)屠夫桌$()上用$(item)猎刀$()加工$(item)尸体$()可以获得更多的$(thing)皮$()。"
+      "text": "$(thing)皮$()可以通过加工$(item)尸体$()获得。$(p)$(info_cn) 在$(item)屠夫桌$()上用$(item)猎刀$()加工$(item)尸体$()可以获得更多的$(thing)皮$()。"
     },
     {
       "type": "relations",
