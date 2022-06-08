@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:carcass",
-      "text": "动物在死亡时会掉落$(item)尸体$()。$(p)$(info) $(item)尸体$()可以被$(item)猎刀$()或$(item)屠刀$()加工成$(thing)皮$()和$(thing)肉$()。$(p)$(info) 在$(item)屠夫桌$()上加工$(item)尸体$()有可能会提高产量。"
+      "text": "动物在死亡时会掉落$(item)尸体$()。$(p)$(info_cn) $(item)尸体$()可以被$(item)猎刀$()或$(item)屠刀$()加工成$(thing)皮$()和$(thing)肉$()。$(p)$(info_cn) 在$(item)屠夫桌$()上加工$(item)尸体$()有可能会提高产量。"
     },
     {
       "type": "relations",
