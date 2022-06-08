@@ -1,12 +1,12 @@
 {
-  "name": "Spear, Crude",
+  "name": "粗制长矛",
   "icon": "pyrotech:crude_spear",
   "category": "survive_tools",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:crude_spear",
-      "text": "$(info) $(thing)Spears$() can be thrown, but will become lodged in the target."
+      "text": "$(info_cn) $(thing)长矛$()可以被抛出去，但是在命中目标后不能被捡回。"
     },
     {
       "type": "relations",

@@ -1,11 +1,11 @@
 {
-  "name": "粗制工具",
+  "name": "简陋的工具",
   "icon": "pyrotech:crude_pickaxe",
   "category": "survive_tools",
   "pages": [
     {
       "type": "text",
-      "text": "$(item)粗制工具$()用$(item)木棍$()和$(item)石块$()制成。$(p)$(info_cn) 低端工具，比如$(item)粗制工具$()，与更好的工具相比，或许会收获较少的资源。"
+      "text": "$(item)简陋的工具$()用$(item)木棍$()和$(item)石块$()制成。$(p)$(info_cn) 低端工具，比如$(item)简陋的工具$()，与更好的工具相比，或许会收获较少的资源。"
     },
     {
       "type": "crafting",

@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:cob_2x2a",
-      "text": "$(info) $(item)湿土坯$()会滑落，除非有支撑或者变干。$(p)$(info) $(item)湿土坯$()会随着时间的推移逐渐变干形成硬的$(item)土坯$()并被放置在世界上。"
+      "text": "$(info_cn) $(item)湿土坯$()会滑落，除非有支撑或者变干。$(p)$(info_cn) $(item)湿土坯$()会随着时间的推移逐渐变干形成硬的$(item)土坯$()并被放置在世界上。"
     },
     {
       "type": "crafting",

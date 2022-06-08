@@ -1,6 +1,6 @@
 {
-  "name": "Butchery",
-  "description": "Butchery is essential in harvesting $(thing)Meats$(), $(thing)Pelts$(), and $(item)Lard$().",
+  "name": "屠宰",
+  "description": "想要获得$(thing)肉$()、$(thing)皮$()和$(item)猪油$()，屠宰是一个必不可少的环节。",
   "icon": "pyrotech:carcass",
   "sortnum": 2,
   "parent": "adapt"

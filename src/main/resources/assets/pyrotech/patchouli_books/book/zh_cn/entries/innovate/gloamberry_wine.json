@@ -1,5 +1,5 @@
 {
-  "name": "Wine, Gloamberry",
+  "name": "罗甘莓果酒",
   "icon": "pyrotech:gloamberry_wine",
   "category": "innovate_stone_fermenting",
   "pages": [
@@ -7,12 +7,12 @@
       "type": "rt_barrel_recipe",
       "header": true,
       "recipe": "pyrotech:gloamberry_wine",
-      "text": "Soaking $(item)Gloamberries$() with $(item)Sugar$() in $(item)Water$() will yield $(item)Gloamberry Wine$().$(p)$(info) Drinking $(item)Gloamberry Wine$() has beneficial effects."
+      "text": "把$(item)罗甘莓$()和$(item)糖$()一起放入$(item)水$()中浸泡可以制得$(item)罗甘莓果酒$()。$(p)$(info_cn) 饮用适量的$(item)罗苷莓果酒$()对你的身体有益。"
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:gloamberry_wine",
-      "text": "$(warning) Drinking too much $(item)Gloamberry Wine$() can be hazardous to your health."
+      "text": "$(warning_cn) 过多饮用$(item)罗苷莓果酒$()有害健康！"
     },
     {
       "type": "relations",

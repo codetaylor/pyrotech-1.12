@@ -11,7 +11,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:hunting/fletching",
-      "text": "$(info) $(item)骨箭和燧石箭$()在命中目标时可能会损坏，这取决于你拉弓力度的大小。"
+      "text": "$(info_cn) $(item)骨箭和燧石箭$()在命中目标时可能会损坏，这取决于你拉弓力度的大小。"
     },
     {
       "type": "relations",

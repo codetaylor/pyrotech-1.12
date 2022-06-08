@@ -1,17 +1,17 @@
 {
-  "name": "Marshmallow",
+  "name": "棉花糖",
   "icon": "pyrotech:marshmallow",
   "category": "survive",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/marshmallow",
-      "text": "To place a $(item)Marshmallow$() on a stick, hold a $(item)Marshmallow$() in your off-hand, a $(item)Marshmallow Stick$() in your main hand, and $(use) while sneaking.$(p)$(info) A $(item)Roasted Marshmallow$() can be eaten from the stick."
+      "text": "想要把$(item)棉花糖$()放在棉花糖棒上，可以先用副手拿着$(item)棉花糖$()，再用主手拿着$(item)棉花糖棒$()，最后在潜行状态下$(use)即可。$(p)$(info_cn) $(item)烤棉花糖$()可以被吃掉，留下一根棉花糖棒。"
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/marshmallow_stick",
-      "text": "To roast a $(item)Marshmallow$() on a stick, stand near a $(item)Campfire$() and hold $(use) until it turns a nice golden brown.$(p)$(info) A $(item)Roasted Marshmallow$() can be removed by $(use) while sneaking with an empty off-hand."
+      "text": "想要烤一个在棉花糖棒上的$(item)棉花糖$()，可以先站在$(item)篝火$()旁边，然后一直按住$(use)直到它变成诱人的金黄色。$(p)$(info_cn) 想要从棉花糖棒上取下$(item)烤棉花糖$()，在潜行状态下用一只空的副手$(use)即可。"
     }
   ]
 }

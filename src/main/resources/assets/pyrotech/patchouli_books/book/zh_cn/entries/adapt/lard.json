@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "pyrotech:material:49",
-      "text": "$(info) $(item)猪油$()可以通过加工$(item)尸体$()获得。$(p)$(info) 使用$(thing)坩埚$()可以把$(item)猪油$()制成$(item)灯油$()。"
+      "text": "$(info_cn) $(item)猪油$()可以通过加工$(item)尸体$()获得。$(p)$(info_cn) 使用$(thing)坩埚$()可以把$(item)猪油$()制成$(item)灯油$()。"
     },
     {
       "type": "relations",

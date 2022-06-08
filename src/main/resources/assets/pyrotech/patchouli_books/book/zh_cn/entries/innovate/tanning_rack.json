@@ -1,12 +1,12 @@
 {
-  "name": "Tanning Rack",
+  "name": "晾晒架",
   "icon": "pyrotech:tanning_rack",
   "category": "innovate_leather",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/tanning_rack",
-      "text": "$(info) $(item)Tanning Racks$() require a clear view of the sky to function correctly.$(p)$(info) $(item)Tanning Racks$() will only function during the daytime."
+      "text": "$(info_cn) $(item)晾晒架$()需要在天气晴朗时才能正常工作。$(p)$(info_cn) $(item)晾晒架$()只会在白天工作。"
     },
     {
       "type": "relations",

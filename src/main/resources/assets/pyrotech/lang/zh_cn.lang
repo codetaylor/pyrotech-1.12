@@ -13,12 +13,12 @@
  ​item.pyrotech.hide.pig.name=猪皮革 
  ​item.pyrotech.hide.sheep.sheared.name=羊皮革 
  ​item.pyrotech.hide.llama.name=羊驼皮革 
- ​item.pyrotech.hide.scraped.name=刮下的皮革 
- ​item.pyrotech.hide.small.scraped.name=刮下的小皮革 
+ ​item.pyrotech.hide.scraped.name=刮过的皮革 
+ ​item.pyrotech.hide.small.scraped.name=刮过的小皮革 
  ​item.pyrotech.hide.washed.name=水洗过的皮革 
  ​item.pyrotech.hide.small.washed.name=水洗过的小皮革 
- ​item.pyrotech.hide.tanned.name=鞣制皮革 
- ​item.pyrotech.hide.small.tanned.name=鞣质小皮革 
+ ​item.pyrotech.hide.tanned.name=鞣制过的皮革 
+ ​item.pyrotech.hide.small.tanned.name=鞣质过的小皮革 
   
  ​item.pyrotech.pelt.ruined.name=损坏的皮 
  ​item.pyrotech.pelt.cow.name=牛皮 
@@ -76,8 +76,8 @@
   
  ​entity.pyrotech.mud.name=飞溅的泥 
   
- ​fluid.tannin=单宁 
- ​tile.fluid.tannin.name=单宁 
+ ​fluid.tannin=鞣质 
+ ​tile.fluid.tannin.name=鞣质 
   
  ​item.pyrotech.leather.repair.kit.name=皮革维修套件 
  ​item.pyrotech.leather.durable.repair.kit.name=耐用皮革维修套件 
@@ -164,15 +164,15 @@
  ​tile.pyrotech.chopping_block.name=砧板 
  ​tile.pyrotech.anvil_granite.name=花岗岩砧 
  ​tile.pyrotech.anvil_iron_plated.name=复合砧 
- ​tile.pyrotech.anvil_obsidian.name=黑曜石砧板 
+ ​tile.pyrotech.anvil_obsidian.name=黑曜石砧 
  ​tile.pyrotech.worktable.name=工作桌 
  ​tile.pyrotech.worktable_stone.name=石工作桌 
  ​tile.pyrotech.compacting_bin.name=挤压桶 
  ​tile.pyrotech.soaking_pot.name=浸泡壶 
  ​tile.pyrotech.compost_bin.name=堆肥桶 
  ​tile.pyrotech.barrel.name=桶 
- ​tile.pyrotech.barrel_sealed.name= 密封桶 
- ​tile.pyrotech.tanning_rack.name=鞣制架 
+ ​tile.pyrotech.barrel_sealed.name= 密封的桶 
+ ​tile.pyrotech.tanning_rack.name=晾晒架 
   
  ​gui.pyrotech.marshmallow.burned.broadcast.message=%s把棉花糖烧焦了！ 
  ​gui.pyrotech.marshmallow.burned.eat.broadcast.message=%s吃了一个烧焦的棉花糖，呕~！ 
@@ -384,8 +384,8 @@
  item.pyrotech.leather.durable.cord.name=耐用皮绳 
  item.pyrotech.leather.small.name=小皮革 
  item.pyrotech.fletching.name=箭羽 
- item.pyrotech.stone.tool.shaft.name=石柄 
- item.pyrotech.bow.drill.durable.stick.name=耐用弓钻主轴 
+ item.pyrotech.stone.tool.shaft.name=石质手柄 
+ item.pyrotech.bow.drill.durable.stick.name=耐用弓钻杆 
  item.pyrotech.lard.name=猪油 
  item.pyrotech.dough.name=面团 
  item.pyrotech.flour.name=面粉 

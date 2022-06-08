@@ -1,12 +1,12 @@
 {
-  "name": "Hide, Washed",
+  "name": "水洗过的皮",
   "icon": "pyrotech:hide_washed",
   "category": "innovate_leather",
   "pages": [
     {
       "type": "text",
       "title": "Washed Hide",
-      "text": "$(item)Washed Hides$() can be produced using a variety of methods.$(p)$(info) $(item)Scraped Hides$() can be washed by placing them in water for a while.$(p)$(info) Alternatively, $(item)Scraped Hides$() can be washed instantly with a bucket of water."
+      "text": "$(item)水洗过的皮$()可以通过许多方法值得。$(p)$(info_cn) $(item)刮过的皮$()可以将它丢入水中进行清洗，但需要等一会儿。$(p)$(info) 你也可以直接用一桶水清洗$(item)刮过的皮$()，而且这不需要消耗时间。"
     },
     {
       "type": "crafting",
@@ -17,7 +17,7 @@
       "type": "rrt_soaking_pot_recipe",
       "recipe": "pyrotech:hide_washed",
       "recipe2": "pyrotech:hide_small_washed",
-      "text": "$(info) $(item)Scraped Hides$() can also be cleaned by $(thing)soaking$() them in water over a $(item)Campfire$()."
+      "text": "$(info_cn) $(item)刮过的皮$()也可以通过将它放入一个盛有水的浸泡壶中$(thing)浸泡$()进行清洗。注意：浸泡壶需要架在$(item)篝火上$()！"
     },
     {
       "type": "relations",

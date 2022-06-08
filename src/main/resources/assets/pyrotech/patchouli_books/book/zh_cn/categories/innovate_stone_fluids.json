@@ -1,6 +1,6 @@
 {
-  "name": "Fluid Storage",
-  "description": "The successful manipulation and storage of fluids is vital to survival.",
+  "name": "流体储存",
+  "description": "高效的流体处理和储存对生存至关重要。",
   "icon": "pyrotech:stone_tank",
   "parent": "innovate_stone",
   "sortnum": 3

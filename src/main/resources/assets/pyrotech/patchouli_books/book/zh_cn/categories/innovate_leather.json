@@ -1,6 +1,6 @@
 {
-  "name": "Leatherworking",
-  "description": "$(item)Leather$() is a strong, flexible, and durable material obtained by $(thing)tanning$() hides to prevent decay.",
+  "name": "制革工艺",
+  "description": "$(item)皮革$()是一种结实、柔韧性好而且耐用的材料，用$(thing)鞣质$()处理后不会腐烂。",
   "icon": "pyrotech:pelt_cow",
   "parent": "innovate",
   "sortnum": 3

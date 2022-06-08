@@ -1,5 +1,5 @@
 {
-  "name": "Bow Drill, Durable",
+  "name": "耐用弓钻",
   "icon": "pyrotech:bow_drill_durable",
   "category": "innovate_durable_tools",
   "pages": [
@@ -11,7 +11,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:bow_drill_durable_repair",
-      "text": "$(info) When a $(item)Durable Bow Drill$() wears out, it can be repaired using a $(item)Durable Spindle$()."
+      "text": "$(info_cn) $(item)耐用弓钻$()磨损后, 可以用$(item)耐用弓钻主轴$()修复。"
     },
     {
       "type": "relations",

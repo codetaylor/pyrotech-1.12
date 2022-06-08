@@ -1,16 +1,16 @@
 {
-  "name": "Butcher's Block",
+  "name": "屠夫桌",
   "icon": "pyrotech:butchers_block",
   "category": "innovate",
   "pages": [
     {
       "type": "text",
-      "text": "To use, place a $(item)Carcass$() on the top and $(use) with a $(item)Hunter's Knife$() or a $(item)Butcher's Knife$().$(p)$(info) Using a $(item)Hunter's Knife$() on a $(item)Butcher's Block$() has a chance to increase the yield when harvesting $(thing)Pelts$().$(p)$(info) Using a $(item)Butcher's Knife$() on a $(item)Butcher's Block$() has a chance to increase the yield when harvesting $(thing)Meats$()."
+      "text": "使用方法：把$(item)尸体$()放在上面，然后用$(item)猎刀$()或$(item)屠刀$()$(use)它。$(p)$(info_cn) $(item)猎刀$()配合$(item)屠夫桌$()使用可以提高$(thing)皮$()的产量。$(p)$(info_cn) $(item)屠刀$()配合$(item)屠夫桌$()可以提高$(thing)肉$()的产量。"
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:hunting/butchers_block",
-      "text": "$(warning) Using may cause hunger. If it isn't working, you might be too hungry."
+      "text": "$(warning_cn) 使用它会消耗你的体力并导致饥饿！而且处于饥饿状态时，你不能正常使用它！"
     },
     {
       "type": "relations",

@@ -1,5 +1,5 @@
 {
-  "name": "Hide, Tanned",
+  "name": "鞣制过的皮",
   "icon": "pyrotech:hide_tanned",
   "category": "innovate_leather",
   "pages": [
@@ -8,13 +8,13 @@
       "header": true,
       "recipe": "pyrotech:hide_tanned",
       "recipe2": "pyrotech:hide_small_tanned",
-      "text": "$(item)Tanned Hides$() are produced by soaking $(item)Washed Hides$() in $(item)Tannin$()."
+      "text": "$(item)鞣制过的皮$()可以通过将$(item)水洗过的皮$()放入盛有$(item)鞣质$()的浸泡壶中浸泡制得。"
     },
     {
       "type": "rt_barrel_recipe",
       "header": true,
       "recipe": "pyrotech:tannin",
-      "text": "Soaking $(item)Leaves$() in $(item)Water$() will yield $(item)Tannin$()."
+      "text": "把$(item)树叶$()放入$(item)水$()中浸泡可以制得$(item)鞣质$()。"
     },
     {
       "type": "relations",

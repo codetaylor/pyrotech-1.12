@@ -7,7 +7,7 @@
       "type": "spotlight",
       "link_recipe": true,
       "item": "pyrotech:mud",
-      "text": "$(item)泥$()存在于沼泽和河流中。$(p)$(info) 用低级的$(thing)锹$()挖掘泥会增加掉落$(item)泥块$()而不是$(item)泥$()的概率。"
+      "text": "$(item)泥$()存在于沼泽和河流中。$(p)$(info_cn) 用低级的$(thing)锹$()挖掘泥会增加掉落$(item)泥块$()而不是$(item)泥$()的概率。"
     },
     {
       "type": "rrt_compacting_bin_recipe_soaking_pot_recipe",
