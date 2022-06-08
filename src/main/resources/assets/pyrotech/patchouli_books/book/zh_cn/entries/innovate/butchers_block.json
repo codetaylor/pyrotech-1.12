@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "使用方法：把$(item)尸体$()放在上面，然后用$(item)猎刀$()或$(item)屠刀$()$(use)它。$(p)$(info) $(item)猎刀$()配合$(item)屠夫桌$()使用可以提高$(thing)皮$()的产量。$(p)$(info) $(item)屠刀$()配合$(item)屠夫桌$()可以提高$(thing)肉$()的产量。"
+      "text": "使用方法：把$(item)尸体$()放在上面，然后用$(item)猎刀$()或$(item)屠刀$()$(use)它。$(p)$(info_cn) $(item)猎刀$()配合$(item)屠夫桌$()使用可以提高$(thing)皮$()的产量。$(p)$(info_cn) $(item)屠刀$()配合$(item)屠夫桌$()可以提高$(thing)肉$()的产量。"
     },
     {
       "type": "crafting",
