@@ -1,5 +1,5 @@
 {
-  "name": "Wine, Freckleberry",
+  "name": "雀斑莓果酒",
   "icon": "pyrotech:freckleberry_wine",
   "category": "innovate_stone_fermenting",
   "pages": [
@@ -7,12 +7,12 @@
       "type": "rt_barrel_recipe",
       "header": true,
       "recipe": "pyrotech:freckleberry_wine",
-      "text": "Soaking $(item)Freckleberries$() with $(item)Sugar$() in $(item)Water$() will yield $(item)Freckleberry Wine$().$(p)$(info) Drinking $(item)Freckleberry Wine$() has beneficial effects."
+      "text": "$(item)雀斑莓$()和$(item)糖$()一起放入$(item)水中$()浸泡可以制出$(item)雀斑莓果酒$()。$(p)$(info) 饮用适量的$(item)雀斑莓果酒$()可以获得增益效果。"
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:freckleberry_wine",
-      "text": "$(warning) Drinking too much $(item)Freckleberry Wine$() can be hazardous to your health."
+      "text": "$(warning_cn) 过多饮用$(item)雀斑莓果酒$()有害健康！"
     },
     {
       "type": "relations",
