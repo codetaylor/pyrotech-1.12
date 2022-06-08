@@ -1,5 +1,5 @@
 {
-  "name": "Wine, Pyroberry",
+  "name": "火焰莓果酒",
   "icon": "pyrotech:pyroberry_wine",
   "category": "innovate_stone_fermenting",
   "pages": [
@@ -7,12 +7,12 @@
       "type": "rt_barrel_recipe",
       "header": true,
       "recipe": "pyrotech:pyroberry_wine",
-      "text": "Soaking $(item)Pyroberries$() with $(item)Sugar$() in $(item)Water$() will yield $(item)Pyroberry Wine$().$(p)$(info) Drinking $(item)Pyroberry Wine$() has beneficial effects."
+      "text": "把$(item)火焰莓果酒$()和$(item)糖$()一起放入$(item)水$()中可以制得$(item)火焰莓果酒$()。$(p)$(info) 饮用适量的$(item)火焰莓果酒$()对你的身体有益。"
     },
     {
       "type": "crafting",
       "recipe": "pyrotech:pyroberry_wine",
-      "text": "$(warning) Drinking too much $(item)Pyroberry Wine$() can be hazardous to your health."
+      "text": "$(warning_cn) 过多饮用$(item)火焰莓果酒$()有害健康！"
     },
     {
       "type": "relations",
