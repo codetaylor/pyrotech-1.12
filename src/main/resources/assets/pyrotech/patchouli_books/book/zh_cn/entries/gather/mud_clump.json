@@ -7,7 +7,7 @@
       "type": "spotlight",
       "link_recipe": true,
       "item": "pyrotech:rock:11",
-      "text": "$(item)泥块$()可以通过挖掘沼泽和河流中或合成的泥获得。"
+      "text": "$(item)泥块$()可以通过挖掘沼泽和河流中的泥或制作出的泥获得。"
     },
     {
       "type": "crafting",
