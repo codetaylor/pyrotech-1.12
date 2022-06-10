@@ -1,12 +1,12 @@
 {
-  "name": "剪过的皮",
+  "name": "修剪过的毛皮",
   "icon": "pyrotech:hide_sheep_sheared",
   "category": "innovate_leather",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:hunting/shearing_pelt_white",
-      "text": "$(thing)羊$()和$(thing)羊驼$()的皮可以被剪。"
+      "text": "$(thing)羊$()和$(thing)羊驼$()的皮可以修剪。"
     },
     {
       "type": "relations",
