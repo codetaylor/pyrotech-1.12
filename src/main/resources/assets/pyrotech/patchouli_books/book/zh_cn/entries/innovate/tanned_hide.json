@@ -1,5 +1,5 @@
 {
-  "name": "鞣制过的皮",
+  "name": "鞣制过的毛皮",
   "icon": "pyrotech:hide_tanned",
   "category": "innovate_leather",
   "pages": [
@@ -8,7 +8,7 @@
       "header": true,
       "recipe": "pyrotech:hide_tanned",
       "recipe2": "pyrotech:hide_small_tanned",
-      "text": "$(item)鞣制过的皮$()可以通过将$(item)水洗过的皮$()放入盛有$(item)鞣质$()的浸泡壶中浸泡制得。"
+      "text": "$(item)鞣制过的毛皮$()可以通过将$(item)水洗过的毛皮$()放入盛有$(item)鞣质$()的浸泡壶中浸泡制得。"
     },
     {
       "type": "rt_barrel_recipe",
