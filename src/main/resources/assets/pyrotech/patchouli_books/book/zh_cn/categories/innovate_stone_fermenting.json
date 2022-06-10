@@ -1,6 +1,6 @@
 {
   "name": "流体转化",
-  "description": "实用的液体转化对生存具有非凡的意义。",
+  "description": "实用的流体转化对生存具有非凡的意义。",
   "icon": "pyrotech:barrel",
   "parent": "innovate_stone",
   "sortnum": 4
