@@ -7,7 +7,7 @@
       "type": "crafting",
       "title": "Unfired",
       "recipe": "pyrotech:bucket/bucket_refractory_unfired",
-      "text": "$(info_cn) $(item)耐火桶$()可以盛装滚烫的液体。$(p)$(warning_cn) 但是这非常危险！"
+      "text": "$(info_cn) $(item)耐火桶$()可以盛装滚烫的流体。$(p)$(warning_cn) 但是这非常危险！"
     },
     {
       "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",

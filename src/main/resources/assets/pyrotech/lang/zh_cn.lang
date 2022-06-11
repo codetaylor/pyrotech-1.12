@@ -13,14 +13,14 @@
  ​item.pyrotech.hide.pig.name=猪皮革 
  ​item.pyrotech.hide.sheep.sheared.name=羊皮革 
  ​item.pyrotech.hide.llama.name=羊驼皮革 
- ​item.pyrotech.hide.scraped.name=刮过的皮革 
- ​item.pyrotech.hide.small.scraped.name=刮过的小皮革 
- ​item.pyrotech.hide.washed.name=水洗过的皮革 
- ​item.pyrotech.hide.small.washed.name=水洗过的小皮革 
- ​item.pyrotech.hide.tanned.name=鞣制过的皮革 
- ​item.pyrotech.hide.small.tanned.name=鞣质过的小皮革 
+ ​item.pyrotech.hide.scraped.name=刮过的毛皮 
+ ​item.pyrotech.hide.small.scraped.name=刮过的小块毛皮 
+ ​item.pyrotech.hide.washed.name=水洗过的毛皮 
+ ​item.pyrotech.hide.small.washed.name=水洗过的小块毛皮 
+ ​item.pyrotech.hide.tanned.name=鞣制过的毛皮 
+ ​item.pyrotech.hide.small.tanned.name=鞣制过的小块毛皮 
   
- ​item.pyrotech.pelt.ruined.name=损坏的皮 
+ ​item.pyrotech.pelt.ruined.name=破损的皮 
  ​item.pyrotech.pelt.cow.name=牛皮 
  ​item.pyrotech.pelt.mooshroom.name=哞菇皮 
  ​item.pyrotech.pelt.polar.bear.name=北极熊皮 
@@ -64,6 +64,10 @@
  ​item.pyrotech.diamond.butchers.knife.name=钻石屠刀 
  ​item.pyrotech.obsidian.butchers.knife.name=黑曜石屠刀 
   
+ item.pyrotech.leather.repair.kit.name=皮革维修套件 
+ ​item.pyrotech.leather.durable.repair.kit.name=耐用皮革维修套件 
+ ​item.pyrotech.leather.durable.upgrade.kit.name=耐用皮革升级套件 
+ 
  ​item.pyrotech.flint.arrow.name=燧石箭 
  ​item.pyrotech.bone.arrow.name=骨箭 
   
@@ -74,16 +78,12 @@
  ​tile.pyrotech.carcass.name=尸体 
  ​tile.pyrotech.butchers_block.name=屠夫桌 
   
- ​entity.pyrotech.mud.name=飞溅的泥 
+ ​entity.pyrotech.mud.name=泥巴 
   
  ​fluid.tannin=鞣质 
  ​tile.fluid.tannin.name=鞣质 
   
- ​item.pyrotech.leather.repair.kit.name=皮革维修套件 
- ​item.pyrotech.leather.durable.repair.kit.name=耐用皮革维修套件 
- ​item.pyrotech.leather.durable.upgrade.kit.name=耐用皮革升级套件 
-  
- ​gui.pyrotech.hide.scraped.washing=刮下的皮革可以通过将其放在水中进行清洗 %s 
+ ​gui.pyrotech.hide.scraped.washing=刮过的毛皮需要放在水中进行清洗 %s 
   
  ​#------------------------------------------------------------------------------ 
  ​# Module: Bucket 
@@ -181,6 +181,7 @@
  ​pyrotech.effect.well.fed=吃饱喝足 
  ​pyrotech.effect.resting=小憩 
  ​pyrotech.effect.well.rested=精力充沛 
+ ​pyrotech.effect.focused=专注 
   
  ​#------------------------------------------------------------------------------ 
  ​# Module: Tech - Bloomery 
@@ -375,14 +376,14 @@
  ​item.pyrotech.gold.shard.name=金碎片 
  ​item.pyrotech.dense.redstone.name=致密红石 
  ​item.pyrotech.dense.quartz.name=致密下界石英 
- ​item.pyrotech.leather.sheet.name=皮板 
+ ​item.pyrotech.leather.sheet.name=皮革薄片 
  item.pyrotech.leather.strap.name=皮带 
  item.pyrotech.leather.cord.name=皮绳 
  item.pyrotech.leather.durable.name=耐用皮革 
  item.pyrotech.leather.durable.sheet.name=耐用皮板 
  item.pyrotech.leather.durable.strap.name=耐用皮带 
  item.pyrotech.leather.durable.cord.name=耐用皮绳 
- item.pyrotech.leather.small.name=小皮革 
+ item.pyrotech.leather.small.name=小块皮革 
  item.pyrotech.fletching.name=箭羽 
  item.pyrotech.stone.tool.shaft.name=石质手柄 
  item.pyrotech.bow.drill.durable.stick.name=耐用弓钻杆 
@@ -459,8 +460,8 @@
  ​tile.pyrotech.pyroberry_bush.name=火焰莓灌木丛 
  ​tile.pyrotech.gloamberry_bush.name=罗甘莓灌木丛 
  ​tile.pyrotech.freckleberry_plant.name=雀斑莓植株 
- ​tile.pyrotech.cob_wet.name=湿土坯 
- ​tile.pyrotech.cob_dry.name=土坯 
+ ​tile.pyrotech.cob_wet.name=湿泥灰 
+ ​tile.pyrotech.cob_dry.name=泥灰 
  ​tile.pyrotech.mud.name=泥 
  ​tile.pyrotech.mud_layer.name=泥 
  ​tile.pyrotech.crafting_table_template.name=工作台模板 
@@ -595,7 +596,7 @@
  ​gui.pyrotech.jei.category.soaking.pot=浸泡壶 
  ​gui.pyrotech.jei.category.compost.bin=堆肥 
  ​gui.pyrotech.jei.category.barrel=桶 
- ​gui.pyrotech.jei.category.tanning.rack=鞣制架 
+ ​gui.pyrotech.jei.category.tanning.rack=晾晒架 
   
  ​gui.pyrotech.jei.category.bloomery=锻造炉 
  ​gui.pyrotech.jei.category.wither.forge=凋灵锻造炉 

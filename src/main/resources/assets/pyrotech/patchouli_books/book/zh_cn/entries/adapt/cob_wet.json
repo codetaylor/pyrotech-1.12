@@ -1,12 +1,12 @@
 {
-  "name": "湿土坯",
+  "name": "湿泥灰",
   "icon": "pyrotech:cob_wet",
   "category": "adapt",
   "pages": [
     {
       "type": "crafting",
       "recipe": "pyrotech:cob_2x2a",
-      "text": "$(info_cn) $(item)湿土坯$()会滑落，除非有支撑或者变干。$(p)$(info_cn) $(item)湿土坯$()会随着时间的推移逐渐变干形成硬的$(item)土坯$()并被放置在世界上。"
+      "text": "$(info_cn) $(item)湿泥灰$()如果没有支撑将会滑落。$(p)$(info_cn) $(item)湿泥灰$()会随着时间的推移逐渐变干形成硬的$(item)泥灰$()并粘在地上。"
     },
     {
       "type": "crafting",

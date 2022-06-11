@@ -6,7 +6,7 @@
     {
       "type": "crafting",
       "recipe": "pyrotech:tech/basic/barrel",
-      "text": "使用方法：把液体和其他配料从上面放进去，然后用$(item)桶盖$()密封。$(p)$(warning_cn) $(item)桶$()不能盛装滚烫的液体，比如岩浆。"
+      "text": "使用方法：把流体和其他配料从上面放进去，然后用$(item)桶盖$()密封。$(p)$(warning_cn) $(item)桶$()不能盛装滚烫的流体，比如岩浆。"
     },
     {
       "type": "relations",

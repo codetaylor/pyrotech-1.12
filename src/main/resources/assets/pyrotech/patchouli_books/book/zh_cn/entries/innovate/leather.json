@@ -9,7 +9,7 @@
       "recipe": "pyrotech:leather",
       "header2": true,
       "recipe2": "pyrotech:leather_small",
-      "text": "$(item)皮革$()可以通过在$(item)晾晒架$()上晾晒$(item)鞣制过的皮革$()获得。"
+      "text": "$(item)皮革$()可以通过在$(item)晾晒架$()上晾晒$(item)鞣制过的毛皮$()获得。"
     },
     {
       "type": "relations",
