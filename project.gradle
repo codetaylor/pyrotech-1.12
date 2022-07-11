@@ -31,9 +31,6 @@ ext {
 }
 
 repositories {
-  // hwyla
-  maven { url "https://maven.tehnut.info" }
-
   // patchouli
   maven { url 'https://maven.blamejared.com' }
 
@@ -41,13 +38,17 @@ repositories {
     name 'tterrag maven'
     url "http://maven.tterrag.com/"
   }
+
+  flatDir {
+    dirs 'libs'
+  }
 }
 
 dependencies {
   compile project(":athenaeum")
   compile project(":dropt")
 
-  deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
+  compile files('Hwyla-1.8.26-B41_1.12.2.jar')
   deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.28-17"
   compile "vazkii.patchouli:Patchouli:1.0-20.108"
 }
