@@ -1,3 +1,10 @@
+**1.6.1**
+
+* **Fixed:**
+    * Z-fighting with fully filled oil lamp [(#393)](https://github.com/codetaylor/pyrotech-1.12/issues/393)
+
+---
+
 # 1.6.0
 
   * **BREAKING:**

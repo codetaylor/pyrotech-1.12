@@ -91,7 +91,7 @@ public class TESRLampOil
 
       float topHeight = PX * 4;
       float percent = fluidTank.getFluidAmount() / (float) fluidTank.getCapacity();
-      float level = (PX + PX * 0.1f) + (topHeight * percent) - (PX * 0.1f);
+      float level = (PX + PX * 0.1f) + (topHeight * percent) - 2 * (PX * 0.1f);
 
       // TOP
       buffer
