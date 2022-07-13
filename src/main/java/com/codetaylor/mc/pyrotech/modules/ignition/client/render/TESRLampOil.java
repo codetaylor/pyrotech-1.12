@@ -123,6 +123,32 @@ public class TESRLampOil
       float yMax = level;
       float interpolatedV = still.getInterpolatedV((1 - level) * 16);
 
+      // Bottom
+      buffer
+          .pos(INSET, yMin, INSET)
+          .color(r, g, b, 1f)
+          .tex(still.getMinU(), still.getMinV())
+          .lightmap(j, k)
+          .endVertex();
+      buffer
+          .pos(INSET, yMin, 1 - INSET)
+          .color(r, g, b, 1f)
+          .tex(still.getMinU(), still.getMaxV())
+          .lightmap(j, k)
+          .endVertex();
+      buffer
+          .pos(1 - INSET, yMin, 1 - INSET)
+          .color(r, g, b, 1f)
+          .tex(still.getMaxU(), still.getMaxV())
+          .lightmap(j, k)
+          .endVertex();
+      buffer
+          .pos(1 - INSET, yMin, INSET)
+          .color(r, g, b, 1f)
+          .tex(still.getMaxU(), still.getMinV())
+          .lightmap(j, k)
+          .endVertex();
+
       // SIDE X+
       buffer
           .pos(1 - INSET, yMin, INSET)
