@@ -1,3 +1,10 @@
+**1.6.2**
+
+* **Changed:**
+    * Updated zh_cn.lang [(#395)](https://github.com/codetaylor/pyrotech-1.12/pull/395)
+
+---
+
 **1.6.1**
 
 * **Fixed:**
