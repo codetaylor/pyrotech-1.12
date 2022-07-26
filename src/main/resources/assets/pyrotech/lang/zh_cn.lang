@@ -83,7 +83,7 @@ item.pyrotech.leather.repair.kit.name=皮革维修套件
 ​fluid.tannin=鞣质
 ​tile.fluid.tannin.name=鞣质
 
-​gui.pyrotech.hide.scraped.washing=刮过的毛皮需要放在水中进行清洗%s
+​gui.pyrotech.hide.scraped.washing=刮过的毛皮需要放在水中进行清洗 %s
 
 ​#------------------------------------------------------------------------------
 ​# Module: Bucket
@@ -680,7 +680,7 @@ item.pyrotech.clay.blasting.name=爆破粘土
 ​advancement.pyrotech.furnace.desc=制作熔炉
 ​advancement.pyrotech.nether=恐怖的下界
 ​advancement.pyrotech.nether.desc=搭建、点亮并进入下界传送门
-​advancement.pyrotech.wither.forge=罪恶锻造
+​advancement.pyrotech.wither.forge=凋灵锻造炉
 ​advancement.pyrotech.wither.forge.desc=制作凋灵锻造炉
 ​advancement.pyrotech.tools.obsidian=黑曜石镐
 ​advancement.pyrotech.tools.obsidian.desc=制作黑曜石镐
