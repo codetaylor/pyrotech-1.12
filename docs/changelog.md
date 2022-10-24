@@ -1,3 +1,10 @@
+**1.6.5**
+
+* **Fixed:**
+    * Infinite matchsticks [(#402)](https://github.com/codetaylor/pyrotech-1.12/issues/402)
+
+---
+
 **1.6.4**
 
 * **Changed:**

@@ -34,7 +34,7 @@ public class ItemMatchstick
 
     if (player instanceof EntityPlayer
         && !((EntityPlayer) player).isCreative()) {
-      stack.damageItem(1, player);
+      stack.shrink(1);
     }
   }
 }
