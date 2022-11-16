@@ -4,7 +4,7 @@ itemGroup.pyrotech=Pyrotech
 # Vanilla
 #------------------------------------------------------------------------------
 
-item.arrow.name=Iron Arrow
+item.arrow.name=Flecha de hierro
 
 #------------------------------------------------------------------------------
 # Module: Hunting
