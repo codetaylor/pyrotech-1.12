@@ -1,3 +1,10 @@
+**1.6.6**
+
+* **Fixed:**
+    * Wooden bucket should break in offhand [(#407)](https://github.com/codetaylor/pyrotech-1.12/issues/407)
+
+---
+
 **1.6.5**
 
 * **Fixed:**
