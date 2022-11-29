@@ -62,6 +62,7 @@ public class ModuleTechBasic
         "ZenChoppingBlock",
         "ZenAnvilGranite",
         "ZenAnvilIronclad",
+        "ZenAnvilObsidian",
         "ZenCompactingBin",
         "ZenCampfire",
         "ZenWorktable",

@@ -2,6 +2,7 @@
 
 * **Fixed:**
     * Wooden bucket should break in offhand [(#407)](https://github.com/codetaylor/pyrotech-1.12/issues/407)
+    * Obsidian Anvil CrT integration unregistered [(#408)](https://github.com/codetaylor/pyrotech-1.12/issues/408)
 
 ---
 
