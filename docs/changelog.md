@@ -1,3 +1,10 @@
+**1.6.7**
+
+* **Fixed:**
+    * Wooden bucket should break in slot 0
+
+---
+
 **1.6.6**
 
 * **Fixed:**

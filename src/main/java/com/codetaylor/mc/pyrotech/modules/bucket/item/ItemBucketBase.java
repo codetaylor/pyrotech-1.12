@@ -631,6 +631,10 @@ public abstract class ItemBucketBase
           player.setHeldItem(EnumHand.OFF_HAND, this.getBrokenItemStack());
         }
 
+        if (player.getHeldItemMainhand() == stack) {
+          entity.replaceItemInInventory(itemSlot, this.getBrokenItemStack());
+        }
+
       } else {
         entity.replaceItemInInventory(itemSlot, this.getBrokenItemStack());
       }
