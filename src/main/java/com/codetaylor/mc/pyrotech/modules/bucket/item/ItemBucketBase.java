@@ -623,7 +623,21 @@ public abstract class ItemBucketBase
     durability -= containerDamagePerSecond;
 
     if (durability <= 0) {
-      entity.replaceItemInInventory(itemSlot, this.getBrokenItemStack());
+
+      if (itemSlot == 0 && entity instanceof EntityPlayer) {
+        EntityPlayer player = (EntityPlayer) entity;
+
+        if (player.getHeldItemOffhand() == stack) {
+          player.setHeldItem(EnumHand.OFF_HAND, this.getBrokenItemStack());
+        }
+
+        if (player.getHeldItemMainhand() == stack) {
+          entity.replaceItemInInventory(itemSlot, this.getBrokenItemStack());
+        }
+
+      } else {
+        entity.replaceItemInInventory(itemSlot, this.getBrokenItemStack());
+      }
 
       if (entity instanceof EntityPlayer) {
         EntityPlayer player = (EntityPlayer) entity;
