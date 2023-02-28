@@ -1,3 +1,10 @@
+**1.6.8**
+
+* **Added:**
+    * Add es_mx.lang [(#416)](https://github.com/codetaylor/pyrotech-1.12/pull/416)
+
+---
+
 **1.6.7**
 
 * **Fixed:**
