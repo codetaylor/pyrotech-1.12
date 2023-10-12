@@ -20,7 +20,7 @@ public class BlockTankBrick
   // ---------------------------------------------------------------------------
 
   @Override
-  protected int getCapacity() {
+  public int getCapacity() {
 
     return ModuleStorageConfig.BRICK_TANK.CAPACITY;
   }

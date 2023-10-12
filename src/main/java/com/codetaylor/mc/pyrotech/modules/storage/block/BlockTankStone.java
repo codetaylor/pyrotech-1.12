@@ -20,7 +20,7 @@ public class BlockTankStone
   // ---------------------------------------------------------------------------
 
   @Override
-  protected int getCapacity() {
+  public int getCapacity() {
 
     return ModuleStorageConfig.STONE_TANK.CAPACITY;
   }

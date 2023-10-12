@@ -6,6 +6,7 @@ import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.athenaeum.spi.IVariant;
 import com.codetaylor.mc.athenaeum.util.BlockHelper;
 import com.codetaylor.mc.athenaeum.util.StackHelper;
+import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockTank;
 import com.codetaylor.mc.pyrotech.modules.storage.tile.spi.TileTankBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,6 +17,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -72,6 +74,28 @@ public abstract class BlockTankBase
   public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 
     this.updateConnectionState(world, pos);
+
+    // Null check the block entity tag to retain backwards compatibility.
+    // If the item stack has the block entity tag, then it will have been
+    // deserialized properly before this method is called and reading the
+    // tank in the code below will result in the tank data being reset.
+
+    if (!stack.hasTagCompound()
+        || stack.getSubCompound(StackHelper.BLOCK_ENTITY_TAG) != null) {
+      return;
+    }
+
+    NBTTagCompound tankTag = ItemBlockTank.getTankTag(stack);
+
+    if (tankTag == null) {
+      return;
+    }
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileTankBase) {
+      ((TileTankBase) tileEntity).readFromItem(stack);
+    }
   }
 
   private void updateConnectionState(World world, BlockPos pos) {
@@ -190,12 +214,9 @@ public abstract class BlockTankBase
     if (tileEntity instanceof TileTankBase) {
 
       if (this.canHoldContentsWhenBroken()) {
-        drops.add(StackHelper.createItemStackFromTileEntity(
-            this,
-            1,
-            0,
-            tileEntity
-        ));
+        ItemStack itemStack = new ItemStack(Item.getItemFromBlock(this), 1, 0);
+        ((TileTankBase) tileEntity).writeToItem(itemStack);
+        drops.add(itemStack);
 
       } else {
         super.getDrops(drops, world, pos, state, fortune);
@@ -248,35 +269,27 @@ public abstract class BlockTankBase
   @Override
   public void addInformation(@Nonnull ItemStack stack, @Nullable World world, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flag) {
 
-    NBTTagCompound stackTag = stack.getTagCompound();
+    NBTTagCompound tankTag = ItemBlockTank.getTankTag(stack);
 
-    if (stackTag == null) {
+    if (tankTag == null) {
       this.addInformationCapacity(tooltip);
 
     } else {
 
-      if (stackTag.hasKey(StackHelper.BLOCK_ENTITY_TAG)) {
-        NBTTagCompound tileTag = stackTag.getCompoundTag(StackHelper.BLOCK_ENTITY_TAG);
+      if (tankTag.hasKey("Empty")
+          && (!tankTag.hasKey("Amount")
+          || tankTag.getInteger("Amount") <= 0)) {
 
-        if (tileTag.hasKey("tank")) {
-          NBTTagCompound tankTag = tileTag.getCompoundTag("tank");
+        this.addInformationCapacity(tooltip);
 
-          if (tankTag.hasKey("Empty")
-              && (!tankTag.hasKey("Amount")
-              || tankTag.getInteger("Amount") <= 0)) {
+      } else {
+        FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(tankTag);
 
-            this.addInformationCapacity(tooltip);
-
-          } else {
-            FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(tankTag);
-
-            if (fluidStack != null) {
-              String localizedName = fluidStack.getLocalizedName();
-              int amount = fluidStack.amount;
-              int capacity = this.getCapacity();
-              tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid", localizedName, amount, capacity));
-            }
-          }
+        if (fluidStack != null) {
+          String localizedName = fluidStack.getLocalizedName();
+          int amount = fluidStack.amount;
+          int capacity = this.getCapacity();
+          tooltip.add(I18n.translateToLocalFormatted("gui.pyrotech.tooltip.fluid", localizedName, amount, capacity));
         }
       }
     }
@@ -288,7 +301,7 @@ public abstract class BlockTankBase
     tooltip.add((holdsContents ? TextFormatting.GREEN : TextFormatting.RED) + I18n.translateToLocalFormatted("gui.pyrotech.tooltip.contents.retain." + holdsContents));
   }
 
-  protected abstract int getCapacity();
+  public abstract int getCapacity();
 
   protected abstract boolean canHoldHotFluids();
 

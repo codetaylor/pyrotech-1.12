@@ -13,10 +13,12 @@ import com.codetaylor.mc.athenaeum.network.tile.spi.TileEntityDataBase;
 import com.codetaylor.mc.athenaeum.util.SoundHelper;
 import com.codetaylor.mc.pyrotech.modules.core.network.SCPacketParticleCombust;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
+import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockTank;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockTankBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -502,6 +504,16 @@ public abstract class TileTankBase
     this.tank.readFromNBT(compound.getCompoundTag("tank"));
     this.tileDataConnectionStateUp.set(compound.getBoolean("connectionUp"));
     this.tileDataConnectionStateDown.set(compound.getBoolean("connectionDown"));
+  }
+
+  public void writeToItem(@Nonnull ItemStack itemStack) {
+
+    ItemBlockTank.writeTank(this.tank, itemStack);
+  }
+
+  public void readFromItem(@Nonnull ItemStack itemStack) {
+
+    ItemBlockTank.readTank(this.tank, itemStack);
   }
 
   // ---------------------------------------------------------------------------
