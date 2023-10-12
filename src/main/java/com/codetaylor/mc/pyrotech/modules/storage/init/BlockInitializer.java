@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.library.util.RegistryHelper;
 import com.codetaylor.mc.pyrotech.modules.storage.ModuleStorage;
 import com.codetaylor.mc.pyrotech.modules.storage.block.*;
 import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockBag;
+import com.codetaylor.mc.pyrotech.modules.storage.block.item.ItemBlockTank;
 import com.codetaylor.mc.pyrotech.modules.storage.block.spi.BlockBagBase;
 import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRFaucet;
 import com.codetaylor.mc.pyrotech.modules.storage.client.render.TESRTank;
@@ -28,8 +29,13 @@ public final class BlockInitializer {
     registry.registerBlockWithItem(new BlockCrate(), BlockCrate.NAME);
     registry.registerBlockWithItem(new BlockCrateStone(), BlockCrateStone.NAME);
     registry.registerBlockWithItem(new BlockWoodRack(), BlockWoodRack.NAME);
-    registry.registerBlockWithItem(new BlockTankStone(), BlockTankStone.NAME);
-    registry.registerBlockWithItem(new BlockTankBrick(), BlockTankBrick.NAME);
+
+    BlockTankStone blockTankStone = new BlockTankStone();
+    registry.registerBlock(blockTankStone, new ItemBlockTank(blockTankStone), BlockTankStone.NAME);
+
+    BlockTankBrick blockTankBrick = new BlockTankBrick();
+    registry.registerBlock(blockTankBrick,new ItemBlockTank(blockTankBrick), BlockTankBrick.NAME);
+
     registry.registerBlockWithItem(new BlockFaucetStone(), BlockFaucetStone.NAME);
     registry.registerBlockWithItem(new BlockFaucetBrick(), BlockFaucetBrick.NAME);
 
