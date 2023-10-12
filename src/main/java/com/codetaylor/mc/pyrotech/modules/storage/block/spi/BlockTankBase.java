@@ -64,16 +64,13 @@ public abstract class BlockTankBase
   @Override
   public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 
-    this.updateConnectionState(world, pos);
+    this.updateConnectionStateForNeighborChanged(world, pos);
     this.updateTankGroups(world, pos);
     this.settleFluids(world, pos);
   }
 
   @ParametersAreNonnullByDefault
-  @Override
-  public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-
-    this.updateConnectionState(world, pos);
+  public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack, EnumFacing side) {
 
     // Null check the block entity tag to retain backwards compatibility.
     // If the item stack has the block entity tag, then it will have been
@@ -96,15 +93,28 @@ public abstract class BlockTankBase
     if (tileEntity instanceof TileTankBase) {
       ((TileTankBase) tileEntity).readFromItem(stack);
     }
+
+    this.updateConnectionStateForPlacement(world, pos, side);
   }
 
-  private void updateConnectionState(World world, BlockPos pos) {
+  private void updateConnectionStateForPlacement(World world, BlockPos pos, EnumFacing side) {
 
     TileEntity tileEntity = world.getTileEntity(pos);
 
     if (tileEntity instanceof TileTankBase) {
       TileTankBase tileTankBase = (TileTankBase) tileEntity;
-      tileTankBase.updateConnectionState();
+      tileTankBase.updateConnectionsForPlacement(side);
+      BlockHelper.notifyBlockUpdate(world, pos);
+    }
+  }
+
+  private void updateConnectionStateForNeighborChanged(World world, BlockPos pos) {
+
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof TileTankBase) {
+      TileTankBase tileTankBase = (TileTankBase) tileEntity;
+      tileTankBase.updateConnectionsForNeighborChanged();
       BlockHelper.notifyBlockUpdate(world, pos);
     }
   }

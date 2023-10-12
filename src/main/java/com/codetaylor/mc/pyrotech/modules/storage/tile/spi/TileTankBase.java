@@ -195,14 +195,12 @@ public abstract class TileTankBase
 
     TileTankBase tank = this.findLowestConnectedTank();
 
-    while (tank != null) {
-      tankGroup.add(tank);
+    if (tank != null) {
 
-      if (!tank.isConnectedUp()) {
-        break;
-      }
-
-      tank = (TileTankBase) this.world.getTileEntity(tank.pos.up());
+      do {
+        tankGroup.add(tank);
+        tank = (TileTankBase) this.world.getTileEntity(tank.pos.up());
+      } while (tank != null && tank.isConnectedDown());
     }
 
     for (TileTankBase tileTankBase : tankGroup) {
@@ -214,29 +212,6 @@ public abstract class TileTankBase
   public List<TileTankBase> getTankGroup() {
 
     return this.tankGroup;
-  }
-
-  private boolean canConnectTo(TileTankBase tile) {
-
-    IBlockState blockState = this.world.getBlockState(this.pos);
-    IBlockState otherBlockState = this.world.getBlockState(tile.getPos());
-
-    if (blockState.getBlock() != otherBlockState.getBlock()) {
-      return false;
-    }
-
-    FluidTank fluidTank = this.getFluidTank();
-    FluidStack fluidStack = fluidTank.getFluid();
-
-    FluidTank otherFluidTank = tile.getFluidTank();
-    FluidStack otherFluidStack = otherFluidTank.getFluid();
-
-    if (fluidStack == null || otherFluidStack == null) {
-      return true;
-
-    } else {
-      return fluidStack.isFluidEqual(otherFluidStack);
-    }
   }
 
   public int getActualFluidAmount() {
@@ -257,7 +232,142 @@ public abstract class TileTankBase
     return tankGroup.size() * this.getTankCapacity();
   }
 
-  public void updateConnectionState() {
+  public void updateConnectionsForPlacement(@Nullable EnumFacing side) {
+
+    if (this.world.isRemote) {
+      return;
+    }
+
+    FluidStack fluidToMatch = this.tank.getFluid();
+    FluidStack fluidBelow = this.findNearestTankFluidBelow(this.pos);
+
+    if (EnumFacing.DOWN == side) {
+
+      if (fluidToMatch == null) { // we're empty
+        this.tryConnectUp();
+
+        // connected tanks below are empty, or
+        // fluid below is the same as fluid above
+        if (fluidBelow == null
+            || fluidBelow.isFluidEqual(this.getTankFluidAbove(this.pos))) {
+          this.tryConnectDown();
+        }
+      } else { // we're not empty
+
+        // our fluid is the same as fluid above
+        if (fluidToMatch.isFluidEqual(this.getTankFluidAbove(this.pos))) {
+          this.tryConnectUp();
+        }
+
+        // connected tanks below are empty, or
+        // our fluid is the same as the fluid below
+        if (fluidBelow == null
+            || fluidToMatch.isFluidEqual(fluidBelow)) {
+          this.tryConnectDown();
+        }
+      }
+
+    } else {
+
+      if (fluidToMatch == null) { // we're empty
+        this.tryConnectDown();
+
+        // connected tanks below are empty, or
+        // fluid below is the same as fluid above
+        if (fluidBelow == null
+            || fluidBelow.isFluidEqual(this.getTankFluidAbove(this.pos))) {
+          this.tryConnectUp();
+        }
+
+      } else { // we're not empty
+
+        // connected tanks below are empty, or
+        // our fluid is the same as the fluid below
+        if (fluidBelow == null
+            || fluidToMatch.isFluidEqual(fluidBelow)) {
+          this.tryConnectDown();
+        }
+
+        // our fluid is the same as fluid above
+        if (fluidToMatch.isFluidEqual(this.getTankFluidAbove(this.pos))) {
+          this.tryConnectUp();
+        }
+      }
+    }
+  }
+
+  private void tryConnectDown() {
+
+    if (this.world.getBlockState(this.pos) != this.world.getBlockState(this.pos.down())) {
+      return;
+    }
+
+    TileEntity tileEntity = this.world.getTileEntity(this.pos.down());
+
+    if (tileEntity instanceof TileTankBase) {
+      this.setTileDataConnectionStateDown(true);
+      ((TileTankBase) tileEntity).setTileDataConnectionStateUp(true);
+    }
+  }
+
+  private void tryConnectUp() {
+
+    if (this.world.getBlockState(this.pos) != this.world.getBlockState(this.pos.up())) {
+      return;
+    }
+
+    TileEntity tileEntity = this.world.getTileEntity(this.pos.up());
+
+    if (tileEntity instanceof TileTankBase) {
+      this.setTileDataConnectionStateUp(true);
+      ((TileTankBase) tileEntity).setTileDataConnectionStateDown(true);
+    }
+  }
+
+  @Nullable
+  private FluidStack getTankFluidAbove(BlockPos pos) {
+
+    FluidStack result = null;
+    TileEntity tileEntity = this.world.getTileEntity(pos.up());
+
+    if (tileEntity instanceof TileTankBase) {
+      TileTankBase tile = (TileTankBase) tileEntity;
+      result = tile.tank.getFluid();
+    }
+
+    return result;
+  }
+
+  @Nullable
+  private FluidStack findNearestTankFluidBelow(BlockPos pos) {
+
+    FluidStack result = null;
+    BlockPos nextPos = pos;
+
+    for (int y = pos.getY() - 1; y >= 0; y--) {
+      nextPos = nextPos.down();
+      TileEntity tileEntity = this.world.getTileEntity(nextPos);
+
+      if (!(tileEntity instanceof TileTankBase)) {
+        break;
+      }
+
+      TileTankBase tile = (TileTankBase) tileEntity;
+      result = tile.tank.getFluid();
+
+      if (result != null) {
+        break;
+      }
+
+      if (!tile.isConnectedDown()) {
+        break;
+      }
+    }
+
+    return result;
+  }
+
+  public void updateConnectionsForNeighborChanged() {
 
     if (this.world.isRemote) {
       return;
@@ -266,11 +376,7 @@ public abstract class TileTankBase
     {
       TileEntity tileEntity = this.world.getTileEntity(this.pos.up());
 
-      if (tileEntity instanceof TileTankBase) {
-        TileTankBase tileTankBase = (TileTankBase) tileEntity;
-        this.setTileDataConnectionStateUp(tileTankBase.canConnectTo(this));
-
-      } else {
+      if (!(tileEntity instanceof TileTankBase)) {
         this.setTileDataConnectionStateUp(false);
       }
     }
@@ -278,11 +384,7 @@ public abstract class TileTankBase
     {
       TileEntity tileEntity = this.world.getTileEntity(this.pos.down());
 
-      if (tileEntity instanceof TileTankBase) {
-        TileTankBase tileTankBase = (TileTankBase) tileEntity;
-        this.setTileDataConnectionStateDown(tileTankBase.canConnectTo(this));
-
-      } else {
+      if (!(tileEntity instanceof TileTankBase)) {
         this.setTileDataConnectionStateDown(false);
       }
     }
@@ -296,17 +398,33 @@ public abstract class TileTankBase
 
     List<TileTankBase> tankGroup = this.getTankGroup();
 
-    for (int i = 1; i < tankGroup.size(); i++) {
-      TileTankBase tileTank = tankGroup.get(i);
-      TileTankBase tileTankDown = tankGroup.get(i - 1);
-      int fluidAmount = tileTank.tank.getFluidAmount();
+    // walk down until we find a tank with fluid (A)
+    // walk up and attempt to fill tanks below
 
-      if (fluidAmount > 0) {
-        FluidStack drain = tileTank.tank.drain(fluidAmount, false);
-        int filled = tileTankDown.tank.fill(drain, false);
+    for (int drainIndex = tankGroup.size() - 1; drainIndex >= 0; drainIndex--) {
+      TileTankBase toDrain = tankGroup.get(drainIndex);
+      int fluidAmount = toDrain.tank.getFluidAmount();
+
+      if (fluidAmount == 0) {
+        continue;
+      }
+
+      for (int fillIndex = 0; fillIndex < drainIndex; fillIndex++) {
+        TileTankBase toFill = tankGroup.get(fillIndex);
+
+        if (toFill.tank.getFluidAmount() == toFill.tank.getCapacity()) {
+          continue;
+        }
+
+        FluidStack drain = toDrain.tank.drain(fluidAmount, false);
+        int filled = toFill.tank.fill(drain, false);
 
         if (filled > 0) {
-          tileTankDown.tank.fill(tileTank.tank.drain(filled, true), true);
+          toFill.tank.fill(toDrain.tank.drain(filled, true), true);
+        }
+
+        if (toDrain.tank.getCapacity() == 0) {
+          break;
         }
       }
     }
