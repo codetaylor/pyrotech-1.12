@@ -53,7 +53,7 @@ public abstract class TileTankBase
   private final TileDataBoolean tileDataConnectionStateDown;
   private final Tank tank;
   private final FluidHandler fluidHandler;
-  private final IInteraction[] interactions;
+  private final IInteraction<?>[] interactions;
   private final List<TileTankBase> tankGroup;
 
   private boolean firstTickComplete = false;
@@ -244,6 +244,10 @@ public abstract class TileTankBase
 
     if (EnumFacing.DOWN == side) {
 
+      // The player has clicked on the underside of a block. We're going
+      // to try to explicitly connect this tank to a tank above before trying
+      // to connect to a tank below.
+
       if (fluidToMatch == null) { // we're empty
         this.tryConnectUp();
 
@@ -253,6 +257,7 @@ public abstract class TileTankBase
             || fluidBelow.isFluidEqual(this.getTankFluidAbove(this.pos))) {
           this.tryConnectDown();
         }
+
       } else { // we're not empty
 
         // our fluid is the same as fluid above
@@ -269,6 +274,10 @@ public abstract class TileTankBase
       }
 
     } else {
+
+      // The player has clicked a side of a block other than the underside.
+      // We're going to try to connect this tank to a tank below before trying
+      // to connect to a tank above.
 
       if (fluidToMatch == null) { // we're empty
         this.tryConnectDown();
@@ -608,14 +617,14 @@ public abstract class TileTankBase
   // ---------------------------------------------------------------------------
 
   @Override
-  protected void setWorldCreate(World world) {
+  protected void setWorldCreate(@Nonnull World world) {
 
     this.world = world;
   }
 
   @Nonnull
   @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound) {
 
     super.writeToNBT(compound);
     compound.setTag("tank", this.tank.writeToNBT(new NBTTagCompound()));
@@ -625,7 +634,7 @@ public abstract class TileTankBase
   }
 
   @Override
-  public void readFromNBT(NBTTagCompound compound) {
+  public void readFromNBT(@Nonnull NBTTagCompound compound) {
 
     super.readFromNBT(compound);
     this.tank.readFromNBT(compound.getCompoundTag("tank"));
@@ -648,12 +657,12 @@ public abstract class TileTankBase
   // ---------------------------------------------------------------------------
 
   @Override
-  public IInteraction[] getInteractions() {
+  public IInteraction<?>[] getInteractions() {
 
     return this.interactions;
   }
 
-  public class InteractionBucket
+  public static class InteractionBucket
       extends InteractionBucketBase<TileTankBase> {
 
     /* package */ InteractionBucket(IFluidHandler fluidHandler) {
@@ -670,7 +679,7 @@ public abstract class TileTankBase
   // - Tank
   // ---------------------------------------------------------------------------
 
-  private class Tank
+  private static class Tank
       extends ObservableFluidTank
       implements ITileDataFluidTank {
 

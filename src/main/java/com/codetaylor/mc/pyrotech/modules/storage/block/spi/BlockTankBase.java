@@ -141,7 +141,7 @@ public abstract class BlockTankBase
   // ---------------------------------------------------------------------------
 
   @Override
-  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+  public int getLightValue(@Nonnull IBlockState state, IBlockAccess world, @Nonnull BlockPos pos) {
 
     TileEntity tileEntity = world.getTileEntity(pos);
 
@@ -164,19 +164,21 @@ public abstract class BlockTankBase
   // - Interaction
   // ---------------------------------------------------------------------------
 
+  @ParametersAreNonnullByDefault
   @Nullable
   @Override
-  public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
+  public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end) {
 
     RayTraceResult result = super.collisionRayTrace(blockState, world, pos, start, end);
     return this.interactionRayTrace(result, blockState, world, pos, start, end);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
   public boolean onBlockActivated(
       World world,
       BlockPos pos,
-      IBlockState state,
+      IBlockState blockState,
       EntityPlayer player,
       EnumHand hand,
       EnumFacing facing,
@@ -185,21 +187,23 @@ public abstract class BlockTankBase
       float hitZ
   ) {
 
-    return this.interact(IInteraction.EnumType.MouseClick, world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    return this.interact(IInteraction.EnumType.MouseClick, world, pos, blockState, player, hand, facing, hitX, hitY, hitZ);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public boolean removedByPlayer(@Nonnull IBlockState state, World world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player, boolean willHarvest) {
+  public boolean removedByPlayer(IBlockState blockState, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
 
     // Delay the destruction of the TE until after #getDrops is called. We need
     // access to the TE while creating the dropped item in order to serialize it.
-    return willHarvest || super.removedByPlayer(state, world, pos, player, false);
+    return willHarvest || super.removedByPlayer(blockState, world, pos, player, false);
   }
 
+  @ParametersAreNonnullByDefault
   @Override
-  public void harvestBlock(@Nonnull World world, EntityPlayer player, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+  public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState blockState, @Nullable TileEntity tileEntity, ItemStack itemStack) {
 
-    super.harvestBlock(world, player, pos, state, te, stack);
+    super.harvestBlock(world, player, pos, blockState, tileEntity, itemStack);
 
     if (!world.isRemote) {
       world.setBlockToAir(pos);
@@ -211,7 +215,7 @@ public abstract class BlockTankBase
   // ---------------------------------------------------------------------------
 
   @Override
-  public void getDrops(@Nonnull NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
+  public void getDrops(@Nonnull NonNullList<ItemStack> drops, IBlockAccess world, @Nonnull BlockPos pos, @Nonnull IBlockState blockState, int fortune) {
 
     // Serialize the TE into the item dropped.
     // Called before #breakBlock
@@ -226,7 +230,7 @@ public abstract class BlockTankBase
         drops.add(itemStack);
 
       } else {
-        super.getDrops(drops, world, pos, state, fortune);
+        super.getDrops(drops, world, pos, blockState, fortune);
       }
     }
   }
@@ -236,7 +240,7 @@ public abstract class BlockTankBase
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean hasTileEntity(IBlockState state) {
+  public boolean hasTileEntity(@Nonnull IBlockState blockState) {
 
     return true;
   }
@@ -246,7 +250,7 @@ public abstract class BlockTankBase
   // ---------------------------------------------------------------------------
 
   @Override
-  public boolean isSideSolid(IBlockState base_state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, EnumFacing side) {
+  public boolean isSideSolid(IBlockState blockState, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, EnumFacing side) {
 
     return true;
   }
@@ -346,7 +350,7 @@ public abstract class BlockTankBase
   }
 
   @Override
-  public int getMetaFromState(IBlockState state) {
+  public int getMetaFromState(@Nonnull IBlockState blockState) {
 
     return 0;
   }
