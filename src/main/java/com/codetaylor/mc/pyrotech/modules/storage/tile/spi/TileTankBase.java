@@ -245,6 +245,7 @@ public abstract class TileTankBase
 
     FluidStack fluidToMatch = this.tank.getFluid();
     FluidStack fluidBelow = this.findNearestTankFluidBelow(this.pos);
+    FluidStack fluidAbove = this.getTankFluidAbove(this.pos);
 
     if (EnumFacing.DOWN == side) {
 
@@ -258,14 +259,16 @@ public abstract class TileTankBase
         // connected tanks below are empty, or
         // fluid below is the same as fluid above
         if (fluidBelow == null
-            || fluidBelow.isFluidEqual(this.getTankFluidAbove(this.pos))) {
+            || fluidBelow.isFluidEqual(fluidAbove)) {
           this.tryConnectDown();
         }
 
       } else { // we're not empty
 
+        // tank above is empty, or
         // our fluid is the same as fluid above
-        if (fluidToMatch.isFluidEqual(this.getTankFluidAbove(this.pos))) {
+        if (fluidAbove == null
+            || fluidToMatch.isFluidEqual(fluidAbove)) {
           this.tryConnectUp();
         }
 
@@ -289,7 +292,7 @@ public abstract class TileTankBase
         // connected tanks below are empty, or
         // fluid below is the same as fluid above
         if (fluidBelow == null
-            || fluidBelow.isFluidEqual(this.getTankFluidAbove(this.pos))) {
+            || fluidBelow.isFluidEqual(fluidAbove)) {
           this.tryConnectUp();
         }
 
@@ -302,8 +305,10 @@ public abstract class TileTankBase
           this.tryConnectDown();
         }
 
+        // tank above is empty, or
         // our fluid is the same as fluid above
-        if (fluidToMatch.isFluidEqual(this.getTankFluidAbove(this.pos))) {
+        if (fluidAbove == null
+            || fluidToMatch.isFluidEqual(fluidAbove)) {
           this.tryConnectUp();
         }
       }
