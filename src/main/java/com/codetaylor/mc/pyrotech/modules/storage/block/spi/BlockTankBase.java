@@ -79,7 +79,7 @@ public abstract class BlockTankBase
 
     if (stack.hasTagCompound()
         && stack.getSubCompound(StackHelper.BLOCK_ENTITY_TAG) == null) {
-      
+
       NBTTagCompound tankTag = ItemBlockTank.getTankTag(stack);
 
       if (tankTag != null) {
