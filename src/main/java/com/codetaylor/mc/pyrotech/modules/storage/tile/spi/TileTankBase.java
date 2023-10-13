@@ -34,6 +34,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
@@ -496,7 +497,15 @@ public abstract class TileTankBase
     @Override
     public IFluidTankProperties[] getTankProperties() {
 
-      return new IFluidTankProperties[0];
+      List<TileTankBase> tankGroup = this.tile.getTankGroup();
+      FluidStack fluid = tankGroup.get(0).tank.getFluid();
+
+      if (fluid == null) {
+        return new IFluidTankProperties[]{new FluidTankProperties(null, this.tile.getActualFluidCapacity())};
+      }
+
+      fluid = new FluidStack(fluid, this.tile.getActualFluidAmount());
+      return new IFluidTankProperties[]{new FluidTankProperties(fluid, this.tile.getActualFluidCapacity())};
     }
 
     @Override
