@@ -194,14 +194,18 @@ public abstract class TileTankBase
 
     ArrayList<TileTankBase> tankGroup = new ArrayList<>();
 
-    TileTankBase tank = this.findLowestConnectedTank();
+    TileEntity tileEntity = this.findLowestConnectedTank();
 
-    if (tank != null) {
+    while (tileEntity instanceof TileTankBase) {
+      TileTankBase tile = (TileTankBase) tileEntity;
 
-      do {
-        tankGroup.add(tank);
-        tank = (TileTankBase) this.world.getTileEntity(tank.pos.up());
-      } while (tank != null && tank.isConnectedDown());
+      tankGroup.add(tile);
+
+      if (!tile.isConnectedUp()) {
+        break;
+      }
+
+      tileEntity = this.world.getTileEntity(tileEntity.getPos().up());
     }
 
     for (TileTankBase tileTankBase : tankGroup) {
