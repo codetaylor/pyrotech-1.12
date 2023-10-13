@@ -507,6 +507,11 @@ public abstract class TileTankBase
     public IFluidTankProperties[] getTankProperties() {
 
       List<TileTankBase> tankGroup = this.tile.getTankGroup();
+
+      if (tankGroup.isEmpty()) {
+        return new IFluidTankProperties[]{new FluidTankProperties(null, this.tile.getActualFluidCapacity())};
+      }
+
       FluidStack fluid = tankGroup.get(0).tank.getFluid();
 
       if (fluid == null) {
