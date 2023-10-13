@@ -77,21 +77,18 @@ public abstract class BlockTankBase
     // deserialized properly before this method is called and reading the
     // tank in the code below will result in the tank data being reset.
 
-    if (!stack.hasTagCompound()
-        || stack.getSubCompound(StackHelper.BLOCK_ENTITY_TAG) != null) {
-      return;
-    }
+    if (stack.hasTagCompound()
+        && stack.getSubCompound(StackHelper.BLOCK_ENTITY_TAG) == null) {
+      
+      NBTTagCompound tankTag = ItemBlockTank.getTankTag(stack);
 
-    NBTTagCompound tankTag = ItemBlockTank.getTankTag(stack);
+      if (tankTag != null) {
+        TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tankTag == null) {
-      return;
-    }
-
-    TileEntity tileEntity = world.getTileEntity(pos);
-
-    if (tileEntity instanceof TileTankBase) {
-      ((TileTankBase) tileEntity).readFromItem(stack);
+        if (tileEntity instanceof TileTankBase) {
+          ((TileTankBase) tileEntity).readFromItem(stack);
+        }
+      }
     }
 
     this.updateConnectionStateForPlacement(world, pos, side);
