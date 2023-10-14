@@ -1,3 +1,5 @@
+# Changelog
+
 **1.6.9**
 
 * **Fixed:**
@@ -70,7 +72,7 @@
 
 ---
 
-# 1.6.0
+## 1.6.0
 
   * **BREAKING:**
     * `pyrotech:stone_bricks` renamed to `pyrotech:masonry_brick_block`
@@ -877,7 +879,7 @@
 
 ---
 
-# 1.5.0
+## 1.5.0
 
   * **Added:**
     * Config option to disable throwing rocks / clumps `THROW_ENABLED` [(#301)](https://github.com/codetaylor/pyrotech-1.12/issues/301)
@@ -1421,7 +1423,7 @@
 
 ---
 
-# 1.4.0
+## 1.4.0
 
   * **Translators:**
     * New lang keys:
@@ -1629,7 +1631,7 @@
 
 ---
 
-# 1.3.0
+## 1.3.0
 
   * Notes:
     * Refresh your `core.OreDict-Custom.json` file or copy the new entries from `core.OreDict-Generated.json`.
@@ -1775,7 +1777,7 @@
 
 ---
 
-# 1.2.0
+## 1.2.0
 
   * Note:
     * Bugs: A lot of code has been touched in this release - thank you for your continued bug reports!
@@ -1890,7 +1892,7 @@
 
 ---
 
-# 1.1.0
+## 1.1.0
 
   * Notes:
     * Load mod once to generate new ore and wood compat .json files in config folder:
@@ -2039,7 +2041,7 @@
 
 ---
 
-# 1.0.0
+## 1.0.0
 
   * Initial beta release
 
