@@ -1,6 +1,6 @@
 site_name: Pyrotech
 
-pages:
+nav:
 - Introduction: index.md
 - ChangeLog: changelog.md
 - Modules: modules.md
