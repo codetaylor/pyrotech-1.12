@@ -1,5 +1,12 @@
 # Changelog
 
+**1.6.10**
+
+* **Fixed:**
+    * Stone Drain and Refractory Drain should drain over their entire specified ranges [(#426)](https://github.com/codetaylor/pyrotech-1.12/issues/426)
+
+---
+
 **1.6.9**
 
 * **Fixed:**
@@ -11,7 +18,7 @@
 
 * **Changed:**
     * Simplified tank item NBT [(#420)](https://github.com/codetaylor/pyrotech-1.12/issues/420)
-    
+
 ---
 
 **1.6.8**

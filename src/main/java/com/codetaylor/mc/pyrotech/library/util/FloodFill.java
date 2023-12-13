@@ -38,6 +38,11 @@ public class FloodFill {
     BlockPos candidatePos;
 
     while (limit > 0 && (candidatePos = candidateQueue.poll()) != null) {
+
+      if (visitedSet.contains(candidatePos)) {
+        continue;
+      }
+
       visitedSet.add(candidatePos);
 
       if (candidatePredicate.apply(world, candidatePos)) {
