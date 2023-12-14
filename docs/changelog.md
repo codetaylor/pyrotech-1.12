@@ -1,5 +1,12 @@
 # Changelog
 
+**1.6.11**
+
+* **Fixed:**
+    * Compost Bin recipes added with CraftTweaker should work [(#427)](https://github.com/codetaylor/pyrotech-1.12/issues/427)
+
+---
+
 **1.6.10**
 
 * **Fixed:**

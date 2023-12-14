@@ -176,7 +176,7 @@ public class ZenCompostBin {
       this.input = input;
       this.output = output;
       this.compostValue = compostValue;
-      this.resourceLocation = CompostBinRecipe.getResourceLocation("crafttweaker", input, input.getMetadata());
+      this.resourceLocation = CompostBinRecipe.getResourceLocation("pyrotech", input, input.getMetadata());
     }
 
     @Override
