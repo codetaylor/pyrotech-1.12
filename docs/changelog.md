@@ -8,6 +8,7 @@
 * **Fixed:**
     * Worktable should support JEI post `jei_1.12.2:4.16.1.302` [(#431)](https://github.com/codetaylor/pyrotech-1.12/issues/431)
     * Freckleberry crops should only return more than one seed if broken when fully grown [(#429)](https://github.com/codetaylor/pyrotech-1.12/issues/429)
+    * Obsidian Anvil should correctly inherit Granite and Ironclad Anvil recipes [(#414)](https://github.com/codetaylor/pyrotech-1.12/issues/414)
 
 ---
 
