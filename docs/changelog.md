@@ -1,5 +1,15 @@
 # Changelog
 
+**1.6.12**
+
+* **Notes:**
+    * Pyrotech version `1.12.2-1.6.12` requires JEI version `jei_1.12.2:4.16.1.1012` or later
+
+* **Fixed:**
+    * Worktable should support JEI post `jei_1.12.2:4.16.1.302` [(#431)](https://github.com/codetaylor/pyrotech-1.12/issues/431)
+
+---
+
 **1.6.11**
 
 * **Fixed:**
