@@ -9,11 +9,12 @@ import mods.pyrotech.IroncladAnvil;
 
 ```java
 static void addRecipe(
-  string name,       // unique recipe name
-  IItemStack output, // recipe output
-  IIngredient input, // recipe input
-  int hits,          // base number of hammer hits required
-  string type        // hammer | pickaxe
+  string name,                // unique recipe name
+  IItemStack output,          // recipe output
+  IIngredient input,          // recipe input
+  int hits,                   // base number of hammer hits required
+  string type,                // hammer | pickaxe
+  @Optional boolean inherited // true if the recipe should be inherited
 );
 ```
 
