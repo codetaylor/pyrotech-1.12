@@ -30,7 +30,9 @@ nav:
   - Brick Sawmill: zs/bricksawmill.md
   - Brick Tank: zs/bricktank.md
   - Burn: zs/burn.md
+  - Butcher's Block: zs/butchersblock.md
   - Campfire: zs/campfire.md
+  - Carcass: zs/carcass.md
   - Chopping Block: zs/chopping.md
   - Compacting Bin: zs/compactingbin.md
   - Compost Bin: zs/compostbin.md
@@ -47,6 +49,8 @@ nav:
   - Mechanical Compactor: zs/mechanicalcompactor.md
   - Mechanical Hopper: zs/mechanicalhopper.md
   - Mechanical Mulcher: zs/mechanicalmulcher.md
+  - Obsidian Anvil: zs/obsidiananvil.md
+  - Oil Lamp: zs/oillamp.md
   - Pit Kiln: zs/pitkiln.md
   - Shelf: zs/shelf.md
   - Simple Rock Bag: zs/simplerockbag.md
@@ -60,6 +64,7 @@ nav:
   - Stone Sawmill: zs/stonesawmill.md
   - Stone Tank: zs/stonetank.md
   - Tanning Rack: zs/tanningrack.md
+  - Trip Hammer: zs/triphammer.md
   - Wood Rack: zs/woodrack.md
   - Worktable: zs/worktable.md
 - Development:
