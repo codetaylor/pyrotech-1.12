@@ -1,12 +1,10 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.plugin.crafttweaker;
 
 import com.codetaylor.mc.athenaeum.tools.*;
-import com.codetaylor.mc.athenaeum.util.RecipeHelper;
 import com.codetaylor.mc.pyrotech.library.crafttweaker.RemoveAllRecipesAction;
 import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
-import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.AnvilIroncladRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -16,7 +14,6 @@ import crafttweaker.mc1120.CraftTweaker;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -33,20 +30,18 @@ public class ZenAnvilObsidian {
           @ZenDocArg(arg = "output", info = "recipe output"),
           @ZenDocArg(arg = "input", info = "recipe input"),
           @ZenDocArg(arg = "hits", info = "base number of hammer hits required"),
-          @ZenDocArg(arg = "type", info = "hammer | pickaxe"),
-          @ZenDocArg(arg = "inherited", info = "true if the recipe should be inherited")
+          @ZenDocArg(arg = "type", info = "hammer | pickaxe")
       }
   )
   @ZenMethod
-  public static void addRecipe(String name, IItemStack output, IIngredient input, int hits, String type, @Optional boolean inherited) {
+  public static void addRecipe(String name, IItemStack output, IIngredient input, int hits, String type) {
 
     CraftTweaker.LATE_ACTIONS.add(new AddRecipe(
         name,
         CraftTweakerMC.getItemStack(output),
         CraftTweakerMC.getIngredient(input),
         hits,
-        AnvilRecipe.EnumType.valueOf(type.toUpperCase()),
-        inherited
+        AnvilRecipe.EnumType.valueOf(type.toUpperCase())
     ));
   }
 
@@ -115,7 +110,6 @@ public class ZenAnvilObsidian {
     private final ItemStack output;
     private final int hits;
     private final AnvilRecipe.EnumType type;
-    private final boolean inherited;
     private final String name;
     private final Ingredient input;
 
@@ -124,8 +118,7 @@ public class ZenAnvilObsidian {
         ItemStack output,
         Ingredient input,
         int hits,
-        AnvilRecipe.EnumType type,
-        boolean inherited
+        AnvilRecipe.EnumType type
     ) {
 
       this.name = name;
@@ -133,7 +126,6 @@ public class ZenAnvilObsidian {
       this.output = output;
       this.hits = hits;
       this.type = type;
-      this.inherited = inherited;
     }
 
     @Override
@@ -148,16 +140,12 @@ public class ZenAnvilObsidian {
       );
 
       ModuleTechBasic.Registries.ANVIL_RECIPE.register(recipe.setRegistryName(new ResourceLocation("crafttweaker", this.name)));
-
-      if (this.inherited) {
-        RecipeHelper.inherit("obsidian_anvil", ModuleTechBasic.Registries.ANVIL_RECIPE, AnvilIroncladRecipesAdd.INHERIT_TRANSFORMER, recipe);
-      }
     }
 
     @Override
     public String describe() {
 
-      return "Adding obsidian anvil recipe for " + this.output + ", inherited=" + this.inherited;
+      return "Adding obsidian anvil recipe for " + this.output;
     }
   }
 

@@ -7,6 +7,7 @@ import com.codetaylor.mc.pyrotech.modules.core.plugin.crafttweaker.ZenStages;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasic;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.ModuleTechBasicConfig;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.AnvilIroncladRecipesAdd;
+import com.codetaylor.mc.pyrotech.modules.tech.basic.init.recipe.AnvilObsidianRecipesAdd;
 import com.codetaylor.mc.pyrotech.modules.tech.basic.recipe.AnvilRecipe;
 import crafttweaker.IAction;
 import crafttweaker.api.item.IIngredient;
@@ -151,6 +152,7 @@ public class ZenAnvilGranite {
 
       if (this.inherited) {
         RecipeHelper.inherit("granite_anvil", ModuleTechBasic.Registries.ANVIL_RECIPE, AnvilIroncladRecipesAdd.INHERIT_TRANSFORMER, recipe);
+        RecipeHelper.inherit("ironclad_anvil", ModuleTechBasic.Registries.ANVIL_RECIPE, AnvilObsidianRecipesAdd.INHERIT_TRANSFORMER, recipe);
       }
     }
 
