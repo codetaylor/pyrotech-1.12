@@ -61,8 +61,7 @@ public class BlockFreckleberryPlant
     return ModuleCore.Items.FRECKLEBERRIES;
   }
 
-  @Override
-  public int quantityDropped(IBlockState state, int fortune, Random random) {
+  private int cropQuantityDropped(IBlockState state, int fortune, Random random) {
 
     return 1 + random.nextInt(2 + fortune);
   }
@@ -110,7 +109,7 @@ public class BlockFreckleberryPlant
       if (!world.isRemote) {
         ItemStack heldItemMainhand = player.getHeldItemMainhand();
         int fortune = EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, heldItemMainhand);
-        StackHelper.spawnStackOnTop(world, new ItemStack(this.getCrop(), this.quantityDropped(state, fortune, RandomHelper.random())), pos, 0.25f);
+        StackHelper.spawnStackOnTop(world, new ItemStack(this.getCrop(), this.cropQuantityDropped(state, fortune, RandomHelper.random())), pos, 0.25f);
         world.setBlockState(pos, this.withAge(this.getMaxAge() - 1));
       }
 
