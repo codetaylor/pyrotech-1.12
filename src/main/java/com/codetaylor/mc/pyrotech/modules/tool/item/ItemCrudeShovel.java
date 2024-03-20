@@ -12,7 +12,6 @@ public class ItemCrudeShovel
   public ItemCrudeShovel() {
 
     super(ToolMaterial.STONE, "crude");
-    this.setMaxDamage(ToolMaterial.STONE.getMaxUses() / 4);
   }
 
   @Override

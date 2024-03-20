@@ -12,7 +12,6 @@ public class ItemCrudePickaxe
   public ItemCrudePickaxe() {
 
     super(ToolMaterial.STONE, "crude");
-    this.setMaxDamage(ToolMaterial.STONE.getMaxUses() / 4);
   }
 
   @Override

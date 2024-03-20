@@ -12,7 +12,6 @@ public class ItemCrudeAxe
   public ItemCrudeAxe() {
 
     super(ToolMaterial.STONE, "crude");
-    this.setMaxDamage(ToolMaterial.STONE.getMaxUses() / 4);
   }
 
   @Override
