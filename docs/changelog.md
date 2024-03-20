@@ -1,5 +1,12 @@
 # Changelog
 
+**1.6.13**
+
+* **Fixed:**
+    * Crude Shovel, Axe, Hoe, and Shovel should respect configured durability [(#433)](https://github.com/codetaylor/pyrotech-1.12/issues/433)
+
+---
+
 **1.6.12**
 
 * **Notes:**
