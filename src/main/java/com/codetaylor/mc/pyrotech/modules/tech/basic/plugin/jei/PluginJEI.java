@@ -26,9 +26,11 @@ import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
@@ -102,8 +104,7 @@ public class PluginJEI
         registry.handleRecipes(MCRecipeShaped.class, CraftingRecipeWrapperShaped::new, JEIRecipeCategoryWorktable.UID);
       }
 
-      List<IRecipe> vanillaRecipes = CraftingRecipeChecker.getValidRecipes(jeiHelpers)
-          .getKey()
+      List<IRecipe> vanillaRecipes = this.getValidRecipeList(jeiHelpers)
           .stream()
           .filter(recipe -> {
             ResourceLocation resourceLocation = recipe.getRegistryName();
@@ -327,6 +328,31 @@ public class PluginJEI
         }
       }
       registry.addRecipes(recipeList, JEIRecipeCategoryCompostBin.UID);
+    }
+  }
+
+  private List<IRecipe> getValidRecipeList(IJeiHelpers jeiHelpers) {
+
+    try {
+      Method craftingRecipeChecker$getValidRecipes = CraftingRecipeChecker.class.getMethod("getValidRecipes", IJeiHelpers.class);
+      Class<?> returnType = craftingRecipeChecker$getValidRecipes.getReturnType();
+
+      // Supports HEI and JEI <= jei_1.12.2:4.16.1.302
+      if (returnType.equals(List.class)) {
+        return (List<IRecipe>) craftingRecipeChecker$getValidRecipes.invoke(null, jeiHelpers);
+
+      // Supports JEI > jei_1.12.2:4.16.1.302
+      } else if (returnType.equals(Pair.class)) {
+        Pair<List<IRecipe>, Set<Class<? extends IRecipe>>> pair;
+        pair = (Pair<List<IRecipe>, Set<Class<? extends IRecipe>>>) craftingRecipeChecker$getValidRecipes.invoke(null, jeiHelpers);
+        return pair.getKey();
+      }
+
+      throw new RuntimeException("Unexpected return type: " + returnType);
+
+    } catch (Exception e) {
+      new RuntimeException("Unable to invoke CraftingRecipeChecker$getValidRecipes", e).printStackTrace();
+      return Collections.emptyList();
     }
   }
 
