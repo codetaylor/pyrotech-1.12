@@ -1,5 +1,15 @@
 # Changelog
 
+**1.6.14**
+
+* **Notes:**
+    * Pyrotech version `1.12.2-1.6.14` and later no longer has JEI version restriction
+
+* **Added:**
+    * Support for both HEI and older JEI versions <= `jei_1.12.2-4.16.1.302`. Pyrotech should now work with all versions of JEI and HEI. It has been verified against JEI versions `jei_1.12.2:4.16.1.302` and `jei_1.12.2:4.16.1.1012` as well as HEI version `HadEnoughItems_1.12.2:4.25.3`.
+
+---
+
 **1.6.13**
 
 * **Fixed:**
