@@ -1,0 +1,7 @@
+{
+  "name": "Інструменти для виживання",
+  "description": "Інструментальна майстерність необхідна для виживання.",
+  "icon": "pyrotech:crude_pickaxe",
+  "sortnum": 1,
+  "parent": "survive"
+}

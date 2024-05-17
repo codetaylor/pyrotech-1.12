@@ -1,0 +1,38 @@
+{
+  "name": "Щипці",
+  "icon": "pyrotech:tongs_iron",
+  "category": "bloom_bloom",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(item)Щипці$() дозволяють безпечно для здоров'я брати $(item)крицю$().$(p)$(info_ua) Щоб взяти $(item)Bloom$(), $(use) $(item)крицю$() з $(item)щипцями$() в руках.$(p)$(info_ua) $(item)Щипці$() в лівій руці підбиратимуть $(item)крицю$() коли вона потраплятиме в інвентар.$(p)$(info_ua) $(item)Щипці$() можна використати на $(item)доменній$() та $(item)пекельній доменній$() печі."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/tongs_stone",
+      "recipe2": "pyrotech:tech/bloomery/tongs_bone"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/tongs_flint",
+      "recipe2": "pyrotech:tech/bloomery/tongs_iron"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/tongs_gold",
+      "recipe2": "pyrotech:tech/bloomery/tongs_diamond"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/tongs_obsidian"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/stone_rod",
+        "gather/shard_bone_and_flint"
+      ]
+    }
+  ]
+}

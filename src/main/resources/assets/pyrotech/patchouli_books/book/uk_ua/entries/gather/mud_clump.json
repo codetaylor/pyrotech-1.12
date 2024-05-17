@@ -1,0 +1,27 @@
+{
+  "name": "Конструктор дітей з села",
+  "icon": "pyrotech:rock:11",
+  "category": "gather_material",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "pyrotech:rock:11",
+      "text": "$(item)Грудки болота$() можна добути в світі чи скрафтити."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:mud"
+    },
+    {
+      "type": "rt_soaking_pot_recipe",
+      "recipe": "pyrotech:mud_clump"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/mud"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Майже вугілля",
+  "icon": "minecraft:coal:1",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "rt_pit_burn_recipe",
+      "header": true,
+      "recipe": "pyrotech:charcoal",
+      "text": "$(thing)Випалювання в ямі$() $(item)дерев'яної палі$() виробляє велику кількість $(item)дерев'яного вугілля$() та $(item)креозоту$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/pit_burn",
+        "innovate/log_pile"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Вугілля з глибин пекла",
+  "icon": "pyrotech:dense_nether_coal_ore",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:dense_nether_coal_ore",
+      "link_recipe": true,
+      "text": "$(item)Щільна вугільна руда з Незеру$() знаходиться на будь-яких рівнях Незеру.$(p)$(info_ua) Може бути добута $(thing)діамантовими інструментами$()."
+    }
+  ]
+}

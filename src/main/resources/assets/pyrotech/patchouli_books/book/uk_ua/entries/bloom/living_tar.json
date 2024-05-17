@@ -1,0 +1,21 @@
+{
+  "name": "АААААААА, ВОНО ТІКАЄ!",
+  "icon": "pyrotech:living_tar",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "fuel_living_tar",
+      "recipe": "pyrotech:living_tar",
+      "fuel": "pyrotech:living_tar",
+      "text": "Зроблене з смолистої м'ясної речовини, $(item)жива смола$() сильний кандидат на премію 'Найогидніше паливо'."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/soaking_pot",
+        "accelerate/bloomery",
+        "bloom/wither_forge"
+      ]
+    }
+  ]
+}

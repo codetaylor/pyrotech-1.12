@@ -1,0 +1,18 @@
+{
+  "name": "Бочка",
+  "icon": "pyrotech:barrel",
+  "category": "innovate_stone_fermenting",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/barrel",
+      "text": "Для використання залийте рідину та інгредієнти зверху та накрийте $(item)кришкою від бочки$().$(p)$(warning_ua) $(item)Бочка$() зламається від гарячих рідин, типу лави."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/wood_tarred"
+      ]
+    }
+  ]
+}

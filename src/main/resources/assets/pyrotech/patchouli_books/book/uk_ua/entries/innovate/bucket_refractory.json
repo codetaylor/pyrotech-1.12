@@ -1,0 +1,26 @@
+{
+  "name": "Досконала істота",
+  "icon": "pyrotech:bucket_refractory",
+  "category": "innovate_stone_fluids",
+  "pages": [
+    {
+      "type": "crafting",
+      "title": "Unfired",
+      "recipe": "pyrotech:bucket/bucket_refractory_unfired",
+      "text": "$(info_ua) $(item)Вогнетривке відро$() Не ламається від гарячих рідин.$(p)$(warning_ua) Однак він нагріється до небезпечного рівня, якщо його заповнити гарячою рідиною."
+    },
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:bucket_refractory",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/bucket_refractory"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/plant_fibers",
+        "gather/clay_lump_of"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Воно схоже на динозавра",
+  "icon": "pyrotech:fossil_ore",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:fossil_ore",
+      "text": "$(item)Скам'янілості$() можна знайти практично будь-де під землею.$(p)$(info_ua) Можна добути $(thing)примітивними інструментами$(), але кращі інструменти дадуть кращий результат."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/shard_bone_and_flint"
+      ]
+    }
+  ]
+}

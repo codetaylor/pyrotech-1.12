@@ -1,0 +1,25 @@
+{
+  "name": "Весняний настрій",
+  "icon": "pyrotech:freckleberry_wine",
+  "category": "innovate_stone_fermenting",
+  "pages": [
+    {
+      "type": "rt_barrel_recipe",
+      "header": true,
+      "recipe": "pyrotech:freckleberry_wine",
+      "text": "Бродіння $(item)веснянкових ягід$() з $(item)цукром$() в $(item)воді$() дає $(item)веснянкове вино$().$(p)$(info_ua) Пиття $(item)веснянкового вина$() дає корисні ефекти."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:freckleberry_wine",
+      "text": "$(warning_ua) Зловживання алкоголем шкідливо для Вашого здоров'я. Навіть у грі."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/food_raw",
+        "innovate/barrel"
+      ]
+    }
+  ]
+}

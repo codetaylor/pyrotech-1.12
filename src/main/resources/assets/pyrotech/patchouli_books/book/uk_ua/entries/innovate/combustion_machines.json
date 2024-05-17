@@ -1,0 +1,40 @@
+{
+  "name": "Теплові машини",
+  "icon": "pyrotech:textures/gui/book/icon/info.png",
+  "category": "innovate_stone_machines",
+  "priority": true,
+  "pages": [
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/stone_oven_00.png"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "Використання",
+      "text": "Щоб використати $(thing)теплову машину$(), покладіть предмети зверху, паливо знизу, та підпаліть знизу $(l:appendix/ignition) предметом для запалювання$().$(p)$(info_ua) $(thing)Теплові машини$() можна гасити відром води для збереження пального."
+    },
+    {
+      "type": "text",
+      "title": "Automation",
+      "text": "$(info_ua) Що стосується автоматизації, вхідні інгредієнти вставляються у верхній частині пристрою, паливо вставляється в нижні сторони, а вихідні елементи витягуються знизу."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/combustion_machine_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_crucible",
+        "innovate/stone_kiln",
+        "innovate/stone_oven",
+        "innovate/stone_sawmill"
+      ]
+    }
+  ]
+}

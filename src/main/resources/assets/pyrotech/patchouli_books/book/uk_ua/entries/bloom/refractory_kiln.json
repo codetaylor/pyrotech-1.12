@@ -1,0 +1,19 @@
+{
+  "name": "Вогнетривка обпалювальна піч",
+  "icon": "pyrotech:brick_kiln",
+  "category": "bloom_refractory_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_kiln",
+      "text": "$(item)Вогнетривка обпалювальна піч$() виконує такі ж функції як і звичайна $(item)обпалювальна піч$(), але з кращою ефективністю."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "accelerate/refractory_bricks",
+        "innovate/stone_kiln"
+      ]
+    }
+  ]
+}

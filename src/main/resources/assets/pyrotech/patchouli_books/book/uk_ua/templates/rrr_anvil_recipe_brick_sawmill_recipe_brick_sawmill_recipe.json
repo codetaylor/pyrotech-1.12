@@ -1,0 +1,31 @@
+{
+  "include": [
+    {
+      "template": "pyrotech:include/anvil_recipe",
+      "as": "recipe1",
+      "using": {
+        "recipe": "#anvil_recipe",
+        "header": "#anvil_header"
+      },
+      "y": -6
+    },
+    {
+      "template": "pyrotech:include/refractory_sawmill_recipe",
+      "as": "recipe2",
+      "using": {
+        "recipe": "#sawmill_recipe",
+        "header": "#sawmill_header"
+      },
+      "y": 38
+    },
+    {
+      "template": "pyrotech:include/refractory_sawmill_recipe",
+      "as": "recipe2",
+      "using": {
+        "recipe": "#sawmill_recipe2",
+        "header": "#sawmill_header2"
+      },
+      "y": 82
+    }
+  ]
+}

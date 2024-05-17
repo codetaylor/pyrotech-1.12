@@ -1,0 +1,7 @@
+{
+  "name": "Наворочені інструменти",
+  "description": "Годі кістками бавитись, час робити справжні інструменти.",
+  "icon": "pyrotech:obsidian_pickaxe",
+  "sortnum": 3,
+  "parent": "bloom"
+}

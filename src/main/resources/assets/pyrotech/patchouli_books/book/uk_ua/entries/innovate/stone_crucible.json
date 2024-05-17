@@ -1,0 +1,20 @@
+{
+  "name": "Тигель",
+  "icon": "pyrotech:stone_crucible",
+  "category": "innovate_stone_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/stone_crucible",
+      "text": "$(item)Кам'яний тигель$() топить деякі предмети в рідини.$(p)$(warning_ua) Краще не пробуйте туди наливати гарячі рідини."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/masonry_brick_block",
+        "innovate/stone_tank"
+      ]
+    }
+  ]
+}

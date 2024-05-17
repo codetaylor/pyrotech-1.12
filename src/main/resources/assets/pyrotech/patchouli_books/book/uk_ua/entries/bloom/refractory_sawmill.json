@@ -1,0 +1,19 @@
+{
+  "name": "Вогнетривка пилорама",
+  "icon": "pyrotech:brick_sawmill",
+  "category": "bloom_refractory_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_sawmill",
+      "text": "$(item)Вогнетривка пилорама$() виконує такі ж завдання, як і звичайна $(item)пилорама$(), але з кращою ефективністю."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "accelerate/refractory_bricks",
+        "innovate/stone_sawmill"
+      ]
+    }
+  ]
+}

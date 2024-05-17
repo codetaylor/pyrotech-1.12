@@ -1,0 +1,20 @@
+{
+  "name": "Мцніший шпагат",
+  "icon": "pyrotech:material:26",
+  "category": "innovate_stone_soaking",
+  "pages": [
+    {
+      "type": "rt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:twine_durable",
+      "text": "Замочування $(item)шпагату$() в $(item)Креозоті$() зробить його більш міцним."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/twine",
+        "innovate/soaking_pot"
+      ]
+    }
+  ]
+}

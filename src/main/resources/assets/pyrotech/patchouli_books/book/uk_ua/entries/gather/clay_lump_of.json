@@ -1,0 +1,27 @@
+{
+  "name": "Шматочки глини",
+  "icon": "pyrotech:material:17",
+  "category": "gather_material",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "pyrotech:material:17",
+      "text": "$(item)Шматочки глини$() можна добути з глини в світі чи скрафтити з більших шматочків $(item)глини$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:clay_lump",
+      "recipe2": "pyrotech:clay_ball"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick",
+        "adapt/shears_clay",
+        "adapt/bucket_wood_and_clay",
+        "innovate/bucket_stone"
+      ]
+    }
+  ]
+}

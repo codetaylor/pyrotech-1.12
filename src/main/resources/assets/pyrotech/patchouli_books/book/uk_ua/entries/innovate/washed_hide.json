@@ -1,0 +1,31 @@
+{
+  "name": "Мийдодір",
+  "icon": "pyrotech:hide_washed",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Обмита шкіра",
+      "text": "$(item)Обмита шкіра$() можна отримати декількома способами.$(p)$(info_ua) $(item)Обдерту шкіру$() можна кинути на деякий час у воду.$(p)$(info) Або ж, $(item)обдерту шкіру$() можна обмити відром з водою."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/washing_hide",
+      "recipe2": "pyrotech:hunting/washing_hide_small"
+    },
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "recipe": "pyrotech:hide_washed",
+      "recipe2": "pyrotech:hide_small_washed",
+      "text": "$(info_ua) $(item)Обдерта шкіра$() також можна обмити $(thing)вимочивши$() її в воді над $(item)вогнищем$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/scraped_hide",
+        "innovate/soaking_pot",
+        "survive/campfire"
+      ]
+    }
+  ]
+}

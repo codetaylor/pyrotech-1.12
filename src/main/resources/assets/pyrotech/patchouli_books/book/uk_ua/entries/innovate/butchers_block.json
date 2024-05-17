@@ -1,0 +1,24 @@
+{
+  "name": "Бігає по полю весело кабанчик",
+  "icon": "pyrotech:butchers_block",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Помістіть $(item)тушу$() зверху і тисніть $(use) з $(item)мисливським ножем$() чи $(item)ножем м'ясника$().$(p)$(info_ua) В залежності від вибраного ножа можна отримати різну кількість ресурсів."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/butchers_block",
+      "text": "$(warning_ua) Використання викликає голод. Якщо робота стала малоефективною, перекусіть."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/carcass",
+        "adapt/butchers_knife_bone_and_flint",
+        "adapt/hunters_knife_bone_and_flint"
+      ]
+    }
+  ]
+}

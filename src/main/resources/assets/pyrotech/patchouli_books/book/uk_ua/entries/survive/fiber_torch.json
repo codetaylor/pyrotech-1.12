@@ -1,0 +1,19 @@
+{
+  "name": "Екологічно чистий факел",
+  "icon": "pyrotech:torch_fiber",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/torch_fiber",
+      "text": "$(item)Факел з сухого волокна$() можна скрафтити з $(item)палиці$() та $(item)висушених рослинних волокон$().$(p)$(warning_ua) $(item)Факел з сухого волокна$() гасне від дощу та гасне з часом."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/plant_fibers_dried",
+        "gather/sticks"
+      ]
+    }
+  ]
+}

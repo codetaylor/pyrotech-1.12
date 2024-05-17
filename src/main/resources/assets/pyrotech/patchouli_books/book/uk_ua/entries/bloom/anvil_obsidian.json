@@ -1,0 +1,18 @@
+{
+  "name": "Обсидіанова кузня",
+  "icon": "pyrotech:anvil_obsidian",
+  "category": "bloom_bloom",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/anvil_obsidian",
+      "text": "$(info) При куванні $(item)криці$(), $(item)обсидіанове ковадло$() прослужить значно довше своїх побратимів."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/bloom"
+      ]
+    }
+  ]
+}

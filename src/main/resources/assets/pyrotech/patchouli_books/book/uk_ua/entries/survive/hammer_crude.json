@@ -1,0 +1,23 @@
+{
+  "name": "Бабуїн-Тор",
+  "icon": "pyrotech:crude_hammer",
+  "category": "survive_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:crude_hammer",
+      "text": "$(thing)Молот$() використовується для крафтів на $(item)робочому столі$() та $(item)ковадлі$().$(p)$(info_ua) $(item)Примітивний молот$() - найпростіший молот який можна зробити."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/rocks",
+        "survive/worktable",
+        "gather/sticks",
+        "gather/plant_fibers",
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad"
+      ]
+    }
+  ]
+}

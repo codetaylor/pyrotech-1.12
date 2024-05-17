@@ -1,0 +1,33 @@
+{
+  "name": "Схрони",
+  "icon": "pyrotech:crate",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/crate",
+      "text": "$(item)Ящик$() може зберігати невелику кількість предметів в стосах."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/shelf",
+      "text": "$(item)Полиця$() може зберігати невелику кількість предметів.$(p)$(info_ua) $(item)Полиця$() може бути розміщена у передньому або задньому положенні."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/stash",
+      "text": "$(item)Схованка$() може зберігати велику кількість одного предмету."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/wood_rack",
+      "text": "$(item)Дровниця$() може утримувати невелику кількість $(thing)полін$().$(p)$(info_ua) $(thing)Поліна$() одного типу збиватимуться на дні."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/chopping_block"
+      ]
+    }
+  ]
+}

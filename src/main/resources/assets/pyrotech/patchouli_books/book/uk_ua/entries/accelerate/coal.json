@@ -1,0 +1,50 @@
+{
+  "name": "Вугілля",
+  "icon": "minecraft:coal",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "rrt_anvil_recipe",
+      "header": true,
+      "recipe": "pyrotech:coal_block_to_coal",
+      "header2": true,
+      "recipe2": "pyrotech:coal_pieces",
+      "text": "$(item)Блок вугілля$() може бути розбитий на $(item)вугілля$(), яке в свою чергу можна розбити в $(item)шматочки вугілля$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:coal_ore",
+      "text": "$(info_ua) Викопуйте $(item)вугільну руду$() заради $(item)шматочків вугілля$().$(p)$(info_ua) $(item)Вугілля$() можна добути з $(item)вугільної руди$(), якщо користуватися $(thing)металевими інструментами$() чи кращими."
+    },
+    {
+      "type": "rrt_mechanical_compactor_recipe",
+      "header": true,
+      "recipe": "pyrotech:coal_block",
+      "recipe2": "pyrotech:coal_block_from_pieces",
+      "text": "$(item)Вугілля$() та $(item)шматочки вугілля$() можна ущільнити до $(item)блоку вугілля$()."
+    },
+    {
+      "type": "fuel_coal",
+      "recipe": "pyrotech:coal_block",
+      "fuel": "minecraft:coal_block",
+      "text": "Якщо вимочити $(item)блок деревного вугілля$() в $(item)дьогті$(), то можна буде отримати $(item)блок вугілля$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:dense_coal_ore",
+      "link_recipe": true,
+      "text": "$(item)Щільна вугільна руда$() зазвичай знаходиться глибоко під землею, найчастіше в покладах $(item)вугільної руди$().$(p)$(info_ua) Її можна добути, користуючись $(thing)металевими інструментами$() чи кращими."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad",
+        "bloom/mechanical_compactor",
+        "innovate/soaking_pot",
+        "accelerate/bloomery",
+        "bloom/wither_forge"
+      ]
+    }
+  ]
+}

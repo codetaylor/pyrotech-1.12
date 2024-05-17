@@ -1,0 +1,27 @@
+{
+  "name": "Стихія Повітря",
+  "icon": "pyrotech:bellows",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/bellows",
+      "text": "$(info_ua) Встановіть $(item)міхи$() поруч з $(thing)тепловими машинами$() чи $(item)доменними печами$() і пострибайте на них, щоб збільшити циркуляцію повітря в машині і збільшити швидкість обробки."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/bellows_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/wood_boards",
+        "innovate/masonry_brick",
+        "innovate/masonry_brick_block",
+        "innovate/stone_rod"
+      ]
+    }
+  ]
+}

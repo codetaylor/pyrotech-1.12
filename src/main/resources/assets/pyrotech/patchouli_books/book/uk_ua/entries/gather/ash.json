@@ -1,0 +1,30 @@
+{
+  "name": "Попіл",
+  "icon": "pyrotech:material:0",
+  "category": "gather_material",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:material:0",
+      "link_recipe": true,
+      "text": "$(item)Попіл$() це відходи від $(item)вогнищ$(), $(thing)випалювання$(), та $(item)доменних печей$()."
+    },
+    {
+      "type": "rt_compacting_bin_recipe",
+      "header": true,
+      "recipe": "pyrotech:ash_pile",
+      "text": "$(item)Попіл$() можна $(thing)ущільнити$() в $(item)кучу попелу$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/introduction",
+        "innovate/pit_burn",
+        "accelerate/bloomery",
+        "innovate/compacting_bin",
+        "bloom/mechanical_compactor",
+        "adapt/mulch"
+      ]
+    }
+  ]
+}

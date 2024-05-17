@@ -1,0 +1,24 @@
+{
+  "name": "Не ламайся",
+  "icon": "pyrotech:worktable_stone",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(item)Кам'яний робочий стіл$() міцніший дерев'яного та може збивати предмети в купи.$(p)Інструкція з використання так ж як і в дерев'яного."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/worktable_stone"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/masonry_brick_block",
+        "survive/worktable",
+        "adapt/stone"
+      ]
+    }
+  ]
+}

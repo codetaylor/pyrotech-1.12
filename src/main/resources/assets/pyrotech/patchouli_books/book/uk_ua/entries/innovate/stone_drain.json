@@ -1,0 +1,27 @@
+{
+  "name": "Злив",
+  "icon": "pyrotech:tar_drain",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/refractory/tar_drain_stone",
+      "text": "$(item)Кам'яний злив$() витягуватиме з жолобів рідини для зливу спреду себе.$(p)$(info_ua) Перед в нього там, де велика дірка."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_drain.png"
+      ],
+      "text": "$(warning_ua) Не використовувати для зливу гарячих рідин."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/pit_burn",
+        "innovate/stone_collector"
+      ]
+    }
+  ]
+}

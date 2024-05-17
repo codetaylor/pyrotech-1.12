@@ -1,0 +1,43 @@
+{
+  "name": "Доменна піч",
+  "icon": "pyrotech:bloomery",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(item)Доменна піч$() споживає паливо для плавлення руди в $(item)крицю$().$(p)$(info_ua) Чим більше палива в $(item)печі$(), тим швидше вона працюватиме.$(p)$(info_ua) Тривалість горіння палива також впливає на швидкість $(item)доменної печі$().$(p)$(info_ua) $(item)Міхи$() чи $(item)механічні міхи$() можуть прискорити роботу $(item)печі$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/bloomery",
+      "text": "$(item)Доменна піч$() будується за допомогою $(item)вогнетривких блоків$()."
+    },
+    {
+      "type": "image",
+      "title": "Usage",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/bloomery_00.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Для використання покладіть руду і паливо у верхню частину $(item)доменної печі$(), потім підпаліть за допомогою $(l:appendix/ignition)перевіреного запалювального пристрою$().$(p)Коли вогонь на верхівці згасне, ви можете вирити $(item)попіл$() та вийняти $(item)крицю$(). $(p)$(info_ua) Щоб видалити $(item)попіл$(), $(use) по верхній частині $(item)доменної печі$() лопатою.$(p)$(попередження) Пам'ятайте, що $(item)криця$() доволі гаряча штучка - тримати її голими руками може бути небезпечно."
+    },
+    {
+      "type": "fuel_bloomery",
+      "text": "Деяке паливо може бути більш ефективним в $(item)доменній печі$().",
+      "fuel": "minecraft:coal_block",
+      "fuel2": "pyrotech:coal_coke_block",
+      "fuel3": "pyrotech:living_tar"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "accelerate/refractory_bricks",
+        "accelerate/coal",
+        "accelerate/coal_coke",
+        "bloom/living_tar"
+      ]
+    }
+  ]
+}

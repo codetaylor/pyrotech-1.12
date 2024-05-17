@@ -1,0 +1,40 @@
+{
+  "name": "Зміцнення інструментів",
+  "icon": "pyrotech:bone_pickaxe_durable",
+  "category": "innovate_durable_tools",
+  "pages": [
+    {
+      "type": "text",
+      "title": true,
+      "text": "$(info_гф) $(thing)Міцні інструменти$() коштують більше ресурсів, але при цьому живуть довше, також їх можна ремонтувати $(thing)ремонтними наборами$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/bone_pickaxe_durable",
+      "recipe2": "pyrotech:tool/bone_axe_durable"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/bone_hoe_durable",
+      "recipe2": "pyrotech:tool/bone_shovel_durable"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/flint_pickaxe_durable",
+      "recipe2": "pyrotech:tool/flint_axe_durable"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/flint_hoe_durable",
+      "recipe2": "pyrotech:tool/flint_shovel_durable"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/durable_leather",
+        "innovate/stone_tool_shaft",
+        "innovate/tool_repair_kit"
+      ]
+    }
+  ]
+}

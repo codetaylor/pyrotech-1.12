@@ -1,0 +1,22 @@
+{
+  "name": "Компостування",
+  "icon": "pyrotech:compost_bin",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/compost_bin",
+      "text": "$(item)Компостер$() дає органіці, змочену водою, перегнити в $(item)компост$()."
+    },
+    {
+      "type": "text",
+      "text": "$(info_ua) Витягніть $(item)компост$(), $(use) взявши $(thing)лопату$().$(p)$(info_ua) $(item)Компостер$() працює швидше якщо в ньому побільше компосту.$(p)$(info_ua) Для роботи пристрою змочіть його $(item)водою$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/mulch"
+      ]
+    }
+  ]
+}

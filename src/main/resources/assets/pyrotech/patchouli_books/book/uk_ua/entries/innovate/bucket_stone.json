@@ -1,0 +1,19 @@
+{
+  "name": "Відро з ... Що?",
+  "icon": "pyrotech:bucket_stone",
+  "category": "innovate_stone_fluids",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:bucket/bucket_stone",
+      "text": "$(item)Кам'яне відро$() живе довше $(item)дерев'яного відра$() чи $(item)глиняного відра$().$(p)$(warning_ua) Хоч і кам'яне, але все одно не наливайте туди гарячу рідину."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "gather/clay_lump_of"
+      ]
+    }
+  ]
+}

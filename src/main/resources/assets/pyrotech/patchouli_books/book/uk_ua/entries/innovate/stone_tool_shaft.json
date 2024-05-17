@@ -1,0 +1,19 @@
+{
+  "name": "Нове руків'я",
+  "icon": "pyrotech:material:47",
+  "category": "innovate_durable_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:stone_tool_shaft"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/leather_pieces",
+        "innovate/stone_rod",
+        "innovate/tools_durable"
+      ]
+    }
+  ]
+}

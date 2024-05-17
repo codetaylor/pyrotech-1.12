@@ -1,0 +1,45 @@
+{
+  "name": "Він же скала, він же Rock",
+  "icon": "pyrotech:rock:0",
+  "category": "survive_tools",
+  "pages": [
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/rock_00.png"
+      ]
+    },
+    {
+      "type": "rt_anvil_recipe",
+      "recipe": "pyrotech:cobblestone_to_rocks",
+      "text": "$(item)Камінчики$() можна знайти практично всюди.$(p)$(item)Камінчики$() можна знайти, копаючи камінь низькорівневим кайлом.$(p)Їх також можна отримати на $(item)ковадлі$()."
+    },
+    {
+      "type": "rrr_anvil_recipe",
+      "recipe": "pyrotech:cobbled_andesite_to_rocks",
+      "recipe2": "pyrotech:cobbled_diorite_to_rocks",
+      "recipe3": "pyrotech:cobbled_granite_to_rocks"
+    },
+    {
+      "type": "text",
+      "text": "Якщо на вас напали монстри, вовки, чи деканат - тоді зарубайте це:$(p)$(info_ua) Кидання в них $(item)камінчиків$() також може бути агресивною, насильницькою чи шкідливою дією.$(p)$(info_ua) Або кладіть $(item)камінчики$() як елемент декору, це не є частиною агресивної, насильницької чи шкідливої дії."
+    },
+    {
+      "type": "rt_anvil_recipe",
+      "anchor": "limestone",
+      "recipe": "pyrotech:cobbled_limestone_to_rocks",
+      "text": "$(item)Вапнякові камінчики$() можна розбити на $(item)ковадлі$() чи знайти копаючи $(item)вапняк$() низькорівневим кайлом."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "adapt/tools_hammers",
+        "bloom/anvil_ironclad",
+        "gather/stone_cobbled",
+        "gather/limestone"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Коксове вугілля",
+  "icon": "pyrotech:material:1",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "rt_pit_burn_recipe",
+      "header": true,
+      "recipe": "pyrotech:coal_coke",
+      "text": "$(item)Коксове вугілля$() утворюється в результаті випалювання $(item)блоків вугілля$() під час $(thing)високотемпературного випалювання в ямі$().$(p)$(info_ua)$(item)Коксове вугілля$() набагато ефективніше $(item)деревного$() чи $(item)звичайного$() вугілля.$(p)"
+    },
+    {
+    "type": "text",
+    "text":"$(info_ua)$(item)Блок коксового вугілля$() має майже втричі вищу ефективність при використанні в $(item)доменній печі$() чи в $(item)пекельній доменній печі$()."
+  },
+    {
+      "type": "fuel_coal_coke_block",
+      "recipe": "pyrotech:coal_coke_block",
+      "fuel": "pyrotech:coal_coke_block"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "accelerate/refractory_burn",
+        "bloom/mechanical_compactor",
+        "accelerate/bloomery",
+        "bloom/wither_forge"
+      ]
+    }
+  ]
+}

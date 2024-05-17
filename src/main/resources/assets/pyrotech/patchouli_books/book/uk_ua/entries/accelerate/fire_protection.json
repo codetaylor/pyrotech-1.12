@@ -1,0 +1,27 @@
+{
+  "name": "Захист від вогню",
+  "icon": "minecraft:leather_chestplate",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Працюючи з $(item)крицею$() та $(item)шлаком$() дуже легко обпектися (чи загорітися).$(p)$(info_ua) $(thing)Шкіряна броня$() покрита $(item)гашеним вапном$() підвищить Вашу $(thing)Вогнестійкість$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:leather_helmet_fireproof",
+      "recipe2": "pyrotech:leather_chestplate_fireproof"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:leather_leggings_fireproof",
+      "recipe2": "pyrotech:leather_boots_fireproof"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}

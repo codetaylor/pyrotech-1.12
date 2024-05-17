@@ -1,0 +1,33 @@
+{
+  "name": "Кругляки",
+  "icon": "minecraft:cobblestone",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(item)Кругляк$() все ще можна добути, якщо копати каміння хоча б металевим кайлом.$(p)$(info_ua) $(item)Кругляк$() можна з деяким шансом добути і гіршими кайлами.$(p)$(info_ua) $(item)Кругляк$() також крафтиться з $(item)каміння$()."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/cobbled_stone_00.png"
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobbled_andesite",
+      "recipe2": "pyrotech:cobbled_diorite"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobbled_granite",
+      "recipe2": "pyrotech:cobbled_limestone"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/rocks"
+      ]
+    }
+  ]
+}

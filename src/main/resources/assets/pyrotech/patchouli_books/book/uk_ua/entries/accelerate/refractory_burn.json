@@ -1,0 +1,38 @@
+{
+  "name": "Вогнетривке випалювання",
+  "icon": "pyrotech:refractory_brick_block",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Процес $(thing)вогнетривкого випалювання$() ідентичний $(thing)випалюванню в ямі$() зі різницею в тому, що матеріал, який закриває матеріали, має бути вогнетривким.$(p)$(warning_ua) Рекомендується ознайомитись з $(thing)випалюванням в ямі$() перш ніж перейти до $(thing)вогнетривкого випалювання$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_door",
+      "text": "$(item)Вогнетривкі двері$()будуть працювати як вогнетривкий блок, якщо всередині вогнетривкої шафи не буде повітряної кишені."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_glass",
+      "text": "$(item)Вогнетривке скло$() хоч і прозорий, але вважається вогнетривким блоком."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/refractory/tar_collector_brick",
+      "text": "$(item)Вогнетривкий жолоб$() вогнетривкий блок.$(p)$(info_ua) Цей жолоб може утримувати гарячі рідини, типу лави."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/refractory/tar_drain_brick",
+      "text": "$(item)Вогнетривкий злив$() вогнетривкий блок.$(p)$(info_ua) Цей жолоб може утримувати гарячі рідини, типу лави."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/pit_burn",
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}

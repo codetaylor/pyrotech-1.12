@@ -1,0 +1,17 @@
+{
+  "name": "Похід з зефірками",
+  "icon": "pyrotech:marshmallow",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/marshmallow",
+      "text": "Щоб насадити $(item)зефірку$() на палицю, тримайте $(item)зефірку$() в іншій руці, а $(item)палицю для зефірок$() в основній, і $(use) коли крадетеся.$(p)$(info_ua) $(item)Смажені зефірки$() можна їсти прямо з палиці."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/marshmallow_stick",
+      "text": "Щоб засмажити $(item)зефірку на паличці$() станьте поряд з $(item)вогнищем$() та затисніть $(use) допоки не засмажаться до золотистої скоринки.$(p)$(info_ua) $(item)Смажену зефірку$() можна зняти на $(use) під час крадіжки з вільною рукою."
+    }
+  ]
+}

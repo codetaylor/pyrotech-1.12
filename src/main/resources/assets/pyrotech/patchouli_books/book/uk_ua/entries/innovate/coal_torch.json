@@ -1,0 +1,19 @@
+{
+  "name": "Кам'яний факел",
+  "icon": "pyrotech:torch_stone",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/torch_stone",
+      "text": "$(warning_ua) $(item)Кам'яний факел$() погасне під дощем.$(p)$(info_ua) $(item)Кам'яний факел$() не прогорить з часом."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_rod",
+        "accelerate/coal"
+      ]
+    }
+  ]
+}

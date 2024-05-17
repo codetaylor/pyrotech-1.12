@@ -1,0 +1,20 @@
+{
+  "name": "Стріли з стендами",
+  "icon": "minecraft:arrow",
+  "category": "bloom_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:arrow",
+      "text": "$(infoua) $(item)Металеві стріли$() міцніші ніж кістяні чи гранітні варіанти, а також не ламаються від ударів."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "adapt/arrow_bone_and_flint",
+        "bloom/shards_advanced"
+      ]
+    }
+  ]
+}

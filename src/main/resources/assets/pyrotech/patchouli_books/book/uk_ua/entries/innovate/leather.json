@@ -1,0 +1,21 @@
+{
+  "name": "Шкіра",
+  "icon": "minecraft:leather",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "rrt_tanning_rack_recipe",
+      "header": true,
+      "recipe": "pyrotech:leather",
+      "header2": true,
+      "recipe2": "pyrotech:leather_small",
+      "text": "$(item)Шкіра$() виробляється висушуванням $(item)дубленої шкіри$() на $(item)дубильному стелажі$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/tanned_hide"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Камінь об камінь",
+  "icon": "pyrotech:stone_hammer",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:stone_hammer"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "gather/sticks",
+        "adapt/twine"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "М'ясник",
+  "description": "Робота м'ясником забезпечить вас' $(thing)м'ясом$(), $(thing)шкірами$() та $(item)смальцем$().",
+  "icon": "pyrotech:carcass",
+  "sortnum": 2,
+  "parent": "adapt"
+}

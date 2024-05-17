@@ -1,0 +1,30 @@
+{
+  "name": "Сушку?",
+  "icon": "pyrotech:drying_rack:1",
+  "category": "adapt",
+  "pages": [
+    {
+    "type": "text",
+      "text": "$(item)Примітивна$() та $(item)звичайна сушки$() використовується для висушування чи зберігання речей.$(p)$(info_ua) Ефективність $(item)сушарки$() залежить від:$(li)близькість до вогнища$(li)погоди$(li)часу доби$(li)температури біому та вологості$(li)впливу дощу$(li)дощу біому"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/drying_rack_crude",
+      "text": "$(item)Примітивна сушка$() робиться з пари $(item)палок$(), скріплених $(item)волокнами$().$(p)$(info_ua) Підходить для зберігання одного предмету."
+    },
+    {
+      "type": "crafting",
+      "recipe2": "pyrotech:tech/basic/drying_rack",
+      "text": "Міцніша, менш груба $(item)сушка$() робиться скріпленням $(item)палок$() $(item)шпагатом$().$(p)$(info_ua) Підходить для зберігання чотирьох предметів."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/introduction",
+        "adapt/twine",
+        "gather/plant_fibers",
+        "gather/sticks"
+      ]
+    }
+  ]
+}

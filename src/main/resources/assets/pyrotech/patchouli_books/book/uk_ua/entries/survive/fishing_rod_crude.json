@@ -1,0 +1,21 @@
+{
+  "name": "Риболов-неандерталець",
+  "icon": "pyrotech:crude_fishing_rod",
+  "category": "survive_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/crude_fishing_rod",
+      "text": "Оскільки це не та версія гри, де рибу можна гарпунити, для риболовлі вам потрібна $(item)примітивна вудка$(p)$(info_ua) Шанс $(item)примітивної вудки$() зламатися з використанням постійно збільшується."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/plant_fibers",
+        "gather/sticks",
+        "adapt/twine",
+        "survive/rocks"
+      ]
+    }
+  ]
+}

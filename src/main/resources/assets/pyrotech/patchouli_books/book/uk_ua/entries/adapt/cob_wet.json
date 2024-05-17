@@ -1,0 +1,26 @@
+{
+  "name": "Зліпок болота",
+  "icon": "pyrotech:cob_wet",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cob_2x2a",
+      "text": "$(info_ua) $(item)Зліпок цегли з болота$() впаде, якщо його не висушити чи не підперти.$(p)$(info_ua) $(item)Зліпок цегли з болота$() з часом висохне якщо його розмітити де-небуть."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cob_2x2b",
+      "recipe2": "pyrotech:cob_3x3"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/mud",
+        "gather/mud_clump",
+        "adapt/plant_fibers_dried",
+        "adapt/cob"
+      ]
+    }
+  ]
+}

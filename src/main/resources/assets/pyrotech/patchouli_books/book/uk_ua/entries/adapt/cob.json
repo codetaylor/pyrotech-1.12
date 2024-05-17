@@ -1,0 +1,20 @@
+{
+  "name": "Будиночок з бруду",
+  "icon": "pyrotech:cob_dry",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:cob",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/cob",
+      "text": "$(info_ua) $(item)Цегла з болота$() розмокає під дощем і може розвалитися, тому не забудьте про дах."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/cob_wet"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Інструмент з редстоуну",
+  "icon": "pyrotech:redstone_pickaxe",
+  "category": "bloom_tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(info_ua) $(thing)Редстоунові інструменти$() активуються від втрати міцності чи якщо поряд є $(thing)редстоунова руда$().$(p)$(info_ua) $(thing)Редстоунові інструменти$() повільно відновлюють міцність, коли знаходиться поруч з $(thing)редстоуновою рудою$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/redstone_pickaxe",
+      "text": "$(info_ua) Активовані $(thing)редстоунові інструменти$() можуть протистояти пошкодженням і залишатимуться активними, отримуючи пошкодження.$(p)$(info_ua) $(item)Редстоунове кайло$() має підвищену ефективність коли активне."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/redstone_shovel",
+      "text": "$(info_ua) $(item)Редстоунова лопата$() має підвищену ефективність коли активна."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/redstone_hoe",
+      "text": "$(info_ua) $(item)Редстоунова мотика$() викопує землю розміром 3х3 коли активна."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/redstone_axe",
+      "text": "$(info_ua) $(item)Редстоунова сокира$() має підвищену ефективність коли активна."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/redstone_sword",
+      "text": "$(info_ua) $(item)Редстоуновий меч$() має підвищену шкоду коли активний."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/dense_redstone"
+      ]
+    }
+  ]
+}

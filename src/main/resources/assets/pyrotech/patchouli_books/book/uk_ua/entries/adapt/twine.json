@@ -1,0 +1,18 @@
+{
+  "name": "Шпагат",
+  "icon": "pyrotech:material:14",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:twine",
+      "text": "$(item)Шпагат$() добре підходить для того, щоб надійно зв'язати або закріпити речі (сідати не треба, заспокойтеся)."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/plant_fibers_dried"
+      ]
+    }
+  ]
+}

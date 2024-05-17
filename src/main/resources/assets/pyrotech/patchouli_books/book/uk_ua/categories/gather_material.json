@@ -1,0 +1,7 @@
+{
+  "name": "Перші матеріали",
+  "description": "Ми в світі, де голими руками сокиру не зліпиш",
+  "icon": "pyrotech:material:11",
+  "parent": "gather",
+  "sortnum": 1
+}

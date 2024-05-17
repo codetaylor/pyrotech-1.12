@@ -1,0 +1,124 @@
+{
+  "name": "Піч під землею",
+  "icon": "pyrotech:kiln_pit",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Для процесу $(item)грунтового обпалення$() нам потрібен $(item)пічний настил$(), чотири $(item)соломи$(), $(item)тюк соломи$(), три $(thing)поліна$(), та $(l:appendix/ignition)пристрій для підпалювання$().$(p)Зв'яжіть два жмути $(item)висушених рослиних волокон$() щоб отримати $(item)солому$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/kiln_pit",
+      "recipe2": "pyrotech:straw"
+    },
+    {
+      "type": "rrr_crude_drying_recipe_drying_recipe_stone_oven_recipe",
+      "crude_recipe": "pyrotech:straw",
+      "recipe": "pyrotech:crude_drying_rack/straw",
+      "stone_oven_recipe": "pyrotech:drying_rack/crude_drying_rack/straw"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:thatch",
+      "text": "$(info_ua) $(item)Солома$() також отримується шляхом висушування $(item)пшениці$()."
+    },
+    {
+      "type": "text",
+      "text": "Отже, давайте тепер покроково:$(p)  $(l:adapt/pit_kiln#step_1)1. Покладіть настил в вириту яму$(/l)$(br)  $(l:adapt/pit_kiln#step_2)2. Покладіть інгредієнти$(/l)$(br)  $(l:adapt/pit_kiln#step_3)3. Обкладіть тюком соломи$(/l)$(br)  $(l:adapt/pit_kiln#step_4)4. Накрийте полінами$(/l)$(br)  $(l:adapt/pit_kiln#step_5)5. Підпаліть$(/l)$(br)  $(l:adapt/pit_kiln#step_6)6. Чекайте$(/l)$(p)На титулці проілюстровано $(item)грунтове обпалення$(), а на наступних сторінках описані важливі деталі."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_00.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "1.Покладіть настил",
+      "anchor": "step_1",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_01.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Спочатку викопайте яму в землі і помістіть на дно $(item)пічний настил$().$(p)$(info_ua) Він має бути закритий з усін сторін твердим, незаймистим матеріалом; верхня частина залишається відкритою."
+    },
+    {
+      "type": "image",
+      "title": "2. Додайте інгредієнти",
+      "anchor": "step_2",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_02.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Далі, додайте інгредієнт(и) наверх $(item)настилу$().$(p)$(info_ua) $(item)Пічний настил$() може тримати лише один тип предметів.$(p)$(warning_ua) Зверніть увагу що в кроках 2,3,4, два $(item)блоки трави$() збоку $(item)пічного настилу$() вилучені для демонстративності - вони все рівно необхідні."
+    },
+    {
+      "type": "image",
+      "title": "3. Додайте тюк соломи",
+      "anchor": "step_3",
+      "text": " Тепер додайте $(item)тюк соломи$().",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_03.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "4. Додайте три поліна",
+      "anchor": "step_4",
+      "text": " Тепер додайте три $(thing)поліна$().",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_04.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "5. Підпаліть",
+      "anchor": "step_5",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_01.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Далі, використайте $(l:appendix/ignition)підпалювальний пристрій$().$(p)$(info_ua) На відміну від $(thing)випалювання в ямі$(),$(item)грунтове обпалення$() не накривається зверху поки горить."
+    },
+    {
+      "type": "image",
+      "title": "6. Очікуйте",
+      "anchor": "step_6",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_05.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Тепер, чекайте.$(p)$(info_ua) Допоки $(item)грунтове обпалення$() активне, воно буде горіти.$(p)$(warning_ua) Дощ може зіпсувати вам процес, тому слідкуйте за погодою."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_06.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Коли вогонь $(item)грунтового обпалювання$() погасне, викопайте попіл щоб побачити результат.$(p)$(warning_ua) Через паскудну примітивність $(item)грунтового обпалення$(), є шанс що предмети не обпаляться і процес провалиться."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/plant_fibers_dried",
+        "adapt/twine",
+        "adapt/drying_rack",
+        "innovate/stone_oven",
+        "bloom/refractory_oven",
+        "appendix/ignition"
+      ]
+    }
+  ]
+}
