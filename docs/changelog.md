@@ -1,5 +1,12 @@
 # Changelog
 
+**1.6.15**
+
+* **Added:**
+    * Ukrainian localization [(#439)](https://github.com/codetaylor/pyrotech-1.12/pull/439)
+
+---
+
 **1.6.14**
 
 * **Notes:**
