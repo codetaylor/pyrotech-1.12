@@ -1,0 +1,27 @@
+{
+  "name": "Є чим підтертися!",
+  "icon": "minecraft:paper",
+  "category": "innovate_stone_soaking",
+  "pages": [
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:pulp_from_reeds",
+      "recipe2": "pyrotech:pulp_from_wood_chips",
+      "text": "$(item)Целюлоза$() отримується відмочуванням $(item)цукрової тростини$() чи $(item)тирси$() в воді."
+    },
+    {
+      "type": "rt_drying_recipe",
+      "header": true,
+      "recipe": "pyrotech:crude_drying_rack/paper",
+      "text": "$(item)Целюлозу$() можна висушити в $(item)папір$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/soaking_pot",
+        "adapt/drying_rack"
+      ]
+    }
+  ]
+}

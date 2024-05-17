@@ -1,0 +1,18 @@
+{
+  "name": "Як тобі таке відеречко?",
+  "icon": "pyrotech:stone_tank",
+  "category": "innovate_stone_fluids",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/stone_tank",
+      "text": "Використовуйте $(item)кам'яний резервуар$() для зберігання рідин.$(p)$(warning_ua) Не призначений для гарячих рідин."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick"
+      ]
+    }
+  ]
+}

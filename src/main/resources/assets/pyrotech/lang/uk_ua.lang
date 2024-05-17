@@ -1,0 +1,786 @@
+itemGroup.pyrotech=Pyrotech
+
+#------------------------------------------------------------------------------
+# Vanilla
+#------------------------------------------------------------------------------
+
+item.arrow.name=Металева стріла
+
+#------------------------------------------------------------------------------
+# Module: Hunting
+#------------------------------------------------------------------------------
+
+item.pyrotech.hide.pig.name=Шкіра свині
+item.pyrotech.hide.sheep.sheared.name=Шкіра вівці
+item.pyrotech.hide.llama.name=Шкіра лами
+item.pyrotech.hide.scraped.name=Обдерта шкіра
+item.pyrotech.hide.small.scraped.name=Обдерта шкірка
+item.pyrotech.hide.washed.name=Обмита шкіра
+item.pyrotech.hide.small.washed.name=Обмита шкірка
+item.pyrotech.hide.tanned.name=Дублена шкіра
+item.pyrotech.hide.small.tanned.name=Дублена шкірка
+
+item.pyrotech.pelt.ruined.name=Зіпсована шкура
+item.pyrotech.pelt.cow.name=Шкура корови
+item.pyrotech.pelt.mooshroom.name=Шкура му-у-ухомора
+item.pyrotech.pelt.polar.bear.name=Шкура полярного ведмедя
+item.pyrotech.pelt.bat.name=Шкура кажана
+item.pyrotech.pelt.horse.name=Шкура коня
+item.pyrotech.pelt.wolf.name=Шкура вовка
+item.pyrotech.pelt.sheep.yellow.name=Шкура жовтої вівці
+item.pyrotech.pelt.sheep.white.name=Шкура білої вівці
+item.pyrotech.pelt.sheep.gray.light.name=Шкура світло-сірої вівці
+item.pyrotech.pelt.sheep.red.name=Шкура червоної вівці
+item.pyrotech.pelt.sheep.purple.name=Шкура фіолетової вівці
+item.pyrotech.pelt.sheep.pink.name=Шкура рожевої вівці
+item.pyrotech.pelt.sheep.orange.name=Шкура помаранчевої вівці
+item.pyrotech.pelt.sheep.magenta.name=Шкура пурпурової вівці
+item.pyrotech.pelt.sheep.lime.name=Шкура лаймової вівці
+item.pyrotech.pelt.sheep.blue.light.name=Шкіра світло-блакитної вівці
+item.pyrotech.pelt.sheep.green.name=Шкура зеленої вівці
+item.pyrotech.pelt.sheep.gray.name=Шкура сірої вівці
+item.pyrotech.pelt.sheep.cyan.name=Шкіра блакитної вівці
+item.pyrotech.pelt.sheep.brown.name=Шкіра коричневої вівці
+item.pyrotech.pelt.sheep.blue.name=Шкіра синьої вівці
+item.pyrotech.pelt.sheep.black.name=Шкіра чорної вівці
+item.pyrotech.pelt.llama.white.name=Шкура білої лами
+item.pyrotech.pelt.llama.creamy.name=Шкура кремової лами
+item.pyrotech.pelt.llama.gray.name=Шкура сірої лами
+item.pyrotech.pelt.llama.brown.name=Шкіра коричневої лами
+
+item.pyrotech.bone.hunters.knife.name=Кістяний мисливський ніж
+item.pyrotech.flint.hunters.knife.name=Кремнієвий мисливський ніж
+item.pyrotech.stone.hunters.knife.name=Кам'яний мисливський ніж
+item.pyrotech.iron.hunters.knife.name=Металевий мисливський ніж
+item.pyrotech.gold.hunters.knife.name=Золотий мисливський ніж
+item.pyrotech.diamond.hunters.knife.name=Діамантовий мисливський ніж
+item.pyrotech.obsidian.hunters.knife.name=Обсидіановий мисливський ніж
+
+item.pyrotech.bone.butchers.knife.name=Кістяний ніж м'ясника
+item.pyrotech.flint.butchers.knife.name=Кремнієвий ніж м'ясника
+item.pyrotech.stone.butchers.knife.name=Кам'яний ніж м'ясника
+item.pyrotech.iron.butchers.knife.name=Металевий ніж м'ясника
+item.pyrotech.gold.butchers.knife.name=Золотий ніж м'ясника
+item.pyrotech.diamond.butchers.knife.name=Діамантовий ніж м'ясника
+item.pyrotech.obsidian.butchers.knife.name=Обсидіановий ніж м'ясника
+
+item.pyrotech.leather.repair.kit.name=Комплект для ремонту шкіри
+item.pyrotech.leather.durable.repair.kit.name=Комплект для ремонту міцної шкіри
+item.pyrotech.leather.durable.upgrade.kit.name=Комплект для покращення міцної шкіри
+
+item.pyrotech.flint.arrow.name=Кремнієва стріла
+item.pyrotech.bone.arrow.name=Кістяна стріла
+
+item.pyrotech.crude.spear.name=Примітивний спис
+item.pyrotech.flint.spear.name=Кремнієвий спис
+item.pyrotech.bone.spear.name=Кістяний спис
+
+tile.pyrotech.carcass.name=Туша
+tile.pyrotech.butchers_block.name=Стіл м'ясника
+
+entity.pyrotech.mud.name=Виплески бруду
+
+fluid.tannin=Танін
+tile.fluid.tannin.name=Танін
+
+gui.pyrotech.hide.scraped.washing=Можна відмити, кинувши в воду на %s
+
+#------------------------------------------------------------------------------
+# Module: Bucket
+#------------------------------------------------------------------------------
+
+item.pyrotech.bucket.clay.unfired.name=Необпалене глиняне відро
+item.pyrotech.bucket.clay.name=Глиняне відро, налито %s
+item.pyrotech.bucket.clay.empty.name=Глиняне відро
+item.pyrotech.bucket.clay.milk.name=Глиняне відро з молоком
+
+item.pyrotech.bucket.stone.name=Кам'яне відро, налито %s
+item.pyrotech.bucket.stone.empty.name=Кам'яне відро
+item.pyrotech.bucket.stone.milk.name=Кам'яне відро з молоком
+
+item.pyrotech.bucket.wood.name=Дерев'яне відро, налито %s
+item.pyrotech.bucket.wood.empty.name=Дерев'яне відро
+item.pyrotech.bucket.wood.milk.name=Дерев'яне відро з молоком
+
+item.pyrotech.bucket.refractory.unfired.name=Необпалене вогнетривке відро
+item.pyrotech.bucket.refractory.name=Вогнетривке відро, налито %s
+item.pyrotech.bucket.refractory.empty.name=Вогнетривке відро
+item.pyrotech.bucket.refractory.milk.name=Вогнетривке відро з молоком
+
+#------------------------------------------------------------------------------
+# Module: Ignition
+#------------------------------------------------------------------------------
+
+item.pyrotech.bow.drill.name=Веретено
+item.pyrotech.bow.drill.durable.name=Міцне веретено
+item.pyrotech.flint.and.tinder.name=Кремінь і трут
+item.pyrotech.matchstick.name=Сірник
+
+tile.pyrotech.igniter.stone.name=Кам'яний запальник
+tile.pyrotech.igniter.brick.name=Вогнетривкий запальник
+tile.pyrotech.torch_fiber.name=Факел з сухого волокна
+tile.pyrotech.torch_stone.name=Кам'яний факел
+tile.pyrotech.lamp_oil.name=Лампова олію
+
+fluid.lamp_oil=Лампова олія
+tile.fluid.lamp_oil.name=Лампова олія
+
+#------------------------------------------------------------------------------
+# Module: Storage
+#------------------------------------------------------------------------------
+
+tile.pyrotech.shelf.name=Полиця
+tile.pyrotech.shelf_stone.name=Міцна полиця
+tile.pyrotech.stash.name=Схованка
+tile.pyrotech.stash_stone.name=Міцна схованка
+tile.pyrotech.crate.name=Ящик
+tile.pyrotech.crate_stone.name=Міцний ящик
+tile.pyrotech.wood_rack.name=Дровниця
+tile.pyrotech.stone_tank.name=Кам'яний резервуар
+tile.pyrotech.brick_tank.name=Вогнетривкий резервуар
+tile.pyrotech.bag_simple.name=Рюкзак для каміння
+tile.pyrotech.bag_durable.name=Міцний рюкзак для каміння
+tile.pyrotech.faucet_stone.name=Кам'яний кран
+tile.pyrotech.faucet_brick.name=Вогнетривкий кран
+
+#------------------------------------------------------------------------------
+# Module: Tech - Basic
+#------------------------------------------------------------------------------
+
+item.pyrotech.tinder.name=Трут
+item.pyrotech.marshmallow.name=Зефірка
+item.pyrotech.marshmallow.roasted.name=Підсмажена зефірка
+item.pyrotech.marshmallow.burned.name=Спалена зефірка
+item.pyrotech.marshmallow.stick.empty.name=Паличка для зефірок
+item.pyrotech.marshmallow.on.stick.name=Зефірка на паличці
+item.pyrotech.marshmallow.on.stick.roasted.name=Підсмажена зефірка на паличці
+item.pyrotech.marshmallow.on.stick.burned.name=Спалена зефірка на паличці
+item.pyrotech.barrel.lid.name=Кришка від бочки
+
+tile.pyrotech.kiln_pit.name=Настил для печі
+tile.pyrotech.campfire.name=Багаття
+tile.pyrotech.drying_rack.crude.name=Примітивна сушка
+tile.pyrotech.drying_rack.normal.name=Сушка
+tile.pyrotech.chopping_block.name=Плаха
+tile.pyrotech.anvil_granite.name=Гранітне ковадло
+tile.pyrotech.anvil_iron_plated.name=Залізобетонне ковадло
+tile.pyrotech.anvil_obsidian.name=Обсидіанове ковадло
+tile.pyrotech.worktable.name=Робочий стіл
+tile.pyrotech.worktable_stone.name=Кам'яний робочий стіл
+tile.pyrotech.compacting_bin.name=Ущільнювач
+tile.pyrotech.soaking_pot.name=Горщик для замочування
+tile.pyrotech.compost_bin.name=Компостер
+tile.pyrotech.barrel.name=Бочка
+tile.pyrotech.barrel_sealed.name=Закрита бочка
+tile.pyrotech.tanning_rack.name=Дубильний стелаж
+
+gui.pyrotech.marshmallow.burned.broadcast.message=%s, навіщо ти спалив зефірки?!
+gui.pyrotech.marshmallow.burned.eat.broadcast.message=%s їсть спалені зефірки, ну й гидота!
+
+pyrotech.effect.comfort=Затишок
+pyrotech.effect.well.fed=Ситість
+pyrotech.effect.resting=Відпочинок
+pyrotech.effect.well.rested=Хороший відпочинок
+pyrotech.effect.focused=Сконцентрованість
+
+#------------------------------------------------------------------------------
+# Module: Tech - Bloomery
+#------------------------------------------------------------------------------
+
+item.pyrotech.slag.name=Шлак
+item.pyrotech.slag.unique.name=Шлак: %s
+item.pyrotech.tongs.flint.name=Кремнієві щипці
+item.pyrotech.tongs.bone.name=Кістяні щипці
+item.pyrotech.tongs.stone.name=Кам'яні щипці
+item.pyrotech.tongs.iron.name=Металеві щипці
+item.pyrotech.tongs.gold.name=Золоті щипці
+item.pyrotech.tongs.diamond.name=Діамантові щипці
+item.pyrotech.tongs.obsidian.name=Обсидіанові щипці
+
+tile.pyrotech.bloom.name=Криця
+tile.pyrotech.bloom.unique.name=Криця: %s
+tile.pyrotech.bloomery.name=Доменна піч
+tile.pyrotech.wither_forge.name=Пекельна доменна піч
+tile.pyrotech.pile_slag.name=Купа шлаку
+tile.pyrotech.pile_slag.unique.name=Купа шлаку: %s
+
+#------------------------------------------------------------------------------
+# Module: Tech - Machine
+#------------------------------------------------------------------------------
+
+item.pyrotech.sawmill.blade.stone.name=Кам'яний пилорамний диск
+item.pyrotech.sawmill.blade.flint.name=Кремнієвий пилорамний диск
+item.pyrotech.sawmill.blade.bone.name=Кістяний пилорамний диск
+item.pyrotech.sawmill.blade.iron.name=Металевий пилорамний диск
+item.pyrotech.sawmill.blade.gold.name=Золотий пилорамний диск
+item.pyrotech.sawmill.blade.diamond.name=Діамантовий пилорамний диск
+item.pyrotech.sawmill.blade.obsidian.name=Обсидіановий пилорамний диск
+
+item.pyrotech.cog.wood.name=Дерев'яна шестерня
+item.pyrotech.cog.stone.name=Кам'яна шестерня
+item.pyrotech.cog.flint.name=Кремнієва шестерня
+item.pyrotech.cog.bone.name=Кістяна шестерня
+item.pyrotech.cog.iron.name=Металева шестерня
+item.pyrotech.cog.gold.name=Золота шестерня
+item.pyrotech.cog.diamond.name=Діамантова шестерня
+item.pyrotech.cog.obsidian.name=Обсидіанова шестерня
+
+tile.pyrotech.stone_kiln.name=Обпалювальна піч
+tile.pyrotech.stone_oven.name=Жаровня
+tile.pyrotech.stone_sawmill.name=Пилорама
+tile.pyrotech.stone_crucible.name=Тигель
+
+tile.pyrotech.brick_kiln.name=Вогнетривка обпалювальна піч
+tile.pyrotech.brick_oven.name=Вогнетривка жаровня
+tile.pyrotech.brick_sawmill.name=Вогнетривка пилорама
+tile.pyrotech.brick_crucible.name=Вогнетривкий тигель
+
+tile.pyrotech.mechanical_hopper.name=Механічна воронка
+tile.pyrotech.mechanical_compacting_bin.name=Механічний ущільнювач
+tile.pyrotech.mechanical_mulch_spreader.name=Механічний компостер
+tile.pyrotech.bellows.name=Міх
+tile.pyrotech.mechanical_bellows.name=Механічний міх
+tile.pyrotech.trip_hammer.name=Відбійний молот
+
+#------------------------------------------------------------------------------
+# Module: Tech - Refractory
+#------------------------------------------------------------------------------
+
+fluid.wood_tar=Креозот
+tile.fluid.wood_tar.name=Креозот
+fluid.coal_tar=Дьоготь
+tile.fluid.coal_tar.name=Дьоготь
+
+tile.pyrotech.tar_collector.stone.name=Кам'яний жолоб
+tile.pyrotech.tar_collector.brick.name=Вогнетривкий жолоб
+tile.pyrotech.tar_drain.stone.name=Кам'яний злив
+tile.pyrotech.tar_drain.brick.name=Вогнетривкий злив
+
+#------------------------------------------------------------------------------
+# Module: Tool
+#------------------------------------------------------------------------------
+
+item.pyrotech.crude.axe.name=Примітивна сокира
+item.pyrotech.crude.hoe.name=Примітивна мотика
+item.pyrotech.crude.pickaxe.name=Примітивне кайло
+item.pyrotech.crude.shovel.name=Примітивна лопата
+item.pyrotech.crude.fishing.rod.name=Примітивна вудка
+
+item.pyrotech.bone.axe.name=Кістяна сокира
+item.pyrotech.bone.hoe.name=Кістяна мотика
+item.pyrotech.bone.pickaxe.name=Кістяне кайло
+item.pyrotech.bone.shovel.name=Кістяна лопата
+item.pyrotech.bone.sword.name=Кістяний меч
+
+item.pyrotech.bone.axe.durable.name=Міцна кістяна сокира
+item.pyrotech.bone.hoe.durable.name=Міцна кістяна мотика
+item.pyrotech.bone.pickaxe.durable.name=Міцне кістяне кайло
+item.pyrotech.bone.shovel.durable.name=Міцна кістяна лопата
+
+item.pyrotech.flint.axe.name=Кремнієва сокира
+item.pyrotech.flint.hoe.name=Кремнієва мотика
+item.pyrotech.flint.pickaxe.name=Кремнієве кайло
+item.pyrotech.flint.shovel.name=Кремнієва лопата
+item.pyrotech.flint.sword.name=Кремнієвий меч
+
+item.pyrotech.flint.axe.durable.name=Міцна кремнієва сокира
+item.pyrotech.flint.hoe.durable.name=Міцна кремнієва мотика
+item.pyrotech.flint.pickaxe.durable.name=Міцне кремнієве кайло
+item.pyrotech.flint.shovel.durable.name=Міцна кремнієва лопата
+
+item.pyrotech.obsidian.axe.name=Обсидіанова сокира
+item.pyrotech.obsidian.hoe.name=Обсидіанова мотика
+item.pyrotech.obsidian.pickaxe.name=Обсидіанове кайло
+item.pyrotech.obsidian.shovel.name=Обсидіанова лопата
+item.pyrotech.obsidian.sword.name=Обсидіановий меч
+
+item.pyrotech.redstone.axe.name=Червонокам'яна сокира
+item.pyrotech.redstone.hoe.name=Червонокам'яна мотика
+item.pyrotech.redstone.pickaxe.name=Червонокам'яне кайло
+item.pyrotech.redstone.shovel.name=Червонокам'яна лопата
+item.pyrotech.redstone.sword.name=Червонокам'яний меч
+
+item.pyrotech.quartz.axe.name=Кварцова сокира
+item.pyrotech.quartz.hoe.name=Кварцова мотика
+item.pyrotech.quartz.pickaxe.name=Кварцове кайло
+item.pyrotech.quartz.shovel.name=Кварцова лопата
+item.pyrotech.quartz.sword.name=Кварцовий меч
+
+item.pyrotech.unfired.clay.shears.name=Необпалені глиняні ножиці
+item.pyrotech.clay.shears.name=Глиняні ножиці
+item.pyrotech.stone.shears.name=Кам'яні ножиці
+item.pyrotech.bone.shears.name=Кістяні ножиці
+item.pyrotech.flint.shears.name=Кремнієві ножиці
+item.pyrotech.gold.shears.name=Золоті ножиці
+item.pyrotech.diamond.shears.name=Діамантові ножиці
+item.pyrotech.obsidian.shears.name=Обсидіанові ножиці
+
+item.pyrotech.bone.tool.repair.kit.name=Кістяний комплект для ремонту
+item.pyrotech.flint.tool.repair.kit.name=Кремнієвий комплект для ремонту
+
+item.pyrotech.crude.shield.name=Примітивний щит
+item.pyrotech.durable.shield.name=Міцний щит
+
+#------------------------------------------------------------------------------
+# Module: Core
+#------------------------------------------------------------------------------
+
+fluid.liquid_clay=Розтоплена глина
+tile.fluid.liquid_clay.name=Розтоплена глина
+fluid.pyroberry_wine=Вогняне вино
+tile.fluid.pyroberry_wine.name=Вогняне вино
+fluid.gloamberry_wine=Тьмяне вино
+tile.fluid.gloamberry_wine.name=Тьмяне вино
+fluid.freckleberry_wine=Веснянкове вино
+tile.fluid.freckleberry_wine.name=Веснянкове вино
+
+item.pyrotech.straw.name=Солома
+item.pyrotech.coal.coke.name=Кокс
+item.pyrotech.pit.ash.name=Попіл
+item.pyrotech.flint.clay.ball.name=Кремнієва глина
+item.pyrotech.refractory.clay.ball.name=Вогнетривка глина
+item.pyrotech.refractory.clay.lump.name=Шматочок вогнетривкої глини
+item.pyrotech.unfired.refractory.brick.name=Необпалена вогнетривка цегла
+item.pyrotech.unfired.brick.name=Необпалена глиняна цегла
+item.pyrotech.refractory.brick.name=Вогнетривка цегла
+item.pyrotech.pottery.fragments.name=Уламки кераміки
+item.pyrotech.pottery.shard.name=Черепок
+item.pyrotech.refractory.door.name=Вогнетривкі двері
+item.pyrotech.stone.door.name=Кам'яні двері
+item.pyrotech.quicklime.name=Негашене вапно
+item.pyrotech.slaked.lime.name=Гашене вапно
+item.pyrotech.flint.shard.name=Уламок кремнію
+item.pyrotech.bone.shard.name=Уламок кістки
+item.pyrotech.plant.fibers.name=Рослинні волокна
+item.pyrotech.plant.fibers.dried.name=Висушенні рослинні волокна
+item.pyrotech.twine.name=Шпагат
+item.pyrotech.charcoal.flakes.name=Вугільні пластівці
+item.pyrotech.brick.stone.name=Кам'яна цегла
+item.pyrotech.clay.lump.name=Шматочок глини
+item.pyrotech.iron.shard.name=Металевий уламок
+item.pyrotech.diamond.shard.name=Діамантовий уламок
+item.pyrotech.board.name=Дощечка
+item.pyrotech.coal.pieces.name=Шматочки вугілля
+item.pyrotech.mulch.name=Компост
+item.pyrotech.board.tarred.name=Просмолена дощечка
+item.pyrotech.pulp.name=Целюлоза
+item.pyrotech.twine.durable.name=Міцний шпагат
+item.pyrotech.stick.stone.name=Кам'яна палиця
+item.pyrotech.burned.food.name=Спалена їжа
+item.pyrotech.dust.limestone.name=Подрібнений вапняк
+item.pyrotech.kindling.name=Хмиз
+item.pyrotech.kindling.tarred.name=Просмолений хмиз
+item.pyrotech.dust.flint.name=Подрібнений кремінь
+item.pyrotech.glass.shard.name=Скляний уламок
+item.pyrotech.obsidian.shard.name=Обсидіановий уламок
+item.pyrotech.gold.shard.name=Золотий уламок
+item.pyrotech.dense.redstone.name=Щільний червонокамінь
+item.pyrotech.dense.quartz.name=Щільний кварц
+item.pyrotech.leather.sheet.name=Шкіряний лист
+item.pyrotech.leather.strap.name=Шкіряна смужка
+item.pyrotech.leather.cord.name=Шкіряний шнурок
+item.pyrotech.leather.durable.name=Міцна шкіра
+item.pyrotech.leather.durable.sheet.name=Міцний шкіряний лист
+item.pyrotech.leather.durable.strap.name=Міцна шкіряна смужка
+item.pyrotech.leather.durable.cord.name=Міцний шкіряний шнурок
+item.pyrotech.leather.small.name=Шкірка
+item.pyrotech.fletching.name=Оперення стріли
+item.pyrotech.stone.tool.shaft.name=Кам'яна ручка
+item.pyrotech.bow.drill.durable.stick.name=Міцне веретено
+item.pyrotech.lard.name=Смалець
+item.pyrotech.dough.name=Тісто
+item.pyrotech.flour.name=Борошно
+item.pyrotech.bread.dough.name=Зліплений хліб
+item.pyrotech.cookie.dough.name=Зліплене печиво
+item.pyrotech.furnace.core.name=Топка печі
+item.pyrotech.clay.blasting.name=Сірникова суміш
+
+item.pyrotech.apple.baked.name=Печене яблуко
+item.pyrotech.carrot.roasted.name=Печена морква
+item.pyrotech.egg.roasted.name=Печене яйце
+item.pyrotech.mushroom.brown.roasted.name=Печений гриб
+item.pyrotech.mushroom.red.roasted.name=Печений мухомор
+item.pyrotech.beetroot.roasted.name=Печений буряк
+item.pyrotech.strange.tuber.name=Дивний корінь
+item.pyrotech.pyroberries.name=Вогняна ягода
+item.pyrotech.pyroberry.seeds.name=Вогняне насіння
+item.pyrotech.pyroberry.wine.name=Вогняне вино
+item.pyrotech.pyroberry.cocktail.name=Вогняний коктейль
+item.pyrotech.gloamberry.seeds.name=Тьмяне насіння
+item.pyrotech.gloamberries.name=Тьмяна ягода
+item.pyrotech.gloamberry.wine.name=Тьмяне вино
+item.pyrotech.tainted.meat.name=Гниле м'ясо
+item.pyrotech.freckleberry.seeds.name=Веснянкове насіння
+item.pyrotech.freckleberries.name=Веснянкова ягода
+item.pyrotech.freckleberry.wine.name=Веснянкове вино
+
+item.pyrotech.crude.hammer.name=Примітивний молот
+item.pyrotech.stone.hammer.name=Кам'яний молот
+item.pyrotech.flint.hammer.name=Кремнієвий молот
+item.pyrotech.bone.hammer.name=Кістяний молот
+item.pyrotech.flint.hammer.durable.name=Міцний кремнієвий молот
+item.pyrotech.bone.hammer.durable.name=Міцний кістяний молот
+item.pyrotech.iron.hammer.name=Металевий молот
+item.pyrotech.gold.hammer.name=Золотий молот
+item.pyrotech.diamond.hammer.name=Діамантовий молот
+item.pyrotech.obsidian.hammer.name=Обсидіановий молот
+
+tile.pyrotech.thatch.name=Тюк соломи
+tile.pyrotech.coal_coke_block.name=Блок коксу
+tile.pyrotech.log_pile.name=Дерев'яна паля
+tile.pyrotech.refractory_brick_block.name=Вогнетривка кладка
+tile.pyrotech.refractory_brick_wall.name=Вогнетривка огорожа
+tile.pyrotech.refractory_brick_slab.name=Напівблок вогнетривкої кладки
+tile.pyrotech.refractory_brick_stairs.name=Сходи з вогнетривкої кладки
+tile.pyrotech.limestone.name=Вапняк
+tile.pyrotech.refractory_glass.name=Вогнетривке скло
+tile.pyrotech.slag_glass.name=Шлакове скло
+tile.pyrotech.fossil_ore.name=Скам'янілості
+tile.pyrotech.dense_coal_ore.name=Щільна вугільна руда
+tile.pyrotech.dense_nether_coal_ore.name=Пекельна щільна вугільна руда
+tile.pyrotech.cobblestone.andesite.name=Андезитовий кругляк
+tile.pyrotech.cobblestone.diorite.name=Діоритовий кругляк
+tile.pyrotech.cobblestone.granite.name=Гранітний кругляк
+tile.pyrotech.cobblestone.limestone.name=Вапняковий кругляк
+tile.pyrotech.masonry_brick_block.name=Кам'яно-цегляна кладка
+tile.pyrotech.masonry_brick_slab.name=Кам'яно-цегляний напіблок
+tile.pyrotech.masonry_brick_stairs.name=Кам'яно-цегляні сходи
+tile.pyrotech.masonry_brick_wall.name=Кам'яно-цегляна огорожа
+tile.pyrotech.farmland_mulched.name=Компостована земля
+tile.pyrotech.planks_tarred.name=Просмолені дошки
+tile.pyrotech.pile_wood_chips.name=Тирса
+tile.pyrotech.pile_ash.name=Куча попелу
+tile.pyrotech.wool_tarred.name=Просмолена шерсть
+tile.pyrotech.charcoal_block.name=Блок деревного вугілля
+tile.pyrotech.wood_tar_block.name=Тюк креозоту
+tile.pyrotech.living_tar.name=Жива смола
+tile.pyrotech.dense_redstone_ore.name=Щільна червонокам'яна руда
+tile.pyrotech.dense_quartz_ore.name=Щільна кварцова руда
+tile.pyrotech.straw_bed.name=Солом'яне ліжко
+tile.pyrotech.pyroberry_bush.name=Кущ вогняної ягоди
+tile.pyrotech.gloamberry_bush.name=Кущ тьмяної ягоди
+tile.pyrotech.freckleberry_plant.name=Кущ веснянкової ягоди
+tile.pyrotech.cob_wet.name=Зліпок цегли з болота
+tile.pyrotech.cob_dry.name=Цегла з болота
+tile.pyrotech.mud.name=Болото
+tile.pyrotech.mud_layer.name=Болото
+tile.pyrotech.crafting_table_template.name=Каркас верстаку
+
+tile.pyrotech.rock_stone.name=Камінчик
+tile.pyrotech.rock_andesite.name=Андезитовий камінчик
+tile.pyrotech.rock_diorite.name=Діоритовий камінчик
+tile.pyrotech.rock_granite.name=Гранітний камінчик
+tile.pyrotech.rock_dirt.name=Грудка землі
+tile.pyrotech.rock_sand.name=Купка піску
+tile.pyrotech.rock_sandstone.name=Піщаниковий камінчик
+tile.pyrotech.rock_sandstone_red.name=Червоний піщаниковий камінчик
+tile.pyrotech.rock_grass.name=Грудка трав'яного покриву
+tile.pyrotech.rock_wood_chips.name=Купка тирси
+tile.pyrotech.rock_limestone.name=Вапняковий камінчик
+tile.pyrotech.rock_sand_red.name=Купка червоного піску
+tile.pyrotech.rock_netherrack.name=Незеритовий камінчик
+tile.pyrotech.rock_mud.name=Грудка болота
+
+#------------------------------------------------------------------------------
+# Tooltips
+#------------------------------------------------------------------------------
+
+gui.pyrotech.tooltip.machine.input.capacity.item=Здатен обробити %s%d предметів
+gui.pyrotech.tooltip.machine.output.capacity.fluid=Вхід: %s%d mB
+gui.pyrotech.tooltip.machine.fuel.capacity.item=Об'єм топки: %s%d
+gui.pyrotech.tooltip.machine.fuel.modifier=Ефективність палива: %s%d%%
+gui.pyrotech.tooltip.machine.fuel.keep.heat=Сам гасне після завершення приготування.
+
+gui.pyrotech.tooltip.extended.shift=Затисніть %s<SHIFT>%s для довідки.
+gui.pyrotech.tooltip.uses=Залишилось використань: %d / %d
+gui.pyrotech.tooltip.uses.full=Залишилось використань: %d
+gui.pyrotech.tooltip.durability=Міцність: %d / %d
+gui.pyrotech.tooltip.durability.full=Міцність: %d
+gui.pyrotech.tooltip.durability.indestructible=Не ламається
+gui.pyrotech.tooltip.hot.fluids.true=Підходить для гарячих рідин.
+gui.pyrotech.tooltip.hot.fluids.false=Ламається від гарячих рідин.
+gui.pyrotech.tooltip.burn.time=Час горіння: %s
+gui.pyrotech.tooltip.fluid.capacity=Об'єм: %d mB
+gui.pyrotech.tooltip.fluid=%s: %d / %d
+gui.pyrotech.tooltip.fluid.transfer.rate=Швидкість: %d mB/раз
+gui.pyrotech.tooltip.fluid.transfer.limit=За раз переливає максимум: %d mB
+gui.pyrotech.tooltip.item.capacity.empty=Може зберігати %d предметів
+gui.pyrotech.tooltip.item.capacity=Наповненість: %d / %d items
+gui.pyrotech.tooltip.drain=Висмоктує рідини з жолобів в радіусі %dx%d перед блоком.
+gui.pyrotech.tooltip.refractory.valid=Підходить для вогнетривких структур.
+gui.pyrotech.tooltip.cog.hopper=%s: %sx%d
+gui.pyrotech.tooltip.cog.compactor=%s: %s%d%%
+gui.pyrotech.tooltip.cog.spreader=%s: %sx%d in %dx%d
+gui.pyrotech.tooltip.contents.retain.true=Зберігає вміст при руйнуванні.
+gui.pyrotech.tooltip.contents.retain.false=Знищує вміст при руйнуванні.
+gui.pyrotech.tooltip.burn.time.efficiency=Ефективність:
+gui.pyrotech.tooltip.burn.time.modifier=%s: %s%d%%
+gui.pyrotech.tooltip.torch.burns.true=Перегорає з часом.
+gui.pyrotech.tooltip.torch.burns.false=Не прогоратиме.
+gui.pyrotech.tooltip.rain.extinguishes.true=Погасне під дощем.
+gui.pyrotech.tooltip.rain.extinguishes.false=Горітиме під дощем.
+gui.pyrotech.tooltip.potency=Сила: %d%%
+gui.pyrotech.tooltip.redstone.activation.chance=Має шанс %s%d%%%s зарядитися при втраті міцності.
+gui.pyrotech.tooltip.redstone.active.durability=Зарядженим має шанс %s%d%%%s проігнорувати втрату міцності.
+gui.pyrotech.tooltip.redstone.active.efficiency=Зарядженим ламає блоки на %s%d%%%s швидше.
+gui.pyrotech.tooltip.redstone.active.damage=Зарядженим наносить на %s%d%%%s більше шкоди.
+gui.pyrotech.tooltip.redstone.active.hoe=Зарядженим викопує зону %s3x3%s.
+gui.pyrotech.tooltip.compost.value=Ефективний як компост: %d
+
+gui.pyrotech.tooltip.quartz.active.efficiency=Ламає блоки на %s%d%%%s швидше в %sпеклі%s.
+gui.pyrotech.tooltip.quartz.active.damage=Наносить на %s%d%%%s більше шкоди в %sпеклі%s.
+gui.pyrotech.tooltip.quartz.active.hoe=Викопує зону %s3x3%s в %sпеклі%s.
+
+#------------------------------------------------------------------------------
+# Waila
+#------------------------------------------------------------------------------
+
+gui.pyrotech.waila.quantity=%s: %d
+gui.pyrotech.waila.capacity=Зайнято: %d of %d
+gui.pyrotech.waila.recipe=Рецепт: %s
+gui.pyrotech.waila.recipe.synchronous=Рецепт: %s (%s)
+gui.pyrotech.waila.cog=Шестерня: %s
+gui.pyrotech.waila.tank.fluid=%s: %d з %d mB
+gui.pyrotech.waila.tank.empty=Порожньо: %d з %d mB
+gui.pyrotech.waila.fuel=Паливо: %s%s
+gui.pyrotech.waila.campfire.fuel=Колод: %d з %d
+gui.pyrotech.waila.ash=Попіл: %d з %d
+gui.pyrotech.waila.burn.time=Час горіння: %s
+gui.pyrotech.waila.sawmill.blade=Диск: %s
+gui.pyrotech.waila.speed=Швидкість: %d%%
+gui.pyrotech.waila.bloom.hammered=Цілісність: %d%%
+gui.pyrotech.waila.bloom.integrity=Integrity: %d%%
+gui.pyrotech.waila.bloom.hammer.power=Сила удару: %d%%
+gui.pyrotech.waila.bloomery.fuel=Паливо: %d of %d
+gui.pyrotech.waila.bloomery.airflow=Потік повітря: %d%%
+gui.pyrotech.waila.anvil.recipe.type=Візьміть в руку %s
+gui.pyrotech.waila.anvil.recipe.type.hammer=молот
+gui.pyrotech.waila.anvil.recipe.type.pickaxe=кайло
+gui.pyrotech.waila.worktable.condition=%s%s
+gui.pyrotech.waila.worktable.condition.good=Ще пахне свіжим деревом!
+gui.pyrotech.waila.worktable.condition.fair=Хороший
+gui.pyrotech.waila.worktable.condition.used=Вже подряпаний
+gui.pyrotech.waila.worktable.condition.fractured=Ось-ось розвалиться!
+gui.pyrotech.waila.moisture.level=Вологість: %d%%
+gui.pyrotech.waila.campfire.required=Поставте вогнище!
+
+#------------------------------------------------------------------------------
+# JEI
+#------------------------------------------------------------------------------
+
+gui.pyrotech.jei.failure=Шанс провалу: %d%%
+
+gui.pyrotech.jei.category.kiln.brick=Обпалювання
+gui.pyrotech.jei.category.crucible.brick=Виплавка
+gui.pyrotech.jei.category.sawmill.brick=Розпилювання
+gui.pyrotech.jei.category.oven.brick=Готування
+
+gui.pyrotech.jei.category.kiln.stone=Обпалювання
+gui.pyrotech.jei.category.crucible.stone=Виплавка
+gui.pyrotech.jei.category.sawmill.stone=Розпилювання
+gui.pyrotech.jei.category.oven.stone=Готування
+
+gui.pyrotech.jei.category.mechanical.compacting.bin=Механічний ущільнювач
+
+gui.pyrotech.jei.category.kiln.pit=Грунтове обпалення
+gui.pyrotech.jei.category.burn.pit=Випалювання в ямі
+gui.pyrotech.jei.category.burn.refractory=Високотемпературне випалювання в ямі
+gui.pyrotech.jei.category.drying.rack=Сушка
+gui.pyrotech.jei.category.chopping=Рубка
+gui.pyrotech.jei.category.anvil.granite=Гранітне ковадло
+gui.pyrotech.jei.category.anvil.ironclad=Залізобетонне ковадло
+gui.pyrotech.jei.category.anvil.obsidian=Обсидіанове ковадло
+gui.pyrotech.jei.category.compacting.bin=Ущільнення
+gui.pyrotech.jei.category.campfire=Смаження на вогнищі
+gui.pyrotech.jei.category.worktable=Робочий стіл
+gui.pyrotech.jei.category.soaking.pot=Замочування
+gui.pyrotech.jei.category.compost.bin=Компостування
+gui.pyrotech.jei.category.barrel=Бродіння
+gui.pyrotech.jei.category.tanning.rack=Дубильня
+
+gui.pyrotech.jei.category.bloomery=Доменна піч
+gui.pyrotech.jei.category.wither.forge=Пекельна доменна піч
+gui.pyrotech.jei.info.campfire=Щоб розпалити багаття, покладіть трут на землю, покладіть колоди і запаліть його.
+gui.pyrotech.jei.info.pit.kiln=Щоб використовувати пічний настил, спочатку викопайте яму в землі і помістіть настил всередину. Потім покладіть у піч предмет, який ви хочете обпалити, покладіть солом'яний блок, а зверху покладіть три колоди. Нарешті, розпаліть піч зверху і переконайтеся, що вона не намокне, поки горітиме!
+gui.pyrotech.jei.info.burn=Щоб виконати випалювання в ямі, покладіть блоки, які потрібно спалити, в яму і переконайтеся, що всі сторони закриті твердими, незаймистими блоками, залишивши один отвір відкритим. Підпаліть блоки і швидко закрийте отвір. Для досягнення успіху весь вміст повинен бути повністю засипаний незаймистими блоками. Коли вміст перестає диміти, це означає, що опік завершено. Щоб зібрати рідину, що утворилася в результаті спалювання, підставте під блоки жолоби.
+gui.pyrotech.jei.info.refractory=Вогнетривке випалювання схоже на випалювання в ямі, за винятком того, що вміст повинен бути повністю накритий вогнетривкими блоками. Для збору рідини, що утворюється при випалюванні, під блоками слід розмістити вогнетривкий жолоб.
+
+#------------------------------------------------------------------------------
+# Module: Plugin - Patchouli
+#------------------------------------------------------------------------------
+
+item.pyrotech.book.name=Езотерика піротехніки
+gui.pyrotech.book.landing_text=Ласкаво просимо до офіційного, санкціонованого VFD посібника з виживання в дикій природі шляхом розпалювання пожеж, а не їх гасіння.$(p)На цих сторінках ви дізнаєтеся, як виживати, адаптуватися, впроваджувати інновації, прискорюватися і процвітати у вашій новій ролі добровольця.
+gui.pyrotech.book.subtitle=Вогняне виживання
+
+#To mod author: Patchouli doesn't have a Ukrainian translation, so I use tricks to translate it as well (if I write to the author of the original mod and he adds a translation, this code can be deleted)
+
+# Item Names
+item.patchouli:guide_book.name=Посібник
+
+# Testing
+item.patchouli:test_book_1.name=Тестова книга 1
+item.patchouli:test_book_1.landing=Тут можна розмістити не тільки опис!
+
+item.patchouli:test_book_2.name=Тестова книга 2
+item.patchouli:test_book_2.landing=Опис! Підтримуються $(2)кольори$() і $(4)таке $(bold)всяке$()!
+
+item.patchouli:test_completion.name=Тестова книга (Потребує досягнення для розблокування статей)
+item.patchouli:test_completion.landing=Ця книга змінює кольори, коли ви розблоковуєте статті!
+
+item.patchouli:intro_book.name=Patchouli
+item.patchouli:intro_book.subtitle=Документація
+item.patchouli:intro_book.landing=З $(item)Patchouli$() Ви можете створити $(thing)книги з документацією$() для модифікацій та модпаків!
+
+#Subtitles
+patchouli.subtitle.book_open=Відкрити книгу
+patchouli.subtitle.book_flip=Розгорнути сторінки
+
+# Gui Strings
+patchouli.gui.lexicon.landing_info=(Додайте опис в json файл книги)
+patchouli.gui.lexicon.progress_meter=Розблоковані елементи:
+patchouli.gui.lexicon.progress_tooltip=%d/%d Розблоковано
+patchouli.gui.lexicon.progress_tooltip.secret1=+ 1 секрет
+patchouli.gui.lexicon.progress_tooltip.secret=+ %d секретів
+patchouli.gui.lexicon.progress_tooltip.info=Отримуйте досягнення для розблокування нових статей та категорій!
+patchouli.gui.lexicon.categories=Категорії
+patchouli.gui.lexicon.chapters=Статті
+patchouli.gui.lexicon.editor=Редактор книг
+patchouli.gui.lexicon.editor.mock_header=Макет заголовку
+patchouli.gui.lexicon.editor.info=Це редактор для записів цієї книги. Він потрібен розробникам та перекладачам. Це Вам не знадобиться, якщо Ви просто гравець.$(br2)Читайте $(l:https://github.com/Vazkii/Patchouli/wiki/Text-Formatting-101)Patchouli wiki$() для використання спецкодів.
+patchouli.gui.lexicon.shift_for_recipe=Shift+ЛКМ для перегляду рецепту
+patchouli.gui.lexicon.index=Всі статі
+patchouli.gui.lexicon.index.info=Тут розміщенні всі статті доступні в книзі.$(br2)Ви можете шукати по назві статті, предмету чи блоку. Для цього набирайте запит на клавіатурі.
+patchouli.gui.lexicon.shapeless=Безформний
+patchouli.gui.lexicon.no_results=Результати відсутні
+patchouli.gui.lexicon.sad=:(
+patchouli.gui.lexicon.locked=(Заблоковано)
+patchouli.gui.lexicon.reloaded=Книги перезавантажились за %d мс.
+patchouli.gui.lexicon.add_bookmark=Добавити закладку
+patchouli.gui.lexicon.remove_bookmark=(Shift+ЛКМ для видалення)
+patchouli.gui.lexicon.multiblock_bookmark=Візуалізувати структуру
+patchouli.gui.lexicon.relations=З цим пов'язано
+patchouli.gui.lexicon.not_anchored=Натисніть ПКМ по будь-якому блоку, щоб візуалізувати структуру
+patchouli.gui.lexicon.structure_complete=Структура побудована!
+patchouli.gui.lexicon.needs_air=(Зламайте блоки, помічені червоним)
+patchouli.gui.lexicon.visualize_letter=V
+patchouli.gui.lexicon.seconds=%sсек
+patchouli.gui.lexicon.history=Історія читання
+patchouli.gui.lexicon.history.info=В цьому розділі збережені всі статті, що Ви читали.$(br2)Статті додаються автоматично при перегляді книги. Ви також можете добавити статтю в закладки. $(br2)$(o)Порада: Shift+ЛКМ на статі.
+patchouli.gui.lexicon.toast=Нові статті
+patchouli.gui.lexicon.toast.info=Нові статті розблоковані
+patchouli.gui.lexicon.external_link=(Зовнішнє посилання)
+patchouli.gui.lexicon.loading_error=Помилка завантаження!
+patchouli.gui.lexicon.loading_error_hover=(Наведіть курсор для деталей)
+patchouli.gui.lexicon.loading_error_log=Перевірте журнал (логи)
+patchouli.gui.lexicon.dev_edition=Авторське
+patchouli.gui.lexicon.edition_str=%s Видання
+patchouli.gui.lexicon.added_by=Додано %s
+patchouli.gui.lexicon.sneak=Натисніть Shift для перегляду
+patchouli.gui.lexicon.view=Прочитати статтю
+patchouli.gui.lexicon.keybind=Назначена клавіша: %s
+patchouli.gui.lexicon.keybind_missing=Клавіша не назначена: %s
+
+patchouli.gui.lexicon.button.prev_page=Попередня сторінка
+patchouli.gui.lexicon.button.next_page=Наступна Сторінка
+patchouli.gui.lexicon.button.back=Назад
+patchouli.gui.lexicon.button.back.info=Shift+ЛКМ щоб перейти на головну
+patchouli.gui.lexicon.button.resize=Змінити розмір інтерфейсу
+patchouli.gui.lexicon.button.resize.size0=Стандартний
+patchouli.gui.lexicon.button.resize.size1=Малий
+patchouli.gui.lexicon.button.resize.size2=Середній
+patchouli.gui.lexicon.button.resize.size3=Більше середнього
+patchouli.gui.lexicon.button.resize.size4=Великий
+patchouli.gui.lexicon.button.resize.size5=Величезний
+patchouli.gui.lexicon.button.resize.size6=Ви на телевізорі граєте?!
+patchouli.gui.lexicon.button.editor=Редактор
+patchouli.gui.lexicon.button.editor.info=(Shift+ЛКМ для оновлення книг)
+patchouli.gui.lexicon.button.advancements=Досягнення
+patchouli.gui.lexicon.button.config=Конфігурація
+patchouli.gui.lexicon.button.visualize=Візуалізувати
+patchouli.gui.lexicon.button.visualize.info=(Натисніть ще раз щоб прибрати)
+patchouli.gui.lexicon.button.history=Історія
+
+#------------------------------------------------------------------------------
+# Advancements
+#------------------------------------------------------------------------------
+
+pyrotech.desc=Вогняне виживання!
+
+advancement.pyrotech.dried.plant.fibers=Волокнистий корм
+advancement.pyrotech.dried.plant.fibers.desc=Дістаньте висушенні волокна
+advancement.pyrotech.flint.and.tinder=Піроман з минулого
+advancement.pyrotech.flint.and.tinder.desc=Елементарно, Ватсон
+advancement.pyrotech.roasted.food=Закуска на дровах
+advancement.pyrotech.roasted.food.desc=Скуштувати всі шість видів смаженої їжі
+advancement.pyrotech.tools.crude=Примітивний дворф
+advancement.pyrotech.tools.crude.desc=Все ж краще, ніж бігати по печерам збирати камінчики
+advancement.pyrotech.chopping.block=Руки на руків'я! Ноги на ширині плечей!
+advancement.pyrotech.chopping.block.desc=Рубай!
+advancement.pyrotech.worktable=Створіть робочий стіл
+advancement.pyrotech.worktable.desc=А інші на це ставили окремий мод!
+advancement.pyrotech.pickaxe=Прогресуй, гомо сапіенс!
+advancement.pyrotech.pickaxe.desc=Створи кайло з кісток чи граніту
+advancement.pyrotech.cobblestone=Бруківка
+advancement.pyrotech.cobblestone.desc=Викопайте блок кругляку. Або пошліть Хрома по каміння і скрафтіть =P
+advancement.pyrotech.stone=Загартований камінь
+advancement.pyrotech.stone.desc=Обпаліть кругляк в камінь
+advancement.pyrotech.pit.kiln=Ліжечко в пічці
+advancement.pyrotech.pit.kiln.desc=Скрафтіть настил для печі
+advancement.pyrotech.straw=Час жнив
+advancement.pyrotech.straw.desc=Згорніть солому в тюк
+advancement.pyrotech.stone.slab=Напівкровка
+advancement.pyrotech.stone.slab.desc=Створіть кам'яну плиту
+advancement.pyrotech.anvil.granite=Гриземо граніт науки
+advancement.pyrotech.anvil.granite.desc=Скрафтіть гранітне ковадло
+advancement.pyrotech.stone.brick=Ламай-ламай
+advancement.pyrotech.stone.brick.desc=Розбийте плити на цеглу
+advancement.pyrotech.bellows=Хто не скаче...
+advancement.pyrotech.bellows.desc=Створіть міхи
+advancement.pyrotech.mechanical.bellows=Механізований стрибунчик
+advancement.pyrotech.mechanical.bellows.desc=Дайте ногам відпочити
+advancement.pyrotech.mechanical.compacting.bin=Екстремальне стискання
+advancement.pyrotech.mechanical.compacting.bin.desc=Створити механізований ущільнювач
+advancement.pyrotech.mechanical.hopper=Бюджетна воронка
+advancement.pyrotech.mechanical.hopper.desc=Створіть механізовану воронку
+advancement.pyrotech.charcoal=А як його активувати?
+advancement.pyrotech.charcoal.desc=Перепаліть дерево в вугілля
+advancement.pyrotech.stone.machines=Прогрес царства науки
+advancement.pyrotech.stone.machines.desc=Створіть кожну теплову машину
+advancement.pyrotech.slaked.lime=Як борги по навчанню!
+advancement.pyrotech.slaked.lime.desc=Погасіть вапняк
+advancement.pyrotech.refractory.brick=І з полум'я вогнів
+advancement.pyrotech.refractory.brick.desc=Створіть вогнетривку цеглу
+advancement.pyrotech.coal.coke.block=Непогане паливо
+advancement.pyrotech.coal.coke.block.desc=Мені подобався вуглець ще до того, як він став вугіллям
+advancement.pyrotech.living.tar=ВОНО ЖИВЕ-Е-Е-Е!!!
+advancement.pyrotech.living.tar.desc=Створіть живу смолу
+advancement.pyrotech.bloomery=Готуйтеся дути!
+advancement.pyrotech.bloomery.desc=Скрафтіть першу доменну піч
+advancement.pyrotech.iron.ingot=Роздуті амбіції
+advancement.pyrotech.iron.ingot.desc=Отримайте металевий самородок
+advancement.pyrotech.crafting.table=А вот прі Нотчє...
+advancement.pyrotech.crafting.table.desc=Поверніться в часи верстака
+advancement.pyrotech.brick.machines=Революція царства науки
+advancement.pyrotech.brick.machines.desc=Створіть кожну покращену теплову машину
+advancement.pyrotech.furnace=Все нове - добре забуте старе
+advancement.pyrotech.furnace.desc=Створіть пічку
+advancement.pyrotech.nether=Поперед батька...
+advancement.pyrotech.nether.desc=... в пекло
+advancement.pyrotech.wither.forge=Чортові технології
+advancement.pyrotech.wither.forge.desc=Створіть пекельну доменну піч
+advancement.pyrotech.tools.obsidian=А так можна?
+advancement.pyrotech.tools.obsidian.desc=Створіть обсидіанове кайло
+
+
+#------------------------------------------------------------------------------
+# Misc
+#------------------------------------------------------------------------------
+
+gui.pyrotech.disconnect.module.mismatch=Модулі на стороні клієнта, увімкнені в конфігурації модулів Pyrotech, не збігаються з модулями, увімкненими на сервері. Сервер очікує: %s.
+
+gui.pyrotech.restart1=Для коректної роботи Pyrotech повинен перезапуститися один раз.
+gui.pyrotech.restart2=Pyrotech згенерував контент і повинен перезавантажитися, щоб завантажити його.
+gui.pyrotech.restart3=Будь ласка, вийдіть з Minecraft і перезапустіть гру.
+gui.pyrotech.restart4=Щоб дізнатися більше, читайте документацію.
+gui.pyrotech.restart.button=Зрозумів

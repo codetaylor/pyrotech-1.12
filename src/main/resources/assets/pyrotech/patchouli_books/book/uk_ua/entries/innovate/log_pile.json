@@ -1,0 +1,19 @@
+{
+  "name": "Паля",
+  "icon": "pyrotech:log_pile",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:log_pile",
+      "text": "$(item)Дерев'яну палю$() можна спалити $(thing)випалюванням в ямі$() для $(item)деревного вугілля$().$(p) Або просто зберігайте таким чином дрова."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/pit_burn",
+        "innovate/charcoal"
+      ]
+    }
+  ]
+}

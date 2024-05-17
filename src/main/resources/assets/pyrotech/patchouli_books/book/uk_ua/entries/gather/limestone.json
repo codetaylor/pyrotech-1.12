@@ -1,0 +1,19 @@
+{
+  "name": "Вапняк",
+  "icon": "pyrotech:limestone",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:limestone",
+      "text": "$(item)Вапняк$() можна знайти практично будь-де під землею."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/stone_cobbled",
+        "survive/rocks"
+      ]
+    }
+  ]
+}

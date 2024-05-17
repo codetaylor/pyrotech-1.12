@@ -1,0 +1,25 @@
+{
+  "name": "Тепер це реальний камінь",
+  "icon": "pyrotech:material:36",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:material:36",
+      "link_recipe": true,
+      "text": "$(item)Щільний редстоун$() можна знайти збираючи $(item)Щільну редстоунову руду$() як мінімум $(thing)металевим кайлом$().$(p)$(info_ua) $(thing)Інструменти$() зроблені $(item)щільного редстоуну$() мають унікальні властивості."
+    },
+    {
+      "type": "rt_anvil_recipe",
+      "recipe": "pyrotech:redstone_dust_from_dense_redstone",
+      "text": "$(item)Щільний редстоун$() можна розбити молотом на $(item)ковадлі() на $(item)редстоун$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/dense_redstone_ore",
+        "bloom/tools_redstone"
+      ]
+    }
+  ]
+}

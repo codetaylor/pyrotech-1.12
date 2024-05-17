@@ -1,0 +1,60 @@
+{
+  "name": "Цегла, загартована полум'ям",
+  "icon": "pyrotech:material:5",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Для виготовлення $(item)вогнетривкої цегли$(), спочатку потрібна $(item)кремнієва глина$():$(p)1. Спершу, розтовчіть $(item)уламки кремнію$() в $(item)подрібнений кремінь$().$(p)2. Тепер розтопіть $(item)глину$().$(p)3. Нарешті, замочіть $(item)подрібнений кремінь$() в $(item)розтопленій глині$() і маєте $(item)кремнієву глину$()."
+    },
+    {
+      "type": "rrr_anvil_recipe_stone_crucible_recipe_soaking_pot_recipe",
+      "anvil_header": true,
+      "anvil_recipe": "pyrotech:crushed_flint_from_flint_shard",
+      "stone_crucible_header": true,
+      "stone_crucible_recipe": "pyrotech:liquid_clay_from_clay_ball",
+      "soaking_pot_header": true,
+      "soaking_pot_recipe": "pyrotech:flint_clay",
+      "text": ""
+    },
+    {
+      "type": "text",
+      "text": "Далі потрібне $(item)гашене вапно$().$(p)1. Розтовчіть $(item)камінчики вапняку$() в $(item)подрібнений вапняк$().$(p)2. Тепер обпечіть його в $(item)негашений вапняк$().$(p)3. Нарешті, загасіть його (ну буквально) в $(item)воді$() і маєте $(item)гашене вапно$()."
+    },
+    {
+      "type": "rrr_anvil_recipe_stone_kiln_recipe_soaking_pot_recipe",
+      "anvil_header": true,
+      "anvil_recipe": "pyrotech:limestone_rocks_to_crushed_limestone",
+      "stone_kiln_header": true,
+      "stone_kiln_recipe": "pyrotech:quicklime",
+      "soaking_pot_header": true,
+      "soaking_pot_recipe": "pyrotech:slaked_lime"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_clay_ball",
+      "recipe2": "pyrotech:refractory_brick_unfired"
+    },
+    {
+      "type": "rt_stone_kiln_recipe",
+      "recipe": "pyrotech:refractory_brick",
+      "text": "Змішайте $(item)глину$(), $(item)кремнієву глину$(), $(item)гашене вапно$() та $(item)попіл$() в $(item)вогнетривку глину$().$(p)Зліпіть з неї $(item)необпалену цеглу$() та обпаліть в $(thing)обпалювальній печі$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/shard_bone_and_flint",
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad",
+        "innovate/stone_crucible",
+        "bloom/refractory_crucible",
+        "innovate/soaking_pot",
+        "gather/clay_lump_of",
+        "survive/rocks",
+        "gather/ash",
+        "innovate/stone_kiln",
+        "bloom/refractory_kiln"
+      ]
+    }
+  ]
+}

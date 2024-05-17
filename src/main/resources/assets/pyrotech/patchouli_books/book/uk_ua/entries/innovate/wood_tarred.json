@@ -1,0 +1,22 @@
+{
+  "name": "Міцний, як морський вовк",
+  "icon": "pyrotech:planks_tarred",
+  "category": "innovate_stone_soaking",
+  "pages": [
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:planks_tarred",
+      "header2": true,
+      "recipe2": "pyrotech:board_tarred",
+      "text": "Просмолена деревина міцніша і прослужить довше при прямому контакті з водою. Підійде для $(item)човна$()"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/soaking_pot",
+        "innovate/wood_boards"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Шкури",
+  "icon": "pyrotech:pelt_cow",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:pelt_cow",
+      "text": "$(thing)Шкури$() добуваються від обробки $(item)туш$().$(p)$(info_ua) Обробка $(item)туш$() на $(item)столі м'ясника$() з $(item)ножем м'ясника$() дає більше $(thing)шкур$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/carcass",
+        "adapt/hunters_knife_bone_and_flint",
+        "innovate/butchers_block"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Кремінь і трут все перетруть",
+  "icon": "pyrotech:flint_and_tinder",
+  "category": "survive_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/flint_and_tinder",
+      "text": "$(item)Кремінь і трут$() це $(l:appendix/ignition)ідеальний для підпалювання предмет$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/shard_bone_and_flint",
+        "adapt/plant_fibers_dried",
+        "survive/rocks"
+      ]
+    }
+  ]
+}

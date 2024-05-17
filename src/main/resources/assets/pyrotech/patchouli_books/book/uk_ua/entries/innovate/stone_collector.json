@@ -1,0 +1,26 @@
+{
+  "name": "Облаштування каналізації",
+  "icon": "pyrotech:tar_collector",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/refractory/tar_collector_stone",
+      "text": "$(item)Кам'яний жолоб$() буде накопичувати рідину з випалювання блоків недалеко від себе."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_collector.png"
+      ],
+      "text": "$(warning_ua) $(item)Кам'яний жолоб$() зламається від гарячих рідин."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/pit_burn"
+      ]
+    }
+  ]
+}

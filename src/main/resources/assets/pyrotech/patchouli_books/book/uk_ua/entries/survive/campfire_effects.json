@@ -1,0 +1,45 @@
+{
+  "name": "Ефекти від вогнища",
+  "icon": "pyrotech:campfire",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "image",
+      "title": "Ефекти від вогнища",
+      "border": false,
+      "images": [
+        "pyrotech:textures/gui/book/photo/campfire_effects_progression_00.png"
+      ]
+    },
+    {
+      "type": "campfire_effect",
+      "title": "Затишок",
+      "image": "pyrotech:textures/potions/comfort.png",
+      "text": "Знаходження недалеко від вогнища вночі дає ефект $(thing)затишок$().$(p)$(info_ua) $(thing)Затишок$() посилює ефект прийому їжі.$(p)$(warning_ua) Ефект зникне якщо поряд будуть монстри."
+    },
+    {
+      "type": "campfire_effect",
+      "title": "Ситість",
+      "image": "pyrotech:textures/potions/well_fed.png",
+      "text": "Якщо з'їсти багато їжі з ефектом $(thing)затишку$() то Ви отримаєте ефект $(thing)ситість$().$(p)$(info_ua) Ефект $(thing)ситості$() підвищує вашу витривалість.$(p)$(warning_ua) Цей ефект зникне з часом."
+    },
+    {
+      "type": "campfire_effect",
+      "title": "Відпочинок",
+      "image": "pyrotech:textures/potions/resting.png",
+      "text": "Стояння біля вогнища вночі деякий час дає ефект $(thing)відпочинку$().$(p)$(info_ua) $(thing)Відпочинок$() повільно відновлює здоров'я.$(p)$(info_ua) Якщо стояти біля вогнища далі, рівень $(thing)відпочинку$() підвищиться.$(p)$(warning_ua) Ефект зникне якщо поряд будуть монстри."
+    },
+    {
+      "type": "campfire_effect",
+      "title": "Хороший відпочинок",
+      "image": "pyrotech:textures/potions/well_rested.png",
+      "text": "Стійте на місці з ефектом $(thing)відпочинок$() щоб отримати $(thing)хороший відпочинок$().$(p)$(info_ua) Ефект $(thing)хорошого відпочинку$() дає два бонусних серця.$(p)$(warning_ua) Цей ефект зникне з часом."
+    },
+    {
+      "type": "campfire_effect",
+      "title": "Сконцентрований",
+      "image": "pyrotech:textures/potions/focused.png",
+      "text": "Стійте на місці з усіма цими ефектами і отримайте ефект $(thing)сконцентрований$().$(p)$(info_ua) $(thing)Сконцентрований$() збільшує отриманий досвід.$(p)$(warning_ua) Цей ефект зникне після отримання досвіду."
+    }
+  ]
+}

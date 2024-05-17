@@ -1,0 +1,7 @@
+{
+  "name": "Трансформація рідини",
+  "description": "Успішне перетворення рідини є життєво важливим для виживання.",
+  "icon": "pyrotech:barrel",
+  "parent": "innovate_stone",
+  "sortnum": 4
+}

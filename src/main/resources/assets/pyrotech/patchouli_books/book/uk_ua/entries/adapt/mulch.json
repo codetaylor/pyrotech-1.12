@@ -1,0 +1,30 @@
+{
+  "name": "Компост",
+  "icon": "pyrotech:mulch",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:mulch",
+      "text": "$(item)Компост$() виготовляється в $(item)компостері$() і сиплеться на $(item)рілля$().$(p)$(item)Компост$() можна розмістити як на $(item)рілля$() так і на рослини, які на ньому ростуть, створивши тимчасово $(item)компостовану землю$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:farmland_mulched",
+      "text": "$(item)Компостовану землю$() не можна витоптати, а рослини іноді отримуватимуть ефект $(thing)кістяного борошна$() поки не вивітриться компост."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/wheat_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/compost_bin"
+      ]
+    }
+  ]
+}

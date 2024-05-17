@@ -1,0 +1,7 @@
+{
+  "name": "Зберігання рідини",
+  "description": "Успішне маніпулювання та зберігання рідин є життєво важливим для виживання.",
+  "icon": "pyrotech:stone_tank",
+  "parent": "innovate_stone",
+  "sortnum": 3
+}

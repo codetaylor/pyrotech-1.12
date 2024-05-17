@@ -1,0 +1,18 @@
+{
+  "name": "Сільський вайб",
+  "icon": "pyrotech:chopping_block",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/chopping_block",
+      "text": "Для використання $(item)плахи$(), покладіть предмет зверху, та $(use) з сокирою в руках.$(p)$(warning_ua) Рубка тратить ситність. Якщо рубка стала малоефективною, поїжте."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/chopping_block_00.png"
+      ]
+    }
+  ]
+}

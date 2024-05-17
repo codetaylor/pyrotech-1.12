@@ -1,0 +1,21 @@
+{
+  "name": "Звіролови",
+  "icon": "pyrotech:carcass",
+  "category": "adapt_butchery",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:carcass",
+      "text": "Загинувши, тварина скине $(item)тушу$().$(p)$(info_ua) $(item)Туші$() можна переробити в $(thing)шкури$() та $(thing)м'ясо$() $(item)мисливським ножем$() чи $(item)ножем м'ясника$().$(p)$(info_ua) Обробка $(item)туші$() на $(item)столі м'ясника$() дає більше продукції."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/butchers_block",
+        "adapt/lard",
+        "adapt/butchers_knife_bone_and_flint",
+        "adapt/hunters_knife_bone_and_flint"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Веретено",
+  "icon": "pyrotech:bow_drill",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/bow_drill",
+      "text": "$(item)Веретено$() це $(l:appendix/ignition)ідеальний для розпалювання предмет$().$(p)$(item)Лук$() можна зробити з $(item)нитки$() чи $(item)міцного шпагату$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:bow",
+      "recipe2": "pyrotech:bow"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "innovate/twine_durable"
+      ]
+    }
+  ]
+}

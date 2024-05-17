@@ -1,0 +1,24 @@
+{
+  "name": "Гриземо граніт на граніті",
+  "icon": "pyrotech:anvil_granite",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/anvil_granite",
+      "text": "$(item)Гранітне ковадло$() дозволить Вам обробляти камінь.$(p)Для використання покладіть зверху предмет та $(use) кайлом чи молотком."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/granite_anvil_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/stone"
+      ]
+    }
+  ]
+}

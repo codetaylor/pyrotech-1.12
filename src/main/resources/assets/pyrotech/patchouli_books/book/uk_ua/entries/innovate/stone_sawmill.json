@@ -1,0 +1,20 @@
+{
+  "name": "Лісозаготівля",
+  "icon": "pyrotech:stone_sawmill",
+  "category": "innovate_stone_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/stone_sawmill",
+      "text": "З $(item)кам'яною пилорамою$() Ви забудете про експлуатацію на $(item)пласі$().$(p)$(info_ua) $(thing)Пилорами$() розкидують багато $(item)тирси$() під час роботи."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/masonry_brick_block",
+        "survive/chopping_block"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Олійна лампа",
+  "icon": "pyrotech:lamp_oil",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/lamp_oil",
+      "text": "$(info_ua) $(item)Олійна лампа$() не гасне під дощем.$(p)$(info_ua) $(item)Олійну лампу$() можна погасити на $(use) рукою."
+    },
+    {
+      "type": "rt_stone_crucible_recipe",
+      "header": true,
+      "recipe": "pyrotech:lamp_oil_from_lard",
+      "text": "$(info_ua) $(item)Олійну лампу$() можна заправити $(item)ламповою олією$() чи $(item)вогняним вином$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/lard",
+        "innovate/pyroberry_wine"
+      ]
+    }
+  ]
+}

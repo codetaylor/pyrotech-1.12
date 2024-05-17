@@ -1,0 +1,35 @@
+{
+  "name": "Шлак",
+  "icon": "pyrotech:slag",
+  "category": "bloom_bloom",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(item)Шлак$() - це відходи від плавки в $(item)доменній печі$() чи кування $(item)криці$().$(p)$(info_ua) $(item)Шлак$() містить руду, можна ущільнити та переробити в $(item)доменній печі$()."
+    },
+    {
+      "type": "rrr_compacting_bin_recipe",
+      "header": true,
+      "recipe": "pyrotech:pyrotech_pile_slag_from_pyrotech_slag",
+      "header2": true,
+      "recipe2": "pyrotech:pyrotech_generated_pile_slag_iron_from_pyrotech_generated_slag_iron",
+      "header3": true,
+      "recipe3": "pyrotech:pyrotech_generated_pile_slag_gold_from_pyrotech_generated_slag_gold"
+    },
+    {
+      "type": "rt_stone_kiln_recipe",
+      "header": true,
+      "recipe": "pyrotech:slag_glass",
+      "text": "$(item)Відвал шлаку$() який не містить в собі руду може бути переплавлений в $(item)шлакове скло$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/compacting_bin",
+        "bloom/mechanical_compactor",
+        "innovate/stone_kiln",
+        "bloom/refractory_kiln"
+      ]
+    }
+  ]
+}

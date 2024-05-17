@@ -1,0 +1,24 @@
+{
+  "name": "Неандертальські стріли",
+  "icon": "pyrotech:bone_arrow",
+  "category": "adapt_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/arrow_bone",
+      "recipe2": "pyrotech:hunting/arrow_flint"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/fletching",
+      "text": "$(info_ua) $(item)Кістяні та кремнієві стріли$() можуть зламатися від удару в залежності від сили пострілу."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "gather/shard_bone_and_flint"
+      ]
+    }
+  ]
+}

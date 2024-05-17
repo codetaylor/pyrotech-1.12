@@ -1,0 +1,21 @@
+{
+  "name": "Робочий стіл",
+  "icon": "pyrotech:worktable",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(item)Робочий стіл$() надає вам простір для практикування створення предметів.$(p)Щоб скористатися $(item)робочим столом$(), покладіть предмети зверху, і $(use) молотом."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/worktable"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/chopping_block"
+      ]
+    }
+  ]
+}

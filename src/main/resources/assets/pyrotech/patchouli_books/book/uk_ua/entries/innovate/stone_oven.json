@@ -1,0 +1,20 @@
+{
+  "name": "Жаровня",
+  "icon": "pyrotech:stone_oven",
+  "category": "innovate_stone_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/stone_oven",
+      "text": "$(item)Кам'яна жаровня$() виконує те ж що й $(item)сушарка$() та $(item)вогнище$(), але швидше.$(p)$(info_ua) $(item)Кам'яна жаровня$() не спалить їжу при готуванні."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/masonry_brick_block",
+        "survive/introduction"
+      ]
+    }
+  ]
+}

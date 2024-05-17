@@ -1,0 +1,19 @@
+{
+  "name": "Як банка, але для лави",
+  "icon": "pyrotech:brick_tank",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/brick_tank",
+      "text": "$(item)Вогнетривкий резервуар$() збереже свій вміст при розбитті і не лусне при наповненні гарячими рідинами."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick",
+        "accelerate/refractory_burn"
+      ]
+    }
+  ]
+}

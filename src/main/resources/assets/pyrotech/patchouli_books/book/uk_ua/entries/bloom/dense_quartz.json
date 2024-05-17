@@ -1,0 +1,25 @@
+{
+  "name": "Щільний кварц",
+  "icon": "pyrotech:material:37",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:material:37",
+      "link_recipe": true,
+      "text": "$(item)Щільний кварц$() можна знайти, копаючи $(item)щільну кварцову руду$() як мінімум $(thing)металевим кайлом$().$(p)$(info_ua) $(thing)Інструменти$() з $(item)щільного кварцу$() мають унікальні властивості."
+    },
+    {
+      "type": "rt_anvil_recipe",
+      "recipe": "pyrotech:quartz_from_dense_quartz",
+      "text": "$(item)Щільний кварц$() можна розбити кайлом на $(item)ковадлі$() для отримання $(item)кварцу$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/dense_quartz_ore",
+        "bloom/tools_quartz"
+      ]
+    }
+  ]
+}

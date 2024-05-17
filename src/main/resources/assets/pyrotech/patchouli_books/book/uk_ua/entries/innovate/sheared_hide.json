@@ -1,0 +1,19 @@
+{
+  "name": "Нашкребім на ліжечко",
+  "icon": "pyrotech:hide_sheep_sheared",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/shearing_pelt_white",
+      "text": "$(thing)Вівці$() та $(thing)лами$() дають шерсть зі своїх шкур."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/pelt",
+        "adapt/shears_clay"
+      ]
+    }
+  ]
+}

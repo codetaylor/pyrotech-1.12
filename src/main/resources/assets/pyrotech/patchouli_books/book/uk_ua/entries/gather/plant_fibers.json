@@ -1,0 +1,28 @@
+{
+  "name": "Рослинні волокна",
+  "icon": "pyrotech:material:12",
+  "category": "gather_material",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:plant_fibers",
+      "recipe2": "pyrotech:plant_fibers_from_tallgrass"
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:material:12",
+      "text": "$(item)Рослинні волокна$() можна добути, рвучи високу траву.$(p)$(item)Рослинні волокна$() також можна скрафтити."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/bucket_wood_and_clay",
+        "adapt/plant_fibers_dried",
+        "adapt/drying_rack",
+        "survive/hammer_crude",
+        "survive/tools_crude",
+        "survive/fishing_rod_crude"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "name": "Вогник-вогник, жарко-жарко",
+  "icon": "pyrotech:campfire",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:campfire",
+      "link_recipe": true,
+      "text": "Щоб зібрати $(item)вогнище$(), виконайте наступні кроки:$(p)  $(l:survive/campfire#craft_tinder)1. Зберіть трут$()$(br)  $(l:survive/campfire#place_tinder)2. Покладіть трут$()$(br)  $(l:survive/campfire#add_logs)3. Додайте поліна$()$(br)  $(l:survive/campfire#ignite)4. Підпаліть$()"
+    },
+    {
+      "type": "crafting",
+      "title": "1. Зберіть трут",
+      "anchor": "craft_tinder",
+      "recipe": "pyrotech:tech/basic/tinder",
+      "text": "Для початку вам потрібен $(item)трут$() - $(italic)тобто сухий легкозаймистий матеріал з палиць і висушеного волокна, необхідний для розгоряння$() - він допоможе вогнищу розгорітися."
+    },
+    {
+      "type": "image",
+      "title": "2. Покладіть трут",
+      "anchor": "place_tinder",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/campfire_00.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "3. Додайте поліна",
+      "anchor": "add_logs",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/campfire_01.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "4. Запаліть",
+      "anchor": "ignite",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/campfire_02.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Нарешті, використайте будь-який $(l:appendix/ignition)запалювальний пристрій$() для підпалу.$(p)$(italic)~ Примітка розробника:$()$(p)Я використовував $(item)вогнище$() як зображено тут, і саме завдяки цьому досвіду, я хотів би сказати вам, що досвід приготування їжі на відкритому вогні не дуже веселий."
+    },
+    {
+      "type": "text",
+      "text": "З досвіду багатьох голодних ночей я можу вам сказати ось що $(info_ua) залишена їжа швидко згорає.$(p)Також скажу що $(info_ua) лопатою можна прибирати попіл,$(info_ua) і $(item)вогнище$() гасне від відра води чи дощу."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "appendix/ignition",
+        "adapt/plant_fibers_dried",
+        "gather/sticks",
+        "survive/food_roasted"
+      ]
+    }
+  ]
+}

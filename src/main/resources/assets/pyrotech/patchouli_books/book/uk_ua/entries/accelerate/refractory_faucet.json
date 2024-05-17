@@ -1,0 +1,18 @@
+{
+  "name": "Тече дьоготь з під жолобу",
+  "icon": "pyrotech:faucet_brick",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/brick_faucet",
+      "text": "Користуйтесь $(item)вогнетривким зливом$() щоб перелити рідину з одного пристрою в пристрій нижче."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}

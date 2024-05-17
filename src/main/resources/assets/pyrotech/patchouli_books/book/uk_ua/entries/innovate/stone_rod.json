@@ -1,0 +1,21 @@
+{
+  "name": "Палиця v2.0",
+  "icon": "pyrotech:material:27",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "rt_anvil_recipe",
+      "header": true,
+      "recipe": "pyrotech:stick_stone",
+      "text": "$(item)Кам'яна палиця$() базовий компонент для створення предметів."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad",
+        "innovate/masonry_brick"
+      ]
+    }
+  ]
+}

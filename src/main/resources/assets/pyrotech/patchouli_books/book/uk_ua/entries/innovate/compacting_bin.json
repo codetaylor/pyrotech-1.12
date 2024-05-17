@@ -1,0 +1,22 @@
+{
+  "name": "Ущільнюємо",
+  "icon": "pyrotech:compacting_bin",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Для використання покладіть предмети зверху та $(use) з $(thing)лопатою$().$(p)$(warning_ua) Якщо в Вас перестало виходити, перекусіть."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/compacting_bin",
+      "text": "$(info_ua) Щодо автоматизації, предмети можна завантажувати зверху та збоку."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/stone"
+      ]
+    }
+  ]
+}

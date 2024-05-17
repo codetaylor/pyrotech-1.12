@@ -1,0 +1,34 @@
+{
+  "name": "Відро з глини і палиць",
+  "icon": "pyrotech:bucket_wood",
+  "category": "adapt_tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Переміщення рідин з одного місця в інше є головним досягненням і основним призначенням відра."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:bucket/bucket_wood",
+      "text": "$(warning_ua) $(item)Дерев'яне відро$() від гарячих рідин розвалиться прямо у Вас в руках. Від холодних, до речі, теж)."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:bucket/bucket_clay_unfired",
+      "text": "$(warning_ua) $(item)Глиняне відро$() розвалиться від гарячих рідин."
+    },
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:bucket_clay",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/bucket_clay"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/plant_fibers",
+        "gather/clay_lump_of"
+      ]
+    }
+  ]
+}

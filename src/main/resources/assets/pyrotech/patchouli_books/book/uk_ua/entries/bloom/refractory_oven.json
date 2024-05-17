@@ -1,0 +1,19 @@
+{
+  "name": "Вогнетривка жаровня",
+  "icon": "pyrotech:brick_oven",
+  "category": "bloom_refractory_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_oven",
+      "text": "$(item)Вогнетривка жаровня$() виконує такі ж завдання як і звичайна $(item)жаровня$(), але з кращою ефективністю."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "accelerate/refractory_bricks",
+        "innovate/stone_oven"
+      ]
+    }
+  ]
+}

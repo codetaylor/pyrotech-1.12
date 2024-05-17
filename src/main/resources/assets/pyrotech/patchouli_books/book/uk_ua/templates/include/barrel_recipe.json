@@ -1,0 +1,97 @@
+{
+  "processor": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.processors.BarrelRecipeProcessor",
+  "components": [
+    {
+      "group": "header",
+      "type": "header",
+      "text": "#output_fluid_name",
+      "x": -1,
+      "y": -10,
+      "guard": "#header->exists"
+    },
+    {
+      "type": "custom",
+      "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.PackedImageComponent",
+      "image": "pyrotech:crafting/barrel",
+      "x": 34, "y": 10,
+      "scale": 0.5
+    },
+    {
+      "type": "item", "item": "#input1", "x": 30, "y": 4, "framed": true
+    },
+    {
+      "type": "item", "item": "#input2", "x": 50, "y": 4, "framed": true
+    },
+    {
+      "type": "item", "item": "#input3", "x": 30, "y": 24, "framed": true
+    },
+    {
+      "type": "item", "item": "#input4", "x": 50, "y": 24, "framed": true
+    },
+    {
+      "type": "image",
+      "image": "pyrotech:textures/gui/book/crafting_texture.png",
+      "x": 1, "y": 10,
+      "u": 11, "v": 71,
+      "width": 24, "height": 24,
+      "texture_width": 128, "texture_height": 128
+    },
+    {
+      "type": "custom",
+      "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.FluidComponent",
+      "fluid": "#input_fluid",
+      "x": 5, "y": 14
+    },
+    {
+      "type": "tooltip",
+      "tooltip": [
+        "#input_fluid_name#: #input_fluid_amount# mB"
+      ],
+      "x": 5,
+      "y": 14,
+      "height": 16,
+      "width": 16
+    },
+    {
+      "type": "image",
+      "image": "pyrotech:textures/gui/book/crafting_texture.png",
+      "x": 90, "y": 10,
+      "u": 11, "v": 71,
+      "width": 24, "height": 24,
+      "texture_width": 128, "texture_height": 128
+    },
+    {
+      "type": "custom",
+      "class": "com.codetaylor.mc.pyrotech.modules.plugin.patchouli.components.FluidComponent",
+      "fluid": "#output_fluid",
+      "x": 94, "y": 14
+    },
+    {
+      "type": "tooltip",
+      "tooltip": [
+        "#output_fluid_name#: #output_fluid_amount# mB"
+      ],
+      "x": 94,
+      "y": 14,
+      "height": 16,
+      "width": 16
+    },
+    {
+      "type": "image",
+      "image": "pyrotech:textures/gui/book/crafting_texture.png",
+      "x": 76, "y": 17,
+      "u": 65, "v": 27,
+      "width": 9, "height": 9,
+      "texture_width": 128, "texture_height": 128
+    },
+    {
+      "type": "tooltip",
+      "tooltip": [
+        "Речепт бочки"
+      ],
+      "x": 76, "y": 17,
+      "u": 65, "v": 27,
+      "width": 9, "height": 9
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Лисі мавпи",
+  "icon": "pyrotech:crude_pickaxe",
+  "category": "survive_tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(item)Примітивні інструменти$() можна створити з $(item)палиць$() та $(item)камінчиків$()$(p)$(info_ua) Низькорівневі інструменти, К $(item)примітивні інструменти$() можуть збирати ресурси нижчого рівня порівняно з аналогами вищого рівня."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/crude_pickaxe",
+      "recipe2": "pyrotech:tool/crude_axe"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/crude_hoe",
+      "recipe2": "pyrotech:tool/crude_shovel"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/rocks",
+        "gather/sticks",
+        "gather/plant_fibers"
+      ]
+    }
+  ]
+}

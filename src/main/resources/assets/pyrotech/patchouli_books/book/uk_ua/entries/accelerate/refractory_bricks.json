@@ -1,0 +1,30 @@
+{
+  "name": "Вогнестійка цегла",
+  "icon": "pyrotech:refractory_brick_block",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_brick_block",
+      "text": "$(item)Вогнестійка цегла$() використовується для крафтів $(item)доменної печі$(), $(thing)вогнетривких машин$(), і слугує кладкою для $(thing)вогнетривкої ями для випалювання$().$(p)$(warning_ua)Сходи, напівблоки та огорожі не підійдуть для ями."
+    },
+    {
+      "type": "rrr_anvil_recipe_brick_sawmill_recipe_brick_sawmill_recipe",
+      "anvil_header": true,
+      "anvil_recipe": "pyrotech:refractory_brick_slab",
+      "sawmill_recipe": "pyrotech:refractory_brick_slab_iron",
+      "sawmill_recipe2": "pyrotech:refractory_brick_slab_diamond"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_brick_stairs",
+      "recipe2": "pyrotech:refractory_brick_wall"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}

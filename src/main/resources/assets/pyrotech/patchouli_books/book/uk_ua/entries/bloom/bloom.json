@@ -1,0 +1,67 @@
+{
+  "name": "Криця",
+  "icon": "pyrotech:bloom",
+  "category": "bloom_bloom",
+  "pages": [
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/bloom_00.png"
+      ]
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:bloom",
+      "text": "Метал виготовляється шляхом першої плавки руди в $(item)крицю$(), користуючись $(item)доменною піччю$(), потім за допомогою $(thing)молота$() на $(item)криці$().$(p)$(warning_ua) Тримання $(item)криці$() в руці не просто гріє душу, а ще й підпалює.$(p)$(info_ua) Важливо завжди обробляти $(item)крицю$() з $(thing)щипцями$()."
+    },
+    {
+      "type": "text",
+      "title": "Кування криці",
+      "text": "$(item)Крицю$() можна кувати на землі чи на $(thing)ковадлі$().$(p)$(warning_ua) Кування $(item)криці$() на землі змусить її вискочити і, ймовірно, розбити блок під собою.$(p)$(warning_ua) Кування $(item)криці$() може викликати вогонь.$(p)$(info_ua) Кування $(item)криці$() на $(thing)ковадлі$() набагато безпечніше."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/bloom_00.png"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "Сила Тора",
+      "text": "$(thing)Сила удару$() це міра наскільки ефективний молот коли куєш $(item)крицю$().$(p)$(info_ua) $(thing)Сила удару$() залежить від Вашої відстані від $(item)криці$(). Чим ближче Ви стоїте, тим сильніший буде удар.$(p)$(warning_ua) Кування $(item)криці$() викликає голод. Якщо ваші удари молотом неефективні, перекусіть."
+    },
+    {
+      "type": "spotlight",
+      "title": "Ефективність",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{lvl: 1, id: 32}]}",
+      "text": "$(info_ua) Додавання зачарування $(item)ефективності$() на $(thing)молот$() збільшить його $(thing)силу удару$()."
+    },
+    {
+      "type": "spotlight",
+      "title": "Сила",
+      "item": "minecraft:potion{Potion: 'minecraft:strength'}",
+      "text": "$(info_ua) Якщо випити $(item)зілля сили$(), то $(thing)сила удару$() також посилиться.$(p)$(info_ua) Ідентично, $(thing)повільність$() та $(thing)утома$() послабить Вашу $(thing)силу удару$()."
+    },
+    {
+      "type": "spotlight",
+      "title": "Удача",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{lvl: 1, id: 35}]}",
+      "text": "$(info_ua) Додавання зачарування $(item)удачі$() на $(thing)молот$() збільшить шанс, що $(item)криця$() не втратить цілісність при виковуванні."
+    },
+    {
+      "type": "spotlight",
+      "title": "Шовковий дотик",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{lvl: 1, id: 33}]}",
+      "text": "$(info_ua) Додавання зачарування $(item)шовковий дотик$() на $(thing)молот$() різко зменшить ймовірність того,що кування $(item)криці$() провалиться і дасть шлак."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad",
+        "bloom/anvil_obsidian"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Ой, сало сало сало",
+  "icon": "pyrotech:material:49",
+  "category": "adapt_butchery",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:material:49",
+      "text": "$(info_ua) $(item)Смалець$(), чи $(item)сало$(), можна отримати, перероблюючи $(item)туші$().$(p)$(info_ua) $(item)Сало$() в моді, на жаль, не покладеш на хліб (я вже прошу розробника це виправити), але можна перетопити в $(item)лампову олію$() в $(thing)тиглі$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/carcass",
+        "innovate/oil_lamp"
+      ]
+    }
+  ]
+}

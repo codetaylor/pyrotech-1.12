@@ -1,0 +1,23 @@
+{
+  "name": "Підпалювачі",
+  "icon": "pyrotech:igniter:0",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(item)Підпалювачі$() використовуються для підпалу чогось перед ним, коли подається сигнал червоного каменю.$(p)$(info_ua) $(item)Вогнетривкий запалювач$() вважається $(thing)вогнетривким блоком$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/igniter_stone",
+      "recipe2": "pyrotech:ignition/igniter_brick"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}

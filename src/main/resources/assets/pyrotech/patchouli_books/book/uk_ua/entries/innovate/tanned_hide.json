@@ -1,0 +1,28 @@
+{
+  "name": "Дублення шкіри",
+  "icon": "pyrotech:hide_tanned",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:hide_tanned",
+      "recipe2": "pyrotech:hide_small_tanned",
+      "text": "$(item)Дублена шкіра$() робиться замочуванням $(item)митої шкіри$() в $(item)Таніні$()."
+    },
+    {
+      "type": "rt_barrel_recipe",
+      "header": true,
+      "recipe": "pyrotech:tannin",
+      "text": "$(item)Танін$() отримується бродінням $(item)листя$() в $(item)воді$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/washed_hide",
+        "innovate/soaking_pot",
+        "innovate/barrel"
+      ]
+    }
+  ]
+}

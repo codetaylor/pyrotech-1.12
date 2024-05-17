@@ -1,0 +1,30 @@
+{
+  "name": "Шматочки древності",
+  "icon": "pyrotech:material:11",
+  "category": "gather_material",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(item)Уламки кістки$() можна добути копаючи $(item)окаменілості."
+    },
+    {
+      "type": "rrt_anvil_recipe",
+      "recipe": "pyrotech:bone_shard_from_bone",
+      "recipe2": "pyrotech:bone_shard_from_block",
+      "text": "$(item)Уламки кістки$() можна виламати з кісток на $(item)ковадлі$()."
+    },
+    {
+      "type": "rt_anvil_recipe",
+      "recipe": "pyrotech:flint_shard_from_flint",
+      "text": "$(item)Шматочки кремнію$() можна виламати з $(item)кремнію$() на $(item)ковадлі$().$(p)$(item)Шматочки кремнію$() можна також добути лопатою, копаючи $(item)гравій$(). $(info_ua) им краща лопата, тим більше шансу викопати кремінь."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/fossil",
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad"
+      ]
+    }
+  ]
+}

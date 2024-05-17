@@ -1,0 +1,18 @@
+{
+  "name": "Кран",
+  "icon": "pyrotech:faucet_stone",
+  "category": "innovate_stone_fluids",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/stone_faucet",
+      "text": "Використовуйте $(item)кам'яний кран$() для передачі рідини збоку пристрою до пристрою знизу.$(p)$(warning_ua) Навіть не думай про гарячі рідини, прошу!."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick"
+      ]
+    }
+  ]
+}

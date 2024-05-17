@@ -1,0 +1,30 @@
+{
+  "name": "Міцніші сховища",
+  "icon": "pyrotech:crate_stone",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/crate_durable",
+      "text": "$(item)Міцний ящик$() може вмістити більше предметів, ніж його менш міцний аналог."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/shelf_durable",
+      "text": "$(item)Міцна полиця$() може вмістити більше предметів, ніж його менш міцний аналог.$(p)$(info_ua) $(item)Міцна полиця$() може бути розміщений у передньому або задньому положенні."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/stash_durable",
+      "text": "$(item)Міцна схованка$() може вмістити більше предметів, ніж його менш міцний аналог."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/wood_tarred",
+        "innovate/masonry_brick",
+        "gather/storage"
+      ]
+    }
+  ]
+}

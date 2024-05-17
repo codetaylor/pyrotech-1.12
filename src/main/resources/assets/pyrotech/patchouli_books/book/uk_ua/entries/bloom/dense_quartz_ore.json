@@ -1,0 +1,25 @@
+{
+  "name": "Цьому кварцу тісно!",
+  "icon": "pyrotech:dense_quartz_ore_large",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:dense_quartz_ore_large",
+      "text": "$(item)Щільна кварцова руда$() знаходиться в нижніх координатах $(thing)Незеру$() і є найчистішим природним кварцом.$(p)$(info_ua) $(item)Щільна кварцова руда$() може бути добута блоком зачаруванням $(thing)шовковий дотик$().$(p)$(info_ua) Для видобування візьміть $(thing)металеве кайло$() чи краще."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/dense_quartz_ore_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/dense_quartz"
+      ]
+    }
+  ]
+}

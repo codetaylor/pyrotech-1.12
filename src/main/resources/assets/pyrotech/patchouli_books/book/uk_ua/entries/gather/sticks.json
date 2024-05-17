@@ -1,0 +1,12 @@
+{
+  "name": "Палиці",
+  "icon": "minecraft:stick",
+  "category": "gather_material",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:stick",
+      "text": "Знайдіть палиці, зламавши листя, або зробіть їх самостійно, очистивши гілочки від $(thing)саджанцю$()."
+    }
+  ]
+}

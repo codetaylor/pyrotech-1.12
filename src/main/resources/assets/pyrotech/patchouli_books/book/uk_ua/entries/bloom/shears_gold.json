@@ -1,0 +1,17 @@
+{
+  "name": "Швидше не завжди краще",
+  "icon": "pyrotech:gold_shears",
+  "category": "bloom_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/gold_shears"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/twine"
+      ]
+    }
+  ]
+}

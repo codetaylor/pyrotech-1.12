@@ -1,0 +1,25 @@
+{
+  "name": "Це моє болото",
+  "icon": "pyrotech:mud",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "pyrotech:mud",
+      "text": "$(item)Болото$() це природній матеріал водяних місцевостей.$(p)$(info_ua) Копання $(item)болота$() низькорівневою $(thing)лопатою$() має шанс добути $(item)грудку болота$() замість $(item)болота$()."
+    },
+    {
+      "type": "rrt_compacting_bin_recipe_soaking_pot_recipe",
+      "compacting_bin_recipe": "pyrotech:mud",
+      "soaking_pot_recipe": "pyrotech:mud",
+      "text": "$(item)Болото$() можна також створити методом $(thing)ущільнення$() $(item)грудок болота$() чи $(thing)замочуванням$() $(item)землі$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/mud_clump"
+      ]
+    }
+  ]
+}

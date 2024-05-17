@@ -1,0 +1,23 @@
+{
+  "name": "Відбійний молот",
+  "icon": "pyrotech:trip_hammer",
+  "category": "bloom_cog_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/trip_hammer",
+      "text": "$(info_ua) Для використання вставте $(thing)молот$() чи $(thing)кайло$() в слот машини та поставте ковадло перед машиною.$(p)$(info_ua) $(item)Відбійний молот$() перемістить предмети в сховище, розміщене поруч із отвором."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/wood_tarred",
+        "innovate/mechanical_hopper",
+        "innovate/masonry_brick_block",
+        "bloom/cog_advanced",
+        "innovate/cog_basic"
+      ]
+    }
+  ]
+}

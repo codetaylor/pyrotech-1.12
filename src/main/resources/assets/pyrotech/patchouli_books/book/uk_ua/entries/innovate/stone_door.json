@@ -1,0 +1,26 @@
+{
+  "name": "Як за кам'яною стіною",
+  "icon": "pyrotech:stone_door",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:stone_door",
+      "text": "$(info_ua) $(item)Кам'яні двері$() можна використати для будівництва кімнати для $(thing)випалювання в ямі$() якщо ставити двері як на фото, підпаліть і закрийте двері."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/pit_burn_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/pit_burn"
+      ]
+    }
+  ]
+}

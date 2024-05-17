@@ -1,0 +1,7 @@
+{
+  "name": "Теплові машини",
+  "description": "$(thing)Теплові машини$() Для роботи спалюють $(thing)паливо$().",
+  "icon": "pyrotech:stone_sawmill",
+  "parent": "innovate_stone",
+  "sortnum": 1
+}

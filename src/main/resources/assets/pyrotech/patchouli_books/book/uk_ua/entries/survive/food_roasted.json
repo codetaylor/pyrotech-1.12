@@ -1,0 +1,26 @@
+{
+  "name": "Рандеву з гурманом",
+  "icon": "pyrotech:apple_baked",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Запікання їжі - $(italic)процес приготування чогось в $(item)жаровні$() $(italic)чи на $(item)вогнищі$() - не тільки покращує смак страви завдяки процесу, який часто називають карамелізацією, $(info_ua) смажена їжа також має відновлювальні властивості, які перевершують властивості її несмаженої альтернативи."
+    },
+    {
+      "type": "smelting",
+      "recipe": "minecraft:apple",
+      "recipe2": "minecraft:egg"
+    },
+    {
+      "type": "smelting",
+      "recipe": "minecraft:carrot",
+      "recipe2": "minecraft:beetroot"
+    },
+    {
+      "type": "smelting",
+      "recipe": "minecraft:brown_mushroom",
+      "recipe2": "minecraft:red_mushroom"
+    }
+  ]
+}

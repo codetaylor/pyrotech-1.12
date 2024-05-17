@@ -1,0 +1,25 @@
+{
+  "name": "Редстоун від слова стоун",
+  "icon": "pyrotech:dense_redstone_ore_large",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:dense_redstone_ore_large",
+      "text": "Знайшовши її в глибоких шахтах, $(item)щільна редстоунова руда$() вважається найчистішим природним скупченням редстоуну.$(p)$(info_ua) Як блок $(item)щільну редстоунову руду$() можна добути з зачаруванням $(thing)шовковий дотик$().$(p)$(info_ua) Візьміть для викопування $(thing)металеве кайло або краще$()."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/dense_redstone_ore_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/dense_redstone"
+      ]
+    }
+  ]
+}

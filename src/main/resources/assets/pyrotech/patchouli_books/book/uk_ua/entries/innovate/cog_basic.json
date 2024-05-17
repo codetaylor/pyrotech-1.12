@@ -1,0 +1,30 @@
+{
+  "name": "Перевір свій годинник",
+  "icon": "pyrotech:cog_wood",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(thing)Шестерні$() потрібні в роботі $(thing)механічних машин$().$(p)$(info_ua) Тип $(thing)шестерні$() має різну ефективність на різних машинах.$(p)Прості $(thing)шестерні$() робляться з простих матеріалів."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/cog_wood",
+      "recipe2": "pyrotech:tech/machine/cog_bone"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/cog_flint",
+      "recipe2": "pyrotech:tech/machine/cog_stone"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "gather/shard_bone_and_flint",
+        "survive/rocks",
+        "innovate/stone_rod"
+      ]
+    }
+  ]
+}
