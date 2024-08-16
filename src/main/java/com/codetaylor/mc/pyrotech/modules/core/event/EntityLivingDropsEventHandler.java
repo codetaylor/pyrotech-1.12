@@ -6,6 +6,7 @@ import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
 import com.codetaylor.mc.pyrotech.modules.hunting.ModuleHunting;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -28,6 +29,10 @@ public class EntityLivingDropsEventHandler {
 
   @SubscribeEvent(priority = EventPriority.LOWEST)
   public static void on(LivingDropsEvent event) {
+
+    if (event.getEntityLiving() instanceof EntityPlayer) {
+      return;
+    }
 
     if (ModuleCoreConfig.TWEAKS.PREVENT_WOOL_ON_SHEEP_DEATH
         && event.getEntity() instanceof EntitySheep) {

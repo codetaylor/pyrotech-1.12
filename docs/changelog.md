@@ -1,5 +1,12 @@
 # Changelog
 
+**1.6.16**
+
+* **Fixed:**
+    * Items dropped from player inventory should not be captured by Carcasses on player death [(#443)](https://github.com/codetaylor/pyrotech-1.12/issues/443)
+
+---
+
 **1.6.15**
 
 * **Added:**
