@@ -29,7 +29,7 @@ public class WitherForgeRecipe
     return RecipeHelper.removeRecipesByOutput(ModuleTechBloomery.Registries.WITHER_FORGE_RECIPE, output);
   }
 
-  /* package */ WitherForgeRecipe(
+  public WitherForgeRecipe(
       ItemStack output,
       Ingredient input,
       int burnTimeTicks,

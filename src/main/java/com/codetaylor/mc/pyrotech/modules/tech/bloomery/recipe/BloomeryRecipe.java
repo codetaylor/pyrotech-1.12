@@ -29,7 +29,7 @@ public class BloomeryRecipe
     return RecipeHelper.removeRecipesByOutput(ModuleTechBloomery.Registries.BLOOMERY_RECIPE, output);
   }
 
-  /* package */ BloomeryRecipe(
+  public BloomeryRecipe(
       ItemStack output,
       Ingredient input,
       int burnTimeTicks,
