@@ -1,6 +1,5 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.recipe;
 
-import com.codetaylor.mc.athenaeum.parser.recipe.item.MalformedRecipeItemException;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.ParseResult;
 import com.codetaylor.mc.athenaeum.parser.recipe.item.RecipeItemParser;
 import com.codetaylor.mc.athenaeum.recipe.IRecipeSingleOutput;
@@ -48,6 +47,13 @@ public class CampfireRecipe
       return result;
     }
 
+    result = CampfireRecipe.getCustomRecipe(input);
+
+    if (result != null) {
+      // User has defined a custom recipe, return it.
+      return result;
+    }
+
     // If the recipe has a smelting output that is food, check against the
     // lists, cache the result and return it.
 
@@ -65,8 +71,6 @@ public class CampfireRecipe
           return result;
         }
 
-        return CampfireRecipe.getCustomRecipe(input);
-
       } else if (CampfireRecipe.hasBlacklist()) {
 
         if (!CampfireRecipe.isBlacklisted(output)) {
@@ -75,8 +79,6 @@ public class CampfireRecipe
           return result;
         }
 
-        return CampfireRecipe.getCustomRecipe(input);
-
       } else {
         result = new CampfireRecipe(output, Ingredient.fromStacks(input), ModuleTechBasicConfig.CAMPFIRE.COOK_TIME_TICKS);
         SMELTING_RECIPES.put(key, result);
@@ -84,8 +86,7 @@ public class CampfireRecipe
       }
     }
 
-    // Finally, check the custom campfire recipes.
-    return CampfireRecipe.getCustomRecipe(input);
+    return null;
   }
 
   @Nullable

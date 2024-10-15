@@ -1,5 +1,12 @@
 # Changelog
 
+**1.6.17**
+
+* **Changed:**
+    * Custom Campfire recipes will now take priority over the default generated recipes without requiring the user to first remove/disallow the default recipe [(#444)](https://github.com/codetaylor/pyrotech-1.12/issues/444)
+
+---
+
 **1.6.16**
 
 * **Fixed:**
