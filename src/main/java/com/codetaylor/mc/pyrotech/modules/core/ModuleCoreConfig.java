@@ -187,6 +187,21 @@ public class ModuleCoreConfig {
     public int OBSIDIAN_HAMMER_DURABILITY = 4035;
   }
 
+  // ---------------------------------------------------------------------------
+  // - Straw Bed
+  // ---------------------------------------------------------------------------
+
+  public static StrawBed STRAW_BED = new StrawBed();
+
+  public static class StrawBed {
+
+    @Config.Comment({
+        "Check for daytime when destroying the bed.",
+        "If false, the bed will be destroyed whenever the player leaves it, regardless of time of day.",
+        "Default: " + true
+    })
+    public boolean DAYTIME_DESTROY_CHECK = true;
+  }
 
   // ---------------------------------------------------------------------------
   // - Freckleberry Wine

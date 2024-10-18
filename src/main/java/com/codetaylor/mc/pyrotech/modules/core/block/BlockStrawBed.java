@@ -3,6 +3,7 @@ package com.codetaylor.mc.pyrotech.modules.core.block;
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
 import com.codetaylor.mc.athenaeum.util.AABBHelper;
 import com.codetaylor.mc.athenaeum.util.Properties;
+import com.codetaylor.mc.pyrotech.modules.core.event.PlayerSleepInStrawBedEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
@@ -23,6 +24,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider.WorldSleepResult;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -57,6 +59,18 @@ public class BlockStrawBed
   public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos) {
 
     return MapColor.SAND;
+  }
+
+  public boolean isOccupied(World world, BlockPos pos) {
+
+    IBlockState blockState = world.getBlockState(pos);
+    Block block = blockState.getBlock();
+
+    if (block != this) {
+      return false;
+    }
+
+    return blockState.getValue(BlockStrawBed.OCCUPIED);
   }
 
   @Nullable
@@ -191,6 +205,7 @@ public class BlockStrawBed
       case OK:
         state = state.withProperty(OCCUPIED, true);
         world.setBlockState(pos, state, 4);
+        MinecraftForge.EVENT_BUS.post(new PlayerSleepInStrawBedEvent(player, pos));
         break;
 
       case NOT_POSSIBLE_NOW: {

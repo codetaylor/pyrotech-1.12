@@ -1,5 +1,12 @@
 # Changelog
 
+**1.6.18**
+
+* **Added:**
+    * Config option `B:DAYTIME_DESTROY_CHECK` for Straw Bed [(#445)](https://github.com/codetaylor/pyrotech-1.12/issues/445)
+
+---
+
 **1.6.17**
 
 * **Changed:**

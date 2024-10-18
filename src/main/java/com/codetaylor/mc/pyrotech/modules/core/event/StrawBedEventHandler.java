@@ -1,6 +1,8 @@
 package com.codetaylor.mc.pyrotech.modules.core.event;
 
 import com.codetaylor.mc.pyrotech.modules.core.ModuleCore;
+import com.codetaylor.mc.pyrotech.modules.core.ModuleCoreConfig;
+import com.codetaylor.mc.pyrotech.modules.core.block.BlockStrawBed;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.Block;
@@ -45,17 +47,38 @@ public class StrawBedEventHandler {
       return;
     }
 
-    for (BlockPos blockPos : blockPosList) {
+    if (ModuleCoreConfig.STRAW_BED.DAYTIME_DESTROY_CHECK && world.isDaytime()) {
 
-      IBlockState blockState = world.getBlockState(blockPos);
-      Block block = blockState.getBlock();
+      for (int i = blockPosList.size() - 1; i >= 0; i--) {
+        BlockPos blockPos = blockPosList.get(i);
+        IBlockState blockState = world.getBlockState(blockPos);
+        Block block = blockState.getBlock();
 
-      if (block == ModuleCore.Blocks.STRAW_BED && world.isDaytime()) {
-        world.destroyBlock(blockPos, false);
+        if (block == ModuleCore.Blocks.STRAW_BED) {
+          world.destroyBlock(blockPos, false);
+        }
+
+        blockPosList.remove(i);
+      }
+
+    } else if (!ModuleCoreConfig.STRAW_BED.DAYTIME_DESTROY_CHECK) {
+
+      for (int i = blockPosList.size() - 1; i >= 0; i--) {
+        BlockPos blockPos = blockPosList.get(i);
+        IBlockState blockState = world.getBlockState(blockPos);
+        Block block = blockState.getBlock();
+
+        if (block != ModuleCore.Blocks.STRAW_BED) {
+          world.destroyBlock(blockPos, false);
+          continue;
+        }
+
+        if (!((BlockStrawBed) block).isOccupied(world, blockPos)) {
+          world.destroyBlock(blockPos, false);
+          blockPosList.remove(i);
+        }
       }
     }
-
-    blockPosList.clear();
   }
 
   @SubscribeEvent
@@ -73,13 +96,36 @@ public class StrawBedEventHandler {
     if (bedLocation == null) {
       return;
     }
-    
+
+    IBlockState blockState = world.getBlockState(bedLocation);
+    Block block = blockState.getBlock();
+
+    if (block == ModuleCore.Blocks.STRAW_BED) {
+      event.setCanceled(true);
+    }
+  }
+
+  @SubscribeEvent
+  public void on(PlayerSleepInStrawBedEvent event) {
+
+    EntityPlayer player = event.getEntityPlayer();
+    World world = player.world;
+
+    if (world.isRemote) {
+      return;
+    }
+
+    BlockPos bedLocation = player.bedLocation;
+
+    if (bedLocation == null) {
+      return;
+    }
+
     IBlockState blockState = world.getBlockState(bedLocation);
     Block block = blockState.getBlock();
 
     if (block == ModuleCore.Blocks.STRAW_BED) {
       this.addUsedBed(world, bedLocation);
-      event.setCanceled(true);
     }
   }
 
