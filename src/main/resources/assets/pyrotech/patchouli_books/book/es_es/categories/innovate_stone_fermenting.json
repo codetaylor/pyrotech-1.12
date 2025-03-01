@@ -1,0 +1,7 @@
+{
+  "name": "Fluidos, Transform.",
+  "description": "La transformación exitosa de fluidos es vital para la supervivencia.",
+  "icon": "pyrotech:barrel",
+  "parent": "innovate_stone",
+  "sortnum": 4
+}

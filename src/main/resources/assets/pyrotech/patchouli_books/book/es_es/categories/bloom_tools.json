@@ -1,0 +1,7 @@
+{
+  "name": "Herramien. Avanzadas",
+  "description": "Crear herramientas es esencial para la supervivencia.",
+  "icon": "pyrotech:obsidian_pickaxe",
+  "sortnum": 3,
+  "parent": "bloom"
+}

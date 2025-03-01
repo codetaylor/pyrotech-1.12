@@ -1,0 +1,7 @@
+{
+  "name": "Lupa",
+  "description": "Usando un $(item)Horno bajo$(), puedes fundir menas en $(item)Lupas$() y martillarlas por recursos.",
+  "icon": "pyrotech:bloom",
+  "sortnum": 1,
+  "parent": "bloom"
+}

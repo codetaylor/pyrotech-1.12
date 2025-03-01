@@ -1,0 +1,7 @@
+{
+  "name": "Herramientas",
+  "description": "Crear herramientas es esencial para la supervivencia.",
+  "icon": "pyrotech:bone_pickaxe",
+  "sortnum": 1,
+  "parent": "adapt"
+}

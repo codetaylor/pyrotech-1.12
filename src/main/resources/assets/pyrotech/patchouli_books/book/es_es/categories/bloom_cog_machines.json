@@ -1,0 +1,7 @@
+{
+  "name": "Máquinas de engranaje",
+  "description": "Las $(thing)Máquinas de engranaje$() se ponen en marcha cuando encajas un $(thing)Engranaje$().$(p)$(info) Usar diferentes $(thing)Engranajes$() alterará el tipo o cantidad de trabajo realizado.",
+  "icon": "pyrotech:mechanical_mulch_spreader",
+  "sortnum": 2,
+  "parent": "bloom"
+}

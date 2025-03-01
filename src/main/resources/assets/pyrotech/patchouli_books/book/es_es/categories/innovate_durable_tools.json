@@ -1,0 +1,7 @@
+{
+  "name": "Herramien. duraderas",
+  "description": "Si uno realiza un mal trabajo, podrían tentarse a culpar la calidad de su equipamiento, u otros factores externos, en lugar de tomar responsabilidad por su propio fracaso - $(italic)una palabra la cual significa una falta de éxito.$()",
+  "icon": "pyrotech:bone_pickaxe_durable",
+  "parent": "innovate",
+  "sortnum": 4
+}
