@@ -1,11 +1,11 @@
 package com.codetaylor.mc.pyrotech.modules.tech.basic.block;
 
-import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
-import com.codetaylor.mc.athenaeum.spi.IVariant;
-import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.athenaeum.interaction.spi.IBlockInteractable;
 import com.codetaylor.mc.athenaeum.interaction.spi.IInteraction;
 import com.codetaylor.mc.athenaeum.spi.BlockPartialBase;
+import com.codetaylor.mc.athenaeum.spi.IBlockVariant;
+import com.codetaylor.mc.athenaeum.spi.IVariant;
+import com.codetaylor.mc.athenaeum.util.StackHelper;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentFire;
 import com.codetaylor.mc.pyrotech.library.spi.block.IBlockIgnitableAdjacentIgniterBlock;
 import com.codetaylor.mc.pyrotech.library.util.Util;
@@ -66,6 +66,13 @@ public class BlockKilnPit
     super(Material.WOOD);
     this.setHardness(0.6f);
     this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockKilnPit.EnumType.EMPTY));
+  }
+
+  @Nullable
+  @Override
+  public String getHarvestTool(IBlockState state) {
+
+    return "shovel";
   }
 
   @Nonnull
