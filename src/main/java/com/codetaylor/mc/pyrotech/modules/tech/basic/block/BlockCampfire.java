@@ -258,6 +258,13 @@ public class BlockCampfire
 
   @Nullable
   @Override
+  public String getHarvestTool(IBlockState state) {
+
+    return "shovel";
+  }
+
+  @Nullable
+  @Override
   public RayTraceResult collisionRayTrace(IBlockState blockState, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Vec3d start, @Nonnull Vec3d end) {
 
     return this.interactionRayTrace(super.collisionRayTrace(blockState, world, pos, start, end), blockState, world, pos, start, end);
