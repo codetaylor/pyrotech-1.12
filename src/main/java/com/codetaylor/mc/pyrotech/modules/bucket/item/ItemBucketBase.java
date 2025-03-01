@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -138,9 +139,16 @@ public abstract class ItemBucketBase
 
     if (!this.getEmpty().isEmpty()) {
 
+      int durability = this.getDurability(itemStack);
+
+      if (durability <= 0) {
+        ModPyrotech.PROXY.playSound(SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS);
+        return new ItemStack(Blocks.AIR);
+      }
+
       // Create a copy such that the game can't mess with it
       ItemStack copy = this.getEmpty().copy();
-      this.setDurability(copy, this.getDurability(itemStack));
+      this.setDurability(copy, durability);
       return copy;
     }
 
