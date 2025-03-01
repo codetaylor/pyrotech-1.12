@@ -1,0 +1,27 @@
+{
+  "name": "Mochila para guij. duradera",
+  "icon": "pyrotech:bag_durable",
+  "category": "innovate_durable_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/bag_durable",
+      "text": "$(info) Una $(item)Mochila para guijarros duradera$() también podrá guardar una gran cantidad de $(thing)Rocas$()."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/rock_bag_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/durable_leather",
+        "innovate/storage_durable",
+        "gather/stone_cobbled",
+        "gather/rock_bag"
+      ]
+    }
+  ]
+}

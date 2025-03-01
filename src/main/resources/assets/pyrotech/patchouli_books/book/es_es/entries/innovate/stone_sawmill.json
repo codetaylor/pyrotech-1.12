@@ -1,0 +1,20 @@
+{
+  "name": "Piedra, aserradero",
+  "icon": "pyrotech:stone_sawmill",
+  "category": "innovate_stone_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/stone_sawmill",
+      "text": "Un $(item)Aserradero de piedra$() realiza la misma labor que un $(item)Tronco para cortar$(), pero más rapido.$(p)$(info) Los $(thing)Aserraderos$() producen $(item)Serrín$() durante su operación."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/masonry_brick_block",
+        "survive/chopping_block"
+      ]
+    }
+  ]
+}

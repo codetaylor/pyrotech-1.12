@@ -1,0 +1,20 @@
+{
+  "name": "Piel",
+  "icon": "pyrotech:pelt_cow",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:pelt_cow",
+      "text": "Las $(thing)Pieles$() son conseguidas procesando $(item)Cadáveres$().$(p)$(info) Procesar un $(item)Cadáver$() en un $(item)Bloque de carnicero$() con un $(item)Cuchillo de carnicero$() otorgará un mejor rendimiento para obtener $(thing)pieles$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/carcass",
+        "adapt/hunters_knife_bone_and_flint",
+        "innovate/butchers_block"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Lámpara de aceite",
+  "icon": "pyrotech:lamp_oil",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/lamp_oil",
+      "text": "$(info) Una $(item)Lámpara de aceite$() no se extinguirá por la lluvia.$(p)$(info) Una $(item)Lámpara de aceite$() puede ser extinguida con $(use) y tu mano vacía."
+    },
+    {
+      "type": "rt_stone_crucible_recipe",
+      "header": true,
+      "recipe": "pyrotech:lamp_oil_from_lard",
+      "text": "$(info) Las $(item)Lámparas de aceite$() usan $(item)Aceite de lámpara$() o $(item)Vino de Pyruvas$() como combustible."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/lard",
+        "innovate/pyroberry_wine"
+      ]
+    }
+  ]
+}

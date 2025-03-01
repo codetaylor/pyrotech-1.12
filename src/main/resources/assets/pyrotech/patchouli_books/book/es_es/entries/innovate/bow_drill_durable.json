@@ -1,0 +1,27 @@
+{
+  "name": "Taladro de arco duradero",
+  "icon": "pyrotech:bow_drill_durable",
+  "category": "innovate_durable_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:bow_drill_durable",
+      "recipe2": "pyrotech:bow_drill_durable_stick"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:bow_drill_durable_repair",
+      "text": "$(info) Cuando un $(item)Taladro de arco duradero$() se desgasta, puede ser reparado usando un $(item)Huso duradero$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/durable_leather",
+        "innovate/leather_pieces",
+        "innovate/wood_boards",
+        "innovate/stone_rod",
+        "gather/sticks"
+      ]
+    }
+  ]
+}

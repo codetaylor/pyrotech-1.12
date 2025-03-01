@@ -1,0 +1,20 @@
+{
+  "name": "Carbón vegetal",
+  "icon": "minecraft:coal:1",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "rt_pit_burn_recipe",
+      "header": true,
+      "recipe": "pyrotech:charcoal",
+      "text": "Un $(thing)Quemado en fosa$() con $(item)Pilas de troncos$() puede producir una cantidad apreciable de $(item)Carbón vegetal$() y $(item)Alquitrán de madera$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/pit_burn",
+        "innovate/log_pile"
+      ]
+    }
+  ]
+}

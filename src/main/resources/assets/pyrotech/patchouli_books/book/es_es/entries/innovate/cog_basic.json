@@ -1,0 +1,30 @@
+{
+  "name": "Engranaje, Básico",
+  "icon": "pyrotech:cog_wood",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Los $(thing)Engranajes$() sirven para activar $(thing)Maquinaria mecánica$().$(p)$(info) Cada tipo de $(thing)Engranaje$() puede variar en rendimiento en diferentes máquinas.$(p)Los $(thing)Engranajes$() básicos están hechos de materiales básicos."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/cog_wood",
+      "recipe2": "pyrotech:tech/machine/cog_bone"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/cog_flint",
+      "recipe2": "pyrotech:tech/machine/cog_stone"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "gather/shard_bone_and_flint",
+        "survive/rocks",
+        "innovate/stone_rod"
+      ]
+    }
+  ]
+}

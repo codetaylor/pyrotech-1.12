@@ -1,0 +1,39 @@
+{
+  "name": "Cuero, Duradero",
+  "icon": "pyrotech:material:41",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:durable_leather",
+      "header2": true,
+      "recipe2": "pyrotech:durable_leather_sheet"
+    },
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:durable_leather_strap",
+      "header2": true,
+      "recipe2": "pyrotech:durable_leather_cord"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:leather_durable_sheet",
+      "recipe2": "pyrotech:leather_durable_strap"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:leather_durable_cord"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/leather",
+        "innovate/soaking_pot",
+        "innovate/pit_burn",
+        "adapt/hunters_knife_bone_and_flint"
+      ]
+    }
+  ]
+}

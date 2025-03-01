@@ -1,0 +1,31 @@
+{
+  "name": "Piel, lavada",
+  "icon": "pyrotech:hide_washed",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Piel lavada",
+      "text": "Las $(item)Pieles lavadas$() pueden ser fabricadas por una variedad de métodos.$(p)$(info) Las $(item)Pieles restregadas$() pueden ser lavadas $(thing)remojandolas$() en agua por un tiempo.$(p)$(info) Alternativamente, las $(item)Pieles restregadas$() pueden ser lavadas instantáneamente con un cubo de agua."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/washing_hide",
+      "recipe2": "pyrotech:hunting/washing_hide_small"
+    },
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "recipe": "pyrotech:hide_washed",
+      "recipe2": "pyrotech:hide_small_washed",
+      "text": "$(info) Las $(item)Pieles restregadas$() también pueden ser lavadas $(thing)remojandolas$() en agua encima de una $(item)Fogata$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/scraped_hide",
+        "innovate/soaking_pot",
+        "survive/campfire"
+      ]
+    }
+  ]
+}

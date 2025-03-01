@@ -1,0 +1,27 @@
+{
+  "name": "Pote de remojo",
+  "icon": "pyrotech:soaking_pot",
+  "category": "innovate_stone_soaking",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/soaking_pot",
+      "text": "Para usar, coloca un fluido e ingredientes dentro.$(p)$(warning) Un $(item)Pote de remojo$() se romperá si se llena con líquidos calientes, como la lava."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/soaking_pot_campfire_00.png"
+      ],
+      "text": "$(info) Algunas recetas requieren que el $(item)Pote de remojo$() esté encima de una $(item)Fogata$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/wood_boards"
+      ]
+    }
+  ]
+}

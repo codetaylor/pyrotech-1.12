@@ -1,0 +1,26 @@
+{
+  "name": "Piedra, Recolector",
+  "icon": "pyrotech:tar_collector",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/refractory/tar_collector_stone",
+      "text": "Un $(item)Recolector de piedra$() drenará fluidos de ingredientes quemándose en un pequeño rango directamente encima de él."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_collector.png"
+      ],
+      "text": "$(warning) Un $(item)Recolector de piedra$() se romperá si se llena con líquidos calientes, como la lava."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/pit_burn"
+      ]
+    }
+  ]
+}

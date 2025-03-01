@@ -1,0 +1,26 @@
+{
+  "name": "Piedra, Puerta",
+  "icon": "pyrotech:stone_door",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:stone_door",
+      "text": "$(info) Una $(item)Puerta de piedra$() puede ser usada para aislar un $(thing)Quemado en fosa$() si se coloca al ras con los ingredientes quemándose. Enciende cualquier ingrediente expuesto e inmediatamente cierra la puerta."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/pit_burn_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/pit_burn"
+      ]
+    }
+  ]
+}

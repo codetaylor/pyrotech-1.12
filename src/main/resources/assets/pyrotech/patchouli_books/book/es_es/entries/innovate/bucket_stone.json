@@ -1,0 +1,19 @@
+{
+  "name": "Cubo, Piedra",
+  "icon": "pyrotech:bucket_stone",
+  "category": "innovate_stone_fluids",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:bucket/bucket_stone",
+      "text": "Un $(item)Cubo de piedra$() durará más que un $(item)Cubo de madera$() o un $(item)Cubo de arcilla$().$(p)$(warning) Un $(item)Cubo de piedra$() se romperá con líquidos calientes, como la lava."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "gather/clay_lump_of"
+      ]
+    }
+  ]
+}

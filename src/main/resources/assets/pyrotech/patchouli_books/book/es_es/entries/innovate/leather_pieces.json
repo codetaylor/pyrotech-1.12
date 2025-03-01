@@ -1,0 +1,23 @@
+{
+  "name": "Cuero, Piezas",
+  "icon": "pyrotech:material:38",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:leather_sheet",
+      "recipe2": "pyrotech:leather_strap"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:leather_strap_from_leather_small",
+      "recipe2": "pyrotech:leather_cord"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/leather"
+      ]
+    }
+  ]
+}
