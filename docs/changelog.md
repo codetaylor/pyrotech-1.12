@@ -1,5 +1,12 @@
 # Changelog
 
+**1.6.19**
+
+* **Added:**
+    * Spanish (es_es) localization [(#450)](https://github.com/codetaylor/pyrotech-1.12/pull/450)
+
+---
+
 **1.6.18**
 
 * **Added:**
