@@ -1,0 +1,124 @@
+{
+  "name": "Horno de tierra",
+  "icon": "pyrotech:kiln_pit",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Para crear y usar un $(item)Horno de tierra$() necesitarás un $(item)Horno de tierra$(), cuatro $(item)Pajas$() para una $(item)Paca de paja$(), tres $(thing)Troncos$(), y un $(l:appendix/ignition)dispositivo encendedor verificado$().$(p)Dos montones de $(item)Fibras de planta secas$() pueden ser atadas juntas para crear $(item)Paja$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/kiln_pit",
+      "recipe2": "pyrotech:straw"
+    },
+    {
+      "type": "rrr_crude_drying_recipe_drying_recipe_stone_oven_recipe",
+      "crude_recipe": "pyrotech:straw",
+      "recipe": "pyrotech:crude_drying_rack/straw",
+      "stone_oven_recipe": "pyrotech:drying_rack/crude_drying_rack/straw"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:thatch",
+      "text": "$(info) La $(item)Paja$() también puede ser creada secando $(item)Trigo$()."
+    },
+    {
+      "type": "text",
+      "text": "Para usar un $(item)Horno de tierra$(), sigue estos pasos:$(p)  $(l:adapt/pit_kiln#step_1)1. Coloca el horno$(/l)$(br)  $(l:adapt/pit_kiln#step_2)2. Agrega ingredientes$(/l)$(br)  $(l:adapt/pit_kiln#step_3)3. Agrega una Paca de paja$(/l)$(br)  $(l:adapt/pit_kiln#step_4)4. Agrega Troncos$(/l)$(br)  $(l:adapt/pit_kiln#step_5)5. Enciende$(/l)$(br)  $(l:adapt/pit_kiln#step_6)6. Espera$(/l)$(p)La siguiente página ilustra la construcción de un $(item)Horno de tierra$() y las subsecuentes páginas proveen detalles vitales y fundamentales adicionales."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_00.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "1. Coloca el horno",
+      "anchor": "step_1",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_01.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Primero, excava un hoyo en el suelo y coloca tu $(item)Horno de tierra$() en el fondo.$(p)$(info) Un $(item)Horno de tierra$() debe estar en todo momento cubierto en sus cuatro lados y el fondo por material solido e inflamable; arriba es dejado expuesto."
+    },
+    {
+      "type": "image",
+      "title": "2. Agrega ingredientes",
+      "anchor": "step_2",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_02.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Luego, agrega tu(s) ingrediente(s) encima del $(item)Horno de tierra$().$(p)$(info) Un $(item)Horno de tierra$() puede solo tener objetos de un tipo.$(p)$(warning) Por favor tenga en cuenta que en las ilustraciones del paso dos, tres y cuatro, dos $(item)Pastos$() en los lados del $(item)Horno de tierra$() han sido removidos - fueron removidos en la ilustración para claridad y siguen siendo requeridos."
+    },
+    {
+      "type": "image",
+      "title": "3. Agrega Paja",
+      "anchor": "step_3",
+      "text": " Luego, agrega una $(item)Paca de paja$().",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_03.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "4. Agrega Troncos",
+      "anchor": "step_4",
+      "text": " Luego, agrega tres $(thing)Troncos$().",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_04.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "5. Enciende",
+      "anchor": "step_5",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_01.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Luego, usa cualquier $(l:appendix/ignition)dispositivo encendedor verificado$() para encender.$(p)$(info) A diferencia del $(thing)Quemado en fosa$(), el $(item)Horno de tierra$() es dejado sin cubrir por encima mientras arde."
+    },
+    {
+      "type": "image",
+      "title": "6. Espera",
+      "anchor": "step_6",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_05.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Finalmente, espera.$(p)$(info) Mientras un $(item)Horno de tierra$() está activo, permanecerá ardiendo.$(p)$(warning) Si un $(item)Horno de tierra$() es expuesto a la lluvia durante el procedimiento, el proceso fallará."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_kiln_06.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Cuando el fuego encima del $(item)Horno de tierra$() finalmente se extinga, escarba las cenizas para ver los resultados.$(p)$(warning) Debido a la cruda naturaleza del $(item)Horno de tierra$(), hay una posibilidad de que algunos de los objetos fallen en cocer y produzcan un resultado fallido."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/plant_fibers_dried",
+        "adapt/twine",
+        "adapt/drying_rack",
+        "innovate/stone_oven",
+        "bloom/refractory_oven",
+        "appendix/ignition"
+      ]
+    }
+  ]
+}

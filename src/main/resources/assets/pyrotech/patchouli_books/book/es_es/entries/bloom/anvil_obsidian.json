@@ -1,0 +1,18 @@
+{
+  "name": "Yunque, Obsidiana",
+  "icon": "pyrotech:anvil_obsidian",
+  "category": "bloom_bloom",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/anvil_obsidian",
+      "text": "$(info) Cuando se usa para martillar $(item)Lupa$(), un $(item)Yunque de obsidiana$() durará considerablemente más que sus contrapartes."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/bloom"
+      ]
+    }
+  ]
+}

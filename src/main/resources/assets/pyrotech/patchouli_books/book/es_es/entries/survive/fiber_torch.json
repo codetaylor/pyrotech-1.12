@@ -1,0 +1,19 @@
+{
+  "name": "Antorcha de fibra",
+  "icon": "pyrotech:torch_fiber",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/torch_fiber",
+      "text": "Una $(item)Antorcha de fibra$() puede ser fabricada con un $(item)Palo$() y $(item)Fibras de planta secas$().$(p)$(warning) Una $(item)Antorcha de fibra$() puede extinguirse por la lluvia y puede quemarse con el tiempo."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/plant_fibers_dried",
+        "gather/sticks"
+      ]
+    }
+  ]
+}

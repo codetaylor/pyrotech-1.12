@@ -1,0 +1,17 @@
+{
+  "name": "Marshmallow",
+  "icon": "pyrotech:marshmallow",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/marshmallow",
+      "text": "Para colocar un $(item)Marshmallow$() en un palo, ten un $(item)Marshmallow$() en tu mano sec., un $(item)Palo de marshmallow$() en tu mano princ. y usa $(use) mientras estas agachado.$(p)$(info) Un $(item)Marshmallow asado$() puede ser comido directo del palo."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/marshmallow_stick",
+      "text": "Para asar un $(item)Marshmallow$() en un palo, sitúate al lado de una $(item)Fogata$() y usa $(use) hasta que tome un cálido marrón dorado.$(p)$(info) Usa $(use) agachado con tu mano sec. vacía para remover el $(item)Marshmallow asado$()."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Fogata, Efectos",
+  "icon": "pyrotech:campfire",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "image",
+      "title": "Efectos de la fogata",
+      "border": false,
+      "images": [
+        "pyrotech:textures/gui/book/photo/campfire_effects_progression_00.png"
+      ]
+    },
+    {
+      "type": "campfire_effect",
+      "title": "Cómodo",
+      "image": "pyrotech:textures/potions/comfort.png",
+      "text": "Sitúate dentro del rango de una fogata durante la noche para conseguir el efecto $(thing)Cómodo$().$(p)$(info) El efecto $(thing)Cómodo$() aumenta la efectividad de la comida.$(p)$(warning) Este efecto desaparecerá si hay monstruos cerca."
+    },
+    {
+      "type": "campfire_effect",
+      "title": "Bien alimentado",
+      "image": "pyrotech:textures/potions/well_fed.png",
+      "text": "Consume mucha comida con el efecto $(thing)Cómodo$() para conseguir el efecto $(thing)Bien alimentado$().$(p)$(info) El efecto $(thing)Bien alimentado$() ralentiza tu hambre.$(p)$(warning) Este efecto desaparecerá con el tiempo."
+    },
+    {
+      "type": "campfire_effect",
+      "title": "Descansando",
+      "image": "pyrotech:textures/potions/resting.png",
+      "text": "Quédate quieto dentro del rango de una fogata durante la noche para conseguir el efecto $(thing)Descansando$().$(p)$(info) El efecto $(thing)Descansando$() lentamente regenera tu salud.$(p)$(info) Continua quieto para aumentar el nivel de $(thing)Descansando$().$(p)$(warning) Este efecto desaparecerá si hay monstruos cerca."
+    },
+    {
+      "type": "campfire_effect",
+      "title": "Bien descansado",
+      "image": "pyrotech:textures/potions/well_rested.png",
+      "text": "Quédate quieto con el efecto $(thing)Descansando$() para conseguir el efecto $(thing)Bien descansado$().$(p)$(info) El efecto $(thing)Bien descansado$() otorga dos corazones de absorción.$(p)$(warning) Este efecto desaparecerá con el tiempo."
+    },
+    {
+      "type": "campfire_effect",
+      "title": "Concentrado",
+      "image": "pyrotech:textures/potions/focused.png",
+      "text": "Quédate quieto con todos los efectos para aumentar la duración de $(thing)Concentrado$().$(p)$(info) El efecto $(thing)Concentrado$() aumenta la experiencia obtenida.$(p)$(warning) Este efecto desaparecerá mientras ganes experiencia."
+    }
+  ]
+}

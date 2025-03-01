@@ -1,0 +1,23 @@
+{
+  "name": "Martinete",
+  "icon": "pyrotech:trip_hammer",
+  "category": "bloom_cog_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/trip_hammer",
+      "text": "$(info) Para usar, coloca un $(thing)martillo$() o $(thing)pico$() en su ranura y coloca un yunque en frente de su cara de piedra.$(p)$(info) El $(item)Martinete$() moverá sus productos dentro de un inventario colocado adyacente a su agujero."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/wood_tarred",
+        "innovate/mechanical_hopper",
+        "innovate/masonry_brick_block",
+        "bloom/cog_advanced",
+        "innovate/cog_basic"
+      ]
+    }
+  ]
+}

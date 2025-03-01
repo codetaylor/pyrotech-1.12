@@ -1,0 +1,64 @@
+{
+  "name": "Fogata",
+  "icon": "pyrotech:campfire",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:campfire",
+      "link_recipe": true,
+      "text": "Para hacer una $(item)Fogata$(), sigue estos cuatro sencillos pasos:$(p)  $(l:survive/campfire#craft_tinder)1. Fabrica Yesca$()$(br)  $(l:survive/campfire#place_tinder)2. Coloca Yesca$()$(br)  $(l:survive/campfire#add_logs)3. Agrega Troncos$()$(br)  $(l:survive/campfire#ignite)4. Enciende$()"
+    },
+    {
+      "type": "crafting",
+      "title": "1. Fabrica Yesca",
+      "anchor": "craft_tinder",
+      "recipe": "pyrotech:tech/basic/tinder",
+      "text": "Primero, necesitarás de $(item)Yesca$() - $(italic)una palabra la cual significa un material seco e inflamable, como palos o fibras de planta, a menudo usado para ayudar a encender un fuego$() - para ayudar a encender tu fuego."
+    },
+    {
+      "type": "image",
+      "title": "2. Coloca Yesca",
+      "anchor": "place_tinder",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/campfire_00.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "3. Agrega Troncos",
+      "anchor": "add_logs",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/campfire_01.png"
+      ]
+    },
+    {
+      "type": "image",
+      "title": "4. Enciende",
+      "anchor": "ignite",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/campfire_02.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Finalmente, usa cualquier $(l:appendix/ignition)dispositivo encendedor verificado$() para encender.$(p)$(italic)~ Notas del autor:$()$(p)He usado una $(item)Fogata$() muy similar a la ilustrada aqui y es debido a esta experiencia, más bien por tu inexperiencia, que me gustaria decirte que la experiencia de cocinar a fuego abierto es una de gozo, pero no puedo."
+    },
+    {
+      "type": "text",
+      "text": "Lo que sí puedo decirte, desde la experiencia de múltiples noches hambrientas, es que $(info) la comida dejada cocerse sin supervisión se quemará.$(p)Tambien puedo decirte que $(info) se requiere de una pala para remover la ceniza y que $(info) una $(item)Fogata$() puede ser extinguida por la lluvia o un cubo con agua."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "appendix/ignition",
+        "adapt/plant_fibers_dried",
+        "gather/sticks",
+        "survive/food_roasted"
+      ]
+    }
+  ]
+}

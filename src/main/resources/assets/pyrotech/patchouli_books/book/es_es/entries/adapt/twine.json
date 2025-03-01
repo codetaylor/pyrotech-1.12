@@ -1,0 +1,18 @@
+{
+  "name": "Cordel",
+  "icon": "pyrotech:material:14",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:twine",
+      "text": "El $(item)Cordel$() sirve para agrupar o atar cosas de forma segura."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/plant_fibers_dried"
+      ]
+    }
+  ]
+}

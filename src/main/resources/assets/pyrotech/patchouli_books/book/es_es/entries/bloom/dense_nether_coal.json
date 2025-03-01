@@ -1,0 +1,13 @@
+{
+  "name": "Mena densa, Carbón del Nether",
+  "icon": "pyrotech:dense_nether_coal_ore",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:dense_nether_coal_ore",
+      "link_recipe": true,
+      "text": "La $(item)Mena de carbón densa del Nether$() puede ser encontrada en el Nether.$(p)$(info) Puede ser recogida con $(thing)Herramientas de diamante$()."
+    }
+  ]
+}

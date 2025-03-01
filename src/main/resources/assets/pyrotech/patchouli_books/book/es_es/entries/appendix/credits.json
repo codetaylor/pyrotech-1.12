@@ -1,0 +1,27 @@
+{
+  "name": "Apéndice B: Gracias",
+  "icon": "minecraft:paper",
+  "category": "appendix",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(p)$(p)$(p)$(p)$(p)$(p)Thank you, Smisle - thank you for choosing to spend your time here with me and for brightening my life every day."
+    },
+    {
+      "type": "text",
+      "text": "Thank you very much to my past and continued supporters on Patreon and PayPal:$(li)Asura$(li)Freebi Peers$(li)Jake$(li)Jon$(li)LeonOwO$(li)Nicolhaq$(li)nooby$(li)Rorax$(li)SeriousCreeper$(li)Silvanus_Hunter$(li)SpelliCosta$(li)Spice$(li)SureenInk$(li)Vagabond"
+    },
+    {
+      "type": "text",
+      "text": "$(li)Xorbah$(li)Yun$(li)zoidberg"
+    },
+    {
+      "type": "text",
+      "text": "A big thanks to everyone that participated in the Discord alpha:$(li)_MasterEnderman_$(li)Accanthea$(li)ARatfat$(li)Exopandora$(li)Kiako$(li)MineplayerHDYT$(li)Mrthomas20121$(li)Servant$(li)SpeakerHornet$(li)Yuudari"
+    },
+    {
+      "type": "text",
+      "text": "Thanks to the creators of these amazing sounds:$(li)CC0: https://freesound.org/people/kolczok/sounds/198984$(li)CC0: https://freesound.org/people/derjuli/sounds/448133$(li)CC0: https://freesound.org/people/sophiehall3535/sounds/245942$(li)CCA-NC: https://freesound.org/people/GlenCurtisAdams/sounds/326923"
+    }
+  ]
+}

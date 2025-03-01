@@ -1,0 +1,20 @@
+{
+  "name": "Flecha, Hierro",
+  "icon": "minecraft:arrow",
+  "category": "bloom_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:arrow",
+      "text": "$(info) Las $(item)Flechas de hierro$() son más firmes que sus contrapartes de hueso y pedernal y no se romperán al impacto."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "adapt/arrow_bone_and_flint",
+        "bloom/shards_advanced"
+      ]
+    }
+  ]
+}

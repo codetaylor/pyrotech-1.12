@@ -1,0 +1,20 @@
+{
+  "name": "Cob",
+  "icon": "pyrotech:cob_dry",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:cob",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/cob",
+      "text": "$(info) El $(item)Cob$() se revertirá a $(item)Cob húmedo$() si es expuesto a la lluvia."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/cob_wet"
+      ]
+    }
+  ]
+}

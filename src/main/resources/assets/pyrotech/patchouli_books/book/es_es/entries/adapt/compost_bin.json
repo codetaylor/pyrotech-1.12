@@ -1,0 +1,22 @@
+{
+  "name": "Compostera",
+  "icon": "pyrotech:compost_bin",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/compost_bin",
+      "text": "La $(item)Compostera$() convierte material orgánico y agua en $(item)Mantillo$()."
+    },
+    {
+      "type": "text",
+      "text": "$(info) Para remover $(item)Mantillo$(), usa $(use) con una $(thing)Pala$().$(p)$(info) La $(item)Compostera$() producirá más rápido cuanto más compost activo tenga dentro.$(p)$(info) Humedad en forma de $(item)Agua$() es requerida para que esta funcione."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/mulch"
+      ]
+    }
+  ]
+}

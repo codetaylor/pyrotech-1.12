@@ -1,0 +1,21 @@
+{
+  "name": "Caña de pescar, Tosca",
+  "icon": "pyrotech:crude_fishing_rod",
+  "category": "survive_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/crude_fishing_rod",
+      "text": "$(info) La probabilidad de que una $(item)Caña de pescar tosca$() se rompa incrementa mientras su durabilidad declina."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/plant_fibers",
+        "gather/sticks",
+        "adapt/twine",
+        "survive/rocks"
+      ]
+    }
+  ]
+}

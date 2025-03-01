@@ -1,0 +1,43 @@
+{
+  "name": "Horno bajo",
+  "icon": "pyrotech:bloomery",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Un $(item)Horno bajo$() usa combustible para fundir menas en $(item)Lupas$().$(p)$(info) Entre más combustible, más rapido operará el $(item)Horno bajo$().$(p)$(info) La duración del combustible tambien afectará a la velocidad del $(item)Horno bajo$().$(p)$(info) Un $(item)Fuelle$() o $(item)Fuelle mecánico$() puede acelerar un $(item)Horno bajo$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/bloomery",
+      "text": "Un $(item)Horno bajo$() es fabricado usando $(item)Ladrillos refractarios$()."
+    },
+    {
+      "type": "image",
+      "title": "Uso",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/bloomery_00.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Para usar, coloca mena y combustible encima del $(item)Horno bajo$(), luego enciéndelo encima con un $(l:appendix/ignition)dispositivo encendedor verificado$().$(p)Cuando el fuego de encima se extinga, puedes remover la $(item)Ceniza$() y la $(item)Lupa$().$(p)$(info) Para remover la $(item)Ceniza$(), usa $(use) encima del $(item)Horno bajo$() con una pala.$(p)$(warning) Recuerda, las $(item)Lupas$() son calientes - manipularlas puede ser peligroso."
+    },
+    {
+      "type": "fuel_bloomery",
+      "text": "Ciertos combustibles son más eficientes en $(item)Hornos bajos$().",
+      "fuel": "minecraft:coal_block",
+      "fuel2": "pyrotech:coal_coke_block",
+      "fuel3": "pyrotech:living_tar"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "accelerate/refractory_bricks",
+        "accelerate/coal",
+        "accelerate/coal_coke",
+        "bloom/living_tar"
+      ]
+    }
+  ]
+}

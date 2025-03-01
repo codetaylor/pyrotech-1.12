@@ -1,0 +1,12 @@
+{
+  "name": "Mesa de trabajo",
+  "icon": "minecraft:crafting_table",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:crafting_table",
+      "text": ""
+    }
+  ]
+}

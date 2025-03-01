@@ -1,0 +1,19 @@
+{
+  "name": "Refractario, aserradero",
+  "icon": "pyrotech:brick_sawmill",
+  "category": "bloom_refractory_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_sawmill",
+      "text": "Un $(item)Aserradero refractario$() puede realizar la misma labor que un $(item)Aserradero de piedra$(), pero con eficiencia aún mayor."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "accelerate/refractory_bricks",
+        "innovate/stone_sawmill"
+      ]
+    }
+  ]
+}

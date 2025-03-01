@@ -1,0 +1,18 @@
+{
+  "name": "Mena, Fósil",
+  "icon": "pyrotech:fossil_ore",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:fossil_ore",
+      "text": "La $(item)Mena de fósil$() puede ser encontrada casi donde sea en el subsuelo.$(p)$(info) Puede ser picada con $(thing)Herramientas toscas$(), pero obtendrás mejores resultados con mejores herramientas."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/shard_bone_and_flint"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Manteca de cerdo",
+  "icon": "pyrotech:material:49",
+  "category": "adapt_butchery",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:material:49",
+      "text": "$(info) La $(item)Manteca de cerdo$() es conseguida procesando $(item)Cadáveres$().$(p)$(info) La $(item)Manteca de cerdo$() puede ser convertida en $(item)Aceite de lámpara$() usando un $(thing)Horno de crisol$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/carcass",
+        "innovate/oil_lamp"
+      ]
+    }
+  ]
+}

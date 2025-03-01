@@ -1,0 +1,27 @@
+{
+  "name": "Montón de lodo",
+  "icon": "pyrotech:rock:11",
+  "category": "gather_material",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "pyrotech:rock:11",
+      "text": "Los $(item)Montones de lodo$() pueden ser conseguidos del lodo encontrado en el mundo o fabricados."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:mud"
+    },
+    {
+      "type": "rt_soaking_pot_recipe",
+      "recipe": "pyrotech:mud_clump"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/mud"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Mantillo",
+  "icon": "pyrotech:mulch",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:mulch",
+      "text": "El $(item)Mantillo$() se crea usando una $(item)Compostera$() y puede ser colocado en $(item)Tierra de cultivo$().$(p)El $(item)Mantillo$() puede ser colocado en $(item)Tierra de cultivo$() o una planta creciendo encima para crear una $(item)Tierra de cultivo cubierta de mantillo$() temporal."
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:farmland_mulched",
+      "text": "La $(item)Tierra de cultivo cubierta de mantillo$() es resistente a ser pisoteada y las plantas creciendo encima recibirán periodicamente un $(thing)efecto de polvo de hueso$() por la duración del efecto del mantillo."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/wheat_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/compost_bin"
+      ]
+    }
+  ]
+}

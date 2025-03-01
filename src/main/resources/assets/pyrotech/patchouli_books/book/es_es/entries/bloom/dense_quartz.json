@@ -1,0 +1,25 @@
+{
+  "name": "Denso, Cuarzo",
+  "icon": "pyrotech:material:37",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:material:37",
+      "link_recipe": true,
+      "text": "El $(item)Cuarzo denso$() puede ser encontrado picando depósitos de $(item)Menas de cuarzo densas$() con un $(thing)Pico de hierro$() o similar.$(p)$(info) Las $(thing)Herramientas$() fabricadas con $(item)Cuarzo denso$() tienen propiedades únicas."
+    },
+    {
+      "type": "rt_anvil_recipe",
+      "recipe": "pyrotech:quartz_from_dense_quartz",
+      "text": "El $(item)Cuarzo denso$() puede ser quebrado con un pico en un $(item)Yunque$() para obtener $(item)Cuarzo$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/dense_quartz_ore",
+        "bloom/tools_quartz"
+      ]
+    }
+  ]
+}

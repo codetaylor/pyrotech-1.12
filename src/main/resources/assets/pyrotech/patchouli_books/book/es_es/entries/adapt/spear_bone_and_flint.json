@@ -1,0 +1,20 @@
+{
+  "name": "Lanza, Hueso y Pedernal",
+  "icon": "pyrotech:bone_spear",
+  "category": "adapt_tools",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:bone_spear",
+      "recipe2": "pyrotech:flint_spear"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/sticks",
+        "gather/shard_bone_and_flint",
+        "adapt/twine"
+      ]
+    }
+  ]
+}
