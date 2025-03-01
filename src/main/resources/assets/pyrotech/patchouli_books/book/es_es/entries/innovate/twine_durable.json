@@ -1,0 +1,20 @@
+{
+  "name": "Cordel, Duradero",
+  "icon": "pyrotech:material:26",
+  "category": "innovate_stone_soaking",
+  "pages": [
+    {
+      "type": "rt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:twine_durable",
+      "text": "Remojar $(item)Cordel$() en $(item)Alquitrán de madera$() lo hará más duradero."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/twine",
+        "innovate/soaking_pot"
+      ]
+    }
+  ]
+}

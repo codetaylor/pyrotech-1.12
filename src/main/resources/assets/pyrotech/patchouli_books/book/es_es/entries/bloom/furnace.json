@@ -1,0 +1,12 @@
+{
+  "name": "Horno",
+  "icon": "minecraft:furnace",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:furnace",
+      "text": ""
+    }
+  ]
+}

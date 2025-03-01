@@ -1,0 +1,85 @@
+{
+  "name": "Quemado en fosa",
+  "icon": "minecraft:dirt",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/pit_burn_01.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "El proceso del $(thing)Quemado en fosa$() está compuesto de los siguientes pasos:$(p)  $(l:innovate/pit_burn#step_1)1. Coloca$()$(br)  $(l:innovate/pit_burn#step_2)2. Enciende$()$(br)  $(l:innovate/pit_burn#step_3)3. Cubre$()$(br)  $(l:innovate/pit_burn#step_4)4. Espera$()$(br)  $(l:innovate/pit_burn#step_5)5. Revela$()$(p)Las siguientes páginas sirven para ilustrar y exponer sobre el proceso del $(thing)Quemado en fosa$()."
+    },
+    {
+      "type": "image",
+      "title": "1. Coloca",
+      "anchor": "step_1",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_00.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Primero, excava un hoyo en el suelo y coloca tu(s) ingrediente(s) dentro.$(p)$(info_es) La fosa puede ser más grande de lo ilustrado.$(p)$(warning_es) El $(thing)Quemado en fosa$() fallará si la fosa es muy grande o si no es completamente llenada con ingredientes."
+    },
+    {
+      "type": "image",
+      "title": "2. Enciende",
+      "anchor": "step_2",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_01.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Segundo, usa cualquier $(l:appendix/ignition)dispositivo encendedor verificado$() y enciende el ingrediente expuesto.$(p)Ya que el $(thing)Quemado en fosa$() fundamentalmente debe ser cubierto por un material solido y no inflamable:$(p)$(info_es) Es recomendado que antes de que lo enciendas, completamente cubras todos los ingredientes expuestos, a excepcion de un ingrediente, el cual usarás para incendiar la fosa."
+    },
+    {
+      "type": "image",
+      "title": "3. Cubre",
+      "anchor": "step_3",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_02.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Inmediatamente tras encender el ingrediente expuesto, cubre la fosa con un material solido y no inflamable.$(p)$(warning_es) A este punto, los ingredientes en la fosa deben estar completamente cubiertos por materiales solidos y no inflamables o el $(thing)Quemado en fosa$() fallará.$(p)Si se realiza correctamente, notarás que los ingredientes ardiendo continuarán desprendiendo humo."
+    },
+    {
+      "type": "image",
+      "title": "4. Espera",
+      "anchor": "step_4",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_03.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Después de cubrir el quemado, espera a que termine.$(p)$(info_es) Mientras el $(thing)Quemado en fosa$() esté activo, el ingrediente ardiendo producirá humo, y, cuando el quemado termine, el humo se detendrá.$(p)$(warning_es) Durante esta fase, no remuevas ningún material cubriendo el quemado hasta que el humo pare. Si el $(thing)Quemado en fosa$() es perturbado, será reducido a cenizas o a nada."
+    },
+    {
+      "type": "image",
+      "title": "5. Revela",
+      "anchor": "step_5",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_04.png"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Finalmente, cuando el humo se haya detenido, remueve cualquier material cubriendo el $(thing)Quemado en fosa$() y escarba las cenizas para ver los resultados."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/log_pile",
+        "appendix/ignition"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Máquinas refractarias",
+  "description": "Las $(thing)Máquinas refractarias$() consumen menos $(thing)Combustible$() que las $(thing)Máquinas de piedra$() y se auto-extinguirán en cuanto terminen su trabajo.",
+  "icon": "pyrotech:brick_sawmill",
+  "sortnum": 3,
+  "parent": "bloom"
+}

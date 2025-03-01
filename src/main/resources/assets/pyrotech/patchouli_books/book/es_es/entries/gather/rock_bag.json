@@ -1,0 +1,34 @@
+{
+  "name": "Mochila para guijarros",
+  "icon": "pyrotech:bag_simple",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/bag_simple",
+      "text": "$(info_es) Una $(item)Mochila para guijarros$() puede guardar una gran cantidad de $(thing)Guijarros$()."
+    },
+    {
+      "type": "text",
+      "title": "En el mundo",
+      "text": "$(info_es) Cuando es colocada en el mundo, las mochilas pueden ser abiertas y cerradas con $(use).$(p)$(info_es) Cuando la mochila está abierta, objetos pueden ser guardados y extraidos desde encima.$(p)$(info_es) Los objetos pueden ser extraidos desde abajo."
+    },
+    {
+      "type": "text",
+      "title": "En tu inventario",
+      "text": "$(info_es) Para abrir o cerrar una mochila mientras la sostienes, asegúrate de no mirar a un bloque y usa $(sneak) + $(use).$(p)$(info_es) Si tienes una mochila abierta en tu mano o barra de objetos, esta auto-recogerá los objetos que recojas.$(p)$(info_es) Los objetos auto-recogidos llenarán stacks existentes en tu inventario antes de llenar tu mochila."
+    },
+    {
+      "type": "text",
+      "text": "$(info_es) Los objetos en una mochila pueden ser transferidos a un inventario, como un cofre, usando $(sneak) + $(use).$(p)$(info_es) Si usas $(sneak) + $(use) con una mochila abierta en un bloque sin inventario, los contenidos de la mochila se verterán en el mundo."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/twine",
+        "gather/storage",
+        "survive/rocks"
+      ]
+    }
+  ]
+}

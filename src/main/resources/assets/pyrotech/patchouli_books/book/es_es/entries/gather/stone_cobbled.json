@@ -1,0 +1,33 @@
+{
+  "name": "Piedra, Roca",
+  "icon": "minecraft:cobblestone",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "text",
+      "text": "La $(item)Roca$() casi siempre puede ser conseguida picando su respectiva piedra con, como mínimo, un pico de hierro.$(p)$(info_es) La $(item)Roca$() también puede ser ocasionalmente conseguida picando con un pico de piedra, pedernal o hueso.$(p)$(info_es) La $(item)Roca$() también puede ser fabricada con $(item)Guijarros$()."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/cobbled_stone_00.png"
+      ]
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobbled_andesite",
+      "recipe2": "pyrotech:cobbled_diorite"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cobbled_granite",
+      "recipe2": "pyrotech:cobbled_limestone"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/rocks"
+      ]
+    }
+  ]
+}

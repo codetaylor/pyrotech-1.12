@@ -1,0 +1,27 @@
+{
+  "name": "Piedra, Drenaje",
+  "icon": "pyrotech:tar_drain",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/refractory/tar_drain_stone",
+      "text": "Un $(item)Drenaje de piedra$() drenará fluidos de recolectores en un rango en frente de él.$(p)$(info_es) El frente del $(item)Drenaje de piedra$() es la cara con el agujero grande."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/pit_burn_drain.png"
+      ],
+      "text": "$(warning_es) Un $(item)Drenaje de piedra$() se romperá si se llena con líquidos calientes, como la lava."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/pit_burn",
+        "innovate/stone_collector"
+      ]
+    }
+  ]
+}

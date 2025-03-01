@@ -1,0 +1,7 @@
+{
+  "name": "Piedra",
+  "description": "Aunque la piedra sea ubicua, como material es bastante anodino - $(italic)una palabra la cual significa no particularmente interesante o sorprendente$().",
+  "icon": "pyrotech:material:16",
+  "parent": "innovate",
+  "sortnum": 2
+}

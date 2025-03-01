@@ -1,0 +1,35 @@
+{
+  "name": "Cuero, Kit de reparación",
+  "icon": "pyrotech:leather_repair_kit",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/leather_repair_kit",
+      "recipe2": "pyrotech:hunting/leather_durable_repair_kit"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/leather_repair_helmet",
+      "recipe2": "pyrotech:hunting/leather_repair_chestplate"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/leather_repair_leggings",
+      "recipe2": "pyrotech:hunting/leather_repair_boots"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/leather_durable_upgrade_kit",
+      "text": "Los $(item)Kit de mejora de cuero duradero$() pueden ser usados para mejorar la $(thing)Armadura de cuero$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/leather_pieces",
+        "innovate/durable_leather",
+        "adapt/hunters_knife_bone_and_flint"
+      ]
+    }
+  ]
+}

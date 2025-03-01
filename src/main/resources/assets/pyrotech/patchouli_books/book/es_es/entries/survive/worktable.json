@@ -1,0 +1,21 @@
+{
+  "name": "Estación de trabajo",
+  "icon": "pyrotech:worktable",
+  "category": "survive",
+  "pages": [
+    {
+      "type": "text",
+      "text": "La $(item)Estación de trabajo$() te otorgará el espacio de superficie necesario para mejorar tus habilidades de fabricación.$(p)Para usar una $(item)Mesa de trabajo$(), coloca los ingredientes de la receta encima, y usa $(use) con un martillo."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/worktable"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/chopping_block"
+      ]
+    }
+  ]
+}

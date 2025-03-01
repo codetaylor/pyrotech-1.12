@@ -1,0 +1,27 @@
+{
+  "name": "Papel",
+  "icon": "minecraft:paper",
+  "category": "innovate_stone_soaking",
+  "pages": [
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:pulp_from_reeds",
+      "recipe2": "pyrotech:pulp_from_wood_chips",
+      "text": "La $(item)Pulpa$() puede ser fabricada remojando $(item)Cañas de azúcar$() o $(item)Pilas de virutas de madera$() en agua."
+    },
+    {
+      "type": "rt_drying_recipe",
+      "header": true,
+      "recipe": "pyrotech:crude_drying_rack/paper",
+      "text": "La $(item)Pulpa$() luego puede ser secada para crear $(item)Papel$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/soaking_pot",
+        "adapt/drying_rack"
+      ]
+    }
+  ]
+}

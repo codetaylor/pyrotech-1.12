@@ -1,0 +1,21 @@
+{
+  "name": "Carbón vegetal, bloque",
+  "icon": "pyrotech:charcoal_block",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "rrt_compacting_bin_recipe",
+      "header": true,
+      "recipe": "pyrotech:charcoal_block_from_flakes",
+      "recipe2": "pyrotech:charcoal_block",
+      "text": "Los $(item)Copos de carbón vegetal$() y el $(item)Carbón vegetal$() pueden ser $(thing)Compactados$() en un $(item)Bloque de carbón vegetal$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/charcoal",
+        "innovate/compacting_bin"
+      ]
+    }
+  ]
+}

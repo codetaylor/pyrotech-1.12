@@ -1,0 +1,7 @@
+{
+  "name": "Carnicería",
+  "description": "La carnicería es esencial para conseguir $(thing)Carnes$(), $(thing)Pieles$(), y $(item)Manteca$().",
+  "icon": "pyrotech:carcass",
+  "sortnum": 2,
+  "parent": "adapt"
+}

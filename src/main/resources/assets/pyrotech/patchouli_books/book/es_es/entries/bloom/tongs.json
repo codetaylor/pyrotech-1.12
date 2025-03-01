@@ -1,0 +1,38 @@
+{
+  "name": "Tenazas",
+  "icon": "pyrotech:tongs_iron",
+  "category": "bloom_bloom",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Las $(item)Tenazas$() te permitirán manipular $(item)Lupas$() con seguridad.$(p)$(info_es) Para recoger una $(item)Lupa$(), usa $(use) en la $(item)Lupa$() con $(item)Tenazas$().$(p)$(info_es) Las $(item)Tenazas$() en cualquier mano recogerán $(item)Lupa$() si entra a tu inventario.$(p)$(info_es) Las $(item)Lupas$() pueden ser usadas en $(item)Hornos bajos$() y $(item)Fraguas del Wither$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/tongs_stone",
+      "recipe2": "pyrotech:tech/bloomery/tongs_bone"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/tongs_flint",
+      "recipe2": "pyrotech:tech/bloomery/tongs_iron"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/tongs_gold",
+      "recipe2": "pyrotech:tech/bloomery/tongs_diamond"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/bloomery/tongs_obsidian"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/stone_rod",
+        "gather/shard_bone_and_flint"
+      ]
+    }
+  ]
+}

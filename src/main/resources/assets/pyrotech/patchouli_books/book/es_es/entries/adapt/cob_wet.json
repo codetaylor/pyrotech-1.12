@@ -1,0 +1,26 @@
+{
+  "name": "Cob, Húmedo",
+  "icon": "pyrotech:cob_wet",
+  "category": "adapt",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cob_2x2a",
+      "text": "$(info_es) El $(item)Cob húmedo$() caerá a menos que tenga soporte o seque.$(p)$(info_es) El $(item)Cob húmedo$() secará en un duro $(item)Cob$() con el tiempo cuando se coloque en el mundo."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:cob_2x2b",
+      "recipe2": "pyrotech:cob_3x3"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/mud",
+        "gather/mud_clump",
+        "adapt/plant_fibers_dried",
+        "adapt/cob"
+      ]
+    }
+  ]
+}

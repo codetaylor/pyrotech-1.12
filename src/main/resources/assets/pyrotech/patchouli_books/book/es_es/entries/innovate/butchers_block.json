@@ -1,0 +1,24 @@
+{
+  "name": "Bloque de carnicero",
+  "icon": "pyrotech:butchers_block",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Para usar, coloca un $(item)Cadáver$() encima y usa $(use) con un $(item)Cuchillo$().$(p)$(info_es) Usar un $(item)Cuch. de cazador$() en un $(item)Bl. de carnicero$() otorgará un mejor rendimiento para obtener $(thing)Pieles$().$(p)$(info_es) Usar un $(item)Cuch. de carnicero$() en un $(item)Bl. de carnicero$() otorgará un mejor rendimiento para obtener $(thing)Carnes$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/butchers_block",
+      "text": "$(warning_es) Usar puede causar hambre. Si resulta ineficaz, puede que estés muy hambriento."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/carcass",
+        "adapt/butchers_knife_bone_and_flint",
+        "adapt/hunters_knife_bone_and_flint"
+      ]
+    }
+  ]
+}

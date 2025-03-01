@@ -1,0 +1,23 @@
+{
+  "name": "Bloque encendedor",
+  "icon": "pyrotech:igniter:0",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Un $(item)Bloque encendedor$() puede ser usado para encender algo en frente de él si recibe una señal de redstone.$(p)$(info_es) El $(item)Bloque encendedor refractario$() es un $(thing)Bloque refractario$() valido."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:ignition/igniter_stone",
+      "recipe2": "pyrotech:ignition/igniter_brick"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}

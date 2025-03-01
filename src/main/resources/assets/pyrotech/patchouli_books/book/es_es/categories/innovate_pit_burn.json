@@ -1,0 +1,7 @@
+{
+  "name": "Quemado en fosa",
+  "description": "Una persona querría enterrar algo para evitar que sea encontrado, a veces debido a la vergüenza de lo que están escondiendo o porque otros buscan poseerlo.$(br) Pero, como es el caso aquí, uno tambien querría enterrar algo para aislarlo contra la perdida excesiva de calor durante la carbonización.",
+  "icon": "minecraft:dirt",
+  "parent": "innovate",
+  "sortnum": 1
+}

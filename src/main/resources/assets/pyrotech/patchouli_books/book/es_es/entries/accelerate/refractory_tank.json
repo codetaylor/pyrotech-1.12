@@ -1,0 +1,19 @@
+{
+  "name": "Refractario, tanque",
+  "icon": "pyrotech:brick_tank",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/brick_tank",
+      "text": "El $(item)Tanque refractario$() mantendrá sus contenidos cuando se rompa y no quebrará si se llena con líquidos calientes."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick",
+        "accelerate/refractory_burn"
+      ]
+    }
+  ]
+}

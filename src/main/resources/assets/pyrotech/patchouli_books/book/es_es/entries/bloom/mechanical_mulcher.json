@@ -1,0 +1,41 @@
+{
+  "name": "Mecánico, Disp. de mantillo",
+  "icon": "pyrotech:mechanical_mulch_spreader",
+  "category": "bloom_cog_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/mechanical_mulch_spreader",
+      "text": "Un $(item)Dispersor de mantillo mecánico$() usa un $(thing)Engranaje$() para dispersar $(item)Mantillo$() dentro de un rango frente a la máquina.$(p)$(info_es) Cada $(thing)Engranaje$() tiene una cantidad y rango de dispersión diferente por ciclo."
+    },
+    {
+      "type": "mechanical_mulcher_cogs",
+      "cog": "pyrotech:cog_wood",
+      "cog2": "pyrotech:cog_stone",
+      "cog3": "pyrotech:cog_bone",
+      "cog4": "pyrotech:cog_flint"
+    },
+    {
+      "type": "mechanical_mulcher_cogs",
+      "cog": "pyrotech:cog_iron",
+      "cog2": "pyrotech:cog_gold",
+      "cog3": "pyrotech:cog_obsidian",
+      "cog4": "pyrotech:cog_diamond"
+    },
+    {
+      "type": "text",
+      "text": "$(info_es) Sobre la automatización, mantillo puede ser insertado por encima."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/wood_tarred",
+        "innovate/mechanical_hopper",
+        "innovate/masonry_brick_block",
+        "bloom/cog_advanced",
+        "innovate/cog_basic"
+      ]
+    }
+  ]
+}

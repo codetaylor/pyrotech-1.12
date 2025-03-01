@@ -1,0 +1,22 @@
+{
+  "name": "Cubo para compactar",
+  "icon": "pyrotech:compacting_bin",
+  "category": "innovate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Para usar, coloca ingredientes encima y usa $(use) con una $(thing)Pala$().$(p)$(warning_es) Usar puede causar hambre. Si resulta ineficaz, puede que estés muy hambiento."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/compacting_bin",
+      "text": "$(info_es) Sobre la automatización, objetos pueden ser insertados encima y en los lados."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/stone"
+      ]
+    }
+  ]
+}

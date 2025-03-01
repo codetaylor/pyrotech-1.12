@@ -1,0 +1,18 @@
+{
+  "name": "Refractario, Grifo",
+  "icon": "pyrotech:faucet_brick",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/brick_faucet",
+      "text": "Usa un $(item)Grifo refractario$() para transferir fluido desde un lado de un dispositivo hacia el dispositivo abajo."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}

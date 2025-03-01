@@ -1,0 +1,29 @@
+{
+  "name": "Herramientas, Toscas",
+  "icon": "pyrotech:crude_pickaxe",
+  "category": "survive_tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Las $(item)Herramientas toscas$() pueden ser fabricadas con $(item)Palos$() y $(item)Guijarros$()$(p)$(info_es) Las Herramientas de bajo grado, como las $(item)Herramientas toscas$() logran conseguir recursos inferiores en comparación a sus contrapartes de alto grado."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/crude_pickaxe",
+      "recipe2": "pyrotech:tool/crude_axe"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/crude_hoe",
+      "recipe2": "pyrotech:tool/crude_shovel"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/rocks",
+        "gather/sticks",
+        "gather/plant_fibers"
+      ]
+    }
+  ]
+}

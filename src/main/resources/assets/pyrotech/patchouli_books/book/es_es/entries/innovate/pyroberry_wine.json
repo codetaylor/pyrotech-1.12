@@ -1,0 +1,25 @@
+{
+  "name": "Vino, Pyruvas",
+  "icon": "pyrotech:pyroberry_wine",
+  "category": "innovate_stone_fermenting",
+  "pages": [
+    {
+      "type": "rt_barrel_recipe",
+      "header": true,
+      "recipe": "pyrotech:pyroberry_wine",
+      "text": "Remojar $(item)Pyruvas$() con $(item)Azúcar$() en $(item)Agua$() hará $(item)Vino de pyruvas$().$(p)$(info_es) Beber $(item)Vino de pyruvas$() tiene efectos beneficiosos."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:pyroberry_wine",
+      "text": "$(warning_es) Beber mucho $(item)Vino de pyruvas$() puede ser nocivo para tu salud."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/food_raw",
+        "innovate/barrel"
+      ]
+    }
+  ]
+}

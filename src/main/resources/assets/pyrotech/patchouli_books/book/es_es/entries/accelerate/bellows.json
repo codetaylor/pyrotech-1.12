@@ -1,0 +1,27 @@
+{
+  "name": "Fuelle",
+  "icon": "pyrotech:bellows",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/bellows",
+      "text": "$(info_es) Coloca un $(item)Fuelle$() mirando hacia una $(thing)Máquina a combustión$() o un $(item)Horno bajo$() y salta encima para aumentar el flujo de aire y acelerar el dispositivo."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/bellows_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/wood_boards",
+        "innovate/masonry_brick",
+        "innovate/masonry_brick_block",
+        "innovate/stone_rod"
+      ]
+    }
+  ]
+}

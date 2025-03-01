@@ -1,0 +1,30 @@
+{
+  "name": "Tendedero",
+  "icon": "pyrotech:drying_rack:1",
+  "category": "adapt",
+  "pages": [
+    {
+    "type": "text",
+      "text": "El $(item)Tendedero tosco$() y el $(item)Tendedero$() pueden ser usados para secar o guardar objetos.$(p)$(info_es) El rendimiento de un $(item)Tendedero$() depende de varios factores:$(li)proximidad a una fogata$(li)exposición al cielo$(li)hora del dia$(li)temp. y humedad del bioma$(li)exposición a la lluvia$(li)lluvia en el bioma"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/basic/drying_rack_crude",
+      "text": "Un $(item)Tendedero tosco$() puede ser fabricado atando algunos $(item)Palos$() juntos con $(item)Fibras de planta$().$(p)$(info_es) Un $(item)Tendedero tosco$() también puede ser usado para guardar un solo objeto."
+    },
+    {
+      "type": "crafting",
+      "recipe2": "pyrotech:tech/basic/drying_rack",
+      "text": "Un $(item)Tendedero$() más firme y menos tosco puede ser fabricado amarrando $(item)Palos$() con $(item)Cordel$().$(p)$(info_es) Un $(item)Tendedero$() puede ser usado para guardar cuatro objetos."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/introduction",
+        "adapt/twine",
+        "gather/plant_fibers",
+        "gather/sticks"
+      ]
+    }
+  ]
+}

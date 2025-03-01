@@ -1,0 +1,33 @@
+{
+  "name": "Almacenaje",
+  "icon": "pyrotech:crate",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/crate",
+      "text": "Una $(item)Caja$() puede guardar un pequeño número de objetos."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/shelf",
+      "text": "Una $(item)Repisa$() puede guardar un pequeño número de objetos.$(p)$(info_es) Una $(item)Repisa$() puede ser colocada en una posición al frente o al fondo."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/stash",
+      "text": "Un $(item)Alijo$() puede guardar un mayor número de un solo objeto."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:storage/wood_rack",
+      "text": "Un $(item)Estante de madera$() puede guardar un pequeño número de $(thing)Troncos$().$(p)$(info_es) Los $(thing)Troncos$() del mismo tipo se asentarán en el fondo."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/chopping_block"
+      ]
+    }
+  ]
+}

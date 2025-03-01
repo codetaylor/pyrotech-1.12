@@ -1,0 +1,19 @@
+{
+  "name": "Refractario, horno de crisol",
+  "icon": "pyrotech:brick_crucible",
+  "category": "bloom_refractory_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/brick_crucible",
+      "text": "Un $(item)Horno de crisol refractario$() puede realizar la misma labor que un $(item)Horno de crisol de piedra$(), pero con eficiencia aún mayor.$(p)$(info_es) Un $(item)Horno de crisol refractario$() puede contener líquidos calientes."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "accelerate/refractory_bricks",
+        "innovate/stone_crucible"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Prot. contra el fuego",
+  "icon": "minecraft:leather_chestplate",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Cuando trabajas con un $(item)Horno bajo$() y $(item)Escoria$() es común quemarse.$(p)$(info_es) La $(thing)Armadura de cuero$() puede ser recubierta en $(item)Cal apagada$() para aumentar su $(thing)Protección contra el fuego$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:leather_helmet_fireproof",
+      "recipe2": "pyrotech:leather_chestplate_fireproof"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:leather_leggings_fireproof",
+      "recipe2": "pyrotech:leather_boots_fireproof"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}

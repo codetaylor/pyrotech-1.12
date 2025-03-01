@@ -1,0 +1,25 @@
+{
+  "name": "Lodo",
+  "icon": "pyrotech:mud",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "link_recipe": true,
+      "item": "pyrotech:mud",
+      "text": "El $(item)Lodo$() abunda en pantanos y ríos.$(p)$(info_es) Recoger $(item)Lodo$() con una $(thing)pala$() de bajo grado aumentará las posibilidades de conseguir $(item)Montones de lodo$() en lugar de $(item)Lodo$()."
+    },
+    {
+      "type": "rrt_compacting_bin_recipe_soaking_pot_recipe",
+      "compacting_bin_recipe": "pyrotech:mud",
+      "soaking_pot_recipe": "pyrotech:mud",
+      "text": "El $(item)Lodo$() también puede ser fabricado $(thing)compactando$() $(item)Montones de lodo$() o $(thing)remojando$() $(item)Tierra$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/mud_clump"
+      ]
+    }
+  ]
+}
