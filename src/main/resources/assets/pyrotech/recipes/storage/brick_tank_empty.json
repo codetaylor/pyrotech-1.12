@@ -1,18 +1,12 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "pyrotech:tank_flush",
   "conditions": [
     {
       "type": "modules_enabled",
       "include": ["module.storage"]
     }
   ],
-  "ingredients": [
-    {
-      "item": "pyrotech:brick_tank",
-      "data": 0
-    }
-  ],
-  "result": {
+  "tank": {
     "item": "pyrotech:brick_tank",
     "count": 1,
     "data": 0

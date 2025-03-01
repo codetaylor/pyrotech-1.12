@@ -17,6 +17,7 @@
     "leather_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.LeatherRepairRecipe$Factory",
     "bone_tool_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.BoneToolRepairRecipe$Factory",
     "flint_tool_repair": "com.codetaylor.mc.pyrotech.modules.core.recipe.FlintToolRepairRecipe$Factory",
-    "crafting_table": "com.codetaylor.mc.pyrotech.modules.core.recipe.CraftingTableRecipe$Factory"
+    "crafting_table": "com.codetaylor.mc.pyrotech.modules.core.recipe.CraftingTableRecipe$Factory",
+    "tank_flush": "com.codetaylor.mc.pyrotech.modules.core.recipe.TankFlushRecipe$Factory"
   }
 }

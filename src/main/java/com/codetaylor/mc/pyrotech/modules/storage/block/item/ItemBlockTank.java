@@ -15,6 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 
 import javax.annotation.Nonnull;
@@ -30,6 +32,28 @@ public class ItemBlockTank
 
     super(block);
     this.block = block;
+  }
+
+  @Override
+  public boolean hasContainerItem(@Nonnull ItemStack stack) {
+
+    return true;
+  }
+
+  @Nonnull
+  @Override
+  public ItemStack getContainerItem(@Nonnull ItemStack itemStack) {
+
+    // Create a copy such that the game can't mess with it
+    ItemStack result = new ItemStack(this);
+    result.setTagCompound(ItemBlockTank.getTankTagSafe(itemStack));
+    IFluidHandlerItem fluidHandler = result.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+
+    if (fluidHandler != null) {
+      fluidHandler.drain(1000, true);
+    }
+
+    return result;
   }
 
   @ParametersAreNonnullByDefault
