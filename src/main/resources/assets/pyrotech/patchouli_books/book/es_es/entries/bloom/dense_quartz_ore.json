@@ -1,0 +1,25 @@
+{
+  "name": "Mena densa, Cuarzo",
+  "icon": "pyrotech:dense_quartz_ore_large",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:dense_quartz_ore_large",
+      "text": "La $(item)Mena de cuarzo densa$() es encontrada en los tramos inferiores de $(thing)El Nether$() y es el cuarzo de origen natural más puro.$(p)$(info_es) Su bloque puede ser recogido usando $(thing)Toque de seda$().$(p)$(info_es) Requiere de un $(thing)Pico del hierro$() o similar para ser picado."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/dense_quartz_ore_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/dense_quartz"
+      ]
+    }
+  ]
+}

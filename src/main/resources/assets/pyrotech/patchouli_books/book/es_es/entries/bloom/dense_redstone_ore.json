@@ -1,0 +1,25 @@
+{
+  "name": "Mena densa, Redstone",
+  "icon": "pyrotech:dense_redstone_ore_large",
+  "category": "bloom",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:dense_redstone_ore_large",
+      "text": "Encontrado en las profundidades, la $(item)Mena de redstone densa$() es el redstone de origen natural más puro.$(p)$(info_es) Su bloque puede ser recogido usando $(thing)Toque de seda$().$(p)$(info_es) Requiere de un $(thing)Pico del hierro$() o similar para ser picado."
+    },
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/dense_redstone_ore_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/dense_redstone"
+      ]
+    }
+  ]
+}

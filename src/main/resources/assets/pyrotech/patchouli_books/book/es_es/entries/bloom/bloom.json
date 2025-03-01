@@ -1,0 +1,67 @@
+{
+  "name": "Lupa",
+  "icon": "pyrotech:bloom",
+  "category": "bloom_bloom",
+  "pages": [
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/bloom_00.png"
+      ]
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:bloom",
+      "text": "El metal se fabrica fundiendo mena en $(item)Lupa$() usando un $(item)Horno bajo$(), luego usando un $(thing)Martillo$() en la $(item)Lupa$().$(p)$(warning_es) Sostener $(item)Lupa$() con tus manos te quemará.$(p)$(info_es) Es importante siempre manipular $(item)Lupa$() con $(thing)Tenazas$()."
+    },
+    {
+      "type": "text",
+      "title": "Martillando Lupa",
+      "text": "Una $(item)Lupa$() puede ser martillada en el suelo o en un $(thing)Yunque$().$(p)$(warning_es) Martillar $(item)Lupa$() en el suelo hará que se resbale y a veces rompa el bloque bajo ella.$(p)$(warning_es) Martillar $(item)Lupa$() puede iniciar incendios.$(p)$(info_es) Martillar $(item)Lupa$() en un $(thing)Yunque$() es más seguro."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/bloom_00.png"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "Poder de martillo",
+      "text": "El $(thing)Poder de martillo$() es la medida de qué tan efectivo es un martillo al martillar $(item)Lupa$().$(p)$(info_es) El $(thing)Poder de martillo$() se ve afectado por tu distancia entre la $(item)Lupa$(). Entre más cerca estés, más poder tendrá tu martillo.$(p)$(warning_es) Martillar $(item)Lupa$() te causará hambre. Si tus golpes resultan inefectivos, come."
+    },
+    {
+      "type": "spotlight",
+      "title": "Eficiencia",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{lvl: 1, id: 32}]}",
+      "text": "$(info_es) Encantar tu $(thing)Martillo$() con $(item)Eficiencia$() aumentará su $(thing)Poder de martillo$()."
+    },
+    {
+      "type": "spotlight",
+      "title": "Fuerza",
+      "item": "minecraft:potion{Potion: 'minecraft:strength'}",
+      "text": "$(info_es) Beber una $(item)Poción de fuerza$() tambien aumentará tu $(thing)Poder de martillo$().$(p)$(info_es) En cambio, los efectos de $(thing)Debilidad$() y $(thing)Fatiga al picar$() disminuirán tu $(thing)Poder de martillo$()."
+    },
+    {
+      "type": "spotlight",
+      "title": "Fortuna",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{lvl: 1, id: 35}]}",
+      "text": "$(info_es) Encantar tu $(thing)Martillo$() con $(item)Fortuna$() aumentará las posibilidades de que la $(item)Lupa$() no pierda integridad al ser martillada."
+    },
+    {
+      "type": "spotlight",
+      "title": "Toque de seda",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{lvl: 1, id: 33}]}",
+      "text": "$(info_es) Encantar tu $(thing)Martillo$() con $(item)Toque de seda$() reducirá dramáticamente las posibilidades de que martillar $(item)Lupa$() falle y produzca escoria."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad",
+        "bloom/anvil_obsidian"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Ladrillos refractarios",
+  "icon": "pyrotech:refractory_brick_block",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_brick_block",
+      "text": "Los $(item)Ladrillos refractarios$() son usados en la construcción de $(item)Hornos bajos$(), $(thing)Máquinas refractarias$(), y encierro para $(thing)Quemado refractario$().$(p)$(warning_es) Las escaleras, losas, y muros no son validos para estructuras refractarias."
+    },
+    {
+      "type": "rrr_anvil_recipe_brick_sawmill_recipe_brick_sawmill_recipe",
+      "anvil_header": true,
+      "anvil_recipe": "pyrotech:refractory_brick_slab",
+      "sawmill_recipe": "pyrotech:refractory_brick_slab_iron",
+      "sawmill_recipe2": "pyrotech:refractory_brick_slab_diamond"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:refractory_brick_stairs",
+      "recipe2": "pyrotech:refractory_brick_wall"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/refractory_brick"
+      ]
+    }
+  ]
+}

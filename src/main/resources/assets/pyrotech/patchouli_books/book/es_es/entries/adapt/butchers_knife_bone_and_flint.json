@@ -1,0 +1,25 @@
+{
+  "name": "Cuch. de carnicero, Hu. y Ped.",
+  "icon": "pyrotech:bone_butchers_knife",
+  "category": "adapt_butchery",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:hunting/butchers_knife_bone",
+      "recipe2": "pyrotech:hunting/butchers_knife_flint"
+    }, {
+      "type": "text",
+      "text": "$(info_es) Un $(item)Cuchillo de carnicero$() puede ser usado para procesar un $(item)Cadáver$() por $(thing)Pieles$(), $(thing)Carnes$(), entre otros.$(p)$(info_es) Usar un $(item)Cuchillo de carnicero$() en un $(item)Bloque de carnicero$() tiene posibilidades de mejorar el rendimiento para obtener $(thing)Carnes$().$(p)$(warning_es) Usar un $(item)Cuchillo de carnicero$() en un $(item)Bloque de carnicero$() tiene posibilidades de disminuir el rendimiento para obtener $(thing)Pieles$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/carcass",
+        "gather/sticks",
+        "gather/shard_bone_and_flint",
+        "adapt/twine",
+        "innovate/butchers_block"
+      ]
+    }
+  ]
+}

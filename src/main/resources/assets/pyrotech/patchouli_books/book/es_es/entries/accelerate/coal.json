@@ -1,0 +1,50 @@
+{
+  "name": "Carbón",
+  "icon": "minecraft:coal",
+  "category": "accelerate",
+  "pages": [
+    {
+      "type": "rrt_anvil_recipe",
+      "header": true,
+      "recipe": "pyrotech:coal_block_to_coal",
+      "header2": true,
+      "recipe2": "pyrotech:coal_pieces",
+      "text": "Un $(item)Bloque de carbón$() puede ser quebrado a $(item)Carbón$() y el $(item)Carbón$() puede ser aplastado a $(item)Trozitos de carbón$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:coal_ore",
+      "text": "$(info_es) La $(item)Mena de carbón$() puede ser picada por $(item)Trozitos de carbón$().$(p)$(info_es) El $(item)Carbón$() puede ser picado de las $(item)Menas de carbón$() con $(thing)Herramientas de hierro$()."
+    },
+    {
+      "type": "rrt_mechanical_compactor_recipe",
+      "header": true,
+      "recipe": "pyrotech:coal_block",
+      "recipe2": "pyrotech:coal_block_from_pieces",
+      "text": "El $(item)Carbón$() y los $(item)Trozitos de carbón$() pueden ser compactados a un $(item)Bloque de carbón$()."
+    },
+    {
+      "type": "fuel_coal",
+      "recipe": "pyrotech:coal_block",
+      "fuel": "minecraft:coal_block",
+      "text": "Remojar un $(item)Bloque de carbón vegetal$() en $(item)Alquitrán de carbón$() creará un $(item)Bloque de carbón$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "pyrotech:dense_coal_ore",
+      "link_recipe": true,
+      "text": "Las $(item)Menas de carbón densa$() pueden ser encontradas en las profundidades, más a menudo en depósitos de $(item)Menas de carbón$().$(p)$(info_es) Puede ser picada con $(thing)Herramientas de hierro$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad",
+        "bloom/mechanical_compactor",
+        "innovate/soaking_pot",
+        "accelerate/bloomery",
+        "bloom/wither_forge"
+      ]
+    }
+  ]
+}

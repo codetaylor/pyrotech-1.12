@@ -1,0 +1,42 @@
+{
+  "name": "Herramientas, Cuarzo",
+  "icon": "pyrotech:quartz_pickaxe",
+  "category": "bloom_tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(info_es) Las $(thing)Herramientas de cuarzo$() son activadas estando en $(thing)el Nether$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/quartz_pickaxe",
+      "text": "$(info_es) El $(item)Pico de cuarzo$() posee eficiencia aumentada estando activo."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/quartz_shovel",
+      "text": "$(info_es) La $(item)Pala de cuarzo$() posee eficiencia aumentada estando activa."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/quartz_hoe",
+      "text": "$(info_es) La $(item)Azada de cuarzo$() labra tierra en un area de 3x3 estando activa."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/quartz_axe",
+      "text": "$(info_es) La $(item)Hacha de cuarzo$() posee eficiencia aumentada estando activa."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/quartz_sword",
+      "text": "$(info_es) La $(item)Espada de cuarzo$() posee daño aumentado estando activa."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/dense_quartz"
+      ]
+    }
+  ]
+}

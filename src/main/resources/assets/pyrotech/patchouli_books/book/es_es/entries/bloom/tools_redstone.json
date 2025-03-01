@@ -1,0 +1,42 @@
+{
+  "name": "Herramientas, Redstone",
+  "icon": "pyrotech:redstone_pickaxe",
+  "category": "bloom_tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(info_es) Las $(thing)Herramientas de redstone$() son activadas recibiendo daño o situándose cerca de $(thing)Menas de redstone$().$(p)$(info_es) Las $(thing)Herramientas de redstone$() lentamente recuperan durabilidad estando cerca de $(thing)Menas de redstone$().$(p)$(info_es) Las $(thing)Herramientas de redstone$() activas resisten el daño y tienen posibilidades de mantenerse activas al recibir daño."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/redstone_pickaxe",
+      "text": "$(info_es) El $(item)Pico de redstone$() posee eficiencia aumentada estando activo."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/redstone_shovel",
+      "text": "$(info_es) La $(item)Pala de redstone$() posee eficiencia aumentada estando activa."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/redstone_hoe",
+      "text": "$(info_es) La $(item)Azada de redstone$() labra tierra en un area de 3x3 estando activa."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/redstone_axe",
+      "text": "$(info_es) La $(item)Hacha de redstone$() posee eficiencia aumentada estando activa."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tool/redstone_sword",
+      "text": "$(info_es) La $(item)Espada de redstone$() posee daño aumentado estando activa."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "bloom/dense_redstone"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Piedra, Caliza",
+  "icon": "pyrotech:limestone",
+  "category": "gather",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "pyrotech:limestone",
+      "text": "La $(item)Caliza$() puede ser encontrada casi donde sea en el subsuelo."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/stone_cobbled",
+        "survive/rocks"
+      ]
+    }
+  ]
+}

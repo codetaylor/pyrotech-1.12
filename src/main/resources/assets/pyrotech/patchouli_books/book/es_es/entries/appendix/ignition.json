@@ -1,0 +1,21 @@
+{
+  "name": "Apéndice A: Encendido",
+  "icon": "minecraft:paper",
+  "category": "appendix",
+  "pages": [
+    {
+      "type": "text",
+      "text": "La siguiente página contiene una lista de dispositivos encendedores verificados."
+    },
+    {
+      "type": "relations",
+      "title": "",
+      "entries": [
+        "survive/flint_and_tinder",
+        "innovate/bow_drill",
+        "accelerate/igniters",
+        "innovate/bow_drill_durable"
+      ]
+    }
+  ]
+}
