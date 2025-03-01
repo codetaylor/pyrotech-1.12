@@ -1,0 +1,25 @@
+{
+  "name": "Vino, Pequifresas",
+  "icon": "pyrotech:freckleberry_wine",
+  "category": "innovate_stone_fermenting",
+  "pages": [
+    {
+      "type": "rt_barrel_recipe",
+      "header": true,
+      "recipe": "pyrotech:freckleberry_wine",
+      "text": "Remojar $(item)Pequifresas$() con $(item)Azúcar$() en $(item)Agua$() hará $(item)Vino de pequifresas$().$(p)$(info_es) Beber $(item)Vino de pequifresas$() tiene efectos beneficiosos."
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:freckleberry_wine",
+      "text": "$(warning_es) Beber mucho $(item)Vino de pequifresas$() puede ser nocivo para tu salud."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "survive/food_raw",
+        "innovate/barrel"
+      ]
+    }
+  ]
+}

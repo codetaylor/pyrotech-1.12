@@ -1,0 +1,26 @@
+{
+  "name": "Cubo, Refractario",
+  "icon": "pyrotech:bucket_refractory",
+  "category": "innovate_stone_fluids",
+  "pages": [
+    {
+      "type": "crafting",
+      "title": "Sin cocer",
+      "recipe": "pyrotech:bucket/bucket_refractory_unfired",
+      "text": "$(info_es) El $(item)Cubo refractario$() no se romperá con líquidos calientes.$(p)$(warning_es) Aunque, se calentará a niveles peligrosos si se llena con líquidos calientes."
+    },
+    {
+      "type": "rrt_pit_kiln_recipe_stone_kiln_recipe",
+      "pit_kiln_header": true,
+      "pit_kiln_recipe": "pyrotech:bucket_refractory",
+      "stone_kiln_recipe": "pyrotech:pit_kiln/bucket_refractory"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "gather/plant_fibers",
+        "gather/clay_lump_of"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "Máquinas a combustión",
+  "icon": "pyrotech:textures/gui/book/icon/info.png",
+  "category": "innovate_stone_machines",
+  "priority": true,
+  "pages": [
+    {
+      "type": "image",
+      "border": true,
+      "images": [
+        "pyrotech:textures/gui/book/photo/stone_oven_00.png"
+      ]
+    },
+    {
+      "type": "text",
+      "title": "Uso",
+      "text": "Para usar una $(thing)Máquina a combustión$(), coloca ingredientes encima, coloca combustible en el fondo, y enciende la abertura del fondo con un $(l:appendix/ignition)dispositivo encendedor verificado$().$(p)$(info_es) Las $(thing)Máquinas a combustión$() pueden ser extinguidas con un cubo de agua para ahorrar combustible."
+    },
+    {
+      "type": "text",
+      "title": "Automatización",
+      "text": "$(info_es) Sobre la automatización, los ingredientes son insertados arriba, o en los lados de arriba del dispositivo, combustible es insertado en los lados del fondo, y los objetos son extraidos por abajo."
+    },
+    {
+      "type": "image",
+      "images": [
+        "pyrotech:textures/gui/book/illustration/combustion_machine_00.png"
+      ]
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/stone_crucible",
+        "innovate/stone_kiln",
+        "innovate/stone_oven",
+        "innovate/stone_sawmill"
+      ]
+    }
+  ]
+}

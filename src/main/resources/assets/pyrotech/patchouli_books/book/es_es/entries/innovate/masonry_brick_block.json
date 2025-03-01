@@ -1,0 +1,29 @@
+{
+  "name": "Ladrillos de cantería",
+  "icon": "pyrotech:masonry_brick_block",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:masonry_brick_block",
+      "recipe2": "pyrotech:masonry_brick_stairs"
+    },
+    {
+      "type": "rrr_anvil_recipe_brick_sawmill_recipe_brick_sawmill_recipe",
+      "anvil_header": true,
+      "anvil_recipe": "pyrotech:masonry_brick_slab",
+      "sawmill_recipe": "pyrotech:masonry_brick_slab_iron",
+      "sawmill_recipe2": "pyrotech:masonry_brick_slab_diamond"
+    },
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:masonry_brick_wall"
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick"
+      ]
+    }
+  ]
+}

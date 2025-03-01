@@ -1,0 +1,28 @@
+{
+  "name": "Piel, curtida",
+  "icon": "pyrotech:hide_tanned",
+  "category": "innovate_leather",
+  "pages": [
+    {
+      "type": "rrt_soaking_pot_recipe",
+      "header": true,
+      "recipe": "pyrotech:hide_tanned",
+      "recipe2": "pyrotech:hide_small_tanned",
+      "text": "Las $(item)Pieles curtidas$() son fabricadas remojando $(item)Pieles lavadas$() en $(item)Tanino$()."
+    },
+    {
+      "type": "rt_barrel_recipe",
+      "header": true,
+      "recipe": "pyrotech:tannin",
+      "text": "Remojar $(item)Hojas$() en $(item)Agua$() resultará en $(item)Tanino$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/washed_hide",
+        "innovate/soaking_pot",
+        "innovate/barrel"
+      ]
+    }
+  ]
+}

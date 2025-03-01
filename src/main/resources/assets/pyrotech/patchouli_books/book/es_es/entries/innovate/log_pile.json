@@ -1,0 +1,19 @@
+{
+  "name": "Pila de troncos",
+  "icon": "pyrotech:log_pile",
+  "category": "innovate_pit_burn",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:log_pile",
+      "text": "Una $(item)Pila de troncos$() puede ser quemada en un $(thing)Quemado en fosa$() para producir $(item)Carbón vegetal$()."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/pit_burn",
+        "innovate/charcoal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Piedra, horno de cocina",
+  "icon": "pyrotech:stone_oven",
+  "category": "innovate_stone_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/stone_oven",
+      "text": "Un $(item)Horno de cocina de piedra$() realiza las mismas labores que un $(item)Tendedero$() y una $(item)Fogata$(), pero más rapido.$(p)$(info_es) Un $(item)Horno de cocina de piedra$() coce comida sin quemarla."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/masonry_brick_block",
+        "survive/introduction"
+      ]
+    }
+  ]
+}

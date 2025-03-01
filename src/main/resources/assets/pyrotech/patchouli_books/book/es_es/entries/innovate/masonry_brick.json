@@ -1,0 +1,22 @@
+{
+  "name": "Ladrillo de cantería",
+  "icon": "pyrotech:material:16",
+  "category": "innovate_stone",
+  "pages": [
+    {
+      "type": "rrt_anvil_recipe",
+      "header": true,
+      "recipe": "pyrotech:masonry_brick_slab",
+      "header2": true,
+      "recipe2": "pyrotech:brick_stone",
+      "text": "El $(item)Ladrillo de cantería$() es el verdadero pilar del oficio de un cantero."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "adapt/anvil_granite",
+        "bloom/anvil_ironclad"
+      ]
+    }
+  ]
+}

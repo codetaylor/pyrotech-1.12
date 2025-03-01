@@ -1,0 +1,20 @@
+{
+  "name": "Piedra, horno de secado",
+  "icon": "pyrotech:stone_kiln",
+  "category": "innovate_stone_machines",
+  "pages": [
+    {
+      "type": "crafting",
+      "recipe": "pyrotech:tech/machine/stone_kiln",
+      "text": "Un $(item)Horno de secado de piedra$() realiza la misma labor que un $(item)Horno de tierra$(), pero más rapido y con menos fallas."
+    },
+    {
+      "type": "relations",
+      "entries": [
+        "innovate/masonry_brick",
+        "innovate/masonry_brick_block",
+        "adapt/pit_kiln"
+      ]
+    }
+  ]
+}
